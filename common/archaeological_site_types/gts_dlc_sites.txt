@@ -1,0 +1,88 @@
+
+aom_Ruby_digsite = {
+	# 红宝石考古
+	desc = aom_Ruby_digsite_desc
+	picture = GFX_evt_excavation_team
+	stages = 4
+	weight = 0
+	allow = {
+		exists = leader
+		leader = { leader_class = scientist }
+	}
+	visible = {
+		default_site_visible_trigger = yes
+	}
+	stage = {
+		difficulty = 2
+		icon = GFX_archaeology_runes_F1
+		event =  illya.2
+	}
+	stage = {
+		difficulty = 3
+		icon = GFX_archaeology_runes_F2
+		event = illya.3
+	}
+	stage = {
+		difficulty = 3
+		icon = GFX_archaeology_runes_F3
+		event = illya.4
+	}
+	stage = {
+		difficulty = 4
+		icon = GFX_archaeology_runes_F4
+		event = illya.5
+	}
+	on_roll_failed = {
+		from = {
+			standard_archaeological_site_on_roll_failed = {
+				RANDOM_EVENTS = all_random_events
+			}
+		}
+	}
+}
+site_firefly_potral ={#流萤考古事件
+	picture = GFX_evt_drifting_gateway
+	desc = site_firefly_potral.desc
+	weight = 0
+	max_instances = 1
+	stages = 5
+	allow = {
+		exists = leader
+		leader = { leader_class = scientist }
+	}
+	visible = {
+		default_site_visible_trigger = yes
+	}
+	stage = { #第一步
+		difficulty = 0
+		event = gts_firefly_potral.02
+		icon = GFX_archaeology_runes_B1
+	}
+	stage = { #第二步
+		difficulty = 0
+		event = gts_firefly_potral.03
+		icon = GFX_archaeology_runes_B2
+	}
+	stage = { #第三步
+		difficulty = 0
+		event = gts_firefly_potral.04
+		icon = GFX_archaeology_runes_B3
+	}
+	stage = { #第四步
+		difficulty = 0
+		event = gts_firefly_potral.05
+		icon = GFX_archaeology_runes_B4
+	}
+	stage = { #第五步
+		difficulty = 0
+		event = gts_firefly_potral.06
+		icon = GFX_archaeology_runes_B5
+	}
+	on_roll_failed = {
+		from = {
+			standard_archaeological_site_on_roll_failed = {
+				RANDOM_EVENTS = all_random_events
+			}
+		}
+	}
+}

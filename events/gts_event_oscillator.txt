@@ -1,0 +1,350 @@
+namespace = gts_oscillator
+
+#第一次进入星系
+ship_event = {
+    id = gts_oscillator.1
+    title = gts_oscillator.1.name
+    desc = gts_oscillator.1.desc
+    picture = GFX_evt_ruined_system
+    show_sound = event_default
+    location = from
+
+    is_triggered_only = yes
+
+    trigger = {
+        owner = { is_ai = no }
+        from = {
+            has_star_flag = gts_oscillator_system
+        }
+    }
+
+    option = {
+        name = gts_oscillator.1.a
+    }
+}
+#第一次殖民跳蛋
+planet_event = {
+    id = gts_oscillator.2
+    title = gts_oscillator.2.name
+    desc = gts_oscillator.2.desc
+    picture = GFX_load_38
+    location = root
+    is_triggered_only = yes
+    fire_only_once = yes
+    show_sound = event_default
+    trigger = {
+        owner = { is_ai = no }
+        is_planet_class = pc_gts_oscillator
+        AND = {
+            has_deposit = d_oscillator_surface
+            has_deposit = d_oscillator_ruin1
+            has_deposit = d_oscillator_ruin2
+            has_deposit = d_oscillator_ruin3
+        }
+    }
+    option = {
+        name = gts_oscillator.2.a
+    }
+    after = {
+        hidden_effect = {
+            planet_event = {
+                id = gts_oscillator.8
+                days = 720
+            }
+            planet_event = {
+                id = gts_oscillator.6
+                days = 1440
+            }
+            planet_event = {
+                id = gts_oscillator.4
+                days = 2160
+            }
+        }
+    }
+}
+
+#地貌事件
+#清除污垢山脉
+planet_event = {
+    id = gts_oscillator.3
+    title = gts_oscillator.3.name
+    desc = gts_oscillator.3.desc
+    picture = GFX_evt_relic_world_building
+    location = root
+    is_triggered_only = yes
+    show_sound = event_scanner
+    trigger = {
+        owner = { is_ai = no }
+        is_planet_class = pc_gts_oscillator
+    }
+    option = {
+        name = gts_oscillator.3.a
+        hidden_effect = {
+            planet_event = {
+                id = gts_oscillator.10
+            }
+        }
+    }
+}
+#长时间没有清除污垢山脉
+planet_event = {
+    id = gts_oscillator.4
+    title = gts_oscillator.4.name
+    desc = gts_oscillator.4.desc
+    picture = GFX_evt_relic_world_building
+    location = root
+    is_triggered_only = yes
+    show_sound = event_dangerous_animals
+    trigger = {
+        owner = { is_ai = no }
+        is_planet_class = pc_gts_oscillator
+        has_deposit = d_oscillator_ruin1
+    }
+    immediate = { set_planet_flag = d_oscillator_ruin1_worse }
+    option = {
+        name = gts_oscillator.4.a
+    }
+}
+#清除污垢沼泽
+planet_event = {
+    id = gts_oscillator.5
+    title = gts_oscillator.5.name
+    desc = gts_oscillator.5.desc
+    picture = GFX_load_93
+    location = root
+    is_triggered_only = yes
+    show_sound = event_scanner
+    trigger = {
+        owner = { is_ai = no }
+        is_planet_class = pc_gts_oscillator
+    }
+    option = {
+        name = gts_oscillator.5.a
+        hidden_effect = {
+            planet_event = {
+                id = gts_oscillator.10
+            }
+        }
+    }
+}
+#长时间没有清除沼泽
+planet_event = {
+    id = gts_oscillator.6
+    title = gts_oscillator.6.name
+    desc = gts_oscillator.6.desc
+    picture = GFX_evt_toxic
+    location = root
+    is_triggered_only = yes
+    show_sound = event_dangerous_animals
+    trigger = {
+        owner = { is_ai = no }
+        is_planet_class = pc_gts_oscillator
+        has_deposit = d_oscillator_ruin2
+    }
+    immediate = { set_planet_flag = d_oscillator_ruin2_worse }
+    option = {
+        name = gts_oscillator.6.a
+    }
+}
+#清除马达
+planet_event = {
+    id = gts_oscillator.7
+    title = gts_oscillator.7.name
+    desc = gts_oscillator.7.desc
+    picture = GFX_evt_generator_powerup
+    location = root
+    is_triggered_only = yes
+    show_sound = event_activating_unknown_technology
+    trigger = {
+        owner = { is_ai = no }
+        is_planet_class = pc_gts_oscillator
+    }
+    option = {
+        name = gts_oscillator.7.a
+        hidden_effect = {
+            planet_event = {
+                id = gts_oscillator.10
+            }
+        }
+    }
+}
+#长时间没有清除污垢山脉
+planet_event = {
+    id = gts_oscillator.8
+    title = gts_oscillator.8.name
+    desc = gts_oscillator.8.desc
+    picture = GFX_evt_generator_powerup
+    location = root
+    is_triggered_only = yes
+    show_sound = event_power_down
+    trigger = {
+        owner = { is_ai = no }
+        is_planet_class = pc_gts_oscillator
+        has_deposit = d_oscillator_ruin3
+    }
+    immediate = { set_planet_flag = d_oscillator_ruin3_worse }
+    option = {
+        name = gts_oscillator.8.a
+    }
+}
+
+#跳蛋塞入事件
+planet_event = {
+    id = gts_oscillator.10
+    title = gts_oscillator.10.name
+    desc = gts_oscillator.10.desc
+    picture = GFX_load_63
+    location = root
+    is_triggered_only = yes
+    show_sound = event_default
+    trigger = {
+        owner = { is_ai = no }
+        is_planet_class = pc_gts_oscillator
+        NOR = {
+            has_deposit = d_oscillator_ruin1
+            has_deposit = d_oscillator_ruin2
+            has_deposit = d_oscillator_ruin3
+        }
+    }
+    option = {
+        name = gts_oscillator.10.a
+        custom_tooltip = gts_oscillator.10.a.tooltip
+    }
+}
+planet_event = {
+    id = gts_oscillator.11
+    title = gts_oscillator.11.name
+    desc = gts_oscillator.11.desc
+    picture = GFX_load_63
+    location = root
+    is_triggered_only = yes
+    show_sound = event_activating_unknown_technology
+    trigger = {
+        exists = owner
+        owner = { is_ai = no }
+        is_planet_class = pc_gts_oscillator
+        NOR = {
+            has_deposit = d_oscillator_ruin1
+            has_deposit = d_oscillator_ruin2
+            has_deposit = d_oscillator_ruin3
+        }
+    }
+    immediate = {
+        owner = {
+            random_owned_leader = {
+                limit = {
+                    has_trait = leader_trait_Ultra
+                    has_leader_flag = hired_gts_leader
+                }
+                save_event_target_as = oscillator_leader_1
+                set_leader_flag = oscillator_leader
+            }
+            random_owned_leader = {
+                limit = {
+                    has_trait = leader_trait_Ultra
+                    has_leader_flag = hired_gts_leader
+                    NOR = { has_leader_flag = oscillator_leader }
+                }
+                save_event_target_as = oscillator_leader_2
+                set_leader_flag = oscillator_leader
+            }
+            random_owned_leader = {
+                limit = {
+                    has_trait = leader_trait_Ultra
+                    has_leader_flag = hired_gts_leader
+                    NOR = { has_leader_flag = oscillator_leader }
+                }
+                save_event_target_as = oscillator_leader_3
+                set_leader_flag = oscillator_leader
+            }
+        }
+    }
+    option = {
+        name = gts_oscillator.11.a
+        trigger = { exists = event_target:oscillator_leader_1 }
+        hidden_effect = {
+            event_target:oscillator_leader_1 = {
+                leader_event = {
+                    id = gts_oscillator.12
+                }
+            }
+        }
+    }
+    option = {
+        name = gts_oscillator.11.b
+        trigger = { exists = event_target:oscillator_leader_2 }
+        hidden_effect = {
+            event_target:oscillator_leader_2 = {
+                leader_event = {
+                    id = gts_oscillator.12
+                }
+            }
+        }
+    }
+    option = {
+        name = gts_oscillator.11.c
+        trigger = { exists = event_target:oscillator_leader_3 }
+        hidden_effect = {
+            event_target:oscillator_leader_3 = {
+                leader_event = {
+                    id = gts_oscillator.12
+                }
+            }
+        }
+    }
+    option = {
+        name = gts_oscillator.11.d
+        hidden_effect = {
+            owner = {
+                every_owned_leader = {
+                    remove_leader_flag = oscillator_leader
+                }
+            }
+        }
+    }
+}
+leader_event = {
+    id = gts_oscillator.12
+    title = gts_oscillator.12.name
+    desc = gts_oscillator.12.desc
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+        room = gts_oscillator_room
+    }
+    is_triggered_only = yes
+    show_sound = event_gts_masturbate
+    immediate = {
+        owner = { gts_set_count_kill_pop_effect = yes }
+        from = {
+            gts_count_planet_killed_pop_effect = yes
+            destroy_colony = yes
+            remove_planet = yes
+        }
+        change_variable = {
+            which = gts_ub_kills_logs
+            value = owner.gts_event_kills_logs
+        }
+        change_variable = {
+            which = gts_city_kills_logs
+            value = owner.gts_event_city_kills_logs
+        }
+        change_variable = {
+            which = gts_planet_kills_logs
+            value = 1
+        }
+    }
+    option = {
+        name = gts_oscillator.12.a
+        owner = {
+            add_monthly_resource_mult = {
+                resource = gts_giantess_fluid
+                value = 6
+                min = 1000
+                max = 100000
+            }
+            add_modifier = { modifier = modifier_pc_gts_oscillator }
+        }
+    }
+}

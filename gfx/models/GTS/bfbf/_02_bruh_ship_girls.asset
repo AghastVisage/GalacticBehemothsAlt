@@ -1,0 +1,30 @@
+################################################################################
+####################                  巨像                  ####################
+################################################################################
+
+entity = {
+	name = "GTS_Bruh_Xeno_entity"
+	locator = { name = "spine" }
+	
+	default_state = "idle"
+	state = { name = "idle" state_time = 5 }
+}
+
+entity = {
+	name = "GTS_Bruh_Xeno_body_entity"
+	pdxmesh = "GTS_Bruh_Xeno_body_mesh"
+	
+	default_state = "idle"
+	state = { name = "idle" animation = "gts_bruh_xeno_idle_animation" looping = yes next_state = "idle" animation_blend_time = 0
+		chance = {
+			if_current_state = {
+				"idle" = 100
+			}
+		}
+	}
+}
+
+animation = {
+	name = "gts_bruh_xeno_idle_animation"
+	file = "GTS_Bruh_Xeno_Body_idle.anim"
+}

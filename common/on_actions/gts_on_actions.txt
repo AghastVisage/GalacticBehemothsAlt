@@ -1,0 +1,802 @@
+on_game_start = {
+	events = {
+		gts_utility.104		# 添加全局flag
+		gts_evt_breast.30
+		gts_ra_daily.1		#整合
+
+	}
+}
+on_country_created = {
+	events = {
+		gts_utility.200 			# 物种加体型
+		gts_utility.100				# 国家初始化
+		gts_utility.101				# 检测更新变量
+		gts_utility.102				# 添加开局加成
+
+	}
+}
+on_country_destroyed = {
+	events = {
+		115tiny_crisis.4020	# Menace Objective: Destroy Empire.
+		gts_hstar_crisis.210
+	}
+}
+on_game_start_country = {
+	events = {
+		gts_utility.200 			# 物种加体型
+		gts_utility.100				# 国家初始化
+		gts_utility.101 			# 检测更新变量
+		gts_utility.102 			# 添加开局加成
+		gts_utility.103 			# 巨娘动态加成
+
+		gts_egg.0 					# 卵子起源开局
+		gts_fallout.0 				# 异尘起源开局
+		gts_subterranean.0 			# 鞋底人起源开局
+		gts_hamony.0 				# 和谐起源开局
+		gts_god_keeper.0  			# 豢养神明开局
+		gts_ultra_company.0 		# 保险开
+
+		gts_civ_common.50 			# 入陰禮 - 添加人口特質
+		gts_civ_common.90 			# 小人同化者 - 開局人口設定
+		gts_civ_common.92 			# 小人保護者 - 開局人口設定
+		gts_story_line.0			# 主线开始
+		gts_evt_ancient.1
+		gts_aya.10
+		gts_aya.11
+		gts_aya.12
+		gts_chenghui.4000
+		gts_chenghui.4003
+
+		gts_ultra_road.1
+		gts_annihilator_origin.1
+		gts_annihilator_origin.2
+
+		gts_hstar_origin.1
+		gts_hstar_origin.2
+		gts_hstar.99
+
+		gts_o_action.0011			# 开局调整人口数
+		gts_guide_qhai.1000			# 千海通讯
+		# gts_oversystem.999
+
+	}
+}
+on_monthly_pulse = {
+	events = {
+		gts_utility.201				# 给土著加体型
+		115tiny_crisis.7017 		# Cosmogenesis Neural Chip Objective
+		gts_hstar_crisis.120
+		gts_hstar_crisis.123
+	}
+}
+
+on_yearly_pulse = {
+	events = {
+		115tiny_crisis.5000
+		115tiny_crisis.5005
+		gts_hstar_crisis.204
+		gts_hstar_crisis.205
+		gts_hstar_crisis.208
+		gts_hstar_crisis.240		# Prethoryn Army reinforcements
+		gts_hstar_crisis.122
+
+	}
+}
+
+# 好感度相关
+
+on_five_year_pulse = {
+	events = {
+		gts_event_love.0
+	}
+}
+on_monthly_pulse_country = {
+	events = {
+		# gts_utility.200 # 加体型
+		# gts_utility.201 # 上体型flag
+		gts_utility.101 # 检测更新变量
+		gts_utility.103 # 巨娘动态加成
+		gts_civ_common.11 # 小人清除者 - 自動設定公民權
+		gts_civ_common.20 # 小人保护者
+		gts_civ_common.50 # ub礼仪
+		gts_civ_common.80 # 合欢派检测太空鲸
+		gts_god_keeper.201 # 女儿开加冕后的附庸国事件
+		gts_leader_interact.100 # 万物编织者开三个领袖
+		gts_ultra_road.19 # 成神之路-问题的解决方案
+		gts_leader_qhai.998 # 千海的检测事件
+		gts_civ_common.91 # 小人同化者 - 同化人口
+		gts_evt_xiankeyan.30
+		gts_evt_xiankeyan.50
+		gts_god_keeper.7305
+		gts_kasa.0
+		115tiny_crisis.48
+		gts_evt_ancient.100
+		gts_policy.1
+		gts_policy.2
+		gts_policy.3
+		gts_policy.4
+		gts_policy.5
+		gts_policy.6
+		gts_subterranean.3
+		gts_skadi_paragon.02
+        gts_evolution_catalyst_event.200
+        gts_evolution_catalyst_event.201
+        gts_evolution_catalyst_event.202
+        gts_evolution_catalyst_event.203
+	}
+}
+
+
+on_yearly_pulse_country = {
+	events = {
+		gts_leader_interact.2		#领袖数据更新
+		gts_evt_random.010020		#冒失的士兵
+		gts_evt_random.010030		#小人的游行
+		gts_evt_random.040010		#小人之家
+		gts_evt_elf.11 				#精灵国的访问
+		gts_hehuanpai.0001 			#合欢会
+		gts_evt_random.040100		#机械/义体事件
+		gts_evt_random.040130		#缩小激素完成
+		gts_evt_random.040190		#小人朋友相处守则
+		gts_evt_random.040210		#意外来客
+		gts_aeiou.1					#发现异常
+		gts_aeiou.2 				#发现异常
+		gts_civ_servitor.1000		#小人保护者？
+		gts_god_keeper.3000 		#龙开的军演
+		gts_evt_graygoo.1			#小灰拓展事件
+		gts_skadi_potral.11 		#缩小激素
+		gts_skadi_shroud.3322 		#斯卡蒂称帝后给灵能
+		gts_civ_common.60 			#妹汁本味
+		gts_civ_common.70 			#小人本味
+		gts_linfeng.200				#林凤与艾普露联动事件
+		gts_linfeng.210				#林凤与千海联动事件
+		gts_suxiaobai.200			#林凤与苏小白联动事件
+	}
+}
+
+# 好感度事件触发
+on_yearly_pulse_country = {
+	events = {
+		gts_god_keeper.3999
+		gts_hitomi.420     #希瞳好感度事件
+	}
+}
+
+on_five_year_pulse_country = {
+	events = {
+		gts_evt_random.030050		#计划外的演习
+		gts_god_keeper.118			#龙开逼宫事件
+		gts_evt_humiliate.999		#随机羞辱事件
+		gts_civ_maid.999			#随机女仆
+		gts_aplog.50				#艾普露囚禁
+		gts_huatian.1050			#花田与小羊的联动事件
+		gts_leader_qhai.63
+		gts_leader_qhai.400 		#千海的随机事件
+		gts_linfeng.100				#林凤的要求（小人）
+		gts_linfeng.110				#林凤的要求（巨娘）
+		gts_saratoga.1002
+		# gts_utility.303           #没有（或者没做完）招募前事件的Mod领袖抽奖
+	}
+	# 无特殊trigger的随机事件
+	random_events = {
+		1 = gts_evt_random.010040		#小人杀手
+		1 = gts_evt_random.010050		#巨娘竞技场
+		1 = gts_evt_random.010060		#足印旅游
+		1 = gts_evt_random.010080		#喷乳的舰娘
+		1 = gts_evt_random.010090		#决斗
+		1 = gts_evt_random.010240		#守夜人
+		1 = gts_evt_random.010250		#快递
+		1 = gts_evt_random.030010		#领袖们的小爱好
+		1 = gts_evt_random.030020		#边境星球的税收问题
+		1 = gts_evt_random.030030		#科学家体内的失落帝国
+		1 = gts_evt_random.030040		#领袖的吞食
+		1 = gts_evt_random.030050		#计划外的演习
+		1 = gts_evt_random.030060		#生病
+		1 = gts_evt_random.030070		#大富翁
+		1 = gts_evt_random.030080		#性欲下降
+		1 = gts_evt_random.030090		#鞋内城市
+		1 = gts_evt_random.030100 #巨型精子撞击
+		1 = gts_evt_random.040020		#不知名的巨娘商贩
+		1 = gts_evt_random.040030		#售卖巨娘用奇异商品的船队
+		1 = gts_evt_random.040040		#来自遥远星系的消息-编号266432
+		1 = gts_evt_random.040070		#来自遥远星系的消息-编号61053
+		1 = gts_evt_random.040080		#来自遥远星系的消息-编号12653
+		1 = gts_evt_random.040090		#来自遥远星系的消息-编号42663
+		1 = gts_evt_random.040110		#来自星辰的女神
+		1 = gts_evt_random.040170		#来自遥远星系的消息-编号52543
+		1 = gts_evt_random.040180		#来自遥远星系的消息-编号757223
+		1 = gts_evt_random.040200		#意外来客
+		1 = gts_evt_random.040220		#来自遥远星系的消息-编号379123
+		1 = gts_evt_random.040230		#来自遥远星系的消息-编号87618
+		1 = gts_evt_random.040240		#暑期集训
+	}
+}
+
+on_five_year_pulse_country = {
+	events = {
+		gts_eromanga.0
+	}
+}
+
+on_leader_death_notify = {
+	#领袖死亡消息弹窗时触发(没有消息弹窗就无法触发）
+	events = {
+		gts_utility.302 #巨娘领袖回归
+		gts_chenghui.6 # 成惠领袖版复活
+	}
+}
+on_leader_death = {
+	#领袖任何死亡触发
+	events = {
+		# gts_utility.302 #巨娘领袖回归
+	}
+}
+on_leader_fired = {
+	#领袖解雇时触发
+	events = {
+		gts_utility.302 #巨娘领袖回归
+	}
+}
+
+on_leader_spawned = {
+	#领袖生成时触发
+	events = {
+		gts_utility.300
+		gts_lizhi.0000 		# 不屈特质
+		gts_evt_graygoo.2 	# 把小灰的体型改为天体级
+	}
+}
+
+on_custom_diplomacy = {
+	events = {
+		gts_chenghui.1
+		gts_chenghui.2
+		gts_chenghui.3
+		gts_chenghui.4
+		gts_chenghui.5
+		gts_hstar_crisis.30
+		gts_hstar_crisis.55
+		gts_guide_qhai.5001
+		gts_hitomi.10
+		gts_ora.100
+		gts_qinwen.5
+	}
+}
+
+# This = owner of fleet 1 (winner)
+# From = owner of fleet 2 (loser)
+# FromFrom = fleet 1
+# FromFromFrom = fleet
+on_space_battle_won = {
+	events = {
+		gts_spiritualist.2
+		gts_god_keeper.100 			#龙开各种事件
+		gts_god_keeper.108
+		gts_god_keeper.114
+		gts_evt_random.070000		#残骸回收
+		gts_evt_random.070050		#小灰假装战败
+		gts_evt_graygoo.300			#小灰舰队事件
+		gts_traptrix.2302 # 虫惑魔事件
+		gts_hitomi.30012
+		gts_hitomi.30013
+		gts_hitomi.30015
+	}
+	random_events = {
+		10 = 0
+		1 = gts_guya.32		#咕丫-无心的玩弄
+		1 = gts_guya.33		#咕丫-捕食
+		1 = gts_suxiaobai.110	#苏小白舰队胜利事件
+		1 = gts_hitomi.211
+		1 = gts_hitomi.212
+	}
+}
+
+on_space_battle_lost = {
+	events = {
+		gts_spiritualist.1
+		gts_hoppo.8
+	}
+}
+
+on_ship_destroyed_perp = {
+	events = {
+		115tiny_crisis.4025
+		gts_hstar_crisis.218# Crisis Objective: count ships destroyed
+        gts_bfbf.11704
+        gts_xinuo.500
+	}
+	random_events = {
+	}
+}
+
+on_fleet_destroyed_victim = {
+	events = {
+		gts_hstar_crisis.108
+		gts_hstar_crisis.125
+	}
+}
+
+on_starbase_destroyed = {
+	events = {
+		115tiny_crisis.4010
+		gts_hstar_crisis.265# Menace Objective - Destroy Starbases
+	}
+}
+
+on_pop_purged = {
+	events = {
+		115tiny_crisis.4030
+		115tiny_crisis.1030# Menace Objective - Purge Pops
+		115tiny_crisis.115
+		115tiny_crisis.114
+		115tiny_crisis.5090
+		115tiny_crisis.100
+		gts_hstar_crisis.202
+	}
+}
+
+on_pop_displaced = {
+	events = {
+		115tiny_crisis.4030
+		115tiny_crisis.1030# Menace Objective - Purge Pops
+		115tiny_crisis.115
+		115tiny_crisis.114
+	}
+}
+
+on_becoming_subject = {
+	events = {
+		115tiny_crisis.5020 # Menace Objective - Vassalise Empires
+	}
+}
+
+on_ruler_set = {
+	events = {
+		gts_event_love.10
+	}
+}
+on_ruler_back_to_pre_ruler_class = {
+	events = {
+		gts_event_love.11
+	}
+}
+
+on_planet_attackers_win = {
+	events = {
+		gts_spiritualist.2
+		gts_lottie_site.1801
+		gts_hstar_crisis.201		# (Hidden) Prethoryn invades; purge begins
+		gts_hstar_crisis.219
+	}
+}
+
+on_planet_transfer = {
+	events = {
+		gts_subterranean.2	# 添加失去聯繫
+		gts_subterranean.4	# 移除失去联系
+	}
+}
+
+on_planet_occupied = {
+	events = {
+		gts_evt_random.020009		#仍在抵抗的星球
+		gts_evt_random.020019		#星球的命运
+		# gts_seele.227
+	}
+}
+
+on_planet_conquer = {
+	events = {
+		115tiny_crisis.5010 # Crisis Menace Objective: Conquer a Colony
+	}
+}
+
+on_planet_zero_pops = {
+	events = {
+		gts_action.81
+		gts_action.61
+	}
+}
+
+on_army_killed_in_combat = {
+	events = {
+		gts_chenghui.6
+	}
+}
+
+on_planet_attackers_win = {
+	random_events = {
+		1 = gts_event_qhai.30
+		9 = 0
+	}
+}
+
+on_planet_attackers_lose = {
+	events = {
+		gts_spiritualist.1
+	}
+}
+
+on_planet_defenders_win = {
+	events = {
+		gts_spiritualist.2
+		gts_lottie_site.18
+	}
+}
+
+on_planet_defenders_lose = {
+	events = {
+		gts_spiritualist.1
+		gts_lottie_site.17
+	}
+}
+
+on_fleet_destroyed_perp = {
+	events = {
+		gts_hstar.7
+		gts_aurora.1043
+		gts_seele.24
+		gts_traptrix.2205# 虫惑魔战败
+		gts_aurora.1072
+		gts_evt_xiankeyan.31
+		gts_chenghui.6
+		gts_hstar_crisis.70
+		gts_hstar_crisis.310
+		gts_hstar_crisis.309
+	}
+	random_events = {
+		19 = 0
+		1 = gts_hstar.30
+	}
+}
+
+# This = owner of fleet
+# From = fleet
+# FromFrom = planet (if any)
+on_fleet_auto_move_arrival = {
+	events = {
+		gts_aurora.1073		#欧若拉出生线毁灭星球
+		gts_traptrix.2299 # 虫惑魔反叛吃球
+		# gts_guya.36			# 咕丫摧毁星球
+	}
+	random_events = {
+		20 = 0
+		1 = gts_evt_random.040050		#舰娘被偷窥
+		5 = gts_evt_random.040140		#擦拭足汗的舰娘
+	}
+}
+
+on_ship_disabled = {
+	events = {
+		gts_sonxi.5		# 颂汐被攻击后消失
+	}
+}
+
+on_ship_upgraded = {
+	events = {
+		gts_bfbf.2001
+	}
+}
+
+on_survey_planet = {
+	random_events = {
+		99 = 0
+		1 = gts_eyjafjalla.100
+	}
+}
+
+on_colony_yearly_pulse = {
+	events = {
+		gts_civ_feudalism.5
+	}
+	random_events = {
+		90 = 0
+		10 = gts_civ_feudalism.1		# Precursor Anomaly found (previously: MTTH 20 years)
+		10 = gts_civ_feudalism.2		# Private Collector has an artifact (previously: MTTH 20 years)
+		10 = gts_civ_feudalism.3		#
+		10 = gts_civ_feudalism.4		# 
+	}
+}
+
+on_colonized = {
+	events = {
+		gts_evt_breast.1
+		gts_subterranean.2
+		gts_evolution_catalyst_event.2#完成殖民时，殖民地获得行星修正“闹事的动物”，获得2个未开化，拥有强制进化+巨大特质的有机体人口。
+		gts_evolution_catalyst_event.1
+		#gts_evolution_catalyst_event.100 #给强制进化的人口加体型巨大特质#完成殖民时，殖民地获得行星修正“闹事的动物”，获得2个未开化，拥有强制进化+巨大特质的有机体人口。
+		gts_evolution_catalyst_event.300
+		#gts_evolution_catalyst_event.400#给赛马娘加泰坦/强制进化特质
+		gts_god_keeper.5602# 殖民完成后触发犽戎的体内事件
+		gts_civ_gts_worship.1000 #巨娘崇拜给岗位
+		gts_hstar_crisis.203
+		gts_o_action.0012
+	}
+}
+
+on_colony_1_year_old = {
+	events = {
+		gts_aurora.1025
+		gts_aurora.1050
+	}
+}
+
+on_colony_2_year_old = {
+
+}
+
+on_colony_3_year_old = {
+	events = {
+		gts_anti_scat.1
+	}
+	random_events = {
+		4 = 0
+        1 = gts_god_keeper.401
+	}
+}
+
+on_colony_5_years_old={
+	events = {
+		gts_icecream.4
+	}
+}
+
+on_colony_monthly_pulse = {
+	events = {
+		gts_civ_gts_worship.1000 #巨娘崇拜给岗位
+	}
+}
+
+on_planet_ownerless = {
+	events = {
+		gts_subterranean.5
+		gts_subterranean.8
+	}
+}
+
+# Planet has taken damage from orbital bombardment - Damage is applied daily
+# This = Planet
+# From = Bombarder
+on_planet_bombarded = {
+	random_events = {
+		1 = gts_skadi_colossus.000  #不能炸
+		1 = gts_skadi_colossus.001	#扶她轰炸
+	}
+	events = {
+		gts_god_keeper.103
+		gts_hstar_crisis.200#龙开附庸战争炸首都
+	}
+}
+on_custom_diplomacy = {
+	events = {
+		gts_kasa.100
+	}
+}
+# A pop amount has been grown
+# This = Planet scope
+# From = Country
+# FromFrom = Pop group
+# local_pop_amount = variable of how much was grown
+on_pop_growth = {
+	events = {
+		gts_civ_common.40 #始于微末
+	}
+}
+
+# Pop is abducted by raiding stance
+# This = Pop scope
+# From = planet abducted from
+on_pop_group_abducted = {
+	random_events = {
+		99 = 0
+		1 = gts_civ_common.30 #三角贸易
+	}
+}
+
+on_monthly_pulse_pre_ftl_observation = {
+	random_events = {
+		# Bronze and Iron Age Events
+		# Medieval and Renaissance Age Events
+		# Steam, Industrial, and Machine Events
+		# Atomic and Early Space Age Events
+		# Early Space Age
+		# Non-era related Observation Events
+		# Situation Events
+		# Non-Era Related Observation Events
+		# Medieval or Victorian Era Events
+		# Pre-Industrial Events
+		100 = gts_evt_random.050010		#科学家的丝袜（土著球）
+		# Post-Industrial Events
+		100 = gts_evt_random.050020		#小人土著观察报告
+		# Atomic and Early Space Age Events
+	}
+}
+# A war has been won
+# Root = Winner Warleader
+# From = Loser Warleader
+# FromFrom = War
+on_war_won = {
+	events = {
+		gts_evt_random.040060 	#战胜堕落帝国
+		gts_god_keeper.301 #女儿开克扣事件
+		# gts_ultra_road.413		#成神之路-胜利的间奏
+		# gts_ultra_road.423		#成神之路-乐曲中的小小高潮
+	}
+}
+# 文灾飞最后阶段
+on_cosmogenesis_exodus_planet_reached = {
+	events = {
+		gts_evt_ancient.7514
+	}
+}
+
+on_ascension_perk_picked = {
+	events = {
+		115tiny_crisis.120
+		gts_ultra_company.100
+	}
+}
+# 飞船进入轨道时触发
+on_fleet_enter_orbit = {
+	events = {
+		gts_god_keeper.7303
+		# gts_bfbf.127
+	}
+}
+
+on_entering_system_fleet = {
+	events = {
+		gts_leader_qhai.2
+		gts_event_qhai.20
+		gts_oversystem.6
+		gts_hitomi.30011
+	}
+}
+
+# Triggered when a first contact process is finished
+# This = first contact scope
+# From = other country
+on_first_contact_finished = {
+	events = {
+		gts_civ_gts_worship.2000#巨娘崇拜判定
+	}
+}
+
+# A planet has begun the colonization process.
+# Scope = Planet
+on_colonization_started = {
+	random_events = {
+		9 = 0
+		1 = gts_evt_random.010260		#巨娘第一次殖民彩蛋
+	}
+}
+
+# Triggers event when each country first sends a ship into the system (once per country)
+# Scope = Ship
+# From = System
+# FromFrom = Country
+on_entering_system_first_time = {
+	events = {
+		gts_cys.2
+		gts_oscillator.1
+		# gts_ultra_road.12		#成神之路-第一次进入非首都星系内
+		# gts_ultra_road.13		#成神之路-为什么都这么小
+		# gts_ultra_road.14		#成神之路-奇怪的现象
+		# gts_ultra_road.15		#成神之路-一个小洞
+		# gts_ultra_road.18		#成神之路-奇怪的结构
+		# gts_ultra_road.21		#成神之路-银河中的足迹
+	}
+}
+
+on_tech_increased = {
+	events = {
+		gts_ui.400
+	}
+}
+
+on_decade_pulse_country = {
+	events = {
+		gts_hstar_crisis.1
+	}
+}
+
+on_bi_yearly_pulse_country = {
+	events = {
+		gts_hstar_crisis.206
+
+	}
+}
+
+on_ship_destroyed_victim = {
+	events = {
+
+		gts_hstar_crisis.217
+
+		gts_hstar_crisis.80
+		gts_hstar_crisis.251		# Prethoryn Brood-Queen captured
+		gts_hstar_crisis.261		# remove Swarm system
+
+	}
+}
+
+on_building_starbase_giantess_crisis = {
+	events = {
+		gts_hstar_crisis.260
+	}
+}
+
+on_destroy_star_system = {
+	events = {
+		gts_hstar_crisis.220
+	}
+}
+# 殖民地被轨道轰炸摧毁时
+# This = Planet
+# From = Bombarder
+on_colony_destroyed_by_bombardment = {
+	events = {
+	}
+}
+# # A fleet has entered a system | See also: on_fleet_auto_move_arrival
+# # Scope = Fleet
+# # From = System
+# on_entering_system_fleet = {
+# 	events = {
+# 		gts_ultra_road.411		#成神之路-烈焰的第一幕
+# 		gts_ultra_road.412		#成神之路-终结的第二乐章
+# 		gts_ultra_road.422		#成神之路-光辉与死亡的合奏
+# 	}
+# }
+
+# # A fleet executes a move order to exit borders
+# # Scope = Fleet
+# # From = Origin System
+# # FromFrom = Destination System
+# # on_crossing_border = {
+# # 	events = {
+# # 	}
+# # }
+
+# # A war is beginning, executed for every country in the war.
+# # Root = Country
+# # From = War
+# on_war_beginning = {
+# 	events = {
+# 		gts_ultra_road.410		#成神之路-灭亡的序曲
+# 		gts_ultra_road.421		#成神之路-乐团的第二次演出
+# 	}
+# }
+
+on_system_survey_ship = {
+	events = {
+		gts_bfbf.11701
+	}
+}
+anomaly_success = {
+	events = {
+		gts_bfbf.11702
+	}
+}
+# on_arch_site_finished = {
+# 	events = {
+# 		gts_bfbf.11702
+# 	}
+# }
+on_debris_researched = {
+	events = {
+		gts_bfbf.11703
+	}
+}
+on_debris_scavenged = {
+	events = {
+		gts_bfbf.11703 # Salvager trait
+	}
+}
+# This = planet  from = country(攻击者)
+on_ground_combat_started = {
+	events = {
+		gts_bfbf.125
+		gts_bfbf.126
+	}
+}
+

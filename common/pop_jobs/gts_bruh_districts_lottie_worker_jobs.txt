@@ -1,0 +1,229 @@
+################################################################################
+#################                洛蒂鞋內勞工崗位                #################
+################################################################################
+
+
+
+shoe_miner = {
+
+	# 鞋墊礦工
+
+	category = worker
+
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_mineral_purification_plant
+		}
+	}
+
+	tags = { minerals rare_crystals }
+
+	inline_script = "jobs/automodding_priority_minerals"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = worker
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+
+	resources = {
+		category = planet_miners
+		produces = {
+			# 12.5
+			minerals = 8.5
+			rare_crystals = 2
+		}
+		upkeep = {
+			# 10
+			energy = 5
+			food = 5
+		}
+	}
+
+	weight = {
+		weight = @worker_job_weight
+	}
+}
+
+shoe_steamer = {
+
+	#足汗蒸汽处理工
+
+	category = worker
+
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_energy_grid
+		}
+	}
+
+	tags = { energy volatile_motes }
+
+	inline_script = "jobs/automodding_priority_energy"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = worker
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+
+	resources = {
+		category = planet_technician
+		produces = {
+			# 12.5
+			energy = 8.5
+			volatile_motes = 2
+		}
+		upkeep = {
+			# 10
+			energy = 5
+			food = 5
+		}
+	}
+
+	weight = {
+		weight = @worker_job_weight
+	}
+}
+
+shoe_farmer = {
+
+	#鞋垫农夫
+
+	category = worker
+
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_food_processing_facility
+		}
+	}
+
+	tags = { food exotic_gases }
+
+	inline_script = "jobs/automodding_priority_food"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = worker
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+
+	resources = {
+		category = planet_farmers
+		produces = {
+			# 12.5
+			food = 8.5
+			exotic_gases = 2
+		}
+		upkeep = {
+			# 10
+			energy = 5
+			minerals = 5
+		}
+	}
+
+	weight = {
+		weight = @worker_job_weight
+	}
+}
+
+
+
+
+cyrene_shoe_miner = {
+
+	# 忆质开采工
+
+	category = worker
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_mineral_purification_plant
+			icon = miner
+		}
+	}
+
+	tags = { minerals rare_crystals }
+
+	inline_script = "jobs/automodding_priority_minerals"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = worker
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+
+	resources = {
+		category = planet_miners
+		produces = {
+			# 12.5
+			minerals = 16
+			rare_crystals = 4
+			astral_threads = 2
+		}
+		upkeep = {
+			# 10
+			energy = 2
+			food = 2
+		}
+	}
+
+	weight = {
+		weight = @worker_job_weight
+	}
+}

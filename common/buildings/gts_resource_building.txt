@@ -1,0 +1,2397 @@
+################################################################################
+####################                通用建築                ####################
+################################################################################
+
+
+
+################################################################################
+#################                巨娘特殊資源建築                #################
+################################################################################
+
+
+building_shrink_pop_factory = {
+
+	# 縮小人生產廠
+
+	base_buildtime = @b1_time
+	category = resource
+
+	upgrades = {
+	}
+
+	prerequisites = {
+		"tech_gts_shrink_man_hormone_1"
+	}
+
+	potential = {
+		owner = {
+			gts_is_giantess_empire = yes
+		}
+	}
+
+	building_sets = {
+		gts_tier2
+		government
+		urban
+		foundry
+		industrial
+		factory
+	}
+
+	destroy_trigger = {
+		OR = {
+			NOT = { exists = owner }
+			owner = {
+				NOT = {
+					gts_is_giantess_empire = yes
+				}
+			}
+		}
+	}
+
+	triggered_desc = {
+		text = job_shrink_pop_worker_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+		}
+		upkeep = {
+			energy = @b2_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_shrink_pop_worker_add = 200
+	}
+
+	on_built = {
+		planet_event = {
+			id = gts_evt_random.010140
+			days = 30
+		}
+	}
+}
+
+building_shrink_city_factory = {
+
+	# 微型城市組裝廠
+
+	base_buildtime = @b2_time
+	category = resource
+
+	upgrades = {
+	}
+
+	prerequisites = {
+		"tech_gts_shrink_city_hormone"
+	}
+
+	potential = {
+		owner = {
+			gts_is_giantess_empire = yes
+		}
+	}
+
+	building_sets = {
+		gts_tier2
+		government
+		urban
+		foundry
+		industrial
+		factory
+	}
+
+	destroy_trigger = {
+		OR = {
+			NOT = { exists = owner }
+			owner = {
+				NOT = {
+					gts_is_giantess_empire = yes
+				}
+			}
+		}
+	}
+
+	triggered_desc = {
+		text = job_shrink_city_worker_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b3_minerals
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_shrink_city_worker_add = 200
+	}
+
+	on_built = {
+		random_list = {
+			1 = {
+				planet_event = {
+					id = gts_evt_random.010110
+					days = 74
+				}
+			}
+			4 = {}
+		}
+		planet_event = {
+			id = gts_evt_random.010150
+			days = 30
+		}
+	}
+}
+
+building_shrink_planet_factory = {
+
+	# 小型宜居星改造器
+
+	base_buildtime = @b3_time
+	category = resource
+
+	upgrades = {
+	}
+
+	prerequisites = {
+		"tech_gts_shrink_planet_hormone"
+	}
+
+	potential = {
+		owner = {
+			gts_is_giantess_empire = yes
+		}
+	}
+
+	building_sets = {
+		gts_tier2
+		government
+		urban
+		foundry
+		industrial
+		factory
+	}
+
+	destroy_trigger = {
+		OR = {
+			NOT = { exists = owner }
+			owner = {
+				NOT = {
+					gts_is_giantess_empire = yes
+				}
+			}
+		}
+	}
+
+	triggered_desc = {
+		text = job_shrink_planet_worker_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b4_minerals
+		}
+		upkeep = {
+			energy = @b4_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_shrink_planet_worker_add = 100
+	}
+
+	on_built = {
+		planet_event = {
+			id = gts_evt_random.010160
+			days = 30
+		}
+	}
+}
+
+
+
+################################################################################
+###################                巨娘一級建築                ###################
+################################################################################
+
+
+
+building_redlight_district = {
+
+	# 小人紅燈區(能源)
+
+	base_buildtime = @b1_time
+	category = resource
+
+	upgrades = {
+	}
+
+	prerequisites = {
+		"tech_gts_shrink_man_hormone_1"
+	}
+
+	potential = {
+		owner = {
+			gts_is_giantess_empire = yes
+		}
+	}
+
+	building_sets = {
+		gts_power
+	}
+
+	destroy_trigger = {
+		OR = {
+			NOT = { exists = owner }
+			owner = {
+				NOT = {
+					gts_is_giantess_empire = yes
+				}
+			}
+		}
+	}
+
+	triggered_desc = {
+		text = job_redlight_worker_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+		}
+		upkeep = {
+			energy = @b2_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_redlight_worker_add = 200
+	}
+
+	on_built = {
+		planet_event = {
+			id = gts_evt_random.010230
+			days = 30
+		}
+	}
+}
+
+building_micro_food_factory = {
+
+	# 小人食品加工廠(食物)
+
+	base_buildtime = @b1_time
+	category = resource
+
+	upgrades = {
+	}
+
+	prerequisites = {
+		"tech_gts_shrink_man_hormone_1"
+	}
+
+	potential = {
+		owner = {
+			gts_is_giantess_empire = yes
+		}
+	}
+
+	building_sets = {
+		gts_food
+	}
+
+	destroy_trigger = {
+		OR = {
+			NOT = { exists = owner }
+			owner = {
+				NOT = {
+					gts_is_giantess_empire = yes
+				}
+			}
+		}
+	}
+
+	triggered_desc = {
+		text = job_micro_food_worker_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+		}
+		upkeep = {
+			energy = @b2_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_micro_food_worker_add = 200
+	}
+
+	on_built = {
+		planet_event = {
+			id = gts_evt_random.010100
+			days = 30
+		}
+	}
+}
+
+building_micro_mineral_factory = {
+
+	# 小人礦物加工廠(礦物)
+
+	base_buildtime = @b1_time
+	category = resource
+
+	upgrades = {
+	}
+
+	prerequisites = {
+		"tech_gts_shrink_man_hormone_1"
+	}
+
+	potential = {
+		owner = {
+			gts_is_giantess_empire = yes
+		}
+	}
+
+	building_sets = {
+		gts_minning
+	}
+
+	destroy_trigger = {
+		OR = {
+			NOT = { exists = owner }
+			owner = {
+				NOT = {
+					gts_is_giantess_empire = yes
+				}
+			}
+		}
+	}
+
+	triggered_desc = {
+		text = job_micro_miner_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+		}
+		upkeep = {
+			energy = @b2_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_micro_miner_add = 200
+	}
+}
+
+building_energy_micro_trans = {
+
+	# 縮小人繁殖區
+
+	base_buildtime = @b1_time
+	category = resource
+	icon = building_genomic_facility
+	base_cap_amount = 1
+
+	prerequisites = {
+		"tech_gts_shrink_man_hormone_1"
+	}
+
+	building_sets = {
+		gts_power
+	}
+
+	potential = {
+		exists = owner
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			has_any_generator_district_or_building = yes
+		}
+	}
+
+	destroy_trigger = {
+		OR = {
+			NOT = { exists = owner }
+			owner = {
+				NOT = {
+					gts_is_giantess_empire = yes
+				}
+			}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+		}
+		upkeep = {
+			energy = @b2_upkeep
+		}
+	}
+
+	planet_modifier = {
+		planet_technician_energy_produces_add = -2
+		planet_technician_gts_micro_produces_add = 2
+	}
+}
+
+building_food_micro_trans = {
+
+	# 縮小人飼養場
+
+	base_buildtime = @b1_time
+	category = resource
+	icon = building_genomic_facility
+	base_cap_amount = 1
+
+	prerequisites = {
+		"tech_gts_shrink_man_hormone_1"
+	}
+
+	building_sets = {
+		gts_food
+	}
+
+	potential = {
+		exists = owner
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			has_any_farming_district_or_building = yes
+		}
+	}
+
+	destroy_trigger = {
+		OR = {
+			NOT = { exists = owner }
+			owner = {
+				NOT = {
+					gts_is_giantess_empire = yes
+				}
+			}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+		}
+		upkeep = {
+			energy = @b2_upkeep
+		}
+	}
+
+	planet_modifier = {
+		planet_farmers_food_produces_add = -2
+		planet_farmers_gts_micro_produces_add = 2
+	}
+}
+
+building_mineral_micro_trans = {
+
+	# 縮小人製造廠
+
+	base_buildtime = @b1_time
+	category = resource
+	icon = building_genomic_facility
+	base_cap_amount = 1
+
+	prerequisites = {
+		"tech_gts_shrink_man_hormone_1"
+	}
+	building_sets = {
+		gts_minning
+	}
+
+	potential = {
+		exists = owner
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			has_any_mining_district_or_building = yes
+		}
+	}
+
+	destroy_trigger = {
+		OR = {
+			NOT = { exists = owner }
+			owner = {
+				NOT = {
+					gts_is_giantess_empire = yes
+				}
+			}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+		}
+		upkeep = {
+			energy = @b2_upkeep
+		}
+	}
+
+	planet_modifier = {
+		planet_miners_minerals_produces_add = -2
+		planet_miners_gts_micro_produces_add = 2
+	}
+}
+
+
+
+################################################################################
+###################                巨娘二級建築                ###################
+################################################################################
+
+
+
+building_sock_park = {
+
+	# 樂襪園(凝聚力、舒適度、人口增速)
+
+	base_buildtime = @b2_time
+	category = unity
+	base_cap_amount = 1
+
+	upgrades = {
+	}
+
+	prerequisites = {
+		"tech_gts_shrink_man_hormone_2"
+	}
+
+	potential = {
+		owner = {
+			gts_is_giantess_empire = yes
+		}
+	}
+
+	building_sets = {
+		gts_tier2
+		government
+		urban
+		unity
+		entertainment
+	}
+
+	destroy_trigger = {
+		OR = {
+			NOT = { exists = owner }
+			owner = {
+				NOT = {
+					gts_is_giantess_empire = yes
+				}
+			}
+		}
+	}
+
+	triggered_desc = {
+		text = job_sock_park_worker_effect_desc
+	}
+
+	planet_modifier = {
+		job_sock_park_worker_add = 500
+		planet_jobs_unity_produces_mult = 0.03
+		planet_civilians_unity_produces_add = 0.25
+		planet_civilians_consumer_goods_upkeep_add = 0.5
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b3_minerals
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+	}
+}
+
+building_transmutation_workshop = {
+
+	# 變物工坊(消費品)
+
+	base_buildtime = @b2_time
+	category = manufacturing
+	base_cap_amount = 3
+
+	upgrades = {
+	}
+
+	prerequisites = {
+		"tech_gts_shrink_man_hormone_2"
+	}
+
+	potential = {
+		owner = {
+			gts_is_giantess_empire = yes
+		}
+	}
+
+	building_sets = {
+		gts_tier2
+		industrial
+		factory
+	}
+
+	destroy_trigger = {
+		OR = {
+			NOT = { exists = owner }
+			owner = {
+				NOT = {
+					gts_is_giantess_empire = yes
+				}
+			}
+		}
+	}
+
+	triggered_desc = {
+		text = job_transmutation_worker_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b3_minerals
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_transmutation_worker_add = 200
+	}
+}
+
+building_microcity_foundry = {
+
+	# 微型城市熔煉廠(合金)
+
+	base_buildtime = @b2_time
+	category = manufacturing
+	base_cap_amount = 3
+
+	upgrades = {
+	}
+
+	prerequisites = {
+		"tech_gts_shrink_man_hormone_2"
+	}
+
+	potential = {
+		owner = {
+			gts_is_giantess_empire = yes
+		}
+	}
+
+	building_sets = {
+		gts_tier2
+		industrial
+		foundry
+	}
+
+	destroy_trigger = {
+		OR = {
+			NOT = { exists = owner }
+			owner = {
+				NOT = {
+					gts_is_giantess_empire = yes
+				}
+			}
+		}
+	}
+
+	triggered_desc = {
+		text = job_microcity_foundry_worker_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b3_minerals
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_microcity_foundry_worker_add = 200
+	}
+}
+
+building_micro_refinery = {
+
+	# 微觀精煉廠(稀有資源)
+
+	base_buildtime = @b2_time
+	category = manufacturing
+	base_cap_amount = 1
+
+	upgrades = {
+	}
+
+	prerequisites = {
+		"tech_gts_shrink_man_hormone_2"
+	}
+
+	potential = {
+		owner = {
+			gts_is_giantess_empire = yes
+		}
+	}
+
+	building_sets = {
+		gts_tier2
+		industrial
+		factory
+		foundry
+	}
+
+	destroy_trigger = {
+		OR = {
+			NOT = { exists = owner }
+			owner = {
+				NOT = {
+					gts_is_giantess_empire = yes
+				}
+			}
+		}
+	}
+
+	triggered_desc = {
+		text = job_micro_refinery_worker_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b3_minerals
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_micro_refinery_worker_add = 200
+	}
+}
+
+building_micro_school = {
+
+	# 縮小學院(科研、穩定度)
+
+	base_buildtime = @b2_time
+	category = research
+	base_cap_amount = 1
+
+	upgrades = {
+	}
+
+	prerequisites = {
+		"tech_gts_shrink_man_hormone_2"
+	}
+
+	potential = {
+		owner = {
+			gts_is_giantess_empire = yes
+		}
+	}
+
+	building_sets = {
+		gts_tier2
+		government
+		urban
+		research
+	}
+
+	destroy_trigger = {
+		OR = {
+			NOT = { exists = owner }
+			owner = {
+				NOT = {
+					gts_is_giantess_empire = yes
+				}
+			}
+		}
+	}
+
+	triggered_desc = {
+		text = job_micro_teacher_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b3_minerals
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_micro_teacher_add = 200
+	}
+}
+
+building_gts_bruh_administrative_tower = {
+
+	# 星河行政策略巨塔
+
+	base_buildtime = @b2_time
+	category = unity
+	icon = building_subversive_shrine
+	planet_limit = 1
+
+	building_sets = {
+		gts_tier3
+		government
+		urban
+		unity
+	}
+
+	potential = {
+		owner = {
+			gts_is_giantess_empire = yes
+		}
+	}
+
+	destroy_trigger = {
+		OR = {
+			NOT = { exists = owner }
+			owner = {
+				NOT = {
+					gts_is_giantess_empire = yes
+				}
+			}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b3_minerals
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+	}
+
+	planet_modifier = {
+		planet_bureaucrats_unity_produces_add = 1
+		job_gts_bruh_megaclerk_add = 200
+	}
+}
+
+
+
+################################################################################
+###################                巨娘三級建築                ###################
+################################################################################
+
+
+
+building_micro_research_lab = {
+
+	# 小人研究所(科研)
+
+	base_buildtime = @b3_time
+	category = research
+	base_cap_amount = 1
+
+	upgrades = {
+	}
+
+	prerequisites = {
+		"tech_gts_shrink_man_hormone_3"
+	}
+
+	potential = {
+		owner = {
+			gts_is_giantess_empire = yes
+		}
+	}
+
+	building_sets = {
+		gts_tier3
+		government
+		urban
+		research
+	}
+
+	destroy_trigger = {
+		OR = {
+			NOT = { exists = owner }
+			owner = {
+				NOT = {
+					gts_is_giantess_empire = yes
+				}
+			}
+		}
+	}
+
+	triggered_desc = {
+		text = job_micro_researcher_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b4_minerals
+		}
+		upkeep = {
+			energy = @b4_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_micro_researcher_add = 200
+	}
+
+	on_built = {
+		planet_event = {
+			id = gts_evt_random.010220
+			days = 30
+		}
+	}
+}
+
+building_micro_shop = {
+
+	# 小人專賣店(貿易額)
+
+	base_buildtime = @b3_time
+	category = trade
+	base_cap_amount = 1
+
+	upgrades = {
+	}
+
+	prerequisites = {
+		"tech_gts_shrink_man_hormone_3"
+	}
+
+	potential = {
+		owner = {
+			gts_is_giantess_empire = yes
+		}
+	}
+
+	building_sets = {
+		gts_tier3
+		government
+		urban
+		trade
+	}
+
+	destroy_trigger = {
+		OR = {
+			NOT = { exists = owner }
+			owner = {
+				NOT = {
+					gts_is_giantess_empire = yes
+				}
+			}
+		}
+	}
+
+	triggered_desc = {
+		text = job_micro_shop_keeper_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b4_minerals
+		}
+		upkeep = {
+			energy = @b4_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_micro_shop_keeper_add = 500
+	}
+
+	on_built = {
+		planet_event = {
+			id = gts_evt_random.010200
+			days = 30
+		}
+		random_list = {
+			1 = {
+				planet_event = {
+					id = gts_evt_random.010120
+					days = 74
+				}
+			}
+			4 = {}
+		}
+	}
+}
+
+building_sock_prision = {
+
+	# 襪子盒(犯罪率、穩定度)
+
+	base_buildtime = @b3_time
+	category = government
+	base_cap_amount = 1
+
+	upgrades = {
+	}
+
+	prerequisites = {
+		"tech_gts_shrink_man_hormone_3"
+	}
+
+	potential = {
+		owner = {
+			gts_is_giantess_empire = yes
+		}
+	}
+
+	building_sets = {
+		gts_tier3
+		government
+		urban
+	}
+
+	destroy_trigger = {
+		OR = {
+			NOT = { exists = owner }
+			owner = {
+				NOT = {
+					gts_is_giantess_empire = yes
+				}
+			}
+		}
+	}
+
+	triggered_desc = {
+		text = job_sock_prision_worker_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b4_minerals
+		}
+		upkeep = {
+			energy = @b4_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_sock_prision_worker_add = 200
+	}
+}
+
+building_miocro_fortress = {
+
+	# 微觀指揮所(軍事)
+
+	base_buildtime = @b3_time
+	category = army
+	base_cap_amount = 3
+
+	prerequisites = {
+		"tech_gts_shrink_man_hormone_3"
+	}
+
+	potential = {
+		owner = {
+			gts_is_giantess_empire = yes
+		}
+	}
+
+	building_sets = {
+		gts_tier3
+		government
+		fortress
+	}
+
+	triggered_desc = {
+		text = job_micro_commander_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b4_minerals
+		}
+		upkeep = {
+			energy = @b4_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_micro_commander_add = 500
+	}
+}
+
+building_micro_machinery_factory = {
+
+	# 小人機械廠(奈米)
+
+	base_buildtime = @b3_time
+	category = manufacturing
+	base_cap_amount = 1
+
+	upgrades = {
+	}
+
+	prerequisites = {
+		"tech_gts_shrink_man_hormone_3"
+	}
+
+	potential = {
+		owner = {
+			gts_is_giantess_empire = yes
+		}
+	}
+
+	building_sets = {
+		gts_tier3
+		industrial
+		factory
+		foundry
+	}
+
+	destroy_trigger = {
+		OR = {
+			NOT = { exists = owner }
+			owner = {
+				NOT = {
+					gts_is_giantess_empire = yes
+				}
+			}
+		}
+	}
+
+	triggered_desc = {
+		text = job_micro_machinist_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b4_minerals
+		}
+		upkeep = {
+			energy = @b4_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_micro_machinist_add = 100
+	}
+}
+
+building_micro_conservation_area = {
+
+	# 小人保護區(科研)
+
+	base_buildtime = @b3_time
+	category = research
+	base_cap_amount = 1
+
+	upgrades = {
+	}
+
+	prerequisites = {
+		"tech_gts_shrink_man_hormone_3"
+	}
+
+	potential = {
+		owner = {
+			gts_is_giantess_empire = yes
+		}
+	}
+
+	building_sets = {
+		gts_tier3
+		government
+		urban
+		research
+	}
+
+	destroy_trigger = {
+		OR = {
+			NOT = { exists = owner }
+			owner = {
+				NOT = {
+					gts_is_giantess_empire = yes
+				}
+			}
+		}
+	}
+
+	triggered_desc = {
+		text = job_micro_conservation_worker_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b4_minerals
+		}
+		upkeep = {
+			energy = @b4_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_micro_conservation_worker_add = 200
+	}
+}
+
+
+
+################################################################################
+#################                小人特殊資源建築                #################
+################################################################################
+
+
+
+building_giantess_fluid_factory = {
+
+	# 巨娘體液精煉廠(巨娘體液)
+
+	base_buildtime = @b1_time
+	category = resource
+	icon = building_toxic_bath_machine
+
+	upgrades = {
+	}
+
+	prerequisites = {
+		"tech_giantess_fluid_1"
+	}
+
+	potential = {
+		owner = {
+			gts_is_tiny_empire = yes
+		}
+	}
+
+	building_sets = {
+		tiny_tier2
+		government
+		urban
+		foundry
+		industrial
+		factory
+	}
+
+	destroy_trigger = {
+		owner = {
+			NOT = {
+				gts_is_tiny_empire = yes
+			}
+		}
+	}
+
+	triggered_desc = {
+		text = job_gts_giantess_fluid_worker_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+		}
+		upkeep = {
+			energy = @b2_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_gts_giantess_fluid_worker_add = 200
+	}
+
+	on_built = {
+		planet_event = {
+			id = gts_evt_random.010170
+			days = 30
+		}
+	}
+}
+
+building_giantess_underwear_factory = {
+
+	# 巨娘內衣回收站
+
+	base_buildtime = @b2_time
+	category = resource
+
+	upgrades = {
+	}
+
+	prerequisites = {
+		"tech_gts_giantess_underwear"
+	}
+
+	potential = {
+		owner = {
+			gts_is_tiny_empire = yes
+		}
+	}
+
+	building_sets = {
+		tiny_tier2
+		government
+		urban
+		foundry
+		industrial
+		factory
+	}
+
+	destroy_trigger = {
+		owner = {
+			NOT = {
+				gts_is_tiny_empire = yes
+			}
+		}
+	}
+
+	triggered_desc = {
+		text = job_gts_giantess_underwear_worker_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b3_minerals
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_gts_giantess_underwear_worker_add = 200
+	}
+
+	on_built = {
+		planet_event = {
+			id = gts_evt_random.010180
+			days = 30
+		}
+	}
+}
+
+building_giantess_human_factory = {
+
+	# 對巨娘外交對策處
+
+	base_buildtime = @b3_time
+	category = resource
+
+	upgrades = {
+	}
+
+	prerequisites = {
+		"tech_gts_giantess_human"
+	}
+
+	potential = {
+		owner = {
+			gts_is_tiny_empire = yes
+		}
+	}
+
+	building_sets = {
+		tiny_tier3
+		government
+		urban
+		unity
+	}
+
+	destroy_trigger = {
+		owner = {
+			NOT = {
+				gts_is_tiny_empire = yes
+			}
+		}
+	}
+
+	triggered_desc = {
+		text = job_gts_giantess_human_worker_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b4_minerals
+		}
+		upkeep = {
+			energy = @b4_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_gts_giantess_human_worker_add = 100
+	}
+
+	on_built = {
+		planet_event = {
+			id = gts_evt_random.010190
+			days = 30
+		}
+	}
+}
+
+
+
+################################################################################
+###################                小人一級建築                ###################
+################################################################################
+
+
+
+building_gts_bathhouse = {
+
+	# 愛液體驗館(能源)
+
+	base_buildtime = @b1_time
+	category = resource
+
+	upgrades = {
+	}
+
+	prerequisites = {
+		"tech_giantess_fluid_1"
+	}
+
+	potential = {
+		owner = {
+			gts_is_tiny_empire = yes
+		}
+	}
+
+	building_sets = {
+		tiny_power
+	}
+
+	destroy_trigger = {
+		owner = {
+			NOT = {
+				gts_is_tiny_empire = yes
+			}
+		}
+	}
+
+	triggered_desc = {
+		text = job_gts_bathhouse_worker_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+		}
+		upkeep = {
+			energy = @b2_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_gts_bathhouse_worker_add = 200
+	}
+}
+
+building_gts_food_factory = {
+
+	# 汗液農業園(食物)
+
+	base_buildtime = @b1_time
+	category = resource
+
+	upgrades = {
+	}
+
+	prerequisites = {
+		"tech_giantess_fluid_1"
+	}
+
+	potential = {
+		owner = {
+			gts_is_tiny_empire = yes
+		}
+	}
+
+	building_sets = {
+		tiny_food
+	}
+
+	destroy_trigger = {
+		owner = {
+			NOT = {
+				gts_is_tiny_empire = yes
+			}
+		}
+	}
+
+
+	triggered_desc = {
+		text = job_gts_food_worker_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+		}
+		upkeep = {
+			energy = @b2_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_gts_food_worker_add = 200
+	}
+}
+
+building_gts_mineral_factory = {
+
+	# 消化液礦區(礦物)
+
+	base_buildtime = @b1_time
+	category = resource
+
+	upgrades = {
+	}
+
+	prerequisites = {
+		"tech_giantess_fluid_1"
+	}
+
+	potential = {
+		owner = {
+			gts_is_tiny_empire = yes
+		}
+	}
+
+	building_sets = {
+		tiny_minning
+	}
+
+	destroy_trigger = {
+		owner = {
+			NOT = {
+				gts_is_tiny_empire = yes
+			}
+		}
+	}
+
+	triggered_desc = {
+		text = job_gts_miner_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+		}
+		upkeep = {
+			energy = @b2_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_gts_miner_add = 200
+	}
+}
+
+building_energy_gts_trans = {
+
+	# 愛液精煉廠
+
+	base_buildtime = @b1_time
+	category = resource
+	icon = building_genomic_facility
+	base_cap_amount = 1
+
+	prerequisites = {
+		"tech_giantess_fluid_1"
+	}
+
+	building_sets = {
+		tiny_power
+	}
+
+	potential = {
+		exists = owner
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			has_any_generator_district_or_building = yes
+		}
+	}
+
+	destroy_trigger = {
+		owner = {
+			NOT = {
+				gts_is_tiny_empire = yes
+			}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+		}
+		upkeep = {
+			energy = @b2_upkeep
+		}
+	}
+
+	planet_modifier = {
+		planet_technician_energy_produces_add = -2
+		planet_technician_gts_giantess_fluid_produces_add = 2
+	}
+}
+
+building_food_gts_trans = {
+
+	# 汗液精煉廠
+
+	base_buildtime = @b1_time
+	category = resource
+	icon = building_genomic_facility
+	base_cap_amount = 1
+
+	prerequisites = {
+		"tech_giantess_fluid_1"
+	}
+
+	building_sets = {
+		tiny_food
+	}
+
+	potential = {
+		exists = owner
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			has_any_farming_district_or_building = yes
+		}
+	}
+
+	destroy_trigger = {
+		owner = {
+			NOT = {
+				gts_is_tiny_empire = yes
+			}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+		}
+		upkeep = {
+			energy = @b2_upkeep
+		}
+	}
+
+	planet_modifier = {
+		planet_farmers_food_produces_add = -2
+		planet_farmers_gts_giantess_fluid_produces_add = 2
+	}
+}
+
+building_mineral_gts_trans = {
+
+	# 消化液精煉廠
+
+	base_buildtime = @b1_time
+	category = resource
+	icon = building_genomic_facility
+	base_cap_amount = 1
+
+	prerequisites = {
+		"tech_giantess_fluid_1"
+	}
+
+	building_sets = {
+		tiny_minning
+	}
+
+	potential = {
+		exists = owner
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			has_any_mining_district_or_building = yes
+		}
+	}
+
+	destroy_trigger = {
+		owner = {
+			NOT = {
+				gts_is_tiny_empire = yes
+			}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+		}
+		upkeep = {
+			energy = @b2_upkeep
+		}
+	}
+
+	planet_modifier = {
+		planet_miners_minerals_produces_add = -2
+		planet_miners_gts_giantess_fluid_produces_add = 2
+	}
+}
+
+
+
+################################################################################
+###################                小人二級建築                ###################
+################################################################################
+
+
+
+building_gts_extreme_park = {
+
+	# 極限體驗點(凝聚力、舒適度、人口增速)
+
+	base_buildtime = @b2_time
+	category = unity
+	base_cap_amount = 1
+
+	upgrades = {
+	}
+
+	prerequisites = {
+		"tech_giantess_fluid_2"
+	}
+
+	potential = {
+		owner = {
+			gts_is_tiny_empire = yes
+		}
+	}
+
+	building_sets = {
+		tiny_tier2
+		government
+		urban
+		unity
+		entertainment
+	}
+
+	destroy_trigger = {
+		owner = {
+			NOT = {
+				gts_is_tiny_empire = yes
+			}
+		}
+	}
+
+	triggered_desc = {
+		text = job_gts_extreme_worker_effect_desc
+	}
+
+	planet_modifier = {
+		job_gts_extreme_worker_add = 500
+		planet_jobs_unity_produces_mult = 0.03
+		planet_civilians_unity_produces_add = 0.25
+		planet_civilians_consumer_goods_upkeep_add = 0.5
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b3_minerals
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+	}
+}
+
+building_gts_collect_station = {
+
+	# 資源採集站
+
+	base_buildtime = @b2_time
+	category = resource
+	base_cap_amount = 1
+
+	upgrades = {
+	}
+
+	prerequisites = {
+	}
+
+	potential = {
+		owner = {
+			gts_is_tiny_empire = yes
+		}
+	}
+
+	building_sets = {
+		tiny_tier2
+		tiny_tier3
+		government
+		urban
+	}
+
+	destroy_trigger = {
+		owner = {
+			NOT = {
+				gts_is_tiny_empire = yes
+			}
+		}
+	}
+
+	planet_modifier = {
+		planet_civilians_energy_produces_add = 1
+		planet_civilians_minerals_produces_add = 1
+		planet_civilians_food_produces_add = 1
+		planet_civilians_gts_giantess_fluid_produces_add = 0.20
+		planet_civilians_gts_giantess_underwear_produces_add = 0.10
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b3_minerals
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+	}
+}
+
+
+
+building_gts_art_college = {
+
+	# 體液藝術學院(消費品)
+
+	base_buildtime = @b2_time
+	category = manufacturing
+	base_cap_amount = 3
+
+	upgrades = {
+	}
+
+	prerequisites = {
+		"tech_giantess_fluid_2"
+	}
+
+	potential = {
+		owner = {
+			gts_is_tiny_empire = yes
+		}
+	}
+
+	building_sets = {
+		tiny_tier2
+		industrial
+		factory
+	}
+
+	destroy_trigger = {
+		owner = {
+			NOT = {
+				gts_is_tiny_empire = yes
+			}
+		}
+	}
+
+	triggered_desc = {
+		text = job_gts_art_college_worker_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b3_minerals
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_gts_art_college_worker_add = 200
+	}
+}
+
+building_gts_transmutation_workshop = {
+
+	# 柔性內衣處理站(合金)
+
+	base_buildtime = @b2_time
+	category = manufacturing
+	base_cap_amount = 3
+
+	upgrades = {
+	}
+
+	prerequisites = {
+		"tech_giantess_fluid_2"
+	}
+
+	potential = {
+		owner = {
+			gts_is_tiny_empire = yes
+		}
+	}
+
+	building_sets = {
+		tiny_tier2
+		industrial
+		foundry
+	}
+
+	destroy_trigger = {
+		owner = {
+			NOT = {
+				gts_is_tiny_empire = yes
+			}
+		}
+	}
+
+	triggered_desc = {
+		text = job_gts_transmutation_worker_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b3_minerals
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_gts_transmutation_worker_add = 200
+	}
+}
+
+building_gts_high_transmutation_workshop = {
+
+	# 烈性內衣處理站(稀有資源)
+
+	base_buildtime = @b2_time
+	category = manufacturing
+	base_cap_amount = 1
+
+	upgrades = {
+	}
+
+	prerequisites = {
+		"tech_giantess_fluid_2"
+	}
+
+	potential = {
+		owner = {
+			gts_is_tiny_empire = yes
+		}
+	}
+
+	building_sets = {
+		tiny_tier2
+		industrial
+		factory
+		foundry
+	}
+
+	destroy_trigger = {
+		owner = {
+			NOT = {
+				gts_is_tiny_empire = yes
+			}
+		}
+	}
+
+	triggered_desc = {
+		text = job_gts_high_transmutation_worker_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b3_minerals
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_gts_high_transmutation_worker_add = 200
+	}
+}
+
+building_gts_sojourn = {
+
+	# 寄居體驗園(凝聚力、舒適度、住房)
+
+	base_buildtime = @b2_time
+	category = amenity
+	base_cap_amount = 1
+
+	prerequisites = {
+		"tech_giantess_fluid_2"
+	}
+
+	potential = {
+		owner = {
+			gts_is_tiny_empire = yes
+		}
+	}
+
+	building_sets = {
+		tiny_tier2
+		government
+		urban
+		entertainment
+		resort
+		unity
+	}
+
+	planet_modifier = {
+		planet_housing_add = 3000
+		planet_amenities_add = 1000
+		job_gts_sojourn_worker_add = 500
+	}
+
+	destroy_trigger = {
+		owner = {
+			NOT = {
+				gts_is_tiny_empire = yes
+			}
+		}
+	}
+
+	triggered_desc = {
+		text = job_gts_sojourn_worker_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b3_minerals
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+	}
+}
+
+
+
+################################################################################
+###################                小人三級建築                ###################
+################################################################################
+
+
+
+building_gts_exhibition = {
+
+	# 巨娘衣物展覽館(貿易額)
+
+	base_buildtime = @b3_time
+	category = trade
+	base_cap_amount = 1
+
+	upgrades = {
+	}
+
+	prerequisites = {
+		"tech_giantess_fluid_3"
+	}
+
+	potential = {
+		owner = {
+			gts_is_tiny_empire = yes
+		}
+	}
+
+	building_sets = {
+		tiny_tier3
+		government
+		urban
+		trade
+	}
+
+	destroy_trigger = {
+		owner = {
+			NOT = {
+				gts_is_tiny_empire = yes
+			}
+		}
+	}
+
+	triggered_desc = {
+		text = job_gts_exhibition_worker_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b4_minerals
+		}
+		upkeep = {
+			energy = @b4_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_gts_exhibition_worker_add = 500
+	}
+}
+
+building_gts_research_center = {
+
+	# 巨娘生理研究中心(科研)
+
+	base_buildtime = @b3_time
+	category = research
+	base_cap_amount = 3
+
+	upgrades = {
+	}
+
+	prerequisites = {
+		"tech_giantess_fluid_3"
+	}
+
+	potential = {
+		owner = {
+			gts_is_tiny_empire = yes
+		}
+	}
+
+	building_sets = {
+		tiny_tier3
+		government
+		urban
+		research
+	}
+
+	destroy_trigger = {
+		owner = {
+			NOT = {
+				gts_is_tiny_empire = yes
+			}
+		}
+	}
+
+	triggered_desc = {
+		text = job_gts_research_center_worker_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b4_minerals
+		}
+		upkeep = {
+			energy = @b4_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_gts_research_center_worker_add = 200
+	}
+}
+
+building_gts_inside_prison = {
+
+	# 巨娘活體監獄(犯罪率、穩定度)
+
+	base_buildtime = @b3_time
+	category = government
+	base_cap_amount = 1
+
+	upgrades = {
+	}
+
+	prerequisites = {
+		"tech_giantess_fluid_3"
+	}
+
+	potential = {
+		owner = {
+			gts_is_tiny_empire = yes
+		}
+	}
+
+	building_sets = {
+		tiny_tier3
+		government
+		urban
+	}
+
+	destroy_trigger = {
+		owner = {
+			NOT = {
+				gts_is_tiny_empire = yes
+			}
+		}
+	}
+
+	triggered_desc = {
+		text = job_gts_inside_prison_worker_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b4_minerals
+		}
+		upkeep = {
+			energy = @b4_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_gts_inside_prison_worker_add = 200
+	}
+}
+
+building_gts_inside_institute = {
+
+	# 靴內避難所(軍事)
+
+	base_buildtime = @b3_time
+	category = army
+	base_cap_amount = 3
+
+	building_sets = {
+		tiny_tier3
+		government
+		fortress
+	}
+
+	prerequisites = {
+		"tech_giantess_fluid_3"
+	}
+
+	potential = {
+		owner = {
+			gts_is_tiny_empire = yes
+		}
+	}
+
+	triggered_desc = {
+		text = job_gts_shoe_soldier_worker_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b4_minerals
+		}
+		upkeep = {
+			energy = @b4_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_gts_shoe_soldier_worker_add = 500
+	}
+}
+
+building_gts_inside_rest = {
+
+	# 巨娘休息室
+
+	base_buildtime = @b3_time
+	category = amenity
+	base_cap_amount = 1
+
+	upgrades = {
+	}
+
+	prerequisites = {
+		"tech_giantess_fluid_3"
+	}
+
+	potential = {
+		owner = {
+			gts_is_tiny_empire = yes
+		}
+	}
+
+	building_sets = {
+		tiny_tier3
+		government
+		urban
+	}
+
+	destroy_trigger = {
+		owner = {
+			NOT = {
+				gts_is_tiny_empire = yes
+			}
+		}
+	}
+
+	triggered_desc = {
+		text = job_gts_inside_rest_worker_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b4_minerals
+		}
+		upkeep = {
+			energy = @b4_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_gts_inside_rest_worker_add = 500
+	}
+}
+

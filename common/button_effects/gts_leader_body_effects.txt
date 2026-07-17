@@ -1,0 +1,284 @@
+gts_leader_body_armpit_bg_effect = {
+	potential = {
+		check_variable = {
+			which = gts_ui_current_body
+			value = @gts_body_armpit
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {
+		
+	}
+}
+gts_leader_body_breast_bg_effect = {
+	potential = {
+		check_variable = {
+			which = gts_ui_current_body
+			value = @gts_body_breast
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {
+		
+	}
+}
+gts_leader_body_digestion_bg_effect = {
+	potential = {
+		check_variable = {
+			which = gts_ui_current_body
+			value = @gts_body_digestion
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {
+		
+	}
+}
+gts_leader_body_reporduction_bg_effect = {
+	potential = {
+		check_variable = {
+			which = gts_ui_current_body
+			value = @gts_body_reporduction
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {
+		
+	}
+}
+gts_leader_body_feet_bg_effect = {
+	potential = {
+		check_variable = {
+			which = gts_ui_current_body
+			value = @gts_body_feet
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {
+		
+	}
+}
+### 巨娘阶级系统 ###
+gts_leader_body_goddess_effect = {
+	potential = {
+		from = {
+			gts_is_giantess_empire = yes
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {
+		custom_tooltip = gts_leader_body_goddess.tooltip
+	}
+}
+gts_leader_body_maid_effect = {
+	potential = {
+		from = {
+			gts_is_giantess_empire = yes
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {
+		custom_tooltip = gts_leader_body_maid.tooltip
+	}
+}
+gts_leader_body_tiny_effect = {
+	potential = {
+		from = {
+			gts_is_giantess_empire = yes
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {
+		custom_tooltip = gts_leader_body_tiny.tooltip
+	}
+}
+## 按钮 ##
+gts_leader_body_btn_goddess_effect = {
+	potential = {
+		from = {
+			gts_is_giantess_empire = yes
+		}
+	}
+	allow = {
+		resource_stockpile_compare = {
+			resource = gts_micro
+			value >= gts_bruh_get_gts_micro_cost_amount_variable mult = -1
+		}
+		gts_leader_body_add_pop_limit = { CLASS = 1 }
+	}
+	effect = {
+		custom_tooltip = gts_leader_body_goddess_btn.tooltip
+		add_resource = {
+			gts_micro = 1
+			mult = gts_bruh_get_gts_micro_cost_amount_variable
+		}
+		gts_leader_body_add_pop = { CLASS = 1 }
+	}
+}
+gts_leader_body_btn_maid_effect = {
+	potential = {
+		from = {
+			gts_is_giantess_empire = yes
+		}
+	}
+	allow = {
+		resource_stockpile_compare = {
+			resource = gts_micro_city
+			value >= gts_bruh_get_gts_micro_city_cost_amount_variable mult = -1
+		}
+		gts_leader_body_add_pop_limit = { CLASS = 2 }
+	}
+	effect = {
+		custom_tooltip = gts_leader_body_maid_btn.tooltip
+		add_resource = {
+			gts_micro_city = 1
+			mult = gts_bruh_get_gts_micro_city_cost_amount_variable
+		}
+		gts_leader_body_add_pop = { CLASS = 2 }
+	}
+}
+gts_leader_body_btn_tiny_effect = {
+	potential = {
+		from = {
+			gts_is_giantess_empire = yes
+		}
+	}
+	allow = {
+		resource_stockpile_compare = {
+			resource = gts_micro_planet
+			value >= gts_bruh_get_gts_micro_planet_cost_amount_variable mult = -1
+		}
+		gts_leader_body_add_pop_limit = { CLASS = 3 }
+	}
+	effect = {
+		custom_tooltip = gts_leader_body_tiny_btn.tooltip
+		add_resource = {
+			gts_micro_planet = 1
+			mult = gts_bruh_get_gts_micro_planet_cost_amount_variable
+		}
+		gts_leader_body_add_pop = { CLASS = 3 }
+	}
+}
+### 小人区划系统 ###
+gts_leader_body_maintance_effect = {
+	potential = {
+		from = {
+			gts_is_tiny_empire = yes
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {
+		custom_tooltip = gts_leader_body_maintance.tooltip
+	}
+}
+gts_leader_body_tech_effect = {
+	potential = {
+		from = {
+			gts_is_tiny_empire = yes
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {
+		custom_tooltip = gts_leader_body_tech.tooltip
+	}
+}
+gts_leader_body_house_effect = {
+	potential = {
+		from = {
+			gts_is_tiny_empire = yes
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {
+		custom_tooltip = gts_leader_body_house.tooltip
+	}
+}
+## 按钮 ##
+gts_leader_body_btn_micro_1_effect = {
+	potential = {
+		from = {
+			gts_is_tiny_empire = yes
+		}
+	}
+	allow = {
+		resource_stockpile_compare = {
+			resource = gts_giantess_fluid
+			value >= gts_bruh_get_gts_giantess_fluid_cost_amount_variable mult = -1
+		}
+		gts_leader_body_add_pop_limit = { CLASS = 1 }
+	}
+	effect = {
+		custom_tooltip = gts_leader_body_maintance_btn.tooltip
+		add_resource = {
+			gts_giantess_fluid = 1
+			mult = gts_bruh_get_gts_giantess_fluid_cost_amount_variable
+		}
+		gts_leader_body_add_pop = { CLASS = 1 }
+	}
+}
+gts_leader_body_btn_micro_2_effect = {
+	potential = {
+		from = {
+			gts_is_tiny_empire = yes
+		}
+	}
+	allow = {
+		resource_stockpile_compare = {
+			resource = gts_giantess_underwear
+			value >= gts_bruh_get_gts_giantess_underwear_cost_amount_variable mult = -1
+		}
+		gts_leader_body_add_pop_limit = { CLASS = 2 }
+	}
+	effect = {
+		custom_tooltip = gts_leader_body_tech_btn.tooltip
+		add_resource = {
+			gts_giantess_underwear = 1
+			mult = gts_bruh_get_gts_giantess_underwear_cost_amount_variable
+		}
+		gts_leader_body_add_pop = { CLASS = 2 }
+	}
+}
+gts_leader_body_btn_micro_3_effect = {
+	potential = {
+		from = {
+			gts_is_tiny_empire = yes
+		}
+	}
+	allow = {
+		resource_stockpile_compare = {
+			resource = gts_giantess_human
+			value >= gts_bruh_get_gts_giantess_human_cost_amount_variable mult = -1
+		}
+		gts_leader_body_add_pop_limit = { CLASS = 3 }
+	}
+	effect = {
+		custom_tooltip = gts_leader_body_house_btn.tooltip
+		add_resource = {
+			gts_giantess_human = 1
+			mult = gts_bruh_get_gts_giantess_human_cost_amount_variable
+		}
+		gts_leader_body_add_pop = { CLASS = 3 }
+	}
+}

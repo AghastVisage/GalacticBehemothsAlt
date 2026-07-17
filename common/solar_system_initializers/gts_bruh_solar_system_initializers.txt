@@ -1,0 +1,1024 @@
+gts_bruh_solar_system_initializers_1 = {
+	name = "壹號"
+	class = "sc_pulsar"
+	flags = { gts_bruh_solar_system_initializers_1 }
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 124
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 65
+	}
+	max_instances = 1
+	init_effect = {
+		#if = {
+		#	limit = {
+		#		is_inside_nebula = no
+		#	}
+		#	create_nebula = {
+		#		radius = 25
+		#	}
+		#}
+		save_event_target_as = gts_bruh_random_spawn_system_1
+	}
+
+	planet = {
+		name = "壹號"
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = 20
+		has_ring = no
+		init_effect = {
+			prevent_anomaly = yes
+			create_ambient_object = {
+				type = "abandoned_starbase_01_object"
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 20
+					angle = random
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 37
+					angle = 30
+				}
+			}
+			while = {
+				count = 2
+				create_ambient_object = {
+					type = "large_debris_object"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 65
+						angle = random
+					}
+				}
+			}
+			create_ambient_object = {
+				type = "small_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 80
+					angle = random
+				}
+			}
+			while = {
+				count = 3
+				create_ambient_object = {
+					type = "medium_debris_01_object"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 80
+						angle = random
+					}
+				}
+			}
+			while = {
+				count = 4
+				create_ambient_object = {
+					type = "small_debris_object"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 90
+						angle = random
+					}
+				}
+			}
+			while = {
+				count = 3
+				create_ambient_object = {
+					type = "large_debris_object"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 100
+						angle = random
+					}
+				}
+			}
+			while = {
+				count = 2
+				create_ambient_object = {
+					type = "large_debris_object"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 100
+						angle = random
+					}
+				}
+			}
+			create_ambient_object = {
+				type = "medium_debris_01_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 110
+					angle = random
+				}
+			}
+			while = {
+				count = 4
+				create_ambient_object = {
+					type = "medium_debris_01_object"
+					location = solar_system
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 110
+						angle = random
+					}
+				}
+			}
+			while = {
+				count = 4
+				create_ambient_object = {
+					type = "large_debris_object"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 120
+						angle = random
+					}
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 120
+					angle = 180
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 120
+					angle = 185
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 123
+					angle = 180
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 115
+					angle = 0
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 117
+					angle = 350
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 117
+					angle = 0
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 117
+					angle = 10
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 120
+					angle = 0
+				}
+			}
+		}
+	}
+
+	change_orbit = 65
+
+	planet = {
+		count = { min = 4 max = 6 }
+		class = pc_asteroid
+		size = { min = 2 max = 3 }
+		orbit_distance = { min = -1 max = 1 }
+		orbit_angle = { min = 90 max = 270 }
+	}
+
+	change_orbit = 15
+
+	planet = {
+		class = pc_broken
+		orbit_angle = 15
+		size = 16
+
+		change_orbit = @base_moon_distance
+		
+		init_effect = {
+			create_country = {
+				name = Bruh艦娘
+				type = faction
+				effect = {
+					set_country_flag = gts_bruh_shipgirl_hostile_country_flag_1
+				}
+			}
+			last_created_country = {
+				add_modifier = {
+					modifier = "gts_level_1_modifier"
+					days = -1
+				}
+				add_modifier = {
+					modifier = "gts_bruh_shipgirl_country_debuff_1"
+					days = -1
+				}
+				create_fleet = {
+					name = "NAME_Overlord_Enforcers"
+					settings = {
+						spawn_debris = no
+						#is_boss = yes
+					}
+					effect = {
+						set_owner = PREV
+						while = {
+							count = 1
+							create_ship = {
+								name = "NAME_Autonomous_Drone"
+								design = "NAME_gts_bruh_shipgirl_destroyer"
+							}
+						}
+						set_location = prevprev
+						set_fleet_stance = aggressive
+						set_aggro_range_measure_from = self
+						set_aggro_range = 500
+						save_global_event_target_as = gts_bruh_shipgirl_fleet_1
+					}
+				}
+			}
+		}
+	}
+
+	change_orbit = 44
+
+	planet = {
+		count = { min = 4 max = 6 }
+		class = pc_asteroid
+		size = { min = 2 max = 3 }
+		orbit_distance = { min = -1 max = 1 }
+		orbit_angle = { min = 90 max = 270 }
+	}
+}
+
+gts_bruh_solar_system_initializers_2 = {
+	name = "貳號"
+	class = "sc_pulsar"
+	flags = { gts_bruh_solar_system_initializers_2 }
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 124
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 65
+	}
+	max_instances = 1
+	init_effect = {
+		#if = {
+		#	limit = {
+		#		is_inside_nebula = no
+		#	}
+		#	create_nebula = {
+		#		radius = 25
+		#	}
+		#}
+		save_event_target_as = gts_bruh_random_spawn_system_2
+	}
+
+	planet = {
+		name = "貳號"
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = 20
+		has_ring = no
+		init_effect = {
+			prevent_anomaly = yes
+			create_ambient_object = {
+				type = "abandoned_starbase_01_object"
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 20
+					angle = random
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 37
+					angle = 30
+				}
+			}
+			while = {
+				count = 2
+				create_ambient_object = {
+					type = "large_debris_object"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 65
+						angle = random
+					}
+				}
+			}
+			create_ambient_object = {
+				type = "small_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 80
+					angle = random
+				}
+			}
+			while = {
+				count = 3
+				create_ambient_object = {
+					type = "medium_debris_01_object"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 80
+						angle = random
+					}
+				}
+			}
+			while = {
+				count = 4
+				create_ambient_object = {
+					type = "small_debris_object"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 90
+						angle = random
+					}
+				}
+			}
+			while = {
+				count = 3
+				create_ambient_object = {
+					type = "large_debris_object"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 100
+						angle = random
+					}
+				}
+			}
+			while = {
+				count = 2
+				create_ambient_object = {
+					type = "large_debris_object"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 100
+						angle = random
+					}
+				}
+			}
+			create_ambient_object = {
+				type = "medium_debris_01_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 110
+					angle = random
+				}
+			}
+			while = {
+				count = 4
+				create_ambient_object = {
+					type = "medium_debris_01_object"
+					location = solar_system
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 110
+						angle = random
+					}
+				}
+			}
+			while = {
+				count = 4
+				create_ambient_object = {
+					type = "large_debris_object"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 120
+						angle = random
+					}
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 120
+					angle = 180
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 120
+					angle = 185
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 123
+					angle = 180
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 115
+					angle = 0
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 117
+					angle = 350
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 117
+					angle = 0
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 117
+					angle = 10
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 120
+					angle = 0
+				}
+			}
+		}
+	}
+
+	change_orbit = 65
+
+	planet = {
+		count = { min = 4 max = 6 }
+		class = pc_asteroid
+		size = { min = 2 max = 3 }
+		orbit_distance = { min = -1 max = 1 }
+		orbit_angle = { min = 90 max = 270 }
+	}
+
+	change_orbit = 15
+
+	planet = {
+		class = pc_broken
+		orbit_angle = 15
+		size = 16
+
+		change_orbit = @base_moon_distance
+		
+		init_effect = {
+			create_country = {
+				name = Bruh艦娘
+				type = faction
+				effect = {
+					set_country_flag = gts_bruh_shipgirl_hostile_country_flag_2
+				}
+			}
+			last_created_country = {
+				add_modifier = {
+					modifier = "gts_level_1_modifier"
+					days = -1
+				}
+				add_modifier = {
+					modifier = "gts_bruh_shipgirl_country_debuff_1"
+					days = -1
+				}
+				create_fleet = {
+					name = "NAME_Overlord_Enforcers"
+					settings = {
+						spawn_debris = no
+						#is_boss = yes
+					}
+					effect = {
+						set_owner = PREV
+						while = {
+							count = 1
+							create_ship = {
+								name = "NAME_Autonomous_Drone"
+								design = "NAME_gts_bruh_shipgirl_battleship"
+							}
+						}
+						set_location = prevprev
+						set_fleet_stance = aggressive
+						set_aggro_range_measure_from = self
+						set_aggro_range = 500
+						save_global_event_target_as = gts_bruh_shipgirl_fleet_2
+					}
+				}
+			}
+		}
+	}
+
+	change_orbit = 44
+
+	planet = {
+		count = { min = 4 max = 6 }
+		class = pc_asteroid
+		size = { min = 2 max = 3 }
+		orbit_distance = { min = -1 max = 1 }
+		orbit_angle = { min = 90 max = 270 }
+	}
+}
+
+gts_bruh_solar_system_initializers_3 = {
+	name = "參號"
+	class = "sc_pulsar"
+	flags = { gts_bruh_solar_system_initializers_3 }
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 124
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 65
+	}
+	max_instances = 1
+	init_effect = {
+		#if = {
+		#	limit = {
+		#		is_inside_nebula = no
+		#	}
+		#	create_nebula = {
+		#		radius = 25
+		#	}
+		#}
+		save_event_target_as = gts_bruh_random_spawn_system_3
+	}
+
+	planet = {
+		name = "參號"
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = 20
+		has_ring = no
+		init_effect = {
+			prevent_anomaly = yes
+			create_ambient_object = {
+				type = "abandoned_starbase_01_object"
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 20
+					angle = random
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 37
+					angle = 30
+				}
+			}
+			while = {
+				count = 2
+				create_ambient_object = {
+					type = "large_debris_object"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 65
+						angle = random
+					}
+				}
+			}
+			create_ambient_object = {
+				type = "small_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 80
+					angle = random
+				}
+			}
+			while = {
+				count = 3
+				create_ambient_object = {
+					type = "medium_debris_01_object"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 80
+						angle = random
+					}
+				}
+			}
+			while = {
+				count = 4
+				create_ambient_object = {
+					type = "small_debris_object"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 90
+						angle = random
+					}
+				}
+			}
+			while = {
+				count = 3
+				create_ambient_object = {
+					type = "large_debris_object"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 100
+						angle = random
+					}
+				}
+			}
+			while = {
+				count = 2
+				create_ambient_object = {
+					type = "large_debris_object"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 100
+						angle = random
+					}
+				}
+			}
+			create_ambient_object = {
+				type = "medium_debris_01_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 110
+					angle = random
+				}
+			}
+			while = {
+				count = 4
+				create_ambient_object = {
+					type = "medium_debris_01_object"
+					location = solar_system
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 110
+						angle = random
+					}
+				}
+			}
+			while = {
+				count = 4
+				create_ambient_object = {
+					type = "large_debris_object"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 120
+						angle = random
+					}
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 120
+					angle = 180
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 120
+					angle = 185
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 123
+					angle = 180
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 115
+					angle = 0
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 117
+					angle = 350
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 117
+					angle = 0
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 117
+					angle = 10
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 120
+					angle = 0
+				}
+			}
+		}
+	}
+
+	change_orbit = 65
+
+	planet = {
+		count = { min = 4 max = 6 }
+		class = pc_asteroid
+		size = { min = 2 max = 3 }
+		orbit_distance = { min = -1 max = 1 }
+		orbit_angle = { min = 90 max = 270 }
+	}
+
+	change_orbit = 15
+
+	planet = {
+		class = pc_broken
+		orbit_angle = 15
+		size = 16
+
+		change_orbit = @base_moon_distance
+		
+		init_effect = {
+			create_country = {
+				name = Bruh艦娘
+				type = faction
+				effect = {
+					set_country_flag = gts_bruh_shipgirl_hostile_country_flag_3
+				}
+			}
+			last_created_country = {
+				add_modifier = {
+					modifier = "gts_level_1_modifier"
+					days = -1
+				}
+				add_modifier = {
+					modifier = "gts_bruh_shipgirl_country_debuff_1"
+					days = -1
+				}
+				create_fleet = {
+					name = "NAME_Overlord_Enforcers"
+					settings = {
+						spawn_debris = no
+						#is_boss = yes
+					}
+					effect = {
+						set_owner = PREV
+						while = {
+							count = 1
+							create_ship = {
+								name = "NAME_Autonomous_Drone"
+								design = "NAME_gts_bruh_shipgirl_titan"
+							}
+						}
+						set_location = prevprev
+						set_fleet_stance = aggressive
+						set_aggro_range_measure_from = self
+						set_aggro_range = 500
+						save_global_event_target_as = gts_bruh_shipgirl_fleet_3
+					}
+				}
+			}
+		}
+	}
+
+	change_orbit = 44
+
+	planet = {
+		count = { min = 4 max = 6 }
+		class = pc_asteroid
+		size = { min = 2 max = 3 }
+		orbit_distance = { min = -1 max = 1 }
+		orbit_angle = { min = 90 max = 270 }
+	}
+	planet = {
+		count = { min = 2 max = 5 }
+		class = pc_gts_juice_uncolonizable
+		size = { min = 12 max = 20 }
+		orbit_distance = { min = 10 max = 80 }
+		orbit_angle = { min = 90 max = 270 }
+	}
+}
+

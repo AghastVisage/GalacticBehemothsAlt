@@ -1,0 +1,1088 @@
+namespace = gts_debug_event
+
+# DEBUG控制台
+country_event = {
+    # 通讯主界面
+    id = gts_debug_event.1
+    is_triggered_only = yes    diplomatic = yes
+    title = gts_debug_event.1.name
+    diplomatic_title = gts_debug_event.1.name
+    desc = gts_debug_event.1.desc
+    picture_event_data = {
+        portrait = gts_portrait_qhai4
+        room = gts_qhai0_room
+    }
+    immediate = { set_country_flag = gts_debug_open }
+    option = {
+        name = gts_debug_event.1.option.1
+        hidden_effect = {
+            country_event = {
+                id = gts_debug_event.2
+            }
+        }
+        custom_tooltip = gts_debug_event.1.option.1.tooltips
+    }
+    option = {
+        name = gts_debug_event.1.option.2
+        hidden_effect = {
+            country_event = {
+                id = gts_debug_event.3
+            }
+        }
+        custom_tooltip = gts_debug_event.1.option.2.tooltips
+    }
+    option = {
+        name = gts_debug_event.1.option.3
+        hidden_effect = {
+            country_event = {
+                id = gts_debug_event.6
+            }
+        }
+        custom_tooltip = gts_debug_event.1.option.2.tooltips
+    }
+    option = { #退出
+        name = gts_guide_qhai.2.option.quit
+        default_hide_option = yes
+    }
+    after = {
+        hidden_effect = {
+            remove_country_flag = gts_debug_open
+        }
+    }
+}
+# 所有领袖的招募方法
+country_event = {
+    id = gts_debug_event.2
+    is_triggered_only = yes diplomatic = yes
+    title = gts_debug_event.2.name
+    diplomatic_title = gts_debug_event.2.name
+    desc = gts_debug_event.2.desc
+    picture_event_data = {
+        portrait = gts_portrait_qhai4
+        room = gts_qhai0_room
+    }
+    immediate = {
+        set_country_flag = gts_debug_open
+    }
+    option = {
+        name = gts_debug_event.1.option.back
+        country_event = {
+            id = gts_debug_event.1
+        }
+    }
+    option = {
+        name = gts_debug_event.2.1
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_luodi
+                }
+            }
+        }
+        gts_leader_luodi_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.2
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_aurora
+                }
+            }
+        }
+        gts_leader_aurora_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.3
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_jifeng
+                }
+            }
+        }
+        gts_leader_jifeng_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.4
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_yiyan
+                }
+            }
+        }
+        gts_leader_yiyan_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.5
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_aplog
+                }
+            }
+        }
+        gts_leader_aplog_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.6
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_eyjafjalla
+                }
+            }
+        }
+        gts_leader_eyjafjalla_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.6.1
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_eyjafjalla
+                    NOT = { has_trait = oripathy }
+                }
+            }
+        }
+        gts_leader_eyjafjalla_recover_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.7
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_skadi
+                }
+            }
+        }
+        gts_leader_skadi_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.8
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_sonxi
+                }
+            }
+        }
+        gts_leader_sonxi_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.9
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_linglu
+                }
+            }
+        }
+        gts_leader_linglu_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.10
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_aya
+                }
+            }
+        }
+        gts_leader_aya_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.11
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_archetto
+                }
+            }
+        }
+        gts_leader_archetto_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.12
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_blemishine
+                }
+            }
+        }
+        gts_leader_blemishine_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.13
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_eliza
+                }
+            }
+        }
+        gts_leader_eliza_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.14
+        allow = {
+            NOT = {
+                has_country_flag = country_chenghui
+            }
+        }
+        country_event = {
+            id = gts_chenghui.4002
+        }
+        country_event = {
+            id = gts_chenghui.1
+        }
+    }
+    option = {
+        name = gts_debug_event.2.15
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_Hanako
+                }
+            }
+        }
+        gts_leader_hanako_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.16
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_Koharu
+                }
+            }
+        }
+        gts_leader_koharu_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.17
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_erika
+                }
+            }
+        }
+        gts_leader_erika_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.18
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_goldenglow
+                }
+            }
+        }
+        gts_leader_goldenglow_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.19
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_huatian
+                }
+            }
+        }
+        gts_leader_huatian_hired = { CHANGE_OWNER = yes }
+        event_target:gts_huatian = {
+            add_trait = {
+                trait = gts_trait_leader_huatian_j
+            }
+        }
+        gts_create_huatian_fleet = yes
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.20
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_xiaomiao
+                }
+            }
+        }
+        gts_leader_xiaomiao_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.21
+        response_text = gts_debug_event.2.reponse.2
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.22
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_teifuania
+                }
+            }
+        }
+        gts_leader_teifuania_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.23
+        response_text = gts_debug_event.2.reponse.3
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.24
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_qhai
+                }
+            }
+        }
+        gts_leader_qhai_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.25
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_tensi
+                }
+            }
+        }
+        gts_leader_tensi_hired = { CHANGE_OWNER = yes }
+        gts_create_tensi_fleet = yes
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.26
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_yarong
+                }
+            }
+        }
+        gts_leader_yarong_hired2 = yes
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.27
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_shentun
+                }
+            }
+        }
+        gts_leader_shentun_hired = { CHANGE_OWNER = yes }
+        gts_create_shentun_fleet = yes
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.28
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_satori
+                }
+            }
+        }
+        gts_leader_satori_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.29
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_tiantiao
+                }
+            }
+        }
+        gts_leader_tiantiao_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.30
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_doctor
+                }
+            }
+        }
+        gts_leader_doctor_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.31
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_mari
+                }
+            }
+        }
+        gts_leader_mari_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.32
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_guya
+                }
+            }
+        }
+        gts_leader_guya_army_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.32.2
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_guya
+                }
+            }
+        }
+        gts_leader_guya_fleet_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.32.3
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_guya
+                }
+            }
+        }
+        gts_leader_guya_official_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.32.4
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_guya
+                }
+            }
+        }
+        gts_create_guya_fleet = yes
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.33
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_mari
+                }
+            }
+        }
+        gts_leader_mizuki_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+
+    option = {
+        name = gts_debug_event.2.34
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_sera
+                }
+            }
+        }
+        gts_leader_sera_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.35
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_allomerus
+                }
+            }
+        }
+        gts_leader_allomerus_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.36
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_paopao
+                }
+            }
+        }
+        gts_leader_paopao_hired2 = yes
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.37
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_saratoga
+                }
+            }
+        }
+        gts_leader_saratoga_hired = { CHANGE_OWNER = yes }
+        gts_create_saratoga_fleet = yes
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.38
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_tlipoca
+                }
+            }
+        }
+        gts_leader_tlipoca_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.39
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_bronya
+                }
+            }
+        }
+        gts_leader_bronya_hired = { CHANGE_OWNER = yes }
+        gts_create_bronya_reseach_fleet = yes
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.40
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_seele
+                }
+            }
+        }
+        gts_leader_seele_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.41
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_seele_li
+                }
+            }
+        }
+        gts_leader_seele_li_hired = { CHANGE_OWNER = yes }
+        gts_create_seele_li_military_fleet = yes
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.42
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_firefly
+                }
+            }
+        }
+        gts_leader_firefly_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.43
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_xinuo
+                }
+            }
+        }
+        gts_leader_xinuo_hired = { CHANGE_OWNER = yes }
+        gts_create_xinuo_fleet = yes
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.44
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_carlotta
+                }
+            }
+        }
+        gts_leader_carlotta_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.45
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_faralda
+                }
+            }
+        }
+        gts_leader_fara_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.46
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_illyasviel
+                }
+            }
+        }
+        gts_leader_illya_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.47
+        response_text = gts_debug_event.2.reponse.3
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.48
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_linfeng
+                }
+            }
+        }
+        gts_leader_linfeng_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.48.1
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_linfeng_shipgirl
+                }
+            }
+        }
+        gts_leader_linfeng_shipgril_hired = { CHANGE_OWNER = yes }
+        gts_create_linfeng_fleet = yes
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.48.2
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_linfeng_shipgirl
+                }
+            }
+        }
+        gts_leader_linfeng_shipgril_hired = { CHANGE_OWNER = yes }
+        gts_create_linfeng_futa_fleet = yes
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.49
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_suxiaobai
+                }
+            }
+        }
+        gts_leader_suxiaobai_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.50
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_hitomi
+                }
+            }
+        }
+        gts_leader_hitomi_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.50.1
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_hitomi
+                }
+            }
+        }
+        gts_leader_hitomi_yuyue_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.2.51
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_ora
+                }
+            }
+        }
+        gts_leader_ora_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.1.option.quit
+        default_hide_option = yes
+    }
+    after = {
+        hidden_effect = {
+            remove_country_flag = gts_debug_open
+        }
+    }
+}
+# 一次招募所有未有船的领袖
+country_event = {
+    id = gts_debug_event.3
+    hide_window = yes
+    is_triggered_only = yes
+    immediate = {
+        # 招募基础领袖
+        gts_leader_luodi_hired = { CHANGE_OWNER = yes }
+        gts_leader_aurora_hired = { CHANGE_OWNER = yes }
+        gts_leader_jifeng_hired = { CHANGE_OWNER = yes }
+        gts_leader_yiyan_hired = { CHANGE_OWNER = yes }
+        gts_leader_aplog_hired = { CHANGE_OWNER = yes }
+        gts_leader_eyjafjalla_hired = { CHANGE_OWNER = yes }
+        gts_leader_eyjafjalla_recover_hired = { CHANGE_OWNER = yes }
+        gts_leader_skadi_hired = { CHANGE_OWNER = yes }
+        gts_leader_sonxi_hired = { CHANGE_OWNER = yes }
+        gts_leader_linglu_hired = { CHANGE_OWNER = yes }
+        gts_leader_aya_hired = { CHANGE_OWNER = yes }
+        gts_leader_archetto_hired = { CHANGE_OWNER = yes }
+        gts_leader_blemishine_hired = { CHANGE_OWNER = yes }
+        gts_leader_eliza_hired = { CHANGE_OWNER = yes }
+        gts_leader_hanako_hired = { CHANGE_OWNER = yes }
+        gts_leader_koharu_hired = { CHANGE_OWNER = yes }
+        gts_leader_erika_hired = { CHANGE_OWNER = yes }
+        gts_leader_goldenglow_hired = { CHANGE_OWNER = yes }
+        gts_leader_teifuania_hired = { CHANGE_OWNER = yes }
+        gts_leader_qhai_hired = { CHANGE_OWNER = yes }
+        gts_leader_satori_hired = { CHANGE_OWNER = yes }
+        gts_leader_tiantiao_hired = { CHANGE_OWNER = yes }
+        gts_leader_doctor_hired = { CHANGE_OWNER = yes }
+        gts_leader_mari_hired = { CHANGE_OWNER = yes }
+        gts_leader_guya_official_hired = { CHANGE_OWNER = yes }
+        gts_leader_mizuki_hired = { CHANGE_OWNER = yes }
+        gts_leader_sera_hired = { CHANGE_OWNER = yes }
+        gts_leader_allomerus_hired = { CHANGE_OWNER = yes }
+        gts_leader_tlipoca_hired = { CHANGE_OWNER = yes }
+        gts_leader_seele_hired = { CHANGE_OWNER = yes }
+        gts_leader_firefly_hired = { CHANGE_OWNER = yes }
+        gts_leader_illya_hired = { CHANGE_OWNER = yes }
+        gts_leader_linfeng_hired = { CHANGE_OWNER = yes }
+        gts_leader_suxiaobai_hired = { CHANGE_OWNER = yes }
+        gts_leader_xiaomiao_hired = { CHANGE_OWNER = yes }
+        gts_leader_carlotta_hired = { CHANGE_OWNER = yes }
+        gts_leader_fara_hired = { CHANGE_OWNER = yes }
+        gts_leader_hitomi_yuyue_hired= { CHANGE_OWNER = yes }
+        gts_leader_ora_hired = { CHANGE_OWNER = yes }
+        country_event = {
+            id = gts_debug_event.4
+        }
+    }
+}
+# 一次招募所有带船的领袖
+country_event = {
+    id = gts_debug_event.4
+    hide_window = yes
+    is_triggered_only = yes
+    immediate = {
+        # 带船领袖
+        gts_leader_saratoga_hired = { CHANGE_OWNER = yes }
+        gts_leader_bronya_hired = { CHANGE_OWNER = yes }
+        gts_leader_seele_li_hired = { CHANGE_OWNER = yes }
+        gts_leader_shentun_hired = { CHANGE_OWNER = yes }
+        gts_leader_tensi_hired = { CHANGE_OWNER = yes }
+        gts_leader_huatian_hired = { CHANGE_OWNER = yes }
+        event_target:gts_huatian = {
+            add_trait = {
+                trait = gts_trait_leader_huatian_j
+            }
+        }
+        gts_leader_yarong_hired2 = yes
+        gts_leader_paopao_hired2 = yes
+        gts_leader_xinuo_hired = { CHANGE_OWNER = yes }
+        gts_create_xinuo_fleet = yes
+        # 创建舰队
+        gts_create_huatian_fleet = yes
+        gts_create_tensi_fleet = yes
+        gts_create_seele_li_military_fleet = yes
+        gts_create_bronya_military_fleet = yes
+        gts_create_saratoga_fleet = yes
+        gts_create_shentun_fleet = yes
+        gts_create_hitomi_fleet = yes
+        gts_create_linfeng_fleet = yes
+        gts_create_guya_fleet = yes
+    }
+}
+# 领袖好感度控制
+country_event = {
+    # 通讯主界面
+    id = gts_debug_event.6
+    is_triggered_only = yes    diplomatic = yes
+    title = gts_debug_event.6.name
+    diplomatic_title = gts_debug_event.6.name
+    desc = gts_debug_event.6.desc
+    picture_event_data = {
+        portrait = gts_portrait_qhai4
+        room = gts_qhai0_room
+    }
+    option = {
+        name = gts_debug_event.6.option.1
+        hidden_effect = {
+            hidden_effect = {
+                every_owned_leader = {
+                    gts_love_system_increase = { value = 20 }
+                }
+            }
+        }
+        response_text = gts_debug_event.6.option.1.response
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.6.option.2
+        hidden_effect = {
+            every_owned_leader = {
+                gts_love_system_reduce = { value = 20 }
+            }
+        }
+        response_text = gts_debug_event.6.option.1.response
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.1.option.back
+        country_event = {
+            id = gts_debug_event.1
+        }
+    }
+    option = { #退出
+        name = gts_guide_qhai.2.option.quit
+        default_hide_option = yes
+    }
+    after = {
+        hidden_effect = {
+            remove_country_flag = gts_debug_open
+        }
+    }
+}
+# 创建指定的星球
+country_event = {
+    # 通讯主界面
+    id = gts_debug_event.7
+    is_triggered_only = yes    diplomatic = yes
+    title = gts_debug_event.7.name
+    diplomatic_title = gts_debug_event.7.name
+    desc = gts_debug_event.7.desc
+    picture_event_data = {
+        portrait = gts_portrait_qhai4
+        room = gts_qhai0_room
+    }
+    option = {
+        name = gts_debug_event.6.option.1
+        response_text = gts_debug_event.6.option.1.response
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.6.option.2
+        response_text = gts_debug_event.6.option.1.response
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_debug_event.1.option.back
+        country_event = {
+            id = gts_debug_event.1
+        }
+    }
+    option = { #退出
+        name = gts_guide_qhai.2.option.quit
+        default_hide_option = yes
+    }
+    after = {
+        hidden_effect = {
+            remove_country_flag = gts_debug_open
+        }
+    }
+}
+
+
+country_event = {
+    # 通讯主界面
+    id = gts_debug_event.8
+    is_triggered_only = yes
+    hide_window = yes
+    immediate = {
+        event_target:gts_tensi = {
+           kill_leader = {
+                show_notification = yes
+           }
+        }
+    }
+}
+country_event = {
+    # 通讯主界面
+    id = gts_debug_event.9
+    is_triggered_only = yes
+    hide_window = yes
+    immediate = {
+        event_target:gts_tensi_fleet = {
+            destroy_fleet = this
+        }
+    }
+}
+country_event = {
+    # 通讯主界面
+    id = gts_debug_event.10
+    is_triggered_only = yes
+    hide_window = yes
+    immediate = {
+        event_target:gts_tensi_fleet = {
+            destroy_fleet = this
+        }
+    }
+}
+country_event = {
+    # 通讯主界面
+    id = gts_debug_event.11
+    is_triggered_only = yes
+    hide_window = yes
+    immediate = {
+        event_target:gts_huatian_ship = {
+            destroy_ship = this
+        }
+    }
+}
+country_event = {
+    # 通讯主界面
+    id = gts_debug_event.12
+    is_triggered_only = yes
+    hide_window = yes
+    immediate = {
+        event_target:gts_huatian_fleet = {
+            destroy_fleet  = this
+        }
+    }
+}
+country_event = {
+    # 通讯主界面
+    id = gts_debug_event.13
+    is_triggered_only = yes
+    hide_window = yes
+    immediate = {
+        event_target:gts_aplog = {
+            kill_leader = {
+                show_notification = yes
+            }
+        }
+    }
+}
+country_event = {
+    # 通讯主界面
+    id = gts_debug_event.14
+    is_triggered_only = yes
+    hide_window = yes
+    immediate = {
+        event_target:gts_qhai = {
+            kill_leader = {
+                show_notification = yes
+            }
+        }
+    }
+}
+

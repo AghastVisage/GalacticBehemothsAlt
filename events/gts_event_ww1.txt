@@ -1,0 +1,169 @@
+namespace = gts_evt_ww
+
+ship_event = {
+	id = gts_evt_ww.1	#ww1开始
+	title = "gts_evt_ww.1.name"
+	desc = "gts_evt_ww.1.desc"
+	picture = GFX_gtsra_load_11
+	is_triggered_only = yes
+	option = {
+		name = gts_chenghui.4000.a
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = gts_evt_ww.2
+				}
+			}
+		}
+		#接入伊莱莎通讯
+	}
+}
+
+country_event = {
+	id = gts_evt_ww.2	#ww1交流
+	title = "TRANSMISSION"
+	desc = "gts_evt_ww.2.desc"
+	diplomatic = yes
+	is_triggered_only = yes
+	picture_event_data = {
+		portrait = gts_Eliza
+		room = "ethic_spaceship_room"
+	}
+	option = {
+		name = gts_evt_ww.2.a
+		response_text = gts_evt_ww.2.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_evt_ww.2.b
+		response_text = gts_evt_ww.2.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_evt_ww.2.c
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_ww.3
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_ww.3	#ww1中间
+	title = "TRANSMISSION"
+	desc = "gts_evt_ww.3.desc"
+	diplomatic = yes
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = gts_Eliza
+		room = "ethic_spaceship_room"
+	}
+
+	immediate = {
+		gts_leader_eliza_hired = yes
+		create_species = {
+			name = GTS_LEADER_SPECIES
+			class = MACHINE
+			portrait = gts_Eliza_governer
+			traits = {
+				trait = "trait_machine_unit"
+			}
+			allow_negative_traits = no
+			effect = {
+				save_event_target_as = gts_leader_new_species
+			}
+			gender = indeterminable
+		}
+	}
+
+	option = {
+		name = gts_evt_ww.3.a
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_ww.4
+				days = 1
+			}
+			event_target:gts_eliza = {
+				change_species = event_target:gts_leader_new_species
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_ww.4	#ww1结束
+	title = "TRANSMISSION"
+	desc = "gts_evt_ww.4.desc"
+	diplomatic = yes
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = gts_Eliza
+		room = "ethic_spaceship_room"
+	}
+
+	option = {
+		name = gts_evt_ww.4.a		#留下
+		response_text = gts_evt_ww.4.a.response
+		default_hide_option = yes
+		add_modifier = {
+			modifier = eliza_peace			#添加修正：战争之殇
+			days = 3600
+		}
+		add_modifier = {
+			modifier = eliza_insight			#添加修正：伊莱莎的启发
+		}
+	}
+	option = {
+		name = gts_evt_ww.4.b		#拆掉
+		response_text = gts_evt_ww.4.b.response
+		default_hide_option = yes
+		gts_leader_hire_effect = {TYPE = renownd}
+		owner = {
+			add_resource = {
+				alloys = 3000
+			}
+		}
+		add_modifier = {
+			modifier = eliza_insight			#添加修正：伊莱莎的启发
+		}
+	}
+}
+
+#14已经使用
+ship_event = {
+	#发现古代科研船
+	id = gts_evt_ww.5
+	title = "gts_evt_ww.5.name"
+	desc = "gts_evt_ww.5.desc"
+	picture = GFX_evt_asteroid_approaching_planet
+	show_sound = event_airlock
+	#	location = FROM
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_ww.5.a
+		#		leader = { add_experience = 200 }
+		owner = {
+			add_resource = {
+				unity = 500
+			}
+			add_resource = {
+				minor_artifacts = 2
+			}
+		}
+	}
+	option = {
+		name = gts_evt_ww.5.b
+		#		leader = { add_experience = 200 }
+		owner = {
+			add_resource = {
+				society_research = 2000
+			}
+			add_resource = {
+				physics_research = 2000
+			}
+		}
+	}
+}

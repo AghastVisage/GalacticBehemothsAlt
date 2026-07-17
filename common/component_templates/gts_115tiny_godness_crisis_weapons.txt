@@ -1,0 +1,60 @@
+weapon_component_template = {
+    key = "MEDIUM_SCOURGE_MISSILE_GTS_godness_1"
+    size = medium
+    type = instant
+    icon = "GFX_tech_scourge_missile_gts_1"
+    icon_frame = 1
+    power = -700	#花费能源
+    damage = {
+        #伤害浮动
+        min = 40000
+        max = 50000
+    }
+    windup = {
+        #开火准备时间
+        min = 5
+        max = 10
+    }
+    total_fire_time = 25
+    range = 250	#射程
+    accuracy = 1	#命中100%
+    tracking = 0.5	#追踪100%
+    shield_damage = 1	#破盾
+    armor_damage = 1	#破甲
+    shield_penetration = 0.3	#穿甲 1=+100%
+    armor_penetration = 0.3   #穿盾
+    prerequisites = {
+        "tech_scourge_missile_gts_1"
+    }
+    component_set = "SCOURGE_MISSILE_GTS_1"
+    projectile_gfx = "disruptor_3_medium"
+    tags = {
+        weapon_type_energy
+    }
+    ai_tags = {
+        weapon_role_anti_hull
+    }
+    ai_tag_weight = 5
+    resources = {
+        category = ship_components
+        cost = {
+        }
+        upkeep = {
+        }
+    }
+    size_restriction = {
+        gts_115tiny_corrupted_avatar
+        gts_115tiny_warped_consciousness
+        gts_115tiny_shroud_manifestation
+        gts_115tiny_psionic_avatar
+    }
+    ai_weight = {
+        weight = 1
+        modifier = {
+            factor = 0
+            no_resource_for_component = {
+                RESOURCE = rare_crystals
+            }
+        }
+    }
+}

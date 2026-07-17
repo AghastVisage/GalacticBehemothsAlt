@@ -1,0 +1,760 @@
+namespace = gts_evt_graygoo
+#小灰拓展事件
+country_event = {
+	id = gts_evt_graygoo.1
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		is_ai = no
+		is_same_value = event_target:gray_owner
+		# has_country_flag = gray_official_active
+		# has_country_flag = gray_warship_active
+		# has_country_flag = gray_army_active
+	}
+	immediate = {
+		country_event = {
+			id = gts_evt_graygoo.10
+			# days = 30
+		}
+		if = {
+			limit = {
+				has_country_flag = gray_official_active
+				event_target:gray_official = {
+					is_ruler = no
+				}
+			}
+			country_event = {
+				id = gts_evt_graygoo.20
+				days = 30
+				random = 30
+			}
+		}
+	}
+}
+
+country_event = {
+	# 把小灰的体型改为天体级
+	id = gts_evt_graygoo.2
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		from = {
+			has_trait = leader_trait_governor_gray
+		}
+	}
+	immediate = {
+		from = {
+			gts_leader_size_change_to = {
+				SIZE_TRAIT = leader_trait_Ultra
+			}
+		}
+	}
+}
+
+# 小灰考古
+country_event = {
+	id = gts_evt_graygoo.10
+	title = gts_evt_graygoo.10.name
+	desc = gts_evt_graygoo.10.desc
+	picture = GFX_gts_graygoo_1
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	location = event_target:gts_graygoo_arc_planet
+	trigger = {
+		any_owned_planet = {
+			is_planet_class = pc_gray_goo
+			solar_system = {
+				has_star_flag = lcluster
+			}
+		}
+	}
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				is_planet_class = pc_gray_goo
+				solar_system = {
+					has_star_flag = lcluster
+				}
+			}
+			save_event_target_as = gts_graygoo_arc_planet
+		}
+	}
+	option = {
+		name = gts_evt_graygoo.10.a
+		event_target:gts_graygoo_arc_planet = {
+			create_archaeological_site = site_gts_graygoo
+		}
+	}
+	option = {
+		name = gts_evt_graygoo.10.b
+	}
+}
+
+fleet_event = {
+	id = gts_evt_graygoo.11
+	title = gts_evt_graygoo.11.name
+	desc = gts_evt_graygoo.11.desc
+	picture = GFX_gts_graygoo_1
+	show_sound = event_default
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_evt_graygoo.11.a
+		owner = {
+			add_resource = {
+				nanites = 100
+			}
+		}
+	}
+}
+
+fleet_event = {
+	id = gts_evt_graygoo.12
+	title = gts_evt_graygoo.12.name
+	desc = gts_evt_graygoo.12.desc
+	picture = GFX_gts_graygoo_2
+	show_sound = event_default
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_evt_graygoo.12.a
+		owner = {
+			add_resource = {
+				engineering_research = 10000
+			}
+		}
+	}
+}
+
+fleet_event = {
+	id = gts_evt_graygoo.13
+	title = gts_evt_graygoo.13.name
+	desc = gts_evt_graygoo.13.desc
+	picture = GFX_gts_graygoo_3
+	show_sound = event_default
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_evt_graygoo.13.a
+		owner = {
+			add_resource = {
+				society_research = 10000
+			}
+		}
+	}
+}
+
+fleet_event = {
+	id = gts_evt_graygoo.14
+	title = gts_evt_graygoo.14.name
+	desc = gts_evt_graygoo.14.desc
+	picture = GFX_gts_graygoo_4
+	show_sound = event_default
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_evt_graygoo.14.a
+		owner = {
+			add_modifier = {
+				modifier = gts_graygoo_arc_finish
+			}
+		}
+	}
+}
+
+### 小灰总督 ###
+country_event = {
+	id = gts_evt_graygoo.20
+	title = gts_evt_graygoo.20.name
+	desc = gts_evt_graygoo.20.desc
+	picture = GFX_gts_graygoo_2
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	location = event_target:gts_graygoo_planet
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				pop_amount >= 2000
+			}
+			save_event_target_as = gts_graygoo_planet
+			while = {
+				count = 10
+				random_owned_pop_group = {
+					kill_single_pop = yes
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_evt_graygoo.20.a
+		add_resource = {
+			unity = -100
+		}
+	}
+	option = {
+		name = gts_evt_graygoo.20.b
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_graygoo.21
+				days = 30
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_graygoo.21
+	title = gts_evt_graygoo.21.name
+	desc = gts_evt_graygoo.21.desc
+	picture = GFX_gts_event_67
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	location = event_target:gts_graygoo_planet
+	immediate = {
+	}
+	option = {
+		name = gts_evt_graygoo.21.a
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_graygoo.22
+			}
+		}
+	}
+	option = {
+		name = gts_evt_graygoo.21.b
+		custom_tooltip = gts_evt_graygoo.21.b.tooltip
+		add_resource = {
+			nanites = 14
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_graygoo.22
+	title = gts_evt_graygoo.22.name
+	desc = gts_evt_graygoo.22.desc
+	picture = GFX_gts_event_71
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	location = event_target:gts_graygoo_planet
+	immediate = {
+	}
+	option = {
+		name = gts_evt_graygoo.22.a
+		ROOT.Ruler = {
+			add_trait = {
+				trait = leader_trait_graygoo_vore
+				show_message = no
+			}
+		}
+	}
+	option = {
+		name = gts_evt_graygoo.22.b
+		ROOT.Ruler = {
+			add_trait = {
+				trait = leader_trait_graygoo_escape
+				show_message = no
+			}
+		}
+	}
+}
+
+### 小灰登陆事件 ###
+country_event = {
+	id = gts_evt_graygoo.40
+	title = gts_evt_graygoo.40.name
+	desc = gts_evt_graygoo.40.desc.normal
+	desc = {
+		text = gts_evt_graygoo.40.desc.futa
+		trigger = {
+			has_country_flag = can_trigger_futa_content
+		}
+	}
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_graygoo_5_room
+	}
+	show_sound = event_default
+	is_triggered_only = yes
+	#fire_only_once = yes
+	option = {
+		name = gts_evt_graygoo.40.a
+		event_target:gts_attackers_win_planet = {
+			add_planet_devastation = 1
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_graygoo.41
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_graygoo.41
+	title = gts_evt_graygoo.41.name
+	desc = gts_evt_graygoo.41.desc.normal
+	desc = {
+		text = gts_evt_graygoo.41.desc.futa
+		trigger = {
+			has_country_flag = can_trigger_futa_content
+		}
+	}
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_graygoo_3_room
+	}
+	show_sound = event_default
+	is_triggered_only = yes
+	#fire_only_once = yes
+	option = {
+		name = gts_evt_graygoo.41.a
+		event_target:gts_attackers_win_planet = {
+			add_planet_devastation = 10
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_graygoo.42
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_graygoo.42
+	title = gts_evt_graygoo.42.name
+	desc = gts_evt_graygoo.42.desc
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_graygoo_3_room
+	}
+	show_sound = event_default
+	is_triggered_only = yes
+	#fire_only_once = yes
+	option = {
+		name = gts_evt_graygoo.42.a
+		event_target:gts_attackers_win_planet = {
+			if = {
+				limit = {
+					is_planet_class = pc_habitat
+				}
+				destroy_colony = yes
+				hidden_effect = {
+					remove_planet = yes
+				}
+			}
+			else = {
+				event_target:gts_attackers_win_planet = {
+					destroy_colony = yes
+					pc_gts_juice_change = yes
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_evt_graygoo.42.b
+		event_target:gts_attackers_win_planet = {
+			if = {
+				limit = {
+					is_planet_class = pc_habitat
+				}
+				destroy_colony = yes
+				hidden_effect = {
+					remove_planet = yes
+				}
+			}
+			else = {
+				event_target:gts_attackers_win_planet = {
+					destroy_colony = yes
+					pc_gts_milk_change = yes
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_evt_graygoo.42.c
+		trigger = {
+			has_country_flag = can_trigger_futa_content
+		}
+		event_target:gts_attackers_win_planet = {
+			if = {
+				limit = {
+					is_planet_class = pc_habitat
+				}
+				destroy_colony = yes
+				hidden_effect = {
+					remove_planet = yes
+				}
+			}
+			else = {
+				event_target:gts_attackers_win_planet = {
+					destroy_colony = yes
+					pc_gts_semen_change = yes
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_evt_graygoo.42.d
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_graygoo.43
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_graygoo.43
+	title = gts_evt_graygoo.43.name
+	desc = gts_evt_graygoo.43.desc
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_graygoo_4_room
+	}
+	show_sound = event_default
+	is_triggered_only = yes
+	#fire_only_once = yes
+	option = {
+		name = gts_evt_graygoo.43.a
+		event_target:gts_attackers_win_planet = {
+			if = {
+				limit = {
+					is_planet_class = pc_habitat
+				}
+				destroy_colony = yes
+				hidden_effect = {
+					remove_planet = yes
+				}
+			}
+			else = {
+				event_target:gts_attackers_win_planet = {
+					destroy_colony = yes
+					change_pc = pc_gray_goo
+					hidden_effect = {
+						add_deposit = d_nanites_deposit
+						add_deposit = d_nanites_deposit
+						add_deposit = d_nanites_deposit
+					}
+				}
+			}
+		}
+	}
+}
+
+### 小灰舰队事件 ###
+country_event = {
+	# 每五年只能触发一次
+	id = gts_evt_graygoo.300
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		is_ai = no
+		is_same_value = event_target:gray_owner
+		has_country_flag = gray_warship_active
+		NOR = {
+			has_country_flag = gts_gray_warship_event_cooldown
+		}
+	}
+	immediate = {
+		set_timed_country_flag = {
+			flag = gts_gray_warship_event_cooldown
+			days = 1800
+		}
+		random_list = {
+			1 = {
+				country_event = {
+					id = gts_evt_graygoo.310
+				}
+			}
+			6 = {
+				country_event = {
+					id = gts_evt_graygoo.320
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_graygoo.310
+	title = gts_evt_graygoo.310.name
+	desc = gts_evt_graygoo.310.desc
+	picture = GFX_gts_graygoo_1
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = gts_evt_graygoo.310.a
+		add_resource = {
+			influence = 50
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_graygoo.320
+	title = gts_evt_graygoo.320.name
+	desc = gts_evt_graygoo.320.desc
+	picture = GFX_gts_graygoo_1
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_graygoo.320.a
+		country_event = {
+			id = gts_evt_graygoo.321
+		}
+	}
+	option = {
+		name = gts_evt_graygoo.320.b
+		country_event = {
+			id = gts_evt_graygoo.322
+		}
+	}
+	option = {
+		name = gts_evt_graygoo.320.c
+		country_event = {
+			id = gts_evt_graygoo.323
+		}
+	}
+	option = {
+		name = gts_evt_graygoo.320.d
+		country_event = {
+			id = gts_evt_graygoo.324
+		}
+	}
+	option = {
+		name = gts_evt_graygoo.320.e
+		country_event = {
+			id = gts_evt_graygoo.325
+		}
+	}
+	option = {
+		name = gts_evt_graygoo.320.f
+		trigger = {
+			has_country_flag = can_trigger_futa_content
+		}
+		country_event = {
+			id = gts_evt_graygoo.326
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_graygoo.321
+	title = gts_evt_graygoo.321.name
+	desc = gts_evt_graygoo.321.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_leader_interact1_room
+	}
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_graygoo.321.a
+		add_resource = {
+			influence = 50
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_graygoo.322
+	title = gts_evt_graygoo.322.name
+	desc = gts_evt_graygoo.322.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_laiya1_room
+	}
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_graygoo.322.a
+		add_resource = {
+			nanites = 100
+		}
+	}
+	option = {
+		name = gts_evt_graygoo.322.b
+		add_resource = {
+			influence = 50
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_graygoo.323
+	title = gts_evt_graygoo.323.name
+	desc = gts_evt_graygoo.323.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_graygoo_1_room
+	}
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_graygoo.323.a
+		add_resource = {
+			nanites = 100
+		}
+	}
+	option = {
+		name = gts_evt_graygoo.323.b
+		add_resource = {
+			influence = 50
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_graygoo.324
+	title = gts_evt_graygoo.324.name
+	desc = gts_evt_graygoo.324.desc
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_graygoo_3_room
+	}
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_graygoo.324.a
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_graygoo.3241
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_graygoo.3241
+	title = gts_evt_graygoo.3241.name
+	desc = gts_evt_graygoo.3241.desc
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_graygoo_4_room
+	}
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_graygoo.3241.a
+		add_resource = {
+			nanites = 100
+		}
+	}
+	option = {
+		name = gts_evt_graygoo.3241.b
+		add_resource = {
+			unity = 4000
+		}
+	}
+	option = {
+		name = gts_evt_graygoo.3241.c
+		add_resource = {
+			influence = 50
+		}
+		custom_tooltip = gts_evt_graygoo.3241.c.tooltip
+	}
+}
+
+country_event = {
+	id = gts_evt_graygoo.325
+	title = gts_evt_graygoo.325.name
+	desc = gts_evt_graygoo.325.desc
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_graygoo_4_room
+	}
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_graygoo.325.a
+		add_resource = {
+			gts_micro = 500
+		}
+	}
+	option = {
+		name = gts_evt_graygoo.325.b
+		add_resource = {
+			influence = 50
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_graygoo.326
+	title = gts_evt_graygoo.326.name
+	desc = gts_evt_graygoo.326.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_graygoo_2_room
+	}
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_graygoo.326.a
+		add_resource = {
+			influence = 50
+		}
+	}
+}

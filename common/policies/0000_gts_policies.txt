@@ -1,0 +1,1702 @@
+# GTS建築類型
+
+gts_building_style = {
+
+	potential = {
+		always = yes
+	}
+
+	option = {
+		name = "giant_building_style"
+
+		valid = {
+			has_country_flag = gts_finish_change_giant_buildings
+		}
+
+		policy_flags = {
+			using_giant_building_style
+		}
+
+		modifier = {
+			planet_housing_mult = 1.0
+			building_time_mult = 0.5
+			planet_buildings_cost_mult = 1.0
+			planet_districts_cost_mult = 1.0
+			planet_buildings_upkeep_mult = 0.25
+			planet_districts_upkeep_mult = 0.25
+		}
+
+		on_enabled = {
+			hidden_effect = { every_owned_planet = { remove_modifier = gts_planet_giant_housing } }
+		}
+
+		AI_weight = {
+			factor = 10
+			modifier = {
+				factor = 1.5
+				gts_is_giantess_empire = yes
+			}
+		}
+	}
+
+	option = {
+		name = "tiny_building_style"
+
+		valid = {
+			always = yes
+		}
+
+		policy_flags = {
+			using_tiny_building_style
+		}
+
+		on_enabled = {
+			remove_country_flag = gts_finish_change_giant_buildings
+		}
+
+		AI_weight = {
+			factor = 10
+			modifier = {
+				factor = 1.5
+				gts_is_tiny_empire = yes
+			}
+		}
+	}
+}
+
+# GTS艦隊類型
+
+gts_fleet_style = {
+
+	potential = {
+		always = yes
+	}
+
+	option = {
+		name = "giant_fleet_style"
+
+		valid = {
+			has_country_flag = gts_finish_change_giant_fleet
+		}
+
+		policy_flags = {
+			using_giant_fleet_style
+		}
+
+		modifier = {
+			starbase_shipyard_build_cost_mult = 1.0
+			starbase_shipyard_build_speed_mult = -0.5
+			ships_upkeep_mult = 1.0
+			ship_weapon_damage = 1.0
+			ship_hull_mult = 1.0
+			ship_armor_mult = 1.0
+			ship_shield_mult = 1.0
+		}
+
+		AI_weight = {
+			factor = 10
+			modifier = {
+				factor = 1.5
+				gts_is_giantess_empire = yes
+			}
+		}
+	}
+
+	option = {
+		name = "tiny_fleet_style"
+
+		valid = {
+			always = yes
+		}
+
+		policy_flags = {
+			using_tiny_fleet_style
+		}
+
+		on_enabled = {
+			remove_country_flag = gts_finish_change_giant_fleet
+		}
+
+		AI_weight = {
+			factor = 10
+			modifier = {
+				factor = 1.5
+				gts_is_tiny_empire = yes
+			}
+		}
+	}
+}
+
+# 種族隔離
+
+gts_apartheid = {
+
+	potential = {
+		always = yes
+	}
+
+	option = {
+		name = "gts_gaintess_apartheid"
+
+		valid = {
+			OR = {
+				has_ethic = ethic_xenophobe
+				has_ethic = ethic_fanatic_xenophobe
+				has_ethic = ethic_authoritarian
+				has_ethic = ethic_fanatic_authoritarian
+				has_civic = civic_fanatic_purifiers
+			}
+			NOT = {
+				gts_is_giantess_empire = yes
+				has_civic = civic_gts_terminator
+			}
+		}
+
+		policy_flags = {
+			gts_gaintess_apartheid
+		}
+
+		modifier = {
+			planet_stability_mult = 0.15
+			planet_pops_upkeep_mult = -0.05
+		}
+
+		AI_weight = {
+			factor = 10
+			modifier = {
+				factor = 1.5
+				OR = {
+					has_ethic = ethic_xenophobe
+					has_ethic = ethic_fanatic_xenophobe
+				}
+			}
+		}
+	}
+
+	option = {
+		name = "gts_tinies_apartheid"
+
+		valid = {
+			OR = {
+				has_ethic = ethic_xenophobe
+				has_ethic = ethic_fanatic_xenophobe
+				has_ethic = ethic_authoritarian
+				has_ethic = ethic_fanatic_authoritarian
+				has_civic = civic_fanatic_purifiers
+			}
+			NOT = {
+				gts_is_tiny_empire = yes
+				has_civic = civic_gts_servitor
+			}
+		}
+
+		policy_flags = {
+			gts_tinies_apartheid
+		}
+
+		modifier = {
+			planet_stability_mult = 0.15
+			planet_pops_upkeep_mult = -0.05
+		}
+
+		AI_weight = {
+			factor = 10
+			modifier = {
+				factor = 1.5
+				OR = {
+					has_ethic = ethic_xenophobe
+					has_ethic = ethic_fanatic_xenophobe
+				}
+			}
+		}
+	}
+
+	option = {
+		name = "gts_normal_apartheid"
+
+		valid = {
+			NOT = {
+				has_civic = civic_gts_terminator
+			}
+		}
+
+		policy_flags = {
+			gts_normal_apartheid
+		}
+
+		AI_weight = {
+			factor = 10
+		}
+	}
+
+	option = {
+		name = "gts_less_apartheid"
+
+		valid = {
+			NOR = {
+				has_ethic = ethic_xenophobe
+				has_ethic = ethic_fanatic_xenophobe
+				has_civic = civic_fanatic_purifiers
+				has_civic = civic_gts_terminator
+			}
+		}
+
+		policy_flags = {
+			gts_less_apartheid
+		}
+
+		modifier = {
+			pop_happiness = 0.05
+			planet_pops_upkeep_mult = 0.05
+		}
+
+		AI_weight = {
+			factor = 10
+			modifier = {
+				factor = 1.25
+				OR = {
+					has_ethic = ethic_xenophile
+					has_ethic = ethic_fanatic_xenophile
+					has_civic = civic_gts_servitor
+				}
+			}
+		}
+	}
+
+	option = {
+		name = "gts_no_apartheid"
+
+		valid = {
+			NOR = {
+				has_ethic = ethic_xenophobe
+				has_ethic = ethic_fanatic_xenophobe
+				has_civic = civic_fanatic_purifiers
+				has_civic = civic_gts_terminator
+			}
+		}
+
+		policy_flags = {
+			gts_no_apartheid
+		}
+
+		modifier = {
+			pop_happiness = 0.10
+			planet_pops_upkeep_mult = 0.10
+		}
+
+		AI_weight = {
+			factor = 10
+			modifier = {
+				factor = 1.5
+				OR = {
+					has_ethic = ethic_xenophile
+					has_ethic = ethic_fanatic_xenophile
+					has_civic = civic_gts_servitor
+				}
+			}
+		}
+	}
+	option = {
+		name = "gts_ora_apartheid"
+
+		valid = {
+			has_tradition = tradition_gts_ora_2
+		}
+
+		policy_flags = {
+			gts_ora_apartheid
+		}
+		modifier = {
+			planet_stability_mult = 0.05				#星球稳定度增加
+			pop_bonus_workforce_mult = 0.1  #岗位效率
+		}
+		AI_weight = {
+			factor = 0
+		}
+	}
+
+}
+
+# 住房法
+
+gts_houses = {
+
+	potential = {
+		always = yes
+	}
+
+	option = {
+		name = "gts_houses_balance"
+
+		policy_flags = {
+			gts_houses_balance
+		}
+
+		AI_weight = {
+			factor = 10
+		}
+	}
+
+	option = {
+		name = "gts_houses_free"
+
+		valid = {
+			has_origin = origin_Hexie
+			OR = {
+				has_policy_flag = gts_less_apartheid
+				has_policy_flag = gts_no_apartheid
+			}
+		}
+
+		policy_flags = {
+			gts_houses_free
+		}
+
+		modifier = {
+			planet_buildings_cost_mult = -0.10
+			planet_districts_cost_mult = -0.10
+			planet_buildings_upkeep_mult = -0.05
+			planet_districts_upkeep_mult = -0.05
+			planet_stability_add = 5
+		}
+
+		AI_weight = {
+			factor = 100
+		}
+	}
+
+	option = {
+		name = "gts_houses_aya"
+
+		valid = {
+			has_origin = origin_Aya
+			OR = {
+				has_policy_flag = gts_less_apartheid
+				has_policy_flag = gts_no_apartheid
+			}
+		}
+
+		policy_flags = {
+			gts_houses_aya
+		}
+
+		modifier = {
+			pop_happiness = 0.10
+			pop_amenities_usage_mult = -0.10
+			logistic_growth_mult = -0.05
+			bonus_pop_growth_mult = -0.05
+		}
+
+		AI_weight = {
+			factor = 100
+		}
+	}
+
+	option = {
+		name = "gts_houses_giantess"
+
+		valid = {
+			OR = {
+				has_policy_flag = gts_less_apartheid
+				has_policy_flag = gts_no_apartheid
+			}
+		}
+
+		policy_flags = {
+			gts_houses_giantess
+		}
+
+		modifier = {
+			empire_size_pops_mult = -0.10
+			planet_buildings_upkeep_mult = -0.10
+			planet_districts_upkeep_mult = -0.10
+			planet_stability_mult = -0.10
+			planet_crime_mult = 0.10
+		}
+
+		AI_weight = {
+			factor = 10
+		}
+	}
+
+	option = {
+		name = "gts_houses_tinies"
+
+		valid = {
+			OR = {
+				has_policy_flag = gts_less_apartheid
+				has_policy_flag = gts_no_apartheid
+			}
+		}
+
+		policy_flags = {
+			gts_houses_tinies
+		}
+
+		modifier = {
+			empire_size_districts_mult = -0.10
+			planet_housing_mult = 0.10
+			planet_stability_mult = -0.05
+			planet_pops_consumer_goods_upkeep_mult = 0.10
+		}
+
+		AI_weight = {
+			factor = 10
+			modifier = {
+				factor = 1.25
+				OR = {
+					has_ethic = ethic_xenophile
+					has_ethic = ethic_fanatic_xenophile
+					has_civic = civic_gts_servitor
+				}
+			}
+		}
+	}
+	option = {
+		name = "gts_houses_ora"
+		potential = {
+			has_tradition = tradition_gts_ora_2
+		}
+		policy_flags = {
+			gts_houses_ora
+		}
+		modifier = {
+			planet_housing_mult = 0.25   # 住房 | 星球住房倍率
+			planet_building_build_speed_mult = 0.25 #建造速度
+			empire_size_districts_mult = -0.25			#区划产生的帝国规模-50%
+			planet_buildings_upkeep_mult = 0.1	#建筑维护费
+		}
+		AI_weight = {
+			factor = 0
+		}
+	}
+}
+
+gts_shrink_method = {
+
+	# 縮小商品生產規範
+
+	potential = {
+		has_technology = tech_gts_shrink_man_hormone_1
+	}
+
+	option = {
+
+		# 基因流水線
+
+		name = "gts_shrink_method_1"
+
+		potential = {
+
+		}
+
+		valid = {
+			has_technology = tech_gts_shrink_man_hormone_3
+			has_ascension_perk = ap_engineered_evolution
+		}
+
+		policy_flags = {
+			gts_shrink_method_1
+		}
+
+		modifier = {
+			planet_jobs_gts_micro_produces_mult = 0.20
+			planet_jobs_gts_micro_city_produces_mult = 0.10
+			planet_jobs_gts_micro_planet_produces_mult = 0.05
+		}
+
+		AI_weight = {
+			factor = 100
+		}
+	}
+
+	option = {
+
+		# 靈能澆築
+
+		name = "gts_shrink_method_2"
+
+		valid = {
+			has_technology = tech_gts_shrink_man_hormone_3
+			has_ascension_perk = ap_mind_over_matter
+		}
+
+		policy_flags = {
+			gts_shrink_method_2
+		}
+
+		modifier = {
+			planet_jobs_gts_micro_produces_mult = 0.20
+			planet_jobs_gts_micro_city_produces_mult = 0.10
+			planet_jobs_gts_micro_planet_produces_mult = 0.05
+		}
+
+		AI_weight = {
+			factor = 100
+		}
+	}
+
+	option = {
+
+		# 人工合成
+
+		name = "gts_shrink_method_3"
+
+		potential = {
+			has_technology = tech_gts_shrink_man_hormone_3
+		}
+
+		valid = {
+			has_technology = tech_gts_shrink_man_hormone_3
+			has_ascension_perk = ap_the_flesh_is_weak
+		}
+
+		policy_flags = {
+			gts_shrink_method_3
+		}
+
+		modifier = {
+			planet_jobs_gts_micro_produces_mult = 0.20
+			planet_jobs_gts_micro_city_produces_mult = 0.10
+			planet_jobs_gts_micro_planet_produces_mult = 0.05
+		}
+
+		AI_weight = {
+			factor = 100
+		}
+	}
+
+	option = {
+
+		# 人工培育
+
+		name = "gts_shrink_method_4"
+
+		potential = {
+			has_technology = tech_gts_shrink_man_hormone_2
+		}
+
+		policy_flags = {
+			gts_shrink_method_4
+		}
+
+		AI_weight = {
+			factor = 10
+		}
+	}
+
+	option = {
+
+		# 僅縮小非公民
+
+		name = "gts_shrink_method_5"
+
+		valid = {
+			OR = {
+				has_ethic = ethic_authoritarian
+				has_ethic = ethic_fanatic_authoritarian
+			}
+			NOR = {
+				has_ethic = ethic_xenophile
+				has_ethic = ethic_fanatic_xenophile
+			}
+		}
+
+		policy_flags = {
+			gts_shrink_method_5
+		}
+
+		modifier = {
+			planet_jobs_gts_micro_produces_mult = 0.20
+			pop_slave_happiness = -0.20
+		}
+
+		AI_weight = {
+			factor = 10
+		}
+	}
+
+	option = {
+
+		# 僅縮縮未開智物種
+
+		name = "gts_shrink_method_6"
+
+		valid = {
+			has_policy_flag = interference_aggressive
+			any_system_within_border = {
+				any_system_colony = {
+					has_observation_outpost = yes
+				}
+			}
+			NOR = {
+				has_ethic = ethic_xenophile
+				has_ethic = ethic_fanatic_xenophile
+			}
+		}
+
+		policy_flags = {
+			gts_shrink_method_6
+		}
+
+		modifier = {
+			planet_jobs_gts_micro_produces_mult = 0.10
+			planet_jobs_gts_micro_city_produces_mult = 0.05
+		}
+
+		AI_weight = {
+			factor = 10
+			modifier = {
+				factor = 1.5
+				OR = {
+					has_ethic = ethic_materialist
+					has_ethic = ethic_fanatic_materialist
+					has_civic = civic_gts_cixiaogui
+				}
+			}
+		}
+	}
+
+	option = {
+
+		# 無管控
+
+		name = "gts_shrink_method_7"
+
+		valid = {
+			NOR = {
+				has_ethic = ethic_xenophile
+				has_ethic = ethic_fanatic_xenophile
+				has_ethic = ethic_egalitarian
+				has_ethic = ethic_fanatic_egalitarian
+			}
+		}
+
+		policy_flags = {
+			gts_shrink_method_7
+		}
+
+		modifier = {
+			planet_jobs_gts_micro_produces_mult = 0.40
+			planet_jobs_gts_micro_city_produces_mult = 0.20
+			planet_jobs_gts_micro_planet_produces_mult = 0.10
+			planet_stability_mult = -0.20
+			planet_crime_mult = 0.20
+			logistic_growth_mult = -0.10
+			bonus_pop_growth_mult = -0.10
+		}
+
+		AI_weight = {
+			factor = 5
+		}
+	}
+}
+
+# 縮小商品使用方向
+
+gts_shrink_use = {
+
+	potential = {
+		has_technology = tech_gts_shrink_man_hormone_1
+	}
+
+	option = {
+		name = "gts_shrink_use_1"
+
+		valid = {
+			NOR = {
+				has_ethic = ethic_xenophobe
+				has_ethic = ethic_fanatic_xenophobe
+			}
+		}
+
+		policy_flags = {
+			gts_shrink_use_1
+		}
+
+		modifier = {
+			planet_jobs_trade_produces_mult = -0.10
+			planet_pops_consumer_goods_upkeep_mult = 0.10
+		}
+
+		AI_weight = {
+			factor = 10
+			modifier = {
+				factor = 1.25
+				OR = {
+					has_ethic = ethic_xenophile
+					has_ethic = ethic_fanatic_xenophile
+				}
+			}
+			modifier = {
+				factor = 1.5
+				OR = {
+					has_ethic = ethic_egalitarian
+					has_ethic = ethic_fanatic_egalitarian
+				}
+			}
+		}
+	}
+
+	option = {
+		name = "gts_shrink_use_2"
+
+		policy_flags = {
+			gts_shrink_use_2
+		}
+
+		AI_weight = {
+			factor = 10
+		}
+	}
+
+	option = {
+		name = "gts_shrink_use_3"
+
+		valid = {
+			NOR = {
+				has_ethic = ethic_egalitarian
+				has_ethic = ethic_fanatic_egalitarian
+				has_ethic = ethic_xenophile
+				has_ethic = ethic_fanatic_xenophile
+			}
+		}
+
+		policy_flags = {
+			gts_shrink_use_3
+		}
+		modifier = {
+			planet_jobs_trade_produces_mult = 0.05
+		}
+		AI_weight = {
+			factor = 10
+		}
+	}
+
+	option = {
+		name = "gts_shrink_use_4"
+
+		valid = {
+			NOR = {
+				has_ethic = ethic_egalitarian
+				has_ethic = ethic_fanatic_egalitarian
+				has_ethic = ethic_xenophile
+				has_ethic = ethic_fanatic_xenophile
+			}
+		}
+
+		policy_flags = {
+			gts_shrink_use_4
+		}
+
+		modifier = {
+			planet_jobs_trade_produces_mult = 0.10
+		}
+
+		AI_weight = {
+			factor = 10
+		}
+	}
+
+	option = {
+		name = "gts_shrink_use_5"
+
+		valid = {
+			NOR = {
+				has_ethic = ethic_egalitarian
+				has_ethic = ethic_fanatic_egalitarian
+				has_ethic = ethic_xenophile
+				has_ethic = ethic_fanatic_xenophile
+			}
+		}
+
+		policy_flags = {
+			gts_shrink_use_5
+		}
+
+		modifier = {
+			planet_jobs_trade_produces_mult = 0.20
+		}
+
+		AI_weight = {
+			factor = 10
+		}
+	}
+}
+
+# 犯罪懲治法
+
+gts_paraox_player = {
+
+	potential = {
+		always = yes
+	}
+
+	option = {
+		name = "gts_paradox_normal"
+
+		policy_flags = {
+			gts_paradox_normal
+		}
+	}
+
+	option = {
+		name = "gts_paradox_leader"
+
+		policy_flags = {
+			gts_paradox_leader
+		}
+
+		modifier = {
+			species_leader_exp_gain = 0.20
+			leaders_upkeep_mult = 0.10
+		}
+	}
+
+	option = {
+		name = "gts_paradox_market"
+
+		policy_flags = {
+			gts_paradox_market
+		}
+
+		modifier = {
+			planet_jobs_trade_produces_mult = 0.05
+			planet_crime_add = 5
+		}
+	}
+
+	option = {
+		name = "gts_paradox_aus"
+
+		valid = {
+			NOT = { has_policy_flag = interference_not_allowed }
+			any_system_within_border = {
+				any_system_colony = {
+					has_observation_outpost = yes
+				}
+			}
+		}
+
+		policy_flags = {
+			gts_paradox_aus
+		}
+
+		modifier = {
+			station_observers_produces_mult = 0.20
+		}
+	}
+}
+
+# GTS文化創作政策
+
+gts_culture_create = {
+
+	potential = {
+		always = yes
+	}
+
+	option = {
+		name = "gts_culture_create_country_allowance"
+
+		valid = {
+			OR = {
+				has_civic = civic_gts_hcomic
+				has_civic = civic_distinguished_gts
+			}
+		}
+
+		policy_flags = {
+			gts_culture_create_country_allowance
+		}
+
+		modifier = {
+			job_gts_drawer_per_pop = 0.01
+			job_gts_writer_per_pop = 0.01
+			country_consumer_goods_produces_mult = 0.30
+			planet_jobs_consumer_goods_upkeep_mult = 0.15
+		}
+
+		AI_weight = {
+			factor = 100
+		}
+	}
+
+	option = {
+		name = "gts_culture_create_no_limit"
+
+		policy_flags = {
+			gts_culture_create_no_limit
+		}
+
+		modifier = {
+			country_consumer_goods_produces_mult = 0.15
+			planet_jobs_consumer_goods_upkeep_mult = 0.10
+		}
+
+		AI_weight = {
+			factor = 10
+		}
+	}
+
+	option = {
+		name = "gts_culture_create_R18"
+
+		modifier = {
+			country_consumer_goods_produces_mult = 0.10
+			planet_jobs_consumer_goods_upkeep_mult = 0.10
+		}
+
+		AI_weight = {
+			factor = 10
+		}
+	}
+
+	option = {
+		name = "gts_culture_create_R16"
+
+		AI_weight = {
+			factor = 10
+		}
+	}
+
+	option = {
+		name = "gts_culture_create_ban"
+
+		valid = {
+			NOR = {
+				has_civic = civic_gts_hcomic
+				has_civic = civic_distinguished_gts
+			}
+		}
+
+		modifier = {
+			pop_happiness = -0.05
+			planet_jobs_consumer_goods_upkeep_mult = -0.05
+		}
+
+		AI_weight = {
+			factor = 10
+		}
+	}
+}
+
+# 教會信條
+
+gts_nuns_duties = {
+
+	potential = {
+		has_origin = origin_Qianxin
+	}
+
+	option = {
+		name = "gts_nuns_unity"
+
+		policy_flags = {
+			gts_nuns_unity
+		}
+
+		modifier = {
+			pop_amenities_usage_mult = -0.10
+			planet_jobs_unity_produces_mult = 0.10
+			pop_ethic_spiritualist_attraction_mult = 0.25
+		}
+
+		AI_weight = {
+			factor = 10
+		}
+	}
+
+	option = {
+		name = "gts_nuns_ghs"
+
+		policy_flags = {
+			gts_nuns_ghs
+		}
+
+		modifier = {
+			pop_happiness = 0.05
+			logistic_growth_mult = 0.20
+			bonus_pop_growth = 0.10
+		}
+
+		AI_weight = {
+			factor = 10
+		}
+	}
+
+	option = {
+		name = "gts_nuns_war"
+
+		policy_flags = {
+			gts_nuns_war
+		}
+
+		modifier = {
+			country_war_exhaustion_mult = -0.25
+			country_claim_influence_cost_mult = -0.25
+			pop_ethic_militarist_attraction_mult = 0.25
+		}
+
+		AI_weight = {
+			factor = 10
+			modifier = {
+				factor = 1.1
+				has_ethic = ethic_militarist
+			}
+			modifier = {
+				factor = 1.2
+				has_ethic = ethic_fanatic_militarist
+			}
+		}
+	}
+
+	option = {
+		name = "gts_nuns_peace"
+
+		policy_flags = {
+			gts_nuns_peace
+		}
+
+		modifier = {
+			diplo_weight_economy_mult = 0.10
+			planet_jobs_trade_produces_mult = 0.10
+			pop_ethic_pacifist_attraction_mult = 0.25
+		}
+
+		AI_weight = {
+			factor = 10
+			modifier = {
+				factor = 1.1
+				has_ethic = ethic_pacifist
+			}
+			modifier = {
+				factor = 1.2
+				has_ethic = ethic_fanatic_pacifist
+			}
+		}
+	}
+}
+
+gts_fallout_cruel_tiny_policy = {
+
+	# 小人使用原則
+
+	potential = {
+		AND = {
+			has_origin = origin_gts_fallout
+			has_tradition = tr_gts_fallout_cruel_desicion
+		}
+	}
+
+	option = {
+		name = "gts_fallout_fun_first"
+		policy_flags = {
+		}
+		modifier = {
+			logistic_growth_mult = 0.10
+			pop_happiness = 0.10
+		}
+		AI_weight = {
+			factor = 10
+		}
+	}
+
+	option = {
+		name = "gts_fallout_resesearch"
+		policy_flags = {
+		}
+		modifier = {
+			all_technology_research_speed = 0.10
+		}
+		AI_weight = {
+			factor = 10
+		}
+	}
+
+	option = {
+		name = "gts_fallout_usage"
+		policy_flags = {
+		}
+		modifier = {
+			country_energy_produces_mult = 0.10
+			country_minerals_produces_mult = 0.10
+			country_food_produces_mult = 0.10
+		}
+		AI_weight = {
+			factor = 10
+		}
+	}
+}
+
+# 對開化獸娘的態度
+
+gts_evolution_catalyst_enlightenment_policy = {
+	potential = {
+		AND = {
+			has_civic = civic_evolution_catalyst
+		}
+	}
+	option = {
+		name = "gts_evolution_catalyst_civilization_enlightenment"
+		policy_flags = {
+			gts_evolution_catalyst_civilization_enlightenment
+		}
+
+		AI_weight = {
+			factor = 0
+		}
+	}
+	option = {
+		name = "gts_evolution_catalyst_public_RBQ"
+		policy_flags = {
+			gts_evolution_catalyst_public_RBQ
+		}
+		AI_weight = {
+			factor = 0
+		}
+	}
+	option = {
+		name = "gts_evolution_catalyst_army_vanguard"
+		policy_flags = {
+			gts_evolution_catalyst_army_vanguard
+		}
+		AI_weight = {
+			factor = 0
+		}
+	}
+	option = {
+		name = "gts_evolution_catalyst_gentle_rewilding"
+		policy_flags = {
+			gts_evolution_catalyst_gentle_rewilding
+		}
+		AI_weight = {
+			factor = 0
+		}
+	}
+}
+
+# 摸魚銷售員懲罰措施(保險開縮小人員)(沒用到)
+
+ultracompany_regulation = {
+	potential = {
+		#has_origin = origin_Ultra_company
+		always = no
+	}
+
+	option = {
+		name = ultracompany_shrink_into_Titan
+
+		policy_flags = { ultracompany_shrink_into_Titan }
+
+		AI_weight = {
+			weight = 5
+		}
+	}
+	option = {
+		name = ultracompany_shrink_into_Giant
+
+		policy_flags = { ultracompany_shrink_into_Giant }
+
+		AI_weight = {
+			weight = 5
+		}
+	}
+	option = {
+		name = ultracompany_shrink_into_Tall
+
+		policy_flags = { ultracompany_shrink_into_Tall }
+
+		AI_weight = {
+			weight = 5
+		}
+	}
+	option = {
+		name = ultracompany_shrink_into_Normal
+
+		policy_flags = { ultracompany_shrink_into_Normal }
+
+		AI_weight = {
+			weight = 5
+		}
+	}
+	option = {
+		name = ultracompany_shrink_into_Small
+
+		policy_flags = { ultracompany_shrink_into_Small }
+
+		AI_weight = {
+			weight = 5
+		}
+	}
+	option = {
+		name = ultracompany_shrink_into_Tiny
+
+		policy_flags = { ultracompany_shrink_into_Tiny }
+
+		AI_weight = {
+			weight = 5
+		}
+	}
+	option = {
+		name = ultracompany_shrink_into_Micro
+
+		policy_flags = { ultracompany_shrink_into_Micro }
+
+		AI_weight = {
+			weight = 5
+		}
+	}
+}
+
+gts_empire_type = {
+	# 帝国类型
+	potential = {
+		always = yes
+	}
+
+	option = {
+		name = gts_empire_type_ultra
+
+		policy_flags = { gts_empire_type_ultra }
+
+		valid = {
+			owner_main_species = {
+				gts_is_equal_to_ultra = yes
+			}
+		}
+
+		modifier = {
+			diplo_weight_mult = 0.25
+		}
+
+		on_enabled = {
+			hidden_effect = {
+				set_variable = {
+					which = gts_empire_size
+					value = @gts_ultra
+				}
+			}
+		}
+
+		AI_weight = {
+			factor = 0
+			modifier = {
+				factor = 1
+				owner_main_species = {
+					gts_is_equal_to_ultra = yes
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_empire_type_titan
+
+		policy_flags = { gts_empire_type_titan }
+
+		valid = {
+			owner_main_species = {
+				gts_is_equal_to_titan = yes
+			}
+		}
+
+		modifier = {
+			diplo_weight_mult = 0.15
+		}
+
+		on_enabled = {
+			hidden_effect = {
+				set_variable = {
+					which = gts_empire_size
+					value = @gts_titan
+				}
+			}
+		}
+
+
+		AI_weight = {
+			factor = 0
+			modifier = {
+				factor = 1
+				owner_main_species = {
+					gts_is_equal_to_titan = yes
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_empire_type_giant
+
+		policy_flags = { gts_empire_type_giant }
+
+		valid = {
+			owner_main_species = {
+				gts_is_equal_to_giant = yes
+			}
+		}
+
+		modifier = {
+			diplo_weight_mult = 0.1
+		}
+
+		on_enabled = {
+			hidden_effect = {
+				set_variable = {
+					which = gts_empire_size
+					value = @gts_giant
+				}
+			}
+		}
+
+
+		AI_weight = {
+			factor = 0
+			modifier = {
+				factor = 1
+				owner_main_species = {
+					gts_is_equal_to_giant = yes
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_empire_type_tall
+
+		policy_flags = { gts_empire_type_tall }
+
+		valid = {
+			owner_main_species = {
+				gts_is_equal_to_tall = yes
+			}
+		}
+
+		modifier = {
+			diplo_weight_mult = 0.05
+		}
+
+		on_enabled = {
+			hidden_effect = {
+				set_variable = {
+					which = gts_empire_size
+					value = @gts_tall
+				}
+			}
+		}
+
+
+		AI_weight = {
+			factor = 0
+			modifier = {
+				factor = 1
+				owner_main_species = {
+					gts_is_equal_to_tall = yes
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_empire_type_normal
+
+		policy_flags = { gts_empire_type_normal }
+
+		valid = {
+			owner_main_species = {
+				gts_is_equal_to_normal = yes
+			}
+		}
+
+		# modifier = {
+			
+		# }
+
+		on_enabled = {
+			hidden_effect = {
+				set_variable = {
+					which = gts_empire_size
+					value = @gts_normal
+				}
+			}
+		}
+
+
+		AI_weight = {
+			factor = 0
+			modifier = {
+				factor = 1
+				owner_main_species = {
+					gts_is_equal_to_normal = yes
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_empire_type_small
+
+		policy_flags = { gts_empire_type_small }
+
+		valid = {
+			owner_main_species = {
+				gts_is_equal_to_small = yes
+			}
+		}
+
+		modifier = {
+			diplo_weight_mult = -0.05
+		}
+
+		on_enabled = {
+			hidden_effect = {
+				set_variable = {
+					which = gts_empire_size
+					value = @gts_small
+				}
+			}
+		}
+
+
+		AI_weight = {
+			factor = 0
+			modifier = {
+				factor = 1
+				owner_main_species = {
+					gts_is_equal_to_small = yes
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_empire_type_tiny
+
+		policy_flags = { gts_empire_type_tiny }
+
+		valid = {
+			owner_main_species = {
+				gts_is_equal_to_tiny = yes
+			}
+		}
+
+		modifier = {
+			diplo_weight_mult = -0.1
+		}
+
+		on_enabled = {
+			hidden_effect = {
+				set_variable = {
+					which = gts_empire_size
+					value = @gts_tiny
+				}
+			}
+		}
+
+
+		AI_weight = {
+			factor = 0
+			modifier = {
+				factor = 1
+				owner_main_species = {
+					gts_is_equal_to_tiny = yes
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_empire_type_micro
+
+		policy_flags = { gts_empire_type_micro }
+
+		valid = {
+			owner_main_species = {
+				gts_is_equal_to_micro = yes
+			}
+		}
+
+		modifier = {
+			diplo_weight_mult = -0.15
+		}
+
+		on_enabled = {
+			hidden_effect = {
+				set_variable = {
+					which = gts_empire_size
+					value = @gts_micro
+				}
+			}
+		}
+
+
+		AI_weight = {
+			factor = 0
+			modifier = {
+				factor = 1
+				owner_main_species = {
+					gts_is_equal_to_micro = yes
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_empire_type_nano
+
+		policy_flags = { gts_empire_type_nano }
+
+		valid = {
+			owner_main_species = {
+				gts_is_equal_to_nano = yes
+			}
+		}
+
+		modifier = {
+			diplo_weight_mult = -0.25
+		}
+
+		on_enabled = {
+			hidden_effect = {
+				set_variable = {
+					which = gts_empire_size
+					value = @gts_nano
+				}
+			}
+		}
+
+
+		AI_weight = {
+			factor = 0
+			modifier = {
+				factor = 1
+				owner_main_species = {
+					gts_is_equal_to_nano = yes
+				}
+			}
+		}
+	}
+}
+gts_giantess_treatment = {
+	# 对待巨娘的态度
+	potential = {
+		NOT = {
+			check_variable = {
+				which = gts_empire_size
+				value = @gts_ultra
+			}
+		}
+	}
+
+	option = {
+		name = gts_giantess_treatment_positive
+
+		policy_flags = { gts_giantess_treatment_positive }
+
+		valid = {
+			always = yes
+		}
+
+		modifier = {
+			
+		}
+
+		AI_weight = {
+			factor = 1
+		}
+	}
+	option = {
+		name = gts_giantess_treatment_neutral
+
+		policy_flags = { gts_giantess_treatment_neutral }
+
+		valid = {
+			always = yes
+		}
+
+		modifier = {
+			
+		}
+
+		AI_weight = {
+			factor = 1
+		}
+	}
+	option = {
+		name = gts_giantess_treatment_hostile
+
+		policy_flags = { gts_giantess_treatment_hostile }
+
+		valid = {
+			always = yes
+		}
+
+		modifier = {
+			
+		}
+
+		AI_weight = {
+			factor = 1
+		}
+	}
+}
+gts_tiny_treatment = {
+	# 对待小人的态度
+	potential = {
+		NOT = {
+			check_variable = {
+				which = gts_empire_size
+				value = @gts_nano
+			}
+		}
+	}
+
+	option = {
+		name = gts_tiny_treatment_positive
+
+		policy_flags = { gts_tiny_treatment_positive }
+
+		valid = {
+			NOR = {
+				has_valid_civic = civic_gts_terminator
+			}
+		}
+
+		modifier = {
+			
+		}
+
+		AI_weight = {
+			factor = 1
+		}
+	}
+	option = {
+		name = gts_tiny_treatment_neutral
+
+		policy_flags = { gts_tiny_treatment_neutral }
+
+		valid = {
+			always = yes
+		}
+
+		modifier = {
+			
+		}
+
+		AI_weight = {
+			factor = 1
+		}
+	}
+	option = {
+		name = gts_tiny_treatment_hostile
+
+		policy_flags = { gts_tiny_treatment_hostile }
+
+		valid = {
+			NOR = {
+				has_valid_civic = civic_gts_servitor
+			}
+		}
+
+		modifier = {
+			
+		}
+
+		AI_weight = {
+			factor = 1
+		}
+	}
+}

@@ -1,0 +1,562 @@
+# 在这里写对应的effect
+gts_leader_colossus_mode_planet_01_effect = {
+	allow = {
+		custom_tooltip = {
+			fail_text = "gts_leader_interact_storm_coming"
+			from = {
+				NOR = {
+					has_country_flag = gts_leader_interact_storm_coming
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "gts_leader_interact_cooldown"
+			from = {
+				NOR = {
+					has_country_flag = gts_leader_interact_cooldown
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "gts_leader_interact_no_at_war"
+			owner = {
+				is_at_war_with = from
+			}
+		}
+	}
+	potential = {
+		is_scope_type = planet
+	}
+	effect = {
+		custom_tooltip = gts_ui_mode_planet_01_effect.tooltip
+		hidden_effect = {
+			save_event_target_as = gts_leader_planet
+			solar_system = {
+				save_event_target_as = gts_leader_system
+				create_gts_space_storm_object_effect = yes
+			}
+			from = {
+				save_event_target_as = gts_leader_country
+				set_timed_country_flag = {
+					flag = gts_leader_interact_storm_coming
+					days = 30
+				}
+				country_event = {
+					id = gts_leader_interact.1001
+					days = 30
+				}
+			}			
+		}
+	}
+}
+gts_leader_colossus_mode_planet_02_effect = {
+	allow = {
+		custom_tooltip = {
+			fail_text = "gts_leader_interact_storm_coming"
+			from = {
+				NOR = {
+					has_country_flag = gts_leader_interact_storm_coming
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "gts_leader_interact_cooldown"
+			from = {
+				NOR = {
+					has_country_flag = gts_leader_interact_cooldown
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "gts_leader_interact_no_at_war"
+			owner = {
+				is_at_war_with = from
+			}
+		}
+	}
+	potential = {
+		is_scope_type = planet
+	}
+	effect = {
+		custom_tooltip = gts_ui_mode_planet_02_effect.tooltip
+		hidden_effect = {
+			save_event_target_as = gts_leader_planet
+			solar_system = {
+				save_event_target_as = gts_leader_system
+				create_gts_space_storm_object_effect = yes
+			}
+			from = {
+				save_event_target_as = gts_leader_country
+				set_timed_country_flag = {
+					flag = gts_leader_interact_storm_coming
+					days = 30
+				}
+				country_event = {
+					id = gts_leader_interact.1002
+					days = 30
+				}
+			}
+		}
+	}
+}
+gts_leader_colossus_mode_planet_03_effect = {
+	allow = {
+		custom_tooltip = {
+			fail_text = "gts_leader_interact_storm_coming"
+			from = {
+				NOR = {
+					has_country_flag = gts_leader_interact_storm_coming
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "gts_leader_interact_cooldown"
+			from = {
+				NOR = {
+					has_country_flag = gts_leader_interact_cooldown
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "gts_leader_interact_no_capital"
+			is_capital = yes
+			owner = {
+				or = {
+					is_country_type = default
+					is_country_type = fallen_empire
+					is_country_type = awakened_fallen_empire
+				}
+			}
+		}
+	}
+	potential = {
+		is_scope_type = planet
+	}
+	effect = {
+		custom_tooltip = gts_ui_mode_planet_03_effect.tooltip
+		hidden_effect = {
+			save_event_target_as = gts_leader_planet
+			solar_system = {
+				save_event_target_as = gts_leader_system
+				create_gts_space_storm_object_effect = yes
+			}
+			owner = {
+				save_event_target_as = gts_leader_country
+				ruler = {
+					save_event_target_as = gts_leader_ruler
+				}
+			}
+			from = {
+				set_timed_country_flag = {
+					flag = gts_leader_interact_storm_coming
+					days = 30
+				}
+				country_event = {
+					id = gts_leader_interact.1004
+					days = 30
+				}
+			}
+		}
+	}
+}
+gts_leader_colossus_mode_planet_04_effect = {
+	allow = {
+		custom_tooltip = {
+			fail_text = "gts_leader_interact_storm_coming"
+			from = {
+				NOR = {
+					has_country_flag = gts_leader_interact_storm_coming
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "gts_leader_interact_cooldown"
+			from = {
+				NOR = {
+					has_country_flag = gts_leader_interact_cooldown
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "gts_leader_interact_no_ultra"
+			event_target:current_gts_leader = {
+				has_trait = leader_trait_Ultra
+			}
+		}
+		custom_tooltip = {
+			fail_text = "gts_leader_interact_no_at_war"
+			owner = {
+				is_at_war_with = from
+			}
+		}
+	}
+	potential = {
+		is_scope_type = planet
+	}
+	effect = {
+		custom_tooltip = gts_ui_mode_planet_04_effect.tooltip
+		hidden_effect = {
+			save_event_target_as = gts_leader_planet
+			owner = {
+				save_event_target_as = gts_leader_country
+			}
+			solar_system = {
+				save_event_target_as = gts_leader_system
+				create_gts_space_storm_object_effect = yes
+			}
+			from = {
+				set_timed_country_flag = {
+					flag = gts_leader_interact_storm_coming
+					days = 30
+				}
+				country_event = {
+					id = gts_leader_interact.1010
+					days = 30
+				}
+			}
+		}
+	}
+}
+gts_leader_colossus_mode_planet_05_effect = {
+	allow = {
+		always = yes
+	}
+	potential = {
+		always = no
+	}
+}
+gts_leader_colossus_mode_planet_06_effect = {
+	allow = {
+		always = yes
+	}
+	potential = {
+		always = no
+	}
+}
+gts_leader_colossus_mode_planet_07_effect = {
+	allow = {
+		always = yes
+	}
+	potential = {
+		always = no
+	}
+}
+gts_leader_colossus_mode_planet_08_effect = {
+	allow = {
+		always = yes
+	}
+	potential = {
+		always = no
+	}
+}
+gts_leader_colossus_mode_planet_09_effect = {
+	allow = {
+		always = yes
+	}
+	potential = {
+		always = no
+	}
+}
+gts_leader_colossus_mode_planet_10_effect = {
+	allow = {
+		always = yes
+	}
+	potential = {
+		always = no
+	}
+}
+gts_leader_colossus_mode_system_01_effect = {
+	allow = {
+		custom_tooltip = {
+			fail_text = "gts_leader_interact_storm_coming"
+			from = {
+				NOR = {
+					has_country_flag = gts_leader_interact_storm_coming
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "gts_leader_interact_cooldown"
+			from = {
+				NOR = {
+					has_country_flag = gts_leader_interact_cooldown
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "gts_leader_interact_no_ultra"
+			event_target:current_gts_leader = {
+				has_trait = leader_trait_Ultra
+			}
+		}
+		custom_tooltip = {
+			fail_text = "gts_leader_interact_friendly"
+			solar_system = {
+				owner = {
+					NOR = {
+						is_same_value = from
+						is_friendly_to = from
+					}
+				}
+			}
+		}
+	}
+	potential = {
+		is_scope_type = planet
+	}
+	effect = {
+		custom_tooltip = gts_ui_mode_system_01_effect.tooltip
+		hidden_effect = {
+			save_event_target_as = gts_leader_planet
+			solar_system = {
+				save_event_target_as = gts_leader_system
+				create_gts_space_storm_object_effect = yes
+			}
+			if = {
+				limit = {
+					event_target:current_gts_leader = {
+						has_leader_flag = gts_qhai
+					}
+					from = {
+						any_owned_leader = {
+							has_leader_flag = gts_huatian
+						}
+					}
+
+				}
+				from = {
+					save_event_target_as = gts_leader_country
+					set_timed_country_flag = {
+						flag = gts_leader_interact_storm_coming
+						days = 30
+					}
+					country_event = {
+						id = gts_leader_qhai.551
+						days = 30
+					}
+				}
+			}
+			else = {
+				from = {
+					save_event_target_as = gts_leader_country
+					set_timed_country_flag = {
+						flag = gts_leader_interact_storm_coming
+						days = 30
+					}
+					country_event = {
+						id = gts_leader_interact.2001
+						days = 30
+					}
+				}
+			}
+		}	
+	}
+}
+gts_leader_colossus_mode_system_02_effect = {
+	allow = {
+		custom_tooltip = {
+			fail_text = "gts_leader_interact_storm_coming"
+			from = {
+				NOR = {
+					has_country_flag = gts_leader_interact_storm_coming
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "gts_leader_interact_cooldown"
+			from = {
+				NOR = {
+					has_country_flag = gts_leader_interact_cooldown
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "gts_leader_interact_need_ap_gts_planet"
+			from = {
+				has_ascension_perk = ap_gts_planet
+			}
+		}
+		custom_tooltip = {
+			fail_text = "gts_leader_interact_no_ultra"
+			event_target:current_gts_leader = {
+				has_trait = leader_trait_Ultra
+			}
+		}
+		custom_tooltip = {
+			fail_text = "gts_leader_interact_friendly"
+			solar_system = {
+				owner = {
+					NOR = {
+						is_same_value = from
+						is_friendly_to = from
+					}
+				}
+			}
+		}
+	}
+	potential = {
+		is_scope_type = planet
+	}
+	effect = {
+		custom_tooltip = gts_ui_mode_system_02_effect.tooltip
+		hidden_effect = {
+			save_event_target_as = gts_leader_planet
+			solar_system = {
+				save_event_target_as = gts_leader_system
+				create_gts_space_storm_object_effect = yes
+			}
+			from = {
+				save_event_target_as = gts_leader_country
+				set_timed_country_flag = {
+					flag = gts_leader_interact_storm_coming
+					days = 30
+				}
+				if = {
+					limit = {
+						event_target:current_gts_leader = {
+							has_trait = gts_trait_avatar
+							NOR = { has_trait = leader_trait_avatar_back }
+						}
+					}
+					country_event = {
+						id = gts_leader_interact.2004
+						days = 30
+					}
+				}
+				else = {
+					country_event = {
+						id = gts_leader_interact.2002
+						days = 30
+					}
+				}
+			}
+		}
+	}
+}
+gts_leader_colossus_mode_system_03_effect = {
+	allow = {
+		custom_tooltip = {
+			fail_text = "gts_leader_interact_storm_coming"
+			from = {
+				NOR = {
+					has_country_flag = gts_leader_interact_storm_coming
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "gts_leader_interact_cooldown"
+			from = {
+				NOR = {
+					has_country_flag = gts_leader_interact_cooldown
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "gts_leader_interact_no_ultra"
+			event_target:current_gts_leader = {
+				has_trait = leader_trait_Ultra
+			}
+		}
+		custom_tooltip = {
+			fail_text = "gts_leader_interact_no_hostile_fleet"
+			solar_system = {
+				any_fleet_in_system = {
+					exists = owner
+					owner = {
+						NOR = {
+							is_same_value = from
+							is_friendly_to = from
+						}
+					}
+					OR = {
+						NOR = { exists = leader }
+						AND = {
+							exists = leader
+							leader = {  NOR = { has_trait = leader_trait_Ultra } }
+						}
+					}
+				}
+			}
+		}
+	}
+	potential = {
+		is_scope_type = planet
+	}
+	effect = {
+		custom_tooltip = gts_ui_mode_system_03_effect.tooltip
+		hidden_effect = {
+			save_event_target_as = gts_leader_planet
+			solar_system = {
+				save_event_target_as = gts_leader_system
+				create_gts_space_storm_object_effect = yes
+			}
+			from = {
+				save_event_target_as = gts_leader_country
+				set_timed_country_flag = {
+					flag = gts_leader_interact_storm_coming
+					days = 30
+				}
+				country_event = {
+					id = gts_leader_interact.2005
+					days = 30
+				}
+			}
+		}
+	}
+}
+gts_leader_colossus_mode_system_04_effect = {
+	allow = {
+		is_scope_type = planet
+	}
+	potential = {
+		always = no
+	}
+}
+gts_leader_colossus_mode_system_05_effect = {
+	allow = {
+		is_scope_type = planet
+	}
+	potential = {
+		always = no
+	}
+}
+gts_leader_colossus_mode_system_06_effect = {
+	allow = {
+		is_scope_type = planet
+	}
+	potential = {
+		always = no
+	}
+}
+gts_leader_colossus_mode_system_07_effect = {
+	allow = {
+		is_scope_type = planet
+	}
+	potential = {
+		always = no
+	}
+}
+gts_leader_colossus_mode_system_08_effect = {
+	allow = {
+		is_scope_type = planet
+	}
+	potential = {
+		always = no
+	}
+}
+gts_leader_colossus_mode_system_09_effect = {
+	allow = {
+		is_scope_type = planet
+	}
+	potential = {
+		always = no
+	}
+}
+gts_leader_colossus_mode_system_10_effect = {
+	allow = {
+		is_scope_type = planet
+	}
+	potential = {
+		always = no
+	}
+}

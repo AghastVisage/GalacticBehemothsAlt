@@ -1,0 +1,211 @@
+namespace = gts_carlotta
+##珂莱塔
+country_event = {
+    #创建黎那汐塔星系
+    id = gts_carlotta.101
+    hide_window = yes
+    is_triggered_only = yes
+    immediate = {
+        random_system = {
+            limit = {
+                distance = {
+                    source = root.capital_scope.solar_system
+                    use_bypasses = yes
+                    min_jumps = 1
+                    max_jumps = 6
+                }
+            }
+            spawn_system = {
+                min_distance >= 10
+                max_distance <= 30
+                max_jumps = 0
+                initializer = gts_rinascita_system
+            }
+        }
+    }
+}
+ship_event = {
+    # 新发现！
+    id = gts_carlotta.102
+    title = "gts_carlotta.102.name"
+    desc = "gts_carlotta.102.desc"
+    picture = GFX_gts_carlotta_1
+    show_sound = event_dig_site
+    is_triggered_only = yes
+
+    option = {
+        name = gts_carlotta.101.a
+        owner = {
+            country_event = {
+                id = gts_carlotta.103
+            }
+        }
+    }
+}
+country_event = {
+    # 危险
+    id = gts_carlotta.103
+    title = gts_carlotta.103.name
+    desc = gts_carlotta.103.desc
+    picture = GFX_gts_carlotta_3
+    show_sound = event_default
+    is_triggered_only = yes
+    immediate = {
+
+    }
+    option = {
+        name = gts_carlotta.103.a
+        country_event = {
+            id = gts_carlotta.104
+        }
+    }
+}
+country_event = {
+    # 初次接触
+    id = gts_carlotta.104
+    title = gts_carlotta.104.name
+    desc = gts_carlotta.104.desc
+    picture =GFX_gts_carlotta_4
+    show_sound = event_default
+    is_triggered_only = yes
+    immediate = {
+
+    }
+    option = {
+        name = gts_carlotta.104.a
+        country_event = {
+            id = gts_carlotta.105
+        }
+    }
+}
+country_event = {
+    # 相见
+    id = gts_carlotta.105
+    title = gts_carlotta.105.name
+    desc = gts_carlotta.105.desc
+    picture = GFX_gts_carlotta_5
+    show_sound = event_default
+    is_triggered_only = yes
+    immediate = {
+
+    }
+    option = {
+        name = gts_carlotta.105.a
+        country_event = {
+            id = gts_carlotta.114
+        }
+    }
+}
+country_event = {
+    # 招募珂莱塔
+    id = gts_carlotta.114
+    title = "gts_carlotta.520.name"
+    desc = gts_carlotta.520.desc
+    show_sound = event_celebration
+    is_triggered_only = yes
+    picture = GFX_leader_recruitment_bg_renowned
+    auto_opens = yes
+    event_window_type = leader_recruit
+    notification_event_icon = "GFX_message_leader_gts_carlotta"
+    immediate = {
+        gts_leader_carlotta_hired = yes
+    }
+    picture_event_data = {
+        portrait = event_target:gts_leader
+        room = ethic_spaceship_room
+    }
+    option = {
+        name = gts_carlotta.520.a
+        response_text = gts_carlotta.520.a.response
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_carlotta.520.b
+        response_text = gts_carlotta.520.b.response
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_carlotta.520.c
+        response_text = gts_carlotta.520.c.response
+        is_dialog_only = yes
+    }
+    option = {
+        name = HIRE
+        tag = hire_leader
+        custom_tooltip = gts_carlotta.520.hire_custom_tooltip
+        hidden_effect = {
+            gts_leader_hire_effect = { TYPE = legendary }
+            country_event = {
+				id = gts_carlotta.10
+				days = 720
+			}
+        }
+    }
+}
+
+country_event = {
+    id = gts_carlotta.10
+    title = gts_carlotta.10.title
+    desc = gts_carlotta.10.desc
+	picture = GFX_gts_carlotta_5
+	show_sound = event_default
+    is_triggered_only = yes
+
+    option = {
+        name = gts_continue
+        hidden_effect = {
+            country_event = {
+                id = gts_carlotta.11
+            }
+        }
+    }
+}
+
+country_event = {
+    id = gts_carlotta.11
+    title = gts_carlotta.11.title
+    desc = gts_carlotta.11.desc
+	picture = GFX_gts_carlotta_5
+	show_sound = event_default
+    is_triggered_only = yes
+
+    option = {
+        name = gts_continue
+        hidden_effect = {
+            country_event = {
+                id = gts_carlotta.12
+            }
+        }
+    }
+}
+
+country_event = {
+    id = gts_carlotta.12
+    title = gts_carlotta.12.title
+    desc = gts_carlotta.12.desc
+	picture = GFX_gts_carlotta_5
+	show_sound = event_default
+    is_triggered_only = yes
+
+    option = {
+        name = gts_continue
+        hidden_effect = {
+            country_event = {
+                id = gts_carlotta.13
+            }
+        }
+    }
+}
+
+country_event = {
+    id = gts_carlotta.13
+    title = gts_carlotta.13.title
+    desc = gts_carlotta.13.desc
+	picture = GFX_gts_carlotta_5
+	show_sound = event_default
+    is_triggered_only = yes
+
+    option = {
+        name = gts_good
+    }
+}

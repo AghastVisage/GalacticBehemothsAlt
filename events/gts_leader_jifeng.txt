@@ -1,0 +1,138 @@
+namespace = gts_jifeng
+
+country_event = {
+	# 矶风
+	id = gts_jifeng.999
+	title = gts_jifeng.999.title
+	desc = "gts_jifeng.999.desc"
+	show_sound = event_celebration
+	is_triggered_only = yes
+	picture = GFX_leader_recruitment_bg_renowned
+	auto_opens = yes
+	event_window_type = leader_recruit
+	notification_event_icon = "GFX_message_leader_gts_jifeng"
+	immediate = {
+		gts_leader_jifeng_hired = yes
+	}
+	picture_event_data = {
+		portrait = event_target:gts_leader
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = gts_jifeng.999.a
+		response_text = gts_jifeng.999.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_jifeng.999.b
+		response_text = gts_jifeng.999.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_jifeng.999.c
+		response_text = gts_jifeng.999.c.response
+		is_dialog_only = yes
+		country_event = {
+			id = gts_jifeng.1
+		}
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		custom_tooltip = gts_jifeng.999.hire_custom_tooltip
+		add_modifier = {
+			modifier = gts_leader_upkeep_add
+		}
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = renowned }
+			country_event = {
+				id = gts_jifeng.10
+				days = 365
+			}
+		}
+	}
+}
+country_event = {
+	#拍拍矶风耳朵
+	id = gts_jifeng.1
+	title = gts_jifeng.1.name
+	desc = gts_jifeng.1.desc
+	picture = GFX_gts_jifeng_1
+	show_sound = event_mystic_reveal_light
+	is_triggered_only = yes
+	option = {
+		name = gts_jifeng.1.a
+		country_event = {
+			id = gts_jifeng.2
+		}
+	}
+	option = {
+		name = gts_jifeng.1.b
+		default_hide_option = yes
+		country_event = {
+			id = gts_jifeng.3
+		}
+	}
+}
+country_event = {
+	#拍了
+	id = gts_jifeng.2
+	title = gts_jifeng.2.name
+	desc = gts_jifeng.2.desc
+	picture = GFX_gts_jifeng_2
+	show_sound = event_air_raid_siren
+	is_triggered_only = yes
+	option = {
+		name = gts_jifeng.2.a
+	}
+}
+country_event = {
+	#没拍
+	id = gts_jifeng.3
+	title = gts_jifeng.3.name
+	desc = gts_jifeng.3.desc
+	picture = GFX_gts_jifeng_1
+	is_triggered_only = yes
+	option = {
+		name = gts_jifeng.3.a
+	}
+}
+country_event = {
+	#矶风腋下-1
+	id = gts_jifeng.10
+	title = gts_jifeng.10.name
+	desc = gts_jifeng.10.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_event_13_room
+	}
+	is_triggered_only = yes
+	
+	option = {
+		name = gts_continue
+		hidden_effect = {
+			country_event = {
+				id = gts_jifeng.11
+			}
+		}
+	}
+}
+country_event = {
+	#矶风腋下-2
+	id = gts_jifeng.11
+	title = gts_jifeng.11.name
+	desc = gts_jifeng.11.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_event_14_room
+	}
+	is_triggered_only = yes
+
+	option = {
+		name = gts_terror
+	}
+}

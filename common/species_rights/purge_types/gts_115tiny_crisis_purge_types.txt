@@ -1,0 +1,52 @@
+purge_godness_power = {
+    pop_escape_chance = 0.01
+    pop_decline_rate = value:num_godness_power_worker_slave_purge # 0.2 per pop used as neural chip
+
+    pop_group_modifier = {
+        pop_happiness = +0.33
+    }
+
+    potential = {
+        always = no
+    }
+
+    allow = {
+        custom_tooltip = {
+            fail_text = "cannot_purge_godness_power_finish_type"
+            not = { this = {has_trait = trait_godness_power_finish } }
+        }
+    }
+
+    hidden = {
+        always = yes
+    }
+}
+
+purge_godness_power_lathe_resettle = {
+    pop_escape_chance = 0.01
+    pop_decline_rate = 100 # 1 pop per month, overrides BASE_POP_DECLINE, will only work on purge types
+
+    pop_group_modifier = {
+        pop_happiness = +0.33
+    }
+
+    potential = {
+        from = {
+            has_ascension_perk = ap_gts_115tiny_crisis
+            any_owned_planet = {
+                has_designation = col_godness_power_world
+            }
+        }
+        is_sapient = yes
+        gts_is_giantess = yes
+    }
+    allow = {
+        custom_tooltip = {
+            fail_text = "cannot_purge_godness_power_finish_type"
+            not = { this = {has_trait = trait_godness_power_finish } }
+        }
+    }
+    ai_will_do = {
+        factor = 15
+    }
+}

@@ -1,0 +1,388 @@
+@build_block_radius_starbase = 20
+@starbase_formation_priority = 1
+@salvagecostsmall = 100
+@salvagecostmedium = 250
+@salvagecostlarge = 500
+@salvagecostsmallrare = 10
+@salvagecostmediumrare = 25
+@salvagecostlargerare = 50
+
+haiyun = {
+	formation_priority = @battleship_formation_priority
+	max_speed = @speed_fast
+	acceleration = 0.3
+	rotation_speed = 0.25
+	collision_radius = 15
+	max_hitpoints = 400000
+	modifier = {
+		ship_evasion_add = 15
+		ships_upkeep_mult = -0.2
+		ship_armor_add = 1500000
+		ship_shield_add = 500000
+	}
+	size_multiplier = 16
+	fleet_slot_size = 16
+	section_slots = { "mid" = { locator = "part1" } }
+	num_target_locators = 0
+	is_space_station = no
+	icon = 2
+	is_designable = no 
+	can_have_federation_design = no
+	enable_default_design = no	#if yes, countries will have an auto-generated design at start
+	auto_upgrade = no
+	enable_3dview_in_ship_browser = no #if yes, ship design will have a 3d view in the ship browser
+	entity = "haiyun_entity"
+	selectable = { 
+		host_has_dlc = "Apocalypse" 
+	}
+
+	class = shipclass_military
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "combat_computers"
+
+	
+	resources = {
+		category = ships
+		upkeep = {
+			energy = 25
+			alloys = 10
+			food = 10
+		}
+	}
+
+	ai_ship_data = {
+		max = 1
+		min = 1
+	}
+}
+
+
+#天灾舰船
+large_ship_giantess_crisis = {
+	is_space_object = yes
+	max_speed = @speed_slow
+	acceleration = 0.2
+	rotation_speed = 0.15
+	collision_radius = @battleship_collision_radius
+	modifier = {
+		ship_evasion_add = 5
+		ship_armor_add = 3000
+		ships_upkeep_mult = -1
+	}
+	max_hitpoints = @battleship_hp
+	size_multiplier = 8
+	fleet_slot_size = 8
+	section_slots = { "mid" = { locator = "part1" } }
+	num_target_locators = 0
+	is_space_station = no
+	icon = ship_size_military_8
+
+	class = shipclass_military
+	is_designable = no
+
+	components_add_to_cost = no
+	resources = {
+		category = ships
+			cost = {
+				food = @salvagecostlarge
+    		}
+	}
+}
+
+# Swarm Carrier Ship (Brood Mother)
+large_ship_carrier_giantess_crisis = {
+	is_space_object = yes
+	max_speed = @speed_slow
+	acceleration = 0.2
+	rotation_speed = 0.15
+	collision_radius = @battleship_collision_radius
+	modifier = {
+		ship_evasion_add = 5
+		ship_armor_add = 3000
+		ships_upkeep_mult = -1
+	}
+	max_hitpoints = @battleship_hp
+	size_multiplier = 8
+	fleet_slot_size = 8
+	section_slots = { "mid" = { locator = "part1" } }
+	num_target_locators = 0
+	is_space_station = no
+	icon = ship_size_military_8
+
+	class = shipclass_military
+	is_designable = no
+
+	components_add_to_cost = no
+	resources = {
+		category = ships
+			cost = {
+				food = @salvagecostlarge
+    		}
+	}
+}
+
+# Swarm Small Ship
+small_ship_giantess_crisis = {
+	is_space_object = yes
+	max_speed = @speed_fast
+	acceleration = 0.3
+	rotation_speed = 0.2
+	collision_radius = @destroyer_collision_radius
+	modifier = {
+		ship_evasion_add = 65
+		ship_armor_add = 1000
+		ships_upkeep_mult = -1
+	}
+	max_hitpoints = @corvette_hp
+	size_multiplier = 2
+	fleet_slot_size = 2
+	section_slots = { "mid" = { locator = "part1" } }
+	num_target_locators = 0
+	icon = ship_size_military_2
+	is_space_station = no
+
+	class = shipclass_military
+	is_designable = no
+
+	components_add_to_cost = no
+	resources = {
+		category = ships
+			cost = {
+				food = @salvagecostsmall
+    		}
+	}
+}
+
+# Swarm Queen
+queen_giantess_crisis = {
+	is_space_object = yes
+	max_speed = @speed_slow
+	acceleration = 0.2
+	rotation_speed = 0.15
+	collision_radius = @battleship_collision_radius
+	modifier = {
+		ship_evasion_add = 5
+		ship_armor_add = 6000
+		ships_upkeep_mult = -1
+	}
+	max_hitpoints = @titan_hp
+	size_multiplier = 8
+	fleet_slot_size = 8
+	section_slots = { "mid" = { locator = "part1" } }
+	num_target_locators = 0
+	is_space_station = no
+	icon = ship_size_military_16
+
+	class = shipclass_military
+	is_designable = no
+
+	components_add_to_cost = no
+	resources = {
+		category = ships
+			cost = {
+				food = @salvagecostlarge
+    		}
+	}
+}
+
+# Swarm Constructor
+construction_ship_giantess_crisis = {
+	is_space_object = yes
+	max_speed = @speed_slow
+	acceleration = 0.3
+	rotation_speed = 0.2
+	modifier = {
+		ship_evasion_add = 15
+		ship_armor_add = 300
+	}
+	max_hitpoints = @construction_hp
+	size_multiplier = 1
+	fleet_slot_size = 1
+	section_slots = { "mid" = { locator = "part1" } }
+	num_target_locators = 0
+	is_space_station = no
+	icon = ship_size_constructor
+
+	is_civilian = yes
+	is_designable = no
+	class = shipclass_constructor
+	required_component_set = "ftl_components"
+	required_component_set = "sensor_components"
+	required_component_set = "thruster_components"
+
+	components_add_to_cost = no
+	resources = {
+		category = ships
+			cost = {
+				food = @salvagecostsmall
+    		}
+	}
+}
+
+# Swarm Colonizer
+colony_ship_giantess_crisis = {
+	is_space_object = yes
+	max_speed = @speed_slow
+	acceleration = 0.3
+	rotation_speed = 0.2
+	modifier = {
+		ship_evasion_add = 15
+		ship_armor_add = 300
+	}
+	max_hitpoints = @colony_hp
+	size_multiplier = 1
+	fleet_slot_size = 1
+	section_slots = { "mid" = { locator = "part1" } }
+	num_target_locators = 0
+	is_space_station = no
+	icon = ship_size_colonizer
+
+	is_civilian = yes
+	is_designable = no
+	class = shipclass_colonizer
+	required_component_set = "ftl_components"
+	required_component_set = "sensor_components"
+	required_component_set = "thruster_components"
+
+	components_add_to_cost = no
+	resources = {
+		category = ships
+			cost = {
+				food = @salvagecostmedium
+    		}
+	}
+}
+
+# Swarm Transport
+transport_ship_giantess_crisis = {
+	is_space_object = yes
+	max_speed = @speed_fast
+	rotation_speed = 0.2
+	acceleration = 0.6
+	modifier = {
+		ship_evasion_add = 70
+		ship_armor_add = 300
+	}
+	max_hitpoints = @corvette_hp
+	size_multiplier = 1
+	fleet_slot_size = 1
+	section_slots = { "mid" = { locator = "part1" } }
+	num_target_locators = 0
+	is_space_station = no
+	icon = ship_size_transport
+	is_designable = no
+	class = shipclass_transport
+	required_component_set = "ftl_components"
+	required_component_set = "sensor_components"
+	required_component_set = "thruster_components"
+
+	components_add_to_cost = no
+	resources = {
+		category = ships
+			cost = {
+				food = @salvagecostmedium
+    		}
+	}
+}
+
+###########
+# Special #
+###########
+sentinel_station = {
+	is_space_object = yes
+	entity = enclave_station_entity
+	graphical_culture = no
+	max_speed = 0.0
+	acceleration = 0.0
+	rotation_speed = 0.002
+	modifier = {
+		ship_evasion_mult = -1
+		ships_upkeep_mult = -0.25
+	}
+	max_hitpoints = @station_enclave_hp
+	size_multiplier = 8
+	fleet_slot_size = 4
+	section_slots = { "mid" = { locator = "station" } }
+	num_target_locators = 0
+	is_space_station = yes
+	build_block_radius = @build_block_radius_civilian
+
+	class = shipclass_military_station
+	is_designable = no
+	icon = ship_size_military_station
+}
+
+starbase_giantess_crisis = {
+	max_speed = 0.0
+	acceleration = 0.0
+	rotation_speed = 0.0
+	modifier = {
+		ship_evasion_mult = -1
+		ship_armor_add = 60000
+		ship_sensor_range_add = 1
+	}
+	ship_modifier = {
+		ship_weapon_range_mult = 0.20
+	}
+
+	potential_construction = {
+		is_scope_type = planet
+		is_primary_star = yes
+		NOT = {
+			exists = orbital_defence
+		}
+	}
+
+	max_hitpoints = 30000
+	base_buildtime = 720
+	combat_size_multiplier = 50
+	size_multiplier = 16
+	fleet_slot_size = 2
+	section_slots = { "core" = { locator = "root" } }
+	is_designable = no
+	num_target_locators = 0
+	is_space_station = no
+	can_have_federation_design = no
+	is_civilian = no
+	components_add_to_cost = no
+	is_listed = no
+	can_disable = no
+
+	enable_default_design = no	#if yes, countries will have an auto-generated design at start
+	class = shipclass_starbase
+
+	required_component_set = "sensor_components"
+
+	build_block_radius = @build_block_radius_starbase
+	formation_priority = @starbase_formation_priority
+	icon_frame = -1
+	icon = ship_size_military_station
+}
+
+giantess_goddess_twin = {
+	graphical_culture = no
+	is_space_object = yes
+	max_speed = @speed_fast
+	rotation_speed = 1
+	acceleration = 0.2
+	modifier = {
+		ship_evasion_add = 250
+		ship_armor_add = 7500000
+		ship_armor_regen_add_static = 22500
+	}
+	max_hitpoints = @titan_hp
+	size_multiplier = 16
+	fleet_slot_size = 16
+	section_slots = { "mid" = { locator = "part1" } }
+	num_target_locators = 0
+	icon = ship_size_space_monster
+	class = shipclass_military
+	is_designable = no
+	entity = warped_consciousness_entity #套终末清算皮
+	can_be_inspected = no
+	can_have_federation_design = no
+
+	components_add_to_cost = no
+}

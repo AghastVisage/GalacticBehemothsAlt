@@ -1,0 +1,5701 @@
+namespace = gts_god_keeper
+
+# 与本起源关联事件文件:gts_115_yarong_event/gts_leader_paopao
+# 开局设置
+
+country_event = {
+	id = gts_god_keeper.0
+	is_triggered_only = yes
+	hide_window = yes
+	fire_only_once = yes
+
+	trigger = {
+		has_origin = origin_god_keeper
+		NOR = {
+			has_country_flag = gts_god_keeper_intro
+		}
+	}
+
+	immediate = {
+		capital_scope = {
+			set_planet_size = 30
+			add_building = building_god_keeper_1
+		}
+		country_event = {
+			id = gts_god_keeper.1
+			days = 360
+		}
+		set_country_flag = gts_god_keeper_intro
+	}
+}
+
+# 犽戎 孵化 开局360日
+country_event = {
+	#重生之龙-孵化-起始事件
+	id = gts_god_keeper.1
+	title = gts_god_keeper.1.title
+	desc = gts_god_keeper.1.desc
+	diplomatic = yes
+	show_sound = event_scanner
+	is_triggered_only = yes
+
+	picture_event_data = {
+		room = root
+		portrait = root.ruler
+		planet_background = capital_scope
+	}
+
+	option = {
+		name = gts_god_keeper.1.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.2
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.2
+	title = gts_god_keeper.1.title
+	desc = gts_god_keeper.2.desc
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	show_sound = event_default
+	is_triggered_only = yes
+
+	picture_event_data = {
+		room = gts_yarong18_room
+	}
+
+	option = {
+		name = gts_god_keeper.2.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.3
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.3
+	title = gts_god_keeper.1.title
+	desc = gts_god_keeper.3.desc
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	show_sound = event_structural_collapse
+	is_triggered_only = yes
+
+	picture_event_data = {
+		room = gts_yarong18_room
+	}
+
+	option = {
+		name = gts_god_keeper.3.a
+		capital_scope = {
+			add_deposit = d_gts_keeper1
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.24
+				days = 720
+			}
+			country_event = {
+				id = gts_god_keeper.4
+				days = 1800
+			}
+		}
+	}
+}
+
+# 犽戎 舔舐 孵化后1800日
+country_event = {
+	#重生之龙-幼年-事件一-舔舐
+	id = gts_god_keeper.4
+	title = gts_god_keeper.4.title
+	desc = gts_god_keeper.4.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_default
+	picture_event_data = {
+		room = gts_yarong0_room
+	}
+	option = {
+		name = gts_god_keeper.4.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.5
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.5
+	title = gts_god_keeper.4.title
+	desc = gts_god_keeper.5.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_super_explosion
+	picture_event_data = {
+		room = gts_yarong1_room
+	}
+	option = {
+		name = gts_god_keeper.5.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.6
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.6
+	title = gts_god_keeper.4.title
+	desc = gts_god_keeper.6.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_ship_thrusters
+	picture_event_data = {
+		room = gts_yarong1_room
+	}
+	option = {
+		name = gts_god_keeper.6.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.7
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.7
+	title = gts_god_keeper.4.title
+	desc = gts_god_keeper.7.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_ghost_town
+	picture_event_data = {
+		room = gts_yarong1_room
+	}
+	option = {
+		name = gts_god_keeper.7.a
+		custom_tooltip = gts_god_keeper.7.tooltip
+		set_country_flag = building_god_keeper_2_allow
+		capital_scope = {
+			remove_deposit = d_gts_keeper1
+			if = {
+				limit = {
+					NOR = {
+						has_building = building_god_keeper_1
+					}
+				}
+				add_building = building_god_keeper_1
+			}
+		}
+	}
+}
+
+country_event = {
+	#重生之龙-少女-事件二-询问
+	id = gts_god_keeper.8
+	title = gts_god_keeper.8.title
+	desc = gts_god_keeper.8.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	fire_only_once = yes
+	show_sound = event_celebration
+	picture_event_data = {
+		room = gts_yarong2_room
+	}
+	option = {
+		name = gts_god_keeper.8.a
+		is_dialog_only = yes
+		response_text = gts_god_keeper.8.a.desc
+	}
+	option = {
+		name = gts_god_keeper.8.b
+		is_dialog_only = yes
+		response_text = gts_god_keeper.8.b.desc
+	}
+	option = {
+		name = gts_god_keeper.8.c
+		add_modifier = {
+			modifier = gts_god_keeper_buff1
+			days = -1
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.9
+				days = 1800
+			}
+		}
+	}
+}
+
+# 犽戎 换牙 孵化后720天触发
+country_event = {
+	#重生之龙-幼年-事件一-换牙
+	id = gts_god_keeper.24
+	title = gts_god_keeper.24.title
+	desc = gts_god_keeper.24.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_default
+	picture_event_data = {
+		room = gts_yarong1_room
+	}
+	option = {
+		name = gts_god_keeper.24.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.25
+			}
+		}
+	}
+}
+
+country_event = {
+	#重生之龙-幼年-事件一-换牙
+	id = gts_god_keeper.25
+	title = gts_god_keeper.24.title
+	desc = gts_god_keeper.25.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_activating_unknown_technology
+	picture_event_data = {
+		room = gts_yarong1_room
+	}
+	option = {
+		name = gts_god_keeper.25.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.26
+			}
+		}
+	}
+}
+
+country_event = {
+	#重生之龙-幼年-事件一-换牙
+	id = gts_god_keeper.26
+	title = gts_god_keeper.24.title
+	desc = gts_god_keeper.26.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_alien_nature
+	picture_event_data = {
+		room = gts_yarong1_room
+	}
+	option = {
+		name = gts_god_keeper.26.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.27
+			}
+		}
+	}
+}
+
+country_event = {
+	#重生之龙-幼年-事件一-换牙
+	id = gts_god_keeper.27
+	title = gts_god_keeper.24.title
+	desc = gts_god_keeper.27.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_default
+	picture_event_data = {
+		room = gts_yarong1_room
+	}
+	option = {
+		name = gts_god_keeper.27.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.28
+			}
+		}
+	}
+}
+
+country_event = {
+	#重生之龙-幼年-事件一-换牙
+	id = gts_god_keeper.28
+	title = gts_god_keeper.24.title
+	desc = gts_god_keeper.28.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_default
+	picture_event_data = {
+		room = gts_yarong1_room
+	}
+	option = {
+		name = gts_god_keeper.28.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.29
+			}
+		}
+	}
+}
+
+country_event = {
+	#重生之龙-幼年-事件一-换牙
+	id = gts_god_keeper.29
+	title = gts_god_keeper.24.title
+	desc = gts_god_keeper.29.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_default
+	picture_event_data = {
+		room = gts_yarong7_room
+	}
+	option = {
+		name = gts_god_keeper.29.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.30
+			}
+		}
+	}
+}
+
+country_event = {
+	#重生之龙-幼年-事件一-换牙
+	id = gts_god_keeper.30
+	title = gts_god_keeper.24.title
+	desc = gts_god_keeper.30.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_default
+	picture_event_data = {
+		room = gts_yarong7_room
+	}
+	option = {
+		name = gts_god_keeper.30.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.31
+			}
+		}
+	}
+}
+
+country_event = {
+	#重生之龙-幼年-事件一-换牙
+	id = gts_god_keeper.31
+	title = gts_god_keeper.24.title
+	desc = gts_god_keeper.31.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_administrative_work
+	picture_event_data = {
+		room = gts_yarong7_room
+	}
+	option = {
+		name = gts_god_keeper.31.a
+		add_relic = r_yarong_tooth
+	}
+}
+
+# 犽戎 铸甲为裙 舔舐后1800天
+country_event = {
+	#重生之龙-少女-事件三-铸甲为裙
+	id = gts_god_keeper.9
+	title = gts_god_keeper.9.title
+	desc = gts_god_keeper.9.desc
+	diplomatic = yes
+	show_sound = evn_ove_tiyanki_family
+	is_triggered_only = yes
+	location = capital_scope
+
+	picture_event_data = {
+		room = gts_yarong2_room
+	}
+
+	immediate = {
+		gts_create_yarong_friendly = yes
+	}
+
+	option = {
+		name = INCOMING_TRANSMISSION
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.10
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.10
+	title = gts_god_keeper.9.title
+	desc = gts_god_keeper.10.desc
+	event_window_type = leader_recruit
+	show_sound = evn_ove_tiyanki_family
+	picture = GFX_leader_recruitment_bg_legendary_skrand
+	auto_opens = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_origin = origin_god_keeper
+	}
+
+	picture_event_data = {
+		portrait = event_target:gts_yarong
+		room = "crisis_room"
+	}
+	option = {
+		name = gts_god_keeper.10.a
+		is_dialog_only = yes
+		set_country_flag = gts_god_keeper.10.a.done
+		response_text = gts_god_keeper.10.a.response
+	}
+	option = {
+		name = gts_god_keeper.10.b
+		is_dialog_only = yes
+		allow = {
+			has_country_flag = gts_god_keeper.10.a.done
+		}
+		hide_option_if_not_allowed = yes
+		set_country_flag = gts_god_keeper.10.b.done
+		response_text = gts_god_keeper.10.b.response
+	}
+	option = {
+		name = gts_god_keeper.10.c
+		tag = dismiss_leader
+		allow = {
+			hidden_trigger = {
+				has_country_flag = gts_god_keeper.10.b.done
+				fail_text = {
+					text = gts_god_keeper.10.tooltip
+				}
+			}
+		}
+		add_modifier = {
+			modifier = gts_god_keeper_buff2
+			days = 360
+		}
+		set_country_flag = gts_god_keeper.10.admit
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.99
+				days = 720
+			}
+			# 解除event_locked
+			event_target:gts_yarong_fleet = {
+				set_event_locked = no
+			}
+		}
+	}
+	option = {
+		name = gts_god_keeper.10.d
+		tag = hire_leader
+		allow = {
+			hidden_trigger = {
+				has_country_flag = gts_god_keeper.10.b.done
+				fail_text = {
+					text = gts_god_keeper.10.tooltip
+				}
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.99
+				days = 1800
+			}
+		}
+	}
+	after = {
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.11
+				days = 1800
+			}
+			remove_country_flag = gts_god_keeper.10.a.done
+			remove_country_flag = gts_god_keeper.10.b.done
+		}
+	}
+}
+# 犽戎复活事件
+country_event = {
+	id = gts_god_keeper.98
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		gts_leader_yarong_hired2 = yes
+	}
+}
+
+# 犽戎 招募事件 筑甲为裙后720天或者1800天 开启好感度局势
+country_event = {
+	#领袖招募
+	id = gts_god_keeper.99
+	title = gts_god_keeper.99.title
+	desc = gts_god_keeper.99.desc
+	event_window_type = leader_recruit
+	show_sound = event_celebration
+	picture = GFX_leader_recruitment_bg_legendary_skrand
+	auto_opens = yes
+	is_triggered_only = yes
+	location = event_target:gts_yarong_fleet
+	immediate = {
+		gts_leader_yarong_hired2 = yes
+	}
+	picture_event_data = {
+		portrait = event_target:gts_yarong
+	}
+
+	option = {
+		name = gts_god_keeper.99.a
+		is_dialog_only = yes
+		set_country_flag = gts_god_keeper.99.a.done
+		response_text = gts_god_keeper.99.a.response
+	}
+	option = {
+		name = gts_god_keeper.99.b
+		is_dialog_only = yes
+		allow = {
+			has_country_flag = gts_god_keeper.99.a.done
+		}
+		hide_option_if_not_allowed = yes
+		set_country_flag = gts_god_keeper.99.b.done
+		response_text = gts_god_keeper.99.b.response
+	}
+	option = {
+		name = gts_god_keeper.99.c
+		is_dialog_only = yes
+		allow = {
+			has_country_flag = gts_god_keeper.99.b.done
+		}
+		hide_option_if_not_allowed = yes
+		set_country_flag = gts_god_keeper.99.c.done
+		response_text = gts_god_keeper.99.c.response
+	}
+	option = {
+		name = gts_god_keeper.99.d
+		is_dialog_only = yes
+		allow = {
+			has_country_flag = gts_god_keeper.99.c.done
+		}
+		hide_option_if_not_allowed = yes
+		set_country_flag = gts_god_keeper.99.d.done
+		response_text = gts_god_keeper.99.d.response
+	}
+	option = {
+		name = gts_god_keeper.99.e
+		is_dialog_only = yes
+		allow = {
+			has_country_flag = gts_god_keeper.99.d.done
+		}
+		hide_option_if_not_allowed = yes
+		set_country_flag = gts_god_keeper.99.e.done
+		response_text = gts_god_keeper.99.e.response
+	}
+	option = {
+		name = gts_god_keeper.99.f
+		is_dialog_only = yes
+		allow = {
+			has_country_flag = gts_god_keeper.99.e.done
+		}
+		hide_option_if_not_allowed = yes
+		set_country_flag = gts_god_keeper.99.f.done
+		response_text = gts_god_keeper.99.f.response
+	}
+	option = {
+		name = DISMISS
+		tag = dismiss_leader
+		allow = {
+			always = no
+		}
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		allow = {
+			hidden_trigger = {
+				has_country_flag = gts_god_keeper.99.f.done
+			}
+		}
+		add_modifier = {
+			modifier = gts_bruh_yarong_upkeep_exemption_display
+			years = 50
+		}
+		event_target:gts_yarong_ship = {
+			add_modifier = {
+				modifier = gts_bruh_yarong_upkeep_exemption
+				years = 50
+			}
+			hidden_effect = {
+				remove_modifier = gts_qhai_yarong_punish
+			}
+		}
+	}
+	after = {
+		remove_country_flag = gts_god_keeper.99.a.done
+		remove_country_flag = gts_god_keeper.99.b.done
+		remove_country_flag = gts_god_keeper.99.c.done
+		remove_country_flag = gts_god_keeper.99.d.done
+		remove_country_flag = gts_god_keeper.99.e.done
+		remove_country_flag = gts_god_keeper.99.f.done
+	}
+}
+
+# 犽戎 成年礼 筑甲为裙后1800天 触发招募紫宸前置任务
+country_event = {
+	#重生之龙-成年-事件四-成年礼
+	id = gts_god_keeper.11
+	title = gts_god_keeper.11.title
+	desc = gts_god_keeper.11.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_conversation
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	option = {
+		name = gts_god_keeper.11.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.12
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.12
+	title = gts_god_keeper.11.title
+	desc = gts_god_keeper.12.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_default
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	option = {
+		name = gts_god_keeper.12.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.13
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.13
+	title = gts_god_keeper.11.title
+	desc = gts_god_keeper.13.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_default
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	option = {
+		name = gts_god_keeper.13.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.14
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.14
+	title = gts_god_keeper.11.title
+	desc = gts_god_keeper.14.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_yellow_alert
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	option = {
+		name = gts_god_keeper.14.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.15
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.15
+	title = gts_god_keeper.11.title
+	desc = gts_god_keeper.15.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = par_event_keides
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	option = {
+		name = gts_god_keeper.15.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.16
+			}
+		}
+	}
+}
+
+country_event = {
+	#重生之龙-成年-事件四-成年礼
+	id = gts_god_keeper.16
+	title = gts_god_keeper.11.title
+	desc = gts_god_keeper.16.desc
+	is_triggered_only = yes
+	event_window_type = leader_recruit
+	show_sound = event_construction
+	picture = GFX_leader_recruitment_bg_legendary_skrand
+	auto_opens = yes
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	picture_event_data = {
+		portrait = event_target:gts_yarong
+	}
+	location = event_target:gts_yarong_fleet
+	immediate = {
+		event_target:gts_yarong = {
+			change_leader_portrait = gts_yarong3
+		}
+	}
+
+	option = {
+		name = gts_god_keeper.16.a
+		is_dialog_only = yes
+		set_country_flag = gts_god_keeper.16.a.done
+		response_text = gts_god_keeper.16.a.response
+	}
+	option = {
+		name = gts_god_keeper.16.b
+		is_dialog_only = yes
+		allow = {
+			has_country_flag = gts_god_keeper.16.a.done
+		}
+		hide_option_if_not_allowed = yes
+		set_country_flag = gts_god_keeper.16.b.done
+		response_text = gts_god_keeper.16.b.response
+	}
+	option = {
+		name = gts_god_keeper.16.c
+		is_dialog_only = yes
+		allow = {
+			has_country_flag = gts_god_keeper.16.b.done
+		}
+		hide_option_if_not_allowed = yes
+		set_country_flag = gts_god_keeper.16.c.done
+		response_text = gts_god_keeper.16.c.response
+	}
+	option = {
+		name = gts_god_keeper.16.d
+		allow = {
+			has_country_flag = gts_god_keeper.16.c.done
+		}
+		hide_option_if_not_allowed = yes
+		set_country_flag = gts_yarong_adult_ceremony
+		custom_tooltip = gts_yarong_upgrade
+	}
+	option = {
+		name = DISMISS
+		tag = dismiss_leader
+		allow = {
+			always = no
+		}
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		allow = {
+			always = no
+		}
+	}
+	after = {
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.17
+				days = 720
+				random = 360
+			}
+			country_event = {
+				id = gts_god_keeper.1000
+				days = 5400
+				random = 360
+			}
+			remove_country_flag = gts_god_keeper.16.a.done
+			remove_country_flag = gts_god_keeper.16.b.done
+			remove_country_flag = gts_god_keeper.16.c.done
+		}
+	}
+}
+
+# 犽戎 嬉闹 成年礼后720天随机360天触发
+country_event = {
+	#重生之龙-成年-事件五-嬉闹
+	id = gts_god_keeper.17
+	title = gts_god_keeper.17.title
+	desc = gts_god_keeper.17.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_conversation
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	option = {
+		name = gts_god_keeper.17.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.18
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.18
+	title = gts_god_keeper.17.title
+	desc = gts_god_keeper.18.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_ship_thrusters
+	picture_event_data = {
+		room = gts_yarong16_room
+	}
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	option = {
+		name = gts_god_keeper.18.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.19
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.19
+	title = gts_god_keeper.17.title
+	desc = gts_god_keeper.19.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_ship_thrusters
+	picture_event_data = {
+		room = gts_yarong16_room
+	}
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	option = {
+		name = gts_god_keeper.19.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.20
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.20
+	title = gts_god_keeper.17.title
+	desc = gts_god_keeper.20.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_red_alert
+	picture_event_data = {
+		room = gts_yarong17_room
+	}
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	option = {
+		name = gts_god_keeper.20.a
+		capital_scope = {
+			add_planet_devastation = 20
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.21
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.21
+	title = gts_god_keeper.17.title
+	desc = gts_god_keeper.21.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_ship_thrusters
+	picture_event_data = {
+		room = gts_yarong16_room
+	}
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	option = {
+		name = gts_god_keeper.21.a
+		custom_tooltip = gts_yarong_upgrade
+		hidden_effect = {
+			set_country_flag = gts_yarong_adult_play
+			country_event = {
+				id = gts_god_keeper.22
+				days = 720
+				random = 360
+			}
+		}
+	}
+}
+
+# 犽戎 嬉闹β 嬉闹后720天随机360天触发
+country_event = {
+	#重生之龙-成年-事件六-嬉闹β
+	id = gts_god_keeper.22
+	title = gts_god_keeper.17.title
+	desc = gts_god_keeper.22.desc
+	is_triggered_only = yes
+	event_window_type = leader_recruit
+	show_sound = event_celebration
+	picture = GFX_leader_recruitment_bg_legendary_skrand
+	auto_opens = yes
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	picture_event_data = {
+		portrait = event_target:gts_yarong
+	}
+	location = event_target:gts_yarong_fleet
+
+	option = {
+		name = gts_god_keeper.22.a
+		is_dialog_only = yes
+		set_country_flag = gts_god_keeper.22.a.done
+		response_text = gts_god_keeper.22.a.response
+	}
+	option = {
+		name = gts_god_keeper.22.b
+		is_dialog_only = yes
+		allow = {
+			has_country_flag = gts_god_keeper.22.a.done
+		}
+		hide_option_if_not_allowed = yes
+		set_country_flag = gts_god_keeper.22.b.done
+		response_text = gts_god_keeper.22.b.response
+	}
+	option = {
+		name = gts_god_keeper.22.c
+		allow = {
+			has_country_flag = gts_god_keeper.22.b.done
+		}
+		hide_option_if_not_allowed = yes
+		set_country_flag = gts_yarong_adult_play2
+		custom_tooltip = gts_yarong_upgrade
+	}
+	option = {
+		name = DISMISS
+		tag = dismiss_leader
+		allow = {
+			always = no
+		}
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		allow = {
+			always = no
+		}
+	}
+	after = {
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.23
+				days = 720
+				random = 360
+			}
+			remove_country_flag = gts_god_keeper.22.a.done
+			remove_country_flag = gts_god_keeper.22.b.done
+		}
+
+	}
+}
+
+# 犽戎 嬉闹β2 嬉闹β后720天随机360天触发
+country_event = {
+	#重生之龙-成年-事件六-嬉闹γ-穿衣
+	id = gts_god_keeper.23
+	title = gts_god_keeper.22.title
+	desc = gts_god_keeper.23.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_conversation
+	picture_event_data = {
+		room = gts_yarong5_room
+	}
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	option = {
+		name = gts_god_keeper.23.a
+		set_country_flag = gts_yarong_adult_play3
+		custom_tooltip = gts_yarong_upgrade
+		event_target:gts_yarong_fleet = {
+			set_ship_design = {
+				design = "NAME_gts_yarong_ship_3"
+			}
+		}
+	}
+}
+
+# 犽戎 威胁傲慢与愤怒 全面战争时 太空站胜利时触发
+country_event = {
+	#灭绝战争：威胁傲慢与愤怒
+	id = gts_god_keeper.100
+	title = gts_god_keeper.100.name
+	desc = gts_god_keeper.100.desc
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		is_gts_yarong_origin = yes
+		any_war = {
+			is_total_war = yes
+		}
+		fromfrom = {
+			is_same_value = event_target:gts_yarong_fleet
+		}
+	}
+	picture = GFX_gts_event_72
+	show_sound = event_planetary_riot
+	location = event_target:threat_capital
+	immediate = {
+		random_country = {
+			limit = {
+				is_at_war_with = root
+				any_war = {
+					is_total_war = yes
+				}
+			}
+			save_event_target_as = threat_country
+			capital_scope = {
+				save_event_target_as = threat_capital
+			}
+		}
+	}
+	option = {
+		name = gts_god_keeper.100.a
+		country_event = {
+			id = gts_god_keeper.101
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.101
+	title = gts_god_keeper.100.name
+	desc = gts_god_keeper.101.desc
+	is_triggered_only = yes
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	picture = GFX_load_108
+	show_sound = event_red_alert
+	location = event_target:threat_capital
+	option = {
+		name = gts_god_keeper.101.a
+		event_target:threat_capital = {
+			destroy_colony = yes
+			change_pc = pc_broken
+		}
+		hidden_effect = {
+			event_target:threat_country = {
+				country_event = {
+					id = gts_god_keeper.102
+				}
+				add_static_war_exhaustion = {
+					attacker = root
+					location = event_target:threat_capital
+					value_for_planet_destruction = 1
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.102
+	title = gts_god_keeper.100.name
+	desc = gts_god_keeper.102.desc
+	is_triggered_only = yes
+	trigger = {
+		exists = event_target:gts_yarong
+		exists = root
+	}
+	picture = GFX_load_108
+	show_sound = event_red_alert
+	location = event_target:threat_capital
+	option = {
+		name = gts_god_keeper.102.a
+	}
+}
+
+#犽戎 羞辱战争 唯心国家且拥有爱液星球改造科技 太空战胜利时触发
+country_event = {
+	#羞辱战争：唯心国家且拥有爱液星球科技
+	id = gts_god_keeper.108
+	title = gts_god_keeper.108.title
+	desc = gts_god_keeper.108.desc
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		is_gts_yarong_origin = yes
+		fromfrom = {
+			is_same_value = event_target:gts_yarong_fleet
+		}
+		has_technology = tech_gts_juice_colonies
+		any_war = {
+			any_attacker = {
+				is_same_value = root
+			}
+			any_defender = {
+				is_same_value = from
+			}
+			NOR = {
+				using_war_goal = {
+					type = wg_conquest
+					owner = event_target:gts_yarong_fleet.owner
+				}
+				using_war_goal = {
+					type = wg_subjugation
+					owner = event_target:gts_yarong_fleet.owner
+				}
+				using_war_goal = {
+					type = wg_tribute
+					owner = event_target:gts_yarong_fleet.owner
+				}
+				using_war_goal = {
+					type = wg_megacorp_subjugate
+					owner = event_target:gts_yarong_fleet.owner
+				}
+				using_war_goal = {
+					type = wg_assert_overlordship
+					owner = event_target:gts_yarong_fleet.owner
+				}
+			}
+		}
+		from = {
+			OR = {
+				has_ethic = ethic_spiritualist
+				has_ethic = ethic_fanatic_spiritualist
+			}
+		}
+	}
+	diplomatic = yes
+	show_sound = event_conversation
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	immediate = {
+		random_country = {
+			limit = {
+				is_at_war_with = root
+				any_war = {
+					any_attacker = {
+						is_same_value = root
+					}
+					any_defender = {
+						is_same_value = from
+					}
+					NOR = {
+						using_war_goal = {
+							type = wg_conquest
+							owner = event_target:gts_yarong_fleet.owner
+						}
+						using_war_goal = {
+							type = wg_subjugation
+							owner = event_target:gts_yarong_fleet.owner
+						}
+						using_war_goal = {
+							type = wg_tribute
+							owner = event_target:gts_yarong_fleet.owner
+						}
+						using_war_goal = {
+							type = wg_megacorp_subjugate
+							owner = event_target:gts_yarong_fleet.owner
+						}
+						using_war_goal = {
+							type = wg_assert_overlordship
+							owner = event_target:gts_yarong_fleet.owner
+						}
+					}
+				}
+				OR = {
+					has_ethic = ethic_spiritualist
+					has_ethic = ethic_fanatic_spiritualist
+				}
+			}
+			save_event_target_as = threat_country
+			capital_scope = {
+				save_event_target_as = threat_capital
+			}
+		}
+	}
+	option = {
+		name = gts_god_keeper.108.a
+		country_event = {
+			id = gts_god_keeper.109
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.109
+	title = gts_god_keeper.108.title
+	desc = gts_god_keeper.109.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_ship_thrusters
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	option = {
+		name = gts_god_keeper.109.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.110
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.110
+	title = gts_god_keeper.110.name
+	desc = gts_god_keeper.110.desc
+	is_triggered_only = yes
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	picture = GFX_gtsra_load_3
+	show_sound = event_space_battle
+	location = event_target:threat_capital
+	option = {
+		name = gts_god_keeper.110.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.111
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.111
+	title = gts_god_keeper.110.name
+	desc = gts_god_keeper.111.desc
+	is_triggered_only = yes
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	picture = GFX_gtsra_load_3
+	show_sound = event_mystic_reveal
+	location = event_target:threat_capital
+	option = {
+		name = gts_god_keeper.111.a
+		event_target:threat_capital = {
+			random_owned_pop_group = {
+				kill_all_pop = yes
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.112
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.112
+	title = gts_god_keeper.110.name
+	desc = gts_god_keeper.112.desc
+	is_triggered_only = yes
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	picture = GFX_gtsra_load_3
+	show_sound = event_burning_city
+	location = event_target:threat_capital
+	option = {
+		name = gts_god_keeper.112.a
+		event_target:threat_capital = {
+			random_owned_pop_group = {
+				kill_all_pop = yes
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.113
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.113
+	title = gts_god_keeper.110.name
+	desc = gts_god_keeper.113.desc
+	is_triggered_only = yes
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	picture = GFX_load_106
+	show_sound = event_ship_explosion
+	location = event_target:threat_capital
+	option = {
+		name = gts_god_keeper.112.a
+		event_target:threat_capital = {
+			random_owned_pop_group = {
+				kill_all_pop = yes
+			}
+			change_pc = pc_gts_juice
+		}
+		event_target:threat_country = {
+			add_static_war_exhaustion = {
+				attacker = root
+				location = event_target:threat_capital
+				value_for_planet_destruction = 0.5
+			}
+		}
+		set_country_flag = gts_yarong_execute_finish
+	}
+}
+
+#犽戎 羞辱战争 非唯心国家 太空战胜利时触发
+country_event = {
+	#羞辱战争：非唯心国家
+	id = gts_god_keeper.114
+	title = gts_god_keeper.108.title
+	desc = gts_god_keeper.114.desc
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		exists = event_target:gts_yarong
+		fromfrom = {
+			is_same_value = event_target:gts_yarong_fleet
+		}
+		any_war = {
+			any_attacker = {
+				is_same_value = root
+			}
+			any_defender = {
+				is_same_value = from
+			}
+			NOR = {
+				using_war_goal = {
+					type = wg_conquest
+					owner = event_target:gts_yarong_fleet.owner
+				}
+				using_war_goal = {
+					type = wg_subjugation
+					owner = event_target:gts_yarong_fleet.owner
+				}
+				using_war_goal = {
+					type = wg_tribute
+					owner = event_target:gts_yarong_fleet.owner
+				}
+				using_war_goal = {
+					type = wg_megacorp_subjugate
+					owner = event_target:gts_yarong_fleet.owner
+				}
+				using_war_goal = {
+					type = wg_assert_overlordship
+					owner = event_target:gts_yarong_fleet.owner
+				}
+			}
+		}
+		from = {
+			NOR = {
+				has_ethic = ethic_spiritualist
+				has_ethic = ethic_fanatic_spiritualist
+			}
+		}
+	}
+	diplomatic = yes
+	show_sound = event_conversation
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	location = event_target:threat_capital
+	immediate = {
+		random_country = {
+			limit = {
+				is_at_war_with = root
+				any_war = {
+					any_attacker = {
+						is_same_value = root
+					}
+					any_defender = {
+						is_same_value = from
+					}
+					NOR = {
+						using_war_goal = {
+							type = wg_conquest
+							owner = event_target:gts_yarong_fleet.owner
+						}
+						using_war_goal = {
+							type = wg_subjugation
+							owner = event_target:gts_yarong_fleet.owner
+						}
+						using_war_goal = {
+							type = wg_tribute
+							owner = event_target:gts_yarong_fleet.owner
+						}
+						using_war_goal = {
+							type = wg_megacorp_subjugate
+							owner = event_target:gts_yarong_fleet.owner
+						}
+						using_war_goal = {
+							type = wg_assert_overlordship
+							owner = event_target:gts_yarong_fleet.owner
+						}
+					}
+				}
+				NOR = {
+					has_ethic = ethic_spiritualist
+					has_ethic = ethic_fanatic_spiritualist
+				}
+			}
+			save_event_target_as = threat_country
+			capital_scope = {
+				save_event_target_as = threat_capital
+			}
+		}
+	}
+	option = {
+		name = gts_god_keeper.114.a
+		country_event = {
+			id = gts_god_keeper.115
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.115
+	title = gts_god_keeper.115.name
+	desc = gts_god_keeper.115.desc
+	is_triggered_only = yes
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	picture = GFX_load_67
+	show_sound = event_mystic_reveal
+	location = event_target:threat_capital.solar_system
+	option = {
+		name = gts_god_keeper.115.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.116
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.116
+	title = gts_god_keeper.115.name
+	desc = gts_god_keeper.116.desc
+	is_triggered_only = yes
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	picture = GFX_load_67
+	show_sound = event_mystic_reveal
+	location = event_target:threat_capital.solar_system
+	option = {
+		name = gts_god_keeper.116.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.117
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.117
+	title = gts_god_keeper.115.name
+	desc = gts_god_keeper.117.desc
+	is_triggered_only = yes
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	picture = GFX_load_110
+	show_sound = event_planetary_riot
+	location = event_target:threat_capital.solar_system
+	option = {
+		name = gts_god_keeper.117.a
+		custom_tooltip = gts_god_keeper.117.a.tooltip
+		event_target:threat_capital.solar_system = {
+			star = {
+				change_pc = pc_broken
+				add_deposit = d_gts_giantess_fluid_100
+			}
+		}
+		event_target:threat_country = {
+			add_static_war_exhaustion = {
+				attacker = root
+				location = event_target:threat_capital.solar_system.star
+				value_for_planet_destruction = 0.5
+			}
+		}
+		set_country_flag = gts_yarong_execute_finish2
+	}
+}
+
+# 犽戎 附庸战争 轨道轰炸敌人首都时触发
+planet_event = {
+	#附庸战争，选择犽戎执行轨道轰炸
+	id = gts_god_keeper.103
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		exists = event_target:gts_yarong
+		is_same_value = owner.capital_scope
+		from = {
+			is_same_value = event_target:gts_yarong_fleet.owner
+			owner = {
+				any_war = {
+					any_attacker = {
+						is_same_value = event_target:gts_yarong_fleet.owner
+					}
+					any_defender = {
+						is_same_value = root.owner
+					}
+					OR = {
+						using_war_goal = {
+							type = wg_conquest
+							owner = event_target:gts_yarong_fleet.owner
+						}
+						using_war_goal = {
+							type = wg_subjugation
+							owner = event_target:gts_yarong_fleet.owner
+						}
+						using_war_goal = {
+							type = wg_tribute
+							owner = event_target:gts_yarong_fleet.owner
+						}
+						using_war_goal = {
+							type = wg_megacorp_subjugate
+							owner = event_target:gts_yarong_fleet.owner
+						}
+						using_war_goal = {
+							type = wg_assert_overlordship
+							owner = event_target:gts_yarong_fleet.owner
+						}
+					}
+				}
+			}
+		}
+	}
+	immediate = {
+		owner = {
+			save_event_target_as = yarong_conquest_country
+		}
+		from.owner = {
+			country_event = {
+				id = gts_god_keeper.104
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.104
+	title = gts_god_keeper.104.title
+	desc = gts_god_keeper.104.desc
+	is_triggered_only = yes
+	event_window_type = leader_recruit
+	show_sound = event_default
+	picture = GFX_leader_recruitment_bg_legendary_skrand
+	auto_opens = yes
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	picture_event_data = {
+		portrait = event_target:gts_yarong
+	}
+	option = {
+		name = gts_god_keeper.104.a
+		country_event = {
+			id = gts_god_keeper.105
+		}
+	}
+	option = {
+		name = DISMISS
+		tag = dismiss_leader
+		allow = {
+			always = no
+		}
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		allow = {
+			always = no
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.105
+	title = gts_god_keeper.105.name
+	desc = gts_god_keeper.105.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	picture_event_data = {
+		room = gts_yarong6_room
+	}
+	show_sound = event_red_alert
+	location = event_target:yarong_conquest_country.capital_scope
+	option = {
+		name = gts_god_keeper.105.a
+		is_dialog_only = yes
+		response_text = gts_god_keeper.105.a.response
+	}
+	option = {
+		name = gts_god_keeper.105.b
+		is_dialog_only = yes
+		response_text = gts_god_keeper.105.b.response
+	}
+	option = {
+		#尽情享受
+		name = gts_god_keeper.105.c
+		country_event = {
+			id = gts_god_keeper.106
+		}
+	}
+	option = {
+		#任务优先
+		name = gts_god_keeper.105.d
+		country_event = {
+			id = gts_god_keeper.107
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.106
+	title = gts_god_keeper.105.name
+	desc = gts_god_keeper.106.desc
+	is_triggered_only = yes
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	picture = GFX_load_80
+	show_sound = event_planetary_riot
+	location = event_target:yarong_conquest_country.capital_scope
+	option = {
+		name = gts_god_keeper.106.a
+		event_target:yarong_conquest_country = {
+			capital_scope = {
+				add_planet_devastation = 50
+			}
+			every_war = {
+				limit = {
+					any_attacker = {
+						is_same_value = event_target:gts_yarong_fleet.owner
+					}
+					any_defender = {
+						is_same_value = root.owner
+					}
+				}
+				end_war_effect = yes
+			}
+			set_subject_of = {
+				who = event_target:gts_yarong_fleet.owner
+				preset = preset_protectorate
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.107
+	title = gts_god_keeper.105.name
+	desc = gts_god_keeper.107.desc
+	is_triggered_only = yes
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	picture = GFX_gtsra_5
+	show_sound = event_planetary_riot
+	location = event_target:yarong_conquest_country.capital_scope
+	option = {
+		name = gts_god_keeper.107.a
+		event_target:yarong_conquest_country = {
+			every_war = {
+				limit = {
+					any_attacker = {
+						is_same_value = event_target:gts_yarong_fleet.owner
+					}
+					any_defender = {
+						is_same_value = root.owner
+					}
+				}
+				end_war_effect = yes
+			}
+			set_subject_of = {
+				who = event_target:gts_yarong_fleet.owner
+				preset = preset_protectorate
+			}
+		}
+		add_resource = {
+			energy = 25000
+			minerals = 25000
+			food = 25000
+			alloys = 5000
+			consumer_goods = 5000
+		}
+	}
+}
+
+# 犽戎 逼宫 同时存在紫宸和犽戎 每五年判定一次
+country_event = {
+	#逼宫
+	id = gts_god_keeper.118
+	title = gts_god_keeper.118.tile
+	desc = gts_god_keeper.118.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_scanner
+	fire_only_once = yes
+	trigger = {
+		is_gts_yarong_origin = yes
+		exists = event_target:gts_shentun
+		years_passed >= 60
+	}
+	picture_event_data = {
+		room = root
+		portrait = root.ruler
+		planet_background = capital_scope
+	}
+	option = {
+		name = CONTINUE
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.119
+			}
+			country_event = {
+				#体外殖民
+				id = gts_god_keeper.123
+				days = 1800
+				random = 350
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.119
+	title = gts_god_keeper.118.tile
+	desc = gts_god_keeper.119.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_structural_collapse
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	trigger = {
+		is_gts_yarong_origin = yes
+		exists = event_target:gts_shentun
+	}
+	option = {
+		name = gts_god_keeper.119.a
+		allow = {
+			has_valid_civic = civic_god_lord
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.120
+			}
+		}
+	}
+	option = {
+		name = gts_god_keeper.119.b
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.121
+			}
+		}
+	}
+}
+
+country_event = {
+	#不变统治者
+	id = gts_god_keeper.120
+	title = gts_god_keeper.120.name
+	desc = gts_god_keeper.120.desc
+	is_triggered_only = yes
+	trigger = {
+		exists = event_target:gts_shentun
+		is_gts_yarong_origin = yes
+	}
+	picture = GFX_load_54
+	show_sound = event_celebration
+	option = {
+		name = gts_god_keeper.120.a
+		ruler = {
+			remove_all_negative_traits = yes
+			add_trait = {
+				trait = god_keeper_ruler_trait1
+			}
+		}
+		set_heir = event_target:gts_yarong
+		event_target:gts_yarong = {
+			change_leader_portrait = gts_yarong3
+		}
+	}
+}
+
+country_event = {
+	#变统治者
+	id = gts_god_keeper.121
+	title = gts_god_keeper.121.name
+	desc = gts_god_keeper.121.desc
+	is_triggered_only = yes
+	trigger = {
+		exists = event_target:gts_shentun
+		is_gts_yarong_origin = yes
+	}
+	picture = GFX_load_35
+	show_sound = event_announcement
+	option = {
+		name = gts_god_keeper.121.a
+		hidden_effect = {
+			shift_ethic = ethic_fanatic_authoritarian
+			shift_ethic = ethic_spiritualist
+			change_government = {
+				authority = auth_imperial
+				cooldown = no
+				remove_invalid_civics = yes
+			}
+			set_government_cooldown = no
+			event_target:gts_yarong = {
+				change_leader_portrait = gts_yarong5
+				remove_trait = yarong_leader_trait1
+				add_trait = {
+					trait = god_keeper_ruler_trait2
+				}
+			}
+			clone_leader = {
+				target = event_target:gts_yarong
+			}
+			country_event = {
+				id = gts_god_keeper.122
+				days = 30
+			}
+			last_created_leader = {
+				set_leader_flag = legendary_leader
+				save_global_event_target_as = gts_yarong_ruler
+				remove_all_traits = yes
+				change_leader_class = official
+				event_target:gts_yarong_ruler = {
+					change_leader_portrait = gts_yarong4
+					add_trait = {
+						trait = leader_trait_Ultra
+						show_message = no
+					}
+					add_trait = {
+						trait = yarong_leader_trait7
+					}
+					add_trait = {
+						trait = yarong_leader_trait8
+					}
+					add_trait = {
+						trait = yarong_leader_trait9
+					}
+					add_trait = {
+						trait = yarong_leader_trait1
+					}
+					set_owner = root
+				}
+			}
+		}
+		set_leader = event_target:gts_yarong_ruler
+		set_heir = event_target:gts_shentun
+	}
+}
+
+# 犽戎 加冕 若神权神授 30天后触发
+country_event = {
+	#加冕
+	id = gts_god_keeper.122
+	title = gts_god_keeper.122.title
+	desc = gts_god_keeper.122.desc
+	is_triggered_only = yes
+	event_window_type = leader_recruit
+	show_sound = event_celebration
+	picture = GFX_leader_recruitment_bg_legendary_skrand
+	auto_opens = yes
+	trigger = {
+		exists = event_target:gts_shentun
+		is_gts_yarong_origin = yes
+	}
+	picture_event_data = {
+		portrait = event_target:gts_yarong
+	}
+	option = {
+		name = gts_god_keeper.122.a
+		is_dialog_only = yes
+		set_country_flag = gts_god_keeper.122.a.done
+		response_text = gts_god_keeper.122.a.response
+	}
+	option = {
+		name = gts_god_keeper.122.b
+		is_dialog_only = yes
+		allow = {
+			has_country_flag = gts_god_keeper.122.a.done
+		}
+		hide_option_if_not_allowed = yes
+		set_country_flag = gts_god_keeper.122.b.done
+		response_text = gts_god_keeper.122.b.response
+	}
+	option = {
+		name = gts_god_keeper.122.c
+		is_dialog_only = yes
+		allow = {
+			has_country_flag = gts_god_keeper.122.b.done
+		}
+		hide_option_if_not_allowed = yes
+		set_country_flag = gts_god_keeper.122.c.done
+		response_text = gts_god_keeper.122.c.response
+	}
+	option = {
+		name = gts_god_keeper.122.d
+		is_dialog_only = yes
+		allow = {
+			has_country_flag = gts_god_keeper.122.c.done
+		}
+		hide_option_if_not_allowed = yes
+		set_country_flag = gts_god_keeper.122.d.done
+		response_text = gts_god_keeper.122.d.response
+	}
+	option = {
+		name = gts_god_keeper.122.e
+		is_dialog_only = yes
+		allow = {
+			has_country_flag = gts_god_keeper.122.d.done
+		}
+		hide_option_if_not_allowed = yes
+		set_country_flag = gts_god_keeper.122.e.done
+		response_text = gts_god_keeper.122.e.response
+	}
+	option = {
+		name = gts_god_keeper.122.f
+		is_dialog_only = yes
+		allow = {
+			has_country_flag = gts_god_keeper.122.e.done
+		}
+		hide_option_if_not_allowed = yes
+		set_country_flag = gts_god_keeper.122.f.done
+		response_text = gts_god_keeper.122.f.response
+	}
+	option = {
+		name = gts_god_keeper.122.h
+		allow = {
+			has_country_flag = gts_god_keeper.122.f.done
+		}
+		hide_option_if_not_allowed = yes
+		custom_tooltip = gts_yarong_upgrade
+		set_country_flag = gts_yarong_queen_done
+		event_target:gts_yarong_fleet = {
+			set_name = gts_yarong_queen_ship
+		}
+	}
+	option = {
+		name = DISMISS
+		tag = dismiss_leader
+		allow = {
+			always = no
+		}
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		allow = {
+			always = no
+		}
+	}
+	after = {
+		remove_country_flag = gts_god_keeper.122.a.done
+		remove_country_flag = gts_god_keeper.122.b.done
+		remove_country_flag = gts_god_keeper.122.c.done
+		remove_country_flag = gts_god_keeper.122.d.done
+		remove_country_flag = gts_god_keeper.122.e.done
+		remove_country_flag = gts_god_keeper.122.f.done
+	}
+}
+
+# 犽戎 体外殖民 逼宫后 1800天随机350天触发
+country_event = {
+	#体外殖民
+	id = gts_god_keeper.123
+	title = gts_god_keeper.123.title
+	desc = {
+		trigger = {
+			has_country_flag = gts_yarong_queen_done
+		}
+		text = gts_god_keeper.123.desc.1
+	}
+	desc = {
+		trigger = {
+			NOR = {
+				has_country_flag = gts_yarong_queen_done
+			}
+		}
+		text = gts_god_keeper.123.desc.2
+	}
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_cityscape
+	fire_only_once = yes
+	trigger = {
+		exists = event_target:gts_shentun
+		is_gts_yarong_origin = yes
+	}
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	option = {
+		name = gts_god_keeper.123.a
+		enable_special_project = {
+			name = gts_yarong_colony1
+			location = event_target:gts_yarong_fleet
+		}
+	}
+}
+
+ship_event = {
+	#殖民完成
+	id = gts_god_keeper.124
+	title = gts_god_keeper.123.title
+	desc = gts_god_keeper.124.desc
+	is_triggered_only = yes
+	trigger = {
+		exists = event_target:gts_yarong
+		exists = event_target:gts_shentun
+	}
+	diplomatic = yes
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	show_sound = event_cityscape
+	immediate = {
+		destroy_ship = this
+	}
+	option = {
+		name = gts_god_keeper.124.a
+		owner = {
+			country_event = {
+				id = gts_god_keeper.125
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.125
+	title = gts_god_keeper.123.title
+	desc = gts_god_keeper.125.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_cityscape
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	option = {
+		name = gts_god_keeper.125.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.126
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.126
+	title = gts_god_keeper.126.name
+	desc = gts_god_keeper.126.desc
+	is_triggered_only = yes
+	trigger = {
+		exists = event_target:gts_yarong
+		exists = event_target:gts_shentun
+	}
+	picture = GFX_load_117
+	show_sound = event_ship_bridge
+	option = {
+		name = gts_god_keeper.126.a
+		custom_tooltip = gts_god_keeper.126.a.tooltip
+		event_target:gts_yarong = {
+			hidden_effect = {
+				change_variable = {
+					which = gts_bread_logs
+					value = 10
+				}
+			}
+			add_trait = {
+				trait = yarong_leader_trait5
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.127
+				days = 720
+			}
+		}
+	}
+}
+
+country_event = {
+	#灾难
+	id = gts_god_keeper.127
+	title = gts_god_keeper.127.name
+	desc = gts_god_keeper.127.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_yellow_alert
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	option = {
+		name = gts_god_keeper.127.a
+		custom_tooltip = gts_god_keeper.127.a.tooltip
+		hidden_effect = {
+			event_target:gts_yarong = {
+				change_variable = {
+					which = gts_bread_logs
+					value = -46
+				}
+			}
+			country_event = {
+				id = gts_god_keeper.128
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.128
+	title = gts_god_keeper.127.name
+	desc = gts_god_keeper.128.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_ghost_town
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	option = {
+		name = gts_god_keeper.128.a
+		country_event = {
+			id = gts_god_keeper.129
+			days = 60
+		}
+	}
+}
+
+# 犽戎 新生 殖民后60天触发
+country_event = {
+	#新生
+	id = gts_god_keeper.129
+	title = gts_god_keeper.129.name
+	desc = gts_god_keeper.129.desc
+	is_triggered_only = yes
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	picture = GFX_load_116
+	show_sound = event_ship_bridge
+	option = {
+		name = gts_god_keeper.129.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.130
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.130
+	title = gts_god_keeper.129.name
+	desc = gts_god_keeper.130.desc
+	is_triggered_only = yes
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	picture = GFX_load_118
+	show_sound = event_burning_city
+	option = {
+		name = gts_god_keeper.130.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.131
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.131
+	title = gts_god_keeper.129.name
+	desc = gts_god_keeper.131.desc
+	is_triggered_only = yes
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	picture = GFX_load_118
+	show_sound = event_pre_ftl_civilization
+	option = {
+		name = gts_god_keeper.131.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.132
+			}
+		}
+	}
+}
+
+country_event = {
+	#眷族
+	id = gts_god_keeper.132
+	title = gts_god_keeper.132.title
+	desc = gts_god_keeper.132.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_crystal_ship
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	option = {
+		name = gts_god_keeper.132.a
+		custom_tooltip = gts_god_keeper.132.a.tooltip
+		set_country_flag = gts_yarong_spawn_join
+		hidden_effect = {
+			event_target:gts_yarong = {
+				change_variable = {
+					which = gts_bread_logs
+					value = 30
+				}
+			}
+		}
+	}
+}
+
+# 犽戎 加冕后拥有非巨娘起源的附庸国
+country_event = {
+	id = gts_god_keeper.201
+	title = gts_god_keeper.201.name
+	desc = gts_god_keeper.201.desc
+	is_triggered_only = yes
+	fire_only_once = yes
+	diplomatic = yes
+	show_sound = event_power_down
+	picture_event_data = {
+		portrait = event_target:yarong_tiny_subject
+		room = event_target:yarong_tiny_subject.ruler
+	}
+	location = event_target:yarong_tiny_subject.capital_scope
+	trigger = {
+		is_gts_yarong_origin = yes
+		has_country_flag = gts_yarong_queen_done
+		is_overlord = yes
+		any_subject = {
+			gts_is_tiny_empire = yes
+		}
+	}
+	immediate = {
+		random_subject = {
+			limit = {
+				gts_is_tiny_empire = yes
+			}
+			save_event_target_as = yarong_tiny_subject
+		}
+	}
+	option = {
+		name = gts_god_keeper.201.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.202
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.202
+	title = gts_god_keeper.201.name
+	desc = gts_god_keeper.202.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_default
+	picture_event_data = {
+		portrait = event_target:yarong_tiny_subject
+		room = event_target:yarong_tiny_subject.ruler
+	}
+	location = event_target:yarong_tiny_subject.capital_scope
+	option = {
+		name = gts_god_keeper.202.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.203
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.203
+	title = gts_god_keeper.201.name
+	desc = gts_god_keeper.203.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_default
+	picture_event_data = {
+		portrait = event_target:yarong_tiny_subject
+		room = event_target:yarong_tiny_subject.ruler
+	}
+	location = event_target:yarong_tiny_subject.capital_scope
+	option = {
+		name = gts_god_keeper.203.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.204
+			}
+		}
+	}
+}
+
+country_event = {
+	#附庸国
+	id = gts_god_keeper.204
+	title = gts_god_keeper.204.name
+	desc = gts_god_keeper.204.desc
+	is_triggered_only = yes
+	show_sound = event_red_alert
+	picture = GFX_load_90
+	location = event_target:yarong_tiny_subject.capital_scope
+	option = {
+		name = gts_god_keeper.204.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.205
+			}
+		}
+	}
+}
+
+country_event = {
+	#附庸国
+	id = gts_god_keeper.205
+	title = gts_god_keeper.204.name
+	desc = gts_god_keeper.205.desc
+	is_triggered_only = yes
+	show_sound = event_wind_ruins
+	picture = GFX_gtsra_city_crash_5
+	location = event_target:yarong_tiny_subject.capital_scope
+	option = {
+		name = gts_god_keeper.205.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.206
+			}
+		}
+	}
+}
+
+country_event = {
+	#泰坦国
+	id = gts_god_keeper.206
+	title = gts_god_keeper.204.name
+	desc = gts_god_keeper.206.desc
+	is_triggered_only = yes
+	fire_only_once = yes
+	diplomatic = yes
+	show_sound = event_door_opening
+	picture_event_data = {
+		room = gts_yarong2_room
+	}
+	option = {
+		name = gts_god_keeper.206.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.207
+			}
+		}
+	}
+}
+
+country_event = {
+	#泰坦国
+	id = gts_god_keeper.207
+	title = gts_god_keeper.204.name
+	desc = gts_god_keeper.207.desc
+	is_triggered_only = yes
+	fire_only_once = yes
+	diplomatic = yes
+	show_sound = event_planetary_riot
+	picture_event_data = {
+		room = gts_yarong9_room
+	}
+	option = {
+		name = gts_god_keeper.207.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.208
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.208
+	title = gts_god_keeper.201.name
+	desc = gts_god_keeper.208.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_default
+	picture_event_data = {
+		portrait = event_target:yarong_tiny_subject
+		room = event_target:yarong_tiny_subject.ruler
+	}
+	location = event_target:yarong_tiny_subject.capital_scope
+	option = {
+		name = gts_god_keeper.208.a
+		event_target:yarong_tiny_subject.capital_scope = {
+			add_planet_devastation = 80
+		}
+		event_target:gts_yarong = {
+			add_trait = {
+				trait = god_keeper_ruler_trait3
+			}
+		}
+	}
+}
+
+# 犽戎 克扣事件：年份小于2260且战争胜利
+country_event = {
+	id = gts_god_keeper.301
+	title = gts_god_keeper.301.title
+	desc = gts_god_keeper.301.desc
+	is_triggered_only = yes
+	fire_only_once = yes
+	diplomatic = yes
+	show_sound = event_activating_unknown_technology
+	trigger = {
+		is_gts_yarong_origin = yes
+		years_passed < 60
+	}
+	picture_event_data = {
+		room = gts_yarong2_room
+	}
+	option = {
+		name = gts_god_keeper.301.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.302
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.302
+	title = gts_god_keeper.301.title
+	desc = gts_god_keeper.302.desc
+	is_triggered_only = yes
+	fire_only_once = yes
+	diplomatic = yes
+	show_sound = event_conversation
+	picture_event_data = {
+		room = gts_yarong2_room
+	}
+	option = {
+		name = gts_god_keeper.302.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.303
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.303
+	title = gts_god_keeper.301.title
+	desc = gts_god_keeper.303.desc
+	is_triggered_only = yes
+	fire_only_once = yes
+	diplomatic = yes
+	show_sound = event_ground_battle
+	picture_event_data = {
+		room = gts_yarong8_room
+	}
+	option = {
+		name = gts_god_keeper.303.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.304
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.304
+	title = gts_god_keeper.301.title
+	desc = gts_god_keeper.304.desc
+	is_triggered_only = yes
+	fire_only_once = yes
+	diplomatic = yes
+	show_sound = event_ghost_town
+	picture_event_data = {
+		room = gts_yarong2_room
+	}
+	option = {
+		name = gts_god_keeper.304.a
+		add_relic = r_yarong_nail
+	}
+	option = {
+		name = gts_god_keeper.304.b
+		add_relic = r_yarong_nail
+	}
+}
+
+# 犽戎 吃醋事件：成年礼到逼宫之间 殖民地每三年判定一次随机触发
+planet_event = {
+	id = gts_god_keeper.401
+	title = gts_god_keeper.401.title
+	desc = gts_god_keeper.401.desc
+	is_triggered_only = yes
+	fire_only_once = yes
+	diplomatic = yes
+	show_sound = event_activating_unknown_technology
+	location = root
+	trigger = {
+		exists = event_target:gts_yarong
+		owner = {
+			has_origin = origin_god_keeper
+		}
+		years_passed < 60
+	}
+	picture_event_data = {
+		room = gts_yarong2_room
+	}
+	option = {
+		name = gts_god_keeper.401.a
+		hidden_effect = {
+			planet_event = {
+				id = gts_god_keeper.402
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = gts_god_keeper.402
+	title = gts_god_keeper.402.name
+	desc = gts_god_keeper.402.desc
+	is_triggered_only = yes
+	show_sound = event_super_explosion
+	location = root
+	picture = GFX_load_80
+	option = {
+		name = gts_god_keeper.402.a
+		add_deposit = d_gts_keeper2
+	}
+}
+
+# 神吞 相关考古获取事件 5400天
+country_event = {
+	#创建考古
+	id = gts_god_keeper.1000
+	title = gts_god_keeper.1000.name
+	desc = gts_god_keeper.1000.desc
+	is_triggered_only = yes
+	fire_only_once = yes
+	show_sound = event_scanner
+	picture = GFX_evt_astral_rift_microverse
+	trigger = {
+		has_origin = origin_god_keeper
+	}
+	option = {
+		name = gts_god_keeper.1000.a
+		random_planet_within_border = {
+			limit = {
+				NOT = {
+					exists = archaeological_site
+				}
+			}
+			create_archaeological_site = site_shentun
+		}
+	}
+}
+
+fleet_event = {
+	#考古事件
+	id = gts_god_keeper.1001
+	title = gts_god_keeper.1001.name
+	desc = gts_god_keeper.1001.desc
+	picture = GFX_evt_riftworld_archsite_crater
+	show_sound = event_wind_ruins
+	location = from
+	archaeology = yes
+	is_triggered_only = yes
+	option = {
+		name = gts_god_keeper.1001.a
+		small_artifact_reward = yes
+		owner = {
+			add_resource = {
+				physics_research = 3000
+				engineering_research = 3000
+				society_research = 3000
+			}
+		}
+	}
+}
+
+fleet_event = {
+	#考古事件
+	id = gts_god_keeper.1002
+	title = gts_god_keeper.1002.name
+	desc = gts_god_keeper.1002.desc
+	picture = GFX_load_68
+	show_sound = event_ghost_town
+	location = from
+	archaeology = yes
+	is_triggered_only = yes
+	option = {
+		name = gts_god_keeper.1001.a
+		small_artifact_reward = yes
+		owner = {
+			add_resource = {
+				physics_research = 3000
+				engineering_research = 3000
+				society_research = 3000
+			}
+		}
+	}
+}
+
+fleet_event = {
+	#考古事件
+	id = gts_god_keeper.1003
+	title = gts_god_keeper.1003.name
+	desc = gts_god_keeper.1003.desc
+	picture = GFX_load_111
+	show_sound = event_red_alert
+	location = from
+	archaeology = yes
+	is_triggered_only = yes
+	option = {
+		name = gts_god_keeper.1003.a
+		small_artifact_reward = yes
+		owner = {
+			add_resource = {
+				physics_research = 3000
+				engineering_research = 3000
+				society_research = 3000
+			}
+		}
+	}
+}
+
+fleet_event = {
+	#考古事件
+	id = gts_god_keeper.1004
+	title = gts_god_keeper.1004.name
+	desc = gts_god_keeper.1004.desc
+	picture = GFX_load_38
+	show_sound = event_collapsing_ruins
+	location = from
+	archaeology = yes
+	is_triggered_only = yes
+	option = {
+		name = gts_god_keeper.1004.a
+		small_artifact_reward = yes
+		owner = {
+			add_resource = {
+				physics_research = 3000
+				engineering_research = 3000
+				society_research = 3000
+			}
+		}
+	}
+}
+
+fleet_event = {
+	#考古事件
+	id = gts_god_keeper.1005
+	title = gts_god_keeper.1005.name
+	desc = gts_god_keeper.1005.desc
+	picture = GFX_gts_event_60
+	show_sound = event_administrative_work
+	location = from
+	archaeology = yes
+	is_triggered_only = yes
+	option = {
+		name = gts_god_keeper.1005.a
+		small_artifact_reward = yes
+	}
+}
+
+fleet_event = {
+	#考古事件
+	id = gts_god_keeper.1006
+	title = gts_god_keeper.1006.name
+	desc = gts_god_keeper.1006.desc
+	picture = GFX_evt_gts_ra_daily4
+	show_sound = event_celebration
+	archaeology = yes
+	fire_only_once = yes
+	is_triggered_only = yes
+	location = from
+
+	option = {
+		name = gts_god_keeper.1006.a
+		small_artifact_reward = yes
+		custom_tooltip = gts_god_keeper.1006.a.tooltip
+		hidden_effect = {
+			gts_leader_shentun_hired = yes
+			gts_leader_hire_effect = { TYPE = legendary }
+			gts_create_shentun_fleet = yes
+			owner = {
+				country_event = {
+					#玩弄1
+					id = gts_god_keeper.2001
+					days = 1800
+					random = 360
+				}
+				country_event = {
+					id = gts_paopao.1
+					days = 360
+				}
+			}
+		}
+	}
+}
+
+#犽戎 神吞 玩弄事件 拥有紫宸后1800天随机360天触发
+country_event = {
+	#玩弄1
+	id = gts_god_keeper.2001
+	title = gts_god_keeper.2001.title
+	desc = gts_god_keeper.2001.desc
+	is_triggered_only = yes
+	fire_only_once = yes
+	diplomatic = yes
+	show_sound = event_door_opening
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	trigger = {
+		exists = event_target:gts_shentun
+		exists = event_target:gts_yarong
+		has_origin = origin_god_keeper
+	}
+	option = {
+		name = gts_god_keeper.2001.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.2002
+			}
+		}
+	}
+}
+
+country_event = {
+	#玩弄1
+	id = gts_god_keeper.2002
+	title = gts_god_keeper.2001.title
+	desc = gts_god_keeper.2002.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_alien_signal
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	trigger = {
+		exists = event_target:gts_shentun
+		exists = event_target:gts_yarong
+		has_origin = origin_god_keeper
+	}
+	option = {
+		name = gts_god_keeper.2002.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.2003
+			}
+		}
+	}
+}
+
+country_event = {
+	#玩弄1
+	id = gts_god_keeper.2003
+	title = gts_god_keeper.2001.title
+	desc = gts_god_keeper.2003.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_alien_signal
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	trigger = {
+		exists = event_target:gts_shentun
+		is_gts_yarong_origin = yes
+	}
+	option = {
+		name = gts_god_keeper.2003.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.2004
+			}
+		}
+	}
+	option = {
+		name = gts_god_keeper.2003.b
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.2004
+			}
+		}
+	}
+}
+
+country_event = {
+	#玩弄1
+	id = gts_god_keeper.2004
+	title = gts_god_keeper.2001.title
+	desc = gts_god_keeper.2004.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_alien_signal
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	trigger = {
+		exists = event_target:gts_shentun
+		is_gts_yarong_origin = yes
+	}
+	option = {
+		name = gts_god_keeper.2004.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.2005
+			}
+		}
+	}
+}
+
+country_event = {
+	#玩弄1
+	id = gts_god_keeper.2005
+	title = gts_god_keeper.2001.title
+	desc = gts_god_keeper.2005.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_burning_city
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	trigger = {
+		exists = event_target:gts_shentun
+		is_gts_yarong_origin = yes
+	}
+	option = {
+		name = gts_god_keeper.2005.a
+		custom_tooltip = gts_god_keeper.2005.a.tooltip
+		add_monthly_resource_mult = {
+			resource = energy
+			value = 6
+			max = 100000
+			min = 2000
+		}
+		hidden_effect = {
+			country_event = {
+				#玩弄2
+				id = gts_god_keeper.2006
+				days = 1800
+				random = 360
+			}
+		}
+	}
+}
+
+country_event = {
+	#玩弄2
+	id = gts_god_keeper.2006
+	title = gts_god_keeper.2001.title
+	desc = gts_god_keeper.2006.desc
+	is_triggered_only = yes
+	fire_only_once = yes
+	diplomatic = yes
+	show_sound = event_door_opening
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	trigger = {
+		exists = event_target:gts_shentun
+		is_gts_yarong_origin = yes
+	}
+	option = {
+		name = gts_god_keeper.2006.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.2007
+			}
+		}
+	}
+}
+
+country_event = {
+	#玩弄2
+	id = gts_god_keeper.2007
+	title = gts_god_keeper.2001.title
+	desc = gts_god_keeper.2007.desc
+	is_triggered_only = yes
+	fire_only_once = yes
+	diplomatic = yes
+	show_sound = event_alien_signal
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	trigger = {
+		exists = event_target:gts_shentun
+		is_gts_yarong_origin = yes
+	}
+	option = {
+		name = gts_god_keeper.2007.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.2008
+			}
+		}
+	}
+}
+
+country_event = {
+	#玩弄2
+	id = gts_god_keeper.2008
+	title = gts_god_keeper.2001.title
+	desc = gts_god_keeper.2008.desc
+	is_triggered_only = yes
+	fire_only_once = yes
+	diplomatic = yes
+	show_sound = event_alien_signal
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	trigger = {
+		exists = event_target:gts_shentun
+		is_gts_yarong_origin = yes
+	}
+	option = {
+		name = gts_god_keeper.2008.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.2009
+			}
+		}
+	}
+}
+
+country_event = {
+	#玩弄2
+	id = gts_god_keeper.2009
+	title = gts_god_keeper.2001.title
+	desc = gts_god_keeper.2009.desc
+	is_triggered_only = yes
+	fire_only_once = yes
+	diplomatic = yes
+	show_sound = event_alien_signal
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	trigger = {
+		exists = event_target:gts_shentun
+		is_gts_yarong_origin = yes
+	}
+	option = {
+		name = gts_god_keeper.2009.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.2010
+			}
+		}
+	}
+}
+
+country_event = {
+	#玩弄2
+	id = gts_god_keeper.2010
+	title = gts_god_keeper.2001.title
+	desc = gts_god_keeper.2010.desc
+	is_triggered_only = yes
+	fire_only_once = yes
+	diplomatic = yes
+	show_sound = event_burning_city
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	trigger = {
+		exists = event_target:gts_shentun
+		is_gts_yarong_origin = yes
+	}
+	option = {
+		name = gts_god_keeper.2010.a
+		add_monthly_resource_mult = {
+			resource = gts_giantess_fluid
+			value = 6
+			max = 100000
+			min = 2000
+		}
+	}
+}
+
+#向父亲举起叛逆之剑 每年判定一次 19年后触发
+country_event = {
+	id = gts_god_keeper.3000
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		is_gts_yarong_origin = yes
+		years_passed >= 19
+	}
+	immediate = {
+		country_event = {
+			id = gts_god_keeper.3001
+		}
+	}
+}
+
+country_event = {
+	#特殊军演（1
+	id = gts_god_keeper.3001
+	title = gts_god_keeper.3001.name
+	desc = gts_god_keeper.3001.desc
+	show_sound = event_door_opening
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	immediate = {
+	}
+	option = {
+		name = gts_god_keeper.3001.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.3002
+			}
+		}
+	}
+}
+
+country_event = {
+	#选哪个更重要
+	id = gts_god_keeper.3002
+	base = gts_god_keeper.3001
+	is_triggered_only = yes
+	desc_clear = yes
+	option_clear = yes
+	diplomatic = yes
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	desc = gts_god_keeper.3002.desc
+	option = {
+		name = gts_god_keeper.3002.a		#帝国
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.3003
+			}
+		}
+	}
+	option = {
+		name = gts_god_keeper.3002.b		#犽戎
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.3004
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.3003
+	is_triggered_only = yes
+	base = gts_god_keeper.3001
+	desc_clear = yes
+	option_clear = yes
+	diplomatic = yes
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	desc = gts_god_keeper.3003.desc
+	option = {
+		name = gts_god_keeper.3003.a
+		capital_scope = {
+			enable_special_project = {
+				name = gts_yarong_battle1
+			}
+		}
+		event_target:gts_yarong = {
+			gts_love_system_reduce = { value = 5 }
+		}
+		add_modifier = {
+			modifier = gts_god_keeper_buff3
+			days = -1
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.3004
+	is_triggered_only = yes
+	base = gts_god_keeper.3001
+	desc_clear = yes
+	option_clear = yes
+	diplomatic = yes
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	desc = gts_god_keeper.3004.desc
+	option = {
+		name = gts_god_keeper.3004.a
+		capital_scope = {
+			enable_special_project = {
+				name = gts_yarong_battle2
+			}
+		}
+		event_target:gts_yarong = {
+			gts_love_system_increase = { value = 5 }
+		}
+	}
+}
+
+ship_event = {
+	#特殊的军事演习（2）
+	id = gts_god_keeper.3010
+	title = gts_god_keeper.3010.title
+	desc = gts_god_keeper.3010.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_alien_signal
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	option = {
+		name = gts_god_keeper.3010.a
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = gts_god_keeper.3011
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	#完败
+	id = gts_god_keeper.3011
+	title = gts_god_keeper.3011.name
+	desc = gts_god_keeper.3011.desc
+	is_triggered_only = yes
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	picture = GFX_load_63
+	show_sound = event_space_battle
+	option = {
+		name = gts_god_keeper.3011.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.3012
+			}
+		}
+	}
+}
+
+country_event = {
+	#完败
+	id = gts_god_keeper.3012
+	title = gts_god_keeper.3011.name
+	desc = gts_god_keeper.3012.desc
+	is_triggered_only = yes
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	picture = GFX_load_70
+	show_sound = event_power_down
+	option = {
+		name = gts_god_keeper.3012.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.3013
+			}
+		}
+	}
+	option = {
+		name = gts_god_keeper.3012.b
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.3014
+			}
+		}
+	}
+	option = {
+		name = gts_god_keeper.3012.c
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.3017
+			}
+		}
+	}
+}
+
+country_event = {
+	#完败
+	id = gts_god_keeper.3013
+	title = gts_god_keeper.3011.name
+	desc = gts_god_keeper.3013.desc
+	is_triggered_only = yes
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	picture = GFX_load_64
+	show_sound = event_structural_collapse
+	option = {
+		name = gts_god_keeper.3013.a
+		event_target:gts_yarong = {
+			gts_love_system_reduce = { value = 50 }
+		}
+	}
+}
+
+country_event = {
+	#谈谈
+	id = gts_god_keeper.3014
+	title = gts_god_keeper.3014.title
+	desc = gts_god_keeper.3014.desc
+	is_triggered_only = yes
+	fire_only_once = yes
+	diplomatic = yes
+	show_sound = event_burning_city
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	option = {
+		name = gts_god_keeper.3014.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.3015
+			}
+		}
+	}
+}
+
+country_event = {
+	#谈谈
+	id = gts_god_keeper.3015
+	title = gts_god_keeper.3014.title
+	desc = gts_god_keeper.3015.desc
+	is_triggered_only = yes
+	fire_only_once = yes
+	diplomatic = yes
+	show_sound = event_planetary_riot
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	option = {
+		name = gts_god_keeper.3015.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.3016
+			}
+		}
+	}
+}
+
+country_event = {
+	#谈谈
+	id = gts_god_keeper.3016
+	title = gts_god_keeper.3016.name
+	desc = gts_god_keeper.3016.desc
+	is_triggered_only = yes
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	picture = GFX_load_119
+	show_sound = event_structural_collapse
+	option = {
+		name = gts_god_keeper.3016.a
+		event_target:gts_yarong = {
+			gts_love_system_increase = { value = 2.5 }
+		}
+	}
+}
+
+country_event = {
+	#女神
+	id = gts_god_keeper.3017
+	title = gts_god_keeper.3017.name
+	desc = gts_god_keeper.3017.desc
+	is_triggered_only = yes
+	fire_only_once = yes
+	diplomatic = yes
+	show_sound = event_announcement
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	option = {
+		name = gts_god_keeper.3017.a
+		event_target:gts_yarong = {
+			gts_love_system_increase = { value = 0.5 }
+		}
+	}
+}
+
+ship_event = {
+	#特殊的军事演习（2）
+	id = gts_god_keeper.3020
+	title = gts_god_keeper.3010.title
+	desc = gts_god_keeper.3020.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_alien_signal
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	trigger = {
+		exists = event_target:gts_yarong
+	}
+	option = {
+		#尽力即可
+		name = gts_god_keeper.3020.a
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = gts_god_keeper.3021
+				}
+			}
+		}
+	}
+	option = {
+		#全力以赴
+		name = gts_god_keeper.3020.b
+		allow = {
+			owner = {
+				has_valid_civic = civic_god_lord
+				resource_stockpile_compare = {
+					resource = energy
+					value >= 500
+				}
+			}
+		}
+		owner = {
+			add_resource = {
+				energy = -500
+			}
+		}
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = gts_god_keeper.3023
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	#尽力即可
+	id = gts_god_keeper.3021
+	title = gts_god_keeper.3010.title
+	desc = gts_god_keeper.3021.desc
+	is_triggered_only = yes
+	fire_only_once = yes
+	diplomatic = yes
+	show_sound = event_collapsing_ruins
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	option = {
+		name = gts_god_keeper.3021.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.3022
+			}
+		}
+	}
+}
+
+country_event = {
+	#尽力即可
+	id = gts_god_keeper.3022
+	title = gts_god_keeper.3016.name
+	desc = gts_god_keeper.3022.desc
+	is_triggered_only = yes
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	picture = GFX_gts_event_67
+	show_sound = event_gts_chew_and_gulp
+	option = {
+		name = gts_god_keeper.3016.a
+		event_target:gts_yarong = {
+			gts_love_system_increase = { value = 5 }
+		}
+		capital_scope = {
+			add_planet_devastation = 3
+		}
+		ruler = {
+			add_trait = {
+				trait = leader_trait_vored
+				show_message = no
+			}
+		}
+	}
+}
+
+country_event = {
+	#全力以赴
+	id = gts_god_keeper.3023
+	title = gts_god_keeper.3010.title
+	desc = gts_god_keeper.3023.desc
+	is_triggered_only = yes
+	fire_only_once = yes
+	diplomatic = yes
+	show_sound = event_space_battle
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	option = {
+		name = gts_god_keeper.3023.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.3024
+			}
+		}
+	}
+}
+
+country_event = {
+	#全力以赴
+	id = gts_god_keeper.3024
+	title = gts_god_keeper.3010.title
+	desc = gts_god_keeper.3024.desc
+	is_triggered_only = yes
+	fire_only_once = yes
+	diplomatic = yes
+	show_sound = event_celebration
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	option = {
+		name = gts_god_keeper.3024.a
+		event_target:gts_yarong = {
+			gts_love_system_increase = { value = 5 }
+		}
+	}
+}
+
+# 好感度事件触发
+country_event = {
+	id = gts_god_keeper.3999
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = {
+		exists = event_target:gts_yarong
+		event_target:gts_yarong = {
+			check_variable = { which = gts_love_logs value >= gts_love_level2}
+		}
+	}
+	immediate = {
+		if = {
+			limit = {
+				event_target:gts_yarong = {
+					check_variable = { which = gts_love_logs value >= gts_love_level5 }
+					NOR = {
+						has_country_flag = can_marry_gts_yarong
+						has_country_flag = married_gts_yarong
+					}
+				}
+			}
+			country_event = {
+				id = gts_god_keeper.4000
+				days = 24
+			}
+		}
+	}
+}
+#犽戎 好感度有关事件
+country_event = {
+	#满好感
+	id = gts_god_keeper.4000
+	title = gts_god_keeper.4000.title
+	desc = gts_god_keeper.4000.desc
+	is_triggered_only = yes
+	trigger = {
+		NOT = { has_country_flag = can_marry_gts_yarong }
+	}
+	event_window_type = leader_recruit
+	show_sound = event_celebration
+	picture = GFX_leader_recruitment_bg_legendary_skrand
+	force_open = yes
+	immediate = {
+		set_country_flag = can_marry_gts_yarong
+	}
+	fire_only_once = yes
+	picture_event_data = {
+		portrait = event_target:gts_yarong
+	}
+	option = {
+		name = gts_god_keeper.4000.a
+		is_dialog_only = yes
+		set_country_flag = gts_god_keeper.4000.a.done
+		response_text = gts_god_keeper.4000.a.response
+	}
+	option = {
+		name = gts_god_keeper.4000.b
+		is_dialog_only = yes
+		allow = {
+			has_country_flag = gts_god_keeper.4000.a.done
+		}
+		hide_option_if_not_allowed = yes
+		set_country_flag = gts_god_keeper.4000.b.done
+		response_text = gts_god_keeper.4000.b.response
+	}
+	option = {
+		name = gts_god_keeper.4000.c
+		is_dialog_only = yes
+		allow = {
+			has_country_flag = gts_god_keeper.4000.b.done
+		}
+		hide_option_if_not_allowed = yes
+		set_country_flag = gts_god_keeper.4000.c.done
+		response_text = gts_god_keeper.4000.c.response
+	}
+	option = {
+		name = gts_god_keeper.4000.d
+		is_dialog_only = yes
+		allow = {
+			has_country_flag = gts_god_keeper.4000.c.done
+		}
+		hide_option_if_not_allowed = yes
+		set_country_flag = gts_god_keeper.4000.d.done
+		response_text = gts_god_keeper.4000.d.response
+	}
+	option = {
+		name = gts_god_keeper.4000.e
+		is_dialog_only = yes
+		allow = {
+			has_country_flag = gts_god_keeper.4000.d.done
+		}
+		hide_option_if_not_allowed = yes
+		set_country_flag = gts_god_keeper.4000.e.done
+		response_text = gts_god_keeper.4000.e.response
+	}
+	option = {
+		name = gts_god_keeper.4000.f
+		is_dialog_only = yes
+		allow = {
+			has_country_flag = gts_god_keeper.4000.e.done
+		}
+		hide_option_if_not_allowed = yes
+		set_country_flag = gts_god_keeper.4000.f.done
+		response_text = gts_god_keeper.4000.f.response
+	}
+	option = {
+		name = gts_god_keeper.4000.g1
+		allow = {
+			has_country_flag = gts_god_keeper.4000.f.done
+		}
+		hide_option_if_not_allowed = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.4001
+			}
+		}
+	}
+	option = {
+		name = gts_god_keeper.4000.g2
+		allow = {
+			has_country_flag = gts_god_keeper.4000.f.done
+		}
+		hide_option_if_not_allowed = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.4007
+			}
+		}
+	}
+	option = {
+		name = DISMISS
+		tag = dismiss_leader
+		allow = {
+			always = no
+		}
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		allow = {
+			always = no
+		}
+	}
+	after = {
+		remove_country_flag = gts_god_keeper.4000.a.done
+		remove_country_flag = gts_god_keeper.4000.b.done
+		remove_country_flag = gts_god_keeper.4000.c.done
+		remove_country_flag = gts_god_keeper.4000.d.done
+		remove_country_flag = gts_god_keeper.4000.e.done
+		remove_country_flag = gts_god_keeper.4000.f.done
+	}
+}
+
+country_event = {
+	#拒绝
+	id = gts_god_keeper.4001
+	title = gts_god_keeper.4000.title
+	desc = gts_god_keeper.4001.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_faceoff_in_space
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	option = {
+		name = gts_god_keeper.4001.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.4002
+			}
+		}
+	}
+}
+
+country_event = {
+	#拒绝
+	id = gts_god_keeper.4002
+	title = gts_god_keeper.4000.title
+	desc = gts_god_keeper.4002.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_faceoff_in_space
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	option = {
+		name = gts_god_keeper.4002.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.4003
+			}
+		}
+	}
+}
+
+country_event = {
+	#拒绝
+	id = gts_god_keeper.4003
+	title = gts_god_keeper.4003.name
+	desc = gts_god_keeper.4003.desc
+	is_triggered_only = yes
+	show_sound = event_faceoff_in_space
+	picture = GFX_evt_gts_vore_contact
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	option = {
+		name = gts_god_keeper.4003.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.4004
+			}
+		}
+	}
+}
+
+country_event = {
+	#拒绝
+	id = gts_god_keeper.4004
+	title = gts_god_keeper.4003.name
+	desc = gts_god_keeper.4004.desc
+	is_triggered_only = yes
+	show_sound = event_gts_masturbate
+	picture = GFX_evt_gts_vore_contact
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	option = {
+		name = gts_god_keeper.4004.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.4005
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.4005
+	title = gts_god_keeper.4003.name
+	desc = gts_god_keeper.4005.desc
+	is_triggered_only = yes
+	show_sound = event_collapsing_ruins
+	picture = GFX_load_121
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	option = {
+		name = gts_god_keeper.4005.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.4006
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.4006
+	title = gts_god_keeper.4003.name
+	desc = gts_god_keeper.4006.desc
+	is_triggered_only = yes
+	show_sound = event_gts_gulp
+	picture = GFX_load_120
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	option = {
+		name = gts_god_keeper.4006.a
+	}
+}
+
+country_event = {
+	#同意
+	id = gts_god_keeper.4007
+	title = gts_god_keeper.4007.title
+	desc = gts_god_keeper.4007.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_faceoff_in_space
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	option = {
+		name = gts_god_keeper.4007.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.4008
+			}
+		}
+	}
+}
+
+country_event = {
+	#同意
+	id = gts_god_keeper.4008
+	title = gts_god_keeper.4007.title
+	desc = gts_god_keeper.4008.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_crystal_ship
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	option = {
+		name = gts_god_keeper.4007.a
+		country_event = {
+			id = gts_god_keeper.4009
+			days = 60
+		}
+	}
+}
+
+country_event = {
+	#永恒誓约
+	id = gts_god_keeper.4009
+	title = gts_god_keeper.4009.name
+	desc = gts_god_keeper.4009.desc
+	is_triggered_only = yes
+	show_sound = event_ship_thrusters
+	picture = GFX_gtsra_load_16
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	option = {
+		name = gts_god_keeper.4009.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.4010
+			}
+		}
+	}
+}
+
+country_event = {
+	#永恒誓约
+	id = gts_god_keeper.4010
+	title = gts_god_keeper.4010.title
+	desc = gts_god_keeper.4010.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_celebration
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	option = {
+		name = gts_god_keeper.4010.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.4011
+			}
+		}
+	}
+}
+
+country_event = {
+	#永恒誓约
+	id = gts_god_keeper.4011
+	title = gts_god_keeper.4010.title
+	desc = gts_god_keeper.4011.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_announcement
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	option = {
+		name = gts_god_keeper.4011.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.4012
+			}
+		}
+	}
+	option = {
+		name = gts_god_keeper.4011.b
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.4012
+			}
+		}
+	}
+	option = {
+		name = gts_god_keeper.4011.c
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.4012
+			}
+		}
+	}
+}
+
+country_event = {
+	#永恒誓约
+	id = gts_god_keeper.4012
+	title = gts_god_keeper.4010.title
+	desc = gts_god_keeper.4012.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_celebration
+	picture_event_data = {
+		room = gts_yarong3_room
+	}
+	trigger = {
+		is_gts_yarong_origin = yes
+	}
+	option = {
+		name = gts_god_keeper.4012.a
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.4013
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.4013
+	title = gts_god_keeper.4009.name
+	desc = gts_god_keeper.4013.desc
+	is_triggered_only = yes
+	show_sound = event_gts_masturbate
+	picture = GFX_gts_eyjafjalla_10
+	trigger = {
+		is_gts_yarong_origin = yes
+		NOT = { has_country_flag = married_gts_yarong }
+	}
+	option = {
+		name = gts_god_keeper.4013.a
+		add_relic = r_yarong_ring
+		set_country_flag = married_gts_yarong
+		remove_country_flag = can_marry_gts_yarong
+		event_target:gts_yarong = {
+			set_leader_flag = gts_married
+		}
+	}
+	# after = {
+	# 	country_event = {
+	# 		id = gts_god_keeper.4020
+	# 		days = 365
+	# 	}
+	# }
+}
+
+# ### 老父亲爆炒她的龙崽子，前提是完成永恒誓约并开启GC选项,图还没加
+# country_event = {
+# 	id = gts_god_keeper.4020
+# 	title = gts_god_keeper.4020.title
+# 	desc = gts_god_keeper.4020.desc
+# 	is_triggered_only = yes
+# 	diplomatic = yes
+# 	show_sound = event_gts_breath
+# 	custom_gui = "gts_vertical_event_window"
+# 	picture_event_data = {
+# 		room = gts_event_39_room
+# 	}
+# 	trigger = {
+# 		exists = event_target:gts_yarong
+# 		has_origin = origin_god_keeper
+# 		has_country_flag = can_trigger_gc_content
+# 	}
+# 	option = {
+# 		name = gts_continue
+# 		hidden_effect = {
+# 			country_event = {
+# 				id = gts_god_keeper.4021
+# 			}
+# 		}
+# 	}
+# }
+# country_event = {
+# 	id = gts_god_keeper.4021
+# 	title = gts_god_keeper.4020.title
+# 	desc = gts_god_keeper.4021.desc
+# 	is_triggered_only = yes
+# 	diplomatic = yes
+# 	show_sound = event_gts_futa_masturbate
+# 	custom_gui = "gts_vertical_event_window"
+# 	picture_event_data = {
+# 		room = gts_event_39_room
+# 	}
+# 	trigger = {
+# 		exists = event_target:gts_yarong
+# 		has_origin = origin_god_keeper
+# 		has_country_flag = can_trigger_gc_content
+# 	}
+# 	option = {
+# 		name = gts_continue
+# 		hidden_effect = {
+# 			country_event = {
+# 				id = gts_god_keeper.4022
+# 			}
+# 		}
+# 	}
+# }
+# country_event = {
+# 	id = gts_god_keeper.4022
+# 	title = gts_god_keeper.4020.title
+# 	desc = gts_god_keeper.4022.desc
+# 	is_triggered_only = yes
+# 	diplomatic = yes
+# 	show_sound = event_gts_futa_masturbate
+# 	custom_gui = "gts_vertical_event_window"
+# 	picture_event_data = {
+# 		room = gts_event_39_room
+# 	}
+# 	trigger = {
+# 		exists = event_target:gts_yarong
+# 		has_origin = origin_god_keeper
+# 		has_country_flag = can_trigger_gc_content
+# 	}
+# 	option = {
+# 		name = gts_terror
+# 		add_resource = {
+# 			influence = 50
+# 		}
+# 	}
+# }
+#犽戎 局势 十二作福音构赦免苦弱 舔舐后触发
+situation_event = {
+	# 犽戎 十二作福音构赦免苦弱-第一作
+	id = gts_god_keeper.5001
+	title = gts_god_keeper.5001.title
+	desc = gts_god_keeper.5001.desc
+	show_sound = event_laboratory_sound
+	picture = GFX_gts_yarong_1
+	is_triggered_only = yes
+	option = {
+		name = gts_god_keeper.5001.option
+		owner = {
+			add_modifier = {
+				modifier = gts_conutry_yarong_twelve_level1
+			}
+			give_technology = {
+				# 人造龙鳞装甲
+				tech = tech_dragon_armor
+			}
+			set_variable = { which = gts_yarong_twelve value = 1}
+		}
+		gts_yarong_add_trait = yes
+	}
+}
+
+situation_event = {
+	# 犽戎 十二作福音构赦免苦弱-第一作
+	id = gts_god_keeper.5002
+	title = gts_god_keeper.5002.title
+	desc = gts_god_keeper.5002.desc
+	show_sound = event_laboratory_sound
+	picture = GFX_gts_yarong_1
+	is_triggered_only = yes
+	option = {
+		name = gts_god_keeper.5002.option
+		owner = {
+			add_modifier = {
+				modifier = gts_conutry_yarong_twelve_level2
+			}
+			set_variable = { which = gts_yarong_twelve value = 2}
+		}
+		gts_yarong_add_trait = yes
+	}
+}
+
+situation_event = {
+	# 犽戎 十二作福音构赦免苦弱-第三作
+	id = gts_god_keeper.5003
+	title = gts_god_keeper.5003.title
+	desc = gts_god_keeper.5003.desc
+	show_sound = event_laboratory_sound
+	picture = GFX_gts_yarong_1
+	is_triggered_only = yes
+	option = {
+		name = gts_god_keeper.5002.option
+		owner = {
+			add_modifier = {
+				modifier = gts_conutry_yarong_twelve_level3
+			}
+			set_variable = { which = gts_yarong_twelve value = 3}
+		}
+		gts_yarong_add_trait = yes
+	}
+}
+
+situation_event = {
+	# 犽戎 十二作福音构赦免苦弱-第四作
+	id = gts_god_keeper.5004
+	title = gts_god_keeper.5004.title
+	desc = gts_god_keeper.5004.desc
+	show_sound = event_laboratory_sound
+	picture = GFX_gts_yarong_1
+	is_triggered_only = yes
+	option = {
+		name = gts_god_keeper.5004.option
+		owner = {
+			add_modifier = {
+				modifier = gts_conutry_yarong_twelve_level4
+			}
+			set_variable = { which = gts_yarong_twelve value = 4}
+		}
+		gts_yarong_add_trait = yes
+	}
+}
+
+situation_event = {
+	# 犽戎 十二作福音构赦免苦弱-第五作
+	id = gts_god_keeper.5005
+	title = gts_god_keeper.5005.title
+	desc = gts_god_keeper.5005.desc
+	show_sound = event_laboratory_sound
+	picture = GFX_gts_yarong_1
+	is_triggered_only = yes
+	option = {
+		name = gts_god_keeper.5004.option
+		owner = {
+			add_modifier = {
+				modifier = gts_conutry_yarong_twelve_level5
+			}
+			set_variable = { which = gts_yarong_twelve value = 5}
+		}
+		gts_yarong_add_trait = yes
+	}
+}
+
+situation_event = {
+	# 犽戎 十二作福音构赦免苦弱-第六作
+	id = gts_god_keeper.5006
+	title = gts_god_keeper.5006.title
+	desc = gts_god_keeper.5006.desc
+	show_sound = event_laboratory_sound
+	picture = GFX_gts_yarong_1
+	is_triggered_only = yes
+	option = {
+		name = gts_god_keeper.5006.option
+		owner = {
+			add_modifier = {
+				modifier = gts_conutry_yarong_twelve_level6
+			}
+			set_variable = { which = gts_yarong_twelve value = 6}
+		}
+		gts_yarong_add_trait = yes
+	}
+}
+
+situation_event = {
+	# 犽戎 十二作福音构赦免苦弱-第七作
+	id = gts_god_keeper.5007
+	title = gts_god_keeper.5007.title
+	desc = gts_god_keeper.5007.desc
+	show_sound = event_laboratory_sound
+	picture = GFX_gts_yarong_1
+	is_triggered_only = yes
+	option = {
+		name = gts_god_keeper.5007.option
+		owner = {
+			add_modifier = {
+				modifier = gts_conutry_yarong_twelve_level7
+			}
+			set_variable = { which = gts_yarong_twelve value = 7}
+		}
+		gts_yarong_add_trait = yes
+	}
+}
+
+situation_event = {
+	# 犽戎 十二作福音构赦免苦弱-第八作
+	id = gts_god_keeper.5008
+	title = gts_god_keeper.5008.title
+	desc = gts_god_keeper.5008.desc
+	show_sound = event_laboratory_sound
+	picture = GFX_gts_yarong_1
+	is_triggered_only = yes
+	option = {
+		name = gts_god_keeper.5008.option
+		owner = {
+			add_modifier = {
+				modifier = gts_conutry_yarong_twelve_level8
+			}
+			set_variable = { which = gts_yarong_twelve value = 8 }
+		}
+	}
+}
+
+situation_event = {
+	# 犽戎 十二作福音构赦免苦弱-第九作
+	id = gts_god_keeper.5009
+	title = gts_god_keeper.5009.title
+	desc = gts_god_keeper.5009.desc
+	show_sound = event_laboratory_sound
+	picture = GFX_gts_yarong_1
+	is_triggered_only = yes
+	option = {
+		name = gts_god_keeper.5008.option
+		owner = {
+			add_modifier = {
+				modifier = gts_conutry_yarong_twelve_level9
+			}
+			set_variable = { which = gts_yarong_twelve value = 9}
+		}
+	}
+}
+
+situation_event = {
+	# 犽戎 十二作福音构赦免苦弱-第十作
+	id = gts_god_keeper.5010
+	title = gts_god_keeper.5010.title
+	desc = gts_god_keeper.5010.desc
+	show_sound = event_laboratory_sound
+	picture = GFX_gts_yarong_1
+	is_triggered_only = yes
+	option = {
+		name = gts_god_keeper.5008.option
+		owner = {
+			add_modifier = {
+				modifier = gts_conutry_yarong_twelve_level10
+			}
+			set_variable = { which = gts_yarong_twelve value = 10}
+		}
+
+	}
+}
+
+situation_event = {
+	# 犽戎 十二作福音构赦免苦弱-第十一作
+	id = gts_god_keeper.5011
+	title = gts_god_keeper.5011.title
+	desc = gts_god_keeper.5011.desc
+	show_sound = event_laboratory_sound
+	picture = GFX_gts_yarong_1
+	is_triggered_only = yes
+	option = {
+		name = gts_god_keeper.5011.option
+		owner = {
+			add_modifier = {
+				modifier = gts_conutry_yarong_twelve_level11
+			}
+			set_variable = { which = gts_yarong_twelve value = 11}
+		}
+		gts_yarong_add_trait = yes
+	}
+}
+
+situation_event = {
+	# 犽戎 十二作福音构赦免苦弱-第十二作
+	id = gts_god_keeper.5012
+	title = gts_god_keeper.5012.title
+	desc = gts_god_keeper.5012.desc
+	show_sound = event_celebration
+	picture = GFX_gts_yarong_1
+	is_triggered_only = yes
+	option = {
+		name = gts_god_keeper.5012.option
+		owner = {
+			add_modifier = {
+				modifier = gts_conutry_yarong_twelve_level12
+			}
+			set_variable = { which = gts_yarong_twelve value = 12}
+		}
+		gts_yarong_add_trait = yes
+		gts_yarong_change_design = yes
+	}
+	after = {
+		destroy_situation = this
+	}
+}
+
+country_event = {
+	#犽戎重生之心法案事件
+	id = gts_god_keeper.5013
+	title = gts_god_keeper.5013.title
+	desc = gts_god_keeper.5013.desc
+	is_triggered_only = yes
+	immediate = {
+		country_event = {
+			id = gts_god_keeper.98
+		}
+		gts_yarong_rebirth_effect = yes
+	}
+	option = {
+		name = gts_god_keeper.5013.option
+	}
+}
+
+country_event = {
+	#测试用事件
+	id = gts_god_keeper.5000
+	title = gts_god_keeper.5008.title
+	desc = gts_god_keeper.5008.desc
+	is_triggered_only = yes
+	option = {
+		name = gts_god_keeper.5008.option
+		start_situation = {
+			type = gts_situation_yarong_twelve
+		}
+	}
+}
+
+espionage_operation_event = {
+	#降下神迹
+	id = gts_god_keeper.5501
+	title = gts_god_keeper.5501.title
+	desc = gts_god_keeper.5501.desc
+	picture = GFX_gts_yarong_4
+	is_triggered_only = yes
+	immediate = {
+		set_espionage_operation_progress_locked = yes
+	}
+	option = {
+		name = gts_god_keeper.5501.option
+		hidden_effect = {
+			from.owner = {
+				while = {
+					limit = {
+						has_pre_ftl_age = atomic_age
+						has_pre_ftl_age = stone_age
+						has_pre_ftl_age = bronze_age
+						has_pre_ftl_age = early_space_age
+						has_pre_ftl_age = industrial_age
+						has_pre_ftl_age = iron_age
+						has_pre_ftl_age = machine_age
+						has_pre_ftl_age = late_medieval_age
+						has_pre_ftl_age = renaissance_age
+						has_pre_ftl_age = steam_age
+					}
+					go_to_next_pre_ftl_age = yes
+				}
+				shift_ethic = "ethic_fanatic_authoritarian"				# 给当前帝国增加极端威权主义思潮
+				set_subject_of = {
+					who = ROOT.OWNER
+					preset = preset_scholarium
+				}
+				set_country_flag = gts_yarong_god_country
+			}
+		}
+	}
+	after = {
+		set_espionage_operation_progress_locked = no
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.5505
+	title = gts_god_keeper.5505.title
+	desc = gts_god_keeper.5505.desc
+	picture = GFX_gts_yarong_5
+	show_sound = event_gts_chew_and_gulp
+	is_triggered_only = yes
+	option = {
+		name = gts_god_keeper.5008.option
+		if = {
+			limit = {
+				has_country_flag = yarong_ineternal_coloied
+			}
+			country_event = {
+				id = gts_god_keeper.5603
+				days = 30
+			}
+		}
+	}
+}
+
+# 犽戎 体内殖民事件链
+country_event = {
+	id = gts_god_keeper.5600
+	title = gts_god_keeper.5600.title
+	desc = gts_god_keeper.5600.desc
+	show_sound = event_gts_breath
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_yarong11_room
+	}
+	is_triggered_only = yes
+	option = {
+		name = gts_god_keeper.5600.option
+		country_event = {
+			id = gts_god_keeper.5601
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.5601
+	title = gts_god_keeper.5601.title
+	desc = gts_god_keeper.5601.desc
+	show_sound = event_gts_vore
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	immediate = {
+		hidden_effect = {
+			capital_star = {
+				spawn_system = {
+					min_distance >= 10
+					max_distance <= 30
+					max_jumps = 0
+					initializer = gts_yarong_internal_system
+					effect = {
+						save_global_event_target_as = gts_yarong_internal_system
+						every_system_planet = {
+							limit = {
+								has_planet_flag = gts_yarong_internal_planet
+							}
+							save_global_event_target_as = gts_yarong_internal_planet
+						}
+					}
+				}
+			}
+		}
+	}
+	picture_event_data = {
+		room = gts_yarong11_room
+	}
+	is_triggered_only = yes
+	option = {
+		name = gts_god_keeper.5601.option
+		hidden_effect = {
+			event_target:gts_yarong_internal_system = {
+				set_surveyed = {
+					surveyed = yes
+					surveyor = root
+				}
+				star = {
+					create_starbase = {
+						owner = root
+						size = starbase_starfortress
+					}
+				}
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = gts_god_keeper.5602
+	title = gts_god_keeper.5602.title
+	desc = gts_god_keeper.5602.desc
+	show_sound = event_gts_heartbeat
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_yarong15_room
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		has_planet_flag = gts_yarong_internal_planet
+	}
+	option = {
+		name = gts_god_keeper.5602.option
+		hidden_effect = {
+			event_target:gts_yarong_internal_planet = {
+				add_modifier = {
+					modifier = gts_planet_yarong_internal_1
+					days = -1
+				}
+				add_modifier = {
+					modifier = gts_planet_yarong_internal_2
+					days = -1
+				}
+				add_modifier = {
+					modifier = gts_planet_yarong_internal_3
+					days = -1
+				}
+			}
+			owner = {
+				set_country_flag = yarong_ineternal_coloied
+				country_event = {
+					id = gts_god_keeper.5603
+					days = 30
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.5603
+	title = gts_god_keeper.5603.title
+	desc = gts_god_keeper.5603.desc
+	show_sound = event_gts_heartbeat
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_yarong12_room
+	}
+	fire_only_once = yes
+	is_triggered_only = yes
+	trigger = {
+		has_country_flag = yarong_ineternal_coloied
+	}
+	option = {
+		name = gts_god_keeper.5603.option
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.5604
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.5604
+	title = gts_god_keeper.5604.title
+	desc = gts_god_keeper.5604.desc
+	show_sound = event_gts_heartbeat
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_yarong12_room
+	}
+	is_triggered_only = yes
+	option = {
+		name = gts_god_keeper.5604.option
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.5605
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.5605
+	title = gts_god_keeper.5605.title
+	desc = gts_god_keeper.5605.desc
+	show_sound = event_gts_heartbeat
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_yarong12_room
+	}
+	is_triggered_only = yes
+	option = {
+		name = gts_god_keeper.5605.option
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.5606
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.5606
+	title = gts_god_keeper.5606.title
+	desc = gts_god_keeper.5606.desc
+	show_sound = event_gts_enn
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_yarong13_room
+	}
+	is_triggered_only = yes
+	option = {
+		name = gts_god_keeper.5606.option
+		hidden_effect = {
+			country_event = {
+				id = gts_god_keeper.5607
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.5607
+	title = gts_god_keeper.5607.title
+	desc = gts_god_keeper.5607.desc
+	show_sound = event_gts_breath
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_yarong14_room
+	}
+	is_triggered_only = yes
+	option = {
+		name = gts_god_keeper.5607.option
+		hidden_effect = {
+			event_target:gts_yarong_internal_system = {
+				every_system_planet = {
+					limit = {
+						has_planet_flag = gts_yarong_internal_planet
+					}
+					add_modifier = {
+						modifier = gts_planet_yarong_internal_4
+						years = 20
+					}
+					add_modifier = {
+						modifier = gts_planet_yarong_internal_5
+						days = -1
+					}
+				}
+			}
+		}
+	}
+}
+
+# 犽戎的监督 星球旁时加buff
+#From = Planet/Starbase/Megastructure scope
+#This = Fleet scope
+fleet_event = {
+	id = gts_god_keeper.7303
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		any_owned_ship = {
+			is_ship_size = gts_yarong_ship
+		}
+		from = {
+			is_scope_type = planet
+			owner = {
+				has_origin = origin_god_keeper
+			}
+		}
+	}
+	immediate = {
+		from = {
+			planet_event = {
+				id = gts_god_keeper.7304
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = gts_god_keeper.7304
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		any_fleet_in_orbit = {
+			IS_SHIP_SIZE = gts_yarong_ship
+		}
+		not = {
+			has_modifier = gts_yarong_jiandu
+		}
+	}
+	immediate = {
+		add_modifier = {
+			modifier = gts_yarong_jiandu
+		}
+	}
+}
+
+country_event = {
+	id = gts_god_keeper.7305
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		has_origin = origin_god_keeper
+	}
+	immediate = {
+		if = {
+			limit = {
+				any_owned_planet = {
+					has_modifier = gts_yarong_jiandu
+					NOT = {
+						any_fleet_in_orbit = {
+							IS_SHIP_SIZE = gts_yarong_ship
+						}
+					}
+				}
+			}
+			every_owned_planet = {
+				remove_modifier = gts_yarong_jiandu
+			}
+		}
+	}
+}
+
+namespace = gts_yarong_colossus
+#蠢驴奇形怪状的代码
+# 足底处决
+planet_event = {
+	id = gts_yarong_colossus.100
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		save_event_target_as = gts_yarong_destroyed_planet
+		gts_set_count_kill_pop_effect = yes
+		event_target:gts_yarong_destroyed_planet = {
+			gts_count_army_killed_pop_effect = yes
+			while = {
+				count = 5
+				random_owned_pop_group = {
+					if = {
+						limit = { gts_is_tiny = yes  }
+						event_target:gts_yarong_destroyed_planet = {
+							change_variable = {
+								which = gts_event_kills_logs
+								value = 2
+							}
+							random_list = {
+								1 = {
+									change_variable = {
+										which = gts_event_city_kills_logs
+										value = 40
+									}
+								}
+								1 = {
+									change_variable = {
+										which = gts_event_city_kills_logs
+										value = 120
+									}
+								}
+								1 = {
+									change_variable = {
+										which = gts_event_city_kills_logs
+										value = 200
+									}
+								}
+							}
+						}
+					}
+					else_if = {
+						limit = { gts_is_giantess = yes }
+						event_target:gts_yarong_destroyed_planet = {
+							change_variable = {
+								which = gts_event_kills_logs
+								value = 5
+							}
+							random_list = {
+								1 = {
+									change_variable = {
+										which = gts_event_city_kills_logs
+										value = 100
+									}
+								}
+								1 = {
+									change_variable = {
+										which = gts_event_city_kills_logs
+										value = 300
+									}
+								}
+								1 = {
+									change_variable = {
+										which = gts_event_city_kills_logs
+										value = 500
+									}
+								}
+							}
+						}
+					}
+					kill_all_pop = yes
+				}
+			}
+		}
+		event_target:gts_yarong = {
+			change_variable = {
+				which = gts_feet_kills_logs
+				value = root.gts_event_kills_logs
+			}
+			change_variable = {
+				which = gts_city_kills_logs
+				value = root.gts_event_city_kills_logs
+			}
+			change_variable = {
+				which = gts_planet_kills_logs
+				value = 1
+			}
+		}
+		if = {
+			limit = {
+				planet_is_hostile = yes
+			}
+			from.owner = { country_event = { id = gts_yarong_colossus.110 } }
+		}
+
+		#Dismantle observation post
+		if = {
+			limit = {
+				has_observation_outpost = yes
+			}
+			observation_outpost_owner = {
+				country_event = { id = planet_destruction.1000 days = 1 }
+			}
+		}
+
+		# Contingency Machine World
+		if = {
+			limit = {
+				is_planet_class = pc_ai
+				NOT = { has_planet_flag = machine_lair }
+			}
+			set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_cracked
+			planet_event = { id = crisis.2040 }
+		}
+
+		# Contingency Final Machine World
+		if = {
+			limit = {
+				is_planet_class = pc_ai
+				has_planet_flag = machine_lair
+			}
+			set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_cracked
+			from.owner = { save_event_target_as = final_machine_world_destroyer }
+			stop_crisis_sound = yes
+			planet_event = { id = crisis.2046 }
+		}
+
+		# Swarm Situation Log counter
+		if = {
+			limit = {
+				exists = owner
+				owner = { is_country_type = swarm }
+			}
+			every_country = {
+				limit = { has_event_chain = "prethoryn_scourge_chain" }
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds"
+					amount = -1
+				}
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds_cleansed"
+					amount = 1
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				OR = {
+					is_active_resolution = "resolution_rulesofwar_reverence_for_life"
+					is_active_resolution = "resolution_rulesofwar_independent_tribunals"
+					is_active_resolution = "resolution_rulesofwar_last_resort_doctrine"
+					is_active_resolution = "resolution_rulesofwar_demobilization_initiative"
+				}
+			}
+			from.owner = {
+				set_timed_country_flag = { flag = resolution_breached_fired_cracker days = 3600 }
+			}
+		}
+
+		# Exterminatus Achievement
+		if = {
+			limit = { is_capital = yes }
+			from.owner = { set_country_flag = exterminatus }
+		}
+		if = {
+			limit = {
+				exists = owner
+				owner = {
+					NOT = { is_same_value = from.owner }
+					OR = {
+						is_country_type = default
+						is_country_type = fallen_empire
+						is_country_type = awakened_fallen_empire
+					}
+				}
+			}
+			# Generate threat
+			if = {
+				limit = {
+					is_colony = yes
+				}
+				add_threat = { who = from.owner amount = 3 }
+				# modifier for allies + those upset by genocide
+				every_country = {
+					limit = {
+						NOR = {
+							is_same_value = from.owner
+							is_same_value = root.owner
+							AND = {
+								has_federation = yes
+								is_in_federation_with = from.owner
+							}
+						}
+						OR = {
+							has_communications = from.owner
+							has_communications = root.owner
+						}
+						OR = {
+							AND = {
+								has_federation = yes
+								is_in_federation_with = root.owner
+							}
+							has_ai_personality = awakened_fallen_empire_xenophile
+							AND = {
+								is_country_type = default
+								OR = {
+									is_egalitarian = yes
+									is_xenophile = yes
+								}
+							}
+						}
+					}
+					if = {
+						limit = { root = { is_colony = no } }
+						add_opinion_modifier = {
+							modifier = opinion_cracked_an_uninhabited_world
+							who = from.owner
+						}
+					}
+					else = {
+						add_opinion_modifier = {
+							modifier = opinion_cracked_a_world
+							who = from.owner
+						}
+					}
+				}
+			}
+			else = {
+				add_threat = { who = from.owner amount = 1 }
+			}
+			# modifiers for victim
+			owner = {
+				if = {
+					limit = { root = { is_colony = no } }
+					add_opinion_modifier = {
+						modifier = opinion_cracked_my_uninhabited_world
+						who = from.owner
+					}
+				}
+				else = {
+					add_opinion_modifier = {
+						modifier = opinion_cracked_my_world
+						who = from.owner
+					}
+				}
+				if = {
+					limit = { NOT = { has_ethic = ethic_gestalt_consciousness } }
+					add_modifier = {
+						modifier = colossus_victim
+						days = 10800 # 30 years
+					}
+				}
+			}
+			if = {
+				limit = {
+					exists = owner
+					owner = { is_country_type = primitive }
+				}
+				# modifier for allies + those upset by genocide
+				every_country = {
+					limit = {
+						NOT = { is_same_value = from.owner }
+						OR = {
+							has_communications = from.owner
+							has_communications = root.owner
+						}
+						OR = {
+							has_ai_personality = awakened_fallen_empire_xenophile
+							AND = {
+								is_country_type = default
+								NOR = {
+									is_xenophobe = yes
+									is_homicidal = yes
+									is_xenophile = yes
+								}
+							}
+						}
+					}
+					add_opinion_modifier = {
+						modifier = opinion_cracked_a_primitive_world
+						who = from.owner
+					}
+				}
+				every_country = {
+					limit = {
+						NOT = { is_same_value = from.owner }
+						OR = {
+							has_communications = from.owner
+							has_communications = root.owner
+						}
+						OR = {
+							has_ai_personality = awakened_fallen_empire_xenophile
+							AND = {
+								is_country_type = default
+								is_xenophile = yes
+							}
+						}
+					}
+					add_opinion_modifier = {
+						modifier = opinion_cracked_a_primitive_world_phile
+						who = from.owner
+					}
+				}
+			}
+		}
+		# Add war exhaustion to planet owner
+		if = {
+			limit = {
+				exists = owner
+			}
+			owner = {
+				if = {
+					limit = { #isn't the case when the crisis bombards planets, for instance
+						is_at_war_with = from.fleet.owner
+					}
+					add_static_war_exhaustion = {
+						attacker = from.fleet.owner
+						location = root
+						value_for_planet_destruction = 1.0
+					}
+				}
+			}
+		}
+		every_owned_pop_group = {
+			kill_all_pop = yes
+		}
+		if = {
+			limit = {
+				exists = orbital_defence
+			}
+			destroy_fleet = orbital_defence
+		}
+		remove_all_buildings = yes
+		# destroy habitats and ringworlds
+		if = {
+			limit = {
+				is_planet_class = pc_habitat
+			}
+			spawn_habitat_cracker_effect = yes
+		}
+		else_if = {
+			limit = {
+				is_planet_class = pc_cosmogenesis_world
+			}
+			spawn_lathe_cracker_effect = yes
+		}
+		else_if = {
+			limit = {
+				is_ringworld = yes
+			}
+			spawn_ringworld_cracker_effect = yes
+			change_pc = pc_ringworld_habitable_damaged
+		}
+		else_if = {
+			limit = { habitable_planet = yes }
+			set_planet_size = 1
+			change_pc = pc_gts_dirt0
+			clear_deposits = yes
+			random_list = {
+				1 = {
+					add_deposit = d_minerals_10
+					add_deposit = d_minerals_6
+				}
+				1 = {
+					add_deposit = d_minerals_10
+					add_deposit = d_minerals_2
+				}
+				1 = {
+					add_deposit = d_minerals_8
+				}
+				1 = {
+					add_deposit = d_minerals_4
+				}
+			}
+		}
+		else = {
+			set_planet_size = 1
+			change_pc = pc_gts_dirt0
+			clear_deposits = yes
+		}
+		create_ambient_object = {
+			location = this
+			type = habitat_cracker_object
+			duration = 5
+			use_3d_location = yes
+			base_angle_towards = star
+			entity_face_object = star
+			entity_offset = {
+				min = 0
+				max = 0
+			}
+			entity_scale_to_size = yes
+			scale = 0.5
+		}
+	}
+}
+
+# 排泄处决
+planet_event = {
+	id = gts_yarong_colossus.101
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		save_event_target_as = gts_yarong_destroyed_planet
+		gts_set_count_kill_pop_effect = yes
+		event_target:gts_yarong_destroyed_planet = {
+			gts_count_army_killed_pop_effect = yes
+			while = {
+				count = 5
+				random_owned_pop_group = {
+					if = {
+						limit = { gts_is_tiny = yes  }
+						event_target:gts_yarong_destroyed_planet = {
+							change_variable = {
+								which = gts_event_kills_logs
+								value = 2
+							}
+							random_list = {
+								1 = {
+									change_variable = {
+										which = gts_event_city_kills_logs
+										value = 40
+									}
+								}
+								1 = {
+									change_variable = {
+										which = gts_event_city_kills_logs
+										value = 120
+									}
+								}
+								1 = {
+									change_variable = {
+										which = gts_event_city_kills_logs
+										value = 200
+									}
+								}
+							}
+						}
+					}
+					else_if = {
+						limit = { gts_is_giantess = yes }
+						event_target:gts_yarong_destroyed_planet = {
+							change_variable = {
+								which = gts_event_kills_logs
+								value = 5
+							}
+							random_list = {
+								1 = {
+									change_variable = {
+										which = gts_event_city_kills_logs
+										value = 100
+									}
+								}
+								1 = {
+									change_variable = {
+										which = gts_event_city_kills_logs
+										value = 300
+									}
+								}
+								1 = {
+									change_variable = {
+										which = gts_event_city_kills_logs
+										value = 500
+									}
+								}
+							}
+						}
+					}
+					kill_all_pop = yes
+				}
+			}
+		}
+		event_target:gts_yarong = {
+			change_variable = {
+				which = gts_feet_kills_logs
+				value = root.gts_event_kills_logs
+			}
+			change_variable = {
+				which = gts_city_kills_logs
+				value = root.gts_event_city_kills_logs
+			}
+			change_variable = {
+				which = gts_planet_kills_logs
+				value = 1
+			}
+
+		}
+		owner = {
+			save_event_target_as = gts_yarong_destroyed_country
+		}
+		if = {
+			limit = {
+				planet_is_hostile = yes
+			}
+			from.owner = { country_event = { id = gts_yarong_colossus.111 } }
+		}
+
+		#Dismantle observation post
+		if = {
+			limit = {
+				has_observation_outpost = yes
+			}
+			observation_outpost_owner = {
+				country_event = { id = planet_destruction.1000 days = 1 }
+			}
+		}
+
+		# Contingency Machine World
+		if = {
+			limit = {
+				is_planet_class = pc_ai
+				NOT = { has_planet_flag = machine_lair }
+			}
+			set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_cracked
+			planet_event = { id = crisis.2040 }
+		}
+
+		# Contingency Final Machine World
+		if = {
+			limit = {
+				is_planet_class = pc_ai
+				has_planet_flag = machine_lair
+			}
+			set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_cracked
+			from.owner = { save_event_target_as = final_machine_world_destroyer }
+			stop_crisis_sound = yes
+			planet_event = { id = crisis.2046 }
+		}
+
+		# Swarm Situation Log counter
+		if = {
+			limit = {
+				exists = owner
+				owner = { is_country_type = swarm }
+			}
+			every_country = {
+				limit = { has_event_chain = "prethoryn_scourge_chain" }
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds"
+					amount = -1
+				}
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds_cleansed"
+					amount = 1
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				OR = {
+					is_active_resolution = "resolution_rulesofwar_reverence_for_life"
+					is_active_resolution = "resolution_rulesofwar_independent_tribunals"
+					is_active_resolution = "resolution_rulesofwar_last_resort_doctrine"
+					is_active_resolution = "resolution_rulesofwar_demobilization_initiative"
+				}
+			}
+			from.owner = {
+				set_timed_country_flag = { flag = resolution_breached_fired_cracker days = 3600 }
+			}
+		}
+
+		# Exterminatus Achievement
+		if = {
+			limit = { is_capital = yes }
+			from.owner = { set_country_flag = exterminatus }
+		}
+		if = {
+			limit = {
+				exists = owner
+				owner = {
+					NOT = { is_same_value = from.owner }
+					OR = {
+						is_country_type = default
+						is_country_type = fallen_empire
+						is_country_type = awakened_fallen_empire
+					}
+				}
+			}
+			# Generate threat
+			if = {
+				limit = {
+					is_colony = yes
+				}
+				add_threat = { who = from.owner amount = 3 }
+				# modifier for allies + those upset by genocide
+				every_country = {
+					limit = {
+						NOR = {
+							is_same_value = from.owner
+							is_same_value = root.owner
+							AND = {
+								has_federation = yes
+								is_in_federation_with = from.owner
+							}
+						}
+						OR = {
+							has_communications = from.owner
+							has_communications = root.owner
+						}
+						OR = {
+							AND = {
+								has_federation = yes
+								is_in_federation_with = root.owner
+							}
+							has_ai_personality = awakened_fallen_empire_xenophile
+							AND = {
+								is_country_type = default
+								OR = {
+									is_egalitarian = yes
+									is_xenophile = yes
+								}
+							}
+						}
+					}
+					if = {
+						limit = { root = { is_colony = no } }
+						add_opinion_modifier = {
+							modifier = opinion_cracked_an_uninhabited_world
+							who = from.owner
+						}
+					}
+					else = {
+						add_opinion_modifier = {
+							modifier = opinion_cracked_a_world
+							who = from.owner
+						}
+					}
+				}
+			}
+			else = {
+				add_threat = { who = from.owner amount = 1 }
+			}
+			# modifiers for victim
+			owner = {
+				if = {
+					limit = { root = { is_colony = no } }
+					add_opinion_modifier = {
+						modifier = opinion_cracked_my_uninhabited_world
+						who = from.owner
+					}
+				}
+				else = {
+					add_opinion_modifier = {
+						modifier = opinion_cracked_my_world
+						who = from.owner
+					}
+				}
+				if = {
+					limit = { NOT = { has_ethic = ethic_gestalt_consciousness } }
+					add_modifier = {
+						modifier = colossus_victim
+						days = 10800 # 30 years
+					}
+				}
+			}
+			if = {
+				limit = {
+					exists = owner
+					owner = { is_country_type = primitive }
+				}
+				# modifier for allies + those upset by genocide
+				every_country = {
+					limit = {
+						NOT = { is_same_value = from.owner }
+						OR = {
+							has_communications = from.owner
+							has_communications = root.owner
+						}
+						OR = {
+							has_ai_personality = awakened_fallen_empire_xenophile
+							AND = {
+								is_country_type = default
+								NOR = {
+									is_xenophobe = yes
+									is_homicidal = yes
+									is_xenophile = yes
+								}
+							}
+						}
+					}
+					add_opinion_modifier = {
+						modifier = opinion_cracked_a_primitive_world
+						who = from.owner
+					}
+				}
+				every_country = {
+					limit = {
+						NOT = { is_same_value = from.owner }
+						OR = {
+							has_communications = from.owner
+							has_communications = root.owner
+						}
+						OR = {
+							has_ai_personality = awakened_fallen_empire_xenophile
+							AND = {
+								is_country_type = default
+								is_xenophile = yes
+							}
+						}
+					}
+					add_opinion_modifier = {
+						modifier = opinion_cracked_a_primitive_world_phile
+						who = from.owner
+					}
+				}
+			}
+		}
+		# Add war exhaustion to planet owner
+		if = {
+			limit = {
+				exists = owner
+			}
+			owner = {
+				if = {
+					limit = { #isn't the case when the crisis bombards planets, for instance
+						is_at_war_with = from.fleet.owner
+					}
+					add_static_war_exhaustion = {
+						attacker = from.fleet.owner
+						location = root
+						value_for_planet_destruction = 1.0
+					}
+				}
+			}
+		}
+		every_owned_pop_group = {
+			kill_all_pop = yes
+		}
+		if = {
+			limit = {
+				exists = orbital_defence
+			}
+			destroy_fleet = orbital_defence
+		}
+		remove_all_buildings = yes
+		# destroy habitats and ringworlds
+		if = {
+			limit = {
+				is_planet_class = pc_habitat
+			}
+			spawn_habitat_cracker_effect = yes
+		}
+		else_if = {
+			limit = {
+				is_planet_class = pc_cosmogenesis_world
+			}
+			spawn_lathe_cracker_effect = yes
+		}
+		else_if = {
+			limit = {
+				is_ringworld = yes
+			}
+			spawn_ringworld_cracker_effect = yes
+			change_pc = pc_ringworld_habitable_damaged
+		}
+		else_if = {
+			limit = { habitable_planet = yes }
+			pc_gts_urine_change_yarong = yes
+
+		}
+		else = {
+			set_planet_size = 1
+			change_pc = pc_gts_urine2
+			clear_deposits = yes
+		}
+		create_ambient_object = {
+			location = this
+			type = habitat_cracker_object
+			duration = 5
+			use_3d_location = yes
+			base_angle_towards = star
+			entity_face_object = star
+			entity_offset = {
+				min = 0
+				max = 0
+			}
+			entity_scale_to_size = yes
+			scale = 0.5
+		}
+	}
+}
+
+#炸球后弹出事件
+country_event = {
+	id = gts_yarong_colossus.110
+	title = gts_yarong_colossus.110.name
+	desc = gts_yarong_colossus.110.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_yarong6_room
+	}
+	show_sound = event_mystic_reveal
+	location = from
+	is_triggered_only = yes
+	trigger = {
+		NOT = { has_country_flag = yarong_destroyed_planet_1 }
+	}
+	option = {
+		name = gts_yarong_colossus.110a
+		root = {
+			set_country_flag = yarong_destroyed_planet_1
+		}
+		add_resource = { gts_micro_planet = 1 }
+		custom_tooltip = gts_yarong_colossus.110.tt
+	}
+}
+country_event = {
+	id = gts_yarong_colossus.111
+	title = gts_yarong_colossus.111.name
+	desc = gts_yarong_colossus.111.desc
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	# custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_yarong10_room
+	}
+	show_sound = event_mystic_reveal
+	location = from
+	is_triggered_only = yes
+	trigger = {
+		NOT = { has_country_flag = yarong_destroyed_planet_2 }
+	}
+	option = {
+		name = gts_yarong_colossus.111a
+		country_event = { id = gts_yarong_colossus.112}
+	}
+}
+country_event = {
+	id = gts_yarong_colossus.112
+	title = gts_yarong_colossus.111.name
+	desc = gts_yarong_colossus.112.desc
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	# custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_yarong10_room
+	}
+	location = from
+	is_triggered_only = yes
+	option = {
+		name = gts_yarong_colossus.112a
+		country_event = { id = gts_yarong_colossus.113 }
+	}
+}
+country_event = {
+	id = gts_yarong_colossus.113
+	title = gts_yarong_colossus.111.name
+	desc = gts_yarong_colossus.113.desc
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	# custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_yarong10_room
+	}
+	location = from
+	is_triggered_only = yes
+	option = {
+		name = gts_yarong_colossus.113a
+		country_event = { id = gts_yarong_colossus.114 }
+	}
+}
+country_event = {
+	id = gts_yarong_colossus.114
+	title = gts_yarong_colossus.111.name
+	desc = gts_yarong_colossus.114.desc
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	# custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_yarong10_room
+	}
+	location = from
+	is_triggered_only = yes
+	option = {
+		name = gts_yarong_colossus.114a
+		root = {
+			set_country_flag = yarong_destroyed_planet_2
+		}
+		add_resource = { gts_micro_planet = 1 }
+		add_resource = { gts_micro = 1 }
+		custom_tooltip = gts_yarong_colossus.111.tt
+	}
+}
+planet_event = {
+	id = gts_yarong_colossus.121
+	hide_window = yes
+	is_triggered_only = yes
+	# location = from
+	trigger = {
+		owner = {
+			has_origin = origin_god_keeper
+		}
+
+	}
+	immediate = {
+		owner = {
+			add_resource = { gts_micro_planet = 1 }
+		}
+	}
+}
+planet_event = {
+	id = gts_yarong_colossus.122
+	hide_window = yes
+	is_triggered_only = yes
+	# location = from
+	trigger = {
+		owner = {
+			has_origin = origin_god_keeper
+		}
+
+	}
+	immediate = {
+		owner = {
+			add_resource = { gts_micro_planet = 1 }
+			add_resource = { gts_micro = 1 }
+		}
+	}
+}

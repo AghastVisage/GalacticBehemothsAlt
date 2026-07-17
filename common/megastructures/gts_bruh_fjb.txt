@@ -1,0 +1,153 @@
+gts_fjb_0 = {
+
+	# 巨型飛機杯
+
+	entity = "fjb_none_entity"
+	construction_entity = "fjb_none_entity"
+	portrait = "GFX_megastructure_construction_background"
+	show_galactic_map_icon = yes
+	show_in_outliner = yes
+	construction_blocks_and_blocked_by = none
+	build_time = 1
+
+	potential = { #you may upgrade a ruined one if you have lost yours
+		NOR = {
+			any_owned_megastructure = {
+				OR = {
+					has_megastructure_flag = gts_fjb
+					AND = {
+						is_megastructure_type = gts_fjb_ruined
+						is_upgrading = yes
+					}
+				}
+			}
+		}
+		has_country_flag = doctor_can_build_fjb
+	}
+
+	possible = {
+		hidden_trigger = {
+			exists = starbase
+		}
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+		custom_tooltip = {
+			fail_text = "requires_surveyed_system"
+			NOT = {
+				any_system_planet = {
+					is_surveyed = {
+						who = prev.from
+						status = no
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_black_hole"
+			is_star_class = sc_black_hole
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_existing_megastructure"
+			has_no_non_gate_megastructure = yes
+			NOT = {
+				any_system_planet = {
+					is_planet_class = pc_cosmogenesis_world
+				}
+			}
+		}
+	}
+
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "must_build_around_star"
+				is_star = yes
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = { has_anomaly = yes }
+			}
+			is_star_class = sc_black_hole
+		}
+	}
+
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 25000
+			unity = 10000
+		}
+		produces = {
+			gts_giantess_fluid = 500
+		}
+		upkeep = {
+			energy = 50
+		}
+	}
+
+	upgrade_from = {
+		#gts_fjb_ruined
+	}
+
+	on_build_complete = {
+		fromfrom = {
+			set_megastructure_flag = gts_fjb
+		}
+		from = { country_event = { id = gts_doctor.30 } }
+	}
+}
+
+gts_fjb_1 = {
+	entity = "fjb_yeti_entity"
+	construction_entity = "fjb_yeti_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 1
+	victory_score = 1000
+
+	possible = {
+		hidden_trigger = {
+			exists = starbase
+		}
+		custom_tooltip = {
+			fail_text = "requires_build_fjb_mk2"
+			owner = { has_country_flag = doctor_can_build_fjb_mk2 }
+		}
+	}
+
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 15000
+			rare_crystals = 5000
+		}
+		produces = {
+			gts_giantess_fluid = 1000
+		}
+		upkeep = {
+			energy = 100
+		}
+	}
+
+	upgrade_from = {
+		gts_fjb_0
+	}
+
+	on_build_complete = {
+		fromfrom = { set_megastructure_flag = gts_fjb }
+		from = {
+			country_event = { id = gts_doctor.32 }
+		}
+	}
+}
+
+gts_fjb_ruined = {
+	entity = "fjb_none_entity"
+	portrait = "GFX_megastructure_construction_background"
+
+	potential = {
+		always = no
+	}
+}
+

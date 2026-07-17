@@ -1,0 +1,123 @@
+basic_economy_plan = {
+	subplan = {
+		optional = yes
+		set_name = "Rare gts resources"
+		potential = {
+			gts_is_giantess_empire = yes
+		}
+
+		income = {
+			gts_micro = @economic_plan_scaling_rare_resource_target
+			gts_micro_city = @economic_plan_scaling_rare_resource_target
+			gts_micro_planet = @economic_plan_scaling_rare_resource_target
+		}
+	}			
+
+	subplan = {
+		optional = yes
+		set_name = "Rare gts resources"
+		potential = {
+			gts_is_tiny_empire = yes
+		}
+
+		income = {
+			gts_giantess_fluid = @economic_plan_scaling_rare_resource_target
+			gts_giantess_underwear = @economic_plan_scaling_rare_resource_target
+			gts_giantess_human = @economic_plan_scaling_rare_resource_target
+
+		}
+	}	
+
+	subplan = {
+		optional = yes
+		scaling = yes
+		set_name = "Scaling micro gts"
+
+		potential = {
+			gts_is_giantess_empire = yes
+			has_monthly_income = { resource = gts_micro value < @economic_plan_rare_resource_limit }
+		}
+
+		income = {
+			gts_micro = @economic_plan_scaling_rare_resource_target
+		}
+	}
+
+	subplan = {
+		optional = yes
+		scaling = yes
+		set_name = "Scaling micro city gts"
+
+		potential = {
+			gts_is_giantess_empire = yes
+			has_monthly_income = { resource = gts_micro_city value < @economic_plan_rare_resource_limit }
+		}
+
+		income = {
+			gts_micro_city = @economic_plan_scaling_rare_resource_target
+		}
+	}
+
+	subplan = {
+		optional = yes
+		scaling = yes
+		set_name = "Scaling micro planet gts"
+
+		potential = {
+			gts_is_giantess_empire = yes
+			has_monthly_income = { resource = gts_micro_planet value < @economic_plan_rare_resource_limit }
+		}
+
+		income = {
+			gts_micro_planet = @economic_plan_scaling_rare_resource_target
+		}
+	}
+
+	subplan = {
+		optional = yes
+		scaling = yes
+		set_name = "Scaling giantess fluid gts"
+
+		potential = {
+			gts_is_tiny_empire = yes
+			has_monthly_income = { resource = gts_giantess_fluid value < @economic_plan_rare_resource_limit }
+		}
+
+		income = {
+			gts_giantess_fluid = @economic_plan_scaling_rare_resource_target
+		}
+	}
+
+	subplan = {
+		optional = yes
+		scaling = yes
+		set_name = "Scaling giantess underwear gts"
+
+		potential = {
+			gts_is_giantess_empire = yes
+			has_monthly_income = { resource = gts_giantess_underwear value < @economic_plan_rare_resource_limit }
+		}
+
+		income = {
+			gts_giantess_underwear = @economic_plan_scaling_rare_resource_target
+		}
+	}
+
+	subplan = {
+		optional = yes
+		scaling = yes
+		set_name = "Scaling giantess human gts"
+
+		potential = {
+			gts_is_giantess_empire = yes
+			has_monthly_income = { resource = gts_giantess_human value < @economic_plan_rare_resource_limit }
+		}
+
+		income = {
+			gts_giantess_human = @economic_plan_scaling_rare_resource_target
+		}
+	}
+	ai_weight = {
+		weight = 1
+	}
+}

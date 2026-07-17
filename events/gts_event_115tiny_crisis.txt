@@ -1,0 +1,2762 @@
+namespace = 115tiny_crisis
+
+# Crisis Ship Test
+country_event = {
+    id = 115tiny_crisis.4097
+    hide_window = yes
+    is_test_event = yes
+    is_triggered_only = yes
+    trigger = {
+        always = no
+    }
+
+    immediate = {
+        can_build_gts_115tiny_crisis_star_eater = yes
+    }
+}
+
+
+# Repeal Crisis Test (Used on Crisis Empire)
+country_event = {
+    id = 115tiny_crisis.4098
+    hide_window = yes
+    is_test_event = yes
+    is_triggered_only = yes
+    trigger = {
+        always = no
+    }
+
+    immediate = {
+        remove_country_flag = declared_crisis
+        save_event_target_as = former_crisis
+        random_war = {
+            limit = {
+                using_war_goal = {
+                    type = wg_declared_crisis
+                    owner = event_target:former_crisis
+                }
+            }
+            every_war_participant = {
+                limit = {
+                    NOT = { is_same_value = event_target:former_crisis }
+                }
+                country_event = { id = 115tiny_crisis.4110 }
+            }
+            every_war_participant = {
+                prev = {
+                    remove_war_participant = prev
+                }
+            }
+        }
+        country_event = { id = 115tiny_crisis.4111 }
+    }
+}
+
+# Declare Crisis Test (Used on desired Crisis Empire)
+country_event = {
+    id = 115tiny_crisis.4099
+    hide_window = yes
+    is_test_event = yes
+    is_triggered_only = yes
+    trigger = {
+        always = no
+    }
+
+    immediate = {
+        set_country_flag = declared_crisis
+        save_event_target_as = new_crisis
+        country_event = { id = 115tiny_crisis.4105 }
+        every_playable_country = {
+            limit = {
+                is_ai = no
+                NOT = { is_same_value = prev }
+            }
+            country_event = { id = 115tiny_crisis.4100 }
+        }
+        if = {
+            limit = { has_galactic_custodian = yes }
+            random_playable_country = {
+                limit = { is_galactic_custodian = yes }
+                save_event_target_as = community_war_leader
+                declare_war = {
+                    target = event_target:new_crisis
+                    name = {
+                        key = "NAME_Declared_Crisis_War"
+                        variable_string = "[This.MainDefender.GetAdj]"
+                    }
+                    attacker_war_goal = "wg_declared_crisis"
+                }
+            }
+            every_playable_country = {
+                limit = {
+                    is_galactic_custodian = no
+                    is_galactic_community_member = yes
+                }
+                join_war = event_target:community_war_leader # Should use different effect to ensure they only join the correct war
+            }
+        }
+        else = {
+            random_playable_country = {
+                limit = {
+                    is_galactic_community_member = yes
+                    galactic_community_rank = 1
+                }
+                save_event_target_as = community_war_leader
+                declare_war = {
+                    target = event_target:new_crisis
+                    name = {
+                        key = "NAME_Declared_Crisis_War"
+                        variable_string = "[This.MainDefender.GetAdj]"
+                    }
+                    attacker_war_goal = "wg_declared_crisis"
+                }
+                every_playable_country = {
+                    limit = {
+                        is_galactic_community_member = yes
+                        NOT = { is_same_value = event_target:community_war_leader }
+                    }
+                    join_war = event_target:community_war_leader # Should use different	 effect to ensure they only join the correct war
+                }
+            }
+        }
+    }
+}
+
+# Crisis Declared (Community)
+country_event = {
+    id = 115tiny_crisis.4100
+    title = "115tiny_crisis.4100.name"
+    desc = {
+        trigger = {
+            any_playable_country = { is_galactic_custodian = yes }
+        }
+        text = "115tiny_crisis.4100.desc.a"
+    }
+    desc = {
+        trigger = {
+            NOT = {
+                any_playable_country = { is_galactic_custodian = yes }
+            }
+        }
+        text = "115tiny_crisis.4100.desc.b"
+    }
+    picture = GFX_evt_crisis_declared
+    show_sound = event_announcement
+
+    is_triggered_only = yes
+
+    option = {
+        name = 115tiny_crisis.4100.a
+    }
+}
+
+# Crisis Declared (Empire)
+country_event = {
+    id = 115tiny_crisis.4101
+    title = "115tiny_crisis.4100.name"
+    desc = "115tiny_crisis.4101.desc"
+    picture = GFX_evt_crisis_declared
+    show_sound = event_announcement
+
+    is_triggered_only = yes
+
+    option = {
+        name = 115tiny_crisis.4100.a
+    }
+}
+
+# Crisis Informed (Community)
+country_event = {
+    id = 115tiny_crisis.4105
+    title = "115tiny_crisis.4105.name"
+    desc = {
+        trigger = {
+            OR = {
+                is_homicidal = yes
+                has_ascension_perk = ap_gts_115tiny_crisis
+            }
+            any_playable_country = { is_galactic_custodian = yes }
+        }
+        text = "115tiny_crisis.4105.desc.a"
+    }
+    desc = {
+        trigger = {
+            OR = {
+                is_homicidal = yes
+                has_ascension_perk = ap_gts_115tiny_crisis
+            }
+            NOT = {
+                any_playable_country = { is_galactic_custodian = yes }
+            }
+        }
+        text = "115tiny_crisis.4105.desc.b"
+    }
+    desc = {
+        trigger = {
+            is_homicidal = no
+            NOT = { has_ascension_perk = ap_gts_115tiny_crisis }
+        }
+        text = "115tiny_crisis.4105.desc.c"
+    }
+    picture = GFX_evt_crisis_declared
+    show_sound = event_announcement
+
+    is_triggered_only = yes
+
+    immediate = {
+        if = {
+            limit = {
+                any_playable_country = { is_galactic_custodian = yes }
+            }
+            random_playable_country = {
+                limit = { is_galactic_custodian = yes }
+                save_event_target_as = custodian
+            }
+        }
+    }
+
+    option = {
+        name = 115tiny_crisis.4105.a
+        trigger = {
+            OR = {
+                is_homicidal = yes
+                has_ascension_perk = ap_gts_115tiny_crisis
+            }
+        }
+    }
+    option = {
+        name = 115tiny_crisis.4105.b
+        trigger = {
+            is_homicidal = no
+            NOT = { has_ascension_perk = ap_gts_115tiny_crisis }
+        }
+    }
+}
+
+# Crisis Informed (Empire)
+country_event = {
+    id = 115tiny_crisis.4106
+    title = "115tiny_crisis.4106.name"
+    desc = {
+        trigger = {
+            OR = {
+                is_homicidal = yes
+                has_ascension_perk = ap_gts_115tiny_crisis
+            }
+        }
+        text = "115tiny_crisis.4106.desc.a"
+    }
+    desc = {
+        trigger = {
+            is_homicidal = no
+            NOT = { has_ascension_perk = ap_gts_115tiny_crisis }
+        }
+        text = "115tiny_crisis.4106.desc.b"
+    }
+    picture = GFX_evt_crisis_declared
+    show_sound = event_announcement
+
+    is_triggered_only = yes
+
+    immediate = {
+        random_playable_country = {
+            limit = { is_galactic_emperor = yes }
+            save_event_target_as = gal_emperor
+        }
+    }
+
+    option = {
+        name = 115tiny_crisis.4105.a
+        trigger = {
+            OR = {
+                is_homicidal = yes
+                has_ascension_perk = ap_gts_115tiny_crisis
+            }
+        }
+    }
+    option = {
+        name = 115tiny_crisis.4105.b
+        trigger = {
+            is_homicidal = no
+            NOT = { has_ascension_perk = ap_gts_115tiny_crisis }
+        }
+    }
+}
+
+# Crisis Repealed (Community members)
+country_event = {
+    id = 115tiny_crisis.4110
+    title = "115tiny_crisis.4110.name"
+    desc = "115tiny_crisis.4110.desc"
+    picture = GFX_evt_diplomatic_visit
+    show_sound = event_announcement
+
+    is_triggered_only = yes
+
+    option = {
+        name = 115tiny_crisis.4110.a
+    }
+}
+
+# Crisis Repealed (Former Crisis)
+country_event = {
+    id = 115tiny_crisis.4111
+    title = "115tiny_crisis.4110.name"
+    desc = {
+        trigger = {
+            is_homicidal = no
+            NOT = { has_ascension_perk = ap_gts_115tiny_crisis }
+        }
+        text = 115tiny_crisis.4111.intro
+    }
+    desc = {
+        trigger = {
+            OR = {
+                is_homicidal = yes
+                has_ascension_perk = ap_gts_115tiny_crisis
+            }
+        }
+        text = 115tiny_crisis.4111.desc.b
+    }
+    picture = GFX_evt_diplomatic_visit
+    show_sound = event_announcement
+
+    is_triggered_only = yes
+
+    option = {
+        name = 115tiny_crisis.4111.a
+        trigger = { is_homicidal = no }
+    }
+    option = {
+        name = 115tiny_crisis.4111.b
+        trigger = { is_homicidal = yes }
+    }
+}
+
+# Crisis Repealed (Empire members)
+country_event = {
+    id = 115tiny_crisis.4112
+    title = "115tiny_crisis.4110.name"
+    desc = "115tiny_crisis.4112.desc"
+    picture = GFX_evt_diplomatic_visit
+    show_sound = event_announcement
+
+    is_triggered_only = yes
+
+    option = {
+        name = 115tiny_crisis.4110.a
+    }
+}
+
+# Crisis Repealed (Former Crisis)
+country_event = {
+    id = 115tiny_crisis.4113
+    title = "115tiny_crisis.4110.name"
+    desc = "115tiny_crisis.4113.desc"
+    picture = GFX_evt_diplomatic_visit
+    show_sound = event_announcement
+
+    is_triggered_only = yes
+
+    option = {
+        name = 115tiny_crisis.4111.a
+        trigger = {
+            is_homicidal = no
+            NOT = { has_ascension_perk = ap_gts_115tiny_crisis }
+        }
+    }
+    option = {
+        name = 115tiny_crisis.4111.b
+        trigger = {
+            OR = {
+                is_homicidal = yes
+                has_ascension_perk = ap_gts_115tiny_crisis
+            }
+        }
+    }
+}
+
+# Left Community - Leave Crisis Wars and Crusades
+country_event = {
+    id = 115tiny_crisis.4115
+    hide_window = yes
+
+    is_triggered_only = yes
+
+    trigger = {
+        is_at_war = yes
+    }
+
+    immediate = {
+        every_war = {
+            limit = {
+                OR = {
+                    using_war_goal = {
+                        type = wg_declared_crisis
+                        owner = attacker
+                    }
+                    using_war_goal = {
+                        type = wg_imperial_crusade
+                        owner = attacker
+                    }
+                }
+                NOT = { #just in case
+                    any_defender = {
+                        is_same_value = root
+                    }
+                }
+            }
+            remove_war_participant = root
+        }
+    }
+}
+
+# Joins Community - Joins Crisis Wars
+country_event = {
+    id = 115tiny_crisis.4116
+    hide_window = yes
+
+    is_triggered_only = yes
+
+    trigger = {
+        any_playable_country = {
+            is_galactic_community_member = yes
+            not = { has_ascension_perk = ap_gts_115tiny_crisis }
+            any_war = {
+                using_war_goal = {
+                    type = wg_declared_crisis
+                    owner = prev
+                }
+            }
+        }
+    }
+
+    immediate = {
+        random_playable_country = {
+            limit = {
+                is_galactic_community_member = yes
+                not = { has_ascension_perk = ap_gts_115tiny_crisis }
+                any_war = {
+                    using_war_goal = {
+                        type = wg_declared_crisis
+                        owner = prev
+                    }
+                }
+            }
+            save_event_target_as = community_war_leader
+            random_war = {
+                limit = {
+                    using_war_goal = {
+                        type = wg_declared_crisis
+                        owner = event_target:community_war_leader
+                    }
+                }
+                save_event_target_as = crisis_war
+            }
+        }
+        join_war_on_side = {
+            war = event_target:crisis_war
+            side = event_target:community_war_leader
+        }
+    }
+}
+
+# Crack Star Event
+planet_event = {
+    id = 115tiny_crisis.4550
+    hide_window = yes
+
+    is_triggered_only = yes
+
+    immediate = {
+        add_threat = { who = from.owner amount = 10 }
+        from = {
+            owner = {
+                save_event_target_as = crisis_country
+                add_victory_score = {
+                    source = destroyed_stars_score
+                    score = 10
+                }
+                switch = {
+                    trigger = galaxy_size
+                    huge = { add_resource = { gts_giantess_human = 100 } }
+                    large = { add_resource = { gts_giantess_human = 150 } }
+                    medium = { add_resource = { gts_giantess_human = 200 } }
+                    small = { add_resource = { gts_giantess_human = 250 } }
+                    tiny = { add_resource = { gts_giantess_human = 300 } }
+                }
+                if = {
+                    limit = {
+                        NOT = { has_country_flag = cracked_first_star }
+                    }
+                    set_country_flag = cracked_first_star
+                }
+            }
+        }
+        solar_system = { save_event_target_as = destroyed_system }
+        every_playable_country = {
+            limit = {
+                is_ai = no
+                has_communications = event_target:crisis_country
+                NOR = {
+                    is_same_value = event_target:crisis_country
+                    has_country_flag = can_build_star_eaters
+                    has_country_flag = star_eater_alert@event_target:crisis_country
+                }
+                intel_level = {
+                    system = event_target:destroyed_system
+                    level = none
+                }
+            }
+            country_event = { id = 115tiny_crisis.6180 }
+        }
+        every_playable_country = {
+            limit = {
+                is_ai = no
+                has_communications = event_target:crisis_country
+                NOR = {
+                    is_same_value = event_target:crisis_country
+                    has_country_flag = can_build_star_eaters
+                    has_country_flag = star_eater_alert@event_target:crisis_country
+                }
+                intel_level = {
+                    system = event_target:destroyed_system
+                    level > none
+                }
+            }
+            country_event = { id = 115tiny_crisis.6181 }
+        }
+        every_playable_country = {
+            limit = {
+                is_ai = no
+                has_communications = event_target:crisis_country
+                NOR = {
+                    is_same_value = event_target:crisis_country
+                    has_country_flag = star_eater_alert@event_target:crisis_country
+                }
+                has_country_flag = can_build_star_eaters
+            }
+            country_event = { id = 115tiny_crisis.6182 }
+        }
+        every_playable_country = {
+            limit = {
+                has_communications = event_target:crisis_country
+                NOT = {
+                    has_opinion_modifier = {
+                        who = event_target:crisis_country
+                        modifier = opinion_destroying_systems
+                    }
+                }
+            }
+            add_opinion_modifier = {
+                who = event_target:crisis_country
+                modifier = opinion_destroying_systems
+            }
+        }
+        solar_system = {
+            random_system_planet = {
+                limit = { has_modifier = holy_planet }
+                planet_event = { id = planet_destruction.605 }
+            }
+            destroy_star_system = yes
+        }
+    }
+}
+
+country_event= {
+    id = 115tiny_crisis.1001
+    title = 115tiny_crisis.1001.name
+    desc = 115tiny_crisis.1001.desc
+    picture = GFX_evt_fleet_from_surface
+    show_sound = event_death_cult
+    event_chain = gts_115tiny_become_the_crisis_chain
+    is_triggered_only = yes
+    immediate = {
+        begin_event_chain = {
+            event_chain = gts_115tiny_become_the_crisis_chain
+            target = root
+        }
+    }
+    option = {
+        name = 115tiny_crisis.1001.a
+        tooltip = {
+            begin_event_chain = {
+                event_chain = gts_115tiny_become_the_crisis_chain
+                target = root
+            }
+        }
+        add_event_chain_counter = {
+            event_chain = "gts_115tiny_become_the_crisis_chain"
+            counter = "gts_115tiny_crisis_level_reached"
+            amount = 1
+        }
+        enable_special_project = {
+            name = "gts_115tiny_CRISIS_SPECIAL_PROJECT_1"
+            owner = ROOT
+
+        }
+
+        custom_tooltip = new_gts_115tiny_crisis_perks_tt
+    }
+}
+# On reaching Crisis Level 2
+country_event = {
+    id = 115tiny_crisis.4145
+    title = "115tiny_crisis.4145.name"
+    desc = {
+        text = 115tiny_crisis.4145.desc
+    }
+    picture = GFX_evt_victorious_army
+    show_sound = event_death_cult
+    event_chain = gts_115tiny_become_the_crisis_chain
+
+    is_triggered_only = yes
+
+    option = {
+        name =  115tiny_crisis.4145.a
+        root = {
+            if = {
+                limit = {
+                    always = yes
+                    }
+                }
+                enable_special_project = {
+                    name = "gts_115tiny_CRISIS_SPECIAL_PROJECT_2"
+                    owner = ROOT
+                }
+        }
+        custom_tooltip = new_crisis_perks_tt
+        custom_tooltip = unlock_gts_115tiny_crisis_corvette
+    }
+}
+
+# Crisis Special Project 1 Completed - Crisis Level 2 Unlocked
+country_event = {
+    id = 115tiny_crisis.4120
+    title = "115tiny_crisis.4120.name"
+    desc = {
+        text = 115tiny_crisis.4120.desc
+    }
+    picture = GFX_evt_surreal_visions
+    show_sound = event_necrophage
+    event_chain = gts_115tiny_become_the_crisis_chain
+
+    is_triggered_only = yes
+
+    option = {
+        name = 115tiny_crisis.4120.a
+        trigger = {
+            NOT = {
+                has_ethic = ethic_gestalt_consciousness
+            }
+        }
+    }
+    option = {
+        name = crisis.4120.mach.a
+        trigger = {
+            has_authority = auth_machine_intelligence
+        }
+    }
+    option = {
+        name = FASCINATING
+        trigger = {
+            has_authority = auth_hive_mind
+        }
+    }
+
+    after = {
+        custom_tooltip = can_advance_crisis_progression
+        add_research_option = tech_gts_115tiny_cosmogenesis_world
+        add_research_option = tech_gts_115tiny_lathe_resonator
+        add_research_option = tech_gts_115tiny_lathe_cogitator
+        add_research_option = tech_gts_115tiny_lathe_life_support
+        add_research_option = tech_gts_115tiny_lathe_overclocker
+        add_research_option = tech_gts_115tiny_lathe_preserver
+        add_research_option = tech_gts_115tiny_lathe_validator
+    }
+}
+# Crisis Special Project 2 Completed - Crisis Level 3 Unlocked
+country_event = {
+    id = 115tiny_crisis.4125
+    title = "115tiny_crisis.4125.name"
+    desc = {
+        text = 115tiny_crisis.4125.desc
+    }
+
+    picture = GFX_evt_shrouded_planet
+    show_sound = event_necrophage
+    event_chain = gts_115tiny_become_the_crisis_chain
+
+    is_triggered_only = yes
+
+    option = {
+        name = 115tiny_crisis.4125.a
+    }
+    after = {
+        custom_tooltip = can_advance_crisis_progression
+    }
+}
+# Crisis Special Project 3 Completed - Crisis Level 4 Unlocked
+country_event = {
+    id = 115tiny_crisis.4130
+    title = "115tiny_crisis.4130.name"
+    desc = {
+        text = 115tiny_crisis.4130.desc
+    }
+
+    picture = GFX_evt_physics_research
+    show_sound = event_necrophage
+    event_chain = gts_115tiny_become_the_crisis_chain
+
+    is_triggered_only = yes
+
+    option = {
+        name = 115tiny_crisis.4130.a
+    }
+    after = {
+        custom_tooltip = can_advance_crisis_progression
+    }
+}
+# On reaching Crisis Level 3
+country_event = {
+    id = 115tiny_crisis.4150
+    title = "115tiny_crisis.4150.name"
+    desc = {
+        trigger = { always = yes }
+        text = 115tiny_crisis.4150.desc
+    }
+    picture = GFX_evt_death_from_above
+    show_sound = event_death_cult
+    event_chain = gts_115tiny_become_the_crisis_chain
+
+    is_triggered_only = yes
+
+    option = {
+        name = 115tiny_crisis.4150.a
+        root = {
+            if = {
+                limit = {
+                    always = yes
+                }
+                enable_special_project = {
+                    name = "gts_115tiny_CRISIS_SPECIAL_PROJECT_3"
+                    owner = ROOT
+                }
+            }
+        }
+        custom_tooltip = new_crisis_perks_tt
+        custom_tooltip = unlock_gts_115tiny_crisis_destroyer
+    }
+}
+# On reaching Crisis Level 4
+country_event = {
+    id = 115tiny_crisis.4155
+    title = "115tiny_crisis.4155.name"
+    desc = {
+        trigger = {  always = yes }
+        text = 115tiny_crisis.4155.desc
+    }
+    picture = GFX_evt_undertaker
+    show_sound = event_death_cult
+    event_chain = gts_115tiny_become_the_crisis_chain
+
+    is_triggered_only = yes
+
+    option = {
+        name = 115tiny_crisis.4155.a
+        root = {
+            if = {
+                limit = {
+                always = yes
+                }
+                enable_special_project = {
+                    name = "gts_115tiny_CRISIS_SPECIAL_PROJECT_4"
+                    owner = ROOT
+                }
+            }
+        }
+        custom_tooltip = new_crisis_perks_tt
+        custom_tooltip = unlock_gts_115tiny_crisis_cruiser
+    }
+}
+# Crisis Special Project 4 Completed - Crisis Level 5 Unlocked
+country_event = {
+    id = 115tiny_crisis.4135
+    title = "115tiny_crisis.4135.name"
+    desc = {
+        text =  115tiny_crisis.4135.desc
+        trigger = {
+            always = yes
+        }
+    }
+    picture = GFX_evt_dyson_sphere
+    show_sound = event_necrophage
+    event_chain = gts_115tiny_become_the_crisis_chain
+
+    is_triggered_only = yes
+
+    option = {
+        name = 115tiny_crisis.4135.a
+        trigger = {
+        always = yes
+        }
+    }
+    after = {
+        custom_tooltip = can_advance_crisis_progression_final
+    }
+}
+
+# The Aetherophasic Engine
+country_event = {
+    id = 115tiny_crisis.6000
+    title = "115tiny_crisis.6000.name"
+    desc = {
+        trigger = {
+            always = yes
+        }
+        text = "115tiny_crisis.6000.a.desc"
+    }
+    picture = GFX_evt_megastructure_construction
+    show_sound = event_death_cult
+
+    is_triggered_only = yes
+
+    immediate = {
+        set_country_flag = built_crisis_sphere
+        solar_system = {
+            set_star_flag = crisis_sphere_system@root
+        }
+        capital_scope = {
+            solar_system = {
+                save_event_target_as = sphere_system
+                spawn_megastructure = {
+                    type = "115tiny_crisis_sphere_0"
+                    planet = star
+                    owner = root
+                    graphical_culture = root
+                    init_effect = {
+                        set_megastructure_flag = crisis_sphere_of@root
+                    }
+                }
+            }
+        }
+    }
+
+    option = {
+        name = 115tiny_crisis.6000.a
+        trigger = {
+            always = yes
+        }
+        custom_tooltip = 115tiny_crisis.6000.tooltip
+        hidden_effect = {
+            country_event = { id = 115tiny_crisis.6001 days = 5 }
+        }
+    }
+}
+
+# The Star-Eaters
+country_event = {
+    id = 115tiny_crisis.6001
+    title = "115tiny_crisis.6001.name"
+    desc = "115tiny_crisis.6001.desc"
+    picture = GFX_evt_binary_stars
+    show_sound = event_default
+
+    is_triggered_only = yes
+
+    immediate = {
+        set_country_flag = can_build_star_eaters
+        add_modifier = { modifier = gts_115tiny_crisis_dark_matter_cap }
+        # Make sure empire has all Star Eater techs
+        hidden_effect = {
+            give_tech_no_error_effect = { MESSAGE = no TECH = tech_destroyers }
+            give_tech_no_error_effect = { MESSAGE = no TECH = tech_cruisers }
+            give_tech_no_error_effect = { MESSAGE = no TECH = tech_battleships }
+            give_tech_no_error_effect = { MESSAGE = no TECH = tech_gts_115tiny_btc_1 }
+            give_tech_no_error_effect = { MESSAGE = no TECH = tech_strike_craft_1 }
+            give_tech_no_error_effect = { MESSAGE = no TECH = tech_strike_craft_2 }
+            give_tech_no_error_effect = { MESSAGE = no TECH = tech_strike_craft_3 }
+            give_tech_no_error_effect = { MESSAGE = no TECH = tech_lasers_2 }
+            give_tech_no_error_effect = { MESSAGE = no TECH = tech_lasers_3 }
+            give_tech_no_error_effect = { MESSAGE = no TECH = tech_lasers_4 }
+            give_tech_no_error_effect = { MESSAGE = no TECH = tech_lasers_5 }
+            give_tech_no_error_effect = { MESSAGE = no TECH = tech_shields_1 }
+            give_tech_no_error_effect = { MESSAGE = no TECH = tech_shields_2 }
+            give_tech_no_error_effect = { MESSAGE = no TECH = tech_shields_3 }
+            give_tech_no_error_effect = { MESSAGE = no TECH = tech_shields_4 }
+            give_tech_no_error_effect = { MESSAGE = no TECH = tech_shields_5 }
+            give_tech_no_error_effect = { MESSAGE = no TECH = tech_shield_rechargers_1 }
+            give_tech_no_error_effect = { MESSAGE = no TECH = tech_regenerative_hull_tissue }
+            give_tech_no_error_effect = { MESSAGE = no TECH = tech_sensors_2 }
+            give_tech_no_error_effect = { MESSAGE = no TECH = tech_sensors_3 }
+            give_tech_no_error_effect = { MESSAGE = no TECH = tech_sensors_4 }
+            give_tech_no_error_effect = { MESSAGE = no TECH = tech_fusion_power }
+            give_tech_no_error_effect = { MESSAGE = no TECH = tech_cold_fusion_power }
+            give_tech_no_error_effect = { MESSAGE = no TECH = tech_antimatter_power }
+            give_tech_no_error_effect = { MESSAGE = no TECH = tech_zero_point_power }
+            give_tech_no_error_effect = { MESSAGE = no TECH = tech_dark_matter_power_core }
+            give_tech_no_error_effect = { MESSAGE = no TECH = tech_jump_drive_1 }
+            give_tech_no_error_effect = { MESSAGE = no TECH = tech_administrative_ai }
+            give_tech_no_error_effect = { MESSAGE = no TECH = tech_combat_computers_1 }
+            give_tech_no_error_effect = { MESSAGE = no TECH = tech_self_aware_logic }
+            give_tech_no_error_effect = { MESSAGE = no TECH = tech_combat_computers_2 }
+            give_tech_no_error_effect = { MESSAGE = no TECH = tech_thrusters_2 }
+            give_tech_no_error_effect = { MESSAGE = no TECH = tech_thrusters_3 }
+            give_tech_no_error_effect = { MESSAGE = no TECH = tech_thrusters_4 }
+            give_tech_no_error_effect = { MESSAGE = no TECH = tech_flak_batteries_2 }
+            give_tech_no_error_effect = { MESSAGE = no TECH = tech_flak_batteries_3 }
+            give_tech_no_error_effect = { MESSAGE = no TECH = tech_pd_tracking_2 }
+            give_tech_no_error_effect = { MESSAGE = no TECH = tech_pd_tracking_3 }
+            give_tech_no_error_effect = { MESSAGE = no TECH = tech_ship_armor_2 }
+            give_tech_no_error_effect = { MESSAGE = no TECH = tech_ship_armor_3 }
+            give_tech_no_error_effect = { MESSAGE = no TECH = tech_ship_armor_4 }
+            give_tech_no_error_effect = { MESSAGE = no TECH = tech_ship_armor_5 }
+        }
+    }
+
+    option = {
+        name = 115tiny_crisis.6001.a
+        custom_tooltip = 115tiny_crisis.6001.tooltip
+        hidden_effect = {
+            create_ship_design = { design = "NAME_gts_115tiny_Crisis_Star_Eater" }
+            add_ship_design = last_created_design
+            capital_scope = {
+                create_fleet = {
+                    settings = {
+                        spawn_debris = no
+                        can_change_composition = no
+                        uses_naval_capacity = no
+                    }
+                    effect = {
+                        set_owner = root
+                        create_ship = {
+                            name = NAME_gts_115tiny_Crisis_Star_Eater_1
+                            design = "NAME_gts_115tiny_Crisis_Star_Eater"
+                        }
+                        set_location = {
+                            target = prev
+                            distance = 20
+                            angle = 0
+                        }
+                        set_fleet_stance = passive
+                        set_aggro_range_measure_from = self
+                        set_aggro_range = 350
+                    }
+                }
+                create_fleet = {
+                    settings = {
+                        spawn_debris = no
+                        can_change_composition = no
+                        uses_naval_capacity = no
+                    }
+                    effect = {
+                        set_owner = root
+                        create_ship = {
+                            name = NAME_Crisis_Star_Eater_2
+                            design = "NAME_gts_115tiny_Crisis_Star_Eater"
+                        }
+                        set_location = {
+                            target = prev
+                            distance = 20
+                            angle = 90
+                        }
+                        set_fleet_stance = passive
+                        set_aggro_range_measure_from = self
+                        set_aggro_range = 350
+                    }
+                }
+            }
+        }
+    }
+}
+
+# Engine - First Stage Complete
+country_event = {
+    id = 115tiny_crisis.6005
+    title = "115tiny_crisis.6005.name"
+    desc = "115tiny_crisis.6005.desc"
+    picture = GFX_evt_surreal_visions
+    show_sound = event_default
+
+    is_triggered_only = yes
+
+    immediate = {
+        set_country_flag = building_crisis_sphere
+        random_system = {
+            limit = { has_star_flag = crisis_sphere_system@root }
+            save_event_target_as = crisis_sphere_system
+        }
+        every_playable_country = {
+            limit = {
+                is_ai = no
+                NOT = { is_same_value = root }
+                OR = {
+                    owner_species = { has_trait = trait_psionic }
+                    has_country_flag = built_crisis_sphere
+                }
+            }
+            country_event = { id = 115tiny_crisis.6010 }
+        }
+    }
+
+    option = {
+        name = 115tiny_crisis.6005.a
+    }
+}
+
+# Engine - Second Stage Complete
+country_event = {
+    id = 115tiny_crisis.6006
+    title = "115tiny_crisis.6005.name"
+    desc = "115tiny_crisis.6006.desc"
+    picture = GFX_evt_psionics
+    show_sound = event_default
+
+    is_triggered_only = yes
+
+    immediate = {
+        set_country_flag = crisis_sphere_revealed
+        random_system = {
+            limit = { has_star_flag = crisis_sphere_system@root }
+            save_event_target_as = crisis_sphere_system
+
+            random_system_ambient_object = {
+                limit = { has_ambient_object_flag = crisis_sphere_1_system_effect }
+                destroy_ambient_object = this
+            }
+            star = {
+                create_ambient_object = {
+                    type = "crisis_sphere_2"
+                    location = this
+                }
+                last_created_ambient_object = {
+                    set_ambient_object_flag = crisis_sphere_2_system_effect
+                    set_location = {
+                        target = prev
+                        distance = 0
+                        angle = random
+                    }
+                }
+            }
+        }
+        add_threat = { who = root amount = 1000 }
+        every_playable_country = {
+            limit = {
+                NOT = { is_same_value = root }
+            }
+            establish_communications_no_message = root
+            if = {
+                limit = {
+                    has_opinion_modifier = {
+                        who = root
+                        modifier = opinion_destroying_systems
+                    }
+                }
+                remove_opinion_modifier = {
+                    who = root
+                    modifier = opinion_destroying_systems
+                }
+            }
+            add_opinion_modifier = {
+                who = root
+                modifier = opinion_destroying_galaxy
+            }
+        }
+        every_country = {
+            limit = { is_fallen_empire = yes }
+            add_opinion_modifier = {
+                who = root
+                modifier = opinion_destroying_galaxy
+            }
+        }
+        every_playable_country = {
+            limit = {
+                is_ai = no
+                NOT = { has_country_flag = built_crisis_sphere }
+            }
+            country_event = { id = crisis.6015 }
+        }
+    }
+
+    option = {
+        name = 115tiny_crisis.6006.a
+    }
+}
+
+# Engine - Third Stage Complete
+country_event = {
+    id = 115tiny_crisis.6007
+    title = "115tiny_crisis.6005.name"
+    desc = "115tiny_crisis.6007.desc"
+    picture = GFX_evt_space_monster
+    show_sound = event_default
+
+    is_triggered_only = yes
+
+    immediate = {
+        random_system = {
+            limit = { has_star_flag = crisis_sphere_system@root }
+            random_system_ambient_object = {
+                limit = { has_ambient_object_flag = crisis_sphere_2_system_effect }
+                destroy_ambient_object = this
+            }
+            star = {
+                create_ambient_object = {
+                    type = "crisis_sphere_3"
+                    location = this
+                }
+                last_created_ambient_object = {
+                    set_ambient_object_flag = crisis_sphere_3_system_effect
+                    set_location = {
+                        target = prev
+                        distance = 0
+                        angle = random
+                    }
+                }
+            }
+        }
+    }
+
+    option = {
+        name = 115tiny_crisis.6007.a
+    }
+}
+
+# Psionic Alert
+country_event = {
+    id = 115tiny_crisis.6010
+    title = "115tiny_crisis.6010.name"
+    desc = {
+        trigger = {
+            NOR = {
+                has_country_flag = crisis_psionic_alert
+                has_country_flag = built_crisis_sphere
+            }
+        }
+        text = "115tiny_crisis.6010.a.desc"
+    }
+    desc = {
+        trigger = { has_country_flag = crisis_psionic_alert }
+        text = "115tiny_crisis.6010.b.desc"
+    }
+    desc = {
+        trigger = { has_country_flag = built_crisis_sphere }
+        text = "115tiny_crisis.6010.c.desc"
+    }
+    picture = GFX_evt_surreal_visions
+    show_sound = event_default
+
+    is_triggered_only = yes
+
+    after = {
+        if = {
+            limit = {
+                NOR = {
+                    has_country_flag = crisis_psionic_alert
+                    has_country_flag = built_crisis_sphere
+                }
+            }
+            set_country_flag = crisis_psionic_alert
+        }
+    }
+
+    option = {
+        name = 115tiny_crisis.6010.a
+    }
+}
+
+# General Alert
+country_event = {
+    id = 115tiny_crisis.6015
+    title = "115tiny_crisis.6005.name"
+    desc = {
+        trigger = {
+            NOR = {
+                owner_species = { has_trait = trait_psionic }
+                has_country_flag = crisis_general_alert
+            }
+        }
+        text = "115tiny_crisis.6015.a.desc"
+    }
+    desc = {
+        trigger = {
+            owner_species = { has_trait = trait_psionic }
+            NOT = { has_country_flag = crisis_general_alert }
+        }
+        text = "115tiny_crisis.6015.b.desc"
+    }
+    desc = {
+        trigger = { has_country_flag = crisis_general_alert }
+        text = "115tiny_crisis.6015.c.desc"
+    }
+    picture = GFX_evt_space_monster
+    show_sound = event_default
+
+    is_triggered_only = yes
+
+    after = {
+        if = {
+            limit = {
+                NOT = { has_country_flag = crisis_general_alert }
+            }
+            set_country_flag = crisis_general_alert
+        }
+    }
+
+    option = {
+        name = 115tiny_crisis.6015.a
+    }
+}
+
+# Ascension!
+country_event = {
+    id = 115tiny_crisis.6050
+    title = "115tiny_crisis.6050.name"
+    desc = {
+        trigger = { always = yes }
+        text = "115tiny_crisis.6050.a.desc"
+    }
+    picture = GFX_evt_vortex
+    show_sound = event_default
+
+    is_triggered_only = yes
+
+    immediate = {
+        add_victory_score = {
+            source = destroyed_galaxy_score
+            score = 500000
+        }
+    }
+
+    option = {
+        name = 115tiny_crisis.6050.a
+        custom_tooltip = 115tiny_crisis.6050.a.tooltip
+        hidden_effect = {
+            set_country_flag = big_red_button_achievement
+            country_event = { id = 115tiny_crisis.6052 days = 1 } # win delay to get cheevo
+        }
+        if = {
+            limit = { has_origin = origin_god_keeper }
+            country_event = { id = 115tiny_crisis.6066 }
+        }
+        tooltip = { win = yes }
+    }
+}
+
+# Game Over
+country_event = {
+    id = 115tiny_crisis.6051
+    title = "115tiny_crisis.6051.name"
+    desc = "115tiny_crisis.6051.desc"
+    picture = GFX_evt_supernova
+    show_sound = event_default
+
+    is_triggered_only = yes
+
+    option = {
+        name = 115tiny_crisis.6051.a
+    }
+}
+
+# Crisis Wins
+country_event = {
+    id = 115tiny_crisis.6052
+    hide_window = yes
+
+    is_triggered_only = yes
+
+    immediate = {
+        every_playable_country = {
+            limit = {
+                is_ai = no
+                NOT = { is_same_value = root }
+            }
+            country_event = { id = 115tiny_crisis.6051 }
+        }
+        set_update_modifiers_batch = begin
+        every_system = { destroy_star_system = yes }
+        set_update_modifiers_batch = end
+        every_country = {
+            limit = {
+                NOT = {
+                    is_country_type = default
+                }
+            }
+            destroy_country = yes
+        }
+        win = yes
+    }
+}
+country_event = {
+    id = 115tiny_crisis.6066
+    title = "115tiny_crisis.6066.name"
+    desc = {
+        trigger = { always = yes }
+        text = "115tiny_crisis.6066.desc"
+    }
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+        room = gts_yarong5_room
+    }
+    show_sound = event_default
+    is_triggered_only = yes
+    option = {
+        name = 115tiny_crisis.6066.a
+        country_event = { id = 115tiny_crisis.6067 }
+    }
+}
+country_event = {
+    id = 115tiny_crisis.6067
+    title = "115tiny_crisis.6067.name"
+    desc = {
+        trigger = { always = yes }
+        text = "115tiny_crisis.6067.desc"
+    }
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+        room = gts_yarong5_room
+    }
+    show_sound = event_default
+    is_triggered_only = yes
+    option = {
+        name = 115tiny_crisis.6067.a
+    }
+}
+# Standard Crisis Destroys Megastructure
+starbase_event = {
+    id = 115tiny_crisis.6099
+    hide_window = yes
+
+    is_triggered_only = yes
+
+    trigger = {
+        exists = from
+        from.owner = {
+            OR = {
+                is_country_type = swarm
+                is_country_type = extradimensional
+                is_country_type = extradimensional_2
+                is_country_type = extradimensional_3
+                is_country_type = ai_empire
+                is_country_type = gray_goo
+            }
+        }
+        solar_system = {
+            has_star_flag = crisis_sphere_system@root.owner
+            any_system_megastructure = { has_megastructure_flag = crisis_sphere }
+        }
+    }
+
+    immediate = {
+        solar_system = {
+            system_event = { id = 115tiny_crisis.6100 scopes = { from = root.owner } }
+        }
+    }
+}
+
+
+# Crisis Megastructure Destroyed (HIDDEN)
+system_event = {
+    id = 115tiny_crisis.6100
+    hide_window = yes
+
+    is_triggered_only = yes
+
+    trigger = {
+        any_system_megastructure = { has_megastructure_flag = crisis_sphere }
+    }
+
+    immediate = {
+        save_event_target_as = crisis_sphere_system
+        random_system_megastructure = {
+            limit = { has_megastructure_flag = crisis_sphere }
+            prev = {
+                spawn_megastructure = {
+                    type = 115tiny_crisis_sphere_ruined
+                    coords_from = prev
+                    init_effect = {
+                        if = {
+                            limit = { exists = fromfrom }
+                            set_megastructure_flag = crisis_sphere_of@fromfrom
+                        }
+                    }
+                }
+            }
+            switch = {
+                trigger = is_megastructure_type
+                115tiny_crisis_sphere_0 = {
+                    from = {
+                        set_variable = {
+                            which = crisis_sphere_destroy_reward
+                            value = 1
+                        }
+                    }
+                }
+                115tiny_crisis_sphere_1 = {
+                    from = {
+                        set_variable = {
+                            which = crisis_sphere_destroy_reward
+                            value = 1.5
+                        }
+                    }
+                }
+                115tiny_crisis_sphere_2 = {
+                    from = {
+                        set_variable = {
+                            which = crisis_sphere_destroy_reward
+                            value = 2
+                        }
+                    }
+                }
+                115tiny_crisis_sphere_3 = {
+                    from = {
+                        set_variable = {
+                            which = crisis_sphere_destroy_reward
+                            value = 3
+                        }
+                    }
+                }
+            }
+            remove_megastructure = this
+        }
+        random_system_ambient_object = {
+            limit = {
+                OR = {
+                    has_ambient_object_flag = crisis_sphere_1_system_effect
+                    has_ambient_object_flag = crisis_sphere_2_system_effect
+                    has_ambient_object_flag = crisis_sphere_3_system_effect
+                }
+            }
+            destroy_ambient_object = this
+        }
+        from = { save_event_target_as = sphere_destroyers }
+        fromfrom = { save_event_target_as = sphere_builders }
+        from = { country_event = { id = 115tiny_crisis.6102 } }
+        fromfrom = { country_event = { id = 115tiny_crisis.6101 } }
+        every_playable_country = {
+            limit = {
+                is_ai = no
+                NOR = {
+                    is_same_value = from
+                    is_same_value = fromfrom
+                }
+            }
+            country_event = { id = 115tiny_crisis.6103 }
+        }
+    }
+}
+
+# Crisis Megastructure Destroyed (Owner)
+country_event = {
+    id = 115tiny_crisis.6101
+    title = "115tiny_crisis.6101.name"
+    desc = "115tiny_crisis.6101.desc"
+    picture = GFX_evt_ruined_system
+    show_sound = event_default
+
+    is_triggered_only = yes
+
+    immediate = {
+        remove_country_flag = building_crisis_sphere
+    }
+
+    option = {
+        name = 115tiny_crisis.6101.a
+        custom_tooltip = 115tiny_crisis.6101.a.tooltip
+    }
+}
+
+# Crisis Megastructure Destroyed (Destroyer)
+country_event = {
+    id = 115tiny_crisis.6102
+    title = "115tiny_crisis.6101.name"
+    desc = {
+        trigger = {
+            NOT = { has_country_flag = built_crisis_sphere }
+        }
+        text = "115tiny_crisis.6102.a.desc"
+    }
+    desc = {
+        trigger = { has_country_flag = built_crisis_sphere }
+        text = "115tiny_crisis.6102.b.desc"
+    }
+    picture = GFX_evt_crisis_defeated
+    show_sound = event_default
+
+    is_triggered_only = yes
+
+    option = {
+        name = 115tiny_crisis.6102.a
+        trigger = {
+            NOT = { has_country_flag = built_crisis_sphere }
+        }
+        add_resource = {
+            influence = 200
+            alloys = 5000
+            mult = crisis_sphere_destroy_reward
+        }
+        custom_tooltip = 115tiny_aetherophasic_engine_ruined_tt
+    }
+    option = {
+        name = 115tiny_crisis.6102.b
+        trigger = { has_country_flag = built_crisis_sphere }
+        add_resource = {
+            gts_giantess_human = 1000
+            mult = crisis_sphere_destroy_reward
+        }
+        custom_tooltip = 115tiny_aetherophasic_engine_ruined_tt
+    }
+    after = {
+        hidden_effect = {
+            clear_variable = crisis_sphere_destroy_reward
+        }
+    }
+}
+# Crisis Megastructure Destroyed (Others)
+country_event = {
+    id = 115tiny_crisis.6103
+    title = "115tiny_crisis.6101.name"
+    desc = "115tiny_crisis.6103.desc"
+    picture = GFX_evt_crisis_defeated
+    show_sound = event_default
+
+    is_triggered_only = yes
+
+    option = {
+        name = GOOD
+        trigger = {
+            NOT = { has_country_flag = built_crisis_sphere }
+        }
+    }
+    option = {
+        name = 115tiny_crisis.6103.b
+        trigger = { has_country_flag = built_crisis_sphere }
+    }
+}
+
+# Shroud Entities Spawn (HIDDEN)
+country_event = {
+    id = 115tiny_crisis.6150
+    hide_window = yes
+
+    is_triggered_only = yes
+
+    trigger = {
+        any_system_within_border = {
+            has_star_flag = crisis_sphere_system@root.owner
+            any_system_megastructure = { has_megastructure_flag = crisis_sphere }
+        }
+    }
+
+    immediate = {
+        every_playable_country = {
+            limit = { is_ai = no }
+            country_event = { id = 115tiny_crisis.6151 }
+        }
+        every_system = {
+            random_list = {
+                95 = {}
+                5 = {
+                    if = {
+                        limit = { NOT = { exists = event_target:shroud_country } }
+                        create_country = {
+                            name = "NAME_gts_115tiny_Creatures_of_the_Shroud"
+                            type = shroud_spirits
+                            flag = {
+                                icon = {
+                                    category = "special"
+                                    file = "the_shroud.dds"
+                                }
+                                background= {
+                                    category = "backgrounds"
+                                    file = "00_solid.dds"
+                                }
+                                colors = {
+                                    "dark_purple"
+                                    "black"
+                                    "null"
+                                    "null"
+                                }
+                            }
+                        }
+                        last_created_country = {
+                            save_global_event_target_as = shroud_country
+                        }
+                    }
+                    create_fleet = {
+                        name = "NAME_gts_115tiny_Psionic_Entity"
+                        settings = {
+                            spawn_debris = no
+                            is_boss = yes
+                        }
+                        effect = {
+                            set_owner = event_target:shroud_country
+                            set_fleet_flag = crisis_shroud_entity
+                            create_ship = {
+                                name = "NAME_gts_115tiny_Psionic_Entity"
+                                design = "NAME_gts_115tiny_Corrupted_Avatar"
+                            }
+                            set_location = {
+                                target = prev.star
+                                distance = 100
+                                angle = random
+                            }
+                            set_fleet_stance = aggressive
+                            set_aggro_range_measure_from = return_point
+                            set_aggro_range = 2000
+                        }
+                    }
+                    star = {
+                        create_ambient_object = {
+                            type = "psi_storm_1"
+                            location = this
+                        }
+                        last_created_ambient_object = {
+                            set_ambient_object_flag = psi_storm_object
+                            set_location = {
+                                target = prev
+                                distance = 0
+                                angle = random
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        every_playable_country = {
+            establish_communications_no_message = event_target:shroud_country
+        }
+    }
+}
+
+# Shroud Entities Spawn
+country_event = {
+    id = 115tiny_crisis.6151
+    title = "115tiny_crisis.6151.name"
+    desc = "115tiny_crisis.6151.desc"
+    picture = GFX_evt_surreal_visions
+    show_sound = event_default
+
+    is_triggered_only = yes
+
+    trigger = { is_ai = no }
+
+    option = {
+        name = 115tiny_crisis.6151.a
+        trigger = {
+            NOT = { is_same_value = from }
+        }
+    }
+    option = {
+        name = 115tiny_crisis.6151.b
+        trigger = { is_same_value = from }
+    }
+}
+
+# Remove Shroud System Effect
+country_event = {
+    id = 115tiny_crisis.6152
+    hide_window = yes
+
+    is_triggered_only = yes
+
+    trigger = {
+        is_same_value = event_target:shroud_country
+        fromfrom = { has_fleet_flag = crisis_shroud_entity }
+    }
+
+    immediate = {
+        fromfrom = {
+            solar_system = {
+                random_system_ambient_object = {
+                    limit = { has_ambient_object_flag = psi_storm_object }
+                    destroy_ambient_object = this
+                }
+            }
+        }
+    }
+}
+
+# Second Wave (HIDDEN)
+country_event = {
+    id = 115tiny_crisis.6160
+    hide_window = yes
+
+    is_triggered_only = yes
+
+    trigger = {
+        any_system_within_border = {
+            has_star_flag = crisis_sphere_system@root.owner
+            any_system_megastructure = { has_megastructure_flag = crisis_sphere }
+        }
+    }
+
+    immediate = {
+        every_playable_country = {
+            limit = { is_ai = no }
+            country_event = { id = 115tiny_crisis.6161 }
+        }
+        every_system = {
+            random_list = {
+                95 = {}
+                10 = {
+                    if = {
+                        limit = { NOT = { exists = event_target:shroud_country } }
+                        create_country = {
+                            name = "NAME_gts_115tiny_Creatures_of_the_Shroud"
+                            type = shroud_spirits
+                            flag = {
+                                icon = {
+                                    category = "special"
+                                    file = "the_shroud.dds"
+                                }
+                                background= {
+                                    category = "backgrounds"
+                                    file = "00_solid.dds"
+                                }
+                                colors = {
+                                    "dark_purple"
+                                    "black"
+                                    "null"
+                                    "null"
+                                }
+                            }
+                        }
+                        last_created_country = {
+                            save_global_event_target_as = shroud_country
+                        }
+                    }
+                    create_fleet = {
+                        name = "NAME_gts_115tiny_Psionic_Entity"
+                        settings = {
+                            spawn_debris = no
+                            is_boss = yes
+                        }
+                        effect = {
+                            set_owner = event_target:shroud_country
+                            create_ship = {
+                                name = "NAME_gts_115tiny_Psionic_Entity"
+                                design = "NAME_gts_115tiny_Corrupted_Avatar"
+                            }
+                            set_location = {
+                                target = prev.star
+                                distance = 100
+                                angle = random
+                            }
+                            set_fleet_stance = aggressive
+                            set_aggro_range_measure_from = return_point
+                            set_aggro_range = 2000
+                        }
+                    }
+                }
+            }
+        }
+        every_playable_country = {
+            establish_communications_no_message = event_target:shroud_country
+        }
+    }
+}
+
+# Second Wave
+country_event = {
+    id = 115tiny_crisis.6161
+    title = "115tiny_crisis.6161.name"
+    desc = {
+        trigger = {
+            NOT = { is_same_value = from }
+        }
+        text = "115tiny_crisis.6161.a.desc"
+    }
+    desc = {
+        trigger = { is_same_value = from }
+        text = "115tiny_crisis.6161.b.desc"
+    }
+    picture = GFX_evt_surreal_visions
+    show_sound = event_default
+
+    is_triggered_only = yes
+
+    trigger = { is_ai = no }
+
+    option = {
+        name = 115tiny_crisis.6161.a
+        trigger = {
+            NOT = { is_same_value = from }
+        }
+    }
+    option = {
+        name = 115tiny_crisis.6161.b
+        trigger = { is_same_value = from }
+    }
+}
+
+# Psionic Pulses (HIDDEN)
+country_event = {
+    id = 115tiny_crisis.6170
+    hide_window = yes
+
+    is_triggered_only = yes
+
+    trigger = {
+        any_system_within_border = {
+            has_star_flag = crisis_sphere_system@root.owner
+            any_system_megastructure = { has_megastructure_flag = crisis_sphere }
+        }
+    }
+
+    immediate = {
+        every_playable_country = {
+            limit = {
+                any_owned_pop_group = { gts_is_giantess = yes }
+            }
+            country_event = { id = 115tiny_crisis.6171 }
+        }
+    }
+}
+
+# Psionic Pulses
+country_event = {
+    id = 115tiny_crisis.6171
+    title = "115tiny_crisis.6171.name"
+    desc = {
+        trigger = {
+            NOT = { is_same_value = from }
+        }
+        text = "115tiny_crisis.6171.a.desc"
+    }
+    desc = {
+        trigger = { is_same_value = from }
+        text = "115tiny_crisis.6171.b.desc"
+    }
+    picture = GFX_evt_psionics
+    show_sound = event_default
+
+    is_triggered_only = yes
+
+    trigger = { is_ai = no }
+
+    option = {
+        name = 115tiny_crisis.6171.a
+        trigger = {
+            NOT = { is_same_value = from }
+        }
+
+        # While loop messes up tooltip so doing it old school
+        random_owned_pop_group = {
+            limit = { gts_is_giantess = yes
+            not = { has_trait = trait_godness_power_finish }
+            }
+            kill_all_pop = yes
+        }
+        random_owned_pop_group = {
+            limit = { gts_is_giantess = yes
+                not = { has_trait = trait_godness_power_finish }
+            }
+            kill_all_pop = yes
+        }
+        random_owned_pop_group = {
+            limit = { gts_is_giantess = yes
+                not = { has_trait = trait_godness_power_finish }
+            }
+            kill_all_pop = yes
+        }
+        random_owned_pop_group = {
+            limit = { gts_is_giantess = yes
+                not = { has_trait = trait_godness_power_finish }
+            }
+            kill_all_pop = yes
+        }
+        random_owned_pop_group = {
+            limit = { gts_is_giantess = yes
+                not = { has_trait = trait_godness_power_finish }
+            }
+            kill_all_pop = yes
+        }
+        random_owned_pop_group = {
+            limit = { gts_is_giantess = yes
+                not = { has_trait = trait_godness_power_finish }
+            }
+            kill_all_pop = yes
+        }
+    }
+    option = {
+        name = GOOD
+        trigger = { is_same_value = from }
+    }
+}
+
+# First Star Destroyed (No Intel)
+country_event = {
+    id = 115tiny_crisis.6180
+    title = "115tiny_crisis.6180.name"
+    desc = "115tiny_crisis.6180.desc"
+    picture = GFX_evt_supernova
+    show_sound = event_super_explosion
+    location = event_target:destroyed_system
+
+    is_triggered_only = yes
+
+    immediate = {
+        set_country_flag = star_eater_alert@event_target:crisis_country
+    }
+
+    option = {
+        name = 115tiny_crisis.6180.a
+    }
+}
+
+# First Star Destroyed (Some Intel)
+country_event = {
+    id = 115tiny_crisis.6181
+    title = "115tiny_crisis.6181.name"
+    desc = "115tiny_crisis.6181.desc"
+    picture = GFX_evt_supernova
+    show_sound = event_super_explosion
+    location = event_target:destroyed_system
+
+    is_triggered_only = yes
+
+    immediate = {
+        set_country_flag = star_eater_alert@event_target:crisis_country
+    }
+
+    option = {
+        name = 115tiny_crisis.6181.a
+    }
+}
+
+# First Star Destroyed (Also Crisis)
+country_event = {
+    id = 115tiny_crisis.6182
+    title = "115tiny_crisis.6182.name"
+    desc = "115tiny_crisis.6182.desc"
+    picture = GFX_evt_supernova
+    show_sound = event_super_explosion
+    location = event_target:destroyed_system
+
+    is_triggered_only = yes
+
+    immediate = {
+        set_country_flag = star_eater_alert@event_target:crisis_country
+    }
+
+    option = {
+        name = 115tiny_crisis.6182.a
+    }
+}
+
+# Aetherophasic Engine Captured
+country_event = {
+    id = 115tiny_crisis.6200
+    title = 115tiny_crisis.6200.name
+    desc = 115tiny_crisis.6200.desc
+    show_sound = event_super_explosion
+    picture = GFX_evt_supernova
+    location = from
+
+    trigger = {
+        from = { has_megastructure_flag = crisis_sphere }
+        if = {
+            limit = { has_crisis_level = gts_115tiny_crisis_level_5 }
+            NOT = { from = { has_megastructure_flag = crisis_sphere_of@root } }
+        }
+    }
+
+    abort_trigger = {
+        OR = {
+            NOT = { exists = from }
+            NOT = { exists = from.owner }
+            from.owner = { NOT = { is_same_value = root } }
+        }
+    }
+
+    is_triggered_only = yes
+
+    immediate = {
+        from = {
+            solar_system = {
+                save_event_target_as = crisis_sphere_system
+            }
+            switch = {
+                trigger = is_megastructure_type
+                115tiny_crisis_sphere_0 = {
+                    root = {
+                        set_variable = {
+                            which = crisis_sphere_destroy_reward
+                            value = 1
+                        }
+                    }
+                }
+                115tiny_crisis_sphere_1 = {
+                    root = {
+                        set_variable = {
+                            which = crisis_sphere_destroy_reward
+                            value = 1.5
+                        }
+                    }
+                }
+                115tiny_crisis_sphere_2 = {
+                    root = {
+                        set_variable = {
+                            which = crisis_sphere_destroy_reward
+                            value = 2
+                        }
+                    }
+                }
+                115tiny_crisis_sphere_3 = {
+                    root = {
+                        set_variable = {
+                            which = crisis_sphere_destroy_reward
+                            value = 3
+                        }
+                    }
+                }
+            }
+            set_halted = -1 #no completing while still deciding!
+        }
+        if = {
+            limit = {
+                exists = fromfrom
+                fromfrom = { has_megastructure_flag = crisis_sphere_of@prev }
+            }
+            fromfrom = {
+                save_event_target_as = sphere_builders
+            }
+        }
+        else = { #fromfrom is not reliable
+            random_country = {
+                limit = {
+                    from = { has_megastructure_flag = crisis_sphere_of@prev }
+                }
+                save_event_target_as = sphere_builders
+            }
+        }
+    }
+
+    #It must be destroyed
+    option = {
+        name = 115tiny_crisis.6200.A
+
+        if = {
+            limit = {
+                has_crisis_level = gts_115tiny_crisis_level_5
+            }
+            add_resource = {
+                gts_giantess_human = 1000
+                mult = crisis_sphere_destroy_reward
+            }
+        }
+        else = {
+            add_resource = {
+                influence = 200
+                alloys = 5000
+                mult = crisis_sphere_destroy_reward
+            }
+        }
+        custom_tooltip = 115tiny_aetherophasic_engine_ruined_tt
+
+        hidden_effect = {
+            from = {
+                solar_system = {
+                    spawn_megastructure = {
+                        type = 115tiny_crisis_sphere_ruined
+                        coords_from = prev
+                        init_effect = {
+                            if = {
+                                limit = { exists = event_target:crisis_sphere_owner }
+                                set_megastructure_flag = crisis_sphere_of@event_target:crisis_sphere_owner
+                            }
+                        }
+                    }
+                    random_system_ambient_object = {
+                        limit = {
+                            OR = {
+                                has_ambient_object_flag = crisis_sphere_1_system_effect
+                                has_ambient_object_flag = crisis_sphere_2_system_effect
+                                has_ambient_object_flag = crisis_sphere_3_system_effect
+                            }
+                        }
+                        destroy_ambient_object = this
+                    }
+                }
+                remove_megastructure = this
+            }
+            if = {
+                limit = { exists = event_target:sphere_builders }
+                event_target:sphere_builders = { country_event = { id = 115tiny_crisis.6101 } }
+            }
+            every_playable_country = {
+                limit = {
+                    is_ai = no
+                    NOR = {
+                        is_same_value = root
+                        AND = {
+                            exists = event_target:sphere_builders
+                            is_same_value = event_target:sphere_builders
+                        }
+                    }
+                }
+                country_event = { id = 115tiny_crisis.6103 }
+            }
+        }
+
+        ai_chance = {
+            factor = 1
+        }
+    }
+
+    #Option to replace your own one with it if you have lost yours
+    option = {
+        name = 115tiny_crisis.6200.B
+        custom_tooltip = 115tiny_crisis.6200.B.tooltip
+
+        trigger = {
+            has_crisis_level = gts_115tiny_crisis_level_5
+            NOT = {
+                any_owned_megastructure = {
+                    OR = {
+                        has_megastructure_flag = crisis_sphere
+                        AND = {
+                            is_megastructure_type = 115tiny_crisis_sphere_ruined
+                            is_upgrading = yes
+                        }
+                    }
+                }
+            }
+        }
+        hidden_effect = {
+            random_megastructure = {
+                limit = { has_megastructure_flag = crisis_sphere_of@root }
+                remove_megastructure_flag = crisis_sphere_of@root
+            }
+            random_system = {
+                limit = { has_star_flag = crisis_sphere_system@root }
+                remove_star_flag = crisis_sphere_system@root
+            }
+            from = {
+                set_megastructure_flag = crisis_sphere_of@root
+                set_halted = 0
+                solar_system = {
+                    set_star_flag = crisis_sphere_system@root
+                }
+            }
+        }
+
+        ai_chance = {
+            factor = 1000
+        }
+    }
+}
+
+# 除神之路，博取信任.48
+country_event = {
+    id = 115tiny_crisis.48
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = { has_ascension_perk = ap_gts_115tiny_crisis }
+
+    immediate = {
+        every_country = {
+            limit = {
+                trust = {
+                    who = root
+                    value >= 40
+                }
+            }
+            root = {
+                complete_crisis_objective = gts_115tiny_crisobj_keep_trust
+            }
+        }
+    }
+}
+# Menace Objective - Destroy Empires
+# Event for destroyed country
+country_event = {
+    id = 115tiny_crisis.4020
+    hide_window = yes
+    is_triggered_only = yes
+
+    # This = destroyed country
+    # From = optional, destroyer (country)
+
+    trigger = {
+        OR = {
+            is_country_type = default
+            is_country_type = fallen_empire
+            is_country_type = awakened_fallen_empire
+        }
+        exists = from
+        from = { has_ascension_perk = ap_gts_115tiny_crisis }
+    }
+
+    immediate = {
+        from = { complete_crisis_objective = gts_115tiny_crisobj_destroy_empires }
+    }
+}
+# Menace Objective - Destroy Enemy Ships
+country_event = {
+    id = 115tiny_crisis.4025
+    hide_window = yes
+    is_triggered_only = yes
+
+    # This = owner of ship 1 (combatant)
+    # From = owner of ship 2 (destroyed)
+    # FromFrom = ship 1
+    # FromFromFrom = ship 2
+
+    trigger = {
+        owner = {
+            has_ascension_perk = ap_gts_115tiny_crisis
+        }
+
+        # check to exclude starbase kills in the future;
+        # right now they're included and the starbase kill objective does nothing,
+        # as the menace reward is the same
+
+        fromfrom = {
+            OR = {
+                NOT = { is_ship_class = shipclass_starbase }
+                fleet = { is_mobile = yes } #juggernauts
+            }
+        }
+    }
+
+    immediate = {
+        owner = {
+            complete_crisis_objective = gts_115tiny_crisobj_destroy_enemy_ships
+        }
+    }
+}
+
+
+# Menace Objective - Destroy Starbases
+# Fired from on_action 'on_starbase_destroyed'
+starbase_event = {
+    id = 115tiny_crisis.4010
+    hide_window = yes
+    is_triggered_only = yes
+
+    # This = Starbase
+    # From = fleet that destroyed it
+
+    trigger = {
+        from = {
+            owner = {
+                has_ascension_perk = ap_gts_115tiny_crisis
+            }
+        }
+    }
+
+    immediate = {
+        from = {
+            owner = {
+                # Note: crisobj_destroy_enemy_ships would do the same thing, disabled for starbases in crisis.4025
+                complete_crisis_objective = gts_115tiny_crisobj_destroy_starbases
+            }
+        }
+    }
+}
+
+
+# Menace Objective - Purge Pops
+# Fired from on_action 'on_pop_purged'
+planet_event = {
+    id = 115tiny_crisis.4030
+    hide_window = yes
+    is_triggered_only = yes
+
+    # This = Planet scope
+    # From = Country
+    # FromFrom = Pop
+
+    trigger = {
+        from = {
+            OR = {
+                has_ascension_perk = ap_gts_115tiny_crisis
+            }
+        }
+        fromfrom = {
+            NOR = {
+                has_purge_type = { country = from type = purge_cosmogenesis_lathe_resettle }
+                has_purge_type = { country = from type = purge_godness_power_lathe_resettle }
+            }
+        }
+    }
+
+    immediate = {
+        from = {
+            complete_crisis_objective = gts_115tiny_crisobj_purge_pops
+        }
+    }
+}
+planet_event = {
+    id = 115tiny_crisis.1030
+    hide_window = yes
+    is_triggered_only = yes
+
+    # This = Planet scope
+    # From = Country
+    # FromFrom = Pop
+
+    trigger = {
+        from = {
+            OR = {
+                has_ascension_perk = ap_gts_115tiny_crisis
+            }
+        }
+        fromfrom = {
+            NOR = {
+                has_purge_type = { country = from type = purge_cosmogenesis_lathe_resettle }
+                has_purge_type = { country = from type = purge_godness_power_lathe_resettle }
+            }
+        }
+    }
+
+    immediate = {
+        from = {
+            complete_crisis_objective = gts_115tiny_crisobj_purge_gts_pops
+        }
+    }
+}
+# Menace Objective - Destroy Worlds
+# Fired from on_destroy_planet_with_PLANET_KILLER_CRACKER
+planet_event = {
+    id = 115tiny_crisis.5015
+    hide_window = yes
+    is_triggered_only = yes
+
+    # This/Root = planet that have been fired upon
+    # From = fleet that fired
+
+    trigger = {
+        from.owner = { has_ascension_perk = ap_gts_115tiny_crisis }
+        is_colony = yes
+    }
+
+    immediate = {
+        from.owner = { complete_crisis_objective = gts_115tiny_crisobj_destroy_worlds }
+        # if no other colonies, give empire destruction menace reward
+        if = {
+            limit = {
+                exists = owner
+                owner = {
+                    NOT = {
+                        any_owned_planet = {
+                            NOT = { is_same_value = root }
+                        }
+                    }
+                }
+            }
+            from.owner = {
+                complete_crisis_objective = gts_115tiny_crisobj_destroy_empires
+            }
+        }
+    }
+}
+
+# Menace Objective - Conquer Worlds
+# Fired from on_action 'on_planet_conquer'
+planet_event = {
+    id = 115tiny_crisis.5010
+    hide_window = yes
+    is_triggered_only = yes
+
+    # From = Country scope (new owner)
+    # This = Planet scope
+
+    trigger = {
+        from = {
+            has_ascension_perk = ap_gts_115tiny_crisis
+        }
+        OR = {
+            is_colony = yes
+            AND = {
+                exists = owner
+                owner = {
+                    is_primitive = yes
+                }
+            }
+        }
+    }
+
+    immediate = {
+        from = {
+            complete_crisis_objective = gts_115tiny_crisobj_conquer_worlds
+        }
+    }
+}
+
+# Menace Objective - Vassalise Empires
+# Fired from on_action 'on_becoming_subject'
+country_event = {
+    id = 115tiny_crisis.5020
+    hide_window = yes
+    is_triggered_only = yes
+
+    # This = subject
+    # From = subject's overlord
+
+    trigger = {
+        is_subject = yes
+        NOT = { has_country_flag = has_become_crisis_vassal }
+        from = {
+            has_ascension_perk = ap_gts_115tiny_crisis
+        }
+    }
+
+    immediate = {
+        from = {
+            complete_crisis_objective = gts_115tiny_crisobj_vassalise_empires
+        }
+        set_country_flag = has_become_crisis_vassal
+    }
+}
+
+
+# Menace Objective - Have Vassals
+# Fired from on_action 'on_yearly_pulse'
+event = {
+    id = 115tiny_crisis.5000
+    hide_window = yes
+    is_triggered_only = yes
+
+    trigger = {
+        any_country = {
+            has_ascension_perk = ap_gts_115tiny_crisis
+            is_overlord = yes
+        }
+    }
+
+    immediate = {
+        every_playable_country = {
+            if = {
+                limit = {
+                    has_ascension_perk = ap_gts_115tiny_crisis
+                    is_overlord = yes
+                }
+                every_subject = {
+                    prev = {
+                        complete_crisis_objective = gts_115tiny_crisobj_have_vassals
+                    }
+                }
+            }
+        }
+    }
+}
+# Menace Objective - Be in Breach of Galactic Law
+# Fired from on_action 'on_yearly_pulse'
+event = {
+    id = 115tiny_crisis.5005
+    hide_window = yes
+    is_triggered_only = yes
+
+    trigger = {
+        any_country = {
+            has_ascension_perk = ap_gts_115tiny_crisis
+            OR = {
+                is_in_breach_of_any = yes
+                has_country_flag = declared_crisis
+            }
+        }
+    }
+
+    immediate = {
+        every_playable_country = {
+            limit = {
+                has_ascension_perk = ap_gts_115tiny_crisis
+                OR = {
+                    is_in_breach_of_any = yes
+                    has_country_flag = declared_crisis
+                }
+            }
+            complete_crisis_objective = gts_115tiny_crisobj_be_in_breach_of_galcom_law
+        }
+    }
+}
+##净化巨大人口+资源
+planet_event = {
+    id = 115tiny_crisis.115
+    hide_window = yes
+    is_triggered_only = yes
+
+    # This = Planet scope
+    # From = Country
+    # FromFrom = Pop
+
+    trigger = {
+        from = {
+            OR = {
+                has_ascension_perk = ap_gts_115tiny_crisis
+            }
+        }
+        fromfrom = {
+            NOR = {
+                has_purge_type = { country = from type = purge_cosmogenesis_lathe_resettle }
+                has_purge_type = { country = from type = purge_godness_power_lathe_resettle }
+            }
+            gts_is_giantess = yes
+        }
+    }
+
+    immediate = {
+        from = {
+            ADD_RESOURCE = { gts_giantess_fluid = 50
+            gts_giantess_underwear = 5
+            gts_giantess_human = 1
+            }
+
+        }
+    }
+}
+##净化小人人口也加资源
+planet_event = {
+    id = 115tiny_crisis.114
+    hide_window = yes
+    is_triggered_only = yes
+
+    # This = Planet scope
+    # From = Country
+    # FromFrom = Pop
+
+    trigger = {
+        from = {
+            OR = {
+                has_ascension_perk = ap_gts_115tiny_crisis
+            }
+        }
+        fromfrom = {
+            NOT = {
+                has_purge_type = { country = from type = purge_cosmogenesis_lathe_resettle }
+                has_purge_type = { country = from type = purge_godness_power_lathe_resettle }
+            }
+            gts_is_giantess = no
+        }
+    }
+
+    immediate = {
+        from = {
+            ADD_RESOURCE = { gts_micro = 50
+            }
+
+        }
+    }
+}
+# Menace Objective - Neural Chips Production
+# Fired from on_action 'on_monthly_pulse'
+event = {
+    id = 115tiny_crisis.7017
+    hide_window = yes
+    is_triggered_only = yes
+
+    trigger = {
+        any_playable_country = {
+            has_ascension_perk = ap_gts_115tiny_crisis
+            has_country_flag = godness_power_world_built
+        }
+    }
+
+    immediate = {
+        every_playable_country = {
+            limit = {
+                has_ascension_perk = ap_gts_115tiny_crisis
+                has_country_flag = godness_power_world_built
+            }
+            if = {
+                limit = {
+                    NOT = { is_variable_set = godness_power_world_focus_produced }
+
+                }
+                set_variable = {
+                    which = godness_power_world_focus_produced
+                    value = 0
+                }
+            }
+            export_resource_income_to_variable = {
+                resource = gts_focus
+                variable = godness_power_world_focus_produced
+            }
+            complete_crisis_objective = gts_115tiny_crisobj_godness_power
+        }
+    }
+}
+#神力提取机服刑
+planet_event = {
+    id = 115tiny_crisis.5090
+    hide_window = yes
+    is_triggered_only = yes
+
+    trigger = {
+        NOT = {
+            is_planet_class = pc_godness_power_world
+        }
+        exists = owner
+        owner = {
+            any_owned_planet = {
+                is_planet_class = pc_godness_power_world
+            }
+            exists = fromfrom #crisis.202 can remove the last pop
+            fromfrom = {
+                has_purge_type = {
+                    type = purge_godness_power_lathe_resettle
+                }
+            }
+        }
+    }
+
+    immediate = {
+        fromfrom = {
+            save_event_target_as = gts_115tiny_purged_pop
+        }
+        owner = {
+            random_owned_planet = {
+                limit = {
+                    is_planet_class = pc_godness_power_world
+                }
+                save_event_target_as = gts_115tiny_lathe_resettlement_planet
+            }
+        }
+        event_target:gts_115tiny_lathe_resettlement_planet = {
+            create_pop_group = {
+                species = event_target:gts_115tiny_purged_pop
+            }
+        }
+    }
+}
+#提纯完成的好巨娘
+planet_event = {
+    id = 115tiny_crisis.100
+    hide_window = yes
+    is_triggered_only = yes
+
+    trigger = {
+        exists = owner
+        owner = {
+            any_owned_planet = {
+                is_planet_class = pc_godness_power_world
+            }
+            exists = fromfrom #crisis.202 can remove the last pop
+            fromfrom = {
+                has_job_category = job_godness_power_worker_slave
+            }
+        }
+    }
+
+    immediate = {
+        fromfrom = {
+            modify_species = {
+                add_trait = trait_godness_power_finish
+            }
+            save_event_target_as = gts_115tiny_godness_power_finish_purged_pop
+        }
+        owner = {
+            random_owned_planet = {
+                limit= {
+                NOT = { is_planet_class = pc_godness_power_world}
+                }
+                save_event_target_as = gts_115tiny_lathe_finish_resettlement_planet
+            }
+        }
+        event_target:gts_115tiny_lathe_finish_resettlement_planet = {
+            create_pop_group = {
+                species = event_target:gts_115tiny_godness_power_finish_purged_pop
+            }
+
+        }
+    }
+}
+
+#对巨娘领袖的处理方式
+#龙开专属事件
+country_event = {
+    id = 115tiny_crisis.120
+    title = 115tiny_crisis.120.name
+    desc = 115tiny_crisis.120.desc
+    diplomatic = yes
+    fire_only_once = yes
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+        room = gts_yarong5_room
+    }
+    show_sound = event_mystic_reveal
+    is_triggered_only = yes
+    trigger = {
+        has_origin = origin_god_keeper
+        OR = {
+            has_ascension_perk = ap_become_the_crisis # 星海天罚
+            has_ascension_perk = ap_cosmogenesis # 宇宙创生
+            has_ascension_perk = ap_gts_115tiny_crisis#除神之路
+        }
+    }
+    show_sound = event_celebration
+
+    option = {
+        name = 115tiny_crisis.120.a
+        enable_special_project = {
+            name = "gts_115tiny_CRISIS_SPECIAL_PROJECT_yarong"
+            owner = ROOT
+        }
+    }
+}
+
+fleet_event = { #yarong地爆天星
+    id = 115tiny_crisis.9
+    title = 115tiny_crisis.9
+    desc = 115tiny_crisis.9.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    show_sound = evn_ove_tiyanki_family
+    picture_event_data = {
+        room = gts_yarong2_room
+    }
+    location = from.owner
+    immediate = { #换舰船设计
+        event_target:gts_yarong_fleet = {
+            set_ship_design = {
+                design = "NAME_gts_yarong_ship_1"
+            }
+        }
+    }
+    option = {
+        name = EXCELLENT
+    }
+}
+# Menace Objective - Destroy Worlds
+# Fired from on_destroy_planet_with_PLANET_KILLER_CRACKER
+planet_event = {
+    id = 115tiny_crisis.5016
+    hide_window = yes
+    is_triggered_only = yes
+
+    # This/Root = planet that have been fired upon
+    # From = fleet that fired
+
+    trigger = {
+        from.owner = { has_ascension_perk = ap_gts_115tiny_crisis }
+        from = {is_ship_size = gts_yarong_ship}
+    }
+
+    immediate = {
+        from.owner = { complete_crisis_objective = gts_115tiny_crisobj_destroy_worlds }
+        # if no other colonies, give empire destruction menace reward
+        if = {
+            limit = {
+                exists = owner
+                owner = {
+                    NOT = {
+                        any_owned_planet = {
+                            NOT = { is_same_value = root }
+                        }
+                    }
+                }
+            }
+            from.owner = {
+                complete_crisis_objective = gts_115tiny_crisobj_destroy_empires
+            }
+        }
+    }
+}

@@ -1,0 +1,281 @@
+# 巨娘与小人领袖创建
+gts_leader_creator = {
+	# TARGET = 命名格式为gts_领袖名
+	# HAS_SELF_COUNTRY_TARGET = 若不进行设置，则会使用默认的未知国家进行领袖创建，国家target的命名方式为 gts_领袖名_country_target
+	# DESC =  领袖描述
+	# CATCH_DESC = 获取时的讯息描述
+	# GTS_TARGET_PLANET =  母星目标
+	# SIZE = 巨娘/小人 GTS/TINY
+	# TYPE = 传说领袖/英杰领袖 legendary/renowned
+	# CHANGE_OWNER = 是否在创建结束后就转交所有权
+	# HAS_LOVE_TRAIT = normal 开启通常好感度特质
+	hidden_effect = {
+		if = {
+			#若领袖不存在
+			limit = { NOT = { exists = event_target:$TARGET$ } }
+			[[!HAS_SELF_COUNTRY_TARGET] create_gts_default_country = { TARGET = $TARGET$ }]
+			event_target:$TARGET$_country_target = {
+				create_gts_species = { SIZE = $SIZE|GTS$ LEADER_PORTRAIT = $LEADER_PORTRAIT$  } # SIZE = GTS/TINY
+				create_leader = {
+					class = $CLASS$
+					species = event_target:gts_leader_species
+					name = $NAME$
+					skill = 1
+					gender = $GENDER|female$
+					event_leader = $EVENT_LEADER$ # Leader is allowed to lead factions and win elections
+					background_ethic = ethic_$ETHIC$
+					custom_description = $DESC$
+					custom_catch_phrase = $CATCH_PHRASE$
+					immortal = $IMMORTAL$
+					set_age = $AGE|17$
+					randomize_traits = $RANDOMIZE_TRAITS$
+					[[GTS_TARGET_PLANET]
+						background_planet = event_target:$GTS_TARGET_PLANET$
+					]
+					[[!GTS_TARGET_PLANET]
+						skip_background_generation = yes
+					]
+					effect = {
+						freeze_leader_age = $FREEZE_LEADER_AGE|no$
+						save_event_target_as = gts_leader
+						set_leader_flag = $TARGET$
+						exile_leader_as = $TARGET$_exile
+						save_global_event_target_as = $TARGET$
+						change_leader_portrait = $LEADER_PORTRAIT$
+						set_owner = prev #重设拥有者
+						set_variable = { which = leader_start_level value = $LEVEL|5$ }
+					}
+				}
+			}
+		}
+		event_target:$TARGET$ = {
+			# 设置传奇或英杰领袖默认FLAG
+			# TYPE = legendary/renowned
+			hidden_effect = {
+				gts_$TYPE|legendary$_leader_effect = yes
+				# 领袖面板初始化
+				gts_ui_leader_init = yes
+				# 批量设置特质
+				add_leader_traits = {
+					[[TRAIT1]TRAIT1 = $TRAIT1$]
+					[[TRAIT2]TRAIT2 = $TRAIT2$]
+					[[TRAIT3]TRAIT3 = $TRAIT3$]
+					[[TRAIT4]TRAIT4 = $TRAIT4$]
+					[[TRAIT5]TRAIT5 = $TRAIT5$]
+					[[TRAIT6]TRAIT6 = $TRAIT6$]
+					[[TRAIT7]TRAIT7 = $TRAIT7$]
+					[[TRAIT8]TRAIT8 = $TRAIT8$]
+					[[TRAIT9]TRAIT9 = $TRAIT9$]
+					[[TRAIT10]TRAIT10 = $TRAIT10$]
+				}
+				# 批量设置喜好
+				add_leader_preference = {
+					[[IS_FUTA]IS_FUTA = $IS_FUTA$]
+					[[IS_SCAT]IS_SCAT = $IS_SCAT$]
+					[[IS_CRUEL]IS_CRUEL = $IS_CRUEL$]
+					[[IS_KIND]IS_KIND = $IS_KIND$]
+				}
+				# 批量添加功能
+				add_leader_extend = {
+					[[HAS_ALTER_CLOTH]HAS_ALTER_CLOTH = $HAS_ALTER_CLOTH$ ]
+					[[HAS_COMMUNICATION]HAS_COMMUNICATION = $HAS_COMMUNICATION$ ]
+				}
+				# 领袖好感度系统初始化
+				[[HAS_LOVE_TRAIT]gts_love_$HAS_LOVE_TRAIT|normal$_system_launch = yes ]
+			}
+		}
+		# 是否直接进行所有者转移并播报讯息
+		[[CHANGE_OWNER] gts_leader_hire_effect = { TYPE = $TYPE|legendary$ }
+		]
+	}
+}
+# 领袖的所有权转交和部分设置的初始化
+gts_leader_hire_effect = {
+	# 领袖的gts_leader 为最近创建的领袖，如果中途招募其他领袖可能会出现严重错误
+	hidden_effect = {
+		# 领袖招募flag和修改所有权
+		gts_leader_owner_change = yes
+		# 增加默认特质
+		add_leader_default_trait = yes
+		# 增加国家领袖上限
+		add_country_default_modifier = yes
+		# 巨娘领袖招募消息 TYPE = legendary/renowned
+		gts_hired_leader_message = { type = $TYPE|legendary$ }
+	}
+}
+# 创建领袖的巨娘或小人种族 GTS or TINY
+create_gts_species = {
+	create_species = {
+		name = $SIZE$_LEADER_SPECIES
+		class = MAM
+		portrait = $LEADER_PORTRAIT$
+		traits = {
+			trait = "trait_enduring"
+		}
+		allow_negative_traits = no
+		effect = {
+			save_event_target_as = gts_leader_species
+		}
+		gender = female
+	}
+}
+# 批量添加领袖特质
+add_leader_traits = {
+	set_skill = 10
+	remove_all_traits = yes #清理所有特质
+	[[TRAIT1] add_trait = { trait = $TRAIT1$ show_message = no } ]
+	[[TRAIT2] add_trait = { trait = $TRAIT2$ show_message = no } ]
+	[[TRAIT3] add_trait = { trait = $TRAIT3$ show_message = no } ]
+	[[TRAIT4] add_trait = { trait = $TRAIT4$ show_message = no } ]
+	[[TRAIT5] add_trait = { trait = $TRAIT5$ show_message = no } ]
+	[[TRAIT6] add_trait = { trait = $TRAIT6$ show_message = no } ]
+	[[TRAIT7] add_trait = { trait = $TRAIT7$ show_message = no } ]
+	[[TRAIT8] add_trait = { trait = $TRAIT8$ show_message = no } ]
+	[[TRAIT9] add_trait = { trait = $TRAIT9$ show_message = no } ]
+	[[TRAIT10] add_trait = { trait = $TRAIT10$ show_message = no } ]
+	set_skill = 1
+}
+# 增加初始技能点
+add_leader_skills = {
+	subtract_variable = { which = leader_start_level value = 1 }
+	add_skill_without_trait_selection = leader_start_level
+}
+# 批量添加领袖喜好
+add_leader_preference = {
+	[[IS_FUTA] set_leader_flag = is_futa_leader ]
+	[[IS_SCAT] set_leader_flag = is_scat_leader ]
+	[[!IS_CRUEL] set_leader_flag = is_kind_leader ]
+	[[!IS_KIND] set_leader_flag = is_cruel_leader ]
+}
+# 领袖是否拥有某些拓展功能
+add_leader_extend = {
+	[[HAS_ALTER_CLOTH] set_leader_flag = gts_leader_has_alter_cloth ]		#有多个立绘
+	[[HAS_COMMUNICATION] set_leader_flag = gts_leader_has_communication ]	#有通讯界面
+}
+# 批量添加领袖默认特质并添加技能点
+add_leader_default_trait = {
+	event_target:gts_leader = {
+		add_trait = {
+			trait = gts_leader_item_i_all
+			show_message = no
+		}
+		add_leader_skills = yes
+	}
+}
+# 批量添加国家默认调整
+add_country_default_modifier = {
+	add_modifier = {
+		modifier = gts_leader_upkeep_add
+	}
+}
+# 领袖招募修改所有权
+gts_leader_owner_change = {
+	event_target:gts_leader = {
+		set_owner = root
+		set_leader_flag = hired_gts_leader
+	}
+}
+# 传奇领袖默认设置
+gts_legendary_leader_effect = {
+	set_leader_tier = leader_tier_legendary
+	set_leader_flag = leader_death_events_blocked
+	# 用于避免领袖复活时添加与种族相同的体型大小
+	set_leader_flag = gts_bruh_intentional_size_leader_flag
+}
+# 英杰领袖默认设置
+gts_renowned_leader_effect = {
+	set_leader_tier = leader_tier_renowned
+	set_leader_flag = leader_death_events_blocked
+	# 用于避免领袖复活时添加与种族相同的体型大小
+	set_leader_flag = gts_bruh_intentional_size_leader_flag
+}
+# 招募时讯息
+gts_hired_leader_message = {
+	create_message = {
+		type = MESSAGE_RECRUITED_LEADER
+		localization =  MESSAGE_RECRUITED_LEADER_DESC
+		days = @toast_message_days
+		target = event_target:gts_leader
+		variable = {
+			type = name
+			localization = LEADER
+			scope = event_target:gts_leader
+		}
+		variable = {
+			key = "border"
+			value = "GFX_border_$type$" #"GFX_border_veteran"
+		}
+	}
+}
+# 给附庸的领袖上特质
+add_ultracompany_leader_trait = {
+	random_list = {
+		1 = {
+			add_trait = {
+				trait = leader_trait_ultracompany_asset
+				show_message = no
+			}
+		}
+	}
+}
+# 复活领袖 转移所有权事件请在后续的事件中添加
+# This = Country
+# From = Leader
+revive_gts_leader = {
+	if = {
+		limit = { From = { is_gts_leader = { name = $name$ } } }
+		if = { limit = { NOT = { exists = event_target:gts_$name$_country_target } }
+			create_gts_default_country = { TARGET = gts_$name$ } }
+		event_target:gts_$name$_country_target  = {
+			clone_leader = {
+				target = From
+				[[GTS_TARGET_PLANET]
+					background_planet = event_target:$GTS_TARGET_PLANET$
+				]
+				[[!GTS_TARGET_PLANET]
+					skip_background_generation = yes
+				]
+				effect = {
+					save_global_event_target_as = gts_$name$
+					save_global_event_target_as = gts_leader
+					save_global_event_target_as = gts_revive_leader
+					copy_flags_and_variables_from = From
+					set_owner = prev
+					[[gts_target_job] change_background_job = $gts_target_job$ ]
+					set_years_served = From
+				}
+			}
+		}
+		gts_leader_hire_effect = yes
+		if = {
+			limit = { exists = event_target:gts_$name$_fleet }
+			event_target:gts_$name$_fleet = {
+				set_leader = event_target:gts_$name$
+			}
+		}
+		# 统治者和非统治者触发不同的事件
+		if = { limit = { ruler_is_gts_leader = { name = $name$} }
+			country_event = { id = $ruler_event$ days = 3}
+		}
+		else = { country_event = { id = $event$ days = 3} }
+
+	}
+}
+restore_gts_leader_location = {
+	if = {
+		limit = {
+			exists = from.planet
+		}
+		from.planet = {
+			assign_leader = event_target:gts_revive_leader
+		}
+	}
+	else_if = {
+		limit = {
+			exists = from.fleet
+		}
+		from.fleet = {
+			assign_leader = event_target:gts_revive_leader
+		}
+	}
+}

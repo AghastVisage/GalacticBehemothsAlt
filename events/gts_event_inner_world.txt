@@ -1,0 +1,167 @@
+namespace = gts_evt_inner_world
+
+ship_event = {
+	id = gts_evt_inner_world.1	#发现星盘沙漠
+	title = "gts_evt_inner_world.1.name"
+	desc = "gts_evt_inner_world.1.desc"
+	picture = GFX_evt_desert
+	show_sound = event_mystic_reveal_light
+	location = event_target:gts_inner_world_planet
+	is_triggered_only = yes
+	immediate = {
+	}
+	option = {
+		name = INCREDIBLE
+		leader = {
+			add_experience = 500
+		}
+		from = {
+			create_archaeological_site = site_gts_inner_world
+		}		#是大写的i
+	}
+}
+fleet_event = {
+	id = gts_evt_inner_world.2
+	title = "gts_evt_inner_world.2.name"
+	desc = "gts_evt_inner_world.2.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_evt_inner_world.2.a
+		small_artifact_reward = yes
+	}
+}
+
+fleet_event = {
+	id = gts_evt_inner_world.3
+	title = "gts_evt_inner_world.3.name"
+	desc = "gts_evt_inner_world.3.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_evt_inner_world.3.a
+	}
+}
+
+fleet_event = {
+	id = gts_evt_inner_world.4
+	title = "gts_evt_inner_world.4.name"
+	desc = "gts_evt_inner_world.4.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_evt_inner_world.4.a
+		hidden_effect = {
+			from.planet = {
+				add_modifier = {
+					modifier = inner_world
+				}
+				add_deposit = d_gts_inner_sol				#大型恒星
+				add_deposit = d_gts_inner_sol
+				add_deposit = d_gts_inner_sol
+				add_deposit = d_gts_inner_sol
+				add_deposit = d_gts_inner_sol
+				add_deposit = d_gts_inner_sol
+				add_deposit = d_gts_inner_sol
+				add_deposit = d_gts_inner_sol
+				add_deposit = d_gts_inner_sol
+				add_deposit = d_gts_inner_sol
+				add_deposit = d_gts_inner_sol
+				add_deposit = d_gts_inner_sol
+				add_deposit = d_gts_inner_sol
+				add_deposit = d_gts_inner_sol
+				add_deposit = d_gts_inner_sol
+				add_deposit = d_gts_inner_sol
+				add_deposit = d_gts_inner_sol
+				add_deposit = d_gts_inner_sol
+				add_deposit = d_gts_inner_sol
+				add_deposit = d_gts_inner_sol
+				add_deposit = d_gts_inner_sol
+				add_deposit = d_gts_inner_sol
+				add_deposit = d_gts_inner_sol
+				add_deposit = d_gts_inner_sol
+				add_deposit = d_gts_inner_sol
+				add_deposit = d_gts_inner_hole				#黑洞
+				add_deposit = d_gts_inner_hole
+				add_deposit = d_gts_inner_hole
+				add_deposit = d_gts_inner_hole
+				add_deposit = d_gts_inner_hole
+				add_deposit = d_gts_inner_hole
+				add_deposit = d_gts_inner_hole
+				add_deposit = d_gts_inner_hole
+				add_deposit = d_gts_inner_aninmal				#星神兽
+				add_deposit = d_gts_inner_aninmal
+				add_deposit = d_gts_inner_aninmal
+				add_deposit = d_gts_inner_aninmal
+				add_deposit = d_gts_inner_aninmal
+				add_deposit = d_gts_inner_aninmal
+				add_deposit = d_gts_inner_a_empire				#堕落帝国
+				add_deposit = d_gts_inner_a_empire
+				add_deposit = d_gts_inner_a_empire
+				add_deposit = d_gts_inner_b_empire				#普通帝国 
+				add_deposit = d_gts_inner_b_empire
+				add_deposit = d_gts_inner_b_empire
+				add_deposit = d_gts_inner_b_empire
+				add_deposit = d_gts_inner_b_empire
+				add_deposit = d_gts_inner_b_empire
+				add_deposit = d_gts_inner_b_empire
+				add_deposit = d_gts_inner_b_empire
+				add_deposit = d_gts_inner_b_empire
+				add_deposit = d_gts_inner_c_empire				#土著帝国
+				add_deposit = d_gts_inner_c_empire
+				add_deposit = d_gts_inner_c_empire
+				add_deposit = d_gts_inner_c_empire
+				add_deposit = d_gts_inner_c_empire
+				add_deposit = d_gts_inner_c_empire
+				add_deposit = d_gts_inner_c_empire
+				add_deposit = d_gts_inner_c_empire
+				add_deposit = d_gts_inner_c_empire
+				add_deposit = d_gts_inner_c_empire
+				add_deposit = d_gts_inner_c_empire
+				add_deposit = d_gts_inner_c_empire
+				add_deposit = d_gts_inner_c_empire
+				add_deposit = d_gts_inner_c_empire
+				add_deposit = d_gts_inner_c_empire
+				add_deposit = d_gts_inner_c_empire
+				add_deposit = d_gts_inner_scan				#大裂隙
+			}
+		}
+		great_artifact_reward = yes		#改成添加buff
+	}
+}

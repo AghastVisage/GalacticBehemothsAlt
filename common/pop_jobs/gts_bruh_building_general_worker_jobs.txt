@@ -1,0 +1,864 @@
+################################################################################
+#################                通用建築勞工崗位                #################
+################################################################################
+
+
+
+################################################################################
+#################                巨娘一級勞工崗位                #################
+################################################################################
+
+
+
+redlight_worker = {
+
+	# 紅燈區接待員
+
+	category = worker
+
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_redlight_district
+		}
+	}
+
+	tags = { energy trade }
+
+	inline_script = "jobs/automodding_priority_energy"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = worker
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible = {
+		gts_is_giantess = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+
+	resources = {
+		category = planet_traders
+		produces = {
+			# 25
+			energy = 10
+			trade = 15
+		}
+		upkeep = {
+			# 20
+			food = 10
+			gts_micro = 5
+		}
+	}
+
+	weight = {
+		weight = @worker_job_weight
+		modifier = {
+			factor = 10
+			gts_is_giantess = yes
+		}
+	}
+}
+
+micro_food_worker = {
+
+	# 小人食品加工員
+
+	category = worker
+
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_micro_food_factory
+		}
+	}
+
+	tags = { food }
+
+	inline_script = "jobs/automodding_priority_food"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = worker
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible = {
+		gts_is_giantess = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+
+	resources = {
+		category = planet_farmers
+		produces = {
+			# 25
+			food = 25
+		}
+		upkeep = {
+			# 20
+			minerals = 10
+			gts_micro = 5
+		}
+	}
+
+	weight = {
+		weight = @worker_job_weight
+		modifier = {
+			factor = 10
+			gts_is_giantess = yes
+		}
+	}
+}
+
+micro_miner = {
+
+	# 小人礦物監工
+
+	category = worker
+
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_micro_mineral_factory
+		}
+	}
+
+	tags = { minerals }
+
+	inline_script = "jobs/automodding_priority_minerals"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = worker
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible = {
+		gts_is_giantess = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+
+	resources = {
+		category = planet_miners
+		produces = {
+			# 25
+			minerals = 25
+		}
+		upkeep = {
+			# 20
+			energy = 10
+			gts_micro = 5
+		}
+	}
+
+	weight = {
+		weight = @worker_job_weight
+		modifier = {
+			factor = 10
+			gts_is_giantess = yes
+		}
+	}
+}
+
+
+
+################################################################################
+#################                巨娘二級勞工崗位                #################
+################################################################################
+
+
+
+sock_park_worker = {
+
+	# 園區管理員
+
+	category = worker
+
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_sock_park
+		}
+	}
+
+	tags = { amenities unity pop_growth pop_assembly }
+
+	inline_script = "jobs/automodding_priority_unity"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = worker
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible = {
+		gts_is_giantess = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+
+	resources = {
+		category = planet_bureaucrats
+		produces = {
+			# 40
+			unity = 20
+		}
+		upkeep = {
+			# 40
+			gts_micro = 10
+			energy = 10
+			consumer_goods = 5
+		}
+	}
+
+	planet_modifier = {
+		logistic_growth_mult = 0.01
+		bonus_pop_growth_mult = 0.01
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		planet_amenities_add = 1250
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+
+	weight = {
+		weight = @worker_job_weight
+		modifier = {
+			factor = 10
+			gts_is_giantess = yes
+		}
+	}
+}
+
+
+
+################################################################################
+#################                小人一級勞工崗位                #################
+################################################################################
+
+
+
+gts_bathhouse_worker = {
+
+	# 愛液池維護員
+
+	category = worker
+
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_micro_food_factory
+		}
+	}
+
+	tags = { energy trade }
+
+	inline_script = "jobs/automodding_priority_energy"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = worker
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible = {
+		gts_is_tiny = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+
+	resources = {
+		category = planet_traders
+		produces = {
+			# 25
+			energy = 10
+			trade = 15
+		}
+		upkeep = {
+			# 20
+			food = 10
+			gts_giantess_fluid = 5
+		}
+	}
+
+	weight = {
+		weight = @worker_job_weight
+		modifier = {
+			factor = 10
+			gts_is_tiny = yes
+		}
+	}
+}
+
+gts_food_worker = {
+
+	# 汗液食品加工員
+
+	category = worker
+
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_gts_food_factory
+		}
+	}
+
+	tags = { food }
+
+	inline_script = "jobs/automodding_priority_food"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = worker
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible = {
+		gts_is_tiny = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+
+	resources = {
+		category = planet_farmers
+		produces = {
+			# 25
+			food = 25
+		}
+		upkeep = {
+			# 20
+			minerals = 10
+			gts_giantess_fluid = 5
+		}
+	}
+
+	weight = {
+		weight = @worker_job_weight
+		modifier = {
+			factor = 10
+			gts_is_tiny = yes
+		}
+	}
+}
+
+gts_miner = {
+
+	# 消化液礦物加工員
+
+	category = worker
+
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_gts_mineral_factory
+		}
+	}
+
+	tags = { minerals }
+
+	inline_script = "jobs/automodding_priority_minerals"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = worker
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible = {
+		gts_is_tiny = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+
+	resources = {
+		category = planet_miners
+		produces = {
+			# 25
+			minerals = 25
+		}
+		upkeep = {
+			# 20
+			energy = 10
+			gts_giantess_fluid = 5
+		}
+	}
+
+	weight = {
+		weight = @worker_job_weight
+		modifier = {
+			factor = 10
+			gts_is_tiny = yes
+		}
+	}
+}
+
+
+
+################################################################################
+#################                小人二級勞工崗位                #################
+################################################################################
+
+
+
+gts_tiny_beggar = {
+
+	# 採集者
+
+	# 沒用到
+
+	category = worker
+
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_primitive_capital
+		}
+	}
+
+	tags = { energy food minerals }
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = worker
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible = {
+		gts_is_tiny = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+
+	resources = {
+		category = planet_jobs_worker
+		produces = {
+			energy = 1
+			food = 1
+			minerals = 1
+			gts_giantess_fluid = 0.20
+			gts_giantess_underwear = 0.10
+		}
+	}
+
+	weight = {
+		weight = @worker_job_weight
+		modifier = {
+			factor = 10
+			gts_is_tiny = yes
+		}
+	}
+}
+
+gts_extreme_worker = {
+
+	# 特殊泉管理員
+
+	category = worker
+
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_gts_extreme_park
+		}
+	}
+
+	tags = { amenities unity pop_growth pop_assembly }
+
+	inline_script = "jobs/automodding_priority_unity"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = worker
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible = {
+		gts_is_tiny = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+
+	resources = {
+		category = planet_bureaucrats
+		produces = {
+			# 37.5
+			unity = 18.75
+		}
+		upkeep = {
+			# 30
+			energy = 10
+			consumer_goods = 5
+			gts_giantess_fluid = 5
+		}
+	}
+
+	planet_modifier = {
+		logistic_growth_mult = 0.01
+		bonus_pop_growth_mult = 0.01
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		planet_amenities_add = 1250
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+
+	weight = {
+		weight = @worker_job_weight
+		modifier = {
+			factor = 10
+			gts_is_tiny = yes
+		}
+	}
+}
+
+
+
+################################################################################
+#################                首都建築勞工崗位                #################
+################################################################################
+
+
+
+################################################################################
+##################                病村/深淵崗位                ##################
+################################################################################
+
+
+
+gts_shit_worker = {
+
+	# 屎蟲
+
+	category = worker
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_residence
+			icon = servant
+		}
+	}
+
+	tags = { energy minerals food }
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = worker
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+
+	resources = {
+		category = planet_jobs_worker
+		produces = {
+			# 25
+			energy = 6.25
+			minerals = 6.25
+			food = 6.25
+			trade = 6.25
+		}
+	}
+
+	weight = {
+		weight = @worker_job_weight
+	}
+}
+
+
+
+################################################################################
+##################                足垢挖掘點崗位                ##################
+################################################################################
+
+
+
+gts_dirt1 = {
+
+	# 足蟲
+
+	category = worker
+
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_residence
+			icon = servant
+		}
+	}
+
+	tags = { energy minerals food }
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = worker
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+
+	resources = {
+		category = planet_jobs_worker
+		produces = {
+			# 25
+			energy = 6.25
+			minerals = 6.25
+			food = 6.25
+			trade = 6.25
+		}
+	}
+
+	weight = {
+		weight = @worker_job_weight
+	}
+}
+
+
+
+################################################################################
+##################                尿液研究站崗位                ##################
+################################################################################
+
+
+
+gts_urine_worker = {
+
+	# 尿壶
+
+	category = worker
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_residence
+			icon = servant
+		}
+	}
+
+	tags = { energy minerals food }
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = worker
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+
+	resources = {
+		category = planet_jobs_worker
+		produces = {
+			# 25
+			energy = 6.25
+			minerals = 6.25
+			food = 6.25
+			trade = 6.25
+		}
+	}
+
+	weight = {
+		weight = @worker_job_weight
+	}
+}
+
+
+
+################################################################################
+##################                精子飼養處崗位                ##################
+################################################################################
+
+
+
+gts_semen_worker = {
+
+	# 精鱼饲养员
+
+	category = worker
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_residence
+			icon = servant
+		}
+	}
+
+	tags = { energy minerals food }
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = worker
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+
+	resources = {
+		category = planet_jobs_worker
+		produces = {
+			# 25
+			energy = 6.25
+			minerals = 6.25
+			food = 6.25
+			trade = 6.25
+		}
+	}
+
+	weight = {
+		weight = @worker_job_weight
+	}
+}
+

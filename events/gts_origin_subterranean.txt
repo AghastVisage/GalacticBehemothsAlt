@@ -1,0 +1,442 @@
+namespace = gts_subterranean
+
+country_event = {
+	id = gts_subterranean.0
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_origin = origin_gts_subterranean
+	}
+
+	immediate = {
+		owner_main_species = {
+			change_species_characteristics = {
+				remove_trait = trait_pc_savannah_preference
+			}
+			change_species_characteristics = {
+				remove_trait = trait_pc_arid_preference
+			}
+			change_species_characteristics = {
+				remove_trait = trait_pc_desert_preference
+			}
+			change_species_characteristics = {
+				remove_trait = trait_pc_continental_preference
+			}
+			change_species_characteristics = {
+				remove_trait = trait_pc_tropical_preference
+			}
+			change_species_characteristics = {
+				remove_trait = trait_pc_ocean_preference
+			}
+			change_species_characteristics = {
+				remove_trait = trait_pc_arctic_preference
+			}
+			change_species_characteristics = {
+				remove_trait = trait_pc_tundra_preference
+			}
+			change_species_characteristics = {
+				remove_trait = trait_pc_alpine_preference
+			}
+			change_species_characteristics = {
+				add_trait = trait_pc_gts_shoes_preference
+			}
+		}
+	}
+
+	after = {
+		capital_scope = {
+			add_modifier = {
+				modifier = gts_planet_ruin
+			}
+			add_modifier = {
+				modifier = gts_among_shadow
+			}
+			add_modifier = {
+				modifier = gts_amazing_sweat
+			}
+
+			export_trigger_value_to_variable = {
+				trigger = planet_size
+				variable = gts_bruh_get_planet_size
+			}
+			set_variable_to_random_value = {
+				which = gts_bruh_random_count
+				min = 9
+				max = gts_bruh_get_planet_size
+			}
+			while = {
+				count = gts_bruh_random_count
+				random_list = {
+					1 = {
+						add_deposit = d_gts_footdirt
+					}
+					1 = {
+						add_deposit = d_gts_footsweat_1
+					}
+					1 = {
+						add_deposit = d_gts_sock_1
+					}
+					1 = {
+						add_deposit = d_gts_boot
+					}
+				}
+			}
+			while = {
+				count = 1
+				add_deposit = d_gts_sock_2
+				random_list = {
+					1 = {
+						add_deposit = d_gts_sock_2
+					}
+					1 = {}
+				}
+			}
+		}
+	}
+}
+
+# 添加失去聯繫
+
+planet_event = {
+	id = gts_subterranean.2
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		owner = {
+			has_origin = origin_gts_subterranean
+		}
+		OR = {
+			num_assigned_jobs = {
+				job = gts_foot_prist
+				value < 1
+			}
+			has_planet_flag = gts_shoes_planet
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				NOT = { has_modifier = gts_lost_contact }
+				NOT = { has_planet_flag = gts_shoes_planet }
+			}
+			add_modifier = {
+				modifier = gts_lost_contact
+				days = -1
+			}
+		}
+		if = {
+			limit = { has_planet_flag = gts_shoes_planet }
+			add_modifier = {
+				modifier = gts_shoes_sacredsite
+				days = -1
+			}
+		}
+	}
+}
+
+country_event = {
+	#检定移除缺少联系
+	id = gts_subterranean.3	#检定移除、地下贴图
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		owner = {
+			has_origin = origin_gts_subterranean
+		}
+	}
+
+	immediate = {
+		every_owned_planet = {
+			limit = {
+				has_modifier = gts_lost_contact
+				num_assigned_jobs = {
+					job = gts_foot_prist
+					value >= 1
+				}
+			}
+			remove_modifier = "gts_lost_contact"
+		}
+	}
+}
+
+planet_event = {
+	#失去控制后不再有这个修正
+	id = gts_subterranean.4	#removes the modifier if you aren't a progenitor hive
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		NOT = {
+			From = {
+				has_origin = origin_gts_subterranean
+			}
+		}
+		has_modifier = gts_lost_contact
+	}
+	immediate = {
+		remove_modifier = gts_lost_contact
+		remove_modifier = gts_shoes_sacredsite
+	}
+}
+
+planet_event = {
+	#废弃星球后不再有这个修正
+	id = gts_subterranean.5	#removes Missing Offspring when abandoning colonies
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		has_modifier = gts_lost_contact
+	}
+	immediate = {
+		remove_modifier = gts_lost_contact
+		remove_modifier = gts_shoes_sacredsite
+	}
+}
+
+country_event = {
+	id = gts_subterranean.6
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		low_tech_start_add_research_options_effect = yes
+		# Broken Shackles pops are aware of alien life
+		set_country_flag = encountered_first_primitive
+		set_country_flag = first_contact_event
+		set_country_flag = first_alien_life
+		set_country_flag = Story1
+		set_country_flag = Story2		# Already encountered spacefarers
+		set_country_flag = Story3
+		set_country_flag = Story4
+		set_country_flag = Story5
+		set_country_flag = Story6
+		set_country_flag = Story7
+		set_country_flag = has_encountered_other_empire
+		if = {
+			limit = {
+				count_country = {
+					limit = {
+						is_primitive = yes
+					}
+					count < 3
+				}
+			}
+			capital_scope = {
+				while = {
+					count = 3
+					spawn_system = {
+						min_distance = 10
+						max_distance = 100
+						initializer = pre_ftl_init_01
+						hyperlane = no
+						is_discovered = no
+					}
+					add_extra_hyperlane_to_spawned_system_effect = yes
+					add_extra_hyperlane_to_spawned_system_effect = yes
+				}
+			}
+		}
+		capital_scope = {
+			solar_system = {
+				set_star_flag = broken_shackles_system
+			}
+			while = {
+				limit = {
+					pop_amount < 28000
+				}
+				if = {
+					limit = {
+						any_country = {
+							species = {
+								ideal_planet_is_special = no
+								NOT = {
+									has_trait = trait_hive_mind
+								}
+							}
+							OR = {
+								is_preftl_but_not_special = yes
+								AND = {
+									has_slave_origin = yes
+									NOT = {
+										is_same_value = root
+									}
+								}
+							}
+						}
+					}
+					random_country = {
+						limit = {
+							species = {
+								ideal_planet_is_special = no
+								NOT = {
+									has_trait = trait_hive_mind
+								}
+							}
+							OR = {
+								is_preftl_but_not_special = yes
+								AND = {
+									has_slave_origin = yes
+									NOT = {
+										is_same_value = root
+									}
+								}
+							}
+						}
+						set_country_flag = broken_shackles_abductees_country
+						set_country_flag = broken_shackles_abductees@root
+						owner_species = {
+							save_event_target_as = random_primitive_species
+						}
+						capital_scope = {
+							set_planet_flag = broken_shackles_abductees_world@root
+						}
+						if = {
+							limit = {
+								is_primitive = yes
+								has_awareness < 75
+							}
+							set_awareness = 75
+						}
+					}
+					create_pop_group = {
+						species = event_target:random_primitive_species
+						ethos = random
+					}
+				}
+			}
+			check_planet_employment = yes
+			# Remove starbase buildings and modules
+			solar_system = {
+				starbase = {
+					remove_starbase_building = {
+						building = crew_quarters
+					}
+					remove_starbase_module = {
+						module = trading_hub
+					}
+					remove_starbase_module = {
+						module = shipyard
+					}
+				}
+			}
+			# Dig site 
+			owner = {
+				set_country_flag = broken_shackles_origin_arcsite_owner@prev
+			}
+			create_archaeological_site = broken_shackles_digsite
+		}
+		if = {
+			limit = {
+				is_human_species = no
+			}
+			random_country = {
+				limit = {
+					has_country_flag = broken_shackles_parent_of@root
+				}
+				capital_scope = {
+					change_pc = root.species
+				}
+			}
+		}
+		else = {
+			# Spawn Primitive Earth if no other Earth exists
+			if = {
+				limit = {
+					NOT = {
+						exists = event_target:sol_system_earth
+					}
+				}
+				random_system = {
+					limit = {
+						NOT = {
+							has_star_flag = empire_cluster
+						}
+					}
+					spawn_system = {
+						min_distance = 10
+						max_distance = 30
+						max_jumps = 0
+						initializer = "pre_ftl_init_sol"
+					}
+				}
+			}
+			set_country_flag = parent_system_spawned
+			save_event_target_as = broken_shackles_child
+			# Now make Earth our homeworld
+			event_target:sol_system_earth = {
+				if = {
+					limit = {
+						exists = owner
+					}
+					owner = {
+						set_country_flag = broken_shackles_parent_country
+						set_country_flag = special_intro_for@event_target:broken_shackles_child
+						set_country_flag = broken_shackles_parent_of@event_target:broken_shackles_child
+					}
+					set_planet_flag = broken_shackles_homeworld_@root
+					solar_system = {
+						set_star_flag = broken_shackles_home_system_@root
+					}
+				}
+			}
+			owner_species = {
+				set_species_homeworld = event_target:sol_system_earth
+			}
+		}
+		# Safety pops in case there are literally no other primitives in the galaxy
+		capital_scope = {
+			while = {
+				limit = {
+					pop_amount < 28000
+				}
+				create_pop_group = {
+					species = owner_main_species
+					ethos = random
+				}
+			}
+			check_planet_employment = yes
+		}
+		random_country = {
+			limit = {
+				has_country_flag = broken_shackles_parent_of@root
+				is_primitive = yes
+			}
+			set_awareness = 75
+		}
+	}
+}
+
+planet_event = {
+	#失去控制后不再有这个修正
+	id = gts_subterranean.7
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		NOT = {
+			From = {
+				has_valid_civic = civic_gts_feudalism
+			}
+		}
+		has_modifier = gts_lost_contact
+	}
+	immediate = {
+		remove_modifier = gts_lost_contact
+		remove_modifier = gts_shoes_sacredsite
+	}
+}
+
+planet_event = {
+	#废弃星球后不再有这个修正
+	id = gts_subterranean.8
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		has_modifier = gts_lost_contact
+	}
+	immediate = {
+		remove_modifier = gts_lost_contact
+		remove_modifier = gts_shoes_sacredsite
+	}
+}

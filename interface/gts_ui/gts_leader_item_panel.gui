@@ -1,0 +1,452 @@
+@gts_leader_item_page_x = 234
+@gts_leader_item_page_y = 386
+@gts_leader_item_x_1 = 48
+@gts_leader_item_x_2 = 168
+@gts_leader_item_x_3 = 288
+@gts_leader_item_x_4 = 408
+@gts_leader_item_y_1 = 48
+@gts_leader_item_y_2 = 168
+@gts_leader_item_y_3 = 288
+guiTypes = {
+	### 领袖物品栏 ###
+	containerWindowType = {
+		name = "gts_leader_item_panel"
+		orientation = center
+		origo = center
+		moveable = yes
+		size = { width = 532 height = 432 }
+		background = {
+			# 大背景
+			name = "background"
+			quadTextureSprite = "GFX_gts_leader_item_bg"
+		}
+		buttonType = {
+			# 焦点
+			name = "focus_button"
+			position = { x = -80 y = 16 }
+			orientation = "UPPER_RIGHT"
+			spriteType = "GFX_fleetview_focus"
+			buttonFont = "cg_16b"
+			shortcut = "q"
+		}
+		buttonType = {
+			# 关闭
+			name = "close"
+			quadTextureSprite = "GFX_main_close_button"
+			position = { x= 420 y = 390 }
+			clicksound = "back_click"
+		}
+		effectButtonType = {
+			# 上一页
+			name = "gts_leader_item_back"
+			spriteType = "GFX_gts_leader_item_back"
+			position = { x = 160 y = 386 }
+			effect = gts_leader_item_back_effect
+		}
+		effectButtonType = {
+			# 下一页
+			name = "gts_leader_item_next"
+			spriteType = "GFX_gts_leader_item_next"
+			position = { x = 306 y = 386 }
+			effect = gts_leader_item_next_effect
+		}
+		### 页数显示
+
+		effectButtonType = {
+			name = "gts_leader_item_page_1"
+			spriteType = "GFX_gts_leader_item_page_1"
+			position = { x = @gts_leader_item_page_x y = @gts_leader_item_page_y }
+			alwaysTransparent = yes		
+			effect = gts_leader_item_page_1_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_page_2"
+			spriteType = "GFX_gts_leader_item_page_2"
+			position = { x = @gts_leader_item_page_x y = @gts_leader_item_page_y }
+			alwaysTransparent = yes		
+			effect = gts_leader_item_page_2_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_page_3"
+			spriteType = "GFX_gts_leader_item_page_3"
+			position = { x = @gts_leader_item_page_x y = @gts_leader_item_page_y }
+			alwaysTransparent = yes		
+			effect = gts_leader_item_page_3_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_page_4"
+			spriteType = "GFX_gts_leader_item_page_4"
+			position = { x = @gts_leader_item_page_x y = @gts_leader_item_page_y }
+			alwaysTransparent = yes		
+			effect = gts_leader_item_page_4_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_page_5"
+			spriteType = "GFX_gts_leader_item_page_5"
+			position = { x = @gts_leader_item_page_x y = @gts_leader_item_page_y }
+			alwaysTransparent = yes		
+			effect = gts_leader_item_page_5_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_page_6"
+			spriteType = "GFX_gts_leader_item_page_6"
+			position = { x = @gts_leader_item_page_x y = @gts_leader_item_page_y }
+			alwaysTransparent = yes		
+			effect = gts_leader_item_page_6_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_page_7"
+			spriteType = "GFX_gts_leader_item_page_7"
+			position = { x = @gts_leader_item_page_x y = @gts_leader_item_page_y }
+			alwaysTransparent = yes		
+			effect = gts_leader_item_page_7_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_page_8"
+			spriteType = "GFX_gts_leader_item_page_8"
+			position = { x = @gts_leader_item_page_x y = @gts_leader_item_page_y }
+			alwaysTransparent = yes		
+			effect = gts_leader_item_page_8_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_page_9"
+			spriteType = "GFX_gts_leader_item_page_9"
+			position = { x = @gts_leader_item_page_x y = @gts_leader_item_page_y }
+			alwaysTransparent = yes		
+			effect = gts_leader_item_page_9_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_page_10"
+			spriteType = "GFX_gts_leader_item_page_10"
+			position = { x = @gts_leader_item_page_x y = @gts_leader_item_page_y }
+			alwaysTransparent = yes		
+			effect = gts_leader_item_page_10_effect
+		}
+		### 道具 ###
+		effectButtonType = {
+			# 空
+			name = "gts_leader_item_i_none"
+			spriteType = "GFX_gts_leader_item_none"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_1 }
+			effect = gts_leader_item_i_none_effect
+		}
+		effectButtonType = {
+			# 星际集会
+			name = "gts_leader_item_i_assembly"
+			spriteType = "GFX_gts_leader_item_i_assembly"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_1 }
+			effect = gts_leader_item_i_assembly_effect
+		}
+		effectButtonType = {
+			# 污垢解压机
+			name = "gts_leader_item_i_decompressor"
+			spriteType = "GFX_gts_leader_item_i_decompressor"
+			position = { x = @gts_leader_item_x_3 y = @gts_leader_item_y_1 }
+			effect = gts_leader_item_i_decompressor_effect
+		}
+		effectButtonType = {
+			# 传送星门吊坠
+			name = "gts_leader_item_i_gateway"
+			spriteType = "GFX_gts_leader_item_i_gateway"
+			position = { x = @gts_leader_item_x_4 y = @gts_leader_item_y_1 }
+			effect = gts_leader_item_i_gateway_effect
+		}
+		effectButtonType = {
+			# 便携式居住站
+			name = "gts_leader_item_i_habitat"
+			spriteType = "GFX_gts_leader_item_i_habitat"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_2 }
+			effect = gts_leader_item_i_habitat_effect
+		}
+		effectButtonType = {
+			# 超空间戒指
+			name = "gts_leader_item_i_hyper"
+			spriteType = "GFX_gts_leader_item_i_hyper"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_2 }
+			effect = gts_leader_item_i_hyper_effect
+		}
+		effectButtonType = {
+			# 趾环世界
+			name = "gts_leader_item_i_ringworld"
+			spriteType = "GFX_gts_leader_item_i_ringworld"
+			position = { x = @gts_leader_item_x_3 y = @gts_leader_item_y_2 }
+			effect = gts_leader_item_i_ringworld_effect
+		}
+		effectButtonType = {
+			# 便携式巨型船坞
+			name = "gts_leader_item_i_shipyard"
+			spriteType = "GFX_gts_leader_item_i_shipyard"
+			position = { x = @gts_leader_item_x_4 y = @gts_leader_item_y_2 }
+			effect = gts_leader_item_i_shipyard_effect
+		}
+		effectButtonType = {
+			# 充电宝
+			name = "gts_leader_item_i_sphere"
+			spriteType = "GFX_gts_leader_item_i_sphere"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_3 }
+			effect = gts_leader_item_i_sphere_effect
+		}
+		effectButtonType = {
+			# 哨兵耳坠
+			name = "gts_leader_item_i_spyorb"
+			spriteType = "GFX_gts_leader_item_i_spyorb"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_3 }
+			effect = gts_leader_item_i_spyorb_effect
+		}
+		effectButtonType = {
+			# 暖宝宝
+			name = "gts_leader_item_i_star"
+			spriteType = "GFX_gts_leader_item_i_star"
+			position = { x = @gts_leader_item_x_3 y = @gts_leader_item_y_3 }
+			effect = gts_leader_item_i_star_effect
+		}
+		effectButtonType = {
+			# 便携式指挥中心
+			name = "gts_leader_item_i_strategic"
+			spriteType = "GFX_gts_leader_item_i_strategic"
+			position = { x = @gts_leader_item_x_4 y = @gts_leader_item_y_3 }
+			effect = gts_leader_item_i_strategic_effect
+		}
+		effectButtonType = {
+			# 蓝色科研发卡
+			name = "gts_leader_item_i_tech"
+			spriteType = "GFX_gts_leader_item_i_tech"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_1 }
+			effect = gts_leader_item_i_tech_effect
+		}
+		effectButtonType = {
+			# 便携式艺术巨构
+			name = "gts_leader_item_i_art"
+			spriteType = "GFX_gts_leader_item_i_art"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_1 }
+			effect = gts_leader_item_i_art_effect
+		}
+		effectButtonType = {
+			# 量子弹弓
+			name = "gts_leader_item_i_catapult"
+			spriteType = "GFX_gts_leader_item_i_catapult"
+			position = { x = @gts_leader_item_x_3 y = @gts_leader_item_y_1 }
+			effect = gts_leader_item_i_catapult_effect
+		}
+		effectButtonType = {
+			# 博物天枢
+			name = "gts_leader_item_i_archive"
+			spriteType = "GFX_gts_leader_item_i_archive"
+			position = { x = @gts_leader_item_x_4 y = @gts_leader_item_y_1 }
+			effect = gts_leader_item_i_archive_effect
+		}
+		effectButtonType = {
+			# 电弧熔炉
+			name = "gts_leader_item_i_Furnace"
+			spriteType = "GFX_gts_leader_item_i_Furnace"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_2 }
+			effect = gts_leader_item_i_Furnace_effect
+		}
+		effectButtonType = {
+			# 戴森云
+			name = "gts_leader_item_i_Swarm"
+			spriteType = "GFX_gts_leader_item_i_Swarm"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_1 }
+			effect = gts_leader_item_i_Swarm_effect
+		}
+		### 宠物 ###
+		effectButtonType = {
+			# 空
+			name = "gts_leader_item_p_none"
+			spriteType = "GFX_gts_leader_item_none"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_1 }
+			effect = gts_leader_item_p_none_effect
+		}
+		effectButtonType = {
+			# 以太巨龙
+			name = "gts_leader_item_p_dragon"
+			spriteType = "GFX_gts_leader_item_p_dragon"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_1 }
+			effect = gts_leader_item_p_dragon_effect
+		}
+		effectButtonType = {
+			# 神秘堡垒
+			name = "gts_leader_item_p_fortress"
+			spriteType = "GFX_gts_leader_item_p_fortress"
+			position = { x = @gts_leader_item_x_3 y = @gts_leader_item_y_1 }
+			effect = gts_leader_item_p_fortress_effect
+		}
+		effectButtonType = {
+			# 位面之魇
+			name = "gts_leader_item_p_horror"
+			spriteType = "GFX_gts_leader_item_p_horror"
+			position = { x = @gts_leader_item_x_4 y = @gts_leader_item_y_1 }
+			effect = gts_leader_item_p_horror_effect
+		}
+		effectButtonType = {
+			# 屏障星球
+			name = "gts_leader_item_p_shielded"
+			spriteType = "GFX_gts_leader_item_p_shielded"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_2 }
+			effect = gts_leader_item_p_shielded_effect
+		}
+		effectButtonType = {
+			# 无限神机
+			name = "gts_leader_item_p_sphere"
+			spriteType = "GFX_gts_leader_item_p_sphere"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_2 }
+			effect = gts_leader_item_p_sphere_effect
+		}
+		effectButtonType = {
+			# 噬星者
+			name = "gts_leader_item_p_stellarites"
+			spriteType = "GFX_gts_leader_item_p_stellarites"
+			position = { x = @gts_leader_item_x_3 y = @gts_leader_item_y_2 }
+			effect = gts_leader_item_p_stellarites_effect
+		}
+		effectButtonType = {
+			# 小花田
+			name = "gts_leader_item_p_huatian"
+			spriteType = "GFX_gts_leader_item_p_huatian"
+			position = { x = @gts_leader_item_x_4 y = @gts_leader_item_y_2 }
+			effect = gts_leader_item_p_huatian_effect
+		}
+		effectButtonType = {
+			# 啊噗露
+			name = "gts_leader_item_p_aplog"
+			spriteType = "GFX_gts_leader_item_p_aplog"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_3 }
+			effect = gts_leader_item_p_aplog_effect
+		}
+		effectButtonType = {
+			# 神秘容器
+			name = "gts_leader_item_p_cache"
+			spriteType = "GFX_gts_leader_item_p_cache"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_3 }
+			effect = gts_leader_item_p_cache_effect
+		}
+		effectButtonType = {
+			# 115
+			name = "gts_leader_item_p_115"
+			spriteType = "GFX_gts_leader_item_p_115"
+			position = { x = @gts_leader_item_x_3 y = @gts_leader_item_y_3 }
+			effect = gts_leader_item_p_115_effect
+		}
+		effectButtonType = {
+			# 小小春
+			name = "gts_leader_item_p_koharu"
+			spriteType = "GFX_gts_leader_item_p_koharu"
+			position = { x = @gts_leader_item_x_4 y = @gts_leader_item_y_3 }
+			effect = gts_leader_item_p_koharu_effect
+		}
+		effectButtonType = {
+			# 嘤嘤狐
+			name = "gts_leader_item_p_yiyan"
+			spriteType = "GFX_gts_leader_item_p_yiyan"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_1 }
+			effect = gts_leader_item_p_yiyan_effect
+		}
+		effectButtonType = {
+			# 小羽
+			name = "gts_leader_item_p_xiaoyu"
+			spriteType = "GFX_gts_leader_item_p_xiaoyu"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_1 }
+			effect = gts_leader_item_p_xiaoyu_effect
+		}
+		effectButtonType = {
+			# 梦应归于何处
+			name = "gts_leader_item_p_transform"
+			spriteType = "GFX_gts_leader_item_p_transform"
+			position = { x = @gts_leader_item_x_3 y = @gts_leader_item_y_1 }
+			effect = gts_leader_item_p_transform_effect
+		}
+		effectButtonType = {
+			# 小小灰
+			name = "gts_leader_item_p_graygoo"
+			spriteType = "GFX_gts_leader_item_p_graygoo"
+			position = { x = @gts_leader_item_x_4 y = @gts_leader_item_y_1 }
+			effect = gts_leader_item_p_graygoo_effect
+		}
+		effectButtonType = {
+			# 安露
+			name = "gts_leader_item_p_tensi"
+			spriteType = "GFX_gts_leader_item_p_tensi"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_2 }
+			effect = gts_leader_item_p_tensi_effect
+		}
+		effectButtonType = {
+			# 林凤
+			name = "gts_leader_item_p_linfeng"
+			spriteType = "GFX_gts_leader_item_p_linfeng"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_2 }
+			effect = gts_leader_item_p_linfeng_effect
+		}
+		# effectButtonType = {
+		# 	# 
+		# 	name = "xxx"
+		# 	spriteType = "GFX_xxx"
+		# 	position = { x =  y =  }
+		# 	effect = xxx_effect
+		# }
+		### 以下部分隐藏 ###
+		instantTextBoxType = { # hidden
+			name = "alien_message"
+			font = "cg_16b"
+			position = { x = -1466 y = -1639 }
+			maxWidth = 0
+			maxHeight = 0
+			format = left
+			scrollbartype = "standardtext_slider"
+		}
+		containerWindowType = { # hidden
+			name = "EVENT_DIPLO"
+			position = { x = -1466 y = -1639 }
+			size = { width=0 height=0 }
+			moveable = no
+			instantTextBoxType = {
+				name = "action_title"
+				font = "malgun_goth_24"
+			}
+			listboxType = {
+				name = "option_list"
+				position = { x = 500 y = 20 }
+				size = { x=100 y=240 }
+			}
+		}
+		containerWindowType = { # hidden
+			name = "portrait"
+			position = { x = -1466 y = -1639 }
+			size = { width = 0 height = 0 }
+			clipping = yes
+			iconType = { name = "portrait" spriteType = "GFX_portrait_gamesetup_mask" }
+			iconType = { name = "black_frame" spriteType = "GFX_diplomacy_portrait_shadow_frame" }
+			iconType = { name = "stripes_1" spriteType = "GFX_diplomacy_stripes_2" }
+		}
+		buttonType = { name = "tts_button" position = { x = -1466 y = -1639 } spriteType = "GFX_button_tts_start" } # hidden
+		buttonType = { name = "confirm_button" quadTextureSprite = "GFX_standard_button_142_34_button" } # hidden
+		containerWindowType = {
+			name = "portrait_background"
+			position = { x = -1117 y = -1145 }
+			size = { width = 0 height = 0 } 	# hide portrait window
+			iconType = { name = "event_picture" spriteType = "GFX_diplomacy_portrait_frame" } # hidden
+			iconType = { name = "portrait" spriteType = "GFX_portrait_character" } # hidden
+		}
+		iconType = { name = "empire_info_bg" spriteType = "GFX_diplomacy_dark_fade_bg" } # hidden
+		instantTextBoxType = { name = "empire_name" font = "malgun_goth_24" } # hidden
+		instantTextBoxType = { name = "empire_government_type" font = "cg_16b" } # hidden
+		instantTextBoxType = { name = "empire_personality_type" font = "cg_16b" } # hidden
+		overlappingElementsBoxType = { name = "empire_ethics_icons" position = { x = -1145 y = -11138 } } # hidden
+		iconType = { name = "empire_flag" spriteType = "GFX_empire_flag_128" position = { x = -1125 y = -11235 } } # hidden
+		containerWindowType = {
+			name = "leader_details"
+			position = { x = -1125 y = -1175 }
+			containerWindowType = { name = "empire_traits_box" } # hidden
+			instantTextBoxType = { name = "empire_traits_label" font = "cg_16b" } # hidden
+			overlappingElementsBoxType = { name = "leader_traits" } # hidden
+			instantTextBoxType = { name = "leader_name" font = "cg_16b" } # hidden
+			instantTextBoxType = { name = "leader_species" font = "cg_16b" } # hidden
+		}
+		containerWindowType = {
+			name = "opinion_window"
+			position = { x = -1127 y = -11110 }
+			size = { width = 94 height = 30 }
+			iconType = { name = "their_opinion_icon" spriteType = "GFX_diplomacy_opinion" } # hidden
+			instantTextBoxType = { name = "their_opinion" font = "cg_16b" }
+		}
+	}
+}

@@ -1,0 +1,50 @@
+#utility_component_template = {
+#	key = "SHIP_GTS_A_TERRAFORM_BODY"
+#	size = large
+#	icon = "GFX_ship_part_terraformation_body"
+#	icon_frame = 1
+#	power = 0
+#	
+#	scripted_action_possible = {
+#		is_terraforming = no
+#		NOT = { has_planet_flag = terraform_aiye_transfixed }
+#		is_aiye_terraformable_pc = yes
+#		exists = event_target:hstar_controller_leader
+#		event_target:hstar_controller_leader = {
+#			OR = {
+#				has_trait = leader_trait_legendary_aiye_available
+#			}
+#			exists = owner
+#			owner = {
+#				has_resource = { 
+#					type = energy 
+#					amount >= @azaryn_terraform_cost
+#				}
+#			}
+#		}
+#		exists = space_owner
+#		space_owner = {
+#			is_same_value = event_target:hstar_controller_leader.owner
+#		}
+#	}
+
+#	scripted_action_button_possible = {
+#		owner = {
+#			has_resource = { type = energy amount >= 10000 }
+#		}
+#	}
+
+#	scripted_action_finished = {
+#		has_planet_flag = terraform_aiye_transfixed
+#	}
+
+#	scripted_action_name = on_aiye_target_planet_reached
+#	scripted_action_tooltip = azaryn_ship_button
+#	scripted_action_icon = GFX_fleet_order_button_transfix_terraformation_nucleus_action
+#	scripted_action_on_cancel = on_aiye_action_cancel
+#	scripted_action_activity_key = aiye_action_activity_key
+
+#	ai_weight = {
+#		factor = 0
+#	}
+#}

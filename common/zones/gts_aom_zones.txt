@@ -1,0 +1,53 @@
+################################################################################
+###################                人皇起源额外區域特化                ###################
+################################################################################
+
+
+zone_adaptive_city = {
+    icon = GFX_district_specialization_urban
+    base_buildtime = @zone_buildtime
+    potential = { # planet scope
+        owner = {
+            has_authority = auth_hales_panlon
+        }
+    }
+    unlock = { # planet scope
+        exists = owner
+        owner = {
+            has_technology = tech_aom_time_rewind_2
+        }
+    }
+    resources = {
+        category = planet_zones
+        cost = {
+            minerals = @zone_cost
+            gts_aom_magicstones = 200
+        }
+    }
+
+    triggered_district_planet_modifier = {
+        planet_housing_add = 400
+        job_aom_holy_priest_add = 50
+        job_panlon_wizard_add = 50
+        job_aom_destruction_gts_enthusiasts_add = 200
+    }
+
+    max_buildings = 3
+
+    zone_sets = {
+        urban
+        habitat_urban
+    }
+
+    include = {
+        building_aom_resistance_fortress
+        building_aom_photography_studio
+        building_aom_large_landmark
+    }
+
+    planet_modifier = {
+        zone_building_slots_add = 3
+    }
+
+    show_in_tech = tech_aom_time_rewind_2
+}

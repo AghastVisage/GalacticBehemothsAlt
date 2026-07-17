@@ -1,0 +1,32 @@
+gts_hitomi_gal_add_effect = {
+    potential = {
+        from = {
+            or = {
+                and = {
+                    check_variable = { which = hitomi_love_desc_event_number value = 1 }
+                    check_variable = { which = hitomi_love_desc_number value < 6 }
+                }
+                and = {
+                    check_variable = { which = hitomi_love_desc_event_number value = 2 }
+                    check_variable = { which = hitomi_love_desc_number value < 11 }
+                }
+                and = {
+                    check_variable = { which = hitomi_love_desc_event_number value = 3 }
+                    check_variable = { which = hitomi_love_desc_number value < 8 }
+                }
+            }
+        }
+    }
+    allow = {
+        always = yes
+    }
+    effect = {
+        custom_tooltip = gts_next_text
+        hidden_effect = {
+            change_variable = {
+                value = 1
+                which = hitomi_love_desc_number
+            }
+        }
+    }
+}

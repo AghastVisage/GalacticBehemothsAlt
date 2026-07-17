@@ -1,0 +1,1563 @@
+namespace = gts_leader_bruh
+
+country_event = {
+	id = gts_leader_bruh.0001
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		ethic_leader_creator = {
+			SPECIES_CLASS = random_non_machine
+			LEADER_PORTRAIT = gts_portrait_bruh
+			CLASS = commander
+			TIER = leader_tier_renowned
+			NAME = concept_bruh_full_name
+			LEVEL = 10
+			GENDER = male
+			IMMORTAL = yes
+			ETHIC = authoritarian
+			DESC = gts_bruh_ship_leader_desc
+			CATCH_PHRASE = xenophile2_catch_phrase
+		}
+		last_created_leader = {
+			add_trait = {
+				trait = leader_trait_maven_of_war
+				show_message = no
+			}
+			add_trait = {
+				trait = leader_trait_commanding_presence_2
+				show_message = no
+			}
+			add_trait = {
+				trait = leader_trait_observant_2
+				show_message = no
+			}
+			add_trait = {
+				trait = leader_trait_engineer
+				show_message = no
+			}
+			add_trait = {
+				trait = leader_trait_resilient
+				show_message = no
+			}
+			add_trait = {
+				trait = leader_trait_Normal
+				show_message = no
+			}
+			set_age = 114514
+			save_global_event_target_as = gts_bruh_ship_leader
+		}
+		add_resource = {
+			influence = 50
+			mult = value:count_gts_leader_cost_mult
+		}
+		country_event = {
+			id = gts_leader_bruh.0002
+			days = 7
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_bruh.0002
+	title = "TRANSMISSION"
+	desc = gts_leader_bruh.0002.desc
+	event_window_type = leader_recruit
+	picture = GFX_leader_recruitment_bg_legendary_skrand
+	show_sound = event_gts_bruh_debug_sound
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = event_target:gts_bruh_ship_leader
+		room = "crisis_room"
+	}
+
+	option = {
+		name = gts_leader_bruh.0002.a
+		allow = {
+			NOT = {
+				has_global_flag = gts_bruh_shipgirl_has_trigger_purchase_1
+			}
+		}
+		add_resource = {
+			trade = -12500
+		}
+		hidden_effect = {
+			set_global_flag = gts_bruh_shipgirl_has_trigger_purchase_1
+			random_system_within_border = {
+				spawn_system = {
+					min_distance = 10
+					max_distance = 30
+					max_jumps = 0
+					initializer = "gts_bruh_solar_system_initializers_1"
+					hyperlane = no
+					is_discovered = yes
+				}
+			}
+			country_event = {
+				id = gts_leader_bruh.0003
+			}
+		}
+	}
+	option = {
+		name = gts_leader_bruh.0002.b
+		allow = {
+			NOT = {
+				has_global_flag = gts_bruh_shipgirl_has_trigger_purchase_2
+			}
+		}
+		add_resource = {
+			trade = -25000
+		}
+		hidden_effect = {
+			set_global_flag = gts_bruh_shipgirl_has_trigger_purchase_2
+			random_system_within_border = {
+				spawn_system = {
+					min_distance = 10
+					max_distance = 30
+					max_jumps = 0
+					initializer = "gts_bruh_solar_system_initializers_2"
+					hyperlane = no
+					is_discovered = yes
+				}
+			}
+			country_event = {
+				id = gts_leader_bruh.0004
+			}
+		}
+	}
+	option = {
+		name = gts_leader_bruh.0002.c
+		allow = {
+			NOT = {
+				has_global_flag = gts_bruh_shipgirl_has_trigger_purchase_3
+			}
+		}
+		add_resource = {
+			trade = -50000
+		}
+		hidden_effect = {
+			set_global_flag = gts_bruh_shipgirl_has_trigger_purchase_3
+			random_system_within_border = {
+				spawn_system = {
+					min_distance = 10
+					max_distance = 30
+					max_jumps = 0
+					initializer = "gts_bruh_solar_system_initializers_3"
+					hyperlane = no
+					is_discovered = yes
+				}
+			}
+			country_event = {
+				id = gts_leader_bruh.0005
+			}
+		}
+	}
+	option = {
+		name = gts_leader_bruh.0002.e
+		custom_tooltip = gts_leader_bruh.0002.e.custom_tooltip
+		trigger = {
+			NOT = { has_country_flag = gts_bruh_shipgirl_event_on }
+			OR = {
+				has_technology = tech_gts_bruh_shipgirl_ship_sizes_1
+				has_technology = tech_gts_bruh_shipgirl_ship_sizes_2
+				has_technology = tech_gts_bruh_shipgirl_ship_sizes_3
+			}
+		}
+		hidden_effect = {
+			set_country_flag = gts_bruh_shipgirl_event_on
+			country_event = {
+				id = gts_leader_bruh.0002
+			}
+		}
+	}
+	option = {
+		name = gts_leader_bruh.0002.f
+		trigger = {
+			has_country_flag = gts_bruh_shipgirl_event_on
+		}
+		hidden_effect = {
+			remove_country_flag = gts_bruh_shipgirl_event_on
+			country_event = {
+				id = gts_leader_bruh.0002
+			}
+		}
+	}
+	option = {
+		name = gts_leader_bruh.0002.g
+		custom_tooltip = gts_leader_bruh.0002.g.custom_tooltip
+		allow = {
+			has_global_flag = gts_bruh_shipgirl_has_trigger_purchase_1
+			has_global_flag = gts_bruh_shipgirl_has_trigger_purchase_2
+			has_global_flag = gts_bruh_shipgirl_has_trigger_purchase_3
+		}
+		add_resource = {
+			trade = -10000
+			influence = -1000
+		}
+		random_country = {
+			limit = {
+				OR = {
+					has_country_flag = gts_bruh_shipgirl_hostile_country_flag_1
+					has_country_flag = gts_bruh_shipgirl_hostile_country_flag_2
+					has_country_flag = gts_bruh_shipgirl_hostile_country_flag_3
+				}
+			}
+			add_modifier = {
+				modifier = "gts_bruh_shipgirl_country_debuff_2"
+				days = -1
+			}
+		}
+	}
+	option = {
+		name = gts_leader_bruh.0002.h
+		custom_tooltip = gts_leader_bruh.0002.h.custom_tooltip
+		trigger = {
+			OR = {
+				has_global_flag = gts_bruh_shipgirl_has_trigger_purchase_1
+				has_global_flag = gts_bruh_shipgirl_has_trigger_purchase_2
+				has_global_flag = gts_bruh_shipgirl_has_trigger_purchase_3
+			}
+		}
+	}
+	#option = {
+	# 玩到後期遊戲速度慢怎麼辦?
+	#	name = gts_leader_bruh.0002.87
+	#	hidden_effect = {
+	#		country_event = {
+	#			id = gts_leader_bruh.0009
+	#		}
+	#	}
+	#}
+	option = {
+		name = gts_leader_bruh.0002.hire
+		tag = hire_leader
+		hidden_effect = {
+			remove_global_flag = gts_has_trigger_bruh
+		}
+	}
+	option = {
+		name = gts_leader_bruh.0002.close
+		tag = dismiss_leader
+		hidden_effect = {
+			remove_global_flag = gts_has_trigger_bruh
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_bruh.0003
+	title = gts_leader_bruh.0003.name
+	desc = gts_leader_bruh.0003.desc
+	picture = GFX_evt_astral_rift_microverse
+	show_sound = ap_rift_event_12_star_to_gas
+	location = event_target:gts_bruh_random_spawn_system_1
+
+	is_triggered_only = yes
+
+	option = {
+		name = gts_leader_bruh.0003.a
+		begin_event_chain = {
+			event_chain = "gts_bruh_shipgirl_ship_sizes_1_chain"
+			target = ROOT
+		}
+		hidden_effect = {
+			remove_global_flag = gts_has_trigger_bruh
+			random_system = {
+				limit = {
+					has_star_flag = gts_bruh_solar_system_initializers_1
+				}
+				enable_special_project = {
+					name = "gts_bruh_shipgirl_ship_sizes_1_projects"
+					location = this
+					owner = root
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_bruh.0004
+	title = gts_leader_bruh.0003.name
+	desc = gts_leader_bruh.0004.desc
+	picture = GFX_evt_astral_rift_microverse
+	show_sound = ap_rift_event_12_star_to_gas
+	location = event_target:gts_bruh_random_spawn_system_2
+
+	is_triggered_only = yes
+
+	option = {
+		name = gts_leader_bruh.0003.a
+		begin_event_chain = {
+			event_chain = "gts_bruh_shipgirl_ship_sizes_2_chain"
+			target = ROOT
+		}
+		hidden_effect = {
+			remove_global_flag = gts_has_trigger_bruh
+			random_system = {
+				limit = {
+					has_star_flag = gts_bruh_solar_system_initializers_2
+				}
+				enable_special_project = {
+					name = "gts_bruh_shipgirl_ship_sizes_2_projects"
+					location = this
+					owner = root
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_bruh.0005
+	title = gts_leader_bruh.0003.name
+	desc = gts_leader_bruh.0005.desc
+	picture = GFX_evt_astral_rift_microverse
+	show_sound = ap_rift_event_12_star_to_gas
+	location = event_target:gts_bruh_random_spawn_system_3
+
+	is_triggered_only = yes
+
+	option = {
+		name = gts_leader_bruh.0003.a
+		begin_event_chain = {
+			event_chain = "gts_bruh_shipgirl_ship_sizes_3_chain"
+			target = ROOT
+		}
+		hidden_effect = {
+			remove_global_flag = gts_has_trigger_bruh
+			random_system = {
+				limit = {
+					has_star_flag = gts_bruh_solar_system_initializers_3
+				}
+				enable_special_project = {
+					name = "gts_bruh_shipgirl_ship_sizes_3_projects"
+					location = this
+					owner = root
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_bruh.0006
+	title = gts_leader_bruh.0006.name
+	desc = gts_leader_bruh.0006.desc
+	picture = GFX_evt_astral_rift_microverse
+	show_sound = ap_rift_event_12_star_to_gas
+	location = event_target:gts_bruh_shipgirl_fleet_1
+
+	is_triggered_only = yes
+
+	trigger = {
+		exists = event_target:gts_bruh_shipgirl_fleet_1
+		FromFromFrom.fleet = {
+			is_same_value = event_target:gts_bruh_shipgirl_fleet_1
+		}
+	}
+
+	option = {
+		name = gts_leader_bruh.0006.a
+		give_technology = {
+			tech = tech_gts_bruh_shipgirl_ship_sizes_1
+		}
+		random_list = {
+			1 = {
+				give_technology = {
+					tech = tech_gts_bruh_shipgirl_ship_sizes_1_type_1
+				}
+			}
+			1 = {
+				give_technology = {
+					tech = tech_gts_bruh_shipgirl_ship_sizes_1_type_2
+				}
+			}
+		}
+		hidden_effect = {
+			end_event_chain = "gts_bruh_shipgirl_ship_sizes_1_chain"
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_bruh.0007
+	title = gts_leader_bruh.0007.name
+	desc = gts_leader_bruh.0007.desc
+	picture = GFX_evt_astral_rift_microverse
+	show_sound = ap_rift_event_12_star_to_gas
+	location = event_target:gts_bruh_shipgirl_fleet_2
+
+	is_triggered_only = yes
+
+	trigger = {
+		exists = event_target:gts_bruh_shipgirl_fleet_2
+		FromFromFrom.fleet = {
+			is_same_value = event_target:gts_bruh_shipgirl_fleet_2
+		}
+	}
+
+	option = {
+		name = gts_leader_bruh.0006.a
+		give_technology = {
+			tech = tech_gts_bruh_shipgirl_ship_sizes_2
+		}
+		random_list = {
+			1 = {
+				give_technology = {
+					tech = tech_gts_bruh_shipgirl_ship_sizes_2_type_1
+				}
+			}
+			1 = {
+				give_technology = {
+					tech = tech_gts_bruh_shipgirl_ship_sizes_2_type_2
+				}
+			}
+		}
+		hidden_effect = {
+			end_event_chain = "gts_bruh_shipgirl_ship_sizes_2_chain"
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_bruh.0008
+	title = gts_leader_bruh.0008.name
+	desc = gts_leader_bruh.0008.desc
+	picture = GFX_evt_astral_rift_microverse
+	show_sound = ap_rift_event_12_star_to_gas
+	location = event_target:gts_bruh_shipgirl_fleet_3
+
+	is_triggered_only = yes
+
+	trigger = {
+		exists = event_target:gts_bruh_shipgirl_fleet_3
+		FromFromFrom.fleet = {
+			is_same_value = event_target:gts_bruh_shipgirl_fleet_3
+		}
+	}
+
+	option = {
+		name = gts_leader_bruh.0006.a
+		give_technology = {
+			tech = tech_gts_bruh_shipgirl_ship_sizes_3
+		}
+		random_list = {
+			1 = {
+				give_technology = {
+					tech = tech_gts_bruh_shipgirl_ship_sizes_3_type_1
+				}
+			}
+			1 = {
+				give_technology = {
+					tech = tech_gts_bruh_shipgirl_ship_sizes_3_type_2
+				}
+			}
+			1 = {
+				give_technology = {
+					tech = tech_gts_bruh_shipgirl_ship_sizes_3_type_3
+				}
+			}
+		}
+		hidden_effect = {
+			end_event_chain = "gts_bruh_shipgirl_ship_sizes_3_chain"
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_bruh.0020
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		has_country_flag = gts_bruh_shipgirl_event_on
+		any_system = {
+			is_within_borders_of = root
+			any_system_planet = {
+				is_surveyed = {
+					who = ROOT
+					status = yes
+				}
+				is_capital = no
+				is_planet_class = pc_barren
+			}
+		}
+		any_system = {
+			is_within_borders_of = root
+			any_system_planet = {
+				is_surveyed = {
+					who = ROOT
+					status = yes
+				}
+				is_capital = no
+				is_planet_class = pc_frozen
+			}
+		}
+		any_system = {
+			is_within_borders_of = root
+			any_system_planet = {
+				is_surveyed = {
+					who = ROOT
+					status = yes
+				}
+				is_capital = no
+				is_planet_class = pc_toxic
+			}
+		}
+		any_system = {
+			is_within_borders_of = root
+			any_system_planet = {
+				is_surveyed = {
+					who = ROOT
+					status = yes
+				}
+				is_capital = no
+				is_planet_class = pc_molten
+			}
+		}
+		any_system = {
+			is_within_borders_of = root
+			any_system_planet = {
+				is_surveyed = {
+					who = ROOT
+					status = yes
+				}
+				is_capital = no
+				is_planet_class = pc_desert
+			}
+		}
+		any_system = {
+			is_within_borders_of = root
+			any_system_planet = {
+				is_surveyed = {
+					who = ROOT
+					status = yes
+				}
+				is_capital = no
+				is_planet_class = pc_ocean
+			}
+		}
+		any_system = {
+			is_within_borders_of = root
+			any_system_planet = {
+				is_surveyed = {
+					who = ROOT
+					status = yes
+				}
+				is_capital = no
+				OR = {
+					is_planet_class = pc_gaia
+
+					# Planetary Diversity 兼容
+					is_planet_class = pc_pd_dry_gaia
+					is_planet_class = pc_pd_cold_gaia
+					is_planet_class = pc_pd_wet_gaia
+				}
+			}
+		}
+	}
+
+	immediate = {
+		country_event = {
+			id = gts_leader_bruh.0021
+			days = 90
+			random = 270
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_bruh.0021
+	title = gts_leader_bruh.0021.name
+	desc = gts_leader_bruh.0021.desc
+	event_window_type = leader_recruit
+	picture = GFX_leader_recruitment_bg_legendary_skrand
+	show_sound = event_gts_bruh_debug_sound
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = event_target:gts_bruh_ship_leader
+		room = "crisis_room"
+	}
+
+	trigger = {
+		has_country_flag = gts_bruh_shipgirl_event_on
+		any_system = {
+			is_within_borders_of = root
+			any_system_planet = {
+				is_surveyed = {
+					who = ROOT
+					status = yes
+				}
+				is_capital = no
+				is_planet_class = pc_barren
+			}
+		}
+		any_system = {
+			is_within_borders_of = root
+			any_system_planet = {
+				is_surveyed = {
+					who = ROOT
+					status = yes
+				}
+				is_capital = no
+				is_planet_class = pc_frozen
+			}
+		}
+		any_system = {
+			is_within_borders_of = root
+			any_system_planet = {
+				is_surveyed = {
+					who = ROOT
+					status = yes
+				}
+				is_capital = no
+				is_planet_class = pc_toxic
+			}
+		}
+		any_system = {
+			is_within_borders_of = root
+			any_system_planet = {
+				is_surveyed = {
+					who = ROOT
+					status = yes
+				}
+				is_capital = no
+				is_planet_class = pc_molten
+			}
+		}
+		any_system = {
+			is_within_borders_of = root
+			any_system_planet = {
+				is_surveyed = {
+					who = ROOT
+					status = yes
+				}
+				is_capital = no
+				is_planet_class = pc_desert
+			}
+		}
+		any_system = {
+			is_within_borders_of = root
+			any_system_planet = {
+				is_surveyed = {
+					who = ROOT
+					status = yes
+				}
+				is_capital = no
+				is_planet_class = pc_ocean
+			}
+		}
+		any_system = {
+			is_within_borders_of = root
+			any_system_planet = {
+				is_surveyed = {
+					who = ROOT
+					status = yes
+				}
+				is_capital = no
+				OR = {
+					is_planet_class = pc_gaia
+
+					# Planetary Diversity 兼容
+					is_planet_class = pc_pd_dry_gaia
+					is_planet_class = pc_pd_cold_gaia
+					is_planet_class = pc_pd_wet_gaia
+				}
+			}
+		}
+	}
+
+	immediate = {
+		begin_event_chain = {
+			event_chain = "gts_bruh_shipgirl_planet_killer_panties_chain"
+			target = ROOT
+		}
+	}
+
+	option = {
+		name = gts_leader_bruh.0021.a
+		tooltip = {
+			begin_event_chain = {
+				event_chain = "gts_bruh_shipgirl_planet_killer_panties_chain"
+				target = ROOT
+			}
+		}
+		tag = hire_leader
+		hidden_effect = {
+			random_planet_within_border = {
+				limit = {
+					is_within_borders_of = root
+					is_surveyed = {
+						who = ROOT
+						status = yes
+					}
+					is_planet_class = pc_barren
+					is_capital = no
+				}
+				enable_special_project = {
+					name = "gts_bruh_shipgirl_planet_killer_panties_1_projects"
+					location = this
+					owner = root
+				}
+				set_planet_flag = gts_bruh_shipgirl_planet_killer_panties_special_projects_planet
+			}
+			random_planet_within_border = {
+				limit = {
+					is_within_borders_of = root
+					is_surveyed = {
+						who = ROOT
+						status = yes
+					}
+					is_planet_class = pc_frozen
+					is_capital = no
+				}
+				enable_special_project = {
+					name = "gts_bruh_shipgirl_planet_killer_panties_2_projects"
+					location = this
+					owner = root
+				}
+				set_planet_flag = gts_bruh_shipgirl_planet_killer_panties_special_projects_planet
+			}
+			random_planet_within_border = {
+				limit = {
+					is_within_borders_of = root
+					is_surveyed = {
+						who = ROOT
+						status = yes
+					}
+					is_planet_class = pc_toxic
+					is_capital = no
+				}
+				enable_special_project = {
+					name = "gts_bruh_shipgirl_planet_killer_panties_3_projects"
+					location = this
+					owner = root
+				}
+				set_planet_flag = gts_bruh_shipgirl_planet_killer_panties_special_projects_planet
+			}
+			random_planet_within_border = {
+				limit = {
+					is_within_borders_of = root
+					is_surveyed = {
+						who = ROOT
+						status = yes
+					}
+					is_planet_class = pc_molten
+					is_capital = no
+				}
+				enable_special_project = {
+					name = "gts_bruh_shipgirl_planet_killer_panties_4_projects"
+					location = this
+					owner = root
+				}
+				set_planet_flag = gts_bruh_shipgirl_planet_killer_panties_special_projects_planet
+			}
+			random_planet_within_border = {
+				limit = {
+					is_within_borders_of = root
+					is_surveyed = {
+						who = ROOT
+						status = yes
+					}
+					is_planet_class = pc_desert
+					is_capital = no
+				}
+				enable_special_project = {
+					name = "gts_bruh_shipgirl_planet_killer_panties_5_projects"
+					location = this
+					owner = root
+				}
+				set_planet_flag = gts_bruh_shipgirl_planet_killer_panties_special_projects_planet
+			}
+			random_planet_within_border = {
+				limit = {
+					is_within_borders_of = root
+					is_surveyed = {
+						who = ROOT
+						status = yes
+					}
+					is_planet_class = pc_ocean
+					is_capital = no
+				}
+				enable_special_project = {
+					name = "gts_bruh_shipgirl_planet_killer_panties_6_projects"
+					location = this
+					owner = root
+				}
+				set_planet_flag = gts_bruh_shipgirl_planet_killer_panties_special_projects_planet
+			}
+			random_planet_within_border = {
+				limit = {
+					is_within_borders_of = root
+					is_surveyed = {
+						who = ROOT
+						status = yes
+					}
+					OR = {
+						is_planet_class = pc_gaia
+
+						# Planetary Diversity 兼容
+						is_planet_class = pc_pd_dry_gaia
+						is_planet_class = pc_pd_cold_gaia
+						is_planet_class = pc_pd_wet_gaia
+					}
+					is_capital = no
+				}
+				enable_special_project = {
+					name = "gts_bruh_shipgirl_planet_killer_panties_7_projects"
+					location = this
+					owner = root
+				}
+				set_planet_flag = gts_bruh_shipgirl_planet_killer_panties_special_projects_planet
+			}
+		}
+	}
+	option = {
+		name = gts_leader_bruh.0021.b
+		tag = dismiss_leader
+		end_event_chain = "gts_bruh_shipgirl_planet_killer_panties_chain"
+	}
+}
+
+country_event = {
+	id = gts_leader_bruh.0022
+	title = gts_leader_bruh.0022.name
+	desc = gts_leader_bruh.0022.desc
+	event_window_type = leader_recruit
+	picture = GFX_leader_recruitment_bg_legendary_skrand
+	show_sound = event_gts_bruh_debug_sound
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = event_target:gts_bruh_ship_leader
+		room = "crisis_room"
+	}
+
+	immediate = {
+		random_list = {
+			1 = { country_event = { id = gts_leader_bruh.0023 days = 7 random = 777 } }
+			1 = { }
+		}
+	}
+
+	option = {
+		name = gts_leader_bruh.0022.a
+		tag = hire_leader
+		give_technology = {
+			tech = tech_gts_bruh_shipgirl_planet_killer_panties
+		}
+		end_event_chain = "gts_bruh_shipgirl_planet_killer_panties_chain"
+	}
+	option = {
+		name = gts_leader_bruh.0022.b
+		tag = dismiss_leader
+		give_technology = {
+			tech = tech_gts_bruh_shipgirl_planet_killer_panties
+		}
+		end_event_chain = "gts_bruh_shipgirl_planet_killer_panties_chain"
+	}
+}
+
+country_event = {
+	id = gts_leader_bruh.0023
+	title = gts_leader_bruh.0023.name
+	desc = gts_leader_bruh.0023.desc
+	event_window_type = leader_recruit
+	picture = GFX_leader_recruitment_bg_legendary_skrand
+	show_sound = event_gts_bruh_debug_sound
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = event_target:gts_bruh_ship_leader
+		room = "crisis_room"
+	}
+
+	option = {
+		name = gts_leader_bruh.0023.a
+		tag = hire_leader
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 3
+		}
+	}
+	option = {
+		name = gts_leader_bruh.0023.b
+		tag = dismiss_leader
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 3
+		}
+	}
+}
+
+#country_event = {
+#	id = gts_leader_bruh.0009
+#	title = "TRANSMISSION"
+#	desc = gts_leader_bruh.0009.desc
+#	event_window_type = leader_recruit
+#	picture = GFX_leader_recruitment_bg_legendary_skrand
+#	show_sound = event_gts_bruh_debug_sound
+#	is_triggered_only = yes
+#
+#	picture_event_data = {
+#		portrait = event_target:gts_bruh_ship_leader
+#		room = "crisis_room"
+#	}
+#
+#	option = {
+#		name = gts_leader_bruh.0009.a
+#		hidden_effect = {
+#			country_event = {
+#				id = gts_event_bruh_test.2
+#			}
+#			remove_global_flag = gts_has_trigger_bruh
+#		}
+#	}
+#	option = {
+#		name = gts_leader_bruh.0009.b
+#		hidden_effect = {
+#			country_event = {
+#				id = gts_event_bruh_test.3
+#			}
+#			remove_global_flag = gts_has_trigger_bruh
+#		}
+#	}
+#	option = {
+#		name = gts_leader_bruh.0009.hire
+#		tag = hire_leader
+#		hidden_effect = {
+#			country_event = {
+#				id = gts_leader_bruh.2
+#			}
+#		}
+#	}
+#	option = {
+#		name = gts_leader_bruh.0009.close
+#		tag = dismiss_leader
+#		hidden_effect = {
+#			remove_global_flag = gts_has_trigger_bruh
+#		}
+#	}
+#}
+
+# 增加巨娘人口用
+
+# 每個月隨機發生(需要對應的小人人口和巨娘特質才會發生)
+
+country_event = {
+	id = gts_leader_bruh.0100
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		has_country_flag = gts_bruh_convert_pop_effect_on
+		count_owned_pop_amount = {
+			limit = {
+				has_trait = trait_gts_ub
+				OR = {
+					has_trait = trait_Titan
+					has_trait = trait_Giant
+					has_trait = trait_Tall
+				}
+				NOR = {
+					has_citizenship_type = { country = root type = citizenship_assimilation }
+					has_citizenship_type = { country = root type = citizenship_slavery }
+					has_citizenship_type = { country = root type = citizenship_purge }
+				}
+			}
+			count > 0
+		}
+		OR = {
+			count_owned_pop_amount = {
+				limit = {
+					has_trait = trait_Normal
+				}
+				count > 1000
+			}
+			count_owned_pop_amount = {
+				limit = {
+					has_trait = trait_Small
+				}
+				count > 2000
+			}
+			count_owned_pop_amount = {
+				limit = {
+					has_trait = trait_Tiny
+				}
+				count > 4000
+			}
+			count_owned_pop_amount = {
+				limit = {
+					has_trait = trait_Micro
+				}
+				count > 8000
+			}
+		}
+	}
+
+	immediate = {
+		random_list = {
+			1 = {
+				set_country_flag = gts_leader_bruh_0100_event_flag_1
+			}
+			1 = {
+				set_country_flag = gts_leader_bruh_0100_event_flag_2
+			}
+			1 = {
+				set_country_flag = gts_leader_bruh_0100_event_flag_3
+			}
+			1 = {
+				set_country_flag = gts_leader_bruh_0100_event_flag_4
+			}
+			1 = {
+				set_country_flag = gts_leader_bruh_0100_event_flag_5
+			}
+		}
+
+		random_list = {
+
+			# 8%機率發生
+
+			46 = {}
+
+			1 = {
+				random_owned_planet = {
+					limit = {
+						count_owned_pop_amount = {
+							count > 1000
+							limit = {
+								has_trait = trait_Normal
+							}
+						}
+						count_owned_pop_amount = {
+							count > 0
+							limit = {
+								has_trait = trait_gts_ub
+								OR = {
+									has_trait = trait_Titan
+									has_trait = trait_Giant
+									has_trait = trait_Tall
+								}
+								NOR = {
+									has_citizenship_type = { country = root type = citizenship_assimilation }
+									has_citizenship_type = { country = root type = citizenship_slavery }
+									has_citizenship_type = { country = root type = citizenship_purge }
+								}
+							}
+						}
+					}
+					while = {
+						count = 1000
+						random_owned_pop_group = {
+							limit = {
+								has_trait = trait_Normal
+							}
+							kill_pop_group = {
+								pop_group = This
+								amount = 1
+							}
+						}
+					}
+					planet_event = {
+						id = gts_leader_bruh.0101 days = 5 random = 15
+					}
+				}
+				capital_scope = {
+					set_variable = {
+						which = gts_leader_bruh_0100_event_point_count
+						value = 1000
+					}
+				}
+				modifier = {
+					factor = 0
+					any_owned_planet = {
+						OR = {
+							count_owned_pop_amount = {
+								count <= 1000
+								limit = {
+									has_trait = trait_Normal
+								}
+							}
+							count_owned_pop_amount = {
+								count = 0
+								limit = {
+									has_trait = trait_gts_ub
+									OR = {
+										has_trait = trait_Titan
+										has_trait = trait_Giant
+										has_trait = trait_Tall
+									}
+									NOR = {
+										has_citizenship_type = { country = root type = citizenship_assimilation }
+										has_citizenship_type = { country = root type = citizenship_slavery }
+										has_citizenship_type = { country = root type = citizenship_purge }
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+
+			1 = {
+				random_owned_planet = {
+					limit = {
+						count_owned_pop_amount = {
+							count > 2000
+							limit = {
+								has_trait = trait_Small
+							}
+						}
+						count_owned_pop_amount = {
+							count > 0
+							limit = {
+								has_trait = trait_gts_ub
+								OR = {
+									has_trait = trait_Titan
+									has_trait = trait_Giant
+									has_trait = trait_Tall
+								}
+								NOR = {
+									has_citizenship_type = { country = root type = citizenship_assimilation }
+									has_citizenship_type = { country = root type = citizenship_slavery }
+									has_citizenship_type = { country = root type = citizenship_purge }
+								}
+							}
+						}
+					}
+					while = {
+						count = 2000
+						random_owned_pop_group = {
+							limit = {
+								has_trait = trait_Small
+							}
+							kill_pop_group = {
+								pop_group = This
+								amount = 1
+							}
+						}
+					}
+					planet_event = {
+						id = gts_leader_bruh.0101 days = 5 random = 15
+					}
+				}
+				capital_scope = {
+					set_variable = {
+						which = gts_leader_bruh_0100_event_point_count
+						value = 1000
+					}
+				}
+				modifier = {
+					factor = 0
+					any_owned_planet = {
+						OR = {
+							count_owned_pop_amount = {
+								count <= 2000
+								limit = {
+									has_trait = trait_Small
+								}
+							}
+							count_owned_pop_amount = {
+								count = 0
+								limit = {
+									has_trait = trait_gts_ub
+									OR = {
+										has_trait = trait_Titan
+										has_trait = trait_Giant
+										has_trait = trait_Tall
+									}
+									NOR = {
+										has_citizenship_type = { country = root type = citizenship_assimilation }
+										has_citizenship_type = { country = root type = citizenship_slavery }
+										has_citizenship_type = { country = root type = citizenship_purge }
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+
+			1 = {
+				random_owned_planet = {
+					limit = {
+						count_owned_pop_amount = {
+							count > 4000
+							limit = {
+								has_trait = trait_Tiny
+							}
+						}
+						count_owned_pop_amount = {
+							count > 0
+							limit = {
+								has_trait = trait_gts_ub
+								OR = {
+									has_trait = trait_Titan
+									has_trait = trait_Giant
+									has_trait = trait_Tall
+								}
+								NOR = {
+									has_citizenship_type = { country = root type = citizenship_assimilation }
+									has_citizenship_type = { country = root type = citizenship_slavery }
+									has_citizenship_type = { country = root type = citizenship_purge }
+								}
+							}
+						}
+					}
+					while = {
+						count = 4000
+						random_owned_pop_group = {
+							limit = {
+								has_trait = trait_Tiny
+							}
+							kill_pop_group = {
+								pop_group = This
+								amount = 1
+							}
+						}
+					}
+					planet_event = {
+						id = gts_leader_bruh.0101 days = 5 random = 15
+					}
+				}
+				capital_scope = {
+					set_variable = {
+						which = gts_leader_bruh_0100_event_point_count
+						value = 1000
+					}
+				}
+				modifier = {
+					factor = 0
+					any_owned_planet = {
+						OR = {
+							count_owned_pop_amount = {
+								count <= 4000
+								limit = {
+									has_trait = trait_Tiny
+								}
+							}
+							count_owned_pop_amount = {
+								count = 0
+								limit = {
+									has_trait = trait_gts_ub
+									OR = {
+										has_trait = trait_Titan
+										has_trait = trait_Giant
+										has_trait = trait_Tall
+									}
+									NOR = {
+										has_citizenship_type = { country = root type = citizenship_assimilation }
+										has_citizenship_type = { country = root type = citizenship_slavery }
+										has_citizenship_type = { country = root type = citizenship_purge }
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+
+			1 = {
+				random_owned_planet = {
+					limit = {
+						count_owned_pop_amount = {
+							count > 8000
+							limit = {
+								has_trait = trait_Micro
+							}
+						}
+						count_owned_pop_amount = {
+							count > 0
+							limit = {
+								has_trait = trait_gts_ub
+								OR = {
+									has_trait = trait_Titan
+									has_trait = trait_Giant
+									has_trait = trait_Tall
+								}
+								NOR = {
+									has_citizenship_type = { country = root type = citizenship_assimilation }
+									has_citizenship_type = { country = root type = citizenship_slavery }
+									has_citizenship_type = { country = root type = citizenship_purge }
+								}
+							}
+						}
+					}
+					while = {
+						count = 8000
+						random_owned_pop_group = {
+							limit = {
+								has_trait = trait_Micro
+							}
+							kill_pop_group = {
+								pop_group = This
+								amount = 1
+							}
+						}
+					}
+					planet_event = {
+						id = gts_leader_bruh.0101 days = 5 random = 15
+					}
+				}
+				capital_scope = {
+					set_variable = {
+						which = gts_leader_bruh_0100_event_point_count
+						value = 1000
+					}
+				}
+				modifier = {
+					factor = 0
+					any_owned_planet = {
+						OR = {
+							count_owned_pop_amount = {
+								count <= 8000
+								limit = {
+									has_trait = trait_Micro
+								}
+							}
+							count_owned_pop_amount = {
+								count = 0
+								limit = {
+									has_trait = trait_gts_ub
+									OR = {
+										has_trait = trait_Titan
+										has_trait = trait_Giant
+										has_trait = trait_Tall
+									}
+									NOR = {
+										has_citizenship_type = { country = root type = citizenship_assimilation }
+										has_citizenship_type = { country = root type = citizenship_slavery }
+										has_citizenship_type = { country = root type = citizenship_purge }
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+# 使用1000點數
+planet_event = {
+	id = gts_leader_bruh.0101
+	title = "TRANSMISSION"
+	#desc = gts_leader_bruh.0101.desc
+	desc = {
+		text = gts_leader_bruh.0101.a.desc
+		trigger = {
+			owner = { has_country_flag = gts_leader_bruh_0100_event_flag_1}
+		}
+	}
+	desc = {
+		text = gts_leader_bruh.0101.b.desc
+		trigger = {
+			owner = { has_country_flag = gts_leader_bruh_0100_event_flag_2}
+		}
+	}
+	desc = {
+		text = gts_leader_bruh.0101.c.desc
+		trigger = {
+			owner = { has_country_flag = gts_leader_bruh_0100_event_flag_3}
+		}
+	}
+	desc = {
+		text = gts_leader_bruh.0101.d.desc
+		trigger = {
+			owner = { has_country_flag = gts_leader_bruh_0100_event_flag_4}
+		}
+	}
+	desc = {
+		text = gts_leader_bruh.0101.e.desc
+		trigger = {
+			owner = { has_country_flag = gts_leader_bruh_0100_event_flag_5}
+		}
+	}
+	diplomatic = yes
+	show_sound = event_swarm_started
+	location = ROOT
+
+	is_triggered_only = yes
+
+	picture_event_data = {
+		room = gts_qhai7_room
+	}
+
+	immediate = {
+
+		# 找尋目標巨娘種族
+
+		random_list = {
+			1 = {
+				random_owned_species = {
+					limit = {
+						is_robotic = no
+						has_trait = trait_gts_ub
+						has_trait = trait_Titan
+						NOR = {
+							has_citizenship_type = { country = root type = citizenship_assimilation }
+							has_citizenship_type = { country = root type = citizenship_slavery }
+							has_citizenship_type = { country = root type = citizenship_purge }
+						}
+					}
+					save_event_target_as = gts_bruh_ub_titan_species
+				}
+				set_planet_flag = gts_bruh_has_ub_titan_species
+				modifier = {
+					factor = 0
+					count_owned_pop_amount = {
+						count = 0
+						limit = {
+							has_trait = trait_gts_ub
+							has_trait = trait_Titan
+							NOR = {
+								has_citizenship_type = { country = root type = citizenship_assimilation }
+								has_citizenship_type = { country = root type = citizenship_slavery }
+								has_citizenship_type = { country = root type = citizenship_purge }
+							}
+						}
+					}
+				}
+			}
+			1 = {
+				random_owned_species = {
+					limit = {
+						is_robotic = no
+						has_trait = trait_gts_ub
+						has_trait = trait_Giant
+						NOR = {
+							has_citizenship_type = { country = root type = citizenship_assimilation }
+							has_citizenship_type = { country = root type = citizenship_slavery }
+							has_citizenship_type = { country = root type = citizenship_purge }
+						}
+					}
+					save_event_target_as = gts_bruh_ub_giant_species
+				}
+				set_planet_flag = gts_bruh_has_ub_giant_species
+				modifier = {
+					factor = 0
+					count_owned_pop_amount = {
+						count = 0
+						limit = {
+							has_trait = trait_gts_ub
+							has_trait = trait_Giant
+							NOR = {
+								has_citizenship_type = { country = root type = citizenship_assimilation }
+								has_citizenship_type = { country = root type = citizenship_slavery }
+								has_citizenship_type = { country = root type = citizenship_purge }
+							}
+						}
+					}
+				}
+			}
+			1 = {
+				random_owned_species = {
+					limit = {
+						is_robotic = no
+						has_trait = trait_gts_ub
+						has_trait = trait_Tall
+						NOR = {
+							has_citizenship_type = { country = root type = citizenship_assimilation }
+							has_citizenship_type = { country = root type = citizenship_slavery }
+							has_citizenship_type = { country = root type = citizenship_purge }
+						}
+					}
+					save_event_target_as = gts_bruh_ub_tall_species
+				}
+				set_planet_flag = gts_bruh_has_ub_tall_species
+				modifier = {
+					factor = 0
+					count_owned_pop_amount = {
+						count = 0
+						limit = {
+							has_trait = trait_gts_ub
+							has_trait = trait_Tall
+							NOR = {
+								has_citizenship_type = { country = root type = citizenship_assimilation }
+								has_citizenship_type = { country = root type = citizenship_slavery }
+								has_citizenship_type = { country = root type = citizenship_purge }
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = gts_leader_bruh.0101.a
+		trigger = {
+			has_planet_flag = gts_bruh_has_ub_titan_species
+		}
+		create_pop_group = {
+			species = event_target:gts_bruh_ub_titan_species
+			category = civilian
+			size = 125
+		}
+	}
+
+	option = {
+		name = gts_leader_bruh.0101.b
+		trigger = {
+			has_planet_flag = gts_bruh_has_ub_giant_species
+		}
+		create_pop_group = {
+			species = event_target:gts_bruh_ub_giant_species
+			category = civilian
+			size = 250
+		}
+	}
+
+	option = {
+		name = gts_leader_bruh.0101.c
+		trigger = {
+			has_planet_flag = gts_bruh_has_ub_tall_species
+		}
+		create_pop_group = {
+			species = event_target:gts_bruh_ub_tall_species
+			category = civilian
+			size = 500
+		}
+	}
+
+	option = {
+		name = gts_leader_bruh.0101.d
+		trigger = {
+			NOR = {
+				has_planet_flag = gts_bruh_has_ub_titan_species
+				has_planet_flag = gts_bruh_has_ub_giant_species
+				has_planet_flag = gts_bruh_has_ub_tall_species
+			}
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			remove_planet_flag = gts_bruh_has_ub_titan_species
+			remove_planet_flag = gts_bruh_has_ub_giant_species
+			remove_planet_flag = gts_bruh_has_ub_tall_species
+			owner = {
+				remove_country_flag = gts_leader_bruh_0100_event_flag_1
+				remove_country_flag = gts_leader_bruh_0100_event_flag_2
+				remove_country_flag = gts_leader_bruh_0100_event_flag_3
+				remove_country_flag = gts_leader_bruh_0100_event_flag_4
+				remove_country_flag = gts_leader_bruh_0100_event_flag_5
+				capital_scope = {
+					clear_variable = gts_leader_bruh_0100_event_point_count
+				}
+			}
+		}
+	}
+}
+

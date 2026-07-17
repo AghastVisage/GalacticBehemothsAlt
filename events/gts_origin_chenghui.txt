@@ -1,0 +1,1649 @@
+namespace = gts_chenghui
+
+country_event = {
+	id = gts_chenghui.0
+	title = "gts_chenghui.0.name"
+	desc = "gts_chenghui.0.desc"
+	picture = GFX_evt_asteroid_approaching_planet
+	is_triggered_only = yes
+	option = {
+		name = gts_chenghui.0.a
+		random_planet_within_border = {
+			limit = {
+				has_planet_flag = Robot_gts_Rightfoot_planet
+			}
+			create_archaeological_site = site_gts_Chenghui_foot
+		}
+	}
+}
+
+country_event = {
+	#交流界面
+	id = gts_chenghui.1
+	title = "gts_chenghui.1.title"	#成惠
+	desc = "gts_chenghui.1.a.desc"	#随机交流的话
+	desc = "gts_chenghui.1.b.desc"
+	desc = "gts_chenghui.1.c.desc"
+	desc = "gts_chenghui.1.d.desc"
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	force_open = yes
+	picture_event_data = {
+		portrait = gts_Chenghui
+		room = "ethic_spaceship_room"
+	}
+	is_triggered_only = yes
+	trigger = {
+		NOT = {
+			has_country_flag = chenghui_diplomacy_engaged
+		}
+		from = {
+			has_country_flag = country_chenghui
+		}
+		is_same_value = event_target:chenghui_owner
+		NOR = {
+			has_country_flag = chenghui_governor_active
+			has_country_flag = chenghui_warship_active
+			has_country_flag = chenghui_army_active
+			has_country_flag = chenghui_reforming
+		}
+	}
+	immediate = {
+		set_country_flag = chenghui_diplomacy_engaged
+	}
+	after = {
+		hidden_effect = {
+			remove_country_flag = chenghui_diplomacy_engaged
+		}
+	}
+	option = {
+		# Governor
+		name = gts_chenghui.1.a
+		response_text = gts_chenghui.1.a.response		#成惠的回复
+		trigger = {
+			NOT = {
+				has_country_flag = chenghui_governor_active
+			}
+		}
+		hidden_effect = {
+			create_chenghui_governor = yes
+		}
+	}
+	option = {
+		# Warship
+		name = gts_chenghui.1.b
+		response_text = gts_chenghui.1.b.response
+		trigger = {
+			NOT = {
+				has_country_flag = chenghui_warship_active
+			}
+		}
+		hidden_effect = {
+			create_chenghui_warship = yes
+		}
+	}
+	option = {
+		# Army
+		name = gts_chenghui.1.c
+		response_text = gts_chenghui.1.c.response
+		trigger = {
+			NOT = {
+				has_country_flag = chenghui_army_active
+			}
+		}
+		hidden_effect = {
+			create_chenghui_army = yes
+		}
+	}
+	option = {
+		#食物换buff
+		name = gts_chenghui.1.d
+		hidden_effect = {
+			country_event = {
+				id = gts_chenghui.9
+			}
+		}
+	}
+	option = {
+		#食物换星球
+		name = gts_chenghui.1.e
+		hidden_effect = {
+			country_event = {
+				id = gts_chenghui.10
+			}
+		}
+	}
+	option = {
+		name = gts_chenghui.1.f		#没事
+		default_hide_option = yes
+	}
+}
+
+#交流界面(总督)
+country_event = {
+	id = gts_chenghui.2
+	title = "gts_chenghui.1.title"	#成惠
+	desc = "gts_chenghui.2.a.desc"	#成惠总督的随机话
+	desc = "gts_chenghui.2.b.desc"
+	desc = "gts_chenghui.2.c.desc"
+	desc = "gts_chenghui.2.d.desc"
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		portrait = gts_Chenghui
+		planet_background = event_target:chenghui_governor_planet
+		room = root
+	}
+	is_triggered_only = yes
+	trigger = {
+		from = {
+			is_country_type = chenghui
+		}
+		is_same_value = event_target:chenghui_owner
+		has_country_flag = chenghui_governor_active
+		NOT = {
+			has_country_flag = chenghui_reforming
+		}
+		NOT = {
+			has_country_flag = chenghui_diplomacy_engaged
+		}
+		exists = event_target:chenghui_governor
+	}
+	immediate = {
+		set_country_flag = chenghui_diplomacy_engaged
+		if = {
+			limit = {
+				any_owned_planet = {
+					exists = leader
+					leader = {
+						is_same_value = event_target:chenghui_governor
+					}
+				}
+			}
+			random_owned_planet = {
+				limit = {
+					exists = leader
+					leader = {
+						is_same_value = event_target:chenghui_governor
+					}
+				}
+				save_event_target_as = chenghui_governor_planet
+			}
+		}
+		else = {
+			capital_scope = {
+				save_event_target_as = chenghui_governor_planet
+			}
+		}
+	}
+	after = {
+		hidden_effect = {
+			remove_country_flag = chenghui_diplomacy_engaged
+		}
+	}
+	option = {
+		# Warship
+		name = gts_chenghui.1.b
+		response_text = gts_chenghui.2.b.response
+		allow = {
+			hidden_trigger = {
+				exists = event_target:chenghui_governor
+			}			# To prevent exploit
+		}
+		hidden_effect = {
+			create_chenghui_warship = yes
+		}
+	}
+	option = {
+		# Army
+		name = gts_chenghui.1.c
+		response_text = gts_chenghui.2.c.response
+		allow = {
+			hidden_trigger = {
+				exists = event_target:chenghui_governor
+			}
+		}
+		hidden_effect = {
+			create_chenghui_army = yes
+		}
+	}
+	option = {
+		#食物换buff
+		name = gts_chenghui.1.d
+		hidden_effect = {
+			country_event = {
+				id = gts_chenghui.9
+			}
+		}
+	}
+	option = {
+		#食物换星球
+		name = gts_chenghui.1.e
+		hidden_effect = {
+			country_event = {
+				id = gts_chenghui.10
+			}
+		}
+	}
+	option = {
+		#没事
+		name = gts_chenghui.1.f
+		default_hide_option = yes
+	}
+}
+
+#通讯界面(战舰)
+country_event = {
+	id = gts_chenghui.3
+	title = "gts_chenghui.1.title"	#成惠
+	desc = "gts_chenghui.3.a.desc"	#舰队成惠对话
+	desc = "gts_chenghui.3.b.desc"
+	desc = "gts_chenghui.3.c.desc"
+	desc = "gts_chenghui.3.d.desc"
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		portrait = gts_Chenghui
+		room = "ethic_spaceship_room"
+	}
+	is_triggered_only = yes
+	trigger = {
+		from = {
+			is_country_type = chenghui
+		}
+		is_same_value = event_target:chenghui_owner
+		has_country_flag = chenghui_warship_active
+		NOT = {
+			has_country_flag = chenghui_reforming
+		}
+		NOT = {
+			has_country_flag = chenghui_diplomacy_engaged
+		}
+		exists = event_target:chenghui_warship
+		any_controlled_fleet = {
+			is_same_value = event_target:chenghui_warship
+		}
+		event_target:chenghui_warship = {
+			num_ships > 0
+		}
+	}
+	immediate = {
+		set_country_flag = chenghui_diplomacy_engaged
+	}
+	after = {
+		hidden_effect = {
+			remove_country_flag = chenghui_diplomacy_engaged
+		}
+	}
+	option = {
+		# Governor
+		name = gts_chenghui.1.a
+		response_text = gts_chenghui.3.a.response
+		allow = {
+			hidden_trigger = {
+				# To prevent exploit
+				event_target:chenghui_warship = {
+					num_ships > 0
+				}
+			}
+			custom_tooltip = {
+				fail_text = graygoo.500.allow.a
+				event_target:chenghui_warship = {
+					is_in_combat = no
+				}
+			}
+			custom_tooltip = {
+				fail_text = graygoo.500.allow.b
+				event_target:chenghui_warship = {
+					NOT = {
+						has_hp_percentage < 1
+					}
+				}
+			}
+		}
+		hidden_effect = {
+			create_chenghui_governor = yes
+		}
+	}
+	option = {
+		# Army
+		name = gts_chenghui.1.c
+		response_text = gts_chenghui.3.c.response
+		allow = {
+			hidden_trigger = {
+				event_target:chenghui_warship = {
+					num_ships > 0
+				}
+			}
+			custom_tooltip = {
+				fail_text = graygoo.500.allow.a
+				event_target:chenghui_warship = {
+					is_in_combat = no
+				}
+			}
+			custom_tooltip = {
+				fail_text = graygoo.500.allow.b
+				event_target:chenghui_warship = {
+					NOT = {
+						has_hp_percentage < 1
+					}
+				}
+			}
+		}
+		hidden_effect = {
+			create_chenghui_army = yes
+		}
+	}
+	option = {
+		#食物换buff
+		name = gts_chenghui.1.d
+		hidden_effect = {
+			country_event = {
+				id = gts_chenghui.9
+			}
+		}
+	}
+	option = {
+		#食物换星球
+		name = gts_chenghui.1.e
+		hidden_effect = {
+			country_event = {
+				id = gts_chenghui.10
+			}
+		}
+	}
+	option = {
+		#没事
+		name = gts_chenghui.1.f
+		default_hide_option = yes
+	}
+}
+
+#通讯界面(陆军)
+country_event = {
+	id = gts_chenghui.4
+	title = "gts_chenghui.1.title"	#成惠
+	desc = "gts_chenghui.4.a.desc"
+	desc = "gts_chenghui.4.b.desc"
+	desc = "gts_chenghui.4.c.desc"
+	desc = "gts_chenghui.4.d.desc"
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		portrait = gts_Chenghui
+		room = "ethic_spaceship_room"
+	}
+	is_triggered_only = yes
+	trigger = {
+		from = {
+			is_country_type = chenghui
+		}
+		has_country_flag = chenghui_army_active
+		NOT = {
+			has_country_flag = chenghui_reforming
+		}
+		NOT = {
+			has_country_flag = chenghui_diplomacy_engaged
+		}
+		is_same_value = event_target:chenghui_owner
+		any_owned_army = {
+			army_type = chenghui_army
+			OR = {
+				exists = planet
+				AND = {
+					exists = fleet
+					fleet = {
+						num_ships > 0
+					}
+				}
+			}
+		}
+	}
+	immediate = {
+		set_country_flag = chenghui_diplomacy_engaged
+	}
+	after = {
+		hidden_effect = {
+			remove_country_flag = chenghui_diplomacy_engaged
+		}
+	}
+	option = {
+		# Governor
+		name = gts_chenghui.1.a
+		response_text = gts_chenghui.4.a.response
+		allow = {
+			hidden_trigger = {
+				# To prevent exploit
+				any_owned_army = {
+					army_type = chenghui_army
+					OR = {
+						exists = planet
+						AND = {
+							exists = fleet
+							fleet = {
+								num_ships > 0
+							}
+						}
+					}
+				}
+			}
+			custom_tooltip = {
+				fail_text = chenghui.9.a.tooltip
+				any_owned_army = {
+					army_type = chenghui_army
+					if = {
+						limit = {
+							exists = planet
+						}
+						planet = {
+							has_ground_combat = no
+						}
+					}
+				}
+			}
+
+		}
+		hidden_effect = {
+			create_chenghui_governor = yes
+		}
+	}
+	option = {
+		# Warship
+		name = gts_chenghui.1.b
+		response_text = gts_chenghui.4.b.response
+		allow = {
+			hidden_trigger = {
+				any_owned_army = {
+					army_type = chenghui_army
+					OR = {
+						exists = planet
+						AND = {
+							exists = fleet
+							fleet = {
+								num_ships > 0
+							}
+						}
+					}
+				}
+			}
+			custom_tooltip = {
+				fail_text = graygoo.500.allow.a
+				any_owned_army = {
+					army_type = chenghui_army
+					if = {
+						limit = {
+							exists = planet
+						}
+						planet = {
+							has_ground_combat = no
+						}
+					}
+				}
+			}
+		}
+		hidden_effect = {
+			create_chenghui_warship = yes
+		}
+	}
+	option = {
+		#食物换buff
+		name = gts_chenghui.1.d
+		hidden_effect = {
+			country_event = {
+				id = gts_chenghui.9
+			}
+		}
+	}
+	option = {
+		#食物换星球
+		name = gts_chenghui.1.e
+		hidden_effect = {
+			country_event = {
+				id = gts_chenghui.10
+			}
+		}
+	}
+	option = {
+		#没事
+		name = gts_chenghui.1.f
+		default_hide_option = yes
+	}
+}
+
+#趋势（隐藏）
+event = {
+	id = gts_chenghui.6	#未触发(trigger/immediate)
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		any_country = {
+			is_country_type = chenghui
+		}
+		exists = event_target:chenghui_owner
+		event_target:chenghui_owner = {
+			OR = {
+				AND = {
+					has_country_flag = chenghui_army_active					#是成惠军队
+					#NOT = {
+					#	any_owned_army = { army_type = chenghui_army } #军队没了
+					#}
+					NOT = {
+						any_owned_army = {
+							army_type = chenghui_army
+							OR = {
+								exists = planet
+								AND = {
+									exists = fleet
+									fleet = {
+										num_ships > 0
+									}
+								}
+							}
+						}
+					}
+				}
+				AND = {
+					has_country_flag = chenghui_warship_active					#是成惠舰队
+					#NOT = { exists = event_target:chenghui_warship } #舰队无了
+					NOT = {
+						any_controlled_fleet = {
+							is_same_value = event_target:chenghui_warship
+						}
+						event_target:chenghui_warship = {
+							num_ships > 0
+						}
+					}
+				}
+				AND = {
+					has_country_flag = chenghui_governor_active					#是成惠总督
+					#NOT = { exists = event_target:chenghui_governor } #总督无了
+				}
+			}
+		}
+	}
+	immediate = {
+		event_target:chenghui_owner = {
+			remove_country_flag = chenghui_governor_active
+			remove_country_flag = chenghui_warship_active
+			remove_country_flag = chenghui_army_active
+			set_country_flag = chenghui_reforming
+			add_modifier = {
+				#添加修正：被干爆
+				modifier = "chenghui_scattered"
+				days = 3600
+			}
+			country_event = {
+				id = gts_chenghui.7
+			}			#弹出事件
+			country_event = {
+				id = gts_chenghui.8
+				days = 3600
+			}			#在十年后弹出事件
+		}
+	}
+}
+
+#成惠趋势
+country_event = {
+	id = gts_chenghui.7
+	title = "gts_chenghui.7.name"	#被橄榄
+	desc = "gts_chenghui.7.desc"	#描述
+	picture = GFX_evt_circuitry_modification
+	show_sound = event_radio_chatter
+	is_triggered_only = yes
+	option = {
+		name = graygoo.504.d
+	}
+}
+
+#成惠复活
+country_event = {
+	id = gts_chenghui.8
+	title = "gts_chenghui.1.title"	#成惠
+	desc = "gts_chenghui.8.a.desc"	#随机交流的话
+	desc = "gts_chenghui.8.b.desc"
+	desc = "gts_chenghui.8.c.desc"
+	diplomatic = yes
+	picture_event_data = {
+		portrait = gts_Chenghui
+		room = "ethic_spaceship_room"
+	}
+	is_triggered_only = yes
+	immediate = {
+		remove_country_flag = chenghui_reforming		#移除：复活标志
+	}
+	option = {
+		name = graygoo.512.a		#选项：欢迎回来
+	}
+}
+
+country_event = {
+	#食物换buff
+	id = gts_chenghui.9
+	title = "gts_chenghui.1.title"	#成惠
+	desc = "gts_chenghui.9.a.desc"
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		portrait = gts_Chenghui
+		room = "ethic_spaceship_room"
+	}
+	is_triggered_only = yes
+	option = {
+		#生产buff
+		name = gts_chenghui.9.a
+		response_text = gts_chenghui.9.a.reply		#回答
+		custom_gui = "enclave_curator_option"
+		allow = {
+			resource_stockpile_compare = {
+				resource = food
+				value >= 1000
+			}
+			custom_tooltip = {
+				fail_text = chenghui.9.a.tooltip				#成惠现在没胃口吃更多了
+				NOT = {
+					has_country_flag = chenghui_is_not_hungery
+				}				#成惠吃饱了
+			}
+		}
+		add_resource = {
+			food = -1000
+		}
+		add_modifier = {
+			modifier = chenghui_adm			#添加修正：成惠协助生产
+			days = 1800
+		}
+		hidden_effect = {
+			set_timed_country_flag = {
+				flag = chenghui_is_not_hungery				#添加五年flag：成惠吃饱了
+				days = 1800				# 5 years
+			}
+		}
+	}
+	option = {
+		#科研buff
+		name = gts_chenghui.9.b		#我们储存了许多物资
+		response_text = gts_chenghui.9.b.reply		#回答
+		custom_gui = "enclave_curator_option"
+		allow = {
+			resource_stockpile_compare = {
+				resource = food
+				value >= 1000
+			}
+			custom_tooltip = {
+				fail_text = chenghui.9.a.tooltip				#成惠现在没胃口吃更多了
+				NOT = {
+					has_country_flag = chenghui_is_not_hungery
+				}				#成惠吃饱了
+			}
+		}
+		add_resource = {
+			food = -1000
+		}
+		add_modifier = {
+			modifier = chenghui_sci			#添加修正：成惠协助科研
+			days = 1800
+		}
+		hidden_effect = {
+			set_timed_country_flag = {
+				flag = chenghui_is_not_hungery				#添加五年flag：成惠吃饱了
+				days = 1800				# 5 years
+			}
+		}
+	}
+	option = {
+		#军事buff
+		name = gts_chenghui.9.c
+		response_text = gts_chenghui.9.c.reply		#回答
+		custom_gui = "enclave_curator_option"
+		allow = {
+			resource_stockpile_compare = {
+				resource = food
+				value >= 1000
+			}
+			custom_tooltip = {
+				fail_text = chenghui.9.a.tooltip				#成惠现在没胃口吃更多了
+				NOT = {
+					has_country_flag = chenghui_is_not_hungery
+				}				#成惠吃饱了
+			}
+		}
+		add_resource = {
+			food = -1000
+		}
+		add_modifier = {
+			modifier = chenghui_mil			#添加修正：成惠指挥国防
+			days = 1800
+		}
+		hidden_effect = {
+			set_timed_country_flag = {
+				flag = chenghui_is_not_hungery				#添加五年flag：成惠吃饱了
+				days = 1800				# 5 years
+			}
+		}
+	}
+	option = {
+		#外交buff
+		name = gts_chenghui.9.d
+		response_text = gts_chenghui.9.d.reply		#回答
+		custom_gui = "enclave_curator_option"
+		allow = {
+			resource_stockpile_compare = {
+				resource = food
+				value >= 1000
+			}
+			custom_tooltip = {
+				fail_text = chenghui.9.a.tooltip				#成惠现在没胃口吃更多了
+				NOT = {
+					has_country_flag = chenghui_is_not_hungery
+				}				#成惠吃饱了
+			}
+		}
+		add_resource = {
+			food = -1000
+		}
+		add_modifier = {
+			modifier = chenghui_dip			#添加修正：成惠协助外交
+			days = 1800
+		}
+		hidden_effect = {
+			set_timed_country_flag = {
+				flag = chenghui_is_not_hungery				#添加五年flag：成惠吃饱了
+				days = 1800				# 5 years
+			}
+		}
+	}
+	option = {
+		name = gts_chenghui.1.f		#没事
+		default_hide_option = yes
+	}
+}
+
+country_event = {
+	#食物换球
+	id = gts_chenghui.10
+	title = "gts_chenghui.1.title"	#成惠
+	desc = "gts_chenghui.10.a.desc"
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		portrait = gts_Chenghui
+		room = "ethic_spaceship_room"
+	}
+	is_triggered_only = yes
+	option = {
+		#左足
+		name = gts_chenghui.10.a		#
+		response_text = gts_chenghui.10.a.reply		#回答
+		custom_gui = "enclave_curator_option"
+		allow = {
+			resource_stockpile_compare = {
+				resource = food
+				value >= 5000
+			}
+			num_ascension_perks > 1
+			custom_tooltip = {
+				fail_text = chenghui.10.a.tooltip				#成惠五年内不可能同意我们类似羞耻的要求
+				NOT = {
+					has_country_flag = chenghui_is_not_agree
+				}				#成惠不同意
+			}
+			custom_tooltip = {
+				fail_text = chenghui.10.b.tooltip				#成惠已经批准了这个请求了 
+				NOT = {
+					has_country_flag = leftfoot_end
+				}
+			}
+		}
+		add_resource = {
+			food = -5000
+		}
+		hidden_effect = {
+			random_planet_within_border = {
+				#随机拥有的星球
+				limit = {
+					has_planet_flag = origin_robot_gts_Leftfoot
+				}				#限制：需为母星
+				change_pc = pc_gaia				#提供起源buff
+				add_modifier = {
+					modifier = foot_of_gts					#添加修正：足
+				}
+				add_deposit = d_Chenghui_sweat
+				add_deposit = d_Chenghui_sweat
+				add_deposit = d_Chenghui_sweat
+				add_deposit = d_Chenghui_gas
+				add_deposit = d_Chenghui_footplant
+				add_deposit = d_Chenghui_footplant
+			}
+			set_timed_country_flag = {
+				flag = chenghui_is_not_agree				#添加五年flag：成惠不同意
+				days = 1800				# 5 years
+			}
+			set_country_flag = leftfoot_end
+		}
+	}
+	option = {
+		#右足
+		name = gts_chenghui.10.b		#
+		response_text = gts_chenghui.10.b.reply		#回答
+		custom_gui = "enclave_curator_option"
+		allow = {
+			resource_stockpile_compare = {
+				resource = food
+				value >= 5000
+			}
+			num_ascension_perks > 1
+			custom_tooltip = {
+				fail_text = chenghui.10.a.tooltip
+				NOT = {
+					has_country_flag = chenghui_is_not_agree
+				}
+			}
+			custom_tooltip = {
+				fail_text = chenghui.10.b.tooltip				#成惠已经批准了这个请求了 
+				NOT = {
+					has_country_flag = rightfoot_end
+				}
+			}
+		}
+		add_resource = {
+			food = -5000
+		}
+		hidden_effect = {
+			random_planet_within_border = {
+				#随机拥有的星球
+				limit = {
+					has_planet_flag = Robot_gts_Rightfoot_planet
+				}
+				change_pc = pc_gaia
+				add_modifier = {
+					modifier = foot_of_gts					#添加修正：足
+				}
+				add_deposit = d_Chenghui_sweat
+				add_deposit = d_Chenghui_sweat
+				add_deposit = d_Chenghui_sweat
+				add_deposit = d_Chenghui_gas
+				add_deposit = d_Chenghui_footplant
+				add_deposit = d_Chenghui_footplant
+			}
+			set_timed_country_flag = {
+				flag = chenghui_is_not_agree
+				days = 1800				# 5 years
+			}
+			country_event = {
+				id = gts_chenghui.0
+				days = 30
+			}			#
+			set_country_flag = rightfoot_end
+		}
+	}
+	option = {
+		#胃
+		name = gts_chenghui.10.c		#
+		response_text = gts_chenghui.10.c.reply		#回答
+		custom_gui = "enclave_curator_option"
+		allow = {
+			resource_stockpile_compare = {
+				resource = food
+				value >= 10000
+			}
+			num_ascension_perks > 3
+			custom_tooltip = {
+				fail_text = chenghui.10.a.tooltip
+				NOT = {
+					has_country_flag = chenghui_is_not_agree
+				}
+			}
+			custom_tooltip = {
+				fail_text = chenghui.10.b.tooltip				#成惠已经批准了这个请求了 
+				NOT = {
+					has_country_flag = stomach_end
+				}
+			}
+		}
+		add_resource = {
+			food = -10000
+		}
+		hidden_effect = {
+			random_planet_within_border = {
+				#随机拥有的星球
+				limit = {
+					has_planet_flag = Robot_gts_Stomach_planet
+				}				#限制：
+				change_pc = pc_gaia
+				add_modifier = {
+					modifier = stomach_of_gts					#添加修正：胃
+				}
+				add_deposit = d_Chenghui_acid
+				add_deposit = d_Chenghui_acid
+				add_deposit = d_Chenghui_acid
+				add_deposit = d_Chenghui_acid
+				add_deposit = d_Chenghui_acid
+				add_deposit = d_Chenghui_acid
+				add_deposit = d_Chenghui_belly_phy
+			}
+			set_timed_country_flag = {
+				flag = chenghui_is_not_agree
+				days = 1800				# 5 years
+			}
+			set_country_flag = stomach_end
+		}
+	}
+	option = {
+		#菊
+		name = gts_chenghui.10.d		#
+		response_text = gts_chenghui.10.d.reply		#回答
+		custom_gui = "enclave_curator_option"
+		allow = {
+			resource_stockpile_compare = {
+				resource = food
+				value >= 10000
+			}
+			num_ascension_perks > 4
+			custom_tooltip = {
+				fail_text = chenghui.10.a.tooltip
+				NOT = {
+					has_country_flag = chenghui_is_not_agree
+				}
+			}
+			custom_tooltip = {
+				fail_text = chenghui.10.b.tooltip				#成惠已经批准了这个请求了 
+				NOT = {
+					has_country_flag = anal_end
+				}
+			}
+		}
+		add_resource = {
+			food = -10000
+		}
+		hidden_effect = {
+			random_planet_within_border = {
+				#随机拥有的星球
+				limit = {
+					has_planet_flag = Robot_gts_Anal_planet
+				}				#限制：需为
+				change_pc = pc_gaia
+				add_modifier = {
+					modifier = anal_of_gts					#添加修正：胃
+				}
+				add_deposit = d_Chenghui_gas
+				add_deposit = d_Chenghui_shift
+				add_deposit = d_Chenghui_anal_eng
+			}
+			set_timed_country_flag = {
+				flag = chenghui_is_not_agree				#添加五年flag
+				days = 1800				# 5 years
+			}
+			set_country_flag = anal_end
+		}
+	}
+	option = {
+		#阴
+		name = gts_chenghui.10.e		#
+		response_text = gts_chenghui.10.e.reply		#回答
+		custom_gui = "enclave_curator_option"
+		allow = {
+			resource_stockpile_compare = {
+				resource = food
+				value >= 15000
+			}
+			num_ascension_perks > 5
+			custom_tooltip = {
+				fail_text = chenghui.10.a.tooltip
+				NOT = {
+					has_country_flag = chenghui_is_not_agree
+				}
+			}
+			custom_tooltip = {
+				fail_text = chenghui.10.b.tooltip				#成惠已经批准了这个请求了 
+				NOT = {
+					has_country_flag = puss_end
+				}
+			}
+		}
+		add_resource = {
+			food = -15000
+		}
+		hidden_effect = {
+			random_planet_within_border = {
+				#随机拥有的星球
+				limit = {
+					has_planet_flag = Robot_gts_Puss_planet
+				}				#限制：需为母星
+				change_pc = pc_gaia
+				add_modifier = {
+					modifier = puss_of_gts					#添加修正：胃
+				}
+				add_deposit = d_Chenghui_forest
+				add_deposit = d_Chenghui_forest
+				add_deposit = d_Chenghui_Holy_palace
+				add_deposit = d_Chenghui_flood
+				add_deposit = d_Chenghui_flood
+				add_deposit = d_Chenghui_flood
+			}
+			set_timed_country_flag = {
+				flag = chenghui_is_not_agree				#添加五年flag
+				days = 1800				# 5 years
+			}
+			set_country_flag = puss_end
+		}
+	}
+	option = {
+		name = gts_chenghui.1.f		#没事
+		default_hide_option = yes
+	}
+}
+
+country_event = {
+	id = gts_chenghui.11
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		random_planet_within_border = {
+			limit = {
+				has_planet_flag = Robot_gts_Leftfoot_planet
+			}
+			change_pc = pc_gaia
+		}
+	}
+}
+
+#通讯界面(灰风复活中)
+country_event = {
+	id = gts_chenghui.5
+	title = "gts_chenghui.1.title"	#成惠
+	desc = "gts_chenghui.5.a.desc"	#成惠重组的话
+	desc = "gts_chenghui.5.b.desc"	#随机交流的话
+	desc = "gts_chenghui.5.c.desc"	#随机交流的话
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		portrait = gts_Chenghui
+		room = "ethic_spaceship_room"
+	}
+	is_triggered_only = yes
+	trigger = {
+		from = {
+			is_country_type = chenghui
+		}
+		is_same_value = event_target:chenghui_owner
+		has_country_flag = chenghui_reforming
+	}
+	option = {
+		name = OK
+	}
+}
+
+situation_event = {
+	id = gts_chenghui.2000	#成惠局势
+	title = "gts_chenghui.2000.name"
+	desc = "gts_chenghui.2000.desc"
+	picture = GFX_evt_news_room
+	show_sound = event_mystic_reveal
+	is_triggered_only = yes
+	option = {
+		name = gts_chenghui.2000.a
+		owner = {
+			add_modifier = {
+				modifier = gts_chenghuianger_human
+				days = 360
+			}
+			add_resource = {
+				food = 5000
+			}
+		}
+		hidden_effect = {
+			random_list = {
+				40 = {
+					situation_event = {
+						id = gts_chenghui.2001
+						days = 60
+					}
+				}
+				30 = {
+				}
+			}
+			owner = {
+				set_timed_country_flag = {
+					flag = resolution_chenghuianger_human
+					days = 360
+				}
+			}			
+		}
+	}
+	option = {
+		name = gts_chenghui.2000.b
+		owner = {
+			add_resource = {
+				unity = 5000
+			}
+		}
+	}
+}
+
+situation_event = {
+	id = gts_chenghui.2001	#成惠局势
+	title = "gts_chenghui.2001.name"
+	desc = "gts_chenghui.2001.desc"
+	picture = GFX_evt_news_room
+	show_sound = event_mystic_reveal
+	is_triggered_only = yes
+	option = {
+		name = gts_chenghui.2001.a
+		owner = {
+			add_modifier = {
+				modifier = gts_chenghuianger_human_fail
+				days = 1800
+			}
+		}
+	}
+}
+
+situation_event = {
+	id = gts_chenghui.2002	#成惠局势
+	title = "gts_chenghui.2002.name"
+	desc = "gts_chenghui.2002.desc"
+	picture = GFX_evt_news_room
+	show_sound = event_mystic_reveal
+	is_triggered_only = yes
+	option = {
+		name = gts_chenghui.2002.a
+		owner = {
+			add_modifier = {
+				modifier = gts_chenghuianger_robot
+				days = 360
+			}
+			add_resource = {
+				food = 5000
+			}
+		}
+		hidden_effect = {
+			random_list = {
+				40 = {
+					situation_event = {
+						id = gts_chenghui.2003
+						days = 60
+					}
+				}
+				30 = {
+				}
+			}
+			owner = {
+				set_timed_country_flag = {
+					flag = resolution_chenghuianger_robot
+					days = 360
+				}
+			}		
+		}
+	}
+	option = {
+		name = gts_chenghui.2002.b
+		owner = {
+			add_resource = {
+				unity = 5000
+			}
+		}
+	}
+}
+
+situation_event = {
+	id = gts_chenghui.2003	#成惠局势
+	title = "gts_chenghui.2003.name"
+	desc = "gts_chenghui.2003.desc"
+	picture = GFX_evt_news_room
+	show_sound = event_mystic_reveal
+	is_triggered_only = yes
+	option = {
+		name = gts_chenghui.2003.a
+		owner = {
+			every_planet_within_border = {
+				limit = {
+					has_planet_flag = Robot_gts_home_planet
+				}
+				add_planet_devastation = 10
+				random_owned_pop_group = {
+					kill_all_pop = yes
+				}
+			}
+			every_planet_within_border = {
+				limit = {
+					has_planet_flag = Robot_gts_Stomach_planet
+				}
+				add_planet_devastation = 30
+				random_owned_pop_group = {
+					kill_all_pop = yes
+				}
+				random_owned_pop_group = {
+					kill_all_pop = yes
+				}
+				random_owned_pop_group = {
+					kill_all_pop = yes
+				}
+			}
+		}
+	}
+}
+
+situation_event = {
+	id = gts_chenghui.2004	#成惠局势
+	title = "gts_chenghui.2004.name"
+	desc = "gts_chenghui.2004.desc"
+	picture = GFX_evt_news_room
+	show_sound = event_mystic_reveal
+	is_triggered_only = yes
+	option = {
+		name = gts_chenghui.2004.a
+		owner = {
+			every_planet_within_border = {
+				limit = {
+					has_planet_flag = Robot_gts_home_planet
+				}
+				add_planet_devastation = 60
+				random_owned_pop_group = {
+					kill_all_pop = yes
+				}
+				random_owned_pop_group = {
+					kill_all_pop = yes
+				}
+				random_owned_pop_group = {
+					kill_all_pop = yes
+				}
+				random_owned_pop_group = {
+					kill_all_pop = yes
+				}
+				random_owned_pop_group = {
+					kill_all_pop = yes
+				}
+				random_owned_pop_group = {
+					kill_all_pop = yes
+				}
+			}
+			every_planet_within_border = {
+				limit = {
+					has_planet_flag = Robot_gts_Stomach_planet
+				}
+				add_planet_devastation = 80
+				random_owned_pop_group = {
+					kill_all_pop = yes
+				}
+				random_owned_pop_group = {
+					kill_all_pop = yes
+				}
+				random_owned_pop_group = {
+					kill_all_pop = yes
+				}
+				random_owned_pop_group = {
+					kill_all_pop = yes
+				}
+				random_owned_pop_group = {
+					kill_all_pop = yes
+				}
+				random_owned_pop_group = {
+					kill_all_pop = yes
+				}
+				random_owned_pop_group = {
+					kill_all_pop = yes
+				}
+				random_owned_pop_group = {
+					kill_all_pop = yes
+				}
+				add_deposit = d_Chenghui_acid
+				add_deposit = d_Chenghui_acid
+				add_deposit = d_Chenghui_acid
+				add_deposit = d_Chenghui_acid
+			}
+			add_modifier = {
+				modifier = gts_chenghuianger_bad_end
+				days = 3600
+			}
+		}
+		hidden_effect = {
+			destroy_situation = this
+			owner = {
+				country_event = {
+					id = gts_chenghui.4004
+					days = 3600
+				}				#十年	
+				every_planet_within_border = {
+					limit = {
+						has_planet_flag = Robot_gts_home_planet
+					}
+					remove_modifier = gts_chenghui_anger
+				}
+			}
+		}
+	}
+}
+
+situation_event = {
+	id = gts_chenghui.2005	#成惠局势
+	title = "gts_chenghui.2005.name"
+	desc = "gts_chenghui.2005.desc"
+	picture = GFX_evt_news_room
+	show_sound = event_mystic_reveal
+	is_triggered_only = yes
+	option = {
+		name = gts_chenghui.2005.a
+		owner = {
+			add_modifier = {
+				modifier = gts_chenghuianger_good_end_uni
+				days = 3600
+			}
+			add_modifier = {
+				modifier = gts_chenghuianger_good_end_sci
+				days = 3600
+			}
+		}
+		hidden_effect = {
+			destroy_situation = this
+			owner = {
+				country_event = {
+					id = gts_chenghui.4004
+					days = 3600
+				}				#十年	
+				every_planet_within_border = {
+					limit = {
+						has_planet_flag = Robot_gts_home_planet
+					}
+					remove_modifier = gts_chenghui_anger
+				}
+			}
+		}
+	}
+}
+
+
+fleet_event = {
+	id = gts_chenghui.3000
+	title = "gts_chenghui.3000.name"
+	desc = "gts_chenghui.3000.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = CHENGHUIFOOT1
+		small_artifact_reward = yes
+	}
+}
+
+fleet_event = {
+	id = gts_chenghui.3001
+	title = "gts_chenghui.3001.name"
+	desc = "gts_chenghui.3001.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = CHENGHUIFOOT2
+		small_artifact_reward = yes
+	}
+}
+
+fleet_event = {
+	id = gts_chenghui.3002
+	title = "gts_chenghui.3002.name"
+	desc = "gts_chenghui.3002.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = CHENGHUIFOOT3
+		small_artifact_reward = yes
+	}
+}
+
+fleet_event = {
+	id = gts_chenghui.3003
+	title = "gts_chenghui.3003.name"
+	desc = "gts_chenghui.3003.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = CHENGHUIFOOT4
+		small_artifact_reward = yes
+	}
+}
+
+fleet_event = {
+	id = gts_chenghui.3004
+	title = "gts_chenghui.3004.name"
+	desc = "gts_chenghui.3004.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = CHENGHUIFOOT5
+		owner = {
+			add_modifier = {
+				modifier = chenghui_humanlife				#添加修正：生存经验
+			}
+		}
+		great_artifact_reward = yes		#改成添加buff
+	}
+}
+
+country_event = {
+	id = gts_chenghui.4000
+	title = "gts_chenghui.4000.name"	#拜访
+	desc = "gts_chenghui.4000.desc"	#链接通讯
+	picture = GFX_evt_asteroid_approaching_planet
+	is_triggered_only = yes
+	trigger = {
+		has_origin = origin_parasitic_robot
+	}
+	immediate = {
+		create_species = {
+			name = Chenghui
+			plural = Chenghui
+			class = ART
+			portrait = art13
+			name_list = ART1
+			effect = {
+				save_global_event_target_as = chenghui_species
+			}
+		}
+	}
+	option = {
+		name = gts_chenghui.4000.a		#请
+		country_event = {
+			id = gts_chenghui.4001
+		}
+	}
+}
+
+#交涉
+country_event = {
+	id = gts_chenghui.4001
+	title = "TRANSMISSION"
+	desc = "gts_chenghui.4001.desc"	#交流内容
+	diplomatic = yes
+	picture_event_data = {
+		portrait = gts_Chenghui
+		room = "ethic_spaceship_room"
+	}
+	is_triggered_only = yes
+	option = {
+		name = gts_chenghui.4001.a
+		response_text = gts_chenghui.4001.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_chenghui.4001.b
+		response_text = gts_chenghui.4001.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_chenghui.4001.c
+		response_text = gts_chenghui.4001.c.response		#你现在可以通过通讯界面与成惠交流
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_chenghui.4002
+			}
+			country_event = {
+				id = gts_chenghui.4004
+				days = 3600
+			}			#十年
+		}
+	}
+}
+
+#创造国家
+country_event = {
+	id = gts_chenghui.4002
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		create_country = {
+			name = "NAME_Chenghui"			#大纪久成惠
+			type = chenghui
+			flag = {
+				icon = {
+					category = "special"
+					file = "gray_goo.dds"
+				}
+				background = {
+					category = "backgrounds"
+					file = "sinus.dds"
+				}
+				colors = {
+					"grey"
+					"dark_grey"
+					"null"
+					"null"
+				}
+			}
+			effect = {
+				set_country_flag = country_chenghui
+			}
+		}
+		last_created_country = {
+			establish_communications_no_message = root
+		}
+		save_global_event_target_as = chenghui_owner
+	}
+}
+
+country_event = {
+	id = gts_chenghui.4003	#ID
+	hide_window = yes	#隐藏界面
+	is_triggered_only = yes	#只能触发
+	trigger = {
+		#触发器：有起源
+		has_origin = origin_parasitic_robot
+	}
+	immediate = {
+		#很快啊
+		random_owned_planet = {
+			#随机拥有的星球
+			limit = {
+				has_planet_flag = Robot_gts_home_planet
+			}			#限制：需为母星
+			parasitic_robot_origin_effect = yes			#提供起源buff
+			while = {
+				count = 11
+				add_district = district_farming
+			}
+			while = {
+				count = 6
+				add_district = district_mining
+			}
+			while = {
+				count = 5
+				add_district = district_generator
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_chenghui.4004
+	title = "gts_chenghui.4004.name"
+	desc = "gts_chenghui.4004.desc"
+	picture = GFX_evt_asteroid_approaching_planet
+	is_triggered_only = yes
+	trigger = {
+		#		AND = {
+		#			has_monthly_income = {
+		#				resource = food
+		#				value < 0
+		#			}
+		has_resource = {
+			type = food
+			amount < 1
+		}
+		#		}
+	}
+	option = {
+		name = gts_chenghui.4004.a
+		start_situation = {
+			type = situation_chenghui_anger
+		}
+		hidden_effect = {
+			every_planet_within_border = {
+				limit = {
+					has_planet_flag = Robot_gts_home_planet
+				}
+				add_modifier = {
+					modifier = gts_chenghui_anger
+				}
+			}
+		}
+	}
+}

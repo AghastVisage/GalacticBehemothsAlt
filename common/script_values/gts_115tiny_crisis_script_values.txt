@@ -1,0 +1,44 @@
+num_godness_power_worker_slave_purge = {
+    base = -40
+    add = value:num_godness_power_worker_raw
+    mult = 4
+}
+num_godness_power_worker_slave = {
+    base = 0
+    add = value:num_godness_power_worker_raw
+    divide = 20
+}
+
+num_godness_power_worker_slave_halved = {
+    base = 0
+    add = value:num_godness_power_worker_raw
+    divide = 40
+}
+num_godness_power_worker_raw = {
+    base = 0
+    complex_trigger_modifier = {
+        trigger = count_owned_pop_amount
+        trigger_scope = planet
+        parameters = {
+            limit = {
+                has_job = job_godness_power_worker
+            }
+        }
+        mode = add
+    }
+}
+num_godness_power_worker_raw_double = {
+    base = 0
+    add = value:num_godness_power_worker_raw
+    mult = 2
+}
+num_godness_power_worker_raw_4 = {
+    base = 0
+    add = value:num_godness_power_worker_raw
+    mult = 4
+}
+num_godness_power_worker_raw_half = {
+    base = 0
+    add = value:num_godness_power_worker_raw
+    mult = 0.5
+}

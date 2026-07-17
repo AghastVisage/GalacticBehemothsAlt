@@ -1,0 +1,168 @@
+create_Illya_warship = {
+	if = {
+		limit = { has_country_flag = Illya_school_warship_active }
+		if = {
+			limit = {
+				any_owned_fleet = {
+					has_fleet_flag = Illya_school_fleet
+				}
+			}
+			random_owned_fleet = {
+				has_fleet_flag = Illya_school_fleet
+				fleet = { save_event_target_as = Illya_warship_location }
+			}
+			event_target:Illya_school_warship = { delete_fleet = this }
+		}
+	}
+	else = {
+		capital_scope = { save_event_target_as = Illya_warship_location }
+	}
+	set_country_flag = Illya_warship_active
+	create_leader = {
+		class = admiral
+		species = root
+		name = NAME_illya
+		event_leader = yes
+		gender = female
+		skill = 10
+		set_age = 0
+		skip_background_generation = yes
+		custom_catch_phrase = Illya_catch_phrase
+		custom_description = Illya_backstory
+		background_ethic = ethic_gestalt_consciousness
+		hide_age = yes
+		traits = { 
+			trait = leader_trait_Ultra
+		}
+		effect = {
+			set_leader_flag = legendary_leader
+			set_leader_flag = immune_to_negative_traits
+		}
+	}
+	last_created_leader = {
+		add_trait = {
+			trait = leader_trait_Ultra
+			show_message = no
+		}
+		save_global_event_target_as = Illya_admiral
+		change_leader_portrait = Illya
+	}
+	create_fleet = {
+		name = "NAME_Illya"
+		settings = {
+			can_upgrade = no
+			can_change_composition = no
+			can_disband = no
+			can_change_leader = no
+			uses_naval_capacity = no
+			spawn_debris = no
+		}
+		effect = {
+			set_owner = root
+			create_ship = {
+				name = "NAME_Illya"
+				design = "NAME_illya_leader"
+				prefix = no
+				upgradable = no					#不可以升级
+			}
+			save_global_event_target_as = Illya_warship
+			set_location = event_target:Illya_warship_location
+			assign_leader = event_target:Illya_admiral
+			add_modifier = {
+				modifier = "Illya_warship"
+				days = -1
+			}
+		}
+	}
+	last_created_fleet = {
+		set_fleet_flag = Illya_fleet
+	}
+}
+
+create_Illya_school_warship = {
+	if = {
+		limit = { has_country_flag = Illya_warship_active }
+		if = {
+			limit = {
+				any_owned_fleet = {
+					has_fleet_flag = Illya_fleet
+				}
+			}
+			random_owned_fleet = {
+				has_fleet_flag = Illya_fleet
+				fleet = { save_event_target_as = Illya_warship_location }
+			}
+			event_target:Illya_warship = { delete_fleet = this }
+		}
+	}
+	else = {
+		capital_scope = { save_event_target_as = Illya_warship_location }
+	}
+	set_country_flag = Illya_school_warship_active
+	create_leader = {
+		class = admiral
+		species = root
+		name = NAME_illya
+		event_leader = yes
+		gender = female
+		skill = 10
+		set_age = 0
+		skip_background_generation = yes
+		custom_catch_phrase = Illya_catch_phrase
+		custom_description = Illya_backstory
+		background_ethic = ethic_gestalt_consciousness
+		hide_age = yes
+		traits = { 
+			trait = leader_trait_Ultra
+		}
+		effect = {
+			set_leader_flag = legendary_leader
+			set_leader_flag = immune_to_negative_traits
+		}
+	}
+	last_created_leader = {
+		save_global_event_target_as = Illya_admiral
+		change_leader_portrait = Illya
+	}
+	create_fleet = {
+		name = "NAME_Illya"
+		settings = {
+			can_upgrade = no
+			can_change_composition = no
+			can_disband = no
+			can_change_leader = no
+			uses_naval_capacity = no
+			spawn_debris = no
+		}
+		effect = {
+			set_owner = root
+			create_ship = {
+				name = "NAME_Illya"
+				design = "NAME_illya_school_leader"
+				prefix = no
+				upgradable = no					#不可以升级
+			}
+			save_global_event_target_as = Illya_school_warship
+			set_location = event_target:Illya_warship_location
+			assign_leader = event_target:Illya_admiral
+			add_modifier = {
+				modifier = "Illya_warship"
+				days = -1
+			}
+		}
+	}
+	last_created_fleet = {
+		set_fleet_flag = Illya_school_fleet
+	}
+}
+
+add_pocket_money_cooldown_modifier = {
+	add_modifier = {
+		modifier = "pocket_money_cooldown"
+		days = $DAYS$
+		time_multiplier = value:scripted_modifier_mult_capped|MODIFIER|shroud_delve_cooldown|CAP|0.1|
+	}
+}
+remove_pocket_money_cooldown_modifier = {
+		remove_modifier = "pocket_money_cooldown"
+}

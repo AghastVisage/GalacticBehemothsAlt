@@ -1,0 +1,342 @@
+namespace = gts_yiyan
+
+ship_event = {
+	id = gts_yiyan.1
+	title = "gts_yiyan.1.name"	#盲人摸象--狐领袖事件
+	desc = "gts_yiyan.1.desc"
+	picture = GFX_evt_worrying_signal
+	show_sound = event_airlock
+	location = FROM
+	is_triggered_only = yes
+	option = {
+		name = gts_yiyan.1.a
+		custom_tooltip = gts_yiyan.1.a.desc
+		owner = {
+			enable_special_project = {
+				name = "GTS_EXTENSION_LEADER_FOX_SPECIAL_PROJECT"
+				location = FROM
+				owner = root
+			}
+		}
+	}
+	option = {
+		name = gts_yiyan.1.b
+		custom_tooltip = gts_yiyan.1.b.desc
+		trigger = {
+			OR = {
+				owner = {
+					has_ethic = ethic_materialist
+				}
+				owner = {
+					has_ethic = ethic_fanatic_materialist
+				}
+			}
+		}
+		owner = {
+			enable_special_project = {
+				name = "GTS_EXTENSION_LEADER_FOX_SPECIAL_PROJECT"
+				location = FROM
+				owner = root
+			}
+		}
+	}
+	option = {
+		name = gts_yiyan.1.c
+		custom_tooltip = gts_yiyan.1.c.desc
+		trigger = {
+			OR = {
+				owner = {
+					has_ethic = ethic_xenophile
+				}
+				owner = {
+					has_ethic = ethic_fanatic_xenophile
+				}
+			}
+		}
+		owner = {
+			enable_special_project = {
+				name = "GTS_EXTENSION_LEADER_FOX_SPECIAL_PROJECT"
+				location = FROM
+				owner = root
+			}
+		}
+	}
+	option = {
+		name = gts_yiyan.1.d
+		custom_tooltip = gts_yiyan.1.d.desc
+	}
+}
+
+ship_event = {
+	id = gts_yiyan.2
+	title = "gts_yiyan.2.name"	#管中窥豹
+	desc = "gts_yiyan.2.desc"
+	picture = GFX_evt_black_hole
+	show_sound = event_airlock
+	location = FROM
+	is_triggered_only = yes
+	option = {
+		name = gts_yiyan.2.a
+		custom_tooltip = gts_yiyan.2.a.desc
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = gts_yiyan.3
+					days = 30
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_yiyan.2.b
+		custom_tooltip = gts_yiyan.2.b.desc
+	}
+}
+
+country_event = {
+	id = gts_yiyan.3
+	title = "gts_yiyan.3.name"	#第一类接触
+	desc = "gts_yiyan.3.desc"
+	picture = GFX_evt_black_hole
+	show_sound = event_airlock
+	location = FROM
+	is_triggered_only = yes
+	option = {
+		name = gts_yiyan.3.a		#开始信号传入接入画面
+		hidden_effect = {
+			country_event = {
+				id = gts_yiyan.4
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_yiyan.4
+	title = "TRANSMISSION"	#信号传入接入画面
+	desc = "gts_yiyan.4.desc"
+	diplomatic = yes
+	is_triggered_only = yes
+	picture_event_data = {
+		portrait = gts_extension_leader_fox_portrait
+		room = "extradimensional_orange_room"
+	}
+	option = {
+		name = gts_yiyan.4.a
+		hidden_effect = {
+			country_event = {
+				id = gts_yiyan.5
+			}
+		}
+	}
+	option = {
+		name = gts_yiyan.4.b
+		hidden_effect = {
+			country_event = {
+				id = gts_yiyan.6
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_yiyan.5
+	title = "TRANSMISSION"	#信号传入接入画面
+	desc = "gts_yiyan.5.desc"
+	diplomatic = yes
+	is_triggered_only = yes
+	picture_event_data = {
+		portrait = gts_extension_leader_fox_portrait
+		room = "extradimensional_orange_room"
+	}
+	option = {
+		name = gts_yiyan.5.a
+		response_text = gts_yiyan.5.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_yiyan.5.b
+		response_text = gts_yiyan.5.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_yiyan.5.c
+		response_text = gts_yiyan.5.c.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_yiyan.5.d
+		response_text = gts_yiyan.5.d.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_yiyan.5.e
+		response_text = gts_yiyan.5.e.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_yiyan.5.f
+		response_text = gts_yiyan.5.f.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_yiyan.5.g
+		custom_tooltip = gts_yiyan.hire_custom_tooltip
+		hidden_effect = {
+			country_event = {
+				id = gts_yiyan.7
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_yiyan.6
+	title = "TRANSMISSION"	#信号传入接入画面
+	desc = "gts_yiyan.6.desc"
+	diplomatic = yes
+	is_triggered_only = yes
+	picture_event_data = {
+		portrait = gts_extension_leader_fox_portrait
+		room = "extradimensional_orange_room"
+	}
+	option = {
+		name = gts_yiyan.5.a
+		response_text = gts_yiyan.5.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_yiyan.5.b
+		response_text = gts_yiyan.5.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_yiyan.5.c
+		response_text = gts_yiyan.5.c.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_yiyan.5.d
+		response_text = gts_yiyan.5.d.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_yiyan.5.e
+		response_text = gts_yiyan.5.e.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_yiyan.5.f
+		response_text = gts_yiyan.5.f.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_yiyan.5.g
+		custom_tooltip = gts_yiyan.hire_custom_tooltip
+		add_modifier = {
+			modifier = gts_leader_upkeep_add
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_yiyan.7
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_yiyan.7
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		gts_leader_yiyan_hired = yes
+		gts_leader_hire_effect = { TYPE = legendary }
+	}
+
+	after = {
+		hidden_effect = {
+			country_event = {
+				id = gts_yiyan.10
+				days = 720
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_yiyan.999
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		random_owned_planet = {
+			spawn_system = {
+				min_distance >= 10
+				max_distance <= 30
+				max_jumps = 0
+				initializer = gts_extension_leader_fox_black_hole
+			}
+		}
+	}
+}
+
+country_event = {
+    id = gts_yiyan.10
+    title = gts_yiyan.10.title
+    desc = gts_yiyan.10.desc
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_event_48_room
+	}
+	show_sound = event_default
+    is_triggered_only = yes
+
+    option = {
+        name = gts_continue
+        hidden_effect = {
+            country_event = {
+                id = gts_yiyan.11
+            }
+        }
+    }
+}
+
+country_event = {
+    id = gts_yiyan.11
+    title = gts_yiyan.11.title
+    desc = gts_yiyan.11.desc
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_event_47_room
+	}
+	show_sound = event_default
+    is_triggered_only = yes
+
+    option = {
+        name = gts_continue
+        hidden_effect = {
+            country_event = {
+                id = gts_yiyan.12
+            }
+        }
+    }
+}
+
+country_event = {
+    id = gts_yiyan.12
+    title = gts_yiyan.12.title
+    desc = gts_yiyan.12.desc
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_event_47_room
+	}
+	show_sound = event_default
+    is_triggered_only = yes
+
+    option = {
+        name = gts_yiyan.12.option
+    }
+}

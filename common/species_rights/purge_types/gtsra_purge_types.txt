@@ -1,0 +1,73 @@
+# from = country
+# this = species
+
+purge_stocking_crushed = {
+
+	# 絲足碾碎
+
+	pop_escape_chance = 0.05
+	pop_decline_rate = 1000 # 1000 pops per month, overrides BASE_POP_DECLINE, will only work on purge types
+
+	pop_group_modifier = {
+		pop_happiness = -1000
+		pop_political_power = -1000
+		pop_housing_usage_add = -1
+	}
+
+	potential = {
+		exists = from
+		from = {
+			OR = {
+				has_civic = civic_gts_terminator
+				has_country_flag = allow_stocking_crushed
+			}
+		}
+	}
+
+	allow = {
+		hidden_trigger = { exists = from }
+		if = {
+			limit = {
+				OR = {
+					is_lonely_hive_mind_pop = yes
+					AND = {
+						is_disconnected_drone_pop = yes
+						from = {
+							has_policy_flag = disconnected_drones_purge
+						}
+					}
+				}
+			}
+			always = yes
+		}
+		else = {
+			custom_tooltip = {
+				fail_text = PURGES_ALLOWED
+				OR = {
+					from = {
+						OR = {
+							has_ethic = ethic_gestalt_consciousness
+							has_valid_civic = civic_fanatic_purifiers
+							has_policy_flag = purge_allowed
+						}
+					}
+					from = { is_robotic_species = yes }
+				}
+			}
+		}
+	}
+
+	ai_will_do = {
+		factor = 0
+		modifier = {
+			factor = 9999
+			from = {
+				OR = {
+					has_civic = civic_gts_terminator
+					has_country_flag = allow_stocking_crushed
+				}
+			}
+		}
+	}
+}
+

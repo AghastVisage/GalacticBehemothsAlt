@@ -1,0 +1,1366 @@
+namespace = gts_qinwen
+ship_event = {
+	id = gts_qinwen.1
+
+	title = "gts_qinwen.1.name"
+	desc = gts_qinwen.1.desc
+	picture = GFX_gts_qinwen_1
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.1.a
+		custom_tooltip = gts_qinwen.1.a_custom
+		hidden_effect = {
+		}
+	}
+	after = {
+		owner = {
+			country_event = {
+				id = gts_qinwen.2
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_qinwen.2
+
+	title = "gts_qinwen.2.name"
+	desc = gts_qinwen.2.desc
+	picture = GFX_gts_qinwen_2
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.2.a
+		custom_tooltip = gts_qinwen.2.a_custom
+		hidden_effect = {
+		}
+	}
+	after = {
+		country_event = {
+			id = gts_qinwen.3
+		}
+	}
+}
+country_event = {
+	id = gts_qinwen.3
+	title = "gts_qinwen.3.name"
+	desc = gts_qinwen.3.desc
+	is_triggered_only = yes
+	picture = GFX_leader_recruitment_bg_renowned
+	auto_opens = yes
+	event_window_type = leader_recruit
+	immediate = {
+		gts_leader_qinwen_hired = yes
+	}
+	picture_event_data = {
+		portrait = event_target:gts_leader
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = gts_qinwen.3.a.name
+		response_text = gts_qinwen.3.a.desc
+		is_dialog_only = yes
+		hidden_effect = {
+			set_country_flag = gts_qinwen.3.a
+		}
+	}
+	option = {
+		name = gts_qinwen.3.b.name
+		response_text = gts_qinwen.3.b.desc
+		is_dialog_only = yes
+		hidden_effect = {
+			set_country_flag = gts_qinwen.3.b
+		}
+	}
+	option = {
+		name = gts_qinwen.3.c.name
+		response_text = gts_qinwen.3.c.desc
+		is_dialog_only = yes
+		allow = {
+			not = {
+				has_country_flag = gts_qinwen.3.c
+			}
+		}
+		hidden_effect = {
+			set_country_flag = gts_qinwen.3.c
+		}
+		if = {
+			limit = { }
+			create_fleet = {
+				name = NAME_gts_qinwen_fleet
+				settings = {
+					spawn_debris = no
+					is_boss = no
+					can_change_leader = no
+					uses_naval_capacity = no
+					can_upgrade = no
+					can_disband = no
+				}
+				effect = {
+					set_owner = prev
+					create_ship = {
+						name = NAME_gts_qinwen
+						prefix = no
+						design = gts_qinwen_fleet_1
+						graphical_culture = owner
+						upgradable = no
+						effect = {
+							set_ship_flag = gts_qinwen_ship
+							set_ship_flag = gts_body_ship
+							save_global_event_target_as = gts_qinwen_ship
+						}
+					}
+					set_location = event_target:qinwen_home_planet
+					set_fleet_stance = passive
+					set_aggro_range_measure_from = self
+					set_aggro_range = 350
+					set_fleet_flag = gts_qinwen_fleet
+					save_global_event_target_as = gts_qinwen_fleet
+					assign_leader = event_target:gts_qinwen
+				}
+			}
+		}
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		allow = {
+			custom_tooltip_fail = {
+				text = gts_qinwen.fail
+			}
+			and = {
+				has_country_flag = gts_qinwen.3.a
+				has_country_flag = gts_qinwen.3.b
+				has_country_flag = gts_qinwen.3.c
+			}
+		}
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = legendary }
+		}
+	}
+	after = {
+		hidden_effect = {
+			event_target:gts_qinwen_fleet = {
+				assign_leader = event_target:gts_qinwen
+			}
+			country_event = {
+				id = gts_qinwen.4
+			}
+			country_event = {
+				id = gts_qinwen.111
+				years = 1
+				random = 1
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_qinwen.4
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		create_country = {
+			name = NAME_gts_qinwen
+			type = gts_qinwen_commnunicate
+			flag = {
+				icon={
+					category="gts_country_flag"
+					file="flag_gts_qinwen.dds"
+				}
+				background={
+					category="backgrounds"
+					file="pattern_01.dds"
+				}
+				colors={
+					"null"
+					"null"
+					"null"
+					"null"
+				}
+			}
+		}
+		last_created_country = {
+			set_country_flag = protected_from_queen_storm
+			establish_communications_no_message = root
+			set_country_flag = qinwen_country
+			save_global_event_target_as = gts_qinwen_country_target
+		}
+	}
+}
+country_event = {
+	id = gts_qinwen.5
+	title = "gts_qinwen.5.a.name"
+	desc = "gts_qinwen.5.a.desc"
+	diplomatic = yes
+	picture = GFX_evt_mysterious_signal
+	picture_event_data = {
+		portrait = gts_portrait_qinwen
+		room = ethic_spaceship_room
+	}
+
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			has_country_flag = qinwen_country
+		}
+		NOT = { has_country_flag = gts_qinwen_diplomacy_engaged }
+	}
+
+	immediate = {
+		set_country_flag = gts_qinwen_diplomacy_engaged
+	}
+
+	after = {
+		hidden_effect = { remove_country_flag = gts_qinwen_diplomacy_engaged }
+	}
+
+
+	option = {
+		name = gts_qinwen.5.a.name
+		response_text = gts_qinwen.5.a.desc
+		is_dialog_only = yes
+		hidden_effect = {
+		}
+	}
+	option = {
+		name = gts_qinwen.5.b.name
+		response_text = gts_qinwen.5.b.desc
+		add_relic = r_gtsra_qinwen_book
+		is_dialog_only = yes
+		hidden_effect = {
+		}
+	}
+	option = {
+		name = gts_qinwen.5.c.name
+		response_text = gts_qinwen.5.c.desc
+		is_dialog_only = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_qinwen.6
+			}
+		}
+	}
+	option = {
+		name = gts_qinwen.5.d.name
+		response_text = gts_qinwen.5.d.desc
+		is_dialog_only = yes
+		hidden_effect = {
+		}
+	}
+	option = {
+		name = gts_qinwen.5.e.name
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_qinwen.101
+				#开始舰娘改造
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_qinwen.6
+
+	title = "gts_qinwen.6.name"
+	desc = gts_qinwen.6.desc
+	picture = GFX_gts_qinwen_6
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.6.a
+		custom_tooltip = gts_qinwen.6.a_custom
+		hidden_effect = {
+		}
+	}
+	after = {
+		country_event = {
+			id = gts_qinwen.7
+		}
+	}
+}
+country_event = {
+	id = gts_qinwen.7
+
+	title = "gts_qinwen.7.name"
+	desc = gts_qinwen.7.desc
+	picture = GFX_gts_qinwen_6
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.7.a
+		custom_tooltip = gts_qinwen.7.a_custom
+		event_target:gts_qinwen = {
+			add_trait = {
+				trait = gts_trait_qinwen4
+			}
+		}
+		hidden_effect = {
+		}
+	}
+	after = {
+	}
+}
+
+country_event = {
+	id = gts_qinwen.8
+
+	title = "gts_qinwen.8.name"
+	desc = gts_qinwen.8.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qinwen_8_room
+	}
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.8.a
+		custom_tooltip = gts_qinwen.8.a_custom
+		country_event = {
+			id = gts_qinwen.9
+		}
+		hidden_effect = {
+		}
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.8.b
+		custom_tooltip = gts_qinwen.8.b_custom
+		hidden_effect = {
+		}
+	}
+	after = {
+
+	}
+}
+country_event = {
+	id = gts_qinwen.9
+
+	title = "gts_qinwen.8.name"
+	desc = gts_qinwen.9.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qinwen_8_room
+	}
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.8.a
+		custom_tooltip = gts_qinwen.8.a_custom
+		country_event = {
+			id = gts_qinwen.10
+		}
+		hidden_effect = {
+		}
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.8.b
+		custom_tooltip = gts_qinwen.8.b_custom
+		hidden_effect = {
+		}
+	}
+	after = {
+
+	}
+}
+country_event = {
+	id = gts_qinwen.10
+
+	title = "gts_qinwen.8.name"
+	desc = gts_qinwen.10.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qinwen_8_room
+	}
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.8.a
+		custom_tooltip = gts_qinwen.10.a_custom
+		country_event = {
+			id = gts_qinwen.11
+		}
+		hidden_effect = {
+		}
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.8.b
+		custom_tooltip = gts_qinwen.10.b_custom
+		hidden_effect = {
+		}
+	}
+	after = {
+
+	}
+}
+country_event = {
+	id = gts_qinwen.11
+
+	title = "gts_qinwen.8.name"
+	desc = gts_qinwen.11.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qinwen_8_room
+	}
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.8.a
+		custom_tooltip = gts_qinwen.11.a_custom
+		country_event = {
+			id = gts_qinwen.12
+		}
+		hidden_effect = {
+		}
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.8.b
+		custom_tooltip = gts_qinwen.11.b_custom
+		hidden_effect = {
+		}
+	}
+	after = {
+
+	}
+}
+country_event = {
+	id = gts_qinwen.12
+
+	title = "gts_qinwen.8.name"
+	desc = gts_qinwen.12.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qinwen_8_room
+	}
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.8.a
+		custom_tooltip = gts_qinwen.12.a_custom
+		country_event = {
+			id = gts_qinwen.13
+		}
+		hidden_effect = {
+		}
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.8.b
+		custom_tooltip = gts_qinwen.12.b_custom
+		hidden_effect = {
+		}
+	}
+	after = {
+
+	}
+}
+country_event = {
+	id = gts_qinwen.13
+
+	title = "gts_qinwen.8.name"
+	desc = gts_qinwen.13.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qinwen_8_room
+	}
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.8.a
+		custom_tooltip = gts_qinwen.13.a_custom
+		country_event = {
+			id = gts_qinwen.14
+		}
+		hidden_effect = {
+		}
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.8.b
+		custom_tooltip = gts_qinwen.13.b_custom
+		hidden_effect = {
+		}
+	}
+	after = {
+
+	}
+}
+country_event = {
+	id = gts_qinwen.14
+
+	title = "gts_qinwen.8.name"
+	desc = gts_qinwen.14.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qinwen_8_room
+	}
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.8.a
+		custom_tooltip = gts_qinwen.14.a_custom
+		country_event = {
+			id = gts_qinwen.15
+		}
+		hidden_effect = {
+		}
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.8.b
+		custom_tooltip = gts_qinwen.14.b_custom
+		hidden_effect = {
+		}
+	}
+	after = {
+
+	}
+}
+country_event = {
+	id = gts_qinwen.15
+
+	title = "gts_qinwen.8.name"
+	desc = gts_qinwen.15.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qinwen_8_room
+	}
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.8.a
+		custom_tooltip = gts_qinwen.15.a_custom
+		country_event = {
+			id = gts_qinwen.16
+		}
+		hidden_effect = {
+		}
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.8.b
+		custom_tooltip = gts_qinwen.15.b_custom
+		hidden_effect = {
+		}
+	}
+	after = {
+
+	}
+}
+country_event = {
+	id = gts_qinwen.16
+
+	title = "gts_qinwen.8.name"
+	desc = gts_qinwen.16.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qinwen_8_room
+	}
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.8.a
+		custom_tooltip = gts_qinwen.16.a_custom
+		country_event = {
+			id = gts_qinwen.17
+		}
+		hidden_effect = {
+		}
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.8.b
+		custom_tooltip = gts_qinwen.16.b_custom
+		hidden_effect = {
+		}
+	}
+	after = {
+
+	}
+}
+country_event = {
+	id = gts_qinwen.17
+
+	title = "gts_qinwen.8.name"
+	desc = gts_qinwen.17.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qinwen_8_room
+	}
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.8.a
+		custom_tooltip = gts_qinwen.17.a_custom
+		country_event = {
+			id = gts_qinwen.18
+		}
+		hidden_effect = {
+		}
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.8.b
+		custom_tooltip = gts_qinwen.17.b_custom
+		hidden_effect = {
+		}
+	}
+	after = {
+
+	}
+}
+country_event = {
+	id = gts_qinwen.18
+
+	title = "gts_qinwen.8.name"
+	desc = gts_qinwen.18.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qinwen_8_room
+	}
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.8.a
+		custom_tooltip = gts_qinwen.18.a_custom
+		country_event = {
+			id = gts_qinwen.19
+		}
+		hidden_effect = {
+		}
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.8.b
+		custom_tooltip = gts_qinwen.18.b_custom
+		hidden_effect = {
+		}
+	}
+	after = {
+
+	}
+}
+country_event = {
+	id = gts_qinwen.19
+
+	title = "gts_qinwen.8.name"
+	desc = gts_qinwen.19.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qinwen_8_room
+	}
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.8.a
+		custom_tooltip = gts_qinwen.19.a_custom
+		hidden_effect = {
+		}
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.8.b
+		custom_tooltip = gts_qinwen.19.b_custom
+		hidden_effect = {
+		}
+	}
+	after = {
+
+	}
+}
+
+
+
+country_event = {
+	id = gts_qinwen.101
+
+	title = "gts_qinwen.101.name"
+	desc = gts_qinwen.101.desc
+	picture = GFX_gts_qinwen_101
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.101.a
+		custom_tooltip = gts_qinwen.101.a_custom
+		hidden_effect = {
+		}
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.101.b
+		custom_tooltip = gts_qinwen.101.b_custom
+		hidden_effect = {
+		}
+	}
+	after = {
+		random_galaxy_planet = {
+			limit = {
+				has_planet_flag = qinwen_home_planet
+			}
+			create_archaeological_site = gts_qinwen_digsite
+		}
+	}
+}
+fleet_event = {
+	id = gts_qinwen.102
+
+	title = "gts_qinwen.102.name"
+	desc = gts_qinwen.102.desc
+	picture = GFX_gts_qinwen_101
+	is_triggered_only = yes
+	archaeology = yes
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.102.a
+		custom_tooltip = gts_qinwen.102.a_custom
+		hidden_effect = {
+		}
+	}
+	after = {
+	}
+}
+fleet_event = {
+	id = gts_qinwen.103
+
+	title = "gts_qinwen.103.name"
+	desc = gts_qinwen.103.desc
+	picture = GFX_gts_qinwen_103
+	is_triggered_only = yes
+	archaeology = yes
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.103.a
+		custom_tooltip = gts_qinwen.103.a_custom
+		hidden_effect = {
+		}
+	}
+	after = {
+	}
+}
+fleet_event = {
+	id = gts_qinwen.104
+
+	title = "gts_qinwen.104.name"
+	desc = gts_qinwen.104.desc
+	picture = GFX_gts_qinwen_104
+	is_triggered_only = yes
+	archaeology = yes
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.104.a
+		custom_tooltip = gts_qinwen.104.a_custom
+		hidden_effect = {
+		}
+	}
+	after = {
+		owner = {
+			country_event = { 
+				id = gts_qinwen.105
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_qinwen.105
+
+	title = "gts_qinwen.105.name"
+	desc = gts_qinwen.105.desc
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_qinwen_105_room
+	}
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.105.a
+		custom_tooltip = gts_qinwen.105.a_custom
+		hidden_effect = {
+		}
+	}
+	after = {
+		start_situation = { 
+			type = gts_situation_qinwen_fleet
+		}
+	}
+}
+situation_event = {
+	id = gts_qinwen.106
+
+	title = "gts_qinwen.106.name"
+	desc = gts_qinwen.106.desc
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_qinwen_106_room
+	}
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.106.a
+		custom_tooltip = gts_qinwen.106.a_custom
+		hidden_effect = {
+			if = {
+				limit = { }
+				create_fleet = {
+					name = NAME_gts_qinwen_fleet
+					settings = {
+						spawn_debris = no
+						is_boss = no
+						can_change_leader = no
+						uses_naval_capacity = no
+						can_upgrade = no
+						can_disband = no
+					}
+					effect = {
+						set_owner = prev
+						create_ship = {
+							name = NAME_gts_qinwen
+							prefix = no
+							design = gts_qinwen_fleet_2
+							graphical_culture = owner
+							upgradable = no
+							effect = {
+								set_ship_flag = gts_qinwen_ship
+								set_ship_flag = gts_body_ship
+								save_global_event_target_as = gts_qinwen_ship
+							}
+						}
+						set_location = event_target:gts_qinwen_fleet
+						set_fleet_stance = passive
+						set_aggro_range_measure_from = self
+						set_aggro_range = 350
+						set_fleet_flag = gts_qinwen_fleet
+						save_global_event_target_as = gts_qinwen_fleet
+						assign_leader = event_target:gts_qinwen
+					}
+				}
+			}
+		}
+	}
+	after = {
+		every_galaxy_fleet = {
+			limit = {
+				is_ship_size = gts_giant_qinwen_ship_research
+				not = {
+					exists = leader
+				}
+			}
+			delete_fleet = this
+		}
+	}
+}
+situation_event = {
+	id = gts_qinwen.107
+
+	title = "gts_qinwen.107.name"
+	desc = gts_qinwen.107.desc
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_qinwen_107_room
+	}
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+		if = {
+			limit = { }
+			create_fleet = {
+				name = NAME_gts_qinwen_fleet
+				settings = {
+					spawn_debris = no
+					is_boss = no
+					can_change_leader = no
+					uses_naval_capacity = no
+					can_upgrade = no
+					can_disband = no
+				}
+				effect = {
+					set_owner = prev
+					create_ship = {
+						name = NAME_gts_qinwen
+						prefix = no
+						design = gts_qinwen_fleet_3
+						graphical_culture = owner
+						upgradable = no
+						effect = {
+							set_ship_flag = gts_qinwen_ship
+							set_ship_flag = gts_body_ship
+							save_global_event_target_as = gts_qinwen_ship
+						}
+					}
+					set_location = event_target:gts_qinwen_fleet
+					set_fleet_stance = passive
+					set_aggro_range_measure_from = self
+					set_aggro_range = 350
+					set_fleet_flag = gts_qinwen_fleet
+					save_global_event_target_as = gts_qinwen_fleet
+					assign_leader = event_target:gts_qinwen
+				}
+			}
+		}
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.107.a
+		custom_tooltip = gts_qinwen.107.a_custom
+		hidden_effect = {
+		}
+	}
+	after = {
+		every_galaxy_fleet = {
+			limit = {
+				is_ship_size = gts_giant_qinwen_ship_research
+				not = {
+					exists = leader
+				}
+			}
+			delete_fleet = this
+		}
+	}
+}
+country_event = {
+	id = gts_qinwen.108
+
+	title = "gts_qinwen.108.name"
+	desc = gts_qinwen.108.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qinwen_108_room
+	}
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+		if = {
+			limit = { }
+			create_fleet = {
+				name = NAME_gts_qinwen_fleet
+				settings = {
+					spawn_debris = no
+					is_boss = no
+					can_change_leader = no
+					uses_naval_capacity = no
+					can_upgrade = no
+					can_disband = no
+				}
+				effect = {
+					set_owner = prev
+					create_ship = {
+						name = NAME_gts_qinwen
+						prefix = no
+						design = gts_qinwen_fleet_4
+						graphical_culture = owner
+						upgradable = no
+						effect = {
+							set_ship_flag = gts_qinwen_ship
+							set_ship_flag = gts_body_ship
+							save_global_event_target_as = gts_qinwen_ship
+						}
+					}
+					set_location = event_target:gts_qinwen_fleet
+					set_fleet_stance = passive
+					set_aggro_range_measure_from = self
+					set_aggro_range = 350
+					set_fleet_flag = gts_qinwen_fleet
+					save_global_event_target_as = gts_qinwen_fleet
+					assign_leader = event_target:gts_qinwen
+				}
+			}
+		}
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.108.a
+		custom_tooltip = gts_qinwen.108.a_custom
+		hidden_effect = {
+		}
+	}
+	after = {
+		every_galaxy_fleet = {
+			limit = {
+				is_ship_size = gts_giant_qinwen_ship_research
+				not = {
+					exists = leader
+				}
+			}
+			delete_fleet = this
+		}
+	}
+}
+
+
+
+
+country_event = {
+	id = gts_qinwen.111
+
+	title = "gts_qinwen.111.name"
+	desc = gts_qinwen.111.desc
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_qinwen_111_room
+	}
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.111.a
+		custom_tooltip = gts_qinwen.111.a_custom
+		hidden_effect = {
+		}
+	}
+	after = {
+		country_event = {
+			id = gts_qinwen.112
+		}
+	}
+}
+country_event = {
+	id = gts_qinwen.112
+
+	title = "gts_qinwen.112.name"
+	desc = gts_qinwen.112.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qinwen_112_room
+	}
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.112.a
+		custom_tooltip = gts_qinwen.112.a_custom
+		hidden_effect = {
+		}
+	}
+	after = {
+		country_event = {
+			id = gts_qinwen.113
+		}
+	}
+}
+country_event = {
+	id = gts_qinwen.113
+
+	title = "gts_qinwen.113.name"
+	desc = gts_qinwen.113.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qinwen_113_room
+	}
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.113.a
+		custom_tooltip = gts_qinwen.113.a_custom
+		hidden_effect = {
+		}
+	}
+	after = {
+		country_event = {
+			id = gts_qinwen.114
+		}
+	}
+}
+country_event = {
+	id = gts_qinwen.114
+
+	title = "gts_qinwen.114.name"
+	desc = gts_qinwen.114.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qinwen_114_room
+	}
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		allow = {
+			any_system = {
+				has_star_flag = gts_qinwen_system
+				any_system_planet = {
+					is_colony = yes
+				}
+			}
+		}
+		name = gts_qinwen.114.a
+		custom_tooltip = gts_qinwen.114.a_custom
+		hidden_effect = {
+			every_system = {
+				limit = {
+					has_star_flag = gts_qinwen_system
+				}
+				random_system_planet = {
+					limit = {
+						is_colony = yes
+					}
+					add_planet_devastation = 50
+					add_modifier = {
+						modifier = planet_gts_qinwen_planet_modifier
+					}
+				}
+			}
+		}
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.114.b
+		country_event = {
+			id = gts_qinwen.120
+			days = 300
+			random = 60
+		}
+		custom_tooltip = gts_qinwen.114.b_custom
+		hidden_effect = {
+			every_system = {
+				limit = {
+					has_star_flag = gts_qinwen_system
+				}
+				random_system_planet = {
+					limit = {
+						is_colony = yes
+					}
+					gts_destroy_colony = yes
+				}
+			}
+		}
+	}
+	after = {
+		hidden_effect = {
+
+		}
+	}
+}
+
+country_event = {
+	id = gts_qinwen.120
+
+	title = "gts_qinwen.120.name"
+	desc = gts_qinwen.120.desc
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_qinwen_120_room
+	}
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.120.a
+		custom_tooltip = gts_qinwen.120.a_custom
+		hidden_effect = {
+		}
+	}
+	after = {
+		set_country_flag = gts_qinwen_can_build_megastructure
+	}
+}
+country_event = {
+	id = gts_qinwen.121
+
+	title = "gts_qinwen.121.name"
+	desc = gts_qinwen.121.desc
+	picture = GFX_gts_qinwen_121
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		allow = {
+		}
+		name = gts_qinwen.121.a
+		custom_tooltip = gts_qinwen.121.a_custom
+		hidden_effect = {
+		}
+	}
+	after = {
+	}
+}

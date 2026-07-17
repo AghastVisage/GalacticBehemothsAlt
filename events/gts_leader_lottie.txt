@@ -1,0 +1,1942 @@
+namespace = gts_rawls
+
+
+# 我建議這個多創幾個文件將這三個namespace分開
+
+#劳尔斯面板出现
+
+country_event = {
+	#联系接入
+	id = gts_rawls.1
+	title = gts_rawls.1.name
+	desc = gts_rawls.1.desc
+	picture = GFX_evt_hand_shake
+	show_sound = event_celebration
+	is_triggered_only = yes
+	trigger = {
+		NOT = {
+			has_country_flag = has_rawls_contact
+		}
+	}
+	immediate = {
+		set_country_flag = has_rawls_contact
+	}
+	option = {
+		name = gts_rawls.1.a
+		country_event = {
+			id = gts_rawls.2
+		}
+	}
+}
+
+country_event = {
+	#通讯接入
+	id = gts_rawls.2
+	title = "TRANSMISSION"	#信号传入接入画面
+	desc = gts_rawls.2.desc
+	diplomatic = yes
+	is_triggered_only = yes
+	picture_event_data = {
+		portrait = gts_portrait_rawls
+		room = "crisis_room"
+	}
+	option = {
+		name = gts_rawls.2.A
+		hidden_effect = {
+			country_event = {
+				id = gts_rawls.3
+			}
+		}
+	}
+}
+
+country_event = {
+	#通讯接入
+	id = gts_rawls.3
+	title = "TRANSMISSION"	#信号传入接入画面
+	desc = gts_rawls.3.desc
+	diplomatic = yes
+	is_triggered_only = yes
+	picture_event_data = {
+		portrait = gts_portrait_rawls
+		room = "crisis_room"
+	}
+	option = {
+		name = gts_rawls.3.a
+		response_text = gts_rawls.3.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_rawls.3.b
+		response_text = gts_rawls.3.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_rawls.3.c
+		hidden_effect = {
+			country_event = {
+				id = gts_rawls.4
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_rawls.4
+	title = "TRANSMISSION"	#信号传入接入画面
+	desc = gts_rawls.4.desc
+	diplomatic = yes
+	is_triggered_only = yes
+	picture_event_data = {
+		portrait = gts_portrait_rawls
+		room = "crisis_room"
+	}
+	option = {
+		name = gts_rawls.4.A
+		custom_tooltip = gts_rawls.4.A.tooltip
+		hidden_effect = {
+			country_event = {
+				id = gts_rawls.5
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_rawls.5
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		set_country_flag = get_rawls
+	}
+}
+
+#和巨娘交流
+country_event = {
+	#通讯接入
+	id = gts_rawls.10
+	title = "TRANSMISSION"	#信号传入接入画面
+	desc = gts_rawls.10.desc
+	diplomatic = yes
+	is_triggered_only = yes
+	picture_event_data = {
+		portrait = gts_portrait_rawls
+		room = "crisis_room"
+	}
+	option = {
+		name = gts_rawls.10.A
+	}
+	option = {
+		name = gts_rawls.10.B
+		trigger = {
+			exists = owner
+			owner = {
+				any_owned_leader = {
+					has_leader_flag = gts_luodi
+				}
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_rawls.100
+			}
+		}
+	}
+	option = {
+		name = gts_rawls.10.C
+		trigger = {
+			exists = owner
+			owner = {
+				any_owned_leader = {
+					has_leader_flag = gts_linglu
+				}
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_linglu.1001
+			}
+		}
+	}
+	option = {
+		name = gts_rawls.10.D
+		trigger = {
+			exists = owner
+			owner = {
+				any_owned_leader = {
+					has_leader_flag = gts_tlipoca
+				}
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_tlipoca.10
+			}
+		}
+	}
+	option = {
+		name = gts_rawls.10.E
+		trigger = {
+			exists = owner
+			owner = {
+				has_country_flag = gts_explore_huatian
+				any_owned_leader = {
+					has_leader_flag = gts_huatian
+				}
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_huatian.1064
+			}
+		}
+	}
+    option = {
+        name = gts_rawls.10.F
+        trigger = {
+            exists = owner
+            owner = {
+                has_country_flag = xinuo_experience_success
+                any_owned_leader = {
+                    has_leader_flag = gts_xinuo
+                }
+            }
+        }
+        hidden_effect = {
+            country_event = {
+                id = gts_xinuo.1000
+            }
+        }
+    }
+}
+
+country_event = {
+	#洛蒂接入
+	id = gts_rawls.100
+	title = "TRANSMISSION"	#信号传入接入画面
+	desc = gts_rawls.100.a.desc
+	desc = gts_rawls.100.b.desc
+	desc = gts_rawls.100.c.desc
+	desc = {
+		trigger = {
+			has_country_flag = lottie_5_years
+		}
+		text = gts_rawls.100.d.desc
+	}
+	desc = {
+		trigger = {
+			has_country_flag = lottie_5_years
+		}
+		text = gts_rawls.100.e.desc
+	}
+	desc = {
+		trigger = {
+			has_country_flag = lottie_10_years
+		}
+		text = gts_rawls.100.f.desc
+	}
+	desc = {
+		trigger = {
+			has_country_flag = lottie_10_years
+		}
+		text = gts_rawls.100.g.desc
+	}
+	desc = {
+		trigger = {
+			has_country_flag = lottie_15_years
+		}
+		text = gts_rawls.100.h.desc
+	}
+	desc = {
+		trigger = {
+			has_country_flag = lottie_15_years
+		}
+		text = gts_rawls.100.i.desc
+	}
+	desc = {
+		trigger = {
+			has_country_flag = lottie_20_years
+		}
+		text = gts_rawls.100.j.desc
+	}
+	desc = {
+		trigger = {
+			has_country_flag = lottie_20_years
+		}
+		text = gts_rawls.100.k.desc
+	}
+	diplomatic = yes
+	is_triggered_only = yes
+	picture_event_data = {
+		portrait = gtsra_leader_lottie_portrait_01
+		room = "crisis_room"
+	}
+	option = {
+		name = gts_rawls.100.A
+		hidden_effect = {
+			country_event = {
+				id = gts_rawls.10
+			}
+		}
+	}
+	option = {
+		#丝足碾碎允许
+		trigger = {
+			has_country_flag = lottie_15_years
+			NOT = {
+				has_country_flag = allow_stocking_crushed
+			}
+		}
+		name = gts_rawls.100.B
+		custom_tooltip = gts_rawls.100.B.tooltip
+		hidden_effect = {
+			set_country_flag = allow_stocking_crushed
+			country_event = {
+				id = gts_rawls.101
+			}
+		}
+	}
+	option = {
+		#允许建造鞋子居住站
+		trigger = {
+			has_country_flag = lottie_10_years
+			NOT = {
+				has_country_flag = finish_lottie_shoes_construction
+			}
+		}
+		name = gts_rawls.100.C
+		custom_tooltip = gts_rawls.100.C.tooltip
+		hidden_effect = {
+			set_country_flag = allow_construct_lottie_shoes_station
+			country_event = {
+				id = gts_rawls.102
+			}
+		}
+	}
+	option = {
+		#升级居住站-一级
+		trigger = {
+			has_country_flag = finish_lottie_shoes_construction
+			NOT = {
+				has_country_flag = allow_lottie_shoes_upgrade
+			}
+		}
+		name = gts_rawls.100.D
+		hidden_effect = {
+			country_event = {
+				id = gts_rawls.103
+			}
+		}
+	}
+	option = {
+		#升级居住站-二级
+		trigger = {
+			has_country_flag = lottie_shoes_upgrade1
+			NOT = {
+				has_country_flag = allow_lottie_shoes_upgrade1
+			}
+		}
+		name = gts_rawls.100.E
+		hidden_effect = {
+			country_event = {
+				id = gts_rawls.105
+			}
+		}
+	}
+}
+
+country_event = {
+	#丝足碾碎允许
+	id = gts_rawls.101
+	title = "TRANSMISSION"	#信号传入接入画面
+	desc = gts_rawls.101.desc
+	diplomatic = yes
+	is_triggered_only = yes
+	picture_event_data = {
+		portrait = gtsra_leader_lottie_portrait_02
+		room = "crisis_room"
+	}
+	immediate = {
+		set_policy = {
+			policy = purge
+			option = purge_allowed
+			cooldown = yes
+		}
+	}
+	option = {
+		name = gts_rawls.101.B
+		hidden_effect = {
+			country_event = {
+				id = gts_rawls.100
+			}
+		}
+	}
+}
+
+country_event = {
+	#鞋子居住站允许
+	id = gts_rawls.102
+	title = "TRANSMISSION"	#信号传入接入画面
+	desc = gts_rawls.102.desc
+	diplomatic = yes
+	is_triggered_only = yes
+	picture_event_data = {
+		portrait = gtsra_leader_lottie_portrait_02
+		room = "crisis_room"
+	}
+	option = {
+		name = gts_rawls.101.B
+		hidden_effect = {
+			country_event = {
+				id = gts_rawls.100
+			}
+		}
+	}
+}
+
+country_event = {
+	#鞋子居住站升级-一级
+	id = gts_rawls.103
+	title = "TRANSMISSION"	#信号传入接入画面
+	desc = gts_rawls.103.desc
+	diplomatic = yes
+	is_triggered_only = yes
+	picture_event_data = {
+		portrait = gtsra_leader_lottie_portrait_02
+		room = "crisis_room"
+	}
+	immediate = {
+		every_owned_leader = {
+			limit = {
+				has_leader_flag = gts_luodi
+				exists = planet
+			}
+			planet = {
+				save_event_target_as = lottie_target_planet
+			}
+		}
+	}
+	option = {
+		name = gts_rawls.101.B
+		hidden_effect = {
+			country_event = {
+				id = gts_rawls.100
+			}
+		}
+	}
+	option = {
+		name = gts_rawls.103.A
+		allow = {
+			custom_tooltip = {
+				fail_text = gts_rawls.103.A.failtext.tooltip
+				any_owned_planet = {
+					leader = {
+						has_leader_flag = gts_luodi
+					}
+				}
+			}
+			event_target:lottie_target_planet = {
+				count_owned_pop_amount = {
+					count > 2000
+				}
+			}
+		}
+		custom_tooltip = gts_rawls.103.A.tooltip
+		hidden_effect = {
+			country_event = {
+				id = gts_rawls.104
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_rawls.104
+	title = "TRANSMISSION"	#信号传入接入画面
+	desc = gts_rawls.104.desc
+	diplomatic = yes
+	is_triggered_only = yes
+	location = event_target:lottie_target_planet
+
+	picture_event_data = {
+		portrait = gtsra_leader_lottie_portrait_01
+		room = "crisis_room"
+	}
+
+	immediate = {
+		# 測試用的代碼
+		#random_owned_planet  = {
+		#	limit = {
+		#		pop_amount > 2000
+		#	}
+		#	save_event_target_as = lottie_target_planet
+		#}
+
+		# 用flag找到洛蒂
+		every_owned_leader = {
+			limit = {
+				has_leader_flag = gts_luodi
+			}
+			save_event_target_as = gts_bruh_lottie_kill_count
+		}
+
+		event_target:lottie_target_planet = {
+			# 計算經驗獲取
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_experience_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_experience_count
+				value = 10
+			}
+			round_variable = gts_bruh_get_experience_count
+		}
+	}
+
+	option = {
+		name = gts_rawls.104.A
+		custom_tooltip = gts_rawls.104.A.tooltip
+		hidden_effect = {
+			event_target:lottie_target_planet = {
+				while = {
+					count = 3
+					random_owned_pop_group = {
+						kill_single_pop = yes
+					}
+				}
+				add_planet_devastation = 15
+			}
+			set_country_flag = allow_lottie_shoes_upgrade
+			country_event = {
+				id = gts_rawls.100
+			}
+		}
+		event_target:gts_bruh_lottie_kill_count = {
+			add_experience = 300
+			change_variable = {
+				which = gts_bread_logs
+				value = 2000
+			}
+			change_variable = {
+				which = gts_feet_kills_logs
+				value = 1000
+			}
+			change_variable = {
+				which = gts_city_kills_logs
+				value = 30
+			}
+		}
+	}
+}
+
+country_event = {
+	#鞋子居住站升级-二级
+	id = gts_rawls.105
+	title = "TRANSMISSION"	#信号传入接入画面
+	desc = gts_rawls.105.desc
+	diplomatic = yes
+	is_triggered_only = yes
+	location = event_target:lottie_target_planet
+
+	picture_event_data = {
+		portrait = gtsra_leader_lottie_portrait_02
+		room = "crisis_room"
+	}
+
+	immediate = {
+		every_owned_leader = {
+			limit = {
+				has_leader_flag = gts_luodi
+				exists = planet
+			}
+			planet = {
+				save_event_target_as = lottie_target_planet
+			}
+		}
+	}
+
+	option = {
+		name = gts_rawls.105.B
+		hidden_effect = {
+			country_event = {
+				id = gts_rawls.100
+			}
+		}
+	}
+	option = {
+		name = gts_rawls.105.A
+		allow = {
+			custom_tooltip = {
+				fail_text = gts_rawls.103.A.failtext.tooltip
+				any_owned_planet = {
+					leader = {
+						has_leader_flag = gts_luodi
+					}
+				}
+			}
+			event_target:lottie_target_planet = {
+				count_owned_pop_amount = {
+					count > 5000
+				}
+			}
+		}
+		custom_tooltip = gts_rawls.105.A.tooltip
+		hidden_effect = {
+			country_event = {
+				id = gts_rawls.106
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_rawls.106
+	title = "TRANSMISSION"	#信号传入接入画面
+	desc = gts_rawls.106.desc
+	diplomatic = yes
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = gtsra_leader_lottie_portrait_02
+		room = "crisis_room"
+	}
+
+	option = {
+		name = gts_rawls.106.A
+		event_target:lottie_target_planet = {
+			add_planet_devastation = 30
+		}
+		hidden_effect = {
+			set_country_flag = allow_lottie_shoes_upgrade1
+			country_event = {
+				id = gts_rawls.107
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_rawls.107
+	title = "TRANSMISSION"	#信号传入接入画面
+	desc = gts_rawls.107.desc
+	diplomatic = yes
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = gtsra_leader_lottie_portrait_02
+		room = "crisis_room"
+	}
+
+	immediate = {
+		# 用flag找到洛蒂
+		every_owned_leader = {
+			limit = {
+				has_leader_flag = gts_luodi
+			}
+			save_event_target_as = gts_bruh_lottie_kill_count
+		}
+		
+		# 你不一定會選A
+		# 但這裡得先計算好
+		random_owned_planet = {
+			save_event_target_as = lottie_target_planet
+		}
+		
+		event_target:lottie_target_planet = {
+			# 計算人口數量 (90%)
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_planet_killed_pop_count
+			}
+			multiply_variable = {
+				which = gts_bruh_get_planet_killed_pop_count
+				value = 0.9
+			}
+			round_variable = gts_bruh_get_planet_killed_pop_count
+			
+			# 計算經驗獲取
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_experience_count
+			}
+			multiply_variable = {
+				which = gts_bruh_get_experience_count
+				value = 0.9
+			}
+			divide_variable = {
+				which = gts_bruh_get_experience_count
+				value = 10
+			}
+			round_variable = gts_bruh_get_experience_count
+		}
+	}
+	option = {
+		name = gts_rawls.107.A
+		custom_tooltip = gts_rawls.107.A.tooltip
+		event_target:lottie_target_planet = {
+			every_owned_pop_group = {
+				kill_pop_group = {
+					pop_group = this
+					percentage = 0.9
+				}
+			}
+		}
+		
+		event_target:gts_bruh_lottie_kill_count = {
+			add_experience = event_target:lottie_target_planet.gts_bruh_get_experience_count
+			change_variable = {
+				which = gts_bread_logs
+				value = event_target:lottie_target_planet.gts_bruh_get_planet_killed_pop_count
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_rawls.100
+			}
+		}
+	}
+	option = {
+		name = gts_rawls.107.B
+		custom_tooltip = gts_rawls.107.B.tooltip
+		allow = {
+			owner = {
+				resource_stockpile_compare = {
+					resource = influence
+					value >= 150
+				}
+			}
+			event_target:lottie_target_planet = {
+				count_owned_pop_amount = {
+					count > 5000
+				}
+			}
+		}
+		owner = {
+			add_resource = {
+				influence = -150
+			}
+		}
+		hidden_effect = {
+			event_target:lottie_target_planet = {
+				while = {
+					count = 5
+					random_owned_pop_group = {
+						kill_single_pop = yes
+					}
+				}
+			}
+			set_country_flag = allow_lottie_shoes_upgrade1
+			country_event = {
+				id = gts_rawls.100
+			}
+		}
+		event_target:gts_bruh_lottie_kill_count = {
+			add_experience = 500
+			change_variable = {
+				which = gts_bread_logs
+				value = 5000
+			}
+		}
+	}
+}
+
+#洛蒂考古
+country_event = {
+	#创建洛蒂星系
+	id = gts_rawls.999
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		random_system = {
+			limit = {
+				distance = {
+					source = root.capital_scope.solar_system
+					use_bypasses = yes
+					min_jumps = 1
+					max_jumps = 3
+				}
+			}
+			spawn_system = {
+				min_distance >= 10
+				max_distance <= 30
+				max_jumps = 0
+				initializer = gtsra_leader_lottie_system
+				effect = {
+					save_event_target_as = gts_bruh_get_lottie_system_location
+				}
+			}
+		}
+	}
+}
+namespace = gts_lottie_site
+
+fleet_event = {
+	#2巨足践踏过的星球
+	id = gts_lottie_site.1
+	title = gts_lottie_site.1.name
+	desc = gts_lottie_site.1.desc
+	picture = GFX_lottie_site1
+	show_sound = event_structural_collapse
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_lottie_site.1.A
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier1materialreward
+				min = @tier1materialmin
+				max = @tier1materialmax
+			}
+		}
+	}
+}
+
+fleet_event = {
+	#3移动城市
+	id = gts_lottie_site.2
+	title = gts_lottie_site.2.name
+	desc = gts_lottie_site.2.desc
+	picture = GFX_lottie_site2
+	show_sound = event_collapsing_ruins
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_lottie_site.2.A
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier1materialreward
+				min = @tier1materialmin
+				max = @tier1materialmax
+			}
+		}
+	}
+}
+
+fleet_event = {
+	#4奇特的建筑
+	id = gts_lottie_site.3
+	title = gts_lottie_site.3.name
+	desc = gts_lottie_site.3.desc
+	picture = GFX_lottie_site3
+	show_sound = event_finding_loot
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_lottie_site.3.A
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier1materialreward
+				min = @tier1materialmin
+				max = @tier1materialmax
+			}
+		}
+	}
+}
+
+fleet_event = {
+	#5-高墙之内
+	id = gts_lottie_site.4
+	title = gts_lottie_site.4.name
+	desc = gts_lottie_site.4.desc
+	picture = GFX_lottie_site5
+	show_sound = event_wind_ruins
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_lottie_site.4.A
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier1materialreward
+				min = @tier1materialmin
+				max = @tier1materialmax
+			}
+		}
+		fleet_event = {
+			id = gts_lottie_site.5
+		}
+	}
+}
+
+fleet_event = {
+	#5.1-搬运城市的女仆
+	id = gts_lottie_site.5
+	title = gts_lottie_site.5.name
+	desc = gts_lottie_site.5.desc
+	picture = GFX_lottie_site4
+	show_sound = event_bad_omen
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_lottie_site.5.A
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier1materialreward
+				min = @tier1materialmin
+				max = @tier1materialmax
+			}
+		}
+	}
+}
+
+fleet_event = {
+	#6-\"礼堂\"的内部
+	id = gts_lottie_site.6
+	title = gts_lottie_site.6.name
+	desc = gts_lottie_site.6.desc
+	picture = GFX_lottie_site6
+	show_sound = event_finding_loot
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_lottie_site.6.A
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier1materialreward
+				min = @tier1materialmin
+				max = @tier1materialmax
+			}
+		}
+		fleet_event = {
+			id = gts_lottie_site.7
+		}
+	}
+}
+
+fleet_event = {
+	#6.1-\"礼堂\"的真面目
+	id = gts_lottie_site.7
+	title = gts_lottie_site.7.name
+	desc = gts_lottie_site.7.desc
+	picture = GFX_lottie_site7
+	show_sound = event_finding_loot
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_lottie_site.7.A
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier1materialreward
+				min = @tier1materialmin
+				max = @tier1materialmax
+			}
+		}
+		fleet_event = {
+			id = gts_lottie_site.8
+		}
+	}
+}
+
+fleet_event = {
+	#6.2-最大的猫娘
+	id = gts_lottie_site.8
+	title = gts_lottie_site.8.name
+	desc = gts_lottie_site.8.desc
+	picture = GFX_lottie_site8
+	show_sound = event_structural_collapse
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_lottie_site.8.A
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier1materialreward
+				min = @tier1materialmin
+				max = @tier1materialmax
+			}
+		}
+	}
+}
+
+fleet_event = {
+	#7-冒失的女仆
+	id = gts_lottie_site.9
+	title = gts_lottie_site.9.name
+	desc = gts_lottie_site.9.desc
+	picture = GFX_lottie_site9
+	show_sound = event_whispering
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_lottie_site.9.A
+		owner = {
+			hidden_effect = {
+				country_event = {
+					id = gts_lottie_site.10
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	#通讯接入
+	id = gts_lottie_site.10
+	title = "TRANSMISSION"	#信号传入接入画面
+	desc = gts_lottie_site.10.desc
+	diplomatic = yes
+	is_triggered_only = yes
+	picture_event_data = {
+		portrait = gtsra_leader_lottie_portrait_03
+		room = "crisis_room"
+	}
+	option = {
+		name = gts_lottie_site.10.A
+		hidden_effect = {
+			country_event = {
+				id = gts_lottie_site.11
+			}
+		}
+	}
+}
+
+country_event = {
+	#
+	id = gts_lottie_site.11
+	title = "TRANSMISSION"
+	desc = gts_lottie_site.11.desc
+	diplomatic = yes
+	is_triggered_only = yes
+	picture_event_data = {
+		portrait = gtsra_leader_lottie_portrait_01
+		room = "crisis_room"
+	}
+	option = {
+		name = gts_lottie_site.11.A
+		hidden_effect = {
+			country_event = {
+				id = gts_lottie_site.12
+			}
+		}
+	}
+}
+
+country_event = {
+	#
+	id = gts_lottie_site.12
+	title = "TRANSMISSION"
+	desc = gts_lottie_site.12.desc
+	diplomatic = yes
+	is_triggered_only = yes
+	picture_event_data = {
+		portrait = gtsra_leader_lottie_portrait_03
+		room = "crisis_room"
+	}
+	option = {
+		name = gts_lottie_site.12.A
+		hidden_effect = {
+			country_event = {
+				id = gts_lottie_site.13
+			}
+		}
+	}
+}
+
+country_event = {
+	#
+	id = gts_lottie_site.13
+	title = "TRANSMISSION"
+	desc = gts_lottie_site.13.desc
+	diplomatic = yes
+	is_triggered_only = yes
+	picture_event_data = {
+		portrait = gtsra_leader_lottie_portrait_02
+		room = "crisis_room"
+	}
+	option = {
+		name = gts_lottie_site.13.a
+		response_text = gts_lottie_site.13.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_lottie_site.13.b
+		response_text = gts_lottie_site.13.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_lottie_site.13.c
+		response_text = gts_lottie_site.13.c.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_lottie_site.13.A
+		hidden_effect = {
+			country_event = {
+				id = gts_lottie_site.14
+			}
+		}
+	}
+}
+
+country_event = {
+	#
+	id = gts_lottie_site.14
+	title = "TRANSMISSION"
+	desc = gts_lottie_site.14.desc
+	diplomatic = yes
+	is_triggered_only = yes
+	picture_event_data = {
+		portrait = gtsra_leader_lottie_portrait_03
+		room = "crisis_room"
+	}
+	option = {
+		name = gts_lottie_site.14.A
+		custom_tooltip = gts_lottie_site.14.A.Tooltip
+		hidden_effect = {
+			country_event = {
+				id = gts_lottie.999
+			}
+		}
+	}
+	option = {
+		name = gts_lottie_site.14.B
+		custom_tooltip = gts_lottie_site.14.B.Tooltip
+		hidden_effect = {
+			country_event = {
+				id = gts_lottie_site.15
+			}
+			country_event = {
+				#报复
+				id = gts_lottie_site.16
+				days = 200
+				random = 10
+			}
+		}
+	}
+}
+
+country_event = {
+	#抛弃洛蒂
+	id = gts_lottie_site.15
+	title = "gts_lottie_site.15.name"
+	desc = "gts_lottie_site.15.desc"
+	picture = GFX_lottie_site10
+	show_sound = event_wind_ruins
+	is_triggered_only = yes
+	option = {
+		name = gts_lottie_site.15.A
+		custom_tooltip = gts_lottie_site.15.A.Tooltip
+		add_relic = r_gtsra_lottie_shoes
+	}
+}
+
+#洛蒂复仇事件链
+country_event = {
+	#洛蒂的复仇
+	id = gts_lottie_site.16
+	title = gts_lottie_site.16.name
+	desc = gts_lottie_site.16.desc
+	picture = GFX_lottie_site9
+	show_sound = event_planetary_riot
+	location = event_target:gtsra_lottie_1
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+		capital_scope = {
+			owner = {
+				set_country_flag = gtsra_lottie_revenge
+				save_event_target_as = victim
+			}
+			save_event_target_as = gtsra_lottie_1
+			create_country = {
+				name = "NAME_Lottie"
+				type = faction
+				effect = {
+					establish_communications_no_message = root.owner
+					save_event_target_as = lottie
+				}
+			}
+			create_species = {
+				name = "NAME_Lottie"
+				class = random_non_machine
+				portrait = gtsra_leader_lottie_portrait_03
+				traits = {
+					trait = trait_Titan
+				}
+			}
+			create_army = {
+				name = "NAME_Lottie_left_foot"
+				owner = last_created_country
+				species = last_created_species
+				type = "gts_big_army"
+			}
+			create_army = {
+				name = "NAME_Lottie_right_foot"
+				owner = last_created_country
+				species = last_created_species
+				type = "gts_big_army"
+			}
+		}
+	}
+	option = {
+		name = gts_lottie_site.16.A
+		custom_tooltip = gts_lottie_site.16.A.Tooltip
+		begin_event_chain = {
+			event_chain = "lottie_revenge"
+			target = event_target:gtsra_lottie_1
+		}
+		enable_special_project = {
+			name = "lottie_revenge_project"
+			location = event_target:gtsra_lottie_1
+			owner = event_target:victim
+		}
+	}
+}
+
+country_event = {
+	#击退失败
+	# Triggers country_event for the defender upon defeat
+	# This = country, planet owner
+	# From = country, attack leader
+	# FromFrom = planet
+	id = gts_lottie_site.17
+	title = gts_lottie_site.17.name
+	desc = gts_lottie_site.17.desc
+	picture = GFX_lottie_site9
+	show_sound = event_planetary_riot
+	location = event_target:gtsra_lottie_1
+	is_triggered_only = yes
+	trigger = {
+		has_country_flag = gtsra_lottie_revenge
+	}
+	immediate = {
+		remove_relic = r_gtsra_lottie_shoes
+		set_country_flag = gtsra_lose_lottie_shoes
+		every_owned_leader = {
+			limit = {
+				has_leader_flag = gts_luodi
+			}
+			save_event_target_as = gts_bruh_lottie_kill_count
+		}
+		
+		# 測試用的代碼
+		
+		#random_owned_planet  = {
+		#	limit = {
+		#		pop_amount > 2000
+		#	}
+		#	save_event_target_as = gtsra_lottie_1
+		#}
+		
+		event_target:gtsra_lottie_1 = {
+		
+			# 計算人口數量
+			
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_planet_killed_pop_count
+			}
+			
+			# 計算城市數量
+			
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_planet_destroyed_city_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_planet_destroyed_city_count
+				value = 100
+			}
+			
+			round_variable = gts_bruh_get_planet_destroyed_city_count
+		}
+		FROMFROM = {
+			every_owned_pop_group = {
+				set_pop_group_flag = event_stocking_crushed_purge
+			}
+		}
+	}
+	option = {
+		name = gts_lottie_site.17.A
+		custom_tooltip = gts_lottie_site.17.A.Tooltip
+		event_target:gtsra_lottie_1 = {
+			every_owned_pop_group = {
+				kill_pop_group = {
+					pop_group = this
+					percentage = 1
+				}
+			}
+			
+			# 添加地形
+			
+			while = {
+				count = 3
+				add_deposit = d_bomb_crater
+				add_deposit = d_failing_infrastructure
+				add_deposit = d_city_ruins
+			}
+		}
+		
+		event_target:gts_bruh_lottie_kill_count = {
+			
+			# 顯示數值變化
+			
+			change_variable = {
+				which = gts_feet_kills_logs
+				value = event_target:gtsra_lottie_1.gts_bruh_get_planet_killed_pop_count
+			}
+			change_variable = {
+				which = gts_city_kills_logs
+				value = event_target:gtsra_lottie_1.gts_bruh_get_planet_destroyed_city_count
+			}
+			change_variable = {
+				which = gts_planet_kills_logs
+				value = 1
+			}
+		}
+	}
+}
+
+country_event = {
+	#防守成功
+	# Triggers country_event for the attacker upon victory
+	# (Before controller is switched)
+	# This = country, leader attacker
+	# From = country, planet owner
+	# FromFrom = planet
+	# IDENTITIES: attacker is the side that "IsHostile" to
+	# the planet controller; e.g. spawned monster armies
+	# are attackers, but if they win and the player attempts
+	# to retake the planet, the player is the attacker
+	id = gts_lottie_site.18
+	title = gts_lottie_site.18.name
+	desc = gts_lottie_site.18.desc
+	picture = GFX_lottie_site9
+	show_sound = event_planetary_riot
+	location = event_target:gtsra_lottie_1
+	is_triggered_only = yes
+	trigger = {
+		has_country_flag = gtsra_lottie_revenge
+		NOT = {
+			has_country_flag = gtsra_lottie_forgive
+		}
+		NOT = {
+			has_country_flag = gtsra_lose_lottie_shoes
+		}
+	}
+	immediate = {
+		remove_country_flag = gtsra_lottie_revenge
+	}
+	option = {
+		name = gts_lottie_site.18.A
+		custom_tooltip = gts_lottie_site.18.A.Tooltip
+		if = {
+			limit = {
+				has_country_flag = gtsra_lose_lottie_shoes
+			}
+			add_relic = r_gtsra_lottie_shoes
+		}
+		country_event = {
+			id = gts_lottie_site.24
+		}
+		end_event_chain = "lottie_revenge"
+	}
+}
+
+country_event = {
+	#击退成功
+	# Triggers country_event for the attacker upon victory
+	# (Before controller is switched)
+	# This = country, leader attacker
+	# From = country, planet owner
+	# FromFrom = planet
+	# IDENTITIES: attacker is the side that "IsHostile" to
+	# the planet controller; e.g. spawned monster armies
+	# are attackers, but if they win and the player attempts
+	# to retake the planet, the player is the attacker
+	id = gts_lottie_site.1801
+	title = gts_lottie_site.18.name
+	desc = gts_lottie_site.18.desc
+	picture = GFX_lottie_site9
+	show_sound = event_planetary_riot
+	location = event_target:gtsra_lottie_1
+	is_triggered_only = yes
+	trigger = {
+		has_country_flag = gtsra_lottie_revenge
+		NOT = {
+			has_country_flag = gtsra_lottie_forgive
+		}
+		has_country_flag = gtsra_lose_lottie_shoes
+	}
+	immediate = {
+		remove_country_flag = gtsra_lottie_revenge
+	}
+	option = {
+		name = gts_lottie_site.18.A
+		custom_tooltip = gts_lottie_site.18.A.Tooltip
+		if = {
+			limit = {
+				has_country_flag = gtsra_lose_lottie_shoes
+			}
+			add_relic = r_gtsra_lottie_shoes
+		}
+		country_event = {
+			id = gts_lottie_site.24
+		}
+		end_event_chain = "lottie_revenge"
+	}
+}
+
+country_event = {
+	#洛蒂战胜通讯接入
+	id = gts_lottie_site.19
+	title = "TRANSMISSION"	#信号传入接入画面
+	desc = gts_lottie_site.19.desc
+	diplomatic = yes
+	is_triggered_only = yes
+	picture_event_data = {
+		portrait = gtsra_leader_lottie_portrait_02
+		room = "crisis_room"
+	}
+	option = {
+		name = gts_lottie_site.19.A
+		hidden_effect = {
+			country_event = {
+				id = gts_lottie_site.20
+			}
+		}
+	}
+	option = {
+		name = gts_lottie_site.19.B
+	}
+}
+
+country_event = {
+	#
+	id = gts_lottie_site.20
+	title = "TRANSMISSION"	#信号传入接入画面
+	desc = gts_lottie_site.20.desc
+	diplomatic = yes
+	is_triggered_only = yes
+	picture_event_data = {
+		portrait = gtsra_leader_lottie_portrait_01
+		room = "crisis_room"
+	}
+	immediate = {
+		remove_relic = r_gtsra_lottie_shoes
+		set_country_flag = gtsra_lose_lottie_shoes
+		set_country_flag = gtsra_lottie_forgive
+		event_target:lottie = {
+			every_owned_army = {
+				remove_army = yes
+			}
+		}
+	}
+	option = {
+		name = gts_lottie_site.20.A
+		hidden_effect = {
+			country_event = {
+				id = gts_lottie_site.21
+			}
+		}
+	}
+}
+
+country_event = {
+	#
+	id = gts_lottie_site.21
+	title = "TRANSMISSION"	#信号传入接入画面
+	desc = gts_lottie_site.21.desc
+	diplomatic = yes
+	is_triggered_only = yes
+	picture_event_data = {
+		portrait = gtsra_leader_lottie_portrait_03
+		room = "crisis_room"
+	}
+	option = {
+		#聘用
+		name = gts_lottie_site.21.A
+		custom_tooltip = gts_lottie_site.21.A.Tooltip
+		hidden_effect = {
+			country_event = {
+				id = gts_lottie.999
+			}
+		}
+	}
+	option = {
+		#聘用元首
+		name = gts_lottie_site.21.B
+		custom_tooltip = gts_lottie_site.21.B.Tooltip
+		hidden_effect = {
+			country_event = {
+				id = gts_lottie_site.23
+			}
+		}
+	}
+	option = {
+		#离开
+		name = gts_lottie_site.21.C
+	}
+}
+
+country_event = {
+	#洛蒂登基
+	id = gts_lottie_site.23
+	title = gts_lottie_site.23.name
+	desc = gts_lottie_site.23.desc
+	picture = GFX_evt_hand_shake
+	show_sound = event_planetary_riot
+	location = event_target:gtsra_lottie_1
+	is_triggered_only = yes
+	immediate = {
+		gts_leader_luodi_hired = yes
+		change_government = {
+			authority = auth_imperial
+			cooldown = no
+			remove_invalid_civics = yes
+		}
+		force_add_civic = civic_gts_maid
+		set_government_cooldown = no
+		set_leader = event_target:gts_luodi
+	}
+	option = {
+		name = gts_lottie_site.23.A
+	}
+}
+
+country_event = {
+	#洛蒂战败通讯接入
+	id = gts_lottie_site.24
+	title = "TRANSMISSION"	#信号传入接入画面
+	desc = gts_lottie_site.24.desc
+	diplomatic = yes
+	is_triggered_only = yes
+	picture_event_data = {
+		portrait = gtsra_leader_lottie_portrait_03
+		room = "crisis_room"
+	}
+	option = {
+		name = gts_lottie_site.24.A
+		custom_tooltip = gts_lottie_site.24.A.Tooltip
+		hidden_effect = {
+			country_event = {
+				id = gts_lottie_site.25
+			}
+		}
+	}
+	option = {
+		name = gts_lottie_site.24.B
+		custom_tooltip = gts_lottie_site.24.B.Tooltip
+		hidden_effect = {
+			country_event = {
+				id = gts_lottie_site.26
+			}
+		}
+	}
+	option = {
+		name = gts_lottie_site.24.C
+		custom_tooltip = gts_lottie_site.24.C.Tooltip
+	}
+}
+
+country_event = {
+	#获得洛蒂
+	id = gts_lottie_site.25
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		remove_relic = r_gtsra_lottie_shoes
+		gts_leader_luodi_hired = yes
+		country_event = {
+			id = gts_lottie.1
+		}
+		country_event = {
+			id = gts_rawls.1
+			days = 10
+		}
+	}
+}
+
+country_event = {
+	#获得伤心的洛蒂
+	id = gts_lottie_site.26
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		gts_leader_luodi_sad_hired = yes
+		ethic_leader_hire_effect = {
+			GLOBAL_EVENT_TARGET = gts_luodi
+		}
+		country_event = {
+			id = gts_rawls.1
+			days = 10
+		}
+	}
+}
+
+namespace = gts_lottie
+
+country_event = {
+	# 洛蒂·辛莎尔
+	id = gts_lottie.999
+	title = "gts_lottie.999.name"
+	desc = "gts_lottie.999.desc"
+	show_sound = ffxiv_lvup
+	is_triggered_only = yes
+	picture = GFX_leader_recruitment_bg_renowned
+	auto_opens = yes
+	event_window_type = leader_recruit
+	notification_event_icon = "GFX_message_leader_gts_luodi"
+	immediate = {
+		gts_leader_luodi_hired = yes
+	}
+	picture_event_data = {
+		portrait = event_target:gts_leader
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = gts_lottie.999.a
+		response_text = gts_lottie.999.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_lottie.999.b
+		response_text = gts_lottie.999.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_lottie.999.c
+		response_text = gts_lottie.999.c.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		custom_tooltip = gts_lottie.999.hire_custom_tooltip
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = legendary }
+			country_event = {
+				id = gts_lottie.1
+			}
+			country_event = {
+				id = gts_rawls.1
+				days = 10
+			}
+		}
+	}
+	option = {
+		tag = dismiss_leader
+		name = END_TRANSMISSION
+		hidden_effect = {
+			country_event = {
+				id = gts_lottie.999
+			}
+		}
+	}
+}
+#洛蒂后续事件
+country_event = {
+	#启动
+	id = gts_lottie.1
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		country_event = {
+			id = gts_lottie.11
+			days = 360
+			random = 5
+		}
+		country_event = {
+			id = gts_lottie.12
+			days = 1800
+			random = 5
+		}
+		country_event = {
+			id = gts_lottie.13
+			days = 3600
+			random = 5
+		}
+		country_event = {
+			id = gts_lottie.14
+			days = 5400
+			random = 5
+		}
+		country_event = {
+			id = gts_lottie.15
+			days = 7200
+			random = 5
+		}
+	}
+}
+
+country_event = {
+	#新来的猫娘女仆-一周年
+	id = gts_lottie.11
+	title = gts_lottie.11.name
+	desc = gts_lottie.11.desc
+	picture = GFX_lottie_site7
+	show_sound = event_celebration
+	is_triggered_only = yes
+	option = {
+		name = gts_lottie.11.a
+	}
+}
+
+country_event = {
+	#猫娘女仆的庆典-五周年
+	id = gts_lottie.12
+	title = gts_lottie.12.name
+	desc = gts_lottie.12.desc
+	picture = GFX_lottie_site7
+	show_sound = event_celebration
+	is_triggered_only = yes
+	immediate = {
+		set_country_flag = lottie_5_years
+	}
+	option = {
+		name = gts_lottie.12.a
+	}
+}
+
+country_event = {
+	#猫娘女仆的庆典-十周年
+	id = gts_lottie.13
+	title = gts_lottie.13.name
+	desc = gts_lottie.13.desc
+	picture = GFX_lottie_site7
+	show_sound = event_celebration
+	is_triggered_only = yes
+	option = {
+		name = gts_lottie.13.a
+		start_situation = {
+			type = situation_make_lottie_shoes
+		}
+	}
+}
+
+country_event = {
+	#猫娘女仆的庆典-十五周年
+	id = gts_lottie.14
+	title = gts_lottie.14.name
+	desc = gts_lottie.14.desc
+	picture = GFX_lottie_site7
+	show_sound = event_celebration
+	is_triggered_only = yes
+	immediate = {
+		set_country_flag = lottie_15_years
+	}
+	option = {
+		name = gts_lottie.14.a
+	}
+}
+
+country_event = {
+	#猫娘女仆的庆典-二十周年
+	id = gts_lottie.15
+	title = gts_lottie.15.name
+	desc = gts_lottie.15.desc
+	picture = GFX_lottie_site7
+	show_sound = event_celebration
+	is_triggered_only = yes
+	immediate = {
+		set_country_flag = lottie_20_years
+	}
+	option = {
+		name = gts_lottie.15.a
+	}
+}
+
+situation_event = {
+	#制作洛蒂鞋子，开工
+	id = gts_lottie.101
+	title = gts_lottie.101.name
+	desc = gts_lottie.101.desc
+	picture = GFX_lottie_site5
+	show_sound = ffxiv_lvup
+	is_triggered_only = yes
+	situation = this
+	force_open = yes
+	option = {
+		name = gts_lottie.101.a
+		owner = {
+			add_resource = {
+				unity = 1000
+			}
+		}
+	}
+}
+
+situation_event = {
+	#制作洛蒂鞋子，鞋底完成
+	id = gts_lottie.102
+	title = gts_lottie.102.name
+	desc = gts_lottie.102.desc
+	picture = GFX_lottie_site5
+	show_sound = ffxiv_lvup
+	is_triggered_only = yes
+	situation = this
+	force_open = yes
+	option = {
+		name = gts_lottie.102.a
+		owner = {
+			add_resource = {
+				unity = 1000
+			}
+		}
+	}
+}
+
+situation_event = {
+	#制作洛蒂鞋子，鞋面完成
+	id = gts_lottie.103
+	title = gts_lottie.103.name
+	desc = gts_lottie.103.desc
+	picture = GFX_lottie_site5
+	show_sound = ffxiv_lvup
+	is_triggered_only = yes
+	situation = this
+	force_open = yes
+	option = {
+		name = gts_lottie.103.a
+		owner = {
+			add_resource = {
+				unity = 1000
+			}
+		}
+	}
+}
+
+situation_event = {
+	#制作洛蒂鞋子，装饰完成
+	id = gts_lottie.104
+	title = gts_lottie.104.name
+	desc = gts_lottie.104.desc
+	picture = GFX_lottie_site5
+	show_sound = ffxiv_lvup
+	is_triggered_only = yes
+	situation = this
+	force_open = yes
+	option = {
+		name = gts_lottie.104.a
+		owner = {
+			add_resource = {
+				unity = 1000
+			}
+		}
+	}
+}
+
+situation_event = {
+	#制作洛蒂鞋子，全部完成
+	id = gts_lottie.105
+	title = gts_lottie.105.name
+	desc = gts_lottie.105.desc
+	picture = GFX_lottie_site7
+	show_sound = ffxiv_lvup
+	is_triggered_only = yes
+	situation = this
+	force_open = yes
+	option = {
+		name = gts_lottie.105.a
+		owner = {
+			add_resource = {
+				unity = 2000
+			}
+			add_relic = r_gtsra_lottie_shoes
+			set_country_flag = lottie_10_years
+		}
+	}
+	after = {
+		destroy_situation = this
+	}
+}

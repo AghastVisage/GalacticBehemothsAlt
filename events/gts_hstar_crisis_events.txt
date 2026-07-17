@@ -1,0 +1,4319 @@
+############################
+# Crisis Events
+############################
+
+namespace = gts_hstar_crisis
+
+##LIKE PRETHORYN
+
+### Triggering Event
+country_event = {
+	id = gts_hstar_crisis.1
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		OR = {
+			AND = {
+				has_ascension_perk = ap_space_gts
+				end_game_years_passed >= 25
+			}
+			AND = {
+				end_game_years_passed >= 0
+				any_country = {
+					has_origin = origin_hstar
+				}
+			}
+
+		}
+		NOT = {
+			has_global_flag = mega_gts_arrived
+		}
+		is_ai = no
+	}
+
+	immediate = {
+
+		country_event = { id = gts_hstar_crisis.10 days = 200 random = 80 }
+		set_global_flag = mega_giantess_transmission
+		set_global_flag = giantess_invasion_happened
+		set_global_flag = mega_gts_arrived
+		random_rim_system = {
+			set_star_flag = giantess_invasion_target_1
+			save_event_target_as = giantess_invasion_system
+		}
+	}
+}
+
+### Invasion Events
+
+#  Invasion Begins (HIDDEN)
+country_event = {
+	id = gts_hstar_crisis.10
+	hide_window = yes
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = giantess_first_echoes
+		set_global_flag = giantess_invasion_happened
+		set_global_flag = galactic_crisis_happened
+		every_country = {
+			limit = { is_country_type = default }
+			country_event = { id = gts_hstar_crisis.11 }
+		}
+	}
+}
+
+# Approaching Subspace Echoes
+country_event = {
+	id = gts_hstar_crisis.11
+	title = "gts_hstar_crisis.11.name"
+	desc = "gts_hstar_crisis.11.desc"
+	picture = GFX_evt_hstar_3
+	show_sound = event_alien_nature
+
+	is_triggered_only = yes
+
+	option = {
+		name = gts_hstar_crisis.11.a 
+		country_event = {
+			id = gts_hstar_crisis.12 days = 180
+		}
+	}
+}
+
+# Approaching the Outer Rim (HIDDEN)
+country_event = {
+	id = gts_hstar_crisis.12
+	hide_window = yes
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_country_type = default
+		has_global_flag = giantess_first_echoes
+	}
+
+	immediate = {
+		remove_global_flag = giantess_first_echoes
+		set_global_flag = giantess_approaching_rim
+		random_rim_system = {
+			spawn_system = {
+				initializer = gts_hstar_crisis_system
+				max_distance = 70
+				min_distance = 40
+				min_jumps = 2
+				max_jumps = 3
+			}
+			set_star_flag = giantess_invasion_target_1
+		}
+		every_country = {
+			limit = { is_country_type = default }
+			country_event = { id = gts_hstar_crisis.13 days = 60}
+		}
+	}
+}
+
+# Approaching the Outer Rim
+country_event = {
+	id = gts_hstar_crisis.13
+	title = "gts_hstar_crisis.13.name"
+	desc = "gts_hstar_crisis.13.desc"
+	picture = GFX_evt_hstar1
+	show_sound = event_alien_nature
+
+	is_triggered_only = yes
+
+	immediate = {
+		random_rim_system = {
+			limit = { has_star_flag = giantess_invasion_target_1 }
+			save_event_target_as = giantess_invasion_system
+			closest_system = {
+				limit = {
+					NOR = {
+						has_star_flag = giantess_invasion_warning
+						has_star_flag = giantess_invasion_target_1
+					}
+				}
+				set_star_flag = giantess_invasion_warning
+				save_event_target_as = giantess_invasion_warning_1
+			}
+			closest_system = {
+				limit = {
+					NOR = {
+						has_star_flag = giantess_invasion_warning
+						has_star_flag = giantess_invasion_target_1
+					}
+				}
+				set_star_flag = giantess_invasion_warning
+				save_event_target_as = giantess_invasion_warning_2
+			}
+			closest_system = {
+				limit = {
+					NOR = {
+						has_star_flag = giantess_invasion_warning
+						has_star_flag = giantess_invasion_target_1
+					}
+				}
+				set_star_flag = giantess_invasion_warning
+				save_event_target_as = giantess_invasion_warning_3
+			}
+			closest_system = {
+				limit = {
+					NOR = {
+						has_star_flag = giantess_invasion_warning
+						has_star_flag = giantess_invasion_target_1
+					}
+				}
+				set_star_flag = giantess_invasion_warning
+				save_event_target_as = giantess_invasion_warning_4
+			}
+			closest_system = {
+				limit = {
+					NOR = {
+						has_star_flag = giantess_invasion_warning
+						has_star_flag = giantess_invasion_target_1
+					}
+				}
+				set_star_flag = giantess_invasion_warning
+				save_event_target_as = giantess_invasion_warning_5
+			}
+		}
+
+	}
+
+	option = {
+		name = gts_hstar_crisis.13.a
+		country_event = {
+			id = gts_hstar_crisis.14 days = 180
+		}
+	}
+}
+
+# Subspace Signal (HIDDEN)
+country_event = {
+	id = gts_hstar_crisis.14
+	hide_window = yes
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_global_flag = giantess_approaching_rim
+	}
+
+	immediate = {
+		remove_global_flag = giantess_approaching_rim
+		set_global_flag = mega_giantess_transmission
+		every_country = {
+			limit = { is_country_type = default }
+			country_event = { id = gts_hstar_crisis.15 }
+		}
+	}
+}
+
+# Subspace Signal
+country_event = {
+	id = gts_hstar_crisis.15
+	title = "gts_hstar_crisis.15.name"
+	desc = "gts_hstar_crisis.15.desc"
+	picture = GFX_evt_hstar1
+	show_sound = event_alien_nature
+
+	is_triggered_only = yes
+
+	option = {
+		name = gts_hstar_crisis.15.a
+		hidden_effect = {
+			country_event = { id = gts_hstar_crisis.16 }
+		}
+	}
+}
+
+# Alien Transmission
+country_event = {
+	id = gts_hstar_crisis.16
+	title = "TRANSMISSION"
+	#desc = "gts_hstar_crisis.16.desc"
+
+	diplomatic = yes
+	picture_event_data = {
+		portrait = human_male_01
+		room = "ethic_spaceship_room"
+	}
+	is_triggered_only = yes
+
+	desc = {
+		text = "gts_hstar_crisis.16.desc"
+		trigger = {
+			NOT = { 
+				owner_species = { 
+					NOR = { 
+						has_trait = trait_Small 
+						has_trait = trait_hstar
+						has_trait = trait_Tiny
+						has_trait = trait_Micro
+					} 
+				}
+			}
+		}
+	}
+	desc = {
+		text = "gts_hstar_crisis.16.b.desc"
+		trigger = {
+			owner_species = { 
+				OR = {
+					has_trait = trait_Small
+					has_trait = trait_Tiny
+					has_trait = trait_Mirco
+				}
+				NOT = {
+					has_trait = trait_hstar
+				}
+			}
+		}
+	}
+	desc = {
+		text = "gts_hstar_crisis.16.c.desc"
+		trigger = {
+			owner_species = { has_trait = trait_hstar }
+		}
+	}
+
+	option = {
+		name = gts_hstar_crisis.16.a
+		trigger = {
+			owner_species = { NOT = { has_trait = trait_hstar } }
+		}
+	}
+
+	option = {
+		name = gts_hstar_crisis.16.b
+		trigger = {
+			owner_species = { has_trait = trait_hstar }
+		}
+	}
+
+	immediate = {
+		country_event = { id = gts_hstar_crisis.17 days = 100 }
+	}
+}
+
+# Vanguard Arrives (HIDDEN)
+country_event = {
+	id = gts_hstar_crisis.17
+	hide_window = yes
+	fire_only_once = yes
+	is_triggered_only = yes
+	trigger = {
+		has_global_flag = mega_giantess_transmission
+		is_ai = no
+	}
+
+	immediate = {
+		set_global_flag = giantess_arrival
+		every_country = {
+			limit = { is_country_type = default }
+			country_event = { id = gts_hstar_crisis.18 }
+		}
+		random_rim_system = {
+			limit = { has_star_flag = giantess_invasion_target_1 }
+			random_system_planet = {
+				create_species = {
+					name = "NAME_giantess_crisis_1"
+					class = random_non_machine
+					namelist = giantess_crisis
+					portrait = random
+					traits = random
+					immortal = yes
+
+					effect = { save_event_target_as = giantess_crisis_species }
+				}
+				create_country = {
+					name = "NAME_giantess_crisis_Scourge"
+					type = giantess_crisis
+					species = event_target:giantess_crisis_species
+					name_list = "giantess_crisis"
+					flag = {
+						icon= {
+							category = "special"
+							file = "the_swarm.dds"
+						}
+						background= {
+							category = "backgrounds"
+							file = "new_dawn.dds"
+						}
+						colors={
+							"orange"
+							"grey"
+							"null"
+							"null"
+						}
+					}
+					effect = {
+						save_event_target_as = giantess_crisis
+						save_event_target_as = giantess_crisis_vgrd
+						create_ship_design = { design = "NAME_giantess_crisis_Transport" }
+						add_ship_design = last_created_design
+						create_ship_design = { design = "NAME_Giantess_crisis_Colonizer" }
+						add_ship_design = last_created_design
+						create_ship_design = { design = "NAME_Giantess_crisis_Constructor" }
+						add_ship_design = last_created_design
+						create_ship_design = { design = "NAME_Giantess_crisis_Starbase" }
+						add_ship_design = last_created_design
+						set_country_flag = giantess_crisis
+					}
+				}
+				solar_system = {
+					if = {
+						limit = {
+							any_fleet_in_system = {
+								is_ship_class = shipclass_starbase
+							}
+						}
+						random_fleet_in_system = {
+							limit = {
+								any_controlled_ship = {
+									is_ship_class = shipclass_starbase
+								}
+							}
+							destroy_fleet = this
+						}
+					}
+					create_starbase = {
+						size = starbase_giantess_crisis
+						owner = event_target:giantess_crisis_vgrd
+					}
+				}
+				every_country = {
+					limit = {
+						OR = {
+							is_country_type = default
+							is_country_type = fallen_empire
+							is_country_type = awakened_fallen_empire
+						}
+						NOT = {
+							is_country_type = giantess_crisis
+						}
+					}
+					establish_communications_no_message = event_target:giantess_crisis
+					add_opinion_modifier = {
+						who = event_target:giantess_crisis
+						modifier = opinion_crazy_crisis
+					}
+					event_target:giantess_crisis = {
+						add_opinion_modifier = {
+							who = PREV
+							modifier = opinion_slave_of_goddess
+						}
+					}
+					declare_war = {
+						target = event_target:giantess_crisis
+						attacker_war_goal = wg_end_threat_gts_crisis
+					}
+				}
+				event_target:giantess_crisis = {
+					### FIRST SYSTEM
+					giantess_crisis_vanguanrd = yes
+					giantess_crisis_vanguanrd = yes
+					giantess_crisis_vanguanrd = yes
+
+					# Constructor
+					create_fleet = {
+						name = "NAME_giantess_crisis_Constructor"
+						effect = {
+							set_owner = PREV
+							create_ship = {
+								name = random
+								design = "NAME_Giantess_crisis_Constructor"
+								graphical_culture = root.owner
+							}
+							set_location = {
+								target = PREVPREV
+								distance = 10
+								angle = random
+							}
+						}
+					}
+				}
+			}
+
+			### SECOND SYSTEM
+			event_target:giantess_invasion_warning_2 = {
+				create_starbase = {
+					size = starbase_giantess_crisis
+					owner = event_target:giantess_crisis
+				}
+				set_star_flag = giantess_invasion_target_2
+				random_system_planet = {
+					event_target:giantess_crisis = {
+
+							giantess_crisis_vanguanrd = yes
+							giantess_crisis_vanguanrd = yes
+							giantess_crisis_vanguanrd = yes
+
+						# Constructor
+						create_fleet = {
+							name = "NAME_giantess_crisis_Constructor"
+							effect = {
+								set_owner = PREV
+								create_ship = {
+									name = random
+									design = "NAME_Giantess_crisis_Constructor"
+									graphical_culture = root.owner
+								}
+								set_location = {
+									target = PREVPREV
+									distance = 10
+									angle = random
+								}
+							}
+						}
+
+						giantess_crisis_armies = yes
+						giantess_crisis_armies = yes
+						giantess_crisis_armies = yes
+					}
+				}
+			}
+
+			### THIRD SYSTEM
+			event_target:giantess_invasion_warning_3 = {
+				create_starbase = {
+					size = starbase_giantess_crisis
+					owner = event_target:giantess_crisis
+				}
+				set_star_flag = giantess_invasion_target_3
+				random_system_planet = {
+					event_target:giantess_crisis = {
+
+							giantess_crisis_vanguanrd = yes
+							giantess_crisis_vanguanrd = yes
+							giantess_crisis_vanguanrd = yes
+
+						# Constructor
+						create_fleet = {
+							name = "NAME_giantess_crisis_Constructor"
+							effect = {
+								set_owner = PREV
+								create_ship = {
+									name = random
+									design = "NAME_Giantess_crisis_Constructor"
+									graphical_culture = root.owner
+								}
+								set_location = {
+									target = PREVPREV
+									distance = 10
+									angle = random
+								}
+							}
+						}
+					}
+				}
+			}
+
+			### FOURTH SYSTEM
+			event_target:giantess_invasion_warning_4 = {
+				create_starbase = {
+					size = starbase_giantess_crisis
+					owner = event_target:giantess_crisis
+				}
+				set_star_flag = giantess_invasion_target_4
+				random_system_planet = {
+					event_target:giantess_crisis = {
+
+							giantess_crisis_vanguanrd = yes
+							giantess_crisis_vanguanrd = yes
+							giantess_crisis_vanguanrd = yes
+
+						# Constructor
+						create_fleet = {
+							name = "NAME_giantess_crisis_Constructor"
+							effect = {
+								set_owner = PREV
+								create_ship = {
+									name = random
+									design = "NAME_Giantess_crisis_Constructor"
+									graphical_culture = root.owner
+								}
+								set_location = {
+									target = PREVPREV
+									distance = 10
+									angle = random
+								}
+							}
+						}
+					}
+				}
+
+			}
+		}
+		random_country = {
+			limit = { is_country_type = global_event }
+			country_event = { id = gts_hstar_crisis.19 days = 400 random = 200 }
+		}
+	}
+}
+
+# Vanguard Arrives
+country_event = {
+	id = gts_hstar_crisis.18
+	title = "gts_hstar_crisis.18.name"
+	desc = "gts_hstar_crisis.18.desc"
+	picture = GFX_evt_hstar_5
+	show_sound = event_alien_nature
+	location = event_target:giantess_invasion_system
+
+	is_triggered_only = yes
+
+	immediate = {
+		random_rim_system = {
+			limit = { has_star_flag = giantess_invasion_target_1 }
+			save_event_target_as = giantess_invasion_system
+		}
+#		if = {
+#			limit = {
+#				any_planet_within_border = {
+#					has_planet_flag = fotd_seperatist_planet@root
+#					owner = {
+#						has_country_flag = fotd_seperatist_country@root
+#					}
+#				}
+#			}
+#			country_event = { id = origin.6125 days = 5 random = 2 }
+#		}
+	}
+
+	option = {
+		name = gts_hstar_crisis.18.a
+		trigger = {
+			has_spiritualist_government = yes
+			NOR = {
+				has_ethic = "ethic_fanatic_egalitarian"
+				has_ethic = "ethic_fanatic_authoritarian"
+				has_ethic = "ethic_fanatic_xenophile"
+				has_ethic = "ethic_fanatic_xenophobe"
+			}
+		}
+		
+		begin_event_chain = {
+			event_chain = "giantess_crisis_scourge_chain"
+			target = ROOT
+		}
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = {
+		name = gts_hstar_crisis.18.b
+		trigger = {
+			has_militarist_government = yes
+			NOR = {
+				has_ethic = "ethic_fanatic_egalitarian"
+				has_ethic = "ethic_fanatic_authoritarian"
+				has_ethic = "ethic_fanatic_xenophile"
+				has_ethic = "ethic_fanatic_xenophobe"
+			}
+		}
+		
+		begin_event_chain = {
+			event_chain = "giantess_crisis_scourge_chain"
+			target = ROOT
+		}
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = {
+		name = gts_hstar_crisis.18.c
+		trigger = {
+			has_materialist_government = yes
+			NOR = {
+				has_ethic = "ethic_fanatic_egalitarian"
+				has_ethic = "ethic_fanatic_authoritarian"
+				has_ethic = "ethic_fanatic_xenophile"
+				has_ethic = "ethic_fanatic_xenophobe"
+			}
+		}
+		
+		begin_event_chain = {
+			event_chain = "giantess_crisis_scourge_chain"
+			target = ROOT
+		}
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = {
+		name = gts_hstar_crisis.18.d
+		trigger = {
+			has_pacifist_government = yes
+			NOR = {
+				has_ethic = "ethic_fanatic_egalitarian"
+				has_ethic = "ethic_fanatic_authoritarian"
+				has_ethic = "ethic_fanatic_xenophile"
+				has_ethic = "ethic_fanatic_xenophobe"
+			}
+		}
+		
+		begin_event_chain = {
+			event_chain = "giantess_crisis_scourge_chain"
+			target = ROOT
+		}
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = {
+		name = gts_hstar_crisis.18.e
+		trigger = {
+			OR = {
+				has_government = gov_megacorporation
+				has_government = gov_trade_league
+				has_authority = auth_corporate
+			}
+			NOR = {
+				has_ethic = "ethic_fanatic_egalitarian"
+				has_ethic = "ethic_fanatic_authoritarian"
+				has_ethic = "ethic_fanatic_xenophile"
+				has_ethic = "ethic_fanatic_xenophobe"
+			}
+		}
+		
+		begin_event_chain = {
+			event_chain = "giantess_crisis_scourge_chain"
+			target = ROOT
+		}
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = {
+		name = gts_hstar_crisis.18.f
+		trigger = {
+			OR = {
+				has_generic_government = yes
+				has_government = gov_enlightened_monarchy
+				has_government = gov_elective_monarchy
+				has_government = gov_hive_mind
+				has_government = gov_parasitic_overmind
+				has_government = gov_successor_khanate
+				has_government = gov_diadochi
+				has_ethic = ethic_gestalt_consciousness
+			}
+			NOR = {
+				has_ethic = "ethic_fanatic_egalitarian"
+				has_ethic = "ethic_fanatic_authoritarian"
+				has_ethic = "ethic_fanatic_xenophile"
+				has_ethic = "ethic_fanatic_xenophobe"
+			}
+		}
+		
+		begin_event_chain = {
+			event_chain = "giantess_crisis_scourge_chain"
+			target = ROOT
+		}
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = {
+		name = gts_hstar_crisis.18.g
+		trigger = {
+			has_ethic = "ethic_fanatic_xenophobe"
+		}
+		
+		begin_event_chain = {
+			event_chain = "giantess_crisis_scourge_chain"
+			target = ROOT
+		}
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = {
+		name = gts_hstar_crisis.18.h
+		trigger = {
+			has_ethic = "ethic_fanatic_xenophile"
+		}
+		
+		begin_event_chain = {
+			event_chain = "giantess_crisis_scourge_chain"
+			target = ROOT
+		}
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = {
+		name = gts_hstar_crisis.18.i
+		trigger = {
+			has_ethic = "ethic_fanatic_authoritarian"
+		}
+		
+		
+		begin_event_chain = {
+			event_chain = "giantess_crisis_scourge_chain"
+			target = ROOT
+		}
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = {
+		name = gts_hstar_crisis.18.j
+		trigger = {
+			has_ethic = "ethic_fanatic_egalitarian"
+		}
+		
+		begin_event_chain = {
+			event_chain = "giantess_crisis_scourge_chain"
+			target = ROOT
+		}
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = {
+		name = gts_hstar_crisis.18.k	
+		begin_event_chain = {
+			event_chain = "giantess_crisis_scourge_chain"
+			target = ROOT
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+# Main Invasion Arrives (HIDDEN)
+country_event = {
+	id = gts_hstar_crisis.19
+	hide_window = yes
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = giantess_crisis_main_invasion
+		set_global_flag = ongoing_giantess_crisis_invasion
+		every_country = {
+			limit = { is_country_type = default }
+			country_event = { id = gts_hstar_crisis.20 }
+		}
+
+		
+		# Recreate giantess_crisis if Vanguard was destroyed
+		if = {
+			limit = {
+				NOT = { exists = event_target:giantess_crisis }
+			}
+			create_species = {
+				name = "NAME_giantess_crisis"
+				class = random_non_machine
+				namelist = giantess_crisis
+				portrait = random
+				traits = random
+				immortal = yes
+				effect = { save_event_target_as = giantess_crisis_species }
+			}
+			create_country = {
+				name = "NAME_giantess_crisis_Scourge"
+				type = giantess_crisis
+				species = event_target:giantess_crisis_species
+				name_list = "giantess_crisis"
+				flag = {
+					icon= {
+						category = "special"
+						file = "the_swarm.dds"
+					}
+					background= {
+						category = "backgrounds"
+						file = "new_dawn.dds"
+					}
+					colors={
+						"orange"
+						"grey"
+						"null"
+						"null"
+					}
+				}
+				effect = {
+					save_event_target_as = giantess_crisis
+					save_event_target_as = giantess_crisis_vgrd
+					create_ship_design = { design = "NAME_giantess_crisis_Transport" }
+					add_ship_design = last_created_design
+					create_ship_design = { design = "NAME_Giantess_crisis_Colonizer" }
+					add_ship_design = last_created_design
+					create_ship_design = { design = "NAME_Giantess_crisis_Constructor" }
+					add_ship_design = last_created_design
+					create_ship_design = { design = "NAME_Giantess_crisis_Starbase" }
+					add_ship_design = last_created_design
+				}
+			}
+			every_country = {
+				limit = {
+					OR = {
+						is_country_type = default
+						is_country_type = fallen_empire
+						is_country_type = awakened_fallen_empire
+					}
+					NOT = {
+						is_country_type = giantess_crisis
+					}
+				}
+				establish_communications_no_message = event_target:giantess_crisis
+				add_opinion_modifier = {
+					who = event_target:giantess_crisis
+					modifier = opinion_crazy_crisis
+				}
+				set_relation_flag = {
+					who = THIS
+					flag = enemy
+				}
+				event_target:giantess_crisis = {
+					add_opinion_modifier = {
+						who = PREV
+						modifier = opinion_slave_of_goddess
+					}
+				}
+				declare_war = {
+					target = event_target:giantess_crisis
+					attacker_war_goal = wg_end_threat_gts_crisis
+				}
+			}
+		}
+
+		random_rim_system = {
+			limit = { has_star_flag = giantess_invasion_target_1 }
+
+			if = {
+				limit = {
+					event_target:giantess_crisis = {
+						NOT = {
+							any_controlled_ship = { is_ship_class = shipclass_starbase }
+						}
+					}
+					any_fleet_in_system = { is_ship_class = shipclass_starbase }
+				}
+				random_fleet_in_system = {
+					limit = {
+						is_ship_class = shipclass_starbase
+					}
+					destroy_fleet = this
+				}
+			}
+			create_starbase = {
+				size = starbase_giantess_crisis
+				owner = event_target:giantess_crisis
+			}
+
+			random_system_planet = {
+				save_event_target_as = spawn_location
+				event_target:giantess_crisis = {
+
+					### FIRST SYSTEM
+					giantess_crisis_brood = yes
+					giantess_crisis_brood = yes
+					giantess_crisis_brood = yes
+
+					# Infestors
+					while = {
+						count = 3
+						create_fleet = {
+							name = "NAME_giantess_crisis_Infestor"
+							effect = {
+								set_owner = event_target:giantess_crisis
+								create_ship = {
+									name = random
+									design = "NAME_Giantess_crisis_Colonizer"
+									graphical_culture = root.owner
+								}
+								set_location = {
+									target = PREVPREV
+									distance = 10
+									angle = random
+								}
+							}
+						}
+					}
+
+					# Constructor
+					create_fleet = {
+						name = "NAME_giantess_crisis_Constructor"
+						effect = {
+							set_owner = event_target:giantess_crisis
+							create_ship = {
+								name = random
+								design = "NAME_Giantess_crisis_Constructor"
+								graphical_culture = root.owner
+							}
+							set_location = {
+								target = PREVPREV
+								distance = 10
+								angle = random
+							}
+						}
+					}
+
+					# Army Transports
+					giantess_crisis_armies = yes
+					giantess_crisis_armies = yes
+					giantess_crisis_armies = yes
+				}
+			}
+
+			### SECOND SYSTEM
+			random_system = {
+				limit = { has_star_flag = giantess_invasion_target_2 }
+				if = {
+					limit = {
+						any_fleet_in_system = {
+							is_ship_class = shipclass_starbase
+						}
+					}
+					random_fleet_in_system = {
+						limit = {
+							is_ship_class = shipclass_starbase
+						}
+						destroy_fleet = this
+					}
+				}
+				create_starbase = {
+					size = starbase_giantess_crisis
+					owner = event_target:giantess_crisis
+				}
+				random_system_planet = {
+					save_event_target_as = spawn_location
+					event_target:giantess_crisis = {
+
+						giantess_crisis_brood = yes
+						giantess_crisis_brood = yes
+						giantess_crisis_brood = yes
+
+						# Infestors
+						while = {
+							count = 3
+							create_fleet = {
+								name = "NAME_giantess_crisis_Infestor"
+								effect = {
+									set_owner = event_target:giantess_crisis
+									create_ship = {
+										name = random
+										design = "NAME_Giantess_crisis_Colonizer"
+										graphical_culture = root.owner
+									}
+									set_location = {
+										target = PREVPREV
+										distance = 10
+										angle = random
+									}
+								}
+							}
+						}
+
+						# Constructor
+						create_fleet = {
+							name = "NAME_giantess_crisis_Constructor"
+							effect = {
+								set_owner = event_target:giantess_crisis
+								create_ship = {
+									name = random
+									design = "NAME_Giantess_crisis_Constructor"
+									graphical_culture = root.owner
+								}
+								set_location = {
+									target = PREVPREV
+									distance = 10
+									angle = random
+								}
+							}
+						}
+
+						# Army Transports
+						giantess_crisis_armies = yes
+						giantess_crisis_armies = yes
+						giantess_crisis_armies = yes
+					}
+				}
+			}
+
+			### THIRD SYSTEM
+			random_system = {
+				limit = { has_star_flag = giantess_invasion_target_3 }
+				if = {
+					limit = {
+						any_fleet_in_system = {
+							is_ship_class = shipclass_starbase
+						}
+					}
+					random_fleet_in_system = {
+						limit = {
+							is_ship_class = shipclass_starbase
+						}
+						destroy_fleet = this
+					}
+				}
+				create_starbase = {
+					size = starbase_giantess_crisis
+					owner = event_target:giantess_crisis
+				}
+				random_system_planet = {
+					save_event_target_as = spawn_location
+					event_target:giantess_crisis = {
+
+						giantess_crisis_brood = yes
+						giantess_crisis_brood = yes
+						giantess_crisis_brood = yes
+
+						# Infestors
+						while = {
+							count = 3
+							create_fleet = {
+								name = "NAME_giantess_crisis_Infestor"
+								effect = {
+									set_owner = event_target:giantess_crisis
+									create_ship = {
+										name = random
+										design = "NAME_Giantess_crisis_Colonizer"
+										graphical_culture = owner
+									}
+									set_location = {
+										target = PREVPREV
+										distance = 10
+										angle = random
+									}
+								}
+							}
+						}
+
+						# Constructor
+						create_fleet = {
+							name = "NAME_giantess_crisis_Constructor"
+							effect = {
+								set_owner = event_target:giantess_crisis
+								create_ship = {
+									name = random
+									design = "NAME_Giantess_crisis_Constructor"
+									graphical_culture = owner
+								}
+								set_location = {
+									target = PREVPREV
+									distance = 10
+									angle = random
+								}
+							}
+						}
+
+						# Army Transports
+						create_fleet = {
+							name = "NAME_giantess_crisis_Armies"
+							effect = {
+								set_owner = event_target:giantess_crisis
+								while = {
+									count = 3
+									create_army_transport = {
+										ship_name = "NAME_giantess_crisis_Transport"
+										army_name = "NAME_giantess_crisis_Invaders"
+										army_type = "swarm_army"
+										species = event_target:giantess_crisis_species
+									}
+								}
+								set_location = {
+									target = PREVPREV
+									distance = 10
+									angle = random
+								}
+							}
+						}
+						giantess_crisis_armies = yes
+						giantess_crisis_armies = yes
+						giantess_crisis_armies = yes
+					}
+				}
+			}
+
+			### FOURTH SYSTEM
+			random_system = {
+				limit = { has_star_flag = giantess_invasion_target_4 }
+				if = {
+					limit = {
+						any_fleet_in_system = {
+							is_ship_class = shipclass_starbase
+						}
+					}
+					random_fleet_in_system = {
+						limit = {
+							is_ship_class = shipclass_starbase
+						}
+						destroy_fleet = this
+					}
+				}
+				create_starbase = {
+					size = starbase_giantess_crisis
+					owner = event_target:giantess_crisis
+				}
+				random_system_planet = {
+					save_event_target_as = spawn_location
+					event_target:giantess_crisis = {
+						giantess_crisis_brood = yes
+						giantess_crisis_brood = yes
+						giantess_crisis_brood = yes
+
+						# Infestors
+						while = {
+							count = 3
+							create_fleet = {
+								name = "NAME_giantess_crisis_Infestor"
+								effect = {
+									set_owner = event_target:giantess_crisis
+									create_ship = {
+										name = random
+										design = "NAME_Giantess_crisis_Colonizer"
+										graphical_culture = root.owner
+									}
+									set_location = {
+									target = PREVPREV
+									distance = 10
+									angle = random
+								}
+								}
+							}
+						}
+
+						# Constructor
+						create_fleet = {
+							name = "NAME_giantess_crisis_Constructor"
+							effect = {
+								set_owner = event_target:giantess_crisis
+								create_ship = {
+									name = random
+									design = "NAME_Giantess_crisis_Constructor"
+									graphical_culture = root.owner
+								}
+								set_location = {
+									target = PREVPREV
+									distance = 10
+									angle = random
+								}
+							}
+						}
+
+						# Army Transports
+						giantess_crisis_armies = yes
+						giantess_crisis_armies = yes
+						giantess_crisis_armies = yes
+					}
+				}
+			}
+		}
+	}
+}
+
+# Main Invasion Arrives
+country_event = {
+	id = gts_hstar_crisis.20
+	title = "gts_hstar_crisis.20.name"
+	desc = "gts_hstar_crisis.20.desc"
+	picture = GFX_evt_hstar_2
+	show_sound = event_alien_nature
+	location = event_target:giantess_invasion_system
+
+	is_triggered_only = yes
+
+	immediate = {
+		random_rim_system = {
+			limit = { has_star_flag = giantess_invasion_target_1 }
+			save_event_target_as = giantess_invasion_system
+		}
+	}
+
+	option = {
+		name = gts_hstar_crisis.20.a
+	}
+}
+
+# Swarm Diplomacy
+country_event = {
+	id = gts_hstar_crisis.30
+	title = "TRANSMISSION"
+
+	desc = {
+		text = gts_hstar_crisis.30.desc_01
+		trigger = {
+			NOT = { owner_species = { OR = { has_trait = trait_psionic has_trait = trait_hive_mind } } }
+		}
+	}
+	desc = {
+		text = gts_hstar_crisis.30.desc_02
+		trigger = {
+			NOT = { owner_species = { OR = { has_trait = trait_psionic has_trait = trait_hive_mind } } }
+		}
+	}
+	desc = {
+		text = gts_hstar_crisis.30.desc_03
+		trigger = {
+			NOT = { owner_species = { OR = { has_trait = trait_psionic has_trait = trait_hive_mind } } }
+		}
+	}
+	desc = {
+		text = gts_hstar_crisis.30.desc_04
+		trigger = {
+			owner_species = { has_trait = trait_psionic }
+		}
+	}
+	desc = {
+		text = gts_hstar_crisis.30.desc_05
+		trigger = {
+			owner_species = { has_trait = trait_psionic }
+		}
+	}
+	desc = {
+		text = gts_hstar_crisis.30.desc_06
+		trigger = {
+			owner_species = { has_trait = trait_psionic }
+		}
+	}
+	desc = {
+		text = gts_hstar_crisis.30.desc_07
+		trigger = {
+			owner_species = { has_trait = trait_hive_mind }
+		}
+	}
+	desc = {
+		text = gts_hstar_crisis.30.desc_08
+		trigger = {
+			owner_species = { has_trait = trait_hive_mind }
+		}
+	}
+	desc = {
+		text = gts_hstar_crisis.30.desc_09
+		trigger = {
+			owner_species = { has_trait = trait_hive_mind }
+		}
+	}
+
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = human_male_01
+		room = "ethic_spaceship_room"
+	}
+
+	is_triggered_only = yes
+
+	trigger = {
+		FROM = {
+			is_country_type = giantess_crisis
+		}
+	}
+
+	option = {
+		name = gts_hstar_crisis.30.a
+		trigger = {
+			NOT = { owner_species = { OR = { has_trait = trait_psionic has_trait = trait_hive_mind } } }
+		}
+		response_text = gts_hstar_crisis.30.a.response
+	}
+	option = {
+		name = gts_hstar_crisis.30.b
+		trigger = {
+			OR = {
+				has_ethic = "ethic_pacifist"
+				has_ethic = "ethic_fanatic_pacifist"
+			}
+			NOT = { owner_species = { OR = { has_trait = trait_psionic has_trait = trait_hive_mind } } }
+		}
+		response_text = gts_hstar_crisis.30.b.response
+	}
+	option = {
+		name = gts_hstar_crisis.30.c
+		trigger = {
+			OR = {
+				has_ethic = "ethic_militarist"
+				has_ethic = "ethic_fanatic_militarist"
+			}
+			NOT = { owner_species = { OR = { has_trait = trait_psionic has_trait = trait_hive_mind } } }
+		}
+		response_text = gts_hstar_crisis.30.c.response
+	}
+	option = {
+		name = gts_hstar_crisis.30.d
+		trigger = {
+			OR = {
+				has_ethic = "ethic_xenophobe"
+				has_ethic = "ethic_fanatic_xenophobe"
+			}
+			NOT = { owner_species = { OR = { has_trait = trait_psionic has_trait = trait_hive_mind } } }
+		}
+		response_text = gts_hstar_crisis.30.d.response
+	}
+	option = {
+		name = gts_hstar_crisis.30.e
+		trigger = {
+			OR = {
+				has_ethic = "ethic_xenophile"
+				has_ethic = "ethic_fanatic_xenophile"
+			}
+			NOT = { owner_species = { OR = { has_trait = trait_psionic has_trait = trait_hive_mind } } }
+		}
+		response_text = gts_hstar_crisis.30.e.response
+	}
+	option = {
+		name = gts_hstar_crisis.30.f
+		trigger = {
+			OR = {
+				has_ethic = "ethic_spiritualist"
+				has_ethic = "ethic_fanatic_spiritualist"
+			}
+			NOT = { owner_species = { OR = { has_trait = trait_psionic has_trait = trait_hive_mind } } }
+		}
+		response_text = gts_hstar_crisis.30.f.response
+	}
+	option = {
+		name = gts_hstar_crisis.30.g
+		trigger = {
+			owner_species = { has_trait = trait_psionic }
+		}
+		response_text = gts_hstar_crisis.30.g.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_hstar_crisis.30.h
+		trigger = {
+			owner_species = { has_trait = trait_psionic }
+		}
+		response_text = gts_hstar_crisis.30.h.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_hstar_crisis.30.i
+		trigger = {
+			owner_species = { has_trait = trait_psionic }
+		}
+		response_text = gts_hstar_crisis.30.i.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_hstar_crisis.30.j
+		trigger = {
+			owner_species = { has_trait = trait_psionic }
+		}
+		response_text = gts_hstar_crisis.30.j.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_hstar_crisis.30.a
+		trigger = {
+			owner_species = { has_trait = trait_psionic }
+		}
+		response_text = gts_hstar_crisis.30.k.response
+	}
+	option = {
+		name = gts_hstar_crisis.30.a.2
+		trigger = {
+			owner_species = { has_trait = trait_hive_mind }
+		}
+		response_text = gts_hstar_crisis.30.k.response
+	}
+	option = {
+		name = gts_hstar_crisis.30.g.2
+		trigger = {
+			owner_species = { has_trait = trait_hive_mind }
+		}
+		response_text = gts_hstar_crisis.30.g.2.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_hstar_crisis.30.h
+		trigger = {
+			owner_species = { has_trait = trait_hive_mind }
+		}
+		response_text = gts_hstar_crisis.30.h.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_hstar_crisis.30.i
+		trigger = {
+			owner_species = { has_trait = trait_hive_mind }
+		}
+		response_text = gts_hstar_crisis.30.i.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_hstar_crisis.30.j.b
+		trigger = {
+			owner_species = { has_trait = trait_hive_mind }
+		}
+		response_text = gts_hstar_crisis.30.j.response
+		is_dialog_only = yes
+	}
+}
+
+
+# Sentinels
+country_event = {
+	id = gts_hstar_crisis.50
+	hide_window = yes
+
+	trigger = {
+		has_global_flag = giantess_crisis_main_invasion
+		NOT = { has_global_flag = sentinels_founded }
+		is_country_type = giantess_crisis
+		endgame_crisis_large_size_trigger = yes
+	}
+
+	mean_time_to_happen = {
+		months = 12
+	}
+
+	immediate = {
+		set_crisis_sound = swarm_crisis_ambient_stage_3
+		set_crisis_stage_3 = yes
+		set_global_flag = sentinels_founded
+		save_event_target_as = swarm
+
+		random_system = {
+			limit = {
+				exists = space_owner
+				space_owner = {
+					NOT = { is_same_value = event_target:swarm }
+				}
+			}
+			spawn_system = {
+				min_distance >= 20
+				max_distance <= 50
+				initializer = "sentinel_system"
+			}
+		}
+		if = {
+			limit = {
+				any_country = {
+					OR = {
+						is_country_type = fallen_empire
+						is_country_type = awakened_fallen_empire
+					}
+				}
+			}
+			set_global_flag = sentinel_fe_support
+			random_country = {
+				limit = {
+					OR = {
+						is_country_type = fallen_empire
+						is_country_type = awakened_fallen_empire
+					}
+				}
+				save_global_event_target_as = sentinel_fallen_empire
+			}
+			every_country = {
+				limit = { is_country_type = default }
+				establish_communications = event_target:sentinel_fallen_empire
+			}
+		}
+		observer_event = { id = observer.31 }
+		every_country = {
+			limit = { is_country_type = default }
+			country_event = { id = gts_hstar_crisis.51 days = 1 }
+		}
+		event_target:sentinel_alpha = {
+			fleet_event = { id = gts_hstar_crisis.60 }
+			fleet_event = { id = gts_hstar_crisis.60 days = 10 }
+		}
+	}
+}
+
+# The Sentinel Order is Founded
+country_event = {
+	id = gts_hstar_crisis.51
+	title = "gts_hstar_crisis.51.2.name"
+	desc = "gts_hstar_crisis.51.desc"
+	picture = GFX_evt_hstar_3
+	show_sound = event_radio_chatter
+	location = event_target:sentinel_system
+
+	is_triggered_only = yes
+
+	option = {
+		name = gts_hstar_crisis.51.a
+		hidden_effect = {
+			country_event = { id = gts_hstar_crisis.52 }
+		}
+	}
+}
+
+# Order Communicates
+country_event = {
+	id = gts_hstar_crisis.52
+	title = "sentinel_title"
+	desc = "gts_hstar_crisis.52.desc"
+
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:crisis_sentinels
+		room = "ethic_spaceship_room"
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = gts_hstar_crisis.52.a
+		trigger = {
+			exists = event_target:sentinel_fallen_empire
+		}
+		response_text = gts_hstar_crisis.52.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_hstar_crisis.52.a
+		trigger = {
+			NOT = { exists = event_target:sentinel_fallen_empire }
+		}
+		response_text = gts_hstar_crisis.52.2.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_hstar_crisis.52.b
+		trigger = {
+			exists = event_target:sentinel_fallen_empire
+		}
+		response_text = gts_hstar_crisis.52.new.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_hstar_crisis.52.b
+		trigger = {
+			NOT = { exists = event_target:sentinel_fallen_empire }
+		}
+		response_text = gts_hstar_crisis.52.2.new.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_hstar_crisis.52.c
+		response_text = gts_hstar_crisis.52.c.response
+	}
+}
+
+# Sentinel Diplomacy
+country_event = {
+	id = gts_hstar_crisis.55
+	title = "sentinel_title"
+
+	desc = {
+		text = gts_hstar_crisis.55.desc_01
+	}
+	desc = {
+		text = gts_hstar_crisis.55.desc_02
+	}
+	desc = {
+		text = gts_hstar_crisis.55.desc_03
+	}
+	desc = {
+		text = gts_hstar_crisis.55.desc_04
+	}
+
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = FROM
+		room = "ethic_spaceship_room"
+	}
+
+	is_triggered_only = yes
+
+	trigger = {
+		FROM = {
+			is_country_type = sentinels
+		}
+	}
+
+	option = {
+		name = gts_hstar_crisis.55.a
+		response_text = gts_hstar_crisis.55.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_hstar_crisis.55.d
+		response_text = gts_hstar_crisis.55.d.response
+	}
+}
+
+# Sentinel Reinforcements (HIDDEN)
+fleet_event = {
+	id = gts_hstar_crisis.60
+	hide_window = yes
+
+	trigger = {
+		has_global_flag = ongoing_giantess_crisis_invasion
+		has_global_flag = sentinels_founded
+		owner = { is_country_type = sentinels }
+		owner = { num_ships < 200 }
+		is_same_value = event_target:sentinel_alpha
+		any_country = {
+			is_country_type = default
+		}
+	}
+
+	mean_time_to_happen = {
+		months = 100
+	}
+
+	immediate = {
+		random_country = {
+			limit = { is_country_type = default }
+			owner_species = { save_event_target_as = random_species }
+		}
+		owner = {
+			create_leader = {
+				class = commander
+				species = event_target:random_species
+				name = random
+				skill = 3
+				traits = {
+					0 = leader_trait_sentinel
+				}
+			}
+			create_fleet = {
+				name = "NAME_Sentinel_Battle_Fleet"
+				effect = {
+					set_owner = root.owner
+					create_ship = {
+						name = random
+						design = "NAME_Spearhead"
+						graphical_culture = "mammalian_01"
+					}
+					assign_leader = last_created_leader
+					while = {
+						count = 2
+						create_ship = {
+							name = random
+							design = "NAME_Spearhead"
+							graphical_culture = "reptilian_01"
+						}
+					}
+					while = {
+						count = 4
+						create_ship = {
+							name = random
+							design = "NAME_Deaths_Head"
+							graphical_culture = "mammalian_01"
+						}
+					}
+					while = {
+						count = 2
+						create_ship = {
+							name = random
+							design = NAME_Beta
+							graphical_culture = "fallen_empire_01"
+						}
+					}
+					while = {
+						count = 6
+						create_ship = {
+							name = random
+							design = "NAME_Bug_Crusher"
+							graphical_culture = "avian_01"
+						}
+					}
+					while = {
+						count = 6
+						create_ship = {
+							name = random
+							design = NAME_Gamma
+							graphical_culture = "fallen_empire_01"
+						}
+					}
+					while = {
+						count = 12
+						create_ship = {
+							name = random
+							design = "NAME_Blade"
+							graphical_culture = "reptilian_01"
+						}
+					}
+					set_location = {
+						target = root
+						distance = 20
+						angle = random
+					}
+					set_aggro_range = 500
+					set_fleet_stance = aggressive
+					set_aggro_range_measure_from = self
+				}
+			}
+		}
+	}
+}
+
+# Swarm Kill Count
+country_event = {
+	id = gts_hstar_crisis.70
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		exists = from
+		has_global_flag = sentinels_founded
+		is_country_type = default
+		FROM = { is_country_type = giantess_crisis }
+	}
+
+	immediate = {
+		change_variable = {
+			which = "swarm_fleet_kills"
+			value = 1
+		}
+	}
+}
+
+# Ship Donation
+country_event = {
+	id = gts_hstar_crisis.71
+	title = "sentinel_title"
+	desc = "gts_hstar_crisis.71.desc"
+
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:crisis_sentinels
+		room = "ethic_spaceship_room"
+	}
+
+	trigger = {
+		is_country_type = default
+		has_global_flag = sentinels_founded
+		NOT = { has_country_flag = sentinel_donation }
+		check_variable = {
+			which = "swarm_fleet_kills"
+			value > 6
+		}
+		any_country = {
+			is_country_type = sentinels
+			count_controlled_ship = {
+				count > 30
+			}
+			ROOT = {
+				NOT = { is_at_war_with = PREV }
+			}
+		}
+	}
+
+	mean_time_to_happen = {
+		months = 100
+	}
+
+	immediate = {
+		set_country_flag = sentinel_donation
+	}
+
+	option = {
+		name = gts_hstar_crisis.71.a
+		response_text = gts_hstar_crisis.71.a.response
+		custom_tooltip = sentinel_fleet_gift
+		hidden_effect = {
+			capital_scope = {
+
+				create_fleet = {
+					name = "NAME_Sentinel_Auxiliary_Fleet"
+					effect = {
+						set_owner = event_target:crisis_sentinels
+						while = {
+							count = 1
+							create_ship = {
+								name = random
+								design = "NAME_Spearhead"
+								graphical_culture = "reptilian_01"
+							}
+						}
+						while = {
+							count = 1
+							create_ship = {
+								name = random
+								design = "NAME_Deaths_Head"
+								graphical_culture = "mammalian_01"
+							}
+						}
+						while = {
+							count = 1
+							create_ship = {
+								name = random
+								design = NAME_Beta
+								graphical_culture = "fallen_empire_01"
+							}
+						}
+						while = {
+							count = 4
+							create_ship = {
+								name = random
+								design = "NAME_Bug_Crusher"
+								graphical_culture = "avian_01"
+							}
+						}
+						while = {
+							count = 4
+							create_ship = {
+								name = random
+								design = NAME_Gamma
+								graphical_culture = "fallen_empire_01"
+							}
+						}
+						while = {
+							count = 8
+							create_ship = {
+								name = random
+								design = "NAME_Blade"
+								graphical_culture = "reptilian_01"
+							}
+						}
+						set_owner = root
+						set_location = {
+							target = PREV
+							distance = 45
+							angle = random
+						}
+					}
+					settings = {
+						can_upgrade = no
+						can_change_composition = no
+						uses_naval_capacity = no
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_hstar_crisis.71.b
+		response_text = gts_hstar_crisis.71.b.response
+	}
+}
+
+# Sentinels Disband (HIDDEN)
+country_event = {
+	id = gts_hstar_crisis.75
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		every_country = {
+			limit = { is_ai = no }
+			country_event = { id = gts_hstar_crisis.76 }
+		}
+		every_controlled_fleet = { delete_fleet = this }
+		destroy_country = yes
+	}
+}
+
+# Order Communicates
+country_event = {
+	id = gts_hstar_crisis.76
+	title = "sentinel_title"
+	desc = "gts_hstar_crisis.76.desc"
+
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:crisis_sentinels
+		room = "ethic_spaceship_room"
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = gts_hstar_crisis.76.c
+	}
+}
+
+# Anatomy Files (HIDDEN)
+country_event = {
+	id = gts_hstar_crisis.77
+	hide_window = yes
+
+	trigger = {
+		has_global_flag = ongoing_giantess_crisis_invasion
+		is_country_type = sentinels
+		NOT = { has_country_flag = sentinel_anatomy_files }
+		exists = event_target:sentinel_alpha
+		any_country = {
+			is_country_type = giantess_crisis
+			galaxy_percentage > 0.50
+		}
+	}
+
+	mean_time_to_happen = {
+		months = 12
+	}
+
+	immediate = {
+		set_country_flag = sentinel_anatomy_files
+		every_country = {
+			limit = {
+				OR = {
+					is_country_type = default
+					is_country_type = fallen_empire
+					is_country_type = awakened_fallen_empire
+				}
+			}
+			country_event = { id = gts_hstar_crisis.78 }
+		}
+	}
+}
+
+# Anatomy Files
+country_event = {
+	id = gts_hstar_crisis.78
+	title = "sentinel_title"
+	desc = "gts_hstar_crisis.78.desc"
+
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:crisis_sentinels
+		room = "ethic_spaceship_room"
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = gts_hstar_crisis.78.c
+		add_modifier = {
+			modifier = "sentinel_anti_goddess_data"
+			days = -1
+		}
+	}
+}
+
+# Fall of the Sentinels (HIDDEN)
+country_event = {
+	id = gts_hstar_crisis.80
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		is_country_type = sentinels
+		from = { is_country_type = giantess_crisis }
+		fromfrom = { is_ship_size = sentinel_station }
+	}
+
+	immediate = {
+		observer_event = { id = observer.32 }
+		every_country = {
+			limit = { is_ai = no }
+			country_event = { id = gts_hstar_crisis.81 }
+		}
+	}
+}
+
+# Fall of the Sentinels
+country_event = {
+	id = gts_hstar_crisis.81
+	title = "gts_hstar_crisis.81.name"
+	desc = "gts_hstar_crisis.81.desc"
+	picture = GFX_evt_hstar_8
+	show_sound = event_radio_chatter
+	location = event_target:sentinel_system
+
+	is_triggered_only = yes
+
+	option = {
+		name = ONSCREEN
+		hidden_effect = {
+			country_event = { id = gts_hstar_crisis.82 }
+		}
+	}
+}
+
+# Last Transmission
+country_event = {
+	id = gts_hstar_crisis.82
+	title = "sentinel_title"
+	desc = "gts_hstar_crisis.82.desc"
+
+	diplomatic = yes
+
+	picture_event_data = {
+		room = no_video_feed_room
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = gts_hstar_crisis.76.c
+	}
+}
+
+# Swarm Queen (HIDDEN)
+country_event = {
+	id = gts_hstar_crisis.100
+	hide_window = yes
+	fire_only_once = yes
+
+	trigger = {
+		has_global_flag = giantess_crisis_main_invasion
+		is_country_type = giantess_crisis
+		NOT = { has_country_flag = injured_gts_crisis_queen }
+		any_system = {
+			exists = owner
+			owner = { is_country_type = giantess_crisis }
+		}
+	}
+
+	mean_time_to_happen = {
+		months = 820
+	}
+
+	immediate = {
+		set_country_flag = injured_gts_crisis_queen
+		random_system = {
+			limit = {
+				any_system_planet = {
+					exists = owner
+					owner = { is_country_type = giantess_crisis }
+				}
+			}
+			save_event_target_as = gts_crisis_queen_system
+			create_ambient_object = {
+				type = "injured_queen_object"
+				location = solar_system
+			}
+			last_created_ambient_object = { save_event_target_as = injured_queen }
+			create_ambient_object = {
+				type = "large_debris_object"
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:injured_queen
+					distance = 5
+					angle = random
+				}
+				set_ambient_object_flag = dead_giantess_crisis
+			}
+			create_ambient_object = {
+				type = "dead_swarm_small_object"
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:injured_queen
+					distance = 15
+					angle = random
+				}
+				set_ambient_object_flag = dead_giantess_crisis
+			}
+			create_ambient_object = {
+				type = "dead_swarm_small_object"
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:injured_queen
+					distance = 20
+					angle = random
+				}
+				set_ambient_object_flag = dead_giantess_crisis
+			}
+			create_ambient_object = {
+				type = "dead_swarm_small_object"
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:injured_queen
+					distance = 25
+					angle = random
+				}
+				set_ambient_object_flag = dead_giantess_crisis
+			}
+			create_ambient_object = {
+				type = "dead_swarm_large_object"
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:injured_queen
+					distance = 10
+					angle = random
+				}
+				set_ambient_object_flag = dead_giantess_crisis
+			}
+			create_ambient_object = {
+				type = "dead_swarm_large_object"
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:injured_queen
+					distance = 15
+					angle = random
+				}
+				set_ambient_object_flag = dead_giantess_crisis
+			}
+			create_ambient_object = {
+				type = "dead_swarm_large_object"
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:injured_queen
+					distance = 20
+					angle = random
+				}
+				set_ambient_object_flag = dead_giantess_crisis
+			}
+		}
+		every_country = {
+			limit = { is_country_type = default }
+			country_event = { id = gts_hstar_crisis.101 }
+		}
+	}
+}
+
+# Swarm Queen
+country_event = {
+	id = gts_hstar_crisis.101
+	title = "gts_hstar_crisis.101.name"
+	desc = "gts_hstar_crisis.101.desc"
+	picture = GFX_evt_hstar_7
+	show_sound = event_radio_chatter
+	trackable = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = gts_hstar_crisis.101.a
+		event_target:injured_queen = {
+			enable_special_project = {
+				name = "CAPTURE_QUEEN"
+				location = this
+				owner = ROOT
+			}
+		}
+	}
+}
+
+# Queen Captured
+ship_event = {
+	id = gts_hstar_crisis.105
+	title = "gts_hstar_crisis.105.name"
+	desc = "gts_hstar_crisis.105.desc"
+	picture = GFX_evt_hstar_4
+	show_sound = event_alien_nature
+
+	is_triggered_only = yes
+
+	immediate = {
+		owner = {
+			save_event_target_as = ship_owner
+		}
+		solar_system = { save_event_target_as = gts_crisis_queen_system_1 }
+		random_country = {
+			limit = { is_country_type = giantess_crisis }
+			owner_species = { save_event_target_as = swarm_species }
+		}
+		every_country = {
+			limit = {
+				is_country_type = default
+				NOT = { is_same_value = event_target:ship_owner }
+				has_special_project = CAPTURE_QUEEN
+			}
+			abort_special_project = {
+				type = "CAPTURE_QUEEN"
+				location = fromfrom
+			}
+			country_event = { id = gts_hstar_crisis.107 }
+		}
+		destroy_ambient_object = fromfrom
+	}
+
+	option = {
+		name = gts_hstar_crisis.105.a
+		hidden_effect = {
+			owner = {
+				create_leader = {
+					class = commander
+					species = event_target:swarm_species
+					name = "NAME_Fleet_Consciousness"
+					skill = 8
+					event_leader = yes	# prevents this leader from leading factions and winning elections
+					immortal = yes	# can't be killed (not even in battle, unless fleet is destroyed)
+					effect = {
+						set_leader_flag = captured_queen
+					}
+				}
+			}
+			create_fleet = {
+				name = "NAME_Domesticated_giantess_crisis"
+				effect = {
+					set_fleet_flag = pet_queen
+					set_owner = event_target:ship_owner
+					create_ship = {
+						name = "NAME_Domesticated_Queen"
+						design = "NAME_Giantess_crisis_Queen"
+						graphical_culture = root.owner
+						upgradable = no
+					}
+					assign_leader = last_created_leader
+					set_location = {
+						target = root
+						distance = 10
+						angle = random
+					}
+				}
+				settings = {
+					can_upgrade = no
+					can_disband = no
+					can_change_composition = no
+					can_change_leader = no
+					uses_naval_capacity = no
+				}
+			}
+			solar_system = {
+				every_system_ambient_object = {
+					limit = { has_ambient_object_flag = dead_giantess_crisis }
+					destroy_ambient_object = this
+				}
+			}
+		}
+	}
+}
+
+# Queen Breeds
+fleet_event = {
+	id = gts_hstar_crisis.106
+	hide_window = yes
+
+	trigger = {
+		has_fleet_flag = pet_queen
+		num_ships < 30
+		is_ship_size = queen_giantess_crisis
+	}
+
+	mean_time_to_happen = {
+		months = 2
+	}
+
+	immediate = {
+		random_list = {
+			33 = {
+				create_ship = {
+					name = "NAME_Domesticated_Warrior"
+					design = "NAME_Giantess_crisis_Large"
+					graphical_culture = root.owner
+					upgradable = no
+				}
+			}
+			66 = {
+				create_ship = {
+					name = "NAME_Domesticated_Swarmling"
+					design = "NAME_giantess_crisis_Small"
+					graphical_culture = root.owner
+					upgradable = no
+				}
+			}
+		}
+	}
+}
+
+# Someone else got her
+country_event = {
+	id = gts_hstar_crisis.107
+	title = "gts_hstar_crisis.107.name"
+	desc = "gts_hstar_crisis.107.desc"
+	picture = GFX_evt_hstar_4
+	show_sound = event_radio_chatter
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_country_flag = queen_snatched
+	}
+
+	option = {
+		name = gts_hstar_crisis.107.a
+	}
+}
+
+# Queen Dies
+country_event = {
+	id = gts_hstar_crisis.108
+	hide_window = yes
+
+	trigger = {
+		fromfrom = { has_fleet_flag = pet_queen }
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		random_owned_leader = {
+			limit = { has_leader_flag = captured_queen }
+			kill_leader = { show_notification = no }
+		}
+	}
+}
+
+# Feral giantess_crisis Can Spawn
+country_event = {
+	id = gts_hstar_crisis.119
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_variable = {
+			which = "feral_giantess_crisis_spawned"
+			value = 0
+		}
+		set_timed_global_flag = { flag = feral_giantess_crisis_can_spawn days = 5400 }
+	}
+}
+
+# Feral giantess_crisis (HIDDEN)
+event = {
+	id = gts_hstar_crisis.120
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_global_flag = feral_giantess_crisis_can_spawn
+		any_country = {
+			AND = {
+				is_country_type = global_event
+				check_variable = {
+					which = "feral_giantess_crisis_spawned"
+					value < 10
+				}
+			}
+		}
+		any_system = {
+			AND = {
+				has_owner = no
+				any_system_planet = { has_planet_flag = previously_infested }
+				NOT = { has_star_flag = feral_giantess_crisis_system }
+			}
+		}
+	}
+
+	immediate = {
+		random_list = {
+			10 = {
+				random_country = {
+					limit = { is_country_type = global_event }
+					change_variable = {
+						which = "feral_giantess_crisis_spawned"
+						value = 1
+					}
+				}
+				if = {
+					limit = {
+						NOT = {
+							any_country = { is_country_type = feral_giantess_crisis }
+						}
+					}
+					random_system = {
+						limit = {
+							has_owner = no
+							any_system_planet = { has_planet_flag = previously_infested }
+							NOT = { has_star_flag = feral_giantess_crisis_system }
+						}
+						set_star_flag = feral_giantess_crisis_system
+						save_event_target_as = feral_giantess_crisis_system
+						create_species = {
+							name = "NAME_giantess_crisis"
+							class = SWARM
+							namelist = giantess_crisis
+							portrait = random
+							traits = random
+							immortal = yes
+
+							effect = { save_event_target_as = feral_giantess_crisis_species }
+						}
+						create_country = {
+							name = "NAME_feral_giantess_crisis"
+							type = "feral_giantess_crisis"
+							species = event_target:feral_giantess_crisis_species
+							name_list = "giantess_crisis"
+							flag = {
+								icon= {
+									category = "special"
+									file = "the_swarm.dds"
+								}
+								background= {
+									category = "backgrounds"
+									file = "new_dawn.dds"
+								}
+								colors={
+									"red_orange"
+									"grey"
+									"null"
+									"null"
+								}
+							}
+							effect = {
+								save_global_event_target_as = feral_giantess_crisis
+								create_ship_design = { design = "NAME_Giantess_crisis_Starbase" }
+								add_ship_design = last_created_design
+							}
+						}
+						create_starbase = {
+							size = starbase_giantess_crisis
+							owner = event_target:feral_giantess_crisis
+						}
+						random_system_planet = {
+							feral_giantess_crisis_garrison_1 = yes
+						}
+						random_system_planet = {
+							feral_giantess_crisis_garrison_1 = yes
+						}
+						random_system_planet = {
+							feral_giantess_crisis_garrison_2 = yes
+						}
+						every_country = {
+							establish_communications_no_message = event_target:feral_giantess_crisis
+						}
+						if = {
+							limit = {
+								NOT = { has_global_flag = feral_giantess_crisis_appeared }
+							}
+							every_country = {
+								limit = { is_ai = no }
+								country_event = { id = gts_hstar_crisis.121 }
+							}
+						}
+						set_global_flag = feral_giantess_crisis_appeared
+					}
+					break = yes
+				}
+				if = {
+					limit = {
+						any_country = { is_country_type = feral_giantess_crisis }
+					}
+					random_system = {
+						limit = {
+							has_owner = no
+							any_system_planet = { has_planet_flag = previously_infested }
+							NOT = { has_star_flag = feral_giantess_crisis_system }
+						}
+						set_star_flag = feral_giantess_crisis_system
+						save_event_target_as = feral_giantess_crisis_system
+						create_starbase = {
+							size = starbase_giantess_crisis
+							owner = event_target:feral_giantess_crisis
+						}
+						random_system_planet = {
+							feral_giantess_crisis_garrison_1 = yes
+						}
+						random_system_planet = {
+							feral_giantess_crisis_garrison_2 = yes
+						}
+					}
+				}
+			}
+			90 = {}
+		}
+	}
+}
+
+# Feral giantess_crisis
+country_event = {
+	id = gts_hstar_crisis.121
+	title = "gts_hstar_crisis.121.name"
+	desc = "gts_hstar_crisis.121.desc"
+	picture = GFX_evt_hstar_7
+	show_sound = event_radio_chatter
+	location = event_target:feral_giantess_crisis_system
+
+	is_triggered_only = yes
+
+	option = {
+		name = gts_hstar_crisis.121.a
+	}
+}
+
+# Roaming Feral giantess_crisis
+event = {
+	id = gts_hstar_crisis.122
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		exists = event_target:feral_giantess_crisis
+		event_target:feral_giantess_crisis = {
+			NOT = {
+				any_controlled_fleet = { has_fleet_flag = roaming_giantess_crisis_fleet }
+			}
+		}
+	}
+
+	immediate = {
+		random_list = {
+			50 = {
+				event_target:feral_giantess_crisis = {
+					random_system_within_border = {
+						random_system_planet = {
+							feral_giantess_crisis_roaming_1 = yes
+						}
+					}
+				}
+			}
+			50 = {}
+		}
+	}
+}
+
+# Feral giantess_crisis Infighting On Action
+event = {
+	id = gts_hstar_crisis.123
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		any_country = {
+			is_country_type = feral_giantess_crisis
+			NOT = { has_global_flag = feral_giantess_crisis_infighting_ongoing }
+		}
+	}
+
+	immediate = {
+		random_list = {
+			10 = {
+				random_country = {
+					limit = { is_country_type = feral_giantess_crisis }
+					country_event = { id = gts_hstar_crisis.124 }
+				}
+			}
+			90 = {}
+		}
+	}
+}
+
+# Feral giantess_crisis Infighting
+country_event = {
+	id = gts_hstar_crisis.124
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = feral_giantess_crisis_infighting_ongoing
+		random_planet_within_border = {
+			create_fleet = {
+				name = "NAME_feral_giantess_crisis"
+				effect = {
+					set_owner = event_target:feral_giantess_crisis
+					while = {
+						count = 56
+						create_ship = {
+							name = random
+							design = "NAME_giantess_crisis_Small"
+							graphical_culture = root.owner
+						}
+					}
+					set_location = {
+						target = prev
+						distance = 80
+						angle = 0
+					}
+				}
+			}
+			last_created_fleet = {
+				set_fleet_flag = infighting_giantess_crisis
+				save_event_target_as = infighting_target_1
+			}
+			create_country = {
+				name = "NAME_feral_giantess_crisis"
+				type = "feral_giantess_crisis_infighting"
+				species = event_target:feral_giantess_crisis_species
+				name_list = "giantess_crisis"
+				flag = {
+					icon= {
+						category = "special"
+						file = "the_swarm.dds"
+					}
+					background= {
+						category = "backgrounds"
+						file = "new_dawn.dds"
+					}
+					colors={
+						"red_orange"
+						"grey"
+						"null"
+						"null"
+					}
+				}
+				effect = {
+					save_event_target_as = feral_giantess_crisis_infighting
+				}
+			}
+			create_fleet = {
+				name = "NAME_feral_giantess_crisis"
+				effect = {
+					set_owner = event_target:feral_giantess_crisis_infighting
+					while = {
+						count = 56
+						create_ship = {
+							name = random
+							design = "NAME_giantess_crisis_Small"
+							graphical_culture = root.owner
+						}
+					}
+					set_location = {
+						target = prev
+						distance = 80
+						angle = 180
+					}
+				}
+			}
+			last_created_fleet = {
+				save_event_target_as = infighting_target_2
+				set_fleet_flag = infighting_giantess_crisis
+				auto_follow_fleet = {
+					target = event_target:infighting_target_1
+					attack_fleet = yes
+				}
+			}
+			event_target:infighting_target_1 = {
+				auto_follow_fleet = {
+					target = event_target:infighting_target_2
+					attack_fleet = yes
+				}
+			}
+		}
+		establish_communications_no_message = event_target:feral_giantess_crisis_infighting
+		set_faction_hostility = {
+			target = event_target:feral_giantess_crisis_infighting
+			set_hostile = no
+			set_neutral = no
+			set_friendly = yes
+		}
+		event_target:feral_giantess_crisis_infighting = {
+			set_faction_hostility = {
+				target = root
+				set_hostile = no
+				set_neutral = no
+				set_friendly = yes
+			}
+		}
+		every_country = {
+			limit = { is_country_type = default }
+			establish_communications_no_message = event_target:feral_giantess_crisis_infighting
+		}
+	}
+}
+
+# giantess_crisis Infighting Over
+country_event = {
+	id = gts_hstar_crisis.125
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		is_country_type = feral_giantess_crisis
+		fromfrom = { has_fleet_flag = infighting_giantess_crisis }
+		fromfromfrom = { has_fleet_flag = infighting_giantess_crisis }
+	}
+
+	immediate = {
+		remove_global_flag = feral_giantess_crisis_infighting_ongoing
+		fromfromfrom = {
+			solar_system = {
+				random_system_planet = { save_event_target_as = return_point }
+			}
+		}
+		fromfromfrom = {
+			auto_move_to_planet = {
+				target = event_target:return_point
+				destroy_on_arrival = yes
+				clear_auto_move_on_arrival = yes
+			}
+		}
+	}
+}
+
+### HIDDEN SWARM FUNCTIONALITY
+
+# Infested to Barren after Orbital Bombardment
+planet_event = {
+	id = gts_hstar_crisis.200
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		planet_devastation >= 100
+		is_planet_class = pc_infested
+	}
+
+	immediate = {
+		set_planet_flag = previously_infested
+		every_owned_pop_group = {
+			kill_all_pop = yes
+		}
+		destroy_colony = yes
+		random_list = {
+			50 = { change_pc = pc_barren }
+			50 = { change_pc = pc_barren_cold }
+		}
+		reset_planet = yes
+		add_modifier = { modifier = "terraforming_candidate" days = -1 }
+		planet_event = { id = gts_hstar_crisis.216 }
+	}
+}
+
+# Purge Begins
+country_event = {
+	id = gts_hstar_crisis.201
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		is_country_type = giantess_crisis
+	}
+
+	immediate = {
+		FROMFROM = {
+			add_threat = { who = root amount = 2 }
+			set_controller = root
+			# ^ maxes out purge job weight
+		}
+	}
+}
+
+# Purge Complete
+planet_event = {
+	id = gts_hstar_crisis.202
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		pop_amount = 100 # Last Pop is still alive when this event is fired
+		exists = controller
+		controller = { is_country_type = giantess_crisis }
+	}
+
+	immediate = {
+		controller = { save_event_target_as = swarm }
+		if = {
+			limit = {
+				is_artificial = no
+			}
+			change_pc = pc_infested
+			set_owner = event_target:swarm
+			planet_event = { id = gts_hstar_crisis.215 }
+		}
+		else_if = {
+			# Habitable Ring Worlds can't be infested...
+			# they are destroyed instead
+			limit = {
+				is_ringworld = yes
+			}
+			every_owned_pop_group = {
+				kill_all_pop = yes
+			}
+			destroy_colony = yes
+			change_pc = pc_ringworld_habitable_damaged
+			reset_planet = yes
+		}
+		else_if = {
+			limit = { is_planet_class = pc_habitat }
+			remove_planet = yes
+		}
+
+		solar_system = {
+			if = { # Build starbase if no other colonies are left
+				limit = {
+					NOR = {
+						exists = starbase
+						any_system_planet = {
+							has_owner = yes
+							owner = {
+								NOT = { is_same_value = event_target:swarm }
+							}
+						}
+					}
+				}
+				create_starbase = {
+					size = starbase_giantess_crisis
+					owner = event_target:swarm
+				}
+				if = {
+					limit = {
+						NOT = {
+							any_system_ambient_object = { has_ambient_object_flag = swarm_system_effect }
+						}
+					}
+					star = {
+						create_ambient_object = {
+							type = "swarm_1"
+							location = this
+						}
+						last_created_ambient_object = {
+							set_ambient_object_flag = swarm_system_effect
+							set_location = {
+								target = prev
+								distance = 0
+								angle = random
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+# Planet Colonized
+planet_event = {
+	id = gts_hstar_crisis.203
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		owner = { is_country_type = giantess_crisis }
+	}
+
+	immediate = {
+		every_owned_pop_group = { kill_all_pop = yes }
+		if = {
+			limit = {
+				is_artificial = no
+			}
+			change_pc = pc_infested
+			reset_planet = yes
+			planet_event = { id = gts_hstar_crisis.215 }
+		}
+		else_if = {
+			# Habitable Ring Worlds can't be infested...
+			# they are destroyed instead
+			limit = {
+				is_ringworld = yes
+			}
+			change_pc = pc_ringworld_habitable_damaged
+			reset_planet = yes
+		}
+		else_if = {
+			limit = { is_planet_class = pc_habitat }
+			remove_planet = yes
+		}
+	}
+}
+
+# Spawn Infestors if less than 4 are available, on_yearly_pulse
+event = {
+	id = gts_hstar_crisis.204
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		any_country = {
+			is_country_type = giantess_crisis
+			count_controlled_ship = {
+				limit = { is_ship_size = colony_ship_giantess_crisis }
+				count < 4
+			}
+		}
+	}
+
+	immediate = {
+		random_country = {
+			limit = { is_country_type = giantess_crisis }
+			if = {
+				limit = {
+					NOT = {
+						exists = event_target:giantess_crisis
+					}
+				}
+				save_event_target_as = giantess_crisis
+			}
+			random_controlled_ship = {
+				limit = { exists = solar_system }
+				save_event_target_as = infestor_respawn_system
+			}
+			while = {
+				count = 5
+				create_fleet = {
+					name = "NAME_giantess_crisis_Infestor"
+					effect = {
+						set_owner = event_target:giantess_crisis
+						create_ship = {
+							name = random
+							design = "NAME_Giantess_crisis_Colonizer"
+							graphical_culture = root.owner
+						}
+						set_location = {
+							target = event_target:infestor_respawn_system
+							distance = 5
+							angle = random
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+# Spawn Constructors if less than 4 are available, on_yearly_pulse
+event = {
+	id = gts_hstar_crisis.205
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		any_country = {
+			is_country_type = giantess_crisis
+			num_ships > 10
+			count_controlled_ship = {
+				limit = { is_ship_size = construction_ship_giantess_crisis }
+				count < 4
+			}
+		}
+	}
+
+	immediate = {
+		random_country = {
+			limit = { is_country_type = giantess_crisis }
+			if = {
+				limit = {
+					NOT = {
+						exists = event_target:giantess_crisis
+					}
+				}
+				save_event_target_as = giantess_crisis
+			}
+			random_controlled_ship = {
+				save_event_target_as = constructor_respawn_system
+			}
+			while = {
+				count = 3
+				create_fleet = {
+					name = "NAME_giantess_crisis_Constructor"
+					effect = {
+						set_owner = event_target:giantess_crisis
+						create_ship = {
+							name = random
+							design = "NAME_Giantess_crisis_Constructor"
+							graphical_culture = root.owner
+						}
+						set_location = {
+							target = event_target:constructor_respawn_system
+							distance = 5
+							angle = random
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+# Build new fleet every 2 years
+event = {
+	id = gts_hstar_crisis.206
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				any_country = {
+					is_country_type = giantess_crisis
+					num_owned_planets > 0
+					num_ships < 2000
+					any_system_within_border = { exists = starbase }
+				}
+			}
+			random_country = {
+				limit = {
+					is_country_type = giantess_crisis
+				}
+				country_event = { id = gts_hstar_crisis.207 }
+			}
+		}
+	}
+}
+
+# Build new fleet
+country_event = {
+	id = gts_hstar_crisis.207
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		save_event_target_as = giantess_crisis
+		owner_species = { save_event_target_as = giantess_crisis_species }
+
+
+		random_system_within_border = {
+			limit = { exists = starbase }
+			starbase = { save_event_target_as = spawn_location }
+		}
+		giantess_crisis_brood = yes
+
+		random_system_within_border = {
+			limit = { exists = starbase }
+			starbase = { save_event_target_as = spawn_location }
+		}
+		giantess_crisis_brood = yes
+
+		if = {
+			limit = {
+				galaxy_percentage > 0.20
+			}
+			random_system_within_border = {
+				limit = { exists = starbase }
+				starbase = { save_event_target_as = spawn_location }
+			}
+			giantess_crisis_brood = yes
+		}
+
+		if = {
+			limit = {
+				galaxy_percentage > 0.40
+			}
+			random_system_within_border = {
+				limit = { exists = starbase }
+				starbase = { save_event_target_as = spawn_location }
+			}
+			giantess_crisis_brood = yes
+		}
+
+		if = {
+			limit = {
+				count_controlled_ship = {
+					limit = { is_ship_size = colony_ship_giantess_crisis }
+					count < 3
+				}
+			}
+
+			random_owned_planet = {
+				limit = {
+					has_orbital_bombardment = no
+				}
+				# Infestor
+				create_fleet = {
+					name = "NAME_giantess_crisis_Infestor"
+					effect = {
+						set_owner = event_target:giantess_crisis
+						create_ship = {
+							name = random
+							design = "NAME_Giantess_crisis_Colonizer"
+							graphical_culture = root.owner
+						}
+						set_location = {
+							target = prev
+							distance = 35
+							angle = random
+						}
+					}
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				count_controlled_ship = {
+					limit = { is_ship_size = construction_ship_giantess_crisis }
+					count < 5
+				}
+			}
+
+			random_owned_planet = {
+				limit = {
+					has_orbital_bombardment = no
+				}
+				# Constructor
+				create_fleet = {
+					name = "NAME_giantess_crisis_Constructor"
+					effect = {
+						set_owner = event_target:giantess_crisis
+						create_ship = {
+							name = random
+							design = "NAME_Giantess_crisis_Constructor"
+							graphical_culture = root.owner
+						}
+						set_location = {
+							target = prev
+							distance = 35
+							angle = random
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+# Destroy Swarm if no planets and only 5 or less ships remain
+# On yearly pulse
+event = {
+	id = gts_hstar_crisis.208
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		any_country = {
+			is_country_type = giantess_crisis
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				any_country = {
+					is_country_type = giantess_crisis
+					num_ships < 2
+					NOT = {
+						any_system = {
+							any_system_planet = {
+								exists = controller
+								controller = { is_country_type = giantess_crisis }
+							}
+						}
+					}
+					NOT = {
+						any_system = {
+							any_system_planet = {
+								exists = owner
+								owner = { is_country_type = giantess_crisis }
+							}
+						}
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					is_country_type = giantess_crisis
+				}
+				destroy_country = yes
+			}
+		}
+	}
+}
+
+# giantess_crisis Defeated (HIDDEN)
+country_event = {
+	id = gts_hstar_crisis.210
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		is_country_type = giantess_crisis
+		has_global_flag = giantess_crisis_main_invasion
+	}
+
+	immediate = {
+		stop_crisis_sound = yes
+		end_crisis = yes
+		from = { set_country_flag = with_great_power_achievement }
+		remove_global_flag = ongoing_giantess_crisis_invasion
+		set_global_flag = giantess_crisis_invasion_defeated
+		observer_event = { id = observer.33 }
+
+		every_country = {
+			limit = {
+				OR = {
+					is_country_type = default
+					is_country_type = fallen_empire
+					is_country_type = awakened_fallen_empire
+				}
+			}
+			country_event = { id = gts_hstar_crisis.211 }
+		}
+
+		random_country = {
+			limit = { is_country_type = global_event }
+			country_event = { id = gts_hstar_crisis.119 days = 360 }
+		}
+		if = {
+			limit = { exists = event_target:crisis_sentinels }
+			event_target:crisis_sentinels = {
+				country_event = { id = gts_hstar_crisis.75 days = 15 random = 10 }
+			}
+		}
+	}
+}
+
+# giantess_crisis Defeated
+country_event = {
+	id = gts_hstar_crisis.211
+	title = "gts_hstar_crisis.211.name"
+	desc = "gts_hstar_crisis.211.desc"
+	picture = GFX_evt_crisis_defeated
+	show_sound = event_celebration
+
+	is_triggered_only = yes
+
+	option = { # Spiritualist Response
+		name = gts_hstar_crisis.211.a
+		trigger = {
+			has_spiritualist_government = yes
+			NOR = {
+				has_ethic = "ethic_fanatic_xenophile"
+				has_ethic = "ethic_fanatic_xenophobe"
+			}
+		}
+		add_modifier = {
+			modifier = "giantess_crisis_defeated"
+			days = 3600
+		}
+		add_monthly_resource_mult = {
+			resource = unity
+			value = @tier5unityreward
+		}
+		end_event_chain = "giantess_crisis_scourge_chain"
+	}
+	option = { # Militarist Response
+		name = gts_hstar_crisis.211.b
+		trigger = {
+			has_militarist_government = yes
+			NOR = {
+				has_ethic = "ethic_fanatic_xenophile"
+				has_ethic = "ethic_fanatic_xenophobe"
+			}
+		}
+		add_modifier = {
+			modifier = "giantess_crisis_defeated"
+			days = 3600
+		}
+		add_monthly_resource_mult = {
+			resource = unity
+			value = @tier5unityreward
+		}
+		end_event_chain = "giantess_crisis_scourge_chain"
+	}
+	option = { # Materialist Response
+		name = gts_hstar_crisis.211.c
+		trigger = {
+			has_materialist_government = yes
+			NOR = {
+				has_ethic = "ethic_fanatic_xenophile"
+				has_ethic = "ethic_fanatic_xenophobe"
+			}
+		}
+		add_modifier = {
+			modifier = "giantess_crisis_defeated"
+			days = 3600
+		}
+		add_monthly_resource_mult = {
+			resource = unity
+			value = @tier5unityreward
+		}
+		end_event_chain = "giantess_crisis_scourge_chain"
+	}
+	option = { # Pacifist Response
+		name = gts_hstar_crisis.211.d
+		trigger = {
+			has_pacifist_government = yes
+			NOR = {
+				has_ethic = "ethic_fanatic_xenophile"
+				has_ethic = "ethic_fanatic_xenophobe"
+			}
+		}
+		add_modifier = {
+			modifier = "giantess_crisis_defeated"
+			days = 3600
+		}
+		add_monthly_resource_mult = {
+			resource = unity
+			value = @tier5unityreward
+		}
+		end_event_chain = "giantess_crisis_scourge_chain"
+	}
+	option = { # Corporate Response
+		name = gts_hstar_crisis.211.e
+		trigger = {
+			OR = {
+				has_government = gov_megacorporation
+				has_government = gov_trade_league
+				has_authority = auth_corporate
+			}
+			NOR = {
+				has_ethic = "ethic_fanatic_xenophile"
+				has_ethic = "ethic_fanatic_xenophobe"
+			}
+		}
+		add_modifier = {
+			modifier = "giantess_crisis_defeated"
+			days = 3600
+		}
+		add_monthly_resource_mult = {
+			resource = unity
+			value = @tier5unityreward
+		}
+		end_event_chain = "giantess_crisis_scourge_chain"
+	}
+	option = { # Default Response
+		name = gts_hstar_crisis.211.f
+		trigger = {
+			OR = {
+				has_generic_government = yes
+				has_government = gov_enlightened_monarchy
+				has_government = gov_elective_monarchy
+				has_government = gov_hive_mind
+				has_government = gov_parasitic_overmind
+				has_government = gov_successor_khanate
+				has_government = gov_diadochi
+				has_ethic = ethic_gestalt_consciousness
+				is_fallen_empire = yes
+			}
+			NOR = {
+				has_ethic = "ethic_fanatic_xenophile"
+				has_ethic = "ethic_fanatic_xenophobe"
+			}
+		}
+		add_modifier = {
+			modifier = "giantess_crisis_defeated"
+			days = 3600
+		}
+		add_monthly_resource_mult = {
+			resource = unity
+			value = @tier5unityreward
+		}
+		end_event_chain = "giantess_crisis_scourge_chain"
+	}
+	option = { # Xenophobe Response
+		name = gts_hstar_crisis.211.g
+		trigger = {
+			has_ethic = "ethic_fanatic_xenophobe"
+		}
+		add_modifier = {
+			modifier = "giantess_crisis_defeated"
+			days = 3600
+		}
+		add_monthly_resource_mult = {
+			resource = unity
+			value = @tier5unityreward
+		}
+		end_event_chain = "giantess_crisis_scourge_chain"
+	}
+	option = { # Xenophile Response
+		name = gts_hstar_crisis.211.h
+		trigger = {
+			has_ethic = "ethic_fanatic_xenophile"
+		}
+		add_modifier = {
+			modifier = "giantess_crisis_defeated"
+			days = 3600
+		}
+		add_monthly_resource_mult = {
+			resource = unity
+			value = @tier5unityreward
+		}
+		end_event_chain = "giantess_crisis_scourge_chain"
+	}
+	after = {
+		if = {
+			limit = {
+				has_origin = origin_fear_of_the_dark
+			}
+			country_event = { id = origin.6136 }
+		}
+	}
+}
+
+# World Infested (HIDDEN)
+planet_event = {
+	id = gts_hstar_crisis.215
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = { exists = orbital_defence }
+			destroy_fleet = orbital_defence
+			set_planet_flag = ruined_orbital_ring_planet
+			solar_system = {
+				spawn_megastructure = {
+					type = orbital_ring_ruined
+					planet = prev
+				}
+			}
+		}
+		every_country = {
+			limit = { has_event_chain = "giantess_crisis_scourge_chain" }
+			add_event_chain_counter = {
+				event_chain = "giantess_crisis_scourge_chain"
+				counter = "giantess_crisis_infested_worlds"
+				amount = 1
+			}
+		}
+	}
+}
+
+# Infested World Cleansed (HIDDEN)
+planet_event = {
+	id = gts_hstar_crisis.216
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		every_country = {
+			limit = { has_event_chain = "giantess_crisis_scourge_chain" }
+			add_event_chain_counter = {
+				event_chain = "giantess_crisis_scourge_chain"
+				counter = "giantess_crisis_infested_worlds"
+				amount = -1
+			}
+			add_event_chain_counter = {
+				event_chain = "giantess_crisis_scourge_chain"
+				counter = "giantess_crisis_infested_worlds_cleansed"
+				amount = 1
+			}
+		}
+	}
+}
+
+# giantess_crisis Kill Count (HIDDEN)
+country_event = {
+	id = gts_hstar_crisis.217
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		is_country_type = giantess_crisis
+		exists = from
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				FROM = { has_event_chain = "giantess_crisis_scourge_chain" }
+			}
+			FROM = {
+				add_event_chain_counter = {
+					event_chain = "giantess_crisis_scourge_chain"
+					counter = "giantess_crisis_kills_us"
+					amount = 1
+				}
+			}
+		}
+		every_country = {
+			limit = {
+				has_event_chain = "giantess_crisis_scourge_chain"
+				NOT = { is_same_value = FROM }
+			}
+			add_event_chain_counter = {
+				event_chain = "giantess_crisis_scourge_chain"
+				counter = "giantess_crisis_kills_others"
+				amount = 1
+			}
+		}
+	}
+}
+
+# giantess_crisis Victims (HIDDEN)
+country_event = {
+	id = gts_hstar_crisis.218
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		is_country_type = giantess_crisis
+	}
+
+	immediate = {
+		every_country = {
+			limit = { has_event_chain = "giantess_crisis_scourge_chain" }
+			add_event_chain_counter = {
+				event_chain = "giantess_crisis_scourge_chain"
+				counter = "giantess_crisis_victims"
+				amount = 1
+			}
+		}
+	}
+}
+
+# Purge Ends
+country_event = {
+	id = gts_hstar_crisis.219
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { is_country_type = giantess_crisis }
+		fromfrom = {
+			controller = {
+				is_country_type = giantess_crisis
+			}
+		}
+	}
+
+	immediate = {
+		FROMFROM = {
+			set_controller = root
+			# should revert purge weights
+		}
+	}
+}
+
+#Star Eater destroying Infested world
+system_event = {
+	id = gts_hstar_crisis.220
+	hide_window = yes
+
+	is_triggered_only = yes
+	trigger = {
+		any_system_planet = {
+			is_planet_class = pc_infested
+		}
+	}
+
+	immediate = {
+		every_system_planet = {
+		limit = { is_planet_class = pc_infested }
+			every_country = {
+				limit = { has_event_chain = "giantess_crisis_scourge_chain" }
+				add_event_chain_counter = {
+					event_chain = "giantess_crisis_scourge_chain"
+					counter = "giantess_crisis_infested_worlds"
+					amount = -1
+				}
+				add_event_chain_counter = {
+					event_chain = "giantess_crisis_scourge_chain"
+					counter = "giantess_crisis_infested_worlds_cleansed"
+					amount = 1
+				}
+			}
+		}
+	}
+}
+
+# Events to manage gts_hstar_crisis sound loop
+country_event = {
+	id = gts_hstar_crisis.230
+	hide_window = yes
+
+	trigger = {
+		has_crisis_stage_3 = yes
+		is_country_type = giantess_crisis
+		galaxy_percentage < 0.10
+	}
+
+	mean_time_to_happen = {
+		months = 1
+	}
+
+	immediate = {
+		set_crisis_sound = swarm_crisis_ambient_stage_2
+		set_crisis_stage_2 = yes
+	}
+}
+
+country_event = {
+	id = gts_hstar_crisis.231
+	hide_window = yes
+
+	trigger = {
+		has_crisis_stage_2 = yes
+		is_country_type = giantess_crisis
+		galaxy_percentage > 0.20
+	}
+
+	mean_time_to_happen = {
+		months = 1
+	}
+
+	immediate = {
+		set_crisis_sound = swarm_crisis_ambient_stage_3
+		set_crisis_stage_3 = yes
+	}
+}
+
+country_event = {
+	id = gts_hstar_crisis.232
+	hide_window = yes
+	trigger = {
+		has_crisis_stage_4 = yes
+		is_country_type = giantess_crisis
+		galaxy_percentage < 0.30
+	}
+
+	mean_time_to_happen = {
+		months = 1
+	}
+
+	immediate = {
+		set_crisis_sound = swarm_crisis_ambient_stage_3
+		set_crisis_stage_3 = yes
+	}
+}
+
+country_event = {
+	id = gts_hstar_crisis.233
+	hide_window = yes
+
+	trigger = {
+		has_crisis_stage_3 = yes
+		is_country_type = giantess_crisis
+		galaxy_percentage > 0.40
+	}
+
+	mean_time_to_happen = {
+		months = 1
+	}
+
+	immediate = {
+		set_crisis_sound = swarm_crisis_ambient_stage_final
+		set_crisis_stage_4 = yes
+	}
+}
+
+country_event = {
+	id = gts_hstar_crisis.234
+	title = "gts_hstar_crisis.234.name"
+	desc = "gts_hstar_crisis.234.desc"
+	picture = GFX_evt_hstar_6
+	show_sound = event_alien_nature
+
+	trigger = {
+		is_country_type = default
+		has_crisis = no
+		owner_species = { has_trait = trait_psionic }
+		any_owned_leader = {
+			has_leader_flag = captured_queen
+		}
+		NOT = { has_country_flag = gts_hstar_crisis.234 }
+	}
+
+	mean_time_to_happen = {
+		years = 100
+	}
+
+	option = {
+		name = gts_hstar_crisis.234.a
+		set_country_flag = gts_hstar_crisis.234
+		add_monthly_resource_mult = {
+			resource = physics_research
+			value = 10
+			min = 1000
+			max = 5000
+		}
+	}
+}
+
+# giantess_crisis Army Reinforcements
+event = {
+	id = gts_hstar_crisis.240
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		any_country = {
+			has_global_flag = ongoing_giantess_crisis_invasion
+			is_country_type = giantess_crisis
+			num_armies < 140
+		}
+	}
+
+	immediate = {
+		random_country = {
+			limit = { is_country_type = giantess_crisis }
+			save_event_target_as = giantess_crisis
+			owner_species = { save_event_target_as = giantess_crisis_species }
+			random_owned_planet = {
+				limit = { is_planet_class = pc_infested }
+				create_fleet = {
+					name = "NAME_giantess_crisis_Armies"
+					effect = {
+						set_owner = event_target:giantess_crisis
+						while = {
+							count = 20
+							create_army_transport = {
+								ship_name = "NAME_giantess_crisis_Transport"
+								graphical_culture = root.owner
+								army_name = "NAME_giantess_crisis_Invaders"
+								army_type = "swarm_army"
+								species = event_target:giantess_crisis_species
+							}
+						}
+						set_location = {
+							target = PREV
+							distance = 10
+							angle = random
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+# Brood-Queen Relic Activation
+country_event = {
+	id = gts_hstar_crisis.250
+	title = "gts_hstar_crisis.250.name"
+	desc = "gts_hstar_crisis.250.desc"
+	picture = GFX_evt_hstar_6
+	show_sound = event_mystic_reveal
+
+	is_triggered_only = yes
+
+	option = {
+		name = GOOD
+		hidden_effect = {
+			capital_scope = {
+				create_fleet = {
+					name = "NAME_Loyal_Brood"
+					effect = {
+						set_owner = root
+						while = {
+							count = 36
+							create_ship = {
+								name = random
+								prefix = no
+								design = "NAME_Giantess_crisis_Large"
+								graphical_culture = root.owner
+							}
+						}
+						while = {
+							count = 10
+							create_ship = {
+								name = random
+								prefix = no
+								design = "NAME_Giantess_crisis_Carrier"
+								graphical_culture = root.owner
+							}
+						}
+						while = {
+							count = 54
+							create_ship = {
+								name = random
+								prefix = no
+								design = "NAME_giantess_crisis_Small"
+								graphical_culture = root.owner
+							}
+						}
+						set_location = {
+							target = prev
+							distance = 45
+							angle = random
+						}
+					}
+					settings = {
+						can_change_composition = yes
+						uses_naval_capacity = no
+						can_disband = yes
+					}
+				}
+			}
+			if = { #Backup if you get the relic through some odd way
+				limit = {
+					NOT = { is_variable_set = brood_usage }
+				}
+				set_variable = {
+					which = brood_usage
+					value = 1
+				}
+			}
+			else = {
+				change_variable = {
+					which = brood_usage
+					value = 1
+				}
+			}
+		}
+	}
+}
+
+# Brood-Queen Captured (HIDDEN)
+country_event = {
+	id = gts_hstar_crisis.251
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_global_flag = brood_queen_captured }
+		is_country_type = giantess_crisis
+		exists = from
+		fromfrom = { is_ship_size = queen_giantess_crisis }
+		from = { is_ai = no }
+	}
+
+	immediate = {
+		random_list = {
+			100 = {}
+			5 = {
+				set_global_flag = brood_queen_captured
+				fromfromfrom = {
+					solar_system = { save_event_target_as = queen_giantess_crisis_battle_system }
+				}
+				from = { country_event = { id = gts_hstar_crisis.252 } }
+			}
+		}
+	}
+}
+
+# Brood-Queen Captured
+country_event = {
+	id = gts_hstar_crisis.252
+	title = "gts_hstar_crisis.252.name"
+	desc = "gts_hstar_crisis.252.desc"
+	picture = GFX_evt_hstar_6
+	show_sound = event_mystic_reveal
+
+	is_triggered_only = yes
+
+	immediate = {
+	}
+
+	option = {
+		name = gts_hstar_crisis.252.a
+		country_event = {
+			id = gts_hstar_crisis.300   days = 360
+		}
+		add_modifier = {
+			modifier = giantesscrisisbuster
+		}
+	}
+}
+
+# Spawn System Effect
+ship_event = {
+	id = gts_hstar_crisis.260
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		solar_system = {
+			star = {
+				create_ambient_object = {
+					type = "swarm_1"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_ambient_object_flag = swarm_system_effect
+					set_location = {
+						target = prev
+						distance = 0
+						angle = random
+					}
+				}
+			}
+		}
+	}
+}
+
+# Remove System Effect
+country_event = {
+	id = gts_hstar_crisis.261
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		is_country_type = giantess_crisis
+		fromfrom = { is_ship_size = starbase_giantess_crisis }
+	}
+
+	immediate = {
+		fromfrom = {
+			solar_system = {
+				random_system_ambient_object = {
+					limit = { has_ambient_object_flag = swarm_system_effect }
+					destroy_ambient_object = this
+				}
+			}
+		}
+	}
+}
+
+# Swarm Destroyed Starbase
+starbase_event = {
+	id = gts_hstar_crisis.265
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		from.owner = { is_country_type = giantess_crisis }
+		NOT = {
+			solar_system = {
+				any_system_planet = { is_colony = yes } # For populated systems, they need to invade first
+			}
+		}
+	}
+
+	immediate = {
+		solar_system = { save_event_target_as = starbase_system }
+		from.owner = {
+			country_event = { id = gts_hstar_crisis.266 days = 5 } # Delay so that destroyed starbase is properly cleared out
+		}
+	}
+}
+
+# Swarm Builds New Starbase
+country_event = {
+	id = gts_hstar_crisis.266
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:starbase_system = {
+			solar_system = {
+				create_starbase = {
+					size = starbase_giantess_crisis
+					owner = root
+				}
+				star = {
+					create_ambient_object = {
+						type = "swarm_1"
+						location = this
+					}
+					last_created_ambient_object = {
+						set_ambient_object_flag = swarm_system_effect
+						set_location = {
+							target = prev
+							distance = 0
+							angle = random
+						}
+					}
+				}
+				every_system_planet = {
+					limit = { has_orbital_station = yes }
+					orbital_station = { dismantle = yes }
+				}
+			}
+		}
+	}
+}
+
+#两个巨娘出现
+country_event = {
+	id = gts_hstar_crisis.300
+	title = gts_hstar_crisis.300.name
+	desc = gts_hstar_crisis.300.desc
+	picture = GFX_evt_hstar_6
+	show_sound = event_mystic_reveal
+
+	is_triggered_only = yes
+
+	option = {
+		name = gts_hstar_crisis.300.a
+		country_event = {
+			id = gts_hstar_crisis.301   days = 5
+		}
+		hidden_effect = {
+			random_owned_planet = {
+				limit = {
+					is_colony = yes
+					NOT = {
+						is_capital = yes
+					}
+				}
+				save_event_target_as = hstar_goddess_land
+			}
+		}
+		
+	}
+}
+
+country_event = {
+	id = gts_hstar_crisis.301
+	title = gts_hstar_crisis.301.name
+	desc = gts_hstar_crisis.301.desc
+	picture = GFX_evt_heel_on_land
+	show_sound = event_mystic_reveal
+
+	is_triggered_only = yes
+
+	option = {
+		name = gts_hstar_crisis.301.a
+		country_event = {
+			id = gts_hstar_crisis.302   days = 1
+		}
+		hidden_effect = {
+			if = {
+				limit = { NOT = { exists = event_target:giantess_goddess_twin_country } }
+				create_country = {
+					name = "NAME_giantess_goddess_twin"
+					type = shroud_spirits
+					flag = {
+						icon = {
+							category = "special"
+							file = "the_shroud.dds"
+						}
+						background= {
+							category = "backgrounds"
+							file = "00_solid.dds"
+						}
+						colors = {
+							"dark_purple"
+							"black"
+							"null"
+							"null"
+						}
+					}
+				}
+				last_created_country = {
+					save_global_event_target_as = giantess_goddess_twin_country
+				}
+				create_fleet = {
+					name = "NAME_giantess_goddess_twin"
+					settings = {
+						spawn_debris = no
+						is_boss = yes
+						ai_ignore_strength = yes
+					}
+					effect = {
+						save_global_event_target_as = giantess_goddess_twin_fleet
+						set_owner = event_target:giantess_goddess_twin_country
+						create_ship = {
+							name = "NAME_giantess_goddess_twin"
+							design = "NAME_giantess_goddess_twin"
+						}
+						create_ship = {
+							name = "NAME_giantess_goddess_twin"
+							design = "NAME_giantess_goddess_twin"
+						}
+						set_location = event_target:hstar_goddess_land
+						set_fleet_stance = aggressive
+						set_fleet_flag = giantess_goddess_twin
+						set_aggro_range_measure_from = return_point
+						set_aggro_range = 3000
+					}
+				}
+			}
+			declare_war = {
+				target = event_target:giantess_goddess_twin_country
+				attacker_war_goal = wg_end_threat_gts_crisis
+			}
+		}
+	}
+}
+
+
+country_event = {
+	id = gts_hstar_crisis.302
+	title = INCOMING_TRANSMISSION
+	desc = {
+		trigger = {
+			event_target:hstar_goddess_land = {
+				has_building = building_planetary_shield_generator
+			}
+		}
+		text = gts_hstar_crisis.302.desc.a
+	}
+	desc = {
+		trigger = {
+			event_target:hstar_goddess_land = {
+				NOT = {
+					has_building = building_planetary_shield_generator
+				}
+			}
+		}
+		text = gts_hstar_crisis.302.desc.b
+	}
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = goddess
+		room = "extradimensional_formless_room"
+	}
+
+	option = {
+		name = gts_hstar_crisis.302.a
+		hidden_effect = {
+			country_event = {
+				id = gts_hstar_crisis.303
+			}
+			event_target:hstar_goddess_land = {
+				add_planet_devastation = 35
+				if = {
+					limit = { has_district = district_industrial }
+					remove_district = district_industrial
+
+				}
+				
+				if = {
+					limit = { has_building = building_fortress }
+					remove_building = building_fortress
+				}
+			
+				if = {
+					limit = { has_building = building_planetary_shield_generator }
+					remove_building = building_planetary_shield_generator
+				}
+				
+			}
+			set_country_flag = giantess_crisis_goddess_coming
+		}
+	}
+}
+
+country_event = {
+	id = gts_hstar_crisis.303
+	title = INCOMING_TRANSMISSION
+	diplomatic = yes
+	is_triggered_only = yes
+
+	desc = gts_hstar_crisis.303.desc
+	picture_event_data = {
+		portrait = goddess
+		room = "extradimensional_formless_room"
+	}
+
+	option = {
+		name = gts_hstar_crisis.303.a
+		response_text = gts_hstar.303.a.response
+		is_dialog_only = yes
+	}
+
+	option = {
+		name = gts_hstar_crisis.303.b
+		response_text = gts_hstar.303.b.response
+		is_dialog_only = yes
+	}
+
+	option = {
+		name = gts_hstar_crisis.303.c
+		response_text = gts_hstar.303.c.response
+		is_dialog_only = yes
+	}
+
+	option = {
+		name = gts_hstar_crisis.303.d
+		country_event = {
+			id = gts_hstar_crisis.304   days = 1
+		}
+	}
+}
+
+country_event = {
+	id = gts_hstar_crisis.304
+	title = INCOMING_TRANSMISSION
+	diplomatic = yes
+	is_triggered_only = yes
+
+	desc = gts_hstar_crisis.304.desc
+	picture_event_data = {
+		portrait = goddess
+		room = "extradimensional_formless_room"
+	}
+
+	option = {
+		name = gts_hstar_crisis.304.a
+		custom_tooltip = gts_hstar_crisis.304.a.tooltip
+	}
+}
+
+
+
+
+
+
+# This = owner of fleet 1 (combatant)
+# From = owner of fleet 2 (destroyed)
+# FromFrom = fleet 1
+# FromFromFrom = fleet 2
+
+
+country_event = {	#暴虐者起效
+	id = gts_hstar_crisis.309
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		exists = this
+		fromfromfrom = {
+			has_fleet_flag = hstar_baonvezhe
+		}
+	}
+	immediate = {
+		add_modifier = {
+			modifier = ship_baonvezhe
+		}
+	}
+}
+
+
+country_event = {	#拆掉两姐妹
+	id = gts_hstar_crisis.310
+	title = gts_hstar_crisis.310.name
+	desc = gts_hstar_crisis.310.desc
+	picture = GFX_evt_heel_on_land
+	show_sound = event_gts_masturbate
+	is_triggered_only = yes
+
+	trigger = {
+		exists = this
+		fromfromfrom = {
+			has_fleet_flag = giantess_goddess_twin
+		}
+	}
+
+	option = {
+		name = gts_hstar_crisis.310.a
+		country_event = {
+			id = gts_hstar_crisis.311 days = 1
+		}
+	}
+}
+
+country_event = {	
+	id = gts_hstar_crisis.311
+	title = gts_hstar_crisis.311.name
+	desc = gts_hstar_crisis.311.desc
+	picture = GFX_evt_crisis_defeated
+	show_sound = event_gts_masturbate
+	is_triggered_only = yes
+
+
+	option = {
+		name = gts_hstar_crisis.311.a
+		country_event = {
+			id = gts_hstar_crisis.312
+		}
+	}
+}
+
+country_event = {	
+	id = gts_hstar_crisis.312
+	title = gts_hstar_crisis.312.name
+	desc = gts_hstar_crisis.312.desc
+	picture = GFX_evt_crisis_defeated
+	show_sound = event_gts_masturbate
+	is_triggered_only = yes
+
+
+	option = {
+		name = gts_hstar_crisis.312.a
+		country_event = {
+			id = gts_hstar_crisis.313
+		}
+	}
+}
+
+country_event = {
+	id = gts_hstar_crisis.313
+	title = gts_hstar_crisis.313.name
+	desc = gts_hstar_crisis.313.desc
+	picture = GFX_evt_crisis_defeated
+	show_sound = event_gts_masturbate
+	is_triggered_only = yes
+
+
+	option = {
+		name = gts_hstar_crisis.313.a
+		add_modifier = { modifier = defeated_gts_crisis years = 50 }
+	}
+}

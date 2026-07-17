@@ -1,0 +1,472 @@
+@protectorate_tech_threshold = 0.4
+@protectorate_tech_switch = 0.5
+
+@specialist_base_acceptance_value = 50
+@specialist_subject_base_acceptance_value = 50
+@specialist_aligned_ethics_value = 50
+@specialist_unaligned_ethics_value = -50
+
+preset_ultracompany = {
+
+	# 保險條約國
+
+	specialist_type = specialist_ultracompany
+
+	term_data = {
+		resource_terms = {
+			{
+				key = resource_subsidies_basic
+				value = 0.25
+			}
+			{
+				key = resource_subsidies_advanced
+				value = 0.25
+			}
+			{
+				key = resource_subsidies_research
+				value = 0.25
+			}
+			{
+				key = resource_subsidies_strategic
+				value = 0.25
+			}
+			{
+				key = resource_subsidies_gts
+				value = 0.25
+			}
+			{
+				key = resource_subsidies_tiny
+				value = 0.25
+			}
+		}
+		discrete_terms = {
+			{
+				key = specialist_type
+				value = specialist_ultracompany  #特化类型
+			}
+			{
+				key = subject_integration
+				value = subject_can_not_be_integrated  #不能整合
+			}
+			{
+				key = subject_diplomacy
+				value = subject_can_do_diplomacy  #自由外交
+			}
+			{
+				key = subject_expand
+				value = subject_can_expand  #自由扩张
+			}
+			{
+				key = joins_overlord_wars
+				value = joins_overlord_wars_none
+			}
+			{
+				key = joins_subject_wars
+				value = joins_subject_wars_defensive
+			}
+			{
+				key = subject_holdings_limit
+				value = subject_holdings_limit_4 #自带4个分部
+			}
+			{
+				key = subject_sensors
+				value = subject_does_not_get_sensors #独立传感器
+			}
+			{
+				key = subject_loyalty
+				value = subject_loyalty_effects
+			}
+		}
+		forced_initial_loyalty = 0 #初始忠诚度
+	}
+
+	overlord_weight = {
+		base = 1000
+	}
+	subject_weight = {
+		base = 1000
+	}
+
+	potential = {
+		from = {
+			is_country_type = default
+			has_origin = origin_Ultra_company
+		}
+	}
+}
+
+preset_gts_livestock_subject = {
+
+	# 牲畜養殖場
+
+	specialist_type = specialist_gts_livestock
+
+	term_data = {
+		resource_terms = {
+			{
+				key = resource_subsidies_tiny
+				value = 0.30
+			}
+		}
+		discrete_terms = {
+			{
+				key = specialist_type
+				value = specialist_gts_livestock
+			}
+			{
+				key = subject_integration
+				value = subject_can_not_be_integrated
+			}
+			{
+				key = subject_diplomacy
+				value = subject_can_not_do_diplomacy
+			}
+			{
+				key = subject_expand
+				value = subject_can_expand
+			}
+			{
+				key = joins_overlord_wars
+				value = joins_overlord_wars_none
+			}
+			{
+				key = joins_subject_wars
+				value = joins_subject_wars_defensive
+			}
+			{
+				key = subject_holdings_limit
+				value = subject_holdings_limit_1
+			}
+
+			{
+				key = subject_loyalty
+				value = subject_loyalty_effects
+			}
+			{
+				key = protectorate
+				value = subject_is_not_protectorate
+			}
+
+			{
+				key	= gts_subject_leader
+				value = gts_subject_leader_gts
+			}
+			{
+				key	= gts_subject_pop_usage
+				value = gts_subject_pop_usage_3
+			}
+			{
+				key	= gts_subject_pop_take
+				value = gts_subject_pop_take_allow
+			}
+		}
+	}
+
+	overlord_weight = {
+		base =  @specialist_base_acceptance_value
+	}
+	subject_weight = {
+		base = 25
+	}
+
+	potential = {
+		from = {
+			gts_is_giantess = yes
+			is_xenophobe = yes
+			NOR = {
+				is_megacorp = yes
+				is_country_type = awakened_fallen_empire
+				has_civic = civic_inwards_perfection
+			}
+		}
+		root = {
+			gts_is_tiny = yes
+		}
+	}
+}
+
+preset_gts_slave_subject = {
+
+	# 小人奴隸窩
+
+	specialist_type = specialist_gts_slave
+
+	term_data = {
+		resource_terms = {
+			{
+				key = resource_subsidies_basic
+				value = 0.2
+			}
+			{
+				key = resource_subsidies_tiny
+				value = 0.2
+			}
+		}
+
+		discrete_terms = {
+			{
+				key = specialist_type
+				value = specialist_gts_slave
+			}
+			{
+				key = subject_integration
+				value = subject_can_not_be_integrated
+			}
+			{
+				key = subject_diplomacy
+				value = subject_can_do_diplomacy_but_not_vote
+			}
+			{
+				key = subject_expand
+				value = subject_can_expand
+			}
+			{
+				key = joins_overlord_wars
+				value = joins_overlord_wars_all
+			}
+			{
+				key = joins_subject_wars
+				value = joins_subject_wars_defensive
+			}
+			{
+				key = subject_holdings_limit
+				value = subject_holdings_limit_1
+			}
+
+			{
+				key = subject_loyalty
+				value = subject_loyalty_effects
+			}
+			{
+				key = protectorate
+				value = subject_is_not_protectorate
+			}
+
+			{
+				key	= gts_subject_leader
+				value = gts_subject_leader_gts
+			}
+			{
+				key	= gts_subject_pop_usage
+				value = gts_subject_pop_usage_2
+			}
+			{
+				key	= gts_subject_pop_take
+				value = gts_subject_pop_take_allow
+			}
+		}
+	}
+
+	overlord_weight = {
+		base =  @specialist_base_acceptance_value
+	}
+	subject_weight = {
+		base = 25
+	}
+
+	potential = {
+		from = {
+			gts_is_giantess = yes
+			OR = {
+				is_authoritarian = yes
+				is_xenophobe = yes
+			}
+			NOR = {
+				is_megacorp = yes
+				is_country_type = awakened_fallen_empire
+				has_civic = civic_inwards_perfection
+			}
+		}
+		root = {
+			gts_is_tiny = yes
+		}
+	}
+}
+
+preset_gts_reserve_subject = {
+
+	# 小人保留地
+
+	specialist_type = specialist_gts_reserve
+
+	term_data = {
+		resource_terms = {
+			{
+				key = resource_subsidies_basic
+				value = 0.1
+			}
+			{
+				key = resource_subsidies_advanced
+				value = 0.05
+			}
+			{
+				key = resource_subsidies_strategic
+				value = 0.05
+			}
+			{
+				key = resource_subsidies_tiny
+				value = 0.1
+			}
+		}
+
+		discrete_terms = {
+			{
+				key = specialist_type
+				value = specialist_gts_reserve
+			}
+			{
+				key = subject_integration
+				value = subject_can_not_be_integrated
+			}
+			{
+				key = subject_diplomacy
+				value = subject_can_do_diplomacy
+			}
+			{
+				key = subject_expand
+				value = subject_can_expand
+			}
+			{
+				key = joins_overlord_wars
+				value = joins_overlord_wars_none
+			}
+			{
+				key = joins_subject_wars
+				value = joins_subject_wars_defensive
+			}
+			{
+				key = subject_holdings_limit
+				value = subject_holdings_limit_1
+			}
+
+			{
+				key = subject_loyalty
+				value = subject_loyalty_effects
+			}
+			{
+				key = protectorate
+				value = subject_is_not_protectorate
+			}
+
+			{
+				key	= gts_subject_leader
+				value = gts_subject_leader_keep
+			}
+			{
+				key	= gts_subject_pop_usage
+				value = gts_subject_pop_usage_1
+			}
+			{
+				key	= gts_subject_pop_take
+				value = gts_subject_pop_take_forbid
+			}
+		}
+	}
+
+	overlord_weight = {
+		base =  @specialist_base_acceptance_value
+	}
+	subject_weight = {
+		base = 25
+	}
+
+	potential = {
+		from = {
+			gts_is_giantess = yes
+			NOR = {
+				is_megacorp = yes
+				is_xenophobe = yes
+				is_country_type = awakened_fallen_empire
+				has_civic = civic_inwards_perfection
+			}
+		}
+		root = {
+			gts_is_tiny = yes
+		}
+	}
+}
+
+preset_gts_pet_subject = {
+
+	# 小人寵物區
+
+	specialist_type = specialist_gts_pet
+
+	term_data = {
+		discrete_terms = {
+			{
+				key = specialist_type
+				value = specialist_gts_pet
+			}
+			{
+				key = subject_integration
+				value = subject_can_not_be_integrated
+			}
+			{
+				key = subject_diplomacy
+				value = subject_can_do_diplomacy
+			}
+			{
+				key = subject_expand
+				value = subject_can_expand
+			}
+			{
+				key = joins_overlord_wars
+				value = joins_overlord_wars_none
+			}
+			{
+				key = joins_subject_wars
+				value = joins_subject_wars_defensive
+			}
+			{
+				key = subject_holdings_limit
+				value = subject_holdings_limit_1
+			}
+
+			{
+				key = subject_loyalty
+				value = subject_loyalty_effects
+			}
+			{
+				key = protectorate
+				value = subject_is_not_protectorate
+			}
+
+			{
+				key	= gts_subject_leader
+				value = gts_subject_leader_keep
+			}
+			{
+				key	= gts_subject_pop_usage
+				value = gts_subject_pop_usage_1
+			}
+			{
+				key	= gts_subject_pop_take
+				value = gts_subject_pop_take_allow
+			}
+		}
+	}
+
+	overlord_weight = {
+		base =  @specialist_base_acceptance_value
+	}
+	subject_weight = {
+		base = 25
+	}
+
+	potential = {
+		from = {
+			gts_is_giantess = yes
+			NOR = {
+				is_megacorp = yes
+				is_xenophobe = yes
+				is_country_type = awakened_fallen_empire
+				has_civic = civic_inwards_perfection
+			}
+		}
+		root = {
+			gts_is_tiny = yes
+		}
+	}
+}
+

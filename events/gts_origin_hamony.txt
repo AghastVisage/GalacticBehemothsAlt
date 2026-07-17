@@ -1,0 +1,44 @@
+namespace = gts_hamony
+country_event = {
+	id = gts_hamony.0
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		has_origin = origin_Hexie
+	}
+	immediate = {
+		owner_main_species = {
+			set_species_flag = gts_main_species_flag
+		}
+		random_owned_species = {
+			limit = {
+				NOT = {
+					has_species_flag = gts_main_species_flag
+				}
+			}
+			set_citizenship_type = {
+				country = root
+				type = citizenship_full
+			}
+			save_event_target_as = gts_last_created_species
+		}
+		random_owned_planet = {
+			while = {
+				count = 16
+				limit = {
+					pop_amount > 1000
+				}
+				random_owned_pop_group = {
+					kill_all_pop = yes
+				}
+			}
+			while = {
+				count = 16
+				create_pop_group = {
+					species = event_target:gts_last_created_species
+					ethos = random
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,800 @@
+namespace = gts_kasa
+country_event = {
+	# 完成科技触发
+	id = gts_kasa.0
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		is_ai = no
+		OR = {
+			has_technology = tech_gts_giantess_human
+			has_technology = tech_gts_shrink_planet_hormone
+		}
+	}
+	immediate = {
+		country_event = {
+			id = gts_kasa.2
+		}
+	}
+}
+
+
+country_event = {
+	# 第一次与卡萨交流
+	id = gts_kasa.2
+	title = "TRANSMISSION"
+	desc = "gts_kasa.2.desc"
+	diplomatic = yes
+	picture_event_data = {
+		portrait = gts_portrait_kasa
+		room = shroud_room
+	}
+	is_triggered_only = yes
+	option = {
+		name = gts_kasa.2.a
+		response_text = gts_kasa.2.a.response
+		is_dialog_only = yes
+	}
+	# option = {
+	# 	name = gts_kasa.2.b
+	# 	response_text = gts_kasa.2.b.response
+	# 	is_dialog_only = yes
+	# }
+	option = {
+		name = gts_kasa.2.c
+		response_text = gts_kasa.2.c.response
+		hidden_effect = {
+			country_event = {
+				id = gts_kasa.3
+			}
+		}
+	}
+}
+
+country_event = {
+	# 生成卡萨派系
+	id = gts_kasa.3
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		create_country = {
+			name = "NAME_gts_kasa_faction"
+			type = gray
+			flag = {
+				icon = {
+					category = "special"
+					file = "gray_goo.dds"
+				}
+				background = {
+					category = "backgrounds"
+					file = "sinus.dds"
+				}
+				colors = {
+					"grey"
+					"dark_grey"
+					"null"
+					"null"
+				}
+			}
+		}
+		last_created_country = {
+			establish_communications_no_message = root
+			create_leader = {
+				class = official
+				species = random_non_machine
+				name = NAME_gts_kasa
+				event_leader = yes
+				skill = 10
+				set_age = 0
+				traits = {
+					trait = subclass_official_economist
+					trait = leader_trait_urbanist_3
+					trait = leader_trait_scrapper_2
+				}
+			}
+			last_created_leader = {
+				change_leader_portrait = gts_portrait_kasa
+			}
+			set_leader = last_created_leader
+			save_global_event_target_as = gts_kasa_country
+		}
+		save_global_event_target_as = has_kasa
+	}
+}
+
+country_event = {
+	id = gts_kasa.100
+	title = gts_kasa.100.name
+	desc = gts_kasa.100.desc
+
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	picture_event_data = {
+		portrait = event_target:gts_kasa_country.ruler #from.ruler
+		room = shroud_room
+	}
+
+	trigger = {
+		OR = {
+			from = {
+				is_country = event_target:gts_kasa_country
+			}
+			has_country_flag = kasa_trading
+		}
+		from = {
+		}
+		NOT = {
+			has_active_event = {
+				gts_kasa.100
+			}
+		}
+	}
+
+	immediate = {
+		set_country_flag = kasa_trading
+	}
+
+	option = { # Strategic Resource
+		name = gts_kasa.100.a
+		custom_tooltip = trader_tt_strategicresource
+		hidden_effect = {
+			country_event = { id = gts_kasa.101 }
+		}
+	}
+	option = { # Strategic Resource
+		name = gts_kasa.100.b
+		custom_tooltip = trader_tt_strategicresource
+		hidden_effect = {
+			country_event = { id = gts_kasa.102 }
+		}
+	}
+	option = { # Strategic Resource
+		name = gts_kasa.100.c
+		custom_tooltip = trader_tt_strategicresource
+		hidden_effect = {
+			country_event = { id = gts_kasa.103 }
+		}
+	}
+	option = { # Strategic Resource
+		name = gts_kasa.100.d
+		custom_tooltip = trader_tt_strategicresource
+		hidden_effect = {
+			country_event = { id = gts_kasa.104 }
+		}
+	}
+	option = { # Strategic Resource
+		name = gts_kasa.100.e
+		custom_tooltip = trader_tt_strategicresource
+		hidden_effect = {
+			country_event = { id = gts_kasa.105 }
+		}
+	}
+	option = { # Strategic Resource
+		name = gts_kasa.100.f
+		custom_tooltip = trader_tt_strategicresource
+		hidden_effect = {
+			country_event = { id = gts_kasa.106 }
+		}
+	}
+	option = { # End Resource Deal
+		name = gts_kasa.100.g
+		hidden_effect = {
+			remove_kasa_trades = yes
+			remove_country_flag = kasa_trading
+		}
+	}
+
+	option = {
+		name = gts_leave
+		hidden_effect = {
+			remove_country_flag = kasa_trading
+		}
+		default_hide_option = yes
+	}
+}
+country_event = {
+	id = gts_kasa.101
+	base = gts_kasa.100
+	desc_clear = yes
+	option_clear = yes
+
+	desc = gts_kasa.100.desc
+
+	option = {
+		name = gts_kasa.101.a
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 2000 }
+			NOT = {
+				has_modifier = gts_kasa_trade_micro_1
+			}
+		}
+		add_resource = { energy = -2000 }
+		add_modifier = {
+			modifier = gts_kasa_trade_micro_1
+			days = -1
+		}
+		hidden_effect = {
+			remove_country_flag = kasa_trading
+		}
+	}
+	option = {
+		name = gts_kasa.101.b
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 4000 }
+			NOT = {
+				has_modifier = gts_kasa_trade_micro_2
+			}
+		}
+		add_resource = { energy = -4000 }
+		add_modifier = {
+			modifier = gts_kasa_trade_micro_2
+			days = -1
+		}
+		hidden_effect = {
+			remove_country_flag = kasa_trading
+		}
+	}
+	option = {
+		name = gts_kasa.101.c
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 6000 }
+			NOT = {
+				has_modifier = gts_kasa_trade_micro_3
+			}
+		}
+		add_resource = { energy = -6000 }
+		add_modifier = {
+			modifier = gts_kasa_trade_micro_3
+			days = -1
+		}
+		hidden_effect = {
+			remove_country_flag = kasa_trading
+		}
+	}
+	option = {
+		name = gts_kasa.101.d
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 8000 }
+			NOT = {
+				has_modifier = gts_kasa_trade_micro_4
+			}
+		}
+		add_resource = { energy = -8000 }
+		add_modifier = {
+			modifier = gts_kasa_trade_micro_4
+			days = -1
+		}
+		hidden_effect = {
+			remove_country_flag = kasa_trading
+		}
+	}
+	option = {
+		name = gts_kasa.101.e
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 10000 }
+			NOT = {
+				has_modifier = gts_kasa_trade_micro_5
+			}
+		}
+		add_resource = { energy = -10000 }
+		add_modifier = {
+			modifier = gts_kasa_trade_micro_5
+			days = -1
+		}
+		hidden_effect = {
+			remove_country_flag = kasa_trading
+		}
+	}
+	option = {
+		name = gts_back
+		hidden_effect = {
+			country_event = { id = gts_kasa.100 }
+		}
+	}
+	option = {
+		name = gts_leave
+		hidden_effect = {
+			remove_country_flag = kasa_trading
+		}
+		default_hide_option = yes
+	}
+}
+country_event = {
+	id = gts_kasa.102
+	base = gts_kasa.100
+	desc_clear = yes
+	option_clear = yes
+
+	desc = gts_kasa.100.desc
+
+	option = {
+		name = gts_kasa.102.a
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 2000 }
+			NOT = {
+				has_modifier = gts_kasa_trade_micro_city_1
+			}
+		}
+		add_resource = { energy = -2000 }
+		add_modifier = {
+			modifier = gts_kasa_trade_micro_city_1
+			days = -1
+		}
+		hidden_effect = {
+			remove_country_flag = kasa_trading
+		}
+	}
+	option = {
+		name = gts_kasa.102.b
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 4000 }
+			NOT = {
+				has_modifier = gts_kasa_trade_micro_city_2
+			}
+		}
+		add_resource = { energy = -4000 }
+		add_modifier = {
+			modifier = gts_kasa_trade_micro_city_2
+			days = -1
+		}
+		hidden_effect = {
+			remove_country_flag = kasa_trading
+		}
+	}
+	option = {
+		name = gts_kasa.102.c
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 6000 }
+			NOT = {
+				has_modifier = gts_kasa_trade_micro_city_3
+			}
+		}
+		add_resource = { energy = -6000 }
+		add_modifier = {
+			modifier = gts_kasa_trade_micro_city_3
+			days = -1
+		}
+		hidden_effect = {
+			remove_country_flag = kasa_trading
+		}
+	}
+	option = {
+		name = gts_kasa.102.d
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 8000 }
+			NOT = {
+				has_modifier = gts_kasa_trade_micro_city_4
+			}
+		}
+		add_resource = { energy = -8000 }
+		add_modifier = {
+			modifier = gts_kasa_trade_micro_city_4
+			days = -1
+		}
+		hidden_effect = {
+			remove_country_flag = kasa_trading
+		}
+	}
+	option = {
+		name = gts_kasa.102.e
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 10000 }
+			NOT = {
+				has_modifier = gts_kasa_trade_micro_city_5
+			}
+		}
+		add_resource = { energy = -10000 }
+		add_modifier = {
+			modifier = gts_kasa_trade_micro_city_5
+			days = -1
+		}
+		hidden_effect = {
+			remove_country_flag = kasa_trading
+		}
+	}
+	option = {
+		name = gts_back
+		hidden_effect = {
+			country_event = { id = gts_kasa.100 }
+		}
+	}
+	option = {
+		name = gts_leave
+		hidden_effect = {
+			remove_country_flag = kasa_trading
+		}
+		default_hide_option = yes
+	}
+}
+country_event = {
+	id = gts_kasa.103
+	base = gts_kasa.100
+	desc_clear = yes
+	option_clear = yes
+
+	desc = gts_kasa.100.desc
+
+	option = {
+		name = gts_kasa.103.a
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 2000 }
+			NOT = {
+				has_modifier = gts_kasa_trade_micro_planet_1
+			}
+		}
+		add_resource = { energy = -2000 }
+		add_modifier = {
+			modifier = gts_kasa_trade_micro_planet_1
+			days = -1
+		}
+		hidden_effect = {
+			remove_country_flag = kasa_trading
+		}
+	}
+	option = {
+		name = gts_kasa.103.b
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 4000 }
+			NOT = {
+				has_modifier = gts_kasa_trade_micro_planet_2
+			}
+		}
+		add_resource = { energy = -4000 }
+		add_modifier = {
+			modifier = gts_kasa_trade_micro_planet_2
+			days = -1
+		}
+		hidden_effect = {
+			remove_country_flag = kasa_trading
+		}
+	}
+	option = {
+		name = gts_kasa.103.c
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 6000 }
+			NOT = {
+				has_modifier = gts_kasa_trade_micro_planet_3
+			}
+		}
+		add_resource = { energy = -6000 }
+		add_modifier = {
+			modifier = gts_kasa_trade_micro_planet_3
+			days = -1
+		}
+		hidden_effect = {
+			remove_country_flag = kasa_trading
+		}
+	}
+	option = {
+		name = gts_kasa.103.d
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 8000 }
+			NOT = {
+				has_modifier = gts_kasa_trade_micro_planet_4
+			}
+		}
+		add_resource = { energy = -8000 }
+		add_modifier = {
+			modifier = gts_kasa_trade_micro_planet_4
+			days = -1
+		}
+		hidden_effect = {
+			remove_country_flag = kasa_trading
+		}
+	}
+	option = {
+		name = gts_kasa.103.e
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 10000 }
+			NOT = {
+				has_modifier = gts_kasa_trade_micro_planet_5
+			}
+		}
+		add_resource = { energy = -10000 }
+		add_modifier = {
+			modifier = gts_kasa_trade_micro_planet_5
+			days = -1
+		}
+		hidden_effect = {
+			remove_country_flag = kasa_trading
+		}
+	}
+	option = {
+		name = gts_back
+		hidden_effect = {
+			country_event = { id = gts_kasa.100 }
+		}
+	}
+	option = {
+		name = gts_leave
+		default_hide_option = yes
+		hidden_effect = {
+			remove_country_flag = kasa_trading
+		}
+	}
+}
+country_event = {
+	id = gts_kasa.104
+	base = gts_kasa.100
+	desc_clear = yes
+	option_clear = yes
+
+	desc = gts_kasa.100.desc
+
+	immediate = {
+		remove_country_flag = kasa_trading
+	}
+
+	option = {
+		name = gts_kasa.104.a
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 2000 }
+			NOT = {
+				has_modifier = gts_kasa_trade_giantess_fluid_1
+			}
+		}
+		add_resource = { energy = -2000 }
+		add_modifier = {
+			modifier = gts_kasa_trade_giantess_fluid_1
+			days = -1
+		}
+	}
+	option = {
+		name = gts_kasa.104.b
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 4000 }
+			NOT = {
+				has_modifier = gts_kasa_trade_giantess_fluid_2
+			}
+		}
+		add_resource = { energy = -4000 }
+		add_modifier = {
+			modifier = gts_kasa_trade_giantess_fluid_2
+			days = -1
+		}
+	}
+	option = {
+		name = gts_kasa.104.c
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 6000 }
+			NOT = {
+				has_modifier = gts_kasa_trade_giantess_fluid_3
+			}
+		}
+		add_resource = { energy = -6000 }
+		add_modifier = {
+			modifier = gts_kasa_trade_giantess_fluid_3
+			days = -1
+		}
+	}
+	option = {
+		name = gts_kasa.104.d
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 8000 }
+			NOT = {
+				has_modifier = gts_kasa_trade_giantess_fluid_4
+			}
+		}
+		add_resource = { energy = -8000 }
+		add_modifier = {
+			modifier = gts_kasa_trade_giantess_fluid_4
+			days = -1
+		}
+	}
+	option = {
+		name = gts_kasa.104.e
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 10000 }
+			NOT = {
+				has_modifier = gts_kasa_trade_giantess_fluid_5
+			}
+		}
+		add_resource = { energy = -10000 }
+		add_modifier = {
+			modifier = gts_kasa_trade_giantess_fluid_5
+			days = -1
+		}
+	}
+	option = {
+		name = gts_back
+		hidden_effect = {
+			set_country_flag = kasa_trading
+			country_event = { id = gts_kasa.100 }
+		}
+	}
+	option = {
+		name = gts_leave
+		default_hide_option = yes
+	}
+}
+country_event = {
+	id = gts_kasa.105
+	base = gts_kasa.100
+	desc_clear = yes
+	option_clear = yes
+
+	desc = gts_kasa.100.desc
+
+	immediate = {
+		remove_country_flag = kasa_trading
+	}
+
+	option = {
+		name = gts_kasa.105.a
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 2000 }
+			NOT = {
+				has_modifier = gts_kasa_trade_giantess_underwear_1
+			}
+		}
+		add_resource = { energy = -2000 }
+		add_modifier = {
+			modifier = gts_kasa_trade_giantess_underwear_1
+			days = -1
+		}
+	}
+	option = {
+		name = gts_kasa.105.b
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 4000 }
+			NOT = {
+				has_modifier = gts_kasa_trade_giantess_underwear_2
+			}
+		}
+		add_resource = { energy = -4000 }
+		add_modifier = {
+			modifier = gts_kasa_trade_giantess_underwear_2
+			days = -1
+		}
+	}
+	option = {
+		name = gts_kasa.105.c
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 6000 }
+			NOT = {
+				has_modifier = gts_kasa_trade_giantess_underwear_3
+			}
+		}
+		add_resource = { energy = -6000 }
+		add_modifier = {
+			modifier = gts_kasa_trade_giantess_underwear_3
+			days = -1
+		}
+	}
+	option = {
+		name = gts_kasa.105.d
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 8000 }
+			NOT = {
+				has_modifier = gts_kasa_trade_giantess_underwear_4
+			}
+		}
+		add_resource = { energy = -8000 }
+		add_modifier = {
+			modifier = gts_kasa_trade_giantess_underwear_4
+			days = -1
+		}
+	}
+	option = {
+		name = gts_kasa.105.e
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 10000 }
+			NOT = {
+				has_modifier = gts_kasa_trade_giantess_underwear_5
+			}
+		}
+		add_resource = { energy = -10000 }
+		add_modifier = {
+			modifier = gts_kasa_trade_giantess_underwear_5
+			days = -1
+		}
+	}
+	option = {
+		name = gts_back
+		hidden_effect = {
+			set_country_flag = kasa_trading
+			country_event = { id = gts_kasa.100 }
+		}
+	}
+	option = {
+		name = gts_leave
+		default_hide_option = yes
+	}
+}
+country_event = {
+	id = gts_kasa.106
+	base = gts_kasa.100
+	desc_clear = yes
+	option_clear = yes
+
+	desc = gts_kasa.100.desc
+
+	immediate = {
+		remove_country_flag = kasa_trading
+	}
+
+	option = {
+		name = gts_kasa.106.a
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 2000 }
+			NOT = {
+				has_modifier = gts_kasa_trade_giantess_human_1
+			}
+		}
+		add_resource = { energy = -2000 }
+		add_modifier = {
+			modifier = gts_kasa_trade_giantess_human_1
+			days = -1
+		}
+	}
+	option = {
+		name = gts_kasa.106.b
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 4000 }
+			NOT = {
+				has_modifier = gts_kasa_trade_giantess_human_2
+			}
+		}
+		add_resource = { energy = -4000 }
+		add_modifier = {
+			modifier = gts_kasa_trade_giantess_human_2
+			days = -1
+		}
+	}
+	option = {
+		name = gts_kasa.106.c
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 6000 }
+			NOT = {
+				has_modifier = gts_kasa_trade_giantess_human_3
+			}
+		}
+		add_resource = { energy = -6000 }
+		add_modifier = {
+			modifier = gts_kasa_trade_giantess_human_3
+			days = -1
+		}
+	}
+	option = {
+		name = gts_kasa.106.d
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 8000 }
+			NOT = {
+				has_modifier = gts_kasa_trade_giantess_human_4
+			}
+		}
+		add_resource = { energy = -8000 }
+		add_modifier = {
+			modifier = gts_kasa_trade_giantess_human_4
+			days = -1
+		}
+	}
+	option = {
+		name = gts_kasa.106.e
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 10000 }
+			NOT = {
+				has_modifier = gts_kasa_trade_giantess_human_5
+			}
+		}
+		add_resource = { energy = -10000 }
+		add_modifier = {
+			modifier = gts_kasa_trade_giantess_human_5
+			days = -1
+		}
+	}
+	option = {
+		name = gts_back
+		hidden_effect = {
+			set_country_flag = kasa_trading
+			country_event = { id = gts_kasa.100 }
+		}
+	}
+	option = {
+		name = gts_leave
+		default_hide_option = yes
+	}
+}

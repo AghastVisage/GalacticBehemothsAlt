@@ -1,0 +1,559 @@
+################################
+#
+#     修改物种/领袖/人口体型
+#     测试事件：gts_utility.500
+#
+################################
+# 移除种族所有体型特质
+# this = speices
+remove_gts_species_size_trait = {
+	switch = {
+		trigger = has_trait
+		trait_Ultra = {
+			change_species_characteristics = {
+				remove_trait = trait_Ultra
+			}
+		}
+		trait_Titan = {
+			change_species_characteristics = {
+				remove_trait = trait_Titan
+			}
+		}
+		trait_Giant = {
+			change_species_characteristics = {
+				remove_trait = trait_Giant
+			}
+		}
+		trait_Tall = {
+			change_species_characteristics = {
+				remove_trait = trait_Tall
+			}
+		}
+		trait_Normal = {
+			change_species_characteristics = {
+				remove_trait = trait_Normal
+			}
+		}
+		trait_Small = {
+			change_species_characteristics = {
+				remove_trait = trait_Small
+			}
+		}
+		trait_Tiny = {
+			change_species_characteristics = {
+				remove_trait = trait_Tiny
+			}
+		}
+		trait_Micro = {
+			change_species_characteristics = {
+				remove_trait = trait_Micro
+			}
+		}
+		trait_Nano = {
+			change_species_characteristics = {
+				remove_trait = trait_Nano
+			}
+		}
+	}
+}
+
+# 将种族改为指定体型
+# this = speices
+gts_species_size_change_to = {
+	remove_gts_species_size_trait = yes
+	change_species_characteristics = {
+		add_trait = $SIZE_TRAIT$
+	}
+}
+
+# 增大种族体型一个级别
+# this = speices
+gts_species_size_increase = {
+	switch = {
+		trigger = has_trait
+		trait_Titan = {
+			change_species_characteristics = {
+				remove_trait = trait_Titan
+				add_trait = trait_Ultra
+			}
+		}
+		trait_Giant = {
+			change_species_characteristics = {
+				remove_trait = trait_Giant
+				add_trait = trait_Titan
+			}
+		}
+		trait_Tall = {
+			change_species_characteristics = {
+				remove_trait = trait_Tall
+				add_trait = trait_Giant
+			}
+		}
+		trait_Normal = {
+			change_species_characteristics = {
+				remove_trait = trait_Normal
+				add_trait = trait_Tall
+			}
+		}
+		trait_Small = {
+			change_species_characteristics = {
+				remove_trait = trait_Small
+				add_trait = trait_Normal
+			}
+		}
+		trait_Tiny = {
+			change_species_characteristics = {
+				remove_trait = trait_Tiny
+				add_trait = trait_Small
+			}
+		}
+		trait_Micro = {
+			change_species_characteristics = {
+				remove_trait = trait_Micro
+				add_trait = trait_Tiny
+			}
+		}
+		trait_Nano = {
+			change_species_characteristics = {
+				remove_trait = trait_Nano
+				add_trait = trait_Micro
+			}
+		}
+	}
+}
+
+# 减小种族体型一个级别
+# this = speices
+gts_species_size_reduce = {
+	switch = {
+		trigger = has_trait
+		trait_Ultra = {
+			change_species_characteristics = {
+				remove_trait = trait_Ultra
+				add_trait = trait_Titan
+			}
+		}
+		trait_Titan = {
+			change_species_characteristics = {
+				remove_trait = trait_Titan
+				add_trait = trait_Giant
+			}
+		}
+		trait_Giant = {
+			change_species_characteristics = {
+				remove_trait = trait_Giant
+				add_trait = trait_Tall
+			}
+		}
+		trait_Tall = {
+			change_species_characteristics = {
+				remove_trait = trait_Tall
+				add_trait = trait_Normal
+			}
+		}
+		trait_Normal = {
+			change_species_characteristics = {
+				remove_trait = trait_Normal
+				add_trait = trait_Small
+			}
+		}
+		trait_Small = {
+			change_species_characteristics = {
+				remove_trait = trait_Small
+				add_trait = trait_Tiny
+			}
+		}
+		trait_Tiny = {
+			change_species_characteristics = {
+				remove_trait = trait_Tiny
+				add_trait = trait_Micro
+			}
+		}
+		trait_Micro = {
+			change_species_characteristics = {
+				remove_trait = trait_Micro
+				add_trait = trait_Nano
+			}
+		}
+	}
+}
+
+# 移除人口所有体型特质
+# this = pop_group
+remove_gts_pop_size_trait = {
+    modify_species = {
+        remove_trait = trait_Ultra
+		remove_trait = trait_Titan
+		remove_trait = trait_Giant
+		remove_trait = trait_Tall
+        remove_trait = trait_Normal
+		remove_trait = trait_Small
+		remove_trait = trait_Tiny
+		remove_trait = trait_Micro
+		remove_trait = trait_Nano
+        add_traits_at_start_of_list = yes
+        change_scoped_species = yes
+    }
+}
+
+# 将人口改为指定体型
+# this = pop_group
+gts_pop_size_change_to = {
+	remove_gts_pop_size_trait = yes
+	modify_species = {
+		add_trait = $SIZE_TRAIT$
+	}
+}
+
+# 增大人口体型一个级别
+# this = pop_group
+gts_pop_size_increase = {
+	switch = {
+		trigger = has_trait
+		trait_Titan = {
+			remove_gts_pop_size_trait = yes
+            modify_species = {
+                add_trait = trait_Ultra
+            }
+		}
+		trait_Giant = {
+			remove_gts_pop_size_trait = yes
+            modify_species = {
+                add_trait = trait_Titan
+            }
+		}
+		trait_Tall = {
+			remove_gts_pop_size_trait = yes
+            modify_species = {
+                add_trait = trait_Giant
+            }
+		}
+		trait_Normal = {
+			remove_gts_pop_size_trait = yes
+            modify_species = {
+                add_trait = trait_Tall
+            }
+		}
+		trait_Small = {
+			remove_gts_pop_size_trait = yes
+            modify_species = {
+                add_trait = trait_Normal
+            }
+		}
+		trait_Tiny = {
+			remove_gts_pop_size_trait = yes
+            modify_species = {
+                add_trait = trait_Small
+            }
+		}
+		trait_Micro = {
+			remove_gts_pop_size_trait = yes
+            modify_species = {
+                add_trait = trait_Tiny
+            }
+		}
+		trait_Nano = {
+			remove_gts_pop_size_trait = yes
+            modify_species = {
+                add_trait = trait_Micro
+            }
+		}
+	}
+}
+
+# 减小人口体型一个级别
+# this = pop_group
+gts_pop_size_reduce = {
+	switch = {
+		trigger = has_trait
+		trait_Ultra = {
+			remove_gts_pop_size_trait = yes
+            modify_species = {
+                add_trait = trait_Titan
+            }
+		}
+		trait_Titan = {
+			remove_gts_pop_size_trait = yes
+            modify_species = {
+                add_trait = trait_Giant
+            }
+		}
+		trait_Giant = {
+			remove_gts_pop_size_trait = yes
+            modify_species = {
+                add_trait = trait_Tall
+            }
+		}
+		trait_Tall = {
+			remove_gts_pop_size_trait = yes
+            modify_species = {
+                add_trait = trait_Normal
+            }
+		}
+		trait_Normal = {
+			remove_gts_pop_size_trait = yes
+            modify_species = {
+                add_trait = trait_Small
+            }
+		}
+		trait_Small = {
+			remove_gts_pop_size_trait = yes
+            modify_species = {
+                add_trait = trait_Tiny
+            }
+		}
+		trait_Tiny = {
+			remove_gts_pop_size_trait = yes
+            modify_species = {
+                add_trait = trait_Micro
+            }
+		}
+		trait_Micro = {
+			remove_gts_pop_size_trait = yes
+            modify_species = {
+                add_trait = trait_Nano
+            }
+		}
+	}
+}
+
+# 一键移除领袖所有体型特质
+# this = leader
+remove_gts_leader_size_trait = {
+    remove_trait = leader_trait_Ultra
+	remove_trait = leader_trait_Titan
+	remove_trait = leader_trait_Giant
+	remove_trait = leader_trait_Tall
+	remove_trait = leader_trait_Normal
+	remove_trait = leader_trait_Small
+	remove_trait = leader_trait_Tiny
+	remove_trait = leader_trait_Micro
+	remove_trait = leader_trait_Nano
+}
+
+# 将领袖改为指定体型
+# this = leader
+gts_leader_size_change_to = {
+	remove_gts_leader_size_trait = yes
+	add_trait = {
+		trait = $SIZE_TRAIT$
+		show_message = no
+	}
+}
+
+# 增大领袖体型一个级别
+# this = leader
+gts_leader_size_increase = {
+    switch = {
+        trigger = has_trait
+		leader_trait_Nano = {
+            remove_gts_leader_size_trait = yes
+            add_trait = {
+				trait = leader_trait_Micro
+				show_message = no
+			}
+        }
+        leader_trait_Micro = {
+            remove_gts_leader_size_trait = yes
+            add_trait = {
+				trait = leader_trait_Tiny
+				show_message = no
+			}
+        }
+		leader_trait_Tiny = {
+            remove_gts_leader_size_trait = yes
+            add_trait = {
+				trait = leader_trait_Small
+				show_message = no
+			}
+        }
+        leader_trait_Small = {
+            remove_gts_leader_size_trait = yes
+            add_trait = {
+				trait = leader_trait_Normal
+				show_message = no
+			}
+        }
+        leader_trait_Normal = {
+            remove_gts_leader_size_trait = yes
+            add_trait = {
+				trait = leader_trait_Tall
+				show_message = no
+			}
+        }
+        leader_trait_Tall = {
+            remove_gts_leader_size_trait = yes
+            add_trait = {
+				trait = leader_trait_Giant
+				show_message = no
+			} 
+        }
+        leader_trait_Giant = {
+            remove_gts_leader_size_trait = yes
+            add_trait = {
+				trait = leader_trait_Titan
+				show_message = no
+			} 
+        }
+        leader_trait_Titan = {
+            remove_gts_leader_size_trait = yes
+            add_trait = {
+				trait = leader_trait_Ultra
+				show_message = no
+			}
+        }
+    }
+}
+
+# 减小领袖体型一个级别
+# this = leader
+gts_leader_size_reduce = {
+    switch = {
+        trigger = has_trait
+        leader_trait_Ultra = {
+            remove_gts_leader_size_trait = yes
+            add_trait = {
+				trait = leader_trait_Titan
+				show_message = no
+			}
+        }
+        leader_trait_Titan = {
+            remove_gts_leader_size_trait = yes
+            add_trait = {
+				trait = leader_trait_Giant
+				show_message = no
+			}
+        }
+        leader_trait_Giant = {
+            remove_gts_leader_size_trait = yes
+            add_trait = {
+				trait = leader_trait_Tall
+				show_message = no
+			}
+        }
+        leader_trait_Tall = {
+            remove_gts_leader_size_trait = yes
+            add_trait = {
+				trait = leader_trait_Normal
+				show_message = no
+			}
+        }
+        leader_trait_Normal = {
+            remove_gts_leader_size_trait = yes
+            add_trait = {
+				trait = leader_trait_Small
+				show_message = no
+			}
+        }
+        leader_trait_Small = {
+            remove_gts_leader_size_trait = yes
+            add_trait = {
+				trait = leader_trait_Tiny
+				show_message = no
+			}
+        }
+		leader_trait_Tiny = {
+            remove_gts_leader_size_trait = yes
+            add_trait = {
+				trait = leader_trait_Micro
+				show_message = no
+			}
+        }
+		leader_trait_Micro = {
+            remove_gts_leader_size_trait = yes
+            add_trait = {
+				trait = leader_trait_Nano
+				show_message = no
+			}
+        }
+    }
+}
+
+gts_species_add_random_size = {
+	# 给物种添加随机体型特质(不包含天体级与分子级)
+	remove_gts_species_size_trait = yes
+	random_list = {
+		1 = {
+			change_species_characteristics = {
+				add_trait = trait_Titan
+			}
+		}
+		1 = {
+			change_species_characteristics = {
+				add_trait = trait_Giant
+			}
+		}
+		1 = {
+			change_species_characteristics = {
+				add_trait = trait_Tall
+			}
+		}
+		1 = {
+			change_species_characteristics = {
+				add_trait = trait_Normal
+			}
+		}
+		1 = {
+			change_species_characteristics = {
+				add_trait = trait_Small
+			}
+		}
+		1 = {
+			change_species_characteristics = {
+				add_trait = trait_Tiny
+			}
+		}
+		1 = {
+			change_species_characteristics = {
+				add_trait = trait_Micro
+			}
+		}
+	}
+}
+gts_species_add_giantess_size = {
+	# 给物种添加随机巨娘体型特质(不包含天体级)
+	remove_gts_species_size_trait = yes
+	random_list = {
+		1 = {
+			change_species_characteristics = {
+				add_trait = trait_Titan
+			}
+		}
+		1 = {
+			change_species_characteristics = {
+				add_trait = trait_Giant
+			}
+		}
+		1 = {
+			change_species_characteristics = {
+				add_trait = trait_Tall
+			}
+		}
+	}
+}
+gts_species_add_tiny_size = {
+	# 给物种添加随机小人体型特质(不包含分子级)
+	remove_gts_species_size_trait = yes
+	random_list = {
+		1 = {
+			change_species_characteristics = {
+				add_trait = trait_Normal
+			}
+		}
+		1 = {
+			change_species_characteristics = {
+				add_trait = trait_Small
+			}
+		}
+		1 = {
+			change_species_characteristics = {
+				add_trait = trait_Tiny
+			}
+		}
+		1 = {
+			change_species_characteristics = {
+				add_trait = trait_Micro
+			}
+		}
+	}
+}

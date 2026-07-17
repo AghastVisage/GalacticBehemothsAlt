@@ -1,0 +1,588 @@
+@buildings_t1 = 1
+@buildings_t2 = 2
+@buildings_t3 = 3
+@buildings_t4 = 4
+
+building_gts_bfbf_habitability_dirt_tiny = {
+
+	# 汙垢處理站-小人
+
+	base_buildtime = @b2_time
+	category = resource
+	icon = building_gts_mineral_factory
+	base_cap_amount = 1
+
+	potential = {
+		exists = owner
+		owner = {
+			gts_is_tiny = yes
+			has_technology = tech_gts_bfbf_habitability_dirt
+		}
+		planet ={
+			OR = {
+				is_planet_class = pc_gts_dirt0
+				is_planet_class = pc_gts_dirt1
+				is_planet_class = pc_gts_dirt2
+				is_planet_class = pc_gts_dirt3
+				is_planet_class = pc_gts_dirt4
+				is_planet_class = pc_gts_shit
+				is_planet_class = pc_gts_urine
+				is_planet_class = pc_gts_urine2
+			}
+		}
+	}
+
+	building_sets = {
+		tiny_tier2
+		government
+		urban
+		mining
+	}
+
+	allow = {
+
+	}
+
+	destroy_trigger = {
+		exists = owner
+		NOT = {
+			owner = {
+				gts_is_tiny = yes
+				has_technology = tech_gts_bfbf_habitability_dirt
+			}
+		}
+	}
+
+	triggered_desc = {
+		text = job_gts_bfbf_planet_dirt_tiny_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b3_minerals
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_gts_bfbf_planet_dirt_tiny_add = 100
+	}
+}
+
+building_gts_bfbf_habitability_dirt_gts = {
+
+	# 汙垢處理站-巨娘
+
+	base_buildtime = @b2_time
+	category = resource
+	icon = building_gts_mineral_factory
+	base_cap_amount = 1
+
+	potential = {
+		exists = owner
+		owner = {
+			gts_is_giantess = yes
+			has_technology = tech_gts_bfbf_habitability_dirt
+		}
+		planet = {
+			OR = {
+				is_planet_class = pc_gts_dirt0
+				is_planet_class = pc_gts_dirt1
+				is_planet_class = pc_gts_dirt2
+				is_planet_class = pc_gts_dirt3
+				is_planet_class = pc_gts_dirt4
+				is_planet_class = pc_gts_shit
+				is_planet_class = pc_gts_urine
+				is_planet_class = pc_gts_urine2
+			}
+		}
+	}
+
+	building_sets = {
+		gts_tier2
+		government
+		urban
+		mining
+	}
+
+	allow = {
+
+	}
+
+	destroy_trigger = {
+		exists = owner
+		NOT = {
+			owner = {
+				gts_is_giantess = yes
+				has_technology = tech_gts_bfbf_habitability_dirt
+			}
+		}
+	}
+
+	triggered_desc = {
+		text = job_gts_bfbf_planet_dirt_gts_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b3_minerals
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_gts_bfbf_planet_dirt_gts_add = 100
+	}
+}
+
+building_gts_bfbf_habitability_juice_tiny = {
+
+	# 愛液聖地-小人
+
+	base_buildtime = @b2_time
+	category = unity
+	icon = building_citadel_of_faith
+	base_cap_amount = 1
+
+	potential = {
+		exists = owner
+		owner = {
+			gts_is_tiny = yes
+			is_spiritualist = yes
+			has_technology = tech_gts_bfbf_habitability_juiceandsemen
+		}
+		planet ={
+			OR = {
+				is_planet_class = pc_gts_juice
+				is_planet_class = pc_gts_juice2
+				is_planet_class = pc_gts_juice3
+			}
+		}
+	}
+
+	building_sets = {
+		tiny_tier2
+		government
+		urban
+		unity
+	}
+
+	allow = {
+
+	}
+
+	destroy_trigger = {
+		exists = owner
+		NOT = {
+			owner = {
+				gts_is_tiny = yes
+				has_technology = tech_gts_bfbf_habitability_juiceandsemen
+			}
+		}
+	}
+
+	triggered_desc = {
+		text = job_gts_bfbf_planet_juiceandsemen_tiny_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 600
+			alloys = 300
+		}
+		upkeep = {
+			energy = 4
+		}
+	}
+
+	planet_modifier = {
+		job_gts_bfbf_planet_juiceandsemen_tiny_add = 100
+	}
+}
+
+building_gts_bfbf_habitability_juice_gts = {
+
+	# 愛液聖地-巨娘
+
+	base_buildtime = @b2_time
+	category = unity
+	icon = building_citadel_of_faith
+	base_cap_amount = 1
+
+	potential = {
+		exists = owner
+		owner = {
+			gts_is_giantess = yes
+			is_spiritualist = yes
+			has_technology = tech_gts_bfbf_habitability_juiceandsemen
+		}
+		planet ={
+			OR = {
+				is_planet_class = pc_gts_juice
+				is_planet_class = pc_gts_juice2
+				is_planet_class = pc_gts_juice3
+			}
+		}
+	}
+
+	building_sets = {
+		gts_tier2
+		government
+		urban
+		unity
+	}
+
+	allow = {
+
+	}
+
+	destroy_trigger = {
+		exists = owner
+		NOT = {
+			owner = {
+				gts_is_giantess = yes
+				has_technology = tech_gts_bfbf_habitability_juiceandsemen
+			}
+		}
+	}
+
+	triggered_desc = {
+		text = job_gts_bfbf_planet_juiceandsemen_gts_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b3_minerals
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_gts_bfbf_planet_juiceandsemen_gts_add = 100
+	}
+}
+
+building_gts_bfbf_habitability_semen_tiny = {
+
+	# 精液聖地-小人
+
+	base_buildtime = @b2_time
+	category = unity
+	icon = building_citadel_of_faith
+	base_cap_amount = 1
+
+	potential = {
+		exists = owner
+		owner = {
+			gts_is_tiny = yes
+			is_spiritualist = yes
+			has_technology = tech_gts_bfbf_habitability_juiceandsemen
+		}
+		planet ={
+			is_planet_class = pc_gts_semen
+		}
+	}
+
+	building_sets = {
+		tiny_tier2
+		government
+		urban
+		unity
+	}
+
+	allow = {
+
+	}
+
+	destroy_trigger = {
+		exists = owner
+		NOT = {
+			owner = {
+				gts_is_tiny = yes
+				has_technology = tech_gts_bfbf_habitability_juiceandsemen
+			}
+		}
+	}
+
+	triggered_desc = {
+		text = job_gts_bfbf_planet_juiceandsemen_tiny_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b3_minerals
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_gts_bfbf_planet_juiceandsemen_tiny_add = 100
+	}
+}
+
+building_gts_bfbf_habitability_semen_gts = {
+
+	# 精液聖地-巨娘
+
+	base_buildtime = @b2_time
+	category = unity
+	icon = building_citadel_of_faith
+	base_cap_amount = 1
+
+	potential = {
+		exists = owner
+		owner = {
+			gts_is_giantess = yes
+			is_spiritualist = yes
+			has_technology = tech_gts_bfbf_habitability_juiceandsemen
+		}
+		planet ={
+			is_planet_class = pc_gts_semen
+		}
+	}
+
+	building_sets = {
+		gts_tier2
+		government
+		urban
+		unity
+	}
+
+	allow = {
+
+	}
+
+	destroy_trigger = {
+		exists = owner
+		NOT = {
+			owner = {
+				gts_is_giantess = yes
+				has_technology = tech_gts_bfbf_habitability_juiceandsemen
+			}
+		}
+	}
+
+	triggered_desc = {
+		text = job_gts_bfbf_planet_juiceandsemen_gts_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b3_minerals
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_gts_bfbf_planet_juiceandsemen_gts_add = 100
+	}
+}
+
+building_gts_bfbf_habitability_milk_tiny = {
+
+	# 乳海觀測所-小人
+
+	base_buildtime = @b2_time
+	category = resource
+	icon = building_citadel_uplink
+	base_cap_amount = 1
+
+	potential = {
+		exists = owner
+		owner = {
+			gts_is_tiny = yes
+			has_technology = tech_gts_bfbf_habitability_milk
+		}
+		planet ={
+			is_planet_class = pc_gts_milk
+		}
+	}
+
+	building_sets = {
+		tiny_tier2
+		government
+		urban
+		farming
+	}
+
+	allow = {
+
+	}
+
+	destroy_trigger = {
+		exists = owner
+		NOT = {
+			owner = {
+				gts_is_tiny = yes
+				has_technology = tech_gts_bfbf_habitability_milk
+			}
+		}
+	}
+
+	triggered_desc = {
+		text = job_gts_bfbf_planet_milk_gts_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b3_minerals
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_gts_bfbf_planet_milk_tiny_add = 100
+	}
+}
+
+building_gts_bfbf_habitability_milk_gts = {
+
+	# 乳海觀測所-巨娘
+
+	base_buildtime = @b2_time
+	category = resource
+	icon = building_citadel_uplink
+	base_cap_amount = 1
+
+	potential = {
+		exists = owner
+		owner = {
+			gts_is_giantess = yes
+			has_technology = tech_gts_bfbf_habitability_milk
+		}
+		planet ={
+			is_planet_class = pc_gts_milk
+		}
+	}
+
+	building_sets = {
+		gts_tier2
+		government
+		urban
+		farming
+	}
+
+	allow = {
+
+	}
+
+	destroy_trigger = {
+		exists = owner
+		NOT = {
+			owner = {
+				gts_is_giantess = yes
+				has_technology = tech_gts_bfbf_habitability_milk
+			}
+		}
+	}
+
+	triggered_desc = {
+		text = job_gts_bfbf_planet_milk_gts_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b3_minerals
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_gts_bfbf_planet_milk_gts_add = 100
+	}
+}
+
+# building_bfbf_pop_growth_short = {
+#
+# 	# 人口增长建筑 矮小
+#
+# 	base_buildtime = @b1_time
+# 	category = resource
+# 	icon = building_citadel_of_faith
+# 	base_cap_amount = 1
+#
+# 	potential = {
+# 		exists = owner
+# 		owner = {
+# 			gts_is_tiny = yes
+# 		}
+# 	}
+#
+# 	building_sets = {
+# 		gts_tier2
+# 		gts_tier3
+# 		government
+# 		urban
+# 	}
+#
+# 	allow = {
+# 	}
+#
+# 	destroy_trigger = {
+# 		exists = owner
+# 		NOT = {
+# 			owner = {
+# 				gts_is_tiny = yes
+# 			}
+# 		}
+# 	}
+#
+# 	triggered_desc = {
+# 		text = test
+# 	}
+#
+# 	resources = {
+# 		category = planet_buildings
+# 		cost = {
+# 			minerals = @b3_minerals
+# 		}
+# 		upkeep = {
+# 			energy = @b3_upkeep
+# 		}
+# 	}
+# 	triggered_planet_modifier = {
+# 		potential = {
+# 			this = {
+# 				is_planet_class = pc_continental
+# 			}
+# 			# owner = {
+# 			# 	has_country_flag = bfbf_pop_growth_short_100_month
+# 			# }
+# 		}
+# 		bonus_pop_growth = 100
+# 	}
+# 	triggered_planet_modifier = {
+# 		potential = {
+# 			this = {
+# 				is_planet_class = pc_ocean
+# 			}
+# 			# owner = {
+# 			# 	has_country_flag = bfbf_pop_growth_short_500_month
+# 			# }
+# 		}
+# 		bonus_pop_growth = 500
+# 	}
+# }
+

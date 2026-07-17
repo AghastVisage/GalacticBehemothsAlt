@@ -1,0 +1,294 @@
+gts_fallout_building_radiation_research_lab = {
+
+	# 巨娘輻疫研究實驗所
+
+	base_buildtime = @b2_time
+	category = research
+	base_cap_amount = 1
+	icon = building_research_lab_2
+
+	potential = {
+		exists = owner
+		owner = {
+			has_origin = origin_gts_fallout
+		}
+		is_planet_class = pc_nuked
+	}
+
+	building_sets = {
+		gts_tier2
+		government
+		urban
+		research
+	}
+
+	destroy_trigger = {
+		owner = {
+			NOT = {
+				has_origin = origin_gts_fallout
+			}
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			owner = {
+				has_tradition = tr_gts_fallout_cruel_adopt
+			}
+		}
+		text = job_gts_fallout_radiation_usage_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b3_minerals
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_gts_fallout_radiation_researcher_add = 100
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				has_tradition = tr_gts_fallout_cruel_adopt
+			}
+		}
+		modifier = {
+			job_gts_fallout_radiation_usage_add = 1000
+		}
+	}
+}
+
+gts_fallout_building_house = {
+
+	base_buildtime = @b1_time
+	category = amenity
+	icon = building_paradise_dome
+
+	potential = {
+		exists = owner
+		owner = {
+			has_tradition = tr_gts_fallout_gentle_adopt
+		}
+		is_planet_class = pc_nuked
+	}
+
+	building_sets = {
+		gts_tier2
+		government
+		urban
+	}
+
+	destroy_trigger = {
+		owner = {
+			NOT = {
+				has_origin = origin_gts_fallout
+				has_tradition = tr_gts_fallout_gentle_adopt
+			}
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+		}
+		text = job_gts_fallout_resident_effect_desc
+	}
+
+	planet_modifier = {
+		planet_housing_add = 1500
+		planet_amenities_add = 2500
+		job_gts_fallout_resident_add = 100
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				has_tradition = tr_gts_fallout_gentle_nuked_house
+			}
+		}
+		modifier = {
+			planet_housing_add = 1500
+			planet_amenities_add = 2500
+			job_gts_fallout_resident_add = 100
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+		}
+		upkeep = {
+			energy = @b2_upkeep
+		}
+	}
+}
+
+gts_fallout_gentle_clone = {
+
+	# 輻射培育倉
+
+	base_buildtime = @b2_time
+	category = pop_assembly
+	base_cap_amount = 1
+	icon = building_clone_vats
+
+	potential = {
+		exists = owner
+		owner = {
+			has_tradition = tr_gts_fallout_gentle_finish
+		}
+	}
+
+	building_sets = {
+		gts_tier2
+		government
+		urban
+	}
+
+	destroy_trigger = {
+		exists = owner
+		NOT = {
+			owner = {
+				has_tradition = tr_gts_fallout_gentle_finish
+			}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b3_minerals
+		}
+		upkeep = {
+			gts_micro = @b2_upkeep
+		}
+	}
+
+	triggered_planet_pop_group_modifier_for_all = {
+		potential = {
+			owner = {
+				has_cloning_tradition = no
+			}
+		}
+		bonus_pop_growth = 3.0
+	}
+	triggered_planet_pop_group_modifier_for_all = {
+		potential = {
+			owner = {
+				has_cloning_tradition = yes
+				NOT = {
+					has_tradition = tr_genetics_efficient_cloning
+				}
+			}
+		}
+		bonus_pop_growth = 6
+	}
+	triggered_planet_pop_group_modifier_for_all = {
+		potential = {
+			owner = {
+				has_cloning_tradition = yes
+				has_tradition = tr_genetics_efficient_cloning
+			}
+		}
+		bonus_pop_growth = 9
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_gene_tailoring
+			}
+			any_owned_pop_group = {
+				has_auto_modding_trait = yes
+			}
+		}
+		modifier = {
+			auto_mod_monthly_add = 400
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				game_start_auto_mod_empire = yes
+			}
+			any_owned_pop_group = {
+				has_auto_modding_trait = yes
+			}
+		}
+		modifier = {
+			auto_mod_monthly_add = 400
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_cloning_tradition = no
+			}
+		}
+		fake_pop_growth_mod = 3
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_cloning_tradition = yes
+				NOT = {
+					has_tradition = tr_genetics_efficient_cloning
+				}
+			}
+		}
+		fake_pop_growth_mod = 6
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_cloning_tradition = yes
+				has_tradition = tr_genetics_efficient_cloning
+			}
+		}
+		fake_pop_growth_mod = 9
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_cloning_authority = yes
+				is_megacorp = yes
+			}
+		}
+		planet_jobs_trade_produces_mult = @replicatory_association_trade_mult
+		planet_amenities_add = @replicatory_association_amenities_add
+	}
+
+	triggered_desc = {
+		trigger = {
+			OR = {
+				has_building = building_robot_assembly_plant
+				AND = {
+					exists = assembling_species
+					assembling_species = {
+						is_robotic_species = yes
+					}
+				}
+			}
+		}
+		text = tooltip_organic_and_artificial_assembly_warning
+	}
+
+	prerequisites = {
+		tech_cloning
+	}
+}
+

@@ -1,0 +1,285 @@
+#这个用来修改原事件的gts化
+namespace = anomaly
+ship_event = {
+	#粪化石
+	id = anomaly.1
+	title = "anomaly.1.name"
+	desc = "anomaly.1.desc"
+	picture = GFX_evt_mining_station
+	show_sound = event_ship_bridge
+	location = FROM
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			clear_deposits = yes
+		}
+	}
+	option = {
+		name = WHAT
+		hidden_effect = {
+			FROM = {
+				add_modifier = {
+					modifier = "asteroid_coprolite"
+					days = -1
+				}
+			}
+			ship_event = {
+				id = gts_evt_ww.5
+				days = 1
+			}
+		}
+		FROM = {
+			set_deposit = d_society_3
+		}
+	}
+}
+
+ship_event = {
+	#擦肩而过
+	id = anomaly.655
+	title = "anomaly.655.name"
+	desc = "anomaly.655.desc"
+	picture = GFX_evt_ship_travel
+	show_sound = event_ship_bridge
+	location = FROM
+	is_triggered_only = yes
+	immediate = {
+		owner = {
+			country_event = {
+				id = story.5
+				days = 30
+			}
+		}
+	}
+	option = {
+		name = INCREDIBLE
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier1researchreward
+				min = @tier1researchmin
+				max = @tier1researchmax
+			}
+		}
+	}
+}
+
+country_event = {
+	#品鉴银河佳酿的二人
+	id = anomaly.7010
+	title = "anomaly.7010.name"
+	desc = {
+		trigger = {
+			has_country_flag = vending_machine_contents_full
+			is_megacorp = yes
+		}
+		text = anomaly.7010.desc.full.megacorp
+	}
+	desc = {
+		trigger = {
+			has_country_flag = vending_machine_contents_full
+			OR = {
+				is_robot_empire = yes
+				is_lithoid_empire = yes
+			}
+		}
+		text = anomaly.7010.desc.full.nonbio
+	}
+	desc = {
+		trigger = {
+			has_country_flag = vending_machine_contents_full
+			NOR = {
+				is_robot_empire = yes
+				is_lithoid_empire = yes
+				is_megacorp = yes
+			}
+		}
+		text = anomaly.7010.desc.full.bio
+	}
+	desc = {
+		trigger = {
+			has_country_flag = vending_machine_contents_empty
+		}
+		text = anomaly.7010.desc.empty
+	}
+	desc = {
+		trigger = {
+			has_country_flag = vending_machine_contents_rot
+			OR = {
+				is_robot_empire = yes
+				is_lithoid_empire = yes
+			}
+		}
+		text = anomaly.7010.desc.rot.nonbio
+	}
+	desc = {
+		trigger = {
+			has_country_flag = vending_machine_contents_rot
+			NOR = {
+				is_robot_empire = yes
+				is_lithoid_empire = yes
+			}
+		}
+		text = anomaly.7010.desc.rot.bio
+	}
+	picture = GFX_evt_enigmatic_cache
+	show_sound = event_activating_unknown_technology
+	location = FROM
+	is_triggered_only = yes
+	immediate = {
+		random_list = {
+			10 = {
+				set_country_flag = vending_machine_contents_full
+			}
+			60 = {
+				set_country_flag = vending_machine_contents_empty
+			}
+			30 = {
+				set_country_flag = vending_machine_contents_rot
+			}
+		}
+	}
+	after = {
+		hidden_effect = {
+			remove_country_flag = vending_machine_contents_full
+			remove_country_flag = vending_machine_contents_empty
+			remove_country_flag = vending_machine_contents_rot
+		}
+	}
+	option = {
+		name = anomaly.7010.a
+		trigger = {
+			has_country_flag = vending_machine_contents_full
+			is_megacorp = yes
+		}
+		add_monthly_resource_mult = {
+			resource = energy
+			value = @tier2materialreward
+			min = @tier2materialmin
+			max = @tier2materialmax
+		}
+	}
+	option = {
+		name = anomaly.7010.b
+		switch = {
+			trigger = has_country_flag
+			vending_machine_contents_full = {
+				if = {
+					limit = {
+						NOR = {
+							is_robot_empire = yes
+							is_lithoid_empire = yes
+						}
+					}
+					add_modifier = {
+						modifier = taste_the_stars
+						days = 7200
+					}
+				}
+				else = {
+					add_resource = {
+						exotic_gases = 100
+					}
+				}
+			}
+			vending_machine_contents_empty = {
+				if = {
+					limit = {
+						has_ancrel = yes
+					}
+					custom_tooltip = minor_artifacts_found
+					add_resource = {
+						minor_artifacts = 1
+					}
+				}
+				else = {
+					add_resource = {
+						alloys = 200
+					}
+				}
+			}
+			vending_machine_contents_rot = {
+				give_next_tech_society_option_effect = yes
+			}
+		}
+	}
+}
+
+ship_event = {
+	id = anomaly.7101
+	title = "anomaly.7101.name"
+	desc = {
+		trigger = {
+			owner = {
+				is_gestalt = no
+			}
+		}
+		text = anomaly.7101.standard.desc
+	}
+	desc = {
+		trigger = {
+			owner = {
+				has_authority = auth_machine_intelligence
+			}
+		}
+		text = anomaly.7101.machines.desc
+	}
+	desc = {
+		trigger = {
+			owner = {
+				has_authority = auth_hive_mind
+			}
+		}
+		text = anomaly.7101.hive.desc
+	}
+	picture = GFX_evt_mysterious_signal
+	show_sound = event_sensor_ping
+	location = FROM
+	trackable = yes
+	is_triggered_only = yes
+	option = {
+		trigger = {
+			owner = {
+				NOT = {
+					has_ethic = ethic_gestalt_consciousness
+				}				#一般
+			}
+		}
+		name = anomaly.7101.a
+		FROM = {
+			#			add_deposit = d_vast_unity_deposit
+			add_deposit = d_society_10
+			add_deposit = d_engineering_10
+		}
+	}
+	option = {
+		trigger = {
+			owner = {
+				has_authority = auth_machine_intelligence				#是智械
+			}
+		}
+		name = anomaly.7101.b
+		FROM = {
+			add_deposit = d_physics_10
+			add_deposit = d_engineering_10
+		}
+	}
+	option = {
+		trigger = {
+			owner = {
+				has_authority = auth_hive_mind				#是蜂巢
+			}
+		}
+		name = anomaly.7101.c
+		FROM = {
+			add_deposit = d_vast_unity_deposit
+		}
+		custom_tooltip = "anomaly.7101.c.desc"
+		owner = {
+			add_modifier = {
+				modifier = harmonious_tune
+				days = 7200
+			}
+		}
+	}
+}

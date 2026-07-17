@@ -1,0 +1,1803 @@
+@gts_leader_item_x_1 = 503
+@gts_leader_item_x_2 = 941
+@gts_leader_item_y_1 = 104
+@gts_leader_item_y_2 = 232
+@gts_leader_item_y_3 = 364
+@gts_leader_item_y_4 = 492
+@gts_leader_item_y_5 = 620
+@gts_leader_item_y_6 = 748
+
+guiTypes = {
+	### 空白模板 ###
+	containerWindowType = {
+		name = "gts_leader_panel"
+		orientation = center
+		origo = center
+		moveable = yes
+		size = { width = 1080 height = 896 }
+		background = {
+			# 大背景
+			name = "background"
+			quadTextureSprite = "GFX_gts_leader_panel_bg"
+		}
+		buttonType = {
+			# 焦点
+			name = "focus_button"
+			position = { x = -80 y = 16 }
+			orientation = "UPPER_RIGHT"
+			spriteType = "GFX_fleetview_focus"
+			buttonFont = "cg_16b"
+			shortcut = "q"
+		}
+		buttonType = {
+			# 关闭
+			name = "close"
+			quadTextureSprite = "GFX_main_close_button"
+			position = { x= -47 y = 47 }
+			Orientation = "UPPER_RIGHT"
+			clicksound = "back_click"
+		}
+		instantTextBoxType = { 
+			# 具体情报
+			name = "alien_message"
+			font = "cg_16b"
+			position = { x = 40 y = 370 }
+			maxWidth = 408
+			maxHeight = 460
+			format = left
+			scrollbartype = "standardtext_slider"
+		}
+		containerWindowType = {
+			# TITLE
+			name = "EVENT_DIPLO"
+			position = { x = 440 y = 14 }
+			size = { width=200 height=32 }
+			moveable = no
+			instantTextBoxType = {
+				name = "action_title"
+				font = "malgun_goth_24"
+				format = center
+			}
+			listboxType = { # hidden
+				name = "option_list"
+				position = { x = -1466 y = -1639 }
+				size = { x=0 y=0 }
+			}
+		}
+		containerWindowType = {
+			# 领袖图片
+			name = "portrait"
+			position = { x = -96 y = 64 }
+			size = { width = 548 height = 280 }
+			clipping = yes
+			iconType = {
+				name = "portrait"
+				spriteType = "GFX_gts_leader_panel_mask"
+				alwaysTransparent = yes
+			}
+			# iconType = {
+			# 	# 图片临边昏暗
+			# 	name = "black_frame"
+			# 	spriteType = "GFX_diplomacy_portrait_shadow_frame"
+			# 	position = { x = -4 y = -5}
+			# 	alwaysTransparent = yes
+			# }
+			# iconType = {
+			# 	# 图片上的条纹
+			# 	name = "stripes_1"
+			# 	spriteType = "GFX_diplomacy_stripes_2"
+			# 	alwaysTransparent = yes
+			# }
+		}
+		# 星球/星系互动
+		effectButtonType = {
+			name = "gts_leader_colossus"
+			position = { x = 160 y = 800 }
+			spriteType = "GFX_gts_leader_colossus_mode"
+			buttonFont = "malgun_goth_24"
+			format = center
+			text = gts_leader_colossus
+			effect = gts_leader_colossus_effect
+		}
+		# 领袖换衣服
+		effectButtonType = {
+			name = "gts_leader_cloth"
+			position = { x = 160 y = 770 }
+			spriteType = "GFX_gts_leader_colossus_mode"
+			buttonFont = "malgun_goth_24"
+			format = center
+			text = gts_leader_cloth
+			effect = gts_leader_cloth_effect
+		}
+		# 接入通讯
+		effectButtonType = {
+			name = "gts_leader_communication"
+			position = { x = 160 y = 740 }
+			spriteType = "GFX_gts_leader_colossus_mode"
+			buttonFont = "malgun_goth_24"
+			format = center
+			text = gts_leader_communication
+			effect = gts_leader_communication_effect
+		}
+		# 身体部位
+		effectButtonType = {
+			name = "gts_leader_body_armpit"
+			spriteType = "GFX_gts_leader_small_button"
+			position = { x = 660 y = 110 }	
+			effect = gts_leader_body_armpit_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_breast"
+			spriteType = "GFX_gts_leader_small_button"
+			position = { x = 660 y = 170 }	
+			effect = gts_leader_body_breast_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_digestion"
+			spriteType = "GFX_gts_leader_big_button"
+			position = { x = 660 y = 240 }	
+			effect = gts_leader_body_digestion_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_reporduction"
+			spriteType = "GFX_gts_leader_big_button"
+			position = { x = 660 y = 350 }	
+			effect = gts_leader_body_reporduction_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_feet"
+			spriteType = "GFX_gts_leader_very_big_button"
+			position = { x = 660 y = 680 }	
+			effect = gts_leader_body_feet_effect
+		}
+		# 道具栏
+
+		effectButtonType = {
+			name = "gts_leader_item_1"
+			spriteType = "GFX_gts_leader_item_button"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_1 }	
+			effect = gts_leader_item_1_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_2"
+			spriteType = "GFX_gts_leader_item_button"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_2 }	
+			effect = gts_leader_item_2_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_3"
+			spriteType = "GFX_gts_leader_item_button"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_3 }	
+			effect = gts_leader_item_3_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_4"
+			spriteType = "GFX_gts_leader_item_button"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_4 }	
+			effect = gts_leader_item_4_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_5"
+			spriteType = "GFX_gts_leader_item_button"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_5 }	
+			effect = gts_leader_item_5_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_6"
+			spriteType = "GFX_gts_leader_item_button"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_6 }	
+			effect = gts_leader_item_6_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_7"
+			spriteType = "GFX_gts_leader_item_button"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_1 }	
+			effect = gts_leader_item_7_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_8"
+			spriteType = "GFX_gts_leader_item_button"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_2 }	
+			effect = gts_leader_item_8_effect
+		}
+		# effectButtonType = {
+		# 	name = "gts_leader_item_9"
+		# 	spriteType = "GFX_gts_leader_item_button"
+		# 	position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_3 }	
+		# 	effect = gts_leader_item_9_effect
+		# }
+		# effectButtonType = {
+		# 	name = "gts_leader_item_10"
+		# 	spriteType = "GFX_gts_leader_item_button"
+		# 	position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_4 }	
+		# 	effect = gts_leader_item_10_effect
+		# }
+		# effectButtonType = {
+		# 	name = "gts_leader_item_11"
+		# 	spriteType = "GFX_gts_leader_item_button"
+		# 	position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_5 }	
+		# 	effect = gts_leader_item_11_effect
+		# }
+		# effectButtonType = {
+		# 	name = "gts_leader_item_12"
+		# 	spriteType = "GFX_gts_leader_item_button"
+		# 	position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_6 }	
+		# 	effect = gts_leader_item_12_effect
+		# }
+		# 身体图片
+		effectButtonType = {
+			name = "gts_leader_body_1"
+			spriteType = "GFX_gts_leader_body_1"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_1_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_2"
+			spriteType = "GFX_gts_leader_body_2"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_2_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_3"
+			spriteType = "GFX_gts_leader_body_3"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_3_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_4"
+			spriteType = "GFX_gts_leader_body_4"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_4_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_5"
+			spriteType = "GFX_gts_leader_body_5"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_5_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_6"
+			spriteType = "GFX_gts_leader_body_6"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_6_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_7"
+			spriteType = "GFX_gts_leader_body_7"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_7_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_8"
+			spriteType = "GFX_gts_leader_body_8"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_8_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_9"
+			spriteType = "GFX_gts_leader_body_9"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_9_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_10"
+			spriteType = "GFX_gts_leader_body_10"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_10_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_11"
+			spriteType = "GFX_gts_leader_body_11"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_11_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_12"
+			spriteType = "GFX_gts_leader_body_12"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_12_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_13"
+			spriteType = "GFX_gts_leader_body_13"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_13_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_14"
+			spriteType = "GFX_gts_leader_body_14"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_14_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_15"
+			spriteType = "GFX_gts_leader_body_15"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_15_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_16"
+			spriteType = "GFX_gts_leader_body_16"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_16_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_17"
+			spriteType = "GFX_gts_leader_body_17"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_17_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_18"
+			spriteType = "GFX_gts_leader_body_18"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_18_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_19"
+			spriteType = "GFX_gts_leader_body_19"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_19_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_20"
+			spriteType = "GFX_gts_leader_body_20"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_20_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_21"
+			spriteType = "GFX_gts_leader_body_21"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_21_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_22"
+			spriteType = "GFX_gts_leader_body_22"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_22_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_23"
+			spriteType = "GFX_gts_leader_body_23"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_23_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_24"
+			spriteType = "GFX_gts_leader_body_24"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_24_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_25"
+			spriteType = "GFX_gts_leader_body_25"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_25_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_26"
+			spriteType = "GFX_gts_leader_body_26"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_26_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_27"
+			spriteType = "GFX_gts_leader_body_27"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_27_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_28"
+			spriteType = "GFX_gts_leader_body_28"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_28_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_29"
+			spriteType = "GFX_gts_leader_body_29"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_29_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_30"
+			spriteType = "GFX_gts_leader_body_30"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_30_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_31"
+			spriteType = "GFX_gts_leader_body_31"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_31_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_32"
+			spriteType = "GFX_gts_leader_body_32"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_32_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_33"
+			spriteType = "GFX_gts_leader_body_33"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_33_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_34"
+			spriteType = "GFX_gts_leader_body_34"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_34_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_35"
+			spriteType = "GFX_gts_leader_body_35"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_35_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_36"
+			spriteType = "GFX_gts_leader_body_36"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_36_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_37"
+			spriteType = "GFX_gts_leader_body_37"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_37_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_38"
+			spriteType = "GFX_gts_leader_body_38"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_38_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_39"
+			spriteType = "GFX_gts_leader_body_39"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_39_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_40"
+			spriteType = "GFX_gts_leader_body_40"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_40_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_41"
+			spriteType = "GFX_gts_leader_body_41"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_41_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_42"
+			spriteType = "GFX_gts_leader_body_42"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_42_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_43"
+			spriteType = "GFX_gts_leader_body_43"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_43_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_44"
+			spriteType = "GFX_gts_leader_body_44"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_44_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_45"
+			spriteType = "GFX_gts_leader_body_45"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_45_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_46"
+			spriteType = "GFX_gts_leader_body_46"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_46_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_47"
+			spriteType = "GFX_gts_leader_body_47"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_47_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_48"
+			spriteType = "GFX_gts_leader_body_48"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_48_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_49"
+			spriteType = "GFX_gts_leader_body_49"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_49_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_50"
+			spriteType = "GFX_gts_leader_body_50"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_50_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_51"
+			spriteType = "GFX_gts_leader_body_51"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_51_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_52"
+			spriteType = "GFX_gts_leader_body_52"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_52_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_53"
+			spriteType = "GFX_gts_leader_body_53"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_53_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_54"
+			spriteType = "GFX_gts_leader_body_54"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_54_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_55"
+			spriteType = "GFX_gts_leader_body_55"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_55_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_56"
+			spriteType = "GFX_gts_leader_body_56"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_56_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_57"
+			spriteType = "GFX_gts_leader_body_57"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_57_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_58"
+			spriteType = "GFX_gts_leader_body_58"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_58_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_59"
+			spriteType = "GFX_gts_leader_body_59"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_59_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_60"
+			spriteType = "GFX_gts_leader_body_60"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_60_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_61"
+			spriteType = "GFX_gts_leader_body_61"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_61_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_62"
+			spriteType = "GFX_gts_leader_body_62"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_62_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_63"
+			spriteType = "GFX_gts_leader_body_63"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_63_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_64"
+			spriteType = "GFX_gts_leader_body_64"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_64_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_65"
+			spriteType = "GFX_gts_leader_body_65"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_65_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_66"
+			spriteType = "GFX_gts_leader_body_66"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_66_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_67"
+			spriteType = "GFX_gts_leader_body_67"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_67_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_68"
+			spriteType = "GFX_gts_leader_body_68"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes
+			effect = gts_leader_body_68_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_69"
+			spriteType = "GFX_gts_leader_body_69"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes
+			effect = gts_leader_body_69_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_70"
+			spriteType = "GFX_gts_leader_body_70"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes
+			effect = gts_leader_body_70_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_71"
+			spriteType = "GFX_gts_leader_body_71"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes
+			effect = gts_leader_body_71_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_72"
+			spriteType = "GFX_gts_leader_body_72"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes
+			effect = gts_leader_body_72_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_73"
+			spriteType = "GFX_gts_leader_body_73"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes
+			effect = gts_leader_body_73_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_74"
+			spriteType = "GFX_gts_leader_body_74"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes
+			effect = gts_leader_body_74_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_75"
+			spriteType = "GFX_gts_leader_body_75"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes
+			effect = gts_leader_body_75_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_76"
+			spriteType = "GFX_gts_leader_body_76"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes
+			effect = gts_leader_body_76_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_77"
+			spriteType = "GFX_gts_leader_body_77"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes
+			effect = gts_leader_body_77_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_78"
+			spriteType = "GFX_gts_leader_body_78"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes
+			effect = gts_leader_body_78_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_79"
+			spriteType = "GFX_gts_leader_body_79"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_79_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_80"
+			spriteType = "GFX_gts_leader_body_80"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_80_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_81"
+			spriteType = "GFX_gts_leader_body_81"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_81_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_82"
+			spriteType = "GFX_gts_leader_body_82"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_82_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_83"
+			spriteType = "GFX_gts_leader_body_83"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_83_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_84"
+			spriteType = "GFX_gts_leader_body_84"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes
+			effect = gts_leader_body_84_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_suxiaobai"
+			spriteType = "GFX_gts_leader_body_suxiaobai"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes		
+			effect = gts_leader_body_suxiaobai_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_85"
+			spriteType = "GFX_gts_leader_body_85"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes
+			effect = gts_leader_body_85_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_86"
+			spriteType = "GFX_gts_leader_body_86"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes
+			effect = gts_leader_body_86_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_87"
+			spriteType = "GFX_gts_leader_body_ora"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes
+			effect = gts_leader_body_ora_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_body_88"
+			spriteType = "GFX_gts_leader_body_qinwen"
+			position = { x = 610 y = 89 }
+			alwaysTransparent = yes
+			effect = gts_leader_body_qinwen_effect
+		}
+		# effectButtonType = {
+		# 	name = "gts_leader_body_xxx"
+		# 	spriteType = "GFX_gts_leader_body_xxx"
+		# 	position = { x = 610 y = 89 }
+		# 	alwaysTransparent = yes		
+		# 	effect = gts_leader_body_xxx_effect
+		# }
+		### 每个道具6个槽位 ###
+		######
+		effectButtonType = {
+			name = "gts_leader_item_i_assembly_slot_1"
+			spriteType = "GFX_gts_leader_item_i_assembly"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_1 }	
+			effect = gts_leader_item_i_assembly_slot_1_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_assembly_slot_2"
+			spriteType = "GFX_gts_leader_item_i_assembly"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_2 }	
+			effect = gts_leader_item_i_assembly_slot_2_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_assembly_slot_3"
+			spriteType = "GFX_gts_leader_item_i_assembly"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_3 }	
+			effect = gts_leader_item_i_assembly_slot_3_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_assembly_slot_4"
+			spriteType = "GFX_gts_leader_item_i_assembly"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_4 }	
+			effect = gts_leader_item_i_assembly_slot_4_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_assembly_slot_5"
+			spriteType = "GFX_gts_leader_item_i_assembly"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_5 }	
+			effect = gts_leader_item_i_assembly_slot_5_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_assembly_slot_6"
+			spriteType = "GFX_gts_leader_item_i_assembly"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_6 }	
+			effect = gts_leader_item_i_assembly_slot_6_effect
+		}
+		######
+		effectButtonType = {
+			name = "gts_leader_item_i_decompressor_slot_1"
+			spriteType = "GFX_gts_leader_item_i_decompressor"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_1 }	
+			effect = gts_leader_item_i_decompressor_slot_1_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_decompressor_slot_2"
+			spriteType = "GFX_gts_leader_item_i_decompressor"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_2 }	
+			effect = gts_leader_item_i_decompressor_slot_2_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_decompressor_slot_3"
+			spriteType = "GFX_gts_leader_item_i_decompressor"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_3 }	
+			effect = gts_leader_item_i_decompressor_slot_3_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_decompressor_slot_4"
+			spriteType = "GFX_gts_leader_item_i_decompressor"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_4 }	
+			effect = gts_leader_item_i_decompressor_slot_4_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_decompressor_slot_5"
+			spriteType = "GFX_gts_leader_item_i_decompressor"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_5 }	
+			effect = gts_leader_item_i_decompressor_slot_5_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_decompressor_slot_6"
+			spriteType = "GFX_gts_leader_item_i_decompressor"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_6 }	
+			effect = gts_leader_item_i_decompressor_slot_6_effect
+		}
+		######
+		effectButtonType = {
+			name = "gts_leader_item_i_gateway_slot_1"
+			spriteType = "GFX_gts_leader_item_i_gateway"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_1 }	
+			effect = gts_leader_item_i_gateway_slot_1_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_gateway_slot_2"
+			spriteType = "GFX_gts_leader_item_i_gateway"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_2 }	
+			effect = gts_leader_item_i_gateway_slot_2_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_gateway_slot_3"
+			spriteType = "GFX_gts_leader_item_i_gateway"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_3 }	
+			effect = gts_leader_item_i_gateway_slot_3_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_gateway_slot_4"
+			spriteType = "GFX_gts_leader_item_i_gateway"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_4 }	
+			effect = gts_leader_item_i_gateway_slot_4_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_gateway_slot_5"
+			spriteType = "GFX_gts_leader_item_i_gateway"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_5 }	
+			effect = gts_leader_item_i_gateway_slot_5_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_gateway_slot_6"
+			spriteType = "GFX_gts_leader_item_i_gateway"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_6 }	
+			effect = gts_leader_item_i_gateway_slot_6_effect
+		}
+		######
+		effectButtonType = {
+			name = "gts_leader_item_i_habitat_slot_1"
+			spriteType = "GFX_gts_leader_item_i_habitat"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_1 }	
+			effect = gts_leader_item_i_habitat_slot_1_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_habitat_slot_2"
+			spriteType = "GFX_gts_leader_item_i_habitat"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_2 }	
+			effect = gts_leader_item_i_habitat_slot_2_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_habitat_slot_3"
+			spriteType = "GFX_gts_leader_item_i_habitat"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_3 }	
+			effect = gts_leader_item_i_habitat_slot_3_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_habitat_slot_4"
+			spriteType = "GFX_gts_leader_item_i_habitat"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_4 }	
+			effect = gts_leader_item_i_habitat_slot_4_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_habitat_slot_5"
+			spriteType = "GFX_gts_leader_item_i_habitat"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_5 }	
+			effect = gts_leader_item_i_habitat_slot_5_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_habitat_slot_6"
+			spriteType = "GFX_gts_leader_item_i_habitat"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_6 }	
+			effect = gts_leader_item_i_habitat_slot_6_effect
+		}
+		######
+		effectButtonType = {
+			name = "gts_leader_item_i_hyper_slot_1"
+			spriteType = "GFX_gts_leader_item_i_hyper"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_1 }	
+			effect = gts_leader_item_i_hyper_slot_1_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_hyper_slot_2"
+			spriteType = "GFX_gts_leader_item_i_hyper"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_2 }	
+			effect = gts_leader_item_i_hyper_slot_2_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_hyper_slot_3"
+			spriteType = "GFX_gts_leader_item_i_hyper"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_3 }	
+			effect = gts_leader_item_i_hyper_slot_3_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_hyper_slot_4"
+			spriteType = "GFX_gts_leader_item_i_hyper"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_4 }	
+			effect = gts_leader_item_i_hyper_slot_4_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_hyper_slot_5"
+			spriteType = "GFX_gts_leader_item_i_hyper"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_5 }	
+			effect = gts_leader_item_i_hyper_slot_5_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_hyper_slot_6"
+			spriteType = "GFX_gts_leader_item_i_hyper"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_6 }	
+			effect = gts_leader_item_i_hyper_slot_6_effect
+		}
+		######
+		effectButtonType = {
+			name = "gts_leader_item_i_ringworld_slot_1"
+			spriteType = "GFX_gts_leader_item_i_ringworld"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_1 }	
+			effect = gts_leader_item_i_ringworld_slot_1_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_ringworld_slot_2"
+			spriteType = "GFX_gts_leader_item_i_ringworld"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_2 }	
+			effect = gts_leader_item_i_ringworld_slot_2_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_ringworld_slot_3"
+			spriteType = "GFX_gts_leader_item_i_ringworld"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_3 }	
+			effect = gts_leader_item_i_ringworld_slot_3_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_ringworld_slot_4"
+			spriteType = "GFX_gts_leader_item_i_ringworld"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_4 }	
+			effect = gts_leader_item_i_ringworld_slot_4_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_ringworld_slot_5"
+			spriteType = "GFX_gts_leader_item_i_ringworld"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_5 }	
+			effect = gts_leader_item_i_ringworld_slot_5_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_ringworld_slot_6"
+			spriteType = "GFX_gts_leader_item_i_ringworld"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_6 }	
+			effect = gts_leader_item_i_ringworld_slot_6_effect
+		}
+		######
+		effectButtonType = {
+			name = "gts_leader_item_i_shipyard_slot_1"
+			spriteType = "GFX_gts_leader_item_i_shipyard"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_1 }	
+			effect = gts_leader_item_i_shipyard_slot_1_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_shipyard_slot_2"
+			spriteType = "GFX_gts_leader_item_i_shipyard"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_2 }	
+			effect = gts_leader_item_i_shipyard_slot_2_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_shipyard_slot_3"
+			spriteType = "GFX_gts_leader_item_i_shipyard"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_3 }	
+			effect = gts_leader_item_i_shipyard_slot_3_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_shipyard_slot_4"
+			spriteType = "GFX_gts_leader_item_i_shipyard"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_4 }	
+			effect = gts_leader_item_i_shipyard_slot_4_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_shipyard_slot_5"
+			spriteType = "GFX_gts_leader_item_i_shipyard"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_5 }	
+			effect = gts_leader_item_i_shipyard_slot_5_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_shipyard_slot_6"
+			spriteType = "GFX_gts_leader_item_i_shipyard"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_6 }	
+			effect = gts_leader_item_i_shipyard_slot_6_effect
+		}
+		######
+		effectButtonType = {
+			name = "gts_leader_item_i_sphere_slot_1"
+			spriteType = "GFX_gts_leader_item_i_sphere"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_1 }	
+			effect = gts_leader_item_i_sphere_slot_1_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_sphere_slot_2"
+			spriteType = "GFX_gts_leader_item_i_sphere"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_2 }	
+			effect = gts_leader_item_i_sphere_slot_2_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_sphere_slot_3"
+			spriteType = "GFX_gts_leader_item_i_sphere"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_3 }	
+			effect = gts_leader_item_i_sphere_slot_3_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_sphere_slot_4"
+			spriteType = "GFX_gts_leader_item_i_sphere"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_4 }	
+			effect = gts_leader_item_i_sphere_slot_4_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_sphere_slot_5"
+			spriteType = "GFX_gts_leader_item_i_sphere"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_5 }	
+			effect = gts_leader_item_i_sphere_slot_5_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_sphere_slot_6"
+			spriteType = "GFX_gts_leader_item_i_sphere"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_6 }	
+			effect = gts_leader_item_i_sphere_slot_6_effect
+		}
+		######
+		effectButtonType = {
+			name = "gts_leader_item_i_spyorb_slot_1"
+			spriteType = "GFX_gts_leader_item_i_spyorb"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_1 }	
+			effect = gts_leader_item_i_spyorb_slot_1_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_spyorb_slot_2"
+			spriteType = "GFX_gts_leader_item_i_spyorb"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_2 }	
+			effect = gts_leader_item_i_spyorb_slot_2_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_spyorb_slot_3"
+			spriteType = "GFX_gts_leader_item_i_spyorb"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_3 }	
+			effect = gts_leader_item_i_spyorb_slot_3_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_spyorb_slot_4"
+			spriteType = "GFX_gts_leader_item_i_spyorb"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_4 }	
+			effect = gts_leader_item_i_spyorb_slot_4_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_spyorb_slot_5"
+			spriteType = "GFX_gts_leader_item_i_spyorb"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_5 }	
+			effect = gts_leader_item_i_spyorb_slot_5_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_spyorb_slot_6"
+			spriteType = "GFX_gts_leader_item_i_spyorb"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_6 }	
+			effect = gts_leader_item_i_spyorb_slot_6_effect
+		}
+		######
+		effectButtonType = {
+			name = "gts_leader_item_i_star_slot_1"
+			spriteType = "GFX_gts_leader_item_i_star"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_1 }	
+			effect = gts_leader_item_i_star_slot_1_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_star_slot_2"
+			spriteType = "GFX_gts_leader_item_i_star"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_2 }	
+			effect = gts_leader_item_i_star_slot_2_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_star_slot_3"
+			spriteType = "GFX_gts_leader_item_i_star"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_3 }	
+			effect = gts_leader_item_i_star_slot_3_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_star_slot_4"
+			spriteType = "GFX_gts_leader_item_i_star"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_4 }	
+			effect = gts_leader_item_i_star_slot_4_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_star_slot_5"
+			spriteType = "GFX_gts_leader_item_i_star"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_5 }	
+			effect = gts_leader_item_i_star_slot_5_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_star_slot_6"
+			spriteType = "GFX_gts_leader_item_i_star"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_6 }	
+			effect = gts_leader_item_i_star_slot_6_effect
+		}
+		######
+		effectButtonType = {
+			name = "gts_leader_item_i_strategic_slot_1"
+			spriteType = "GFX_gts_leader_item_i_strategic"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_1 }	
+			effect = gts_leader_item_i_strategic_slot_1_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_strategic_slot_2"
+			spriteType = "GFX_gts_leader_item_i_strategic"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_2 }	
+			effect = gts_leader_item_i_strategic_slot_2_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_strategic_slot_3"
+			spriteType = "GFX_gts_leader_item_i_strategic"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_3 }	
+			effect = gts_leader_item_i_strategic_slot_3_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_strategic_slot_4"
+			spriteType = "GFX_gts_leader_item_i_strategic"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_4 }	
+			effect = gts_leader_item_i_strategic_slot_4_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_strategic_slot_5"
+			spriteType = "GFX_gts_leader_item_i_strategic"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_5 }	
+			effect = gts_leader_item_i_strategic_slot_5_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_strategic_slot_6"
+			spriteType = "GFX_gts_leader_item_i_strategic"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_6 }	
+			effect = gts_leader_item_i_strategic_slot_6_effect
+		}
+		######
+		effectButtonType = {
+			name = "gts_leader_item_i_tech_slot_1"
+			spriteType = "GFX_gts_leader_item_i_tech"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_1 }	
+			effect = gts_leader_item_i_tech_slot_1_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_tech_slot_2"
+			spriteType = "GFX_gts_leader_item_i_tech"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_2 }	
+			effect = gts_leader_item_i_tech_slot_2_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_tech_slot_3"
+			spriteType = "GFX_gts_leader_item_i_tech"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_3 }	
+			effect = gts_leader_item_i_tech_slot_3_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_tech_slot_4"
+			spriteType = "GFX_gts_leader_item_i_tech"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_4 }	
+			effect = gts_leader_item_i_tech_slot_4_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_tech_slot_5"
+			spriteType = "GFX_gts_leader_item_i_tech"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_5 }	
+			effect = gts_leader_item_i_tech_slot_5_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_tech_slot_6"
+			spriteType = "GFX_gts_leader_item_i_tech"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_6 }	
+			effect = gts_leader_item_i_tech_slot_6_effect
+		}
+		######
+		effectButtonType = {
+			name = "gts_leader_item_i_art_slot_1"
+			spriteType = "GFX_gts_leader_item_i_art"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_1 }	
+			effect = gts_leader_item_i_art_slot_1_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_art_slot_2"
+			spriteType = "GFX_gts_leader_item_i_art"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_2 }	
+			effect = gts_leader_item_i_art_slot_2_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_art_slot_3"
+			spriteType = "GFX_gts_leader_item_i_art"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_3 }	
+			effect = gts_leader_item_i_art_slot_3_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_art_slot_4"
+			spriteType = "GFX_gts_leader_item_i_art"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_4 }	
+			effect = gts_leader_item_i_art_slot_4_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_art_slot_5"
+			spriteType = "GFX_gts_leader_item_i_art"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_5 }	
+			effect = gts_leader_item_i_art_slot_5_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_art_slot_6"
+			spriteType = "GFX_gts_leader_item_i_art"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_6 }	
+			effect = gts_leader_item_i_art_slot_6_effect
+		}
+		######
+		effectButtonType = {
+			name = "gts_leader_item_i_catapult_slot_1"
+			spriteType = "GFX_gts_leader_item_i_catapult"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_1 }
+			effect = gts_leader_item_i_catapult_slot_1_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_catapult_slot_2"
+			spriteType = "GFX_gts_leader_item_i_catapult"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_2 }
+			effect = gts_leader_item_i_catapult_slot_2_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_catapult_slot_3"
+			spriteType = "GFX_gts_leader_item_i_catapult"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_3 }
+			effect = gts_leader_item_i_catapult_slot_3_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_catapult_slot_4"
+			spriteType = "GFX_gts_leader_item_i_catapult"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_4 }
+			effect = gts_leader_item_i_catapult_slot_4_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_catapult_slot_5"
+			spriteType = "GFX_gts_leader_item_i_catapult"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_5 }
+			effect = gts_leader_item_i_catapult_slot_5_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_catapult_slot_6"
+			spriteType = "GFX_gts_leader_item_i_catapult"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_6 }
+			effect = gts_leader_item_i_catapult_slot_6_effect
+		}
+		######
+		effectButtonType = {
+			name = "gts_leader_item_i_archive_slot_1"
+			spriteType = "GFX_gts_leader_item_i_archive"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_1 }
+			effect = gts_leader_item_i_archive_slot_1_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_archive_slot_2"
+			spriteType = "GFX_gts_leader_item_i_archive"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_2 }
+			effect = gts_leader_item_i_archive_slot_2_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_archive_slot_3"
+			spriteType = "GFX_gts_leader_item_i_archive"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_3 }
+			effect = gts_leader_item_i_archive_slot_3_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_archive_slot_4"
+			spriteType = "GFX_gts_leader_item_i_archive"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_4 }
+			effect = gts_leader_item_i_archive_slot_4_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_archive_slot_5"
+			spriteType = "GFX_gts_leader_item_i_archive"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_5 }
+			effect = gts_leader_item_i_archive_slot_5_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_archive_slot_6"
+			spriteType = "GFX_gts_leader_item_i_archive"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_6 }
+			effect = gts_leader_item_i_archive_slot_6_effect
+		}
+		######
+		effectButtonType = {
+			name = "gts_leader_item_i_Furnace_slot_1"
+			spriteType = "GFX_gts_leader_item_i_Furnace"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_1 }
+			effect = gts_leader_item_i_Furnace_slot_1_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_Furnace_slot_2"
+			spriteType = "GFX_gts_leader_item_i_Furnace"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_2 }
+			effect = gts_leader_item_i_Furnace_slot_2_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_Furnace_slot_3"
+			spriteType = "GFX_gts_leader_item_i_Furnace"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_3 }
+			effect = gts_leader_item_i_Furnace_slot_3_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_Furnace_slot_4"
+			spriteType = "GFX_gts_leader_item_i_Furnace"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_4 }
+			effect = gts_leader_item_i_Furnace_slot_4_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_Furnace_slot_5"
+			spriteType = "GFX_gts_leader_item_i_Furnace"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_5 }
+			effect = gts_leader_item_i_Furnace_slot_5_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_Furnace_slot_6"
+			spriteType = "GFX_gts_leader_item_i_Furnace"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_6 }
+			effect = gts_leader_item_i_Furnace_slot_6_effect
+		}
+		######
+		effectButtonType = {
+			name = "gts_leader_item_i_Swarm_slot_1"
+			spriteType = "GFX_gts_leader_item_i_Swarm"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_1 }
+			effect = gts_leader_item_i_Swarm_slot_1_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_Swarm_slot_2"
+			spriteType = "GFX_gts_leader_item_i_Swarm"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_2 }
+			effect = gts_leader_item_i_Swarm_slot_2_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_Swarm_slot_3"
+			spriteType = "GFX_gts_leader_item_i_Swarm"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_3 }
+			effect = gts_leader_item_i_Swarm_slot_3_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_Swarm_slot_4"
+			spriteType = "GFX_gts_leader_item_i_Swarm"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_4 }
+			effect = gts_leader_item_i_Swarm_slot_4_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_Swarm_slot_5"
+			spriteType = "GFX_gts_leader_item_i_Swarm"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_5 }
+			effect = gts_leader_item_i_Swarm_slot_5_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_i_Swarm_slot_6"
+			spriteType = "GFX_gts_leader_item_i_Swarm"
+			position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_6 }
+			effect = gts_leader_item_i_Swarm_slot_6_effect
+		}
+		# ######
+		# effectButtonType = {
+		# 	name = "xxx_slot_1"
+		# 	spriteType = "GFX_xxx"
+		# 	position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_1 }	
+		# 	effect = xxx_slot_1_effect
+		# }
+		# effectButtonType = {
+		# 	name = "xxx_slot_2"
+		# 	spriteType = "GFX_xxx"
+		# 	position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_2 }	
+		# 	effect = xxx_slot_2_effect
+		# }
+		# effectButtonType = {
+		# 	name = "xxx_slot_3"
+		# 	spriteType = "GFX_xxx"
+		# 	position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_3 }	
+		# 	effect = xxx_slot_3_effect
+		# }
+		# effectButtonType = {
+		# 	name = "xxx_slot_4"
+		# 	spriteType = "GFX_xxx"
+		# 	position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_4 }	
+		# 	effect = xxx_slot_4_effect
+		# }
+		# effectButtonType = {
+		# 	name = "xxx_slot_5"
+		# 	spriteType = "GFX_xxx"
+		# 	position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_5 }	
+		# 	effect = xxx_slot_5_effect
+		# }
+		# effectButtonType = {
+		# 	name = "xxx_slot_6"
+		# 	spriteType = "GFX_xxx"
+		# 	position = { x = @gts_leader_item_x_1 y = @gts_leader_item_y_6 }	
+		# 	effect = xxx_slot_6_effect
+		# }
+
+
+
+		# ### 每个宠物2个槽位 ###
+		######
+		effectButtonType = {
+			name = "gts_leader_item_p_dragon_slot_7"
+			spriteType = "GFX_gts_leader_item_p_dragon"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_1 }	
+			effect = gts_leader_item_p_dragon_slot_7_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_p_dragon_slot_8"
+			spriteType = "GFX_gts_leader_item_p_dragon"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_2 }	
+			effect = gts_leader_item_p_dragon_slot_8_effect
+		}
+		######
+		effectButtonType = {
+			name = "gts_leader_item_p_fortress_slot_7"
+			spriteType = "GFX_gts_leader_item_p_fortress"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_1 }	
+			effect = gts_leader_item_p_fortress_slot_7_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_p_fortress_slot_8"
+			spriteType = "GFX_gts_leader_item_p_fortress"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_2 }	
+			effect = gts_leader_item_p_fortress_slot_8_effect
+		}
+		######
+		effectButtonType = {
+			name = "gts_leader_item_p_horror_slot_7"
+			spriteType = "GFX_gts_leader_item_p_horror"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_1 }	
+			effect = gts_leader_item_p_horror_slot_7_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_p_horror_slot_8"
+			spriteType = "GFX_gts_leader_item_p_horror"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_2 }	
+			effect = gts_leader_item_p_horror_slot_8_effect
+		}
+		######
+		effectButtonType = {
+			name = "gts_leader_item_p_shielded_slot_7"
+			spriteType = "GFX_gts_leader_item_p_shielded"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_1 }	
+			effect = gts_leader_item_p_shielded_slot_7_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_p_shielded_slot_8"
+			spriteType = "GFX_gts_leader_item_p_shielded"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_2 }	
+			effect = gts_leader_item_p_shielded_slot_8_effect
+		}
+		######
+		effectButtonType = {
+			name = "gts_leader_item_p_sphere_slot_7"
+			spriteType = "GFX_gts_leader_item_p_sphere"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_1 }	
+			effect = gts_leader_item_p_sphere_slot_7_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_p_sphere_slot_8"
+			spriteType = "GFX_gts_leader_item_p_sphere"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_2 }	
+			effect = gts_leader_item_p_sphere_slot_8_effect
+		}
+		######
+		effectButtonType = {
+			name = "gts_leader_item_p_stellarites_slot_7"
+			spriteType = "GFX_gts_leader_item_p_stellarites"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_1 }	
+			effect = gts_leader_item_p_stellarites_slot_7_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_p_stellarites_slot_8"
+			spriteType = "GFX_gts_leader_item_p_stellarites"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_2 }	
+			effect = gts_leader_item_p_stellarites_slot_8_effect
+		}
+		######
+		effectButtonType = {
+			name = "gts_leader_item_p_huatian_slot_7"
+			spriteType = "GFX_gts_leader_item_p_huatian"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_1 }	
+			effect = gts_leader_item_p_huatian_slot_7_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_p_huatian_slot_8"
+			spriteType = "GFX_gts_leader_item_p_huatian"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_2 }	
+			effect = gts_leader_item_p_huatian_slot_8_effect
+		}
+		# ######
+		# effectButtonType = {
+		# 	name = "gts_leader_item_p_yukikake_slot_7"
+		# 	spriteType = "GFX_gts_leader_item_p_yukikake"
+		# 	position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_1 }	
+		# 	effect = gts_leader_item_p_yukikake_slot_7_effect
+		# }
+		# effectButtonType = {
+		# 	name = "gts_leader_item_p_yukikake_slot_8"
+		# 	spriteType = "GFX_gts_leader_item_p_yukikake"
+		# 	position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_2 }	
+		# 	effect = gts_leader_item_p_yukikake_slot_8_effect
+		# }
+		######
+		effectButtonType = {
+			name = "gts_leader_item_p_aplog_slot_7"
+			spriteType = "GFX_gts_leader_item_p_aplog"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_1 }	
+			effect = gts_leader_item_p_aplog_slot_7_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_p_aplog_slot_8"
+			spriteType = "GFX_gts_leader_item_p_aplog"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_2 }	
+			effect = gts_leader_item_p_aplog_slot_8_effect
+		}
+		######
+		effectButtonType = {
+			name = "gts_leader_item_p_cache_slot_7"
+			spriteType = "GFX_gts_leader_item_p_cache"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_1 }	
+			effect = gts_leader_item_p_cache_slot_7_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_p_cache_slot_8"
+			spriteType = "GFX_gts_leader_item_p_cache"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_2 }	
+			effect = gts_leader_item_p_cache_slot_8_effect
+		}
+		######
+		effectButtonType = {
+			name = "gts_leader_item_p_115_slot_7"
+			spriteType = "GFX_gts_leader_item_p_115"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_1 }	
+			effect = gts_leader_item_p_115_slot_7_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_p_115_slot_8"
+			spriteType = "GFX_gts_leader_item_p_115"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_2 }	
+			effect = gts_leader_item_p_115_slot_8_effect
+		}
+		######
+		effectButtonType = {
+			name = "gts_leader_item_p_koharu_slot_7"
+			spriteType = "GFX_gts_leader_item_p_koharu"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_1 }	
+			effect = gts_leader_item_p_koharu_slot_7_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_p_koharu_slot_8"
+			spriteType = "GFX_gts_leader_item_p_koharu"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_2 }	
+			effect = gts_leader_item_p_koharu_slot_8_effect
+		}
+		######
+		effectButtonType = {
+			name = "gts_leader_item_p_yiyan_slot_7"
+			spriteType = "GFX_gts_leader_item_p_yiyan"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_1 }	
+			effect = gts_leader_item_p_yiyan_slot_7_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_p_yiyan_slot_8"
+			spriteType = "GFX_gts_leader_item_p_yiyan"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_2 }	
+			effect = gts_leader_item_p_yiyan_slot_8_effect
+		}
+		######
+		effectButtonType = {
+			name = "gts_leader_item_p_xiaoyu_slot_7"
+			spriteType = "GFX_gts_leader_item_p_xiaoyu"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_1 }	
+			effect = gts_leader_item_p_xiaoyu_slot_7_effect
+		}
+		# ######
+		effectButtonType = {
+			name = "gts_leader_item_p_graygoo_slot_7"
+			spriteType = "GFX_gts_leader_item_p_graygoo"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_1 }	
+			effect = gts_leader_item_p_graygoo_slot_7_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_p_graygoo_slot_8"
+			spriteType = "GFX_gts_leader_item_p_graygoo"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_2 }	
+			effect = gts_leader_item_p_graygoo_slot_8_effect
+		}
+		# ######
+		effectButtonType = {
+			name = "gts_leader_item_p_tensi_slot_7"
+			spriteType = "GFX_gts_leader_item_p_tensi"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_1 }
+			effect = gts_leader_item_p_tensi_slot_7_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_p_tensi_slot_8"
+			spriteType = "GFX_gts_leader_item_p_tensi"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_2 }
+			effect = gts_leader_item_p_tensi_slot_8_effect
+		}
+		# ######
+		effectButtonType = {
+			name = "gts_leader_item_p_transform_slot_7"
+			spriteType = "GFX_gts_leader_item_p_transform"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_1 }
+			effect = gts_leader_item_p_transform_slot_7_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_p_transform_slot_8"
+			spriteType = "GFX_gts_leader_item_p_transform"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_2 }
+			effect = gts_leader_item_p_transform_slot_8_effect
+		}
+		# ######
+		effectButtonType = {
+			name = "gts_leader_item_p_linfeng_slot_7"
+			spriteType = "GFX_gts_leader_item_p_linfeng"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_1 }
+			effect = gts_leader_item_p_linfeng_slot_7_effect
+		}
+		effectButtonType = {
+			name = "gts_leader_item_p_linfeng_slot_8"
+			spriteType = "GFX_gts_leader_item_p_linfeng"
+			position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_2 }
+			effect = gts_leader_item_p_linfeng_slot_8_effect
+		}
+		# ######
+		# effectButtonType = {
+		# 	name = "xxx_slot_7"
+		# 	spriteType = "GFX_xxx"
+		# 	position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_1 }	
+		# 	effect = xxx_slot_7_effect
+		# }
+		# effectButtonType = {
+		# 	name = "xxx_slot_8"
+		# 	spriteType = "GFX_xxx"
+		# 	position = { x = @gts_leader_item_x_2 y = @gts_leader_item_y_2 }	
+		# 	effect = xxx_slot_8_effect
+		# }
+		### 以下部分隐藏 ###
+		buttonType = { name = "tts_button" position = { x = -1466 y = -1639 } spriteType = "GFX_button_tts_start" } # hidden
+		buttonType = { name = "confirm_button" quadTextureSprite = "GFX_standard_button_142_34_button" } # hidden
+		containerWindowType = {
+			name = "portrait_background"
+			position = { x = -1117 y = -1145 }
+			size = { width = 0 height = 0 } 	# hide portrait window
+			iconType = { name = "event_picture" spriteType = "GFX_diplomacy_portrait_frame" } # hidden
+			iconType = { name = "portrait" spriteType = "GFX_portrait_character" } # hidden
+		}
+		iconType = { name = "empire_info_bg" spriteType = "GFX_diplomacy_dark_fade_bg" } # hidden
+		instantTextBoxType = { name = "empire_name" font = "malgun_goth_24" } # hidden
+		instantTextBoxType = { name = "empire_government_type" font = "cg_16b" } # hidden
+		instantTextBoxType = { name = "empire_personality_type" font = "cg_16b" } # hidden
+		overlappingElementsBoxType = { name = "empire_ethics_icons" position = { x = -1145 y = -11138 } } # hidden
+		iconType = { name = "empire_flag" spriteType = "GFX_empire_flag_128" position = { x = -1125 y = -11235 } } # hidden
+		containerWindowType = {
+			name = "leader_details"
+			position = { x = -1125 y = -1175 }
+			containerWindowType = { name = "empire_traits_box" } # hidden
+			instantTextBoxType = { name = "empire_traits_label" font = "cg_16b" } # hidden
+			overlappingElementsBoxType = { name = "leader_traits" } # hidden
+			instantTextBoxType = { name = "leader_name" font = "cg_16b" } # hidden
+			instantTextBoxType = { name = "leader_species" font = "cg_16b" } # hidden
+		}
+		containerWindowType = {
+			name = "opinion_window"
+			position = { x = -1127 y = -11110 }
+			size = { width = 94 height = 30 }
+			iconType = { name = "their_opinion_icon" spriteType = "GFX_diplomacy_opinion" } # hidden
+			instantTextBoxType = { name = "their_opinion" font = "cg_16b" }
+		}
+	}
+}

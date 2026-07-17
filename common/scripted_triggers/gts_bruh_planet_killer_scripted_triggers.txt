@@ -1,0 +1,127 @@
+can_destroy_planet_with_gts_bruh_shipgirl_planet_killer_ub = {
+	#custom_tooltip = {
+	#	fail_text = is_not_a_standard_planet_or_megastructure
+	#	is_a_planet_megastructure = yes
+	#}
+	custom_tooltip = {
+		fail_text = is_shielded
+		NOR = {
+			is_planet_class = pc_shielded
+			is_planet_class = pc_ringworld_shielded
+			is_planet_class = pc_habitat_shielded
+		}
+	}
+	#custom_tooltip = {
+	#	fail_text = fotd_cant_collossus
+	#	NOT = { has_planet_flag = fotd_seperatist_planet@from.owner }
+	#	exists = from.owner
+	#	from.owner = {
+	#		NOT = { has_country_flag = fotd_seperatist_country@from.owner }
+	#	}
+	#}
+	custom_tooltip = {
+		fail_text = skadi_is_loli_planet
+		NOR = {
+			has_planet_flag = gtsra_loli_planet
+		}
+	}
+	custom_tooltip = {
+		fail_text = skadi_is_used_planet
+		is_gts_reformed_planet = no
+	}
+	custom_tooltip = {
+		fail_text = gts_bruh_is_gts_mod_planet
+		is_gts_bruh_planet = no
+	}
+	custom_tooltip = {
+		fail_text = gts_bruh_is_shipgirl_planet_killer_panties_special_projects_target_planet
+		NOT = { has_planet_flag = gts_bruh_shipgirl_planet_killer_panties_special_projects_planet }
+	}
+	custom_tooltip = {
+		fail_text = gts_bruh_colossus_destroy_planet_cool_down
+		from.owner = {
+			NOT = { has_country_flag = gts_bruh_colossus_destroy_planet_effect_cool_down }
+		}
+	}
+	if = {
+		limit = {
+			exists = owner
+			owner = { is_country_type = primitive }
+		}
+		custom_tooltip = {
+			fail_text = primitives_not_full_interference
+			from.owner = {
+				has_policy_flag = interference_aggressive
+			}
+		}
+	}
+}
+
+can_destroy_planet_with_gts_bruh_shipgirl_planet_killer_panties = {
+	custom_tooltip = {
+		fail_text = is_not_a_standard_planet_or_megastructure
+		is_a_planet_megastructure = yes
+	}
+	custom_tooltip = {
+		fail_text = is_shielded
+		NOR = {
+			is_planet_class = pc_shielded
+			is_planet_class = pc_ringworld_shielded
+			is_planet_class = pc_habitat_shielded
+		}
+	}
+	custom_tooltip = {
+		fail_text = is_not_hot_planet
+		NOR = {
+			is_planet_class = pc_volcanic
+			is_planet_class = pc_molten
+		}
+	}
+	custom_tooltip = {
+		fail_text = skadi_is_loli_planet
+		NOR = {
+			has_planet_flag = gtsra_loli_planet
+		}
+	}
+	custom_tooltip = {
+		fail_text = skadi_is_used_planet
+		is_gts_reformed_planet = no
+	}
+	custom_tooltip = {
+		fail_text = gts_bruh_is_gts_mod_planet
+		is_gts_bruh_planet = no
+	}
+	custom_tooltip = {
+		fail_text = gts_bruh_colossus_destroy_planet_cool_down
+		from.owner = {
+			NOT = { has_country_flag = gts_bruh_colossus_destroy_planet_effect_cool_down }
+		}
+	}
+	if = {
+		limit = {
+			exists = owner
+			owner = { is_country_type = primitive }
+		}
+		custom_tooltip = {
+			fail_text = primitives_not_full_interference
+			from.owner = {
+				has_policy_flag = interference_aggressive
+			}
+		}
+	}
+}
+
+is_gts_bruh_planet = {
+
+	# 沒有包含首都才能炸土著球
+
+	OR = {
+		has_planet_flag = gtsra_loli_planet # 歐羅拉
+		has_planet_flag = gts_uniform_shoes # 制服鞋
+		has_planet_flag = gts_uniform_shoes_colonizable # 制服鞋
+		has_planet_flag = gts_sleepbear_planet # 頌汐
+		has_planet_flag = gts_laceup_heel # 綁帶涼鞋
+		has_planet_flag = gts_yarong_internal_planet #犽戎
+		is_gts_reformed_planet = yes # 被巨娘特殊改造的球
+	}
+}

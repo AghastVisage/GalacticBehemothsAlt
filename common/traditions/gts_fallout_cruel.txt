@@ -1,0 +1,76 @@
+tr_gts_fallout_cruel_adopt = {
+	possible = { 
+		has_origin = origin_gts_fallout
+		NOT = {has_tradition = tr_gts_fallout_gentle_adopt} 
+	}				# AND trigger, scope: country
+	custom_tooltip = tr_gts_fallout_cruel_adopt_desc
+	# modifier = {}									# applied to country
+	ai_weight = {
+		factor = 0
+	}									# scope: country
+}
+
+tr_gts_fallout_cruel_finish = {
+	modifier = {
+		ascension_perks_add = 1
+		pop_resettlement_cost_mult = -0.50
+		country_base_influence_produces_add = 1
+		country_claim_influence_cost_mult = -0.4
+	}									# applied to country
+	ai_weight = {
+		factor = 0
+	}									# scope: country
+}
+
+tr_gts_fallout_cruel_punishment = {
+	custom_tooltip = tr_gts_fallout_cruel_punishment_desc
+	ai_weight = {
+		factor = 0
+	}									# scope: country
+}
+
+tr_gts_fallout_cruel_military_enhance = {
+	possible = { has_tradition = tr_gts_fallout_cruel_punishment}				# AND trigger, scope: country
+
+	modifier = {
+		country_alloys_produces_mult = 0.2
+		ship_weapon_range_mult = 0.2
+	}									# applied to country
+	ai_weight = {
+		factor = 0
+	}	
+}
+
+tr_gts_fallout_cruel_desicion = {
+	custom_tooltip = tr_gts_fallout_cruel_desicion_desc
+	# modifier = {}									# applied to country
+	ai_weight = {
+		factor = 0
+	}	
+}
+
+tr_gts_fallout_cruel_nuked_planet_production = {
+	possible = { has_tradition = tr_gts_fallout_cruel_desicion}				# AND trigger, scope: country
+	custom_tooltip = tr_gts_fallout_cruel_nuked_planet_production_desc
+	modifier = {}									# applied to country
+	ai_weight = {
+		factor = 0
+	}	
+}
+
+tr_gts_fallout_cruel_nuked_planet_enhance = {
+	possible = { 
+		has_tradition = tr_gts_fallout_cruel_nuked_planet_production
+		has_technology = tech_gene_tailoring
+}				# AND trigger, scope: country
+	custom_tooltip = tr_gts_fallout_cruel_nuked_planet_enhance_desc
+	on_enabled = {
+		hidden_effect = {
+			country_event = { id = gts_fallout.602 }
+		}
+	}								# applied to country
+	ai_weight = {
+		factor = 0
+	}	
+}
+

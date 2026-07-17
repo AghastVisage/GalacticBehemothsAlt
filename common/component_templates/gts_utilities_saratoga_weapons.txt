@@ -1,0 +1,207 @@
+### 副炮 ###
+# 副炮-M
+weapon_component_template = {
+	key = "gts_saratoga_secondary_gun_medium"
+	size = medium
+	icon = "GFX_tech_kinetic_artillery_gts_3"
+	icon_frame = 1
+	type = instant
+	power = -400
+	damage = { min = 1000 max = 2000 }
+	# 每 10 ticks 為 1 天
+	windup = { min = 10.0 max = 10.0 }
+	total_fire_time = 20
+	accuracy = 0.75
+	tracking = 0.3
+	min_range = 30
+	range = 300
+	shield_damage = 1.5
+	armor_damage = 0.75
+    component_set = "gts_saratoga_shipgirl_kinetic_artillery_component_set_1"
+	projectile_gfx = "adv_kinetic_artillery"
+	tags = { weapon_type_kinetic m_slot }
+	ai_tags = { weapon_role_anti_shield gunship }
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 400
+		}
+		upkeep = {
+			energy = 4
+			alloys = 1
+		}
+	}
+	size_restriction = {
+		gts_saratoga_titan
+	}
+}
+### 防空 ###
+# 动能防空炮-M
+weapon_component_template = {
+	key = "gts_saratoga_kinetic_point_defence_medium"
+	size = point_defence
+	icon = "GFX_gts_bruh_shipgirl_flak_battery_ship_part_1"
+	icon_frame = 1
+	type = point_defence
+	power = -100
+	damage = { min = 30.0 max = 50.0 }
+	# 每 10 ticks 為 1 天
+	windup = { min = 0.0 max = 0.0 }
+	total_fire_time = 5
+	accuracy = 0.75
+	tracking = 0.75
+	range = 150
+	shield_damage = 2
+	shield_penetration = 0.25
+	armor_damage = 0.5
+	component_set = "gts_saratoga_shipgirl_flak_battery_component_set_1"
+	projectile_gfx = "stormfire_auto_cannons_l"
+	tags = { weapon_type_point_defense weapon_type_kinetic }
+	ai_tags = { weapon_role_point_defense screen }
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 50
+		}
+		upkeep = {
+			energy = 1
+			alloys = 0.25
+		}
+	}
+	size_restriction = {
+		gts_saratoga_titan
+	}
+}
+# 能量防空炮-M
+weapon_component_template = {
+	key = "gts_saratoga_energy_point_defence_medium"
+	size = point_defence
+	icon = "GFX_gts_bruh_shipgirl_point_defence_ship_part_1"
+	icon_frame = 1
+	type = point_defence
+	power = -100
+	damage = { min = 30.0 max = 50.0 }
+	# 每 10 ticks 為 1 天
+	windup = { min = 0.0 max = 0.0 }
+	total_fire_time = 5
+	accuracy = 0.75
+	tracking = 0.75
+	range = 150
+	shield_damage = 0.5
+	armor_damage = 2
+	armor_penetration = 0.25
+	component_set = "gts_saratoga_shipgirl_point_defence_component_set_1"
+	projectile_gfx = "stormfire_auto_cannons_l"
+	tags = { weapon_type_point_defense weapon_type_energy }
+	ai_tags = { weapon_role_point_defense screen }
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 50
+		}
+		upkeep = {
+			energy = 1
+			alloys = 0.25
+		}
+	}
+	size_restriction = {
+		gts_saratoga_titan
+	}
+}
+### 舰载机 ###
+# F2F
+strike_craft_component_template = {
+	key = "gts_saratoga_strike_craft_hangar_1"
+	size = medium
+	icon = "GFX_gts_bruh_shipgirl_strike_craft_ship_part_1"
+	icon_frame = 1
+	weapon_type = point_defence
+	power = -400
+	entity = "GTS_Seafire_body_entity"
+	ship_behavior = "fighters_behavior"
+	count = 12
+	regeneration_per_day = 2
+	launch_time = 1
+	damage = { min = 20 max = 30 }
+	cooldown = 1.0
+	accuracy = 1.0
+	tracking = 0.5
+	range = 400
+	engagement_range = 300
+	health = 20
+	shield = 20
+	armor = 1
+	evasion = 0.5
+	speed = 600
+	rotation_speed = 0.5
+	acceleration = 1
+	shield_damage = 2.0
+	armor_damage = 0.5
+	hull_damage = 0.5
+	component_set = "gts_saratoga_shipgirl_strike_craft_hangar_component_set_1"
+	projectile_gfx = "auto_cannons_s"
+	tags = { weapon_type_strike_craft }
+	ai_tags = { weapon_role_point_defense carrier }
+	point_defence_targets = { "strike_craft" }
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 100
+		}
+		upkeep = {
+			energy = 2
+			alloys = 1
+		}
+	}
+    size_restriction = {
+	    gts_saratoga_titan
+	}
+}
+# SBU
+strike_craft_component_template = {
+	key = "gts_saratoga_strike_craft_hangar_2"
+	size = medium
+	icon = "GFX_gts_bruh_shipgirl_strike_craft_ship_part_2"
+	icon_frame = 1
+	weapon_type = instant
+	power = -400
+	entity = "GTS_F6F_Fighters_body_entity"
+	ship_behavior = "bombers_behavior"
+	count = 12
+	regeneration_per_day = 2
+	launch_time = 1
+	damage = { min = 40 max = 60 }
+	cooldown = 1.0
+	accuracy = 1.0
+	tracking = 0.6
+	range = 400
+	engagement_range = 300
+	health = 20
+	shield = 20
+	armor = 1
+	evasion = 0.4
+	speed = 500
+	rotation_speed = 0.4
+	acceleration = 1
+	shield_damage = 0.5
+	armor_damage = 2.0
+	hull_damage = 2.0
+	component_set = "gts_saratoga_shipgirl_strike_craft_hangar_component_set_2"
+	projectile_gfx = "neutron_torpedoes"
+	tags = { weapon_type_strike_craft }
+	ai_tags = { weapon_role_point_defense carrier }
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 100
+		}
+		upkeep = {
+			energy = 2
+			alloys = 1
+		}
+	}
+	size_restriction = {
+		gts_saratoga_titan
+	}
+}
+

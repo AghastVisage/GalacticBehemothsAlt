@@ -1,0 +1,231 @@
+namespace = gts_goldenglow
+
+country_event = {
+	#创建星系
+	id = gts_goldenglow.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		random_system = {
+			limit = {
+				distance = {
+					source = root.capital_scope.solar_system
+					use_bypasses = yes
+					min_jumps = 1
+					max_jumps = 6
+				}
+			}
+			spawn_system = {
+				min_distance >= 10
+				max_distance <= 30
+				max_jumps = 1
+				initializer = gts_goldenglow_system
+				effect = {
+					save_event_target_as = gts_bruh_get_goldenglow_system_location
+				}
+			}
+		}
+	}
+}
+
+ship_event = {
+	# 电流翻涌
+	id = gts_goldenglow.2
+	title = "gts_goldenglow.2.name"
+	desc = gts_goldenglow.2.desc
+	picture = GFX_gts_goldenglow_1
+	show_sound = event_dig_site
+	is_triggered_only = yes
+	option = {
+		name = gts_goldenglow.2.a
+		enable_special_project = {
+			name = "gts_goldenglow_special_project_1"
+			location = event_target:gts_goldenglow_anomaly_planet
+			owner = root.owner
+		}
+	}
+}
+
+ship_event = {
+	# 粉红色的巨影
+	id = gts_goldenglow.3
+	title = "gts_goldenglow.3.name"
+	desc = gts_goldenglow.3.desc
+	picture = GFX_gts_goldenglow_2
+	show_sound = event_dig_site
+	is_triggered_only = yes
+	option = {
+		name = gts_goldenglow.3.a
+		enable_special_project = {
+			name = "gts_goldenglow_special_project_2"
+			location = event_target:gts_goldenglow_anomaly_planet
+			owner = root.owner
+		}
+	}
+}
+
+ship_event = {
+	# 紧急撤离
+	id = gts_goldenglow.4
+	title = "gts_goldenglow.4.name"
+	desc = gts_goldenglow.4.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_goldenglow_1_room
+	}
+	show_sound = event_dig_site
+	is_triggered_only = yes
+	option = {
+		name = gts_goldenglow.4.a
+		enable_special_project = {
+			name = "gts_goldenglow_special_project_3"
+			location = event_target:gts_goldenglow_anomaly_planet
+			owner = root.owner
+		}
+	}
+}
+
+ship_event = {
+	# 澄净闪耀
+	id = gts_goldenglow.5
+	title = "gts_goldenglow.5.name"
+	desc = gts_goldenglow.5.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_goldenglow_2_room
+	}
+	show_sound = event_dig_site
+	is_triggered_only = yes
+	option = {
+		name = gts_goldenglow.5.a
+		owner = {
+			country_event = {
+				id = gts_goldenglow.999
+			}
+		}
+	}
+}
+
+country_event = {
+	# 澄闪
+	id = gts_goldenglow.999
+	title = "gts_goldenglow.5.name"
+	desc = "gts_goldenglow.999.desc"
+	show_sound = event_celebration
+	is_triggered_only = yes
+	picture = GFX_leader_recruitment_bg_renowned
+	auto_opens = yes
+	event_window_type = leader_recruit
+	notification_event_icon = "GFX_message_leader_gts_goldenglow"
+	immediate = {
+		gts_leader_goldenglow_hired = yes
+	}
+	picture_event_data = {
+		portrait = event_target:gts_leader
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = gts_goldenglow.999.a
+		response_text = gts_goldenglow.999.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_goldenglow.999.b
+		response_text = gts_goldenglow.999.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_goldenglow.999.c
+		response_text = gts_goldenglow.999.c.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		custom_tooltip = gts_goldenglow.999.hire_custom_tooltip
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = renowned }
+		}
+	}
+	option = {
+		name = DISMISS
+		tag = dismiss_leader
+		hidden_effect = {
+			country_event = {
+				id = gts_goldenglow.999
+			}
+		}
+	}
+	after = {
+		hidden_effect = {
+			# 两年后招募水月
+			country_event = {
+				id = gts_mizuki.1
+				days = 720
+			}
+		}
+	}
+}
+# 澄闪换装
+country_event = {
+	id = gts_goldenglow.1000
+	title = gts_goldenglow.1000.name
+	desc = gts_goldenglow.1000.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		#room =
+		portrait = event_target:gts_goldenglow
+	}
+	option = {
+		name = gts_goldenglow.1000.1
+		is_dialog_only = yes
+		response_text = gts_goldenglow.1000.1a
+		hidden_effect = {
+			event_target:gts_goldenglow = {
+				change_leader_portrait = gts_portrait_goldenglow
+			}
+		}
+	}
+	option = {
+		name = gts_goldenglow.1000.2
+		is_dialog_only = yes
+		response_text = gts_goldenglow.1000.2a
+		hidden_effect = {
+			event_target:gts_goldenglow = {
+				change_leader_portrait = gts_portrait_goldenglow_2
+			}
+		}
+	}
+	option = {
+		name = gts_goldenglow.1000.3
+		is_dialog_only = yes
+		response_text = gts_goldenglow.1000.3a
+		hidden_effect = {
+			event_target:gts_goldenglow = {
+				change_leader_portrait = gts_portrait_goldenglow_3
+			}
+		}
+	}
+	option = {
+		name = gts_goldenglow.1000.4
+		is_dialog_only = yes
+		response_text = gts_goldenglow.1000.4a
+		hidden_effect = {
+			event_target:gts_goldenglow = {
+				change_leader_portrait = gts_portrait_goldenglow_4
+			}
+		}
+	}
+
+	option = {
+		name = gts_leave
+		default_hide_option = yes
+	}
+}

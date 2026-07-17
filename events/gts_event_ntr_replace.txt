@@ -1,0 +1,71 @@
+# 留作备用
+namespace = grand_archive
+
+# SB蠢驴不做判定的吗？？？
+# This = Leader captured
+# from = perpetrator country
+# fromfrom = victim country
+# fromfromfrom = system where it happened
+leader_event = {
+    id = grand_archive.9000
+    hide_window = yes
+    is_triggered_only = yes
+
+    immediate = {
+        if = {
+            limit = {
+                fromfrom = {
+                    is_ai = yes
+                    or = {
+                        is_country_type = default
+                        is_country_type = awakened_marauders
+                        # 堕落帝国太先进
+                        # is_country_type = fallen_empire
+                        # is_country_type = awakened_fallen_empire
+                        # 除非你是文灾飞
+                        and = {
+                            root.from = { has_ascension_perk = ap_cosmogenesis }
+                            or = {
+                                is_country_type = fallen_empire
+                                is_country_type = awakened_fallen_empire
+                            }
+                        }
+                    }
+                    is_gestalt = no
+                }
+            }
+
+            set_leader_flag = leader_death_events_blocked
+            exile_leader_as = captured_leader_by@from
+
+            from = {
+                create_message = {
+                    type = MESSAGE_LEADER_CAPTURED
+                    localization = MESSAGE_LEADER_CAPTURED_DESC
+                    days = 20
+
+                    variable = {
+                        type = name
+                        localization = COUNTRY
+                        scope = root.fromfrom
+                    }
+                }
+            }
+
+            fromfrom = {
+                country_event = {
+                    id = grand_archive.9005
+                    days = 1
+                    scopes = {
+                        from = root.from
+                        fromfrom = root
+                        fromfromfrom = root.fromfromfrom
+                    }
+                }
+            }
+        }
+        else = {
+            set_owner = fromfrom
+        }
+    }
+}

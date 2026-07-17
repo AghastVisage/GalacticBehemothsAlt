@@ -1,0 +1,1761 @@
+namespace = gts_huatian
+
+#花田
+country_event = {
+	#创建花田星系
+	id = gts_huatian.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		random_system = {
+			limit = {
+				distance = {
+					source = root.capital_scope.solar_system
+					use_bypasses = yes
+					min_jumps = 1
+					max_jumps = 6
+				}
+			}
+			spawn_system = {
+				min_distance >= 10
+				max_distance <= 30
+				max_jumps = 1
+				initializer = gts_huatian_system
+				effect = {
+					save_event_target_as = gts_bruh_get_huatian_system_location
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	#初次
+	id = gts_huatian.1000
+	title = gts_huatian.1000.name
+	desc = gts_huatian.1000.desc
+	picture = GFX_evt_relic_world_street
+	show_sound = event_mystic_reveal
+	is_triggered_only = yes
+	option = {
+		name = gts_huatian.1000.a
+	}
+}
+
+fleet_event = {
+	#阶段1
+	id = gts_huatian.1001
+	title = gts_huatian.1001.name
+	desc = gts_huatian.1001.desc
+	picture = GFX_evt_ancient_records
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_huatian.1001.a
+		owner = {
+			add_resource = {
+				minor_artifacts = 10
+			}
+		}
+	}
+}
+
+fleet_event = {
+	#阶段2
+	id = gts_huatian.1002
+	title = gts_huatian.1002.name
+	desc = gts_huatian.1002.desc
+	picture = GFX_gts_huatian_2
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_huatian.1002.a
+		owner = {
+			add_resource = {
+				minor_artifacts = 20
+			}
+		}
+	}
+}
+
+fleet_event = {
+	#阶段3
+	id = gts_huatian.1003
+	title = gts_huatian.1003.name
+	desc = gts_huatian.1003.desc
+	picture = GFX_gtsra_load_11
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_huatian.1003.a
+		owner = {
+			add_resource = {
+				minor_artifacts = 80
+			}
+		}
+	}
+}
+
+fleet_event = {
+	#阶段4
+	id = gts_huatian.1004
+	title = gts_huatian.1004.name
+	desc = gts_huatian.1004.desc
+	picture = GFX_gtsra_load_8
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_huatian.1004.a
+		owner = {
+			add_resource = {
+				minor_artifacts = 100
+			}
+			add_monthly_resource_mult = {
+				resource = unity
+				value = @tier5unityreward
+				min = @tier5unitymin
+				max = @tier5unitymax
+			}
+			hidden_effect = {
+				country_event = {
+					id = gts_huatian.1010
+					days = 3
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	# 花海
+	id = gts_huatian.1010
+	title = gts_huatian.1010.name
+	desc = gts_huatian.1010.desc
+	picture = GFX_gts_huatian_3
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_huatian.1010.a
+		custom_tooltip = gts_huatian.1010.a.tooltip
+		hidden_effect = {
+			set_country_flag = gts_huatian_neutrality
+			country_event = {
+				id = gts_huatian.1011
+				days = 30
+			}
+		}
+	}
+	option = {
+		name = gts_huatian.1010.b
+		custom_tooltip = gts_huatian.1010.b.tooltip
+		hidden_effect = {
+			set_country_flag = gts_huatian_friendly
+			country_event = {
+				id = gts_huatian.1011
+				days = 3
+			}
+		}
+	}
+	option = {
+		name = gts_huatian.1010.c
+		custom_tooltip = gts_huatian.1010.c.tooltip
+		hidden_effect = {
+			set_country_flag = gts_huatian_drift
+			country_event = {
+				id = gts_huatian.1012
+				days = 3
+			}
+		}
+	}
+}
+
+country_event = {
+	# 繁花似锦
+	id = gts_huatian.1011
+	title = gts_huatian.1011.name
+	desc = gts_huatian.1011.desc
+	picture = GFX_gts_huatian_4
+	show_sound = event_default
+	is_triggered_only = yes
+	immediate = {
+		random_planet_within_border = {
+			limit = {
+				has_planet_flag = gts_huatian_homeworld
+			}
+			gts_destroy_planet = yes
+		}
+	}
+	option = {
+		name = gts_huatian.1011.a
+		custom_tooltip = gts_huatian.1011.a.tooltip
+		hidden_effect = {
+			country_event = {
+				id = gts_huatian.999
+			}
+		}
+	}
+}
+
+country_event = {
+	# 繁花落尽
+	id = gts_huatian.1012
+	title = gts_huatian.1012.name
+	desc = gts_huatian.1012.desc
+	picture = GFX_gts_huatian_4
+	show_sound = event_red_alert
+	location = event_target:gts_huatian_planet
+	is_triggered_only = yes
+	immediate = {
+		random_planet_within_border = {
+			limit = {
+				has_planet_flag = gts_huatian_homeworld
+			}
+			gts_destroy_planet = yes
+		}
+		random_owned_planet = {
+			limit = {
+				is_colony = yes
+			}
+			save_event_target_as = gts_huatian_planet
+			add_planet_devastation = 10
+		}
+	}
+	option = {
+		name = gts_huatian.1012.a
+		start_situation = {
+			type = gts_situation_huatian
+			target = event_target:gts_huatian_planet
+		}
+	}
+}
+
+country_event = {
+	# 小花田
+	id = gts_huatian.999
+	title = "TRANSMISSION"
+	desc = "gts_huatian.999.desc"
+	show_sound = event_celebration
+	is_triggered_only = yes
+	picture = GFX_leader_recruitment_bg_renowned
+	auto_opens = yes
+	event_window_type = leader_recruit
+	notification_event_icon = "GFX_message_leader_gts_huatian"
+	immediate = {
+		gts_leader_huatian_hired = yes
+	}
+	picture_event_data = {
+		portrait = event_target:gts_leader
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = gts_huatian.999.a
+		response_text = gts_huatian.999.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_huatian.999.b
+		response_text = gts_huatian.999.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_huatian.999.c
+		response_text = gts_huatian.999.c.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_huatian.999.d
+		response_text = gts_huatian.999.d.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_huatian.999.e
+		response_text = gts_huatian.999.e.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_huatian.999.f
+		response_text = gts_huatian.999.f.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		custom_tooltip = gts_huatian.999.hire_custom_tooltip
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = legendary }
+			random_list = {
+				# 花田随机事件
+				1 = {
+					country_event = {
+						id = gts_huatian.1030
+						days = 560
+					}
+				}
+				1 = {
+					country_event = {
+						id = gts_huatian.1031
+						days = 560
+					}
+				}
+			}
+			country_event = {
+				id = gts_huatian.1061
+				days = 1080
+			}
+		}
+	}
+	option = {
+		name = DISMISS
+		tag = dismiss_leader
+		hidden_effect = {
+			country_event = {
+				id = gts_huatian.999
+			}
+		}
+	}
+	after = {
+		if = {
+			limit = {
+				root = {
+					has_country_flag = gts_huatian_drift
+				}
+			}
+			event_target:gts_huatian = {
+				gts_love_value_set = { base_value = 10 increase_value = 0}
+			}
+		}
+		else_if = {
+			limit = {
+				root = {
+					has_country_flag = gts_huatian_neutrality
+				}
+			}
+			event_target:gts_huatian = {
+				gts_love_value_set = { base_value = 25 increase_value = 0}
+			}
+		}
+		else_if = {
+			limit = {
+				root = {
+					has_country_flag = gts_huatian_friendly
+				}
+			}
+			event_target:gts_huatian = {
+				gts_love_value_set = { base_value = 40 increase_value = 0}
+			}
+		}
+	}
+}
+
+country_event = {
+	#花田-终末地事件链结束
+	id = gts_huatian.1020
+	title = gts_huatian.1020.name
+	desc = gts_huatian.1020.desc
+	picture = GFX_gts_heiyu_1
+	is_triggered_only = yes
+	immediate = {
+		event_target:gts_huatian = {
+			add_trait = {
+				trait = gts_trait_avatar
+			}
+		}
+	}
+	option = {
+		name = gts_huatian.1020.a
+		custom_tooltip = gts_huatian.1020.a.tooltip
+		add_modifier = {
+			modifier = find_gts_end
+		}
+		add_relic = r_gts_endsweat
+		end_event_chain = gts_chain
+		hidden_effect = {
+			set_country_flag = gts_end_huatian
+			country_event = {
+				id = gts_huatian.1021
+				days = 365
+			}
+		}
+	}
+}
+
+country_event = {
+	#花田女仆日常-1
+	id = gts_huatian.1021
+	title = gts_huatian.1021.name
+	desc = gts_huatian.1021.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_event_9_room
+	}
+	is_triggered_only = yes
+	option = {
+		name = gts_continue
+		hidden_effect = {
+			country_event = {
+				id = gts_huatian.1022
+			}
+		}
+	}
+}
+
+country_event = {
+	#花田女仆日常-2
+	id = gts_huatian.1022
+	title = gts_huatian.1022.name
+	desc = gts_huatian.1022.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_event_10_room
+	}
+	is_triggered_only = yes
+	option = {
+		name = gts_continue
+		hidden_effect = {
+			country_event = {
+				id = gts_huatian.1023
+			}
+		}
+	}
+}
+
+country_event = {
+	#花田女仆日常-3
+	id = gts_huatian.1023
+	title = gts_huatian.1023.name
+	desc = gts_huatian.1023.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_event_11_room
+	}
+	is_triggered_only = yes
+	option = {
+		name = gts_continue
+		hidden_effect = {
+			country_event = {
+				id = gts_huatian.1024
+			}
+		}
+	}
+}
+
+country_event = {
+	#花田女仆日常-4
+	id = gts_huatian.1024
+	title = gts_huatian.1024.name
+	desc = gts_huatian.1024.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_event_12_room
+	}
+	is_triggered_only = yes
+	option = {
+		name = gts_terror
+		add_monthly_resource_mult = {
+			resource = unity
+			value = @tier5unityreward
+			min = @tier5unitymin
+			max = @tier5unitymax
+		}
+	}
+}
+
+country_event = {
+	#花田随机事件-异世花田与小人城市
+	id = gts_huatian.1030
+	title = gts_huatian.1030.name
+	desc = gts_huatian.1030.desc
+	show_sound = event_mystic_reveal
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_event_28_room
+	}
+	is_triggered_only = yes
+	trigger = {
+		any_owned_leader = {
+			has_leader_flag = gts_huatian
+		}
+	}
+	option = {
+		name = gts_huatian.1030.a
+		add_monthly_resource_mult = {
+			resource = unity
+			value = @tier5unityreward
+			min = @tier5unitymin
+			max = @tier5unitymax
+		}
+	}
+}
+
+country_event = {
+	#花田随机事件-星河之间，花田之旁
+	id = gts_huatian.1031
+	title = gts_huatian.1031.name
+	desc = gts_huatian.1031.desc
+	show_sound = event_mystic_reveal
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_event_29_room
+	}
+	is_triggered_only = yes
+	trigger = {
+		any_owned_leader = {
+			has_leader_flag = gts_huatian
+		}
+	}
+	option = {
+		name = gts_huatian.1031.a
+		country_event = {
+			id = gts_huatian.1032
+		}
+	}
+}
+
+country_event = {
+	#花田随机事件-星河之间，花田之旁
+	id = gts_huatian.1032
+	title = gts_huatian.1032.name
+	desc = gts_huatian.1032.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_event_29_room
+	}
+	is_triggered_only = yes
+	trigger = {
+		any_owned_leader = {
+			has_leader_flag = gts_huatian
+		}
+	}
+	option = {
+		name = gts_huatian.1032.a
+		add_monthly_resource_mult = {
+			resource = unity
+			value = @tier5unityreward
+			min = @tier5unitymin
+			max = @tier5unitymax
+		}
+	}
+}
+
+situation_event = {
+	id = gts_huatian.1040
+	title = gts_huatian.1040.name
+	desc = gts_huatian.1040.desc
+	picture = GFX_gts_huatian_2
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_huatian.1040.a
+		owner = {
+			add_resource = {
+				society_research = 500
+			}
+		}
+	}
+}
+
+situation_event = {
+	id = gts_huatian.1041
+	title = gts_huatian.1041.name
+	desc = gts_huatian.1041.desc
+	picture = GFX_gts_huatian_6
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_huatian.1041.a
+		owner = {
+			add_resource = {
+				unity = 500
+			}
+		}
+	}
+}
+
+situation_event = {
+	id = gts_huatian.1042
+	title = gts_huatian.1042.name
+	desc = gts_huatian.1042.desc
+	picture = GFX_gts_event_30
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_huatian.1042.a
+		owner = {
+			add_resource = {
+				society_research = 1000
+			}
+		}
+	}
+}
+
+situation_event = {
+	id = gts_huatian.1043
+	title = gts_huatian.1043.name
+	desc = gts_huatian.1043.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_event_40_room
+	}
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_huatian.1043.a
+		owner = {
+			add_resource = {
+				influence = 50
+			}
+			hidden_effect = {
+				country_event = {
+					id = gts_huatian.999
+				}
+			}
+		}
+	}
+	after = {
+		destroy_situation = this
+	}
+}
+
+### 小羊联动事件
+country_event = {
+	id = gts_huatian.1050
+	title = gts_huatian.1050.name
+	desc = gts_huatian.1050.desc
+	show_sound = event_mystic_reveal
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_xiaoyang1_room
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		any_owned_leader = {
+			has_leader_flag = gts_huatian
+		}
+		any_owned_leader = {
+			has_leader_flag = gts_eyjafjalla
+		}
+	}
+	option = {
+		name = gts_huatian.1050.a
+		add_monthly_resource_mult = {
+			resource = unity
+			value = @tier5unityreward
+			min = @tier5unitymin
+			max = @tier5unitymax
+		}
+	}
+}
+
+country_event = {
+	id = gts_huatian.1061
+	title = gts_huatian.1061.name
+	desc = gts_huatian.1061.desc
+	picture = GFX_evt_gaia
+	is_triggered_only = yes
+	option = {
+		name = gts_huatian.1061.a
+		trigger = {
+			any_owned_ship = {
+				leader = {
+					has_leader_flag = gts_huatian
+				}
+			}
+		}
+		enable_special_project = {
+			name = "gts_huatian_special_project"
+			owner = root
+			location = event_target:gts_huatian_ship
+		}
+	}
+	option = {
+		hide_option_if_not_allowed = yes
+		trigger = {
+			not = {
+				any_owned_ship = {
+					leader = {
+						has_leader_flag = gts_huatian
+					}
+				}
+			}
+		}
+		name = gts_huatian.1061.a
+		enable_special_project = {
+			name = "gts_huatian_special_project"
+			owner = root
+			location = capital_scope
+		}
+	}
+}
+
+ship_event = {
+	id = gts_huatian.1062
+	title = gts_huatian.1062.name
+	desc = gts_huatian.1062.desc
+	picture = GFX_evt_gaia
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = gts_huatian.1062.a
+		every_country = {
+			limit = {
+				any_owned_leader = {
+					has_trait = gts_trait_leader_huatian_a
+				}
+			}
+			country_event = {
+				id = gts_huatian.1063
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_huatian.1063
+	title = gts_huatian.1063.name
+	desc = gts_huatian.1063.desc
+	is_triggered_only = yes
+	event_window_type = leader_recruit
+	picture = GFX_evt_gaia
+	immediate = {
+	}
+	picture_event_data = {
+		portrait = event_target:gts_huatian
+		#room =
+	}
+	option = {
+		hidden_effect = {
+			set_country_flag = gts_huatian.1063_a
+		}
+		name = gts_huatian.1063.a
+		response_text = gts_huatian.1063.a_effect
+		is_dialog_only = yes
+	}
+	option = {
+		hide_option_if_not_allowed = yes
+		trigger = {
+			root = {
+				has_country_flag = gts_huatian.1063_a
+			}
+		}
+		hidden_effect = {
+			set_country_flag = gts_huatian.1063_b
+		}
+		name = gts_huatian.1063.b
+		response_text = gts_huatian.1063.b_effect
+		is_dialog_only = yes
+	}
+	option = {
+		hide_option_if_not_allowed = yes
+		trigger = {
+			root = {
+				has_country_flag = gts_huatian.1063_b
+			}
+		}
+		hidden_effect = {
+			set_country_flag = gts_huatian.1063_c
+		}
+		name = gts_huatian.1063.c
+		response_text = gts_huatian.1063.c_effect
+		is_dialog_only = yes
+	}
+	option = {
+		allow = {
+			hidden_trigger = {
+				has_country_flag = gts_huatian.1063_c
+				fail_text = {
+					text = gts_huatian.1063.d1
+				}
+			}
+		}
+		tag = hire_leader
+		name = gts_huatian.1063.d
+		hidden_effect = {
+			set_country_flag = gts_explore_huatian
+		}
+		event_target:gts_huatian = {
+			add_trait = {
+				trait = gts_trait_leader_huatian_f
+			}
+		}
+		custom_tooltip = gts_huatian.1063.d_effect
+	}
+	option = {
+		name = DISMISS
+		tag = dismiss_leader
+		hidden_effect = {
+			country_event = {
+				id = gts_huatian.1063
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_huatian.1064
+	title = INCOMING_TRANSMISSION
+	desc = gts_huatian.1064.desc
+	diplomatic = yes
+	diplomatic_title = gts_huatian.1064.title
+	picture_event_data = {
+		portrait = event_target:gts_huatian
+		#room = ethic_spaceship_room
+	}
+	is_triggered_only = yes
+	option = {
+		name = gts_huatian.1064.a
+		response_text = gts_huatian.1064.a_effect
+		trigger = {
+			gts_normal_leader_love_lv1_trigger = yes
+		}
+	}
+	option = {
+		name = gts_huatian.1064.a
+		response_text = gts_huatian.1064.b_effect
+		trigger = {
+			OR  = {
+				gts_normal_leader_love_lv2_trigger = yes
+				gts_normal_leader_love_lv3_trigger = yes
+			}
+		}
+	}
+	option = {
+		name = gts_huatian.1064.a
+		response_text = gts_huatian.1064.c_effect
+		trigger = {
+			event_target:gts_huatian = {
+				gts_normal_leader_love_lv4_trigger = yes
+			}
+		}
+	}
+	option = {
+		name = gts_huatian.1064.a
+		response_text = gts_huatian.1064.d_effect
+		trigger = {
+			event_target:gts_huatian = {
+				gts_normal_leader_love_lv5_trigger = yes
+			}
+		}
+	}
+	option = {
+		name = gts_huatian.1064.b
+		country_event = {
+			id = gts_huatian.1065
+		}
+	}
+	option = {
+		name = gts_huatian.1064.c
+		country_event = {
+			id = gts_huatian.1066
+		}
+	}
+	option = {
+		name = gts_huatian.1064.d
+		country_event = {
+			id = gts_huatian.1067
+		}
+	}
+	option = {
+		name = gts_huatian.1064.e
+		trigger = {
+			event_target:gts_huatian = {
+				check_variable = {
+					which = gts_love_logs
+					value >= 50
+				}
+			}
+			owner = {
+				any_owned_ship = {
+					not = {
+						has_ship_flag = gts_huatian_ship
+					}
+				}
+			}
+		}
+		country_event = {
+			id = gts_huatian.1081
+		}
+	}
+	option = {
+		name = gts_huatian.1064.close
+	}
+}
+
+country_event = {
+	id = gts_huatian.1065
+	title = INCOMING_TRANSMISSION
+	diplomatic = yes
+	diplomatic_title = gts_huatian.1065
+	picture_event_data = {
+		portrait = event_target:gts_huatian
+		#room = ethic_spaceship_room
+	}
+	is_triggered_only = yes
+	desc = {
+		text = gts_huatian.1065.a
+		trigger = {
+			root = {
+				has_country_flag = gts_huatian_drift
+			}
+		}
+	}
+	desc = {
+		text = gts_huatian.1065.b
+		trigger = {
+			root = {
+				has_country_flag = gts_huatian_neutrality
+			}
+		}
+	}
+	desc = {
+		text = gts_huatian.1065.c
+		trigger = {
+			root = {
+				has_country_flag = gts_huatian_friendly
+			}
+		}
+	}
+	option = {
+		name = gts_huatian.1065.1
+		hidden_effect = {
+			remove_country_flag = gts_huatian_neutrality
+			remove_country_flag = gts_huatian_friendly
+			set_country_flag = gts_huatian_drift
+			country_event = {
+				id = gts_huatian.1064
+			}
+		}
+	}
+	option = {
+		name = gts_huatian.1065.2
+		hidden_effect = {
+			set_country_flag = gts_huatian_neutrality
+			remove_country_flag = gts_huatian_friendly
+			remove_country_flag = gts_huatian_drift
+			country_event = {
+				id = gts_huatian.1064
+			}
+		}
+	}
+	option = {
+		name = gts_huatian.1065.3
+		hidden_effect = {
+			remove_country_flag = gts_huatian_neutrality
+			set_country_flag = gts_huatian_friendly
+			remove_country_flag = gts_huatian_drift
+			country_event = {
+				id = gts_huatian.1064
+			}
+		}
+	}
+	option = {
+		name = gts_seele.64.9
+		hidden_effect = {
+			country_event = {
+				id = gts_huatian.1064
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_huatian.1066
+	title = INCOMING_TRANSMISSION
+	diplomatic = yes
+	diplomatic_title = gts_huatian.1066
+	picture_event_data = {
+		portrait = event_target:gts_huatian
+		#room = ethic_spaceship_room
+	}
+	is_triggered_only = yes
+	desc = {
+		text = gts_huatian.1066.a
+	}
+	desc = {
+		text = gts_huatian.1066.b
+	}
+	desc = {
+		text = gts_huatian.1066.c
+	}
+	desc = {
+		text = gts_huatian.1066.d
+	}
+	option = {
+		name = gts_seele.64.9
+		hidden_effect = {
+			country_event = {
+				id = gts_huatian.1064
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_huatian.1067
+	title = INCOMING_TRANSMISSION
+	diplomatic = yes
+	diplomatic_title = gts_huatian.1067
+	picture_event_data = {
+		portrait = event_target:gts_huatian
+		#room = ethic_spaceship_room
+	}
+	is_triggered_only = yes
+	desc = {
+		text = gts_huatian.1067.a
+	}
+	option = {
+		hide_option_if_not_allowed = yes
+		trigger = {
+			root = {
+				any_owned_leader = {
+					has_leader_flag = gts_luodi
+				}
+			}
+		}
+		name = gts_huatian.1067.b
+		response_text = gts_huatian.1067.b_effect
+	}
+	option = {
+		hide_option_if_not_allowed = yes
+		trigger = {
+			root = {
+				any_owned_leader = {
+					has_leader_flag = gts_aurora
+				}
+			}
+		}
+		name = gts_huatian.1067.c
+		response_text = gts_huatian.1067.c_effect
+	}
+	option = {
+		hide_option_if_not_allowed = yes
+		trigger = {
+			root = {
+				any_owned_leader = {
+					has_leader_flag = gts_aplog
+				}
+				any_owned_leader = {
+					has_leader_flag = gts_aurora
+				}
+			}
+		}
+		name = gts_huatian.1067.d
+		response_text = gts_huatian.1067.d_effect
+	}
+	option = {
+		hide_option_if_not_allowed = yes
+		trigger = {
+			root = {
+				any_owned_leader = {
+					has_leader_flag = gts_eyjafjalla
+					not = {
+						has_trait = trait_Ultra
+					}
+				}
+			}
+		}
+		name = gts_huatian.1067.e
+		response_text = gts_huatian.1067.e_effect
+	}
+	option = {
+		hide_option_if_not_allowed = yes
+		trigger = {
+			root = {
+				any_owned_leader = {
+					has_leader_flag = gts_eyjafjalla
+					has_trait = trait_Ultra
+				}
+			}
+		}
+		name = gts_huatian.1067.f
+		response_text = gts_huatian.1067.f_effect
+	}
+	option = {
+		hide_option_if_not_allowed = yes
+		trigger = {
+			root = {
+				any_owned_leader = {
+					has_leader_flag = gts_skadi
+				}
+			}
+		}
+		name = gts_huatian.1067.g
+		response_text = gts_huatian.1067.g_effect
+	}
+	option = {
+		hide_option_if_not_allowed = yes
+		trigger = {
+			root = {
+				any_owned_leader = {
+					has_leader_flag = gts_sonxi
+				}
+			}
+		}
+		name = gts_huatian.1067.h
+		response_text = gts_huatian.1067.h_effect
+	}
+	option = {
+		hide_option_if_not_allowed = yes
+		trigger = {
+			root = {
+				any_owned_leader = {
+					has_leader_flag = gts_goldenglow
+				}
+			}
+		}
+		name = gts_huatian.1067.i
+		response_text = gts_huatian.1067.i_effect
+	}
+	option = {
+		hide_option_if_not_allowed = yes
+		trigger = {
+			root = {
+				any_owned_leader = {
+					has_leader_flag = gts_mizuki
+				}
+			}
+		}
+		name = gts_huatian.1067.j
+		response_text = gts_huatian.1067.j_effect
+	}
+	option = {
+		hide_option_if_not_allowed = yes
+		trigger = {
+			root = {
+				any_owned_leader = {
+					has_leader_flag = gts_qhai
+				}
+			}
+		}
+		name = gts_huatian.1067.k
+		response_text = gts_huatian.1067.k_effect
+	}
+	option = {
+		name = gts_seele.64.9
+		hidden_effect = {
+			country_event = {
+				id = gts_huatian.1064
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_huatian.1068
+	title = "gts_huatian.1068.name"
+	desc = gts_huatian.1068.desc
+	picture = GFX_gts_huatian_7
+	is_triggered_only = yes
+	auto_opens = yes
+	location = event_target:gts_huatian
+	fire_only_once = yes
+	trigger = {
+		owner = {
+			any_owned_leader = {
+				has_trait = gts_trait_leader_huatian_a
+			}
+		}
+		event_target:gts_huatian = {
+			check_variable = {
+				which = gts_love_logs
+				value >= 75
+			}
+		}
+	}
+	option = {
+		name = gts_huatian.1068.a
+		enable_special_project = {
+			name = "gts_huatian_special_project_2"
+			owner = root
+			location = capital_scope
+		}
+	}
+}
+
+ship_event = {
+	id = gts_huatian.1069
+	title = "gts_huatian.1069.name"
+	desc = gts_huatian.1069.desc
+	picture = GFX_gts_huatian_5
+	is_triggered_only = yes
+	auto_opens = yes
+	trigger = {
+		owner = {
+			any_owned_leader = {
+				has_trait = gts_trait_leader_huatian_a
+			}
+		}
+	}
+	option = {
+		name = gts_huatian.1069.a
+		owner = {
+			random_planet_within_border = {
+				limit = {
+					has_planet_flag = gts_huatian_homeworld
+				}
+				spawn_system = {
+					min_distance >= 10
+					max_distance <= 30
+					max_jumps = 0
+					initializer = gts_huatian_system_b
+				}
+			}
+		}
+	}
+}
+
+fleet_event = {
+	#阶段1
+	id = gts_huatian.1070
+	title = gts_huatian.1070.name
+	desc = gts_huatian.1070.desc
+	picture = GFX_gtsra_load_9
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		fromfrom = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		fromfrom = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_huatian.1070.a
+		owner = {
+			add_resource = {
+				minor_artifacts = 10
+			}
+		}
+	}
+}
+
+fleet_event = {
+	#阶段2
+	id = gts_huatian.1071
+	title = gts_huatian.1071.name
+	desc = gts_huatian.1071.desc
+	picture = GFX_gtsra_load_29
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		fromfrom = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		fromfrom = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_huatian.1071.a
+		owner = {
+			add_resource = {
+				minor_artifacts = 10
+			}
+		}
+	}
+}
+
+fleet_event = {
+	#阶段3
+	id = gts_huatian.1072
+	title = gts_huatian.1072.name
+	desc = gts_huatian.1072.desc
+	picture = GFX_gtsra_load_5
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		fromfrom = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		fromfrom = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_huatian.1072.a
+		owner = {
+			add_resource = {
+				minor_artifacts = 20
+			}
+			add_resource = {
+				society_research = 300
+			}
+		}
+	}
+}
+
+fleet_event = {
+	#阶段4
+	id = gts_huatian.1073
+	title = gts_huatian.1073.name
+	desc = gts_huatian.1073.desc
+	picture = GFX_load_130
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		fromfrom = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		fromfrom = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_huatian.1073.a
+		owner = {
+			add_resource = {
+				minor_artifacts = 20
+			}
+			add_resource = {
+				society_research = 300
+			}
+		}
+	}
+}
+
+fleet_event = {
+	#阶段5
+	id = gts_huatian.1074
+	title = gts_huatian.1074.name
+	desc = gts_huatian.1074.desc
+	picture = GFX_lottie_site6
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		fromfrom = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		fromfrom = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_huatian.1074.a
+		owner = {
+			add_resource = {
+				minor_artifacts = 100
+			}
+		}
+		enable_special_project = {
+			name = "gts_huatian_special_project_3"
+			owner = root
+			location = this
+		}
+	}
+}
+
+ship_event = {
+	id = gts_huatian.1075
+	title = "gts_huatian.1075.name"
+	desc = gts_huatian.1075.desc
+	picture = GFX_gts_huatian_9
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_huatian.1075.a
+		hidden_effect = {
+			every_country = {
+				limit = {
+					any_owned_leader = {
+						has_leader_flag = gts_huatian
+					}
+				}
+				country_event = {
+					id = gts_huatian.1076
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_huatian.1076
+	title = "gts_huatian.1076.name"
+	desc = gts_huatian.1076.desc
+	picture = GFX_gts_huatian_10
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_huatian.1076.a
+		hidden_effect = {
+			country_event = {
+				id = gts_huatian.1077
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_huatian.1077
+	title = "gts_huatian.1077.name"
+	desc = gts_huatian.1077.desc
+	picture = GFX_gts_huatian_11
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_huatian.1077.a
+		hidden_effect = {
+			random_planet_within_border = {
+				limit = {
+					has_planet_flag = gts_huatian_archworld
+				}
+				gts_destroy_planet = yes
+			}
+			event_target:gts_huatian = {
+				gts_love_system_increase = { value = 100 }
+			}
+			event_target:gts_huatian = {
+				remove_trait = gts_trait_leader_huatian_f
+				remove_trait = gts_trait_leader_huatian_d
+				add_trait = {
+					trait = gts_trait_leader_huatian_g
+				}
+				add_trait = {
+					trait = gts_trait_leader_huatian_h
+				}
+			}
+			add_relic = r_gtsra_huatian_flower
+		}
+	}
+}
+
+country_event = {
+
+	# 花海之旅
+
+	id = gts_huatian.1078
+	title = "gts_huatian.1078.name"
+	desc = gts_huatian.1078.desc
+	picture = GFX_gts_huatian_8
+	is_triggered_only = yes
+	auto_opens = yes
+
+	option = {
+		name = gts_huatian.1078.a
+		hidden_effect = {
+			random_owned_leader = {
+				limit = {
+					gts_is_tiny = yes
+				}
+				save_event_target_as = gts_huatian_growth
+			}
+		}
+	}
+	option = {
+		name = gts_huatian.1078.b
+		hidden_effect = {
+			random_owned_leader = {
+				limit = {
+					or = {
+						has_trait = leader_trait_Tall
+						has_trait = leader_trait_Giant
+					}
+				}
+				save_event_target_as = gts_huatian_growth
+			}
+		}
+	}
+
+	after = {
+		country_event = {
+			id = gts_huatian.1079
+		}
+	}
+}
+
+country_event = {
+	id = gts_huatian.1079
+	title = "gts_huatian.1079.name"
+	desc = gts_huatian.1079.desc
+	picture = GFX_gts_huatian_9
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_huatian.1079.a
+		hidden_effect = {
+			country_event = {
+				id = gts_huatian.1080
+				days = 180
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_huatian.1080
+	title = "gts_huatian.1080.name"
+	desc = gts_huatian.1080.desc
+	picture = GFX_gts_huatian_12
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_huatian.1080.a
+		hidden_effect = {
+			event_target:gts_huatian_growth = {
+				gts_leader_size_change_to = {
+					SIZE_TRAIT = leader_trait_Titan
+				}
+				add_trait = {
+					trait = gts_trait_leader_huatian_i
+				}
+			}
+			clear_global_event_target = gts_huatian_growth
+		}
+	}
+}
+
+country_event = {
+	id = gts_huatian.1100
+	is_triggered_only = yes
+	auto_opens = yes
+	hide_window = yes
+	trigger = {
+		owner = {
+			has_country_flag = gts_huatian_drift
+			any_owned_leader = {
+				has_trait = gts_trait_leader_huatian_a
+			}
+		}
+	}
+	immediate = {
+		event_target:gts_huatian = {
+			gts_love_system_reduce = { value = 0.5 }
+		}
+	}
+}
+
+country_event = {
+	id = gts_huatian.1101
+	is_triggered_only = yes
+	auto_opens = yes
+	hide_window = yes
+	trigger = {
+		owner = {
+			has_country_flag = gts_huatian_friendly
+			any_owned_leader = {
+				has_trait = gts_trait_leader_huatian_a
+			}
+		}
+	}
+	immediate = {
+		event_target:gts_huatian = {
+			gts_love_system_increase = { value = 0.5 }
+		}
+	}
+}
+
+country_event = {
+	id = gts_huatian.1081
+	title = "gts_huatian.1081.name"
+	desc = gts_huatian.1081.desc
+	picture = GFX_gts_huatian_13
+	is_triggered_only = yes
+	fire_only_once = yes
+	auto_opens = yes
+	option = {
+		name = gts_huatian.1081.a
+		start_situation = {
+			type = gts_situation_huatian_fleet
+		}
+	}
+}
+
+situation_event = {
+	id = gts_huatian.1082
+	title = "gts_huatian.1082.name"
+	desc = gts_huatian.1082.desc
+	picture = GFX_gts_huatian_14
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_huatian.1082.a
+	}
+}
+
+situation_event = {
+	id = gts_huatian.1083
+	title = "gts_huatian.1083.name"
+	desc = gts_huatian.1083.desc
+	picture = GFX_gts_huatian_15
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_huatian.1083.a
+	}
+}
+
+situation_event = {
+	id = gts_huatian.1084
+	title = "gts_huatian.1084.name"
+	desc = gts_huatian.1084.desc
+	picture = GFX_gts_huatian_16
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_huatian.1084.a
+	}
+}
+
+country_event = {
+	id = gts_huatian.1085
+	title = "gts_huatian.1085.name"
+	desc = gts_huatian.1085.desc
+	picture = GFX_gts_huatian_13
+	is_triggered_only = yes
+	auto_opens = yes
+	immediate = {
+		clear_global_event_target = gts_huatian_ship
+	}
+	option = {
+		name = gts_huatian.1085.a
+		hidden_effect = {
+			event_target:gts_huatian = {
+				add_trait = {
+					trait = gts_trait_leader_huatian_j
+				}
+			}
+		}
+	}
+	after = {
+		gts_create_huatian_fleet = yes
+	}
+}
+
+country_event = {
+	id = gts_huatian.1086
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		owner = {
+			any_owned_leader = {
+				has_leader_flag = gts_huatian
+			}
+		}
+	}
+	after = {
+		every_owned_ship = {
+			limit = {
+				leader = {
+					has_leader_flag = gts_huatian
+				}
+			}
+			save_global_event_target_as = gts_huatian_ship
+		}
+	}
+}
+country_event = {
+	id = gts_huatian.1087
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = {
+		owner = {
+			any_owned_leader = {
+				has_leader_flag = gts_huatian
+			}
+		}
+	}
+	immediate = {
+		event_target:gts_huatian_ship = {
+			set_leader = event_target:gts_huatian
+		}
+	}
+}
+
+country_event = {
+	id = gts_huatian.1088
+	title = gts_huatian.1088.name
+	desc = gts_huatian.1088.desc
+	picture = GFX_gts_huatian_13
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+
+	}
+	immediate = {
+		from = {
+			change_pc = pc_gts_dirt0
+		}
+	}
+	option = {
+		name = gts_huatian.1088.a
+	}
+}

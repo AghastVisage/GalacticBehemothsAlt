@@ -1,0 +1,1628 @@
+namespace = gts_linfeng
+# 林凤招募事件
+country_event = {
+	id = gts_linfeng.900
+	title = gts_linfeng.900.name
+	desc = gts_linfeng.900.desc
+	picture = GFX_gts_linfeng_1
+	show_sound = event_red_alert
+	location = event_target:gts_linfeng_target_planet
+	is_triggered_only = yes
+	trigger = {
+		any_owned_planet = {
+			pop_amount <= 400
+			has_anomaly = no
+			NOT = {
+				exists = archaeological_site
+			}
+			NOR = {
+				is_planet_class = pc_shielded
+				is_planet_class = pc_ringworld_shielded
+				is_planet_class = pc_habitat_shielded
+				is_eatable_planet = no
+			}
+
+		}
+	}
+
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				pop_amount <= 400
+				has_anomaly = no
+				NOT = {
+					exists = archaeological_site
+				}
+				NOR = {
+					is_planet_class = pc_shielded
+					is_planet_class = pc_ringworld_shielded
+					is_planet_class = pc_habitat_shielded
+					is_eatable_planet = no
+				}
+
+			}
+			save_event_target_as = gts_linfeng_target_planet
+		}
+	}
+	option = {
+		name = gts_linfeng.900.a
+		hidden_effect = {
+			country_event = {
+				id = gts_linfeng.901
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_linfeng.901
+	title = gts_linfeng.901.name
+	desc = gts_linfeng.901.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_linfeng_1_room
+	}
+	show_sound = event_structural_collapse
+	location = event_target:gts_linfeng_target_planet
+	is_triggered_only = yes
+	option = {
+		name = gts_linfeng.901.a
+		hidden_effect = {
+			country_event = {
+				id = gts_linfeng.902
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_linfeng.902
+	title = gts_linfeng.902.name
+	desc = gts_linfeng.902.desc
+	picture = GFX_gts_linfeng_2
+	show_sound = event_air_raid_siren
+	location = event_target:gts_linfeng_target_planet
+	is_triggered_only = yes
+	immediate = {
+		event_target:gts_linfeng_target_planet = {
+			gts_destroy_planet = yes
+		}
+	}
+	option = {
+		name = gts_linfeng.902.a
+		hidden_effect = {
+			country_event = {
+				id = gts_linfeng.999
+			}
+		}
+	}
+}
+
+country_event = {
+	# 林凤领袖招募
+	id = gts_linfeng.999
+	title = "gts_linfeng.999.name"
+	desc = "gts_linfeng.999.desc"
+	show_sound = event_celebration
+	is_triggered_only = yes
+	picture = GFX_leader_recruitment_bg_renowned
+	auto_opens = yes
+	event_window_type = leader_recruit
+	notification_event_icon = "GFX_message_leader_gts_linfeng"
+	immediate = {
+		gts_leader_linfeng_hired = yes
+	}
+	picture_event_data = {
+		portrait = event_target:gts_leader
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = gts_linfeng.999.a
+		response_text = gts_linfeng.999.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_linfeng.999.b
+		response_text = gts_linfeng.999.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_linfeng.999.c
+		response_text = gts_linfeng.999.c.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		custom_tooltip = gts_linfeng.999.hire_custom_tooltip
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = legendary }		}
+	}
+	option = {
+		tag = dismiss_leader
+		name = END_TRANSMISSION
+		hidden_effect = {
+			country_event = {
+				id = gts_linfeng.999
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_linfeng.1000
+	title = gts_linfeng.1000.name
+	desc = gts_linfeng.1000.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		#room =
+		portrait = event_target:gts_linfeng
+	}
+	option = {
+		name = gts_linfeng.1000.1
+		is_dialog_only = yes
+		response_text = gts_linfeng.1000.1a
+		hidden_effect = {
+			event_target:gts_linfeng = {
+				change_leader_portrait = gts_portrait_linfeng
+			}
+		}
+	}
+	option = {
+		name = gts_linfeng.1000.2
+		is_dialog_only = yes
+		response_text = gts_linfeng.1000.2a
+		hidden_effect = {
+			event_target:gts_linfeng = {
+				change_leader_portrait = gts_portrait_linfeng_2
+			}
+		}
+	}
+	option = {
+		name = gts_linfeng.1000.3
+		is_dialog_only = yes
+		response_text = gts_linfeng.1000.3a
+		hidden_effect = {
+			event_target:gts_linfeng = {
+				change_leader_portrait = gts_portrait_linfeng_3
+			}
+		}
+	}
+	option = {
+		name = gts_linfeng.1000.4
+		is_dialog_only = yes
+		response_text = gts_linfeng.1000.4a
+		hidden_effect = {
+			event_target:gts_linfeng = {
+				change_leader_portrait = gts_portrait_linfeng_4
+			}
+		}
+	}
+	option = {
+		name = gts_linfeng.1000.5
+		is_dialog_only = yes
+		response_text = gts_linfeng.1000.5a
+		hidden_effect = {
+			event_target:gts_linfeng = {
+				change_leader_portrait = gts_portrait_linfeng_5
+			}
+		}
+	}
+	option = {
+		name = gts_linfeng.1000.6
+		is_dialog_only = yes
+		response_text = gts_linfeng.1000.6a
+		hidden_effect = {
+			event_target:gts_linfeng = {
+				change_leader_portrait = gts_portrait_linfeng_6
+			}
+		}
+	}
+
+	option = {
+		name = gts_leave
+		default_hide_option = yes
+	}
+}
+
+# 林凤索要小人（小人）
+country_event = {
+	id = gts_linfeng.100
+	title = gts_linfeng.100.name
+	desc = gts_linfeng.100.desc
+	picture = GFX_gts_linfeng_3
+	show_sound = event_yellow_alert
+	is_triggered_only = yes
+	trigger = {
+		gts_is_tiny_empire = yes
+		any_owned_leader = {
+			has_leader_flag = gts_linfeng
+		}
+		pop_amount >= 2000
+	}
+	option = {
+		name = gts_linfeng.100.a
+		custom_tooltip = gts_linfeng.100.a.tooltip
+		random_owned_pop_group = {
+			limit = {
+				gts_is_tiny = yes
+			}
+			kill_single_pop = yes
+		}
+	}
+	option = {
+		name = gts_linfeng.100.b
+		custom_tooltip = gts_linfeng.100.b.tooltip
+		hidden_effect = {
+			if = {
+				limit = {
+					any_owned_planet = {
+						pop_amount > 0
+						is_gts_reformed_planet = no
+						NOR = {
+							is_planet_class = pc_shielded
+							is_planet_class = pc_ringworld_shielded
+							is_planet_class = pc_habitat_shielded
+							is_eatable_planet = no
+						}
+					}
+
+				}
+				random_list = {
+					1 = {
+						country_event = {
+							id = gts_linfeng.101
+							days = 7
+						}
+					}
+					1 = {
+						country_event = {
+							id = gts_linfeng.102
+							days = 7
+						}
+					}
+					1 = {
+						country_event = {
+							id = gts_linfeng.103
+							days = 7
+						}
+					}
+					1 = {
+						country_event = {
+							id = gts_linfeng.104
+							days = 7
+						}
+					}
+					1 = {
+						country_event = {
+							id = gts_linfeng.120
+							days = 7
+						}
+					}
+					1 = {
+						country_event = {
+							id = gts_linfeng.121
+							days = 7
+						}
+					}
+					1 = {
+						country_event = {
+							id = gts_linfeng.122
+							days = 7
+						}
+					}
+					1 = {
+						if = {
+							limit = {
+								has_country_flag = can_trigger_futa_content
+
+							}
+							country_event = {
+								id = gts_linfeng.123
+								days = 7
+							}
+						}
+					}
+				}
+			}
+			else = {
+				random_list = {
+					1 = {
+						country_event = {
+							id = gts_linfeng.101
+							days = 7
+						}
+					}
+					1 = {
+						country_event = {
+							id = gts_linfeng.102
+							days = 7
+						}
+					}
+					1 = {
+						country_event = {
+							id = gts_linfeng.103
+							days = 7
+						}
+					}
+					1 = {
+						country_event = {
+							id = gts_linfeng.104
+							days = 7
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_linfeng.101
+	title = gts_linfeng.101.name
+	desc = gts_linfeng.101.desc
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_linfeng_2_room
+	}
+	show_sound = event_super_explosion
+	location = event_target:gts_linfeng_target_planet
+	is_triggered_only = yes
+
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				pop_amount >= 200
+				not = {
+					is_gts_clothes_planet = no
+					is_gts_leader_planet = no
+					is_eatable_planet = no
+				}
+			}
+			while = {
+				count = 2
+				random_owned_pop_group = {
+					limit = {
+						gts_is_tiny = yes
+					}
+					kill_single_pop = yes
+				}
+			}
+			save_event_target_as = gts_linfeng_target_planet
+		}
+	}
+
+	option = {
+		name = gts_linfeng.101.a
+		event_target:gts_linfeng_target_planet = {
+			while = {
+				count = 1
+				add_deposit = d_decrepit_dwellings
+				add_deposit = d_ruined_building_blocker
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_linfeng.102
+	title = gts_linfeng.102.name
+	desc = gts_linfeng.102.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_linfeng_3_room
+	}
+	show_sound = event_super_explosion
+	location = event_target:gts_linfeng_target_planet
+	is_triggered_only = yes
+
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				pop_amount >= 400
+				not = {
+					is_gts_clothes_planet = no
+					is_gts_leader_planet = no
+					is_eatable_planet = no
+				}
+			}
+			while = {
+				count = 4
+				random_owned_pop_group = {
+					limit = {
+						gts_is_tiny = yes
+					}
+					kill_single_pop = yes
+				}
+			}
+			save_event_target_as = gts_linfeng_target_planet
+		}
+	}
+
+	option = {
+		name = gts_linfeng.102.a
+		event_target:gts_linfeng_target_planet = {
+			while = {
+				count = 2
+				add_deposit = d_decrepit_dwellings
+				add_deposit = d_ruined_building_blocker
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_linfeng.103
+	title = gts_linfeng.103.name
+	desc = gts_linfeng.103.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_linfeng_4_room
+	}
+	show_sound = event_super_explosion
+	location = event_target:gts_linfeng_target_planet
+	is_triggered_only = yes
+	
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				pop_amount >= 600
+				not = {
+					is_gts_clothes_planet = no
+					is_gts_leader_planet = no
+					is_eatable_planet = no
+				}
+			}
+			while = {
+				count = 6
+				random_owned_pop_group = {
+					limit = {
+						gts_is_tiny = yes
+					}
+					kill_single_pop = yes
+				}
+			}
+			save_event_target_as = gts_linfeng_target_planet
+		}
+	}
+
+	option = {
+		name = gts_linfeng.103.a
+		event_target:gts_linfeng_target_planet = {
+			while = {
+				count = 3
+				add_deposit = d_decrepit_dwellings
+				add_deposit = d_ruined_building_blocker
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_linfeng.104
+	title = gts_linfeng.104.name
+	desc = gts_linfeng.104.desc
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_linfeng_5_room
+	}
+	show_sound = event_super_explosion
+	location = event_target:gts_linfeng_target_planet
+	is_triggered_only = yes
+	
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				pop_amount >= 800
+				not = {
+					is_gts_clothes_planet = no
+					is_gts_leader_planet = no
+					is_eatable_planet = no
+				}
+			}
+			while = {
+				count = 8
+				random_owned_pop_group = {
+					limit = {
+						gts_is_tiny = yes
+					}
+					kill_single_pop = yes
+				}
+			}
+			save_event_target_as = gts_linfeng_target_planet
+		}
+	}
+
+	option = {
+		name = gts_linfeng.104.a
+		event_target:gts_linfeng_target_planet = {
+			while = {
+				count = 4
+				add_deposit = d_decrepit_dwellings
+				add_deposit = d_ruined_building_blocker
+			}
+		}
+	}
+}
+
+# 林凤索要小人（巨娘）
+country_event = {
+	id = gts_linfeng.110
+	title = gts_linfeng.110.name
+	desc = gts_linfeng.110.desc
+	picture = GFX_gts_linfeng_4
+	show_sound = event_yellow_alert
+	is_triggered_only = yes
+	trigger = {
+		gts_is_giantess_empire = yes
+		any_owned_leader = {
+			has_leader_flag = gts_linfeng
+		}
+		has_technology = tech_gts_shrink_man_hormone_1
+		resource_stockpile_compare = { resource = gts_micro value >= 400 }
+		pop_amount >= 800
+	}
+	option = {
+		name = gts_linfeng.110.a
+		custom_tooltip = gts_linfeng.110.a.tooltip
+		add_resource = {
+			gts_micro = -400
+		}
+	}
+	option = {
+		name = gts_linfeng.110.b
+		custom_tooltip = gts_linfeng.110.b.tooltip
+		hidden_effect = {
+			if = {
+				limit = {
+					any_owned_planet = {
+						pop_amount > 0
+						is_gts_reformed_planet = no
+						NOR = {
+							is_planet_class = pc_shielded
+							is_planet_class = pc_ringworld_shielded
+							is_planet_class = pc_habitat_shielded
+							is_eatable_planet = no
+						}
+
+					}
+				}
+				random_list = {
+					1 = {
+						country_event = {
+							id = gts_linfeng.111
+							days = 7
+						}
+					}
+					1 = {
+						country_event = {
+							id = gts_linfeng.112
+							days = 7
+						}
+					}
+					1 = {
+						country_event = {
+							id = gts_linfeng.120
+							days = 7
+						}
+					}
+					1 = {
+						country_event = {
+							id = gts_linfeng.121
+							days = 7
+						}
+					}
+					1 = {
+						country_event = {
+							id = gts_linfeng.122
+							days = 7
+						}
+					}
+					1 = {
+						if = {
+							limit = {
+								has_country_flag = can_trigger_futa_content
+
+							}
+							country_event = {
+								id = gts_linfeng.123
+								days = 7
+							}
+						}
+					}
+				}
+			}
+			else = {
+				random_list = {
+					1 = {
+						country_event = {
+							id = gts_linfeng.111
+							days = 7
+						}
+					}
+					1 = {
+						country_event = {
+							id = gts_linfeng.112
+							days = 7
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_linfeng.111
+	title = gts_linfeng.111.name
+	desc = gts_linfeng.111.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_linfeng_6_room
+	}
+	show_sound = event_super_explosion
+	location = event_target:gts_linfeng_target_planet
+	is_triggered_only = yes
+
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				pop_amount >= 200
+				not = {
+					is_gts_clothes_planet = no
+					is_gts_leader_planet = no
+					is_eatable_planet = no
+				}
+			}
+			while = {
+				count = 2
+				random_owned_pop_group = {
+					kill_single_pop = yes
+				}
+			}
+			save_event_target_as = gts_linfeng_target_planet
+		}
+		random_owned_leader = {
+			limit = {
+				NOR = {
+					has_trait = gts_trait_leader_linfeng_b
+					has_leader_flag = gts_linfeng
+					gts_is_bigger_than_titan = yes
+				}
+			}
+			save_event_target_as = gts_linfeng_target_leader
+		}
+	}
+
+	option = {
+		name = gts_linfeng.111.a
+		event_target:gts_linfeng_target_planet = {
+			while = {
+				count = 2
+				add_deposit = d_decrepit_dwellings
+				add_deposit = d_ruined_building_blocker
+			}
+		}
+		event_target:gts_linfeng_target_leader = {
+			add_trait = {
+				trait = gts_trait_leader_linfeng_b
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_linfeng.112
+	title = gts_linfeng.112.name
+	desc = gts_linfeng.112.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_linfeng_7_room
+	}
+	show_sound = event_super_explosion
+	location = event_target:gts_linfeng_target_planet
+	is_triggered_only = yes
+
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				pop_amount >= 400
+				not = {
+					is_gts_clothes_planet = no
+					is_gts_leader_planet = no
+					is_eatable_planet = no
+				}
+			}
+			while = {
+				count = 4
+				random_owned_pop_group = {
+					kill_single_pop = yes
+				}
+			}
+			save_event_target_as = gts_linfeng_target_planet
+		}
+		random_owned_leader = {
+			limit = {
+				NOR = {
+					has_trait = gts_trait_leader_linfeng_b
+					has_leader_flag = gts_linfeng
+					gts_is_bigger_than_titan = yes
+				}
+			}
+			save_event_target_as = gts_linfeng_target_leader
+		}
+	}
+
+	option = {
+		name = gts_linfeng.111.a
+		event_target:gts_linfeng_target_planet = {
+			while = {
+				count = 4
+				add_deposit = d_decrepit_dwellings
+				add_deposit = d_ruined_building_blocker
+			}
+		}
+		event_target:gts_linfeng_target_leader = {
+			add_trait = {
+				trait = gts_trait_leader_linfeng_b
+			}
+		}
+	}
+}
+
+# 林凤改造星球
+country_event = {
+	id = gts_linfeng.120
+	title = gts_linfeng.120.name
+	desc = gts_linfeng.120.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_event_30_room
+	}
+	show_sound = event_super_explosion
+	# location = event_target:gts_linfeng_target_planet
+	is_triggered_only = yes
+
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				pop_amount > 0
+				is_eatable_planet = yes
+			}
+			while = {
+				count = 4
+				random_owned_pop_group = {
+					kill_single_pop = yes
+				}
+			}
+			hidden_effect = {
+				pc_gts_change_ready = yes
+				pc_gts_dirt_change = yes
+			}
+			save_global_event_target_as = gts_linfeng_target_planet
+		}
+	}
+
+	option = {
+		name = gts_linfeng.120.a
+		event_target:gts_linfeng_target_planet = {
+			add_deposit = d_gts_linfeng_a
+			while = {
+				count = 2
+				add_deposit = d_decrepit_dwellings
+				add_deposit = d_ruined_building_blocker
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_linfeng.121
+	title = gts_linfeng.121.name
+	desc = gts_linfeng.121.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_event_21_room
+	}
+	show_sound = event_gts_masturbate
+	# location = event_target:gts_linfeng_target_planet
+	is_triggered_only = yes
+	
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				pop_amount > 0
+				is_eatable_planet = yes
+			}
+			while = {
+				count = 4
+				random_owned_pop_group = {
+					kill_single_pop = yes
+				}
+			}
+			hidden_effect = {
+				pc_gts_change_ready = yes
+				pc_gts_milk_change = yes
+			}
+			save_global_event_target_as = gts_linfeng_target_planet
+		}
+	}
+
+	option = {
+		name = gts_linfeng.121.a
+		event_target:gts_linfeng_target_planet = {
+			add_deposit = d_gts_linfeng_b
+			while = {
+				count = 2
+				add_deposit = d_decrepit_dwellings
+				add_deposit = d_ruined_building_blocker
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_linfeng.122
+	title = gts_linfeng.122.name
+	desc = gts_linfeng.122.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_event_23_room
+	}
+	show_sound = event_gts_masturbate
+	# location = event_target:gts_linfeng_target_planet
+	is_triggered_only = yes
+	
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				pop_amount > 0
+				is_eatable_planet = yes
+			}
+			while = {
+				count = 4
+				random_owned_pop_group = {
+					kill_single_pop = yes
+				}
+			}
+			hidden_effect = {
+				pc_gts_change_ready = yes
+				pc_gts_juice_change = yes
+			}
+			save_global_event_target_as = gts_linfeng_target_planet
+		}
+	}
+
+	option = {
+		name = gts_linfeng.122.a
+		event_target:gts_linfeng_target_planet = {
+			add_deposit = d_gts_linfeng_c
+			while = {
+				count = 2
+				add_deposit = d_decrepit_dwellings
+				add_deposit = d_ruined_building_blocker
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_linfeng.123
+	title = gts_linfeng.123.name
+	desc = gts_linfeng.123.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_event_20_room
+	}
+	show_sound = event_gts_futa_masturbate
+	# location = event_target:gts_linfeng_target_planet
+	is_triggered_only = yes
+	
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				pop_amount > 0
+				is_eatable_planet = yes
+			}
+			while = {
+				count = 4
+				random_owned_pop_group = {
+					kill_single_pop = yes
+				}
+			}
+			hidden_effect = {
+				pc_gts_change_ready = yes
+				pc_gts_semen_change = yes
+			}
+			save_global_event_target_as = gts_linfeng_target_planet
+		}
+	}
+
+	option = {
+		name = gts_linfeng.123.a
+		event_target:gts_linfeng_target_planet = {
+			add_deposit = d_gts_linfeng_d
+			while = {
+				count = 2
+				add_deposit = d_decrepit_dwellings
+				add_deposit = d_ruined_building_blocker
+			}
+		}
+	}
+}
+
+# 与艾普露的联动事件
+country_event = {
+	id = gts_linfeng.200
+	title = gts_linfeng.200.name
+	desc = gts_linfeng.200.desc
+	picture = GFX_gts_linfeng_5
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		any_owned_leader = {
+			has_leader_flag = gts_linfeng
+		}
+		any_owned_leader = {
+			has_leader_flag = gts_aplog
+		}
+	}
+
+	option = {
+		name = gts_linfeng.200.a
+		hidden_effect = {
+			country_event = {
+				id = gts_linfeng.201
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_linfeng.201
+	title = gts_linfeng.201.name
+	desc = gts_linfeng.201.desc
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_linfeng_8_room
+	}
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_linfeng.201.a
+		hidden_effect = {
+			country_event = {
+				id = gts_linfeng.202
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_linfeng.202
+	title = gts_linfeng.202.name
+	desc = gts_linfeng.202.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_linfeng_9_room
+	}
+	show_sound = event_gts_gulp
+	is_triggered_only = yes
+	option = {
+		name = gts_linfeng.202.a
+		add_monthly_resource_mult = {
+			resource = unity
+			value = @tier5unityreward
+			min = @tier5unitymin
+			max = @tier5unitymax
+		}
+	}
+}
+
+### 千海联动事件
+country_event = {
+	id = gts_linfeng.210
+	title = gts_linfeng.210.name
+	desc = gts_linfeng.210.desc
+	show_sound = event_gts_masturbate
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_linfeng_10_room
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		any_owned_leader = {
+			has_leader_flag = gts_linfeng
+		}
+		any_owned_leader = {
+			has_leader_flag = gts_qhai
+		}
+	}
+	option = {
+		name = gts_linfeng.210.a
+		hidden_effect = {
+			country_event = {
+				id = gts_linfeng.211
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_linfeng.211
+	title = gts_linfeng.211.name
+	desc = gts_linfeng.211.desc
+	show_sound = event_gts_masturbate
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_linfeng_10_room
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		any_owned_leader = {
+			has_leader_flag = gts_linfeng
+		}
+		any_owned_leader = {
+			has_leader_flag = gts_qhai
+		}
+	}
+	option = {
+		name = gts_linfeng.211.a
+		custom_tooltip = gts_linfeng.211.a.tooltip
+		add_monthly_resource_mult = {
+			resource = unity
+			value = @tier5unityreward
+			min = @tier5unitymin
+			max = @tier5unitymax
+		}
+	}
+}
+
+########  希瞳联动事件,招募  ##################################
+country_event = {
+	id = gts_linfeng.220
+	title = gts_linfeng.220.name
+	desc = gts_linfeng.220.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_linfeng_11_room
+	}
+	option = {
+		name = gts_linfeng.220.a
+		hidden_effect = {
+			country_event = { 
+				id = gts_linfeng.221
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_linfeng.221
+	title = gts_linfeng.221.name
+	desc = gts_linfeng.221.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_linfeng_12_room
+	}
+	option = {
+		name = gts_linfeng.221.a
+		hidden_effect = {
+			country_event = {
+				id = gts_linfeng.222
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_linfeng.222
+	title = gts_linfeng.222.name
+	desc = gts_linfeng.222.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_linfeng_13_room
+	}
+	option = {
+		name = gts_linfeng.222.a
+		hidden_effect = {
+			country_event = {
+				id = gts_linfeng.223
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_linfeng.223
+	title = gts_linfeng.223.name
+	desc = gts_linfeng.223.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_linfeng_14_room
+	}
+	option = {
+		name = gts_linfeng.223.a
+		hidden_effect = {
+			country_event = {
+				id = gts_linfeng.225
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_linfeng.225
+	title = gts_linfeng.225.name
+	desc = gts_linfeng.225.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_linfeng_15_room
+	}
+	option = {
+		name = gts_linfeng.225.a
+		hidden_effect = {
+			gts_leader_linfeng_hired = yes
+			gts_leader_hire_effect = { TYPE = legendary }
+			event_target:gts_hitomi = {
+				add_trait = {
+					trait = gts_trait_hitomi5
+					show_message = no
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_linfeng.224
+	title = gts_linfeng.224.name
+	desc = gts_linfeng.224.desc
+	is_triggered_only = yes
+	fire_only_once = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_linfeng_16_room
+	}
+	trigger = {
+		and = {
+			any_owned_leader = {
+				has_leader_flag = gts_linfeng
+			}
+			any_owned_leader = {
+				has_leader_flag = gts_hitomi
+			}
+		}
+	}
+	option = {
+		name = gts_linfeng.224.a
+		hidden_effect = {
+		}
+	}
+}
+
+
+
+country_event = {
+	id = gts_linfeng.301
+	title = gts_linfeng.301.name
+	desc = gts_linfeng.301.desc
+	picture = GFX_gts_linfeng_7
+	# diplomatic = yes
+	# custom_gui = "gts_vertical_event_window"
+	# custom_gui = "gts_horizontal_event_window"
+	# custom_gui_option = "gts_horizontal_event_button"
+	# picture_event_data = {
+	# 	room = gts_linfeng5_room
+	# }
+	# show_sound = event_default
+	immediate = {
+
+	}
+	is_triggered_only = yes
+	option = {
+		name = gts_linfeng.301.a
+		hidden_effect = {
+			set_country_flag = gts_linfeng_grilship_transform_start
+		}
+	}
+}
+country_event = {
+	id = gts_linfeng.302
+	title = gts_linfeng.302.name
+	desc = gts_linfeng.302.desc
+	picture = GFX_gts_linfeng_7
+	# diplomatic = yes
+	# custom_gui = "gts_vertical_event_window"
+	# custom_gui = "gts_horizontal_event_window"
+	# custom_gui_option = "gts_horizontal_event_button"
+	# picture_event_data = {
+	# 	room = gts_linfeng5_room
+	# }
+	# show_sound = event_default
+	immediate = {
+		owner = {
+			set_country_flag = gts_linfeng_grilship_transform_action
+			country_event = {
+				id = gts_linfeng.305
+			}
+		}
+		# every_playable_country = {
+		# 	limit = {
+		# 		any_owned_leader = {
+		# 			has_leader_flag = gts_linfeng
+		# 		}
+		# 	}
+		#
+		# }
+	}
+	is_triggered_only = yes
+	option = {
+		name = gts_linfeng.302.a
+		hidden_effect = {
+			owner = {
+				country_event = { 
+					id = gts_linfeng.303
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_linfeng.302.b
+		hide_option_if_not_allowed = yes
+		trigger = { 
+			owner = {
+				has_country_flag = can_trigger_futa_content
+			}
+		}
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = gts_linfeng.304
+				}
+			}
+		}
+	}
+	after = {
+
+	}
+}
+country_event = {
+	id = gts_linfeng.303
+	title = gts_linfeng.303.name
+	desc = gts_linfeng.303.desc
+	picture = GFX_gts_linfeng_8
+	# diplomatic = yes
+	# custom_gui = "gts_vertical_event_window"
+	# custom_gui = "gts_horizontal_event_window"
+	# custom_gui_option = "gts_horizontal_event_button"
+	# picture_event_data = {
+	# 	room = gts_linfeng5_room
+	# }
+	# show_sound = event_default
+	immediate = {
+
+	}
+	is_triggered_only = yes
+	option = {
+		name = gts_linfeng.303.a
+		hidden_effect = {
+			gts_create_linfeng_fleet = yes
+		}
+	}
+}
+country_event = {
+	id = gts_linfeng.304
+	title = gts_linfeng.304.name
+	desc = gts_linfeng.304.desc
+	picture = GFX_gts_linfeng_8
+	# diplomatic = yes
+	# custom_gui = "gts_vertical_event_window"
+	# custom_gui = "gts_horizontal_event_window"
+	# custom_gui_option = "gts_horizontal_event_button"
+	# picture_event_data = {
+	# 	room = gts_linfeng5_room
+	# }
+	# show_sound = event_default
+	immediate = {
+	}
+	is_triggered_only = yes
+	option = {
+		name = gts_linfeng.304.a
+		hidden_effect = {
+			gts_create_linfeng_futa_fleet = yes
+		}
+	}
+}
+
+
+country_event = {
+	# 林凤领袖招募
+	id = gts_linfeng.305
+	title = "gts_linfeng.305.name"
+	desc = "gts_linfeng.305.desc"
+	show_sound = event_celebration
+	is_triggered_only = yes
+	picture = GFX_leader_recruitment_bg_renowned
+	auto_opens = yes
+	event_window_type = leader_recruit
+	notification_event_icon = "GFX_message_leader_gts_linfeng"
+	immediate = {
+		gts_leader_linfeng_shipgril_hired = yes
+	}
+	picture_event_data = {
+		portrait = event_target:gts_leader
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = gts_linfeng.305.a
+		response_text = gts_linfeng.305.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_linfeng.305.b
+		response_text = gts_linfeng.305.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_linfeng.305.c
+		response_text = gts_linfeng.305.c.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		# custom_tooltip = gts_linfeng.305.hire_custom_tooltip
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = legendary }		}
+	}
+	option = {
+		tag = dismiss_leader
+		name = END_TRANSMISSION
+		hidden_effect = {
+		}
+	}
+}
+country_event = {
+	id = gts_linfeng.306
+	title = gts_linfeng.306.name
+	desc = gts_linfeng.306.desc
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_linfeng_17_room
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+
+	}
+	immediate = {
+		from = {
+			set_owner = root
+			change_pc = pc_gts_semen
+		}
+	}
+	option = {
+		name = gts_linfeng.306.a
+	}
+	after = {
+		from = {
+			create_colony = {
+				owner = root
+			}
+			create_pop = {
+				species = root.species
+			}
+			add_district = district_bfbf_juice_2
+			set_planet_name = gts_linfeng_changed_semen_planets
+			add_deposit = d_gts_linfeng_d
+			change_pc = pc_gts_semen
+		}
+	}
+}
+
+country_event = {
+	id = gts_linfeng.307
+	title = gts_linfeng.307.name
+	desc = gts_linfeng.307.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_linfeng_18_room
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+
+	}
+	immediate = {
+		set_country_flag = gts_linfeng_shoes_given_end
+	}
+	option = {
+		name = gts_linfeng.307.a
+		hidden_effect = {
+			country_event = {
+				id = gts_linfeng.308
+			}
+		}
+	}
+	after = {
+
+	}
+}
+country_event = {
+	id = gts_linfeng.308
+	title = gts_linfeng.308.name
+	desc = gts_linfeng.308.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_linfeng_18_room
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+
+	}
+	immediate = {
+	}
+	option = {
+		name = gts_linfeng.308.a
+		hidden_effect = {
+			custom_tooltip = gts_linfeng.308.a.custom_tooltip
+			random_system_within_border = {
+				spawn_system = {
+					max_jumps = 0
+					initializer = gts_linfeng_shoes1_system
+					effect = {
+						save_event_target_as = gts_linfeng_shoes1_system
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_linfeng.308.b
+		hidden_effect = {
+			custom_tooltip = gts_linfeng.308.b.custom_tooltip
+			random_system_within_border = {
+				spawn_system = {
+					max_jumps = 0
+					initializer = gts_linfeng_shoes2_system
+					effect = {
+						save_event_target_as = gts_linfeng_shoes2_system
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_linfeng.308.c
+		hidden_effect = {
+			custom_tooltip = gts_linfeng.308.c.custom_tooltip
+			random_system_within_border = {
+				spawn_system = {
+					max_jumps = 0
+					initializer = gts_linfeng_shoes3_system
+					effect = {
+						save_event_target_as = gts_linfeng_shoes3_system
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_linfeng.308.d
+		hidden_effect = {
+			hidden_effect = {
+				custom_tooltip = gts_linfeng.308.d.custom_tooltip
+				random_system_within_border = {
+					spawn_system = {
+						max_jumps = 0
+						initializer = gts_linfeng_shoes1_system
+						effect = {
+							save_event_target_as = gts_linfeng_shoes1_system
+						}
+					}
+				}
+				random_system_within_border = {
+					spawn_system = {
+						max_jumps = 0
+						initializer = gts_linfeng_shoes2_system
+						effect = {
+							save_event_target_as = gts_linfeng_shoes2_system
+						}
+					}
+				}
+				random_system_within_border = {
+					spawn_system = {
+						max_jumps = 0
+						initializer = gts_linfeng_shoes3_system
+						effect = {
+							save_event_target_as = gts_linfeng_shoes3_system
+						}
+					}
+				}
+			}
+			random_owned_leader = {
+				limit = {
+					NOR = {
+						has_trait = gts_trait_leader_linfeng_f
+						has_leader_flag = gts_linfeng
+						gts_is_bigger_than_titan = yes
+					}
+				}
+				add_trait = {
+					trait = gts_trait_leader_linfeng_f
+				}
+			}
+		}
+	}
+	after = {
+
+	}
+}
+# country_event = {
+# 	id = gts_linfeng.XXX
+# 	title = gts_linfeng.XXX.name
+# 	desc = gts_linfeng.XXX.desc
+# 	# picture = GFX_load_45
+# 	# diplomatic = yes
+# 	# custom_gui = "gts_vertical_event_window"
+# 	# custom_gui = "gts_horizontal_event_window"
+# 	# custom_gui_option = "gts_horizontal_event_button"
+# 	# picture_event_data = {
+# 	# 	room = gts_linfeng5_room
+# 	# }
+# 	# show_sound = event_default
+# 	is_triggered_only = yes
+# 	option = {
+# 		name = gts_linfeng.XXX.a
+# 		hidden_effect = {
+			
+# 		}
+# 	}
+# }

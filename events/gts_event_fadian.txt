@@ -1,0 +1,130 @@
+namespace = gts_evt_fadian
+
+# 群友发电的小行星
+ship_event  = {
+	id = gts_evt_fadian.1
+	title = gts_evt_fadian.1.name
+	desc = gts_evt_fadian.1.desc
+	picture = gts_skadi_potral.03
+	is_triggered_only = yes
+	show_sound = event_activating_unknown_technology
+	location = from
+
+	option = {
+		name = gts_evt_fadian.1.a
+		root.owner = {
+			add_resource = {
+				energy = -500
+			}
+		}
+		hidden_effect = {
+			from = {
+			    enable_special_project = {
+					name = gts_evt_fadian_project
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_evt_fadian.1.b
+		root.owner = {
+			add_resource = {
+				influence = 100
+			}
+		}
+	}
+	option = {
+		name = gts_evt_fadian.1.c
+		root.owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = 6
+			}
+		}
+	}
+}
+
+ship_event  = {
+	id = gts_evt_fadian.2
+	title = gts_evt_fadian.2.name
+	desc = gts_evt_fadian.2.desc
+	picture = GFX_load_72
+	is_triggered_only = yes
+	show_sound = event_ghost_town
+
+	option = {
+		name = gts_evt_fadian.2.a
+		root.owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = 12
+			}
+		}
+	}
+	option = {
+		name = gts_evt_fadian.2.b
+		allow = {
+			root.owner = {
+				has_ascension_perk = ap_space_gts
+			}
+		}
+		root.owner = {
+			add_resource = {
+				gts_micro = 300
+				gts_micro_city = 30
+				gts_micro_planet = 1
+			}
+		}
+	}
+	option = {
+		name = gts_evt_fadian.2.c
+		root.owner = {
+			add_resource = {
+				influence = 100
+			}
+		}
+	}
+}
+
+# 大陸級的痕跡
+
+ship_event  = {
+	id = gts_evt_fadian.3
+	title = gts_evt_fadian.3.name
+	desc = gts_evt_fadian.3.desc
+	picture = GFX_load_151
+	is_triggered_only = yes
+	show_sound = event_activating_unknown_technology
+	location = from
+
+	option = {
+		name = gts_evt_fadian.3.a
+		trigger = {
+			root.owner = {
+				NOR = {
+					has_ethic = ethic_xenophobe
+					has_ethic = ethic_fanatic_xenophobe
+					has_ethic = ethic_gestalt_consciousness
+				}
+			}
+		}
+		root.owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = 12
+			}
+		}
+		from = {
+			add_deposit = d_society_3
+			add_deposit = d_artifacts_mining_1
+		}
+	}
+	option = {
+		name = gts_evt_fadian.3.b
+		from = {
+			add_deposit = d_minerals_8
+			add_deposit = d_gts_giantess_fluid_10
+		}
+	}
+}
+

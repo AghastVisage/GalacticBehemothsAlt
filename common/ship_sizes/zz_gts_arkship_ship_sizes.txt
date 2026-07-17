@@ -1,0 +1,1594 @@
+gts_arkship_tier_1 = {
+	is_starting_arkship = yes
+	graphical_culture = { "military_arkship" }
+	hero_ship = {
+		hero_ship_fleet_background = "GFX_arkship_fleetview_military"
+		custom_class_text_color = R
+	}
+	class = shipclass_starbase
+	carries_colony = pc_gtsra_shipgirl_body
+	display_attack_neutral_fleet_button = no
+	automation_icon = GFX_fleet_order_auto_explore_arkship
+	arkship_picture = "gts_shipgirl_arkship"
+	auto_upgrade = yes
+	can_disable = yes
+	stay_disabled = yes
+	never_lost = yes
+	collects_stockpile_from = {
+		shipclass_starbase
+		shipclass_constructor
+	}
+	collects_stockpile_to_country = yes
+	accepts_all_modifiers = yes
+
+	use_shipnames_from = juggernaut
+
+	potential_construction = { always = no }
+	possible_construction = { always = no }
+
+	on_click_sound = "arkship_military_selection"
+
+	icon = ship_size_military_arkship_tier_1
+	icon_frame = 16
+	ship_class_icon_frame = 64
+	map_icon_override = {
+		normal = GFX_ship_icons_type_arkship
+		mixed = GFX_ship_icons_type_arkship_mixed
+		cloaked = GFX_ship_icons_type_arkship_cloaked
+		encamped = GFX_ship_icons_type_arkship_encamped
+	}
+
+	entity = "GTS_destroyer_body_entity"
+	section_slots = {
+		"mid" = { locator = "part1" }
+		"1" = { locator = "part2" }
+		"2" = { locator = "part2" }
+	}
+
+	formation_priority = 4
+	max_speed = 100
+	acceleration = 0.2
+	rotation_speed = 0.15
+	construction_offset_mult = 2
+	collision_radius = 4
+	max_hitpoints = 300000
+	modifier = {
+		ship_evasion_add = 5
+		ship_cloaking_strength_add = -10
+		starbase_module_capacity_add = 2
+		starbase_building_capacity_add = 4
+		planet_max_districts_add = 0
+		ship_sensor_range_add = 1
+	}
+	ship_modifier = {
+		ship_starbase_stockpile_collection_rate_add = 125
+		ship_fire_rate_mult = 0.05
+		ship_weapon_range_mult = 0.05
+	}
+	size_multiplier = 80
+	fleet_slot_size = 8
+
+	is_designable = no
+	num_target_locators = 0
+	is_space_station = no
+	can_have_federation_design = no
+	is_civilian = no
+	components_add_to_cost = no
+
+	available_to_everyone = yes
+	enable_default_design = yes
+	enable_3dview_in_ship_browser = no
+
+	prerequisites = { "tech_gts_destroyer_ship" }
+
+	combat_disengage_chance = 2
+
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "gts_base_shipgirl_ftl_components_set"
+	required_component_set = "thruster_components"
+	required_component_set = "gts_base_shipgirl_sensor_components_set"
+	required_component_set = "combat_computers"
+	required_component_set = "ship_aura_components"
+	
+	potential_country = {
+			# is_nomadic = yes
+	}
+
+	resources = {
+		category = starbase_arkships
+		upkeep = {
+			energy = 500
+			food = 500
+			alloys = 250
+			consumer_goods = 250
+		}
+		upkeep = {
+			trigger = {
+				from = { gts_is_tiny_empire = yes }
+			}
+			gts_giantess_fluid = 250
+			gts_giantess_underwear = 125
+			gts_giantess_human = 62.5
+		}
+		upkeep = {
+			trigger = {
+				from = { gts_is_giantess_empire = yes }
+			}
+			gts_micro = 250
+			gts_micro_city = 125
+			gts_micro_planet = 62.5
+		}
+		logistics = {
+			trade = 125
+		}
+	}
+	min_upgrade_cost = {
+		alloys = 125
+	}
+
+	ai_ship_data = {}
+}
+
+gts_arkship_tier_2 = {
+	graphical_culture = { "military_arkship" }
+	hero_ship = {
+		hero_ship_fleet_background = "GFX_arkship_fleetview_military"
+		custom_class_text_color = R
+	}
+	base_ship_size = "gts_arkship_tier_1"
+	class = shipclass_starbase
+	carries_colony = pc_gtsra_shipgirl_body
+	display_attack_neutral_fleet_button = no
+	automation_icon = GFX_fleet_order_auto_explore_arkship
+	arkship_picture = "gts_shipgirl_arkship"
+	auto_upgrade = yes
+	can_disable = yes
+	stay_disabled = yes
+	never_lost = yes
+	collects_stockpile_from = {
+		shipclass_starbase
+		shipclass_constructor
+	}
+	collects_stockpile_to_country = yes
+	accepts_all_modifiers = yes
+
+	use_shipnames_from = juggernaut
+
+	potential_construction = { always = no }
+	possible_construction = { always = no }
+
+	on_click_sound = "arkship_military_selection"
+
+	icon = ship_size_military_arkship_tier_2
+	icon_frame = 16
+	ship_class_icon_frame = 64
+	map_icon_override = {
+		normal = GFX_ship_icons_type_arkship
+		mixed = GFX_ship_icons_type_arkship_mixed
+		cloaked = GFX_ship_icons_type_arkship_cloaked
+		encamped = GFX_ship_icons_type_arkship_encamped
+	}
+
+	entity = "GTS_battleship_body_entity"
+	section_slots = {
+		"mid" = { locator = "part1" }
+		"1" = { locator = "part2" }
+		"2" = { locator = "part2" }
+		"3" = { locator = "part3" }
+		"4" = { locator = "part3" }
+	}
+
+	formation_priority = 4
+	max_speed = 100
+	acceleration = 0.2
+	rotation_speed = 0.15
+	construction_offset_mult = 3
+	collision_radius = 4
+	max_hitpoints = 600000
+	modifier = {
+		ship_evasion_add = 5
+		ship_cloaking_strength_add = -10
+		starbase_module_capacity_add = 4
+		starbase_building_capacity_add = 8
+		planet_max_districts_add = 9
+		ship_sensor_range_add = 1
+	}
+	ship_modifier = {
+		ship_starbase_stockpile_collection_rate_add = 375
+		ship_fire_rate_mult = 0.10
+		ship_weapon_range_mult = 0.10
+	}
+	size_multiplier = 100
+	fleet_slot_size = 16
+
+	is_designable = no
+	num_target_locators = 0
+	is_space_station = no
+	can_have_federation_design = no
+	is_civilian = no
+	components_add_to_cost = no
+
+	available_to_everyone = yes
+	enable_default_design = yes
+	enable_3dview_in_ship_browser = no
+
+	prerequisites = { "tech_gts_battleship_ship" }
+
+	combat_disengage_chance = 2
+
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "gts_base_shipgirl_ftl_components_set"
+	required_component_set = "thruster_components"
+	required_component_set = "gts_base_shipgirl_sensor_components_set"
+	required_component_set = "combat_computers"
+	required_component_set = "ship_aura_components"
+
+	potential_country = {
+			# is_nomadic = yes
+	}
+
+	base_buildtime = 900
+	resources = {
+		category = starbase_arkships
+		cost = {
+			alloys = 5000
+			influence = 250
+		}
+		upkeep = {
+			energy = 1000
+			food = 1000
+			alloys = 500
+			consumer_goods = 500
+		}
+		upkeep = {
+			trigger = {
+				from = { gts_is_tiny_empire = yes }
+			}
+			gts_giantess_fluid = 500
+			gts_giantess_underwear = 250
+			gts_giantess_human = 125
+		}
+		upkeep = {
+			trigger = {
+				from = { gts_is_giantess_empire = yes }
+			}
+			gts_micro = 500
+			gts_micro_city = 250
+			gts_micro_planet = 125
+		}
+		logistics = {
+			trade = 250
+		}
+	}
+	min_upgrade_cost = {
+		alloys = 250
+	}
+
+	ai_ship_data = {}
+}
+
+gts_arkship_tier_3 = {
+	graphical_culture = { "military_arkship" }
+	hero_ship = {
+		hero_ship_fleet_background = "GFX_arkship_fleetview_military"
+		custom_class_text_color = R
+	}
+	base_ship_size = "gts_arkship_tier_1"
+	class = shipclass_starbase
+	carries_colony = pc_gtsra_shipgirl_body
+	display_attack_neutral_fleet_button = no
+	automation_icon = GFX_fleet_order_auto_explore_arkship
+	arkship_picture = "gts_shipgirl_arkship"
+	auto_upgrade = yes
+	can_disable = yes
+	stay_disabled = yes
+	never_lost = yes
+	collects_stockpile_from = {
+		shipclass_starbase
+		shipclass_constructor
+	}
+	collects_stockpile_to_country = yes
+	accepts_all_modifiers = yes
+
+	use_shipnames_from = juggernaut
+
+	potential_construction = { always = no }
+	possible_construction = { always = no }
+
+	on_click_sound = "arkship_military_selection"
+
+	icon = ship_size_military_arkship_tier_3
+	icon_frame = 16
+	ship_class_icon_frame = 64
+	map_icon_override = {
+		normal = GFX_ship_icons_type_arkship
+		mixed = GFX_ship_icons_type_arkship_mixed
+		cloaked = GFX_ship_icons_type_arkship_cloaked
+		encamped = GFX_ship_icons_type_arkship_encamped
+	}
+
+	entity = "GTS_titan_body_entity"
+	section_slots = {
+		"mid" = { locator = "part1" }
+		"1" = { locator = "part2" }
+		"2" = { locator = "part2" }
+		"3" = { locator = "part2" }
+		"4" = { locator = "part3" }
+		"5" = { locator = "part3" }
+		"6" = { locator = "part3" }
+		"spinal_mount_1" = { locator = "part3" }
+	}
+
+	formation_priority = 4
+	max_speed = 100
+	acceleration = 0.2
+	rotation_speed = 0.15
+	construction_offset_mult = 4
+	collision_radius = 4
+	max_hitpoints = 1200000
+	modifier = {
+		ship_evasion_add = 5
+		ship_cloaking_strength_add = -10
+		starbase_module_capacity_add = 7
+		starbase_building_capacity_add = 12
+		planet_max_districts_add = 18
+		ship_sensor_range_add = 1
+	}
+	ship_modifier = {
+		ship_starbase_stockpile_collection_rate_add = 625
+		ship_fire_rate_mult = 0.15
+		ship_weapon_range_mult = 0.15
+	}
+	size_multiplier = 120
+	fleet_slot_size = 32
+
+	is_designable = no
+	num_target_locators = 0
+	is_space_station = no
+	can_have_federation_design = no
+	is_civilian = no
+	components_add_to_cost = no
+
+	available_to_everyone = yes
+	enable_default_design = yes
+	enable_3dview_in_ship_browser = no
+
+	prerequisites = { "tech_gts_titan_ship" }
+
+	combat_disengage_chance = 2
+
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "gts_base_shipgirl_ftl_components_set"
+	required_component_set = "thruster_components"
+	required_component_set = "gts_base_shipgirl_sensor_components_set"
+	required_component_set = "combat_computers"
+	required_component_set = "ship_aura_components"
+	
+	potential_country = {
+			# is_nomadic = yes
+	}
+
+	base_buildtime = 1080
+	resources = {
+		category = starbase_arkships
+		cost = {
+			alloys = 5000
+			influence = 250
+		}
+		upkeep = {
+			energy = 2000
+			food = 2000
+			alloys = 1000
+			consumer_goods = 1000
+		}
+		upkeep = {
+			trigger = {
+				from = { gts_is_tiny_empire = yes }
+			}
+			gts_giantess_fluid = 1000
+			gts_giantess_underwear = 500
+			gts_giantess_human = 250
+		}
+		upkeep = {
+			trigger = {
+				from = { gts_is_giantess_empire = yes }
+			}
+			gts_micro = 1000
+			gts_micro_city = 500
+			gts_micro_planet = 250
+		}
+		logistics = {
+			trade = 500
+		}
+	}
+	min_upgrade_cost = {
+		alloys = 500
+	}
+
+	ai_ship_data = {}
+}
+
+
+
+
+
+
+
+
+
+
+
+gts_seele_1_swallowtail_phantasm = {
+	is_starting_arkship = yes
+	graphical_culture = { "civilian_arkship" }
+	hero_ship = {
+		hero_ship_fleet_background = "GFX_arkship_fleetview_military"
+		custom_class_text_color = R
+	}
+	class = shipclass_starbase
+	carries_colony = pc_gts_seele
+	display_attack_neutral_fleet_button = no
+	automation_icon = GFX_fleet_order_auto_explore_arkship
+	arkship_picture = "gts_shipgirl_arkship"
+	auto_upgrade = yes
+	can_disable = yes
+	stay_disabled = yes
+	never_lost = yes
+	collects_stockpile_from = {
+		shipclass_starbase
+		shipclass_constructor
+	}
+	collects_stockpile_to_country = yes
+	accepts_all_modifiers = yes
+
+	use_shipnames_from = juggernaut
+
+	potential_construction = { always = no }
+	possible_construction = { always = no }
+
+	on_click_sound = "arkship_civilian_selection"
+
+	icon = ship_size_civilian_arkship_tier_1
+	icon_frame = 16
+	ship_class_icon_frame = 64
+	map_icon_override = {
+		normal = GFX_ship_icons_type_arkship
+		mixed = GFX_ship_icons_type_arkship_mixed
+		cloaked = GFX_ship_icons_type_arkship_cloaked
+		encamped = GFX_ship_icons_type_arkship_encamped
+	}
+
+	entity = "gts_seele_1_swallowtail_phantasm_01_entity"
+	section_slots = {
+		"mid" = { locator = "part1" }
+		"1" = { locator = "part2" }
+		"2" = { locator = "part2" }
+		"3" = { locator = "part2" }
+		"4" = { locator = "part3" }
+		"5" = { locator = "part3" }
+		"6" = { locator = "part3" }
+		"spinal_mount_1" = { locator = "part3" }
+	}
+
+	formation_priority = 4
+	max_speed = 100
+	acceleration = 0.2
+	rotation_speed = 0.15
+	construction_offset_mult = 2
+	collision_radius = 4
+	max_hitpoints = 300000
+	modifier = {
+
+		district_bfbf_seele_1_max_add = 50
+		district_bfbf_seele_2_max_add = 50
+		district_bfbf_seele_3_max_add = 50
+		district_bfbf_seele_4_max_add = 50
+		district_bfbf_seele_5_max_add = 50
+		district_bfbf_seele_6_max_add = 50
+		district_bfbf_seele_7_max_add = 50
+		starbase_module_capacity_add = 7
+		starbase_building_capacity_add = 16
+		planet_max_districts_add = 100
+		planet_housing_add = 100000
+		job_gts_civilian_unlimited_seele_add = 9999999
+
+		ship_sensor_range_add = 1
+		ship_speed_mult = 0.5 # 亚空间航速
+		ship_evasion_add = 5
+		ship_armor_add = 500000
+		ship_shield_add = 500000
+		ship_shield_regen_add_static = 1750
+	}
+	ship_modifier = {
+		ship_starbase_stockpile_collection_rate_add = 500
+	}
+	size_multiplier = 1
+	fleet_slot_size = 25
+
+	is_designable = no
+	num_target_locators = 0
+	is_space_station = no
+	can_have_federation_design = no
+	is_civilian = no
+	components_add_to_cost = no
+
+	available_to_everyone = yes
+	enable_default_design = yes
+	enable_3dview_in_ship_browser = no
+
+	prerequisites = { }
+
+	combat_disengage_chance = 2
+
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	required_component_set = "ship_aura_components"
+	required_component_set = "ship_aura_components"
+	required_component_set = "azure_waters_weapon"
+	required_component_set = "science_cloaking_components"
+	required_component_set = "ship_azure_waters_aura_components"
+
+
+	potential_country = {
+		# is_nomadic = yes
+	}
+	base_buildtime = 0
+	resources = {  }
+	min_upgrade_cost = {
+		alloys = 125
+	}
+
+	ai_ship_data = {}
+}
+
+gts_seele_2_stygian_nymph = {
+	graphical_culture = { "civilian_arkship" }
+	hero_ship = {
+		hero_ship_fleet_background = "GFX_arkship_fleetview_military"
+		custom_class_text_color = R
+	}
+	base_ship_size = "gts_seele_1_swallowtail_phantasm"
+	class = shipclass_starbase
+	carries_colony = pc_gts_seele
+	display_attack_neutral_fleet_button = no
+	automation_icon = GFX_fleet_order_auto_explore_arkship
+	arkship_picture = "gts_shipgirl_arkship"
+	auto_upgrade = yes
+	can_disable = yes
+	stay_disabled = yes
+	never_lost = yes
+	collects_stockpile_from = {
+		shipclass_starbase
+		shipclass_constructor
+	}
+	collects_stockpile_to_country = yes
+	accepts_all_modifiers = yes
+
+	use_shipnames_from = juggernaut
+
+	potential_construction = { always = no }
+	possible_construction = { always = no }
+
+	on_click_sound = "arkship_civilian_selection"
+
+	icon = ship_size_military_arkship_tier_2
+	icon_frame = 16
+	ship_class_icon_frame = 64
+	map_icon_override = {
+		normal = GFX_ship_icons_type_arkship
+		mixed = GFX_ship_icons_type_arkship_mixed
+		cloaked = GFX_ship_icons_type_arkship_cloaked
+		encamped = GFX_ship_icons_type_arkship_encamped
+	}
+
+	entity = "gts_seele_2_stygian_nymph_01_entity"
+	section_slots = {
+		"mid" = { locator = "part1" }
+		"1" = { locator = "part2" }
+		"2" = { locator = "part2" }
+		"3" = { locator = "part2" }
+		"4" = { locator = "part3" }
+		"5" = { locator = "part3" }
+		"6" = { locator = "part3" }
+		"spinal_mount_1" = { locator = "part3" }
+	}
+
+	formation_priority = 4
+	max_speed = 100
+	acceleration = 0.2
+	rotation_speed = 0.15
+	construction_offset_mult = 3
+	collision_radius = 4
+	max_hitpoints = 600000
+	modifier = {
+		district_bfbf_seele_1_max_add = 200
+		district_bfbf_seele_2_max_add = 200
+		district_bfbf_seele_3_max_add = 200
+		district_bfbf_seele_4_max_add = 200
+		district_bfbf_seele_5_max_add = 200
+		district_bfbf_seele_6_max_add = 200
+		district_bfbf_seele_7_max_add = 200
+		starbase_module_capacity_add = 7
+		starbase_building_capacity_add = 16
+		planet_max_districts_add = 300
+
+		planet_housing_add = 200000
+		job_gts_civilian_unlimited_seele_add = 9999999
+
+		ship_sensor_range_add = 1
+		ship_speed_mult = 0.5 # 亚空间航速
+
+		ship_evasion_add = 5
+		ship_armor_add = 500000
+		ship_shield_add = 500000
+		ship_shield_regen_add_static = 1750
+	}
+	ship_modifier = {
+		ship_starbase_stockpile_collection_rate_add = 750
+	}
+	size_multiplier = 1
+	fleet_slot_size = 25
+
+	is_designable = no
+	num_target_locators = 0
+	is_space_station = no
+	can_have_federation_design = no
+	is_civilian = no
+	components_add_to_cost = no
+
+	available_to_everyone = yes
+	enable_default_design = yes
+	enable_3dview_in_ship_browser = no
+
+	prerequisites = {
+		"tech_gts_destroyer_ship"
+	}
+
+	combat_disengage_chance = 2
+
+	construction_type = starbase_shipyard
+
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	required_component_set = "ship_aura_components"
+	required_component_set = "ship_aura_components"
+	required_component_set = "azure_waters_weapon"
+	required_component_set = "science_cloaking_components"
+	required_component_set = "ship_azure_waters_aura_components"
+
+	potential_country = {
+		# is_nomadic = yes
+	}
+
+	base_buildtime = 360
+	resources = {  }
+	min_upgrade_cost = {
+		alloys = 250
+	}
+
+	ai_ship_data = {}
+}
+
+gts_seele_3_herrscher_of_rebirth = {
+	graphical_culture = { "civilian_arkship" }
+	hero_ship = {
+		hero_ship_fleet_background = "GFX_arkship_fleetview_military"
+		custom_class_text_color = R
+	}
+	base_ship_size = "gts_seele_1_swallowtail_phantasm"
+	class = shipclass_starbase
+	carries_colony = pc_gts_seele
+	display_attack_neutral_fleet_button = no
+	automation_icon = GFX_fleet_order_auto_explore_arkship
+	arkship_picture = "gts_shipgirl_arkship"
+	auto_upgrade = yes
+	can_disable = yes
+	stay_disabled = yes
+	never_lost = yes
+	collects_stockpile_from = {
+		shipclass_starbase
+		shipclass_constructor
+	}
+	collects_stockpile_to_country = yes
+	accepts_all_modifiers = yes
+
+	use_shipnames_from = juggernaut
+
+	potential_construction = { always = no }
+	possible_construction = { always = no }
+
+	on_click_sound = "arkship_civilian_selection"
+
+	icon = ship_size_military_arkship_tier_3
+	icon_frame = 16
+	ship_class_icon_frame = 64
+	map_icon_override = {
+		normal = GFX_ship_icons_type_arkship
+		mixed = GFX_ship_icons_type_arkship_mixed
+		cloaked = GFX_ship_icons_type_arkship_cloaked
+		encamped = GFX_ship_icons_type_arkship_encamped
+	}
+
+	entity = "gts_seele_3_herrscher_of_rebirth_01_entity"
+	section_slots = {
+		"mid" = { locator = "part1" }
+		"1" = { locator = "part2" }
+		"2" = { locator = "part2" }
+		"3" = { locator = "part2" }
+		"4" = { locator = "part3" }
+		"5" = { locator = "part3" }
+		"6" = { locator = "part3" }
+		"spinal_mount_1" = { locator = "part3" }
+	}
+
+	formation_priority = 4
+	max_speed = 100
+	acceleration = 0.2
+	rotation_speed = 0.15
+	construction_offset_mult = 4
+	collision_radius = 4
+	max_hitpoints = 1200000
+	modifier = {
+		district_bfbf_seele_1_max_add = 300
+		district_bfbf_seele_2_max_add = 300
+		district_bfbf_seele_3_max_add = 300
+		district_bfbf_seele_4_max_add = 300
+		district_bfbf_seele_5_max_add = 300
+		district_bfbf_seele_6_max_add = 300
+		district_bfbf_seele_7_max_add = 300
+		starbase_module_capacity_add = 7
+		starbase_building_capacity_add = 16
+		planet_max_districts_add = 450
+		ship_sensor_range_add = 1
+		ship_speed_mult = 0.5 # 亚空间航速
+
+
+		planet_housing_add = 250000
+		job_gts_civilian_unlimited_seele_add = 9999999
+
+		ship_evasion_add = 5
+		ship_armor_add = 500000
+		ship_shield_add = 500000
+		ship_shield_regen_add_static = 1750
+	}
+	ship_modifier = {
+		ship_starbase_stockpile_collection_rate_add = 1000
+	}
+	size_multiplier = 1
+	fleet_slot_size = 25
+
+	is_designable = no
+	num_target_locators = 0
+	is_space_station = no
+	can_have_federation_design = no
+	is_civilian = no
+	components_add_to_cost = no
+
+	available_to_everyone = yes
+	enable_default_design = yes
+	enable_3dview_in_ship_browser = no
+
+	prerequisites = {
+		"tech_gts_battleship_ship"
+	}
+
+	combat_disengage_chance = 2
+
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	required_component_set = "ship_aura_components"
+	required_component_set = "ship_aura_components"
+	required_component_set = "azure_waters_weapon"
+	required_component_set = "science_cloaking_components"
+	required_component_set = "ship_azure_waters_aura_components"
+
+	potential_country = {
+		# is_nomadic = yes
+	}
+
+	base_buildtime = 360
+	resources = {  }
+	min_upgrade_cost = {
+		alloys = 500
+	}
+
+	ai_ship_data = {}
+}
+
+gts_seele_4_wings_of_panacea = {
+	graphical_culture = { "civilian_arkship" }
+	hero_ship = {
+		hero_ship_fleet_background = "GFX_arkship_fleetview_military"
+		custom_class_text_color = R
+	}
+	base_ship_size = "gts_seele_1_swallowtail_phantasm"
+	class = shipclass_starbase
+	carries_colony = pc_gts_seele
+	display_attack_neutral_fleet_button = no
+	automation_icon = GFX_fleet_order_auto_explore_arkship
+	arkship_picture = "gts_shipgirl_arkship"
+	auto_upgrade = yes
+	can_disable = yes
+	stay_disabled = yes
+	never_lost = yes
+	collects_stockpile_from = {
+		shipclass_starbase
+		shipclass_constructor
+	}
+	collects_stockpile_to_country = yes
+	accepts_all_modifiers = yes
+
+	use_shipnames_from = juggernaut
+
+	potential_construction = { always = no }
+	possible_construction = { always = no }
+
+	on_click_sound = "arkship_civilian_selection"
+
+	icon = ship_size_military_arkship_tier_3
+	icon_frame = 16
+	ship_class_icon_frame = 64
+	map_icon_override = {
+		normal = GFX_ship_icons_type_arkship
+		mixed = GFX_ship_icons_type_arkship_mixed
+		cloaked = GFX_ship_icons_type_arkship_cloaked
+		encamped = GFX_ship_icons_type_arkship_encamped
+	}
+
+	entity = "gts_seele_4_wings_of_panacea_01_entity"
+	section_slots = {
+		"mid" = { locator = "part1" }
+		"1" = { locator = "part2" }
+		"2" = { locator = "part2" }
+		"3" = { locator = "part2" }
+		"4" = { locator = "part3" }
+		"5" = { locator = "part3" }
+		"6" = { locator = "part3" }
+		"spinal_mount_1" = { locator = "part3" }
+	}
+
+	formation_priority = 4
+	max_speed = 100
+	acceleration = 0.2
+	rotation_speed = 0.15
+	construction_offset_mult = 4
+	collision_radius = 4
+	max_hitpoints = 1200000
+	modifier = {
+		district_bfbf_seele_1_max_add = 300
+		district_bfbf_seele_2_max_add = 300
+		district_bfbf_seele_3_max_add = 300
+		district_bfbf_seele_4_max_add = 300
+		district_bfbf_seele_5_max_add = 300
+		district_bfbf_seele_6_max_add = 300
+		district_bfbf_seele_7_max_add = 300
+		starbase_module_capacity_add = 7
+		starbase_building_capacity_add = 16
+		planet_max_districts_add = 450
+		ship_sensor_range_add = 1
+		ship_speed_mult = 0.5 # 亚空间航速
+
+		planet_housing_add = 250000
+		job_gts_civilian_unlimited_seele_add = 9999999
+
+
+		ship_evasion_add = 5
+		ship_armor_add = 500000
+		ship_shield_add = 500000
+		ship_shield_regen_add_static = 1750
+	}
+	ship_modifier = {
+		ship_starbase_stockpile_collection_rate_add = 1000
+	}
+	size_multiplier = 1
+	fleet_slot_size = 25
+
+	is_designable = no
+	num_target_locators = 0
+	is_space_station = no
+	can_have_federation_design = no
+	is_civilian = no
+	components_add_to_cost = no
+
+	available_to_everyone = yes
+	enable_default_design = yes
+	enable_3dview_in_ship_browser = no
+
+	prerequisites = {
+		"tech_gts_titan_ship"
+	}
+
+	combat_disengage_chance = 2
+
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	required_component_set = "ship_aura_components"
+	required_component_set = "ship_aura_components"
+	required_component_set = "azure_waters_weapon"
+	required_component_set = "science_cloaking_components"
+	required_component_set = "ship_azure_waters_aura_components"
+
+	potential_country = {
+		# is_nomadic = yes
+	}
+
+	base_buildtime = 360
+	resources = {  }
+	min_upgrade_cost = {
+		alloys = 500
+	}
+
+	ai_ship_data = {}
+}
+
+
+
+gts_seele_li_1_stygian_nymph = {
+	is_starting_arkship = yes
+	graphical_culture = { "military_arkship" }
+	hero_ship = {
+		hero_ship_fleet_background = "GFX_arkship_fleetview_military"
+		custom_class_text_color = R
+	}
+	class = shipclass_starbase
+	carries_colony = pc_gts_seele_li
+	display_attack_neutral_fleet_button = no
+	automation_icon = GFX_fleet_order_auto_explore_arkship
+	arkship_picture = "gts_shipgirl_arkship"
+	auto_upgrade = yes
+	can_disable = yes
+	stay_disabled = yes
+	never_lost = yes
+	collects_stockpile_from = {
+		shipclass_starbase
+		shipclass_constructor
+	}
+	collects_stockpile_to_country = yes
+	accepts_all_modifiers = yes
+
+	use_shipnames_from = juggernaut
+
+	potential_construction = { always = no }
+	possible_construction = { always = no }
+
+	on_click_sound = "arkship_military_selection"
+
+	icon = ship_size_civilian_arkship_tier_1
+	icon_frame = 16
+	ship_class_icon_frame = 64
+	map_icon_override = {
+		normal = GFX_ship_icons_type_arkship
+		mixed = GFX_ship_icons_type_arkship_mixed
+		cloaked = GFX_ship_icons_type_arkship_cloaked
+		encamped = GFX_ship_icons_type_arkship_encamped
+	}
+
+	entity = "gts_seele_li_1_stygian_nymph_01_entity"
+	section_slots = {
+		"mid" = { locator = "part1" }
+		"1" = { locator = "part2" }
+		"2" = { locator = "part2" }
+		"3" = { locator = "part2" }
+		"4" = { locator = "part3" }
+		"5" = { locator = "part3" }
+		"6" = { locator = "part3" }
+		"spinal_mount_1" = { locator = "part3" }
+	}
+
+	formation_priority = 4
+	max_speed = 100
+	acceleration = 0.2
+	rotation_speed = 0.15
+	construction_offset_mult = 2
+	collision_radius = 4
+	max_hitpoints = 300000
+	modifier = {
+		district_bfbf_seele_li_1_max_add = 200
+		district_bfbf_seele_li_2_max_add = 200
+		district_bfbf_seele_li_3_max_add = 200
+		district_bfbf_seele_li_4_max_add = 200
+		district_bfbf_seele_li_5_max_add = 200
+		district_bfbf_seele_li_6_max_add = 200
+		district_bfbf_seele_li_7_max_add = 200
+		starbase_module_capacity_add = 7
+		starbase_building_capacity_add = 16
+		planet_max_districts_add = 300
+		ship_sensor_range_add = 1
+		ship_speed_mult = 0.5 # 亚空间航速
+
+		planet_housing_add = 200000
+		job_gts_civilian_unlimited_seele_li_add = 9999999
+
+		ship_evasion_add = 5
+		ship_armor_add = 500000
+		ship_shield_add = 500000
+		ship_shield_regen_add_static = 1750
+	}
+	ship_modifier = {
+		ship_starbase_stockpile_collection_rate_add = 500
+	}
+	size_multiplier = 1
+	fleet_slot_size = 25
+
+	is_designable = no
+	num_target_locators = 0
+	is_space_station = no
+	can_have_federation_design = no
+	is_civilian = no
+	components_add_to_cost = no
+
+	available_to_everyone = yes
+	enable_default_design = yes
+	enable_3dview_in_ship_browser = no
+
+	prerequisites = { }
+
+	combat_disengage_chance = 2
+
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	required_component_set = "ship_aura_components"
+	required_component_set = "ship_aura_components"
+	required_component_set = "azure_waters_weapon"
+	required_component_set = "science_cloaking_components"
+	required_component_set = "ship_azure_waters_aura_components"
+
+	potential_country = {
+		# is_nomadic = yes
+	}
+	base_buildtime = 0
+	resources = {  }
+	min_upgrade_cost = {
+		alloys = 125
+	}
+
+	ai_ship_data = {}
+}
+
+gts_seele_li_2_starchasm_nyx = {
+	graphical_culture = { "military_arkship" }
+	hero_ship = {
+		hero_ship_fleet_background = "GFX_arkship_fleetview_military"
+		custom_class_text_color = R
+	}
+	base_ship_size = "gts_seele_li_1_stygian_nymph"
+	class = shipclass_starbase
+	carries_colony = pc_gts_seele_li
+	display_attack_neutral_fleet_button = no
+	automation_icon = GFX_fleet_order_auto_explore_arkship
+	arkship_picture = "gts_shipgirl_arkship"
+	auto_upgrade = yes
+	can_disable = yes
+	stay_disabled = yes
+	never_lost = yes
+	collects_stockpile_from = {
+		shipclass_starbase
+		shipclass_constructor
+	}
+	collects_stockpile_to_country = yes
+	accepts_all_modifiers = yes
+
+	use_shipnames_from = juggernaut
+
+	potential_construction = { always = no }
+	possible_construction = { always = no }
+
+	on_click_sound = "arkship_military_selection"
+
+	icon = ship_size_military_arkship_tier_2
+	icon_frame = 16
+	ship_class_icon_frame = 64
+	map_icon_override = {
+		normal = GFX_ship_icons_type_arkship
+		mixed = GFX_ship_icons_type_arkship_mixed
+		cloaked = GFX_ship_icons_type_arkship_cloaked
+		encamped = GFX_ship_icons_type_arkship_encamped
+	}
+
+	entity = "gts_seele_li_2_starchasm_nyx_01_entity"
+	section_slots = {
+		"mid" = { locator = "part1" }
+		"1" = { locator = "part2" }
+		"2" = { locator = "part2" }
+		"3" = { locator = "part2" }
+		"4" = { locator = "part3" }
+		"5" = { locator = "part3" }
+		"6" = { locator = "part3" }
+		"spinal_mount_1" = { locator = "part3" }
+	}
+
+	formation_priority = 4
+	max_speed = 100
+	acceleration = 0.2
+	rotation_speed = 0.15
+	construction_offset_mult = 3
+	collision_radius = 4
+	max_hitpoints = 600000
+	modifier = {
+		district_bfbf_seele_li_1_max_add = 200
+		district_bfbf_seele_li_2_max_add = 200
+		district_bfbf_seele_li_3_max_add = 200
+		district_bfbf_seele_li_4_max_add = 200
+		district_bfbf_seele_li_5_max_add = 200
+		district_bfbf_seele_li_6_max_add = 200
+		district_bfbf_seele_li_7_max_add = 200
+		starbase_module_capacity_add = 7
+		starbase_building_capacity_add = 16
+		planet_max_districts_add = 300
+		ship_sensor_range_add = 1
+		ship_speed_mult = 0.5 # 亚空间航速
+
+		planet_housing_add = 250000
+		job_gts_civilian_unlimited_seele_li_add = 9999999
+
+
+		ship_evasion_add = 5
+		ship_armor_add = 500000
+		ship_shield_add = 500000
+		ship_shield_regen_add_static = 1750
+	}
+	ship_modifier = {
+		ship_starbase_stockpile_collection_rate_add = 750
+	}
+	size_multiplier = 1
+	fleet_slot_size = 25
+
+	is_designable = no
+	num_target_locators = 0
+	is_space_station = no
+	can_have_federation_design = no
+	is_civilian = no
+	components_add_to_cost = no
+
+	available_to_everyone = yes
+	enable_default_design = yes
+	enable_3dview_in_ship_browser = no
+
+	prerequisites = {
+		"tech_gts_battleship_ship"
+	}
+
+	combat_disengage_chance = 2
+
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	required_component_set = "ship_aura_components"
+	required_component_set = "ship_aura_components"
+	required_component_set = "azure_waters_weapon"
+	required_component_set = "science_cloaking_components"
+	required_component_set = "ship_azure_waters_aura_components"
+
+	potential_country = {
+		# is_nomadic = yes
+	}
+
+	base_buildtime = 360
+	resources = {  }
+	min_upgrade_cost = {
+		alloys = 250
+	}
+
+	ai_ship_data = {}
+}
+
+
+
+
+gts_bronya_1_herrscher_of_reason = {
+	is_starting_arkship = yes
+	graphical_culture = { "science_arkship" }
+	hero_ship = {
+		hero_ship_fleet_background = "GFX_arkship_fleetview_military"
+		custom_class_text_color = R
+	}
+	class = shipclass_starbase
+	carries_colony = pc_gts_bronya
+	display_attack_neutral_fleet_button = no
+	automation_icon = GFX_fleet_order_auto_explore_arkship
+	arkship_picture = "gts_shipgirl_arkship"
+	auto_upgrade = yes
+	can_disable = yes
+	stay_disabled = yes
+	never_lost = yes
+	collects_stockpile_from = {
+		shipclass_starbase
+		shipclass_constructor
+	}
+	collects_stockpile_to_country = yes
+	accepts_all_modifiers = yes
+
+	use_shipnames_from = juggernaut
+
+	potential_construction = { always = no }
+	possible_construction = { always = no }
+
+	on_click_sound = "arkship_science_selection"
+
+	icon = ship_size_civilian_arkship_tier_1
+	icon_frame = 16
+	ship_class_icon_frame = 64
+	map_icon_override = {
+		normal = GFX_ship_icons_type_arkship
+		mixed = GFX_ship_icons_type_arkship_mixed
+		cloaked = GFX_ship_icons_type_arkship_cloaked
+		encamped = GFX_ship_icons_type_arkship_encamped
+	}
+
+	entity = "gts_bronya_1_herrscher_of_reason_01_entity"
+	section_slots = {
+		"mid" = { locator = "part1" }
+		"1" = { locator = "part2" }
+		"2" = { locator = "part2" }
+		"3" = { locator = "part2" }
+		"4" = { locator = "part3" }
+		"5" = { locator = "part3" }
+		"6" = { locator = "part3" }
+		"spinal_mount_1" = { locator = "part3" }
+	}
+
+	formation_priority = 4
+	max_speed = 100
+	acceleration = 0.2
+	rotation_speed = 0.15
+	construction_offset_mult = 2
+	collision_radius = 4
+	max_hitpoints = 300000
+	modifier = {
+		district_bfbf_bronya_1_max_add = 200
+		district_bfbf_bronya_2_max_add = 200
+		district_bfbf_bronya_3_max_add = 200
+		district_bfbf_bronya_4_max_add = 200
+		district_bfbf_bronya_5_max_add = 200
+		district_bfbf_bronya_6_max_add = 200
+		district_bfbf_bronya_7_max_add = 200
+		starbase_module_capacity_add = 7
+		starbase_building_capacity_add = 16
+		planet_max_districts_add = 300
+		ship_sensor_range_add = 1
+		ship_speed_mult = 0.5 # 亚空间航速
+
+		planet_housing_add = 100000
+		job_gts_civilian_unlimited_bronya_add = 9999999
+
+		ship_evasion_add = 5
+		ship_armor_add = 500000
+		ship_shield_add = 500000
+		ship_shield_regen_add_static = 1750
+	}
+	ship_modifier = {
+		ship_starbase_stockpile_collection_rate_add = 500
+	}
+	size_multiplier = 1
+	fleet_slot_size = 25
+
+	is_designable = no
+	num_target_locators = 0
+	is_space_station = no
+	can_have_federation_design = no
+	is_civilian = no
+	components_add_to_cost = no
+
+	available_to_everyone = yes
+	enable_default_design = yes
+	enable_3dview_in_ship_browser = no
+
+	prerequisites = {
+
+	}
+
+	combat_disengage_chance = 2
+
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	required_component_set = "ship_aura_components"
+	required_component_set = "ship_aura_components"
+	required_component_set = "azure_waters_weapon"
+	required_component_set = "azure_waters_weapon"
+	required_component_set = "azure_waters_weapon"
+	required_component_set = "azure_waters_weapon"
+	required_component_set = "science_cloaking_components"
+	required_component_set = "ship_azure_waters_aura_components"
+
+
+	potential_country = {
+		# is_nomadic = yes
+	}
+	base_buildtime = 0
+	resources = {  }
+	min_upgrade_cost = {
+		alloys = 125
+	}
+
+	ai_ship_data = {}
+}
+
+gts_bronya_2_herrscher_of_truth = {
+	graphical_culture = { "science_arkship" }
+	hero_ship = {
+		hero_ship_fleet_background = "GFX_arkship_fleetview_military"
+		custom_class_text_color = R
+	}
+	base_ship_size = "gts_bronya_1_herrscher_of_reason"
+	class = shipclass_starbase
+	carries_colony = pc_gts_bronya
+	display_attack_neutral_fleet_button = no
+	automation_icon = GFX_fleet_order_auto_explore_arkship
+	arkship_picture = "gts_shipgirl_arkship"
+	auto_upgrade = yes
+	can_disable = yes
+	stay_disabled = yes
+	never_lost = yes
+	collects_stockpile_from = {
+		shipclass_starbase
+		shipclass_constructor
+	}
+	collects_stockpile_to_country = yes
+	accepts_all_modifiers = yes
+
+	use_shipnames_from = juggernaut
+
+	potential_construction = { always = no }
+	possible_construction = { always = no }
+
+	on_click_sound = "arkship_science_selection"
+
+	icon = ship_size_military_arkship_tier_2
+	icon_frame = 16
+	ship_class_icon_frame = 64
+	map_icon_override = {
+		normal = GFX_ship_icons_type_arkship
+		mixed = GFX_ship_icons_type_arkship_mixed
+		cloaked = GFX_ship_icons_type_arkship_cloaked
+		encamped = GFX_ship_icons_type_arkship_encamped
+	}
+
+	entity = "gts_bronya_2_herrscher_of_truth_01_entity"
+	section_slots = {
+		"mid" = { locator = "part1" }
+		"1" = { locator = "part2" }
+		"2" = { locator = "part2" }
+		"3" = { locator = "part2" }
+		"4" = { locator = "part3" }
+		"5" = { locator = "part3" }
+		"6" = { locator = "part3" }
+		"spinal_mount_1" = { locator = "part3" }
+	}
+
+	formation_priority = 4
+	max_speed = 100
+	acceleration = 0.2
+	rotation_speed = 0.15
+	construction_offset_mult = 3
+	collision_radius = 4
+	max_hitpoints = 600000
+	modifier = {
+		district_bfbf_bronya_1_max_add = 200
+		district_bfbf_bronya_2_max_add = 200
+		district_bfbf_bronya_3_max_add = 200
+		district_bfbf_bronya_4_max_add = 200
+		district_bfbf_bronya_5_max_add = 200
+		district_bfbf_bronya_6_max_add = 200
+		district_bfbf_bronya_7_max_add = 200
+		starbase_module_capacity_add = 7
+		starbase_building_capacity_add = 16
+		planet_max_districts_add = 450
+		ship_sensor_range_add = 1
+		ship_speed_mult = 0.5 # 亚空间航速
+
+		planet_housing_add = 150000
+		job_gts_civilian_unlimited_bronya_add = 9999999
+
+		ship_evasion_add = 5
+		ship_armor_add = 500000
+		ship_shield_add = 500000
+		ship_shield_regen_add_static = 1750
+	}
+	ship_modifier = {
+		ship_starbase_stockpile_collection_rate_add = 750
+	}
+	size_multiplier = 1
+	fleet_slot_size = 25
+
+	is_designable = no
+	num_target_locators = 0
+	is_space_station = no
+	can_have_federation_design = no
+	is_civilian = no
+	components_add_to_cost = no
+
+	available_to_everyone = yes
+	enable_default_design = yes
+	enable_3dview_in_ship_browser = no
+
+	prerequisites = {
+		"tech_gts_battleship_ship"
+	}
+
+	combat_disengage_chance = 2
+
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	required_component_set = "ship_aura_components"
+	required_component_set = "ship_aura_components"
+	required_component_set = "azure_waters_weapon"
+	required_component_set = "science_cloaking_components"
+	required_component_set = "ship_azure_waters_aura_components"
+
+	potential_country = {
+		# is_nomadic = yes
+	}
+
+	base_buildtime = 360
+	resources = {  }
+	min_upgrade_cost = {
+		alloys = 250
+	}
+
+	ai_ship_data = {}
+}
+
+gts_bronya_3_silverwing_n_ex = {
+	graphical_culture = { "science_arkship" }
+	hero_ship = {
+		hero_ship_fleet_background = "GFX_arkship_fleetview_military"
+		custom_class_text_color = R
+	}
+	base_ship_size = "gts_bronya_1_herrscher_of_reason"
+	class = shipclass_starbase
+	carries_colony = pc_gts_bronya
+	display_attack_neutral_fleet_button = no
+	automation_icon = GFX_fleet_order_auto_explore_arkship
+	arkship_picture = "gts_shipgirl_arkship"
+	auto_upgrade = yes
+	can_disable = yes
+	stay_disabled = yes
+	never_lost = yes
+	collects_stockpile_from = {
+		shipclass_starbase
+		shipclass_constructor
+	}
+	collects_stockpile_to_country = yes
+	accepts_all_modifiers = yes
+
+	use_shipnames_from = juggernaut
+
+	potential_construction = { always = no }
+	possible_construction = { always = no }
+
+	on_click_sound = "arkship_science_selection"
+
+	icon = ship_size_military_arkship_tier_3
+	icon_frame = 16
+	ship_class_icon_frame = 64
+	map_icon_override = {
+		normal = GFX_ship_icons_type_arkship
+		mixed = GFX_ship_icons_type_arkship_mixed
+		cloaked = GFX_ship_icons_type_arkship_cloaked
+		encamped = GFX_ship_icons_type_arkship_encamped
+	}
+
+	entity = "gts_bronya_3_silverwing_n_ex_01_entity"
+	section_slots = {
+		"mid" = { locator = "part1" }
+		"1" = { locator = "part2" }
+		"2" = { locator = "part2" }
+		"3" = { locator = "part2" }
+		"4" = { locator = "part3" }
+		"5" = { locator = "part3" }
+		"6" = { locator = "part3" }
+		"spinal_mount_1" = { locator = "part3" }
+	}
+
+	formation_priority = 4
+	max_speed = 100
+	acceleration = 0.2
+	rotation_speed = 0.15
+	construction_offset_mult = 4
+	collision_radius = 4
+	max_hitpoints = 1200000
+	modifier = {
+		district_bfbf_bronya_1_max_add = 300
+		district_bfbf_bronya_2_max_add = 300
+		district_bfbf_bronya_3_max_add = 300
+		district_bfbf_bronya_4_max_add = 300
+		district_bfbf_bronya_5_max_add = 300
+		district_bfbf_bronya_6_max_add = 300
+		district_bfbf_bronya_7_max_add = 300
+		starbase_module_capacity_add = 7
+		starbase_building_capacity_add = 16
+		planet_max_districts_add = 450
+		ship_sensor_range_add = 1
+		ship_speed_mult = 0.5 # 亚空间航速
+
+		planet_housing_add = 250000
+		job_gts_civilian_unlimited_bronya_add = 9999999
+
+
+		ship_evasion_add = 5
+		ship_armor_add = 500000
+		ship_shield_add = 500000
+		ship_shield_regen_add_static = 1750
+	}
+	ship_modifier = {
+		ship_starbase_stockpile_collection_rate_add = 1000
+	}
+	size_multiplier = 1
+	fleet_slot_size = 25
+
+	is_designable = no
+	num_target_locators = 0
+	is_space_station = no
+	can_have_federation_design = no
+	is_civilian = no
+	components_add_to_cost = no
+
+	available_to_everyone = yes
+	enable_default_design = yes
+	enable_3dview_in_ship_browser = no
+
+	prerequisites = {
+		"tech_gts_titan_ship"
+	}
+
+	combat_disengage_chance = 2
+
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	required_component_set = "ship_aura_components"
+	required_component_set = "ship_aura_components"
+	required_component_set = "azure_waters_weapon"
+	required_component_set = "science_cloaking_components"
+	required_component_set = "ship_azure_waters_aura_components"
+
+	potential_country = {
+		# is_nomadic = yes
+	}
+
+	base_buildtime = 360
+	resources = {  }
+	min_upgrade_cost = {
+		alloys = 500
+	}
+
+	ai_ship_data = {}
+}
+
+

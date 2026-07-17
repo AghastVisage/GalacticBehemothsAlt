@@ -1,0 +1,115 @@
+cb_gts_terminator = {
+	#战争借口（灭绝）
+	show_in_diplomacy = no
+	show_notification = no
+	potential = {
+		#cb对谁有效，对谁无效
+		this = {
+			has_valid_civic = civic_gts_terminator
+		}		#有国民理念
+	}
+	is_valid = {
+		#每过一天就检查一遍是否自动创建、销毁cb
+		from = {
+			gts_is_tiny_empire = yes
+		}
+	}
+}
+#终止威胁
+cb_tiny_end_threat = {
+	show_in_diplomacy = yes
+	show_notification = yes
+	potential = {
+		gts_is_tiny_empire = yes
+	}
+	is_valid = {
+		gts_is_tiny_empire = yes
+		from = {
+			has_civic = civic_gts_terminator
+		}
+	}
+}
+cb_gts_servitor = {
+	#战争借口（保护）
+	show_in_diplomacy = yes
+	show_notification = yes
+	potential = {
+		#cb对谁有效，对谁无效
+		this = {
+			OR = {
+				has_valid_civic = civic_gts_assimilator
+				has_valid_civic = civic_gts_servitor
+			}
+		}
+	}
+	is_valid = {
+		#每过一天就检查一遍是否自动创建、销毁cb
+		from = {
+			gts_is_tiny_empire = yes
+		}
+	}
+}
+#三角贸易的掠夺
+cb_tiny_despoliation = {
+	show_in_diplomacy = no
+	show_notification = no
+	potential = {
+		has_valid_civic = civic_delta_trade
+	}
+	is_valid = {
+		NOT = { is_overlord_to = FROM }
+		OR = {
+			is_subject = no
+			overlord = { NOT = { is_same_value = from } }
+		}
+		from = {
+			gts_is_tiny_empire = yes
+		}
+	}
+}
+#巨娘合欢派
+cb_hehuanpai = {
+	show_in_diplomacy = no
+	show_notification = no
+	potential = {
+		has_valid_civic = civic_hehuanpai
+		from = {
+			is_country_type = default
+		}
+	}
+	is_valid = {
+		NOT = { is_overlord_to = FROM }
+		OR = {
+			is_subject = no
+			overlord = { NOT = { is_same_value = from } }
+		}
+		from = {
+			gts_is_giantess_empire = yes
+		}
+	}
+}
+#寰海
+cb_ultracompany_expel = {
+	show_in_diplomacy = yes
+	show_notification = yes
+	potential = {
+		is_country_type = default
+		from = { is_megacorp = yes }
+	}
+	is_valid = {
+		any_galaxy_planet = {
+			has_branch_office = yes
+			branch_office_owner = {
+				is_same_value = from
+			}
+		}
+		NOT = { from = { is_overlord_to = root } }
+		NOT = { root = { is_overlord_to = from } }
+		if = {
+			limit = {
+				exists = from.overlord
+			}
+			NOT = { from.overlord = { is_same_value = root.overlord } }
+		}
+	}
+}

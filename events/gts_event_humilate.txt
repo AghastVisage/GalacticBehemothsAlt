@@ -1,0 +1,595 @@
+namespace = gts_evt_humiliate
+
+country_event = {
+
+	# 抽選事件
+
+	id = gts_evt_humiliate.999
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_ai = no
+		has_country_flag = can_trigger_humiliate_content
+	}
+
+	immediate = {
+		random_list = {
+			4 = {}
+
+			1 = {
+				country_event = { id = gts_evt_humiliate.1000 days = 180 random = 180}
+			}
+			1 = {
+				country_event = { id = gts_evt_humiliate.1010 days = 180 random = 180}
+			}
+			1 = {
+				country_event = { id = gts_evt_humiliate.1020 days = 180 random = 180}
+			}
+			1 = {
+				country_event = { id = gts_evt_humiliate.1030 days = 180 random = 180}
+			}
+			1 = {
+				country_event = { id = gts_evt_humiliate.1040 days = 180 random = 180}
+			}
+			1 = {
+				country_event = { id = gts_evt_humiliate.1050 days = 180 random = 180}
+			}
+		}
+	}
+}
+
+country_event = {
+
+	# 來自女神的羞辱-1
+
+	id = gts_evt_humiliate.1000
+	title = gts_evt_humiliate.1000.name
+	desc = gts_evt_humiliate.1000.desc
+	picture = GFX_load_77
+	show_sound = event_default
+	location = event_target:gts_humiliate_targert_planet
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		any_system_within_border = {
+			system_star = {
+				NOR = {
+					is_star_class = sc_black_hole
+					is_star_class = sc_neutron_star
+					is_star_class = sc_pulsar
+				}
+			}
+			any_system_planet = {
+				is_colony = yes
+				is_capital = no
+			}
+		}
+	}
+
+	immediate = {
+		random_system_within_border = {
+			limit = {
+				system_star = {
+					NOR = {
+						is_star_class = sc_black_hole
+						is_star_class = sc_neutron_star
+						is_star_class = sc_pulsar
+					}
+				}
+				any_system_planet = {
+					is_colony = yes
+					is_capital = no
+				}
+			}
+			system_star = {
+				save_event_target_as = gts_humiliate_targert_planet
+			}
+			random_system_planet = {
+				limit = {
+					is_colony = yes
+					is_capital = no
+				}
+				save_event_target_as = gts_humiliate_targert_planet_2
+			}
+		}
+	}
+
+	option = {
+		name = gts_terror
+		random_list = {
+			1 = {
+				event_target:gts_humiliate_targert_planet = {
+					change_pc = pc_neutron_star
+					solar_system = {
+						set_star_class = sc_neutron_star
+					}
+				}
+			}
+			1 = {
+				event_target:gts_humiliate_targert_planet = {
+					change_pc = pc_pulsar
+					solar_system = {
+						set_star_class = sc_pulsar
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_perfect
+		random_list = {
+			1 = {
+				event_target:gts_humiliate_targert_planet = {
+					change_pc = pc_neutron_star
+					solar_system = {
+						set_star_class = sc_neutron_star
+					}
+				}
+			}
+			1 = {
+				event_target:gts_humiliate_targert_planet = {
+					change_pc = pc_pulsar
+					solar_system = {
+						set_star_class = sc_pulsar
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+
+	# 來自女神的羞辱-2
+
+	id = gts_evt_humiliate.1010
+	title = gts_evt_humiliate.1010.name
+	desc = gts_evt_humiliate.1010.desc
+	picture = GFX_gtsra_load_1
+	show_sound = event_default
+	location = event_target:gts_humiliate_targert_planet
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		any_owned_planet = {
+			is_capital = no
+			count_owned_pop_amount = {
+				count >= 1000
+			}
+		}
+		any_owned_leader = {
+			has_trait = leader_trait_Ultra
+		}
+	}
+
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				is_capital = no
+				pop_amount >= 1000
+			}
+			save_event_target_as = gts_humiliate_targert_planet
+		}
+	}
+
+	option = {
+		name = gts_terror
+
+		# 給那些想保有人口的人用的
+
+		event_target:gts_humiliate_targert_planet = {
+			add_planet_devastation = 100
+		}
+	}
+	option = {
+		name = gts_perfect
+
+		event_target:gts_humiliate_targert_planet = {
+			gts_bruh_clear_planet_effect = yes
+			pc_gts_dirt_change = yes
+			set_colony_type = col_gts_dirt
+			add_modifier = {
+				modifier = gts_dirt_colony0_3
+				days = -1
+			}
+			add_modifier = {
+				modifier = unstable_tectonics
+				days = -1
+			}
+			hidden_effect = {
+				if = {
+					limit = {
+						owner = {
+							has_technology = tech_gts_bfbf_habitability_dirt
+						}
+					}
+					add_modifier = {
+						modifier = gts_dirt_colony0_bf1
+						days = -1
+					}
+					add_modifier = {
+						modifier = gts_dirt_colony0_bf2
+						days = -1
+					}
+				}
+				else_if = {
+					limit = {
+						owner = {
+							NOT = {
+								has_technology = tech_gts_bfbf_habitability_dirt
+							}
+						}
+					}
+					add_modifier = {
+						modifier = gts_dirt_colony0_1
+						days = -1
+					}
+					add_modifier = {
+						modifier = gts_dirt_colony0_2
+						days = -1
+					}
+				}
+				if = {
+					limit = {
+						owner = {
+							any_owned_leader = {
+								has_leader_flag = gts_seele
+							}
+						}
+					}
+					random_list = {
+						1 = {
+							planet_event = {
+								id = gts_seele.31
+							}
+						}
+						1 = {
+							planet_event = {
+								id = gts_ap_planet.4000
+							}
+						}
+					}
+				}
+				else = {
+					planet_event = {
+						id = gts_ap_planet.4000
+					}
+				}
+			}
+		}
+	}
+	after = {
+
+	}
+}
+
+country_event = {
+
+	# 棉襪星球-1
+
+	id = gts_evt_humiliate.1020
+	title = gts_evt_humiliate.1020.name
+	desc = gts_evt_humiliate.1020.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_event_36_room
+	}
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	location = event_target:gts_humiliate_targert_planet
+
+	trigger = {
+		any_owned_planet = {
+			gts_can_destory_planet = yes
+		}
+	}
+
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				gts_can_destory_planet = yes
+			}
+			save_event_target_as = gts_humiliate_targert_planet
+		}
+	}
+
+	option = {
+		name = gts_continue
+		event_target:gts_humiliate_targert_planet = {
+			add_modifier = {
+				modifier = atmospheric_aphrodisiac
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_humiliate.1021
+			}
+		}
+	}
+}
+
+country_event = {
+
+	# 棉襪星球-2
+
+	id = gts_evt_humiliate.1021
+	title = gts_evt_humiliate.1021.name
+	desc = gts_evt_humiliate.1021.desc
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_event_35_room
+	}
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	location = event_target:gts_humiliate_targert_planet
+
+	option = {
+		name = gts_terror
+		event_target:gts_humiliate_targert_planet = {
+			add_modifier = {
+				modifier = wild_storms
+			}
+			add_planet_devastation = 25
+		}
+	}
+}
+
+country_event = {
+
+	# 揉碎夕陽的少女
+
+	id = gts_evt_humiliate.1030
+	title = gts_evt_humiliate.1030.name
+	desc = gts_evt_humiliate.1030.desc
+	picture = GFX_gts_event_31
+	show_sound = event_default
+	location = event_target:gts_humiliate_targert_planet
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		any_system_within_border = {
+			system_star = {
+				NOR = {
+					is_star_class = sc_black_hole
+					is_star_class = sc_neutron_star
+					is_star_class = sc_pulsar
+				}
+			}
+			any_system_planet = {
+				is_colony = yes
+			}
+		}
+	}
+
+	immediate = {
+		random_system_within_border = {
+			limit = {
+				system_star = {
+					NOR = {
+						is_star_class = sc_black_hole
+						is_star_class = sc_neutron_star
+						is_star_class = sc_pulsar
+					}
+				}
+				any_system_planet = {
+					is_colony = yes
+				}
+			}
+			system_star = {
+				save_event_target_as = gts_humiliate_targert_planet
+			}
+			random_system_planet = {
+				limit = {
+					is_colony = yes
+				}
+				save_event_target_as = gts_humiliate_targert_planet_2
+			}
+		}
+	}
+
+	option = {
+		name = gts_terror
+		event_target:gts_humiliate_targert_planet = {
+			change_pc = pc_black_hole
+			solar_system = {
+				set_star_class = sc_black_hole
+			}
+		}
+	}
+
+	option = {
+		name = gts_perfect
+		event_target:gts_humiliate_targert_planet = {
+			change_pc = pc_black_hole
+			solar_system = {
+				set_star_class = sc_black_hole
+			}
+		}
+	}
+}
+
+country_event = {
+
+	# 少女的城市蹂躪-1
+
+	id = gts_evt_humiliate.1040
+	title = gts_evt_humiliate.1040.name
+	desc = gts_evt_humiliate.1040.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_yarong6_room
+	}
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	location = event_target:gts_humiliate_targert_planet
+
+	trigger = {
+		any_owned_planet = {
+			gts_can_destory_planet = yes
+			count_owned_pop_amount = {
+				count > 3000
+			}
+		}
+	}
+
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				pop_amount > 3000
+				gts_can_destory_planet = yes
+			}
+			save_event_target_as = gts_humiliate_targert_planet
+		}
+	}
+
+	option = {
+		name = gts_continue
+		event_target:gts_humiliate_targert_planet = {
+			add_modifier = {
+				modifier = atmospheric_aphrodisiac
+			}
+			add_planet_devastation = 40
+			while = {
+				count = 20
+				random_owned_pop_group = {
+					limit = {
+						NOR = { has_trait = trait_Ultra }
+					}
+					kill_single_pop = yes
+				}
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_humiliate.1041
+			}
+		}
+	}
+}
+
+country_event = {
+
+	# 少女的城市蹂躪-2
+
+	id = gts_evt_humiliate.1041
+	title = gts_evt_humiliate.1041.name
+	desc = gts_evt_humiliate.1041.desc
+	picture = GFX_gts_event_71
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	location = event_target:gts_humiliate_targert_planet
+
+	option = {
+		name = gts_terror
+		event_target:gts_humiliate_targert_planet = {
+			add_planet_devastation = 20
+			while = {
+				count = 10
+				random_owned_pop_group = {
+					limit = {
+						NOR = { has_trait = trait_Ultra }
+					}
+					kill_single_pop = yes
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_humiliate.1050
+	title = gts_evt_humiliate.1050.name
+	desc = gts_evt_humiliate.1050.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_event_4_room
+	}
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		is_ai = no
+		count_owned_pop_amount = {
+			count > 3000
+		}
+		any_owned_leader = {
+			gts_is_giantess = yes
+		}
+	}
+
+	immediate = {
+		random_owned_leader = {
+			limit = {
+				gts_is_giantess = yes
+			}
+			save_event_target_as = gts_humiliate_targert_leader
+		}
+		random_owned_planet = {
+			limit = {
+				pop_amount > 3000
+			}
+			save_event_target_as = gts_humiliate_targert_planet
+		}
+	}
+
+	option = {
+		name = gts_evt_humiliate.1050.a
+		event_target:gts_humiliate_targert_leader = {
+			add_skill = 1
+		}
+		event_target:gts_humiliate_targert_planet = {
+			while = {
+				count = 25
+				random_owned_pop_group = {
+					limit = {
+						NOR = { has_trait = trait_Ultra }
+					}
+					kill_single_pop = yes
+				}
+			}
+		}
+		add_resource = {
+			energy = -10000
+			influence = 50
+		}
+	}
+
+	option = {
+		name = gts_evt_humiliate.1050.b
+		event_target:gts_humiliate_targert_leader = {
+			add_skill = 1
+		}
+		event_target:gts_humiliate_targert_planet = {
+			add_planet_devastation = 25
+			while = {
+				count = 30
+				random_owned_pop_group = {
+					limit = {
+						NOR = { has_trait = trait_Ultra }
+					}
+					kill_single_pop = yes
+				}
+			}
+		}
+		add_resource = {
+			influence = -50
+		}
+	}
+}
+

@@ -1,0 +1,1108 @@
+namespace = gts_firefly_potral
+
+
+#创建格拉默战线星系
+country_event = {
+	id = gts_firefly_potral.0
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		NOR = {
+			has_global_flag = gts_firefly_started
+			has_country_flag = firefly_intro
+		}
+		is_ai = no
+	}
+	immediate = {
+		random_system = {
+			limit = {
+				distance = {
+					source = root.capital_scope.solar_system
+					use_bypasses = yes
+					min_jumps = 1
+					max_jumps = 6
+				}
+			}
+			spawn_system = {
+				min_distance >= 10
+				max_distance <= 30
+				max_jumps = 0
+				initializer = gts_firefly_system
+			}
+		}
+	}
+}
+
+fleet_event = {#星球遗迹调查
+	id = gts_firefly_potral.02
+	title = gts_firefly_potral.02.name
+	desc = gts_firefly_potral.02.desc
+	picture = gts_firefly_potral.02
+	show_sound = event_administrative_work
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+	option = {
+		name = gts_firefly_potral.02a
+		owner = {
+			add_resource = {
+				minerals = -100
+				society_research = 2000 }
+		}
+	}
+	option = {
+		name = gts_firefly_potral.02b
+		owner = {
+			add_resource = { society_research = 1000}
+		}
+	}
+}
+fleet_event = {#星球遗迹调查
+	id = gts_firefly_potral.03
+	title = gts_firefly_potral.03.name
+	desc = gts_firefly_potral.03.desc
+	picture = gts_firefly_potral.03
+	show_sound = event_administrative_work
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+	option = {
+		name = gts_firefly_potral.03a
+		owner = {
+			every_owned_leader = {
+				add_experience = 500
+			}
+		}
+	}
+	option = {
+		name = gts_firefly_potral.03b
+		owner = {
+			add_resource = { food = 500}
+		}
+	}
+}
+fleet_event = {
+	#星球遗迹调查
+	id = gts_firefly_potral.04
+	title = gts_firefly_potral.04.name
+	desc = gts_firefly_potral.04.desc
+	picture = gts_firefly_potral.04
+	show_sound = event_administrative_work
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+	option = {
+		name = gts_firefly_potral.04a
+		owner = {
+			every_owned_leader = {
+				add_experience = 500
+			}
+			# hidden_effect = {
+			# 	fleet_event = {
+			# 		id = gts_firefly_swarm.01
+			# 		days = 1
+			# 	}
+			# }
+		}
+	}
+	option = {
+		name = gts_firefly_potral.04b
+		owner = {
+			add_resource = { influence = 100}
+		}
+	}
+}
+
+# fleet_event = {#异虫入侵事件
+# 	id = gts_firefly_swarm.01
+# 	title = gts_firefly_swarm.01.name
+# 	desc = gts_firefly_swarm.01.desc
+# 	picture = skadi_seaheirs
+# 	show_sound = event_dangerous_animals
+# 	location = fromfrom
+# 	is_triggered_only = yes
+# 	immediate = {
+# 		create_country = {
+# 			name = "NAME_firefly_swarm"
+# 			type = shroud_spirits
+# 			flag = {
+# 				icon = {
+# 					category = "spherical"
+# 					file = "flag_spherical_6.dds"
+# 				}
+# 				background = {
+# 					category = "backgrounds"
+# 					file = "00_solid.dds"
+# 				}
+# 				colors = {
+# 					"dark_blue"
+# 					"dark_blue"
+# 					"null"
+# 					"null"
+# 				}
+# 			}
+# 			effect = {
+# 				set_faction_hostility = {
+# 					target = root.owner
+# 					set_hostile = no
+# 					set_neutral = yes
+# 					set_friendly = no
+# 				}
+# 				save_global_event_target_as = firefly_swarm_country
+# 				set_country_flag = firefly_swarm_country
+# 				every_playable_country = {
+# 					establish_communications_no_message = event_target:firefly_swarm_country
+# 				}
+# 				create_fleet = {
+# 					name = "NAME_firefly_swarm"
+# 					settings = {
+# 						spawn_debris = no
+# 						ai_ignore_strength = yes
+# 						is_boss = yes
+# 					}
+# 					effect = {
+# 						set_owner = event_target:firefly_swarm_country
+# 						create_ship = {
+# 							name = "NAME_firefly_swarm"
+# 							design = "NAME_seaheirs"
+# 							effect = {
+# 								set_ship_flag = firefly_swarm_ship
+# 								save_global_event_target_as = firefly_swarm_ship
+# 								set_disabled = no
+# 							}
+# 						}
+# 						save_global_event_target_as = firefly_swarm_fleet
+# 						set_location = {
+# 							target = fromfrom
+# 							distance = 10
+# 							angle = 90
+# 							direction = in_system
+# 						}
+# 						set_fleet_stance = passive
+# 						set_aggro_range_measure_from = self
+# 						set_aggro_range = 350
+# 					}
+# 				}
+# 			}
+# 		}
+# 		}
+# 	}
+# 	option = {
+# 		name = gts_firefly_swarm.01.a
+# 	}
+
+fleet_event = {
+	#星球遗迹调查
+	id = gts_firefly_potral.05
+	title = gts_firefly_potral.05.name
+	desc = gts_firefly_potral.05.desc
+	picture = gts_firefly_potral.05
+	show_sound = event_administrative_work
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+	option = {
+		name = gts_firefly_potral.05a
+		owner = {
+			every_owned_leader = {
+				add_experience = 500
+			}
+		}
+	}
+}
+fleet_event = {#抱回家
+	id = gts_firefly_potral.06
+	title = gts_firefly_potral.06.name
+	desc = gts_firefly_potral.06.desc
+	picture = gts_firefly_potral.06
+	show_sound = event_radio_chatter
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = { set_site_progress_locked = yes }
+		owner = {
+			every_owned_leader = {
+				add_experience = 1000
+			}
+		}
+	}
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+	option = {#流萤指挥官
+		name = gts_firefly_potral.06a
+		owner = {
+			country_event = {
+				id = gts_firefly.999
+			}
+		}
+	}
+}
+namespace = gts_firefly
+
+
+country_event = {
+	# 流萤
+	id = gts_firefly.999
+	title = "gts_firefly.999.name"
+	desc = "gts_firefly.999.desc"
+	show_sound = event_celebration
+	is_triggered_only = yes
+	picture = GFX_leader_recruitment_bg_renowned
+	auto_opens = yes
+	event_window_type = leader_recruit
+	notification_event_icon = "GFX_message_leader_gts_firefly"
+	immediate = {
+		gts_leader_firefly_hired = yes
+		if = {
+			limit = {
+				has_global_flag = global_firefly_transform_active
+			}
+			event_target:gts_firefly = {
+				set_leader_flag = firefly_transform_active
+			}
+
+		}
+	}
+		# save_global_event_target_as = gts_firefly
+	picture_event_data = {
+		portrait = event_target:gts_leader
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = gts_firefly.999.a
+		response_text = gts_firefly.999.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_firefly.999.b
+		response_text = gts_firefly.999.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_firefly.999.c
+		response_text = gts_firefly.999.c.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_firefly.999.d
+		response_text = gts_firefly.999.d.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_firefly.999.e
+		response_text = gts_firefly.999.e.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		custom_tooltip = gts_firefly.999.hire_custom_tooltip
+		add_modifier = {
+			modifier = gts_leader_upkeep_add
+		}
+		hidden_effect = {
+			gts_leader_hire_effect = {TYPE = renowned}
+			event_target:firefly_owner = {
+				remove_country_flag = firefly_warship_active
+				remove_country_flag = firefly_army_active
+			}
+			country_event = {
+				id = gts_firefly.201
+			}
+			country_event = {
+				id = gts_firefly.21
+				days = 1800
+			}
+			country_event = {
+				id = gts_firefly.10
+				days = 360
+			}
+			#设置流萤领袖界面各项数据
+			event_target:gts_firefly = {
+				set_variable = {
+					# 性欲值
+					which = gts_lust_logs
+					value = 71
+				}
+				set_variable = {
+					# 脚臭程度
+					which = gts_feet_logs
+					value = 26
+				}
+				set_variable = {
+					# 吃掉的小人数量：
+					which = gts_vore_kills_logs
+					value = 1
+				}
+				set_variable = {
+					# UB掉的小人数量：
+					which = gts_ub_kills_logs
+					value = 1
+				}
+				set_variable = {
+					# 踩死的小人数量：
+					which = gts_feet_kills_logs
+					value = 1
+				}
+				set_variable = {
+					# 饲养的小人数量：
+					which = gts_bread_logs
+					value = 1
+				}
+				set_variable = {
+					# 毁灭的城市数量：
+					which = gts_city_kills_logs
+					value = 1
+				}
+				set_variable = {
+					# 毁灭的星球数量：
+					which = gts_planet_kills_logs
+					value = 1
+				}
+			}
+
+		}
+	}
+}
+
+
+country_event = {
+	#流萤专武异常触发开始
+	id = gts_firefly.10
+	title = "gts_firefly.10.name"
+	desc = gts_firefly.10.desc
+	picture = GFX_gts_firefly.10
+	is_triggered_only = yes
+	option = {
+		name = gts_firefly.10.a
+		hidden_effect = {
+			random_planet_within_border = {
+				limit = {
+					is_preventing_anomaly = no
+					has_anomaly = no
+					has_planet_flag = gts_firefly_transform_flag
+				}
+				add_anomaly = {
+					category = gts_firefly_transform
+				}
+			}
+		}
+	}
+}
+ship_event = {
+	#流萤专武异常触发结束
+	id = gts_firefly.11
+	title = "gts_firefly.11.name"
+	desc = gts_firefly.11.desc
+	picture = GFX_gts_firefly.11
+	is_triggered_only = yes
+	option = {
+		name = gts_firefly.11.a
+		hidden_effect = {
+			root.owner = {
+				country_event = {
+					id = gts_firefly.12
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	#流萤专武已触发tag
+	id = gts_firefly.12
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		set_global_flag = global_firefly_transform_active
+		every_owned_leader = {
+			limit = {
+				has_leader_flag = gts_firefly
+			}
+			set_leader_flag = firefly_transform_active
+		}
+	}
+}
+
+
+country_event = {
+	id = gts_firefly.21
+	title = gts_firefly.21.name
+	desc = gts_firefly.21.desc
+	is_triggered_only = yes
+	trigger = {
+		exists = event_target:gts_firefly
+	}
+	picture = GFX_gts_firefly_sever.1
+	show_sound = event_announcement
+	option = {
+		name = gts_firefly.21.a
+		hidden_effect = {
+			event_target:gts_firefly = {
+				add_trait = {
+					trait = leader_trait_FireflyMaster
+				}
+			}
+			clone_leader = {
+				target = event_target:gts_firefly
+			}
+			last_created_leader = {
+				set_leader_flag = legendary_leader
+				save_global_event_target_as = gts_firefly_sever
+				change_leader_class = official
+				event_target:gts_firefly_sever = {
+					change_leader_portrait = gts_portrait_firefly_sever
+					set_age = 1
+					set_name = NAME_gts_firefly_sever
+					remove_trait = leader_trait_Titan
+					remove_trait = leader_trait_FireflyMaster
+					remove_trait = leader_trait_firefly_DeepSleep
+					remove_trait = leader_trait_firefly_SoonGaze
+					remove_trait = leader_trait_firefly_ThenceShine
+					remove_trait = leader_trait_Destruction
+					add_trait = {
+					    trait = leader_trait_FireflySever
+				    }
+					add_trait = {
+					    trait = leader_trait_firefly_DeepSleep_sever
+				    }
+					add_trait = {
+					    trait = leader_trait_firefly_SoonGaze_sever
+				    }
+					add_trait = {
+					    trait = leader_trait_firefly_ThenceShine_sever
+				    }
+					add_trait = {
+					    trait = leader_trait_Propagation
+				    }
+					add_trait = {
+			            trait = leader_trait_Tiny
+			            show_message = no
+		            }
+					set_owner = root
+				}
+			}
+		}
+	}
+}
+
+#创建流萤通讯国家
+country_event = {
+	id = gts_firefly.201
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		create_country = {
+			name = "NAME_gts_firefly"			#流萤通讯
+			type = type_firefly
+			flag = {
+				icon = {
+					category = "gts_firefly"
+					file = "gts_firefly_country.dds"
+				}
+				background = {
+					category = "backgrounds"
+					file = "sinus.dds"
+				}
+				colors = {
+					"grey"
+					"dark_grey"
+					"null"
+					"null"
+				}
+			}
+			effect = {
+				create_ship_design = { design = "NAME_firefly_Warship" }
+				add_ship_design = last_created_design
+				create_ship_design = { design = "NAME_firefly_transport" }
+				add_ship_design = last_created_design
+				set_country_flag = country_firefly
+			}
+		}
+		last_created_country = {
+			establish_communications_no_message = root
+		}
+		save_global_event_target_as = firefly_owner
+	}
+}
+
+country_event = {
+	#流萤交流界面
+	id = gts_firefly.301
+	title = "gts_firefly.301.title"	#流萤
+	desc = "gts_firefly.301.a.desc"	#随机交流的话
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	force_open = yes
+	picture_event_data = {
+		portrait = gts_country_firefly
+		room = "ethic_spaceship_room"
+	}
+	is_triggered_only = yes
+	trigger = {
+		NOT = {
+			has_country_flag = firefly_diplomacy_engaged
+		}
+		from = {
+			has_country_flag = country_firefly
+		}
+		is_same_value = event_target:firefly_owner
+	}
+	immediate = {
+		set_country_flag = firefly_diplomacy_engaged
+	}
+	after = {
+		hidden_effect = {
+			remove_country_flag = firefly_diplomacy_engaged
+		}
+	}
+	option = {
+		# Warship
+		name = gts_firefly_call.1.a
+		response_text = gts_firefly_call.1.a.response
+		trigger = {
+			NOT = { has_country_flag = firefly_warship_active }
+		}
+		allow = {
+			NOT = {
+				has_country_flag = firefly_warship_active
+			}
+			resource_stockpile_compare = { resource = energy value >= 1000 }
+		}
+		add_resource = { energy = -1000 }
+		hidden_effect = {
+			set_country_flag = firefly_warship_active
+			create_fleet = {
+				name = "NAME_firefly_Warship"
+				settings = {
+					can_upgrade = no
+					can_change_composition = no
+					can_change_leader = yes
+					uses_naval_capacity = no
+					spawn_debris = no
+				}
+				effect = {
+					set_owner = root
+					create_firefly_warship = yes
+					set_fleet_flag = gts_firefly_warship_first
+					save_global_event_target_as = gts_firefly_warship_employed
+					set_location = root.capital_scope
+					if = {
+						limit = {
+							ROOT = {
+								NOT = {
+									gts_is_giantess_empire = yes
+								}
+							}
+						}
+						add_modifier = {
+							modifier = "gray_warship"                ##########################
+							days = -1
+						}
+					}
+					fleet_event = { id = gts_firefly_employ.1 days = 60 }
+				}
+			}
+			if = {
+				limit = {
+					gts_is_giantess_empire = yes
+				}
+				add_modifier = {
+					modifier = "gts_firefly_warship_first_gts"
+					days = -1
+				}
+				else = {
+					add_modifier = {
+						modifier = "gts_firefly_warship_first_tiny"
+						days = -1
+					}
+				}
+			}
+		}
+	}
+	option = {
+		# Army
+		name = gts_firefly.call.1.b
+		response_text = gts_firefly.call.1.b.response
+		trigger = {
+			NOT = {has_country_flag = firefly_army_active }
+		}
+		allow = {
+			NOT = {
+				has_country_flag = firefly_army_active
+			}
+			resource_stockpile_compare = { resource = energy value >= 500 }
+		}
+		add_resource = { energy = -500 }
+		hidden_effect = {
+			set_country_flag = firefly_army_active
+			# create_ship_design = { design = "NAME_firefly_transport" }
+			# add_ship_design = last_created_design
+			create_fleet = {
+				name = "NAME_firefly_transport"
+				effect = {
+					set_owner = root
+					save_event_target_as = gts_firefly_army_employed
+					create_firefly_army = yes
+					set_fleet_flag = gts_firefly_army_first
+					set_location = root.capital_scope
+					fleet_event = {
+						id = gts_firefly_employ.1
+						days = 60
+					}
+				}
+			}
+			if = {
+				limit = {
+					gts_is_giantess_empire = yes
+				}
+				add_modifier = {
+					modifier = "gts_firefly_army_first_gts"
+					days = -1
+				}
+				else = {
+					add_modifier = {
+						modifier = "gts_firefly_army_first_tiny"
+						days = -1
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_firefly.call.1.c		#没事
+		default_hide_option = yes
+	}
+}
+
+namespace = gts_firefly_employ
+
+fleet_event = {
+	id = gts_firefly_employ.1
+	title = "gts_firefly_employ.name"
+	desc = "gts_firefly_employ.desc"
+	picture = gts_firefly_employ.01
+	show_sound = event_radio_chatter
+	location = this
+
+	is_triggered_only = yes
+
+	option = {
+		# 巨娘海军短期雇佣
+		name = gts_firefly_employ.1.a
+		allow = {
+			AND = {
+				owner = {
+					gts_is_giantess_empire = yes
+				}
+				owner = {
+					resource_stockpile_compare = { resource = energy value >= 1000 }
+				}
+			}
+		}
+		trigger = {
+			AND = {
+				owner = {
+					gts_is_giantess_empire = yes
+				}
+				has_fleet_flag = gts_firefly_warship_first
+			}
+		}
+		owner = { add_resource = { energy = -1000 } }
+		hidden_effect = {
+			fleet_event = { id = gts_firefly_employ.1 days = 720 }
+		}
+	}
+	option = {
+		# 小人海军短期雇佣
+		name = gts_firefly_employ.1.a
+		allow = {
+			AND = {
+				NOT = {
+					owner = {
+						gts_is_giantess_empire = yes
+					}
+				}
+				owner = {
+					resource_stockpile_compare = { resource = energy value >= 500 }
+				}
+			}
+		}
+		trigger = {
+			AND = {
+				NOT = {
+					owner = {
+						gts_is_giantess_empire = yes
+					}
+				}
+				has_fleet_flag = gts_firefly_warship_first
+			}
+		}
+		owner = { add_resource = { energy = -500 } }
+		hidden_effect = {
+			fleet_event = { id = gts_firefly_employ.1 days = 720 }
+		}
+	}
+	option = {
+		# 巨娘海军长期雇佣
+		name = gts_firefly_employ.1.b
+		allow = {
+			AND = {
+				owner = {
+						gts_is_giantess_empire = yes
+					}
+				owner = {
+					resource_stockpile_compare = { resource = energy value >= 5000 }
+				}
+			}
+		}
+		trigger = {
+			AND = {
+				owner = {
+						gts_is_giantess_empire = yes
+					}
+				has_fleet_flag = gts_firefly_warship_first
+			}
+		}
+		owner = { add_resource = { energy = -5000 } }
+		hidden_effect = {
+			fleet_event = { id = gts_firefly_employ.1 days = 1800 }
+		}
+	}
+	option = {
+		# 小人海军长期雇佣
+		name = gts_firefly_employ.1.b
+		allow = {
+			AND = {
+				NOT = {
+					owner = {
+						gts_is_giantess_empire = yes
+					}
+				}
+				owner = {
+					resource_stockpile_compare = { resource = energy value >= 2500 }
+				}
+			}
+		}
+		trigger = {
+			AND = {
+				NOT = {
+					owner = {
+						gts_is_giantess_empire = yes
+					}
+				}
+				has_fleet_flag = gts_firefly_warship_first
+			}
+		}
+		owner = { add_resource = { energy = -2500 } }
+		hidden_effect = {
+			fleet_event = { id = gts_firefly_employ.1 days = 1800 }
+		}
+	}
+	option = {
+		# 陆军短期雇佣
+		name = gts_firefly_employ.1.a
+		allow = { owner = { resource_stockpile_compare = { resource = energy value >= 500 } } }
+		trigger = {
+			OR = {
+				has_fleet_flag = gts_firefly_army_first
+			}
+		}
+		owner = { add_resource = { energy = -500 } }
+		hidden_effect = {
+			fleet_event = { id = gts_firefly_employ.1 days = 720 }
+		}
+	}
+	option = {
+		# 陆军长期雇佣
+		name = gts_firefly_employ.1.b
+		allow = { owner = { resource_stockpile_compare = { resource = energy value >= 2000 } } }
+		trigger = {
+			OR = {
+				has_fleet_flag = gts_firefly_army_first
+			}
+		}
+		owner = { add_resource = { energy = -2000 } }
+		hidden_effect = {
+			fleet_event = { id = gts_firefly_employ.1 days = 1800 }
+		}
+	}
+	option = {
+		# Decline
+		name = gts_firefly_employ.1.c
+		hidden_effect = {
+			# 海军
+			if = {
+				limit = {
+					has_fleet_flag = gts_firefly_warship_first
+				}
+				#海军修正取消
+					event_target:firefly_owner = {
+						remove_country_flag = firefly_warship_active
+						remove_modifier = gts_firefly_warship_first_tiny
+						remove_modifier = gts_firefly_warship_first_gts
+					}
+				}
+			#陆军
+			if = {
+				limit = {
+					has_fleet_flag = gts_firefly_army_first
+				}
+				#陆军修正取消
+					event_target:firefly_owner = {
+						remove_country_flag = firefly_army_active
+						remove_modifier = gts_firefly_army_first_tiny
+						remove_modifier = gts_firefly_army_first_gts
+					}
+				}
+				#下领袖
+				if = {
+					limit = {
+						exists = leader
+					}
+					leader = {
+						unassign_leader = this
+					}
+				}
+			}
+				delete_fleet = this
+			}
+	}
+namespace = gts_firefly_reform
+country_event = {#舰队复活
+	id = gts_firefly_reform.1	#未触发(trigger/immediate)
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		any_country = {
+			is_country_type = type_firefly
+		}
+		exists = event_target:firefly_owner
+		event_target:firefly_owner = {
+					has_country_flag = firefly_warship_active                    #是流萤舰队
+					NOT = {
+						has_country_flag = firefly_warship_reforming
+						any_controlled_fleet = {
+							is_same_value = event_target:gts_firefly_warship_employed
+						}
+						event_target:gts_firefly_warship_employed = {
+							num_ships > 0
+						}
+					}
+				}
+	}
+	immediate = {
+		event_target:firefly_owner = {
+			# remove_country_flag = firefly_warship_active
+			set_country_flag = firefly_warship_reforming
+			remove_modifier = gts_firefly_warship_first_gts
+			remove_modifier = gts_firefly_warship_first_tiny
+			country_event = {
+				id = gts_firefly_reform.2
+			}
+			country_event = {
+				id = gts_firefly_reform.3
+				days = 720
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_firefly_reform.2
+	title = "gts_firefly_reform.2.name"	#被橄榄
+	desc = "gts_firefly_reform.2.desc"	#描述
+	picture = GFX_gts_firefly_reform.1
+	show_sound = event_radio_chatter
+	is_triggered_only = yes
+	option = {
+		name = gts_firefly_reform.2.response
+	}
+}
+
+country_event = {
+	id = gts_firefly_reform.3
+	title = "gts_firefly_reform.3.name"	#舰队复活
+	desc = "gts_firefly_reform.3.desc"	#描述
+	picture = GFX_gts_firefly_reform.3
+	show_sound = event_radio_chatter
+	is_triggered_only = yes
+	immediate = {
+		event_target:firefly_owner = {
+			remove_country_flag = firefly_warship_active
+			remove_country_flag = firefly_warship_reforming
+		}
+	}
+	option = {
+		name = gts_firefly_reform.3.response
+	}
+}
+
+country_event = {#军队复活
+	id = gts_firefly_reform.4	#未触发(trigger/immediate)
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		any_country = {
+			is_country_type = type_firefly                  #已创建流萤国家
+		}
+		exists = event_target:firefly_owner
+		event_target:firefly_owner = {
+					has_country_flag = firefly_army_active                    #是流萤军队
+					NOT = {
+						has_country_flag = firefly_army_reforming
+						any_owned_army = {
+							army_type = gts_firefly_army
+							OR = {
+								exists = planet
+								AND = {
+									exists = fleet
+									fleet = {
+										num_ships > 0
+									}
+								}
+							}
+						}
+			}
+		}
+	}
+	immediate = {
+		event_target:firefly_owner = {
+			# remove_country_flag = firefly_army_active
+			set_country_flag = firefly_army_reforming
+			remove_modifier = gts_firefly_army_first_gts
+			remove_modifier = gts_firefly_army_first_tiny
+			country_event = {
+				id = gts_firefly_reform.5
+			}
+			country_event = {
+				id = gts_firefly_reform.6
+				days = 720
+			}
+		}
+	}
+}
+
+
+
+country_event = {
+	id = gts_firefly_reform.5
+	title = "gts_firefly_reform.5.name"	#军队被橄榄
+	desc = "gts_firefly_reform.5.desc"	#描述
+	picture = GFX_gts_firefly_reform.2
+	show_sound = event_radio_chatter
+	is_triggered_only = yes
+	option = {
+		name = gts_firefly_reform.5.response
+	}
+}
+
+country_event = {
+	id = gts_firefly_reform.6
+	title = "gts_firefly_reform.6.name"	#军队复活
+	desc = "gts_firefly_reform.6.desc"	#描述
+	picture = GFX_gts_firefly_reform.3
+	show_sound = event_radio_chatter
+	is_triggered_only = yes
+	immediate = {
+		event_target:firefly_owner = {
+			remove_country_flag = firefly_army_reforming
+			remove_country_flag = firefly_army_active
+		}
+		}
+	option = {
+		name = gts_firefly_reform.6.response
+	}
+}
+#领袖复活
+# country_event = {
+# 	id = gts_firefly_reform.1
+# 	hide_window = yes
+# 	is_triggered_only = yes
+# 	immediate = {
+# 		if = {
+# 			limit = { exists = event_target:gts_yarong_fleet }
+# 			destroy_fleet = event_target:gts_yarong_fleet
+# 		}
+# 		legendary_gts_leader_creator = {
+# 			LEADER_PORTRAIT = gts_portrait_firefly
+# 			CLASS = commander
+# 			NAME = NAME_gts_firefly
+# 			LEVEL = 5
+# 			AGE = 16
+# 			GENDER = female
+# 			ETHIC = militarist
+# 			DESC = DESC_gts_firefly
+# 			CATCH_PHRASE = gts_firefly_catch_phrase
+# 			RANDOMIZE_TRAITS = no
+# 			TARGET = gts_firefly
+# 		}
+# 		last_created_leader = {
+# 			add_trait = leader_trait_firefly_DeepSleep
+# 			add_trait = leader_trait_firefly_SoonGaze
+# 			add_trait = leader_trait_firefly_ThenceShine
+# 			add_trait = leader_trait_Destruction
+# 			add_trait = {
+#			trait = leader_trait_Titan
+#			show_message = no
+#		}
+# 			add_trait = leader_trait_EntropyLossSyndrome
+# 			set_owner = root
+# 		}
+# 		create_fleet = {
+# 			name = "NAME_firefly_Warship"
+# 			effect = {
+# 				set_owner = root
+# 				create_ship = {
+# 					name = "NAME_firefly_Warship"
+# 					design = "NAME_firefly_Warship"
+# 					effect = {
+# 						set_ship_flag = gts_yarong_ship
+# 						save_global_event_target_as = gts_yarong_ship
+# 						set_disabled = no
+# 					}
+# 				}
+# 				save_global_event_target_as = gts_yarong_fleet
+# 				set_location = {
+# 					target = root.capital_scope
+# 					distance = 10
+# 					angle = 90
+# 					direction = in_system
+# 				}
+# 				set_fleet_stance = passive
+# 				set_aggro_range_measure_from = self
+# 				set_aggro_range = 350
+# 				assign_leader = event_target:gts_yarong
+# 			}
+# 			settings = {
+# 				spawn_debris = yes
+# 				is_boss = no
+# 				can_change_leader = yes
+# 				uses_naval_capacity = no
+# 				can_upgrade = no
+# 				can_disband = no
+# 			}
+# 		}
+# 	}
+# }

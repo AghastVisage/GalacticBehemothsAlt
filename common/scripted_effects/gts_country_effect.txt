@@ -1,0 +1,88 @@
+# 创建领袖的默认国家
+create_gts_default_country = {
+    create_country = {
+        name = "NAME_leader_country"
+        type = faction
+        auto_delete = yes
+        flag = {
+            icon = {
+                category = "special"
+                file = "unknown.dds"
+            }
+            background = {
+                category = "backgrounds"
+                file = "00_solid.dds"
+            }
+            colors = {
+                "red"
+                "red"
+                "null"
+                "null"
+            }
+        }
+        effect = {
+            save_event_target_as = $TARGET|GTS$_country_target
+        }
+    }
+}
+# 创建领袖的中立国家
+create_gts_friendly_country = {
+    create_country = {
+        name = "NAME_$name$"
+        type = guardian_dragon
+        flag = {
+            icon = {
+                category = $icon_category$
+                file = $icon_file$
+            }
+            background = {
+                category = "backgrounds"
+                file = "00_solid.dds"
+            }
+            colors = {
+                "dark_blue"
+                "dark_blue"
+                "null"
+                "null"
+            }
+        }
+        effect = {
+            set_faction_hostility = {
+                target = root
+                set_hostile = no
+                set_neutral = no
+                set_friendly = yes
+            }
+            every_country = {
+                limit = {
+                    NOR = {
+                        is_same_value = root
+                    }
+                }
+                set_faction_hostility = {
+                    target = prev
+                    set_hostile = yes
+                    set_neutral = no
+                    set_friendly = no
+                }
+            }
+            save_global_event_target_as = $name$_country_target
+            set_country_flag = $name$_country
+            every_playable_country = {
+                establish_communications_no_message = event_target:$name$_country_target
+            }
+        }
+    }
+}
+
+
+#添加理念时判定ai没有这个理念
+country_not_have_civic = {
+    if = {
+        limit = {
+            not = {
+                has_civic = $civic$
+            }
+        }
+    }
+}

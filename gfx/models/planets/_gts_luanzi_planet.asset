@@ -1,0 +1,27 @@
+entity = {
+	name = "gts_luanzi_planet_01_entity"
+	pdxmesh = "gts_luanzi_mesh"
+
+	#planet surface texture override
+	meshsettings = {
+	name = "planet_luanzi_inner"
+	texture_diffuse = "planet_luanzi_inner_diffuse.dds"
+	texture_normal = "planet_luanzi_inner_normal.dds"
+	texture_specular = "planet_luanzi_inner_spec.dds"
+	}
+
+	##cloud texture override
+	meshsettings = {
+	name = "planet_luanzi_surface"
+	texture_diffuse = "planet_luanzi_surface_diffuse.dds"
+	texture_normal = "planet_luanzi_surface_normal.dds"
+	texture_specular = "planet_luanzi_surface_specular.dds"
+	}
+
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class_02" } }
+	}
+
+}

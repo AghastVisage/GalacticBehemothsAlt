@@ -1,0 +1,1187 @@
+namespace = gts_hstar_origin
+
+country_event = { #起源
+	id = gts_hstar_origin.1
+    hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+	    country_event = { id = gts_hstar.1  days = 1 }
+	}
+}
+
+country_event = { #起源起源buff
+	id = gts_hstar_origin.2 #ID
+	hide_window = yes #隐藏界面
+	is_triggered_only = yes #只能触发
+	trigger = { #触发器：有起源
+		has_origin = origin_hstar
+	}
+	fire_only_once = yes
+	
+	immediate = { 
+		set_country_flag = custom_start_screen
+		random_owned_planet  = { #随机拥有的星球
+			limit = { 
+				is_a_planet = yes
+				is_capital = yes
+				owner = {
+					has_origin = origin_hstar
+				}
+			}
+			hstar_origin_effect = yes #提供起源buff
+		}
+	}
+}
+
+namespace = gts_hstar
+
+country_event = {
+	id = gts_hstar.1
+	title = gts_hstar.1.name
+	desc = gts_hstar.1.desc
+	picture = GFX_evt_hstar1
+	show_sound = event_administrative_work
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		host_has_dlc = Apocalypse
+		has_origin = origin_hstar
+	}
+
+	option = {
+		name = gts_hstar.1.a
+		custom_tooltip = gts_hstar.1.a.tooltip
+		country_event = {
+			id = gts_hstar.2 days = 15
+		}
+	}
+
+}
+
+country_event = {
+	id = gts_hstar.2
+	title = gts_hstar.2.name
+	desc = gts_hstar.2.desc
+	picture = GFX_evt_heel_on_land
+	show_sound = event_door_opening
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = gts_hstar.2.a
+		hidden_effect = {
+			country_event = {
+				id = gts_hstar.3 days = -1
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_hstar.3
+	is_triggered_only = yes
+	fire_only_once = yes
+	hide_window = yes
+
+
+	immediate = {
+		country_event = {
+			id = gts_hstar.4 days = 1
+		}
+		owner = {
+			capital_scope.solar_system = {
+				spawn_system = {
+					min_distance = 10
+					max_distance = 50
+					max_jumps = 5
+					initializer = "gts_hstar_custom_system"
+				}
+				add_extra_hyperlane_to_spawned_system_effect = yes
+			}
+		}
+		random_galaxy_planet = {
+			limit = {
+				is_colonizable = yes
+				has_owner = no
+				is_colony = no
+				habitable_planet = yes
+				NOR = {
+					has_modifier = "holy_planet"
+					solar_system = {
+						has_star_flag = hostile_system
+					}
+				}
+				distance = {
+					source = root.owner.capital_scope
+					max_distance <= 50
+					min_distance >= 10
+					max_jumps = 5
+				}
+				solar_system = {
+					NOT = { exists = starbase }
+				}
+			}
+
+			create_hstar_custom_effect = yes
+			create_country = {
+				name = NAME_hstar_custom
+				authority = random
+				civics = {
+					civic = civic_increasing_urbanization
+					civic = civic_atmospheric_pollution
+				}
+				species = event_target:hstar_custom_species
+
+				ignore_initial_colony_error = yes
+				type = primitive
+				ethos = random
+				flag = {
+					icon = {
+						category = "pre_ftl"
+						file = "preftl_industrial_age.dds"
+					}
+					background= {
+						category = "backgrounds"
+						file = "new_dawn.dds"
+					}
+					colors={
+						"turquoise"
+						"green"
+						"null"
+						"null"
+					}
+				}
+				effect = {
+					save_global_event_target_as = hstar_custom_country
+					add_resource = { minerals = 1000 }
+					add_resource = { energy = 1000 }
+					add_resource = { food = 100 }
+					add_resource = { influence = 50 }
+					establish_communications_no_message = root
+
+				}
+			}
+		}
+		random_galaxy_planet = {
+			limit = {
+				has_planet_flag = hstar_custom_planet
+			}
+			save_global_event_target_as = hstar_custom_planet
+			set_owner = event_target:hstar_custom_country
+			clear_blockers = yes
+			while = {
+				count = 22
+				create_pop_group = {
+					species = event_target:hstar_custom_species
+				}
+			}
+
+			while = {
+				count = 2
+				add_district_and_planet_size_if_needed_effect = {
+					district = district_city
+				}
+			}
+			while = {
+				count = 2
+				add_district_and_planet_size_if_needed_effect = {
+					district = district_industrial
+				}
+			}
+			while = {
+				count = 3
+				add_district_and_planet_size_if_needed_effect = {
+					district = district_farming
+				}
+			}
+			while = {
+				count = 2
+				add_district_and_planet_size_if_needed_effect = {
+					district = district_mining
+				}
+			}
+			while = {
+				count = 2
+				add_district_and_planet_size_if_needed_effect = {
+					district = district_generator
+				}
+			}
+			add_building = building_capital
+			add_building = building_research_lab_1
+			add_building = building_foundry_1
+			add_building = building_bureaucratic_1
+			add_planet_devastation = 45
+
+			while = {
+				count = 2
+				create_army = {
+					name = random
+					owner = event_target:hstar_custom_country
+					species = event_target:hstar_custom_species
+					type = defense_army
+				}
+			}
+			solar_system = {
+				every_system_planet = {
+					set_surveyed = {
+						surveyed = yes
+						surveyor = root.owner
+					}
+				}
+			}
+
+			create_country = {
+				name = "NAME_Unknown_giantess"
+				type = faction
+				auto_delete = no
+				flag = {
+					icon = {
+						category = "zoological"
+						file = "flag_zoological_1.dds"
+					}
+					background= {
+						category = "backgrounds"
+						file = "new_dawn.dds"
+					}
+					colors={
+						"black"
+						"black"
+						"null"
+						"null"
+					}
+				}
+				effect = {
+					establish_communications_no_message = root.owner
+				}
+			}
+			last_created_country = {
+				set_country_flag = incoming_haiyun
+				create_fleet = {
+					name = "NAME_haiyun"
+					settings = {
+						spawn_debris = no
+					}
+					effect = {
+						set_aggro_range = 0
+						set_fleet_stance = aggressive
+						set_aggro_range_measure_from = self
+						set_owner = PREV
+						set_fleet_flag = haiyun_fleet
+						save_event_target_as = haiyun_fleet_target
+						create_ship = {
+							name = "NAME_haiyun"
+							design = "NAME_haiyun_Warship_1"
+						}
+						set_location = {
+							target = event_target:hstar_custom_joint_planet
+							distance = 25
+							angle = random
+						}
+					}
+				}
+				set_relation_flag = {
+					who = root.owner
+					flag = haiyun_enemy
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_hstar.4
+	title = INCOMING_TRANSMISSION
+	desc = gts_hstar.4.desc
+	show_sound = event_custodian_greeting
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = human_male_04
+		room = "ethic_spaceship_room"
+	}
+
+	option = {
+		name = gts_hstar.4.a
+		hidden_effect = {
+			country_event = {
+				id = gts_hstar.5
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_hstar.5
+	title = INCOMING_TRANSMISSION
+	desc = gts_hstar.5.desc
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = human_male_04
+		room = "ethic_spaceship_room"
+	}
+
+	option = {
+		name = gts_hstar.5.a
+		response_text = gts_hstar.5.a.response
+		is_dialog_only = yes
+	}
+
+	option = {
+		name = gts_hstar.5.b
+		response_text = gts_hstar.5.b.response
+		is_dialog_only = yes
+	}
+
+	option = {
+		name = gts_hstar.5.c
+		response_text = gts_hstar.5.c.response
+		is_dialog_only = yes
+	}
+
+	option = {
+		name = gts_hstar.5.d
+		hidden_effect = {
+			country_event = {
+				id = gts_hstar.6
+			}
+		}
+	}
+
+}
+
+country_event = {
+	id = gts_hstar.6
+	title = INCOMING_TRANSMISSION
+	desc = gts_hstar.6.desc
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = human_male_04
+		room = "ethic_spaceship_room"
+	}
+
+	option = {
+		name = gts_hstar.6.a
+
+	}
+}
+
+country_event = {
+	id = gts_hstar.7
+	title = gts_hstar.7.name
+	desc = gts_hstar.7.desc
+
+	picture = GFX_evt_heel_on_land
+	show_sound = event_space_amoeba
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		exists = this
+		fromfromfrom = { has_fleet_flag = haiyun_fleet }
+	}
+
+	option = {
+		name = gts_hstar.7.a
+		country_event = {
+			id = gts_hstar.8 days = 7
+		}
+	}
+
+}
+
+country_event = {
+	id = gts_hstar.8
+	title = gts_hstar.8.name
+	desc = gts_hstar.8.desc
+
+	picture = GFX_evt_haiyunpuss
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = gts_hstar.8.a
+		country_event = {
+			id = gts_hstar.9 days = 7
+		}
+	}
+}
+
+country_event = {
+	id = gts_hstar.9
+	title = gts_hstar.9.name
+	desc = gts_hstar.9.desc
+	show_sound = event_gts_masturbate
+
+	picture = GFX_evt_haiyunpuss
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = {
+		name = gts_hstar.9.a
+		country_event = {
+			id = gts_hstar.10	days = 7
+		}
+	}
+}
+
+country_event = {
+	id = gts_hstar.10
+	title = gts_hstar.10.name
+	desc = gts_hstar.10.desc
+	show_sound = event_gts_masturbate
+
+	picture = GFX_evt_haiyunpuss
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = {
+		name = gts_hstar.10.a
+		country_event = {
+			id = gts_hstar.11 days = 7
+		}
+	}
+}
+
+country_event = {
+	id = gts_hstar.11
+	title = gts_hstar.11.name
+	desc = gts_hstar.11.desc
+	show_sound = event_gts_masturbate
+
+	picture = GFX_evt_haiyunpuss_2
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = {
+		name = gts_hstar.11.a
+		country_event = {
+			id = gts_hstar.12 days = 7
+		}
+	}
+}
+
+country_event = {
+	id = gts_hstar.12
+	title = gts_hstar.12.name
+	desc = gts_hstar.12.desc
+	show_sound = event_gts_masturbate
+
+	picture = GFX_evt_haiyunpuss_2
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = {
+		name = gts_hstar.12.a
+		country_event = {
+			id = gts_hstar.13 days = 7
+		}
+	}
+}
+
+country_event = {
+	id = gts_hstar.13
+	title = INCOMING_TRANSMISSION
+	desc = gts_hstar.13.desc
+	diplomatic = yes
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	picture_event_data = {
+		portrait = haiyun
+		room = "ethic_spaceship_room"
+	}
+
+	option = {
+		name = gts_hstar.13.a
+		country_event = {
+			id = gts_hstar.14
+		}
+	}
+
+	option = {
+		name = gts_hstar.13.b
+		country_event = {
+			id = gts_hstar.14
+		}
+	}
+
+	option = {
+		name = gts_hstar.13.c
+		country_event = {
+			id = gts_hstar.14
+		}
+	}
+}
+
+country_event = {
+	id = gts_hstar.14
+	title = INCOMING_TRANSMISSION
+	desc = gts_hstar.14.desc
+	diplomatic = yes
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	picture_event_data = {
+		portrait = haiyun
+		room = "ethic_spaceship_room"
+	}
+
+	option = {
+		name = gts_hstar.14.a
+		country_event = {
+			id = gts_hstar.15
+		}
+	}
+}
+
+country_event = {
+	id = gts_hstar.15
+	title = INCOMING_TRANSMISSION
+	desc = gts_hstar.15.desc
+	diplomatic = yes
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	picture_event_data = {
+		portrait = haiyun
+		room = "ethic_spaceship_room"
+	}
+
+	option = {
+		name = gts_hstar.15.a
+		country_event = {
+			id = gts_hstar.16
+		}
+	}
+}
+
+country_event = {
+	id = gts_hstar.16
+	title = INCOMING_TRANSMISSION
+	desc = gts_hstar.16.desc
+	diplomatic = yes
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	picture_event_data = {
+		portrait = haiyun
+		room = "ethic_spaceship_room"
+	}
+
+	option = {
+		name = gts_hstar.16.a
+		country_event = {
+			id = gts_hstar.17 days = 30
+		}
+	}
+}
+
+country_event = {
+	id = gts_hstar.17
+	title = gts_hstar.17.name
+	desc = gts_hstar.17.desc
+
+	picture = GFX_evt_heel_on_land
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = {
+		name = gts_hstar.17.a
+		country_event = {
+			id = gts_hstar.18 days = 7
+		}
+	}
+}
+
+country_event = {
+	id = gts_hstar.18
+	title = INCOMING_TRANSMISSION
+	desc = gts_hstar.18.desc
+	diplomatic = yes
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	picture_event_data = {
+		portrait = haiyun_2
+		room = "ethic_spaceship_room"
+	}
+
+	option = {
+		name = gts_hstar.18.a
+		country_event = {
+			id = gts_hstar.19 days = 1
+		}
+	}
+}
+
+country_event = {
+	id = gts_hstar.19
+	title = INCOMING_TRANSMISSION
+	desc = gts_hstar.19.desc
+	diplomatic = yes
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	picture_event_data = {
+		portrait = haiyun_2
+		room = "ethic_spaceship_room"
+	}
+
+	option = {
+		name = gts_hstar.19.a
+		country_event = {
+			id = gts_hstar.20 days = 1
+		}
+	}
+}
+
+country_event = {
+	id = gts_hstar.20
+	title = INCOMING_TRANSMISSION
+	desc = gts_hstar.20.desc
+	diplomatic = yes
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	picture_event_data = {
+		portrait = haiyun_2
+		room = "ethic_spaceship_room"
+	}
+
+	option = {
+		name = gts_hstar.21.a
+		country_event = {
+			id = gts_hstar.21 days = 1
+		}
+	}
+}
+
+country_event = {
+	id = gts_hstar.21
+	title = INCOMING_TRANSMISSION
+	desc = gts_hstar.21.desc
+	diplomatic = yes
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	picture_event_data = {
+		portrait = haiyun_2
+		room = "ethic_spaceship_room"
+	}
+
+	option = {
+		name = gts_hstar.21.a
+		country_event = {
+			id = gts_hstar.22 days = 30
+		}
+	}
+}
+
+country_event = {
+	id = gts_hstar.22
+	title = gts_hstar.22.name
+	desc = gts_hstar.22.desc
+	picture = GFX_evt_haiyunpuss_2
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = {
+		name = gts_hstar.22.a
+		country_event = {
+			id = gts_hstar.23 days = 30
+		}
+	}
+}
+
+country_event = {
+	id = gts_hstar.23
+	title = gts_hstar.23.name
+	desc = gts_hstar.23.desc
+	picture = GFX_evt_haiyunpuss_2
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = {
+		name = gts_hstar.23.a
+		country_event = {
+			id = gts_hstar.24 days = 30
+		}
+		hidden_effect = {
+			create_leader = {
+				name = MR.K
+				class = commander
+				species = root.species
+				event_leader = yes
+				skill = 5
+				gender = male
+				set_age = 20
+				traits = {
+					1 = leader_trait_admiral_hells_heart
+					2 = leader_trait_aggressive_2
+				}
+			}
+			last_created_leader = {
+				save_global_event_target_as = MR_K
+			}
+			root.capital_scope = {
+				create_fleet = {
+					name = "NAME_haiyun"
+					settings = {
+						can_upgrade = no
+						can_change_composition = no
+						can_change_leader = no
+						uses_naval_capacity = no
+						spawn_debris = no
+					}
+					effect = {
+						create_ship = {
+							name = "NAME_haiyun"
+							design = "NAME_haiyun_Warship"
+							prefix = no
+							upgradable = no
+						}
+						save_global_event_target_as = haiyun_warship
+						set_location = event_target:hstar_custom_planet
+						set_fleet_stance = evasive
+						assign_leader = event_target:MR_K
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_hstar.24
+	title = gts_hstar.24.name
+	desc = gts_hstar.24.desc
+	picture = GFX_evt_haiyunpuss_2
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = gts_hstar.24.a
+
+		country_event = {
+			id = gts_hstar.25 days = 15
+		}
+		hidden_effect = {
+			owner = {
+				add_resource = {
+					gts_micro_planet = 1
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_hstar.24.b
+
+		country_event = {
+			id = gts_hstar.25 days = 15
+		}
+	}
+}
+
+country_event = {
+	id = gts_hstar.25
+	title = gts_hstar.25.name
+	desc = gts_hstar.25.desc
+	picture = GFX_evt_hstar_2
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = gts_hstar.25.a
+	}
+}
+
+country_event = {
+	id = gts_hstar.30
+	title = gts_hstar.30.name
+	desc = gts_hstar.30.desc
+	picture = GFX_evt_fleet_good
+
+	is_triggered_only = yes
+
+	trigger = {
+		# This = owner of fleet 1 (combatant)
+		# From = owner of fleet 2 (destroyed)
+		# FromFrom = fleet 1
+		# FromFromFrom = fleet 2
+		This = {
+			owner = {
+				has_origin = origin_hstar
+			}
+		}
+		From = {
+			owner_main_species ={
+				NOT = { has_trait = trait_machine_unit }
+				gts_is_giantess = yes
+			}
+
+		}
+	}
+
+	option = {
+		name = gts_hstar.30.a
+		owner = {
+			add_resource = { gts_hstar_lingruzhe = -500 }
+		}
+
+		hidden_effect = {
+			create_fleet = {
+				name = random
+				settings = {
+					can_upgrade = no
+					can_change_composition = yes
+					can_change_leader = yes
+					uses_naval_capacity = no
+					spawn_debris = no
+				}
+				effect = {
+					create_ship = {
+						name = random
+						design = "NAME_haiyun_Warship"
+						prefix = no
+						upgradable = no
+					}
+					set_location = {
+						target = PREVPREV
+						distance = 10
+						angle = random
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_hstar.30.b
+	}
+}
+
+country_event = {
+	id = gts_hstar.99
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		has_origin = origin_hstar
+	}
+
+	fire_only_once = yes
+
+	immediate = {
+		country_event = {
+			id = gts_hstar.100 days = 100
+		}
+	}
+
+}
+
+country_event = {
+	id = gts_hstar.100
+	title = gts_hstar.100.name
+	desc = gts_hstar.100.desc
+	picture = GFX_evt_hstar1
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = gts_hstar.100.a
+		country_event = {
+			id = gts_hstar.101 days = 45
+		}
+	}
+
+	option = {
+		name = gts_hstar.100.b
+		add_resource = {
+			unity = 500
+		}
+	}
+}
+
+country_event = {
+	id = gts_hstar.101
+	title = gts_hstar.101.name
+	desc = gts_hstar.101.desc
+	picture = GFX_evt_fleet_neutral
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = gts_hstar.101.a
+		owner = {
+			random_owned_planet = {
+				solar_system = {
+					spawn_system = {
+						min_distance = 10
+						max_distance = 50
+						max_jumps = 5
+						initializer = "gts_hstar_D_system"
+					}
+					add_extra_hyperlane_to_spawned_system_effect = yes
+				}
+
+				last_created_system = {
+					spawn_megastructure = {
+						type = think_tank_ruined
+						planet = event_target:hstar_D_blackhole
+					}
+				}
+			}
+		}
+	}
+}
+
+namespace = gts_hstar_anomaly
+
+ship_event = {
+	id = gts_hstar_anomaly.1
+	title = "gts_hstar_anomaly.1.name"
+	desc = "gts_hstar_anomaly.1.desc"
+	picture = GFX_evt_hstar_vena_namecard
+	show_sound = event_airlock
+	location = FROM
+	is_triggered_only = yes
+	option = {
+		name = gts_hstar_anomaly.1.a
+		leader = {
+			add_experience = 200
+		}
+		from = {
+			create_archaeological_site = site_gts_hstar_D
+		}
+	}
+}
+
+namespace = gts_hstar_arc_sites_event
+
+fleet_event = {
+	id = gts_hstar_arc_sites_event.1
+	title = gts_hstar_arc_sites_event.1.name
+	desc = gts_hstar_arc_sites_event.1.desc
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = INTERESTING
+		small_artifact_reward = yes
+		hidden_effect = {
+			from.planet = {
+				change_pc = pc_relic
+				set_planet_size = 30
+				add_deposit = d_city_ruins
+				add_deposit = d_lichen_fields
+			}
+		}
+	}
+}
+
+fleet_event = {
+	id = gts_hstar_arc_sites_event.2
+	title = "gts_hstar_arc_sites_event.2.name"
+	desc = "gts_hstar_arc_sites_event.2.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_hstar_arc_sites_event.2.a
+		medium_artifact_reward = yes
+	}
+}
+
+fleet_event = {
+	id = gts_hstar_arc_sites_event.3
+	title = "gts_hstar_arc_sites_event.3.name"
+	desc = "gts_hstar_arc_sites_event.3.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_hstar_arc_sites_event.3.a
+		medium_artifact_reward = yes
+	}
+}
+
+fleet_event = {
+	id = gts_hstar_arc_sites_event.4
+	title = "gts_hstar_arc_sites_event.4.name"
+	desc = "gts_hstar_arc_sites_event.4.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = INTERESTING
+		medium_artifact_reward = yes
+	}
+}
+
+fleet_event = {
+	id = gts_hstar_arc_sites_event.5
+	title = "gts_hstar_arc_sites_event.5.name"
+	desc = "gts_hstar_arc_sites_event.5.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_hstar_arc_sites_event.5.a
+		medium_artifact_reward = yes
+	}
+}
+
+fleet_event = {
+	id = gts_hstar_arc_sites_event.6
+	title = "gts_hstar_arc_sites_event.6.name"
+	desc = "gts_hstar_arc_sites_event.6.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = INTERESTING
+		medium_artifact_reward = yes
+	}
+}
+
+fleet_event = {
+	id = gts_hstar_arc_sites_event.7
+	title = "gts_hstar_arc_sites_event.7.name"
+	desc = "gts_hstar_arc_sites_event.7.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_hstar_arc_sites_event.7.a
+		medium_artifact_reward = yes
+		owner ={
+			country_event ={
+				id = gts_hstar_arc_sites_event.8 days = 30
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_hstar_arc_sites_event.8
+	is_triggered_only = yes
+	fire_only_once = yes
+	title = gts_hstar_arc_sites_event.8.name
+	desc = gts_hstar_arc_sites_event.8.desc
+	show_sound = event_gts_masturbate
+
+	picture = GFX_evt_hstar_vena_breasts
+
+	option = {
+		name = gts_hstar_arc_sites_event.8.a
+	}
+	after = {
+		add_modifier = {
+			modifier = "all_for_pardon"
+		}
+	}
+}

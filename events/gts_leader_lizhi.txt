@@ -1,0 +1,188 @@
+namespace = gts_lizhi
+
+ship_event  = {
+	id = gts_lizhi.1
+	title = gts_lizhi.1.title
+	desc = gts_lizhi.1.desc
+	picture = GFX_evt_city_planet
+	is_triggered_only = yes
+	option = { #普通帝国
+		name = gts_lizhi.1a
+		from = {
+			hidden_effect = {
+				enable_special_project = {
+					name = lizhi_project.01
+					location = this
+					owner = root
+				}
+			}
+		}
+	}
+	option = { #格式塔
+		name = gts_lizhi.1b
+		allow = {
+			owner = {
+				OR = {
+					is_mechanical_empire = yes
+					is_individual_machine = yes
+					has_authority = auth_machine_intelligence
+				}
+			}
+		}
+		from = {
+			hidden_effect = {
+				enable_special_project = {
+					name = lizhi_project.02
+					location = this
+					owner = root
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_lizhi.1c
+	}
+}
+ship_event  = {
+	id = gts_lizhi.2
+	title = gts_lizhi.2.title
+	desc = gts_lizhi.2.desc
+	picture = GFX_gts_fox_01
+	show_sound = event_red_alert
+	is_triggered_only = yes
+	after = {
+		owner = {
+			country_event = {
+				id = gts_lizhi.4
+			}	
+		}
+	}
+	option = { 
+		name = gts_lizhi.2a
+		destroy_ship = root
+	}
+	option = { 
+		name = gts_lizhi.2b
+		destroy_ship = root
+	}
+}
+ship_event  = {
+	id = gts_lizhi.3
+	title = gts_lizhi.3.title
+	desc = gts_lizhi.3.desc
+	picture = GFX_gts_fox_01
+	is_triggered_only = yes
+	after = {
+		owner = {
+			country_event = {
+				id = gts_lizhi.4
+			}	
+		}
+	}
+	option = { 
+		name = gts_lizhi.3a
+	}
+}
+country_event = {#通讯画面
+	id = gts_lizhi.4
+	title = gts_hidden.title
+	desc = gts_lizhi.4.desc
+	is_triggered_only = yes
+	diplomatic = yes
+    picture_event_data = {
+		portrait = lizhi
+		room = "crisis_room"
+	}
+	option = {
+		name = gts_lizhi.4a
+		hidden_effect = {
+			country_event = {
+				id = gts_lizhi.5
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_lizhi.5
+	title = gts_hidden.title
+	desc = gts_lizhi.5.desc
+	is_triggered_only = yes
+	event_window_type = leader_recruit
+	show_sound = event_ai_started
+	picture = GFX_leader_recruitment_bg_legendary_skrand
+	auto_opens = yes
+    immediate = {
+		gts_leader_lizhi_hired = yes
+	}
+	picture_event_data = {
+		portrait = event_target:gts_lizhi
+		room = "crisis_room"
+	}
+	option = {
+		name = DISMISS
+		tag = dismiss_leader
+	}
+	option = {
+		name = gts_lizhi.5a
+		is_dialog_only = yes
+		response_text = gts_lizhi.5a.respond
+	}
+	option = {
+		name = gts_lizhi.5b
+		is_dialog_only = yes
+		response_text = gts_lizhi.5b.respond
+	}
+	option = {
+		name = gts_lizhi.5c
+		is_dialog_only = yes
+		response_text = gts_lizhi.5c.respond
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = legendary }		}
+	}
+}
+
+# 替領袖添加不屈特質
+
+country_event = {
+	id = gts_lizhi.0000
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			NOT = {
+				has_trait = leader_trait_tinyunbending
+			}
+		}
+		from.species = {
+			has_trait = trait_tinyunbending
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				from = {
+					leader_class = commander
+					NOT = {
+						has_trait = leader_trait_tinyunbending
+					}
+				}
+				from.species = {
+					has_trait = trait_tinyunbending
+				}
+			}
+			from = {
+				add_trait = {
+					trait = leader_trait_tinyunbending
+					show_message = no
+				}
+			}
+		}
+	}
+}
+

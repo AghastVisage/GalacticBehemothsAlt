@@ -1,0 +1,320 @@
+namespace = gts_oversystem
+
+country_event = {
+	id = gts_oversystem.1
+	title = gts_oversystem.1.title
+	desc = gts_oversystem.1.desc
+	picture = GFX_evt_gts_oversystem_1
+	show_sound = event_energy_field
+	location = fromfromfrom
+
+	is_triggered_only = yes
+
+	trigger = {
+		not = {
+			has_country_flag = oversystem_leather_shoes_system_surveyed
+		}
+		from = { is_country_type = oversystem_leather_shoes_communicate }
+	}
+
+	immediate = {
+		set_country_flag = oversystem_leather_shoes_system_surveyed
+		establish_communications_no_message = from
+	}
+
+	option = {
+		name = gts_oversystem.1.a
+		hidden_effect = {
+			every_system = {
+				limit = {
+					has_star_flag = oversystem_leather_shoes_system_near
+				}
+				enable_special_project = {
+					name = gts_oversystem_project
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_oversystem.1.b
+		trigger = {
+			or = {
+				has_technology = tech_jump_drive_1
+				has_technology = tech_psi_jump_drive_1
+			}
+		}
+	}
+	option = {
+		name = gts_oversystem.1.c
+		allow = {
+			has_megastructure = quantum_catapult_3
+		}
+	}
+	option = {
+		name = gts_oversystem.1.d
+		allow = {
+			always = no
+		}
+		custom_tooltip = gts_oversystem.1.d_custom
+	}
+	option = {
+		name = gts_oversystem.1.e
+		allow = {
+			always = no
+		}
+		custom_tooltip = gts_oversystem.1.e_custom
+	}
+	after = {
+		hidden_effect = {
+			complete_special_project = {
+				type = gts_oversystem_project
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_oversystem.2
+	title = gts_oversystem.1.title
+	desc = gts_oversystem.1.desc
+	picture = GFX_evt_gts_oversystem_1
+	show_sound = event_energy_field
+
+	is_triggered_only = yes
+	trigger = {
+		not = {
+			has_country_flag = oversystem_leather_shoes_system_surveyed
+		}
+	}
+
+	immediate = {
+		set_country_flag = oversystem_leather_shoes_system_surveyed
+		establish_communications_no_message = from
+	}
+
+	option = {
+		name = gts_oversystem.1.a
+		hidden_effect = {
+			every_system = {
+				limit = {
+					has_star_flag = oversystem_leather_shoes_system_near
+				}
+				enable_special_project = {
+					name = gts_oversystem_project
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_oversystem.1.b
+		trigger = {
+			or = {
+				has_technology = tech_jump_drive_1
+				has_technology = tech_psi_jump_drive_1
+			}
+		}
+	}
+	option = {
+		name = gts_oversystem.1.c
+		allow = {
+			has_megastructure = quantum_catapult_3
+		}
+	}
+	option = {
+		name = gts_oversystem.1.d
+		allow = {
+			always = no
+		}
+		custom_tooltip = gts_oversystem.1.d_custom
+	}
+	option = {
+		name = gts_oversystem.1.e
+		allow = {
+			always = no
+		}
+		custom_tooltip = gts_oversystem.1.e_custom
+	}
+	after = {
+		hidden_effect = {
+			complete_special_project = {
+				type = gts_oversystem_project
+			}
+		}
+	}
+}
+
+event = {
+	id = gts_oversystem.3
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		any_system = { has_star_flag = oversystem_leather_shoes_system }
+	}
+
+	immediate = {
+		random_system = {
+			limit = { has_star_flag = oversystem_leather_shoes_system } # Shares spawn system with Tiyanki
+			spawn_system = {
+				min_distance = 3
+				max_distance = 3
+				max_jumps = 0
+				initializer = "gts_oversystem_leather_shoes_system_2"
+				hyperlane = no
+				is_discovered = yes
+				effect = {
+				}
+			}
+			save_global_event_target_as = oversystem_leather_shoes_system
+			random_neighbor_system = {
+				set_star_flag = oversystem_leather_shoes_system_near
+				random_system_planet = {
+					add_anomaly = {
+						category = gts_oversystem_leather_shoes_anomaly
+					}
+				}
+			}
+			every_neighbor_system = {
+				limit = {
+				}
+				remove_hyperlane = {
+					from = THIS
+					to = prev
+				}
+			}
+			random_system_planet = {
+				create_country = {
+					name = "NAME_oversystem_leather_shoes_system_country"
+					type = oversystem_leather_shoes_communicate
+					flag = {
+						icon = {
+							category = "zoological"
+							file = "flag_zoological_1.dds"
+						}
+						background= {
+							category = "backgrounds"
+							file = "00_solid.dds"
+						}
+						colors={
+							"black"
+							"black"
+							"null"
+							"null"
+						}
+					}
+					effect = {
+						save_event_target_as = oversystem_leather_shoes_country
+
+					}
+				}
+				while = {
+					count = 4
+					create_fleet = {
+						name = "NAME_oversystem_leather_shoes_system_country"
+						effect = {
+							set_owner = event_target:oversystem_leather_shoes_country
+							create_ship = {
+								name = "NAME_oversystem_leather_shoes_system_country"
+								design = "NAME_Cloud_Entity"
+							}
+							set_location = prev
+							set_fleet_stance = aggressive
+							set_aggro_range_measure_from = return_point
+							set_aggro_range = 0
+							queue_actions = {
+								wait = { # Cooldown until they start moving
+									duration = 2000
+									random = 500
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	after = {
+	}
+}
+
+ship_event = {
+	id = gts_oversystem.4
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		every_system = {
+			limit = {
+				has_star_flag = oversystem_leather_shoes_system
+			}
+			set_surveyed = {
+				surveyed = yes
+			}
+		}
+		owner = {
+			country_event = {
+				id = gts_oversystem.2
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_oversystem.5
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		every_system = {
+			limit = {
+				has_star_flag = oversystem_leather_shoes_system_near
+			}
+			add_hyperlane = {
+				from = this
+				to = event_target:oversystem_leather_shoes_system
+			}
+		}
+	}
+}
+fleet_event = {
+	id = gts_oversystem.6
+	title = gts_oversystem.6.title
+	desc = gts_oversystem.6.desc
+	# picture =
+	is_triggered_only = yes
+	trigger = {
+		owner = {is_ai = no}
+		from = {
+			has_star_flag = oversystem_leather_shoes_system
+		}
+		is_ship_class = shipclass_science_ship
+		exists = leader
+	}
+	immediate = {
+
+	}
+	option = {
+		name = gts_oversystem.6.a
+		owner = {
+			add_resource = {
+				unity = 5000
+			}
+		}
+	}
+	option = {
+		name = gts_oversystem.6.b
+		custom_tooltip = gts_oversystem.6.b_custom
+		owner = {
+			add_resource = {
+				food = 5000
+				minerals = 3000
+				alloys = 1000
+			}
+		}
+	}
+}
+
+
+
+
+
+
+
+

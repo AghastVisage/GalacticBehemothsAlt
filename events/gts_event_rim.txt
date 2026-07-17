@@ -1,0 +1,114 @@
+namespace = gts_evt_rim
+
+ship_event = {
+	id = gts_evt_rim.1
+	title = "gts_evt_rim.1.name"
+	desc = "gts_evt_rim.1.desc"
+	picture = GFX_evt_desert
+	show_sound = event_mystic_reveal_light
+	location = event_target:gts_ring_world_planet
+	is_triggered_only = yes
+	immediate = {
+	}
+	option = {
+		name = INCREDIBLE
+		leader = {
+			add_experience = 500
+		}
+		from = {
+			create_archaeological_site = site_gts_ring_world
+		}
+	}
+}
+fleet_event = {
+	id = gts_evt_rim.2
+	title = "gts_evt_rim.2.name"
+	desc = "gts_evt_rim.2.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_evt_rim.2.a
+		small_artifact_reward = yes
+	}
+}
+
+fleet_event = {
+	id = gts_evt_rim.3
+	title = "gts_evt_rim.3.name"
+	desc = "gts_evt_rim.3.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_evt_rim.3.a
+	}
+}
+
+fleet_event = {
+	id = gts_evt_rim.4
+	title = "gts_evt_rim.4.name"
+	desc = "gts_evt_rim.4.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_evt_rim.4.a
+		owner = {
+			add_modifier = {
+				modifier = gts_ringworld_A
+			}
+			give_technology = {
+				tech = tech_psionic_theory
+			}
+		}
+		great_artifact_reward = yes
+	}
+	option = {
+		name = gts_evt_rim.4.b
+		owner = {
+			add_modifier = {
+				modifier = gts_ringworld_B
+			}
+		}
+		owner = {
+			give_technology = {
+				tech = tech_mega_engineering
+			}
+		}
+		large_artifact_reward = yes
+	}
+}

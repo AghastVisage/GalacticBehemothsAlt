@@ -1,0 +1,1088 @@
+@Edict1Cost = 10
+@Edict2Cost = 20
+@Edict3Cost = 30
+@EdictSpecialCost = 1
+@EdictPerpetual = -1
+@campaignDuration = -1
+@campaignCost = 15
+@sacrificeDuration = 1800
+
+Aya_Concert = {
+	#法令：举办全球演唱会
+	length = @EdictPerpetual	#
+	icon = "GFX_edict_type_policy"	#图标
+	resources = {
+		category = edicts
+		upkeep = {
+			energy = 10
+		}
+	}
+	modifier = {
+		#修正
+		pop_happiness = 0.1
+		country_unity_produces_mult = 0.25
+	}
+	potential = {
+		#可见
+		has_origin = origin_Aya
+	}
+	ai_weight = {
+		#ai权重
+		weight = @EdictHighPrio
+	}
+}
+
+Aya_Repression = {
+	#法令：重拳出击
+	length = @EdictPerpetual	#
+	icon = "GFX_edict_type_policy"	#图标
+	resources = {
+		category = edicts
+		upkeep = {
+			energy = 10
+		}
+	}
+	modifier = {
+		#修正
+		planet_crime_add = -25
+		planet_stability_add = 20
+	}
+	potential = {
+		#可见
+		has_origin = origin_Aya
+	}
+	ai_weight = {
+		#ai权重
+		weight = @EdictHighPrio
+	}
+}
+
+gts_xenophobe_campaign = {
+	#警戒宣传 我们永远不能对我们那些或大或小的邻居放下戒心。巨娘可以轻松抹平我们的城防，小人则能轻易绕过封锁发动袭击。为了保卫国家不毁于异族之手，我们必须加强全社会的安全意识。
+	length = @campaignDuration
+	icon = "GFX_edict_type_time"
+	resources = {
+		category = edicts
+		upkeep = {
+			unity = 40
+			multiplier = value:edict_size_effect
+		}
+	}
+	modifier = {
+		pop_ethic_xenophobe_attraction_mult = 1
+		planet_army_build_speed_mult = 0.25
+		starbase_shipyard_build_speed_mult = 0.25
+	}
+	potential = {
+		has_comms_with_alien_civilization = yes
+		has_technology = tech_planetary_unification
+		NOT = {
+			has_ethic = ethic_gestalt_consciousness
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+gts_xenophile_campaign = {
+	#强制物种间对话 历史一次又一次的证明，在危机面前保持孤立只会加速自己的灭亡。作为几乎同时步入星海的智慧物种，纵使身差万倍，也肯定能找到共同话题，实现合作共赢的。
+	length = @campaignDuration
+	icon = "GFX_edict_type_time"
+	resources = {
+		category = edicts
+		upkeep = {
+			unity = 40
+			multiplier = value:edict_size_effect
+		}
+	}
+	modifier = {
+		pop_ethic_xenophile_attraction_mult = 1
+		envoy_improve_relations_mult = 0.25
+		country_border_friction_mult = -0.25
+	}
+	potential = {
+		has_comms_with_alien_civilization = yes		#与外星人有接触
+		has_technology = tech_planetary_unification		#拥有行星统一
+		NOT = {
+			has_ethic = ethic_gestalt_consciousness
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+gts_egalitarian_campaign = {
+	#积极平权 让人才埋没于阶级压迫与种族仇恨的国家是一个失败的国家。巨娘和小人应当能不受社会偏见而平等的参与社会建设，并实现自己的人生价值。生理差异和文化冲击带来的困难诚然存在，但团结的国民必将取得胜利。
+	length = @campaignDuration
+	icon = "GFX_edict_type_time"
+	resources = {
+		category = edicts
+		upkeep = {
+			unity = 40
+			multiplier = value:edict_size_effect
+		}
+	}
+	modifier = {
+		pop_ethic_egalitarian_attraction_mult = 1
+		pop_happiness = 0.05
+		planet_jobs_specialist_produces_mult = 0.05
+		planet_jobs_worker_produces_mult = 0.05
+	}
+	potential = {
+		has_comms_with_alien_civilization = yes	
+		has_technology = tech_planetary_unification		#拥有行星统一
+		NOT = {
+			has_ethic = ethic_gestalt_consciousness
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+gts_authoritarian_campaign = {
+	#强化监管 与外星生物的交往显然会对帝国的传统秩序造成不小的冲击。如果我们想要在稳定国本和对外交往取得平衡，加强对统治阶层的内部教育和重视社会治安显然是必要的。
+	length = @campaignDuration
+	icon = "GFX_edict_type_time"
+	resources = {
+		category = edicts
+		upkeep = {
+			unity = 40
+			multiplier = value:edict_size_effect
+		}
+	}
+	modifier = {
+		pop_ethic_authoritarian_attraction_mult = 1
+		planet_crime_add = -10
+		planet_jobs_ruler_produces_mult = 0.05
+		planet_jobs_slave_produces_mult = 0.05
+	}
+	potential = {
+		has_comms_with_alien_civilization = yes		#与外星人有接触
+		has_technology = tech_planetary_unification		#拥有行星统一
+		NOT = {
+			has_ethic = ethic_gestalt_consciousness
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+gts_militarist_campaign = {
+	#军事理论研习 太空中那体型迥异的种族无疑给了我国传统军事理论一记重捶。无论是保家卫国还是开疆扩土，为了保证我们的将士在战场上不会落入下风，我国的军事系统从后勤运输到登陆巷战，都必须进行大规模修改。
+	length = @campaignDuration
+	icon = "GFX_edict_type_time"
+	resources = {
+		category = edicts
+		upkeep = {
+			unity = 40
+			multiplier = value:edict_size_effect
+		}
+	}
+	modifier = {
+		pop_ethic_militarist_attraction_mult = 1
+		country_ship_upgrade_cost_mult = -0.25
+		army_experience_gain_mult = 0.5
+	}
+	potential = {
+		has_comms_with_alien_civilization = yes		#与外星人有接触
+		has_technology = tech_planetary_unification		#拥有行星统一
+		NOT = {
+			has_ethic = ethic_gestalt_consciousness
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+gts_pacifist_campaign = {
+	#银河避风港 星空中上演的无数战争提醒着我们：在剑拔弩张的世界建立一个和平的避风港无疑是有助于韬光养晦的好主意。我们将坐视那些狂热于杀光小人或巨娘的好战分子打的两败俱伤，并从中渔翁得利。
+	length = @campaignDuration
+	icon = "GFX_edict_type_time"
+	resources = {
+		category = edicts
+		upkeep = {
+			unity = 40
+			multiplier = value:edict_size_effect
+		}
+	}
+	modifier = {
+		pop_ethic_pacifist_attraction_mult = 1
+		planet_stability_add = 10
+		planet_pops_trade_produces_mult = 0.15
+	}
+	potential = {
+		has_comms_with_alien_civilization = yes		#与外星人有接触
+		has_technology = tech_planetary_unification		#拥有行星统一
+		NOT = {
+			has_ethic = ethic_gestalt_consciousness
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+gts_spiritualist_campaign = {
+	#
+	#
+	length = @campaignDuration
+	icon = "GFX_edict_type_time"
+	resources = {
+		category = edicts
+		upkeep = {
+			unity = 40
+			multiplier = value:edict_size_effect
+		}
+	}
+	modifier = {
+		pop_ethic_spiritualist_attraction_mult = 1
+		planet_jobs_unity_produces_mult = 0.1
+		pop_amenities_usage_add = -0.15
+	}
+	potential = {
+		has_comms_with_alien_civilization = yes		#与外星人有接触
+		has_technology = tech_planetary_unification		#拥有行星统一
+		NOT = {
+			has_ethic = ethic_gestalt_consciousness
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+gts_materialist_campaign = {
+	#学术交流
+	length = @campaignDuration
+	icon = "GFX_edict_type_time"
+	resources = {
+		category = edicts
+		upkeep = {
+			unity = 40
+			multiplier = value:edict_size_effect
+		}
+	}
+	modifier = {
+		pop_ethic_materialist_attraction_mult = 1
+		planet_jobs_physics_research_produces_mult = 0.05
+		planet_jobs_society_research_produces_mult = 0.05
+		planet_jobs_engineering_research_produces_mult = 0.1
+	}
+	potential = {
+		has_comms_with_alien_civilization = yes		#与外星人有接触
+		has_technology = tech_planetary_unification		#拥有行星统一
+		NOT = {
+			has_ethic = ethic_gestalt_consciousness
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+# 虔心崇聖
+
+gts_religious_idols = {
+
+	# 宗教偶像
+
+	length = @campaignDuration
+	icon = "GFX_edict_type_policy"
+
+	potential = {
+		has_origin = origin_Qianxin
+	}
+
+	modifier = {
+		pop_happiness = 0.10
+	}
+
+	resources = {
+		category = edicts
+		cost = {
+			unity = 20
+			multiplier = value:edict_size_effect
+		}
+		upkeep = {
+			unity = 20
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	ai_weight = {
+		weight = @EdictLowPrio
+	}
+}
+
+gts_sacred_path = {
+
+	# 神聖道路
+
+	length = @campaignDuration
+	icon = "GFX_edict_type_policy"
+
+	potential = {
+		has_origin = origin_Qianxin
+	}
+
+	modifier = {
+		science_ship_survey_speed = 0.10
+		ship_anomaly_research_speed_mult = 0.10
+	}
+
+	resources = {
+		category = edicts
+		cost = {
+			unity = 20
+			multiplier = value:edict_size_effect
+		}
+		upkeep = {
+			unity = 20
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	ai_weight = {
+		weight = @EdictLowPrio
+	}
+}
+
+gts_dance_of_aurora = {
+
+	# 極光之舞
+
+	length = @campaignDuration
+	icon = "GFX_edict_type_policy"
+
+	potential = {
+		has_origin = origin_Qianxin
+	}
+
+	modifier = {
+		ship_speed_mult = 0.15
+		ship_evasion_mult = 0.05
+	}
+
+	resources = {
+		category = edicts
+		cost = {
+			unity = 20
+			multiplier = value:edict_size_effect
+		}
+		upkeep = {
+			unity = 20
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	ai_weight = {
+		weight = @EdictLowPrio
+	}
+}
+
+gts_holy_order = {
+
+	# 神聖採購
+
+	length = @campaignDuration
+	icon = "GFX_edict_type_policy"
+
+	potential = {
+		has_origin = origin_Qianxin
+	}
+
+	modifier = {
+		country_trade_fee = -0.10
+		planet_jobs_food_produces_mult = 0.20
+		planet_jobs_consumer_goods_produces_mult = 10
+	}
+
+	resources = {
+		category = edicts
+		cost = {
+			unity = 40
+			multiplier = value:edict_size_effect
+		}
+		upkeep = {
+			unity = 40
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	ai_weight = {
+		weight = @EdictMedPrio
+	}
+}
+
+gts_missionary_zeal = {
+
+	# 傳教熱忱
+
+	length = @campaignDuration
+	icon = "GFX_edict_type_policy"
+
+	potential = {
+		has_origin = origin_Qianxin
+	}
+
+	modifier = {
+		envoys_add = 3
+		pop_government_ethic_attraction = 0.25
+	}
+
+	resources = {
+		category = edicts
+		cost = {
+			unity = 40
+			multiplier = value:edict_size_effect
+		}
+		upkeep = {
+			unity = 40
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	ai_weight = {
+		weight = @EdictMedPrio
+	}
+}
+
+gts_defender_of_faith = {
+
+	# 信仰守護者
+
+	length = @campaignDuration
+	icon = "GFX_edict_type_policy"
+
+	potential = {
+		has_origin = origin_Qianxin
+	}
+
+	modifier = {
+		ship_armor_mult = 0.10
+		ship_shield_mult = 0.10
+		starbase_defensive_war_ship_build_speed_mult = 0.50
+		ship_home_territory_fire_rate_mult = 0.25
+	}
+
+	resources = {
+		category = edicts
+		cost = {
+			unity = 40
+			multiplier = value:edict_size_effect
+		}
+		upkeep = {
+			unity = 40
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	ai_weight = {
+		weight = @EdictMedPrio
+	}
+}
+
+gts_work_ethic = {
+
+	# 職業道德
+
+	length = @campaignDuration
+	icon = "GFX_edict_type_policy"
+
+	allow = {
+		any_owned_leader = {
+			is_councilor = yes
+			is_councilor_type = councilor_gts_qianxin
+		}
+	}
+
+	potential = {
+		has_origin = origin_Qianxin
+	}
+
+	modifier = {
+		planet_jobs_produces_mult = 0.20
+	}
+
+	resources = {
+		category = edicts
+		cost = {
+			unity = 60
+			multiplier = value:edict_size_effect
+		}
+		upkeep = {
+			unity = 60
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	ai_weight = {
+		weight = @EdictHighPrio
+	}
+}
+
+gts_papal_primacy = {
+
+	# 聖女權威
+
+	length = @campaignDuration
+	icon = "GFX_edict_type_policy"
+
+	allow = {
+		any_owned_leader = {
+			is_councilor = yes
+			is_councilor_type = councilor_gts_qianxin
+		}
+	}
+
+	potential = {
+		has_origin = origin_Qianxin
+	}
+
+	modifier = {
+		diplo_weight_mult = 0.25
+		diplomacy_upkeep_mult = -0.25
+	}
+
+	resources = {
+		category = edicts
+		cost = {
+			unity = 60
+			multiplier = value:edict_size_effect
+		}
+		upkeep = {
+			unity = 60
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	ai_weight = {
+		weight = @EdictHighPrio
+	}
+}
+
+gts_just_war = {
+
+	# 十字軍
+
+	length = @campaignDuration
+	icon = "GFX_edict_type_policy"
+
+	allow = {
+		any_owned_leader = {
+			is_councilor = yes
+			is_councilor_type = councilor_gts_qianxin
+		}
+	}
+
+	potential = {
+		has_origin = origin_Qianxin
+	}
+
+	modifier = {
+		ships_upkeep_mult = -0.10
+		starbase_shipyard_build_cost_mult = -0.10
+		starbase_shipyard_build_speed_mult = 0.20
+		country_naval_cap_mult = 0.30
+		weapon_type_energy_weapon_fire_rate_mult = 0.30
+		weapon_type_energy_weapon_damage_mult = 0.30
+	}
+
+	resources = {
+		category = edicts
+		cost = {
+			unity = 60
+			multiplier = value:edict_size_effect
+		}
+		upkeep = {
+			unity = 60
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	ai_weight = {
+		weight = @EdictHighPrio
+	}
+}
+
+gts_ronghe_inside = {
+	length = @sacrificeDuration
+	icon = "GFX_edict_type_time"
+	resources = {
+		category = edicts
+		cost = {
+			unity = 1000
+		}
+	}
+	modifier = {
+		custom_tooltip = "gts_ronghe_inside_tooltip"
+	}
+	potential = {
+		has_valid_civic = civic_gts_assimilator
+		#		OR = {
+		any_owned_planet = {
+			num_assigned_jobs = {
+				job = gts_assimilation
+				value >= 10
+			}
+		}
+		#				any_subject = { #给附庸用的
+		#					any_owned_pop_group = {
+		#						has_job = overlord_mortal_initiate
+		#						has_job = overlord_mortal_initiate_drone
+		#					}
+		#				}
+		#		}
+		NOT = {
+			owner = {
+				has_country_flag = gts_assimilation_cool_down
+			}
+		}
+	}
+	allow = {
+	}
+	effect = {
+		country_event = {
+			id = gts_civ_common.10
+		}
+		set_timed_country_flag = {
+			flag = gts_assimilation_cool_down
+			years = 1
+		}
+	}
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = @EdictLowPrio
+			AND = {
+				years_passed > 60
+				any_owned_planet = {
+					num_assigned_jobs = {
+						job = gts_assimilation
+						value >= 10
+					}
+				}
+				has_monthly_income = {
+					resource = unity
+					value <= 60
+				}
+			}
+		}
+		modifier = {
+			weight = @EdictMedPrio
+			AND = {
+				years_passed > 100
+				any_owned_planet = {
+					num_assigned_jobs = {
+						job = gts_assimilation
+						value >= 10
+					}
+				}
+				has_monthly_income = {
+					resource = unity
+					value <= 80
+				}
+			}
+		}
+	}
+}
+
+gtsra_contact_rawls = {
+	length = 1
+	icon = "GFX_edict_type_policy"
+	resources = {
+		category = edicts
+		cost = {
+			energy = 1
+		}
+	}
+	potential = {
+		has_country_flag = get_rawls
+	}
+	modifier = {
+		custom_tooltip = gtsra_contact_rawls.tooltip
+	}
+	effect = {
+		country_event = {
+			id = gts_rawls.10
+			days = 0
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+gtsra_contact_qhai = {
+	length = 1
+	icon = "GFX_edict_type_policy"
+	resources = {
+		category = edicts
+		cost = {
+			unity = 1
+		}
+	}
+	potential = {
+		or = {
+			has_country_flag = gts_leader_qhai_p1_finish
+			any_owned_leader = { has_leader_flag = gts_qhai}
+		}
+
+	}
+	modifier = {
+		custom_tooltip = gtsra_contact_qhai.tooltip
+	}
+	effect = {
+		country_event = {
+			id = gts_leader_qhai.20
+			days = 0
+		}
+		country_event = {
+			id = gts_leader_qhai.35
+			days = 0
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+gts_setting = {
+	length = 1
+	icon = "GFX_edict_type_policy"
+	resources = {
+		category = edicts
+		cost = {
+			energy = 1
+		}
+	}
+	potential = {
+		is_ai = no
+	}
+	effect = {
+		country_event = {
+			id = gts_setting.0
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+gts_change_giant_fleet = {
+	length = -1
+	icon = "GFX_edict_type_policy"
+	resources = {
+		category = edicts
+		cost = {
+			energy = 1
+		}
+	}
+	potential = {
+		NOT = {
+			has_country_flag = gts_finish_change_giant_fleet
+		}
+	}
+	allow = {
+		has_resource = {
+			type = alloys
+			amount > gts_change_ship_total_cost
+		}
+		has_resource = {
+			type = food
+			amount > gts_change_bio_ship_total_cost
+		}
+	}
+	effect = {
+		add_resource = {
+			alloys = -1
+			mult = gts_change_ship_total_cost
+		}
+		add_resource = {
+			food = -1
+			mult = gts_change_bio_ship_total_cost
+		}
+		set_country_flag = gts_finish_change_giant_fleet
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+gts_change_giant_buildings = {
+	length = -1
+	icon = "GFX_edict_type_policy"
+	resources = {
+		category = edicts
+		cost = {
+			energy = 1
+		}
+	}
+	potential = {
+		NOT = {
+			has_country_flag = gts_finish_change_giant_buildings
+		}
+	}
+	allow = {
+		has_resource = {
+			type = minerals
+			amount > gts_change_total_cost
+		}
+	}
+	effect = {
+		add_resource = {
+			minerals = -1
+			mult = gts_change_total_cost
+		}
+		set_country_flag = gts_finish_change_giant_buildings
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+gts_115_yarong_ju_xiang_1 = {
+	length = 1
+	icon = "GFX_edict_type_policy"
+	resources = {
+		category = edicts
+		cost = {
+			energy = 1
+		}
+	}
+	potential = {
+		has_country_flag = gts_special_project_yarong_1_complete
+	}
+	modifier = {
+		custom_tooltip = gts_115_yarong_ju_xiang_1.tooltip
+	}
+	effect = {
+		event_target:gts_yarong_fleet =  {
+			set_ship_design = {
+				design = "NAME_gts_yarong_ship_1"
+			}
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+gts_115_yarong_ju_xiang_2 = {
+	length = 1
+	icon = "GFX_edict_type_policy"
+	resources = {
+		category = edicts
+		cost = {
+			energy = 1
+		}
+	}
+	potential = {
+		has_country_flag = gts_special_project_yarong_1_complete
+
+	}
+	allow = {
+		has_country_flag = can_trigger_scat_content
+	}
+	modifier = {
+		custom_tooltip = gts_115_yarong_ju_xiang_2.tooltip
+	}
+	effect = {
+		event_target:gts_yarong_fleet =  {
+			set_ship_design = {
+				design = "NAME_gts_yarong_ship_2"
+			}
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+skadi_traits_lottery = {
+	length = 90	#仿虚假伪抽卡，事件什么的都可以加进去，就是代码写出来臃肿不行
+	icon = "GFX_edict_type_policy"
+	resources = {
+		category = edicts
+		cost = {
+			food = 1
+		}
+	}
+	potential = {
+		any_owned_leader = {
+			has_leader_flag = gts_skadi
+		}
+		NOR = {
+			has_global_flag = skadi_eating
+			has_active_event = {
+				gts_skadi_events.00
+			}
+		}
+	}
+	effect = {
+		country_event = {
+			id = gts_skadi_events.00
+		}
+	}
+}
+
+gts_yarong_rebirth = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_time"
+	resources = {
+		category = edicts
+		cost = {
+			unity = 100
+		}
+	}
+	modifier = {
+		custom_tooltip = "gts_yarong_rebirth_tooltip"
+	}
+	potential = {
+		has_origin = origin_god_keeper
+		has_country_flag = gts_yarong_twelve_level12
+	}
+	allow = {
+		NAND = { 
+			exists = event_target:gts_yarong
+			count_owned_pop_amount = {
+				count >= 10
+			}
+		}
+	}
+	effect = {
+		country_event = {
+			id = gts_god_keeper.5013
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+gts_yarong_cloth = {
+	length = 1
+	icon = "GFX_edict_type_policy"
+	resources = {
+
+	}
+	potential = {
+		owner = {
+			any_owned_leader = {
+				has_leader_flag = gts_yarong
+			}
+		}
+		NOR = {
+			has_active_event = {
+				gts_bfbf.300
+			}
+		}
+	}
+	effect = {
+		country_event = {
+			id = gts_bfbf.300
+		}
+	}
+}
+
+gts_linfeng_cloth = {
+	length = 1
+	icon = "GFX_edict_type_policy"
+	resources = {
+		category = edicts
+		cost = {
+			energy = 1
+		}
+	}
+	potential = {
+		owner = {
+			any_owned_leader = {
+				has_leader_flag = gts_linfeng
+			}
+		}
+		NOR = {
+			has_active_event = {
+				gts_linfeng.1000
+			}
+		}
+	}
+	effect = {
+		country_event = {
+			id = gts_linfeng.1000
+		}
+	}
+}
+gts_linfeng_grilship_transform = {
+	length = 1
+	icon = "GFX_edict_type_policy"
+	resources = {
+		category = edicts
+		cost = {
+			energy = 1
+		}
+	}
+	potential = {
+		owner = {
+			any_owned_leader = {
+				has_leader_flag = gts_linfeng
+			}
+		}
+		# event_target:gts_linfeng = {
+		# 	check_variable = {
+		# 		which = gts_love_logs
+		# 		value >= 70
+		# 	}
+		# }
+		NOR = {
+			has_active_event = {
+				gts_linfeng.301
+			}
+			has_country_flag = gts_linfeng_grilship_transform_start
+		}
+	}
+	effect = {
+		country_event = {
+			id = gts_linfeng.301
+		}
+	}
+}
+
+gts_linfeng_shoes_give = {
+	length = 1
+	icon = "GFX_edict_type_policy"
+	resources = {
+		category = edicts
+		cost = {
+			energy = 1
+		}
+	}
+	potential = {
+		owner = {
+			any_owned_leader = {
+				has_leader_flag = gts_linfeng
+			}
+		}
+		# event_target:gts_linfeng = {
+		# 	check_variable = {
+		# 		which = gts_love_logs
+		# 		value >= 70
+		# 	}
+		# }
+		NOR = {
+			has_active_event = {
+				gts_linfeng.307
+			}
+			has_country_flag = gts_linfeng_shoes_given_end
+		}
+	}
+	effect = {
+		country_event = {
+			id = gts_linfeng.307
+		}
+	}
+}

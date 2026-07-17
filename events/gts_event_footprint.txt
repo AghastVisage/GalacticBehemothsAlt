@@ -1,0 +1,150 @@
+namespace = gts_evt_footprint
+
+ship_event = {
+	id = gts_evt_footprint.1
+	title = "gts_evt_footprint.1.name"
+	desc = "gts_evt_footprint.1.desc"
+	picture = GFX_evt_desert
+	location = FROM
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_ancient.10.a
+		leader = {
+			add_experience = 200
+		}
+		from = {
+			create_archaeological_site = site_gts_barren_foot
+		}
+	}
+}
+fleet_event = {
+	id = gts_evt_footprint.2
+	title = "gts_evt_footprint.2.name"
+	desc = "gts_evt_footprint.2.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = BARRENFOOT1
+	}
+}
+
+fleet_event = {
+	id = gts_evt_footprint.3
+	title = "gts_evt_footprint.3.name"
+	desc = "gts_evt_footprint.3.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = BARRENFOOT2
+	}
+}
+
+fleet_event = {
+	id = gts_evt_footprint.4
+	title = "gts_evt_footprint.4.name"
+	desc = "gts_evt_footprint.4.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = BARRENFOOT3
+		small_artifact_reward = yes
+	}
+}
+
+fleet_event = {
+	id = gts_evt_footprint.5
+	title = "gts_evt_footprint.5.name"
+	desc = "gts_evt_footprint.5.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = BARRENFOOT4
+		small_artifact_reward = yes
+	}
+}
+
+fleet_event = {
+	id = gts_evt_footprint.6
+	title = "gts_evt_footprint.6.name"
+	desc = "gts_evt_footprint.6.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+			change_pc = pc_tundra
+			set_planet_size = 30
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = BARRENFOOT5
+		small_artifact_reward = yes
+		hidden_effect = {
+			from.planet = {
+				change_pc = pc_tundra
+				set_planet_size = 30
+				add_modifier = {
+					modifier = great_footprint
+				}
+				add_deposit = d_portal_research_zone
+				add_deposit = d_submerged_ore_veins
+				add_deposit = d_ore_rich_caverns
+			}
+		}
+	}
+}

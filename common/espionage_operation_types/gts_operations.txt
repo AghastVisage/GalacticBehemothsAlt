@@ -1,0 +1,213 @@
+@diff_t0 = 4
+@diff_t1 = 5
+@diff_t2 = 6
+@diff_t3 = 7
+@diff_t4 = 8
+@diff_t5 = 9
+@diff_t6 = 10
+@diff_t7 = 11
+@diff_t8 = 12
+@diff_t9 = 13
+
+@operationTargetedByTimer = 10800 #30 years during which the effects of an operation may be felt by select Spy Network events
+
+# this = operation
+# from = operation target
+
+operation_gts_find_abnormal = {
+
+	# 收容異常（取得3年科研點）
+
+	categories = {
+		op_cat_subterfuge
+		op_cat_technology
+	}
+
+	picture = GFX_evt_physics_research
+	desc = operation_gts_find_abnormal_desc
+	stages = 1
+
+	spy_power_cost = 30
+
+	resources = {
+		category = operations
+		cost = {
+			influence = 60
+		}
+		upkeep = {
+			energy = 12
+		}
+	}
+
+	potential = {
+		owner = {
+			has_civic = civic_gts_scp
+		}
+		target = {
+			is_primitive = no
+		}
+	}
+
+	allow = {
+		custom_tooltip = {
+			is_running_espionage_operation = no
+			fail_text = operation_one_at_a_time
+		}
+	}
+
+	stage = {
+		difficulty = @diff_t3
+		icon = GFX_espionage_chapter_icon_success
+		event = gts_civ_scp.11
+	}
+
+	on_roll_failed = {
+		standard_espionage_operation_on_roll_failed = {
+			RANDOM_EVENTS = operation_random_events_deepcover
+		}
+	}
+
+	on_create = {
+		target = {
+			set_timed_country_flag = {
+				flag = espionage_operation_targeted_by@root.owner				#Used in random Spy Network events
+				days = @operationTargetedByTimer
+			}
+		}
+	}
+}
+
+operation_gts_research_abnormal = {
+
+	# 研究異常（在目標國家生成五年debuff都市傳說）
+
+	categories = {
+		op_cat_subterfuge
+		op_cat_government
+	}
+
+	picture = GFX_evt_spymaster	#贴图
+	desc = operation_gts_research_abnormal_desc
+	stages = 1
+
+	spy_power_cost = 60
+
+	resources = {
+		category = operations
+		cost = {
+			influence = 120
+		}
+		upkeep = {
+			energy = 24
+		}
+	}
+
+	potential = {
+		owner = {
+			has_civic = civic_gts_scp
+		}
+		target = {
+			is_primitive = no
+		}
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = operation_gts_research_over
+			target = {
+				NOT = {
+					has_modifier = gts_city_mistory
+				}
+			}
+		}
+		custom_tooltip = {
+			is_running_espionage_operation = no
+			fail_text = operation_one_at_a_time
+		}
+	}
+
+	stage = {
+		difficulty = @diff_t6
+		icon = GFX_espionage_chapter_icon_success
+		event = gts_civ_scp.12
+	}
+
+	on_roll_failed = {
+		standard_espionage_operation_on_roll_failed = {
+			RANDOM_EVENTS = operation_random_events_deepcover
+		}
+	}
+
+	on_create = {
+		target = {
+			set_timed_country_flag = {
+				flag = espionage_operation_targeted_by@root.owner				#Used in random Spy Network events
+				days = @operationTargetedByTimer
+			}
+		}
+	}
+}
+
+operation_gts_fire_abnormal = {
+
+	# 引發異常（在目標星球上生成野怪）
+
+	categories = {
+		op_cat_sabotage
+		op_cat_military
+	}
+
+	picture = GFX_evt_stellarites
+	desc = operation_gts_fire_abnormal_desc
+	stages = 1
+
+	spy_power_cost = 90
+
+	resources = {
+		category = operations
+		cost = {
+			influence = 180
+		}
+		upkeep = {
+			energy = 36
+		}
+	}
+
+	potential = {
+		owner = {
+			has_civic = civic_gts_scp
+		}
+		target = {
+			is_primitive = no
+		}
+	}
+
+	allow = {
+		custom_tooltip = {
+			is_running_espionage_operation = no
+			fail_text = operation_one_at_a_time
+		}
+	}
+
+	stage = {
+		difficulty = @diff_t9
+		icon = GFX_espionage_chapter_icon_success
+		event = gts_civ_scp.13
+	}
+
+	on_roll_failed = {
+		standard_espionage_operation_on_roll_failed = {
+			RANDOM_EVENTS = operation_random_events_deepcover
+		}
+	}
+
+	on_create = {
+		target = {
+			set_timed_country_flag = {
+				flag = espionage_operation_targeted_by@root.owner				#Used in random Spy Network events
+				days = @operationTargetedByTimer
+			}
+		}
+	}
+}
+

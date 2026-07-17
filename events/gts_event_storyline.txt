@@ -1,0 +1,235 @@
+namespace = gts_story_line
+
+#开局事件
+country_event = {
+    id = gts_story_line.0
+    hide_window = yes is_triggered_only = yes
+    trigger = {
+        is_ai = no
+    }
+    immediate = {
+        create_message = {
+            type = MESSAGE_GTS_STARTUP
+            days = 5
+            localization = MESSAGE_GTS_START_desc
+        }
+        create_message = {
+            type = MESSAGE_GTS_MOD
+            days = 5
+            localization = MESSAGE_GTS_MOD_desc
+        }
+        create_message = {
+            type = MESSAGE_GTS_COM
+            days = 5
+            localization = MESSAGE_GTS_COM_desc
+        }
+        create_message = {
+            type = MESSAGE_GTS_QHAI
+            days = 5
+            localization = MESSAGE_GTS_QHAI_desc
+        }
+        country_event = {
+            id = gts_story_line.1
+        }
+    }
+}
+
+country_event = {
+    id = gts_story_line.1
+    is_triggered_only = yes
+    title = gts_event_storyline.1.name
+    desc = gts_event_storyline.1.desc
+    picture = GFX_gts_storyline_1
+    trigger = {
+        is_ai = no
+        not = {
+            has_country_flag = gts_story_line_off
+        }
+    }
+    option = {
+        name = gts_event_storyline.1.option.1
+        hidden_effect = {
+            country_event = {
+                id = gts_story_line.2
+            }
+        }
+    }
+    option = {
+        name = gts_event_storyline.1.option.3
+
+    }
+    option = {
+        name = gts_event_storyline.1.option.4
+        hidden_effect = {
+            set_country_flag = gts_story_line_off
+        }
+        custom_tooltip = gts_event_storyline.1.option.4.tooltips
+    }
+}
+
+country_event = {
+    id = gts_story_line.2
+    is_triggered_only = yes
+    title = gts_event_storyline.2.name
+    desc = gts_event_storyline.2.desc
+    picture = GFX_gts_storyline_2
+    show_sound = event_yellow_alert
+    trigger = {
+        is_ai = no
+        not = {
+            has_country_flag = gts_story_line_off
+        }
+    }
+    option = {
+        name = gts_event_storyline.1.option.1
+        hidden_effect = {
+            country_event = {
+                id = gts_story_line.3
+            }
+        }
+    }
+}
+
+country_event = {
+    id = gts_story_line.3
+    is_triggered_only = yes
+    title = gts_event_storyline.3.name
+    desc = gts_event_storyline.3.desc
+    picture = GFX_gts_storyline_7
+    show_sound = event_gts_mechanical_button
+    trigger = {
+        is_ai = no
+        not = {
+            has_country_flag = gts_story_line_off
+        }
+    }
+    option = {
+        name = gts_event_storyline.3.option.1
+        hidden_effect = {
+            country_event = {
+                id = gts_story_line.4
+            }
+        }
+    }
+}
+
+country_event = {
+    id = gts_story_line.4
+    is_triggered_only = yes
+    title = gts_event_storyline.4.name
+    desc = gts_event_storyline.4.desc.1
+    desc = gts_event_storyline.4.desc.2
+    desc = gts_event_storyline.4.desc.3
+    picture = GFX_gts_storyline_4
+    trigger = {
+        is_ai = no
+        not = {
+            has_country_flag = gts_story_line_off
+        }
+    }
+    option = {
+        name = gts_event_storyline.4.option.1
+        hidden_effect = {
+            country_event = {
+                id = gts_story_line.5
+            }
+        }
+    }
+}
+
+country_event = {
+    id = gts_story_line.5
+    is_triggered_only = yes
+    title = gts_event_storyline.5.name
+    desc = gts_event_storyline.5.desc
+    picture = GFX_gts_storyline_5
+    trigger = {
+        is_ai = no
+        not = {
+            has_country_flag = gts_story_line_off
+        }
+    }
+    option = {
+        name = gts_event_storyline.5.option.1
+        hidden_effect = {
+            country_event = {
+                id = gts_story_line.6
+            }
+        }
+    }
+}
+
+country_event = {
+    id = gts_story_line.6
+    is_triggered_only = yes
+    diplomatic = yes
+    title = gts_event_storyline.6.name
+    desc = gts_event_storyline.6.desc
+    picture_event_data = {
+        room = paragon_skrand_room
+        portrait = gts_portrait_qhai4
+    }
+    trigger = {
+        is_ai = no
+        not = {
+            has_country_flag = gts_story_line_off
+        }
+    }
+    option = {
+        name = gts_event_storyline.6.option.1
+        response_text = gts_event_storyline.6.option.1.response
+        set_country_flag = gts_leader_qhai_con
+        is_dialog_only = yes
+    }
+    option = {
+        allow = {
+            has_country_flag = gts_leader_qhai_con
+        }
+        name = gts_event_storyline.6.option.2
+        response_text = gts_event_storyline.6.option.2.response
+        set_country_flag = gts_leader_qhai_con2
+        is_dialog_only = yes
+    }
+    option = {
+        allow = {
+            has_country_flag = gts_leader_qhai_con2
+        }
+        name = gts_event_storyline.6.option.3
+        response_text = gts_event_storyline.6.option.3.response
+        set_country_flag = gts_leader_qhai_con3
+        is_dialog_only = yes
+    }
+    option = {
+        allow = {
+            has_country_flag = gts_leader_qhai_con3
+        }
+        name = gts_event_storyline.6.option.4
+        response_text = gts_event_storyline.6.option.4.response
+        set_country_flag = gts_leader_qhai_con4
+        is_dialog_only = yes
+    }
+    option = {
+        allow = {
+            has_country_flag = gts_leader_qhai_con4
+        }
+        name = gts_event_storyline.6.option.5
+        response_text = gts_event_storyline.6.option.5.response
+        set_country_flag = gts_leader_qhai_con5
+        is_dialog_only = yes
+    }
+    option = {
+        allow = {
+            has_country_flag = gts_leader_qhai_con5
+        }
+        name = gts_event_storyline.6.option.6
+    }
+    after = {
+        hidden_effect = {
+            add_resource = {
+                influence = 50
+            }
+            remove_gts_qhai_conflag = yes
+        }
+    }
+}
+

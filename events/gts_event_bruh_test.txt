@@ -1,0 +1,291 @@
+namespace = gts_event_bruh_test
+
+# Bruh用來測試各種東西的東西
+
+country_event = {
+	id = gts_event_bruh_test.1
+	title = test
+	desc = test
+	is_triggered_only = yes
+	show_sound = event_scanner
+	picture = GFX_load_83
+	
+	immediate = {
+		set_country_flag = gts_yarong_adult_ceremony
+		set_country_flag = gts_yarong_adult_play
+		set_country_flag = gts_yarong_adult_play2
+		set_country_flag = gts_yarong_adult_play3
+		set_country_flag = gts_yarong_queen_done
+		
+		set_country_flag = gts_yarong_twelve_level2
+		set_country_flag = gts_yarong_twelve_level3
+		set_country_flag = gts_yarong_twelve_level4
+		set_country_flag = gts_yarong_twelve_level5
+		set_country_flag = gts_yarong_twelve_level6
+		set_country_flag = gts_yarong_twelve_level7
+		set_country_flag = gts_yarong_twelve_level8
+		set_country_flag = gts_yarong_twelve_level9
+		set_country_flag = gts_yarong_twelve_level10
+		set_country_flag = gts_yarong_twelve_level11
+		
+		set_country_flag = lottie_10_years
+		set_country_flag = allow_construct_lottie_shoes_station
+	}
+	
+	option = {
+		name = test
+	}
+	option = {
+		name = test
+	}
+	option = {
+		name = test
+	}
+}
+
+event = {
+
+	# 摧毀大部分的船
+
+	id = gts_event_bruh_test.2
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+
+	}
+	
+	immediate = {
+		every_country = {
+			limit = {
+				NOR = {
+					is_country_type = marauder_raiders
+					is_country_type = awakened_marauders
+					is_country_type = fallen_empire
+					is_country_type = awakened_fallen_empire
+					is_country_type = caravaneer_home
+					is_country_type = caravaneer_fleet
+				}
+			}
+			every_controlled_fleet = {
+				limit = {
+					NOR = {
+						is_ship_size = constructor
+						is_ship_size = colonizer
+						is_ship_size = science
+
+						is_ship_size = mining_station
+						is_ship_size = research_station
+						is_ship_size = observation_station
+
+						#is_ship_size = starbase_deep_space_citadel_1
+						#is_ship_size = starbase_deep_space_citadel_2
+						#is_ship_size = starbase_deep_space_citadel_3
+
+						is_ship_size = starbase_outpost
+						is_ship_size = starbase_starport
+						is_ship_size = starbase_starhold
+						is_ship_size = starbase_starfortress
+						is_ship_size = starbase_citadel
+					}
+				}
+				unassign_leader = this
+			}
+		}
+	}
+
+	after = {
+		every_country = {
+			limit = {
+				NOR = {
+					is_country_type = marauder_raiders
+					is_country_type = awakened_marauders
+					is_country_type = fallen_empire
+					is_country_type = awakened_fallen_empire
+					is_country_type = caravaneer_home
+					is_country_type = caravaneer_fleet
+				}
+			}
+			every_controlled_fleet = {
+				limit = {
+					NOR = {
+						is_ship_size = constructor
+						is_ship_size = colonizer
+						is_ship_size = science
+
+						is_ship_size = mining_station
+						is_ship_size = research_station
+						is_ship_size = observation_station
+
+						#is_ship_size = starbase_deep_space_citadel_1
+						#is_ship_size = starbase_deep_space_citadel_2
+						#is_ship_size = starbase_deep_space_citadel_3
+
+						is_ship_size = starbase_outpost
+						is_ship_size = starbase_starport
+						is_ship_size = starbase_starhold
+						is_ship_size = starbase_starfortress
+						is_ship_size = starbase_citadel
+					}
+				}
+				destroy_fleet = this
+			}
+		}
+	}
+}
+
+event = {
+
+	# 摧毀幾乎所有的船
+
+	id = gts_event_bruh_test.3
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+
+	}
+
+	immediate = {
+		every_country = {
+			limit = {
+				NOR = {
+					is_country_type = marauder_raiders
+					is_country_type = awakened_marauders
+					is_country_type = fallen_empire
+					is_country_type = awakened_fallen_empire
+					is_country_type = caravaneer_home
+					is_country_type = caravaneer_fleet
+				}
+			}
+			every_controlled_fleet = {
+				limit = {
+					NOR = {
+						is_ship_size = constructor
+						is_ship_size = colonizer
+						is_ship_size = science
+					}
+				}
+				unassign_leader = this
+			}
+		}
+	}
+
+	after = {
+		every_country = {
+			limit = {
+				NOR = {
+					is_country_type = marauder_raiders
+					is_country_type = awakened_marauders
+					is_country_type = fallen_empire
+					is_country_type = awakened_fallen_empire
+					is_country_type = caravaneer_home
+					is_country_type = caravaneer_fleet
+				}
+			}
+			every_controlled_fleet = {
+				limit = {
+					NOR = {
+						is_ship_size = constructor
+						is_ship_size = colonizer
+						is_ship_size = science
+					}
+				}
+				destroy_fleet = this
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_event_bruh_test.4
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { }
+
+	immediate = {
+		give_technology = {
+			tech = tech_gts_bruh_shipgirl_ship_sizes_1
+		}
+		give_technology = {
+			tech = tech_gts_bruh_shipgirl_ship_sizes_2
+		}
+		give_technology = {
+			tech = tech_gts_bruh_shipgirl_ship_sizes_3
+		}
+		give_technology = {
+			tech = tech_gts_bruh_shipgirl_planet_killer_panties
+		}
+
+		give_technology = {
+			tech = tech_gts_destroyer_ship
+		}
+		give_technology = {
+			tech = tech_gts_battleship_ship
+		}
+		give_technology = {
+			tech = tech_gts_titan_ship
+		}
+		give_technology = { tech = tech_gts_reactor message = no }
+		give_technology = { tech = tech_gts_scout message = no }
+		give_technology = { tech = tech_gts_ftl_engine message = no }
+		give_technology = { tech = tech_gts_computer message = no }
+		give_technology = { tech = tech_gts_bare_feet message = no }
+		give_technology = { tech = tech_gts_energy_blank message = no }
+		give_technology = { tech = tech_gts_mind_strengthen message = no }
+		give_technology = { tech = tech_gts_self_repair message = no }
+		give_technology = { tech = tech_gts_body_strengthen message = no }
+		give_technology = { tech = tech_gts_bombing message = no }
+		give_technology = { tech = tech_gts_aid_repair message = no }
+		give_technology = { tech = tech_gts_beauty message = no }
+		give_technology = { tech = tech_point_defence_gts_1 message = no }
+		give_technology = { tech = tech_flak_battery_gts_2 message = no }
+		give_technology = { tech = tech_amoeba_strike_craft_gts_1 message = no }
+		give_technology = { tech = tech_amoeba_strike_craft_gts_2 message = no }
+		give_technology = { tech = tech_torpedoes_gts message = no }
+		give_technology = { tech = tech_kinetic_artillery_gts_3 message = no }
+		give_technology = { tech = tech_kinetic_artillery_gts_4 message = no }
+		give_technology = { tech = tech_kinetic_artillery_gts_5 message = no }
+		give_technology = { tech = tech_plasma_gts message = no }
+		give_technology = { tech = tech_lasers_gts message = no }
+		give_technology = { tech = tech_scourge_missile_gts_1 message = no }
+		give_technology = { tech = tech_scourge_missile_gts_2 message = no }
+		give_technology = { tech = tech_energy_lance_gts_1 message = no }
+		give_technology = { tech = tech_energy_lance_gts_2 message = no }
+		give_technology = { tech = tech_gts_fist message = no }
+	}
+}
+
+country_event = {
+	id = gts_event_bruh_test.5
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		any_country = {
+			is_ai = no
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				any_country = {
+					is_ai = no
+					has_country_flag = gts_bruh_test_1_flag
+				}
+			}
+			remove_country_flag = gts_bruh_test_1_flag
+		}
+		else = {
+			random_country = {
+				limit = {
+					is_ai = no
+				}
+				set_country_flag = gts_bruh_test_1_flag
+			}
+		}
+	}
+}
+

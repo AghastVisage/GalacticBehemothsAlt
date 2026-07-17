@@ -1,0 +1,29 @@
+### 千海 ###
+gts_guide_trigger_p1_going = {
+    NOR = {
+        has_country_flag = gts_leader_qhai_event_going
+        has_country_flag = gts_leader_qhai_p1_finish
+    }
+}
+gts_guide_trigger_p1_finish = {
+    has_country_flag = gts_leader_qhai_p1_finish
+    NOT = {exists = event_target:gts_qhai}
+}
+
+gts_can_treform_planet_qhai = {
+    owner = {
+        NOT = {
+            has_country_flag = triggered_qhai_planet
+        }
+        has_country_flag = can_trigger_qhai_planet
+        any_owned_leader = {
+            has_leader_flag = gts_qhai
+        }
+    }
+}
+
+#### 犽戎 ###
+is_gts_yarong_origin = {
+    exists = event_target:gts_yarong
+    has_origin = origin_god_keeper
+}

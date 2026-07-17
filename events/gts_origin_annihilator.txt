@@ -1,0 +1,3008 @@
+namespace = gts_annihilator_origin
+namespace = gts_annihilator
+
+country_event = { #毁灭起源
+	id = gts_annihilator_origin.1
+    hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		country_event = { id = gts_annihilator.2 days = 3650 }
+	    country_event = { id = gts_annihilator.1 days = 5 }
+		country_event = { id = gts_annihilator.5	days = 25 }
+	}
+}
+
+
+country_event = { #毁灭起源起源buff
+	id = gts_annihilator_origin.2 #ID
+	hide_window = yes #隐藏界面
+	is_triggered_only = yes #只能触发
+	trigger = { #触发器：有起源
+		has_origin = origin_annihilator
+	}
+	fire_only_once = yes
+	
+	immediate = { 
+		set_country_flag = custom_start_screen
+		random_owned_planet  = { #随机拥有的星球
+			limit = { has_planet_flag = annihilator_gts_belly_planet } #限制：需为腹
+			annihilator_origin_effect = yes #提供起源buff
+		}
+	}
+}
+
+country_event = {
+	id = gts_annihilator.1
+	title = gts_annihilator.1.name
+	desc = gts_annihilator.1.desc
+	picture = GFX_evt_think_tank
+	show_sound = event_administrative_work
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		host_has_dlc = Apocalypse
+		has_origin = origin_annihilator
+	}
+	option = {
+		name = gts_annihilator.1.a
+		custom_tooltip = gts_annihilator.1.a.tooltip
+		trigger = {
+			resource_stockpile_compare = {
+				resource = energy
+				value >= 100
+			}
+		}
+		owner = {
+			add_resource = {
+				energy = -100
+			}
+		}
+	}
+	option = {
+		name = gts_annihilator.1.b
+		custom_tooltip = gts_annihilator.1.b.tooltip
+		set_country_flag = looking_of_master
+	}
+	option = {
+		name = gts_annihilator.1.c
+		custom_tooltip = gts_annihilator.1.c.tooltip
+		hidden_effect = {
+			FROM = {
+				random_owned_pop_group = {
+					kill_all_pop = yes
+				}
+				random_owned_planet = {
+					add_deposit = d_city_ruins
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_annihilator.2
+	title = gts_annihilator.2.name
+	desc = gts_annihilator.2.desc
+	picture = GFX_evt_alien_ruins
+	show_sound = event_red_alert
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		has_origin = origin_annihilator
+		has_country_flag = looking_of_master
+		any_owned_planet = {
+			AND = {
+				has_deposit = d_giantess_back_plain_dirty
+				has_deposit = d_giantess_back_plain_sweaty
+				has_deposit = d_giantess_belly_plain_dirty
+				has_deposit = d_giantess_belly_plain_sweaty
+			}
+		}
+	}
+	option = {
+		name = gts_annihilator.2.a
+		custom_tooltip = gts_annihilator.2.a_tooltip
+		trigger = {
+			resource_stockpile_compare = {
+				resource = energy
+				value >= 1000
+			}
+			resource_stockpile_compare = {
+				resource = food
+				value >= 200
+			}
+		}
+		every_owned_planet = {
+			limit = {
+				has_planet_flag = annihilator_gts_belly_planet
+			}
+			remove_deposit = d_giantess_back_plain_dirty
+			remove_deposit = d_giantess_back_plain_sweaty
+			remove_deposit = d_giantess_belly_plain_dirty
+			remove_deposit = d_giantess_belly_plain_sweaty
+		}
+		remove_country_flag = looking_of_master
+		owner = {
+			add_resource = {
+				energy = -1000
+				food = -200
+			}
+		}
+	}
+	option = {
+		name = gts_annihilator.2.a
+		custom_tooltip = gts_annihilator.2.a_tooltip
+		trigger = {
+			resource_stockpile_compare = {
+				resource = energy
+				value >= 1000
+			}
+			resource_stockpile_compare = {
+				resource = consumer_goods
+				value >= 200
+			}
+		}
+		every_owned_planet = {
+			limit = {
+				has_planet_flag = annihilator_gts_belly_planet
+			}
+			remove_deposit = d_giantess_back_plain_dirty
+			remove_deposit = d_giantess_back_plain_sweaty
+			remove_deposit = d_giantess_belly_plain_dirty
+			remove_deposit = d_giantess_belly_plain_sweaty
+		}
+		remove_country_flag = looking_of_master
+		owner = {
+			add_resource = {
+				energy = -1000
+				consumer_goods = -200
+			}
+		}
+	}
+	option = {
+		name = gts_annihilator.2.b
+		custom_tooltip = gts_annihilator.2.b_tooltip
+		trigger = {
+			OR = {
+				resource_stockpile_compare = {
+					resource = energy
+					value < 1000
+				}
+				AND = {
+					resource_stockpile_compare = {
+						resource = energy
+						value >= 1000
+					}
+					resource_stockpile_compare = {
+						resource = food
+						value < 200
+					}
+					resource_stockpile_compare = {
+						resource = consumer_goods
+						value < 200
+					}
+				}
+			}
+		}
+		random_owned_planet = {
+			destroy_colony = yes
+		}
+	}
+}
+
+country_event = {
+	id = gts_annihilator.5
+	title = gts_annihilator.5.name
+	desc = gts_annihilator.5.desc
+	picture = GFX_evt_ship_in_orbit
+	show_sound = event_ship_bridge
+	trigger = {
+		has_origin = origin_annihilator
+		host_has_dlc = Apocalypse
+	}
+	is_triggered_only = yes
+	option = {
+		name = gts_annihilator.5.a
+		custom_tooltip = gts_annihilator.5.tooltip
+		set_country_flag = master_wants_to_play
+		hidden_effect = {
+			from.owner = {
+				give_allow_play_effect = yes
+				country_event = {
+					id = gts_annihilator.6
+				}
+				country_event = {
+					id = gts_annihilator.7
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_annihilator.6
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		capital_scope = {
+			create_master_ship = yes
+			last_created_fleet = {
+				set_location = {
+					target = this
+					distance = 45
+					angle = random
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_annihilator.7
+	title = gts_annihilator.7.name
+	desc = gts_annihilator.7.desc
+	picture = GFX_evt_alien_ruins
+	show_sound = event_airlock
+	trigger = {
+		has_origin = origin_annihilator
+		host_has_dlc = Apocalypse
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = gts_annihilator.7.a
+		custom_tooltip = gts_annihilator.7.tooltip
+		set_country_flag = master_wants_to_enjoy
+		hidden_effect = {
+			from.owner = {
+				country_event = {
+					id = gts_annihilator.8
+					days = 4000
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_annihilator.8
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		if = {
+			limit = {
+				has_country_flag = master_wants_to_enjoy
+			}
+			from.owner = {
+				country_event = {
+					id = gts_annihilator.10
+					days = -1
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				NOT = {
+					has_country_flag = master_wants_to_enjoy
+				}
+			}
+			from.owner = {
+				country_event = {
+					id = gts_annihilator.9
+					days = -1
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_annihilator.9
+	title = gts_annihilator.9.name
+	desc = gts_annihilator.9.desc
+	picture = GFX_evt_bribery
+	show_sound = event_airlock
+	trigger = {
+		has_origin = origin_annihilator
+		host_has_dlc = Apocalypse
+		NOT = {
+			has_country_flag = master_wants_to_enjoy
+		}
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = gts_annihilator.9.a
+		custom_tooltip = gts_annihilator.9.a.tooltip
+		hidden_effect = {
+			every_owned_planet = {
+				limit = {
+					has_planet_flag = annihilator_gts_belly_planet
+				}
+				remove_deposit = d_giantess_strange_noise
+				add_deposit = d_giantess_understandable_noise
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_annihilator.10
+	title = gts_annihilator.10.name
+	desc = gts_annihilator.10.desc
+	picture = GFX_evt_alien_ruins
+	show_sound = event_airlock
+	trigger = {
+		has_origin = origin_annihilator
+		host_has_dlc = Apocalypse
+		has_country_flag = master_wants_to_enjoy
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = gts_annihilator.10.a
+		custom_tooltip = gts_annihilator.10.a.tooltip
+		hidden_effect = {
+			every_owned_planet = {
+				limit = {
+					has_planet_flag = annihilator_gts_belly_planet
+				}
+				add_deposit = d_giantess_strange_noise
+				random_owned_pop_group = {
+					kill_all_pop = yes
+				}
+				random_owned_pop_group = {
+					kill_all_pop = yes
+				}
+				random_owned_pop_group = {
+					kill_all_pop = yes
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_annihilator.100
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		if = {
+			limit = {
+				has_country_flag = master_wants_to_enjoy
+			}
+			remove_country_flag = master_wants_to_enjoy
+		}
+	}
+}
+
+country_event = {
+	id = gts_annihilator.4
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		if = {
+			limit = {
+				NOT = {
+					has_country_flag = master_had_food
+				}
+			}
+			set_country_flag = master_had_food
+		}
+		if = {
+			limit = {
+				NOT = {
+					has_country_flag = master_is_full
+				}
+			}
+			set_country_flag = master_is_full
+		}
+		from.owner = {
+			country_event = {
+				id = gts_annihilator.3
+				days = 1
+			}
+			country_event = {
+				id = gts_annihilator.11
+				days = 1
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_annihilator.3
+	is_triggered_only = yes
+	hide_window = yes
+	fire_only_once = yes
+	immediate = {
+		random_planet_within_border = {
+			limit = {
+				has_planet_flag = annihilator_gts_tummy_planet
+			}
+			change_pc = pc_gaia
+		}
+	}
+}
+
+country_event = {
+	id = gts_annihilator.11
+	title = gts_annihilator.11.name
+	desc = gts_annihilator.11.desc
+	picture = GFX_evt_alien_ruins
+	show_sound = event_airlock
+	trigger = {
+		has_origin = origin_annihilator
+		host_has_dlc = Apocalypse
+		has_country_flag = master_had_food
+	}
+	is_triggered_only = yes
+	option = {
+		name = gts_annihilator.11.a
+		custom_tooltip = gts_annihilator.11.a.tooltip
+		hidden_effect = {
+			random_planet_within_border = {
+				#随机拥有的星球
+				limit = {
+					has_planet_flag = annihilator_gts_tummy_planet
+				}
+				add_modifier = {
+					modifier = tummy_of_gts
+				}
+				add_deposit = d_master_acid
+				add_deposit = d_master_acid
+				add_deposit = d_master_acid
+				add_deposit = d_master_acid
+				add_deposit = d_master_food_remaining
+			}
+			from.owner = {
+				country_event = {
+					id = gts_annihilator.12
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_annihilator.12
+	title = gts_annihilator.12.name
+	desc = gts_annihilator.12.desc
+	picture = GFX_evt_alien_ruins
+	show_sound = event_airlock
+	trigger = {
+		has_origin = origin_annihilator
+		host_has_dlc = Apocalypse
+		has_country_flag = master_is_full
+	}
+	is_triggered_only = yes
+	option = {
+		name = gts_annihilator.12.a
+		custom_tooltip = gts_annihilator.12.a.tooltip
+		trigger = {
+			any_owned_planet = {
+				has_planet_flag = annihilator_gts_tummy_planet
+				pop_amount >= 3000
+			}
+		}
+		hidden_effect = {
+			every_owned_planet = {
+				limit = {
+					has_planet_flag = annihilator_gts_tummy_planet
+				}
+				random_owned_pop_group = {
+					kill_all_pop = yes
+				}
+				random_owned_pop_group = {
+					kill_all_pop = yes
+				}
+				random_owned_pop_group = {
+					kill_all_pop = yes
+				}
+			}
+			from.owner = {
+				country_event = {
+					id = gts_annihilator.13
+					days = 180
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_annihilator.12.a
+		custom_tooltip = gts_annihilator.12.a.tooltip
+		trigger = {
+			any_owned_planet = {
+				has_planet_flag = annihilator_gts_belly_planet
+				pop_amount >= 3000
+			}
+		}
+		hidden_effect = {
+			every_owned_planet = {
+				limit = {
+					has_planet_flag = annihilator_gts_belly_planet
+				}
+				random_owned_pop_group = {
+					kill_all_pop = yes
+				}
+				random_owned_pop_group = {
+					kill_all_pop = yes
+				}
+				random_owned_pop_group = {
+					kill_all_pop = yes
+				}
+			}
+			from.owner = {
+				country_event = {
+					id = gts_annihilator.13
+					days = 180
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_annihilator.12.b
+		custom_tooltip = gts_annihilator.12.b.tooltip
+		hidden_effect = {
+			from.owner = {
+				country_event = {
+					id = gts_annihilator.13
+					days = 360
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_annihilator.13
+	title = gts_annihilator.13.name
+	desc = gts_annihilator.13.desc
+	picture = GFX_evt_space_debris
+	show_sound = event_alien_nature
+	trigger = {
+		has_origin = origin_annihilator
+		host_has_dlc = Apocalypse
+		has_country_flag = master_is_full
+	}
+	is_triggered_only = yes
+	option = {
+		name = gts_annihilator.13.a
+		custom_tooltip = gts_annihilator.13.tooltip
+		hidden_effect = {
+			every_planet_within_border = {
+				limit = {
+					has_planet_flag = annihilator_gts_belly_planet
+				}
+				remove_deposit = d_master_acid
+				remove_deposit = d_master_acid
+				remove_deposit = d_master_acid
+				remove_deposit = d_master_acid
+				add_deposit = d_master_food_remaining
+				add_deposit = d_master_food_remaining
+				add_deposit = d_master_food_remaining
+				add_deposit = d_master_food_remaining
+			}
+			remove_country_flag = master_is_full
+		}
+	}
+}
+
+country_event = {
+	id = gts_annihilator.14
+	title = gts_annihilator.14.name
+	desc = gts_annihilator.14.desc
+	picture = GFX_evt_worrying_signal
+	show_sound = event_mind_over_matter
+	trigger = {
+		has_origin = origin_annihilator
+		pop_amount >= 5000
+		num_owned_planets = 1
+		any_owned_planet = {
+			not = {
+				has_planet_flag = annihilator_gts_tummy_planet
+			}
+		}
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = gts_annihilator.14.a
+		custom_tooltip = gts_annihilator.14.a.tooltip
+		trigger = {
+			resource_stockpile_compare = {
+				resource = energy
+				value >= 10000
+			}
+			resource_stockpile_compare = {
+				resource = food
+				value >= 10000
+			}
+		}
+		hidden_effect = {
+			every_planet_within_border = {
+				limit = {
+					has_planet_flag = annihilator_gts_tummy_planet
+				}
+				change_pc = pc_gaia
+				add_deposit = d_master_acid
+				add_deposit = d_master_acid
+				add_deposit = d_master_acid
+				add_deposit = d_master_acid
+			}
+			add_resource = {
+				energy = -10000
+				food = -10000
+			}
+		}
+	}
+	option = {
+		name = gts_annihilator.14.b
+		custom_tooltip = gts_annihilator.14.b.tooltip
+		trigger = {
+			resource_stockpile_compare = {
+				resource = energy
+				value >= 10000
+			}
+		}
+		hidden_effect = {
+			every_planet_within_border = {
+				limit = {
+					has_planet_flag = annihilator_gts_tummy_planet
+				}
+				change_pc = pc_gaia
+				add_deposit = d_master_acid
+				add_deposit = d_master_acid
+				add_deposit = d_master_acid
+				add_deposit = d_master_acid
+			}
+			add_resource = {
+				energy = -10000
+			}
+			random_owned_pop_group = {
+				kill_all_pop = yes
+			}
+			random_owned_pop_group = {
+				kill_all_pop = yes
+			}
+			random_owned_pop_group = {
+				kill_all_pop = yes
+			}
+			random_owned_pop_group = {
+				kill_all_pop = yes
+			}
+		}
+	}
+	option = {
+		name = gts_annihilator.14.c
+	}
+}
+namespace = gts_annihilator_planet_killer
+
+planet_event = { #Glassing the Progenitor
+	id = gts_annihilator_planet_killer.1
+ 	title = gts_annihilator_planet_killer.1.name
+ 	desc = gts_annihilator_planet_killer.1.desc
+ 	picture = GFX_evt_progenitor_throne
+ 	show_sound = evn_ove_progenitor_throne
+ 	is_triggered_only = yes
+
+ 	pre_triggers = {
+ 		is_capital = yes
+ 		has_owner = yes
+ 	}
+
+ 	trigger = {
+ 		owner = { has_origin = origin_progenitor_hive }
+ 		has_deposit = d_progenitor
+ 	}
+
+ 	immediate = {
+ 		remove_deposit = d_progenitor
+ 		add_deposit = d_progenitor_empty
+ 	}
+ 	option = {
+ 		name = gts_annihilator_planet_killer.1.a
+ 	}
+ 	option = {
+ 		name = gts_annihilator_planet_killer.1.b
+ 	}
+ 	option = {
+ 		name = gts_annihilator_planet_killer.1.c
+ 	}
+ 	option = {
+ 		name = gts_annihilator_planet_killer.1.d
+ 	}
+ 	after = {
+ 	 	owner = {
+ 			if = {
+ 				limit = {
+ 					NOT = { has_modifier = missing_progenitor_modifier }
+ 				}
+				add_modifier = {
+					modifier = missing_progenitor_modifier
+					days = -1
+				}
+			}
+		}
+ 	}
+}
+
+
+
+planet_event = {
+	id = gts_annihilator_planet_killer.10
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		if = {
+			limit = {
+				colonizable_planet = yes
+				is_artificial = no
+			}
+			set_planet_flag = toxic_candidate
+		}
+		if = {
+			limit = {
+				NOT = { is_planet_class = pc_ai }
+			}
+			from.owner = { country_event = { id = gts_annihilator_planet_killer.11 } }
+		}
+
+		#Dismantle observation post
+		if = {
+			limit = {
+				has_observation_outpost = yes
+			}
+			observation_outpost_owner = {
+				country_event = { id = planet_destruction.1000 days = 1 }
+			}
+		}
+
+		# Contingency Machine World
+		if = {
+			limit = {
+				is_planet_class = pc_ai
+				NOT = { has_planet_flag = machine_lair }
+			}
+			set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_cracked #doesn't matter
+			planet_event = { id = crisis.2040 }
+		}
+
+		# Contingency Final Machine World
+		if = {
+			limit = {
+				is_planet_class = pc_ai
+				has_planet_flag = machine_lair
+			}
+			set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_cracked
+			from.owner = { save_event_target_as = final_machine_world_destroyer }
+			stop_crisis_sound = yes
+			planet_event = { id = crisis.2046 }
+		}
+
+		# Swarm Situation Log counter
+		if = {
+			limit = {
+				exists = owner
+				owner = { is_country_type = swarm }
+			}
+			every_country = {
+				limit = { has_event_chain = "prethoryn_scourge_chain" }
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds"
+					amount = -1
+				}
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds_cleansed"
+					amount = 1
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				exists = owner
+				owner = {
+					NOT = { is_same_value = from.owner }
+					OR = {
+						is_country_type = default
+						is_country_type = fallen_empire
+						is_country_type = awakened_fallen_empire
+					}
+				}
+			}
+			# Generate threat
+			if = {
+				limit = {
+					is_colony = yes
+				}
+				add_threat = { who = from.owner amount = 3 }
+				# modifier for allies + those upset by genocide
+				every_country = {
+					limit = {
+						NOR = {
+							is_same_value = from.owner
+							is_same_value = root.owner
+							AND = {
+								has_federation = yes
+								is_in_federation_with = from.owner
+							}
+						}
+						OR = {
+							has_communications = from.owner
+							has_communications = root.owner
+						}
+						OR = {
+							AND = {
+								has_federation = yes
+								is_in_federation_with = root.owner
+							}
+							has_ai_personality = awakened_fallen_empire_xenophile
+							AND = {
+								is_country_type = default
+								OR = {
+									is_egalitarian = yes
+									is_xenophile = yes
+								}
+							}
+						}
+					}
+					if = {
+						limit = { root = { is_colony = no } }
+						add_opinion_modifier = {
+							modifier = opinion_farted_an_uninhabited_world
+							who = from.owner
+						}
+					}
+					else = {
+						add_opinion_modifier = {
+							modifier = opinion_farted_a_world
+							who = from.owner
+						}
+					}
+				}
+			}
+			else = {
+				add_threat = { who = from.owner amount = 1 }
+			}
+			# modifiers for victim
+			owner = {
+				if = {
+					limit = { root = { is_colony = no } }
+					add_opinion_modifier = {
+						modifier = opinion_farted_my_uninhabited_world
+						who = from.owner
+					}
+				}
+				else = {
+					add_opinion_modifier = {
+						modifier = opinion_farted_my_world
+						who = from.owner
+					}
+				}
+				if = {
+					limit = { NOT = { has_ethic = ethic_gestalt_consciousness } }
+					add_modifier = {
+						modifier = colossus_victim
+						days = 10800 # 30 years
+					}
+				}
+			}
+			if = {
+				limit = {
+					exists = owner
+					owner = { is_country_type = primitive }
+				}
+				# modifier for allies + those upset by genocide
+				every_country = {
+					limit = {
+						NOT = { is_same_value = from.owner }
+						OR = {
+							has_communications = from.owner
+							has_communications = root.owner
+						}
+						OR = {
+							has_ai_personality = awakened_fallen_empire_xenophile
+							AND = {
+								is_country_type = default
+								NOR = {
+									is_xenophobe = yes
+									is_homicidal = yes
+									is_xenophile = yes
+								}
+							}
+						}
+					}
+					add_opinion_modifier = {
+						modifier = opinion_farted_a_primitive_world
+						who = from.owner
+					}
+				}
+				every_country = {
+					limit = {
+						NOT = { is_same_value = from.owner }
+						OR = {
+							has_communications = from.owner
+							has_communications = root.owner
+						}
+						OR = {
+							has_ai_personality = awakened_fallen_empire_xenophile
+							AND = {
+								is_country_type = default
+								is_xenophile = yes
+							}
+						}
+					}
+					add_opinion_modifier = {
+						modifier = opinion_farted_a_primitive_world_phile
+						who = from.owner
+					}
+				}
+			}
+		}
+		# Add war exhaustion to planet owner
+		if = {
+			limit = {
+				exists = owner
+			}
+			owner = {
+				if = {
+					limit = { #isn't the case when the crisis bombards planets, for instance
+						is_at_war_with = from.fleet.owner
+					}
+					add_static_war_exhaustion = {
+						attacker = from.fleet.owner
+						location = root
+						value_for_planet_destruction = 1.0
+					}
+				}
+			}
+		}
+		every_owned_pop_group = {
+			kill_all_pop = yes
+		}
+		if = {
+			limit = {
+				exists = orbital_defence
+			}
+			destroy_fleet = orbital_defence
+		}
+		remove_all_buildings = yes
+
+		change_pc = pc_toxic
+		clear_deposits = yes
+
+		if = {
+			limit = { has_modifier = holy_planet }
+			remove_modifier = holy_planet
+		}
+
+		if = {
+			limit = {
+				has_planet_flag = toxic_candidate
+			}
+			add_modifier = { modifier = toxic_terraforming_candidate }
+			remove_planet_flag = toxic_candidate
+		}
+	}
+}
+
+country_event = {
+	id = gts_annihilator_planet_killer.11
+	title = gts_annihilator_planet_killer.11.name
+	desc = gts_annihilator_planet_killer.11.desc
+	picture = GFX_evt_toxic_god
+	show_sound = event_super_explosion
+	location = from
+
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_country_flag = fired_toxifier }
+		FROM = {
+			NOR = {
+				is_planet_class = pc_habitat
+				is_planet_class = pc_ringworld_habitable
+			}
+		}
+	}
+
+	immediate = {
+		set_country_flag = fired_toxifier
+	}
+
+	option = {
+		name = OK
+		trigger = {
+			NOR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_machine_terminator
+			}
+		}
+	}
+
+	option = {
+		name = gts_annihilator_planet_killer.71.a.purifexter
+		trigger = {
+			OR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_machine_terminator
+			}
+		}
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 60
+			min = 600
+			max = 3000
+		}
+	}
+}
+
+planet_event = {
+	id = gts_annihilator_planet_killer.20
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		if = {
+			limit = {
+				colonizable_planet = yes
+				is_artificial = no
+			}
+			set_planet_flag = toxic_candidate
+		}
+		if = {
+			limit = {
+				NOT = { is_planet_class = pc_ai }
+			}
+			from.owner = { country_event = { id = gts_annihilator_planet_killer.21 } }
+		}
+
+		#Dismantle observation post
+		if = {
+			limit = {
+				has_observation_outpost = yes
+			}
+			observation_outpost_owner = {
+				country_event = { id = planet_destruction.1000 days = 1 }
+			}
+		}
+
+		# Contingency Machine World
+		if = {
+			limit = {
+				is_planet_class = pc_ai
+				NOT = { has_planet_flag = machine_lair }
+			}
+			set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_cracked #doesn't matter
+			planet_event = { id = crisis.2040 }
+		}
+
+		# Contingency Final Machine World
+		if = {
+			limit = {
+				is_planet_class = pc_ai
+				has_planet_flag = machine_lair
+			}
+			set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_cracked
+			from.owner = { save_event_target_as = final_machine_world_destroyer }
+			stop_crisis_sound = yes
+			planet_event = { id = crisis.2046 }
+		}
+
+		# Swarm Situation Log counter
+		if = {
+			limit = {
+				exists = owner
+				owner = { is_country_type = swarm }
+			}
+			every_country = {
+				limit = { has_event_chain = "prethoryn_scourge_chain" }
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds"
+					amount = -1
+				}
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds_cleansed"
+					amount = 1
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				exists = owner
+				owner = {
+					NOT = { is_same_value = from.owner }
+					OR = {
+						is_country_type = default
+						is_country_type = fallen_empire
+						is_country_type = awakened_fallen_empire
+					}
+				}
+			}
+			# Generate threat
+			if = {
+				limit = {
+					is_colony = yes
+				}
+				add_threat = { who = from.owner amount = 3 }
+				# modifier for allies + those upset by genocide
+				every_country = {
+					limit = {
+						NOR = {
+							is_same_value = from.owner
+							is_same_value = root.owner
+							AND = {
+								has_federation = yes
+								is_in_federation_with = from.owner
+							}
+						}
+						OR = {
+							has_communications = from.owner
+							has_communications = root.owner
+						}
+						OR = {
+							AND = {
+								has_federation = yes
+								is_in_federation_with = root.owner
+							}
+							has_ai_personality = awakened_fallen_empire_xenophile
+							AND = {
+								is_country_type = default
+								OR = {
+									is_egalitarian = yes
+									is_xenophile = yes
+								}
+							}
+						}
+					}
+					if = {
+						limit = { root = { is_colony = no } }
+						add_opinion_modifier = {
+							modifier = opinion_digested_an_uninhabited_world
+							who = from.owner
+						}
+					}
+					else = {
+						add_opinion_modifier = {
+							modifier = opinion_digested_a_world
+							who = from.owner
+						}
+					}
+				}
+			}
+			else = {
+				add_threat = { who = from.owner amount = 1 }
+			}
+			# modifiers for victim
+			owner = {
+				if = {
+					limit = { root = { is_colony = no } }
+					add_opinion_modifier = {
+						modifier = opinion_digested_my_uninhabited_world
+						who = from.owner
+					}
+				}
+				else = {
+					add_opinion_modifier = {
+						modifier = opinion_digested_my_world
+						who = from.owner
+					}
+				}
+				if = {
+					limit = { NOT = { has_ethic = ethic_gestalt_consciousness } }
+					add_modifier = {
+						modifier = colossus_victim
+						days = 10800 # 30 years
+					}
+				}
+			}
+			if = {
+				limit = {
+					exists = owner
+					owner = { is_country_type = primitive }
+				}
+				# modifier for allies + those upset by genocide
+				every_country = {
+					limit = {
+						NOT = { is_same_value = from.owner }
+						OR = {
+							has_communications = from.owner
+							has_communications = root.owner
+						}
+						OR = {
+							has_ai_personality = awakened_fallen_empire_xenophile
+							AND = {
+								is_country_type = default
+								NOR = {
+									is_xenophobe = yes
+									is_homicidal = yes
+									is_xenophile = yes
+								}
+							}
+						}
+					}
+					add_opinion_modifier = {
+						modifier = opinion_digested_a_primitive_world
+						who = from.owner
+					}
+				}
+				every_country = {
+					limit = {
+						NOT = { is_same_value = from.owner }
+						OR = {
+							has_communications = from.owner
+							has_communications = root.owner
+						}
+						OR = {
+							has_ai_personality = awakened_fallen_empire_xenophile
+							AND = {
+								is_country_type = default
+								is_xenophile = yes
+							}
+						}
+					}
+					add_opinion_modifier = {
+						modifier = opinion_digested_a_primitive_world_phile
+						who = from.owner
+					}
+				}
+			}
+		}
+		# Add war exhaustion to planet owner
+		if = {
+			limit = {
+				exists = owner
+			}
+			owner = {
+				if = {
+					limit = { #isn't the case when the crisis bombards planets, for instance
+						is_at_war_with = from.fleet.owner
+					}
+					add_static_war_exhaustion = {
+						attacker = from.fleet.owner
+						location = root
+						value_for_planet_destruction = 1.0
+					}
+				}
+			}
+		}
+		every_owned_pop_group = {
+			kill_all_pop = yes
+		}
+		if = {
+			limit = {
+				exists = orbital_defence
+			}
+			destroy_fleet = orbital_defence
+		}
+		remove_all_buildings = yes
+
+		change_pc = pc_molten
+		clear_deposits = yes
+
+		if = {
+			limit = { has_modifier = holy_planet }
+			remove_modifier = holy_planet
+		}
+
+	}
+}
+
+country_event = {
+	id = gts_annihilator_planet_killer.21
+	title = gts_annihilator_planet_killer.21.name
+	desc = gts_annihilator_planet_killer.21.desc
+	picture = GFX_evt_toxic_god
+	show_sound = event_super_explosion
+	location = from
+
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_country_flag = fired_toxifier }
+		FROM = {
+			NOR = {
+				is_planet_class = pc_habitat
+				is_planet_class = pc_ringworld_habitable
+			}
+		}
+	}
+
+	immediate = {
+		set_country_flag = fired_toxifier
+		remove_country_flag = master_wants_to_enjoy
+		country_event = {
+			id = gts_annihilator.4
+		}
+	}
+
+	option = {
+		name = OK
+		trigger = {
+			NOR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_machine_terminator
+			}
+		}
+	}
+
+	option = {
+		name = gts_annihilator_planet_killer.71.a.purifexter
+		trigger = {
+			OR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_machine_terminator
+			}
+		}
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 60
+			min = 600
+			max = 3000
+		}
+	}
+}
+
+planet_event = {
+	id = gts_annihilator_planet_killer.30
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				exists = owner
+				owner = { NOT = { is_same_value = from.owner } }
+			}
+			from.owner = {
+				country_event = { id = gts_annihilator_planet_killer.31 }
+			}
+		}
+
+		#Dismantle observation post
+		if = {
+			limit = {
+				has_observation_outpost = yes
+			}
+			observation_outpost_owner = {
+				country_event = { id = planet_destruction.1000 days = 1 }
+			}
+		}
+
+		# Swarm Situation Log counter
+		if = {
+			limit = {
+				exists = owner
+				owner = { is_country_type = swarm }
+			}
+			every_country = {
+				limit = { has_event_chain = "prethoryn_scourge_chain" }
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds"
+					amount = -1
+				}
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds_cleansed"
+					amount = 1
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				OR = {
+					is_active_resolution = "resolution_rulesofwar_independent_tribunals"
+					is_active_resolution = "resolution_rulesofwar_last_resort_doctrine"
+					is_active_resolution = "resolution_rulesofwar_demobilization_initiative"
+				}
+			}
+			from.owner = {
+				set_timed_country_flag = { flag = resolution_breached_fired_neutron days = 3600 }
+			}
+		}
+
+		if = {
+			limit = {
+				exists = owner
+				owner = {
+					NOT = { is_same_value = from.owner }
+					OR = {
+						is_country_type = default
+						is_country_type = fallen_empire
+						is_country_type = awakened_fallen_empire
+					}
+				}
+			}
+			# Generate threat
+			add_threat = { who = from.owner amount = 3 }
+			# modifier for allies + those upset by genocide
+			every_country = {
+				limit = {
+					NOR = {
+						is_same_value = from.owner
+						is_same_value = root.owner
+						AND = {
+							has_federation = yes
+							is_in_federation_with = from.owner
+						}
+					}
+					OR = {
+						has_communications = from.owner
+						has_communications = root.owner
+					}
+					OR = {
+						AND = {
+							has_federation = yes
+							is_in_federation_with = root.owner
+						}
+						has_ai_personality = awakened_fallen_empire_xenophile
+						AND = {
+							is_country_type = default
+							OR = {
+								is_egalitarian = yes
+								is_xenophile = yes
+								is_spiritualist = yes
+							}
+						}
+					}
+				}
+				add_opinion_modifier = {
+					modifier = opinion_tongued_a_world
+					who = from.owner
+				}
+			}
+			# modifiers for victim
+			owner = {
+				add_opinion_modifier = {
+					modifier = opinion_tongued_my_world
+					who = from.owner
+				}
+				if = {
+					limit = { NOT = { has_ethic = ethic_gestalt_consciousness } }
+					add_modifier = {
+						modifier = colossus_victim
+						days = 10800 # 30 years
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				exists = owner
+				owner = { is_country_type = primitive }
+			}
+			# modifier for allies + those upset by genocide
+			every_country = {
+				limit = {
+					NOT = { is_same_value = from.owner }
+					OR = {
+						has_communications = from.owner
+						has_communications = root.owner
+					}
+					is_country_type = default
+					NOR = {
+						is_xenophobe = yes
+						is_homicidal = yes
+						is_xenophile = yes
+					}
+				}
+				add_opinion_modifier = {
+					modifier = opinion_tongued_a_primitive_world
+					who = from.owner
+				}
+			}
+			every_country = {
+				limit = {
+					NOT = { is_same_value = from.owner }
+					OR = {
+						has_communications = from.owner
+						has_communications = root.owner
+					}
+					OR = {
+						has_ai_personality = awakened_fallen_empire_xenophile
+						AND = {
+							is_country_type = default
+							is_xenophile = yes
+						}
+					}
+				}
+				add_opinion_modifier = {
+					modifier = opinion_tongued_a_primitive_world_phile
+					who = from.owner
+				}
+			}
+		}
+		# Add war exhaustion to planet owner
+		owner = {
+			if = {
+				limit = { #isn't the case when the crisis bombards planets, for instance
+					is_at_war_with = from.fleet.owner
+				}
+				add_static_war_exhaustion = {
+					attacker = from.fleet.owner
+					location = root
+					value_for_planet_destruction = 1.0
+				}
+			}
+		}
+		every_owned_pop_group = {
+			from.owner = {
+				if = {
+					limit = { has_ascension_perk = ap_become_the_crisis }
+					complete_crisis_objective = crisobj_purge_pops
+				}
+			}
+		}
+		destroy_colony = yes
+		add_modifier = {
+			modifier = neutron_bombarded
+			days = 3600
+		}
+		# Special graphics for Habitats and Ring Worlds
+		if = {
+			limit = {
+				is_planet_class = pc_habitat
+			}
+			spawn_habitat_neutron_effect = yes
+		}
+		else_if = {
+			limit = {
+				is_planet_class = pc_ringworld_habitable
+			}
+			spawn_ringworld_neutron_effect = yes
+		}
+		if = {
+			limit = {
+				OR = {
+					is_planet_class = pc_habitat
+					is_planet_class = pc_ringworld_habitable
+				}
+			}
+			# nothing
+		}
+		else = {
+			change_pc = this
+		}
+		# For Infested worlds
+		if = {
+			limit = { is_planet_class = pc_infested }
+			random_list = {
+				50 = { change_pc = pc_barren }
+				50 = { change_pc = pc_barren_cold }
+			}
+			add_modifier = { modifier = "terraforming_candidate" days = -1 }
+		}
+	}
+}
+
+country_event = {
+	id = gts_annihilator_planet_killer.31
+	title = gts_annihilator_planet_killer.31.name
+	desc = {
+		text = gts_annihilator_planet_killer.31.nobots.desc
+		trigger = {
+			from = {
+				NOT = {
+					OR = {
+						is_planet_class = pc_infested
+						is_planet_class = pc_barren
+						is_planet_class = pc_barren_cold
+					}
+				}
+				count_owned_pop_amount = {
+					count < 1
+				}
+			}
+		}
+	}
+	desc = {
+		text = gts_annihilator_planet_killer.31.bots.desc
+		trigger = {
+			from = {
+				count_owned_pop_amount = {
+					count > 0
+				}
+			}
+		}
+	}
+	desc = {
+		text = gts_annihilator_planet_killer.31.infested.desc
+		trigger = {
+			from = {
+				OR = {
+					is_planet_class = pc_infested
+					is_planet_class = pc_barren
+					is_planet_class = pc_barren_cold
+				}
+			}
+		}
+	}
+	picture = GFX_evt_planet_beam
+	show_sound = event_solar_fusion
+	location = from
+
+
+	is_triggered_only = yes
+
+	option = {
+		name = OK
+		trigger = {
+			NOR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_machine_terminator
+			}
+		}
+	}
+
+	option = {
+		name = gts_annihilator_planet_killer.71.a.purifexter
+		trigger = {
+			OR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_machine_terminator
+			}
+		}
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 60
+			min = 600
+			max = 3000
+		}
+	}
+}
+
+planet_event = {
+	id = gts_annihilator_planet_killer.40
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				NOT = { is_planet_class = pc_ai }
+				exists = owner
+				owner = { NOT = { is_same_value = from.owner } }
+			}
+			from.owner = {
+				country_event = { id = gts_annihilator_planet_killer.41 }
+			}
+		}
+
+		# Contingency Machine World
+		if = {
+			limit = {
+				is_planet_class = pc_ai
+				NOT = { has_planet_flag = machine_lair }
+			}
+			set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_godrayed
+			planet_event = { id = crisis.2040 } 
+			create_ambient_object = {
+				location = this
+				type = habitat_cracker_object
+				duration = 5
+
+				use_3d_location = yes
+				base_angle_towards = star
+				entity_face_object = star
+
+				entity_offset = { min = 0 max = 0 }
+
+				entity_scale_to_size = yes
+				scale = 0.5
+			}
+		}
+
+		# Contingency Final Machine World
+		if = {
+			limit = {
+				is_planet_class = pc_ai
+				has_planet_flag = machine_lair
+			}
+			set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_godrayed
+			from.owner = { save_event_target_as = final_machine_world_destroyer }
+			stop_crisis_sound = yes
+			planet_event = { id = crisis.2046 }
+			create_ambient_object = {
+				location = this
+				type = habitat_cracker_object
+				duration = 5
+
+				use_3d_location = yes
+				base_angle_towards = star
+				entity_face_object = star
+
+				entity_offset = { min = 0 max = 0 }
+
+				entity_scale_to_size = yes
+				scale = 0.5
+			}
+		}
+
+		if = {
+			limit = {
+				OR = {
+					is_active_resolution = "resolution_rulesofwar_independent_tribunals"
+					is_active_resolution = "resolution_rulesofwar_last_resort_doctrine"
+					is_active_resolution = "resolution_rulesofwar_demobilization_initiative"
+				}
+			}
+			from.owner = {
+				set_timed_country_flag = { flag = resolution_breached_fired_godray days = 3600 }
+			}
+		}
+
+		if = {
+			limit = {
+				NOT = { is_planet_class = pc_ai }
+				exists = owner
+				owner = {
+					NOT = { is_same_value = from.owner }
+					OR = {
+						is_country_type = default
+						is_country_type = fallen_empire
+						is_country_type = awakened_fallen_empire
+					}
+				}
+			}
+			# Generate threat
+			add_threat = { who = from.owner amount = 3 }
+			# modifier for allies + those upset by conversion
+			every_country = {
+				limit = {
+					NOR = {
+						is_same_value = from.owner
+						is_same_value = root.owner
+						AND = {
+							has_federation = yes
+							is_in_federation_with = from.owner
+						}
+					}
+					OR = {
+						has_communications = from.owner
+						has_communications = root.owner
+					}
+					OR = {
+						AND = {
+							has_federation = yes
+							is_in_federation_with = root.owner
+						}
+						has_ai_personality = awakened_fallen_empire_materialist
+						AND = {
+							is_country_type = default
+							OR = {
+								is_materialist = yes
+								is_egalitarian = yes
+								has_authority = auth_machine_intelligence
+							}
+						}
+					}
+				}
+				add_opinion_modifier = {
+					modifier = opinion_hermoned_a_world
+					who = from.owner
+				}
+			}
+			# modifiers for victim
+			owner = {
+				add_opinion_modifier = {
+					modifier = opinion_hermoned_my_world
+					who = from.owner
+				}
+				if = {
+					limit = { NOT = { has_ethic = ethic_gestalt_consciousness } }
+					add_modifier = {
+						modifier = colossus_victim
+						days = 10800 # 30 years
+					}
+				}
+			}
+			# Add war exhaustion to planet owner
+			owner = {
+				if = {
+					limit = { #isn't the case when the crisis bombards planets, for instance
+						is_at_war_with = from.fleet.owner
+					}
+					add_static_war_exhaustion = {
+						attacker = from.fleet.owner
+						location = root
+						value_for_planet_destruction = 1.0
+					}
+				}
+			}
+		}
+		every_owned_pop_group = {
+			limit = {
+				OR = {
+					has_trait = trait_mechanical
+					has_trait = trait_machine_unit
+					has_trait = trait_hive_mind
+					has_living_standard = { # Bio-trophies die without care
+						country = root.owner
+						type = living_standard_organic_trophy
+					}
+				}
+			}
+			kill_all_pop = yes
+			from.owner = {
+				if = {
+					limit = { has_ascension_perk = ap_become_the_crisis }
+					complete_crisis_objective = crisobj_purge_pops
+				}
+			}
+		}
+		every_owned_pop_group = {
+			limit = {
+				NOR = {
+					has_trait = trait_mechanical
+					has_trait = trait_machine_unit
+					has_trait = trait_hive_mind
+					has_living_standard = {
+						country = root.owner
+						type = living_standard_organic_trophy
+					}
+				}
+			}
+			pop_group_transfer_ethic = {
+				POP_GROUP = this
+				ETHOS = ethic_spiritualist
+				PERCENTAGE = 1
+			}
+		}
+		# Special graphics for Habitats and Ring Worlds
+		if = {
+			limit = {
+				is_planet_class = pc_habitat
+			}
+			spawn_habitat_divine_effect = yes
+		}
+		else_if = {
+			limit = {
+				is_planet_class = pc_ringworld_habitable
+			}
+			spawn_ringworld_divine_effect = yes
+		}
+		if = {
+			limit = {
+				OR = {
+					is_planet_class = pc_habitat
+					is_planet_class = pc_ringworld_habitable
+				}
+			}
+			# nothing
+		}
+		else = {
+			change_pc = this
+		}
+		add_modifier = {
+			modifier = god_rayed
+			days = 3600
+		}
+		# self-raying
+		if = {
+			limit = {
+				exists = owner
+				owner = { is_same_value = from.owner }
+			}
+			add_modifier = {
+				modifier = uneasy_faith
+				days = 3600
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_annihilator_planet_killer.41
+	title = gts_annihilator_planet_killer.41.name
+	desc = gts_annihilator_planet_killer.41.desc
+	picture = GFX_evt_planet_beam
+	show_sound = event_mystic_reveal
+	location = from
+
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_country_flag = fired_godray }
+	}
+
+	immediate = {
+		set_country_flag = fired_godray
+	}
+
+	option = {
+		name = OK
+		from = {
+			custom_tooltip = gts_annihilator_planet_killer.41.tooltip
+		}
+	}
+}
+
+
+planet_event = {
+	id = gts_annihilator_planet_killer.50
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				NOT = { is_planet_class = pc_ai }
+			}
+			from.owner = { country_event = { id = gts_annihilator_planet_killer.51 } }
+		}
+
+		#Dismantle observation post
+		if = {
+			limit = {
+				has_observation_outpost = yes
+			}
+			observation_outpost_owner = {
+				country_event = { id = planet_destruction.1000 days = 1 }
+			}
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_ai
+				NOT = { has_planet_flag = machine_lair }
+			}
+			#set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_drenched
+			planet_event = { id = crisis.2040 }
+			create_ambient_object = {
+				location = this
+				type = habitat_cracker_object
+				duration = 5
+
+				use_3d_location = yes
+				base_angle_towards = star
+				entity_face_object = star
+
+				entity_offset = { min = 0 max = 0 }
+
+				entity_scale_to_size = yes
+				scale = 0.5
+			}
+		}
+
+		# Contingency Final Machine World
+		if = {
+			limit = {
+				is_planet_class = pc_ai
+				has_planet_flag = machine_lair
+			}
+			#set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_drenched
+			from.owner = { save_event_target_as = final_machine_world_destroyer }
+			stop_crisis_sound = yes
+			planet_event = { id = crisis.2046 }
+			create_ambient_object = {
+				location = this
+				type = habitat_cracker_object
+				duration = 5
+
+				use_3d_location = yes
+				base_angle_towards = star
+				entity_face_object = star
+
+				entity_offset = { min = 0 max = 0 }
+
+				entity_scale_to_size = yes
+				scale = 0.5
+			}
+		}
+
+		# Swarm Situation Log counter
+		if = {
+			limit = {
+				exists = owner
+				owner = { is_country_type = swarm }
+			}
+			every_country = {
+				limit = { has_event_chain = "prethoryn_scourge_chain" }
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds"
+					amount = -1
+				}
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds_cleansed"
+					amount = 1
+				}
+			}
+			destroy_colony = yes
+		}
+
+		if = {
+			limit = {
+				exists = owner
+				owner = {
+					NOT = { is_same_value = from.owner }
+				}
+				OR = {
+					is_active_resolution = "resolution_rulesofwar_independent_tribunals"
+					is_active_resolution = "resolution_rulesofwar_last_resort_doctrine"
+					is_active_resolution = "resolution_rulesofwar_demobilization_initiative"
+				}
+			}
+			from.owner = {
+				set_timed_country_flag = { flag = resolution_breached_fired_deluge days = 3600 }
+			}
+		}
+		if = { #you've basically shortcutted terraforming. Yep, that's a breach
+			limit = {
+				exists = space_owner
+				space_owner = {
+					is_same_value = from.owner
+				}
+				OR = {
+					NOT = { exists = owner }
+					owner = { is_same_value = from.owner }
+				}
+				OR = {
+					is_active_resolution = "resolution_ecology_environmental_control_board"
+					is_active_resolution = "resolution_ecology_paradise_initiative"
+				}
+			}
+			from.owner = {
+				set_timed_country_flag = { flag = resolution_breached_terraformed days = 3600 }
+			}
+		}
+
+		if = {
+			limit = {
+				exists = owner
+				owner = {
+					NOT = { is_same_value = from.owner }
+					OR = {
+						is_country_type = default
+						is_country_type = fallen_empire
+						is_country_type = awakened_fallen_empire
+					}
+				}
+			}
+			# Generate threat
+			add_threat = { who = from.owner amount = 3 }
+			# modifier for allies + those upset by robots
+			every_country = {
+				limit = {
+					NOR = {
+						is_same_value = from.owner
+						is_same_value = root.owner
+						AND = {
+							has_federation = yes
+							is_in_federation_with = from.owner
+						}
+					}
+					OR = {
+						has_communications = from.owner
+						has_communications = root.owner
+					}
+				}
+				add_opinion_modifier = {
+					modifier = opinion_urined_a_world
+					who = from.owner
+				}
+			}
+			# modifiers for victim
+			owner = {
+				add_opinion_modifier = {
+					modifier = opinion_urined_my_world
+					who = from.owner
+				}
+				if = {
+					limit = { NOT = { has_ethic = ethic_gestalt_consciousness } }
+					add_modifier = {
+						modifier = colossus_victim
+						days = 10800 # 30 years
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				exists = owner
+				owner = { is_country_type = primitive }
+			}
+			# modifier for allies + those upset by genocide
+			every_country = {
+				limit = {
+					NOR = { is_same_value = from.owner }
+					OR = {
+						has_communications = from.owner
+						has_communications = root.owner
+					}
+					is_country_type = default
+					NOR = {
+						is_xenophobe = yes
+						is_homicidal = yes
+						is_xenophile = yes
+					}
+				}
+				add_opinion_modifier = {
+					modifier = opinion_urined_a_primitive_world
+					who = from.owner
+				}
+			}
+			every_country = {
+				limit = {
+					NOR = { is_same_value = from.owner }
+					OR = {
+						has_communications = from.owner
+						has_communications = root.owner
+					}
+					OR = {
+						has_ai_personality = awakened_fallen_empire_xenophile
+						AND = {
+							is_country_type = default
+							is_xenophile = yes
+						}
+					}
+				}
+				add_opinion_modifier = {
+					modifier = opinion_urined_a_primitive_world_phile
+					who = from.owner
+				}
+			}
+		}
+		# Add war exhaustion to planet owner
+		if = {
+			limit = {
+				exists = owner
+				owner = { NOT = { is_same_value = from.owner } }
+			}
+			owner = {
+				if = {
+					limit = { #isn't the case when the crisis bombards planets, for instance
+						is_at_war_with = from.owner
+					}
+					add_static_war_exhaustion = {
+						attacker = from.owner
+						location = root
+						value_for_planet_destruction = 1.0
+					}
+				}
+			}
+		}
+
+		every_owned_pop_group = {
+			limit = {
+				NOT = { has_trait = trait_aquatic }
+			}
+			kill_all_pop = yes
+			from.owner = {
+				if = {
+					limit = { has_ascension_perk = ap_become_the_crisis }
+					complete_crisis_objective = crisobj_purge_pops
+				}
+			}
+		}
+		if = {
+			limit = { #were there any Aquatic pops? If so, the ownership needs to be flipped
+				any_owned_pop_group = {
+					is_scope_valid = yes
+					exists = this
+				}
+				owner = {
+					NOT = { is_same_value = from.owner }
+				}
+			}
+			set_owner = from.owner
+		}
+		if = {
+			limit = {
+				NOT = { is_planet_class = pc_broken }
+			}
+			change_pc = pc_ocean
+		}
+	}
+}
+
+country_event = {
+	id = gts_annihilator_planet_killer.51
+	title = gts_annihilator_planet_killer.51.name
+	desc = gts_annihilator_planet_killer.51.desc
+	picture = GFX_evt_death_from_above
+	show_sound = event_mystic_reveal
+	location = from
+
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_country_flag = fired_deluge }
+	}
+
+	immediate = {
+		set_country_flag = fired_deluge
+	}
+
+	option = {
+		name = EXCELLENT
+		from = {
+			custom_tooltip = gts_annihilator_planet_killer.51.tooltip
+		}
+	}
+}
+
+planet_event = {
+	id = gts_annihilator_planet_killer.60
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				exists = owner
+				owner = { NOT = { is_same_value = from.owner } }
+				NOT = { is_planet_class = pc_ai }
+			}
+			from.owner = {
+				country_event = { id = gts_annihilator_planet_killer.61 }
+			}
+		}
+
+		#Dismantle observation post
+		if = {
+			limit = {
+				has_observation_outpost = yes
+			}
+			observation_outpost_owner = {
+				country_event = { id = planet_destruction.1000 days = 1 }
+			}
+		}
+
+		# Contingency Machine World
+		if = {
+			limit = {
+				is_planet_class = pc_ai
+				NOT = { has_planet_flag = machine_lair }
+			}
+			set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_shielded
+			planet_event = { id = crisis.2040 }
+		}
+
+		# Contingency Final Machine World
+		if = {
+			limit = {
+				is_planet_class = pc_ai
+				has_planet_flag = machine_lair
+			}
+			set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_shielded
+			stop_crisis_sound = yes
+			from.owner = { save_event_target_as = final_machine_world_destroyer }
+			planet_event = { id = crisis.2046 }
+		}
+
+		# Swarm Situation Log counter
+		if = {
+			limit = {
+				exists = owner
+				owner = { is_country_type = swarm }
+			}
+			every_country = {
+				limit = { has_event_chain = "prethoryn_scourge_chain" }
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds"
+					amount = -1
+				}
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds_cleansed"
+					amount = 1
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				exists = owner
+				owner = {
+					NOT = { is_same_value = from.owner }
+					OR = {
+						is_country_type = default
+						is_country_type = fallen_empire
+						is_country_type = awakened_fallen_empire
+					}
+				}
+			}
+			# Generate threat
+			add_threat = { who = from.owner amount = 3 }
+			# modifier for allies + those upset by the shield
+			every_country = {
+				limit = {
+					NOR = {
+						is_same_value = from.owner
+						is_same_value = root.owner
+						AND = {
+							has_federation = yes
+							is_in_federation_with = from.owner
+						}
+					}
+					OR = {
+						has_communications = from.owner
+						has_communications = root.owner
+					}
+					OR = {
+						AND = {
+							has_federation = yes
+							is_in_federation_with = root.owner
+						}
+						has_ai_personality = awakened_fallen_empire_xenophile
+						AND = {
+							is_country_type = default
+							OR = {
+								is_egalitarian = yes
+								is_xenophile = yes
+								is_militarist = yes
+							}
+						}
+					}
+				}
+				add_opinion_modifier = {
+					modifier = opinion_unbirthed_a_world
+					who = from.owner
+				}
+			}
+			# modifiers for victim
+			owner = {
+				add_opinion_modifier = {
+					modifier = opinion_unbirthed_my_world
+					who = from.owner
+				}
+				if = {
+					limit = { NOT = { has_ethic = ethic_gestalt_consciousness } }
+					add_modifier = {
+						modifier = colossus_victim
+						days = 10800 # 30 years
+					}
+				}
+			}
+		}
+		# Pandora's World Achievement
+		from.owner = { country_event = { id = achievement.3 } }
+		# Add war exhaustion to planet owner
+		if = {
+			limit = {
+				exists = orbital_defence
+			}
+			destroy_fleet = orbital_defence
+		}
+		owner = {
+			if = {
+				limit = { #isn't the case when the crisis bombards planets, for instance
+					is_at_war_with = from.fleet.owner
+				}
+				add_static_war_exhaustion = {
+					attacker = from.fleet.owner
+					location = root
+					value_for_planet_destruction = 1.0
+				}
+			}
+		}
+		if = {
+			limit = { is_planet_class = pc_habitat }
+			spawn_habitat_pacifier_effect = yes
+			change_pc = {
+				class = pc_habitat_shielded
+				inherit_entity = yes
+			}
+		}
+		else_if = {
+			limit = { is_planet_class = pc_ringworld_habitable }
+			spawn_ringworld_pacifier_effect = yes
+			change_pc = {
+				class = pc_ringworld_shielded
+				inherit_entity = yes
+			}
+		}
+		else = {
+			change_pc = {
+				class = pc_shielded
+				inherit_entity = yes
+			}
+		}
+		clear_deposits = yes
+		add_deposit = d_society_10
+	}
+}
+
+country_event = {
+	id = gts_annihilator_planet_killer.61
+	title = gts_annihilator_planet_killer.61.name
+	desc = {
+		text = gts_annihilator_planet_killer.61.desc
+		trigger = {
+			NOR = {
+				has_ethic = ethic_fanatic_pacifist
+				has_ethic = ethic_pacifist
+				has_ethic = ethic_fanatic_egalitarian
+				has_ethic = ethic_egalitarian
+			}
+		}
+	}
+	desc = {
+		text = gts_annihilator_planet_killer.61.desc.alt
+		trigger = {
+			OR = {
+				has_ethic = ethic_fanatic_pacifist
+				has_ethic = ethic_pacifist
+				has_ethic = ethic_fanatic_egalitarian
+				has_ethic = ethic_egalitarian
+			}
+		}
+	}
+	picture = {
+		trigger = {
+			from = {
+				NOT = { is_planet_class = pc_habitat_shielded }
+			}
+		}
+		picture = GFX_evt_shielded_planet
+	}
+	picture = {
+		trigger = {
+			from = {
+				is_planet_class = pc_habitat_shielded
+			}
+		}
+		picture = GFX_evt_strategic_coordination_center
+	}
+	show_sound = event_mystic_reveal
+	location = from
+
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_country_flag = fired_pacifier }
+	}
+
+	immediate = {
+		set_country_flag = fired_pacifier
+	}
+
+	option = {
+		name = gts_annihilator_planet_killer.61.a
+		trigger = {
+			NOR = {
+				has_ethic = ethic_fanatic_pacifist
+				has_ethic = ethic_pacifist
+				has_ethic = ethic_fanatic_egalitarian
+				has_ethic = ethic_egalitarian
+			}
+		}
+	}
+
+	option = {
+		name = gts_annihilator_planet_killer.61.b
+		trigger = {
+			OR = {
+				has_ethic = ethic_fanatic_pacifist
+				has_ethic = ethic_pacifist
+				has_ethic = ethic_fanatic_egalitarian
+				has_ethic = ethic_egalitarian
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = gts_annihilator_planet_killer.70
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		if = {
+			limit = {
+				is_planet_class = pc_frozen
+			}
+			from.owner = { country_event = { id = gts_annihilator_planet_killer.72 } }
+		}
+		else_if = {
+			limit = {
+				NOT = { is_planet_class = pc_ai }
+			}
+			from.owner = { country_event = { id = gts_annihilator_planet_killer.71 } }
+		}
+
+		#Dismantle observation post
+		if = {
+			limit = {
+				has_observation_outpost = yes
+			}
+			observation_outpost_owner = {
+				country_event = { id = planet_destruction.1000 days = 1 }
+			}
+		}
+
+		# Contingency Machine World
+		if = {
+			limit = {
+				is_planet_class = pc_ai
+				NOT = { has_planet_flag = machine_lair }
+			}
+			set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_cracked
+			planet_event = { id = crisis.2040 }
+		}
+
+		# Contingency Final Machine World
+		if = {
+			limit = {
+				is_planet_class = pc_ai
+				has_planet_flag = machine_lair
+			}
+			set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_cracked
+			from.owner = { save_event_target_as = final_machine_world_destroyer }
+			stop_crisis_sound = yes
+			planet_event = { id = crisis.2046 }
+		}
+
+		# Swarm Situation Log counter
+		if = {
+			limit = {
+				exists = owner
+				owner = { is_country_type = swarm }
+			}
+			every_country = {
+				limit = { has_event_chain = "prethoryn_scourge_chain" }
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds"
+					amount = -1
+				}
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds_cleansed"
+					amount = 1
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				OR = {
+					is_active_resolution = "resolution_rulesofwar_reverence_for_life"
+					is_active_resolution = "resolution_rulesofwar_independent_tribunals"
+					is_active_resolution = "resolution_rulesofwar_last_resort_doctrine"
+					is_active_resolution = "resolution_rulesofwar_demobilization_initiative"
+				}
+			}
+			from.owner = {
+				set_timed_country_flag = { flag = resolution_breached_fired_cracker days = 3600 }
+			}
+		}
+
+		# Exterminatus Achievement
+		if = {
+			limit = { is_capital = yes }
+			from.owner = { set_country_flag = exterminatus }
+		}
+		if = {
+			limit = {
+				exists = owner
+				owner = {
+					NOT = { is_same_value = from.owner }
+					OR = {
+						is_country_type = default
+						is_country_type = fallen_empire
+						is_country_type = awakened_fallen_empire
+					}
+				}
+			}
+			# Generate threat
+			if = {
+				limit = {
+					is_colony = yes
+				}
+				add_threat = { who = from.owner amount = 3 }
+				# modifier for allies + those upset by genocide
+				every_country = {
+					limit = {
+						NOR = {
+							is_same_value = from.owner
+							is_same_value = root.owner
+							AND = {
+								has_federation = yes
+								is_in_federation_with = from.owner
+							}
+						}
+						OR = {
+							has_communications = from.owner
+							has_communications = root.owner
+						}
+						OR = {
+							AND = {
+								has_federation = yes
+								is_in_federation_with = root.owner
+							}
+							has_ai_personality = awakened_fallen_empire_xenophile
+							AND = {
+								is_country_type = default
+								OR = {
+									is_egalitarian = yes
+									is_xenophile = yes
+								}
+							}
+						}
+					}
+					if = {
+						limit = { root = { is_colony = no } }
+						add_opinion_modifier = {
+							modifier = opinion_fingered_an_uninhabited_world
+							who = from.owner
+						}
+					}
+					else = {
+						add_opinion_modifier = {
+							modifier = opinion_fingered_a_world
+							who = from.owner
+						}
+					}
+				}
+			}
+			else = {
+				add_threat = { who = from.owner amount = 1 }
+			}
+			# modifiers for victim
+			owner = {
+				if = {
+					limit = { root = { is_colony = no } }
+					add_opinion_modifier = {
+						modifier = opinion_fingered_my_uninhabited_world
+						who = from.owner
+					}
+				}
+				else = {
+					add_opinion_modifier = {
+						modifier = opinion_fingered_my_world
+						who = from.owner
+					}
+				}
+				if = {
+					limit = { NOT = { has_ethic = ethic_gestalt_consciousness } }
+					add_modifier = {
+						modifier = colossus_victim
+						days = 10800 # 30 years
+					}
+				}
+			}
+			if = {
+				limit = {
+					exists = owner
+					owner = { is_country_type = primitive }
+				}
+				# modifier for allies + those upset by genocide
+				every_country = {
+					limit = {
+						NOT = { is_same_value = from.owner }
+						OR = {
+							has_communications = from.owner
+							has_communications = root.owner
+						}
+						OR = {
+							has_ai_personality = awakened_fallen_empire_xenophile
+							AND = {
+								is_country_type = default
+								NOR = {
+									is_xenophobe = yes
+									is_homicidal = yes
+									is_xenophile = yes
+								}
+							}
+						}
+					}
+					add_opinion_modifier = {
+						modifier = opinion_fingered_a_primitive_world
+						who = from.owner
+					}
+				}
+				every_country = {
+					limit = {
+						NOT = { is_same_value = from.owner }
+						OR = {
+							has_communications = from.owner
+							has_communications = root.owner
+						}
+						OR = {
+							has_ai_personality = awakened_fallen_empire_xenophile
+							AND = {
+								is_country_type = default
+								is_xenophile = yes
+							}
+						}
+					}
+					add_opinion_modifier = {
+						modifier = opinion_fingered_a_primitive_world_phile
+						who = from.owner
+					}
+				}
+			}
+		}
+		# Add war exhaustion to planet owner
+		if = {
+			limit = {
+				exists = owner
+			}
+			owner = {
+				if = {
+					limit = { #isn't the case when the crisis bombards planets, for instance
+						is_at_war_with = from.fleet.owner
+					}
+					add_static_war_exhaustion = {
+						attacker = from.fleet.owner
+						location = root
+						value_for_planet_destruction = 1.0
+					}
+				}
+			}
+		}
+		every_owned_pop_group = {
+			kill_all_pop = yes
+		}
+		if = {
+			limit = {
+				exists = orbital_defence
+			}
+			destroy_fleet = orbital_defence
+		}
+		remove_all_buildings = yes
+		# destroy habitats and ringworlds
+		if = {
+			limit = {
+				is_planet_class = pc_habitat
+			}
+			spawn_habitat_cracker_effect = yes
+			remove_planet = yes
+		}
+		else_if = {
+			limit = {
+				is_ringworld = yes
+			}
+			spawn_ringworld_cracker_effect = yes
+			change_pc = pc_ringworld_habitable_damaged
+		}
+		else_if = {
+			limit = { habitable_planet = yes }
+			change_pc = pc_shattered
+			clear_deposits = yes
+			random_list = {
+				1 = {
+					add_deposit = d_minerals_10
+					add_deposit = d_minerals_6
+				}
+				1 = {
+					add_deposit = d_minerals_10
+					add_deposit = d_minerals_2
+				}
+				1 = {
+					add_deposit = d_minerals_8
+				}
+				1 = {
+					add_deposit = d_minerals_4
+				}
+			}
+		}
+		else = {
+			change_pc = pc_shattered
+			clear_deposits = yes
+		}
+	}
+}
+
+
+country_event = {
+	id = gts_annihilator_planet_killer.71
+	title = gts_annihilator_planet_killer.71.name
+	desc = gts_annihilator_planet_killer.71.desc
+	picture = GFX_evt_exploding_planet
+	show_sound = event_super_explosion
+	location = from
+
+
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_country_flag = fired_cracker }
+		FROM = {
+			NOR = {
+				is_planet_class = pc_habitat
+				is_planet_class = pc_ringworld_habitable
+				is_planet_class = pc_shattered_ring_habitable
+			}
+		}
+	}
+
+	immediate = {
+		set_country_flag = fired_cracker
+	}
+
+	option = {
+		name = OK
+		trigger = {
+			NOR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_machine_terminator
+			}
+		}
+	}
+
+	option = {
+		name = gts_annihilator_planet_killer.71.a.purifexter
+		trigger = {
+			OR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_machine_terminator
+			}
+		}
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 60
+			min = 600
+			max = 3000
+		}
+	}
+}
+
+country_event = {
+	id = gts_annihilator_planet_killer.72
+	title = gts_annihilator_planet_killer.72.name
+	desc = gts_annihilator_planet_killer.71.desc
+	picture = GFX_evt_exploding_planet
+	show_sound = event_super_explosion
+	location = from
+
+
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_country_flag = fired_cracker }
+	}
+
+	immediate = {
+		set_country_flag = fired_cracker
+	}
+
+	option = {
+		name = OK
+		trigger = {
+			NOR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_machine_terminator
+			}
+		}
+	}
+
+	option = {
+		name = gts_annihilator_planet_killer.71.a.purifexter
+		trigger = {
+			OR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_machine_terminator
+			}
+		}
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 60
+			min = 600
+			max = 3000
+		}
+	}
+}
+
+planet_event = {
+	id = gts_annihilator_planet_killer.80
+	hide_window = yes
+
+	trigger = {
+		solar_system = { has_star_flag = sol }
+		from.owner = {
+			is_human_species = no
+		}
+		OR = {
+			has_planet_flag = planet_earth
+			has_planet_flag = nuked_earth
+			AND = {
+				exists = owner
+				owner = {
+					is_primitive = yes
+					is_human_species = yes
+				}
+			}
+		}
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		random_list = {
+			50 = { } # null
+			50 = {
+				solar_system = { save_event_target_as = sol_sys }
+				from.owner = { country_event = { id = gts_annihilator_planet_killer.81 } }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_annihilator_planet_killer.81
+	title = gts_annihilator_planet_killer.81.name
+	desc = gts_annihilator_planet_killer.81.desc
+	picture = GFX_evt_wormhole
+	show_sound = event_mystic_reveal
+	location = event_target:sol_sys
+
+	is_triggered_only = yes
+
+	immediate = {
+		random_system = {
+			limit = {
+				has_natural_wormhole = no
+				distance = {
+					source = event_target:sol_sys
+					min_distance >= 50
+					max_distance <= 300
+				}
+			}
+			event_target:sol_sys = {
+				# done this way to ensure we don't spawn "orphan" wormholes (wormholes that aren't linked to anything)
+					spawn_natural_wormhole = {
+					bypass_type = wormhole
+					random_pos = yes
+					orbit_angle = 360
+				}
+			}
+			spawn_natural_wormhole = {
+				bypass_type = wormhole
+				random_pos = yes
+				orbit_angle = 360
+			}
+			link_wormholes = event_target:sol_sys
+		}
+	}
+
+	option = {
+		name = gts_annihilator_planet_killer.81.a
+		custom_tooltip = gts_annihilator_planet_killer.81.a.tooltip
+	}
+}
+
+country_event = {
+	id = gts_annihilator_planet_killer.100
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		owner = {
+			remove_country_flag = master_wants_to_enjoy
+		}
+		country_event = {
+			id = gts_annihilator.100
+		}
+	}
+}

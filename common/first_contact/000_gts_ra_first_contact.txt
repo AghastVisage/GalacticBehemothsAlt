@@ -1,0 +1,876 @@
+### The difference between Proposal 1 and 2 is that 2 has a base template and just feeds extra events in, using everything else from the base template,
+### whereas 1 basically replaces everything in the First Contact site (except history in the UI of which events you've already had) when you swap which
+### first contact phase you are in.
+### Either is fine, to be honest.
+# Scopes:
+# - Root = first contact site
+# - Root.Owner = your country (i.e. you should be able to scope from first contact scope to the owner via eventtarget.cpp)
+# - From = other country
+
+gts_default_stage_1 = {
+	icon = GFX_firstcontact_icon_progress
+	picture = GFX_evt_star_chart
+	difficulty = 4
+
+	stage_event = {
+		# no inhabited systems known-巨娘
+		summary = fcsum_stage_1_summary
+		event_weight = {
+			weight = 10
+			modifier = {
+				factor = 0
+				contact_country = {
+					any_system_within_border = {
+						root.owner = {
+							intel_level = {
+								level > low
+								system = prev
+							}
+						}
+					}
+				}
+			}
+			modifier = {
+				factor = 0
+				contact_country = {
+					any_controlled_fleet = {
+						is_within_borders_of = root.owner
+					}
+				}
+			}
+		}
+		event = first_contactgts.11
+	}
+	stage_event = {
+		# no inhabited systems known, they are scanning us-巨娘
+		summary = fcsum_stage_1_summary
+		event_weight = {
+			weight = 10
+			modifier = {
+				factor = 0
+				contact_country = {
+					any_system_within_border = {
+						root.owner = {
+							intel_level = {
+								level > low
+								system = prev
+							}
+						}
+					}
+				}
+			}
+			modifier = {
+				factor = 0
+				NOT = {
+					contact_country = {
+						any_controlled_fleet = {
+							is_within_borders_of = root.owner
+						}
+					}
+				}
+			}
+		}
+		event = first_contactgts.12
+	}
+	stage_event = {
+		# inhabited systems known-巨娘
+		summary = fcsum_stage_1_summary
+		event_weight = {
+			weight = 10
+			modifier = {
+				factor = 0
+				NOT = {
+					contact_country = {
+						any_system_within_border = {
+							root.owner = {
+								intel_level = {
+									level > low
+									system = prev
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		event = first_contactgts.13
+	}
+	on_roll_failed = {
+		standard_first_contact_on_roll_failed = {
+			RANDOM_EVENTS = early_fc_random_events
+		}
+	}
+}
+
+default_stagegts_2 = {
+	picture = GFX_evt_mysterious_signal
+	difficulty = 7
+	# standard non-proactive
+	stage_event = {
+		icon = GFX_firstcontact_icon_question
+		summary = fcsum_investigation_needed
+		event_weight = {
+			weight = 0
+			modifier = {
+				weight = 50
+				contact_country = {
+					NOT = {
+						has_policy_flag = first_contact_proactive
+					}
+				}
+			}
+		}
+		event = first_contact.50
+	}
+	# standard proactive
+	stage_event = {
+		icon = GFX_firstcontact_icon_success
+		summary = fcsum_comms_received
+		event_weight = {
+			weight = 0
+			modifier = {
+				weight = 50
+				contact_country = {
+					has_policy_flag = first_contact_proactive
+				}
+			}
+		}
+		event = first_contact.60
+	}
+	# first encounter hive->default
+	stage_event = {
+		icon = GFX_firstcontact_icon_progress
+		summary = fcsum_hive_to_default_1
+		event_weight = {
+			weight = 0
+			modifier = {
+				weight = 10000
+				contact_country = {
+					is_regular_empire = yes
+				}
+				owner = {
+					is_hive_empire = yes
+					NOT = {
+						has_country_flag = hive_encountered_default
+					}
+					NOT = {
+						any_relation = {
+							is_regular_empire = yes
+							has_communications = prev
+						}
+					}
+				}
+			}
+		}
+		event = first_contact.380
+	}
+	# first encounter machine->default
+	stage_event = {
+		icon = GFX_firstcontact_icon_progress
+		summary = fcsum_machine_to_default_1
+		event_weight = {
+			weight = 0
+			modifier = {
+				weight = 10000
+				owner = {
+					is_machine_empire = yes
+				}
+				OR = {
+					AND = {
+						contact_country = {
+							is_regular_empire = yes
+						}
+						owner = {
+							NOT = {
+								has_country_flag = machine_encountered_default
+							}
+							NOT = {
+								any_relation = {
+									is_regular_empire = yes
+									has_communications = prev
+								}
+							}
+						}
+					}
+					AND = {
+						contact_country = {
+							is_hive_empire = yes
+						}
+						owner = {
+							NOT = {
+								has_country_flag = machine_encountered_hive
+							}
+							NOT = {
+								any_relation = {
+									is_hive_empire = yes
+									has_communications = prev
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		event = first_contact.390
+	}
+	# Speaking in Riddles story 袜足还是裸足事件？
+	stage_event = {
+		icon = GFX_firstcontact_icon_question
+		summary = fcsum_foot1_1
+		event_weight = {
+			weight = 100
+			modifier = {
+				factor = 0
+				owner = {
+					has_country_flag = first_contactgts_foot1_chain
+				}
+			}
+		}
+		event = first_contactgts.1010
+	}
+	# Monstrous Noises story
+	stage_event = {
+		icon = GFX_firstcontact_icon_warship_progress
+		summary = fcsum_monstrous_noises_1
+		event_weight = {
+			weight = 5
+			modifier = {
+				factor = 0
+				owner = {
+					OR = {
+						has_country_flag = first_contact_monstrous_noises_chain
+						is_gestalt = yes
+						is_homicidal = yes
+					}
+				}
+			}
+			modifier = {
+				factor = 0
+				contact_country = {
+					is_gestalt = yes
+				}
+			}
+			modifier = {
+				factor = 2.5
+				contact_country = {
+					is_militarist = yes
+				}
+			}
+			modifier = {
+				factor = 4
+				contact_country = {
+					OR = {
+						has_ai_personality = honorbound_warriors
+						has_valid_civic = civic_fanatic_purifiers
+					}
+				}
+			}
+		}
+		event = first_contact.365
+	}
+	# Apparent Hostility story
+	stage_event = {
+		icon = GFX_firstcontact_icon_warship_progress
+		summary = fcsum_apparent_hostility_1
+		event_weight = {
+			weight = 5
+			modifier = {
+				factor = 0
+				owner = {
+					has_country_flag = first_contact_apparent_hostility_chain
+				}
+			}
+			modifier = {
+				factor = 0
+				contact_country = {
+					is_militarist = no
+					NOT = {
+						has_ai_personality = honorbound_warriors
+					}
+				}
+			}
+			modifier = {
+				factor = 0
+				contact_country = {
+					is_hostile_to = root.owner
+				}
+			}
+			modifier = {
+				factor = 3
+				contact_country = {
+					OR = {
+						has_ai_personality = honorbound_warriors
+						has_valid_civic = civic_fanatic_purifiers
+					}
+				}
+			}
+		}
+		event = first_contact.400
+	}
+	# Hummers story
+	stage_event = {
+		icon = GFX_firstcontact_icon_question
+		summary = fcsum_hummers_1
+		event_weight = {
+			weight = 10
+			modifier = {
+				factor = 0
+				owner = {
+					OR = {
+						is_gestalt = yes						#no part of it would work, sadly...
+						has_country_flag = first_contact_hummers_chain
+						NOR = {
+							#noobs not allowed
+							has_modifier = first_contact_skill_1
+							has_modifier = first_contact_skill_2
+							has_modifier = first_contact_skill_3
+							has_modifier = first_contact_skill_4
+						}
+					}
+				}
+			}
+			modifier = {
+				factor = 0
+				contact_country = {
+					is_gestalt = yes
+				}
+			}
+			modifier = {
+				factor = 0.5
+				contact_country = {
+					is_same_species_class = root.owner
+				}
+			}
+		}
+		event = first_contact.415
+	}
+	# Octopodes story
+	stage_event = {
+		icon = GFX_firstcontact_icon_question
+		summary = fcsum_octopodes_1
+		event_weight = {
+			weight = 2
+			modifier = {
+				factor = 0
+				owner = {
+					OR = {
+						has_country_flag = first_contact_octopodes_chain
+						NOR = {
+							#noobs not allowed
+							has_modifier = first_contact_skill_1
+							has_modifier = first_contact_skill_2
+							has_modifier = first_contact_skill_3
+							has_modifier = first_contact_skill_4
+						}
+					}
+				}
+			}
+			modifier = {
+				factor = 0
+				contact_country = {
+					is_gestalt = yes
+				}
+			}
+			modifier = {
+				factor = 8
+				contact_country = {
+					OR = {
+						is_species_class = AQUATIC
+						is_species_class = MOL
+					}
+				}
+			}
+		}
+		event = first_contact.430
+	}
+	# Colorful Linguistics
+	stage_event = {
+		icon = GFX_firstcontact_icon_question
+		summary = fcsum_colorful_linguistics_1
+		event_weight = {
+			weight = 5
+			modifier = {
+				factor = 0
+				owner = {
+					OR = {
+						has_country_flag = first_contact_colorful_linguistics_chain
+						AND = {
+							is_gestalt = yes
+							any_relation = {
+								has_communications = prev
+								is_regular_empire = yes
+							}
+						}
+						is_homicidal = yes
+					}
+				}
+			}
+			modifier = {
+				factor = 0
+				contact_country = {
+					OR = {
+						is_homicidal = yes
+						is_gestalt = yes
+					}
+				}
+			}
+		}
+		event = first_contact.5070
+	}
+	# Poetry story
+	stage_event = {
+		icon = GFX_firstcontact_icon_question
+		summary = fcsum_poetry_1
+		event_weight = {
+			weight = 2
+			modifier = {
+				factor = 0
+				OR = {
+					owner = {
+						OR = {
+							has_country_flag = first_contact_poetry_chain
+							is_gestalt = yes
+						}
+					}
+					contact_country = {
+						is_gestalt = yes
+					}
+				}
+			}
+			modifier = {
+				factor = 0
+				contact_country = {
+					NOT = {
+						has_policy_flag = first_contact_proactive
+					}
+				}
+			}
+		}
+		event = first_contact.450
+	}
+	# Xeno Dinner Party
+	stage_event = {
+		icon = GFX_firstcontact_icon_question
+		summary = fcsum_xeno_dinner_party
+		event_weight = {
+			weight = 5
+			modifier = {
+				factor = 0
+				owner = {
+					OR = {
+						has_country_flag = first_contact_xeno_dinner_party_chain
+						is_gestalt = yes
+						is_homicidal = yes
+						has_policy_flag = first_contact_attack_allowed
+					}
+				}
+			}
+			modifier = {
+				factor = 0
+				contact_country = {
+					OR = {
+						is_gestalt = yes
+						AND = {
+							NOT = {
+								has_policy_flag = first_contact_proactive
+							}
+							is_xenophile = yes
+						}
+					}
+				}
+			}
+		}
+		event = first_contact.1120
+	}
+	# The Trial
+	stage_event = { # The Shuttle
+		icon = GFX_firstcontact_icon_progress
+		summary = fcsum_trial_1
+		event_weight = {
+			weight = 2
+			modifier = {
+				factor = 0
+				OR = {
+					owner = {
+						OR = {
+							has_country_flag = first_contact_trial_chain
+							is_homicidal = yes
+							is_gestalt = yes
+						}
+					}
+					contact_country = {
+						OR = {
+							is_homicidal = yes
+							is_gestalt = yes
+						}
+					}
+				}
+			}
+		}
+		event = first_contact.5080
+	}
+	on_roll_failed = {
+		standard_first_contact_on_roll_failed = { RANDOM_EVENTS = late_fc_random_events }
+	}
+}
+
+#巨娘版
+# 飞船绑架事件
+default_hostile_ship_stage_gts = {
+	picture = GFX_evt_gts_face_off_in_space
+	difficulty = 2
+	#巨大娘版
+	#船和人都在（嘴部
+	stage_event = {
+		icon = GFX_firstcontact_icon_warship_success
+		summary = fcsum_hostile_ship_best.gts
+		event_weight = {
+			weight = 3
+			modifier = {
+				factor = 0
+				first_contact_can_capture_ship = no
+			}
+			modifier = {
+				factor = 0.5
+				NOT = {
+					contact_country = {
+						any_controlled_fleet = {
+							is_within_borders_of = root.owner
+						}
+					}
+				}
+			}
+			modifier = {
+				factor = 0.5
+				contact_country = {
+					is_gestalt = yes
+				}
+			}
+			modifier = {
+				factor = 1.5
+				contact_country = {
+					has_policy_flag = first_contact_proactive
+				}
+			}
+			modifier = {
+				factor = 1.2
+				owner = {
+					tech_unlocked_ratio = {
+						who = root.contact_country
+						ratio >= 1.2
+					}
+				}
+			}
+			modifier = {
+				factor = 1.1
+				owner = {
+					has_modifier = first_contact_skill_2
+				}
+			}
+			modifier = {
+				factor = 1.2
+				owner = {
+					has_modifier = first_contact_skill_3
+				}
+			}
+			modifier = {
+				factor = 1.3
+				owner = {
+					has_modifier = first_contact_skill_4
+				}
+			}
+		}
+		event = first_contactgts.100
+	}
+	#船在人不在（脚部
+	stage_event = {
+		icon = GFX_firstcontact_icon_warship_progress
+		summary = fcsum_hostile_ship_none_alive.gts
+		event_weight = {
+			weight = 1
+			modifier = {
+				factor = 0
+				first_contact_can_capture_ship = no
+			}
+			modifier = {
+				factor = 0.5
+				NOT = {
+					contact_country = {
+						any_controlled_fleet = {
+							is_within_borders_of = root.owner
+						}
+					}
+				}
+			}
+			modifier = {
+				factor = 1.25
+				contact_country = {
+					has_policy_flag = first_contact_proactive
+				}
+			}
+		}
+		event = first_contactgts.260
+	}
+	#船和人都寄（阴部
+	stage_event = {
+		icon = GFX_firstcontact_icon_fail
+		summary = fcsum_hostile_ship_none_destroyed.gts
+		event_weight = {
+			weight = 1
+			modifier = {
+				factor = 0
+				first_contact_can_capture_ship = no
+			}
+			modifier = {
+				factor = 0.9
+				owner = {
+					has_modifier = first_contact_skill_2
+				}
+			}
+			modifier = {
+				factor = 0.8
+				owner = {
+					has_modifier = first_contact_skill_3
+				}
+			}
+			modifier = {
+				factor = 0.7
+				owner = {
+					has_modifier = first_contact_skill_4
+				}
+			}
+		}
+		event = first_contactgts.270
+	}
+	#船跑了
+	stage_event = {
+		icon = GFX_firstcontact_icon_fail
+		summary = fcsum_hostile_ship_escaped.gts
+		event_weight = {
+			weight = 1
+			modifier = {
+				factor = 2
+				contact_country = {
+					NOT = {
+						any_controlled_fleet = {
+							is_civilian = yes
+							is_within_borders_of = root.owner
+						}
+					}
+				}
+			}
+			modifier = {
+				factor = 1.33
+				contact_country = {
+					has_policy_flag = first_contact_cautious
+				}
+			}
+			modifier = {
+				factor = 1.2
+				owner = {
+					tech_unlocked_ratio = {
+						who = root.contact_country
+						ratio <= 0.8
+					}
+				}
+			}
+			modifier = {
+				factor = 0.9
+				owner = {
+					has_modifier = first_contact_skill_2
+				}
+			}
+			modifier = {
+				factor = 0.8
+				owner = {
+					has_modifier = first_contact_skill_3
+				}
+			}
+			modifier = {
+				factor = 0.7
+				owner = {
+					has_modifier = first_contact_skill_4
+				}
+			}
+		}
+		event = first_contactgts.280
+	}
+	on_roll_failed = {
+		standard_first_contact_on_roll_failed = {
+			RANDOM_EVENTS = hostile_fc_random_events
+		}
+	}
+}
+
+# hostile interrogation end stage
+default_end_stage_hostile_with_crew_gts = {
+	icon = GFX_firstcontact_icon_success
+	picture = GFX_evt_gts_interrogation
+	difficulty = 2	#easy
+	stage_event = {
+		summary = fcsum_interrogation_ended
+		event_weight = {
+			weight = 10
+		}
+		event = first_contactgts.285
+	}
+	on_roll_failed = {
+		standard_first_contact_on_roll_failed = {
+			RANDOM_EVENTS = hostile_fc_random_events
+		}
+	}
+}
+
+# hostile interrogation end stage
+default_end_stage_hostile_with_crew_easy_gts = {
+	icon = GFX_firstcontact_icon_success
+	picture = GFX_evt_gts_interrogation
+	difficulty = 0	#really easy
+	stage_event = {
+		summary = fcsum_interrogation_ended
+		event_weight = {
+			weight = 10
+		}
+		event = first_contactgts.285
+	}
+	on_roll_failed = {
+		standard_first_contact_on_roll_failed = {
+			RANDOM_EVENTS = hostile_fc_random_events
+		}
+	}
+}
+
+# hostile interrogation end stage
+default_end_stage_hostile_with_crew_hard_gts = {
+	icon = GFX_firstcontact_icon_success
+	picture = GFX_evt_gts_interrogation
+	difficulty = 5	#less easy
+	stage_event = {
+		summary = fcsum_interrogation_ended
+		event_weight = {
+			weight = 10
+		}
+		event = first_contactgts.285
+	}
+	on_roll_failed = {
+		standard_first_contact_on_roll_failed = {
+			RANDOM_EVENTS = hostile_fc_random_events
+		}
+	}
+}
+
+# hostile vivisection end stage
+default_end_stage_hostile_with_vivisection_gts = {
+	icon = GFX_firstcontact_icon_success
+	picture = GFX_evt_gts_vivisection
+	difficulty = 3	#easy
+	stage_event = {
+		summary = fcsum_vivisection_ended
+		event_weight = {
+			weight = 10
+		}
+		event = first_contactgts.290
+	}
+	on_roll_failed = {
+		standard_first_contact_on_roll_failed = {
+			RANDOM_EVENTS = hostile_fc_random_events
+		}
+	}
+}
+
+# hostile interrogation end stage
+default_end_stage_hostile_no_crew_gts = {
+	icon = GFX_firstcontact_icon_success
+	picture = GFX_evt_gts_nocrewend
+	difficulty = 5
+	stage_event = {
+		summary = fcsum_comms_established
+		event_weight = {
+			weight = 10
+		}
+		event = first_contactgts.295
+	}
+	on_roll_failed = {
+		standard_first_contact_on_roll_failed = {
+			RANDOM_EVENTS = hostile_fc_random_events
+		}
+	}
+}
+
+## Hostile abduction chain
+# 行星绑架事件
+default_hostile_systems_stage_gts = {
+	picture = GFX_evt_gts_alien_abduction
+	difficulty = 2
+	# You capture them from a planet
+	stage_event = {
+		icon = GFX_firstcontact_icon_saucer
+		summary = fcsum_abduction_woopsie
+		event_weight = {
+			weight = 1
+			modifier = {
+				factor = 0
+				owner = {
+					OR = {
+						has_country_flag = abducted_cows
+						is_regular_empire = no
+					}
+				}
+				NOT = {
+					exists = event_target:abduction_planet
+				}
+			}
+		}
+		event = first_contactgts.321
+	}
+	# You capture them from a planet
+	stage_event = {
+		icon = GFX_firstcontact_icon_saucer
+		summary = fcsum_abduction_succeeded
+		event_weight = {
+			weight = 20
+		}
+		event = first_contactgts.320
+	}
+	stage_event = {
+		icon = GFX_firstcontact_icon_saucer
+		summary = fcsum_abduction_succeeded
+		event_weight = {
+			weight = 20
+		}
+		event = first_contactgts.340
+	}
+	stage_event = {
+		icon = GFX_firstcontact_icon_saucer
+		summary = fcsum_abduction_succeeded
+		event_weight = {
+			weight = 20
+		}
+		event = first_contactgts.350
+	}
+
+	on_roll_failed = {
+		standard_first_contact_on_roll_failed = {
+			RANDOM_EVENTS = hostile_fc_random_events
+		}
+	}
+}
+
+##袜足还是裸足事件
+default_end_stagegts_foot1 = {
+	icon = GFX_firstcontact_icon_question
+	picture = GFX_evt_gts_foot_contact
+	difficulty = 5
+	stage_event = {
+		summary = fcsum_foot1_2
+		event_weight = {
+			weight = 20
+		}
+		event = first_contactgts.1011
+	}
+	on_roll_failed = {
+		standard_first_contact_on_roll_failed = {
+			RANDOM_EVENTS = late_fc_random_events
+		}
+	}
+}

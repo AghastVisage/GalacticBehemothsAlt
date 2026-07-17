@@ -1,0 +1,1518 @@
+##################
+# MISC
+##################
+
+@build_block_radius_none = 0
+@build_block_radius_civilian = 20
+@build_block_radius_military = 200
+@speed_very_slow = 80
+@speed_slow = 100
+@speed_default = 120
+@speed_fast = 140
+@speed_very_fast = 160
+@speed_event_super_slow = 0.5
+@station_civilian_hp = 2000
+@station_small_hp = 3000
+@station_medium_hp = 15000
+@station_large_hp = 25000
+@station_enclave_hp = 40000
+@outpost_armor = 2000
+@starport_armor = 4000
+@starhold_armor = 10000
+@starfort_armor = 20000
+@citadel_armor = 40000
+@fe_destroyer_hp = 1000
+@fe_battleship_hp = 5000
+@fe_titan_hp = 20000
+# Miscellaneous ships
+@tiny_ship_hp = 150
+
+##################
+# CORVETTE
+##################
+
+@corvette_collision_radius = 2.0
+@corvette_formation_priority = 20
+@corvette_hp = 200
+@corvette_evasion = 60
+@corvette_build_time = 60
+@corvette_upkeep_energy = 0.3
+@corvette_upkeep_alloys = 0.1
+@corvette_upkeep_minerals = 0.2
+@frigate_collision_radius = 3.0
+@frigate_formation_priority = 25
+@frigate_hp = 400
+@frigate_evasion = 20
+@frigate_build_time = 90
+
+##################
+# DESTROYER
+##################
+
+@destroyer_collision_radius = 2.5
+@destroyer_formation_priority = 10
+@destroyer_hp = 600
+@destroyer_evasion = 35
+@destroyer_build_time = 120
+@destroyer_upkeep_energy = 0.6
+@destroyer_upkeep_alloys = 0.2
+@destroyer_upkeep_minerals = 0.4
+
+##################
+# CRUISER
+##################
+
+@cruiser_collision_radius = 3.5
+@cruiser_formation_priority = 30
+@cruiser_hp = 1800
+@cruiser_evasion = 10
+@cruiser_build_time = 240
+@cruiser_upkeep_energy = 1.2
+@cruiser_upkeep_alloys = 0.4
+@cruiser_upkeep_minerals = 0.8
+
+##################
+# BATTLESHIP
+##################
+
+@battleship_collision_radius = 6
+@battleship_formation_priority = 50
+@battleship_hp = 3000
+@battleship_evasion = 5
+@battleship_build_time = 480
+@battleship_upkeep_energy = 2.4
+@battleship_upkeep_alloys = 0.8
+
+##################
+# TITAN
+##################
+
+@titan_collision_radius = 12
+@titan_formation_priority = 40
+@titan_hp = 15000
+@titan_evasion = 5
+@titan_build_time = 1800
+@titan_upkeep_energy = 4.8
+@titan_upkeep_alloys = 1.6
+
+##################
+# COLOSSUS
+##################
+
+@colossus_collision_radius = 4
+@colossus_formation_priority = 4
+@colossus_hp = 30000
+@colossus_evasion = 2
+@colossus_build_time = 3600
+@colossus_upkeep_energy = 30
+@colossus_upkeep_alloys = 10
+
+##################
+# JUGGERNAUT
+##################
+
+@juggernaut_collision_radius = 4
+@juggernaut_formation_priority = 4
+@juggernaut_hp = 100000
+@juggernaut_evasion = 2
+@juggernaut_build_time = 3600
+@juggernaut_upkeep_energy = 30
+@juggernaut_upkeep_alloys = 10
+
+##################
+# CONSTRUCTION SHIP
+##################
+
+@construction_hp = 300
+@construction_evasion = 25
+@construction_build_time = 60
+@construction_upkeep_energy = 1
+@construction_upkeep_alloys = 0
+
+##################
+# SCIENCE SHIP
+##################
+
+@science_hp = 300
+@science_evasion = 40
+@science_build_time = 60
+@science_upkeep_energy = 1
+@science_upkeep_alloys = 0
+
+##################
+# COLONY SHIP
+##################
+
+@colony_hp = 500
+@colony_evasion = 10
+@colony_build_time = 360
+@colony_upkeep_energy = 1
+@colony_upkeep_alloys = 0
+@colony_cost_very_low = 50
+@colony_cost_very_low_max = 100		# This is used for the ai_budgets
+@colony_cost_low = 100
+@colony_cost_low_max = 150			# This is used for the ai_budgets
+@colony_cost_base = 200
+@colony_cost_base_max = 250			# This is used for the ai_budgets
+@colony_cost_mid = 400
+@colony_cost_mid_max = 450			# This is used for the ai_budgets
+@colony_cost_high = 500
+@colony_cost_high_max = 550			# This is used for the ai_budgets
+@colony_cost_very_high = 700
+@colony_cost_very_high_max = 750	# This is used for the ai_budgets
+
+##################
+# TRANSPORT SHIP
+##################
+
+@transport_hp = 100
+@transport_evasion = 70
+@transport_build_time = 0
+@transport_upkeep_energy = 0
+@transport_upkeep_alloys = 0
+
+##################
+# Entities
+##################
+
+@small_trail_W = 10
+@small_trail_L = 60
+@medium_trail_W = 25
+@medium_trail_L = 150
+@large_trail_W = 50
+@large_trail_L =  300
+
+loliship = {
+	graphical_culture = no
+	entity = "loliship_entity"
+	max_speed = 120
+	acceleration = 0.2
+	rotation_speed = 0.15
+	collision_radius = 5
+	modifier = {
+		ship_evasion_add = 25
+		ship_armor_add = 100000
+	}
+	max_hitpoints = 150000
+	size_multiplier = 16
+	fleet_slot_size = 16
+	section_slots = {
+		"mid" = {
+			locator = "part1"
+		}
+	}
+	num_target_locators = 0
+	is_space_station = no
+	icon = ship_size_space_monster
+	class = shipclass_military
+	is_designable = no
+	required_component_set = "ftl_components"
+	required_component_set = "combat_computers"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	components_add_to_cost = no
+	resources = {
+		category = ships
+		upkeep = {
+			trigger = {
+				from = {
+					is_country_type = default
+				}
+			}
+			food = 100
+		}
+	}
+}
+
+sleepbear = {
+	entity = "sleep_bear_entity"
+	is_space_object = yes
+	graphical_culture = no
+	can_be_inspected = no
+	max_speed = @speed_very_slow
+	acceleration = 0.3
+	rotation_speed = 0.20
+	collision_radius = 12
+	modifier = {
+		ship_evasion_add = 50
+		ship_armor_add = 200
+	}
+	max_hitpoints = 1000
+	combat_size_multiplier = 50
+	size_multiplier = 32
+	fleet_slot_size = 1
+	section_slots = { "mid" = { locator = "root" } } # locator = a point on the model which is added by the artists.
+	num_target_locators = 0 # could be where enemy's fire at the ship
+	is_space_station = no
+	icon = ship_size_space_monster
+	is_civilian = yes
+	valid_target_aggressive_stance = no
+
+	class = shipclass_science_ship
+	is_designable = no
+
+	components_add_to_cost = no
+	resources = {
+		category = ships
+			cost = {
+				alloys = 5000
+				sr_dark_matter = 1000
+    		}
+	}
+}
+
+gts_lexington = {
+	entity = "gts_lexington_entity"
+	is_space_object = yes
+	graphical_culture = no
+	can_be_inspected = no
+	max_speed = @speed_very_slow
+	acceleration = 0.3
+	rotation_speed = 0.20
+	collision_radius = 12
+	modifier = {
+		ship_evasion_add = 50
+		ship_armor_add = 200
+	}
+	max_hitpoints = 1000
+	combat_size_multiplier = 50
+	size_multiplier = 32
+	fleet_slot_size = 1
+	section_slots = { "mid" = { locator = "root" } } # locator = a point on the model which is added by the artists.
+	num_target_locators = 0 # could be where enemy's fire at the ship
+	is_space_station = no
+	icon = ship_size_space_monster
+	is_civilian = yes
+	valid_target_aggressive_stance = no
+
+	class = shipclass_science_ship
+	is_designable = no
+
+	components_add_to_cost = no
+	resources = {
+		category = ships
+			cost = {
+				alloys = 5000
+				sr_dark_matter = 1000
+    		}
+	}
+}
+
+master = {
+	formation_priority = @titan_formation_priority
+	max_speed = @speed_fast
+	acceleration = 0.4
+	rotation_speed = 0.3
+	collision_radius = 15
+	max_hitpoints = 4000000
+	modifier = {
+		ship_evasion_add = 20
+		ships_upkeep_mult = -0.5
+	}
+	size_multiplier = 16
+	fleet_slot_size = 16
+	section_slots = { "bow" = { locator = "part1" } "mid" = { locator = "part2" } "stern" = { locator = "part3" } }
+	num_target_locators = 4
+	is_space_station = no
+	icon = 2
+	is_designable = no
+	base_buildtime = 90
+	can_have_federation_design = no
+	enable_default_design = no	#if yes, countries will have an auto-generated design at start
+	auto_upgrade = no
+	enable_3dview_in_ship_browser = no #if yes, ship design will have a 3d view in the ship browser
+	entity = "master_entity"
+	selectable = { 
+		host_has_dlc = "Apocalypse" 
+		has_origin = origin_annihilator
+	}
+
+	class = shipclass_military
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "combat_computers"
+	required_component_set = "sensor_components"
+
+	potential_construction = {
+		always = no
+		# OR = {
+		# 	is_scope_type = starbase
+		# 	AND = {
+		# 		is_scope_type = megastructure
+		# 		OR = {
+		# 			is_megastructure_type = mega_shipyard_3
+		# 			is_megastructure_type = mega_shipyard_restored
+		# 		}
+		# 	}
+		# }
+		# has_origin = origin_annihilator
+		# has_country_flag = master_wants_to_play
+		# has_country_flag = master_is_hurt
+	}
+
+	possible_construction = {
+		always = no
+		# custom_tooltip = {
+		# 	fail_text = master_dont_want_to_play
+		# 	not = {
+		# 		has_country_flag = master_wants_to_play
+		# 	}
+		# }
+	}
+
+	resources = {
+		category = ships
+		upkeep = {
+			energy = 25
+			alloys = 10
+			food = 10
+		}
+	}
+
+	min_upgrade_cost = {
+		alloys = 16
+	}
+
+	ai_ship_data = {
+		max = 1
+		min = 1
+	}
+}
+
+Kaijiang = {
+	can_be_inspected = no
+	is_space_object = yes
+	formation_priority = @destroyer_formation_priority
+	max_speed = 0.2
+	rotation_speed = 10
+	acceleration = 10
+	collision_radius = @destroyer_collision_radius
+	max_hitpoints = 12000
+	size_multiplier = 1.5
+	fleet_slot_size = 1
+	modifier = {
+		ship_evasion_mult = -1
+	}
+	section_slots = { "mid" = { locator = "part1" } }
+	num_target_locators = 2
+	icon = ship_size_military_1
+	is_civilian = no
+	is_space_station = no
+	is_designable = no
+	entity = "asteroid_01_entity" #回头换成会长的
+
+	default_behavior = picket
+
+	combat_disengage_chance = 0
+
+	class = shipclass_military
+}
+
+gts_guya_ship = {
+	graphical_culture = no 
+	is_space_object = yes
+	entity = gts_guya_entity
+	can_be_inspected = no
+	formation_priority = @battleship_formation_priority
+	max_speed = 160
+	acceleration = 0.2
+	rotation_speed = 0.1
+	collision_radius = @battleship_collision_radius
+	max_hitpoints = 3000000
+	modifier = {
+		ship_evasion_add = 25
+		ship_armor_add = 100000
+		ship_orbital_bombardment_mult = 10
+		ship_accuracy_add = 100
+	}
+	
+	size_multiplier = 32
+	fleet_slot_size = 32
+	section_slots = {
+		"bow" = {
+			locator = "part1"
+		}
+		"mid" = {
+			locator = "part2"
+		}
+		"stern" = {
+			locator = "part3"
+		}
+	}
+	num_target_locators = 4
+	is_space_station = no
+	icon = ship_size_space_monster
+	is_designable = no
+	enable_3dview_in_ship_browser = no	#if yes, ship design will have a 3d view in the ship browser
+	default_behavior = line
+	combat_disengage_chance = 1.25
+	class = shipclass_military
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	required_component_set = "ship_aura_components"
+	resources = {
+		category = ships
+		upkeep = {
+			food = 250
+		}
+	}	
+}
+
+# 豢养神明
+gts_yarong_ship = {
+	graphical_culture = no 
+	is_space_object = yes
+	entity = yarong_ship_entity
+	can_be_inspected = no
+	formation_priority = @battleship_formation_priority
+	max_speed = 160
+	acceleration = 0.2
+	rotation_speed = 0.1
+	collision_radius = @battleship_collision_radius
+	max_hitpoints = 2000000
+	modifier = {
+		ship_evasion_add = 25
+		ship_armor_add = 100000
+		ship_orbital_bombardment_mult = 10
+		ship_accuracy_add = 100
+	}
+	
+	size_multiplier = 32
+	fleet_slot_size = 32
+	section_slots = {
+		"mid" = {
+			locator = "part1"
+		}
+	}
+	num_target_locators = 4
+	is_space_station = no
+	icon = ship_size_space_monster
+	is_designable = no
+	enable_3dview_in_ship_browser = no	#if yes, ship design will have a 3d view in the ship browser
+	default_behavior = line
+	combat_disengage_chance = 1.25
+	class = shipclass_military
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	required_component_set = "ship_aura_components"
+	resources = {
+		category = ships
+		upkeep = {
+			food = 125
+		}
+	}	
+}
+
+gts_shentun_ship = {
+	graphical_culture = no 
+	is_space_object = yes
+	entity = zichen3_entity
+	can_be_inspected = no
+	formation_priority = @battleship_formation_priority
+	max_speed = 160
+	acceleration = 0.2
+	rotation_speed = 0.1
+	collision_radius = @battleship_collision_radius
+	max_hitpoints = 2000000
+	modifier = {
+		ship_evasion_add = 25
+		ship_armor_add = 100000
+		ship_orbital_bombardment_mult = 10
+		ship_accuracy_add = 100
+	}
+	
+	size_multiplier = 32
+	fleet_slot_size = 32
+	section_slots = {
+		"bow" = {
+			locator = "part1"
+		}
+		"mid" = {
+			locator = "part2"
+		}
+		"stern" = {
+			locator = "part3"
+		}
+	}
+	num_target_locators = 4
+	is_space_station = no
+	icon = ship_size_space_monster
+	is_designable = no
+	enable_3dview_in_ship_browser = no	#if yes, ship design will have a 3d view in the ship browser
+	default_behavior = line
+	combat_disengage_chance = 1.25
+	class = shipclass_military
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	required_component_set = "ship_aura_components"
+	resources = {
+		category = ships
+		upkeep = {
+			food = 125
+		}
+	}	
+}
+
+gts_godkeeper_dragon = {
+	is_space_object = yes
+	#graphical_culture = { "guardian_01" }
+	graphical_culture = no
+	construction_type = starbase_shipyard
+	base_buildtime = @titan_build_time
+	is_listed = yes
+	can_be_inspected = no
+	max_speed = @speed_very_fast
+	acceleration = 0.4
+	rotation_speed = 0.50
+	collision_radius = 7
+	modifier = {
+		ship_evasion_add = 25
+		ship_armor_add = 100000
+	}
+	max_hitpoints = 150000
+	combat_size_multiplier = 50
+	size_multiplier = 32
+	fleet_slot_size = 8
+	section_slots = { "mid" = { locator = "part1" } }
+	num_target_locators = 0
+	is_space_station = no
+	icon = ship_size_space_monster
+
+	class = shipclass_military
+	is_designable = no
+
+	potential_country = {
+		has_tradition = tr_gts_godkeeper_4
+		has_origin = origin_god_keeper
+	}
+
+	potential_construction = {
+		is_scope_type = starbase
+	}
+
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = requires_godkeeper_dragonclone
+			has_starbase_building = godkeeper_dragonclone
+		}
+	}
+
+	components_add_to_cost = no
+
+	resources = {
+		category = ships
+		cost = {
+			food = 100000
+		}
+		upkeep = {
+			food = 100
+		}
+	}
+
+	# ai_ship_data = {
+	# 	min = 5
+	# 	planet_mult = 0.5
+	# 	max = 10
+	# }
+}
+
+# 千海
+gts_tensi_ship = { # 安露
+	graphical_culture = no
+	entity = "GTS_battleship_body_entity"
+	formation_priority = @titan_formation_priority
+	max_speed = 80
+	acceleration = 0.2
+	rotation_speed = 0.05
+	can_be_inspected = no
+	collision_radius = @titan_collision_radius
+	max_hitpoints = 8000000
+	modifier = {
+		ship_evasion_add = @titan_evasion
+	}
+	size_multiplier = 32
+	fleet_slot_size = 32
+	section_slots = {
+		"bow" = {
+			locator = "part1"
+		}
+		"mid" = {
+			locator = "part2"
+		}
+		"stern" = {
+			locator = "part3"
+		}
+	}
+	num_target_locators = 4
+	is_space_station = no
+	is_designable = no
+	icon = GFX_intel_avatar_tensi
+	can_have_federation_design = no
+	enable_3dview_in_ship_browser = no	#if yes, ship design will have a 3d view in the ship browser
+	default_behavior = picket
+	combat_disengage_chance = 1.5
+	class = shipclass_military
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	required_component_set = "ship_aura_components"
+
+	resources = {
+		category = ships
+		upkeep = {
+			consumer_goods = 150
+		}
+	}
+	potential_construction = {
+		is_scope_type = starbase
+	}
+
+	ai_ship_data = {
+		fraction = {
+			base = 0
+			modifier = {
+				add = 25
+				uses_standard_ship_sizes = yes
+			}
+			modifier = {
+				factor = 1.5
+				is_preferred_weapons = weapon_type_strike_craft
+			}
+		}
+	}
+}
+
+gts_tensi_creation_ship = {
+	graphical_culture = no
+	entity = "GTS_destroyer_body_entity"
+	formation_priority = @destroyer_formation_priority
+	max_speed = 200
+	acceleration = 0.3
+	rotation_speed = 0.2
+	collision_radius = @destroyer_collision_radius
+	max_hitpoints = 900000
+	modifier = {
+		ship_evasion_add = @destroyer_evasion
+		#ship_piracy_suppression_add = 1000		#Bruh - 失效了
+	}
+	size_multiplier = 32
+	fleet_slot_size = 32
+	section_slots = {
+		"bow" = {
+			locator = "part1"
+		}
+		"stern" = {
+			locator = "part2"
+		}
+	}
+	num_target_locators = 4
+	icon = GFX_tech_gts_destroyer_ship
+	is_space_station = no
+	base_buildtime = 900
+	enable_default_design = yes
+	can_have_federation_design = no
+	enable_3dview_in_ship_browser = no	#if yes, ship design will have a 3d view in the ship browser
+	default_behavior = picket
+	combat_disengage_chance = 1.5
+	class = shipclass_military
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	required_component_set = "ship_aura_components"
+	resources = {
+		category = ships
+		upkeep = {
+			alloys = 175
+			consumer_goods = 175
+		}
+	}
+	min_upgrade_cost = {
+		alloys = 50
+	}
+	potential_country = {
+		any_owned_leader = {
+			has_leader_flag = gts_tensi
+		}
+	}
+	ai_ship_data = {
+		fraction = {
+			base = 0
+			modifier = {
+				add = 25
+				uses_standard_ship_sizes = yes
+			}
+		}
+	}
+}
+
+#板鸭
+bronyaship = {
+	graphical_culture = no
+	entity = "bronyaship_entity"
+	max_speed = 120
+	acceleration = 0.2
+	rotation_speed = 0.15
+	collision_radius = 5
+	modifier = {
+		ship_evasion_add = 25
+		ship_armor_add = 100000
+	}
+	max_hitpoints = 150000
+	size_multiplier = 16
+	fleet_slot_size = 16
+	section_slots = {
+		"mid" = {
+			locator = "part1"
+		}
+	}
+	num_target_locators = 0
+	is_space_station = no
+	icon = ship_size_space_monster
+	class = shipclass_military
+	is_designable = no
+	required_component_set = "ftl_components"
+	required_component_set = "combat_computers"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	components_add_to_cost = no
+	resources = {
+		category = ships
+		upkeep = {
+			trigger = {
+				from = {
+					is_country_type = default
+				}
+			}
+			food = 100
+		}
+	}
+}
+
+#小北方
+hoppo_ship = {
+	graphical_culture = no
+	entity = "gatebuilder_01_mothership_entity"
+	max_speed = 200
+	acceleration = 0.2
+	rotation_speed = 0.15
+	collision_radius = 5
+	modifier = {
+		ship_armor_mult = 10
+		ship_evasion_add = 10
+		ships_upkeep_mult = -1
+	}
+	max_hitpoints = 150000
+	size_multiplier = 16
+	fleet_slot_size = 16
+	section_slots = { "mid" = { locator = "part1" } }
+	num_target_locators = 0
+	is_space_station = no
+	icon = ship_size_space_monster
+	class = shipclass_military
+
+	is_designable = no
+
+	required_component_set = "ftl_components"
+	required_component_set = "combat_computers"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+
+	components_add_to_cost = no
+	resources = {
+		category = ships
+		cost = {
+			food = 1000
+			gts_giantess_fluid = 100
+		}
+	}
+}
+
+gts_allomerus_ship = {
+	# 主宰
+	# is_space_object = yes
+	# can_be_inspected = no
+	formation_priority = @juggernaut_formation_priority
+	entity = "mammalian_01_juggernaut_core_section_entity"
+	max_speed = @speed_slow
+	acceleration = 0.2
+	rotation_speed = 0.15
+	collision_radius = @juggernaut_collision_radius
+	max_hitpoints = @juggernaut_hp
+	modifier = {
+		ship_evasion_add = @juggernaut_evasion
+		starbase_shipyard_capacity_add = 2
+	}
+
+	resources = {
+		category = ships
+		upkeep = {
+			food = 50
+			gts_micro = 20
+		}
+	}
+	combat_size_multiplier = 5
+	size_multiplier = 32
+	fleet_slot_size = 32
+	section_slots = {
+		"core" = { locator = "part1" }
+	}
+	num_target_locators = 0
+	is_designable = yes
+	can_have_federation_design = no
+	enable_default_design = yes	#if yes, countries will have an auto-generated design at start
+	enable_3dview_in_ship_browser = no #if yes, ship design will have a 3d view in the ship browser
+	can_disable = no
+	icon_frame = 7 #probably unused, but mobile starbases are special
+	icon = ship_size_military_64
+	ship_class_icon_frame = 35
+	selectable = { host_has_dlc = "Federations" }
+	class = shipclass_starbase
+	default_behavior = carrier
+	ship_roles = { carrier artillery }
+
+	required_component_set = "power_core"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "ship_aura_components"
+}
+
+gts_sera_ship = {
+	# 巨像
+	formation_priority = @colossus_formation_priority
+	entity = fallen_empire_01_colossus_ship_entity
+	max_speed = @speed_very_slow
+	acceleration = 0.2
+	rotation_speed = 0.15
+	collision_radius = @colossus_collision_radius
+	max_hitpoints = @colossus_hp
+	modifier = {
+		ship_evasion_add = @colossus_evasion
+	}
+	size_multiplier = 32
+	fleet_slot_size = 32
+
+	section_slots = { "ship" = { locator = "frame_ship" } }
+	num_target_locators = 4
+	is_space_station = no
+	icon = ship_size_military_32
+	can_have_federation_design = no
+	enable_3dview_in_ship_browser = no #if yes, ship design will have a 3d view in the ship browser
+	selectable = { host_has_dlc = "Apocalypse" }
+
+	class = shipclass_military
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "combat_computers"
+
+	resources = {
+		category = ships
+		upkeep = {
+			food = 50
+			gts_micro = 20
+		}
+	}
+}
+
+#花田
+
+
+gts_giant_research_ship = {
+	is_civilian = yes
+	entity = huatian_01_entity
+	is_space_object = yes
+	graphical_culture = no
+	can_be_inspected = yes
+	max_speed = @speed_very_fast
+	acceleration = 1.5
+	rotation_speed = 1.5
+	collision_radius = 0
+	modifier = {
+	}
+	max_hitpoints = 10000000
+	combat_size_multiplier = 1
+	size_multiplier = 1
+	fleet_slot_size = 1
+	section_slots = { "mid" = { locator = "spine" } }
+	num_target_locators = 0
+	is_space_station = no
+	icon = ship_size_space_monster
+
+	class = shipclass_science_ship
+	is_designable = no
+	resources = {
+		category = ships
+		upkeep = {
+			trigger = {
+				from = {
+					is_country_type = default
+				}
+			}
+			food = 50
+		}
+		cost = {
+			food = 100
+		}
+	}
+}
+
+
+#希诺
+gts_xinuo_ship = {
+	entity = GTS_Bruh_Xeno_body_entity
+	is_space_object = yes
+	graphical_culture = no
+	can_be_inspected = yes
+	max_speed = 150
+	acceleration = 0.2
+	rotation_speed = 0.20
+	collision_radius = 7
+	modifier = {
+		ship_armor_add = 100000
+		ships_upkeep_mult = -1
+	}
+	max_hitpoints = 100000
+	combat_size_multiplier = 50
+	size_multiplier = 32
+	fleet_slot_size = 8
+	section_slots = { "mid" = { locator = "spine" } }
+	num_target_locators = 0
+	is_space_station = no
+	icon = ship_size_space_monster
+
+	class = shipclass_military
+	is_designable = no
+
+	resources = {
+		category = ships
+		upkeep = {
+			trigger = {
+				from = {
+					is_country_type = default
+				}
+			}
+			food = 50
+		}
+		cost = {
+			food = 100
+		}
+	}
+}
+
+#下三为科研
+#希儿
+gts_giant_seele_ship_research = {
+	entity = seele_ship_01_entity
+	is_civilian = yes
+	is_space_object = yes
+	graphical_culture = no
+	can_be_inspected = yes
+	max_speed = @speed_very_fast
+	acceleration = 1.5
+	rotation_speed = 1.5
+	collision_radius = 0
+	modifier = {
+		ship_shield_add = 10000000# 护盾承受值 | 舰船护盾增加
+		ship_armor_add = 10000000
+		ship_hull_add = 20000000# 船体值 | 舰船船体值增加
+		ships_upkeep_mult = -10
+	}
+	max_hitpoints = 10000000
+	combat_size_multiplier = 1
+	size_multiplier = 1
+	fleet_slot_size = 1
+	section_slots = { "bow" = { locator = "part1" } "mid" = { locator = "part2" } "stern" = { locator = "part3" } }
+	num_target_locators = 0
+	is_space_station = no
+	icon = ship_size_space_monster
+
+	class = shipclass_science_ship
+	is_designable = no
+	resources = {
+		category = ships
+		upkeep = {
+			trigger = {
+				from = {
+					is_country_type = default
+				}
+			}
+			food = 50
+		}
+		cost = {
+			food = 100
+		}
+	}
+}
+
+#布洛妮娅
+gts_giant_bronya_ship_research = {
+	entity = bronya_ship_01_entity
+	is_civilian = yes
+	is_space_object = yes
+	graphical_culture = no
+	can_be_inspected = yes
+	max_speed = @speed_very_fast
+	acceleration = 1.5
+	rotation_speed = 1.5
+	collision_radius = 0
+	modifier = {
+		ship_shield_add = 10000000# 护盾承受值 | 舰船护盾增加
+		ship_armor_add = 10000000
+		ship_hull_add = 20000000# 船体值 | 舰船船体值增加
+		ships_upkeep_mult = -10
+	}
+	max_hitpoints = 10000000
+	combat_size_multiplier = 1
+	size_multiplier = 1
+	fleet_slot_size = 1
+	section_slots = { "bow" = { locator = "part1" } "mid" = { locator = "part2" } "stern" = { locator = "part3" } }
+	num_target_locators = 0
+	is_space_station = no
+	icon = ship_size_space_monster
+
+	class = shipclass_science_ship
+	is_designable = no
+	resources = {
+		category = ships
+		upkeep = {
+			trigger = {
+				from = {
+					is_country_type = default
+				}
+			}
+			food = 50
+		}
+		cost = {
+			food = 100
+		}
+	}
+}
+
+#黑希
+gts_giant_seele_li_ship_research = {
+	entity = seele_li_ship_01_entity
+	is_civilian = yes
+	is_space_object = yes
+	graphical_culture = no
+	can_be_inspected = yes
+	max_speed = @speed_very_fast
+	acceleration = 1.5
+	rotation_speed = 1.5
+	collision_radius = 0
+	modifier = {
+		ship_shield_add = 10000000# 护盾承受值 | 舰船护盾增加
+		ship_armor_add = 10000000
+		ship_hull_add = 20000000# 船体值 | 舰船船体值增加
+		ships_upkeep_mult = -10
+	}
+	max_hitpoints = 10000000
+	combat_size_multiplier = 1
+	size_multiplier = 1
+	fleet_slot_size = 1
+	section_slots = { "bow" = { locator = "part1" } "mid" = { locator = "part2" } "stern" = { locator = "part3" } }
+	num_target_locators = 0
+	is_space_station = no
+	icon = ship_size_space_monster
+
+	class = shipclass_science_ship
+	is_designable = no
+	resources = {
+		category = ships
+		upkeep = {
+			trigger = {
+				from = {
+					is_country_type = default
+				}
+			}
+			food = 50
+		}
+		cost = {
+			food = 100
+		}
+	}
+}
+
+
+
+#这里的是军事
+#希儿
+gts_giant_seele_ship_military = {
+	entity = seele_ship_01_entity
+	is_space_object = yes
+	graphical_culture = no
+	can_be_inspected = yes
+	max_speed = @speed_very_fast
+	acceleration = 1.5
+	rotation_speed = 1.5
+	collision_radius = 0
+	modifier = {
+		ship_shield_add = 10000000# 护盾承受值 | 舰船护盾增加
+		ship_armor_add = 10000000
+		ship_hull_add = 20000000# 船体值 | 舰船船体值增加
+		ships_upkeep_mult = -10
+	}
+	max_hitpoints = 10000000
+	combat_size_multiplier = 1
+	size_multiplier = 1
+	fleet_slot_size = 1
+	section_slots = { "bow" = { locator = "part1" } "mid" = { locator = "part2" } "stern" = { locator = "part3" } }
+	num_target_locators = 0
+	is_space_station = no
+	icon = ship_size_space_monster
+
+	class = shipclass_military
+	is_designable = no
+	resources = {
+		category = ships
+		upkeep = {
+			trigger = {
+				from = {
+					is_country_type = default
+				}
+			}
+			food = 50
+		}
+		cost = {
+			food = 100
+		}
+	}
+}
+
+#布洛妮娅
+gts_giant_bronya_ship_military = {
+	entity = bronya_ship_01_entity
+	is_space_object = yes
+	graphical_culture = no
+	can_be_inspected = yes
+	max_speed = @speed_very_fast
+	acceleration = 1.5
+	rotation_speed = 1.5
+	collision_radius = 0
+	modifier = {
+		ship_shield_add = 10000000# 护盾承受值 | 舰船护盾增加
+		ship_armor_add = 10000000
+		ship_hull_add = 20000000# 船体值 | 舰船船体值增加
+		ships_upkeep_mult = -10
+	}
+	max_hitpoints = 10000000
+	combat_size_multiplier = 1
+	size_multiplier = 1
+	fleet_slot_size = 1
+	section_slots = { "bow" = { locator = "part1" } "mid" = { locator = "part2" } "stern" = { locator = "part3" } }
+	num_target_locators = 0
+	is_space_station = no
+	icon = ship_size_space_monster
+
+	class = shipclass_military
+	is_designable = no
+	resources = {
+		category = ships
+		upkeep = {
+			trigger = {
+				from = {
+					is_country_type = default
+				}
+			}
+			food = 50
+		}
+		cost = {
+			food = 100
+		}
+	}
+}
+
+#黑希
+gts_giant_seele_li_ship_military = {
+	entity = seele_li_ship_01_entity
+	is_space_object = yes
+	graphical_culture = no
+	can_be_inspected = yes
+	max_speed = @speed_very_fast
+	acceleration = 1.5
+	rotation_speed = 1.5
+	collision_radius = 0
+	modifier = {
+		ship_shield_add = 10000000# 护盾承受值 | 舰船护盾增加
+		ship_armor_add = 10000000
+		ship_hull_add = 20000000# 船体值 | 舰船船体值增加
+		ships_upkeep_mult = -10
+	}
+	max_hitpoints = 10000000
+	combat_size_multiplier = 1
+	size_multiplier = 1
+	fleet_slot_size = 1
+	section_slots = { "bow" = { locator = "part1" } "mid" = { locator = "part2" } "stern" = { locator = "part3" } }
+	num_target_locators = 0
+	is_space_station = no
+	icon = ship_size_space_monster
+
+	class = shipclass_military
+	is_designable = no
+	resources = {
+		category = ships
+		upkeep = {
+			trigger = {
+				from = {
+					is_country_type = default
+				}
+			}
+			food = 50
+		}
+		cost = {
+			food = 100
+		}
+	}
+}
+
+
+gts_hitomi_ship = {
+	entity = gts_hitomi_01_entity
+	is_space_object = yes
+	graphical_culture = no
+	can_be_inspected = yes
+	max_speed = 80
+	acceleration = 0.2
+	rotation_speed = 0.15
+	collision_radius = 0
+	modifier = {
+	}
+	max_hitpoints = 4000000
+	combat_size_multiplier = 1
+	size_multiplier = 32
+	fleet_slot_size = 32
+	section_slots = { "bow" = { locator = "part1" } "mid" = { locator = "part2" } "stern" = { locator = "part3" } }
+	num_target_locators = 0
+	is_space_station = no
+	icon = ship_size_space_monster
+
+	class = shipclass_military
+	is_designable = no
+	resources = {
+		category = ships
+		upkeep = {
+			trigger = {
+				from = {
+					is_country_type = default
+				}
+			}
+			food = 50
+		}
+		cost = {
+			food = 100
+		}
+	}
+}
+#林凤
+gts_linfeng_ship = {
+	entity = gts_linfeng_ship_01_entity
+	is_space_object = yes
+	graphical_culture = no
+	can_be_inspected = yes
+	max_speed = 150
+	acceleration = 0.2
+	rotation_speed = 0.20
+	collision_radius = 7
+	modifier = {
+		ship_armor_add = 100000
+		ships_upkeep_mult = -1
+	}
+	max_hitpoints = 100000
+	combat_size_multiplier = 50
+	size_multiplier = 32
+	fleet_slot_size = 8
+	section_slots = { "mid" = { locator = "spine" } }
+	num_target_locators = 0
+	is_space_station = no
+	icon = ship_size_space_monster
+
+	class = shipclass_military
+	is_designable = no
+
+	resources = {
+		category = ships
+		upkeep = {
+			trigger = {
+				from = {
+					is_country_type = default
+				}
+			}
+			food = 500
+			sr_zro = 30
+		}
+		cost = {
+		}
+	}
+}
+
+#林凤 futa
+gts_linfeng_futa_ship = {
+	entity = gts_linfeng_ship_futa_01_entity
+	is_space_object = yes
+	graphical_culture = no
+	can_be_inspected = yes
+	max_speed = 150
+	acceleration = 0.2
+	rotation_speed = 0.20
+	collision_radius = 7
+	modifier = {
+		ship_armor_add = 100000
+		ships_upkeep_mult = -1
+	}
+	max_hitpoints = 100000
+	combat_size_multiplier = 50
+	size_multiplier = 32
+	fleet_slot_size = 8
+	section_slots = { "mid" = { locator = "spine" } }
+	num_target_locators = 0
+	is_space_station = no
+	icon = ship_size_space_monster
+
+	class = shipclass_military
+	is_designable = no
+
+	resources = {
+		category = ships
+		upkeep = {
+			trigger = {
+				from = {
+					is_country_type = default
+				}
+			}
+			food = 500
+			sr_zro = 30
+		}
+		cost = {
+		}
+	}
+}
+#鸟音山水
+gts_giant_qinwen_ship_research = {
+	entity = gts_qinwen_ship_01_entity
+	is_civilian = yes
+	is_space_object = yes
+	graphical_culture = no
+	can_be_inspected = yes
+	max_speed = @speed_very_fast
+	acceleration = 1.5
+	rotation_speed = 1.5
+	collision_radius = 0
+	modifier = {
+		ships_upkeep_mult = -10
+	}
+	max_hitpoints = 10000000
+	combat_size_multiplier = 1
+	size_multiplier = 1
+	fleet_slot_size = 1
+	section_slots = { "bow" = { locator = "part1" } "mid" = { locator = "part2" } "stern" = { locator = "part3" } }
+	num_target_locators = 0
+	is_space_station = no
+	icon = ship_size_space_monster
+
+	class = shipclass_science_ship
+	is_designable = no
+	resources = {
+		category = ships
+		upkeep = {
+			trigger = {
+				from = {
+					is_country_type = default
+				}
+			}
+			food = 50
+		}
+		cost = {
+			food = 100
+		}
+	}
+}
+#事件要打的
+gts_Mitsuki_Hitomi_1 = {
+	entity = gts_hitomi_sci_ship_01_entity
+	is_space_object = yes
+	graphical_culture = no
+	can_be_inspected = yes
+	max_speed = 10
+	acceleration = 0.2
+	rotation_speed = 0.15
+	collision_radius = 0
+	modifier = {
+		ship_weapon_range_mult = -0.9  # 舰船武器射程 | 舰船武器射程倍率
+		ship_fire_rate_mult = -0.9
+	}
+	max_hitpoints = 1000000
+	combat_size_multiplier = 300
+	size_multiplier = 32
+	fleet_slot_size = 32
+	section_slots = { "bow" = { locator = "part1" } }
+	num_target_locators = 0
+	is_space_station = no
+	icon = ship_size_space_monster
+
+	class = shipclass_military
+	is_designable = no
+	resources = {
+		category = ships
+	}
+}
+#玩家手里的
+gts_Mitsuki_Hitomi_2 = {
+	is_civilian = yes
+	entity = gts_hitomi_sci_ship_01_entity
+	is_space_object = yes
+	graphical_culture = no
+	can_be_inspected = yes
+	max_speed = 80
+	acceleration = 0.2
+	rotation_speed = 0.15
+	collision_radius = 0
+	modifier = {
+		ships_upkeep_mult = -1
+	}
+	max_hitpoints = 4000000
+	combat_size_multiplier = 1
+	size_multiplier = 32
+	fleet_slot_size = 32
+	section_slots = { "bow" = { locator = "part1" } "mid" = { locator = "part2" } "stern" = { locator = "part3" } }
+	num_target_locators = 0
+	is_space_station = no
+	icon = ship_size_space_monster
+
+	class = shipclass_science_ship
+	is_designable = no
+	resources = {
+		category = ships
+		upkeep = {
+			trigger = {
+				from = {
+					is_country_type = default
+				}
+			}
+			food = 50
+		}
+		cost = {
+			food = 100
+		}
+	}
+}

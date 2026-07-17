@@ -1,0 +1,4546 @@
+@planet_button_x = 184
+@system_button_x = 342
+@target_button_y1 = 69
+@target_button_y2 = 97
+@target_button_y3 = 125
+@target_button_y4 = 153
+@target_button_y5 = 181
+@target_button_y6 = 209
+@target_button_y7 = 237
+@target_button_y8 = 265
+@target_button_y9 = 293
+@target_button_y10 = 321
+guiTypes = {
+	### 事件选项 ###
+	containerWindowType = {#取消发射
+		name = "gts_leader_colossus_panel_ui_option_quit"
+		position = { x = 0 y = 0 }
+		size = { width = 137 height = 33 }#height必须为0，否则这两个事件选项不会横向对齐
+		moveable = no
+		buttonType = {
+			name = "option_button"
+			quadTextureSprite = "GFX_gts_leader_colossus_quit"
+			position = { x = 184 y = 444 }
+			font = "malgun_goth_24"#"cg_16b"
+			text = "OPTION_TEXT"
+		}
+		OverlappingElementsBoxType = {
+			name = "trigger_icons"
+			position = { x = 184  y = 444 }
+			size = { x=137 y= 33 }
+		}
+	}
+	containerWindowType = {#确认发射
+		name = "gts_leader_colossus_panel_ui_option_confirm"
+		position = { x = 0 y = 0 }
+		size = { width = 137 height = 33 }
+		moveable = no
+		buttonType = {
+			name = "option_button"
+			quadTextureSprite = "GFX_gts_leader_colossus_confirm"
+			position = { x = 355 y = 411 }
+			font = "malgun_goth_24"#"cg_16b"
+			text = "OPTION_TEXT"
+		}
+		OverlappingElementsBoxType = {
+			name = "trigger_icons"
+			position = { x = 355  y = 411 }
+			size = { x=137 y= 33 }
+		}
+	}
+	### 事件窗口 ###
+	containerWindowType = {
+		name = "gts_leader_colossus_panel_ui"
+		orientation = center
+		origo = center
+		moveable = yes
+		size = { width = 650 height = 600 }
+		### 选项窗口 ###
+		containerWindowType = {
+			name = "EVENT_DIPLO"
+			position = { x = 0 y = 0 }
+			size = { width = 460 height = 600 }
+			moveable = no
+			instantTextBoxType={#事件标题文字
+				name = "action_title"
+				font = "malgun_goth_24"
+				position = { x = 9999 y = 9999 }
+				maxWidth = 400
+				alwaysTransparent = yes
+			}
+			instantTextBoxType={
+				name = "action_desc"
+				font = "malgun_goth_24"
+				position = { x = 9999 y = 9999 }
+				maxWidth = 500
+				maxHeight = 180
+				Orientation = "UPPER_LEFT"
+				format = center
+				alwaysTransparent = yes
+				text_color_code = "H"
+			}
+			listboxType = {#选项栏
+				name = "option_list"
+				position = { x = 0 y = 0 }
+				#backGround=""
+				size = { x = 460 y = 150 }
+				spacing = 0
+				scrollbartype = "standardlistbox_slider"
+				borderSize = { x = 0 y = 0 }
+				#Orientation = "UPPER_LEFT"
+			}
+		}
+		effectButtonType = {
+			name = "planet_target"
+			#position = { x = 2 y = 166 }
+			position = { x = 184 y = 349 }
+			spriteType = "GFX_gts_leader_colossus_planet_target"
+			buttonFont = "malgun_goth_24"
+			format = center
+			text = gts_leader_colossus_text_btn_planet_target
+			effect = gts_leader_colossus_btn_planet_target
+		}
+		effectButtonType = {
+			name = "system_target"
+			position = { x = 355 y = 349 }
+			spriteType = "GFX_gts_leader_colossus_system_target"
+			buttonFont = "malgun_goth_24"
+			format = center
+			text = gts_leader_colossus_text_btn_system_target
+			effect = gts_leader_colossus_btn_system_target
+		}
+		background = {#整体背景
+			name = "background"
+			quadTextureSprite = "GFX_gts_leader_colossus_bg"
+			alwaysTransparent = yes
+		}
+		background = {#标题背景
+			name = "title_background"
+			position = { x = 176 y = 61 }
+			quadTextureSprite = "GFX_gts_leader_colossus_panel_bg"
+			alwaysTransparent = yes
+		}
+		background = {#拖动界面
+			name = "drag"
+			quadTextureSprite = "GFX_gts_leader_colossus_drag"
+		}
+		buttonType = {#聚焦按钮
+			name = "focus_button"
+			position = { x = 274 y = 348 }
+			#orientation = "UPPER_RIGHT"
+			spriteType = "GFX_gts_leader_colossus_focus"
+			buttonFont = "cg_16b"
+			shortcut = "q"
+		}
+
+		effectButtonType = {#行星目标：模式一
+			name = "mode_planet_01"
+			position = { x = @planet_button_x y = @target_button_y1 }
+			spriteType = "GFX_gts_leader_colossus_mode"
+			buttonFont = "malgun_goth_24"
+			format = center
+			text = gts_leader_colossus_mode_planet_01
+			effect = gts_leader_colossus_mode_planet_01_effect
+		}
+		effectButtonType = {#行星目标：模式二
+			name = "mode_planet_02"
+			position = { x = @planet_button_x y = @target_button_y2 }
+			spriteType = "GFX_gts_leader_colossus_mode"
+			buttonFont = "malgun_goth_24"
+			format = center
+			text =gts_leader_colossus_mode_planet_02
+			effect = gts_leader_colossus_mode_planet_02_effect
+		}
+		effectButtonType = {#行星目标：模式三
+			name = "mode_planet_03"
+			position = { x = @planet_button_x y = @target_button_y3 }
+			spriteType = "GFX_gts_leader_colossus_mode"
+			buttonFont = "malgun_goth_24"
+			format = center
+			text = gts_leader_colossus_mode_planet_03
+			effect = gts_leader_colossus_mode_planet_03_effect
+		}
+		effectButtonType = {#行星目标：模式四
+			name = "mode_planet_04"
+			position = { x = @planet_button_x y = @target_button_y4 }
+			spriteType = "GFX_gts_leader_colossus_mode"
+			buttonFont = "malgun_goth_24"
+			format = center
+			text = gts_leader_colossus_mode_planet_04
+			effect = gts_leader_colossus_mode_planet_04_effect
+		}
+		effectButtonType = {#行星目标：模式五
+			name = "mode_planet_05"
+			position = { x = @planet_button_x y = @target_button_y5 }
+			spriteType = "GFX_gts_leader_colossus_mode"
+			buttonFont = "malgun_goth_24"
+			format = center
+			text = gts_leader_colossus_mode_planet_05
+			effect = gts_leader_colossus_mode_planet_05_effect
+		}
+		effectButtonType = {#行星目标：模式六
+			name = "mode_planet_06"
+			position = { x = @planet_button_x y = @target_button_y6 }
+			spriteType = "GFX_gts_leader_colossus_mode"
+			buttonFont = "malgun_goth_24"
+			format = center
+			text = gts_leader_colossus_mode_planet_06
+			effect = gts_leader_colossus_mode_planet_06_effect
+		}
+		effectButtonType = {#行星目标：模式七
+			name = "mode_planet_07"
+			position = { x = @planet_button_x y = @target_button_y7 }
+			spriteType = "GFX_gts_leader_colossus_mode"
+			buttonFont = "malgun_goth_24"
+			format = center
+			text = gts_leader_colossus_mode_planet_07
+			effect = gts_leader_colossus_mode_planet_07_effect
+		}
+		effectButtonType = {#行星目标：模式八
+			name = "mode_planet_08"
+			position = { x = @planet_button_x y = @target_button_y8 }
+			spriteType = "GFX_gts_leader_colossus_mode"
+			buttonFont = "malgun_goth_24"
+			format = center
+			text = gts_leader_colossus_mode_planet_08
+			effect = gts_leader_colossus_mode_planet_08_effect
+		}
+		effectButtonType = {#行星目标：模式九
+			name = "mode_planet_09"
+			position = { x = @planet_button_x y = @target_button_y9 }
+			spriteType = "GFX_gts_leader_colossus_mode"
+			buttonFont = "malgun_goth_24"
+			format = center
+			text = gts_leader_colossus_mode_planet_09
+			effect = gts_leader_colossus_mode_planet_09_effect
+		}
+		effectButtonType = {#行星目标：模式十
+			name = "mode_planet_10"
+			position = { x = @planet_button_x y = @target_button_y10 }
+			spriteType = "GFX_gts_leader_colossus_mode"
+			buttonFont = "malgun_goth_24"
+			format = center
+			text = gts_leader_colossus_mode_planet_10
+			effect = gts_leader_colossus_mode_planet_10_effect
+		}
+
+		effectButtonType = {#星系目标：模式一
+			name = "mode_system_01"
+			position = { x = @system_button_x y = @target_button_y1 }
+			spriteType = "GFX_gts_leader_colossus_mode"
+			buttonFont = "malgun_goth_24"
+			format = center
+			text = gts_leader_colossus_mode_system_01
+			effect = gts_leader_colossus_mode_system_01_effect
+		}
+		effectButtonType = {#星系目标：模式二
+			name = "mode_system_02"
+			position = { x = @system_button_x y = @target_button_y2 }
+			spriteType = "GFX_gts_leader_colossus_mode"
+			buttonFont = "malgun_goth_24"
+			format = center
+			text = gts_leader_colossus_mode_system_02
+			effect = gts_leader_colossus_mode_system_02_effect
+		}
+		effectButtonType = {#星系目标：模式三
+			name = "mode_system_03"
+			position = { x = @system_button_x y = @target_button_y3 }
+			spriteType = "GFX_gts_leader_colossus_mode"
+			buttonFont = "malgun_goth_24"
+			format = center
+			text = gts_leader_colossus_mode_system_03
+			effect = gts_leader_colossus_mode_system_03_effect
+		}
+		effectButtonType = {#星系目标：模式四
+			name = "mode_system_04"
+			position = { x = @system_button_x y = @target_button_y4 }
+			spriteType = "GFX_gts_leader_colossus_mode"
+			buttonFont = "malgun_goth_24"
+			format = center
+			text = gts_leader_colossus_mode_system_04
+			effect = gts_leader_colossus_mode_system_04_effect
+		}
+		effectButtonType = {#星系目标：模式五
+			name = "mode_system_05"
+			position = { x = @system_button_x y = @target_button_y5 }
+			spriteType = "GFX_gts_leader_colossus_mode"
+			buttonFont = "malgun_goth_24"
+			format = center
+			text = gts_leader_colossus_mode_system_05
+			effect = gts_leader_colossus_mode_system_05_effect
+		}
+		effectButtonType = {#星系目标：模式六
+			name = "mode_system_06"
+			position = { x = @system_button_x y = @target_button_y6 }
+			spriteType = "GFX_gts_leader_colossus_mode"
+			buttonFont = "malgun_goth_24"
+			format = center
+			text = gts_leader_colossus_mode_system_06
+			effect = gts_leader_colossus_mode_system_06_effect
+		}
+		effectButtonType = {#星系目标：模式七
+			name = "mode_system_07"
+			position = { x = @system_button_x y = @target_button_y7 }
+			spriteType = "GFX_gts_leader_colossus_mode"
+			buttonFont = "malgun_goth_24"
+			format = center
+			text = gts_leader_colossus_mode_system_07
+			effect = gts_leader_colossus_mode_system_07_effect
+		}
+		effectButtonType = {#星系目标：模式八
+			name = "mode_system_08"
+			position = { x = @system_button_x y = @target_button_y8 }
+			spriteType = "GFX_gts_leader_colossus_mode"
+			buttonFont = "malgun_goth_24"
+			format = center
+			text = gts_leader_colossus_mode_system_08
+			effect = gts_leader_colossus_mode_system_08_effect
+		}
+		effectButtonType = {#星系目标：模式九
+			name = "mode_system_09"
+			position = { x = @system_button_x y = @target_button_y9 }
+			spriteType = "GFX_gts_leader_colossus_mode"
+			buttonFont = "malgun_goth_24"
+			format = center
+			text = gts_leader_colossus_mode_system_09
+			effect = gts_leader_colossus_mode_system_09_effect
+		}
+		effectButtonType = {#星系目标：模式十
+			name = "mode_system_10"
+			position = { x = @system_button_x y = @target_button_y10 }
+			spriteType = "GFX_gts_leader_colossus_mode"
+			buttonFont = "malgun_goth_24"
+			format = center
+			text = gts_leader_colossus_mode_system_10
+			effect = gts_leader_colossus_mode_system_10_effect
+		}
+
+######################################################################
+######################################################################
+######################################################################
+######################################################################下列全部不需要
+######################################################################
+######################################################################
+######################################################################
+		buttonType = {#确认按钮
+			name = "confirm_button"
+			quadTextureSprite = "GFX_standard_button_142_34_button"
+			position = { x= -175 y = 564  }
+			Orientation = "UPPER_RIGHT"
+			font = "cg_16b"
+			text = "MESSAGE_OK"
+			clicksound = "confirmation"
+		}
+		instantTextBoxType = {#“信号传输接入”
+			name = "heading"
+			font = "malgun_goth_24"
+			text = "DIPLOMACY"
+			position = { x = 9999 y = 9999 }
+			maxWidth = 543
+			maxHeight = 22
+			fixedSize = yes
+			alwaysTransparent = yes
+		}
+		buttonType = {#事件描述背景
+			name = "alien_message_background"
+			size = { x = 626 y = 370 }
+			position = { x = 9999 y = 9999 }
+			spriteType = "GFX_tiles_dark_area_cut_8"
+			alwaysTransparent = yes
+		}
+		instantTextBoxType = {#事件描述文本
+			name = "alien_message"
+			font = "cg_16b"
+			position = { x = 9999 y = 9999 }
+			maxWidth = 606
+			maxHeight = 360
+			format = left
+			scrollbartype = "standardtext_slider"
+		}
+		#房间背景 领袖肖像
+		containerWindowType = {
+			name = "portrait"
+			position = { x = 9999 y = 9999 }
+			size = { width = 964 height = 350 }
+			clipping = yes
+			iconType = {
+				name = "portrait"
+				spriteType = "GFX_portrait_gamesetup_mask"
+				position = { x = 3 y = 3 }
+				alwaysTransparent = yes
+				scale = 0.65
+			}
+			iconType = {#填色背景
+				name = "black_frame"
+				spriteType = "GFX_diplomacy_portrait_shadow_frame"
+				position = { x = -1 y = -2 }
+				alwaysTransparent = yes
+				scale = 0.65
+			}
+			iconType = {#横白线
+				name = "stripes_1"
+				spriteType = "GFX_diplomacy_stripes_2"
+				position = { x = 3 y = 3 }
+				alwaysTransparent = yes
+				scale = 0.65
+			}	
+			iconType = {#边框
+				name = "city_frame"
+				spriteType = "GFX_diplomacy_portrait_frame"
+				position = { x = -3 y = -2 }
+				alwaysTransparent = yes
+				scale = 0.65
+			}
+		}
+		#肖像背景
+		containerWindowType = {
+			name = "portrait_background"
+			position = { x = 9999 y = 9999 }
+			size = { width = 964 height = 350 }
+			clipping = yes
+			iconType = {
+				name = "event_picture"
+				spriteType = "GFX_diplomacy_portrait_frame"
+				position = { x = -6 y = -5 }
+			}
+			iconType = {
+				name = "portrait"
+				position = { x = 250 y = 0 }
+				spriteType = "GFX_portrait_character"
+			}	
+		}
+		#帝国信息
+		iconType = {
+			name = "empire_info_bg"
+			spriteType = "GFX_diplomacy_dark_fade_bg"
+			position = { x = 9999 y = 9999 }
+			alwaysTransparent = yes
+		}
+		instantTextBoxType={#帝国名字
+			name = "empire_name"
+			font = "malgun_goth_24"
+			text = "Kammarian Galactic Concordat"
+			position = { x = 9999 y = 9999 }
+			maxWidth = 450
+			maxHeight = 16
+			format = LEFT
+			text_color_code = "E"
+			fixedsize = yes
+		}
+		instantTextBoxType={#帝国政府类型
+			name = "empire_government_type"
+			font = "cg_16b"
+			text = "Autocracy"
+			position = { x = 9999 y = 9999 }
+			maxWidth = 250
+			maxHeight = 16
+			format = LEFT
+			fixedsize = yes
+			text_color_code = "Y"
+		}
+		instantTextBoxType={#帝国AI人格类型
+			name = "empire_personality_type"
+			font = "cg_16b"
+			text = "Despicable Neutrals"
+			position = { x = 9999 y = 9999 }
+			maxWidth = 250
+			maxHeight = 16
+			format = LEFT
+			fixedsize = yes
+		}
+		OverlappingElementsBoxType = {#帝国思潮
+			name = "empire_ethics_icons"
+			position = { x = 9999 y = 9999 }
+			size = { x = 240 y = 30 }
+			spacing = 2.0
+			format = left
+		}
+		buttonType = {#帝国旗帜
+			name = "empire_flag"
+			quadTextureSprite = "GFX_empire_flag_128"
+			position = { x = 9999 y = 9999 }
+			orientation = UPPER_LEFT
+		}
+		containerWindowType = {#领袖细节
+			name = "leader_details"
+			position = { x = 9999 y = 9999 }
+			containerWindowType = {
+				name = "empire_traits_box"
+				position = { x = 0 y = -5 }
+				size = { width = 210 height = 75 }
+				background = {
+					name = "ethics_bg"
+					spriteType = "GFX_tiles_dark_area_cut_8"
+				}
+			}
+			instantTextBoxType = {
+				name = "empire_traits_label"
+				position = { x = 214 y = 37 }
+				font = "cg_16b"
+				maxWidth = 230
+				maxHeight = 20
+				fixedSize = yes
+				format = left
+				#text_color_code = "E"
+				text = "RULER_TRAITS"
+				alwaysTransparent = yes
+			}
+			overlappingElementsBoxType = {
+				name = "leader_traits"
+				position = { x = 215 y = 55 }
+				size = { x = 125 y = 330 }
+			}
+			instantTextBoxType = {
+				name = "leader_name"
+				position = { x = 10 y = 0 }
+				font = "cg_16b"
+				maxWidth = 330
+				maxHeight = 20
+				fixedSize = yes
+				format = left
+				text = "Leader Name"
+				text_color_code = "E"
+			}
+			instantTextBoxType = {
+				name = "leader_species"
+				position = { x = 10 y = 18 }
+				font = "cg_16b"
+				maxWidth = 330
+				maxHeight = 20
+				fixedSize = yes
+				text = "Leader Species"
+				format = left
+			}
+		}
+		### 评价
+		containerWindowType = {
+			name = "opinion_window"
+			position = { x = 9999 y = 9999 }
+			size = { width = 94 height = 30 }
+			background = {
+				name = "opinion_bg"
+				spriteType = "GFX_tiled_window_transparent"
+			}
+			iconType = {
+				name = "their_opinion_icon"
+				spriteType = "GFX_diplomacy_opinion"
+				position = { x = 7 y = 4 }
+				alwaysTransparent = yes
+			}
+			instantTextBoxType = {
+				name = "their_opinion"
+				font = "cg_16b"
+				maxWidth = 40
+				position = { x = 40 y = 7 }
+				format = left
+				text = "100"
+				alwaysTransparent = yes
+			}
+		}
+	}
+
+##############################################################################################################################################################
+##############################################################################################################################################################
+##############################################################################################################################################################
+@zong_x = 30
+@fen_x  = 208
+	
+@love_botton_y_0 = 30
+@love_botton_y_1 = 70
+	#以下还未加20
+@love_botton_y_2 = 100
+@love_botton_y_3 = 130
+@love_botton_y_4 = 160
+@love_botton_y_5 = 190
+@love_botton_y_6 = 230
+@love_botton_y_7 = 260
+@love_botton_y_8 = 290
+@love_botton_y_9 = 320
+@love_botton_y_10 = 350
+#############不给加了，再加的话再说（用翻页
+
+@love_botton_y2_1 = 285
+@love_botton_y2_2 = 315
+@love_botton_y2_3 = 345
+@love_botton_y2_4 = 375
+@love_botton_y2_5 = 405
+@love_botton_y2_6 = 435
+@love_botton_y2_7 = 465
+@love_botton_y2_8 = 495
+
+
+
+@love_botton_y3_1 = 640
+@love_botton_y3_2 = 620
+@love_botton_y3_3 = 650
+@love_botton_y3_4 = 680
+
+
+
+
+
+@gts_leader_love_page_x = 150
+@gts_leader_love_page_y = 840
+
+
+#################################################################################################################################
+
+
+	containerWindowType = {
+		name = "gts_bfbf1"
+		orientation = upper_right
+		origo = upper_right
+		moveable = yes
+		size = { width = 100 height = 40 }
+		position = { x = -240 y = 110 }
+
+
+		effectButtonType = {
+			name = "gts_bfbf_test"
+			spriteType = "GFX_gts_bfbf_test1"
+			position = { x = 0 y = 0 }
+			# moveable = yes
+			effect = gts_bfbf_test_1_effect
+		}
+		### 以下部分隐藏 ###
+
+		background = {
+			# 大背景
+			name = "background"
+			position = { x = 1145 y = 1145 }
+			size = { x = 0  y = 0 }
+			spriteType = "GFX_gts_leader_colossus_bg"
+		}
+		buttonType = {
+			# 关闭
+			name = "close"
+			quadTextureSprite = "GFX_gts_intel_close"
+			position = { x = 1145 y = 1145 }
+			size = { x = 0   y = 0 }
+			clicksound = "back_click"
+		}
+		buttonType = {
+			# 焦点
+			name = "focus_button"
+			position = { x = 1145 y = 1145 }
+			size = { x = 0  y = 0 }
+			orientation = "UPPER_RIGHT"
+			spriteType = "GFX_fleetview_focus"
+			buttonFont = "cg_16b"
+			shortcut = "q"
+		}
+		instantTextBoxType = {
+			# hidden
+			name = "alien_message"
+			font = "cg_16b"
+			position = { x = -1466 y = -1639 }
+			maxWidth = 0
+			maxHeight = 0
+			format = left
+			scrollbartype = "standardtext_slider"
+		}
+		containerWindowType = {
+			# hidden
+			name = "EVENT_DIPLO"
+			position = { x = -1466 y = -1639 }
+			size = { width = 0 height = 0 }
+			moveable = no
+			instantTextBoxType = {
+				name = "action_title"
+				font = "malgun_goth_24"
+			}
+			listboxType = {
+				name = "option_list"
+				position = { x = 500 y = 20 }
+				size = { x = 0 y = 0 }
+			}
+		}
+		containerWindowType = {
+			# hidden
+			name = "portrait"
+			position = { x = -1466 y = -1639 }
+			size = { width = 0 height = 0 }
+			clipping = yes
+			iconType = { name = "portrait" spriteType = "GFX_portrait_gamesetup_mask" }
+			iconType = { name = "black_frame" spriteType = "GFX_diplomacy_portrait_shadow_frame" }
+			iconType = { name = "stripes_1" spriteType = "GFX_diplomacy_stripes_2" }
+		}
+		buttonType = { name = "tts_button" position = { x = -1466 y = -1639 } spriteType = "GFX_button_tts_start" } # hidden
+		buttonType = { name = "confirm_button" quadTextureSprite = "GFX_standard_button_142_34_button" } # hidden
+		containerWindowType = {
+			name = "portrait_background"
+			position = { x = -1117 y = -1145 }
+			size = { width = 0 height = 0 }    # hide portrait window
+			iconType = { name = "event_picture" spriteType = "GFX_diplomacy_portrait_frame" } # hidden
+			iconType = { name = "portrait" spriteType = "GFX_portrait_character" } # hidden
+		}
+		iconType = { name = "empire_info_bg" spriteType = "GFX_diplomacy_dark_fade_bg" } # hidden
+		instantTextBoxType = { name = "empire_name" font = "malgun_goth_24" } # hidden
+		instantTextBoxType = { name = "empire_government_type" font = "cg_16b" } # hidden
+		instantTextBoxType = { name = "empire_personality_type" font = "cg_16b" } # hidden
+		overlappingElementsBoxType = { name = "empire_ethics_icons" position = { x = -1145 y = -11138 } } # hidden
+		iconType = { name = "empire_flag" spriteType = "GFX_empire_flag_128" position = { x = -1125 y = -11235 } } # hidden
+		containerWindowType = {
+			name = "leader_details"
+			position = { x = -1125 y = -1175 }
+			containerWindowType = { name = "empire_traits_box" } # hidden
+			instantTextBoxType = { name = "empire_traits_label" font = "cg_16b" } # hidden
+			overlappingElementsBoxType = { name = "leader_traits" } # hidden
+			instantTextBoxType = { name = "leader_name" font = "cg_16b" } # hidden
+			instantTextBoxType = { name = "leader_species" font = "cg_16b" } # hidden
+		}
+		containerWindowType = {
+			name = "opinion_window"
+			position = { x = -1127 y = -11110 }
+			size = { width = 94 height = 30 }
+			iconType = { name = "their_opinion_icon" spriteType = "GFX_diplomacy_opinion" } # hidden
+			instantTextBoxType = { name = "their_opinion" font = "cg_16b" }
+		}
+	}
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+####################################################################################################################################################################
+####################################################################################################################################################################
+####################################################################################################################################################################
+####################################################################################################################################################################
+guiTypes = {
+	containerWindowType = {
+		name = "gts_bfbf_leader_Overview"
+		orientation = center
+		origo = center
+		moveable = yes
+		size = { width = 450 height = 900 }
+		position = { x = -400 y = 0 }
+
+
+
+
+		containerWindowType = {
+			# 领袖图片
+			name = "portrait"
+			position = { x = -100 y = 25 }
+			size = { width = 548 height = 280 }
+			# maxWidth = 400
+			# maxHeight = 280
+			clipping = yes
+			iconType = {
+				name = "portrait"
+				spriteType = "GFX_gts_leader_panel_mask_bfbf"
+				alwaysTransparent = yes
+			}
+		}
+
+		background = {
+			# 大背景
+			name = "background"
+			position = { x = 0 y = 0 }
+			size = { x = 450  y = 900 }
+			spriteType = "GFX_gts_bfbf_botton2"
+		}
+		buttonType = {
+			# 关闭
+			name = "close"
+			quadTextureSprite = "GFX_main_close_button"
+			position = { x = 412 y = -0 }
+			size = { x = 20   y = 20 }
+			clicksound = "back_click"
+			shortcut = "ESCAPE"
+		}
+		###########################################按钮位置###########################################################################################################
+		dropDownBoxType = {
+			name = "GTS_bfbf_drop1" # Dropdown menu 1
+			position = { x = 55 y = 350 }
+			size = { width = 420 height = 24 }
+			background = {
+				name = "GTS_bfbf_drop1_bg" # Background for dropdown menu 1
+				spriteType = "GFX_gts_bfbf_botton1"
+			}
+			expandButton = {
+				name = "GTS_bfbf_drop1_1_expand_button"
+				spriteType = "GFX_gts_bfbf_botton1"
+				position = { x = 0 y = 0 }
+				buttonText = "GTS_bfbf_drop_1_expand_button_action"
+				buttonFont = large_title_font_28
+				clicksound = increment_click
+				oversound = mouse_over
+			}
+			expandedWindow = {
+				name = "GTS_bfbf_drop1_1_expanded_window" # Expanded window for dropdown menu 1
+				hide_position = { x = 0 y = -350 }
+				show_position = { x = 400 y = -350 }
+				size = { width = 348 height = 900 }
+				show_animation_type = decelerated
+				hide_animation_type = accelerated
+				animation_time = 550
+				background = {
+					#expandedWindow 单独的话是个框
+					name = "GTS_bfbf_drop1_1_expanded_bg" # Background for expanded window
+					spriteType = "GFX_gts_bfbf_botton3"
+				}
+				containerWindowType = {
+					name = "GTS_bfbf_drop1_1_expanded_container"
+					position = { x = 0 y = 0 }
+					size = { width = 348 height = 900 }
+					margin = { top = 5 bottom = 5 left = 5 right = 5 }
+					background = {
+						#containerWindowType 这玩意单独的话也是个框
+						name = "GTS_bfbf_drop1_1_expanded_container_bg"
+						spriteType = "GFX_tiles_dark_area_cut_8"
+						alwaysTransparent = yes
+					}
+######################################################################################################################################################
+
+					# 道具栏
+					effectButtonType = {
+						name = "gts_leader_item_7"
+						spriteType = "GFX_gts_leader_item_button"
+						position = { x = 21 y = 786 }
+						effect = gts_leader_item_7_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_item_8"
+						spriteType = "GFX_gts_leader_item_button"
+						position = { x = 135 y = 786 }
+						effect = gts_leader_item_8_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_item_9"
+						spriteType = "GFX_gts_leader_item_button"
+						position = { x = 240 y = 786 }
+						effect = gts_leader_item_8_effect
+					}
+##################################################################################################################################################################
+					effectButtonType = {
+						name = "gts_leader_body_armpit"
+						spriteType = "GFX_gts_leader_small_button"
+						position = { x = 18 y = 20 }
+						effect = gts_leader_body_armpit_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_breast"
+						spriteType = "GFX_gts_leader_small_button"
+						position = { x = 18 y = 80 }
+						effect = gts_leader_body_breast_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_digestion"
+						spriteType = "GFX_gts_leader_big_button"
+						position = { x = 18 y = 130 }
+						effect = gts_leader_body_digestion_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_reporduction"
+						spriteType = "GFX_gts_leader_big_button"
+						position = { x = 18 y = 240 }
+						effect = gts_leader_body_reporduction_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_feet"
+						spriteType = "GFX_gts_leader_very_big_button"
+						position = { x = 18 y = 570 }
+						effect = gts_leader_body_feet_effect
+					}
+
+
+
+					# effectButtonType = {
+					# 	name = "gts_leader_item_9"
+					# 	spriteType = "GFX_gts_leader_item_button"
+					# 	position = { x = 0 y = 256 }
+					# 	effect = gts_leader_item_9_effect
+					# }
+					# effectButtonType = {
+					# 	name = "gts_leader_item_10"
+					# 	spriteType = "GFX_gts_leader_item_button"
+					# 	position = { x = 0 y = 384 }
+					# 	effect = gts_leader_item_10_effect
+					# }
+					# effectButtonType = {
+					# 	name = "gts_leader_item_11"
+					# 	spriteType = "GFX_gts_leader_item_button"
+					# 	position = { x = 0 y = 512 }
+					# 	effect = gts_leader_item_11_effect
+					# }
+					# effectButtonType = {
+					# 	name = "gts_leader_item_12"
+					# 	spriteType = "GFX_gts_leader_item_button"
+					# 	position = { x = 0 y = 640 }
+					# 	effect = gts_leader_item_12_effect
+					# }
+					# 身体图片
+					effectButtonType = {
+						name = "gts_leader_body_1"
+						spriteType = "GFX_gts_leader_body_1"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_1_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_2"
+						spriteType = "GFX_gts_leader_body_2"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_2_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_3"
+						spriteType = "GFX_gts_leader_body_3"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_3_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_4"
+						spriteType = "GFX_gts_leader_body_4"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_4_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_5"
+						spriteType = "GFX_gts_leader_body_5"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_5_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_6"
+						spriteType = "GFX_gts_leader_body_6"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_6_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_7"
+						spriteType = "GFX_gts_leader_body_7"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_7_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_8"
+						spriteType = "GFX_gts_leader_body_8"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_8_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_9"
+						spriteType = "GFX_gts_leader_body_9"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_9_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_10"
+						spriteType = "GFX_gts_leader_body_10"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_10_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_11"
+						spriteType = "GFX_gts_leader_body_11"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_11_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_12"
+						spriteType = "GFX_gts_leader_body_12"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_12_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_13"
+						spriteType = "GFX_gts_leader_body_13"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_13_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_14"
+						spriteType = "GFX_gts_leader_body_14"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_14_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_15"
+						spriteType = "GFX_gts_leader_body_15"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_15_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_16"
+						spriteType = "GFX_gts_leader_body_16"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_16_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_17"
+						spriteType = "GFX_gts_leader_body_17"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_17_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_18"
+						spriteType = "GFX_gts_leader_body_18"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_18_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_19"
+						spriteType = "GFX_gts_leader_body_19"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_19_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_20"
+						spriteType = "GFX_gts_leader_body_20"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_20_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_21"
+						spriteType = "GFX_gts_leader_body_21"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_21_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_22"
+						spriteType = "GFX_gts_leader_body_22"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_22_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_23"
+						spriteType = "GFX_gts_leader_body_23"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_23_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_24"
+						spriteType = "GFX_gts_leader_body_24"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_24_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_25"
+						spriteType = "GFX_gts_leader_body_25"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_25_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_26"
+						spriteType = "GFX_gts_leader_body_26"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_26_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_27"
+						spriteType = "GFX_gts_leader_body_27"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_27_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_28"
+						spriteType = "GFX_gts_leader_body_28"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_28_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_29"
+						spriteType = "GFX_gts_leader_body_29"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_29_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_30"
+						spriteType = "GFX_gts_leader_body_30"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_30_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_31"
+						spriteType = "GFX_gts_leader_body_31"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_31_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_32"
+						spriteType = "GFX_gts_leader_body_32"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_32_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_33"
+						spriteType = "GFX_gts_leader_body_33"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_33_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_34"
+						spriteType = "GFX_gts_leader_body_34"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_34_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_35"
+						spriteType = "GFX_gts_leader_body_35"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_35_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_36"
+						spriteType = "GFX_gts_leader_body_36"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_36_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_37"
+						spriteType = "GFX_gts_leader_body_37"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_37_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_38"
+						spriteType = "GFX_gts_leader_body_38"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_38_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_39"
+						spriteType = "GFX_gts_leader_body_39"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_39_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_40"
+						spriteType = "GFX_gts_leader_body_40"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_40_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_41"
+						spriteType = "GFX_gts_leader_body_41"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_41_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_42"
+						spriteType = "GFX_gts_leader_body_42"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_42_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_43"
+						spriteType = "GFX_gts_leader_body_43"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_43_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_44"
+						spriteType = "GFX_gts_leader_body_44"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_44_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_45"
+						spriteType = "GFX_gts_leader_body_45"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_45_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_46"
+						spriteType = "GFX_gts_leader_body_46"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_46_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_47"
+						spriteType = "GFX_gts_leader_body_47"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_47_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_48"
+						spriteType = "GFX_gts_leader_body_48"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_48_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_49"
+						spriteType = "GFX_gts_leader_body_49"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_49_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_50"
+						spriteType = "GFX_gts_leader_body_50"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_50_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_51"
+						spriteType = "GFX_gts_leader_body_51"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_51_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_52"
+						spriteType = "GFX_gts_leader_body_52"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_52_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_53"
+						spriteType = "GFX_gts_leader_body_53"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_53_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_54"
+						spriteType = "GFX_gts_leader_body_54"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_54_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_55"
+						spriteType = "GFX_gts_leader_body_55"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_55_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_56"
+						spriteType = "GFX_gts_leader_body_56"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_56_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_57"
+						spriteType = "GFX_gts_leader_body_57"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_57_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_58"
+						spriteType = "GFX_gts_leader_body_58"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_58_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_59"
+						spriteType = "GFX_gts_leader_body_59"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_59_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_60"
+						spriteType = "GFX_gts_leader_body_60"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_60_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_61"
+						spriteType = "GFX_gts_leader_body_61"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_61_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_62"
+						spriteType = "GFX_gts_leader_body_62"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_62_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_63"
+						spriteType = "GFX_gts_leader_body_63"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_63_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_64"
+						spriteType = "GFX_gts_leader_body_64"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_64_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_65"
+						spriteType = "GFX_gts_leader_body_65"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_65_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_66"
+						spriteType = "GFX_gts_leader_body_66"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_66_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_67"
+						spriteType = "GFX_gts_leader_body_67"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_67_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_68"
+						spriteType = "GFX_gts_leader_body_68"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_68_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_69"
+						spriteType = "GFX_gts_leader_body_69"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_69_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_70"
+						spriteType = "GFX_gts_leader_body_70"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_70_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_71"
+						spriteType = "GFX_gts_leader_body_71"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_71_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_72"
+						spriteType = "GFX_gts_leader_body_72"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_72_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_73"
+						spriteType = "GFX_gts_leader_body_73"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_73_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_74"
+						spriteType = "GFX_gts_leader_body_74"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_74_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_75"
+						spriteType = "GFX_gts_leader_body_75"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_75_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_76"
+						spriteType = "GFX_gts_leader_body_76"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_76_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_77"
+						spriteType = "GFX_gts_leader_body_77"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_77_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_78"
+						spriteType = "GFX_gts_leader_body_78"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_78_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_79"
+						spriteType = "GFX_gts_leader_body_79"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_79_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_80"
+						spriteType = "GFX_gts_leader_body_80"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_80_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_81"
+						spriteType = "GFX_gts_leader_body_81"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_81_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_82"
+						spriteType = "GFX_gts_leader_body_82"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_82_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_83"
+						spriteType = "GFX_gts_leader_body_83"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_83_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_84"
+						spriteType = "GFX_gts_leader_body_84"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_84_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_85"
+						spriteType = "GFX_gts_leader_body_85"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_85_effect
+					}effectButtonType = {
+						name = "gts_leader_body_86"
+						spriteType = "GFX_gts_leader_body_86"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_86_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_87"
+						spriteType = "GFX_gts_leader_body_ora"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_ora_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_body_88"
+						spriteType = "GFX_gts_leader_body_qinwen"
+						position = { x = 20 y = 24 }
+						alwaysTransparent = yes
+						effect = gts_leader_body_qinwen_effect
+					}
+					# effectButtonType = {
+					# 	name = "gts_leader_body_xxx"
+					# 	spriteType = "GFX_gts_leader_body_xxx"
+					# 	position = { x = 20 y = 24 }
+					# 	alwaysTransparent = yes
+					# 	effect = gts_leader_body_xxx_effect
+					# }
+
+					# ### 每个宠物2个槽位 ###
+					######
+					effectButtonType = {
+						name = "gts_leader_item_p_dragon_slot_7"
+						spriteType = "GFX_gts_leader_item_p_dragon"
+						position = { x = 0 y = 0 }
+						effect = gts_leader_item_p_dragon_slot_7_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_item_p_dragon_slot_8"
+						spriteType = "GFX_gts_leader_item_p_dragon"
+						position = { x = 0 y = 128 }
+						effect = gts_leader_item_p_dragon_slot_8_effect
+					}
+					######
+					effectButtonType = {
+						name = "gts_leader_item_p_fortress_slot_7"
+						spriteType = "GFX_gts_leader_item_p_fortress"
+						position = { x = 0 y = 0 }
+						effect = gts_leader_item_p_fortress_slot_7_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_item_p_fortress_slot_8"
+						spriteType = "GFX_gts_leader_item_p_fortress"
+						position = { x = 0 y = 128 }
+						effect = gts_leader_item_p_fortress_slot_8_effect
+					}
+					######
+					effectButtonType = {
+						name = "gts_leader_item_p_horror_slot_7"
+						spriteType = "GFX_gts_leader_item_p_horror"
+						position = { x = 0 y = 0 }
+						effect = gts_leader_item_p_horror_slot_7_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_item_p_horror_slot_8"
+						spriteType = "GFX_gts_leader_item_p_horror"
+						position = { x = 0 y = 128 }
+						effect = gts_leader_item_p_horror_slot_8_effect
+					}
+					######
+					effectButtonType = {
+						name = "gts_leader_item_p_shielded_slot_7"
+						spriteType = "GFX_gts_leader_item_p_shielded"
+						position = { x = 0 y = 0 }
+						effect = gts_leader_item_p_shielded_slot_7_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_item_p_shielded_slot_8"
+						spriteType = "GFX_gts_leader_item_p_shielded"
+						position = { x = 0 y = 128 }
+						effect = gts_leader_item_p_shielded_slot_8_effect
+					}
+					######
+					effectButtonType = {
+						name = "gts_leader_item_p_sphere_slot_7"
+						spriteType = "GFX_gts_leader_item_p_sphere"
+						position = { x = 0 y = 0 }
+						effect = gts_leader_item_p_sphere_slot_7_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_item_p_sphere_slot_8"
+						spriteType = "GFX_gts_leader_item_p_sphere"
+						position = { x = 0 y = 128 }
+						effect = gts_leader_item_p_sphere_slot_8_effect
+					}
+					######
+					effectButtonType = {
+						name = "gts_leader_item_p_stellarites_slot_7"
+						spriteType = "GFX_gts_leader_item_p_stellarites"
+						position = { x = 0 y = 0 }
+						effect = gts_leader_item_p_stellarites_slot_7_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_item_p_stellarites_slot_8"
+						spriteType = "GFX_gts_leader_item_p_stellarites"
+						position = { x = 0 y = 128 }
+						effect = gts_leader_item_p_stellarites_slot_8_effect
+					}
+					######
+					effectButtonType = {
+						name = "gts_leader_item_p_huatian_slot_7"
+						spriteType = "GFX_gts_leader_item_p_huatian"
+						position = { x = 0 y = 0 }
+						effect = gts_leader_item_p_huatian_slot_7_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_item_p_huatian_slot_8"
+						spriteType = "GFX_gts_leader_item_p_huatian"
+						position = { x = 0 y = 128 }
+						effect = gts_leader_item_p_huatian_slot_8_effect
+					}
+					# ######
+					# effectButtonType = {
+					# 	name = "gts_leader_item_p_yukikake_slot_7"
+					# 	spriteType = "GFX_gts_leader_item_p_yukikake"
+					# 	position = { x = 0 y = 0 }
+					# 	effect = gts_leader_item_p_yukikake_slot_7_effect
+					# }
+					# effectButtonType = {
+					# 	name = "gts_leader_item_p_yukikake_slot_8"
+					# 	spriteType = "GFX_gts_leader_item_p_yukikake"
+					# 	position = { x = 0 y = 128 }
+					# 	effect = gts_leader_item_p_yukikake_slot_8_effect
+					# }
+					######
+					effectButtonType = {
+						name = "gts_leader_item_p_aplog_slot_7"
+						spriteType = "GFX_gts_leader_item_p_aplog"
+						position = { x = 0 y = 0 }
+						effect = gts_leader_item_p_aplog_slot_7_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_item_p_aplog_slot_8"
+						spriteType = "GFX_gts_leader_item_p_aplog"
+						position = { x = 0 y = 128 }
+						effect = gts_leader_item_p_aplog_slot_8_effect
+					}
+					######
+					effectButtonType = {
+						name = "gts_leader_item_p_cache_slot_7"
+						spriteType = "GFX_gts_leader_item_p_cache"
+						position = { x = 0 y = 0 }
+						effect = gts_leader_item_p_cache_slot_7_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_item_p_cache_slot_8"
+						spriteType = "GFX_gts_leader_item_p_cache"
+						position = { x = 0 y = 128 }
+						effect = gts_leader_item_p_cache_slot_8_effect
+					}
+					######
+					effectButtonType = {
+						name = "gts_leader_item_p_115_slot_7"
+						spriteType = "GFX_gts_leader_item_p_115"
+						position = { x = 0 y = 0 }
+						effect = gts_leader_item_p_115_slot_7_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_item_p_115_slot_8"
+						spriteType = "GFX_gts_leader_item_p_115"
+						position = { x = 0 y = 128 }
+						effect = gts_leader_item_p_115_slot_8_effect
+					}
+					######
+					effectButtonType = {
+						name = "gts_leader_item_p_koharu_slot_7"
+						spriteType = "GFX_gts_leader_item_p_koharu"
+						position = { x = 0 y = 0 }
+						effect = gts_leader_item_p_koharu_slot_7_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_item_p_koharu_slot_8"
+						spriteType = "GFX_gts_leader_item_p_koharu"
+						position = { x = 0 y = 128 }
+						effect = gts_leader_item_p_koharu_slot_8_effect
+					}
+					######
+					effectButtonType = {
+						name = "gts_leader_item_p_yiyan_slot_7"
+						spriteType = "GFX_gts_leader_item_p_yiyan"
+						position = { x = 0 y = 0 }
+						effect = gts_leader_item_p_yiyan_slot_7_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_item_p_yiyan_slot_8"
+						spriteType = "GFX_gts_leader_item_p_yiyan"
+						position = { x = 0 y = 128 }
+						effect = gts_leader_item_p_yiyan_slot_8_effect
+					}
+					######
+					effectButtonType = {
+						name = "gts_leader_item_p_xiaoyu_slot_7"
+						spriteType = "GFX_gts_leader_item_p_xiaoyu"
+						position = { x = 0 y = 0 }
+						effect = gts_leader_item_p_xiaoyu_slot_7_effect
+					}
+					# ######
+					effectButtonType = {
+						name = "gts_leader_item_p_graygoo_slot_7"
+						spriteType = "GFX_gts_leader_item_p_graygoo"
+						position = { x = 0 y = 0 }
+						effect = gts_leader_item_p_graygoo_slot_7_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_item_p_graygoo_slot_8"
+						spriteType = "GFX_gts_leader_item_p_graygoo"
+						position = { x = 0 y = 128 }
+						effect = gts_leader_item_p_graygoo_slot_8_effect
+					}
+					# ######
+					effectButtonType = {
+						name = "gts_leader_item_p_tensi_slot_7"
+						spriteType = "GFX_gts_leader_item_p_tensi"
+						position = { x = 0 y = 0 }
+						effect = gts_leader_item_p_tensi_slot_7_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_item_p_tensi_slot_8"
+						spriteType = "GFX_gts_leader_item_p_tensi"
+						position = { x = 0 y = 128 }
+						effect = gts_leader_item_p_tensi_slot_8_effect
+					}
+					# ######
+					effectButtonType = {
+						name = "gts_leader_item_p_transform_slot_7"
+						spriteType = "GFX_gts_leader_item_p_transform"
+						position = { x = 0 y = 0 }
+						effect = gts_leader_item_p_tensi_slot_7_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_item_p_transform_slot_8"
+						spriteType = "GFX_gts_leader_item_p_transform"
+						position = { x = 0 y = 128 }
+						effect = gts_leader_item_p_tensi_slot_8_effect
+					}
+##################################################################################################################################################################
+
+				}
+			}
+		}
+#################################################################################################################################################################################
+#################################################################################################################################################################################
+#################################################################################################################################################################################
+		#第二个按钮     详细互动
+		dropDownBoxType = {
+			name = "GTS_bfbf_drop2" # Dropdown menu 1
+			position = { x = 55 y = 400 }
+			size = { width = 400 height = 24 }
+			background = {
+				name = "GTS_bfbf_drop2_bg" # Background for dropdown menu 1
+				spriteType = "GFX_gts_bfbf_botton1"
+			}
+			expandButton = {
+				name = "GTS_bfbf_drop_2_expand_button" # Expand button for dropdown menu 1
+				spriteType = "GFX_gts_bfbf_botton1"
+				position = { x = 0 y = 0 }
+				buttonText = "GTS_bfbf_drop_2_expand_button_action"
+				buttonFont = large_title_font_28
+				clicksound = increment_click
+				oversound = mouse_over
+			}
+			expandedWindow = {
+				name = "GTS_bfbf_drop_2_expanded_window" # Expanded window for dropdown menu 1
+				#这里也需要更改位置  与上面按钮改的数值相同
+				#   -350  +  0  =-400
+				hide_position = { x = 0 y = -400 }
+				show_position = { x = 400 y = -400 }
+				size = { width = 400 height = 900 }
+				show_animation_type = decelerated
+				hide_animation_type = accelerated
+				animation_time = 550
+				background = {
+					#expandedWindow 单独的话是个框
+					name = "GTS_bfbf_drop_2_expanded_bg" # Background for expanded window
+					spriteType = "GFX_gts_bfbf_botton4"
+				}
+				containerWindowType = {
+					name = "GTS_bfbf_drop_2_expanded_container" # Container for expanded window
+					position = { x = 0 y = 0 }
+					size = { width = 400 height = 900 }
+					margin = { top = 5 bottom = 5 left = 5 right = 5 }
+					background = {
+						#containerWindowType 单独的话也是个框
+						name = "GTS_bfbf_drop_2_expanded_container_bg"
+						spriteType = "GFX_tiles_dark_area_cut_8"
+						alwaysTransparent = yes
+					}
+					effectButtonType = {
+						# 总按钮
+						name = "gts_bfbf_all_test1"
+						position = { x = @zong_x y = @love_botton_y_0 }
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						format = center
+						text = gts_bfbf_all_test_action1
+						effect = gts_default_effect
+					}
+					effectButtonType = {
+						#分按钮
+						name = "gts_bfbf_part_test1"
+						position = { x = @fen_x y = @love_botton_y_0 }
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						format = center
+						text = gts_bfbf_part_test_action1
+						effect = gts_default_effect
+					}
+
+
+
+
+###########################################星球改造###########################################################################################################
+					effectButtonType = {
+						#星球改造 总按钮
+						name = "gts_bfbf_planet_test1"
+						position = { x = @zong_x y = @love_botton_y_1 }
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						format = center
+						text = gts_leader_love_action1
+						effect = gts_bfbf_planet_test1_effect
+					}
+					effectButtonType = {
+						#天体   分按钮一
+						name = "gts_bfbf_planet_Ultra_test01"
+						position = { x = @fen_x y = @love_botton_y_1 }
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						format = center
+						text = gts_leader_love_planet_Ultra_action01
+						effect = gts_bfbf_planet_Ultra_test01_effect
+					}
+					effectButtonType = {
+						#天体   分按钮二
+						name = "gts_bfbf_planet_Ultra_test02"
+						position = { x = @fen_x y = @love_botton_y_2 }
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						format = center
+						text = gts_leader_love_planet_Ultra_action02
+						effect = gts_bfbf_planet_Ultra_test02_effect
+					}
+					effectButtonType = {
+						#天体   分按钮三
+						name = "gts_bfbf_planet_Ultra_test03"
+						position = { x = @fen_x y = @love_botton_y_3 }
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						format = center
+						text = gts_leader_love_planet_Ultra_action03
+						effect = gts_bfbf_planet_Ultra_test03_effect
+					}
+					effectButtonType = {
+						#天体   分按钮四
+						name = "gts_bfbf_planet_Ultra_test04"
+						position = { x = @fen_x y = @love_botton_y_4 }
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						format = center
+						text = gts_leader_love_planet_Ultra_action04
+						effect = gts_bfbf_planet_Ultra_test04_effect
+					}
+					effectButtonType = {
+						#天体   分按钮五
+						name = "gts_bfbf_planet_Ultra_test05"
+						position = { x = @fen_x y = @love_botton_y_5 }
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						format = center
+						text = gts_leader_love_planet_Ultra_action05
+						effect = gts_bfbf_planet_Ultra_test05_effect
+					}
+
+					effectButtonType = {
+						#泰坦   分按钮一
+						name = "gts_bfbf_planet_Titan_test01"
+						position = { x = @fen_x y = @love_botton_y_1 }
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						format = center
+						text = gts_leader_love_planet_Titan_action01
+						effect = gts_bfbf_planet_Titan_test01_effect
+					}
+					effectButtonType = {
+						#泰坦   分按钮二
+						name = "gts_bfbf_planet_Titan_test02"
+						position = { x = @fen_x y = @love_botton_y_2 }
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						format = center
+						text = gts_leader_love_planet_Titan_action02
+						effect = gts_bfbf_planet_Titan_test02_effect
+					}
+
+###############################################送点礼物##########################################################################################################
+					effectButtonType = {
+						#送点礼物  总按钮
+						name = "gts_bfbf_gift_test1"
+						position = { x = @zong_x y = @love_botton_y_2 }
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						format = center
+						text = gts_leader_gift_action1
+						effect = gts_bfbf_gift_test1_effect
+					}
+					effectButtonType = {
+						#送点礼物  分1
+						name = "gts_bfbf_gift_test01"
+						position = { x = @fen_x y = @love_botton_y_1 }
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						format = center
+						text = gts_leader_gift_action01
+						effect = gts_bfbf_gift_test01_effect
+					}
+					effectButtonType = {
+						#送点礼物  分2
+						name = "gts_bfbf_gift_test02"
+						position = { x = @fen_x y = @love_botton_y_2 }
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						format = center
+						text = gts_leader_gift_action02
+						effect = gts_bfbf_gift_test02_effect
+					}
+					effectButtonType = {
+						#送点礼物  分3
+						name = "gts_bfbf_gift_test03"
+						position = { x = @fen_x y = @love_botton_y_3 }
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						format = center
+						text = gts_leader_gift_action03
+						effect = gts_bfbf_gift_test03_effect
+					}
+					effectButtonType = {
+						#送星球  分4
+						name = "gts_bfbf_gift_test04"
+						position = { x = @fen_x y = @love_botton_y_4 }
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						format = center
+						text = gts_leader_gift_action04
+						effect = gts_bfbf_gift_test04_effect
+					}
+
+###############################################开发殖民地/探索体内####################################################################################################################
+					effectButtonType = {
+						#殖民  总按钮
+						name = "gts_bfbf_exploration_test1"
+						position = { x = @zong_x y = @love_botton_y_3 }
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						format = center
+						text = gts_leader_exploration_action1
+						effect = gts_bfbf_exploration_test1_effect
+					}
+
+					effectButtonType = {
+						#殖民  分1
+						name = "gts_bfbf_exploration_test01"
+						position = { x = @fen_x y = @love_botton_y_1 }
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						format = center
+						text = gts_leader_exploration_action01
+						effect = gts_bfbf_exploration_test01_effect
+					}
+
+
+
+
+##############################################星界行动###################################################################################################################
+					effectButtonType = {
+						#星界行动  总按钮
+						name = "gts_bfbf_system_test1"
+						position = { x = @zong_x y = @love_botton_y_4 }
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						format = center
+						text = gts_leader_colossus
+						effect = gts_leader_colossus_effect
+					}
+
+##############################################装配饰品###################################################################################################################
+#废弃应该是了
+# 					effectButtonType = {
+# 						#装配饰品  总按钮
+# 						name = "gts_bfbf_decorations_test1"
+# 						position = { x = @zong_x y = @love_botton_y_5 }
+# 						spriteType = "GFX_gts_leader_colossus_mode"
+# 						buttonFont = "malgun_goth_24"
+# 						format = center
+# 						text = gts_leader_decorations_action1
+# 						effect = gts_bfbf_decorations_test1_effect
+# 					}
+##################################################################也是通用但需要单独去写#########################################################################################
+#########################################################换职位###################################################################################################################
+					effectButtonType = {
+						#换职位  总按钮
+						name = "gts_bfbf_duty_test1"
+						position = { x = @zong_x y = @love_botton_y2_1 }
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						format = center
+						text = gts_bfbf_duty_action1
+						effect = gts_bfbf_duty_test1_effect
+					}
+					effectButtonType = {
+						#换职位  分1
+						name = "gts_bfbf_duty_test01"
+						position = { x = @fen_x y = @love_botton_y2_1 }
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						format = center
+						text = gts_bfbf_duty_action01
+						effect = gts_bfbf_duty_test01_effect
+					}
+					effectButtonType = {
+						#换职位  分2
+						name = "gts_bfbf_duty_test02"
+						position = { x = @fen_x y = @love_botton_y2_2 }
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						format = center
+						text = gts_bfbf_duty_action02
+						effect = gts_bfbf_duty_test02_effect
+					}
+					effectButtonType = {
+						#换职位  分3
+						name = "gts_bfbf_duty_test03"
+						position = { x = @fen_x y = @love_botton_y2_3 }
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						format = center
+						text = gts_bfbf_duty_action03
+						effect = gts_bfbf_duty_test03_effect
+					}
+###############################################################结婚#####################################################################################################
+					effectButtonType = {
+						#结婚  总按钮
+						name = "gts_bfbf_married_test1"
+						position = { x = @zong_x y = @love_botton_y2_3 }
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						format = center
+						text = gts_bfbf_married_action1
+						effect = gts_bfbf_married_test1_effect
+					}
+
+#########################################################肉身上场（作为舰娘 星球##################################################################################################################
+					effectButtonType = {
+						# 总按钮
+						name = "gts_bfbf_change_test1"
+						position = { x = @zong_x y = @love_botton_y2_2 }
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						format = center
+						text = gts_bfbf_change_action1
+						effect = gts_bfbf_change_test1_effect
+					}
+					effectButtonType = {
+						#舰娘  分1
+						name = "gts_bfbf_change_test01"
+						position = { x = @fen_x y = @love_botton_y2_1 }
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						format = center
+						text = gts_bfbf_change_action01
+						effect = gts_bfbf_change_test01_effect
+					}
+					effectButtonType = {
+						#星球  分2
+						name = "gts_bfbf_change_test02"
+						position = { x = @fen_x y = @love_botton_y2_2 }
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						format = center
+						text = gts_bfbf_change_action02
+						effect = gts_bfbf_change_test02_effect
+					}
+
+
+
+##################################################################部分领袖可用#########################################################################################
+#########################################################挤奶###################################################################################################################
+					effectButtonType = {
+						#挤奶  总按钮
+						name = "gts_bfbf_milk_test1"
+						position = { x = @zong_x y = @love_botton_y3_1 }
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						format = center
+						text = gts_bfbf_milk_action1
+						effect = gts_bfbf_milk_test1_effect
+					}
+
+					effectButtonType = {
+						#哈气  总按钮
+						name = "gts_bfbf_haqi_test1"
+						position = { x = @zong_x y = @love_botton_y3_1 }
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						format = center
+						text = gts_bfbf_haqi_action1
+						effect = gts_bfbf_haqi_test1_effect
+
+					}
+
+
+
+
+
+
+####################################部分可用的互动  的翻页#############################################################################################################
+					effectButtonType = {
+						# 上一页
+						name = "gts_leader_love_back"
+						spriteType = "GFX_gts_leader_item_back"
+						position = { x = 50 y = @gts_leader_love_page_y }
+						effect = gts_leader_love_back_effect
+					}
+					effectButtonType = {
+						# 下一页
+						name = "gts_leader_love_next"
+						spriteType = "GFX_gts_leader_item_next"
+						position = { x = 250 y = @gts_leader_love_page_y }
+						effect = gts_leader_love_next_effect
+					}
+					### 页数显示
+
+					effectButtonType = {
+						name = "gts_leader_love_page_1"
+						spriteType = "GFX_gts_leader_item_page_1"
+						position = { x = @gts_leader_love_page_x y = @gts_leader_love_page_y }
+						alwaysTransparent = yes
+						effect = gts_leader_love_page_1_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_love_page_2"
+						spriteType = "GFX_gts_leader_item_page_2"
+						position = { x = @gts_leader_love_page_x y = @gts_leader_love_page_y }
+						alwaysTransparent = yes
+						effect = gts_leader_love_page_2_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_love_page_3"
+						spriteType = "GFX_gts_leader_item_page_3"
+						position = { x = @gts_leader_love_page_x y = @gts_leader_love_page_y }
+						alwaysTransparent = yes
+						effect = gts_leader_love_page_3_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_love_page_4"
+						spriteType = "GFX_gts_leader_item_page_4"
+						position = { x = @gts_leader_love_page_x y = @gts_leader_love_page_y }
+						alwaysTransparent = yes
+						effect = gts_leader_love_page_4_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_love_page_5"
+						spriteType = "GFX_gts_leader_item_page_5"
+						position = { x = @gts_leader_love_page_x y = @gts_leader_love_page_y }
+						alwaysTransparent = yes
+						effect = gts_leader_love_page_5_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_love_page_6"
+						spriteType = "GFX_gts_leader_item_page_6"
+						position = { x = @gts_leader_love_page_x y = @gts_leader_love_page_y }
+						alwaysTransparent = yes
+						effect = gts_leader_love_page_6_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_love_page_7"
+						spriteType = "GFX_gts_leader_item_page_7"
+						position = { x = @gts_leader_love_page_x y = @gts_leader_love_page_y }
+						alwaysTransparent = yes
+						effect = gts_leader_love_page_7_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_love_page_8"
+						spriteType = "GFX_gts_leader_item_page_8"
+						position = { x = @gts_leader_love_page_x y = @gts_leader_love_page_y }
+						alwaysTransparent = yes
+						effect = gts_leader_love_page_8_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_love_page_9"
+						spriteType = "GFX_gts_leader_item_page_9"
+						position = { x = @gts_leader_love_page_x y = @gts_leader_love_page_y }
+						alwaysTransparent = yes
+						effect = gts_leader_love_page_9_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_love_page_10"
+						spriteType = "GFX_gts_leader_item_page_10"
+						position = { x = @gts_leader_love_page_x y = @gts_leader_love_page_y }
+						alwaysTransparent = yes
+						effect = gts_leader_love_page_10_effect
+					}
+
+
+				}
+			}
+		}
+
+
+		dropDownBoxType = {
+			name = "GTS_bfbf_drop3" # Dropdown menu 1
+			position = { x = 55 y = 450 }
+			size = { width = 400 height = 24 }
+			background = {
+				name = "GTS_bfbf_drop3_bg" # Background for dropdown menu 1
+				spriteType = "GFX_gts_bfbf_botton1"
+			}
+			expandButton = {
+				name = "GTS_bfbf_drop_3_expand_button" # Expand button for dropdown menu 1
+				spriteType = "GFX_gts_bfbf_botton1"
+				position = { x = 0 y = 0 }
+				buttonText = "GTS_bfbf_drop_3_expand_button_action"
+				buttonFont = large_title_font_28
+				clicksound = increment_click
+				oversound = mouse_over
+			}
+			expandedWindow = {
+				name = "GTS_bfbf_drop_3_expanded_window" # Expanded window for dropdown menu 1
+				#这里也需要更改位置  与上面按钮改的数值相同
+				#上面是-400
+				hide_position = { x = 0 y = -450 }
+				show_position = { x = 400 y = -450 }
+				size = { width = 400 height = 900 }
+				show_animation_type = decelerated
+				hide_animation_type = accelerated
+				animation_time = 550
+				background = {
+					#expandedWindow 单独的话是个框
+					name = "GTS_bfbf_drop_3_expanded_bg" # Background for expanded window
+					spriteType = "GFX_tiles_dark_area_cut_8"
+				}
+				containerWindowType = {
+					name = "GTS_bfbf_drop_3_expanded_container" # Container for expanded window
+					position = { x = 0 y = 0 }
+					size = { width = 450 height = 900 }
+					margin = { top = 5 bottom = 5 left = 5 right = 5 }
+					background = {
+						#containerWindowType 单独的话也是个框
+						name = "GTS_bfbf_drop_3_expanded_container_bg"
+						spriteType = "GFX_tiles_dark_area_cut_8"
+						alwaysTransparent = yes
+					}
+
+
+
+				}
+			}
+		}
+
+		dropDownBoxType = {
+			name = "GTS_bfbf_drop4" # Dropdown menu 1
+			position = { x = 55 y = 500 }
+			size = { width = 400 height = 24 }
+			background = {
+				name = "GTS_bfbf_drop4_bg" # Background for dropdown menu 1
+				spriteType = "GFX_gts_bfbf_botton1"
+			}
+			expandButton = {
+				name = "GTS_bfbf_drop_4_expand_button" # Expand button for dropdown menu 1
+				spriteType = "GFX_gts_bfbf_botton1"
+				position = { x = 0 y = 0 }
+				buttonText = "GTS_bfbf_drop_4_expand_button_action"
+				buttonFont = large_title_font_28
+				clicksound = increment_click
+				oversound = mouse_over
+			}
+			expandedWindow = {
+				name = "GTS_bfbf_drop_4_expanded_window" # Expanded window for dropdown menu 1
+				#这里也需要更改位置  与上面按钮改的数值相同
+				#上面是-400
+				hide_position = { x = 0 y = -500 }
+				show_position = { x = 400 y = -500 }
+				size = { width = 400 height = 900 }
+				show_animation_type = decelerated
+				hide_animation_type = accelerated
+				animation_time = 550
+				background = {
+					#expandedWindow 单独的话是个框
+					name = "GTS_bfbf_drop_4_expanded_bg" # Background for expanded window
+					spriteType = "GFX_tiles_dark_area_cut_8"
+				}
+				containerWindowType = {
+					name = "GTS_bfbf_drop_4_expanded_container" # Container for expanded window
+					position = { x = 0 y = 0 }
+					size = { width = 450 height = 900 }
+					margin = { top = 5 bottom = 5 left = 5 right = 5 }
+					background = {
+						#containerWindowType 单独的话也是个框
+						name = "GTS_bfbf_drop_4_expanded_container_bg"
+						spriteType = "GFX_tiles_dark_area_cut_8"
+						alwaysTransparent = yes
+					}
+
+
+
+				}
+
+			}
+		}
+
+		dropDownBoxType = {
+			name = "GTS_bfbf_drop5" # Dropdown menu 1
+			position = { x = 55 y = 550 }
+			size = { width = 400 height = 24 }
+			background = {
+				name = "GTS_bfbf_drop5_bg" # Background for dropdown menu 1
+				spriteType = "GFX_gts_bfbf_botton1"
+			}
+			expandButton = {
+				name = "GTS_bfbf_drop_5_expand_button" # Expand button for dropdown menu 1
+				spriteType = "GFX_gts_bfbf_botton1"
+				position = { x = 0 y = 0 }
+				buttonText = "GTS_bfbf_drop_5_expand_button_action"
+				buttonFont = large_title_font_28
+				clicksound = increment_click
+				oversound = mouse_over
+			}
+			expandedWindow = {
+				name = "GTS_bfbf_drop_5_expanded_window" # Expanded window for dropdown menu 1
+				#这里也需要更改位置  与上面按钮改的数值相同
+				hide_position = { x = 0 y = -550 }
+				show_position = { x = 400 y = -550 }
+				size = { width = 400 height = 900 }
+				show_animation_type = decelerated
+				hide_animation_type = accelerated
+				animation_time = 550
+				background = {
+					#expandedWindow 单独的话是个框
+					name = "GTS_bfbf_drop_5_expanded_bg" # Background for expanded window
+					spriteType = "GFX_gts_bfbf_botton5"
+				}
+				containerWindowType = {
+					name = "GTS_bfbf_drop_5_expanded_container" # Container for expanded window
+					position = { x = 0 y = 0 }
+					size = { width = 450 height = 900 }
+					margin = { top = 5 bottom = 5 left = 5 right = 5 }
+					background = {
+						#containerWindowType 单独的话也是个框
+						name = "GTS_bfbf_drop_5_expanded_container_bg"
+						spriteType = "GFX_tiles_dark_area_cut_8"
+						alwaysTransparent = yes
+					}
+					effectButtonType = {
+						# 上一页
+						name = "gts_leader_decorations_back"
+						spriteType = "GFX_gts_leader_item_back"
+						position = { x = 50 y = @gts_leader_love_page_y }
+						effect = gts_leader_decorations_back_effect
+					}
+					effectButtonType = {
+						# 下一页
+						name = "gts_leader_decorations_next"
+						spriteType = "GFX_gts_leader_item_next"
+						position = { x = 250 y = @gts_leader_love_page_y }
+						effect = gts_leader_decorations_next_effect
+					}
+					###############################显示页数
+					effectButtonType = {
+						name = "gts_leader_decorations_page_1"
+						spriteType = "GFX_gts_leader_item_page_1"
+						position = { x = @gts_leader_love_page_x y = @gts_leader_love_page_y }
+						alwaysTransparent = yes
+						effect = gts_leader_decorations_page_1_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_page_2"
+						spriteType = "GFX_gts_leader_item_page_2"
+						position = { x = @gts_leader_love_page_x y = @gts_leader_love_page_y }
+						alwaysTransparent = yes
+						effect = gts_leader_decorations_page_2_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_page_3"
+						spriteType = "GFX_gts_leader_item_page_3"
+						position = { x = @gts_leader_love_page_x y = @gts_leader_love_page_y }
+						alwaysTransparent = yes
+						effect = gts_leader_decorations_page_3_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_page_4"
+						spriteType = "GFX_gts_leader_item_page_4"
+						position = { x = @gts_leader_love_page_x y = @gts_leader_love_page_y }
+						alwaysTransparent = yes
+						effect = gts_leader_decorations_page_4_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_page_5"
+						spriteType = "GFX_gts_leader_item_page_5"
+						position = { x = @gts_leader_love_page_x y = @gts_leader_love_page_y }
+						alwaysTransparent = yes
+						effect = gts_leader_decorations_page_5_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_page_6"
+						spriteType = "GFX_gts_leader_item_page_6"
+						position = { x = @gts_leader_love_page_x y = @gts_leader_love_page_y }
+						alwaysTransparent = yes
+						effect = gts_leader_decorations_page_6_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_page_7"
+						spriteType = "GFX_gts_leader_item_page_7"
+						position = { x = @gts_leader_love_page_x y = @gts_leader_love_page_y }
+						alwaysTransparent = yes
+						effect = gts_leader_decorations_page_7_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_page_8"
+						spriteType = "GFX_gts_leader_item_page_8"
+						position = { x = @gts_leader_love_page_x y = @gts_leader_love_page_y }
+						alwaysTransparent = yes
+						effect = gts_leader_decorations_page_8_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_page_9"
+						spriteType = "GFX_gts_leader_item_page_9"
+						position = { x = @gts_leader_love_page_x y = @gts_leader_love_page_y }
+						alwaysTransparent = yes
+						effect = gts_leader_decorations_page_9_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_page_10"
+						spriteType = "GFX_gts_leader_item_page_10"
+						position = { x = @gts_leader_love_page_x y = @gts_leader_love_page_y }
+						alwaysTransparent = yes
+						effect = gts_leader_decorations_page_10_effect
+					}
+
+@leader_decorations_1_1_x = 28
+@leader_decorations_upremove_2_x  = 130
+@leader_decorations_build_3_x = 306
+
+@leader_decorations_1_1_y = 68
+@leader_decorations_1_2_y = 196
+@leader_decorations_1_3_y = 324
+@leader_decorations_1_4_y = 452
+@leader_decorations_1_5_y = 580
+@leader_decorations_1_6_y = 708
+
+
+
+@leader_decorations_upremove_1_y = 96
+@leader_decorations_upremove_2_y = 224
+@leader_decorations_upremove_3_y = 352
+@leader_decorations_upremove_4_y = 480
+@leader_decorations_upremove_5_y = 608
+@leader_decorations_upremove_6_y = 736
+
+
+@leader_decorations_build_1_y = 83
+@leader_decorations_build_2_y = 211
+@leader_decorations_build_3_y = 339
+@leader_decorations_build_4_y = 467
+@leader_decorations_build_5_y = 595
+@leader_decorations_build_6_y = 723
+
+					################################################################################
+					##################################    名字   ##############################################
+					################################################################################
+					effectButtonType = {
+						name = "gts_leader_decorations_1"
+						spriteType = "GFX_gts_leader_item_i_assembly"
+						position = { x = @leader_decorations_1_1_x y = @leader_decorations_1_1_y }
+						effect = gts_leader_item_i_bfbf_assembly_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_2"
+						spriteType = "GFX_gts_leader_item_i_decompressor"
+						position = { x = @leader_decorations_1_1_x y = @leader_decorations_1_2_y }
+						effect = gts_leader_item_i_bfbf_decompressor_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_3"
+						spriteType = "GFX_gts_leader_item_i_gateway"
+						position = { x = @leader_decorations_1_1_x y = @leader_decorations_1_3_y }
+						effect = gts_leader_item_i_bfbf_gateway_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_4"
+						spriteType = "GFX_gts_leader_item_i_habitat"
+						position = { x = @leader_decorations_1_1_x y = @leader_decorations_1_4_y }
+						effect = gts_leader_item_i_bfbf_habitat_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_5"
+						spriteType = "GFX_gts_leader_item_i_hyper"
+						position = { x = @leader_decorations_1_1_x y = @leader_decorations_1_5_y }
+						effect = gts_leader_item_i_bfbf_hyper_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_6"
+						spriteType = "GFX_gts_leader_item_i_ringworld"
+						position = { x = @leader_decorations_1_1_x y = @leader_decorations_1_6_y }
+						effect = gts_leader_item_i_bfbf_ringworld_effect
+					}
+					####################再来一轮，得加个翻页
+					effectButtonType = {
+						name = "gts_leader_decorations_7"
+						spriteType = "GFX_gts_leader_item_i_shipyard"
+						position = { x = @leader_decorations_1_1_x y = @leader_decorations_1_1_y }
+						effect = gts_leader_item_i_bfbf_shipyard_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_8"
+						spriteType = "GFX_gts_leader_item_i_sphere"
+						position = { x = @leader_decorations_1_1_x y = @leader_decorations_1_2_y }
+						effect = gts_leader_item_i_bfbf_sphere_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_9"
+						spriteType = "GFX_gts_leader_item_i_spyorb"
+						position = { x = @leader_decorations_1_1_x y = @leader_decorations_1_3_y }
+						effect = gts_leader_item_i_bfbf_spyorb_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_10"
+						spriteType = "GFX_gts_leader_item_i_star"
+						position = { x = @leader_decorations_1_1_x y = @leader_decorations_1_4_y }
+						effect = gts_leader_item_i_bfbf_star_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_11"
+						spriteType = "GFX_gts_leader_item_i_strategic"
+						position = { x = @leader_decorations_1_1_x y = @leader_decorations_1_5_y }
+						effect = gts_leader_item_i_bfbf_strategic_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_12"
+						spriteType = "GFX_gts_leader_item_i_tech"
+						position = { x = @leader_decorations_1_1_x y = @leader_decorations_1_6_y }
+						effect = gts_leader_item_i_bfbf_tech_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_13"
+						spriteType = "GFX_gts_leader_item_i_art"
+						position = { x = @leader_decorations_1_1_x y = @leader_decorations_1_1_y }
+						effect = gts_leader_item_i_bfbf_art_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_14"
+						spriteType = "GFX_gts_leader_item_i_catapult"
+						position = { x = @leader_decorations_1_1_x y = @leader_decorations_1_2_y }
+						effect = gts_leader_item_i_bfbf_catapult_effect
+					}
+					#############################################################
+					effectButtonType = {
+						name = "gts_leader_decorations_15"
+						spriteType = "GFX_gts_leader_item_i_archive"
+						position = { x = @leader_decorations_1_1_x y = @leader_decorations_1_3_y }
+						effect = gts_leader_item_i_bfbf_archive_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_16"
+						spriteType = "GFX_gts_leader_item_i_Furnace"
+						position = { x = @leader_decorations_1_1_x y = @leader_decorations_1_4_y }
+						effect = gts_leader_item_i_bfbf_Furnace_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_17"
+						spriteType = "GFX_gts_leader_item_i_Swarm"
+						position = { x = @leader_decorations_1_1_x y = @leader_decorations_1_5_y }
+						effect = gts_leader_item_i_bfbf_Swarm_effect
+					}
+
+					#####################################################   下为装配   ######################################################################
+
+
+					effectButtonType = {
+						name = "gts_leader_decorations_up_1"
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						position = { x = @leader_decorations_upremove_2_x y = @leader_decorations_upremove_1_y }
+						text = gts_leader_decorations_up
+						effect = gts_leader_decorations_up_1_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_up_2"
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_up
+						position = { x = @leader_decorations_upremove_2_x  y = @leader_decorations_upremove_2_y }
+						effect = gts_leader_decorations_up_2_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_up_3"
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_up
+						position = { x = @leader_decorations_upremove_2_x  y = @leader_decorations_upremove_3_y }
+						effect = gts_leader_decorations_up_3_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_up_4"
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_up
+						position = { x = @leader_decorations_upremove_2_x  y = @leader_decorations_upremove_4_y }
+						effect = gts_leader_decorations_up_4_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_up_5"
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_up
+						position = { x = @leader_decorations_upremove_2_x  y = @leader_decorations_upremove_5_y }
+						effect = gts_leader_decorations_up_5_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_up_6"
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_up
+						position = { x = @leader_decorations_upremove_2_x  y = @leader_decorations_upremove_6_y }
+						effect = gts_leader_decorations_up_6_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_up_7"
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_up
+						position = { x = @leader_decorations_upremove_2_x  y = @leader_decorations_upremove_1_y }
+						effect = gts_leader_decorations_up_7_effect
+					}
+					####################再来一轮，得加个翻页
+					effectButtonType = {
+						name = "gts_leader_decorations_up_8"
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_up
+						position = { x = @leader_decorations_upremove_2_x  y = @leader_decorations_upremove_2_y }
+						effect = gts_leader_decorations_up_8_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_up_9"
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_up
+						position = { x = @leader_decorations_upremove_2_x  y = @leader_decorations_upremove_3_y }
+						effect = gts_leader_decorations_up_9_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_up_10"
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_up
+						position = { x = @leader_decorations_upremove_2_x  y = @leader_decorations_upremove_4_y }
+						effect = gts_leader_decorations_up_10_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_up_11"
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_up
+						position = { x = @leader_decorations_upremove_2_x  y = @leader_decorations_upremove_5_y }
+						effect = gts_leader_decorations_up_11_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_up_12"
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_up
+						position = { x = @leader_decorations_upremove_2_x  y = @leader_decorations_upremove_6_y }
+						effect = gts_leader_decorations_up_12_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_up_13"
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_up
+						position = { x = @leader_decorations_upremove_2_x  y = @leader_decorations_upremove_1_y }
+						effect = gts_leader_decorations_up_13_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_up_14"
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_up
+						position = { x = @leader_decorations_upremove_2_x  y = @leader_decorations_upremove_2_y }
+						effect = gts_leader_decorations_up_14_effect
+					}
+					#############################################################
+					effectButtonType = {
+						name = "gts_leader_decorations_up_15"
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_up
+						position = { x = @leader_decorations_upremove_2_x  y = @leader_decorations_upremove_3_y }
+						effect = gts_leader_decorations_up_15_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_up_16"
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_up
+						position = { x = @leader_decorations_upremove_2_x  y = @leader_decorations_upremove_4_y }
+						effect = gts_leader_decorations_up_16_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_up_17"
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_up
+						position = { x = @leader_decorations_upremove_2_x  y = @leader_decorations_upremove_5_y }
+						effect = gts_leader_decorations_up_17_effect
+					}
+####################################################################   拆掉   ################################################################################################
+					effectButtonType = {
+						name = "gts_leader_decorations_remove_1"
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						position = { x = @leader_decorations_upremove_2_x y = @leader_decorations_upremove_1_y }
+						text = gts_leader_decorations_remove
+						effect = gts_leader_decorations_remove_1_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_remove_2"
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_remove
+						position = { x = @leader_decorations_upremove_2_x  y = @leader_decorations_upremove_2_y }
+						effect = gts_leader_decorations_remove_2_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_remove_3"
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_remove
+						position = { x = @leader_decorations_upremove_2_x  y = @leader_decorations_upremove_3_y }
+						effect = gts_leader_decorations_remove_3_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_remove_4"
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_remove
+						position = { x = @leader_decorations_upremove_2_x  y = @leader_decorations_upremove_4_y }
+						effect = gts_leader_decorations_remove_4_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_remove_5"
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_remove
+						position = { x = @leader_decorations_upremove_2_x  y = @leader_decorations_upremove_5_y }
+						effect = gts_leader_decorations_remove_5_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_remove_6"
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_remove
+						position = { x = @leader_decorations_upremove_2_x  y = @leader_decorations_upremove_6_y }
+						effect = gts_leader_decorations_remove_6_effect
+					}
+					####################再来一轮，得加个翻页
+					effectButtonType = {
+						name = "gts_leader_decorations_remove_7"
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_remove
+						position = { x = @leader_decorations_upremove_2_x  y = @leader_decorations_upremove_1_y }
+						effect = gts_leader_decorations_remove_7_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_remove_8"
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_remove
+						position = { x = @leader_decorations_upremove_2_x  y = @leader_decorations_upremove_2_y }
+						effect = gts_leader_decorations_remove_8_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_remove_9"
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_remove
+						position = { x = @leader_decorations_upremove_2_x  y = @leader_decorations_upremove_3_y }
+						effect = gts_leader_decorations_remove_9_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_remove_10"
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_remove
+						position = { x = @leader_decorations_upremove_2_x  y = @leader_decorations_upremove_4_y }
+						effect = gts_leader_decorations_remove_10_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_remove_11"
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_remove
+						position = { x = @leader_decorations_upremove_2_x  y = @leader_decorations_upremove_5_y }
+						effect = gts_leader_decorations_remove_11_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_remove_12"
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_remove
+						position = { x = @leader_decorations_upremove_2_x  y = @leader_decorations_upremove_6_y }
+						effect = gts_leader_decorations_remove_12_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_remove_13"
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_remove
+						position = { x = @leader_decorations_upremove_2_x  y = @leader_decorations_upremove_1_y }
+						effect = gts_leader_decorations_remove_13_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_remove_14"
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_remove
+						position = { x = @leader_decorations_upremove_2_x  y = @leader_decorations_upremove_2_y }
+						effect = gts_leader_decorations_remove_14_effect
+					}
+					#############################################################
+					effectButtonType = {
+						name = "gts_leader_decorations_remove_15"
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_remove
+						position = { x = @leader_decorations_upremove_2_x  y = @leader_decorations_upremove_3_y }
+						effect = gts_leader_decorations_remove_15_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_remove_16"
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_remove
+						position = { x = @leader_decorations_upremove_2_x  y = @leader_decorations_upremove_4_y }
+						effect = gts_leader_decorations_remove_16_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_remove_17"
+						spriteType = "GFX_gts_leader_colossus_mode"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_remove
+						position = { x = @leader_decorations_upremove_2_x  y = @leader_decorations_upremove_5_y }
+						effect = gts_leader_decorations_remove_17_effect
+					}
+#####################################################   下为建造   ######################################################################
+
+					effectButtonType = {
+						name = "gts_leader_decorations_build_1"
+						spriteType = "GFX_gts_bfbf_bottoon_build"
+						buttonFont = "malgun_goth_24"
+						position = { x = 306 y = @leader_decorations_build_1_y }
+						text = gts_leader_decorations_build
+						effect = gts_leader_decorations_build_1_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_build_2"
+						spriteType = "GFX_gts_bfbf_bottoon_build"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_build
+						position = { x = @leader_decorations_build_3_x y = @leader_decorations_build_2_y }
+						effect = gts_leader_decorations_build_2_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_build_3"
+						spriteType = "GFX_gts_bfbf_bottoon_build"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_build
+						position = { x = @leader_decorations_build_3_x y = @leader_decorations_build_3_y }
+						effect = gts_leader_decorations_build_3_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_build_4"
+						spriteType = "GFX_gts_bfbf_bottoon_build"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_build
+						position = { x = @leader_decorations_build_3_x y = @leader_decorations_build_4_y }
+						effect = gts_leader_decorations_build_4_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_build_5"
+						spriteType = "GFX_gts_bfbf_bottoon_build"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_build
+						position = { x = @leader_decorations_build_3_x y = @leader_decorations_build_5_y }
+						effect = gts_leader_decorations_build_5_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_build_6"
+						spriteType = "GFX_gts_bfbf_bottoon_build"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_build
+						position = { x = @leader_decorations_build_3_x y = @leader_decorations_build_6_y }
+						effect = gts_leader_decorations_build_6_effect
+					}
+					####################再来一轮，得加个翻页
+					effectButtonType = {
+						name = "gts_leader_decorations_build_7"
+						spriteType = "GFX_gts_bfbf_bottoon_build"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_build
+						position = { x = @leader_decorations_build_3_x y = @leader_decorations_build_1_y }
+						effect = gts_leader_decorations_build_7_effect
+					}
+
+					effectButtonType = {
+						name = "gts_leader_decorations_build_8"
+						spriteType = "GFX_gts_bfbf_bottoon_build"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_build
+						position = { x = @leader_decorations_build_3_x y = @leader_decorations_build_2_y }
+						effect = gts_leader_decorations_build_8_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_build_9"
+						spriteType = "GFX_gts_bfbf_bottoon_build"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_build
+						position = { x = @leader_decorations_build_3_x y = @leader_decorations_build_3_y }
+						effect = gts_leader_decorations_build_9_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_build_10"
+						spriteType = "GFX_gts_bfbf_bottoon_build"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_build
+						position = { x = @leader_decorations_build_3_x y = @leader_decorations_build_4_y }
+						effect = gts_leader_decorations_build_10_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_build_11"
+						spriteType = "GFX_gts_bfbf_bottoon_build"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_build
+						position = { x = @leader_decorations_build_3_x y = @leader_decorations_build_5_y }
+						effect = gts_leader_decorations_build_11_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_build_12"
+						spriteType = "GFX_gts_bfbf_bottoon_build"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_build
+						position = { x = @leader_decorations_build_3_x y = @leader_decorations_build_6_y }
+						effect = gts_leader_decorations_build_12_effect
+					}
+					#############################################################
+					effectButtonType = {
+						name = "gts_leader_decorations_build_13"
+						spriteType = "GFX_gts_bfbf_bottoon_build"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_build
+						position = { x = @leader_decorations_build_3_x y = @leader_decorations_build_1_y }
+						effect = gts_leader_decorations_build_13_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_build_14"
+						spriteType = "GFX_gts_bfbf_bottoon_build"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_build
+						position = { x = @leader_decorations_build_3_x y = @leader_decorations_build_2_y }
+						effect = gts_leader_decorations_build_14_effect
+					}
+
+					effectButtonType = {
+						name = "gts_leader_decorations_build_15"
+						spriteType = "GFX_gts_bfbf_bottoon_build"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_build
+						position = { x = @leader_decorations_build_3_x y = @leader_decorations_build_3_y }
+						effect = gts_leader_decorations_build_15_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_build_16"
+						spriteType = "GFX_gts_bfbf_bottoon_build"
+						buttonFont = "malgun_goth_24"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_build
+						position = { x = @leader_decorations_build_3_x y = @leader_decorations_build_4_y }
+						effect = gts_leader_decorations_build_16_effect
+					}
+					effectButtonType = {
+						name = "gts_leader_decorations_build_17"
+						spriteType = "GFX_gts_bfbf_bottoon_build"
+						buttonFont = "malgun_goth_24"
+						text = gts_leader_decorations_build
+						position = { x = @leader_decorations_build_3_x y = @leader_decorations_build_5_y }
+						effect = gts_leader_decorations_build_17_effect
+					}
+
+
+				}
+			}
+		}
+		dropDownBoxType = {
+			name = "GTS_bfbf_drop6" # Dropdown menu 1
+			position = { x = 55 y = 600 }
+			size = { width = 400 height = 24 }
+			background = {
+				name = "GTS_bfbf_drop6_bg" # Background for dropdown menu 1
+				spriteType = "GFX_gts_bfbf_botton1"
+			}
+			expandButton = {
+				name = "GTS_bfbf_drop_4_expand_button" # Expand button for dropdown menu 1
+				spriteType = "GFX_gts_bfbf_botton1"
+				position = { x = 0 y = 0 }
+				buttonText = "GTS_bfbf_drop_6_expand_button_action"
+				buttonFont = large_title_font_28
+				clicksound = increment_click
+				oversound = mouse_over
+			}
+			expandedWindow = {
+				name = "GTS_bfbf_drop_6_expanded_window" # Expanded window for dropdown menu 1
+				#这里也需要更改位置  与上面按钮改的数值相同
+				hide_position = { x = 0 y = -600 }
+				show_position = { x = 400 y = -600 }
+				size = { width = 400 height = 900 }
+				show_animation_type = decelerated
+				hide_animation_type = accelerated
+				animation_time = 550
+				background = {
+					#expandedWindow 单独的话是个框
+					name = "GTS_bfbf_drop_6_expanded_bg" # Background for expanded window
+					spriteType = "GFX_gts_skill_background"
+				}
+				containerWindowType = {
+					name = "GTS_bfbf_drop_6_expanded_container" # Container for expanded window
+					position = { x = 0 y = 0 }
+					size = { width = 450 height = 900 }
+					margin = { top = 5 bottom = 5 left = 5 right = 5 }
+					background = {
+						#containerWindowType 单独的话也是个框
+						name = "GTS_bfbf_drop_6_expanded_container_bg"
+						spriteType = "GFX_gts_skill_background"
+						alwaysTransparent = yes
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_scientist_1"
+						spriteType = "GFX_gts_skill_botton_main"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 162 y = 282 }
+						effect = gts_trait_leader_gts_skill_scientist_1_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_scientist_2"
+						spriteType = "GFX_gts_skill_botton_main"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 187 y = 377 }
+						effect = gts_trait_leader_gts_skill_scientist_2_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_scientist_3"
+						spriteType = "GFX_gts_skill_botton_main"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 241 y = 431 }
+						effect = gts_trait_leader_gts_skill_scientist_3_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_scientist_4"
+						spriteType = "GFX_gts_skill_botton_main"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 207 y = 525 }
+						effect = gts_trait_leader_gts_skill_scientist_4_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_scientist_5"
+						spriteType = "GFX_gts_skill_botton_main"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 230 y = 792 }
+						effect = gts_trait_leader_gts_skill_scientist_5_effect
+					}
+
+					effectButtonType = {
+						name = "trait_leader_gts_skill_scientist_1_default"
+						spriteType = "GFX_gts_skill_botton_main"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 162 y = 282 }
+						effect = gts_trait_leader_gts_skill_scientist_1_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_scientist_2_default"
+						spriteType = "GFX_gts_skill_botton_main"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 187 y = 377 }
+						effect = gts_trait_leader_gts_skill_scientist_2_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_scientist_3_default"
+						spriteType = "GFX_gts_skill_botton_main"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 241 y = 431 }
+						effect = gts_trait_leader_gts_skill_scientist_3_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_scientist_4_default"
+						spriteType = "GFX_gts_skill_botton_main"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 207 y = 525 }
+						effect = gts_trait_leader_gts_skill_scientist_4_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_scientist_5_default"
+						spriteType = "GFX_gts_skill_botton_main"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 230 y = 792 }
+						effect = gts_trait_leader_gts_skill_scientist_5_default_effect
+					}
+
+					effectButtonType = {
+						name = "trait_leader_gts_skill_scientist_01"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 190 y = 249 }
+						effect = gts_trait_leader_gts_skill_scientist_01_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_scientist_02"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 217 y = 293 }
+						effect = gts_trait_leader_gts_skill_scientist_02_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_scientist_03"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 205 y = 338 }
+						effect = gts_trait_leader_gts_skill_scientist_03_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_scientist_04"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 135 y = 350 }
+						effect = gts_trait_leader_gts_skill_scientist_04_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_scientist_05"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 162 y = 395 }
+						effect = gts_trait_leader_gts_skill_scientist_05_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_scientist_06"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 257 y = 402 }
+						effect = gts_trait_leader_gts_skill_scientist_06_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_scientist_07"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 150 y = 437 }
+						effect = gts_trait_leader_gts_skill_scientist_07_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_scientist_08"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 282 y = 438 }
+						effect = gts_trait_leader_gts_skill_scientist_08_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_scientist_09"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 276 y = 479 }
+						effect = gts_trait_leader_gts_skill_scientist_09_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_scientist_10"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 170 y = 508 }
+						effect = gts_trait_leader_gts_skill_scientist_10_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_scientist_11"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 188 y = 542 }
+						effect = gts_trait_leader_gts_skill_scientist_11_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_scientist_12"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 192 y = 582 }
+						effect = gts_trait_leader_gts_skill_scientist_12_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_scientist_13"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 253 y = 752 }
+						effect = gts_trait_leader_gts_skill_scientist_13_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_scientist_14"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 282 y = 790 }
+						effect = gts_trait_leader_gts_skill_scientist_14_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_scientist_15"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 275 y = 825 }
+						effect = gts_trait_leader_gts_skill_scientist_15_effect
+					}
+
+					effectButtonType = {
+						name = "trait_leader_gts_skill_scientist_01_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 190 y = 249 }
+						effect = gts_trait_leader_gts_skill_scientist_01_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_scientist_02_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 217 y = 293 }
+						effect = gts_trait_leader_gts_skill_scientist_02_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_scientist_03_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 205 y = 338 }
+						effect = gts_trait_leader_gts_skill_scientist_03_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_scientist_04_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 135 y = 350 }
+						effect = gts_trait_leader_gts_skill_scientist_04_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_scientist_05_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 162 y = 395 }
+						effect = gts_trait_leader_gts_skill_scientist_05_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_scientist_06_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 257 y = 402 }
+						effect = gts_trait_leader_gts_skill_scientist_06_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_scientist_07_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 150 y = 437 }
+						effect = gts_trait_leader_gts_skill_scientist_07_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_scientist_08_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 282 y = 438 }
+						effect = gts_trait_leader_gts_skill_scientist_08_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_scientist_09_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 276 y = 479 }
+						effect = gts_trait_leader_gts_skill_scientist_09_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_scientist_10_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 170 y = 508 }
+						effect = gts_trait_leader_gts_skill_scientist_10_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_scientist_11_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 188 y = 542 }
+						effect = gts_trait_leader_gts_skill_scientist_11_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_scientist_12_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 192 y = 582 }
+						effect = gts_trait_leader_gts_skill_scientist_12_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_scientist_13_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 253 y = 752 }
+						effect = gts_trait_leader_gts_skill_scientist_13_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_scientist_14_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 282 y = 790 }
+						effect = gts_trait_leader_gts_skill_scientist_14_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_scientist_15_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 275 y = 825 }
+						effect = gts_trait_leader_gts_skill_scientist_15_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_official_1"
+						spriteType = "GFX_gts_skill_botton_main"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 162 y = 282 }
+						effect = gts_trait_leader_gts_skill_official_1_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_official_2"
+						spriteType = "GFX_gts_skill_botton_main"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 187 y = 377 }
+						effect = gts_trait_leader_gts_skill_official_2_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_official_3"
+						spriteType = "GFX_gts_skill_botton_main"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 241 y = 431 }
+						effect = gts_trait_leader_gts_skill_official_3_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_official_4"
+						spriteType = "GFX_gts_skill_botton_main"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 207 y = 525 }
+						effect = gts_trait_leader_gts_skill_official_4_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_official_5"
+						spriteType = "GFX_gts_skill_botton_main"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 230 y = 792 }
+						effect = gts_trait_leader_gts_skill_official_5_effect
+					}
+
+					effectButtonType = {
+						name = "trait_leader_gts_skill_official_1_default"
+						spriteType = "GFX_gts_skill_botton_main"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 162 y = 282 }
+						effect = gts_trait_leader_gts_skill_official_1_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_official_2_default"
+						spriteType = "GFX_gts_skill_botton_main"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 187 y = 377 }
+						effect = gts_trait_leader_gts_skill_official_2_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_official_3_default"
+						spriteType = "GFX_gts_skill_botton_main"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 241 y = 431 }
+						effect = gts_trait_leader_gts_skill_official_3_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_official_4_default"
+						spriteType = "GFX_gts_skill_botton_main"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 207 y = 525 }
+						effect = gts_trait_leader_gts_skill_official_4_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_official_5_default"
+						spriteType = "GFX_gts_skill_botton_main"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 230 y = 792 }
+						effect = gts_trait_leader_gts_skill_official_5_default_effect
+					}
+
+					effectButtonType = {
+						name = "trait_leader_gts_skill_official_01"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 190 y = 249 }
+						effect = gts_trait_leader_gts_skill_official_01_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_official_02"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 217 y = 293 }
+						effect = gts_trait_leader_gts_skill_official_02_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_official_03"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 205 y = 338 }
+						effect = gts_trait_leader_gts_skill_official_03_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_official_04"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 135 y = 350 }
+						effect = gts_trait_leader_gts_skill_official_04_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_official_05"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 162 y = 395 }
+						effect = gts_trait_leader_gts_skill_official_05_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_official_06"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 257 y = 402 }
+						effect = gts_trait_leader_gts_skill_official_06_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_official_07"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 150 y = 437 }
+						effect = gts_trait_leader_gts_skill_official_07_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_official_08"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 282 y = 438 }
+						effect = gts_trait_leader_gts_skill_official_08_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_official_09"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 276 y = 479 }
+						effect = gts_trait_leader_gts_skill_official_09_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_official_10"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 170 y = 508 }
+						effect = gts_trait_leader_gts_skill_official_10_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_official_11"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 188 y = 542 }
+						effect = gts_trait_leader_gts_skill_official_11_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_official_12"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 192 y = 582 }
+						effect = gts_trait_leader_gts_skill_official_12_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_official_13"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 253 y = 752 }
+						effect = gts_trait_leader_gts_skill_official_13_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_official_14"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 282 y = 790 }
+						effect = gts_trait_leader_gts_skill_official_14_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_official_15"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 275 y = 825 }
+						effect = gts_trait_leader_gts_skill_official_15_effect
+					}
+
+					effectButtonType = {
+						name = "trait_leader_gts_skill_official_01_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 190 y = 249 }
+						effect = gts_trait_leader_gts_skill_official_01_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_official_02_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 217 y = 293 }
+						effect = gts_trait_leader_gts_skill_official_02_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_official_03_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 205 y = 338 }
+						effect = gts_trait_leader_gts_skill_official_03_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_official_04_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 135 y = 350 }
+						effect = gts_trait_leader_gts_skill_official_04_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_official_05_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 162 y = 395 }
+						effect = gts_trait_leader_gts_skill_official_05_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_official_06_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 257 y = 402 }
+						effect = gts_trait_leader_gts_skill_official_06_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_official_07_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 150 y = 437 }
+						effect = gts_trait_leader_gts_skill_official_07_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_official_08_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 282 y = 438 }
+						effect = gts_trait_leader_gts_skill_official_08_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_official_09_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 276 y = 479 }
+						effect = gts_trait_leader_gts_skill_official_09_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_official_10_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 170 y = 508 }
+						effect = gts_trait_leader_gts_skill_official_10_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_official_11_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 188 y = 542 }
+						effect = gts_trait_leader_gts_skill_official_11_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_official_12_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 192 y = 582 }
+						effect = gts_trait_leader_gts_skill_official_12_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_official_13_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 253 y = 752 }
+						effect = gts_trait_leader_gts_skill_official_13_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_official_14_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 282 y = 790 }
+						effect = gts_trait_leader_gts_skill_official_14_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_official_15_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 275 y = 825 }
+						effect = gts_trait_leader_gts_skill_official_15_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_commander_1"
+						spriteType = "GFX_gts_skill_botton_main"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 162 y = 282 }
+						effect = gts_trait_leader_gts_skill_commander_1_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_commander_2"
+						spriteType = "GFX_gts_skill_botton_main"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 187 y = 377 }
+						effect = gts_trait_leader_gts_skill_commander_2_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_commander_3"
+						spriteType = "GFX_gts_skill_botton_main"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 241 y = 431 }
+						effect = gts_trait_leader_gts_skill_commander_3_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_commander_4"
+						spriteType = "GFX_gts_skill_botton_main"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 207 y = 525 }
+						effect = gts_trait_leader_gts_skill_commander_4_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_commander_5"
+						spriteType = "GFX_gts_skill_botton_main"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 230 y = 792 }
+						effect = gts_trait_leader_gts_skill_commander_5_effect
+					}
+
+					effectButtonType = {
+						name = "trait_leader_gts_skill_commander_1_default"
+						spriteType = "GFX_gts_skill_botton_main"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 162 y = 282 }
+						effect = gts_trait_leader_gts_skill_commander_1_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_commander_2_default"
+						spriteType = "GFX_gts_skill_botton_main"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 187 y = 377 }
+						effect = gts_trait_leader_gts_skill_commander_2_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_commander_3_default"
+						spriteType = "GFX_gts_skill_botton_main"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 241 y = 431 }
+						effect = gts_trait_leader_gts_skill_commander_3_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_commander_4_default"
+						spriteType = "GFX_gts_skill_botton_main"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 207 y = 525 }
+						effect = gts_trait_leader_gts_skill_commander_4_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_commander_5_default"
+						spriteType = "GFX_gts_skill_botton_main"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 230 y = 792 }
+						effect = gts_trait_leader_gts_skill_commander_5_default_effect
+					}
+
+					effectButtonType = {
+						name = "trait_leader_gts_skill_commander_01"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 190 y = 249 }
+						effect = gts_trait_leader_gts_skill_commander_01_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_commander_02"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 217 y = 293 }
+						effect = gts_trait_leader_gts_skill_commander_02_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_commander_03"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 205 y = 338 }
+						effect = gts_trait_leader_gts_skill_commander_03_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_commander_04"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 135 y = 350 }
+						effect = gts_trait_leader_gts_skill_commander_04_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_commander_05"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 162 y = 395 }
+						effect = gts_trait_leader_gts_skill_commander_05_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_commander_06"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 257 y = 402 }
+						effect = gts_trait_leader_gts_skill_commander_06_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_commander_07"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 150 y = 437 }
+						effect = gts_trait_leader_gts_skill_commander_07_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_commander_08"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 282 y = 438 }
+						effect = gts_trait_leader_gts_skill_commander_08_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_commander_09"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 276 y = 479 }
+						effect = gts_trait_leader_gts_skill_commander_09_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_commander_10"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 170 y = 508 }
+						effect = gts_trait_leader_gts_skill_commander_10_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_commander_11"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 188 y = 542 }
+						effect = gts_trait_leader_gts_skill_commander_11_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_commander_12"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 192 y = 582 }
+						effect = gts_trait_leader_gts_skill_commander_12_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_commander_13"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 253 y = 752 }
+						effect = gts_trait_leader_gts_skill_commander_13_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_commander_14"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 282 y = 790 }
+						effect = gts_trait_leader_gts_skill_commander_14_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_commander_15"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 275 y = 825 }
+						effect = gts_trait_leader_gts_skill_commander_15_effect
+					}
+
+					effectButtonType = {
+						name = "trait_leader_gts_skill_commander_01_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 190 y = 249 }
+						effect = gts_trait_leader_gts_skill_commander_01_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_commander_02_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 217 y = 293 }
+						effect = gts_trait_leader_gts_skill_commander_02_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_commander_03_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 205 y = 338 }
+						effect = gts_trait_leader_gts_skill_commander_03_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_commander_04_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 135 y = 350 }
+						effect = gts_trait_leader_gts_skill_commander_04_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_commander_05_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 162 y = 395 }
+						effect = gts_trait_leader_gts_skill_commander_05_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_commander_06_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 257 y = 402 }
+						effect = gts_trait_leader_gts_skill_commander_06_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_commander_07_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 150 y = 437 }
+						effect = gts_trait_leader_gts_skill_commander_07_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_commander_08_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 282 y = 438 }
+						effect = gts_trait_leader_gts_skill_commander_08_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_commander_09_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 276 y = 479 }
+						effect = gts_trait_leader_gts_skill_commander_09_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_commander_10_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 170 y = 508 }
+						effect = gts_trait_leader_gts_skill_commander_10_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_commander_11_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 188 y = 542 }
+						effect = gts_trait_leader_gts_skill_commander_11_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_commander_12_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 192 y = 582 }
+						effect = gts_trait_leader_gts_skill_commander_12_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_commander_13_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 253 y = 752 }
+						effect = gts_trait_leader_gts_skill_commander_13_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_commander_14_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 282 y = 790 }
+						effect = gts_trait_leader_gts_skill_commander_14_default_effect
+					}
+					effectButtonType = {
+						name = "trait_leader_gts_skill_commander_15_default"
+						spriteType = "GFX_gts_skill_botton_part"
+						buttonFont = "malgun_goth_24"
+						text = trait_leader_gts_skill_empty
+						position = { x = 275 y = 825 }
+						effect = gts_trait_leader_gts_skill_commander_15_default_effect
+					}
+				}
+			}
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		### 以下部分隐藏 ###
+		buttonType = {
+			# 焦点
+			name = "focus_button"
+			position = { x = 1145 y = 1145 }
+			size = { x = 0  y = 0 }
+			orientation = "UPPER_RIGHT"
+			spriteType = "GFX_fleetview_focus"
+			buttonFont = "cg_16b"
+			shortcut = "q"
+		}
+
+		containerWindowType = {
+			# title
+			name = "EVENT_DIPLO"
+			position = { x = 1145 y = 1145 }
+			# maxWidth = 500
+			moveable = no
+
+			instantTextBoxType = {
+				name = "action_title"
+				font = "malgun_goth_24"
+			}
+			listboxType = {
+				name = "option_list"
+				#这玩意tm才是选项（
+				position = { x = 1145 y = 1145 }
+				size = { x = 0 y = 0 }
+				scrollbarType = "standardlistbox_slider"
+			}
+		}
+		instantTextBoxType = {
+			# desc  描述  正文
+			name = "alien_message"
+			font = "cg_16b"
+			position = { x = 1145 y = 1145 }
+			maxwidth = 0
+			maxHeight = 0
+			format = left
+			scrollbartype = "standardtext_slider"
+		}
+		# containerWindowType = {
+		# 	# hidden
+		# 	name = "portrait"
+		# 	position = { x = -1466 y = -1639 }
+		# 	size = { width = 0 height = 0 }
+		# 	clipping = yes
+		# 	iconType = { name = "portrait" spriteType = "GFX_portrait_gamesetup_mask" }
+		# 	iconType = { name = "black_frame" spriteType = "GFX_diplomacy_portrait_shadow_frame" }
+		# 	iconType = { name = "stripes_1" spriteType = "GFX_diplomacy_stripes_2" }
+		# }
+		buttonType = { name = "tts_button" position = { x = -1466 y = -1639 } spriteType = "GFX_button_tts_start" } # hidden
+		buttonType = { name = "confirm_button" quadTextureSprite = "GFX_standard_button_142_34_button" } # hidden
+		containerWindowType = {
+			name = "portrait_background"
+			position = { x = -1117 y = -1145 }
+			size = { width = 0 height = 0 }    # hide portrait window
+			iconType = { name = "event_picture" spriteType = "GFX_diplomacy_portrait_frame" } # hidden
+			iconType = { name = "portrait" spriteType = "GFX_portrait_character" } # hidden
+		}
+		iconType = { name = "empire_info_bg" spriteType = "GFX_diplomacy_dark_fade_bg" } # hidden
+		instantTextBoxType = { name = "empire_name" font = "malgun_goth_24" } # hidden
+		instantTextBoxType = { name = "empire_government_type" font = "cg_16b" } # hidden
+		instantTextBoxType = { name = "empire_personality_type" font = "cg_16b" } # hidden
+		overlappingElementsBoxType = { name = "empire_ethics_icons" position = { x = -1145 y = -11138 } } # hidden
+		iconType = { name = "empire_flag" spriteType = "GFX_empire_flag_128" position = { x = -1125 y = -11235 } } # hidden
+		containerWindowType = {
+			name = "leader_details"
+			position = { x = -1125 y = -1175 }
+			containerWindowType = { name = "empire_traits_box" } # hidden
+			instantTextBoxType = { name = "empire_traits_label" font = "cg_16b" } # hidden
+			overlappingElementsBoxType = { name = "leader_traits" } # hidden
+			instantTextBoxType = { name = "leader_name" font = "cg_16b" } # hidden
+			instantTextBoxType = { name = "leader_species" font = "cg_16b" } # hidden
+		}
+		containerWindowType = {
+			#这东西不是选项   扔掉了
+			name = "opinion_window"
+			position = { x = 11451 y = 11451 }
+			size = { width = 94 height = 30 }
+			iconType = { name = "their_opinion_icon" spriteType = "GFX_diplomacy_opinion" } # hidden
+			instantTextBoxType = { name = "their_opinion" font = "cg_16b" }
+
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+guiTypes = {
+	containerWindowType = {
+		name = "gts_hitomi_option_gui"
+		position = { x = 0 y = 0 }
+		size = { width = 182 height = 43 }
+		moveable = no
+		buttonType = {
+			name = "option_button"
+			quadTextureSprite = "GFX_gts_hitomi_option"
+			position = { x=0 y=0 }
+			font = "malgun_goth_24"
+			format = center_center
+			text = "OPTION_TEXT"
+			clicksound = "confirm_click"
+		}
+		OverlappingElementsBoxType = {
+			name = "trigger_icons"
+			position = { x = 0  y = 10 }
+			size = { x= 182 y= 43 }
+		}
+	}
+
+	containerWindowType = {
+		name = "gts_hitomi_background_gui"
+		size = { width = 640 height = 360 }
+		moveable = yes
+		orientation = center
+		origo = center
+
+		background = {
+			name = "background"
+			quadTextureSprite ="GFX_gts_hitomi_background"
+			position = { x = 0 y = 0 }
+		}
+
+
+		instantTextBoxType = {
+			#DESC#隐藏了
+			name = "alien_message"
+			font = "malgun_goth_24"
+			format = "LEFT"
+			orientation = "UPPER_LEFT"
+			position = { x = 9999 y = 9999 }
+			# maxWidth = 1120
+			# maxHeight = 220
+			alwaysTransparent = yes
+			scrollbartype = "standardtext_slider"
+		}
+		effectButtonType = {
+			name = "gts_hitomi_background_mask"
+			position = { x = 170  y = 78 }
+			spriteType = "GFX_gts_hitomi_background_mask2"
+			buttonFont = "malgun_goth_24"
+			format = center
+			text = kongbaineirong
+			effect = gts_hitomi_gal_add_effect
+		}
+		effectButtonType = {
+			#实际显示的DESC
+			name = "gts_hitomi_text"
+			Orientation = "UPPER_LEFT"
+			position = { x = 170 y = 78 }
+			size = { x = 440 y = 175 }
+			maxHeight = 175
+			maxWidth = 440
+			alwaysTransparent = yes
+			buttonFont = "malgun_goth_24"
+			format = left
+			vertical_alignment = top
+			text = gts_hitomi_DESCText
+			effect = gts_default_effect
+			multiline = yes
+		}
+
+		containerWindowType = {
+			name = "EVENT_DIPLO"
+			position = { x = 0 y = 0 }
+			size = { width=571 height=406 }
+			moveable = no
+
+			instantTextBoxType={#原版标题，隐藏
+				name = "action_title"
+				font = "malgun_goth_24"
+				position = { x = 9999 y = 9999 }
+				maxWidth = 655
+				maxHeight = 48
+				format = CENTER_LEFT
+				fixedSize = yes
+				alwaysTransparent = yes
+			}
+			instantTextBoxType={ name = "action_desc" font = "malgun_goth_24" position = { x = -1453 y = -12450 } } # hidden
+
+			listboxType = {#选项框
+				name = "option_list"
+				position = { x = 410 y = 265 }
+				backGround=""
+				size = { x = 460 y = 500 }
+				spacing = 10
+				scrollbartype = "standardlistbox_slider"
+				borderSize = { x = 0 y = 0 }
+				Orientation = "UPPER_LEFT"
+			}
+		}
+
+
+
+
+		##############################################################################################################################
+		# 以下的均不需要，隐藏的
+		containerWindowType = {
+			# 领袖图片
+			name = "portrait"
+			position = { x = 9999 y = 9999 }
+			size = { width = 410 height = 160 }
+			# maxWidth = 400
+			# maxHeight = 280
+			clipping = yes
+			iconType = {
+				name = "portrait"
+				spriteType = "GFX_gts_leader_panel_mask_bfbf"
+				alwaysTransparent = yes
+			}
+		}
+		instantTextBoxType = { name = "heading" font = "malgun_goth_24" position = { x = -1453 y = -12450 }} # hidden
+		iconType = { name = "empire_header_line" quadTextureSprite = "GFX_line_long_caravaneer" position = { x = -1453 y = -12450 } }
+		buttonType = { name = "alien_message_background" size = { x = 0 y = 0 } position = { x = -1453 y = -12450 } spriteType = "GFX_tiles_dark_area_cut_8" } # hidden
+		buttonType = { name = "confirm_button" quadTextureSprite = "GFX_standard_button_142_34_button" } # hidden
+
+		iconType = { name = "empire_info_bg" spriteType = "GFX_diplomacy_dark_fade_bg" } # hidden
+		instantTextBoxType={ name = "empire_name" font = "malgun_goth_24" } # hidden
+		instantTextBoxType={ name = "empire_government_type" font = "cg_16b" } # hidden
+		instantTextBoxType={ name = "empire_personality_type" font = "cg_16b" } # hidden
+		OverlappingElementsBoxType = { name = "empire_ethics_icons" position = { x = -1453 y = -12450 } } # hidden
+		buttonType = { name = "empire_flag" spriteType = "GFX_empire_flag_128" position = { x = -1453 y = -12450 } } # hidden
+		containerWindowType = {
+			name = "leader_details"
+			position = { x = -1453 y = -12450 }
+			containerWindowType = { name = "empire_traits_box" } # hidden
+			instantTextBoxType = { name = "empire_traits_label" font = "cg_16b" } # hidden
+			overlappingElementsBoxType = { name = "leader_traits" } # hidden
+			instantTextBoxType = { name = "leader_name" font = "cg_16b" } # hidden
+			instantTextBoxType = { name = "leader_species" font = "cg_16b" } # hidden
+		}
+		containerWindowType = {
+			name = "opinion_window"
+			position = { x = -1453 y = -12450 }
+			size = { width = 94 height = 30 }
+			iconType = { name = "their_opinion_icon" spriteType = "GFX_diplomacy_opinion" } # hidden
+			instantTextBoxType = { name = "their_opinion" font = "cg_16b" }
+		}
+	}
+}
+
+guiTypes = {
+
+	containerWindowType = {
+		name = "gts_ora_book_1"
+		orientation = center
+		origo = center
+		moveable = yes
+		size = { width = 1500 height = 750 }
+		position = { x = 0 y = 0 }
+
+		background = {
+			# 大背景
+			name = "background"
+			position = { x = 0 y = 0 }
+			size = { x = 1500  y = 750 }
+			spriteType = "GFX_gts_ora_book_gui_background"
+		}
+		effectButtonType = {
+			name = "gts_ora_book_effectbotton_1"
+			spriteType = "GFX_gts_ora_book_gui_1"
+			position = { x = 75 y = 90 }
+			# moveable = yes
+			effect = gts_ora_book_botton_1_effect
+		}
+		effectButtonType = {
+			name = "gts_ora_book_effectbotton_2"
+			spriteType = "GFX_gts_ora_book_gui_2"
+			position = { x = 60 y = 375 }
+			# moveable = yes
+			effect = gts_default_effect
+		}
+		effectButtonType = {
+			name = "gts_ora_book_effectbotton_3"
+			spriteType = "GFX_gts_ora_book_gui_3"
+			position = { x = 750 y = 28 }
+			# moveable = yes
+			effect = gts_default_effect
+		}
+		effectButtonType = {
+			name = "gts_ora_book_effectbotton_pre"
+			spriteType = "GFX_gts_ora_book_gui_pre"
+			position = { x = 65 y = 628 }
+			# moveable = yes
+			effect = gts_default_effect
+		}
+		effectButtonType = {
+			name = "gts_ora_book_effectbotton_next"
+			spriteType = "GFX_gts_ora_book_gui_next"
+			position = { x = 1383 y = 628 }
+			# moveable = yes
+			effect = gts_default_effect
+		}
+		buttonType = {
+			# 关闭
+			name = "close"
+			quadTextureSprite = "GFX_gts_ora_book_gui_close"
+			position = { x = 1390 y = 28 }
+			size = { x = 0   y = 0 }
+			clicksound = "back_click"
+		}
+		### 以下部分隐藏 ###
+
+
+
+		buttonType = {
+			# 焦点
+			name = "focus_button"
+			position = { x = 1145 y = 1145 }
+			size = { x = 0  y = 0 }
+			orientation = "UPPER_RIGHT"
+			spriteType = "GFX_fleetview_focus"
+			buttonFont = "cg_16b"
+			shortcut = "q"
+		}
+		instantTextBoxType = {
+			# hidden
+			name = "alien_message"
+			font = "cg_16b"
+			position = { x = -1466 y = -1639 }
+			maxWidth = 0
+			maxHeight = 0
+			format = left
+			scrollbartype = "standardtext_slider"
+		}
+		containerWindowType = {
+			# hidden
+			name = "EVENT_DIPLO"
+			position = { x = -1466 y = -1639 }
+			size = { width = 0 height = 0 }
+			moveable = no
+			instantTextBoxType = {
+				name = "action_title"
+				font = "malgun_goth_24"
+			}
+			listboxType = {
+				name = "option_list"
+				position = { x = 500 y = 20 }
+				size = { x = 0 y = 0 }
+			}
+		}
+		containerWindowType = {
+			# hidden
+			name = "portrait"
+			position = { x = -1466 y = -1639 }
+			size = { width = 0 height = 0 }
+			clipping = yes
+			iconType = { name = "portrait" spriteType = "GFX_portrait_gamesetup_mask" }
+			iconType = { name = "black_frame" spriteType = "GFX_diplomacy_portrait_shadow_frame" }
+			iconType = { name = "stripes_1" spriteType = "GFX_diplomacy_stripes_2" }
+		}
+		buttonType = { name = "tts_button" position = { x = -1466 y = -1639 } spriteType = "GFX_button_tts_start" } # hidden
+		buttonType = { name = "confirm_button" quadTextureSprite = "GFX_standard_button_142_34_button" } # hidden
+		containerWindowType = {
+			name = "portrait_background"
+			position = { x = -1117 y = -1145 }
+			size = { width = 0 height = 0 }    # hide portrait window
+			iconType = { name = "event_picture" spriteType = "GFX_diplomacy_portrait_frame" } # hidden
+			iconType = { name = "portrait" spriteType = "GFX_portrait_character" } # hidden
+		}
+		iconType = { name = "empire_info_bg" spriteType = "GFX_diplomacy_dark_fade_bg" } # hidden
+		instantTextBoxType = { name = "empire_name" font = "malgun_goth_24" } # hidden
+		instantTextBoxType = { name = "empire_government_type" font = "cg_16b" } # hidden
+		instantTextBoxType = { name = "empire_personality_type" font = "cg_16b" } # hidden
+		overlappingElementsBoxType = { name = "empire_ethics_icons" position = { x = -1145 y = -11138 } } # hidden
+		iconType = { name = "empire_flag" spriteType = "GFX_empire_flag_128" position = { x = -1125 y = -11235 } } # hidden
+		containerWindowType = {
+			name = "leader_details"
+			position = { x = -1125 y = -1175 }
+			containerWindowType = { name = "empire_traits_box" } # hidden
+			instantTextBoxType = { name = "empire_traits_label" font = "cg_16b" } # hidden
+			overlappingElementsBoxType = { name = "leader_traits" } # hidden
+			instantTextBoxType = { name = "leader_name" font = "cg_16b" } # hidden
+			instantTextBoxType = { name = "leader_species" font = "cg_16b" } # hidden
+		}
+		containerWindowType = {
+			name = "opinion_window"
+			position = { x = -1127 y = -11110 }
+			size = { width = 94 height = 30 }
+			iconType = { name = "their_opinion_icon" spriteType = "GFX_diplomacy_opinion" } # hidden
+			instantTextBoxType = { name = "their_opinion" font = "cg_16b" }
+		}
+	}
+}
+
+
+
+# guiTypes = {
+# 	containerWindowType = {
+# 		name = "gts_bfbf_ship_ability"
+# 		orientation = upper_right
+# 		origo = upper_right
+# 		moveable = yes
+# 		size = { width = 100 height = 40 }
+# 		position = { x = -240 y = 110 }
+#
+#
+# 		effectButtonType = {
+# 			name = "gts_bfbf_test"
+# 			spriteType = "GFX_gts_bfbf_test1"
+# 			position = { x = 0 y = 0 }
+# 			# moveable = yes
+# 			effect = gts_bfbf_ship_ability_effect
+# 		}
+# 		### 以下部分隐藏 ###
+#
+# 		background = {
+# 			# 大背景
+# 			name = "background"
+# 			position = { x = 1145 y = 1145 }
+# 			size = { x = 0  y = 0 }
+# 			spriteType = "GFX_gts_leader_colossus_bg"
+# 		}
+# 		buttonType = {
+# 			# 关闭
+# 			name = "close"
+# 			quadTextureSprite = "GFX_gts_intel_close"
+# 			position = { x = 1145 y = 1145 }
+# 			size = { x = 0   y = 0 }
+# 			clicksound = "back_click"
+# 		}
+# 		buttonType = {
+# 			# 焦点
+# 			name = "focus_button"
+# 			position = { x = 1145 y = 1145 }
+# 			size = { x = 0  y = 0 }
+# 			orientation = "UPPER_RIGHT"
+# 			spriteType = "GFX_fleetview_focus"
+# 			buttonFont = "cg_16b"
+# 			shortcut = "q"
+# 		}
+# 		instantTextBoxType = {
+# 			# hidden
+# 			name = "alien_message"
+# 			font = "cg_16b"
+# 			position = { x = -1466 y = -1639 }
+# 			maxWidth = 0
+# 			maxHeight = 0
+# 			format = left
+# 			scrollbartype = "standardtext_slider"
+# 		}
+# 		containerWindowType = {
+# 			# hidden
+# 			name = "EVENT_DIPLO"
+# 			position = { x = -1466 y = -1639 }
+# 			size = { width = 0 height = 0 }
+# 			moveable = no
+# 			instantTextBoxType = {
+# 				name = "action_title"
+# 				font = "malgun_goth_24"
+# 			}
+# 			listboxType = {
+# 				name = "option_list"
+# 				position = { x = 500 y = 20 }
+# 				size = { x = 0 y = 0 }
+# 			}
+# 		}
+# 		containerWindowType = {
+# 			# hidden
+# 			name = "portrait"
+# 			position = { x = -1466 y = -1639 }
+# 			size = { width = 0 height = 0 }
+# 			clipping = yes
+# 			iconType = { name = "portrait" spriteType = "GFX_portrait_gamesetup_mask" }
+# 			iconType = { name = "black_frame" spriteType = "GFX_diplomacy_portrait_shadow_frame" }
+# 			iconType = { name = "stripes_1" spriteType = "GFX_diplomacy_stripes_2" }
+# 		}
+# 		buttonType = { name = "tts_button" position = { x = -1466 y = -1639 } spriteType = "GFX_button_tts_start" } # hidden
+# 		buttonType = { name = "confirm_button" quadTextureSprite = "GFX_standard_button_142_34_button" } # hidden
+# 		containerWindowType = {
+# 			name = "portrait_background"
+# 			position = { x = -1117 y = -1145 }
+# 			size = { width = 0 height = 0 }    # hide portrait window
+# 			iconType = { name = "event_picture" spriteType = "GFX_diplomacy_portrait_frame" } # hidden
+# 			iconType = { name = "portrait" spriteType = "GFX_portrait_character" } # hidden
+# 		}
+# 		iconType = { name = "empire_info_bg" spriteType = "GFX_diplomacy_dark_fade_bg" } # hidden
+# 		instantTextBoxType = { name = "empire_name" font = "malgun_goth_24" } # hidden
+# 		instantTextBoxType = { name = "empire_government_type" font = "cg_16b" } # hidden
+# 		instantTextBoxType = { name = "empire_personality_type" font = "cg_16b" } # hidden
+# 		overlappingElementsBoxType = { name = "empire_ethics_icons" position = { x = -1145 y = -11138 } } # hidden
+# 		iconType = { name = "empire_flag" spriteType = "GFX_empire_flag_128" position = { x = -1125 y = -11235 } } # hidden
+# 		containerWindowType = {
+# 			name = "leader_details"
+# 			position = { x = -1125 y = -1175 }
+# 			containerWindowType = { name = "empire_traits_box" } # hidden
+# 			instantTextBoxType = { name = "empire_traits_label" font = "cg_16b" } # hidden
+# 			overlappingElementsBoxType = { name = "leader_traits" } # hidden
+# 			instantTextBoxType = { name = "leader_name" font = "cg_16b" } # hidden
+# 			instantTextBoxType = { name = "leader_species" font = "cg_16b" } # hidden
+# 		}
+# 		containerWindowType = {
+# 			name = "opinion_window"
+# 			position = { x = -1127 y = -11110 }
+# 			size = { width = 94 height = 30 }
+# 			iconType = { name = "their_opinion_icon" spriteType = "GFX_diplomacy_opinion" } # hidden
+# 			instantTextBoxType = { name = "their_opinion" font = "cg_16b" }
+# 		}
+# 	}
+# }

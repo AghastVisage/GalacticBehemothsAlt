@@ -1,0 +1,1077 @@
+#+1000 贴贴 +200 同好 +50 友善 -50 警惕 -100 不认可 -200 反感 -1000 敌对
+triggered_terminators_opinion_of_gaintess = {
+	trigger = {
+		is_country_type = default
+		has_civic = civic_gts_terminator
+		FROM = {
+			gts_is_giantess_empire = yes
+			is_country_type = default
+		}
+	}
+	opinion = {
+		base = 1000
+	}
+}
+
+#+1000 贴贴 +200 同好 +50 友善 -50 警惕 -100 不认可 -200 反感 -1000 敌对
+triggered_special_service_of_h_star_custom_services = {
+	trigger = {
+		has_civic = civic_hstar
+		FROM = {
+			exists = owner
+			any_owned_planet = {
+				has_building = building_hstar_custom_service_center
+			}
+			OR = {
+				has_trait = "trait_Tall"
+				has_trait = "trait_Giant"
+				has_trait = "trait_Titan"
+			}
+			NOT = {
+				has_global_flag = has_specal_relation_with_H
+			}
+		}
+	}
+	opinion = {
+		base = 200
+	}
+}
+
+opinion_crazy_crisis = {
+	opinion = {
+		base = -1000
+	}
+}
+
+opinion_slave_of_goddess = {
+	opinion = {
+		base = -1000
+	}
+}
+triggered_terminators_opinion_of_littles = {
+	trigger = {
+		is_country_type = default
+		has_civic = civic_gts_terminator
+		FROM = {
+			gts_is_tiny_empire = yes
+			is_country_type = default
+		}
+	}
+	opinion = {
+		base = -1000
+	}
+}
+
+triggered_opinion_both_gts_terminators = {
+	trigger = {
+		is_country_type = default		#是一般国家
+		has_civic = civic_gts_terminator		#是铁心
+		FROM = {
+			has_civic = civic_gts_terminator
+			is_country_type = default
+		}		#对方是铁心
+	}
+	opinion = {
+		base = 200		#好感+200
+	}
+}
+
+triggered_gts_terminators_negative_opinion_of_assimilators = {
+	trigger = {
+		is_country_type = default		#是一般国家
+		has_civic = civic_gts_terminator		#是铁心
+		FROM = {
+			has_civic = civic_gts_assimilator
+			is_country_type = default
+		}		#对方是同化
+	}
+	opinion = {
+		base = -50		#好感-50
+	}
+}
+
+triggered_gts_terminators_negative_opinion_of_servitors = {
+	trigger = {
+		is_country_type = default		#是一般国家
+		has_civic = civic_gts_terminator		#是铁心
+		FROM = {
+			has_civic = civic_gts_servitor
+			is_country_type = default
+		}		#对方是机仆
+	}
+	opinion = {
+		base = -100		#好感-100
+	}
+}
+
+triggered_assimilators_opinion_of_littles = {
+	trigger = {
+		is_country_type = default
+		has_civic = civic_gts_assimilator
+		FROM = {
+			gts_is_tiny_empire = yes
+			is_country_type = default
+		}
+	}
+	opinion = {
+		base = 200
+	}
+}
+
+triggered_gts_assimilators_negative_opinion_of_terminators = {
+	trigger = {
+		is_country_type = default		#是一般国家
+		has_civic = civic_gts_assimilator		#是同化
+		FROM = {
+			has_civic = civic_gts_terminator
+			is_country_type = default
+		}		#对方是铁心
+	}
+	opinion = {
+		base = -50		#好感-50
+	}
+}
+
+triggered_opinion_both_gts_assimilators = {
+	#同化对机仆无特殊好感加减
+	trigger = {
+		is_country_type = default		#是一般国家
+		has_civic = civic_gts_assimilator		#是同化
+		FROM = {
+			has_civic = civic_gts_assimilator
+			is_country_type = default
+		}		#对方是同化
+	}
+	opinion = {
+		base = 200		#好感+200
+	}
+}
+
+triggered_servitors_opinion_of_littles = {
+	trigger = {
+		is_country_type = default
+		has_civic = civic_gts_servitor
+		FROM = {
+			gts_is_tiny_empire = yes
+			is_country_type = default
+		}
+	}
+	opinion = {
+		base = 1000
+	}
+}
+
+triggered_gts_servitors_negative_opinion_of_terminators = {
+	trigger = {
+		is_country_type = default		#是一般国家
+		has_civic = civic_gts_servitor		#是机仆
+		FROM = {
+			has_civic = civic_gts_terminator
+			is_country_type = default
+		}		#对方是铁心
+	}
+	opinion = {
+		base = -100		#好感-100
+	}
+}
+
+triggered_gts_servitors_negative_opinion_of_assimilators = {
+	trigger = {
+		is_country_type = default		#是一般国家
+		has_civic = civic_gts_servitor		#是机仆
+		FROM = {
+			has_civic = civic_gts_assimilator
+			is_country_type = default
+		}		#对方是同化
+	}
+	opinion = {
+		base = -20		#好感-20
+	}
+}
+
+triggered_opinion_both_gts_servitor = {
+	trigger = {
+		is_country_type = default		#是一般国家
+		has_civic = civic_gts_servitor		#是机仆
+		FROM = {
+			has_civic = civic_gts_servitor
+			is_country_type = default
+		}		#对方是机仆
+	}
+	opinion = {
+		base = 200		#好感+200
+	}
+}
+
+triggered_littles_opinion_of_terminators = {
+	trigger = {
+		exists = owner
+		is_country_type = default
+		gts_is_tiny_empire = yes
+		FROM = {
+			has_civic = civic_gts_terminator
+			is_country_type = default
+		}
+	}
+	opinion = {
+		base = -1000
+	}
+}
+
+triggered_littles_opinion_of_assimilators = {
+	trigger = {
+		exists = owner
+		is_country_type = default
+		gts_is_tiny_empire = yes
+		FROM = {
+			has_civic = civic_gts_assimilator
+			is_country_type = default
+		}
+	}
+	opinion = {
+		base = -50
+	}
+}
+
+triggered_littles_opinion_of_servitors = {
+	trigger = {
+		exists = owner
+		is_country_type = default
+		gts_is_tiny_empire = yes
+		FROM = {
+			has_civic = civic_gts_servitor
+			is_country_type = default
+		}
+	}
+	opinion = {
+		base = 200
+	}
+}
+
+opinion_hostile_first_contactgts_interrogation = {
+	#以下为合并内容
+	opinion = {
+		base = -300
+	}
+	accumulative = yes
+	decay = {
+		base = 1.5
+	}
+}
+
+opinion_hostile_first_contactgts_vivisection = {
+	opinion = {
+		base = -400
+	}
+	accumulative = yes
+	decay = {
+		base = 1.5
+	}
+}
+
+opinion_hostile_first_contactgts_death = {
+	opinion = {
+		base = -500
+	}
+	accumulative = yes
+	decay = {
+		base = 0.5
+	}
+}
+
+opinion_hostile_first_contactgts_sendback = {
+	opinion = {
+		base = -100
+	}
+	accumulative = yes
+	decay = {
+		base = 1.5
+	}
+}
+
+opinion_first_contactgts_xpRight = {
+	opinion = {
+		base = 200
+	}
+	accumulative = yes
+	decay = {
+		base = 1.5
+	}
+}
+
+opinion_first_contactgts_xpWrong = {
+	opinion = {
+		base = -100
+	}
+	accumulative = yes
+	decay = {
+		base = 1.5
+	}
+}
+
+opinion_gts_elf_favour = {
+	opinion = {
+		base = -20
+	}
+}
+
+opinion_gts_elf_grace = {
+	opinion = {
+		base = 1000
+	}
+}
+
+opinion_gts_elf_disgrace = {
+	opinion = {
+		base = -1000
+	}
+}
+
+
+triggered_tiny_opinion_of_delta_trade = {
+	trigger = {
+		exists = owner
+		is_country_type = default
+		gts_is_tiny_empire = yes
+		FROM = {
+			has_civic = civic_delta_trade
+			is_country_type = default
+		}
+	}
+	opinion = {
+		base = -100
+	}
+}
+
+triggered_giantess_opinion_of_delta_trade = {
+	trigger = {
+		exists = owner
+		is_country_type = default
+		gts_is_giantess_empire = yes
+		FROM = {
+			has_civic = civic_delta_trade
+			is_country_type = default
+		}
+	}
+	opinion = {
+		base = 100
+	}
+}
+
+triggered_hehuanpai_opinion_of_hehuanpai = {
+	trigger = {
+		exists = owner
+		is_country_type = default
+		has_civic = civic_hehuanpai
+		FROM = {
+			has_civic = civic_hehuanpai
+			is_country_type = default
+		}
+	}
+	opinion = {
+		base = 100
+	}
+}
+
+opinion_gts_aplog_invade = {
+	opinion = {
+		base = -100
+	}
+	accumulative = yes
+	decay = {
+		base = 5
+	}
+}
+
+# 先科研与灭世
+opinion_farted_a_world = {
+	opinion = {
+		base = -100
+	}
+
+	accumulative = yes
+
+	min = -500
+
+	decay = {
+		base = 1
+	}
+}
+
+opinion_farted_an_uninhabited_world = {
+	opinion = {
+		base = -30
+	}
+
+	accumulative = yes
+
+	min = -150
+
+	decay = {
+		base = 1
+	}
+}
+
+opinion_farted_my_world = {
+	opinion = {
+		base = -1000
+	}
+
+	accumulative = yes
+
+	min = -5000
+
+	decay = {
+		base = 1
+	}
+}
+
+opinion_farted_my_uninhabited_world = {
+	opinion = {
+		base = -300
+	}
+
+	accumulative = yes
+
+	min = -1500
+
+	decay = {
+		base = 1
+	}
+}
+
+opinion_farted_a_primitive_world = {
+	opinion = {
+		base = -40
+	}
+
+	accumulative = yes
+
+	min = -200
+
+	decay = {
+		base = 1
+	}
+}
+
+opinion_farted_a_primitive_world_phile = {
+	opinion = {
+		base = -60
+	}
+
+	accumulative = yes
+
+	min = -300
+
+	decay = {
+		base = 1
+	}
+}
+
+opinion_digested_a_world = {
+	opinion = {
+		base = -100
+	}
+
+	accumulative = yes
+
+	min = -500
+
+	decay = {
+		base = 1
+	}
+}
+
+opinion_digested_an_uninhabited_world = {
+	opinion = {
+		base = -30
+	}
+
+	accumulative = yes
+
+	min = -150
+
+	decay = {
+		base = 1
+	}
+}
+
+opinion_digested_my_world = {
+	opinion = {
+		base = -1000
+	}
+
+	accumulative = yes
+
+	min = -5000
+
+	decay = {
+		base = 1
+	}
+}
+
+opinion_digested_my_uninhabited_world = {
+	opinion = {
+		base = -300
+	}
+
+	accumulative = yes
+
+	min = -1500
+
+	decay = {
+		base = 1
+	}
+}
+
+opinion_digested_a_primitive_world = {
+	opinion = {
+		base = -40
+	}
+
+	accumulative = yes
+
+	min = -200
+
+	decay = {
+		base = 1
+	}
+}
+
+opinion_digested_a_primitive_world_phile = {
+	opinion = {
+		base = -60
+	}
+
+	accumulative = yes
+
+	min = -300
+
+	decay = {
+		base = 1
+	}
+}
+
+opinion_fingered_a_world = {
+	opinion = {
+		base = -100
+	}
+
+	accumulative = yes
+
+	min = -500
+
+	decay = {
+		base = 1
+	}
+}
+
+opinion_fingered_an_uninhabited_world = {
+	opinion = {
+		base = -30
+	}
+
+	accumulative = yes
+
+	min = -150
+
+	decay = {
+		base = 1
+	}
+}
+
+# Cracked My Planet Like an Egg (victim Empire's opinion of world cracker)
+opinion_fingered_my_world = {
+	opinion = {
+		base = -1000
+	}
+
+	accumulative = yes
+
+	min = -5000
+
+	decay = {
+		base = 1
+	}
+}
+
+opinion_fingered_my_uninhabited_world = {
+	opinion = {
+		base = -300
+	}
+
+	accumulative = yes
+
+	min = -1500
+
+	decay = {
+		base = 1
+	}
+}
+
+opinion_fingered_a_primitive_world = {
+	opinion = {
+		base = -40
+	}
+
+	accumulative = yes
+
+	min = -200
+
+	decay = {
+		base = 1
+	}
+}
+
+opinion_fingered_a_primitive_world_phile = {
+	opinion = {
+		base = -60
+	}
+
+	accumulative = yes
+
+	min = -300
+
+	decay = {
+		base = 1
+	}
+}
+
+opinion_tongued_a_world = {
+	opinion = {
+		base = -80
+	}
+
+	accumulative = yes
+
+	min = -400
+
+	decay = {
+		base = 1
+	}
+}
+
+opinion_tongued_my_world = {
+	opinion = {
+		base = -800
+	}
+
+	accumulative = yes
+
+	min = -4000
+
+	decay = {
+		base = 1
+	}
+}
+
+opinion_tongued_a_primitive_world = {
+	opinion = {
+		base = -40
+	}
+
+	accumulative = yes
+
+	min = -200
+
+	decay = {
+		base = 1
+	}
+}
+
+opinion_tongued_a_primitive_world_phile = {
+	opinion = {
+		base = -60
+	}
+
+	accumulative = yes
+
+	min = -300
+
+	decay = {
+		base = 1
+	}
+}
+
+opinion_assimilated_a_world = {
+	opinion = {
+		base = -60
+	}
+
+	accumulative = yes
+
+	min = -300
+
+	decay = {
+		base = 1
+	}
+}
+
+opinion_assimilated_my_world = {
+	opinion = {
+		base = -600
+	}
+
+	accumulative = yes
+
+	min = -3000
+
+	decay = {
+		base = 1
+	}
+}
+
+opinion_assimilated_a_primitive_world = {
+	opinion = {
+		base = -40
+	}
+
+	accumulative = yes
+
+	min = -200
+
+	decay = {
+		base = 1
+	}
+}
+
+opinion_assimilated_a_primitive_world_phile = {
+	opinion = {
+		base = -60
+	}
+
+	accumulative = yes
+
+	min = -300
+
+	decay = {
+		base = 1
+	}
+}
+
+opinion_urined_a_world = {
+	opinion = {
+		base = -60
+	}
+
+	accumulative = yes
+
+	min = -300
+
+	decay = {
+		base = 1
+	}
+}
+
+opinion_urined_my_world = {
+	opinion = {
+		base = -600
+	}
+
+	accumulative = yes
+
+	min = -3000
+
+	decay = {
+		base = 1
+	}
+}
+
+opinion_urined_a_primitive_world = {
+	opinion = {
+		base = -40
+	}
+
+	accumulative = yes
+
+	min = -200
+
+	decay = {
+		base = 1
+	}
+}
+
+opinion_urined_a_primitive_world_phile = {
+	opinion = {
+		base = -60
+	}
+
+	accumulative = yes
+
+	min = -300
+
+	decay = {
+		base = 1
+	}
+}
+
+opinion_hermoned_a_world = {
+	opinion = {
+		base = -40
+	}
+
+	accumulative = yes
+
+	min = -200
+
+	decay = {
+		base = 1
+	}
+}
+
+opinion_hermoned_my_world = {
+	opinion = -400
+
+	accumulative = yes
+
+	min = -2000
+
+	decay = {
+		base = 1
+	}
+}
+
+opinion_unbirthed_a_world = {
+	opinion = {
+		base = -20
+	}
+
+	accumulative = yes
+
+	min = -100
+
+	decay = {
+		base = 1
+	}
+}
+
+opinion_unbirthed_my_world = {
+	opinion = {
+		base = -200
+	}
+
+	accumulative = yes
+
+	min = -1000
+
+	decay = {
+		base = 1
+	}
+}
+
+opinion_hostile_first_contactgts_planet1 = {
+	opinion = {
+		base = -50
+	}
+
+	accumulative = yes
+
+	min = -1000
+
+	decay = {
+		base = 1
+	}
+}
+
+opinion_hostile_first_contactgts_planet2 = {
+	opinion = {
+		base = -200
+	}
+
+	accumulative = yes
+
+	min = -1500
+
+	decay = {
+		base = 1
+	}
+}
+
+opinion_hostile_first_contactgts_planet3 = {
+	opinion = {
+		base = -500
+	}
+
+	accumulative = yes
+
+	min = -2000
+
+	decay = {
+		base = 1
+	}
+}
+
+opinion_hostile_first_contactgts_planet4 = {
+	opinion = {
+		base = -800
+	}
+
+	accumulative = yes
+
+	min = -2000
+
+	decay = {
+		base = 1
+	}
+}
+
+triggered_tiny_opinion_of_titan_hunter = {
+	trigger = {
+		exists = owner
+		is_country_type = default
+		gts_is_giantess_empire = yes
+		FROM = {
+			has_civic = civic_titan_hunter
+			is_country_type = default
+		}
+	}
+	opinion = {
+		base = -50
+	}
+}
+
+opinion_tiny_purge = { #屠杀了小人
+	opinion = {
+		add = -5
+	}
+
+	accumulative = yes
+
+	min = -1000
+
+	decay = {
+		base = 2
+		modifier = {
+			add = 1
+			has_ethic = ethic_xenophobe
+		}
+		modifier = {
+			add = 3
+			has_ethic = ethic_fanatic_xenophobe
+		}
+	}
+}
+
+opinion_tiny_purge2 = { #和我们抢小人杀
+	opinion = {
+		add = -1
+	}
+
+	accumulative = yes
+
+	min = -1000
+
+	decay = {
+		base = 2
+		modifier = {
+			add = 1
+			has_ethic = ethic_xenophobe
+		}
+		modifier = {
+			add = 3
+			has_ethic = ethic_fanatic_xenophobe
+		}
+	}
+}
+
+opinion_gts_purge = { #屠杀了巨娘
+	opinion = {
+		add = -5
+	}
+
+	accumulative = yes
+
+	min = -1000
+
+	decay = {
+		base = 2
+		modifier = {
+			add = 1
+			has_ethic = ethic_xenophobe
+		}
+		modifier = {
+			add = 3
+			has_ethic = ethic_fanatic_xenophobe
+		}
+	}
+}
+
+opinion_skadiub_a_planet = {
+	opinion = {
+		base = -1000
+	}
+
+	accumulative = yes
+
+	min = -8000
+
+	decay = {
+		base = 1
+	}
+}
+
+opinion_skadi_brought = {
+	opinion = {
+		base = -300
+	}
+	accumulative = yes
+}
+
+opinion_skadi_overcome = {
+	opinion = {
+		base = 100
+	}
+	accumulative = yes
+}
+
+opinion_leader_interact_ruler_caught1 = {
+	opinion = {
+		base = -300
+	}
+	decay = {
+		base = -1
+	}
+}
+
+opinion_leader_interact_ruler_caught2 = {
+	opinion = {
+		base = -100
+	}
+	decay = {
+		base = -1
+	}
+}
+
+opinion_leader_interact_ruler_caught3 = {
+	opinion = {
+		base = 100
+	}
+	decay = {
+		base = -1
+	}
+}
+
+triggered_gts_worship_opinion_of_gts = {
+	trigger = {
+		is_country_type = default
+		has_civic = civic_gts_worship
+		FROM = {
+			gts_is_giantess_empire = yes
+			is_country_type = default
+		}
+	}
+	opinion = {
+		base = 25
+	}
+}
+
+opinion_gts_qhai_bocai = {
+	opinion = {
+		base = -50
+	}
+}
+opinion_ora_change = {
+	opinion = {
+		base = 1000
+	}
+}

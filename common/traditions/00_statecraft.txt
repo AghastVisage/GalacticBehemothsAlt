@@ -1,0 +1,211 @@
+tr_statecraft_adopt = {
+	unlocks_agenda = agenda_departmental_efficiency
+	modifier = {
+		country_edict_fund_add = 50
+	}
+}
+
+tr_statecraft_finish = {
+	modifier = {
+		empire_size_mult = -0.05
+		ascension_perks_add = 1
+	}
+}
+
+tr_statecraft_constitutional_focus = {
+	modifier = {
+		council_agenda_progress_speed = 0.25
+	}
+	ai_weight = { factor = 1000 }
+
+	tradition_swap = {
+		name = tr_statecraft_constitutional_focus_gts
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_giantess_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+	tradition_swap = {
+		name = tr_statecraft_constitutional_focus_tiny
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_tiny_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	inline_script = {
+		script = paragon/tradition_swap_desc_hive
+		tradition = tr_statecraft_constitutional_focus
+	}
+	inline_script = {
+		script = paragon/tradition_swap_desc_machine
+		tradition = tr_statecraft_constitutional_focus
+	}
+}
+
+tr_statecraft_inspiring_agendas = {
+	custom_tooltip = tr_statecraft_inspiring_agendas_desc
+	possible = { has_tradition = tr_statecraft_constitutional_focus	}
+	modifier = {} # Effect is that Agendas become available.
+	ai_weight = { factor = 1000 }
+
+	tradition_swap = {
+		name = tr_statecraft_inspiring_agendas_gts
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_giantess_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+	tradition_swap = {
+		name = tr_statecraft_inspiring_agendas_tiny
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_tiny_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	inline_script = {
+		script = paragon/tradition_swap_desc_hive
+		tradition = tr_statecraft_inspiring_agendas
+	}
+	inline_script = {
+		script = paragon/tradition_swap_desc_machine
+		tradition = tr_statecraft_inspiring_agendas
+	}
+}
+
+tr_statecraft_immutable_directives = {
+	possible = { has_tradition = tr_statecraft_inspiring_agendas }
+	modifier = {
+		council_agenda_finishing_effect_duration_mult = 0.25
+	}
+
+	tradition_swap = {
+		name = tr_statecraft_immutable_directives_gts
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_giantess_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+	tradition_swap = {
+		name = tr_statecraft_immutable_directives_tiny
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_tiny_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	ai_weight = { factor = 1000 }
+}
+
+tr_statecraft_amongst_peers = {
+	# Effect is applied on all "on_agenda_finished" via paragon.402
+	custom_tooltip = tr_statecraft_shared_benefits_desc
+	ai_weight = { factor = 1000 }
+
+	tradition_swap = {
+		name = tr_statecraft_amongst_peers_gts
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_giantess_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+	tradition_swap = {
+		name = tr_statecraft_amongst_peers_tiny
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_tiny_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	inline_script = {
+		script = paragon/tradition_swap_desc_hive
+		tradition = tr_statecraft_amongst_peers
+	}
+	inline_script = {
+		script = paragon/tradition_swap_desc_machine
+		tradition = tr_statecraft_amongst_peers
+	}
+}
+
+tr_statecraft_shared_benefits = {
+	possible = { has_tradition = tr_statecraft_amongst_peers }
+	modifier = {
+		councilor_skill_add = 1
+	}
+	ai_weight = { factor = 1000 }
+
+	tradition_swap = {
+		name = tr_statecraft_shared_benefits_gts
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_giantess_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+	tradition_swap = {
+		name = tr_statecraft_shared_benefits_tiny
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_tiny_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	inline_script = {
+		script = paragon/tradition_swap_desc_hive
+		tradition = tr_statecraft_shared_benefits
+	}
+	inline_script = {
+		script = paragon/tradition_swap_desc_machine
+		tradition = tr_statecraft_shared_benefits
+	}
+}

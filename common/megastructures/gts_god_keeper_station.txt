@@ -1,0 +1,77 @@
+yarong_shoes_station_0 = {
+    entity = yarong_capital_boots_entity # 暂时先用这个实体
+    construction_entity = yarong_capital_boots_entity # 暂时先用这个实体
+    portrait = "GFX_megastructure_construction_background"
+    place_entity_on_planet_plane = yes # 将巨构部署在星球所在平面
+    show_galactic_map_icon = no
+    show_in_outliner = no
+    entity_offset = { x = 20 y = 2 } # 实体相对生成x轴y轴,把这个鞋子刚好放到母星上面也太鸡儿难了
+    build_time = 1
+    construction_blocks_and_blocked_by = none # 无法被任何障碍阻挡
+    country_modifier = {
+        planet_jobs_society_research_produces_mult = 0.5
+    }
+    # 不会出现在建造列表
+    potential = {
+        always = no
+    }
+    ai_weight = {
+        factor = 0
+    }
+    on_build_complete = {
+        spawn_planet = {
+            class = "pc_yarong_boots"
+            location = fromfrom.planet
+            orbit_location = no #不部署于轨道
+            # orbit_angle_offset = 0 # 与轨道的偏移角度
+            # orbit_distance_offset = 0 #距离轨道的距离
+            size = 1
+            has_ring = no
+            init_effect = {
+                set_name = {
+                    key = pc_yarong_boots
+                    #看起来原版在这里都会加一句 variable_string = "[FROM.from.solar_system.GetName]"
+                }
+                set_planet_entity = {
+                    entity = "yarong_capital_boots_entity"
+                }
+                set_surveyed = {
+                    surveyed = yes
+                    surveyor = FROM
+                }
+                set_all_comms_surveyed = yes
+                clear_blockers = yes
+                set_planet_flag = megastructure
+                set_planet_flag = gts_clothes_planet
+                set_planet_flag = gts_shoes_planet
+                add_modifier = {
+                    modifier = gts_planet_yarong_boots
+                }
+                create_colony = {
+                    owner = fromfrom.planet.owner
+                }
+                set_name = pc_yarong_boots_colony
+
+                while = {
+                    count = 19 #自带一个总共20个
+                    create_pop_group = {
+                        species = fromfrom.planet.owner.species
+                        effect = {
+                            gts_species_size_change_to = {SIZE_TRAIT = trait_Micro}
+                            modify_species = {
+                                add_trait = trait_gts_cave_dweller
+                                add_traits_at_start_of_list = yes
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        fromfrom.planet = {
+            set_planet_flag = yarong_capital_boots_flag
+            save_event_target_as = yarong_capital_boots
+        }
+        remove_megastructure = fromfrom
+        #from = { country_event = { id = utopia.61 } }
+    }
+}

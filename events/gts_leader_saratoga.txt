@@ -1,0 +1,403 @@
+namespace = gts_saratoga
+
+country_event = {
+    #招募萨拉托加
+	id = gts_saratoga.1
+	title = "gts_saratoga.1.name"
+	desc = "gts_saratoga.1.desc"	#文案
+	show_sound = event_celebration
+	is_triggered_only = yes
+	fire_only_once = yes
+	picture = GFX_leader_recruitment_bg_legendary_keides
+	auto_opens = yes	#自动启动
+	event_window_type = leader_recruit
+	notification_event_icon = "GFX_leader_trait_gts_saratoga_event"	#事件小图
+	immediate = {
+		gts_leader_saratoga_hired = yes
+	}
+	picture_event_data = {
+		portrait = event_target:gts_leader
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = DISMISS
+		tag = dismiss_leader
+		hidden_effect = {
+			set_country_flag = dismissed_gts_saratoga
+		}
+	}
+	option = {
+		name = gts_saratoga.1.a
+		response_text = gts_saratoga.1.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_saratoga.1.b
+		response_text = gts_saratoga.1.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_saratoga.1.c
+		response_text = gts_saratoga.1.c.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		custom_tooltip = gts_saratoga.1.hire_custom_tooltip
+		hidden_effect = {
+			hidden_effect = {
+				gts_leader_hire_effect = { TYPE = legendary }	}
+			owner = {
+				country_event = {
+					id = gts_saratoga.2 #周年事件
+					days = 365
+				}
+				gts_create_saratoga_fleet = yes
+			}
+		}
+	}
+}
+
+country_event = {
+    #萨拉周年事件
+	id = gts_saratoga.2
+	title = INCOMING_TRANSMISSION
+	desc = "gts_saratoga.2.desc"
+	diplomatic = yes
+	picture_event_data = {
+		room = gts_saratoga1_room
+	}
+	is_triggered_only = yes
+	option = {
+		name = gts_saratoga.2.a
+		custom_tooltip = gts_saratoga.2.a.tooltip
+		hidden_effect = {
+            country_event = {
+                id = gts_saratoga.3
+	        }
+	    }
+	}
+	option = {
+    	name = gts_saratoga.2.b
+    	hidden_effect = {
+            country_event = {
+                id = gts_saratoga.4
+    	    }
+    	}
+    }
+}
+
+country_event = {
+    #萨拉周年事件作死选项
+	id = gts_saratoga.3
+	title = gts_saratoga.3.name
+	desc = gts_saratoga.3.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_saratoga2_room
+	}
+	show_sound = event_ship_thrusters
+	option = {
+		name = gts_saratoga.3.a
+		hidden_effect = {
+		    owner = {
+                country_event = {
+                    id = gts_saratoga.5
+                    days = 360
+                }
+            }
+        }
+	}
+}
+
+country_event = {
+    #萨拉周年事件正常选项
+	id = gts_saratoga.4
+	title = gts_saratoga.4.name
+	desc = gts_saratoga.4.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_saratoga3_room
+	}
+	show_sound = event_ship_thrusters
+	option = {
+		name = gts_saratoga.4.a
+		event_target:gts_saratoga = {
+			add_trait = {
+				trait = gts_leader_trait_saratoga_c
+			}
+        }
+        hidden_effect = {
+		    owner = {
+                country_event = {
+                    id = gts_saratoga.6
+                    days = 720
+                }
+            }
+        }
+	}
+}
+
+country_event = {
+    #萨拉周年事件重复
+	id = gts_saratoga.5
+	title = INCOMING_TRANSMISSION
+	desc = "gts_saratoga.5.desc"
+	diplomatic = yes
+	picture_event_data = {
+		room = gts_saratoga1_room
+	}
+	is_triggered_only = yes
+	option = {
+    	name = gts_saratoga.5.a
+    	hidden_effect = {
+            country_event = {
+                id = gts_saratoga.4
+    	    }
+    	}
+    }
+}
+
+country_event = {
+    #萨拉小爱好事件
+	id = gts_saratoga.6
+	title = gts_saratoga.6.name
+	desc = gts_saratoga.6.desc
+	picture = GFX_gtsra_load_7
+	show_sound = event_default
+	is_triggered_only = yes
+    option = {
+		name = gts_saratoga.6.a
+		custom_tooltip = gts_saratoga.6.a.tooltip
+		hidden_effect = {
+            country_event = {
+                id = gts_saratoga.7
+	        }
+	    }
+	}
+	option = {
+    	name = gts_saratoga.6.b
+        event_target:gts_saratoga = {
+			add_trait = {
+				trait = gts_leader_trait_saratoga_d
+			}
+        }
+		hidden_effect = {
+            country_event = {
+                id = gts_saratoga.8 #萨拉演习提议事件
+                days = 720
+        	}
+        }
+    }
+}
+
+country_event = {
+    #萨拉小爱好事件教训选项
+	id = gts_saratoga.7
+	title = gts_saratoga.7.name
+	desc = gts_saratoga.7.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_saratoga4_room
+	}
+	show_sound = event_ship_thrusters
+	option = {
+		name = gts_saratoga.7.a
+		event_target:gts_saratoga = {
+			add_trait = {
+				trait = gts_leader_trait_saratoga_d
+			}
+		}
+        hidden_effect = {
+            country_event = {
+                id = gts_saratoga.8 #萨拉演习提议事件
+                days = 720
+            }
+        }
+	}
+}
+
+country_event = { #萨拉演习提议事件
+	id = gts_saratoga.8
+	title = gts_saratoga.8.name
+	desc = gts_saratoga.8.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+    	room = gts_saratoga5_room
+    }
+	show_sound = event_default
+    option = {
+		name = gts_saratoga.8.a
+        capital_scope = {
+			enable_special_project = {
+				name = gts_saratoga_fleet_exercise
+			}
+		}
+		set_country_flag = saratoga_planet_exercise
+	}
+}
+
+ship_event = { #萨拉舰队演习事件
+    id = gts_saratoga.1001
+	title = gts_saratoga.1001.name
+	desc = gts_saratoga.1001.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_saratoga6_room
+	}
+	show_sound = event_ship_thrusters
+	option = {
+		name = gts_saratoga.1001.a
+		leader = {
+            add_experience = 2000
+        }
+	}
+}
+
+country_event = { #萨拉星球演习事件
+	id = gts_saratoga.1002
+	title = gts_saratoga.1002.name
+	desc = gts_saratoga.1002.desc
+	is_triggered_only = yes
+	diplomatic = yes
+    custom_gui = "gts_vertical_event_window"
+    picture_event_data = {
+        room = gts_saratoga7_room
+    }
+    show_sound = event_red_alert
+	location = event_target:saratoga_exercise_planet
+	trigger = {
+		is_ai = no
+		has_country_flag = saratoga_planet_exercise
+		exists = event_target:gts_saratoga
+		any_owned_leader = {
+        	has_trait = gts_leader_trait_saratoga_d
+        }
+		any_owned_planet = {
+			pop_amount >= 3000
+			NOR = {
+				has_planet_flag = saratoga_exercise_finished
+			}
+			is_eatable_planet = yes
+		}
+	}
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				pop_amount >= 3000
+			    NOR = {
+				    has_planet_flag = saratoga_exercise_finished
+			    }
+				is_eatable_planet = yes
+			}
+			save_event_target_as = saratoga_exercise_planet
+		}
+	}
+	option = {
+		name = gts_saratoga.1002.a
+		event_target:saratoga_exercise_planet = {
+		    add_planet_devastation = 5
+		    add_deposit = d_city_ruins
+		    add_deposit = d_active_volcano
+		    add_deposit = d_prosperous_mesa
+            add_deposit = d_rich_mountain
+            add_deposit = d_black_soil
+            add_modifier = {
+		        modifier = modifier_saratoga_planet_exercise
+		        days = -1
+		    }
+		    set_planet_flag = saratoga_exercise_finished
+		}
+		event_target:gts_saratoga = {
+		    add_experience = 1000
+	    }
+    }
+    option = {
+		name = gts_saratoga.1002.b
+		custom_tooltip = gts_saratoga.1002.b.tooltip
+		event_target:saratoga_exercise_planet = {
+		    add_planet_devastation = 5
+		    add_deposit = d_city_ruins
+		    add_deposit = d_active_volcano
+		    add_deposit = d_prosperous_mesa
+            add_deposit = d_rich_mountain
+            add_deposit = d_black_soil
+            add_modifier = {
+		        modifier = modifier_saratoga_planet_exercise
+		        days = -1
+		    }
+		    set_planet_flag = saratoga_exercise_finished
+		}
+		event_target:gts_saratoga = {
+		    add_experience = 1000
+	    }
+	    remove_country_flag = saratoga_planet_exercise
+	    set_country_flag = saratoga_planet_exercise_hidden
+    }
+}
+
+country_event = { #萨拉星球演习事件
+	id = gts_saratoga.1003
+	hide_window = yes
+	is_triggered_only = yes
+	location = event_target:saratoga_exercise_planet
+	trigger = {
+		is_ai = no
+		has_country_flag = saratoga_planet_exercise_hidden
+		exists = event_target:gts_saratoga
+		any_owned_leader = {
+        	has_trait = gts_leader_trait_saratoga_d
+        }
+		any_owned_planet = {
+			pop_amount >= 3000
+			NOR = {
+				has_planet_flag = saratoga_exercise_finished
+			}
+			is_eatable_planet = yes
+		}
+	}
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				pop_amount >= 3000
+			    NOR = {
+				    has_planet_flag = saratoga_exercise_finished
+			    }
+				is_eatable_planet = yes
+			}
+			save_event_target_as = saratoga_exercise_planet
+		}
+		event_target:saratoga_exercise_planet = {
+		    add_planet_devastation = 5
+		    add_deposit = d_city_ruins
+		    add_deposit = d_active_volcano
+		    add_deposit = d_prosperous_mesa
+            add_deposit = d_rich_mountain
+            add_deposit = d_black_soil
+            add_modifier = {
+		        modifier = modifier_saratoga_planet_exercise
+		        days = -1
+		    }
+		    set_planet_flag = saratoga_exercise_finished
+		}
+		event_target:gts_saratoga = {
+		    add_experience = 1000
+	    }
+	}
+}

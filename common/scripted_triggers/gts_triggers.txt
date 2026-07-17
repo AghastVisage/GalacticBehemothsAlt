@@ -1,0 +1,318 @@
+##### 修改原代码
+# 为了让艾普露的奴隶可以上专家岗位
+can_fill_specialist_job_trigger = {
+	custom_tooltip = SPECIALIST_JOB_TRIGGER
+	hidden_trigger = {
+		NOT = { has_ethic = ethic_gestalt_consciousness }
+		exists = owner
+		OR = {
+			is_enslaved = no
+			has_slavery_type = { type = slavery_aplog }
+			has_slavery_type = { type = slavery_indentured }
+		}
+		is_being_purged = no
+		is_being_assimilated = no
+		# Rule out Traits for servitude & lack of free will
+		NOR = {
+			has_trait = trait_syncretic_proles
+			has_trait = trait_zombie
+			has_trait = trait_nerve_stapled
+		}
+		OR = {
+			NOT = { has_trait = trait_mechanical }
+			owner = { has_technology = tech_droid_workers }
+		}
+		NOT = {
+			has_citizenship_type = {
+				type = citizenship_organic_trophy
+				country = owner
+			}
+		}
+		if = {
+			limit = {
+				divinity_right_to_work_job_check_trigger_exempt = no
+			}
+			divinity_right_to_work_job_check_trigger_specialist = yes
+		}
+	}
+}
+
+# 为了能够交换附庸的领袖
+has_specialist_subject_leader_trait = {
+	OR = {
+		has_trait = leader_trait_bulwark_watcher
+		has_trait = leader_trait_bulwark_retaliator
+		has_trait = leader_trait_bulwark_sentinel
+		has_trait = leader_trait_scholarium_investigator
+		has_trait = leader_trait_scholarium_explorer
+		has_trait = leader_trait_scholarium_observer
+		has_trait = leader_trait_prospectorium_extractor
+		has_trait = leader_trait_prospectorium_optimizer
+		has_trait = leader_trait_prospectorium_refiner
+		has_trait = leader_trait_tactical_algorithms
+		has_trait = leader_trait_ultracompany_asset
+	}
+}
+
+#巨大娘第一次接触标记
+first_contact_gts_servitor_desc = {
+	#小人保护者
+	owner = {
+		has_valid_civic = civic_gts_servitor
+	}
+}
+
+first_contact_gts_terminator_desc = {
+	#小人清除者
+	owner = {
+		has_valid_civic = civic_gts_terminator
+	}
+}
+
+first_contact_gts_assimilator_desc = {
+	#小人观测者
+	owner = {
+		has_valid_civic = civic_gts_assimilator
+	}
+}
+
+first_contact_gts_desc = {
+	#判断是不是巨娘
+	OR = {
+		owner = {
+			OR = {
+				has_valid_civic = civic_gts_servitor
+				has_valid_civic = civic_gts_terminator
+				has_valid_civic = civic_gts_assimilator
+			}
+		}
+		owner = {
+			gts_is_giantess_empire = yes
+		}
+	}
+}
+# 可以被巨娘事件改造的行星
+gts_can_reform_planet = {
+	NOR = {
+		is_eatable_planet = no
+		has_modifier = penal_colony
+		has_modifier = slave_colony
+		has_modifier = resort_colony
+		is_planet_class = pc_city
+		AND = {
+			is_planet_class = pc_relic
+			NOT = { owner = { is_memorialist_empire = yes } }
+		}
+	}
+	owner = {
+		is_regular_empire = yes
+	}
+}
+# 可以被巨娘事件摧毁的行星
+gts_can_destory_planet = {
+	is_eatable_planet = yes
+	is_star = no
+	is_asteroid = no
+	is_colonizable = no
+	has_anomaly = no
+	NOR = {
+		is_planet_class = pc_gas_giant
+		is_planet_class = pc_shattered
+	}
+}
+# 是GTS改造星球
+is_gts_reformed_planet = {
+	OR = {
+		is_planet_class = pc_gts_dirt0
+		is_planet_class = pc_gts_dirt1
+		is_planet_class = pc_gts_dirt2
+		is_planet_class = pc_gts_dirt3
+		is_planet_class = pc_gts_dirt4
+		is_planet_class = pc_gts_juice
+		is_planet_class = pc_gts_juice2
+		is_planet_class = pc_gts_juice3
+		is_planet_class = pc_gts_milk
+		is_planet_class = pc_gts_shit
+		is_planet_class = pc_gts_semen
+		is_planet_class = pc_gts_urine
+	}
+}
+
+# 用于判断是否为MOD特殊领袖 scrop为leader
+is_special_leader = {
+    # 可以仅使用hired_gts_leader判断，此处仅用于统计
+    OR = {
+        has_leader_flag = hired_gts_leader
+        has_leader_flag = gts_allomerus     # 阿洛美勒丝   指挥官    游戏王 虫惑魔
+        has_leader_flag = gts_aplog         # APLOG      指挥官    群友OC    APLOG
+        has_leader_flag = gts_archetto      # 空弦        执政官    明日方舟
+        has_leader_flag = gts_arlo          # 爱洛        科学官    灵魂潮汐
+        has_leader_flag = gts_aurora        # 欧若拉       执政官    灵魂潮汐
+        has_leader_flag = gts_aya           # 丸山彩       执政官    BanGDream!
+        has_leader_flag = gts_blemishine    # 瑕光        指挥官     明日方舟
+        has_leader_flag = gts_bronya        # 布洛妮娅     指挥官    崩坏3
+        has_leader_flag = gts_cys           # 水晶兰
+        has_leader_flag = gts_chenghui      # 成惠        类灰风    缩小学院
+        has_leader_flag = gts_doctor        # 博士        科学官    明日方舟
+        has_leader_flag = gts_eliza         # 伊莱莎       执政官    群友OC    APLOG
+        has_leader_flag = gts_erika         # 绘里香       科学官    缩小学院
+        has_leader_flag = gts_eyjafjalla    # 艾雅法拉     科学官    明日方舟
+        has_leader_flag = gts_firefly       # 流萤        类灰风     崩坏3
+        has_leader_flag = gts_goldenglow    # 澄闪        执政官    明日方舟
+        has_leader_flag = gts_guya          # 咕丫(普通)  指挥官     群友OC
+        has_leader_flag = gts_guya_adm      # 咕丫(海军)  指挥官     群友OC
+        has_leader_flag = gts_guya_gen      # 咕丫(陆军)  指挥官     群友OC
+        has_leader_flag = gts_guya_gov      # 咕丫(总督)  执政官     群友OC
+        has_leader_flag = gray_leader       # 灰风        执政官    群星原版领袖
+        has_leader_flag = gts_huatian       # 花田        科学官    群友OC     花田
+        has_leader_flag = gts_Hanako        # 浦和花子     执政官    碧蓝档案
+        has_leader_flag = gts_jifeng        # 叽风        科学官    群友       叽风
+        has_leader_flag = gts_Koharu        # 下江小春     执政官    碧蓝档案
+        has_leader_flag = gts_laiya         #            废案
+        has_leader_flag = gts_linglu        # 无声铃鹿     科学官    赛马娘
+        has_leader_flag = gts_lizhi         # 黎凪        指挥官     群友OC
+        has_leader_flag = gts_luodi         # 洛蒂        执政官     群友OC
+        has_leader_flag = gts_mari          # 伊若玛丽     执政官     碧蓝档案
+        has_leader_flag = gts_mizuki        # 水月        指挥官     明日方舟
+        has_leader_flag = gts_paopao        # 泡泡        指挥官     群友OC
+        has_leader_flag = gts_qhai          # 千海        科学官     群友OC
+        has_leader_flag = gts_qhai_daughter_flag        #科学官    附属事件目标
+        has_leader_flag = gts_sera          # 塞拉         指挥官     游戏王 虫惑魔
+        has_leader_flag = gts_skadi         # 斯卡蒂       指挥官     明日方舟
+        has_leader_flag = gts_saratoga      # 萨拉托加      指挥官    舰队收藏
+        has_leader_flag = gts_satori        # 古明地觉      执政官    东方project
+        has_leader_flag = gts_shentun       # 紫宸         指挥官    群友OC
+        has_leader_flag = gts_sonxi         # 颂汐         科学官    群友OC
+        has_leader_flag = gts_seele         # 希儿         指挥官    崩坏3
+        has_leader_flag = gts_seele_li      # 希儿里       指挥官    崩坏3
+        has_leader_flag = gts_tensi         # 安露         指挥官    群友OC
+        has_leader_flag = gts_tiantiao      # 天条阳晴      执政官    群友OC
+        has_leader_flag = gts_tlipoca       # 特波丽卡      指挥官    犹格索托斯的庭院
+        has_leader_flag = gts_xiaomiao      # 晓淼         科学官    群友OC
+        has_leader_flag = gts_yarong        # 犽戎         指挥官    群友OC
+        has_leader_flag = gts_yarong_ruler  # 犽戎(执政官)  执政官    群友OC
+        has_leader_flag = gts_yiyan         # 亿盐狐       执政官     群友OC
+		has_leader_flag = gts_linfeng		# 林凤			执政官		群友OC
+		has_leader_flag = gts_suxiaobai		# 苏小白		指挥官		群友OC
+		has_leader_flag = gts_hitomi		# 希瞳		指挥官		群友OC
+    }
+}
+
+# 用于判断是否为MOD中不能吃的星球 yes 是可以吃的球 no 是不能吃的球
+is_eatable_planet = {
+    nor = {
+		# 星球FLAG
+        has_planet_flag = gts_body_planet
+        has_planet_flag = gts_clothes_planet
+        has_planet_flag = gts_reformed_planet
+        has_planet_flag = gts_hometown_planet
+        has_planet_flag = gts_eyjafjalla_planet_flag # 艾雅法拉体内的球
+		# 星球障碍
+		has_deposit = d_gts_eyjafjalla
+		# 星球类型
+		is_planet_class = pc_cosmogenesis_world
+		is_planet_class = pc_shattered_ring_habitable
+		is_planet_class = pc_ringworld_habitable
+		is_planet_class = pc_ringworld_habitable_damaged
+		is_planet_class = pc_ringworld_tech
+		is_planet_class = pc_ringworld_tech_damaged
+		is_planet_class = pc_ringworld_seam
+		is_planet_class = pc_ringworld_seam_damaged
+		is_planet_class = pc_habitat
+
+        is_capital = yes # 老家
+    }
+}
+
+# 用于判断是否为MOD中的巨娘星系
+is_gts_leader_planet = {
+	or = {
+		has_planet_flag = gtsra_loli_planet # 欧罗拉
+		has_planet_flag = gts_sleepbear_planet # 颂汐
+		has_planet_flag = gts_yarong_internal_planet # 犽戎
+		has_planet_flag = gts_bronya_planet # 布洛妮娅
+		has_planet_flag = gts_seele_planet # 希儿
+		has_planet_flag = gts_seele_li_planet # 里希儿
+		has_planet_flag = Robot_gts_Stomach_planet
+	}
+}
+
+is_gts_clothes_planet = {
+	or = {
+		has_planet_flag = gts_uniform_shoes
+		has_planet_flag = gts_uniform_shoes_colonizable # 制服鞋
+		has_planet_flag = gts_laceup_heel
+		has_planet_flag = advanced_lottie_shoes2
+		has_planet_flag = gts_cyrene_shoes_1
+		has_planet_flag = gts_cyrene_shoes_2
+    }
+}
+
+can_set_gts_religious_building = {
+	exists = owner
+	owner = {
+		has_origin = origin_gts_subterranean
+	}
+	NOT = {
+		has_planet_flag = gts_religious_icons_set
+	}
+}
+# scorp = planet
+has_gts_religious_planet_modifier = {
+	OR = {
+		has_modifier = religious_icons_black1
+		has_modifier = religious_icons_black2
+		has_modifier = religious_icons_black3
+		has_modifier = religious_icons_black4
+		has_modifier = religious_icons_black5
+		has_modifier = religious_icons_white1
+		has_modifier = religious_icons_white2
+		has_modifier = religious_icons_white3
+		has_modifier = religious_icons_white4
+		has_modifier = religious_icons_white5
+		has_modifier = religious_icons_stocking1
+		has_modifier = religious_icons_stocking2
+		has_modifier = religious_icons_stocking3
+		has_modifier = religious_icons_stocking4
+		has_modifier = religious_icons_stocking5
+		has_modifier = religious_icons_bare1
+		has_modifier = religious_icons_bare2
+		has_modifier = religious_icons_bare3
+		has_modifier = religious_icons_bare4
+		has_modifier = religious_icons_bare5
+	}
+}
+
+
+
+gts_is_giantess_empire = {
+	# 是巨娘帝国
+	OR = {
+		has_policy_flag = gts_empire_type_ultra
+		has_policy_flag = gts_empire_type_titan
+		has_policy_flag = gts_empire_type_giant
+		has_policy_flag = gts_empire_type_tall
+	}
+}
+
+gts_is_tiny_empire = {
+	# 是小人帝国
+	OR = {
+		has_policy_flag = gts_empire_type_normal
+		has_policy_flag = gts_empire_type_small
+		has_policy_flag = gts_empire_type_tiny
+		has_policy_flag = gts_empire_type_micro
+		has_policy_flag = gts_empire_type_nano
+	}
+}
+
+#scope (leader)
+is_gts_leader = { #领袖自身
+	exists = event_target:gts_$name$ is_same_value = event_target:gts_$name$
+}
+
+ruler_is_gts_leader = { ruler = { is_gts_leader = { name = $name$ } } }
+
+is_gts_love_leader = {
+	has_leader_flag = has_gts_love_trait_normal
+}

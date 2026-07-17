@@ -1,0 +1,596 @@
+namespace = gts_hehuanpai
+#开局
+country_event = {
+	id = gts_hehuanpai.0001
+	title = gts_hehuanpai.0001.name
+	desc = gts_hehuanpai.0001.desc
+	picture = GFX_gtsra_load_11
+    show_sound = event_pre_ftl_civilization
+	is_triggered_only = yes
+    fire_only_once = yes
+	location = event_target:hehuanpai_pre_ftl_planet
+
+	trigger = {
+		any_pre_ftl_within_border = {
+			OR = {
+				has_pre_ftl_age = renaissance_age #文艺复兴
+				has_pre_ftl_age = steam_age #蒸汽时代
+				has_pre_ftl_age = industrial_age #工业时代
+				has_pre_ftl_age = machine_age #机械时代
+				has_pre_ftl_age = atomic_age #原子时代
+				has_pre_ftl_age = early_space_age #太空文明早期
+			}
+			capital_scope = {
+				has_observation_outpost = yes
+			}
+			NOR = {
+				has_country_flag = kagura_hometown
+				has_country_flag = foo_hometown
+			}
+		}
+		gts_is_giantess_empire = yes
+		is_ai = no
+	}
+	
+	immediate = {
+		random_pre_ftl_within_border = {
+			limit = {
+				OR = {
+					has_pre_ftl_age = renaissance_age #文艺复兴
+					has_pre_ftl_age = steam_age #蒸汽时代
+					has_pre_ftl_age = industrial_age #工业时代
+					has_pre_ftl_age = machine_age #机械时代
+					has_pre_ftl_age = atomic_age #原子时代
+					has_pre_ftl_age = early_space_age #太空文明早期
+				}
+				capital_scope = {
+					has_observation_outpost = yes
+				}
+			}
+			save_global_event_target_as = hehuanpai_pre_ftl_country
+			capital_scope = {
+				save_global_event_target_as = hehuanpai_pre_ftl_planet
+			}
+			#set_pre_ftl_age_effect = { PRE_FTL_AGE = atomic_age }
+		}
+	}
+	option = {
+		name = gts_hehuanpai.0001.a
+		hidden_effect = {
+			country_event = {
+				id = gts_hehuanpai.0002
+				days = 60
+			}
+		}
+	}
+	option = {
+		name = gts_hehuanpai.0001.b
+		allow = {
+			has_civic = civic_gts_hcomic
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_hehuanpai.0002
+				days = 30
+			}
+		}
+	}
+	option = {
+		name = gts_hehuanpai.0001.c
+		add_monthly_resource_mult = {
+			resource = society_research
+			value = 6
+		}
+	}
+}
+#欢愉运动
+country_event = {
+	id = gts_hehuanpai.0002
+	title = gts_hehuanpai.0002.name
+	desc = gts_hehuanpai.0002.desc
+	picture = GFX_gtsra_load_14
+    show_sound = event_mystic_reveal_light
+	is_triggered_only = yes
+    fire_only_once = yes
+	location = event_target:joy_campaign_planet
+	immediate = {
+		random_owned_planet = {
+			limit = {}
+			save_event_target_as = joy_campaign_planet
+		}
+	}
+	option = {
+		name = gts_hehuanpai.0002.a
+		event_target:joy_campaign_planet = {
+			add_modifier = {
+				modifier = joy_campaign
+				days = 180
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_hehuanpai.0003
+				days = 180
+			}
+		}
+	}
+	option = {
+		name = gts_hehuanpai.0002.b
+		allow = {
+			resource_stockpile_compare = {
+				resource = energy
+				value >= 200 
+			}
+		}
+		add_resource = {
+			energy =  -200
+		}
+		event_target:joy_campaign_planet = {
+			add_modifier = {
+				modifier = joy_campaign
+				days = 60
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_hehuanpai.0003
+				days = 60
+			}
+			set_timed_country_flag = {
+				flag = hehuanpai_approve
+				days = 3600
+			}
+		}
+	}
+}
+#合欢派开场
+country_event = {
+	id = gts_hehuanpai.0003
+	title = gts_hehuanpai.0003.name
+	desc = gts_hehuanpai.0003.desc
+	picture = GFX_load_55
+    show_sound = event_mystic_reveal_light
+	is_triggered_only = yes
+	location = event_target:joy_campaign_planet
+	trigger = {
+		NOR = {
+			has_country_flag = hehuanpai_intro
+		}
+	}
+	immediate = {
+		set_country_flag = hehuanpai_intro
+		enable_faction_of_type = hehuanpai
+	}
+	option = {
+		name = gts_hehuanpai.0003.a
+		event_target:joy_campaign_planet = {
+			add_modifier = {
+				modifier = atmospheric_aphrodisiac
+			}
+		}
+		start_situation = {
+			type = situation_hehuanpai
+		}
+	}
+	option = {
+		name = gts_hehuanpai.0003.b
+		event_target:joy_campaign_planet = {
+			add_modifier = {
+				modifier = atmospheric_aphrodisiac
+			}
+		}
+		start_situation = {
+			type = situation_hehuanpai
+		}
+	}
+}
+#合欢派的覆灭
+situation_event = {
+	id = gts_hehuanpai.1000
+	title = gts_hehuanpai.1000.name
+	desc = gts_hehuanpai.1000.desc
+	picture = GFX_load_76
+    show_sound = event_planetary_riot
+	is_triggered_only = yes
+	immediate = {
+		owner = {
+			set_country_flag = hehuanpai_end
+		}
+	}
+	option = {
+		name = gts_hehuanpai.1000.a
+		owner = {
+			add_modifier = {
+				modifier = hehuanpai_destroyed
+				days = 1800
+			}
+			add_resource = {
+				unity = 5000
+			}
+			country_event = {
+				id = gts_hehuanpai.4001
+				days = 7
+			}
+			hidden_effect = {
+				country_event = {
+					id = gts_hehuanpai.1001
+					days = 1000
+				}
+			}
+		}
+		abort_situation = root
+	}
+}
+#覆灭后招花子
+country_event = {
+	id = gts_hehuanpai.1001
+	title = gts_hehuanpai.1001.name
+	desc = gts_hehuanpai.1001.desc
+	picture = GFX_gtsra_load_27
+    show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_hehuanpai.4003.a
+		enable_special_project = {
+			name = Hanako.recruit
+		}
+	}
+}
+#合欢派的复兴
+situation_event = {
+	id = gts_hehuanpai.2000
+	title = gts_hehuanpai.2000.name
+	desc = gts_hehuanpai.2000.desc
+	picture = GFX_load_75
+    show_sound = event_celebration
+	is_triggered_only = yes
+	immediate = {
+		owner = {
+			set_country_flag = hehuanpai_end
+		}
+	}
+	option = {
+		name = gts_hehuanpai.2000.a
+		owner = {
+			add_modifier = {
+				modifier = hehuanpai_flourish
+				days = 1800
+			}
+			add_resource = {
+				unity = 5000
+			}
+			country_event = {
+				id = gts_hehuanpai.4002
+				days = 7
+			}
+			hidden_effect = {
+				country_event = {
+					id = gts_hehuanpai.2001
+					days = 1000
+				}
+			}
+			force_add_civic = civic_hehuanpai
+		}
+		abort_situation = root
+	}
+}
+#复兴后招小春
+country_event = {
+	id = gts_hehuanpai.2001
+	title = gts_hehuanpai.2001.name
+	desc = gts_hehuanpai.2001.desc
+	picture = GFX_load_78
+    show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_hehuanpai.4003.a
+		enable_special_project = {
+			name = Koharu.recruit
+		}
+	}
+}
+#招募小春
+country_event = {
+	id = gts_hehuanpai.4001
+	title = gts_hehuanpai.4001.name
+	desc = gts_hehuanpai.4001.desc
+	is_triggered_only = yes
+	event_window_type = leader_recruit
+	show_sound = event_mystic_reveal
+	picture = GFX_leader_recruitment_bg_legendary_skrand
+	picture_event_data = {
+		portrait = event_target:gts_leader
+		room = "crisis_room"
+	}
+	auto_opens = yes
+
+    immediate = {
+		gts_leader_koharu_hired = yes
+	}
+
+	option = {
+		name = DISMISS
+		tag = dismiss_leader
+	}
+	option = {
+		name = gts_hehuanpai.4001.a
+		is_dialog_only = yes
+		response_text = gts_hehuanpai.4001.a.respond
+	}
+	option = {
+		name = gts_hehuanpai.4001.b
+		is_dialog_only = yes
+		response_text = gts_hehuanpai.4001.b.respond
+	}
+	option = {
+		name = gts_hehuanpai.4001.c
+		is_dialog_only = yes
+		response_text = gts_hehuanpai.4001.c.respond
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = renowned}
+		}
+	}
+}
+
+#招募花子
+country_event = {
+	id = gts_hehuanpai.4002
+	title = gts_hehuanpai.4002.name
+	desc = gts_hehuanpai.4002.desc
+	is_triggered_only = yes
+	event_window_type = leader_recruit
+	show_sound = event_mystic_reveal
+	picture = GFX_leader_recruitment_bg_legendary_skrand
+	picture_event_data = {
+		portrait = event_target:gts_leader
+		room = "crisis_room"
+	}
+	auto_opens = yes
+
+    immediate = {
+		gts_leader_hanako_hired = yes
+	}
+
+	option = {
+		name = DISMISS
+		tag = dismiss_leader
+	}
+	option = {
+		name = gts_hehuanpai.4002.a
+		is_dialog_only = yes
+		response_text = gts_hehuanpai.4002.a.respond
+	}
+	option = {
+		name = gts_hehuanpai.4002.b
+		is_dialog_only = yes
+		response_text = gts_hehuanpai.4002.b.respond
+	}
+	option = {
+		name = gts_hehuanpai.4002.c
+		is_dialog_only = yes
+		response_text = gts_hehuanpai.4002.c.respond
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = renowned}
+		}
+	}
+}
+#再次招募小春
+country_event = {
+	id = gts_hehuanpai.4003
+	title = gts_hehuanpai.4003.name
+	desc = gts_hehuanpai.4003.desc
+	is_triggered_only = yes
+	show_sound = event_mystic_reveal
+	picture = GFX_load_77
+
+    immediate = {
+		gts_leader_koharu_hired = yes
+	}
+
+	option = {
+		name = gts_hehuanpai.4003.a
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = renowned}
+		}
+	}
+}
+#再次招募花子
+country_event = {
+	id = gts_hehuanpai.4004
+	title = gts_hehuanpai.4004.name
+	desc = gts_hehuanpai.4004.desc
+	is_triggered_only = yes
+	show_sound = event_mystic_reveal
+	picture = GFX_load_77
+	immediate = {
+		gts_leader_hanako_hired = yes
+	}
+	option = {
+		name = gts_hehuanpai.4004.a
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = renowned}
+		}
+	}
+
+}
+
+#随机事件
+situation_event = {
+	id = gts_hehuanpai.3001
+	title = gts_hehuanpai.3001.name
+	desc = gts_hehuanpai.3001.desc
+	picture = GFX_gtsra_city_crash_3
+    show_sound = event_super_explosion
+	location = event_target:hehuanpai_pre_ftl_planet
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		event_target:hehuanpai_pre_ftl_country = {
+			is_primitive = yes
+		} 
+	}
+	option = {
+		name = gts_hehuanpai.3001.a
+		event_target:hehuanpai_pre_ftl_planet = {
+			add_planet_devastation = 80
+			asteroid_impact_pre_ftl_effect = yes #倒退一个时代并趋势一些pop
+		}
+		event_target:hehuanpai_pre_ftl_country = {
+			add_awareness = 20
+		}
+		owner = {
+			random_situation = {
+				limit = {
+					is_situation_type = situation_hehuanpai
+				}
+				add_situation_progress = -10
+			}
+		}
+	}
+	option = {
+		name = gts_hehuanpai.3001.b
+		event_target:hehuanpai_pre_ftl_planet = {
+			add_planet_devastation = 80
+			asteroid_impact_pre_ftl_effect = yes #倒退一个时代并趋势一些pop
+		}
+		event_target:hehuanpai_pre_ftl_country = {
+			add_awareness = 20
+		}
+		owner = {
+			random_situation = {
+				limit = {
+					is_situation_type = situation_hehuanpai
+				}
+				add_situation_progress = 10
+			}
+		}
+	}
+}
+situation_event = {
+	id = gts_hehuanpai.3002
+	title = gts_hehuanpai.3002.name
+	desc = gts_hehuanpai.3002.desc
+	picture = GFX_gtsra_load_7
+    show_sound = event_default
+	is_triggered_only = yes
+
+	trigger = {
+		owner = {
+			any_owned_leader = {
+				NOR = {
+					has_trait = leader_trait_shrunken_experience
+				}
+			}
+		}
+	}
+	immediate = {
+		owner = {
+			random_owned_leader = {
+				limit = {
+					NOR = {
+						has_trait = leader_trait_shrunken_experience
+					}
+				}
+				save_event_target_as = shrunken_experience_leader
+			}
+		}
+	}
+	option = {
+		name = gts_hehuanpai.3002.a
+		event_target:shrunken_experience_leader = {
+			add_experience = 200
+			add_trait = {
+			    trait = leader_trait_shrunken_experience
+			}
+		}
+		owner = {
+			random_situation = {
+				limit = {
+					is_situation_type = situation_hehuanpai
+				}
+				add_situation_progress = -10
+			}
+		}
+	}
+	option = {
+		name = gts_hehuanpai.3002.b
+		event_target:shrunken_experience_leader = {
+			add_experience = 200
+			add_trait = {
+			    trait = leader_trait_shrunken_experience
+			}
+		}
+		owner = {
+			random_situation = {
+				limit = {
+					is_situation_type = situation_hehuanpai
+				}
+				add_situation_progress = 10
+			}
+		}
+	}
+}
+situation_event = {
+	id = gts_hehuanpai.3003
+	title = gts_hehuanpai.3003.name
+	desc = gts_hehuanpai.3003.desc
+	picture = GFX_gtsra_load_9
+    show_sound = event_red_alert
+	is_triggered_only = yes
+    location = event_target:attacked_planet
+	trigger = {
+		owner = {
+			any_owned_planet = {
+				pop_amount >= 2000
+			}
+		}
+	}
+	immediate = {
+		owner = {
+			random_owned_planet = {
+				limit = {
+					pop_amount >= 2000
+				}
+				save_event_target_as = attacked_planet
+			}
+		}
+	}
+	option = {
+		name = gts_hehuanpai.3003.a
+		event_target:attacked_planet = {
+			add_planet_devastation = 10
+			add_deposit = d_mountain_range
+		}
+		owner = {
+			random_situation = {
+				limit = {
+					is_situation_type = situation_hehuanpai
+				}
+				add_situation_progress = -10
+			}
+		}
+	}
+	option = {
+		name = gts_hehuanpai.3003.b
+		event_target:attacked_planet = {
+			add_planet_devastation = 10
+			add_deposit = d_mountain_range
+		}
+		owner = {
+			random_situation = {
+				limit = {
+					is_situation_type = situation_hehuanpai
+				}
+				add_situation_progress = 10
+			}
+		}
+	}
+}

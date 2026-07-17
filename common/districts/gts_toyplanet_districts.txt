@@ -1,0 +1,1842 @@
+############################################################################################################################################
+################################################                足垢星球區劃                ################################################
+############################################################################################################################################
+
+@base_cost = 300
+@city_cost = 500
+
+district_dirt0_1 = {
+
+    # 地下掩體城市(住房)
+
+    base_buildtime = 480
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_city_government
+        slot_city_01
+        slot_city_02
+    }
+
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = dirt0
+            uses_district_set = dirt3
+            uses_district_set = dirt4
+        }
+    }
+
+    potential = {
+        OR = {
+            uses_district_set = dirt0
+            uses_district_set = dirt3
+            uses_district_set = dirt4
+        }
+        exists = owner
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @city_cost
+        }
+        cost = {
+            food = @city_cost
+        }
+        upkeep = {
+            energy = 2
+        }
+        upkeep = {
+            food = 2
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 1000
+    }
+
+    # 一些影響住房數的東西
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_valid_civic = civic_agrarian_idyll
+            }
+        }
+        modifier = {
+            planet_housing_add = -200
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { has_active_tradition = tr_prosperity_public_works }
+        }
+        modifier = {
+            planet_housing_add = 100
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_technology = tech_housing_1
+            }
+        }
+        modifier = {
+            planet_housing_add = 100
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_technology = tech_housing_2
+                NOT = { has_valid_civic = civic_agrarian_idyll }
+            }
+        }
+        modifier = {
+            planet_housing_add = 200
+        }
+    }
+}
+
+district_dirt0_2 = {
+
+    # 足垢冶煉礦區(礦物)
+
+    base_buildtime = 240
+    is_uncapped = {	always = no }
+
+    zone_slots = {
+        slot_gts_bruh_minerals
+    }
+
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = dirt0
+            uses_district_set = dirt4
+        }
+    }
+
+    potential = {
+        OR = {
+            uses_district_set = dirt0
+            uses_district_set = dirt4
+        }
+        exists = owner
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_gts_dirt2_add = 100
+        }
+    }
+}
+
+district_dirt0_3 = {
+
+    # 足汗水培區(食物)
+
+    base_buildtime = 240
+    is_uncapped = {	always = no }
+
+    zone_slots = {
+        slot_gts_bruh_food
+    }
+
+    show_on_uncolonized = {
+        uses_district_set = dirt0
+    }
+
+    potential = {
+        uses_district_set = dirt0
+        exists = owner
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        cost = {
+            food = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_gts_dirt3_add = 100
+        }
+    }
+}
+
+district_dirt2_1 = {
+
+    # 地下掩體要塞(住房)
+
+    base_buildtime = 480
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_city_government
+        slot_city_01
+        slot_city_02
+    }
+
+    show_on_uncolonized = {
+        uses_district_set = dirt2
+    }
+
+    potential = {
+        uses_district_set = dirt2
+        exists = owner
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @city_cost
+        }
+        cost = {
+            food = @city_cost
+        }
+        upkeep = {
+            energy = 2
+        }
+        upkeep = {
+            food = 2
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 1000
+    }
+
+    # 一些影響住房數的東西
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_valid_civic = civic_agrarian_idyll
+            }
+        }
+        modifier = {
+            planet_housing_add = -200
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { has_active_tradition = tr_prosperity_public_works }
+        }
+        modifier = {
+            planet_housing_add = 100
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_technology = tech_housing_1
+            }
+        }
+        modifier = {
+            planet_housing_add = 100
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_technology = tech_housing_2
+                NOT = { has_valid_civic = civic_agrarian_idyll }
+            }
+        }
+        modifier = {
+            planet_housing_add = 200
+        }
+    }
+}
+
+district_dirt2_2 = {
+
+    # 足汗結晶鍛造區(重工業)
+
+    base_buildtime = 240
+    is_uncapped = {	always = no }
+
+    zone_slots = {
+        slot_gts_bruh_foundry
+    }
+
+    show_on_uncolonized = {
+        uses_district_set = dirt2
+    }
+
+    potential = {
+        uses_district_set = dirt2
+        exists = owner
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        cost = {
+            food = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_gts_dirt5_add = 100
+        }
+    }
+}
+
+district_dirt2_3 = {
+
+    # 地表訓練場(軍事)
+
+    base_buildtime = 240
+    is_uncapped = {	always = no }
+
+    zone_slots = {
+        slot_gts_bruh_fortress
+    }
+
+    show_on_uncolonized = {
+        uses_district_set = dirt2
+    }
+
+    potential = {
+        uses_district_set = dirt2
+        exists = owner
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_gts_dirt6_add = 100
+            job_gts_dirt4_add = 200
+        }
+    }
+}
+
+district_dirt3_2 = {
+
+    # 深層地層礦區(礦物)
+
+    base_buildtime = 240
+    is_uncapped = {	always = no }
+
+    zone_slots = {
+        slot_gts_bruh_minerals
+    }
+
+    show_on_uncolonized = {
+        uses_district_set = dirt3
+    }
+
+    potential = {
+        uses_district_set = dirt3
+        exists = owner
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_gts_dirt7_add = 100
+        }
+    }
+}
+
+district_dirt3_3 = {
+
+    # 足汗精煉廠(混合工業)
+
+    base_buildtime = 240
+    is_uncapped = {	always = no }
+
+    zone_slots = {
+        slot_gts_bruh_industrial
+    }
+
+    show_on_uncolonized = {
+        uses_district_set = dirt3
+    }
+
+    potential = {
+        uses_district_set = dirt3
+        exists = owner
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_gts_dirt8_add = 100
+        }
+    }
+}
+
+district_dirt4_3 = {
+
+    # 足汗種植園
+
+    base_buildtime = 240
+    is_uncapped = {	always = no }
+
+    zone_slots = {
+        slot_gts_bruh_food
+    }
+
+    show_on_uncolonized = {
+        uses_district_set = dirt4
+    }
+
+    potential = {
+        uses_district_set = dirt4
+        exists = owner
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        cost = {
+            food = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_gts_dirt9_add = 100
+        }
+    }
+}
+
+district_bfbf_foot_1 = {
+
+    # 聖足崇拜區(凝聚力)
+
+    base_buildtime = 400
+    is_uncapped = {	always = no }
+
+    zone_slots = {
+        slot_gts_bruh_unity
+    }
+
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = dirt0
+            uses_district_set = dirt2
+            uses_district_set = dirt3
+            uses_district_set = dirt4
+        }
+    }
+
+    potential = {
+        OR = {
+            uses_district_set = dirt0
+            uses_district_set = dirt2
+            uses_district_set = dirt3
+            uses_district_set = dirt4
+        }
+        exists = owner
+        owner = {
+            is_spiritualist = yes
+        }
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_gts_bfbf_foot1_add = 100
+        }
+    }
+}
+
+############################################################################################################################################
+################################################                愛液星球區劃                ################################################
+############################################################################################################################################
+
+
+district_juice_1 = {
+
+    # 漂浮城市(住房)
+
+    base_buildtime = 480
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_city_government
+        slot_city_01
+        slot_city_02
+    }
+
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = juice
+            uses_district_set = juice2
+            uses_district_set = juice3
+        }
+    }
+
+    potential = {
+        OR = {
+            uses_district_set = juice
+            uses_district_set = juice2
+            uses_district_set = juice3
+        }
+        exists = owner
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @city_cost
+        }
+        cost = {
+            food = @city_cost
+        }
+        upkeep = {
+            energy = 2
+        }
+        upkeep = {
+            food = 2
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 1000
+    }
+
+    # 一些影響住房數的東西
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_valid_civic = civic_agrarian_idyll
+            }
+        }
+        modifier = {
+            planet_housing_add = -200
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { has_active_tradition = tr_prosperity_public_works }
+        }
+        modifier = {
+            planet_housing_add = 100
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_technology = tech_housing_1
+            }
+        }
+        modifier = {
+            planet_housing_add = 100
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_technology = tech_housing_2
+                NOT = { has_valid_civic = civic_agrarian_idyll }
+            }
+        }
+        modifier = {
+            planet_housing_add = 200
+        }
+    }
+}
+
+district_juice_2 = {
+
+    # 愛液商業區(貿易)
+
+    base_buildtime = 240
+    is_uncapped = {	always = no }
+
+    zone_slots = {
+        slot_gts_bruh_trade
+    }
+
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = juice
+            uses_district_set = juice2
+            uses_district_set = juice3
+            uses_district_set = oscillator
+        }
+    }
+
+    potential = {
+        OR = {
+            uses_district_set = juice
+            uses_district_set = juice2
+            uses_district_set = juice3
+            uses_district_set = oscillator
+        }
+        exists = owner
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_gts_juice_merchant_add = 100
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+            job_maintenance_drone_add = 200
+        }
+    }
+}
+
+district_juice_3 = {
+
+    # 潮汐發電區(能量)
+
+    base_buildtime = 240
+    is_uncapped = {	always = no }
+
+    zone_slots = {
+        slot_gts_bruh_energy
+    }
+
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = juice
+            uses_district_set = juice2
+            uses_district_set = juice3
+        }
+    }
+
+    potential = {
+        OR = {
+            uses_district_set = juice
+            uses_district_set = juice2
+            uses_district_set = juice3
+        }
+        exists = owner
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_gts_juice_technician_add = 100
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+            job_technician_drone_add = 300
+        }
+    }
+}
+
+district_juice_4 = {
+
+    # 愛液休閒區(凝聚力)
+
+    base_buildtime = 240
+    is_uncapped = {	always = no }
+
+    zone_slots = {
+        slot_gts_bruh_unity
+    }
+
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = juice
+            uses_district_set = juice2
+            uses_district_set = juice3
+            uses_district_set = oscillator
+        }
+    }
+
+    potential = {
+        OR = {
+            uses_district_set = juice
+            uses_district_set = juice2
+            uses_district_set = juice3
+            uses_district_set = oscillator
+        }
+        exists = owner
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_gts_juice_worker_add = 100
+        }
+    }
+}
+
+district_juice_5 = {
+
+    # 深海教會區(凝聚力)
+
+    base_buildtime = 240
+    is_uncapped = {	always = no }
+
+    zone_slots = {
+        slot_gts_bruh_unity
+    }
+
+    show_on_uncolonized = {
+        uses_district_set = juice2
+    }
+
+    potential = {
+        uses_district_set = juice2
+        exists = owner
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_isharmla_slaves_add = 100
+        }
+    }
+}
+
+district_juice_6 = {
+
+    # 千海愛液灌溉場(食物)
+
+    base_buildtime = 240
+    is_uncapped = {	always = no }
+
+    zone_slots = {
+        slot_gts_bruh_food
+    }
+
+    show_on_uncolonized = {
+        uses_district_set = juice3
+    }
+
+    potential = {
+        uses_district_set = juice3
+        exists = owner
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        cost = {
+            food = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_farmer_add = 250
+            job_gts_juice_worker_add = 50
+        }
+    }
+}
+
+############################################################################################################################################
+################################################                乳汁星球區劃                ################################################
+############################################################################################################################################
+
+
+district_milk_1 = {
+
+    # 乳海浮島區(住房)
+
+    base_buildtime = 480
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_city_government
+        slot_city_01
+        slot_city_02
+    }
+
+    show_on_uncolonized = {
+        uses_district_set = milk
+    }
+
+    potential = {
+        uses_district_set = milk
+        exists = owner
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @city_cost
+        }
+        cost = {
+            food = @city_cost
+        }
+        upkeep = {
+            energy = 2
+        }
+        upkeep = {
+            food = 2
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 1000
+    }
+
+    # 一些影響住房數的東西
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_valid_civic = civic_agrarian_idyll
+            }
+        }
+        modifier = {
+            planet_housing_add = -200
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { has_active_tradition = tr_prosperity_public_works }
+        }
+        modifier = {
+            planet_housing_add = 100
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_technology = tech_housing_1
+            }
+        }
+        modifier = {
+            planet_housing_add = 100
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_technology = tech_housing_2
+                NOT = { has_valid_civic = civic_agrarian_idyll }
+            }
+        }
+        modifier = {
+            planet_housing_add = 200
+        }
+    }
+
+    # 所以這裡原本是要加什麼？
+
+    #triggered_planet_modifier = {
+    #	potential = {
+    #		exists = owner
+    #		owner = {
+    #			gts_is_giantess_empire = yes
+    #		}
+    #	}
+    #
+    #}
+    #
+    #triggered_planet_modifier = {
+    #	potential = {
+    #		exists = owner
+    #		owner = {
+    #			gts_is_tiny_empire = yes
+    #		}
+    #	}
+    #
+    #}
+}
+
+district_milk_2 = {
+
+    # 乳垢晾曬區(食物、消費品)
+
+    base_buildtime = 240
+    is_uncapped = {	always = no }
+
+    zone_slots = {
+        slot_gts_bruh_food
+    }
+
+    show_on_uncolonized = {
+        uses_district_set = milk
+    }
+
+    potential = {
+        uses_district_set = milk
+        exists = owner
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_gts_milk_worker_add = 50
+            job_gts_bfbf_milk1_add = 50
+        }
+    }
+}
+
+district_milk_3 = {
+
+    # 乳汁發電區(能量)
+
+    base_buildtime = 240
+    is_uncapped = {	always = no }
+
+    zone_slots = {
+        slot_gts_bruh_energy
+    }
+
+    show_on_uncolonized = {
+        uses_district_set = milk
+    }
+
+    potential = {
+        uses_district_set = milk
+        exists = owner
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_gts_bfbf_milk2_add = 100
+        }
+    }
+}
+
+district_milk_4 = {
+
+    # 深海回收區(合金、凝聚力)
+
+    base_buildtime = 240
+    is_uncapped = {	always = no }
+
+    zone_slots = {
+        slot_gts_bruh_industrial
+    }
+
+    show_on_uncolonized = {
+        uses_district_set = milk
+    }
+
+    potential = {
+        uses_district_set = milk
+        exists = owner
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_gts_bfbf_milk3_add = 100
+        }
+    }
+}
+
+############################################################################################################################################
+################################################                跳蛋星球區劃                ################################################
+############################################################################################################################################
+
+district_oscillator_1 = {
+
+    # 城市區劃(住房)
+
+    base_buildtime = 480
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_city_government
+        slot_city_01
+        slot_city_02
+    }
+
+    show_on_uncolonized = {
+        uses_district_set = oscillator
+    }
+    potential = {
+        uses_district_set = oscillator
+        exists = owner
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @city_cost
+        }
+        cost = {
+            food = @city_cost
+        }
+        upkeep = {
+            energy = 2
+        }
+        upkeep = {
+            food = 2
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 1000
+    }
+
+    # 一些影響住房數的東西
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_valid_civic = civic_agrarian_idyll
+            }
+        }
+        modifier = {
+            planet_housing_add = -200
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { has_active_tradition = tr_prosperity_public_works }
+        }
+        modifier = {
+            planet_housing_add = 100
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_technology = tech_housing_1
+            }
+        }
+        modifier = {
+            planet_housing_add = 100
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_technology = tech_housing_2
+                NOT = { has_valid_civic = civic_agrarian_idyll }
+            }
+        }
+        modifier = {
+            planet_housing_add = 200
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_gts_urine_worker_add = 200
+        }
+    }
+}
+
+district_oscillator_2 = {
+
+    # 研究區劃(科研)
+
+    base_buildtime = 240
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_research
+    }
+
+    show_on_uncolonized = {
+        uses_district_set = oscillator
+    }
+    potential = {
+        uses_district_set = oscillator
+        exists = owner
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_physicist_add = 90
+            job_biologist_add = 90
+            job_engineer_add = 90
+        }
+    }
+}
+
+district_oscillator_3 = {
+
+    # 發電區劃(能量)
+
+    base_buildtime = 240
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_energy
+    }
+
+    show_on_uncolonized = {
+        uses_district_set = oscillator
+    }
+    potential = {
+        uses_district_set = oscillator
+        exists = owner
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_technician_add = 300
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+            job_technician_drone_add = 300
+        }
+    }
+}
+
+############################################################################################################################################
+################################################                精液星球區劃                ################################################
+############################################################################################################################################
+
+
+district_semen_1 = {
+
+    # 漂浮城市(住房)
+
+    base_buildtime = 480
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_city_government
+        slot_city_01
+        slot_city_02
+    }
+
+    show_on_uncolonized = {
+        uses_district_set = semen
+    }
+
+    potential = {
+        uses_district_set = semen
+        exists = owner
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @city_cost
+        }
+        cost = {
+            food = @city_cost
+        }
+        upkeep = {
+            energy = 2
+        }
+        upkeep = {
+            food = 2
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 1000
+    }
+
+    # 一些影響住房數的東西
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_valid_civic = civic_agrarian_idyll
+            }
+        }
+        modifier = {
+            planet_housing_add = -200
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { has_active_tradition = tr_prosperity_public_works }
+        }
+        modifier = {
+            planet_housing_add = 100
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_technology = tech_housing_1
+            }
+        }
+        modifier = {
+            planet_housing_add = 100
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_technology = tech_housing_2
+                NOT = { has_valid_civic = civic_agrarian_idyll }
+            }
+        }
+        modifier = {
+            planet_housing_add = 200
+        }
+    }
+}
+
+############################################################################################################################################
+################################################                排泄星球區劃                ################################################
+############################################################################################################################################
+
+district_bfbf_shit_1 = {
+
+    # 地下避難所區(住房)
+
+    base_buildtime = 480
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_city_government
+        slot_city_01
+        slot_city_02
+    }
+
+    show_on_uncolonized = {
+        uses_district_set = shit
+    }
+
+    potential = {
+        uses_district_set = shit
+        exists = owner
+    }
+
+    planet_modifier = {
+        planet_housing_add = 1000
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @city_cost
+        }
+        cost = {
+            food = @city_cost
+        }
+        upkeep = {
+            energy = 2
+        }
+        upkeep = {
+            food = 2
+        }
+    }
+
+    # 一些影響住房數的東西
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_valid_civic = civic_agrarian_idyll
+            }
+        }
+        modifier = {
+            planet_housing_add = -200
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { has_active_tradition = tr_prosperity_public_works }
+        }
+        modifier = {
+            planet_housing_add = 100
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_technology = tech_housing_1
+            }
+        }
+        modifier = {
+            planet_housing_add = 100
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_technology = tech_housing_2
+                NOT = { has_valid_civic = civic_agrarian_idyll }
+            }
+        }
+        modifier = {
+            planet_housing_add = 200
+        }
+    }
+}
+
+district_bfbf_shit_2 = {
+
+    # 巨娘糞便考古區(科研)
+
+    base_buildtime = 240
+    is_uncapped = {	always = no }
+
+    zone_slots = {
+        slot_gts_bruh_research
+    }
+
+    show_on_uncolonized = {
+        uses_district_set = shit
+    }
+
+    potential = {
+        uses_district_set = shit
+        exists = owner
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_gts_bfbf_shit1_add = 100
+        }
+    }
+}
+
+district_bfbf_shit_3 = {
+
+    # 巨娘糞便分揀區(礦物)
+
+    base_buildtime = 240
+    is_uncapped = {	always = no }
+
+    zone_slots = {
+        slot_gts_bruh_minerals
+    }
+
+    show_on_uncolonized = {
+        uses_district_set = shit
+    }
+
+    potential = {
+        uses_district_set = shit
+        exists = owner
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_gts_bfbf_shit2_add = 100
+        }
+    }
+}
+
+district_bfbf_shit_4 = {
+
+    # 巨娘糞便催化區(食物)
+
+    base_buildtime = 240
+    is_uncapped = {	always = no }
+
+    zone_slots = {
+        slot_gts_bruh_food
+    }
+
+    show_on_uncolonized = {
+        uses_district_set = shit
+    }
+
+    potential = {
+        uses_district_set = shit
+        exists = owner
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        cost = {
+            food = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+            NOR = {
+                has_planet_flag = use_gts_resource
+                has_planet_flag = use_tiny_resource
+            }
+        }
+        modifier = {
+            job_gts_bfbf_shit3_add = 100
+        }
+    }
+}
+
+############################################################################################################################################
+################################################                尿液星球區劃                ################################################
+############################################################################################################################################
+
+district_urine_1 = {
+
+    # 漂浮城市(住房)
+
+    base_buildtime = 480
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_city_government
+        slot_city_01
+        slot_city_02
+    }
+
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = urine
+            uses_district_set = urine2
+        }
+    }
+    potential = {
+        OR = {
+            uses_district_set = urine
+            uses_district_set = urine2
+        }
+        exists = owner
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @city_cost
+        }
+        cost = {
+            food = @city_cost
+        }
+        upkeep = {
+            energy = 2
+        }
+        upkeep = {
+            food = 2
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 1000
+    }
+
+    # 一些影響住房數的東西
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_valid_civic = civic_agrarian_idyll
+            }
+        }
+        modifier = {
+            planet_housing_add = -200
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { has_active_tradition = tr_prosperity_public_works }
+        }
+        modifier = {
+            planet_housing_add = 100
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_technology = tech_housing_1
+            }
+        }
+        modifier = {
+            planet_housing_add = 100
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_technology = tech_housing_2
+                NOT = { has_valid_civic = civic_agrarian_idyll }
+            }
+        }
+        modifier = {
+            planet_housing_add = 200
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_gts_urine_worker_add = 200
+        }
+    }
+}
+
+district_urine_2 = {
+
+    # 地熱發電區(能量)
+
+    base_buildtime = 240
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_energy
+    }
+
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = urine
+            uses_district_set = urine2
+        }
+    }
+    potential = {
+        OR = {
+            uses_district_set = urine
+            uses_district_set = urine2
+        }
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_technician_add = 500
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+            job_technician_drone_add = 500
+        }
+    }
+}

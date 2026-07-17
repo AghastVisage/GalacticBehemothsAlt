@@ -1,0 +1,417 @@
+# 多数为替换，仅有少数修改
+no_observation = {
+	icon = "GFX_fleet_order_button_ground_support_selective"
+	small_icon = 1
+
+	resources = {
+		category = station_observer_missions
+		# Unity from Diplomatic Networking Tradition
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_diplomacy_diplomatic_networking
+				}
+			}
+			unity = 3
+		}
+		# Trade policy outputs
+		# Scaled by pre-FTL technological age
+		# in pre_ftl_trade_value_mult
+
+		# Default trade policy OR no trade policy (for gestalts)
+		# Only gain energy from the pact.
+		produces = {
+			trigger = {
+				has_modifier = preftl_action_trade_pact
+				exists = owner
+				owner = {
+					NOR = {
+						has_policy_flag = trade_conversion_consumer_goods
+						has_policy_flag = trade_conversion_unity
+						has_policy_flag = trade_conversion_trade_league
+						has_policy_flag = trade_conversion_holy_covenant
+					}
+				}
+			}
+			energy = 1
+			mult = value:pre_ftl_trade_value_mult
+		}
+		# Consumer Benefits trade policy
+		# Gain energy and consumer goods from the pact.
+		produces = {
+			trigger = {
+				has_modifier = preftl_action_trade_pact
+				exists = owner
+				owner = {
+					has_policy_flag = trade_conversion_consumer_goods
+				}
+			}
+			energy = 0.5
+			consumer_goods = 0.25
+			mult = value:pre_ftl_trade_value_mult
+		}
+		# Marketplace of Ideas trade policy
+		# Gain energy and unity from the pact.
+		produces = {
+			trigger = {
+				has_modifier = preftl_action_trade_pact
+				exists = owner
+				owner = {
+					has_policy_flag = trade_conversion_unity
+				}
+			}
+			energy = 0.5
+			unity = 0.25
+			mult = value:pre_ftl_trade_value_mult
+		}
+		# Trade League trade policy
+		# Gain energy, consumer goods and unity from the pact.
+		produces = {
+			trigger = {
+				has_modifier = preftl_action_trade_pact
+				exists = owner
+				owner = {
+					has_policy_flag = trade_conversion_trade_league
+				}
+			}
+			energy = 0.5
+			consumer_goods = 0.2
+			unity = 0.2
+			mult = value:pre_ftl_trade_value_mult
+		}
+		# Holy Covenant trade policy
+		# Gain energy and unity from the pact.
+		produces = {
+			trigger = {
+				has_modifier = preftl_action_trade_pact
+				exists = owner
+				owner = {
+					has_policy_flag = trade_conversion_holy_covenant
+				}
+			}
+			energy = 0.5
+			unity = 0.5
+			mult = value:pre_ftl_trade_value_mult
+		}
+
+		# Equal Standing GalCom resolution has passed
+		# gain a small amount of strategic resources that
+		# are present on the planet if you can mine them.
+
+		# Exotic Gases
+		produces = {
+			trigger = {
+				has_modifier = preftl_action_trade_pact
+				exists = owner
+				owner = {
+					is_galactic_community_member = yes
+					has_technology = tech_mine_exotic_gases
+				}
+				is_active_resolution = "resolution_pre_ftl_stances_equal_standing"
+			}
+			exotic_gases = 2
+			mult = value:pre_ftl_age_mult
+		}
+
+		# Rare crystals
+		produces = {
+			trigger = {
+				has_modifier = preftl_action_trade_pact
+				exists = owner
+				owner = {
+					is_galactic_community_member = yes
+					has_technology = tech_mine_rare_crystals
+				}
+				is_active_resolution = "resolution_pre_ftl_stances_equal_standing"
+			}
+			rare_crystals = 2
+			mult = value:pre_ftl_age_mult
+		}
+
+		# Volatile Motes
+		produces = {
+			trigger = {
+				has_modifier = preftl_action_trade_pact
+				exists = owner
+				owner = {
+					is_galactic_community_member = yes
+					has_technology = tech_mine_volatile_motes
+				}
+				is_active_resolution = "resolution_pre_ftl_stances_equal_standing"
+			}
+			volatile_motes = 2
+			mult = value:pre_ftl_age_mult
+		}
+	}
+
+	potential = {
+		FROM = {
+			exists = owner
+			owner = {
+				is_primitive = yes
+				current_awareness_level = full
+			}
+		}
+	}
+
+	valid = {
+		FROM = {
+			exists = owner
+			owner = {
+				is_primitive = yes
+				current_awareness_level = full
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+# Passive Observation
+passive_observation = {
+	icon = "GFX_fleet_task_passive_observation"
+	small_icon = 1
+
+	resources = {
+		category = station_observer_missions
+		# Base society research output.
+		produces = {
+			society_research = 8
+			mult = value:pre_ftl_spy_network_mult
+		}
+		# Increased society output from Advanced Xenostudies.
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_galactic_community_member = yes
+				}
+				OR = {
+					is_active_resolution = "resolution_galacticstudies_advanced_xenostudies"
+					is_active_resolution = "resolution_galacticstudies_ethical_guideline_refactoring"
+					is_active_resolution = "resolution_galacticstudies_extradimensional_experimentation"
+				}
+			}
+			society_research = 4
+			mult = value:pre_ftl_spy_network_mult
+		}
+		# Consumer goods output from Underdeveloped System Utilization.
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_galactic_community_member = yes
+				}
+				OR = {
+					is_active_resolution = "resolution_commerce_underdeveloped_system_utilization"
+					is_active_resolution = "resolution_commerce_holistic_asset_coordination"
+					is_active_resolution = "resolution_commerce_profit_maximization_engines"
+				}
+			}
+			consumer_goods = 2
+			mult = value:pre_ftl_spy_network_mult
+		}
+		#GTSMOD #修改处
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_paradox_aus
+				}
+			}
+			society_research = 4
+		}
+		# Base physics and engineering output from Exploitation Act.
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_galactic_community_member = yes
+				}
+				is_active_resolution = "resolution_pre_ftl_stances_exploitation"
+			}
+			physics_research = 4
+			engineering_research = 4
+			mult = value:pre_ftl_spy_network_mult
+		}
+		# Increased physics and engineering output from Exploitation Act combined with Advanced Xenostudies.
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_galactic_community_member = yes
+				}
+				is_active_resolution = "resolution_pre_ftl_stances_exploitation"
+				OR = {
+					is_active_resolution = "resolution_galacticstudies_advanced_xenostudies"
+					is_active_resolution = "resolution_galacticstudies_ethical_guideline_refactoring"
+					is_active_resolution = "resolution_galacticstudies_extradimensional_experimentation"
+				}
+			}
+			physics_research = 2
+			engineering_research = 2
+			mult = value:pre_ftl_spy_network_mult
+		}
+		produces = {
+			trigger = {
+				has_fleet_flag = denied_probing
+			}
+			unity = 2
+		}
+	}
+
+	potential = {
+		FROM = {
+			exists = owner
+			owner = {
+				is_primitive = yes
+				NOT = { current_awareness_level = full }
+			}
+		}
+	}
+
+	valid = {
+		NOT = {
+			has_policy_flag = interference_aggressive
+		}
+		FROM = {
+			exists = owner
+			owner = {
+				is_primitive = yes
+				NOT = { current_awareness_level = full }
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+# Specimen Collection AKA "Aggressive Observation"
+specimen_collection = {
+	icon = "GFX_fleet_task_specimen_collection"
+	small_icon = 2
+
+	resources = {
+		category = station_observer_missions
+		# Base society research output.
+		produces = {
+			society_research = 10
+			mult = value:pre_ftl_spy_network_mult
+		}
+		# Increased society output from Advanced Xenostudies.
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_galactic_community_member = yes
+				}
+				OR = {
+					is_active_resolution = "resolution_galacticstudies_advanced_xenostudies"
+					is_active_resolution = "resolution_galacticstudies_ethical_guideline_refactoring"
+					is_active_resolution = "resolution_galacticstudies_extradimensional_experimentation"
+				}
+			}
+			society_research = 6
+			mult = value:pre_ftl_spy_network_mult
+		}
+		# Consumer goods output from Underdeveloped System Utilization.
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_galactic_community_member = yes
+				}
+
+				OR = {
+					is_active_resolution = "resolution_commerce_underdeveloped_system_utilization"
+					is_active_resolution = "resolution_commerce_holistic_asset_coordination"
+					is_active_resolution = "resolution_commerce_profit_maximization_engines"
+				}
+			}
+			consumer_goods = 8
+			mult = value:pre_ftl_spy_network_mult
+		}
+		# GTSMOD
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_paradox_aus
+				}
+			}
+			society_research = 4
+		}
+		# Base physics and engineering output from Exploitation Act.
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_galactic_community_member = yes
+				}
+				is_active_resolution = "resolution_pre_ftl_stances_exploitation"
+			}
+			physics_research = 5
+			engineering_research = 5
+			mult = value:pre_ftl_spy_network_mult
+		}
+		# Increased physics and engineering output from Exploitation Act combined with Advanced Xenostudies.
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_galactic_community_member = yes
+				}
+				is_active_resolution = "resolution_pre_ftl_stances_exploitation"
+				OR = {
+					is_active_resolution = "resolution_galacticstudies_advanced_xenostudies"
+					is_active_resolution = "resolution_galacticstudies_ethical_guideline_refactoring"
+					is_active_resolution = "resolution_galacticstudies_extradimensional_experimentation"
+				}
+			}
+			physics_research = 3
+			engineering_research = 3
+			mult = value:pre_ftl_spy_network_mult
+		}
+	}
+
+	potential = {
+		FROM = {
+			exists = owner
+			owner = {
+				is_primitive = yes
+				NOT = { current_awareness_level = full }
+			}
+		}
+	}
+
+	valid = {
+		OR = {
+			has_policy_flag = interference_active
+			has_policy_flag = interference_aggressive
+		}
+		FROM = {
+			exists = owner
+			owner = {
+				is_primitive = yes
+				NOT = { current_awareness_level = full }
+			}
+			custom_tooltip = {
+				text = locked_to_passive_observation
+				observation_outpost = {
+					NOT = {
+						has_fleet_flag = denied_probing
+					}
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 5	# Use if policy allows it
+	}
+}

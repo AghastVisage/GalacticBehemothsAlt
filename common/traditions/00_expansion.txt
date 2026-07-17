@@ -1,0 +1,596 @@
+tr_expansion_adopt = {
+	unlocks_agenda = agenda_superior_colonies
+	triggered_modifier = {
+		potential = {
+			is_wilderness_empire = no
+			is_nomadic = no
+		}
+		planet_colony_development_speed_mult = 0.25
+		megastructures_habitat_alloys_upkeep_mult = -0.20
+		planet_districts_hab_alloys_upkeep_mult = -0.20
+	}
+	triggered_modifier = {
+		potential = {
+			is_wilderness_empire = yes
+			is_nomadic = no
+		}
+		terraform_speed_mult = 0.25
+		starbases_upkeep_mult = -0.20
+	}
+	triggered_modifier = {
+		potential = {
+			is_nomadic = yes
+		}
+		megastructure_build_speed_mult = 0.25
+		starbase_waystations_upkeep_mult = -0.20
+		starbase_waystations_modules_upkeep_mult = -0.20
+	}
+	# Additional effects are implemented in 00_capital_buildings.txt
+}
+
+tr_expansion_finish = {
+	modifier = {
+		planet_non_artificial_max_districts_add = 1
+		ascension_perks_add = 1
+	}
+
+	tradition_swap = {
+		name = tr_expansion_finish_void
+		inherit_name = yes
+		inherit_icon = yes
+		trigger = {
+			has_void_dweller_origin = yes
+		}
+
+		modifier = {
+			habitat_max_districts_add = 1
+			ascension_perks_add = 1
+		}
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_expansion_finish_nomad
+		inherit_name = yes
+		inherit_icon = yes
+		trigger = {
+			is_nomadic = yes
+		}
+
+		modifier = {
+			planet_artificial_max_districts_add = 1
+			ascension_perks_add = 1
+		}
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_expansion_colonization_fever_gts
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_giantess_empire = yes
+			is_nomadic = no
+		}
+
+		weight = {
+			factor = 10
+		}
+	}
+	tradition_swap = {
+		name = tr_expansion_colonization_fever_tiny
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_tiny_empire = yes
+			is_nomadic = no
+		}
+
+		weight = {
+			factor = 10
+		}
+	}
+}
+
+tr_expansion_colonization_fever = {
+	modifier = {
+		colony_start_urban_districts_add = 1
+		planet_colony_development_speed_mult = 0.25
+	}
+
+	tradition_swap = {
+		name = tr_expansion_colonization_fever_nomad
+		inherit_effects = no
+		inherit_icon = yes
+		trigger = {
+			is_nomadic = yes
+		}
+
+		modifier = {
+			empire_size_colonies_mult = -0.25
+			megastructures_arkships_cost_mult = -0.05
+			starbase_arkship_upgrades_cost_mult = -0.10
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_expansion_colonization_fever_machine
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			is_machine_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_expansion_colonization_fever_hive
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			is_hive_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_expansion_colonization_fever_wilderness
+		custom_tooltip = tr_expansion_colonization_fever_wilderness_desc
+		inherit_effects = no
+		inherit_icon = yes
+		trigger = {
+			is_wilderness_empire = yes
+			is_nomadic = no
+		}
+		# see 'wilderness.500'
+	}
+
+	tradition_swap = {
+		name = tr_expansion_colonization_fever_gts
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_giantess_empire = yes
+			is_nomadic = no
+		}
+
+		weight = {
+			factor = 10
+		}
+	}
+	tradition_swap = {
+		name = tr_expansion_colonization_fever_tiny
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_tiny_empire = yes
+			is_nomadic = no
+		}
+
+		weight = {
+			factor = 10
+		}
+	}
+
+	ai_weight = {
+		factor = 1000
+	}
+}
+
+tr_expansion_a_new_life = {
+	modifier = {
+		founder_species_growth_mult = 0.1
+	}
+	possible = {
+		has_tradition = tr_expansion_colonization_fever
+	}
+
+	tradition_swap = {
+		name = tr_expansion_a_new_life_nomad
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			is_gestalt = no
+			is_nomadic = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_expansion_a_new_life_machine
+		inherit_icon = yes
+		trigger = {
+			is_machine_empire = yes
+		}
+		modifier = {
+			planet_pop_assembly_mult = 0.10
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_expansion_a_new_life_hive
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			is_hive_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		inherit_name = yes
+		inherit_icon = yes
+		trigger = {
+			is_individual_machine = yes
+		}
+		modifier = {
+			planet_pop_assembly_mult = 0.10
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_expansion_a_new_life_wilderness
+		inherit_icon = yes
+		inherit_effects = yes
+
+		trigger = {
+			is_wilderness_empire = yes
+		}
+
+		weight = {
+			factor = 2
+		}
+	}
+
+	tradition_swap = {
+		name = tr_expansion_a_new_life_gts
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_giantess_empire = yes
+		}
+
+		weight = {
+			factor = 10
+		}
+	}
+	tradition_swap = {
+		name = tr_expansion_a_new_life_tiny
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_tiny_empire = yes
+		}
+
+		weight = {
+			factor = 10
+		}
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+tr_expansion_courier_network = {
+	possible = {
+		has_tradition = tr_expansion_reach_for_the_stars
+	}
+
+	triggered_modifier = {
+		potential = {
+			is_nomadic = no
+		}
+		empire_size_systems_mult = -0.15
+		empire_size_colonies_mult = -0.15
+	}
+
+	triggered_modifier = {
+		potential = {
+			is_nomadic = yes
+		}
+		starbase_stockpile_capacity_mult = 0.25
+		ship_starbase_stockpile_collection_rate_mult = 0.25
+	}
+
+	tradition_swap = {
+		name = tr_expansion_courier_network_machine
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			is_machine_empire = yes
+			is_nomadic = no
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_expansion_courier_network_hive
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			is_hive_empire = yes
+			is_nomadic = no
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_expansion_courier_network_wilderness
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			is_wilderness_empire = yes
+			is_nomadic = no
+		}
+
+		weight = {
+			factor = 2
+		}
+	}
+
+	tradition_swap = {
+		name = tr_expansion_courier_network_nomad
+		inherit_effects = yes
+		inherit_icon = no
+		trigger = {
+			is_gestalt = no
+			is_nomadic = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_expansion_courier_network_machine_nomad
+		inherit_effects = yes
+		inherit_icon = no
+		trigger = {
+			is_machine_empire = yes
+			is_nomadic = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_expansion_courier_network_hive_nomad
+		inherit_effects = yes
+		inherit_icon = no
+		trigger = {
+			is_hive_empire = yes
+			is_nomadic = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_expansion_courier_network_gts
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_giantess_empire = yes
+		}
+
+		weight = {
+			factor = 10
+		}
+	}
+	tradition_swap = {
+		name = tr_expansion_courier_network_tiny
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_tiny_empire = yes
+		}
+
+		weight = {
+			factor = 10
+		}
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+tr_expansion_reach_for_the_stars = {
+	triggered_modifier = {
+		potential = {
+			is_nomadic = no
+		}
+		country_starbase_influence_cost_mult = -0.10
+	}
+
+	triggered_modifier = {
+		potential = {
+			is_nomadic = yes
+		}
+		megastructures_waystations_cost_mult = -0.10
+		starbase_waystations_cost_mult = -0.10
+	}
+
+	tradition_swap = {
+		name = tr_expansion_reach_for_the_stars_machine
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			is_machine_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_expansion_reach_for_the_stars_hive
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			is_hive_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_expansion_reach_for_the_stars_gts
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_giantess_empire = yes
+		}
+
+		weight = {
+			factor = 10
+		}
+	}
+	tradition_swap = {
+		name = tr_expansion_reach_for_the_stars_tiny
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_tiny_empire = yes
+		}
+
+		weight = {
+			factor = 10
+		}
+	}
+
+	ai_weight = {
+		factor = 1000
+	}
+}
+
+tr_expansion_galactic_ambition = {
+	possible = {
+		has_tradition = tr_expansion_reach_for_the_stars
+	}
+
+	triggered_modifier = {
+		potential = {
+			is_nomadic = no
+		}
+		starbases_upkeep_mult = -0.2
+	}
+
+	triggered_modifier = {
+		potential = {
+			is_nomadic = yes
+		}
+		country_starbase_capacity_mult = 0.5
+	}
+
+	tradition_swap = {
+		name = tr_expansion_galactic_ambition_machine
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			is_machine_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_expansion_galactic_ambition_hive
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			is_hive_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_expansion_galactic_ambition_wilderness
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			is_wilderness_empire = yes
+		}
+
+		weight = {
+			factor = 2
+		}
+	}
+
+	tradition_swap = {
+		name = tr_expansion_galactic_ambition_gts
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_giantess_empire = yes
+		}
+
+		weight = {
+			factor = 10
+		}
+	}
+	tradition_swap = {
+		name = tr_expansion_galactic_ambition_tiny
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_tiny_empire = yes
+		}
+
+		weight = {
+			factor = 10
+		}
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}

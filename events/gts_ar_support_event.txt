@@ -1,0 +1,157 @@
+#用于调用，接入事件链或GUI
+
+namespace = gts_o_support_event
+
+country_event = {
+    id = gts_o_support_event.0001
+    title = gts_o_support_event.0001.title
+    desc = gts_o_support_event.0001.desc
+
+    is_triggered_only = yes
+
+    trigger = {
+        has_technology = tech_rift_sphere
+    }
+
+    immediate = {
+        give_technology = { tech = tech_rift_sphere }
+        set_country_flag = gts_astral_rift_gacha
+    }
+
+    option = {
+        trigger = { NOT = { has_global_flag = gts_genesis_rift_explored } }
+        name = gts_o_support_event.0001.1
+        custom_tooltip = gts_o_support_event.0001.1.desc
+
+        random_system_within_border = {
+            spawn_planet = {
+                class = pc_astral_scar
+                spawn_beyond_gravity_well = yes
+                orbit_angle_offset = 360
+                size = 20
+                init_effect = {
+                    set_name = "NAME_Astral_Scar"
+                    add_deposit = d_astral_threads_deposit_2
+                    prevent_anomaly = yes
+                    set_planet_flag = gts_genesis_rift_target
+                    if = {
+                        limit = {
+                            solar_system = {
+                                has_owner = yes
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        random_planet_within_border = {
+            limit = { has_planet_flag = gts_genesis_rift_target }
+
+            split_astral_scar = { ID = gts_genesis }
+        }
+        set_global_flag = gts_genesis_rift_explored
+    }
+
+    option = {
+        trigger = { NOT = { has_global_flag = gts_fluid_rift_explored } }
+        name = gts_o_support_event.0001.2
+        custom_tooltip = gts_o_support_event.0001.2.desc
+
+        random_system_within_border = {
+            spawn_planet = {
+                class = pc_astral_scar
+                spawn_beyond_gravity_well = yes
+                orbit_angle_offset = 360
+                size = 20
+                init_effect = {
+                    set_name = "NAME_Astral_Scar"
+                    add_deposit = d_astral_threads_deposit_2
+                    prevent_anomaly = yes
+                    set_planet_flag = gts_fluid_rift_target
+                    if = {
+                        limit = {
+                            solar_system = {
+                                has_owner = yes
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        random_planet_within_border = {
+            limit = { has_planet_flag = gts_fluid_rift_target }
+
+            split_astral_scar = { ID = gts_fluid }
+        }
+        set_global_flag = gts_fluid_rift_explored
+    }
+
+    option = {
+        trigger = { NOT = { has_global_flag = gts_windswept_planet_rift_explored } }
+        name = gts_o_support_event.0001.3
+        custom_tooltip = gts_o_support_event.0001.3.desc
+
+        random_system_within_border = {
+            spawn_planet = {
+                class = pc_astral_scar
+                spawn_beyond_gravity_well = yes
+                orbit_angle_offset = 360
+                size = 20
+                init_effect = {
+                    set_name = "NAME_Astral_Scar"
+                    add_deposit = d_astral_threads_deposit_2
+                    prevent_anomaly = yes
+                    set_planet_flag = gts_windswept_planet_rift_target
+                    if = {
+                        limit = {
+                            solar_system = {
+                                has_owner = yes
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        random_planet_within_border = {
+            limit = { has_planet_flag = gts_windswept_planet_rift_target }
+
+            split_astral_scar = { ID = gts_windswept_planet }
+        }
+        set_global_flag = gts_windswept_planet_rift_explored
+    }
+
+    option = {
+        trigger = {
+            has_global_flag = gts_genesis_rift_explored
+            has_global_flag = gts_fluid_rift_explored
+            has_global_flag = gts_windswept_planet_rift_explored
+        }
+        name = gts_o_support_event.0001.99
+
+        add_resource = { astral_threads = 100 }
+    }
+}
+
+#不要问为什么用0002触发0001，面向结果编程是这样的
+ship_event = {
+    id = gts_o_support_event.0002
+    title = gts_o_support_event.0002.title
+    desc = gts_o_support_event.0002.desc
+    picture = GFX_evt_worrying_signal
+
+    is_triggered_only = yes
+
+    immediate = {
+        owner ={
+            add_resource = { astral_threads = 100 }
+            give_technology = { tech = tech_rift_sphere }
+            country_event = {
+                id = gts_o_support_event.0001
+                days = 7
+            }
+        }
+    }
+}

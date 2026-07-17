@@ -1,0 +1,822 @@
+gts_inside_institute_worker = {
+	#靴内学园教师
+	category = specialist
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER	#条件字符串
+			building_icon = building_gts_inside_institute
+		}
+	}
+
+	tags = { unity research }
+
+	inline_script = "jobs/automodding_priority_research"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible = {
+		gts_is_tiny = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+
+	resources = {
+		category = planet_researchers
+		produces = {
+			physics_research = 60
+			society_research = 60
+			engineering_research = 60
+			unity = 18
+		}
+		upkeep = {
+			consumer_goods = 6
+			gts_giantess_fluid = 2
+			gts_giantess_underwear = 2
+			gts_giantess_human = 0.25
+		}
+	}
+
+	planet_modifier = {
+		planet_jobs_physics_research_produces_mult = 0.025
+		planet_jobs_society_research_produces_mult = 0.025
+		planet_jobs_engineering_research_produces_mult = 0.025
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+		modifier = {
+			factor = 10
+			gts_is_tiny = yes
+		}
+	}
+}
+
+lingruzhe_tester = { #
+	category = specialist
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_hstar_lingruzhe_factory
+		}
+	}
+	tags = { }
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+	possible = {
+		complex_specialist_job_check_trigger = yes
+	}
+	resources = {
+		category = planet_jobs
+		produces = {
+			gts_hstar_lingruzhe = 5
+		}
+		upkeep = {
+			nanites = 0.5
+			food = 4
+			energy = 2
+		}
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+    }
+}
+
+gts_squire = {
+	#职务：侍从
+	category = specialist	#类型
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER	#条件字符串
+			building_icon = building_holo_theatres
+		}
+	}
+
+	tags = { unity }
+
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+	possible_precalc = can_fill_specialist_job
+	possible = {
+		complex_specialist_job_check_trigger = yes
+	}
+	resources = {
+		category = planet_squires		#类型：侍从（受到相关修正影响）
+		produces = {
+			unity = 5
+		}
+	}
+
+	inline_script = "jobs/automodding_priority_unity"
+
+	weight = {
+		weight = @specialist_job_weight
+	}
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+}
+
+gts_battle_nun = {
+	#职务：战斗修女
+	category = specialist	#类型
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER	#条件字符串
+			building_icon = building_holo_theatres
+		}
+	}
+
+	tags = { soldier unity crime }
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+	possible_precalc = can_fill_specialist_job
+	possible = {
+		complex_specialist_job_check_trigger = yes
+	}
+	resources = {
+		category = planet_soldiers		#类型：士兵（受到相关修正影响）
+		produces = {
+			unity = 16
+		}
+		upkeep = {
+			#维护费
+			consumer_goods = 2
+		}
+	}
+	# pop_group_modifier = {
+	# 	planet_defense_armies_add = 10
+	# }
+	country_modifier = {
+		country_naval_cap_add = 20
+	}
+	planet_modifier = {
+		planet_crime_add = -10
+		planet_jobs_produces_mult = 0.03
+	}
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_valid_civic = civic_efficient_bureaucracy
+			}
+		}
+		country_edict_fund_add = 2
+		mult = value:job_total_output_modifier|JOB|priest|RESOURCE|unity|
+	}
+	weight = {
+		weight = @specialist_job_weight
+	}
+
+	inline_script = "jobs/automodding_priority_unity"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+}
+gts_assimilator_researcher = {
+	#职务：小人研究员
+	category = specialist
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER	#条件字符串
+			building_icon = building_research_lab_1
+			icon = researcher
+		}
+	}
+
+	tags = { research trade amenities }
+
+	inline_script = "jobs/automodding_priority_research"
+	inline_script = "jobs/automodding_priority_trade"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+	possible_precalc = can_fill_specialist_job
+	possible = {
+		complex_specialist_job_check_trigger = yes
+	}
+	resources = {
+		category = planet_researchers
+		produces = {
+			physics_research = 4
+			engineering_research = 4
+			society_research = 6
+			trade = 10
+		}
+		upkeep = {
+			consumer_goods = 2
+		}
+		upkeep = {
+			trigger = {
+				planet = {
+					has_planet_flag = has_science_ministry
+				}
+			}
+			consumer_goods = 1
+		}
+	}
+	planet_modifier = {
+		planet_amenities_add = 100
+	}
+	weight = {
+		weight = @specialist_job_weight
+		modifier = {
+			factor = 100
+			OR = {
+				has_trait = trait_Titan
+				has_trait = trait_Giant
+			}
+		}
+	}
+}
+
+gts_sperm_soldier = {
+
+	#
+
+	category = specialist
+
+	swappable_data = {
+		default = {
+			condition_string = SOLDIER_JOB_TRIGGER
+			# building_icon = building_gts_inside_institute
+			icon = soldier
+		}
+	}
+
+	tags = { soldier }
+
+	inline_script = "output/soldier_triggered_modifiers"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible = {
+		soldier_job_check_trigger = yes
+		owner = { is_gestalt = no }
+	}
+
+	country_modifier = {
+		country_naval_cap_add = 10
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+		}
+		planet_crime_add = -3	#犯罪度
+		planet_stability_add = 3
+		planet_defense_armies_add = 2
+	}
+
+	resources = {
+		category = planet_soldiers
+		produces = {
+		}
+		upkeep = {
+			alloys = 1
+			minerals = 4
+		}
+	}
+
+	weight = {
+		weight = @soldier_job_weight
+		modifier = {
+			factor = 10
+			gts_is_tiny = yes
+		}
+		modifier = {
+			factor = 10
+			exists = planet
+			planet = {
+				exists = leader
+				leader = {
+					leader_class = commander
+				}
+			}
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_resilient
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_very_strong
+		}
+		modifier = {
+			factor = 1.5
+			has_trait = trait_strong
+		}
+		modifier = {
+			factor = 0.5
+			has_trait = trait_weak
+		}
+		modifier = {
+			factor = 0.1
+			is_enslaved = yes
+			NOT = { has_slavery_type = { type = slavery_military } }
+		}
+		modifier = {
+			factor = 10
+			is_enslaved = yes
+			has_slavery_type = { type = slavery_military }
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 1.1
+			has_trait = trait_cybernetic
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_presapient_earthbound
+		}
+		modifier = {
+			factor = 1.1
+			has_trait = trait_limited_regeneration
+		}
+		modifier = {
+			factor = 0
+			species = { can_be_soldier = no }
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_lithoid
+		}
+		modifier = {
+			factor = 5
+			has_trait = trait_cyborg_creed_of_war
+		}
+	}
+}
+tiny_sperm_commander = {
+
+	#
+
+	category = specialist
+
+	swappable_data = {
+		default = {
+			condition_string = SOLDIER_JOB_TRIGGER
+			# building_icon = building_miocro_fortress
+			icon = soldier
+		}
+	}
+
+	tags = { soldier }
+
+	inline_script = "output/soldier_triggered_modifiers"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible = {
+		soldier_job_check_trigger = yes
+		owner = { is_gestalt = no }
+	}
+
+	country_modifier = {
+		country_naval_cap_add = 10
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+		}
+		planet_crime_add = -3	#犯罪度
+		planet_stability_add = 3
+		planet_defense_armies_add = 2
+	}
+
+	resources = {
+		category = planet_soldiers
+		produces = {
+		}
+		upkeep = {
+			# 40
+			alloys = 1
+			minerals = 2
+			food = 2
+		}
+	}
+
+	weight = {
+		weight = @soldier_job_weight
+		modifier = {
+			factor = 10
+			gts_is_giantess = yes
+		}
+		modifier = {
+			factor = 10
+			exists = planet
+			planet = {
+				exists = leader
+				leader = {
+					leader_class = commander
+				}
+			}
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_resilient
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_very_strong
+		}
+		modifier = {
+			factor = 1.5
+			has_trait = trait_strong
+		}
+		modifier = {
+			factor = 0.5
+			has_trait = trait_weak
+		}
+		modifier = {
+			factor = 0.1
+			is_enslaved = yes
+			NOT = { has_slavery_type = { type = slavery_military } }
+		}
+		modifier = {
+			factor = 10
+			is_enslaved = yes
+			has_slavery_type = { type = slavery_military }
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 1.1
+			has_trait = trait_cybernetic
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_presapient_earthbound
+		}
+		modifier = {
+			factor = 1.1
+			has_trait = trait_limited_regeneration
+		}
+		modifier = {
+			factor = 0
+			species = { can_be_soldier = no }
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_lithoid
+		}
+		modifier = {
+			factor = 5
+			has_trait = trait_cyborg_creed_of_war
+		}
+	}
+}
+
+gts_prision_worker = {
+
+	#
+
+	category = specialist
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER	#条件字符串
+			# building_icon = building_sock_prision
+		}
+	}
+
+	tags = { crime enforcer }
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible = {
+		gts_is_giantess = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+
+	resources = {
+		category = planet_enforcers
+		produces = {
+		}
+		upkeep = {
+			# 40
+			alloys = 3
+			gts_micro = 4
+		}
+	}
+
+	planet_modifier = {
+		planet_crime_add = -50
+		planet_stability_add = 5
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+		modifier = {
+			factor = 10
+			gts_is_giantess = yes
+		}
+	}
+}
+tiny_prison_worker = {
+
+	#
+
+	category = specialist
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER	#条件字符串
+			# building_icon = building_gts_inside_prison
+		}
+	}
+
+	tags = { crime enforcer }
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible = {
+		gts_is_tiny = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+
+	resources = {
+		category = planet_enforcers
+		produces = {
+		}
+		upkeep = {
+			# 40
+			gts_giantess_underwear = 3
+			gts_giantess_human = 1
+		}
+	}
+
+	planet_modifier = {
+		planet_crime_add = -50
+		planet_stability_add = 5
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+		modifier = {
+			factor = 10
+			gts_is_tiny = yes
+		}
+	}
+}
+
+gts_growth_worker = {
+
+	#
+
+	category = specialist
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER	#鏉′欢瀛楃涓?
+			# building_icon = building_sock_prision
+		}
+	}
+
+	tags = {
+	}
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible = {
+		gts_is_giantess = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+
+	resources = {
+		category = planet_enforcers
+		produces = {
+		}
+		upkeep = {
+			food = 5
+		}
+	}
+
+	planet_modifier = {
+		logistic_growth_mult = 0.01   #人口增长速度
+		bonus_pop_growth_mult = 0.01
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+		modifier = {
+			factor = 10
+			gts_is_giantess = yes
+		}
+	}
+}
+tiny_growth_worker = {
+
+	#
+
+	category = specialist
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER	#鏉′欢瀛楃涓?
+			# building_icon = building_gts_inside_prison
+		}
+	}
+
+	tags = {
+	}
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible = {
+		gts_is_tiny = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+
+	resources = {
+		category = planet_enforcers
+		produces = {
+		}
+		upkeep = {
+			food = 5
+		}
+	}
+
+	planet_modifier = {
+		logistic_growth_mult = 0.01   #人口增长速度
+		bonus_pop_growth_mult = 0.01
+	}
+	weight = {
+		weight = @specialist_job_weight
+		modifier = {
+			factor = 10
+			gts_is_tiny = yes
+		}
+	}
+}
+

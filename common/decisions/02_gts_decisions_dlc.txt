@@ -1,0 +1,99 @@
+decision_baonuezhe = {
+	owned_planets_only = yes
+
+	resources = {
+		category = resolutions
+		cost = {
+			gts_hstar_lingruzhe = 500
+		}
+	}
+
+	potential = {
+		has_building = building_hstar_lingruzhe_factory
+		owner = {
+			has_country_flag = giantess_crisis_goddess_coming
+		}
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = decision_baonuezhe_no_lingruzhe
+			owner = {
+				resource_stockpile_compare = {
+					resource = gts_hstar_lingruzhe
+					value < 500
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = decision_baonuezhe_cooldown
+			has_planet_modifier = pm_baonuezhe_cooldown
+		}
+	}
+
+	effect = {
+		owner = {
+			create_fleet = {
+				name = "NAME_baonvezhe"
+				settings = {
+					spawn_debris = no
+					can_change_leader = no
+					can_upgrade = no
+					can_change_composition = no
+				}
+				effect = {
+					set_owner = PREV
+					create_ship = {
+						name = random
+						design = "NAME_baonvezhe"
+					}
+					set_location = {
+						target = PREVPREV
+						distance = 10
+						angle = random
+					}
+					set_fleet_flag = hstar_baonvezhe
+				}
+				
+			}
+		}
+		add_modifier = {
+			modifier = baonuezhe_cooldown days = 1825
+		}
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+#大型时间魔法仪式
+decision_magical_ritual_1 = {
+	owned_planets_only = yes
+
+	resources = {
+		category = resolutions
+		cost = {
+			gts_aom_magicstones = 500
+		}
+	}
+
+	potential = {
+		owner = {
+			has_technology = tech_aom_time_rewind_2
+		}
+	}
+
+	allow = {
+		NOT = {
+			has_modifier = aom_magical_ritual_1_0
+		}
+	}
+
+	effect = {
+		planet_event = { id = aom_ritual.1 }
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}

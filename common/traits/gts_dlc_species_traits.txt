@@ -1,0 +1,45 @@
+##################公民特质##################
+
+#人皇之嗣
+trait_aom_Belief = {
+	cost = 0
+	potential_crossbreeding_chance = 0.25
+	icon = "gfx/interface/icons/traits/Belief.dds"
+
+	improves_leaders = yes
+	initial = yes
+	randomized = no
+	species_potential_add = {
+		always = no
+	}
+	species_possible_remove = {
+		always = no
+	}
+	species_possible_merge_add = {
+		always = no
+	}
+
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	localized_tags = {
+		SPECIES_TRAIT_VOCATIONAL
+	}
+	tags = { organic positive pop_output energy }
+	modifier = {
+		pop_bonus_workforce_mult = 0.20
+	}
+	custom_tooltip = TRAIT_AOM_BELIEF_EFFECT
+
+	resources = {
+		category = planet_pops
+		produces = {
+			trigger = {
+				is_slave_or_better = yes
+			}
+			gts_aom_Belief = @lithoid_trait_resource_production
+			mult = value:lithoid_trait_mult
+		}
+	}
+	slave_cost = {
+		energy = 1500
+	}
+}

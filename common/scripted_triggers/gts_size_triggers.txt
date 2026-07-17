@@ -1,0 +1,1244 @@
+ ################################
+ #
+ #       检测物种/领袖体型
+ #       测试事件：gts_utility.501
+ #
+ ################################
+
+gts_has_size_trait = {
+	# 拥有体型特质
+	OR = {
+		has_trait = trait_Ultra
+		has_trait = trait_Titan
+		has_trait = trait_Giant
+		has_trait = trait_Tall
+        has_trait = trait_Normal
+		has_trait = trait_Small
+		has_trait = trait_Tiny
+		has_trait = trait_Micro
+		has_trait = trait_Nano
+		has_trait = leader_trait_Ultra
+		has_trait = leader_trait_Titan
+		has_trait = leader_trait_Giant
+		has_trait = leader_trait_Tall
+        has_trait = leader_trait_Normal
+		has_trait = leader_trait_Small
+		has_trait = leader_trait_Tiny
+		has_trait = leader_trait_Micro
+		has_trait = leader_trait_Nano
+	}
+}
+
+gts_is_giantess = {
+	# 体型是巨娘
+	OR = {
+		has_trait = trait_Ultra
+		has_trait = trait_Titan
+		has_trait = trait_Giant
+		has_trait = trait_Tall
+		has_trait = leader_trait_Ultra
+		has_trait = leader_trait_Titan
+		has_trait = leader_trait_Giant
+		has_trait = leader_trait_Tall
+	}
+}
+
+
+
+gts_is_tiny = {
+	# 体型是小人
+	OR = {
+		has_trait = trait_Normal
+		has_trait = trait_Small
+		has_trait = trait_Tiny
+		has_trait = trait_Micro
+		has_trait = trait_Nano
+		has_trait = leader_trait_Normal
+		has_trait = leader_trait_Small
+		has_trait = leader_trait_Tiny
+		has_trait = leader_trait_Micro
+		has_trait = leader_trait_Nano
+	}
+}
+
+gts_is_bigger_than = {
+	# 体型大于$TARGET$
+	switch = {
+		trigger = has_trait
+		trait_Ultra = {
+			$TARGET$ = {
+				OR = {
+					has_trait = trait_Titan
+					has_trait = trait_Giant
+					has_trait = trait_Tall
+					has_trait = trait_Normal
+					has_trait = trait_Small
+					has_trait = trait_Tiny
+					has_trait = trait_Micro
+					has_trait = trait_Nano
+					has_trait = leader_trait_Titan
+					has_trait = leader_trait_Giant
+					has_trait = leader_trait_Tall
+					has_trait = leader_trait_Normal
+					has_trait = leader_trait_Small
+					has_trait = leader_trait_Tiny
+					has_trait = leader_trait_Micro
+					has_trait = leader_trait_Nano
+				}
+			}
+		}
+		trait_Titan = {
+			$TARGET$ = {
+				OR = {
+					has_trait = trait_Giant
+					has_trait = trait_Tall
+					has_trait = trait_Normal
+					has_trait = trait_Small
+					has_trait = trait_Tiny
+					has_trait = trait_Micro
+					has_trait = trait_Nano
+					has_trait = leader_trait_Giant
+					has_trait = leader_trait_Tall
+					has_trait = leader_trait_Normal
+					has_trait = leader_trait_Small
+					has_trait = leader_trait_Tiny
+					has_trait = leader_trait_Micro
+					has_trait = leader_trait_Nano
+				}
+			}
+		}
+		trait_Giant = {
+			$TARGET$ = {
+				OR = {
+					has_trait = trait_Tall
+					has_trait = trait_Normal
+					has_trait = trait_Small
+					has_trait = trait_Tiny
+					has_trait = trait_Micro
+					has_trait = trait_Nano
+					has_trait = leader_trait_Tall
+					has_trait = leader_trait_Normal
+					has_trait = leader_trait_Small
+					has_trait = leader_trait_Tiny
+					has_trait = leader_trait_Micro
+					has_trait = leader_trait_Nano
+				}
+			}
+		}
+		trait_Tall = {
+			$TARGET$ = {
+				OR = {
+					has_trait = trait_Normal
+					has_trait = trait_Small
+					has_trait = trait_Tiny
+					has_trait = trait_Micro
+					has_trait = trait_Nano
+					has_trait = leader_trait_Normal
+					has_trait = leader_trait_Small
+					has_trait = leader_trait_Tiny
+					has_trait = leader_trait_Micro
+					has_trait = leader_trait_Nano
+				}
+			}
+		}
+		trait_Normal = {
+			$TARGET$ = {
+				OR = {
+					has_trait = trait_Small
+					has_trait = trait_Tiny
+					has_trait = trait_Micro
+					has_trait = trait_Nano
+					has_trait = leader_trait_Small
+					has_trait = leader_trait_Tiny
+					has_trait = leader_trait_Micro
+					has_trait = leader_trait_Nano
+				}
+			}
+		}
+		trait_Small = {
+			$TARGET$ = {
+				OR = {
+					has_trait = trait_Tiny
+					has_trait = trait_Micro
+					has_trait = trait_Nano
+					has_trait = leader_trait_Tiny
+					has_trait = leader_trait_Micro
+					has_trait = leader_trait_Nano
+				}
+			}
+		}
+		trait_Tiny = {
+			$TARGET$ = {
+				OR = {
+					has_trait = trait_Micro
+					has_trait = trait_Nano
+					has_trait = leader_trait_Micro
+					has_trait = leader_trait_Nano
+				}
+			}
+		}
+		trait_Micro = {
+			$TARGET$ = {
+				OR = {
+					has_trait = trait_Nano
+					has_trait = leader_trait_Nano
+				}
+			}
+		}
+		trait_Nano = {
+			always = no
+		}
+		leader_trait_Ultra = {
+			$TARGET$ = {
+				OR = {
+					has_trait = leader_trait_Titan
+					has_trait = leader_trait_Giant
+					has_trait = leader_trait_Tall
+					has_trait = leader_trait_Normal
+					has_trait = leader_trait_Small
+					has_trait = leader_trait_Tiny
+					has_trait = leader_trait_Micro
+					has_trait = leader_trait_Nano
+					has_trait = trait_Titan
+					has_trait = trait_Giant
+					has_trait = trait_Tall
+					has_trait = trait_Normal
+					has_trait = trait_Small
+					has_trait = trait_Tiny
+					has_trait = trait_Micro
+					has_trait = trait_Nano
+				}
+			}
+		}
+		leader_trait_Titan = {
+			$TARGET$ = {
+				OR = {
+					has_trait = leader_trait_Giant
+					has_trait = leader_trait_Tall
+					has_trait = leader_trait_Normal
+					has_trait = leader_trait_Small
+					has_trait = leader_trait_Tiny
+					has_trait = leader_trait_Micro
+					has_trait = leader_trait_Nano
+					has_trait = trait_Giant
+					has_trait = trait_Tall
+					has_trait = trait_Normal
+					has_trait = trait_Small
+					has_trait = trait_Tiny
+					has_trait = trait_Micro
+					has_trait = trait_Nano
+				}
+			}
+		}
+		leader_trait_Giant = {
+			$TARGET$ = {
+				OR = {
+					has_trait = leader_trait_Tall
+					has_trait = leader_trait_Normal
+					has_trait = leader_trait_Small
+					has_trait = leader_trait_Tiny
+					has_trait = leader_trait_Micro
+					has_trait = leader_trait_Nano
+					has_trait = trait_Tall
+					has_trait = trait_Normal
+					has_trait = trait_Small
+					has_trait = trait_Tiny
+					has_trait = trait_Micro
+					has_trait = trait_Nano
+				}
+			}
+		}
+		leader_trait_Tall = {
+			$TARGET$ = {
+				OR = {
+					has_trait = leader_trait_Normal
+					has_trait = leader_trait_Small
+					has_trait = leader_trait_Tiny
+					has_trait = leader_trait_Micro
+					has_trait = leader_trait_Nano
+					has_trait = trait_Normal
+					has_trait = trait_Small
+					has_trait = trait_Tiny
+					has_trait = trait_Micro
+					has_trait = trait_Nano
+				}
+			}
+		}
+		leader_trait_Normal = {
+			$TARGET$ = {
+				OR = {
+					has_trait = leader_trait_Small
+					has_trait = leader_trait_Tiny
+					has_trait = leader_trait_Micro
+					has_trait = leader_trait_Nano
+					has_trait = trait_Small
+					has_trait = trait_Tiny
+					has_trait = trait_Micro
+					has_trait = trait_Nano
+				}
+			}
+		}
+		leader_trait_Small = {
+			$TARGET$ = {
+				OR = {
+					has_trait = leader_trait_Tiny
+					has_trait = leader_trait_Micro
+					has_trait = leader_trait_Nano
+					has_trait = trait_Tiny
+					has_trait = trait_Micro
+					has_trait = trait_Nano
+				}
+			}
+		}
+		leader_trait_Tiny = {
+			$TARGET$ = {
+				OR = {
+					has_trait = leader_trait_Micro
+					has_trait = leader_trait_Nano
+					has_trait = trait_Micro
+					has_trait = trait_Nano
+				}
+			}
+		}
+		leader_trait_Micro = {
+			$TARGET$ = {
+				OR = {
+					has_trait = leader_trait_Nano
+					has_trait = trait_Nano
+				}
+			}
+		}
+		leader_trait_Nano = {
+			always = no
+		}
+	}
+}
+
+gts_is_equal_to = {
+	# 体型等于$TARGET$
+	switch = {
+		trigger = has_trait
+		trait_Ultra = {
+			$TARGET$ = {
+				OR = {
+					has_trait = trait_Ultra
+					has_trait = leader_trait_Ultra
+				}
+			}
+		}
+		trait_Titan = {
+			$TARGET$ = {
+				OR = {
+					has_trait = trait_Titan
+					has_trait = leader_trait_Titan					
+				}
+			}
+		}
+		trait_Giant = {
+			$TARGET$ = {
+				OR = {
+					has_trait = trait_Giant
+					has_trait = leader_trait_Giant
+				}
+
+			}
+		}
+		trait_Tall = {
+			$TARGET$ = {
+				OR = {
+					has_trait = trait_Tall
+					has_trait = leader_trait_Tall
+				}
+			}
+		}
+		trait_Normal = {
+			$TARGET$ = {
+				OR = {
+					has_trait = trait_Normal
+					has_trait = leader_trait_Normal
+				}
+			}
+		}
+		trait_Small = {
+			$TARGET$ = {
+				OR = {
+					has_trait = trait_Small
+					has_trait = leader_trait_Small
+				}
+			}
+		}
+		trait_Tiny = {
+			$TARGET$ = {
+				OR = {
+					has_trait = trait_Tiny
+					has_trait = leader_trait_Tiny
+				}
+			}
+		}
+		trait_Micro = {
+			$TARGET$ = {
+				OR = {
+					has_trait = trait_Micro
+					has_trait = leader_trait_Micro
+				}
+			}
+		}
+		trait_Nano = {
+			$TARGET$ = {
+				OR = {
+					has_trait = trait_Nano
+					has_trait = leader_trait_Nano
+				}
+			}
+		}
+		leader_trait_Ultra = {
+			$TARGET$ = {
+				OR = {
+					has_trait = trait_Ultra
+					has_trait = leader_trait_Ultra
+				}
+			}
+		}
+		leader_trait_Titan = {
+			$TARGET$ = {
+				OR = {
+					has_trait = trait_Titan
+					has_trait = leader_trait_Titan
+				}
+			}
+		}
+		leader_trait_Giant = {
+			$TARGET$ = {
+				OR = {
+					has_trait = trait_Giant
+					has_trait = leader_trait_Giant
+				}
+			}
+		}
+		leader_trait_Tall = {
+			$TARGET$ = {
+				OR = {
+					has_trait = trait_Tall
+					has_trait = leader_trait_Tall
+				}
+			}
+		}
+		leader_trait_Normal = {
+			$TARGET$ = {
+				OR = {
+					has_trait = trait_Normal
+					has_trait = leader_trait_Normal
+				}
+			}
+		}
+		leader_trait_Small = {
+			$TARGET$ = {
+				OR = {
+					has_trait = trait_Small
+					has_trait = leader_trait_Small
+				}
+			}
+		}
+		leader_trait_Tiny = {
+			$TARGET$ = {
+				OR = {
+					has_trait = trait_Tiny
+					has_trait = leader_trait_Tiny
+				}
+			}
+		}
+		leader_trait_Micro = {
+			$TARGET$ = {
+				OR = {
+					has_trait = trait_Micro
+					has_trait = leader_trait_Micro
+				}
+			}
+		}
+		leader_trait_Nano = {
+			$TARGET$ = {
+				OR = {
+					has_trait = trait_Nano
+					has_trait = leader_trait_Nano
+				}
+			}
+		}
+	}
+}
+
+gts_is_smaller_than = {
+	# 体型小于$TARGET$
+	switch = {
+		trigger = has_trait
+		trait_Ultra = {
+			always = no
+		}
+		trait_Titan = {
+			$TARGET$ = {
+				OR = {
+					has_trait = trait_Ultra
+					has_trait = leader_trait_Ultra
+				}
+			}
+		}
+		trait_Giant = {
+			$TARGET$ = {
+				OR = {
+					has_trait = trait_Ultra
+					has_trait = trait_Titan
+					has_trait = leader_trait_Ultra
+					has_trait = leader_trait_Titan
+				}
+			}
+		}
+		trait_Tall = {
+			$TARGET$ = {
+				OR = {
+					has_trait = trait_Ultra
+					has_trait = trait_Titan
+					has_trait = trait_Giant
+					has_trait = leader_trait_Ultra
+					has_trait = leader_trait_Titan
+					has_trait = leader_trait_Giant
+				}
+			}
+		}
+		trait_Normal = {
+			$TARGET$ = {
+				OR = {
+					has_trait = trait_Ultra
+					has_trait = trait_Titan
+					has_trait = trait_Giant
+					has_trait = trait_Tall
+					has_trait = leader_trait_Ultra
+					has_trait = leader_trait_Titan
+					has_trait = leader_trait_Giant
+					has_trait = leader_trait_Tall
+				}
+			}
+		}
+		trait_Small = {
+			$TARGET$ = {
+				OR = {
+					has_trait = trait_Ultra
+					has_trait = trait_Titan
+					has_trait = trait_Giant
+					has_trait = trait_Tall
+					has_trait = trait_Normal
+					has_trait = leader_trait_Ultra
+					has_trait = leader_trait_Titan
+					has_trait = leader_trait_Giant
+					has_trait = leader_trait_Tall
+					has_trait = leader_trait_Normal
+				}
+			}
+		}
+		trait_Tiny = {
+			$TARGET$ = {
+				OR = {
+					has_trait = trait_Ultra
+					has_trait = trait_Titan
+					has_trait = trait_Giant
+					has_trait = trait_Tall
+					has_trait = trait_Normal
+					has_trait = trait_Small
+					has_trait = leader_trait_Ultra
+					has_trait = leader_trait_Titan
+					has_trait = leader_trait_Giant
+					has_trait = leader_trait_Tall
+					has_trait = leader_trait_Normal
+					has_trait = leader_trait_Small
+				}
+			}
+		}
+		trait_Micro = {
+			$TARGET$ = {
+				OR = {
+					has_trait = trait_Ultra
+					has_trait = trait_Titan
+					has_trait = trait_Giant
+					has_trait = trait_Tall
+					has_trait = trait_Normal
+					has_trait = trait_Small
+					has_trait = trait_Tiny
+					has_trait = leader_trait_Ultra
+					has_trait = leader_trait_Titan
+					has_trait = leader_trait_Giant
+					has_trait = leader_trait_Tall
+					has_trait = leader_trait_Normal
+					has_trait = leader_trait_Small
+					has_trait = leader_trait_Tiny
+				}
+			}
+		}
+		trait_Nano = {
+			$TARGET$ = {
+				OR = {
+					has_trait = trait_Ultra
+					has_trait = trait_Titan
+					has_trait = trait_Giant
+					has_trait = trait_Tall
+					has_trait = trait_Normal
+					has_trait = trait_Small
+					has_trait = trait_Tiny
+					has_trait = trait_Micro
+					has_trait = leader_trait_Ultra
+					has_trait = leader_trait_Titan
+					has_trait = leader_trait_Giant
+					has_trait = leader_trait_Tall
+					has_trait = leader_trait_Normal
+					has_trait = leader_trait_Small
+					has_trait = leader_trait_Tiny
+					has_trait = leader_trait_Micro
+				}
+			}
+		}
+		leader_trait_Ultra = {
+			always = no
+		}
+		leader_trait_Titan = {
+			$TARGET$ = {
+				OR = {
+					has_trait = trait_Ultra
+					has_trait = leader_trait_Ultra
+				}
+			}
+		}
+		leader_trait_Giant = {
+			$TARGET$ = {
+				OR = {
+					has_trait = trait_Ultra
+					has_trait = trait_Titan
+					has_trait = leader_trait_Ultra
+					has_trait = leader_trait_Titan
+				}
+			}
+		}
+		leader_trait_Tall = {
+			$TARGET$ = {
+				OR = {
+					has_trait = trait_Ultra
+					has_trait = trait_Titan
+					has_trait = trait_Giant
+					has_trait = leader_trait_Ultra
+					has_trait = leader_trait_Titan
+					has_trait = leader_trait_Giant
+				}
+			}
+		}
+		leader_trait_Normal = {
+			$TARGET$ = {
+				OR = {
+					has_trait = trait_Ultra
+					has_trait = trait_Titan
+					has_trait = trait_Giant
+					has_trait = trait_Tall
+					has_trait = leader_trait_Ultra
+					has_trait = leader_trait_Titan
+					has_trait = leader_trait_Giant
+					has_trait = leader_trait_Tall
+				}
+			}
+		}
+		leader_trait_Small = {
+			$TARGET$ = {
+				OR = {
+					has_trait = trait_Ultra
+					has_trait = trait_Titan
+					has_trait = trait_Giant
+					has_trait = trait_Tall
+					has_trait = trait_Normal
+					has_trait = leader_trait_Ultra
+					has_trait = leader_trait_Titan
+					has_trait = leader_trait_Giant
+					has_trait = leader_trait_Tall
+					has_trait = leader_trait_Normal
+				}
+			}
+		}
+		leader_trait_Tiny = {
+			$TARGET$ = {
+				OR = {
+					has_trait = trait_Ultra
+					has_trait = trait_Titan
+					has_trait = trait_Giant
+					has_trait = trait_Tall
+					has_trait = trait_Normal
+					has_trait = trait_Small
+					has_trait = leader_trait_Ultra
+					has_trait = leader_trait_Titan
+					has_trait = leader_trait_Giant
+					has_trait = leader_trait_Tall
+					has_trait = leader_trait_Normal
+					has_trait = leader_trait_Small
+				}
+			}
+		}
+		leader_trait_Micro = {
+			$TARGET$ = {
+				OR = {
+					has_trait = trait_Ultra
+					has_trait = trait_Titan
+					has_trait = trait_Giant
+					has_trait = trait_Tall
+					has_trait = trait_Normal
+					has_trait = trait_Small
+					has_trait = trait_Tiny
+					has_trait = leader_trait_Ultra
+					has_trait = leader_trait_Titan
+					has_trait = leader_trait_Giant
+					has_trait = leader_trait_Tall
+					has_trait = leader_trait_Normal
+					has_trait = leader_trait_Small
+					has_trait = leader_trait_Tiny
+				}
+			}
+		}
+		leader_trait_Nano = {
+			$TARGET$ = {
+				OR = {
+					has_trait = trait_Ultra
+					has_trait = trait_Titan
+					has_trait = trait_Giant
+					has_trait = trait_Tall
+					has_trait = trait_Normal
+					has_trait = trait_Small
+					has_trait = trait_Tiny
+					has_trait = trait_Micro
+					has_trait = leader_trait_Ultra
+					has_trait = leader_trait_Titan
+					has_trait = leader_trait_Giant
+					has_trait = leader_trait_Tall
+					has_trait = leader_trait_Normal
+					has_trait = leader_trait_Small
+					has_trait = leader_trait_Tiny
+					has_trait = leader_trait_Micro
+				}
+			}
+		}
+	}
+}
+
+
+gts_is_smaller_than_ultra = {
+    #体型小于天体级
+	switch = {
+		trigger = has_trait
+		trait_Ultra = {
+			always = no
+		}
+		leader_trait_Ultra = {
+			always = no
+		}
+		default = {
+			always = yes
+		}
+	}
+}
+
+gts_is_smaller_than_titan = {
+    #体型小于泰坦
+	switch = {
+		trigger = has_trait
+		trait_Ultra = {
+			always = no
+		}
+		trait_Titan = {
+			always = no
+		}
+		leader_trait_Ultra = {
+			always = no
+		}
+		leader_trait_Titan = {
+			always = no
+		}
+		default = {
+			always = yes
+		}
+	}
+}
+
+gts_is_smaller_than_giant = {
+    #体型小于巨大
+	switch = {
+		trigger = has_trait
+		trait_Ultra = {
+			always = no
+		}
+		trait_Titan = {
+			always = no
+		}
+		trait_Giant = {
+			always = no
+		}
+		leader_trait_Ultra = {
+			always = no
+		}
+		leader_trait_Titan = {
+			always = no
+		}
+		leader_trait_Giant = {
+			always = no
+		}
+		default = {
+			always = yes
+		}
+	}
+}
+gts_is_smaller_than_tall = {
+    #体型小于高大
+	switch = {
+		trigger = has_trait
+		trait_Ultra = {
+			always = no
+		}
+		trait_Titan = {
+			always = no
+		}
+		trait_Giant = {
+			always = no
+		}
+		trait_Tall = {
+			always = no
+		}
+		leader_trait_Ultra = {
+			always = no
+		}
+		leader_trait_Titan = {
+			always = no
+		}
+		leader_trait_Giant = {
+			always = no
+		}
+		leader_trait_Tall = {
+			always = no
+		}
+		default = {
+			always = yes
+		}
+	}
+}
+gts_is_smaller_than_normal = {
+    #体型小于正常
+	switch = {
+		trigger = has_trait
+		trait_Small = {
+			always = yes
+		}
+		trait_Tiny = {
+			always = yes
+		}
+		trait_Micro = {
+			always = yes
+		}
+		trait_Nano = {
+			always = yes
+		}
+		leader_trait_Small = {
+			always = yes
+		}
+		leader_trait_Tiny = {
+			always = yes
+		}
+		leader_trait_Micro = {
+			always = yes
+		}
+		leader_trait_Nano = {
+			always = yes
+		}
+		default = {
+			always = no
+		}
+	}
+}
+gts_is_smaller_than_small = {
+    #体型小于矮小
+	switch = {
+		trigger = has_trait
+		trait_Tiny = {
+			always = yes
+		}
+		trait_Micro = {
+			always = yes
+		}
+		trait_Nano = {
+			always = yes
+		}
+		leader_trait_Tiny = {
+			always = yes
+		}
+		leader_trait_Micro = {
+			always = yes
+		}
+		leader_trait_Nano = {
+			always = yes
+		}
+		default = {
+			always = no
+		}
+	}
+}
+gts_is_smaller_than_tiny = {
+    #体型小于微小
+	switch = {
+		trigger = has_trait
+		trait_Micro = {
+			always = yes
+		}
+		trait_Nano = {
+			always = yes
+		}
+		leader_trait_Micro = {
+			always = yes
+		}
+		leader_trait_Nano = {
+			always = yes
+		}
+		default = {
+			always = no
+		}
+	}
+}
+gts_is_smaller_than_micro = {
+    #体型小于微生物
+	switch = {
+		trigger = has_trait
+		trait_Nano = {
+			always = yes
+		}
+		leader_trait_Nano = {
+			always = yes
+		}
+		default = {
+			always = no
+		}
+	}
+}
+
+gts_is_bigger_than_titan = {
+    #体型大于泰坦
+	switch = {
+		trigger = has_trait
+		trait_Ultra = {
+			always = yes
+		}
+		leader_trait_Ultra = {
+			always = yes
+		}
+		default = {
+			always = no
+		}
+	}
+}
+gts_is_bigger_than_giant = {
+    #体型大于巨大
+	switch = {
+		trigger = has_trait
+		trait_Ultra = {
+			always = yes
+		}
+		trait_Titan = {
+			always = yes
+		}
+		leader_trait_Ultra = {
+			always = yes
+		}
+		leader_trait_Titan = {
+			always = yes
+		}
+		default = {
+			always = no
+		}
+	}
+}
+gts_is_bigger_than_tall = {
+    #体型大于高大
+	switch = {
+		trigger = has_trait
+		trait_Ultra = {
+			always = yes
+		}
+		trait_Titan = {
+			always = yes
+		}
+		trait_Giant = {
+			always = yes
+		}
+		leader_trait_Ultra = {
+			always = yes
+		}
+		leader_trait_Titan = {
+			always = yes
+		}
+		leader_trait_Giant = {
+			always = yes
+		}
+		default = {
+			always = no
+		}
+	}
+}
+gts_is_bigger_than_normal = {
+    #体型大于正常
+	switch = {
+		trigger = has_trait
+		trait_Ultra = {
+			always = yes
+		}
+		trait_Titan = {
+			always = yes
+		}
+		trait_Giant = {
+			always = yes
+		}
+		trait_Tall = {
+			always = yes
+		}
+		leader_trait_Ultra = {
+			always = yes
+		}
+		leader_trait_Titan = {
+			always = yes
+		}
+		leader_trait_Giant = {
+			always = yes
+		}
+		leader_trait_Tall = {
+			always = yes
+		}
+		default = {
+			always = no
+		}
+	}
+}
+gts_is_bigger_than_small = {
+    #体型大于矮小
+	switch = {
+		trigger = has_trait
+		trait_Small = {
+			always = no
+		}
+		trait_Tiny = {
+			always = no
+		}
+		trait_Micro = {
+			always = no
+		}
+		trait_Nano = {
+			always = no
+		}
+		leader_trait_Small = {
+			always = no
+		}
+		leader_trait_Tiny = {
+			always = no
+		}
+		leader_trait_Micro = {
+			always = no
+		}
+		leader_trait_Nano = {
+			always = no
+		}
+		default = {
+			always = yes
+		}
+	}
+}
+gts_is_bigger_than_tiny = {
+    #体型大于微小
+	switch = {
+		trigger = has_trait
+		trait_Tiny = {
+			always = no
+		}
+		trait_Micro = {
+			always = no
+		}
+		trait_Nano = {
+			always = no
+		}
+		leader_trait_Tiny = {
+			always = no
+		}
+		leader_trait_Micro = {
+			always = no
+		}
+		leader_trait_Nano = {
+			always = no
+		}
+		default = {
+			always = yes
+		}
+	}
+}
+gts_is_bigger_than_micro = {
+    #体型大于微生物
+	switch = {
+		trigger = has_trait
+		trait_Micro = {
+			always = no
+		}
+		trait_Nano = {
+			always = no
+		}
+		leader_trait_Micro = {
+			always = no
+		}
+		leader_trait_Nano = {
+			always = no
+		}
+		default = {
+			always = yes
+		}
+	}
+}
+gts_is_bigger_than_nano = {
+    #体型大于分子生物
+	switch = {
+		trigger = has_trait
+		trait_Nano = {
+			always = no
+		}
+		leader_trait_Nano = {
+			always = no
+		}
+		default = {
+			always = yes
+		}
+	}
+}
+gts_is_equal_to_ultra = {
+    #体型等于天体
+	switch = {
+		trigger = has_trait
+		trait_Ultra = {
+			always = yes
+		}
+		leader_trait_Ultra = {
+			always = yes
+		}
+		default = {
+			always = no
+		}
+	}
+}
+gts_is_equal_to_titan = {
+    #体型等于泰坦
+	switch = {
+		trigger = has_trait
+		trait_Titan = {
+			always = yes
+		}
+		leader_trait_Titan = {
+			always = yes
+		}
+		default = {
+			always = no
+		}
+	}
+}
+gts_is_equal_to_giant = {
+    #体型等于巨大
+	switch = {
+		trigger = has_trait
+		trait_Giant = {
+			always = yes
+		}
+		leader_trait_Giant = {
+			always = yes
+		}
+		default = {
+			always = no
+		}
+	}
+}
+gts_is_equal_to_tall = {
+    #体型等于高大
+	switch = {
+		trigger = has_trait
+		trait_Tall = {
+			always = yes
+		}
+		leader_trait_Tall = {
+			always = yes
+		}
+		default = {
+			always = no
+		}
+	}
+}
+gts_is_equal_to_normal = {
+    #体型等于正常
+	switch = {
+		trigger = has_trait
+		trait_Normal = {
+			always = yes
+		}
+		leader_trait_Normal = {
+			always = yes
+		}
+		default = {
+			always = no
+		}
+	}
+}
+gts_is_equal_to_small = {
+    #体型等于矮小
+	switch = {
+		trigger = has_trait
+		trait_Small = {
+			always = yes
+		}
+		leader_trait_Small = {
+			always = yes
+		}
+		default = {
+			always = no
+		}
+	}
+}
+gts_is_equal_to_tiny = {
+    #体型等于微小
+	switch = {
+		trigger = has_trait
+		trait_Tiny = {
+			always = yes
+		}
+		leader_trait_Tiny = {
+			always = yes
+		}
+		default = {
+			always = no
+		}
+	}
+}
+gts_is_equal_to_micro = {
+    #体型等于微生物
+	switch = {
+		trigger = has_trait
+		trait_Micro = {
+			always = yes
+		}
+		leader_trait_Micro = {
+			always = yes
+		}
+		default = {
+			always = no
+		}
+	}
+}
+gts_is_equal_to_nano = {
+    #体型等于分子
+	switch = {
+		trigger = has_trait
+		trait_Nano = {
+			always = yes
+		}
+		leader_trait_Nano = {
+			always = yes
+		}
+		default = {
+			always = no
+		}
+	}
+}

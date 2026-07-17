@@ -1,0 +1,219 @@
+tr_versatility_adopt = {
+	unlocks_agenda = agenda_self_maintenance
+	modifier = {
+		planet_pop_assemblers_upkeep_mult = -0.10
+	}
+}
+
+tr_versatility_finish = {
+	modifier = {
+		planet_pop_assemblers_energy_upkeep_add = 1
+		planet_pop_assembly_mult = 0.10
+		ascension_perks_add = 1
+	}
+	tradition_swap = {
+		name = tr_versatility_finish_individual_machine
+		inherit_name = no
+		inherit_icon = yes
+		inherit_effects = no
+		trigger = {
+			is_individual_machine = yes
+		}
+		modifier = {
+			ascension_perks_add = 1
+			pop_amenities_usage_mult = -0.15
+			planet_crime_add = -15
+		}
+		weight = {
+			factor = 1
+		}
+	}
+}
+
+tr_versatility_universal_compatibility = {
+	modifier = {
+		country_synthetic_trust_cap_add = 50
+		envoys_add = 1
+	}
+
+	tradition_swap = {
+		name = tr_versatility_universal_compatibility_gts
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_giantess_empire = yes
+		}
+
+		weight = {
+			factor = 10
+		}
+	}
+	tradition_swap = {
+		name = tr_versatility_universal_compatibility_tiny
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_tiny_empire = yes
+		}
+
+		weight = {
+			factor = 10
+		}
+	}
+
+	ai_weight = {
+		factor = 1000
+	}
+}
+
+tr_versatility_adaptive_programming = {
+	possible = {
+		has_tradition = tr_versatility_universal_compatibility
+	}
+
+	modifier = {
+		country_trade_fee = -0.10
+	}
+
+	tradition_swap = {
+		name = tr_versatility_adaptive_programming_gts
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_giantess_empire = yes
+		}
+
+		weight = {
+			factor = 10
+		}
+	}
+	tradition_swap = {
+		name = tr_versatility_adaptive_programming_tiny
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_tiny_empire = yes
+		}
+
+		weight = {
+			factor = 10
+		}
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+tr_versatility_spatial_optimization = {
+
+	modifier = {
+		pop_amenities_usage_no_happiness_mult = -0.10
+	}
+
+	tradition_swap = {
+		name = tr_versatility_spatial_optimization_gts
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_giantess_empire = yes
+		}
+
+		weight = {
+			factor = 10
+		}
+	}
+	tradition_swap = {
+		name = tr_versatility_spatial_optimization_tiny
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_tiny_empire = yes
+		}
+
+		weight = {
+			factor = 10
+		}
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+tr_versatility_material_analysis = {
+	possible = {
+		has_tradition = tr_versatility_spatial_optimization
+	}
+
+	modifier = {
+		planet_jobs_upkeep_mult = -0.05
+	}
+
+	tradition_swap = {
+		name = tr_versatility_material_analysis_gts
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_giantess_empire = yes
+		}
+
+		weight = {
+			factor = 10
+		}
+	}
+	tradition_swap = {
+		name = tr_versatility_material_analysis_tiny
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_tiny_empire = yes
+		}
+
+		weight = {
+			factor = 10
+		}
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+tr_versatility_operational_proxies = {
+	possible = {
+		has_tradition = tr_versatility_spatial_optimization
+	}
+	modifier = {
+		planet_maintenance_drones_unity_produces_add = 1
+	}
+
+	tradition_swap = {
+		name = tr_versatility_operational_proxies_gts
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_giantess_empire = yes
+		}
+
+		weight = {
+			factor = 10
+		}
+	}
+	tradition_swap = {
+		name = tr_versatility_operational_proxies_tiny
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_tiny_empire = yes
+		}
+
+		weight = {
+			factor = 10
+		}
+	}
+
+	ai_weight = {
+		factor = 1000
+	}
+}

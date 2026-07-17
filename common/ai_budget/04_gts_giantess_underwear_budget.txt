@@ -1,0 +1,114 @@
+## Categories used in this file must have use_for_ai_budget = yes defined in economic_categories ##
+## It is possible to have multiple entries with the same category and resource ##
+
+#################
+## Expenditure ##
+#################
+
+gts_giantess_underwear_expenditure_edicts = {
+    resource = gts_giantess_underwear
+    type = expenditure
+    category = edicts
+
+    potential = {
+        gts_is_tiny_empire= yes
+        resource_income_compare = {
+            resource = gts_giantess_underwear
+            value > 10
+        }
+    }
+
+    weight = {
+        weight = 0.1
+        # 打仗时开加舰船战斗力的法令
+        modifier = {
+            factor = 3
+            is_at_war = yes
+        }
+    }
+    desired_min = {
+        base = 100
+    }
+    desired_max = {
+        base = 350
+    }
+}
+
+
+gts_giantess_underwear_expenditure_planets = {
+    resource = gts_giantess_underwear
+    type = expenditure
+    category = planets
+
+    potential = {
+        gts_is_tiny_empire= yes
+        resource_income_compare = { resource = gts_giantess_underwear value > 0 }
+    }
+
+    weight = {
+        weight = 0.8
+    }
+}
+
+gts_giantess_underwear_expenditure_ships = {
+    resource = gts_giantess_underwear
+    type = expenditure
+    category = ships
+
+    potential = {
+        gts_is_tiny_empire= yes
+        resource_income_compare = { resource = gts_giantess_underwear value > 0 }
+    }
+
+    weight = {
+        weight = 2
+    }
+}
+
+gts_giantess_underwear_expenditure_upgrade = {
+    resource = gts_giantess_underwear
+    type = expenditure
+    category = ship_upgrades
+
+    potential = {
+        gts_is_tiny_empire= yes
+        resource_income_compare = { resource = gts_giantess_underwear value > 0 }
+    }
+
+    weight = {
+        weight = 2
+    }
+}
+
+
+# Upkeep --------------------------------------------------------
+
+gts_giantess_underwear_upkeep_planets = {
+    resource = gts_giantess_underwear
+    type = upkeep
+    category = planets
+
+    potential = {
+        gts_is_tiny_empire= yes
+        resource_income_compare = { resource = gts_giantess_underwear value > 0 }
+    }
+
+    weight = {
+        weight = 0.9
+    }
+}
+
+gts_giantess_underwear_upkeep_planets = {
+    resource = gts_giantess_underwear
+    type = upkeep
+    category = megastructures
+
+    potential = {
+        gts_is_tiny_empire = yes
+        resource_income_compare = { resource = gts_giantess_underwear value > 0 }
+    }
+
+    weight = {
+        weight = 0.2
+    }
+}

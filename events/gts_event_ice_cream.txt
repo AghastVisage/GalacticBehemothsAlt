@@ -1,0 +1,404 @@
+namespace = gts_icecream
+#futa加scat事件
+ship_event = {
+    id = gts_icecream.1
+    title = gts_icecream_title.1
+    desc = gts_icecream_desc.1
+    picture = GFX_gts_icecream_shijian
+    is_triggered_only = yes
+    location = Root
+    option = {
+        name = gts_icecream_option.1
+        hidden_effect = {
+            ship_event = {
+                id = gts_icecream.2
+                days = 1
+            }
+        }
+    }
+}
+
+ship_event = {
+    id = gts_icecream.2
+    title =gts_icecream_title.2
+    desc = gts_icecream_desc.2
+    picture = GFX_gts_icecream_lihui
+    is_triggered_only = yes
+    event_window_type = leader_recruit
+    location = Root
+    diplomatic = yes
+    option = {
+        name = gts_icecream_option.2a
+        is_dialog_only = yes
+        response_text = gts_icecream_resp.a
+    }
+    option = {
+        name = gts_icecream_option.2b
+        is_dialog_only = yes
+        response_text = gts_icecream_resp.b
+    }
+    option = {
+        name = gts_icecream_option.2c
+        is_dialog_only = yes
+        response_text = gts_icecream_resp.c
+    }
+    option = {
+        name = gts_icecream_option.2d
+        response_text = gts_icecream_resp.d
+        hidden_effect = {
+            ship_event = {
+                id = gts_icecream.3
+            }
+        }
+    }
+}
+
+ship_event = {
+    #给星球加地貌的隐藏事件
+    id = gts_icecream.3
+    title = gts_icecream_title.123
+    hide_window = yes
+    is_triggered_only = yes
+    immediate = {
+        every_galaxy_planet = {
+            limit = {
+                has_planet_flag = icecream
+            }
+            add_modifier = {
+                modifier = gts_icecream_planet.1
+            }
+        }
+    }
+}
+
+planet_event = {
+    #酸奶前
+    id = gts_icecream.4
+    title = gts_icecream_title.4
+    desc = gts_icecream_desc.4
+    picture = GFX_gts_icecream_shijian
+    is_triggered_only = yes
+    trigger = {
+        AND = {
+            is_planet_class = pc_frozen
+            has_planet_flag = icecream
+        }
+    }
+    option = {
+        name = gts_icecream_option.4a
+        custom_tooltip = gts_icecream_option.ttp.4a
+        hidden_effect = {
+            planet_event = {
+                id = gts_icecream.5
+            }
+        }
+    }
+    option = {
+        name = gts_icecream_option.4b
+        custom_tooltip = gts_icecream_option.ttp.4b
+    }
+}
+
+planet_event = {
+    #酸奶1
+    id = gts_icecream.5
+    title = gts_icecream_title.5
+    desc = gts_icecream_desc.5.1
+    picture = GFX_gts_icecream_suannai
+    is_triggered_only = yes
+    option = {
+        name = gts_icecream_option.000
+        hidden_effect = {
+            planet_event = {
+                id = gts_icecream.52
+            }
+        }
+    }
+}
+
+planet_event = {
+    #酸奶2
+    id = gts_icecream.52
+    title = gts_icecream_title.5
+    desc = gts_icecream_desc.5.2
+    picture = GFX_gts_icecream_suannai
+    is_triggered_only = yes
+    immediate = {
+        every_galaxy_planet = {
+            limit = {
+                has_planet_flag = icecream
+            }
+            add_planet_devastation = 5
+        }
+    }
+    option = {
+        name = gts_icecream_option.5a
+        custom_tooltip = gts_icecream_option.ttp.5a
+        hidden_effect = {
+            if = {
+                limit = {
+                    has_planet_flag = icecream
+                }
+                planet_event = {
+                    id = gts_icecream.6
+                    days = 1800
+                }
+            }
+        }
+    }
+    option = {
+        name = gts_icecream_option.5b
+        custom_tooltip = gts_icecream_option.ttp.5b
+    }
+}
+
+
+
+planet_event = {
+    #柠檬前
+    id = gts_icecream.6
+    title = gts_icecream_title.6
+    desc = gts_icecream_desc.6
+    picture = GFX_gts_icecream_shijian
+    is_triggered_only = yes
+    option = {
+        name = gts_icecream_option.6a
+        custom_tooltip = gts_icecream_option.ttp.6a
+        hidden_effect = {
+            planet_event = {
+                id = gts_icecream.7
+            }
+        }
+    }
+    option = {
+        name = gts_icecream_option.6b
+        custom_tooltip = gts_icecream_option.ttp.6b
+        hidden_effect = {
+            planet_event = {
+                id = gts_icecream.0
+            }
+        }
+    }
+}
+
+planet_event = {
+    #柠檬1
+    id = gts_icecream.7
+    title = gts_icecream_title.7
+    desc = gts_icecream_desc.7.1
+    picture = GFX_gts_icecream_ningmeng
+    is_triggered_only = yes
+    option = {
+        name = gts_icecream_option.000
+        hidden_effect = {
+            planet_event = {
+                id = gts_icecream.72
+            }
+        }
+    }
+}
+
+planet_event = {
+    #柠檬2
+    id = gts_icecream.72
+    title = gts_icecream_title.7
+    desc = gts_icecream_desc.7.2
+    picture = GFX_gts_icecream_ningmeng
+    is_triggered_only = yes
+    immediate = {
+        every_galaxy_planet = {
+            limit = {
+                has_planet_flag = icecream
+            }
+            add_planet_devastation = 5
+        }
+    }
+    option = {
+        name = gts_icecream_option.7a
+        custom_tooltip = gts_icecream_option.ttp.7a
+        hidden_effect = {
+            if = {
+                limit = {
+                    has_planet_flag = icecream
+                }
+                planet_event = {
+                    id = gts_icecream.8
+                    days = 1800
+                }
+            }
+        }
+    }
+}
+
+planet_event = {
+    #巧克力前
+    id = gts_icecream.8
+    title = gts_icecream_title.8
+    desc = gts_icecream_desc.8
+    picture = GFX_gts_icecream_shijian
+    is_triggered_only = yes
+    option = {
+        name = gts_icecream_option.8a
+        custom_tooltip = gts_icecream_option.ttp.8a
+        hidden_effect = {
+            planet_event = {
+                id = gts_icecream.9
+            }
+        }
+    }
+    option = {
+        name = gts_icecream_option.8b
+        custom_tooltip = gts_icecream_option.ttp.8b
+        hidden_effect = {
+            planet_event = {
+                id = gts_icecream.0
+            }
+        }
+    }
+}
+
+planet_event = {
+    #巧克力1
+    id = gts_icecream.9
+    title = gts_icecream_title.9
+    desc = gts_icecream_desc.9.1
+    picture = GFX_gts_icecream_qiaokeli
+    is_triggered_only = yes
+    option = {
+        name = gts_icecream_option.000
+        hidden_effect = {
+            planet_event = {
+                id = gts_icecream.92
+            }
+        }
+    }
+}
+
+planet_event = {
+    #巧克力2
+    id = gts_icecream.92
+    title = gts_icecream_title.9
+    desc = gts_icecream_desc.9.2
+    picture = GFX_gts_icecream_qiaokeli
+    is_triggered_only = yes
+    immediate = {
+        every_galaxy_planet = {
+            limit = {
+                has_planet_flag = icecream
+            }
+            add_planet_devastation = 5
+        }
+    }
+    option = {
+        name = gts_icecream_option.9a
+        custom_tooltip = gts_icecream_option.ttp.9a
+        hidden_effect = {
+            if = {
+                limit = {
+                    has_planet_flag = icecream
+                }
+                planet_event = {
+                    id = gts_icecream.10
+                    days = 1800
+                }
+            }
+        }
+    }
+}
+
+planet_event = {
+    #香草前
+    id = gts_icecream.10
+    title = gts_icecream_title.10
+    desc = gts_icecream_desc.10
+    picture = GFX_gts_icecream_shijian
+    is_triggered_only = yes
+    option = {
+        name = gts_icecream_option.10a
+        custom_tooltip = gts_icecream_option.ttp.10a
+        hidden_effect = {
+            planet_event = {
+                id = gts_icecream.11
+            }
+        }
+    }
+    option = {
+        name = gts_icecream_option.10b
+        custom_tooltip = gts_icecream_option.ttp.10b
+        hidden_effect = {
+            planet_event = {
+                id = gts_icecream.0
+            }
+        }
+    }
+}
+
+planet_event = {
+    #香草1
+    id = gts_icecream.11
+    title = gts_icecream_title.11
+    desc = gts_icecream_desc.11.1
+    picture = GFX_gts_icecream_xiangcao
+    is_triggered_only = yes
+    option = {
+        name = gts_icecream_option.000
+        hidden_effect = {
+            planet_event = {
+                id = gts_icecream.112
+            }
+        }
+    }
+}
+
+planet_event = {
+    #香草2
+    id = gts_icecream.112
+    title = gts_icecream_title.11
+    desc = gts_icecream_desc.11.2
+    picture = GFX_gts_icecream_xiangcao
+    is_triggered_only = yes
+    immediate = {
+        every_galaxy_planet = {
+            limit = {
+                has_planet_flag = icecream
+            }
+            add_planet_devastation = 5
+        }
+    }
+    option = {
+        name = gts_icecream_option.11a
+        custom_tooltip = gts_icecream_option.ttp.11a
+        hidden_effect = {
+            planet_event = {
+                id = gts_icecream.0
+                days = 1
+            }
+        }
+    }
+}
+
+planet_event = {
+    #结束事件
+    id = gts_icecream.0
+    title = gts_icecream_title.0
+    desc = gts_icecream_desc.0
+    picture = GFX_gts_icecream_baihe
+    is_triggered_only = yes
+    immediate = {
+        every_galaxy_planet = {
+            limit = {
+                has_planet_flag = icecream
+            }
+            add_planet_devastation = 10
+        }
+    }
+    option = {
+        name = gts_icecream_option.0
+        custom_tooltip = gts_icecream_option.ttp.0
+        owner={
+            add_resource = {
+                unity=50000
+            }
+        }
+    }
+}

@@ -1,0 +1,1023 @@
+namespace = gts_guya
+# 咕丫前期事件
+country_event = {
+	#陨石卵
+	id = gts_guya.1
+	title = gts_guya.1.name
+	desc = gts_guya.1.desc
+	picture = GFX_evt_atmospheric_entry
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	location = event_target:gts_loli_egg_planet
+	trigger = {
+		is_ai = no
+		any_owned_planet = {
+			NOT = {
+				is_planet_class = pc_habitat
+			}
+		}
+	}
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				NOT = {
+					is_planet_class = pc_habitat
+				}
+			}
+			save_global_event_target_as = gts_loli_egg_planet
+		}
+	}
+	option = {
+		name = gts_guya.1.a
+		custom_tooltip = gts_guya.2.a.tooltip
+		add_monthly_resource_mult = {
+			resource = society_research
+			value = @tier1researchreward
+			min = @tier1researchmin
+			max = @tier1researchmax
+		}
+	}
+	option = {
+		name = gts_guya.1.b
+		default_hide_option = yes
+		hidden_effect = {
+			event_target:gts_loli_egg_planet = {
+				enable_special_project = {
+					name = "GTS_LOLI_EGG_SPECIAL_PROJECT"
+					location = event_target:gts_loli_egg_planet
+					owner = event_target:gts_loli_egg_planet.owner
+				}
+			}
+		}
+	}
+}
+
+ship_event = {
+	#破壳而出
+	id = gts_guya.2
+	title = gts_guya.2.name
+	desc = gts_guya.2.desc
+	picture = GFX_gts_loli_bug_2
+	show_sound = event_default
+	is_triggered_only = yes
+	location = event_target:gts_loli_egg_planet
+	option = {
+		name = gts_guya.2.a
+		custom_tooltip = gts_guya.2.a.tooltip
+		owner = {
+			add_resource = {
+				food = 100
+			}
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+		}
+		leader = {
+			add_trait = {
+			    trait = leader_trait_traumatized
+			}
+		}
+	}
+	option = {
+		name = gts_guya.2.b
+		custom_tooltip = gts_guya.2.b.tooltip
+		default_hide_option = yes
+		event_target:gts_loli_egg_planet = {
+			add_deposit = d_gts_loli_bug_lab
+		}
+		hidden_effect = {
+			event_target:gts_loli_egg_planet = {
+				planet_event = {
+					id = gts_guya.3
+					days = 360
+				}
+			}
+		}
+	}
+}
+
+planet_event = {
+	#茁壮成长
+	id = gts_guya.3
+	title = gts_guya.3.name
+	desc = gts_guya.3.desc
+	picture = GFX_gts_loli_bug_1
+	show_sound = event_default
+	is_triggered_only = yes
+	location = event_target:gts_loli_egg_planet
+	option = {
+		name = gts_guya.3.a
+		default_hide_option = yes
+		event_target:gts_loli_egg_planet = {
+			add_deposit = d_gts_loli_bug_reserve
+			add_deposit = d_gts_loli_bug_reserve_2
+			add_deposit = d_gts_loli_bug_reserve_2
+		}
+		hidden_effect = {
+			event_target:gts_loli_egg_planet = {
+				remove_deposit = d_gts_loli_bug_lab
+				planet_event = {
+					id = gts_guya.4
+					days = 72
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_guya.3.b
+		custom_tooltip = gts_guya.2.a.tooltip
+		event_target:gts_loli_egg_planet = {
+			remove_deposit = d_gts_loli_bug_lab
+		}
+		owner = {
+			add_resource = {
+				food = 500
+			}
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier3researchreward
+				min = @tier3researchmin
+				max = @tier3researchmax
+			}
+		}
+	}
+}
+planet_event = {
+	#失联
+	id = gts_guya.4
+	title = gts_guya.4.name
+	desc = gts_guya.4.desc
+	picture = GFX_gts_loli_bug_2
+	show_sound = event_default
+	is_triggered_only = yes
+	location = event_target:gts_loli_egg_planet
+	option = {
+		name = gts_guya.4.a
+		hidden_effect = {
+			planet_event = {
+				id = gts_guya.5
+				days = 7
+			}
+		}
+	}
+}
+planet_event = {
+	#过度生长
+	id = gts_guya.5
+	title = gts_guya.5.name
+	desc = gts_guya.5.desc
+	picture = GFX_gts_loli_bug_1
+	show_sound = event_default
+	is_triggered_only = yes
+	location = event_target:gts_loli_egg_planet
+	option = {
+		name = gts_guya.5.a
+		hidden_effect = {
+			planet_event = {
+				id = gts_guya.6
+			}
+		}
+	}
+}
+planet_event = {
+	#破茧
+	id = gts_guya.6
+	title = gts_guya.6.name
+	desc = gts_guya.6.desc
+	picture = GFX_gts_loli_bug_2
+	show_sound = event_default
+	is_triggered_only = yes
+	location = event_target:gts_loli_egg_planet
+	option = {
+		name = gts_guya.6.a
+		custom_tooltip = gts_guya.2.a.tooltip
+		enable_special_project = {
+			name = "GTS_LOLI_BUG_DESTROY_SPECIAL_PROJECT"
+			location = event_target:gts_loli_egg_planet
+			owner = event_target:gts_loli_egg_planet.owner
+		}
+	}
+	option = {
+		name = gts_guya.6.b
+		enable_special_project = {
+			name = "GTS_LOLI_BUG_ANALISE_SPECIAL_PROJECT"
+			location = event_target:gts_loli_egg_planet
+			owner = event_target:gts_loli_egg_planet.owner
+		}
+	}
+}
+ship_event = {
+	id = gts_guya.7
+	title = gts_guya.7.name
+	desc = gts_guya.7.desc
+	picture = GFX_gts_loli_bug_1
+	show_sound = event_default
+	is_triggered_only = yes
+	location = event_target:gts_loli_egg_planet
+	option = {
+		name = gts_guya.7.a
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = gts_guya.8
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_guya.8
+	title = gts_guya.8.name
+	desc = gts_guya.8.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		portrait = gts_portrait_guya
+		room = swarm_room
+	}
+	location = event_target:gts_loli_egg_planet
+	option = {
+		name = gts_guya.8.a
+		response_text = gts_guya.8.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_guya.8.b
+		response_text = gts_guya.8.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_guya.8.c
+		response_text = gts_guya.8.c.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_guya.8.d
+		response_text = gts_guya.8.d.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_guya.8.e
+		hidden_effect = {
+			country_event = {
+				id = gts_guya.9
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_guya.9
+	title = gts_guya.9.name
+	desc = gts_guya.9.desc
+	picture = GFX_gts_loli_bug_3
+	show_sound = event_default
+	is_triggered_only = yes
+	location = event_target:gts_loli_egg_planet
+	option = {
+		name = gts_guya.9.a
+		enable_special_project = {
+			name = "GTS_LOLI_BUG_MOM_SPECIAL_PROJECT"
+			location = event_target:gts_loli_egg_planet
+			owner = event_target:gts_loli_egg_planet.owner
+		}
+	}
+}
+ship_event = {
+	id = gts_guya.10
+	title = gts_guya.10.name
+	desc = gts_guya.10.desc
+	picture = GFX_gts_loli_bug_3
+	show_sound = event_default
+	is_triggered_only = yes
+	location = event_target:gts_loli_egg_planet
+	immediate = {
+		leader = {
+			save_event_target_as = gts_loli_bug_mom
+		}
+	}
+	option = {
+		name = gts_guya.10.a
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = gts_guya.11
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_guya.11
+	title = gts_guya.11.name
+	desc = gts_guya.11.desc
+	picture = GFX_gts_loli_bug_8
+	show_sound = event_default
+	is_triggered_only = yes
+	location = event_target:gts_loli_egg_planet
+	option = {
+		name = gts_guya.11.a
+		hidden_effect = {
+			country_event = {
+				id = gts_guya.12
+				days = 1
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_guya.12
+	title = gts_guya.12.name
+	desc = gts_guya.12.desc
+	picture = GFX_gts_loli_bug_1
+	show_sound = event_default
+	is_triggered_only = yes
+	location = event_target:gts_loli_egg_planet
+	immediate = {
+		save_global_event_target_as = gts_loli_egg_country
+	}
+	option = {
+		name = gts_guya.12.a
+		event_target:gts_loli_bug_mom = {
+			add_trait = {
+			    trait = gts_trait_leader_guya_mom
+			}
+		}
+		start_situation = {
+			type = gts_situation_guya
+			target = root
+		}
+	}
+}
+
+# 咕丫生长事件
+situation_event = {
+	id = gts_guya.20
+	title = gts_guya.20.name
+	desc = gts_guya.20.desc
+	picture = GFX_gts_loli_bug_3
+	show_sound = ffxiv_lvup
+	is_triggered_only = yes
+	situation = this
+	force_open = yes
+	option = {
+		name = gts_guya.20.a
+		destroy_situation = this
+		owner = {
+			hidden_effect = {
+				country_event = {
+					id = gts_guya.100
+				}
+			}
+			event_target:gts_loli_egg_planet = {
+				remove_deposit = d_gts_loli_bug_reserve
+				remove_deposit = d_gts_loli_bug_reserve_2
+				add_deposit = d_gts_loli_bug_nest
+				add_deposit = d_gts_loli_bug_mushroom
+			}
+			hidden_effect = {
+				set_country_flag = gts_can_have_swarm_army
+			}
+		}
+	}
+	option = {
+		name = gts_guya.20.b
+		owner = {
+			event_target:gts_loli_egg_planet = {
+				remove_deposit = d_gts_loli_bug_reserve
+				remove_deposit = d_gts_loli_bug_reserve_2
+				add_deposit = d_gts_loli_bug_nest
+				add_deposit = d_gts_loli_bug_mushroom
+			}
+			hidden_effect = {
+				set_country_flag = gts_can_have_swarm_army
+			}
+		}
+	}
+}
+situation_event = {
+	id = gts_guya.21
+	title = gts_guya.21.name
+	desc = gts_guya.21.desc
+	picture = GFX_gts_loli_bug_4
+	show_sound = ffxiv_lvup
+	is_triggered_only = yes
+	situation = this
+	force_open = yes
+	option = {
+		name = gts_guya.21.a
+		destroy_situation = this
+		owner = {
+			hidden_effect = {
+				country_event = {
+					id = gts_guya.101
+				}
+			}
+			event_target:gts_loli_egg_planet = {
+				add_deposit = d_gts_loli_bug_mushroom
+				add_deposit = d_gts_loli_bug_mushroom
+			}
+		}
+	}
+	option = {
+		name = gts_guya.21.b
+		owner = {
+			event_target:gts_loli_egg_planet = {
+				add_deposit = d_gts_loli_bug_mushroom
+				add_deposit = d_gts_loli_bug_mushroom
+			}
+		}
+	}
+}
+situation_event = {
+	id = gts_guya.22
+	title = gts_guya.22.name
+	desc = gts_guya.22.desc
+	picture = GFX_gts_loli_bug_5
+	show_sound = ffxiv_lvup
+	is_triggered_only = yes
+	situation = this
+	force_open = yes
+	option = {
+		name = gts_guya.22.a
+		destroy_situation = this
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = gts_guya.102
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_guya.22.b
+		custom_tooltip = gts_guya.22.b.tooltip
+	}
+}
+situation_event = {
+	id = gts_guya.23
+	title = gts_guya.23.name
+	desc = gts_guya.23.desc
+	picture = GFX_gts_loli_bug_6
+	show_sound = ffxiv_lvup
+	is_triggered_only = yes
+	situation = this
+	force_open = yes
+	option = {
+		name = gts_guya.23.a
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = gts_guya.103
+				}
+			}
+		}
+	}
+	after = {
+		destroy_situation = this
+	}
+}
+country_event = {
+	# 咕丫（陆军）
+	id = gts_guya.100
+	title = gts_guya.100.name
+	desc = "gts_guya.100.desc"
+	show_sound = event_celebration
+	is_triggered_only = yes
+	picture = GFX_leader_recruitment_bg_renowned
+	auto_opens = yes
+	event_window_type = leader_recruit
+	notification_event_icon = "GFX_message_leader_gts_guya"
+	immediate = {
+		gts_leader_guya_army_hired = yes
+	}
+	picture_event_data = {
+		portrait = event_target:gts_leader
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = gts_guya.100.a
+		response_text = gts_guya.100.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_guya.100.b
+		response_text = gts_guya.100.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_guya.100.c
+		response_text = gts_guya.100.c.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		custom_tooltip = gts_guya.100.hire_custom_tooltip
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = renowned }
+		}
+	}
+	option = {
+		name = DISMISS
+		tag = dismiss_leader
+		hidden_effect = {
+			country_event = {
+				id = gts_guya.100
+			}
+		}
+	}
+}
+country_event = {
+	# 咕丫（海军）
+	id = gts_guya.101
+	title = gts_guya.100.name
+	desc = "gts_guya.101.desc"
+	show_sound = event_celebration
+	is_triggered_only = yes
+	picture = GFX_leader_recruitment_bg_renowned
+	auto_opens = yes
+	event_window_type = leader_recruit
+	notification_event_icon = "GFX_message_leader_gts_guya"
+	immediate = {
+		gts_leader_guya_fleet_hired = yes
+	}
+	picture_event_data = {
+		portrait = event_target:gts_leader
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = gts_guya.101.a
+		response_text = gts_guya.101.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_guya.101.b
+		response_text = gts_guya.101.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_guya.101.c
+		response_text = gts_guya.101.c.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		custom_tooltip = gts_guya.101.hire_custom_tooltip
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = renowned }
+		}
+	}
+	option = {
+		name = DISMISS
+		tag = dismiss_leader
+		hidden_effect = {
+			country_event = {
+				id = gts_guya.100
+			}
+		}
+	}
+}
+country_event = {
+	# 咕丫（总督）
+	id = gts_guya.102
+	title = gts_guya.100.name
+	desc = "gts_guya.102.desc"
+	show_sound = event_celebration
+	is_triggered_only = yes
+	picture = GFX_leader_recruitment_bg_renowned
+	auto_opens = yes
+	event_window_type = leader_recruit
+	notification_event_icon = "GFX_message_leader_gts_guya"
+	immediate = {
+		gts_leader_guya_official_hired = yes
+	}
+	picture_event_data = {
+		portrait = event_target:gts_leader
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = gts_guya.102.a
+		response_text = gts_guya.102.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_guya.102.b
+		response_text = gts_guya.102.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_guya.102.c
+		response_text = gts_guya.102.c.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		custom_tooltip = gts_guya.102.hire_custom_tooltip
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = renowned }
+			country_event = {
+				id = gts_guya.34
+				days = 180
+			}
+		}
+	}
+	option = {
+		name = DISMISS
+		tag = dismiss_leader
+		hidden_effect = {
+			country_event = {
+				id = gts_guya.100
+			}
+		}
+	}
+}
+country_event = {
+	# 咕丫（总督）
+	id = gts_guya.103
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		gts_create_guya_fleet = yes
+	}
+}
+# 咕丫领袖事件
+country_event = {
+	id = gts_guya.30
+	title = gts_guya.30.name
+	desc = gts_guya.30.desc
+	picture = GFX_gts_loli_bug_7
+	#fire_only_once = yes
+	show_sound = event_default
+	is_triggered_only = yes
+	immediate = {
+		
+		# 用flag找到咕丫
+		
+		every_owned_leader = {
+			limit = {
+				has_leader_flag = gts_guya
+			}
+			save_event_target_as = gts_bruh_guya_kill_count
+		}
+		
+		# 測試用的代碼
+		
+		#random_owned_planet  = {
+		#	save_event_target_as = gts_attackers_win_planet
+		#}
+		
+		event_target:gts_attackers_win_planet = {
+			
+			# 計算人口數量
+			
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_planet_killed_pop_count
+			}
+			
+			# 計算城市數量
+			
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_planet_destroyed_city_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_planet_destroyed_city_count
+				value = 100
+			}
+			
+			round_variable = gts_bruh_get_planet_destroyed_city_count
+			
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_experience_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_experience_count
+				value = 100
+			}
+			
+			round_variable = gts_bruh_get_experience_count
+		}
+	}
+	option = {
+		name = gts_guya.30.a
+		add_resource = {
+			unity = 21000
+		}
+		event_target:gts_bruh_guya_kill_count = {
+			change_variable = {
+				which = gts_vore_kills_logs
+				value = event_target:gts_attackers_win_planet.gts_bruh_get_planet_killed_pop_count
+			}
+			change_variable = {
+				which = gts_city_kills_logs
+				value = event_target:gts_attackers_win_planet.gts_bruh_get_planet_destroyed_city_count
+			}
+			
+			hidden_effect = {
+				
+				# 根據kd獲取經驗
+			
+				# 這可能會出現在error.log裡
+			
+				# 別擔心這能正常運作
+				
+				change_variable = {
+					which = gts_bruh_get_experience_count
+					value = event_target:gts_attackers_win_planet.gts_bruh_get_experience_count
+				}
+				add_experience = gts_bruh_get_experience_count
+			}
+		}
+		
+		event_target:gts_attackers_win_planet = {
+			if = {
+				
+				# 把居住站刪了
+				
+				limit = {
+					is_planet_class = pc_habitat
+				}
+				destroy_colony = yes
+				remove_planet = yes
+			}
+			else = {
+				
+				# 添加地形
+				
+				event_target:gts_attackers_win_planet = {
+					destroy_colony = yes
+					add_deposit = d_noxious_swamp
+					add_deposit = d_city_ruins
+					add_deposit = d_radioactive_wasteland
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_guya.31
+	title = gts_guya.31.name
+	desc = gts_guya.31.desc
+	picture = GFX_gts_loli_bug_8
+	#fire_only_once = yes
+	show_sound = event_default
+	is_triggered_only = yes
+	immediate = {
+		
+		# 用flag找到咕丫
+		
+		every_owned_leader = {
+			limit = {
+				has_leader_flag = gts_guya
+			}
+			save_event_target_as = gts_bruh_guya_kill_count
+		}
+		
+		# 測試用的代碼
+		
+		#random_owned_planet  = {
+		#	save_event_target_as = gts_attackers_win_planet
+		#}
+		
+		event_target:gts_attackers_win_planet = {
+			
+			# 計算人口數量
+			
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_planet_killed_pop_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_planet_killed_pop_count
+				value = 2
+			}
+			
+			round_variable = gts_bruh_get_planet_killed_pop_count
+			
+			# 計算城市數量
+			
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_planet_destroyed_city_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_planet_destroyed_city_count
+				value = 100
+			}
+			
+			round_variable = gts_bruh_get_planet_destroyed_city_count
+			
+			# 計算經驗獲取
+			
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_experience_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_experience_count
+				value = 100
+			}
+			
+			round_variable = gts_bruh_get_experience_count
+		}
+	}
+	option = {
+		name = gts_guya.31.a
+		add_resource = {
+			society_research = 34000
+		}
+		event_target:gts_bruh_guya_kill_count = {
+			change_variable = {
+				which = gts_vore_kills_logs
+				value = event_target:gts_attackers_win_planet.gts_bruh_get_planet_killed_pop_count
+			}
+			change_variable = {
+				which = gts_ub_kills_logs
+				value = event_target:gts_attackers_win_planet.gts_bruh_get_planet_killed_pop_count
+			}
+			change_variable = {
+				which = gts_city_kills_logs
+				value = event_target:gts_attackers_win_planet.gts_bruh_get_planet_destroyed_city_count
+			}
+			
+			hidden_effect = {
+				
+				# 根據kd獲取經驗
+			
+				# 這可能會出現在error.log裡
+			
+				# 別擔心這能正常運作
+				
+				change_variable = {
+					which = gts_bruh_get_experience_count
+					value = event_target:gts_attackers_win_planet.gts_bruh_get_experience_count
+				}
+				add_experience = gts_bruh_get_experience_count
+			}
+		}
+		
+		event_target:gts_attackers_win_planet = {
+			if = {
+				
+				# 把居住站刪了
+				
+				limit = {
+					is_planet_class = pc_habitat
+				}
+				destroy_colony = yes
+				remove_planet = yes
+			}
+			else = {
+				
+				# 添加地形
+				
+				event_target:gts_attackers_win_planet = {
+					destroy_colony = yes
+					add_deposit = d_noxious_swamp
+					add_deposit = d_city_ruins
+					add_deposit = d_radioactive_wasteland
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_guya.32
+	title = gts_guya.32.name
+	desc = gts_guya.32.desc
+	picture = GFX_gts_loli_bug_9
+	fire_only_once = yes
+	show_sound = event_default
+	is_triggered_only = yes
+	trigger = {
+		any_owned_leader = {
+			has_leader_flag = gts_guya_gen
+		}
+	}
+	option = {
+		name = gts_guya.32.a
+		add_resource = {
+			influence = 50
+			alloys = 1500
+		}
+	}
+}
+country_event = {
+	id = gts_guya.33
+	title = gts_guya.33.name
+	desc = gts_guya.33.desc
+	picture = GFX_gts_loli_bug_10
+	fire_only_once = yes
+	show_sound = event_default
+	is_triggered_only = yes
+	trigger = {
+		any_owned_leader = {
+			has_leader_flag = gts_guya_adm
+		}
+	}
+	option = {
+		name = gts_guya.33.a
+		add_resource = {
+			influence = 50
+			society_research = 14000
+		}
+	}
+}
+country_event = {
+	id = gts_guya.34
+	title = gts_guya.34.name
+	desc = gts_guya.34.desc
+	picture = GFX_gts_loli_bug_11
+	show_sound = event_default
+	is_triggered_only = yes
+	trigger = {
+		any_owned_leader = {
+			has_leader_flag = gts_guya_adm
+		}
+	}
+	option = {
+		name = gts_guya.34.a
+		random_owned_planet = {
+			save_event_target_as = gts_guya_event_planet
+			add_modifier = {
+				modifier = gts_guya_juice_ocean
+			}
+			add_planet_devastation = 30
+		}
+	}
+}
+country_event = {
+	id = gts_guya.35
+	title = gts_guya.35.name
+	desc = gts_guya.35.desc
+	picture = GFX_gts_loli_bug_11
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_guya.35.a
+	}
+}
+country_event = {
+	# 还没做好
+	id = gts_guya.36
+	title = gts_guya.36.name
+	desc = gts_guya.36.desc
+	picture = GFX_gts_loli_bug_1
+	show_sound = event_default
+	is_triggered_only = yes
+
+	trigger = {
+		is_ai = no
+		FromFrom = {
+			is_colony = yes
+			is_eatable_planet = yes
+		}
+		From = {
+			any_owned_ship = {
+				has_ship_flag = gts_guya_ship
+			}
+		}
+	}
+
+	option = {
+		name = gts_guya.36.a
+		custom_tooltip = gts_guya.36.a.tooltip
+		FromFrom = {
+			change_pc = pc_nuked
+		}
+	}
+	option = {
+		name = gts_guya.36.b
+		custom_tooltip = gts_guya.36.b.tooltip
+		FromFrom = {
+			change_pc = pc_gaia
+		}
+	}
+	option = {
+		name = gts_guya.36.c
+		custom_tooltip = gts_guya.36.c.tooltip
+		FromFrom = {
+			change_pc = pc_shattered
+		}
+	}
+	option = {
+		name = gts_guya.36.d
+		custom_tooltip = gts_guya.36.d.tooltip
+		trigger = {
+			has_country_flag = can_trigger_scat_content
+		}
+		FromFrom = {
+			change_pc = pc_gts_shit
+		}
+	}
+}

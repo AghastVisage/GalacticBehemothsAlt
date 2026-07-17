@@ -1,0 +1,54 @@
+namespace = gts_civ_maid
+
+country_event = {
+	# 抽选事件
+	id = gts_civ_maid.999
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		is_ai = no
+		has_civic = civic_gts_maid
+	}
+	immediate = {
+		random_list = {
+			1 = {
+				country_event = { id = gts_civ_maid.1000 days = 120}
+			}
+			1 = {
+				country_event = { id = gts_civ_maid.1010 days = 120}
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_civ_maid.1000
+	title = gts_civ_maid.1000.name
+	desc = gts_civ_maid.1000.desc
+	picture = GFX_gtsra_load_7
+	is_triggered_only = yes
+	fire_only_once = yes
+	show_sound = event_airlock
+
+	option = {
+		name = gts_terror
+		add_resource = { unity = 4000 }
+	}
+}
+country_event = {
+	id = gts_civ_maid.1010
+	title = gts_civ_maid.1010.name
+	desc = gts_civ_maid.1010.desc
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_event_39_room
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	show_sound = event_airlock
+
+	option = {
+		name = gts_terror
+		add_resource = { unity = 4000 }
+	}
+}

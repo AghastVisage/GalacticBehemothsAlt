@@ -1,0 +1,24 @@
+#是的，我想探索星界裂隙
+#没有文本，也没有触发方式by艾普露
+gts_astral_rift_category = {
+    desc = "gts_astral_rift_category_desc"
+    picture = GFX_evt_ship_in_orbit_3
+    level = 3
+    #ai不可触发
+    should_ai_use = no
+    #每个玩家国家仅一次
+    max_once = yes
+
+    null_spawn_chance = 1
+
+    spawn_chance = {
+        base = 100
+
+        modifier = {
+            add = 90
+            planet_size >= 10
+        }
+    }
+    #直接送去触发国家事件
+    on_success = { 1 = gts_o_support_event.0002 }
+}

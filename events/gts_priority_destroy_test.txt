@@ -1,0 +1,33 @@
+namespace = gts_priority_destroy
+
+country_event = {
+	id = gts_priority_destroy.1
+	title = gts_priority_destroy.1.name
+	desc = gts_priority_destroy.1.desc
+	picture = GFX_evt_planet_beam
+	show_sound = event_default
+	is_triggered_only = yes
+
+	trigger = {
+		any_owned_planet = {
+			is_colony = yes
+		}
+	}
+
+	immediate = {
+		gts_save_priority_destroy_planet_target = yes
+	}
+
+	option = {
+		name = gts_priority_destroy.1.a
+		event_target:gts_priority_destroy_planet_target = {
+			remove_carrier_flag = gts_priority_destroy_target
+			remove_modifier = gts_priority_destroy_target_modifier
+			gts_destroy_planet = yes
+		}
+	}
+
+	option = {
+		name = gts_priority_destroy.1.b
+	}
+}

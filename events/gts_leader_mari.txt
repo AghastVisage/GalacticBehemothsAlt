@@ -1,0 +1,354 @@
+namespace = gts_mari
+
+#玛丽
+country_event = {
+	#创建玛丽星系
+	id = gts_mari.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		random_system = {
+			limit = {
+				distance = {
+					source = root.capital_scope.solar_system
+					use_bypasses = yes
+					min_jumps = 1
+					max_jumps = 6
+				}
+			}
+			spawn_system = {
+				min_distance >= 10
+				max_distance <= 30
+				max_jumps = 1
+				initializer = gts_mari_system
+				effect = {
+					save_event_target_as = gts_bruh_get_mari_system_location
+				}
+			}
+		}
+	}
+}
+
+ship_event = {
+	# 特殊接触
+	id = gts_mari.2
+	title = "gts_mari.2.name"
+	desc = gts_mari.2.desc
+	picture = GFX_gts_mari_2
+	show_sound = event_dig_site
+	is_triggered_only = yes
+
+	option = {
+		name = gts_mari.2.a
+		owner = {
+			country_event = {
+				id = gts_mari.3
+			}
+		}
+	}
+}
+country_event = {
+	# 冲突1
+	id = gts_mari.3
+	title = gts_mari.3.name
+	desc = gts_mari.3.desc
+	picture = GFX_gts_mari_3
+	show_sound = event_default
+	is_triggered_only = yes
+	immediate = {
+		
+	}
+	option = {
+		name = gts_mari.3.a
+		country_event = {
+			id = gts_mari.4
+		}
+	}
+}
+country_event = {
+	# 冲突2
+	id = gts_mari.4
+	title = gts_mari.4.name
+	desc = gts_mari.4.desc
+	picture = GFX_gts_mari_4
+	show_sound = event_default
+	is_triggered_only = yes
+	immediate = {
+		
+	}
+	option = {
+		name = gts_mari.4.a
+		country_event = {
+			id = gts_mari.5
+		}
+	}
+}
+country_event = {
+	# 冲突3
+	id = gts_mari.5
+	title = gts_mari.5.name
+	desc = gts_mari.5.desc
+	picture = GFX_gts_mari_5
+	show_sound = event_default
+	is_triggered_only = yes
+	immediate = {
+		
+	}
+	option = {
+		name = gts_mari.5.a
+		country_event = {
+			id = gts_mari.6
+		}
+	}
+}
+country_event = {
+	# 玛丽招募
+	id = gts_mari.6
+	title = "gts_mari.6.name"
+	desc = gts_mari.6.desc
+	show_sound = event_celebration
+	is_triggered_only = yes
+	picture = GFX_leader_recruitment_bg_renowned
+	auto_opens = yes
+	event_window_type = leader_recruit
+	notification_event_icon = "GFX_message_leader_gts_mari"
+	immediate = {
+		gts_leader_mari_hired = yes
+	}
+
+	picture_event_data = {
+		portrait = event_target:gts_leader
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = gts_mari.6.a
+		response_text = gts_mari.6.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_mari.6.b
+		response_text = gts_mari.6.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_mari.6.c
+		response_text = gts_mari.6.c.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_mari.6.d
+		response_text = gts_mari.6.d.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		custom_tooltip = gts_mari.6.hire_custom_tooltip
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = renowned }
+			country_event = {
+				id = gts_mari.100
+				days = 90
+			}
+			country_event = {
+				id = gts_mari.200
+				days = 365
+			}
+		}
+	}
+	option = {
+		name = DISMISS
+		tag = dismiss_leader
+		hidden_effect = {
+			country_event = {
+				id = gts_mari.6
+			}
+		}
+	}
+}
+country_event = {
+	# 运动中的小插曲
+	id = gts_mari.100
+	title = gts_mari.100.name
+	desc = gts_mari.100.desc
+	picture = GFX_gts_mari_6
+	show_sound = event_default
+	is_triggered_only = yes
+	immediate = {
+		
+	}
+	option = {
+		name = gts_mari.100.a
+		hidden_effect = {
+			country_event = {
+				id = gts_mari.110
+			}
+		}
+	}
+	option = {
+		name = gts_mari.100.b
+		hidden_effect = {
+			country_event = {
+				id = gts_mari.120
+			}
+		}
+		
+	}
+	option = {
+		name = gts_mari.100.c
+		hidden_effect = {
+			country_event = {
+				id = gts_mari.130
+			}
+		}
+	}
+}
+country_event = {
+	# 运动中的小插曲-必须严肃处理，找出这几个家伙
+	id = gts_mari.110
+	title = gts_mari.110.name
+	desc = gts_mari.110.desc
+	picture = GFX_gts_mari_7
+	show_sound = event_default
+	is_triggered_only = yes
+	immediate = {
+		
+	}
+	option = {
+		name = gts_mari.110.a
+		
+	}
+}
+country_event = {
+	# 运动中的小插曲-无需担忧，让玛丽小姐自行处理吧
+	id = gts_mari.120
+	title = gts_mari.120.name
+	desc = gts_mari.120.desc
+	picture = GFX_gts_mari_7
+	show_sound = event_default
+	is_triggered_only = yes
+	immediate = {
+		
+	}
+	option = {
+		name = gts_mari.120.a
+		
+	}
+}
+country_event = {
+	# 运动中的小插曲-我寻思下次我也能进去看看？
+	id = gts_mari.130
+	title = gts_mari.130.name
+	desc = gts_mari.130.desc
+	picture = GFX_gts_mari_7
+	show_sound = event_default
+	is_triggered_only = yes
+	immediate = {
+		
+	}
+	option = {
+		name = gts_mari.130.a
+		hidden_effect = {
+			country_event = {
+				id = gts_mari.131
+			}
+		}
+	}
+}
+country_event = {
+	# 约会......?
+	id = gts_mari.131
+	title = gts_mari.131.name
+	desc = gts_mari.131.desc
+	picture = GFX_gts_mari_7
+	show_sound = event_default
+	is_triggered_only = yes
+	immediate = {
+		
+	}
+	option = {
+		name = gts_mari.131.a
+		hidden_effect = {
+			country_event = {
+				id = gts_mari.132
+			}
+		}
+	}
+}
+country_event = {
+	# 约会......?
+	id = gts_mari.132
+	title = gts_mari.132.name
+	desc = gts_mari.132.desc
+	picture = GFX_gts_mari_8
+	show_sound = event_default
+	is_triggered_only = yes
+	immediate = {
+		
+	}
+	option = {
+		name = gts_mari.132.a
+		
+	}
+}
+country_event = {
+	# 研究瓶颈
+	id = gts_mari.200
+	title = gts_mari.200.name
+	desc = gts_mari.200.desc
+	picture = GFX_gts_mari_3
+	show_sound = event_default
+	is_triggered_only = yes
+	immediate = {
+		
+	}
+	option = {
+		name = gts_mari.200.a
+		hidden_effect = {
+			country_event = {
+				id = gts_mari.210
+			}
+		}
+	}
+	option = {
+		name = gts_mari.200.b
+		hidden_effect = {
+			country_event = {
+				id = gts_mari.220
+			}
+		}
+	}
+}
+country_event = {
+	# 研究瓶颈-进行一些刺激
+	id = gts_mari.210
+	title = gts_mari.210.name
+	desc = gts_mari.210.desc
+	picture = GFX_gts_mari_4
+	show_sound = event_default
+	is_triggered_only = yes
+	immediate = {
+		
+	}
+	option = {
+		name = gts_mari.210.a
+		
+	}
+}
+country_event = {
+	# 研究瓶颈-放缓实验研究的进度，一切以玛丽的人身安全为重！
+	id = gts_mari.220
+	title = gts_mari.220.name
+	desc = gts_mari.220.desc
+	picture = GFX_gts_mari_4
+	show_sound = event_default
+	is_triggered_only = yes
+	immediate = {
+		
+	}
+	option = {
+		name = gts_mari.220.a
+		
+	}
+}

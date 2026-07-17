@@ -1,0 +1,2012 @@
+namespace = gts_traptrix
+
+country_event = {
+	#创建虫惑魔星系
+	id = gts_traptrix.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		random_system = {
+			limit = {
+				distance = {
+					source = root.capital_scope.solar_system
+					use_bypasses = yes
+					min_jumps = 1
+					max_jumps = 6
+				}
+			}
+			spawn_system = {
+				min_distance >= 10
+				max_distance <= 30
+				max_jumps = 1
+				initializer = gts_traptirx_system
+				effect = {
+					save_event_target_as = gts_bruh_get_traptirx_system_location
+				}
+			}
+		}
+	}
+}
+
+ship_event = {
+	id = gts_traptrix.2
+	title = "gts_traptrix.2.name"
+	desc = gts_traptrix.2.desc
+	picture = GFX_gts_event_51
+	show_sound = event_dig_site
+	is_triggered_only = yes
+	option = {
+		name = gts_traptrix.2.a
+		from = {
+			hidden_effect = {
+				save_event_target_as = gts_traptrix_home_planet
+				enable_special_project = {
+					name = GTS_TRAPTRIX_SPECIAL_PROJECT
+					location = this
+					owner = root
+				}
+			}
+		}
+	}
+}
+
+ship_event = {
+	id = gts_traptrix.3
+	title = "gts_traptrix.3.name"
+	desc = gts_traptrix.3.desc
+	picture = GFX_gts_traptrix_5
+	show_sound = event_dig_site
+	is_triggered_only = yes
+	option = {
+		name = gts_traptrix.3.a
+		event_target:gts_traptrix_home_planet = {
+			create_archaeological_site = gts_traptirx_digsite
+		}
+	}
+}
+
+fleet_event = {
+	id = gts_traptrix.10
+	title = gts_traptrix.10.name
+	desc = gts_traptrix.10.desc
+	picture = GFX_gts_eyjafjalla_10
+	show_sound = event_default
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_traptrix.10.a
+		owner = {
+			add_resource = {
+				gts_giantess_fluid = 200
+			}
+		}
+	}
+}
+
+fleet_event = {
+	id = gts_traptrix.11
+	title = gts_traptrix.11.name
+	desc = gts_traptrix.11.desc
+	picture = GFX_gts_event_18
+	show_sound = event_default
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_traptrix.11.a
+		owner = {
+			add_resource = {
+				engineering_research = 10000
+			}
+		}
+	}
+}
+
+fleet_event = {
+	id = gts_traptrix.12
+	title = gts_traptrix.12.name
+	desc = gts_traptrix.12.desc
+	picture = GFX_gts_traptrix_3
+	show_sound = event_default
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_traptrix.12.a
+		custom_tooltip = gts_traptrix.12.a.tooltip
+		hidden_effect = {
+			owner = {
+				random_owned_planet = {
+					create_species = {
+						name = "NAME_traptrix"
+						plural = "NAME_traptrixs"
+						class = FUN
+						portrait = "fun15"
+						namelist = "FUN4"
+						extra_trait_points = 4
+						traits = {
+							trait = "trait_Giant"
+							trait = "trait_gts_loli"
+							trait = "trait_Cuiqing"
+							trait = "trait_pc_tropical_preference"
+							trait = "trait_gts_ub"
+						}
+						homeworld = event_target:gts_traptrix_home_planet
+						effect = {
+							save_global_event_target_as = gts_traptrix_species
+							set_species_flag = gts_traptrix_species
+						}
+					}
+					while = {
+						count = 10
+						create_pop_group = {
+							species = last_created_species
+						}
+					}
+				}
+				country_event = {
+					id = gts_traptrix.200
+					days = 90
+				}
+				country_event = {
+					id = gts_traptrix.1999
+					days = 600
+					random = 365
+				}
+				country_event = {
+					id = gts_traptrix.2999
+					days = 1100
+					random = 365
+				}
+			}
+		}
+	}
+}
+
+# 后续事件
+country_event = {
+	id = gts_traptrix.200
+	title = gts_traptrix.200.name
+	desc = gts_traptrix.200.desc
+	picture = GFX_gts_traptrix_5
+	show_sound = event_default
+	location = event_target:gts_traptrix_target_planet
+	is_triggered_only = yes
+	trigger = {
+		any_owned_planet = {
+			any_owned_species = {
+				has_species_flag = gts_traptrix_species
+			}
+		}
+	}
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				any_owned_species = {
+					has_species_flag = gts_traptrix_species
+				}
+			}
+			save_event_target_as = gts_traptrix_target_planet
+		}
+	}
+	option = {
+		name = gts_traptrix.200.a
+		hidden_effect = {
+			country_event = {
+				id = gts_traptrix.300
+				days = 1800
+			}
+			country_event = {
+				id = gts_traptrix.200
+				days = 2000
+			}
+		}
+	}
+	option = {
+		name = gts_traptrix.200.b
+	}
+}
+
+country_event = {
+	id = gts_traptrix.300
+	title = gts_traptrix.300.name
+	desc = gts_traptrix.300.desc
+	picture = GFX_gts_event_49
+	show_sound = event_default
+	location = event_target:gts_traptrix_target_planet
+	is_triggered_only = yes
+	immediate = {
+		random_owned_leader = {
+			limit = {
+				or = {
+					gts_is_tiny = yes
+					has_trait = leader_trait_Tall
+				}
+			}
+			save_event_target_as = gts_traptrix_target_leader
+		}
+	}
+	option = {
+		name = gts_traptrix.300.a
+		trigger = {
+			any_owned_leader = {
+				or = {
+					gts_is_tiny = yes
+					has_trait = leader_trait_Tall
+				}
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_traptrix.310
+				days = 15
+			}
+		}
+	}
+	option = {
+		name = gts_traptrix.300.b
+		hidden_effect = {
+			country_event = {
+				id = gts_traptrix.320
+				days = 15
+			}
+		}
+	}
+	option = {
+		name = gts_traptrix.300.c
+	}
+}
+
+country_event = {
+	id = gts_traptrix.310
+	title = gts_traptrix.310.name
+	desc = gts_traptrix.310.desc
+	picture = GFX_gts_traptrix_4
+	show_sound = event_default
+	location = event_target:gts_traptrix_target_planet
+	is_triggered_only = yes
+	option = {
+		name = gts_traptrix.310.a
+		add_resource = {
+			unity = 5000
+			influence = 50
+		}
+	}
+}
+
+country_event = {
+	id = gts_traptrix.320
+	title = gts_traptrix.320.name
+	desc = gts_traptrix.320.desc
+	picture = GFX_gts_traptrix_4
+	show_sound = event_default
+	location = event_target:gts_traptrix_target_planet
+	is_triggered_only = yes
+	option = {
+		name = gts_traptrix.320.a
+		hidden_effect = {
+			country_event = {
+				id = gts_traptrix.321
+			}
+		}
+	}
+	option = {
+		name = gts_traptrix.320.b
+		hidden_effect = {
+			country_event = {
+				id = gts_traptrix.322
+			}
+		}
+	}
+	option = {
+		name = gts_traptrix.320.c
+		allow = {
+			has_country_flag = can_trigger_scat_content
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_traptrix.323
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_traptrix.321
+	title = gts_traptrix.321.name
+	desc = gts_traptrix.321.desc
+	picture = GFX_gts_traptrix_5
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_traptrix.321.a
+		add_resource = {
+			gts_giantess_fluid = 100
+			influence = 50
+		}
+	}
+	option = {
+		name = gts_traptrix.321.b
+		add_resource = {
+			gts_micro = 100
+			unity = 5000
+		}
+	}
+}
+
+country_event = {
+	id = gts_traptrix.322
+	title = gts_traptrix.322.name
+	desc = gts_traptrix.322.desc
+	picture = GFX_gts_traptrix_6
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_traptrix.322.a
+		add_resource = {
+			gts_giantess_fluid = 100
+			influence = 50
+		}
+	}
+	option = {
+		name = gts_traptrix.322.b
+		add_resource = {
+			gts_micro = 100
+			unity = 5000
+		}
+	}
+}
+
+country_event = {
+	id = gts_traptrix.323
+	title = gts_traptrix.323.name
+	desc = gts_traptrix.323.desc
+	picture = GFX_gts_traptrix_7
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_traptrix.323.a
+		add_resource = {
+			gts_giantess_fluid = 100
+			influence = 50
+		}
+	}
+	option = {
+		name = gts_traptrix.323.b
+		add_resource = {
+			gts_micro = 100
+			unity = 5000
+		}
+	}
+}
+
+country_event = {
+	# 塞拉招募
+	id = gts_traptrix.1999
+	title = "gts_traptrix.1999.name"
+	desc = gts_traptrix.1999.desc
+	show_sound = event_celebration
+	is_triggered_only = yes
+	picture = GFX_leader_recruitment_bg_renowned
+	event_window_type = leader_recruit
+	notification_event_icon = "GFX_message_leader_gts_sera"
+	immediate = {
+		gts_leader_sera_hired = yes
+	}
+	picture_event_data = {
+		portrait = event_target:gts_sera
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = gts_traptrix.1999.a
+		response_text = gts_traptrix.1999.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_traptrix.1999.b
+		response_text = gts_traptrix.1999.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_traptrix.1999.c
+		response_text = gts_traptrix.1999.c.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_traptrix.1999.d
+		response_text = gts_traptrix.1999.d.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		custom_tooltip = gts_traptrix.1999.hire_custom_tooltip
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = legendary }
+		}
+	}
+	option = {
+		name = DISMISS
+		tag = dismiss_leader
+		hidden_effect = {
+			country_event = {
+				id = gts_traptrix.1999
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_traptrix.2000
+	title = gts_traptrix.2000.title
+	desc = gts_traptrix.2000.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	auto_opens = yes
+	event_window_type = leader_recruit
+	notification_event_icon = "GFX_message_leader_gts_sera"
+	show_sound = event_celebration
+	immediate = {
+		gts_leader_sera_ultra_hired = yes
+		gts_leader_hire_effect = { TYPE = legendary }
+		gts_create_sera_fleet = yes
+	}
+	picture_event_data = {
+		portrait = event_target:gts_sera
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = gts_traptrix.2000.option
+		response_text = gts_traptrix.2000.option.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_traptrix.2000.option2
+		response_text = gts_traptrix.2000.option2.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_traptrix.2000.option3
+		response_text = gts_traptrix.2000.option3.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_traptrix.2000.option4
+		response_text = gts_traptrix.2000.option4.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		custom_tooltip = gts_traptrix.2000.hire_custom_tooltip
+	}
+	option = {
+		name = DISMISS
+		tag = dismiss_leader
+		hidden_effect = {
+			country_event = {
+				id = gts_traptrix.2000
+			}
+		}
+	}
+}
+
+country_event = {
+	# 阿洛美勒丝招募
+	id = gts_traptrix.2999
+	title = "gts_traptrix.2999.name"
+	desc = gts_traptrix.2999.desc
+	show_sound = event_celebration
+	is_triggered_only = yes
+	event_window_type = leader_recruit
+	notification_event_icon = "GFX_message_leader_gts_allomerus"
+	picture = GFX_leader_recruitment_bg_renowned
+	immediate = {
+		gts_leader_allomerus_hired = yes
+	}
+	picture_event_data = {
+		portrait = event_target:gts_allomerus
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = gts_traptrix.2999.a
+		response_text = gts_traptrix.2999.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_traptrix.2999.b
+		response_text = gts_traptrix.2999.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_traptrix.2999.c
+		response_text = gts_traptrix.2999.c.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_traptrix.2999.d
+		response_text = gts_traptrix.2999.d.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		custom_tooltip = gts_traptrix.2999.hire_custom_tooltip
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = legendary }
+			# country_event = {
+			# 	id = gts_allomerus.100
+			# 	days = 90
+			# }
+		}
+	}
+	option = {
+		name = DISMISS
+		tag = dismiss_leader
+		hidden_effect = {
+			country_event = {
+				id = gts_traptrix.2999
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_traptrix.3000
+	title = gts_traptrix.3000.title
+	desc = gts_traptrix.3000.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	auto_opens = yes
+	event_window_type = leader_recruit
+	notification_event_icon = "GFX_message_leader_gts_allomerus"
+	show_sound = event_celebration
+	immediate = {
+		gts_leader_allomerus_ultra_hired = yes
+		gts_leader_hire_effect = { TYPE = legendary }
+		gts_create_allomerus_fleet = yes
+		start_situation = {
+			type = situation_traptrix_ascription
+		}
+	}
+	picture_event_data = {
+		portrait = event_target:gts_allomerus
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = gts_traptrix.3000.option
+		response_text = gts_traptrix.3000.option.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_traptrix.2000.option2
+		response_text = gts_traptrix.3000.option2.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_traptrix.3000.option3
+		response_text = gts_traptrix.3000.option3.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		custom_tooltip = gts_traptrix.3000.hire_custom_tooltip
+	}
+	option = {
+		name = DISMISS
+		tag = dismiss_leader
+		hidden_effect = {
+			country_event = {
+				id = gts_traptrix.3000
+			}
+		}
+	}
+}
+
+# 登陆事件
+country_event = {
+	id = gts_traptrix.2100
+	title = gts_traptrix.2100.name
+	desc = gts_traptrix.2100.desc
+	picture = GFX_gts_traptrix_1
+	show_sound = event_default
+	is_triggered_only = yes
+	location = event_target:gts_attackers_win_planet
+	immediate = {
+		every_owned_leader = {
+			limit = {
+				has_leader_flag = gts_allomerus
+			}
+			save_event_target_as = gts_bruh_allomerus_kill_count
+		}
+		event_target:gts_attackers_win_planet = {
+			# 計算人口數量
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_planet_killed_pop_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_planet_killed_pop_count
+				value = 10
+			}
+			round_variable = gts_bruh_get_planet_killed_pop_count
+			# 計算城市數量
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_planet_destroyed_city_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_planet_destroyed_city_count
+				value = 1000
+			}
+			round_variable = gts_bruh_get_planet_destroyed_city_count
+			# 計算經驗獲取
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_experience_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_experience_count
+				value = 100
+			}
+			round_variable = gts_bruh_get_experience_count
+		}
+	}
+	option = {
+		name = gts_traptrix.2100.a
+		hidden_effect = {
+			country_event = {
+				id = gts_traptrix.2101
+			}
+		}
+	}
+	option = {
+		name = gts_traptrix.2100.b
+		hidden_effect = {
+			country_event = {
+				id = gts_traptrix.2102
+			}
+		}
+	}
+	option = {
+		name = gts_traptrix.2100.c
+		hidden_effect = {
+			country_event = {
+				id = gts_traptrix.2103
+			}
+		}
+	}
+	option = {
+		name = gts_traptrix.2100.d
+		allow = {
+			has_country_flag = can_trigger_scat_content
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_traptrix.2104
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_traptrix.2101
+	title = gts_traptrix.2101.name
+	desc = gts_traptrix.2101.desc
+	picture = GFX_gts_event_18
+	show_sound = event_default
+	is_triggered_only = yes
+	immediate = {
+		event_target:gts_attackers_win_planet = {
+			if = {
+				# 把居住站刪了
+				limit = {
+					is_planet_class = pc_habitat
+				}
+				destroy_colony = yes
+				remove_planet = yes
+			}
+			else = {
+				event_target:gts_attackers_win_planet = {
+					destroy_colony = yes
+					add_deposit = d_bomb_crater
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_traptrix.2101.a
+		add_resource = {
+			unity = 5000
+			influence = 100
+		}
+		# UB
+		# 顯示數值變化
+		event_target:gts_bruh_allomerus_kill_count = {
+			change_variable = {
+				which = gts_ub_kills_logs
+				value = event_target:gts_attackers_win_planet.gts_bruh_get_planet_killed_pop_count
+			}
+			change_variable = {
+				which = gts_city_kills_logs
+				value = event_target:gts_attackers_win_planet.gts_bruh_get_planet_destroyed_city_count
+			}
+			change_variable = {
+				which = gts_planet_kills_logs
+				value = 1
+			}
+			add_experience = event_target:gts_attackers_win_planet.gts_bruh_get_experience_count
+		}
+	}
+}
+
+country_event = {
+	id = gts_traptrix.2102
+	title = gts_traptrix.2102.name
+	desc = gts_traptrix.2102.desc
+	picture = GFX_gts_traptrix_3
+	show_sound = event_default
+	is_triggered_only = yes
+	immediate = {
+		event_target:gts_attackers_win_planet = {
+			if = {
+				# 把居住站刪了
+				limit = {
+					is_planet_class = pc_habitat
+				}
+				destroy_colony = yes
+				remove_planet = yes
+			}
+			else = {
+				event_target:gts_attackers_win_planet = {
+					destroy_colony = yes
+					add_deposit = d_bomb_crater
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_traptrix.2102.a
+		add_resource = {
+			unity = 5000
+			influence = 100
+		}
+		# VORE
+		# 顯示數值變化
+		event_target:gts_bruh_allomerus_kill_count = {
+			change_variable = {
+				which = gts_vore_kills_logs
+				value = event_target:gts_attackers_win_planet.gts_bruh_get_planet_killed_pop_count
+			}
+			change_variable = {
+				which = gts_city_kills_logs
+				value = event_target:gts_attackers_win_planet.gts_bruh_get_planet_destroyed_city_count
+			}
+			change_variable = {
+				which = gts_planet_kills_logs
+				value = 1
+			}
+			hidden_effect = {
+				# 根據kd獲取經驗
+				# 這可能會出現在error.log裡
+				# 別擔心這能正常運作
+				change_variable = {
+					which = gts_bruh_get_experience_count
+					value = event_target:gts_attackers_win_planet.gts_bruh_get_experience_count
+				}
+				add_experience = gts_bruh_get_experience_count
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_traptrix.2103
+	title = gts_traptrix.2103.name
+	desc = gts_traptrix.2103.desc
+	picture = GFX_gts_traptrix_3
+	show_sound = event_default
+	is_triggered_only = yes
+	immediate = {
+		event_target:gts_attackers_win_planet = {
+			if = {
+				# 把居住站刪了
+				limit = {
+					is_planet_class = pc_habitat
+				}
+				destroy_colony = yes
+				remove_planet = yes
+			}
+			else = {
+				event_target:gts_attackers_win_planet = {
+					destroy_colony = yes
+					add_deposit = d_bomb_crater
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_traptrix.2103.a
+		add_resource = {
+			unity = 5000
+			influence = 100
+		}
+		# FEET
+		# 顯示數值變化
+		event_target:gts_bruh_allomerus_kill_count = {
+			change_variable = {
+				which = gts_feet_kills_logs
+				value = event_target:gts_attackers_win_planet.gts_bruh_get_planet_killed_pop_count
+			}
+			change_variable = {
+				which = gts_city_kills_logs
+				value = event_target:gts_attackers_win_planet.gts_bruh_get_planet_destroyed_city_count
+			}
+			change_variable = {
+				which = gts_planet_kills_logs
+				value = 1
+			}
+			hidden_effect = {
+				# 根據kd獲取經驗
+				# 這可能會出現在error.log裡
+				# 別擔心這能正常運作
+				change_variable = {
+					which = gts_bruh_get_experience_count
+					value = event_target:gts_attackers_win_planet.gts_bruh_get_experience_count
+				}
+				add_experience = gts_bruh_get_experience_count
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_traptrix.2104
+	title = gts_traptrix.2104.name
+	desc = gts_traptrix.2104.desc
+	picture = GFX_gts_event_13
+	show_sound = event_default
+	is_triggered_only = yes
+	immediate = {
+		event_target:gts_attackers_win_planet = {
+			if = {
+				# 把居住站刪了
+				limit = {
+					is_planet_class = pc_habitat
+				}
+				destroy_colony = yes
+				remove_planet = yes
+			}
+			else = {
+				event_target:gts_attackers_win_planet = {
+					destroy_colony = yes
+					add_deposit = d_bomb_crater
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_traptrix.2104.a
+		add_resource = {
+			unity = 5000
+			influence = 100
+		}
+		# AV
+		# 顯示數值變化
+		event_target:gts_bruh_allomerus_kill_count = {
+			change_variable = {
+				which = gts_city_kills_logs
+				value = event_target:gts_attackers_win_planet.gts_bruh_get_planet_destroyed_city_count
+			}
+			change_variable = {
+				which = gts_planet_kills_logs
+				value = 1
+			}
+			hidden_effect = {
+				# 根據kd獲取經驗
+				# 這可能會出現在error.log裡
+				# 別擔心這能正常運作
+				change_variable = {
+					which = gts_bruh_get_experience_count
+					value = event_target:gts_attackers_win_planet.gts_bruh_get_experience_count
+				}
+				add_experience = gts_bruh_get_experience_count
+			}
+		}
+	}
+}
+
+# 终末地事件
+country_event = {
+	id = gts_traptrix.2200
+	title = gts_traptrix.2200.title
+	desc = gts_traptrix.2200.desc
+	picture = GFX_gts_traptrix_chain
+	show_sound = event_laboratory_sound
+	is_triggered_only = yes
+	immediate = {
+	}
+	option = {
+		name = gts_traptrix.2200.a
+		allow = {
+			AND = {
+				any_owned_leader = {
+					has_leader_flag = gts_sera
+				}
+				any_owned_leader = {
+					has_leader_flag = gts_allomerus
+				}
+			}
+		}
+		end_event_chain = gts_chain
+		begin_event_chain = {
+			event_chain = gts_traptrix_chain
+		}
+		hidden_effect = {
+			event_target:gts_sera = {
+				kill_leader = {
+					show_notification = no
+				}
+			}
+			event_target:gts_allomerus = {
+				kill_leader = {
+					show_notification = no
+				}
+			}
+			country_event = {
+				id = gts_traptrix.2201
+				days = 7
+			}
+		}
+	}
+	option = {
+		name = gts_traptrix.2200.b
+		from = {
+			ship_event = {
+				id = gts_evt_ancient.105
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_traptrix.2201
+	title = gts_traptrix.2201.title
+	desc = gts_traptrix.2201.desc
+	picture = GFX_gts_traptrix_chain
+	show_sound = event_activating_unknown_technology
+	is_triggered_only = yes
+	immediate = {
+	}
+	option = {
+		name = gts_traptrix.2201.a
+		# event_target:gts_end_blackhole = {
+		# 	remove_planet = yes
+		# }
+		country_event = {
+			id = gts_traptrix.2202
+			days = 3
+		}
+	}
+}
+
+country_event = {
+	id = gts_traptrix.2202
+	title = gts_traptrix.2202.title
+	desc = gts_traptrix.2202.desc
+	show_sound = event_activating_unknown_technology
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_traptrix_room
+	}
+	option = {
+		name = gts_traptrix.2202.a
+		country_event = {
+			id = gts_traptrix.2000
+		}
+		country_event = {
+			id = gts_traptrix.3000
+			days = 1
+		}
+	}
+}
+
+country_event = {
+	id = gts_traptrix.2203
+	title = gts_traptrix.2203.title
+	desc = gts_traptrix.2203.desc
+	show_sound = event_announcement
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_traptrix4_room
+	}
+	option = {
+		name = gts_traptrix.2203.option
+		add_resource = {
+			unity = -1000
+		}
+		every_situation = {
+			limit = {
+				is_situation_type = situation_traptrix_ascription
+			}
+			add_situation_progress = 10
+		}
+	}
+	option = {
+		name = gts_traptrix.2203.option.2
+		add_resource = {
+			unity = 1000
+		}
+		every_situation = {
+			limit = {
+				is_situation_type = situation_traptrix_ascription
+			}
+			add_situation_progress = -10
+		}
+	}
+}
+
+country_event = {
+	id = gts_traptrix.2204
+	title = gts_traptrix.2204.title
+	desc = gts_traptrix.2204.desc
+	show_sound = event_red_alert
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	immediate = {
+		event_target:gts_sera = {
+			kill_leader = {
+				show_notification = no
+			}
+		}
+		event_target:gts_allomerus = {
+			kill_leader = {
+				show_notification = no
+			}
+		}
+		event_target:gts_sera_fleet = {
+			# 摧毁舰队
+			destroy_fleet = this
+		}
+		event_target:gts_allomerus_fleet = {
+			# 摧毁舰队
+			destroy_fleet = this
+		}
+		random_owned_planet = {
+			# 选择攻击目标
+			limit = {
+				is_colony = yes
+				not = { has_planet_flag = gts_body_planet }
+			}
+
+			save_event_target_as = gts_traptrix_next_colony
+			set_planet_flag = gts_traptrix_next_colony
+		}
+		create_country = {
+			name = "NAME_traptrix"
+			type = guardian
+			flag = {
+				icon = {
+					category = "spherical"
+					file = "flag_spherical_6.dds"
+				}
+				background = {
+					category = "backgrounds"
+					file = "00_solid.dds"
+				}
+				colors = {
+					"dark_blue"
+					"dark_blue"
+					"null"
+				}
+			}
+			effect = {
+				set_faction_hostility = {
+					target = root
+					set_hostile = yes
+					set_neutral = no
+					set_friendly = no
+				}
+				save_global_event_target_as = gts_traptrix_country
+				set_country_flag = gts_traptrix_country
+				every_playable_country = {
+					establish_communications_no_message = event_target:gts_traptrix_country
+				}
+				create_fleet = {
+					name = "NAME_traptrix_enemy"
+					settings = {
+						spawn_debris = no
+						is_boss = yes
+					}
+					effect = {
+						set_owner = event_target:gts_traptrix_country
+						create_ship = {
+							name = "NAME_gts_allomerus_ship"
+							design = "NAME_gts_allomerus_ship"
+							effect = {
+								set_ship_flag = gts_allomerus_emery_ship
+								set_ship_flag = gts_body_ship
+								save_global_event_target_as = gts_allomerus_emery_ship
+								set_disabled = no
+							}
+						}
+						save_global_event_target_as = gts_allomerus_emery_fleet
+						set_location = {
+							target = event_target:gts_allomerus_fleet
+							distance = 10
+							angle = 90
+							direction = in_system
+						}
+						set_fleet_stance = passive
+						set_aggro_range_measure_from = self
+						set_fleet_bombardment_stance = armageddon
+						set_aggro_range = 350
+						set_fleet_flag = gts_allomerus_emery_fleet
+						auto_move_to_planet = {
+							target = event_target:gts_traptrix_next_colony
+							clear_auto_move_on_arrival = no
+						}
+						add_modifier = {
+							modifier = gts_traptrix_fleet_buff
+						}
+					}
+				}
+				create_fleet = {
+					name = "NAME_traptrix_enemy"
+					settings = {
+						spawn_debris = no
+						is_boss = yes
+					}
+					effect = {
+						set_owner = event_target:gts_traptrix_country
+						create_ship = {
+							name = "NAME_gts_sera_ship"
+							design = "NAME_gts_sera_ship"
+							effect = {
+								set_ship_flag = gts_sera_emery_ship
+								set_ship_flag = gts_body_ship
+								save_global_event_target_as = gts_sera_emery_ship
+								set_disabled = no
+							}
+						}
+						save_global_event_target_as = gts_sera_emery_fleet
+						set_location = {
+							target = event_target:gts_allomerus_fleet
+							distance = 10
+							angle = 90
+							direction = in_system
+						}
+						set_fleet_stance = passive
+						set_aggro_range_measure_from = self
+						set_aggro_range = 350
+						set_fleet_bombardment_stance = indiscriminate
+						set_fleet_flag = gts_sera_emery_fleet
+						auto_move_to_planet = {
+							target = event_target:gts_traptrix_next_colony
+							clear_auto_move_on_arrival = no
+						}
+						add_modifier = {
+							modifier = gts_traptrix_fleet_buff
+						}
+					}
+				}
+				create_fleet = {
+					name = "NAME_traptrix_enemy"
+					settings = {
+						spawn_debris = no
+						is_boss = no
+					}
+					effect = {
+						set_owner = event_target:gts_traptrix_country
+						while = {
+							count = 10
+							create_ship = {
+								name = "NAME_gts_traptrix_enemy_ship"
+								design = "NAME_Beta"
+							}
+						}
+						while = {
+							count = 10
+							create_ship = {
+								name = "NAME_gts_traptrix_enemy_ship"
+								design = "NAME_Avatar"
+							}
+						}
+						save_global_event_target_as = gts_traptrix_emery_fleet
+						set_location = {
+							target = event_target:gts_allomerus_fleet
+							distance = 10
+							angle = 90
+							direction = in_system
+						}
+						set_fleet_stance = passive
+						set_aggro_range_measure_from = self
+						set_aggro_range = 350
+						set_fleet_flag = gts_traptrix_fleet
+						auto_move_to_planet = {
+							target = event_target:gts_traptrix_next_colony
+							clear_auto_move_on_arrival = no
+						}
+						add_modifier = {
+							modifier = gts_traptrix_fleet_buff2
+						}
+					}
+				}
+			}
+		}
+		# event_target:gts_allomerus_emery_fleet = {
+		#
+		# }
+		# event_target:gts_sera_emery_fleet = {
+		# 	set_owner = root
+		# }
+		# event_target:gts_traptrix_emery_fleet = {
+		# 	set_owner = root
+		# }
+	}
+	picture_event_data = {
+		room = gts_traptrix5_room
+	}
+	option = {
+		name = gts_traptrix.2204.option
+	}
+}
+
+country_event = {
+	id = gts_traptrix.2205
+	title = gts_traptrix.2205.title
+	desc = gts_traptrix.2205.desc
+	show_sound = event_red_alert
+	picture = GFX_gts_traptrix_10
+	is_triggered_only = yes
+	diplomatic = yes
+	trigger = {
+		from = {
+			has_country_flag = gts_traptrix_country
+			not = {
+				any_owned_fleet = {
+					or = {
+						has_fleet_flag = gts_sera_emery_fleet
+						has_fleet_flag = gts_allomerus_emery_fleet
+					}
+				}
+			}
+		}
+	}
+	immediate = {
+		from = {
+			every_owned_fleet = {
+				limit = {
+					has_fleet_flag = gts_traptrix_fleet
+				}
+				destroy_fleet = this
+			}
+		}
+	}
+	option = {
+		name = gts_traptrix.2205.option
+		add_resource = {
+			unity = 2000
+		}
+	}
+}
+
+country_event = {
+	id = gts_traptrix.2206
+	title = gts_traptrix.2206.title
+	desc = gts_traptrix.2206.desc
+	show_sound = event_celebration
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_traptrix6_room
+	}
+	option = {
+		name = gts_traptrix.2206.option
+		create_country = {
+			name = "NAME_traptrix"
+			type = guardian
+			flag = {
+				icon = {
+					category = "spherical"
+					file = "flag_spherical_6.dds"
+				}
+				background = {
+					category = "backgrounds"
+					file = "00_solid.dds"
+				}
+				colors = {
+					"dark_blue"
+					"dark_blue"
+					"null"
+				}
+			}
+			effect = {
+				set_faction_hostility = {
+					target = root
+					set_hostile = no
+					set_neutral = no
+					set_friendly = yes
+				}
+				save_global_event_target_as = gts_traptrix_country
+				set_country_flag = gts_traptrix_country
+				every_playable_country = {
+					establish_communications_no_message = event_target:gts_traptrix_country
+				}
+				create_fleet = {
+					name = "NAME_gts_traptrix_ship"
+					settings = {
+						spawn_debris = no
+						is_boss = no
+					}
+					effect = {
+						set_owner = event_target:gts_traptrix_country
+						while = {
+							count = 10
+							create_ship = {
+								name = "NAME_gts_traptrix_ship"
+								design = "NAME_Beta"
+							}
+						}
+						while = {
+							count = 10
+							create_ship = {
+								name = "NAME_gts_traptrix_enemy_ship"
+								design = "NAME_Avatar"
+							}
+						}
+						save_global_event_target_as = gts_traptrix_fleet
+						set_location = {
+							target = event_target:gts_allomerus_fleet
+							distance = 10
+							angle = 90
+							direction = in_system
+						}
+						set_fleet_stance = passive
+						set_aggro_range_measure_from = self
+						set_aggro_range = 350
+						set_fleet_flag = gts_traptrix_fleet
+						add_modifier = {
+							modifier = gts_traptrix_fleet_buff2
+						}
+					}
+				}
+				event_target:gts_traptrix_fleet = {
+					set_owner = root
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	# 虫惑魔摧毁殖民地-1
+	id = gts_traptrix.2210
+	title = gts_traptrix.2210.title
+	desc = gts_traptrix.2210.desc
+	picture = GFX_gts_traptrix_9
+	show_sound = event_default
+	is_triggered_only = yes
+	location = event_target:gts_traptrix_next_colony
+	option = {
+		name = gts_traptrix.2210.option
+	}
+}
+
+country_event = {
+	# 虫惑魔摧毁殖民地-1
+	id = gts_traptrix.2211
+	title = gts_traptrix.2211.title
+	desc = gts_traptrix.2211.desc
+	picture = GFX_gts_traptrix_9
+	show_sound = event_default
+	is_triggered_only = yes
+	location = event_target:gts_traptrix_next_colony
+	option = {
+		name = gts_traptrix.2211.option
+	}
+}
+
+country_event = {
+	id = gts_traptrix.2299
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		from = {
+			or = {
+				has_fleet_flag = gts_sera_emery_fleet
+				has_fleet_flag = gts_allomerus_emery_fleet
+			}
+		}
+	}
+	immediate = {
+		FromFrom.owner = {
+			random_list = {
+				1 = {
+					country_event = {
+						id = gts_traptrix.2210
+					}
+				}
+				1 = {
+					country_event = {
+						id = gts_traptrix.2211
+					}
+				}
+			}
+			random_owned_planet = {
+				# 选择下一个攻击目标
+				limit = {
+					is_colony = yes
+					NOT = { has_planet_flag = gts_body_planet }
+					NOT = {
+						has_planet_flag = gts_traptrix_next_colony
+					}
+				}
+				save_global_event_target_as = gts_traptrix_next_colony
+				set_planet_flag = gts_traptrix_next_colony
+			}
+		}
+		fromfrom = {
+			destroy_colony = yes
+			clear_planet_modifiers = yes
+			clear_deposits = yes
+			remove_planet_flag = gts_traptrix_next_colony
+			remove_planet = yes
+		}
+		from = {
+			auto_move_to_planet = {
+				target = event_target:gts_traptrix_next_colony
+				clear_auto_move_on_arrival = no
+			}
+		}
+	}
+}
+
+# 特殊武器
+planet_event = {
+	id = gts_traptrix.2300
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		save_event_target_as = gts_sera_destroyed_planet
+		gts_set_count_kill_pop_effect = yes
+		event_target:gts_sera_destroyed_planet = {
+			gts_count_army_killed_pop_effect = yes
+			while = {
+				count = 5
+				random_owned_pop_group = {
+					if = {
+						limit = {
+							gts_is_tiny = yes
+						}
+						event_target:gts_sera_destroyed_planet = {
+							change_variable = {
+								which = gts_event_kills_logs
+								value = 2
+							}
+							random_list = {
+								1 = {
+									change_variable = {
+										which = gts_event_city_kills_logs
+										value = 40
+									}
+								}
+								1 = {
+									change_variable = {
+										which = gts_event_city_kills_logs
+										value = 120
+									}
+								}
+								1 = {
+									change_variable = {
+										which = gts_event_city_kills_logs
+										value = 200
+									}
+								}
+							}
+						}
+					}
+					else_if = {
+						limit = {
+							gts_is_giantess = yes
+						}
+						event_target:gts_sera_destroyed_planet = {
+							change_variable = {
+								which = gts_event_kills_logs
+								value = 5
+							}
+							random_list = {
+								1 = {
+									change_variable = {
+										which = gts_event_city_kills_logs
+										value = 100
+									}
+								}
+								1 = {
+									change_variable = {
+										which = gts_event_city_kills_logs
+										value = 300
+									}
+								}
+								1 = {
+									change_variable = {
+										which = gts_event_city_kills_logs
+										value = 500
+									}
+								}
+							}
+						}
+					}
+					kill_all_pop = yes
+				}
+			}
+		}
+		event_target:gts_sera = {
+			change_variable = {
+				which = gts_feet_kills_logs
+				value = root.gts_event_kills_logs
+			}
+			change_variable = {
+				which = gts_city_kills_logs
+				value = root.gts_event_city_kills_logs
+			}
+			change_variable = {
+				which = gts_planet_kills_logs
+				value = 1
+			}
+		}
+		if = {
+			limit = {
+				planet_is_hostile = yes
+			}
+			from.owner = {
+				country_event = {
+					id = gts_traptrix.2301
+				}
+			}
+		}
+		#Dismantle observation post
+		if = {
+			limit = {
+				has_observation_outpost = yes
+			}
+			observation_outpost_owner = {
+				country_event = {
+					id = planet_destruction.1000
+					days = 1
+				}
+			}
+		}
+		# Contingency Machine World
+		if = {
+			limit = {
+				is_planet_class = pc_ai
+				NOT = {
+					has_planet_flag = machine_lair
+				}
+			}
+			set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_cracked
+			planet_event = {
+				id = crisis.2040
+			}
+		}
+		# Contingency Final Machine World
+		if = {
+			limit = {
+				is_planet_class = pc_ai
+				has_planet_flag = machine_lair
+			}
+			set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_cracked
+			from.owner = {
+				save_event_target_as = final_machine_world_destroyer
+			}
+			stop_crisis_sound = yes
+			planet_event = {
+				id = crisis.2046
+			}
+		}
+		# Swarm Situation Log counter
+		if = {
+			limit = {
+				exists = owner
+				owner = {
+					is_country_type = swarm
+				}
+			}
+			every_country = {
+				limit = {
+					has_event_chain = "prethoryn_scourge_chain"
+				}
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds"
+					amount = -1
+				}
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds_cleansed"
+					amount = 1
+				}
+			}
+		}
+		if = {
+			limit = {
+				OR = {
+					is_active_resolution = "resolution_rulesofwar_reverence_for_life"
+					is_active_resolution = "resolution_rulesofwar_independent_tribunals"
+					is_active_resolution = "resolution_rulesofwar_last_resort_doctrine"
+					is_active_resolution = "resolution_rulesofwar_demobilization_initiative"
+				}
+			}
+			from.owner = {
+				set_timed_country_flag = {
+					flag = resolution_breached_fired_cracker
+					days = 3600
+				}
+			}
+		}
+		# Exterminatus Achievement
+		if = {
+			limit = {
+				is_capital = yes
+			}
+			from.owner = {
+				set_country_flag = exterminatus
+			}
+		}
+		if = {
+			limit = {
+				exists = owner
+				owner = {
+					NOT = {
+						is_same_value = from.owner
+					}
+					OR = {
+						is_country_type = default
+						is_country_type = fallen_empire
+						is_country_type = awakened_fallen_empire
+					}
+				}
+			}
+			# Generate threat
+			if = {
+				limit = {
+					is_colony = yes
+				}
+				add_threat = {
+					who = from.owner
+					amount = 3
+				}
+				# modifier for allies + those upset by genocide
+				every_country = {
+					limit = {
+						NOR = {
+							is_same_value = from.owner
+							is_same_value = root.owner
+							AND = {
+								has_federation = yes
+								is_in_federation_with = from.owner
+							}
+						}
+						OR = {
+							has_communications = from.owner
+							has_communications = root.owner
+						}
+						OR = {
+							AND = {
+								has_federation = yes
+								is_in_federation_with = root.owner
+							}
+							has_ai_personality = awakened_fallen_empire_xenophile
+							AND = {
+								is_country_type = default
+								OR = {
+									is_egalitarian = yes
+									is_xenophile = yes
+								}
+							}
+						}
+					}
+					if = {
+						limit = {
+							root = {
+								is_colony = no
+							}
+						}
+						add_opinion_modifier = {
+							modifier = opinion_cracked_an_uninhabited_world
+							who = from.owner
+						}
+					}
+					else = {
+						add_opinion_modifier = {
+							modifier = opinion_cracked_a_world
+							who = from.owner
+						}
+					}
+				}
+			}
+			else = {
+				add_threat = {
+					who = from.owner
+					amount = 1
+				}
+			}
+			# modifiers for victim
+			owner = {
+				if = {
+					limit = {
+						root = {
+							is_colony = no
+						}
+					}
+					add_opinion_modifier = {
+						modifier = opinion_cracked_my_uninhabited_world
+						who = from.owner
+					}
+				}
+				else = {
+					add_opinion_modifier = {
+						modifier = opinion_cracked_my_world
+						who = from.owner
+					}
+				}
+				if = {
+					limit = {
+						NOT = {
+							has_ethic = ethic_gestalt_consciousness
+						}
+					}
+					add_modifier = {
+						modifier = colossus_victim
+						days = 10800						# 30 years
+					}
+				}
+			}
+			if = {
+				limit = {
+					exists = owner
+					owner = {
+						is_country_type = primitive
+					}
+				}
+				# modifier for allies + those upset by genocide
+				every_country = {
+					limit = {
+						NOT = {
+							is_same_value = from.owner
+						}
+						OR = {
+							has_communications = from.owner
+							has_communications = root.owner
+						}
+						OR = {
+							has_ai_personality = awakened_fallen_empire_xenophile
+							AND = {
+								is_country_type = default
+								NOR = {
+									is_xenophobe = yes
+									is_homicidal = yes
+									is_xenophile = yes
+								}
+							}
+						}
+					}
+					add_opinion_modifier = {
+						modifier = opinion_cracked_a_primitive_world
+						who = from.owner
+					}
+				}
+				every_country = {
+					limit = {
+						NOT = {
+							is_same_value = from.owner
+						}
+						OR = {
+							has_communications = from.owner
+							has_communications = root.owner
+						}
+						OR = {
+							has_ai_personality = awakened_fallen_empire_xenophile
+							AND = {
+								is_country_type = default
+								is_xenophile = yes
+							}
+						}
+					}
+					add_opinion_modifier = {
+						modifier = opinion_cracked_a_primitive_world_phile
+						who = from.owner
+					}
+				}
+			}
+		}
+		# Add war exhaustion to planet owner
+		if = {
+			limit = {
+				exists = owner
+			}
+			owner = {
+				if = {
+					limit = {
+						#isn't the case when the crisis bombards planets, for instance
+						is_at_war_with = from.fleet.owner
+					}
+					add_static_war_exhaustion = {
+						attacker = from.fleet.owner
+						location = root
+						value_for_planet_destruction = 1
+					}
+				}
+			}
+		}
+		every_owned_pop_group = {
+			kill_all_pop = yes
+		}
+		if = {
+			limit = {
+				exists = orbital_defence
+			}
+			destroy_fleet = orbital_defence
+		}
+		remove_all_buildings = yes
+		# destroy habitats and ringworlds
+		if = {
+			limit = {
+				is_planet_class = pc_habitat
+			}
+			remove_planet = yes
+		}
+		else_if = {
+			limit = {
+				is_planet_class = pc_cosmogenesis_world
+			}
+			remove_planet = yes
+		}
+		else_if = {
+			limit = {
+				is_ringworld = yes
+			}
+			remove_planet = yes
+		}
+		else_if = {
+			limit = {
+				habitable_planet = yes
+			}
+			remove_planet = yes
+		}
+		else = {
+			remove_planet = yes
+		}
+		create_ambient_object = {
+			location = this
+			type = habitat_cracker_object
+			duration = 5
+			use_3d_location = yes
+			base_angle_towards = star
+			entity_face_object = star
+			entity_offset = {
+				min = 0
+				max = 0
+			}
+			entity_scale_to_size = yes
+			scale = 0.5
+		}
+	}
+}
+
+country_event = {
+	id = gts_traptrix.2301
+	title = gts_traptrix.2301.title
+	desc = gts_traptrix.2301.desc
+	fire_only_once = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_traptrix2_room
+	}
+	show_sound = event_mystic_reveal
+	location = from
+	is_triggered_only = yes
+	trigger = {
+		has_country_flag = can_trigger_scat_content
+	}
+	option = {
+		name = gts_traptrix.2301.option
+		add_resource = {
+			gts_micro_planet = 1
+		}
+		custom_tooltip = gts_leader_qhai.2003.tooltip
+	}
+}
+
+country_event = {
+	id = gts_traptrix.2302
+	title = gts_traptrix.2302.title
+	desc = gts_traptrix.2302.desc
+	fire_only_once = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_traptrix3_room
+	}
+	show_sound = event_mystic_reveal
+	location = from
+	is_triggered_only = yes
+	trigger = {
+		exists = event_target:gts_sera
+		fromfrom = {
+			is_same_value = event_target:gts_sera_fleet
+		}
+		any_war = {
+			any_attacker = {
+				is_same_value = root
+			}
+			any_defender = {
+				is_same_value = from
+			}
+		}
+	}
+	option = {
+		name = gts_traptrix.2302.option
+	}
+}
+
+country_event = {
+	id = gts_traptrix.2303
+	title = gts_traptrix.2303.title
+	desc = gts_traptrix.2303.desc
+	diplomatic = yes
+	fire_only_once = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_traptrix3_room
+	}
+	show_sound = event_mystic_reveal
+	location = from
+	is_triggered_only = yes
+	option = {
+		name = gts_traptrix.2303.option
+	}
+}

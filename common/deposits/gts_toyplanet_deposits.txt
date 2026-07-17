@@ -1,0 +1,1992 @@
+# 足垢星球相關
+
+d_dirt_ruin1 = {
+
+    # 被壓扁的城市
+
+    is_for_colonizable = yes	#殖民星球才有
+    category = deposit_cat_blockers	#阻止区
+    time = 360
+    icon = d_tradestation_interior	#图标
+
+    on_cleared = {
+
+    }
+
+    planet_modifier = {
+        planet_max_districts_add = -2
+    }
+
+    resources = {
+        category = deposit_blockers
+        cost = {
+            energy = 1000
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_dirt_ruin2 = {
+
+    # 黏在腳上的倖存者
+
+    is_for_colonizable = yes	#殖民星球才有
+    category = deposit_cat_blockers	#阻止区
+    time = 360
+    icon = d_gts_footdirt	#图标
+
+    on_cleared = {
+        hidden_effect = {
+            owner = {
+                random_owned_species = {
+                    limit = {
+                        NOR = {
+                            has_citizenship_type = { country = root type = citizenship_slavery }
+                            has_citizenship_type = { country = root type = citizenship_purge }
+                        }
+                    }
+                    save_event_target_as = gts_bruh_random_owned_species
+                }
+            }
+        }
+        create_pop_group = {
+            species = event_target:gts_bruh_random_owned_species
+        }
+        owner = {
+            add_resource = {
+                influence = 25
+            }
+        }
+    }
+
+    resources = {
+        category = deposit_blockers
+        cost = {
+            energy = 500
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_dirt_ruin3 = {
+
+    # 足垢山
+
+    is_for_colonizable = yes
+    category = deposit_cat_blockers_natural
+    time = 360
+    icon = d_gts_footsweat_1	#图标
+
+    can_be_cleared = {
+        custom_tooltip = {
+            fail_text = d_dirt_ruin3_fail1
+            planet = {
+                NOT = {
+                    has_modifier = gts_dirt_colony0_3
+                }
+            }
+        }
+        custom_tooltip = {
+            fail_text = d_dirt_ruin3_fail2
+            planet = {
+                NOT = {
+                    has_modifier = gts_dirt_colony1_3
+                }
+            }
+        }
+        custom_tooltip = {
+            fail_text = d_dirt_ruin3_fail3
+            planet = {
+                NOT = {
+                    has_modifier = gts_dirt_colony3_2
+                }
+            }
+        }
+    }
+
+    on_cleared = {
+
+    }
+
+    blocker_swap_types = {
+        d_dirt_clean1
+    }
+
+    planet_modifier = {
+        planet_max_districts_add = -2
+    }
+
+    resources = {
+        category = deposit_blockers
+        cost = {
+            energy = 1000
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_dirt_clean1 = {
+
+    # 清理出的足垢採集地
+
+    is_for_colonizable = yes
+    category = deposit_cat_rare
+    icon = d_gts_sock_1
+
+    triggered_planet_modifier = {
+        potential = {
+            planet = {
+                is_planet_class = pc_gts_dirt0
+            }
+        }
+        modifier = {
+            district_dirt0_2_max_add = 2
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            planet = {
+                is_planet_class = pc_gts_dirt1
+            }
+        }
+        modifier = {
+            district_mining_max_add = 2
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            planet = {
+                is_planet_class = pc_gts_dirt2
+            }
+        }
+        modifier = {
+            district_dirt2_2_max_add = 2
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            planet = {
+                is_planet_class = pc_gts_dirt3
+            }
+        }
+        modifier = {
+            district_dirt3_2_max_add = 2
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            planet = {
+                is_planet_class = pc_gts_dirt4
+            }
+        }
+        modifier = {
+            district_dirt0_2_max_add = 2
+        }
+    }
+
+    resources = {
+        category = planet_deposits
+        produces = {
+            minerals = 20
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_dirt_ruin4 = {
+
+    # 足汗海
+
+    is_for_colonizable = yes
+    category = deposit_cat_blockers_natural
+    time = 360
+    icon = d_tropical_island	#图标
+
+    can_be_cleared = {
+        custom_tooltip = {
+            fail_text = d_dirt_ruin4_fail1
+            planet = {
+                NOT = {
+                    has_modifier = gts_dirt_colony0_2
+                }
+            }
+        }
+        custom_tooltip = {
+            fail_text = d_dirt_ruin3_fail2
+            planet = {
+                NOT = {
+                    has_modifier = gts_dirt_colony1_2
+                }
+            }
+        }
+        custom_tooltip = {
+            fail_text = d_dirt_ruin3_fail3
+            planet = {
+                NOT = {
+                    has_modifier = gts_dirt_colony4_2
+                }
+            }
+        }
+    }
+
+    on_cleared = {
+
+    }
+
+    blocker_swap_types = {
+        d_dirt_clean2
+    }
+
+    planet_modifier = {
+        planet_max_districts_add = -2
+    }
+
+    resources = {
+        category = deposit_blockers
+        cost = {
+            energy = 1000
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_dirt_clean2 = {
+
+    # 足汗灌溉的土地
+
+    is_for_colonizable = yes
+    category = deposit_cat_rare
+    icon = d_hot_springs
+
+    triggered_planet_modifier = {
+        potential = {
+            planet = {
+                is_planet_class = pc_gts_dirt0
+            }
+        }
+        modifier = {
+            district_dirt0_3_max_add = 2
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            planet = {
+                is_planet_class = pc_gts_dirt1
+            }
+        }
+        modifier = {
+            district_farming_max_add = 2
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            planet = {
+                is_planet_class = pc_gts_dirt2
+            }
+        }
+        modifier = {
+            district_dirt2_2_max_add = 1
+            district_dirt2_3_max_add = 1
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            planet = {
+                is_planet_class = pc_gts_dirt3
+            }
+        }
+        modifier = {
+            district_dirt3_2_max_add = 1
+            district_dirt3_3_max_add = 1
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            planet = {
+                is_planet_class = pc_gts_dirt4
+            }
+        }
+        modifier = {
+            district_dirt4_3_max_add = 2
+        }
+    }
+
+    resources = {
+        category = planet_deposits
+        produces = {
+            food = 20
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_dirt_ruin5 = {
+
+    # 致命汗霧
+
+    is_for_colonizable = yes
+    category = deposit_cat_blockers_natural
+    time = 360
+    icon = d_gts_sock_2	#图标
+
+    can_be_cleared = {
+        custom_tooltip = {
+            fail_text = d_dirt_ruin5_fail1
+            planet = {
+                NOT = {
+                    has_modifier = gts_dirt_colony0_1
+                }
+            }
+        }
+        custom_tooltip = {
+            fail_text = d_dirt_ruin5_fail2
+            planet = {
+                NOT = {
+                    has_modifier = gts_dirt_colony1_1
+                }
+            }
+        }
+    }
+
+    on_cleared = {
+
+    }
+
+    blocker_swap_types = {
+        d_dirt_clean3
+    }
+
+    planet_modifier = {
+        planet_max_districts_add = -2
+    }
+
+    resources = {
+        category = deposit_blockers
+        cost = {
+            energy = 1000
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_dirt_clean3 = {
+
+    # 稀薄汗霧
+
+    is_for_colonizable = yes
+    category = deposit_cat_rare
+    icon = d_gts_footsweat_2
+
+    planet_modifier = {
+        district_bfbf_foot_1_max_add = 1
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            planet = {
+                is_planet_class = pc_gts_dirt0
+            }
+        }
+        modifier = {
+            district_dirt0_2_max_add = 1
+            district_dirt0_3_max_add = 1
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            planet = {
+                is_planet_class = pc_gts_dirt1
+            }
+        }
+        modifier = {
+            district_generator_max_add = 2
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            planet = {
+                is_planet_class = pc_gts_dirt2
+            }
+        }
+        modifier = {
+            district_dirt2_2_max_add = 1
+            district_dirt2_3_max_add = 1
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            planet = {
+                is_planet_class = pc_gts_dirt3
+            }
+        }
+        modifier = {
+            district_dirt3_2_max_add = 1
+            district_dirt3_3_max_add = 1
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            planet = {
+                is_planet_class = pc_gts_dirt4
+            }
+        }
+        modifier = {
+            district_dirt0_2_max_add = 1
+            district_dirt4_3_max_add = 1
+        }
+    }
+
+    resources = {
+        category = planet_deposits
+        produces = {
+            exotic_gases = 10
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_dirt_ruin6 = {
+
+    # 足印污染區
+
+    is_for_colonizable = yes
+    category = deposit_cat_blockers_natural
+    time = 360
+    icon = d_black_soil	#图标
+
+    can_be_cleared = {
+        custom_tooltip = {
+            fail_text = d_dirt_ruin6_fail1
+            planet = {
+                NOT = {
+                    has_modifier = gts_dirt_colony1_2
+                }
+            }
+        }
+    }
+
+    on_cleared = {
+
+    }
+
+    planet_modifier = {
+        planet_max_districts_add = -2
+    }
+
+    resources = {
+        category = deposit_blockers
+        cost = {
+            energy = 1000
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_dirt_ruin7 = {
+
+    # 堅不可摧的足垢地殼
+
+    is_for_colonizable = yes
+    category = deposit_cat_blockers_natural
+    time = 360
+    icon = d_infestation	#图标
+
+    can_be_cleared = {
+        custom_tooltip = {
+            fail_text = d_dirt_ruin7_fail1
+            planet = {
+                NOT = {
+                    has_modifier = gts_dirt_colony2_3
+                }
+            }
+        }
+    }
+
+    on_cleared = {
+
+    }
+
+    planet_modifier = {
+        planet_max_districts_add = -2
+        planet_orbital_bombardment_damage = -0.10
+    }
+
+    resources = {
+        category = deposit_blockers
+        cost = {
+            volatile_motes = 100
+            energy = 1000
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_dirt_ruin8 = {
+
+    # 碩大的足汗結晶
+
+    is_for_colonizable = yes
+    category = deposit_cat_blockers_natural
+    time = 360
+    icon = d_archaeological_dig	#图标
+
+    can_be_cleared = {
+        custom_tooltip = {
+            fail_text = d_dirt_ruin8_fail1
+            planet = {
+                NOT = {
+                    has_modifier = gts_dirt_colony2_2
+                }
+            }
+        }
+    }
+
+    on_cleared = {
+
+    }
+
+    blocker_swap_types = {
+        d_dirt_clean4
+    }
+
+    planet_modifier = {
+        planet_max_districts_add = -2
+    }
+
+    resources = {
+        category = deposit_blockers
+        cost = {
+            energy = 1000
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_dirt_clean4 = {
+
+    # 足汗結晶採集場
+
+    is_for_colonizable = yes
+    category = deposit_cat_rare
+    icon = d_bubbling_swamp
+
+
+    triggered_planet_modifier = {
+        potential = {
+            planet = {
+                is_planet_class = pc_gts_dirt2
+            }
+        }
+        modifier = {
+            district_dirt2_2_max_add = 2
+        }
+    }
+
+    resources = {
+        category = planet_deposits
+        produces = {
+            minerals = 20
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_dirt_ruin9 = {
+
+    # 被揉碎的地殼
+
+    is_for_colonizable = yes
+    category = deposit_cat_blockers_natural
+    time = 360
+    icon = d_gts_footsweat_2	#图标
+
+    can_be_cleared = {
+        custom_tooltip = {
+            fail_text = d_dirt_ruin9_fail1
+            planet = {
+                NOT = {
+                    has_modifier = gts_dirt_colony3_3
+                }
+            }
+        }
+    }
+
+    on_cleared = {
+
+    }
+
+    blocker_swap_types = {
+        d_dirt_clean5
+    }
+
+    planet_modifier = {
+        planet_max_districts_add = -2
+    }
+
+    resources = {
+        category = deposit_blockers
+        cost = {
+            energy = 1000
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_dirt_clean5 = {
+
+    # 地核採礦豎井
+
+    is_for_colonizable = yes
+    category = deposit_cat_rare
+    icon = d_levitating_rocks
+
+    triggered_planet_modifier = {
+        potential = {
+            planet = {
+                is_planet_class = pc_gts_dirt3
+            }
+        }
+        modifier = {
+            district_dirt3_2_max_add = 2
+        }
+    }
+
+    resources = {
+        category = planet_deposits
+        produces = {
+            minerals = 20
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_dirt_ruin10 = {
+
+    # 足垢峽灣
+
+    is_for_colonizable = yes
+    category = deposit_cat_blockers_natural
+    time = 360
+    icon = d_betharian_deposit	#图标
+
+    can_be_cleared = {
+        custom_tooltip = {
+            fail_text = d_dirt_ruin10_fail1
+            planet = {
+                NOT = {
+                    has_modifier = gts_dirt_colony4_2
+                }
+            }
+        }
+    }
+
+    blocker_swap_types = {
+        d_dirt_clean6
+    }
+
+    on_cleared = {
+
+    }
+
+    planet_modifier = {
+        planet_max_districts_add = -2
+    }
+
+    resources = {
+        category = deposit_blockers
+        cost = {
+            energy = 1000
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_dirt_clean6 = {
+
+    # 足垢平原
+
+    is_for_colonizable = yes
+    category = deposit_cat_rare
+    icon = d_buried_lithoids
+
+    triggered_planet_modifier = {
+        potential = {
+            planet = {
+                is_planet_class = pc_gts_dirt4
+            }
+        }
+        modifier = {
+            district_dirt4_3_max_add = 2
+        }
+    }
+
+    resources = {
+        category = planet_deposits
+        produces = {
+            food = 20
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+# 愛液星球相關
+
+d_juice_ruin1 = {
+
+    # 墜毀的殖民飛船
+
+    is_for_colonizable = yes
+    icon = d_crashed_ship
+    category = deposit_cat_blockers
+    time = 180
+
+    on_cleared = {
+        hidden_effect = {
+            owner = {
+                random_owned_species = {
+                    limit = {
+                        NOR = {
+                            has_citizenship_type = { country = root type = citizenship_slavery }
+                            has_citizenship_type = { country = root type = citizenship_purge }
+                        }
+                    }
+                    save_event_target_as = gts_bruh_random_owned_species
+                }
+            }
+        }
+        create_pop_group = {
+            species = event_target:gts_bruh_random_owned_species
+        }
+        owner = {
+            add_resource = {
+                influence = 25
+            }
+        }
+    }
+
+    resources = {
+        category = deposit_blockers
+        cost = {
+            energy = 500
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_juice_ruin2 = {
+
+    # 地底避難所
+
+    is_for_colonizable = yes
+    category = deposit_cat_blockers
+    time = 180
+
+    on_cleared = {
+        hidden_effect = {
+            owner = {
+                random_owned_species = {
+                    limit = {
+                        NOR = {
+                            has_citizenship_type = { country = root type = citizenship_slavery }
+                            has_citizenship_type = { country = root type = citizenship_purge }
+                        }
+                    }
+                    save_event_target_as = gts_bruh_random_owned_species
+                }
+            }
+        }
+        create_pop_group = {
+            species = event_target:gts_bruh_random_owned_species
+        }
+        owner = {
+            add_resource = {
+                influence = 25
+            }
+        }
+    }
+
+    resources = {
+        category = deposit_blockers
+        cost = {
+            energy = 500
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_juice_ruin3 = {
+
+    # 駱駝趾印
+
+    is_for_colonizable = yes
+    category = deposit_cat_blockers_natural
+    time = 1800
+
+    on_cleared = {
+
+    }
+
+    blocker_swap_types = {
+        d_juice_clean3
+    }
+
+    planet_modifier = {
+        planet_max_districts_add = -10
+        pop_environment_tolerance = -0.20
+    }
+
+    resources = {
+        category = deposit_blockers
+        cost = {
+            energy = 5000
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_juice_clean3 = {
+
+    # 駱駝趾印開發區
+
+    is_for_colonizable = yes
+    category = deposit_cat_rare
+
+    planet_modifier = {
+        planet_housing_mult = 0.20
+        logistic_growth_mult = 0.10
+        bonus_pop_growth = 0.10
+        planet_jobs_gts_giantess_fluid_produces_mult = 0.10
+        district_juice_2_max_add = 3
+        district_juice_3_max_add = 3
+        district_juice_4_max_add = 3
+    }
+
+    resources = {
+        category = planet_deposits
+        produces = {
+            gts_giantess_fluid = 50
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_juice_ruin4 = {
+
+    # 不穩定海底火山
+
+    is_for_colonizable = yes
+    category = deposit_cat_blockers_natural
+    time = 360
+
+    on_cleared = {
+
+    }
+
+    blocker_swap_types = {
+        d_juice_clean4
+    }
+
+    planet_modifier = {
+        planet_max_districts_add = -2
+    }
+
+    resources = {
+        category = deposit_blockers
+        cost = {
+            energy = 1000
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_juice_clean4 = {
+
+    # 穩定海底火山
+
+    is_for_colonizable = yes
+    category = deposit_cat_rare
+
+    planet_modifier = {
+        district_juice_4_max_add = 2
+    }
+
+    resources = {
+        category = planet_deposits
+        produces = {
+            gts_giantess_fluid = 10
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_juice_ruin5 = {
+
+    # 巨娘胖次
+
+    is_for_colonizable = yes
+    category = deposit_cat_blockers_natural
+    time = 360
+
+    on_cleared = {
+
+    }
+
+    blocker_swap_types = {
+        d_juice_clean5
+    }
+
+    planet_modifier = {
+        planet_max_districts_add = -2
+    }
+
+    resources = {
+        category = deposit_blockers
+        cost = {
+            energy = 1000
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_juice_clean5 = {
+
+    # 巨娘胖次基地
+
+    is_for_colonizable = yes
+    category = deposit_cat_rare
+
+    planet_modifier = {
+        district_juice_2_max_add = 2
+    }
+
+    resources = {
+        category = planet_deposits
+        produces = {
+            gts_giantess_fluid = 10
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_juice_ruin6 = {
+
+    # 愛液洪水
+
+    is_for_colonizable = yes
+    category = deposit_cat_blockers_natural
+    time = 360
+
+    on_cleared = {
+
+    }
+
+    blocker_swap_types = {
+        d_juice_clean6
+    }
+
+    planet_modifier = {
+        planet_max_districts_add = -2
+    }
+
+    resources = {
+        category = deposit_blockers
+        cost = {
+            energy = 1000
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_juice_clean6 = {
+
+    # 巨型水壩
+
+    is_for_colonizable = yes
+    category = deposit_cat_rare
+    icon = d_rushing_waterfalls
+
+    planet_modifier = {
+        district_juice_3_max_add = 2
+    }
+
+    resources = {
+        category = planet_deposits
+        produces = {
+            gts_giantess_fluid = 10
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_juice_ruin7 = {
+
+    # 斯卡蒂的駱駝趾印
+
+    is_for_colonizable = yes
+    category = deposit_cat_blockers_natural
+    time = 2700
+    icon = d_skadi_virgin
+
+    on_cleared = {
+
+    }
+
+    blocker_swap_types = {
+        d_juice_clean7
+    }
+
+    planet_modifier = {
+        planet_max_districts_add = -15
+        pop_environment_tolerance = -0.30
+    }
+
+    resources = {
+        category = deposit_blockers
+        cost = {
+            energy = 7500
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_juice_clean7 = {
+
+    # 深海教會駱駝趾區
+
+    is_for_colonizable = yes
+    category = deposit_cat_rare
+    icon = d_skadi_virgin_clean
+
+    planet_modifier = {
+        planet_housing_mult = 0.30
+        logistic_growth_mult = 0.15
+        bonus_pop_growth = 0.15
+        planet_jobs_gts_giantess_fluid_produces_mult = 0.20
+        district_juice_2_max_add = 1
+        district_juice_3_max_add = 1
+        district_juice_4_max_add = 1
+        district_juice_5_max_add = 12
+    }
+
+    resources = {
+        category = planet_deposits
+        produces = {
+            gts_giantess_fluid = 75
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_juice_ruin8 = {
+
+    # 千海的自慰星球
+
+    is_for_colonizable = yes
+    category = deposit_cat_blockers_natural
+    time = 1500
+    icon = d_qhai_virgin
+
+    on_cleared = {
+
+    }
+
+    blocker_swap_types = {
+        d_juice_clean8
+    }
+
+    planet_modifier = {
+        planet_max_districts_add = -15
+        pop_environment_tolerance = -0.30
+    }
+
+    resources = {
+        category = deposit_blockers
+        cost = {
+            energy = 7500
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_juice_clean8 = {
+
+    # 千海的愛液天堂星球
+
+    is_for_colonizable = yes
+    category = deposit_cat_rare
+    icon = d_qhai_virgin
+
+    planet_modifier = {
+        planet_housing_mult = 0.30
+        logistic_growth_mult = 0.15
+        bonus_pop_growth = 0.15
+        planet_jobs_gts_giantess_fluid_produces_mult = 0.15
+        planet_jobs_food_produces_mult = 0.10
+        district_juice_2_max_add = 1
+        district_juice_3_max_add = 1
+        district_juice_4_max_add = 1
+        district_juice_6_max_add = 12
+    }
+
+    resources = {
+        category = planet_deposits
+        produces = {
+            gts_giantess_fluid = 75
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+# 乳汁星球相關
+
+d_milk_ruin1 = {
+
+    # 海底城市
+
+    icon = d_juice_ruin6
+    is_for_colonizable = yes
+    category = deposit_cat_rare
+
+    planet_modifier = {
+        district_milk_4_max_add = 2
+    }
+
+    resources = {
+        category = deposit_blockers
+        produces = {
+            unity = 10
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_milk_ruin2 = {
+
+    # 奶酪珊瑚礁
+
+    icon = d_rushing_waterfalls
+    is_for_colonizable = yes
+    category = deposit_cat_rare
+
+    planet_modifier = {
+        district_milk_2_max_add = 2
+    }
+
+    resources = {
+        category = deposit_blockers
+        produces = {
+            food = 10
+            trade = 10
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_milk_ruin3 = {
+
+    # 乳海孤島
+
+    is_for_colonizable = yes
+    category = deposit_cat_rare
+
+    planet_modifier = {
+        district_milk_3_max_add = 2
+    }
+
+    resources = {
+        category = deposit_blockers
+        produces = {
+            food = 20
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_gts_milk_sea = {
+
+    # 乳汁海洋
+
+    is_for_colonizable = yes
+    category = deposit_cat_rare
+    icon = d_gts_breast_sea
+
+    planet_modifier = {
+        planet_jobs_food_produces_mult = 0.20
+        district_milk_2_max_add = 3
+        district_milk_3_max_add = 3
+        district_milk_4_max_add = 3
+    }
+
+    resources = {
+        category = planet_deposits
+        produces = {
+            gts_giantess_fluid = 10
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+# 排泄星球相關
+
+d_shit_ruin1 = {
+
+    # 髒兮兮的內褲
+
+    is_for_colonizable = yes
+    category = deposit_cat_rare
+
+    planet_modifier = {
+        planet_jobs_gts_giantess_fluid_produces_mult = 0.10
+        district_bfbf_shit_2_max_add = 3
+        district_bfbf_shit_3_max_add = 3
+        district_bfbf_shit_4_max_add = 3
+    }
+
+    resources = {
+        category = deposit_blockers
+        produces = {
+            rare_crystals = 2.5
+            volatile_motes = 2.5
+            exotic_gases = 2.5
+            gts_giantess_fluid = 2.5
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_shit_ruin2 = {
+
+    # 脫落的陰毛
+
+    is_for_colonizable = yes
+    category = deposit_cat_rare
+    icon = d_juice_ruin4
+
+    resources = {
+        category = deposit_blockers
+        produces = {
+            gts_giantess_fluid = 10
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_shit_ruin3 = {
+
+    # 紙巾
+
+    is_for_colonizable = yes
+    category = deposit_cat_rare
+
+    resources = {
+        category = deposit_blockers
+        produces = {
+            consumer_goods = 10
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_shit_ruin4 = {
+
+    # 腸道臭氣
+
+    is_for_colonizable = yes
+    category = deposit_cat_rare
+
+    planet_modifier = {
+        district_bfbf_shit_2_max_add = 2
+    }
+
+    resources = {
+        category =deposit_blockers
+        produces = {
+            exotic_gases = 10
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_shit_ruin5 = {
+
+    # 糞便山脈
+
+    is_for_colonizable = yes
+    category = deposit_cat_rare
+
+    planet_modifier = {
+        district_bfbf_shit_3_max_add = 2
+    }
+
+    resources = {
+        category =deposit_blockers
+        produces = {
+            minerals = 20
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_shit_ruin6 = {
+
+    # 鬆軟糞便
+
+    is_for_colonizable = yes
+    category = deposit_cat_rare
+
+    planet_modifier = {
+        district_bfbf_shit_4_max_add = 2
+    }
+
+    resources = {
+        category =deposit_blockers
+        produces = {
+            food = 20
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_shit_ruin7 = {
+
+    # 尿液湖
+
+    is_for_colonizable = yes
+    category = deposit_cat_rare
+
+    resources = {
+        category =deposit_blockers
+        produces = {
+            rare_crystals = 10
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+# 尿液星球相關
+
+d_urine_ruin1 = {
+
+    # 無際尿液海
+
+    is_for_colonizable = yes
+    category = deposit_cat_blockers_natural
+    icon = d_gts_urine_1
+
+    planet_modifier = {
+        planet_max_districts_add = 5
+    }
+
+    resources = {
+        category = deposit_blockers
+        cost = {
+            energy = 500
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_urine_ruin2 = {
+
+    #尿道口摩挲印
+
+    is_for_colonizable = yes
+    category = deposit_cat_blockers_natural
+    time = 360
+    icon = d_gts_eyjafjalla_virgin
+
+    on_cleared = {
+
+    }
+
+    blocker_swap_types = {
+        d_urine_clean2
+    }
+
+    planet_modifier = {
+        planet_max_districts_add = -2
+    }
+
+    resources = {
+        category = deposit_blockers
+        cost = {
+            energy = 1000
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_urine_clean2 = {
+
+    # 陰蒂摩挲印觀景區
+
+    is_for_colonizable = yes
+    category = deposit_cat_rare
+    icon = d_gts_eyjafjalla_virgin
+
+    planet_modifier = {
+        #district_urine_2_max_add = 3
+    }
+
+    resources = {
+        category = planet_deposits
+        produces = {
+            trade = 20
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_urine_ruin3 = {
+
+    # 犽戎的廁紙大陸架
+
+    is_for_colonizable = yes
+    category = deposit_cat_blockers_natural
+    time = 2700
+    icon = d_gts_urine
+
+    on_cleared = {
+
+    }
+
+    blocker_swap_types = {
+        d_urine_clean3
+    }
+
+    planet_modifier = {
+        planet_max_districts_add = -15
+        pop_environment_tolerance = -0.30
+    }
+
+    resources = {
+        category = deposit_blockers
+        cost = {
+            energy = 7500
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_urine_clean3 = {
+
+    # 犽戎的廁紙大陸架觀景區
+
+    is_for_colonizable = yes
+    category = deposit_cat_rare
+    icon = d_gts_urine
+
+    planet_modifier = {
+        planet_housing_mult = 0.30
+        planet_jobs_gts_giantess_fluid_produces_mult = 0.15
+        planet_jobs_trade_produces_mult = 0.10
+        #district_urine_2_max_add = 15
+    }
+
+    resources = {
+        category = planet_deposits
+        produces = {
+            gts_giantess_fluid = 75
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_urine_ruin4 = {
+
+    # 噴射大空洞
+
+    is_for_colonizable = yes
+    category = deposit_cat_blockers_natural
+    time = 360
+    icon = d_gts_bladder
+
+    on_cleared = {
+
+    }
+
+    blocker_swap_types = {
+        d_urine_clean4
+    }
+
+    planet_modifier = {
+        planet_max_districts_add = -2
+    }
+
+    resources = {
+        category = deposit_blockers
+        cost = {
+            energy = 1000
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_urine_clean4 = {
+
+    # 大空洞溫泉鄉
+
+    is_for_colonizable = yes
+    category = deposit_cat_rare
+    icon = d_gts_bladder
+
+    planet_modifier = {
+        district_juice_3_max_add = 2
+    }
+
+    resources = {
+        category = planet_deposits
+        produces = {
+            gts_giantess_fluid = 10
+        }
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+# 精液星球相關
+
+d_futa_jylake = {
+    is_for_colonizable = yes
+    category = deposit_cat_blockers_natural
+    should_swap_deposit_on_terraforming = no
+    time = 300
+    blocker_swap_types = {
+        d_futa_jylake2
+    }
+    resources = {
+        category = deposit_blockers
+        cost = {
+            energy = 1000
+        }
+    }
+    planet_modifier = {
+        planet_max_districts_add = -5
+    }
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_futa_jylake2 = {
+    is_for_colonizable = yes
+    category = deposit_cat_rare
+    should_swap_deposit_on_terraforming = no
+    planet_modifier = {
+        planet_max_districts_add = 2
+        planet_districts_cost_mult = -0.1
+    }
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_futa_jyweather = {
+    is_for_colonizable = yes
+    category = deposit_cat_blockers_natural
+    should_swap_deposit_on_terraforming = no
+    time = 300
+    blocker_swap_types = {
+        d_futa_jyweather2
+    }
+    resources = {
+        category = deposit_blockers
+        cost = {
+            energy = 1000
+        }
+    }
+    planet_modifier = {
+        pop_environment_tolerance = -0.25
+        logistic_growth_mult = 0.1
+        bonus_pop_growth_mult = 0.1
+        planet_amenities_add = 1500
+    }
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_futa_jyweather2 = {
+    icon = d_futa_jyweather
+    is_for_colonizable = yes
+    category = deposit_cat_rare
+    should_swap_deposit_on_terraforming = no
+    planet_modifier = {
+        pop_environment_tolerance = -0.1
+        logistic_growth_mult = 0.25
+        bonus_pop_growth_mult = 0.25
+        planet_amenities_add = 2500
+    }
+    drop_weight = {
+        weight = 0
+    }
+}
+
+# 跳蛋星球相關
+
+d_oscillator_surface = {
+    icon = d_oscillator_1
+    is_for_colonizable = yes
+    category = deposit_cat_rare
+    should_swap_deposit_on_terraforming = no
+    drop_weight = {
+        weight = 0
+    }
+    resources = {
+        category = planet_deposits
+        produces = {
+            alloys = 10
+        }
+    }
+    planet_modifier = {
+        district_juice_2_max = 10
+        district_juice_4_max = 10
+    }
+}
+
+d_oscillator_ruin1 = {
+    icon = d_oscillator_2
+    is_for_colonizable = yes
+    category = deposit_cat_blockers_natural
+    time = 1500
+    on_cleared = {
+
+    }
+    blocker_swap_types = {
+        d_oscillator_clean1
+    }
+    planet_modifier = {
+        planet_max_districts_add = -10
+        pop_environment_tolerance = -0.2
+    }
+    resources = {
+        category = deposit_blockers
+        cost = {
+            energy = 2000
+        }
+    }
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_oscillator_clean1 = {
+    icon = d_oscillator_2
+    is_for_colonizable = yes
+    category = deposit_cat_rare
+    resources = {
+        category = planet_deposits
+        produces = {
+            rare_crystals = 5
+        }
+    }
+    planet_modifier = {
+
+    }
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_oscillator_ruin2 = {
+    icon = d_oscillator_3
+    is_for_colonizable = yes
+    category = deposit_cat_blockers_natural
+    time = 1500
+    on_cleared = {
+
+    }
+    blocker_swap_types = {
+        d_oscillator_clean2
+    }
+    planet_modifier = {
+        pop_amenities_usage_mult = 0.25
+        planet_jobs_food_produces_mult = -10
+    }
+    resources = {
+        category = deposit_blockers
+        cost = {
+            energy = 2000
+        }
+    }
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_oscillator_clean2 = {
+    icon = d_oscillator_3
+    is_for_colonizable = yes
+    category = deposit_cat_rare
+    resources = {
+        category = planet_deposits
+        produces = {
+        }
+    }
+    planet_modifier = {
+        logistic_growth_mult = 0.25
+        bonus_pop_growth_mult = 0.25
+    }
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_oscillator_ruin3 = {
+    icon = d_station_reactor
+    is_for_colonizable = yes
+    category = deposit_cat_blockers_natural
+    time = 1500
+    on_cleared = {
+
+    }
+    blocker_swap_types = {
+        d_oscillator_clean3
+    }
+    planet_modifier = {
+        planet_building_build_speed_mult = -0.2
+        planet_jobs_energy_upkeep_mult = 0.2
+    }
+    resources = {
+        category = deposit_blockers
+        cost = {
+            energy = 2000
+        }
+    }
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_oscillator_clean3 = {
+    icon = d_station_reactor
+    is_for_colonizable = yes
+    category = deposit_cat_rare
+    resources = {
+        category = planet_deposits
+        produces = {
+        }
+    }
+    planet_modifier = {
+        planet_jobs_energy_produces_mult = 0.2
+    }
+    drop_weight = {
+        weight = 0
+    }
+}
+
+
+
+d_cyrene_shoes_1 = {
+    icon = d_mining_tunnels
+    is_for_colonizable = yes
+    category = deposit_cat_rare
+    resources = {
+        category = planet_deposits
+        produces = {
+        }
+    }
+    planet_modifier = {
+        planet_jobs_rare_crystals_produces_mult = 0.05
+    }
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_cyrene_shoes_2 = {
+    icon = d_underwater_vent
+    is_for_colonizable = yes
+    category = deposit_cat_rare
+    resources = {
+        category = planet_deposits
+        produces = {
+        }
+    }
+    planet_modifier = {
+        planet_jobs_exotic_gases_produces_mult = 0.05
+    }
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_linfeng_shoes_1 = {
+    icon = d_underwater_vent
+    is_for_colonizable = yes
+    category = deposit_cat_rare
+    resources = {
+        category = planet_deposits
+        produces = {
+        }
+    }
+    planet_modifier = {
+        planet_jobs_rare_crystals_produces_mult = 0.05
+        planet_jobs_alloys_produces_mult = 0.05
+    }
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_linfeng_shoes_2 = {
+    icon = d_mining_tunnels
+    is_for_colonizable = yes
+    category = deposit_cat_rare
+    resources = {
+        category = planet_deposits
+        produces = {
+            gts_micro_city = 10
+            minor_artifacts = 3
+        }
+    }
+    planet_modifier = {
+        planet_crime_add = 10	#犯罪度
+    }
+    drop_weight = {
+        weight = 0
+    }
+}

@@ -1,0 +1,2100 @@
+namespace = gts_ora
+country_event = {
+	id = gts_ora.1
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		every_galaxy_planet = {
+			limit = {
+				has_planet_flag = gts_ora_homeworld
+			}
+			change_pc = pc_gts_straw_planet
+		}
+	}
+	after = {
+	}
+}
+ship_event = {
+	id = gts_ora.2
+	title = "gts_ora.2.name"
+	desc = gts_ora.2.desc
+	picture = GFX_gts_ora_1
+	is_triggered_only = yes
+	option = {
+		name = gts_ora.2.a
+		owner = {
+			add_resource = {
+				minerals = 1000
+			}
+		}
+		hidden_effect = {
+			
+		}
+	}
+	after = {
+		owner = {
+			country_event = {
+				id = gts_ora.3
+				days = 30
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_ora.3
+	title = "gts_ora.3.name"
+	desc = gts_ora.3.desc
+	picture = GFX_gts_ora_2
+	is_triggered_only = yes
+	option = {
+		name = gts_ora.3.a
+		hidden_effect = {
+			enable_special_project = {
+				name = gts_ora_project
+			}
+		}
+	}
+	after = {
+
+	}
+}
+country_event = {
+	id = gts_ora.4
+	title = "gts_ora.4.name"
+	desc = gts_ora.4.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_4_room
+	}
+	is_triggered_only = yes
+	immediate = {
+		country_event = {
+			id = gts_ora.99
+		}
+	}
+	option = {
+		name = gts_ora.4.a
+		hidden_effect = {
+			add_resource = {
+				minor_artifacts = 10
+			}
+			country_event = {
+				id = gts_ora.5
+				days = 1
+			}
+		}
+	}
+	after = {
+	}
+}
+
+country_event = {
+	id = gts_ora.5
+	title = gts_ora.5.name
+	desc = gts_ora.5.desc
+	is_triggered_only = yes
+	event_window_type = leader_recruit
+	immediate = {
+		gts_leader_ora_hired = yes
+		last_created_leader = {
+			freeze_leader_age = yes
+		}
+	}
+	picture_event_data = {
+		portrait = event_target:gts_ora
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = DISMISS
+		tag = dismiss_leader
+	}
+	option = {
+		name = gts_ora.5.a
+		response_text = gts_ora.5.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_ora.5.b
+		response_text = gts_ora.5.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_ora.5.c
+		response_text = gts_ora.5.c.response
+		is_dialog_only = yes
+	}
+
+	option = {
+		name = gts_ora.5.d
+		tag = hire_leader
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = legendary }
+		}
+	}
+	after = {
+		event_target:gts_ora = {
+			set_variable = {
+				which = gts_ub_kills_logs
+				value = 0
+			}
+		}
+		add_resource = {
+			influence = 500
+		}
+		country_event = {
+			id = gts_ora.6
+			days = 360
+		}
+		country_event = {
+			id = gts_ora.1001
+			years = 5
+		}
+	}
+}
+country_event = {
+	id = gts_ora.6
+	title = "gts_ora.6.name"
+	desc = gts_ora.6.desc
+	picture = GFX_gts_ora_5
+	is_triggered_only = yes
+	option = {
+		name = gts_ora.6.a
+		custom_tooltip = gts_ora.6.a_custom_tooltip
+		hidden_effect = {
+			country_event = {
+				id = gts_ora.7
+			}
+			event_target:gts_ora = {
+				add_trait = {
+					trait = gts_trait_ora5
+				}
+			}
+			set_country_flag = gts_ora_big_breasts
+		}
+	}
+	option = {
+		name = gts_ora.6.b
+		hidden_effect = {
+			country_event = {
+				id = gts_ora.8
+			}
+			set_country_flag = gts_ora_flat_chested
+		}
+	}
+	option = {
+		name = gts_ora.6.c
+		hidden_effect = {
+			country_event = {
+				id = gts_ora.9
+			}
+			event_target:gts_ora = {
+				add_trait = {
+					trait = gts_trait_ora2
+				}
+			}
+		}
+	}
+	after = {
+
+	}
+}
+country_event = {
+	id = gts_ora.7
+	title = "gts_ora.7.name"
+	desc = gts_ora.7.desc
+	picture = GFX_gts_ora_6
+	is_triggered_only = yes
+	option = {
+		name = gts_ora.7.a
+		hidden_effect = {
+			
+		}
+	}
+	after = {
+
+	}
+}
+country_event = {
+	id = gts_ora.8
+	title = "gts_ora.8.name"
+	desc = gts_ora.8.desc
+	picture = GFX_gts_ora_6
+	is_triggered_only = yes
+	option = {
+		name = gts_ora.8.a
+		hidden_effect = {
+
+		}
+	}
+	after = {
+
+	}
+}
+country_event = {
+	id = gts_ora.9
+	title = "gts_ora.9.name"
+	desc = gts_ora.9.desc
+	picture = GFX_gts_ora_6
+	is_triggered_only = yes
+	option = {
+		name = gts_ora.9.a
+		hidden_effect = {
+
+		}
+	}
+	after = {
+
+	}
+}
+
+country_event = {
+	id = gts_ora.99
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		create_country = {
+			name = NAME_gts_ora
+			type = gts_ora_commnunicate
+			flag = {
+				icon={
+					category="gts_country_flag"
+					file="flag_gts_ora.dds"
+				}
+				background={
+					category="backgrounds"
+					file="pattern_01.dds"
+				}
+				colors={
+					"dark_blue"
+					"black"
+					"null"
+					"null"
+				}
+			}
+		}
+		last_created_country = {
+			set_country_flag = protected_from_queen_storm
+			establish_communications_no_message = root
+			set_country_flag = ora_country
+			save_global_event_target_as = gts_ora_country_target
+		}
+	}
+}
+country_event = {
+	id = gts_ora.100
+	title = "gts_ora.100.title"
+	desc = "gts_ora.100.a.desc"
+	diplomatic = yes
+	picture = GFX_evt_mysterious_signal
+	picture_event_data = {
+		portrait = gts_portrait_ora_1
+		room = ethic_spaceship_room
+	}
+
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			has_country_flag = ora_country
+		}
+		NOT = { has_country_flag = gts_ora_diplomacy_engaged }
+	}
+
+	immediate = {
+		set_country_flag = gts_ora_diplomacy_engaged
+	}
+
+	after = {
+		hidden_effect = { remove_country_flag = gts_ora_diplomacy_engaged }
+	}
+
+
+	option = {
+		name = gts_ora.10.a
+		custom_tooltip = gts_ora.10.a.custom
+		# is_dialog_only = yes
+		#       1xx系列事件
+		hidden_effect = {
+			country_event = {
+				id = gts_ora.101
+			}
+		}
+	}
+	# option = {
+	# 	name = gts_ora.10.b
+	# 	custom_tooltip = gts_ora.10.b.custom
+	# 	response_text = gts_ora.10.b.response
+	# 	is_dialog_only = yes
+	# 	trigger = {
+	# 		any_country = {
+	# 			is_rival = root
+	# 		}
+	# 	}
+	# 	hidden_effect = {
+	# 		random_country = {
+	# 			limit = {
+	# 				is_rival = root
+	# 			}
+	# 			root = {
+	# 				remove_opinion_modifier = {
+	# 					who = prev
+	# 					modifier = opinion_rivalry
+	# 				}
+	# 				end_rivalry = prev
+	# 			}
+	# 			add_opinion_modifier = {
+	# 				who = root
+	# 				modifier = opinion_ora_change
+	# 			}
+	# 			remove_opinion_modifier = {
+	# 				who = root
+	# 				modifier = opinion_declared_rival
+	# 			}
+	# 			end_rivalry = root
+	# 		}
+	# 	}
+	# }
+
+
+	option = {
+		name = gts_hitomi.10.f
+		default_hide_option = yes
+	}
+}
+
+country_event = {
+	id = gts_ora.101
+	title = "gts_ora.100.title"
+	desc = "gts_ora.101.desc"
+	diplomatic = yes
+	picture_event_data = {
+		portrait = gts_portrait_ora_1
+		room = ethic_spaceship_room
+	}
+
+	is_triggered_only = yes
+
+	trigger = {
+
+	}
+
+	immediate = {
+	}
+
+	after = {
+
+	}
+
+
+	option = {
+		name = gts_ora.101.a
+		custom_tooltip = gts_ora.101.a.custom
+		response_text = gts_ora.101.a.response
+		# is_dialog_only = yes
+		allow = {
+			if = {
+				limit = {
+					or = {
+						any_country = {
+							and = {
+								any_owned_leader = {
+									has_leader_flag = gts_ora
+								}
+								any_owned_planet = {
+									pop_amount > 1
+								}
+								owner_main_species = {
+									if = {
+										limit = {
+											not = {
+												has_trait = trait_Ultra
+												has_trait = trait_Nano
+											}
+											has_trait = trait_Titan
+										}
+									}
+								}
+							}
+						}
+						any_country = {
+							and = {
+								any_owned_leader = {
+									has_leader_flag = gts_ora
+								}
+								any_owned_planet = {
+									pop_amount > 10
+								}
+								owner_main_species = {
+									if = {
+										limit = {
+											not = {
+												has_trait = trait_Ultra
+												has_trait = trait_Nano
+											}
+											has_trait = trait_Giant
+										}
+									}
+								}
+							}
+						}
+						any_country = {
+							and = {
+								any_owned_leader = {
+									has_leader_flag = gts_ora
+								}
+								any_owned_planet = {
+									pop_amount > 20
+								}
+								owner_main_species = {
+									if = {
+										limit = {
+											not = {
+												has_trait = trait_Ultra
+												has_trait = trait_Nano
+											}
+											has_trait = trait_Tall
+										}
+									}
+								}
+							}
+						}
+						any_country = {
+							and = {
+								any_owned_leader = {
+									has_leader_flag = gts_ora
+								}
+								any_owned_planet = {
+									pop_amount > 100
+								}
+								owner_main_species = {
+									if = {
+										limit = {
+											not = {
+												has_trait = trait_Ultra
+												has_trait = trait_Nano
+											}
+											has_trait = trait_Normal
+										}
+									}
+								}
+							}
+						}
+						any_country = {
+							and = {
+								any_owned_leader = {
+									has_leader_flag = gts_ora
+								}
+								any_owned_planet = {
+									pop_amount > 250
+								}
+								owner_main_species = {
+									if = {
+										limit = {
+											not = {
+												has_trait = trait_Ultra
+												has_trait = trait_Nano
+											}
+											has_trait = trait_Small
+										}
+									}
+								}
+							}
+						}
+						any_country = {
+							and = {
+								any_owned_leader = {
+									has_leader_flag = gts_ora
+								}
+								any_owned_planet = {
+									pop_amount > 500
+								}
+								owner_main_species = {
+									if = {
+										limit = {
+											not = {
+												has_trait = trait_Ultra
+												has_trait = trait_Nano
+											}
+											has_trait = trait_Tiny
+										}
+									}
+								}
+							}
+						}
+						any_country = {
+							and = {
+								any_owned_leader = {
+									has_leader_flag = gts_ora
+								}
+								any_owned_planet = {
+									pop_amount > 1000
+								}
+								owner_main_species = {
+									if = {
+										limit = {
+											not = {
+												has_trait = trait_Ultra
+												has_trait = trait_Nano
+											}
+											has_trait = trait_Micro
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		hidden_effect = {
+			random_country = {
+				limit = {
+					and = {
+						any_owned_leader = {
+							has_leader_flag = gts_ora
+						}
+						any_owned_planet = {
+							pop_amount > 1
+						}
+						owner_main_species = {
+							has_trait = trait_Titan
+							not = {
+								has_trait = trait_Ultra
+								has_trait = trait_Nano
+							}
+						}
+					}
+				}
+				add_resource = {
+					energy = 2500
+				}
+				random_owned_planet = {
+					limit = {
+						pop_amount > 1
+					}
+					random_owned_pop_group = {
+						kill_pop_group = {
+							pop_group = this
+							amount = 1
+						}
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					and = {
+						any_owned_leader = {
+							has_leader_flag = gts_ora
+						}
+						any_owned_planet = {
+							pop_amount > 20
+						}
+						owner_main_species = {
+							has_trait = trait_Giant
+							not = {
+								has_trait = trait_Ultra
+								has_trait = trait_Nano
+							}
+						}
+					}
+				}
+				add_resource = {
+					energy = 5000
+				}
+				random_owned_planet = {
+					limit = {
+						pop_amount > 20
+					}
+					random_owned_pop_group = {
+						kill_pop_group = {
+							pop_group = this
+							amount = 20
+						}
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					and = {
+						any_owned_leader = {
+							has_leader_flag = gts_ora
+						}
+						any_owned_planet = {
+							pop_amount > 40
+						}
+						owner_main_species = {
+							has_trait = trait_Tall
+							not = {
+								has_trait = trait_Ultra
+								has_trait = trait_Nano
+							}
+						}
+					}
+				}
+				add_resource = {
+					energy = 5000
+				}
+				random_owned_planet = {
+					limit = {
+						pop_amount > 40
+					}
+					random_owned_pop_group = {
+						kill_pop_group = {
+							pop_group = this
+							amount = 40
+						}
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					and = {
+						any_owned_leader = {
+							has_leader_flag = gts_ora
+						}
+						any_owned_planet = {
+							pop_amount > 200
+						}
+						owner_main_species = {
+							has_trait = trait_Normal
+							not = {
+								has_trait = trait_Ultra
+								has_trait = trait_Nano
+							}
+						}
+					}
+				}
+				add_resource = {
+					energy = 5000
+				}
+				random_owned_planet = {
+					limit = {
+						pop_amount > 200
+					}
+					random_owned_pop_group = {
+						kill_pop_group = {
+							pop_group = this
+							amount = 200
+						}
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					and = {
+						any_owned_leader = {
+							has_leader_flag = gts_ora
+						}
+						any_owned_planet = {
+							pop_amount > 500
+						}
+						owner_main_species = {
+							has_trait = trait_Small
+							not = {
+								has_trait = trait_Ultra
+								has_trait = trait_Nano
+							}
+						}
+					}
+				}
+				add_resource = {
+					energy = 5000
+				}
+				random_owned_planet = {
+					limit = {
+						pop_amount > 500
+					}
+					random_owned_pop_group = {
+						kill_pop_group = {
+							pop_group = this
+							amount = 500
+						}
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					and = {
+						any_owned_leader = {
+							has_leader_flag = gts_ora
+						}
+						any_owned_planet = {
+							pop_amount > 1000
+						}
+						owner_main_species = {
+							has_trait = trait_Tiny
+							not = {
+								has_trait = trait_Ultra
+								has_trait = trait_Nano
+							}
+						}
+					}
+				}
+				add_resource = {
+					energy = 5000
+				}
+				random_owned_planet = {
+					limit = {
+						pop_amount > 1000
+					}
+					random_owned_pop_group = {
+						kill_pop_group = {
+							pop_group = this
+							amount = 1000
+						}
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					and = {
+						any_owned_leader = {
+							has_leader_flag = gts_ora
+						}
+						any_owned_planet = {
+							pop_amount > 2000
+						}
+						owner_main_species = {
+							has_trait = trait_Micro
+							not = {
+								has_trait = trait_Ultra
+								has_trait = trait_Nano
+							}
+						}
+					}
+				}
+				add_resource = {
+					energy = 5000
+				}
+				random_owned_planet = {
+					limit = {
+						pop_amount > 2000
+					}
+					random_owned_pop_group = {
+						kill_pop_group = {
+							pop_group = this
+							amount = 2000
+						}
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_ora.101.b
+		custom_tooltip = gts_ora.101.b.custom
+		response_text = gts_ora.101.b.response
+		# is_dialog_only = yes
+		allow = {
+			if = {
+				limit = {
+					or = {
+						any_country = {
+							and = {
+								any_owned_leader = {
+									has_leader_flag = gts_ora
+								}
+								any_owned_planet = {
+									pop_amount > 1
+								}
+								owner_main_species = {
+									if = {
+										limit = {
+											not = {
+												has_trait = trait_Ultra
+												has_trait = trait_Nano
+											}
+											has_trait = trait_Titan
+										}
+									}
+								}
+							}
+						}
+						any_country = {
+							and = {
+								any_owned_leader = {
+									has_leader_flag = gts_ora
+								}
+								any_owned_planet = {
+									pop_amount > 10
+								}
+								owner_main_species = {
+									if = {
+										limit = {
+											not = {
+												has_trait = trait_Ultra
+												has_trait = trait_Nano
+											}
+											has_trait = trait_Giant
+										}
+									}
+								}
+							}
+						}
+						any_country = {
+							and = {
+								any_owned_leader = {
+									has_leader_flag = gts_ora
+								}
+								any_owned_planet = {
+									pop_amount > 20
+								}
+								owner_main_species = {
+									if = {
+										limit = {
+											not = {
+												has_trait = trait_Ultra
+												has_trait = trait_Nano
+											}
+											has_trait = trait_Tall
+										}
+									}
+								}
+							}
+						}
+						any_country = {
+							and = {
+								any_owned_leader = {
+									has_leader_flag = gts_ora
+								}
+								any_owned_planet = {
+									pop_amount > 100
+								}
+								owner_main_species = {
+									if = {
+										limit = {
+											not = {
+												has_trait = trait_Ultra
+												has_trait = trait_Nano
+											}
+											has_trait = trait_Normal
+										}
+									}
+								}
+							}
+						}
+						any_country = {
+							and = {
+								any_owned_leader = {
+									has_leader_flag = gts_ora
+								}
+								any_owned_planet = {
+									pop_amount > 250
+								}
+								owner_main_species = {
+									if = {
+										limit = {
+											not = {
+												has_trait = trait_Ultra
+												has_trait = trait_Nano
+											}
+											has_trait = trait_Small
+										}
+									}
+								}
+							}
+						}
+						any_country = {
+							and = {
+								any_owned_leader = {
+									has_leader_flag = gts_ora
+								}
+								any_owned_planet = {
+									pop_amount > 500
+								}
+								owner_main_species = {
+									if = {
+										limit = {
+											not = {
+												has_trait = trait_Ultra
+												has_trait = trait_Nano
+											}
+											has_trait = trait_Tiny
+										}
+									}
+								}
+							}
+						}
+						any_country = {
+							and = {
+								any_owned_leader = {
+									has_leader_flag = gts_ora
+								}
+								any_owned_planet = {
+									pop_amount > 1000
+								}
+								owner_main_species = {
+									if = {
+										limit = {
+											not = {
+												has_trait = trait_Ultra
+												has_trait = trait_Nano
+											}
+											has_trait = trait_Micro
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		hidden_effect = {
+			random_country = {
+				limit = {
+					and = {
+						any_owned_leader = {
+							has_leader_flag = gts_ora
+						}
+						any_owned_planet = {
+							pop_amount > 1
+						}
+						owner_main_species = {
+							has_trait = trait_Titan
+							not = {
+								has_trait = trait_Ultra
+								has_trait = trait_Nano
+							}
+						}
+					}
+				}
+				add_resource = {
+					minerals = 2500
+				}
+				random_owned_planet = {
+					limit = {
+						pop_amount > 1
+					}
+					random_owned_pop_group = {
+						kill_pop_group = {
+							pop_group = this
+							amount = 1
+						}
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					and = {
+						any_owned_leader = {
+							has_leader_flag = gts_ora
+						}
+						any_owned_planet = {
+							pop_amount > 20
+						}
+						owner_main_species = {
+							has_trait = trait_Giant
+							not = {
+								has_trait = trait_Ultra
+								has_trait = trait_Nano
+							}
+						}
+					}
+				}
+				add_resource = {
+					minerals = 5000
+				}
+				random_owned_planet = {
+					limit = {
+						pop_amount > 20
+					}
+					random_owned_pop_group = {
+						kill_pop_group = {
+							pop_group = this
+							amount = 20
+						}
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					and = {
+						any_owned_leader = {
+							has_leader_flag = gts_ora
+						}
+						any_owned_planet = {
+							pop_amount > 40
+						}
+						owner_main_species = {
+							has_trait = trait_Tall
+							not = {
+								has_trait = trait_Ultra
+								has_trait = trait_Nano
+							}
+						}
+					}
+				}
+				add_resource = {
+					minerals = 5000
+				}
+				random_owned_planet = {
+					limit = {
+						pop_amount > 40
+					}
+					random_owned_pop_group = {
+						kill_pop_group = {
+							pop_group = this
+							amount = 40
+						}
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					and = {
+						any_owned_leader = {
+							has_leader_flag = gts_ora
+						}
+						any_owned_planet = {
+							pop_amount > 200
+						}
+						owner_main_species = {
+							has_trait = trait_Normal
+							not = {
+								has_trait = trait_Ultra
+								has_trait = trait_Nano
+							}
+						}
+					}
+				}
+				add_resource = {
+					minerals = 5000
+				}
+				random_owned_planet = {
+					limit = {
+						pop_amount > 200
+					}
+					random_owned_pop_group = {
+						kill_pop_group = {
+							pop_group = this
+							amount = 200
+						}
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					and = {
+						any_owned_leader = {
+							has_leader_flag = gts_ora
+						}
+						any_owned_planet = {
+							pop_amount > 500
+						}
+						owner_main_species = {
+							has_trait = trait_Small
+							not = {
+								has_trait = trait_Ultra
+								has_trait = trait_Nano
+							}
+						}
+					}
+				}
+				add_resource = {
+					minerals = 5000
+				}
+				random_owned_planet = {
+					limit = {
+						pop_amount > 500
+					}
+					random_owned_pop_group = {
+						kill_pop_group = {
+							pop_group = this
+							amount = 500
+						}
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					and = {
+						any_owned_leader = {
+							has_leader_flag = gts_ora
+						}
+						any_owned_planet = {
+							pop_amount > 1000
+						}
+						owner_main_species = {
+							has_trait = trait_Tiny
+							not = {
+								has_trait = trait_Ultra
+								has_trait = trait_Nano
+							}
+						}
+					}
+				}
+				add_resource = {
+					minerals = 5000
+				}
+				random_owned_planet = {
+					limit = {
+						pop_amount > 1000
+					}
+					random_owned_pop_group = {
+						kill_pop_group = {
+							pop_group = this
+							amount = 1000
+						}
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					and = {
+						any_owned_leader = {
+							has_leader_flag = gts_ora
+						}
+						any_owned_planet = {
+							pop_amount > 2000
+						}
+						owner_main_species = {
+							has_trait = trait_Micro
+							not = {
+								has_trait = trait_Ultra
+								has_trait = trait_Nano
+							}
+						}
+					}
+				}
+				add_resource = {
+					minerals = 5000
+				}
+				random_owned_planet = {
+					limit = {
+						pop_amount > 2000
+					}
+					random_owned_pop_group = {
+						kill_pop_group = {
+							pop_group = this
+							amount = 2000
+						}
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_ora.101.c
+		custom_tooltip = gts_ora.101.c.custom
+		response_text = gts_ora.101.c.response
+		# is_dialog_only = yes
+		allow = {
+			if = {
+				limit = {
+					or = {
+						any_country = {
+							and = {
+								any_owned_leader = {
+									has_leader_flag = gts_ora
+								}
+								any_owned_planet = {
+									pop_amount > 1
+								}
+								owner_main_species = {
+									if = {
+										limit = {
+											not = {
+												has_trait = trait_Ultra
+												has_trait = trait_Nano
+											}
+											has_trait = trait_Titan
+										}
+									}
+								}
+							}
+						}
+						any_country = {
+							and = {
+								any_owned_leader = {
+									has_leader_flag = gts_ora
+								}
+								any_owned_planet = {
+									pop_amount > 10
+								}
+								owner_main_species = {
+									if = {
+										limit = {
+											not = {
+												has_trait = trait_Ultra
+												has_trait = trait_Nano
+											}
+											has_trait = trait_Giant
+										}
+									}
+								}
+							}
+						}
+						any_country = {
+							and = {
+								any_owned_leader = {
+									has_leader_flag = gts_ora
+								}
+								any_owned_planet = {
+									pop_amount > 20
+								}
+								owner_main_species = {
+									if = {
+										limit = {
+											not = {
+												has_trait = trait_Ultra
+												has_trait = trait_Nano
+											}
+											has_trait = trait_Tall
+										}
+									}
+								}
+							}
+						}
+						any_country = {
+							and = {
+								any_owned_leader = {
+									has_leader_flag = gts_ora
+								}
+								any_owned_planet = {
+									pop_amount > 100
+								}
+								owner_main_species = {
+									if = {
+										limit = {
+											not = {
+												has_trait = trait_Ultra
+												has_trait = trait_Nano
+											}
+											has_trait = trait_Normal
+										}
+									}
+								}
+							}
+						}
+						any_country = {
+							and = {
+								any_owned_leader = {
+									has_leader_flag = gts_ora
+								}
+								any_owned_planet = {
+									pop_amount > 250
+								}
+								owner_main_species = {
+									if = {
+										limit = {
+											not = {
+												has_trait = trait_Ultra
+												has_trait = trait_Nano
+											}
+											has_trait = trait_Small
+										}
+									}
+								}
+							}
+						}
+						any_country = {
+							and = {
+								any_owned_leader = {
+									has_leader_flag = gts_ora
+								}
+								any_owned_planet = {
+									pop_amount > 500
+								}
+								owner_main_species = {
+									if = {
+										limit = {
+											not = {
+												has_trait = trait_Ultra
+												has_trait = trait_Nano
+											}
+											has_trait = trait_Tiny
+										}
+									}
+								}
+							}
+						}
+						any_country = {
+							and = {
+								any_owned_leader = {
+									has_leader_flag = gts_ora
+								}
+								any_owned_planet = {
+									pop_amount > 1000
+								}
+								owner_main_species = {
+									if = {
+										limit = {
+											not = {
+												has_trait = trait_Ultra
+												has_trait = trait_Nano
+											}
+											has_trait = trait_Micro
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		hidden_effect = {
+			random_country = {
+				limit = {
+					and = {
+						any_owned_leader = {
+							has_leader_flag = gts_ora
+						}
+						any_owned_planet = {
+							pop_amount > 1
+						}
+						owner_main_species = {
+							has_trait = trait_Titan
+							not = {
+								has_trait = trait_Ultra
+								has_trait = trait_Nano
+							}
+						}
+					}
+				}
+				add_resource = {
+					food = 2500
+				}
+				random_owned_planet = {
+					limit = {
+						pop_amount > 1
+					}
+					random_owned_pop_group = {
+						kill_pop_group = {
+							pop_group = this
+							amount = 1
+						}
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					and = {
+						any_owned_leader = {
+							has_leader_flag = gts_ora
+						}
+						any_owned_planet = {
+							pop_amount > 20
+						}
+						owner_main_species = {
+							has_trait = trait_Giant
+							not = {
+								has_trait = trait_Ultra
+								has_trait = trait_Nano
+							}
+						}
+					}
+				}
+				add_resource = {
+					food = 5000
+				}
+				random_owned_planet = {
+					limit = {
+						pop_amount > 20
+					}
+					random_owned_pop_group = {
+						kill_pop_group = {
+							pop_group = this
+							amount = 20
+						}
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					and = {
+						any_owned_leader = {
+							has_leader_flag = gts_ora
+						}
+						any_owned_planet = {
+							pop_amount > 40
+						}
+						owner_main_species = {
+							has_trait = trait_Tall
+							not = {
+								has_trait = trait_Ultra
+								has_trait = trait_Nano
+							}
+						}
+					}
+				}
+				add_resource = {
+					food = 5000
+				}
+				random_owned_planet = {
+					limit = {
+						pop_amount > 40
+					}
+					random_owned_pop_group = {
+						kill_pop_group = {
+							pop_group = this
+							amount = 40
+						}
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					and = {
+						any_owned_leader = {
+							has_leader_flag = gts_ora
+						}
+						any_owned_planet = {
+							pop_amount > 200
+						}
+						owner_main_species = {
+							has_trait = trait_Normal
+							not = {
+								has_trait = trait_Ultra
+								has_trait = trait_Nano
+							}
+						}
+					}
+				}
+				add_resource = {
+					food = 5000
+				}
+				random_owned_planet = {
+					limit = {
+						pop_amount > 200
+					}
+					random_owned_pop_group = {
+						kill_pop_group = {
+							pop_group = this
+							amount = 200
+						}
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					and = {
+						any_owned_leader = {
+							has_leader_flag = gts_ora
+						}
+						any_owned_planet = {
+							pop_amount > 500
+						}
+						owner_main_species = {
+							has_trait = trait_Small
+							not = {
+								has_trait = trait_Ultra
+								has_trait = trait_Nano
+							}
+						}
+					}
+				}
+				add_resource = {
+					food = 5000
+				}
+				random_owned_planet = {
+					limit = {
+						pop_amount > 500
+					}
+					random_owned_pop_group = {
+						kill_pop_group = {
+							pop_group = this
+							amount = 500
+						}
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					and = {
+						any_owned_leader = {
+							has_leader_flag = gts_ora
+						}
+						any_owned_planet = {
+							pop_amount > 1000
+						}
+						owner_main_species = {
+							has_trait = trait_Tiny
+							not = {
+								has_trait = trait_Ultra
+								has_trait = trait_Nano
+							}
+						}
+					}
+				}
+				add_resource = {
+					food = 5000
+				}
+				random_owned_planet = {
+					limit = {
+						pop_amount > 1000
+					}
+					random_owned_pop_group = {
+						kill_pop_group = {
+							pop_group = this
+							amount = 1000
+						}
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					and = {
+						any_owned_leader = {
+							has_leader_flag = gts_ora
+						}
+						any_owned_planet = {
+							pop_amount > 2000
+						}
+						owner_main_species = {
+							has_trait = trait_Micro
+							not = {
+								has_trait = trait_Ultra
+								has_trait = trait_Nano
+							}
+						}
+					}
+				}
+				add_resource = {
+					food = 5000
+				}
+				random_owned_planet = {
+					limit = {
+						pop_amount > 2000
+					}
+					random_owned_pop_group = {
+						kill_pop_group = {
+							pop_group = this
+							amount = 2000
+						}
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = gts_ora.101.e
+		custom_tooltip = gts_ora.101.e.custom
+		response_text = gts_ora.101.e.response
+		is_dialog_only = yes
+		hidden_effect = {
+
+		}
+	}
+
+	option = {
+		name = gts_hitomi.10.f
+		default_hide_option = yes
+	}
+}
+#新内容  出走
+country_event = {
+	id = gts_ora.1001
+	title = "gts_ora.1001.name"
+	desc = gts_ora.1001.desc
+	picture = GFX_gts_ora_1001
+	is_triggered_only = yes
+	immediate = {
+
+	}
+	option = {
+		name = gts_ora.1001.a
+		custom_tooltip = gts_ora.1001.a.custom
+		hidden_effect = {
+			add_relic = r_gtsra_ora_book
+			add_tradition = tradition_gts_ora_adopt
+			country_event = { 
+				id = gts_ora.1002
+			}
+			event_target:gts_ora = {
+				kill_leader = {
+					show_notification = no
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_ora.1001.b
+		custom_tooltip = gts_ora.1001.b.custom
+		hidden_effect = {
+			country_event = {
+				id = gts_ora.1003
+			}
+		}
+	}
+	after = {
+
+	}
+}
+country_event = {
+	id = gts_ora.1002
+	title = "gts_ora.1002.name"
+	desc = gts_ora.1002.desc
+	picture = GFX_gts_ora_1002
+	is_triggered_only = yes
+	immediate = {
+
+	}
+	option = {
+		name = gts_ora.1002.a
+		hidden_effect = {
+
+		}
+	}
+	after = {
+
+	}
+}
+country_event = {
+	id = gts_ora.1003
+	title = "gts_ora.1003.name"
+	desc = gts_ora.1003.desc
+	picture = GFX_gts_ora_1001
+	is_triggered_only = yes
+	immediate = {
+
+	}
+	option = {
+		name = gts_ora.1003.a
+		hidden_effect = {
+
+		}
+	}
+	after = {
+
+	}
+}
+country_event = {
+	id = gts_ora.1004
+	title = "gts_ora.1004.name"
+	desc = gts_ora.1004.desc
+	picture = GFX_gts_ora_1004
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+
+	}
+	option = {
+		name = gts_ora.1004.a
+		hidden_effect = {
+
+		}
+	}
+	after = {
+		set_country_flag = gts_ora_1004_leave
+	}
+}
+country_event = {
+	id = gts_ora.1005
+	title = "gts_ora.1005.name"
+	desc = gts_ora.1005.desc
+	picture = GFX_gts_ora_1005
+	is_triggered_only = yes
+	immediate = {
+
+	}
+	option = {
+		name = gts_ora.1005.a
+		custom_tooltip = gts_ora.1005.a.custom
+		hidden_effect = {
+
+		}
+	}
+	after = {
+
+	}
+}
+country_event = {
+	id = gts_ora.1006
+	title = test
+	desc = test
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_ora_book_1"
+	immediate = {
+
+	}
+	option = {
+		name = test
+		hidden_effect = {
+
+		}
+	}
+	after = {
+	}
+}
+country_event = {
+	id = gts_ora.1007
+	title = "gts_ora.1007.name"
+	desc = gts_ora.1007.desc
+	picture = GFX_gts_ora_1007
+	is_triggered_only = yes
+	immediate = {
+
+	}
+	option = {
+		name = gts_ora.1007.a
+		custom_tooltip = gts_ora.1007.a.custom
+		hidden_effect = {
+			event_target:NAME_gts_ora_planet2 = {
+				create_archaeological_site = gts_ora_digsite
+			}
+		}
+	}
+	option = {
+		name = gts_ora.1007.b
+		custom_tooltip = gts_ora.1007.b.custom
+		hidden_effect = {
+
+		}
+	}
+	after = {
+		set_country_flag = gts_ora_1007_active
+	}
+}
+fleet_event = {
+	id = gts_ora.1008
+
+	title = "gts_ora.1008.name"
+	desc = gts_ora.1008.desc
+	picture = GFX_gts_ora_1
+	is_triggered_only = yes
+	archaeology = yes
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		allow = {
+		}
+		name = gts_ora.1008.a
+		custom_tooltip = gts_ora.1008.a.custom
+		hidden_effect = {
+		}
+	}
+	after = {
+	}
+}
+fleet_event = {
+	id = gts_ora.1009
+
+	title = "gts_ora.1009.name"
+	desc = gts_ora.1009.desc
+	picture = GFX_gts_ora_5
+	is_triggered_only = yes
+	archaeology = yes
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		allow = {
+		}
+		name = gts_ora.1009.a
+		custom_tooltip = gts_ora.1009.a.custom
+		owner = {
+			add_resource = {
+				gts_giantess_human = 10000
+			}
+		}
+		hidden_effect = {
+		}
+	}
+	after = {
+	}
+}
+fleet_event = {
+	id = gts_ora.1010
+
+	title = "gts_ora.1010.name"
+	desc = gts_ora.1010.desc
+	picture = GFX_gts_ora_1010
+	is_triggered_only = yes
+	archaeology = yes
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		allow = {
+		}
+		name = gts_ora.1010.a
+		custom_tooltip = gts_ora.1010.a.custom
+		owner = {
+			add_resource = {
+				alloys = 10000
+			}
+		}
+		hidden_effect = {
+		}
+	}
+	after = {
+	}
+}
+fleet_event = {
+	id = gts_ora.1011
+
+	title = "gts_ora.1011.name"
+	desc = gts_ora.1011.desc
+	picture = GFX_gts_ora_1011
+	is_triggered_only = yes
+	archaeology = yes
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		allow = {
+		}
+		name = gts_ora.1011.a
+		custom_tooltip = gts_ora.1011.a.custom
+		owner = {
+			add_resource = {
+				physics_research = 2000
+				engineering_research = 2000
+				society_research = 2000
+			}
+		}
+		hidden_effect = {
+		}
+	}
+	after = {
+	}
+}
+fleet_event = {
+	id = gts_ora.1012
+
+	title = "gts_ora.1012.name"
+	desc = gts_ora.1012.desc
+	picture = GFX_gts_ora_1012
+	is_triggered_only = yes
+	archaeology = yes
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		allow = {
+		}
+		name = gts_ora.1012.a
+		custom_tooltip = gts_ora.1012.a.custom
+		owner = {
+			add_resource = {
+				unity = 100000
+			}
+		}
+		hidden_effect = {
+		}
+	}
+	after = {
+	}
+}
+fleet_event = {
+	id = gts_ora.1013
+
+	title = "gts_ora.1013.name"
+	desc = gts_ora.1013.desc
+	picture = GFX_gts_ora_1013
+	is_triggered_only = yes
+	archaeology = yes
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		allow = {
+		}
+		name = gts_ora.1013.a
+		custom_tooltip = gts_ora.1013.a.custom
+		hidden_effect = {
+		}
+	}
+	after = {
+		owner = {
+			country_event = { 
+				id = gts_ora.1014
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_ora.1014
+	title = "gts_ora.1014.name"
+	desc = gts_ora.1014.desc
+	picture = GFX_gts_ora_1014
+	is_triggered_only = yes
+	immediate = {
+
+	}
+	option = {
+		name = gts_ora.1014.a
+		custom_tooltip = gts_ora.1014.a.custom
+		hidden_effect = {
+
+		}
+	}
+	after = {
+		country_event = {
+			id = gts_ora.1015
+		}
+	}
+}
+country_event = {
+	id = gts_ora.1015
+	title = gts_ora.1015.name
+	desc = gts_ora.1015.desc
+	is_triggered_only = yes
+	event_window_type = leader_recruit
+	immediate = {
+		gts_leader_mora_hired = yes
+		last_created_leader = {
+			freeze_leader_age = yes
+		}
+	}
+	picture_event_data = {
+		portrait = event_target:gts_mora
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = DISMISS
+		tag = dismiss_leader
+	}
+	option = {
+		name = gts_ora.1015.a
+		response_text = gts_ora.1015.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_ora.1015.b
+		response_text = gts_ora.1015.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_ora.1015.c
+		response_text = gts_ora.1015.c.response
+		is_dialog_only = yes
+	}
+
+	option = {
+		name = gts_ora.1015.d
+		tag = hire_leader
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = legendary }
+		}
+	}
+	after = {
+		country_event = {
+			id = gts_ora.10000
+		}
+		event_target:gts_ora = {
+			set_variable = {
+				which = gts_ub_kills_logs
+				value = 0
+			}
+		}
+	}
+}
+
+
+
+country_event = {
+	id = gts_ora.10001
+	title = gts_ora.10001.name
+	desc = gts_ora.10001.desc
+	is_triggered_only = yes
+	event_window_type = leader_recruit
+	immediate = {
+		gts_leader_orangez_hired = yes
+		last_created_leader = {
+			freeze_leader_age = yes
+		}
+	}
+	picture_event_data = {
+		portrait = event_target:gts_orangez
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = DISMISS
+		tag = dismiss_leader
+	}
+	option = {
+		name = gts_ora.10001.a
+		response_text = gts_ora.10001.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_ora.10001.b
+		response_text = gts_ora.10001.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_ora.10001.d
+		tag = hire_leader
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = legendary }
+		}
+	}
+	after = {
+		hidden_effect = {
+			event_target:gts_ora = {
+				set_variable = {
+					which = gts_ub_kills_logs
+					value = 0
+				}
+			}
+		}
+	}
+}
+
+
+
+
+country_event = {
+	id = gts_ora.10000
+	title = "gts_ora.10000.name"
+	desc = gts_ora.10000.desc
+	picture = GFX_gts_event_bfbf_delay
+	is_triggered_only = yes
+	immediate = {
+
+	}
+	option = {
+		name = gts_ora.10000.a
+		custom_tooltip = gts_ora.10000.a.custom
+		country_event = {
+			id = gts_ora.10001
+			years = 35
+		}
+		hidden_effect = {
+
+		}
+	}
+	after = {
+
+	}
+}
+
+
+
+
+# country_event = {
+# 	id = gts_ora.xx
+# 	title = "gts_ora.xx.name"
+# 	desc = gts_ora.xx.desc
+# 	picture = GFX_gts_ora_xx
+# 	is_triggered_only = yes
+# 	immediate = {
+#
+# 	}
+# 	option = {
+# 		name = gts_ora.xx.a
+# 		custom_tooltip = gts_ora.xx.a.custom
+# 		hidden_effect = {
+#
+# 		}
+# 	}
+# 	after = {
+#
+# 	}
+# }

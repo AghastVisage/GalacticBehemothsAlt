@@ -1,0 +1,4172 @@
+
+namespace = fara
+
+event = {
+	id = fara.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		create_country = {
+			name = "NAME_fara"
+			type = fara_country
+			flag = {
+				icon= {
+					category = "gts_aom_flag"
+					file = "fara_flag.dds"
+				}
+				background= {
+					category = "backgrounds"
+					file = "sinus.dds"
+				}
+				colors={
+					"grey"
+					"dark_grey"
+					"null"
+					"null"
+				}
+			}
+		}
+		last_created_country = {
+			create_leader = {
+				class = official
+				species = owner_main_species
+				name = NAME_fara
+				event_leader = yes
+				skill = 10
+				set_age = 0
+				traits = {
+
+				}
+			}
+			set_leader = last_created_leader
+			last_created_leader = {
+				change_leader_portrait = fara
+			}
+			save_global_event_target_as = fara_country
+		}
+	}
+}
+
+#法拉尔达通讯
+country_event = {
+	id = fara.2
+	is_triggered_only = yes
+	diplomatic = yes
+
+	title = "fara.2.name"
+	desc = {
+		text = "fara.2.desc"
+	}
+
+	picture_event_data = {
+		room = gts_fara2_room
+	}
+
+	trigger = {
+		is_ai = no
+		has_origin = origin_panlon
+	}
+
+	immediate = {
+		event_target:fara_country = {
+			establish_communications_no_message = root
+		}
+		set_country_flag = has_fara
+	}
+
+	after = {
+		hidden_effect = {
+			country_event = {  id = aom_fara_leader.1 }
+			country_event = {  id = illya.1  years = 10}
+		}
+	}
+
+	option = {
+		name = fara.2.option
+	}
+}
+
+# 起始通讯
+country_event = {
+	id = fara.3
+	title = "fara.3.title"
+	desc = "fara.3.a.desc"
+
+	diplomatic = yes
+	picture = GFX_evt_mysterious_signal
+	picture_event_data = {
+		room = gts_fara2_room
+	}
+
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			fara_active_diplo = no
+			#防止视窗多开
+			NOT = { has_country_flag = fara_diplomacy_engaged }
+			from = { is_same_value = root } # returning from open sub-menu
+		}
+		from = { OR = {
+			is_country_type = fara_country
+			is_same_value = root # returned from menu
+		}}
+		is_ai = no
+	}
+	immediate = {
+		set_country_flag = fara_diplomacy_engaged
+	}
+
+	after = {
+		hidden_effect = { remove_country_flag = fara_diplomacy_engaged }
+	}
+	option = { #零花钱
+		name = fara.3.a
+		custom_tooltip = fara_3_a
+		remove_modifier = aom_fara_allowance_energy
+		remove_modifier = aom_fara_allowance_minerals
+		remove_modifier = aom_fara_allowance_food
+		remove_modifier = aom_fara_allowance_trade
+		remove_modifier = aom_fara_allowance_consumer_goods
+		remove_modifier = aom_fara_allowance_alloys
+		hidden_effect = {
+			country_event = {  id = fara.4 }
+		}
+	}
+	option = { #请求
+		name = fara.3.b
+		custom_tooltip = fara_3_b
+		hidden_effect = {
+			country_event = { id = fara.5 }
+		}
+	}
+	option = { #英灵召唤
+		name = fara.3.c
+		custom_tooltip = fara_3_c
+		hidden_effect = {
+			country_event = { id = aom_leader.0 }
+		}
+	}
+	option = { #信仰商城
+		name = fara.3.d
+		custom_tooltip = fara_3_d
+		hidden_effect = {
+			country_event = { id = fara_belief.1 }
+		}
+	}
+	option = {
+		name = fara.3.h
+		remove_country_flag = fara_diplomacy_engaged
+	}
+}
+#零花钱界面
+country_event = {
+	id = fara.4
+	title = fara.4.name
+	desc = fara.4.desc
+	diplomatic = yes
+
+	picture_event_data = {
+		room = gts_fara2_room
+	}
+
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			fara_active_diplo = no
+			#防止视窗多开
+			from = { is_same_value = root } # returning from open sub-menu
+		}
+	}
+
+	picture_event_data = {
+		room = gts_fara2_room
+	}
+
+	option = {
+		# 小钱钱
+		name = fara.4.a
+		add_modifier = {
+			modifier = aom_fara_allowance_energy
+		}
+		remove_country_flag = fara_diplomacy_engaged
+	}
+
+	option = {
+		# 饭饭
+		name = fara.4.b
+		add_modifier = {
+			modifier = aom_fara_allowance_food
+		}
+		remove_country_flag = fara_diplomacy_engaged
+	}
+
+	option = {
+		#材料
+		name = fara.4.c
+		add_modifier = {
+			modifier = aom_fara_allowance_minerals
+		}
+		remove_country_flag = fara_diplomacy_engaged
+	}
+	option = {
+		# 合金
+		name = fara.4.d
+		add_modifier = {
+			modifier = aom_fara_allowance_alloys
+		}
+		remove_country_flag = fara_diplomacy_engaged
+	}
+	option = {
+		# 手办
+		name = fara.4.e
+		add_modifier = {
+			modifier = aom_fara_allowance_consumer_goods
+		}
+		remove_country_flag = fara_diplomacy_engaged
+	}
+	option = {
+		# 手办
+		name = fara.4.f
+		add_modifier = {
+			modifier = aom_fara_allowance_trade
+		}
+		remove_country_flag = fara_diplomacy_engaged
+	}
+	# 返回主选单
+	option = {
+		name = fara_return_to_main
+		hidden_effect = {
+			country_event = { id = fara.3 }
+		}
+	}
+
+	# 退出
+	option = {
+		name = fara_exit
+		default_hide_option = yes
+		remove_country_flag = fara_diplomacy_engaged
+	}
+}
+# 请求
+country_event = {
+	id = fara.5
+	title = fara.5.name
+	desc = fara.5.desc
+	diplomatic = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			fara_active_diplo = no
+			#防止视窗多开
+			from = { is_same_value = root } # returning from open sub-menu
+		}
+	}
+
+	picture_event_data = {
+		room = gts_fara2_room
+	}
+
+	option = {
+		# 踩城市
+		name = fara.5.a
+		hidden_effect = {
+			country_event = { id = fara.6 }
+		}
+		remove_country_flag = fara_diplomacy_engaged
+	}
+	option = {
+		# 踩城市
+		name = fara.5.b
+		hidden_effect = {
+			country_event = { id = fara.12 }
+		}
+		remove_country_flag = fara_diplomacy_engaged
+	}
+
+	# 返回主选单
+	option = {
+		name = fara_return_to_main
+		remove_country_flag = fara_diplomacy_engaged
+		hidden_effect = {
+			country_event = { id = fara.3 }
+		}
+	}
+
+	# 退出
+	option = {
+		name = fara_exit
+		default_hide_option = yes
+		remove_country_flag = fara_diplomacy_engaged
+	}
+}
+# 踩城市
+country_event = {
+	id = fara.6
+	title = fara.6.name
+	desc = fara.6.desc
+	diplomatic = yes
+
+	picture_event_data = {
+		room = gts_fara2_room
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		# 踩城市
+		name = fara.6.a
+		random_owned_planet = {
+			planet_event = { id = fara.7 }
+		}
+	}
+}
+planet_event = {
+	#踩城市
+	id = fara.7
+	title = fara.7.name
+	desc = fara.7.desc
+	picture = GFX_event_fara_city_a_1
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = fara.7.a
+		hidden_effect = {
+			planet_event = { id = fara.8 }
+		}
+	}
+}
+planet_event = {
+	#踩城市
+	id = fara.8
+	title = fara.8.name
+	desc = fara.8.desc
+	picture = GFX_event_fara_city_a_2
+	show_sound = event_default
+	is_triggered_only = yes
+
+	option = {
+		name = fara.8.a
+		hidden_effect = {
+			planet_event = { id = fara.9 }
+		}
+	}
+}
+planet_event = {
+	#踩城市
+	id = fara.9
+	title = fara.9.name
+	desc = fara.9.desc
+	picture = GFX_event_fara_city_a_3
+	show_sound = event_default
+	is_triggered_only = yes
+
+	option = {
+		name = fara.9.a
+		hidden_effect = {
+			planet_event = { id = fara.10 }
+		}
+	}
+}
+planet_event = {
+	#踩城市
+	id = fara.10
+	title = fara.10.name
+	desc = fara.10.desc
+	picture = GFX_event_fara_city_a_4
+	show_sound = event_default
+	is_triggered_only = yes
+
+	option = {
+		name = fara.10.a
+		hidden_effect = {
+			planet_event = {
+				id = fara.11
+				days = 30
+				random = 30
+			}
+		}
+	}
+}
+planet_event = {
+	#踩城市
+	id = fara.11
+	title = fara.11.name
+	desc = fara.11.desc
+	picture = GFX_event_fara_city_a_5
+	show_sound = event_default
+	is_triggered_only = yes
+
+	option = {
+		name = fara.11.a
+	}
+}
+# 夹星球
+country_event = {
+	id = fara.12
+	title = fara.12.name
+	desc = fara.12.desc
+	diplomatic = yes
+
+	picture_event_data = {
+		room = gts_fara2_room
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		# 踩城市
+		name = fara.6.a
+		random_owned_planet = {
+			planet_event = { id = fara.13 }
+		}
+	}
+
+}
+# 夹星球
+planet_event = {
+	id = fara.13
+	title = fara.13.name
+	desc = fara.13.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = fara_feet_1_room
+	}
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = fara.13.a
+		hidden_effect = {
+			planet_event = {
+				id = fara.14
+				days = 60
+				random = 120
+			}
+		}
+	}
+}
+planet_event = {
+	id = fara.14
+	title = fara.14.name
+	desc = fara.14.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = fara_feet_2_room
+	}
+	option = {
+		name = fara.14.a
+	}
+}
+country_event = {
+	id = fara.15
+	title = fara.15.name
+	desc = fara.15.desc
+	diplomatic = yes
+
+	picture_event_data = {
+		room = gts_fara2_room
+	}
+
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			fara_active_diplo = no
+			#防止视窗多开
+			from = { is_same_value = root } # returning from open sub-menu
+		}
+	}
+
+	picture_event_data = {
+		room = gts_fara2_room
+	}
+
+	option = {
+		custom_gui = "enclave_caravaneer_option"
+		# 确认召唤
+		name = fara.15.a
+		allow = {
+			custom_tooltip = {
+				resource_stockpile_compare = { resource = gts_aom_saint_uartz value >= 3 }
+			}
+		}
+		add_resource = {
+			gts_aom_saint_uartz = -3
+		}
+		hidden_effect = {
+			country_event = { id = aom_leader.1000 }
+		}
+		remove_country_flag = fara_diplomacy_engaged
+	}
+
+	# 返回主选单
+	option = {
+		name = fara.15.y
+		remove_country_flag = fara_diplomacy_engaged
+		hidden_effect = {
+			country_event = { id = fara.3 }
+		}
+	}
+	# 退出
+	option = {
+		name = fara.15.z
+		default_hide_option = yes
+		remove_country_flag = fara_diplomacy_engaged
+	}
+}
+
+namespace = aom_fara_leader
+#法拉尔达招募事件
+country_event = {
+	id = aom_fara_leader.1
+	title = "aom_fara_leader.1.name"
+	desc = "aom_fara_leader.1.desc"	#文案
+	show_sound = event_celebration
+	is_triggered_only = yes
+	fire_only_once = yes
+	auto_opens = yes	#自动启动
+	event_window_type = leader_recruit
+	immediate = {
+		gts_leader_fara_hired = yes
+		last_created_leader = {
+			set_leader_flag = leader_fara_flag
+			save_global_event_target_as = fara
+		}
+	}
+	picture_event_data = {
+		portrait = event_target:gts_leader
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = DISMISS
+		tag = dismiss_leader
+		hidden_effect = {
+			set_country_flag = dismissed_aom_fara_leader
+		}
+	}
+	option = {
+		name = aom_fara_leader.1.a
+		response_text = aom_fara_leader.1.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = aom_fara_leader.1.b
+		response_text = aom_fara_leader.1.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = aom_fara_leader.1.c
+		response_text = aom_fara_leader.1.c.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = aom_fara_leader.1.d
+		response_text = aom_fara_leader.1.d.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = aom_fara_leader.1.e
+		response_text = aom_fara_leader.1.e.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = aom_fara_leader.1.f
+		response_text = aom_fara_leader.1.f.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = aom_fara_leader.1.g
+		response_text = aom_fara_leader.1.g.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = aom_fara_leader.1.h
+		tag = hire_leader
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = legendary }
+		}
+		#设置法拉领袖界面各项数据
+		event_target:gts_faralda = {
+			set_variable = {
+				# 性欲值
+				which = gts_lust_logs
+				value = 20
+			}
+			set_variable = {
+				# 脚香程度
+				which = gts_feet_logs
+				value = 20
+			}
+			set_variable = {
+				# 吃掉的小人数量：
+				which = gts_vore_kills_logs
+				value = 0
+			}
+			set_variable = {
+				# UB掉的小人数量：
+				which = gts_ub_kills_logs
+				value = 0
+			}
+			set_variable = {
+				# 踩死的小人数量：
+				which = gts_feet_kills_logs
+				value = 0
+			}
+			set_variable = {
+				# 饲养的小人数量：
+				which = gts_bread_logs
+				value = 120
+			}
+			set_variable = {
+				# 毁灭的城市数量：
+				which = gts_city_kills_logs
+				value = 0
+			}
+			set_variable = {
+				# 毁灭的星球数量：
+				which = gts_planet_kills_logs
+				value = 0
+			}
+		}
+	}
+}
+
+### 法拉尔达星球休假事件1 ###
+### 抵达星球 ###
+### 踩城市 ###
+### 坐下 ###
+### 拍碎城市 ###
+### 看后方 ###
+### 躺下休息 ###
+### 复原 ###
+
+namespace = illya
+
+# 红宝石考古
+country_event = {
+	id = illya.1
+	title = illya.1.name
+	desc = illya.1.desc
+	picture = GFX_event_illya_a_1
+
+	is_triggered_only = yes
+
+	option = {
+		name = illya.1.a
+		random_owned_planet = {
+			create_archaeological_site = aom_Ruby_digsite
+			add_deposit = d_caldea
+		}
+	}
+}
+fleet_event = {
+	id = illya.2
+	title = illya.2.name
+	desc = illya.2.desc
+	picture = GFX_event_illya_a_2
+
+	is_triggered_only = yes
+
+	option = {
+		name = illya.2.a
+	}
+}
+fleet_event = {
+	id = illya.3
+	title = illya.3.name
+	desc = illya.3.desc
+	picture = GFX_event_illya_a_3
+
+	is_triggered_only = yes
+
+	option = {
+		name = illya.3.a
+		owner = {
+			add_resource = {
+				energy = 1000
+				physics_research = 2000
+				engineering_research = 2000
+				society_research = 2000
+			}
+		}
+	}
+}
+fleet_event = {
+	id = illya.4
+	title = illya.4.name
+	desc = illya.4.desc
+	picture = GFX_event_illya_a_3
+
+	is_triggered_only = yes
+
+	option = {
+		name = illya.4.a
+	}
+}
+fleet_event = {
+	id = illya.5
+	title = illya.5.name
+	desc = illya.5.desc
+	picture = GFX_event_illya_a_3
+
+	is_triggered_only = yes
+
+	option = {
+		name = illya.5.a
+		hidden_effect = {
+			owner = {
+				country_event = { id = illya.6 }
+			}
+		}
+	}
+}
+country_event = {
+	id = illya.6
+	title = illya.6.name
+	desc = illya.6.desc
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = GFX_ruby
+		room = root
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = illya.6.a
+		hidden_effect = {
+			country_event = { id = illya.7 }
+		}
+	}
+}
+country_event = {
+	id = illya.7
+	title = illya.7.name
+	desc = illya.7.desc
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = GFX_ruby
+		room = chaldea_room
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = illya.7.a
+		hidden_effect = {
+			country_event = { id = illya.8 }
+		}
+	}
+}
+country_event = {
+	id = illya.8
+	title = illya.8.name
+	desc = illya.8.desc
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = GFX_ruby
+		room = root
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = illya.8.a
+		hidden_effect = {
+			country_event = { id = illya.9 }
+		}
+	}
+}
+country_event = {
+	id = illya.9
+	title = illya.9.name
+	desc = illya.9.desc
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = GFX_ruby
+		room = root
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = illya.9.a
+		hidden_effect = {
+			country_event = { id = illya.10 }
+		}
+	}
+}
+country_event = {
+	id = illya.10
+	title = illya.10.name
+	desc = illya.10.desc
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = GFX_ruby
+		room = root
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = illya.10.a
+		response_text = illya.10.a.response
+		add_relic = r_aom_Ruby
+		hidden_effect = {
+			country_event = { id = illya.1000 }
+			set_country_flag = gts_has_trigger_illya_sol
+		}
+		tooltip = {
+			begin_event_chain = {
+				event_chain = "looking_for_illya"
+				target = ROOT
+			}
+		}
+	}
+}
+
+ship_event = {
+	id = illya.11
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		owner = {
+			 has_country_flag = gts_has_trigger_illya_sol
+		}
+		FROM = {
+			has_star_flag = primitive_illya_sol
+		}
+		OR = {
+			is_ship_class = shipclass_constructor
+			is_ship_class = shipclass_science_ship
+		}
+	}
+	immediate = {
+		owner = {
+			country_event = {
+				id = illya.1001
+				days = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	id = illya.1000
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	event_chain = looking_for_illya
+	trigger = {
+		NOT = { has_global_flag = primitive_illya_sol_has_created }
+	}
+
+	immediate = {
+		set_global_flag = primitive_illya_sol_has_created
+		random_system_within_border = {
+			spawn_system = {
+				min_distance >= 10
+				max_distance <= 30
+				max_jumps = 1
+				initializer = primitive_illya_sol
+				effect = {
+					save_event_target_as = gts_bruh_get_illya_system_location
+					set_star_flag = primitive_illya_sol
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = illya.1001
+	title = illya.1001.name
+	desc = illya.1001.desc
+	picture = GFX_event_illya_b_1
+
+	fire_only_once = yes
+	event_chain = looking_for_illya
+	is_triggered_only = yes
+
+	option = {
+		name = illya.1001.a
+		hidden_effect = {
+			country_event = { id = illya.1002 }
+		}
+	}
+}
+
+country_event = {
+	id = illya.1002
+	title = illya.1002.name
+	desc = illya.1002.desc
+	picture = GFX_event_illya_b_2
+
+	event_chain = looking_for_illya
+	is_triggered_only = yes
+
+	option = {
+		name = illya.1002.a
+		hidden_effect = {
+			country_event = { id = illya.1003 }
+		}
+	}
+}
+country_event = {
+	id = illya.1003
+	title = illya.1003.name
+	desc = illya.1003.desc
+	picture = GFX_event_illya_b_3
+
+	event_chain = looking_for_illya
+	is_triggered_only = yes
+
+	option = {
+		name = illya.1003.a
+		hidden_effect = {
+			country_event = { id = illya.1004 }
+		}
+	}
+}
+country_event = {
+	id = illya.1004
+	title = illya.1004.name
+	desc = illya.1004.desc
+	picture = GFX_event_illya_b_4
+
+	event_chain = looking_for_illya
+	is_triggered_only = yes
+
+	option = {
+		name = illya.1004.a
+		hidden_effect = {
+			country_event = { id = illya.1025 }
+		}
+	}
+}
+country_event = {
+	id = illya.1025
+	diplomatic = yes
+	event_chain = looking_for_illya
+	is_triggered_only = yes
+	title = "illya.1025.name"
+	desc = {
+		text = "illya.1025.desc"
+	}
+
+	picture_event_data = {
+		portrait = illya
+		room = "ethic_spaceship_room"
+	}
+	option = {
+		name = illya.1025.a
+		hidden_effect = {
+			country_event = { id = illya.1026 }
+		}
+	}
+}
+country_event = {
+	id = illya.1026
+	title = illya.1026.name
+	desc = illya.1026.desc
+	diplomatic = yes
+	event_chain = looking_for_illya
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = illya1
+		room = "ethic_spaceship_room"
+	}
+	option = {
+		name = illya.1026.a
+		hidden_effect = {
+			country_event = { id = illya.1027 }
+		}
+	}
+}
+country_event = {
+	id = illya.1027
+	diplomatic = yes
+	event_chain = looking_for_illya
+	is_triggered_only = yes
+	title = "illya.1027.name"
+	desc = {
+		text = "illya.1027.desc"
+	}
+
+	picture_event_data = {
+		portrait = illya
+		room = "ethic_spaceship_room"
+	}
+	option = {
+		name = illya.1027.a
+		hidden_effect = {
+			country_event = { id = illya.1020 }
+		}
+	}
+}
+country_event = {
+	id = illya.1020
+	title = illya.1020.name
+	desc = illya.1020.desc
+	diplomatic = yes
+	event_chain = looking_for_illya
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = event_target:fara_country.ruler
+		room = chaldea_room
+	}
+
+	option = {
+		name = illya.1005.a
+		hidden_effect = {
+			country_event = { id = illya.1005 }
+		}
+	}
+}
+country_event = {
+	id = illya.1005
+	title = illya.1005.name
+	desc = illya.1005.desc
+	picture = GFX_event_illya_b_5
+
+	event_chain = looking_for_illya
+	is_triggered_only = yes
+
+	option = {
+		name = illya.1005.a
+
+		hidden_effect = {
+			country_event = { id = illya.1006}
+		}
+	}
+}
+
+country_event = {
+	id = illya.1006
+	title = illya.1006.name
+	desc = illya.1006.desc
+	picture = GFX_event_illya_b_6
+
+	event_chain = looking_for_illya
+	is_triggered_only = yes
+
+	option = {
+		name = illya.1006.a
+		hidden_effect = {
+			country_event = { id = illya.1007 }
+		}
+	}
+}
+country_event = {
+	id = illya.1007
+	title = illya.1007.name
+	desc = illya.1007.desc
+	picture = GFX_event_illya_b_7
+
+	event_chain = looking_for_illya
+	is_triggered_only = yes
+
+	option = {
+		name = illya.1007.a
+		hidden_effect = {
+			country_event = { id = illya.1008 }
+		}
+	}
+}
+country_event = {
+	id = illya.1008
+	title = illya.1008.name
+	desc = illya.1008.desc
+	picture = GFX_event_illya_b_8
+
+	event_chain = looking_for_illya
+	is_triggered_only = yes
+
+	option = {
+		name = illya.1008.a
+		hidden_effect = {
+			country_event = { id = illya.1009 }
+		}
+	}
+}
+country_event = {
+	id = illya.1009
+	title = illya.1009.name
+	desc = illya.1009.desc
+	picture = GFX_event_illya_b_9
+
+	event_chain = looking_for_illya
+	is_triggered_only = yes
+
+	option = {
+		name = illya.1009.a
+		hidden_effect = {
+			country_event = { id = illya.1010 }
+		}
+	}
+}
+country_event = {
+	id = illya.1010
+	title = illya.1010.name
+	desc = illya.1010.desc
+	picture = GFX_event_illya_b_10
+
+	event_chain = looking_for_illya
+	is_triggered_only = yes
+
+	option = {
+		name = illya.1010.a
+		hidden_effect = {
+			country_event = { id = illya.1011 }
+		}
+	}
+}
+country_event = {
+	id = illya.1011
+	title = illya.1011.name
+	desc = illya.1011.desc
+	picture = GFX_event_illya_b_11
+
+	event_chain = looking_for_illya
+	is_triggered_only = yes
+
+	option = {
+		name = illya.1011.a
+		hidden_effect = {
+			country_event = { id = illya.1012 }
+		}
+	}
+}
+country_event = {
+	id = illya.1012
+	title = illya.1012.name
+	desc = illya.1012.desc
+	picture = GFX_event_illya_b_12
+
+	event_chain = looking_for_illya
+	is_triggered_only = yes
+
+	option = {
+		name = illya.1012.a
+		hidden_effect = {
+			country_event = { id = illya.1013 }
+		}
+	}
+}
+country_event = {
+	id = illya.1013
+	title = illya.1013.name
+	desc = illya.1013.desc
+	picture = GFX_event_illya_b_13
+
+	event_chain = looking_for_illya
+	is_triggered_only = yes
+
+	option = {
+		name = illya.1013.a
+		hidden_effect = {
+			country_event = { id = illya.1014 }
+		}
+	}
+}
+country_event = {
+	id = illya.1014
+	title = illya.1014.name
+	desc = illya.1014.desc
+	picture = GFX_event_illya_b_14
+
+	event_chain = looking_for_illya
+	is_triggered_only = yes
+
+	option = {
+		name = illya.1014.a
+		hidden_effect = {
+			country_event = { id = illya.1015 }
+		}
+	}
+}
+
+country_event = {
+	id = illya.1015
+	title = illya.1014.name
+	desc = illya.1014.desc
+	picture = GFX_event_illya_b_15
+
+	event_chain = looking_for_illya
+	is_triggered_only = yes
+
+	option = {
+		name = illya.1015.a
+
+		hidden_effect = {
+			country_event = { id = illya.1016 }
+			country_event = { id = illya.1017 }
+			country_event = { id = illya.1018 }
+		}
+		end_event_chain = "looking_for_illya"
+	}
+}
+
+event = {
+	id = illya.1016
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		create_country = {
+			name = "NAME_fara_illya"
+			type = fara_illya_country
+			flag = {
+				icon= {
+					category = "gts_aom_flag"
+					file = "fara_flag.dds"
+				}
+				background= {
+					category = "backgrounds"
+					file = "sinus.dds"
+				}
+				colors={
+					"grey"
+					"dark_grey"
+					"null"
+					"null"
+				}
+			}
+		}
+		last_created_country = {
+			create_leader = {
+				class = official
+				species = owner_main_species
+				name = NAME_fara_illya
+				event_leader = yes
+				skill = 10
+				set_age = 0
+				traits = {
+				}
+			}
+			set_leader = last_created_leader
+			last_created_leader = {
+				change_leader_portrait = fara_illya
+			}
+			save_global_event_target_as = fara_illya_country
+		}
+	}
+}
+event = {
+	id = illya.1017
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		create_country = {
+			name = "NAME_illya"
+			type = illya_country
+			flag = {
+				icon= {
+					category = "gts_aom_flag"
+					file = "illya_flag.dds"
+				}
+				background= {
+					category = "backgrounds"
+					file = "sinus.dds"
+				}
+				colors={
+					"grey"
+					"dark_grey"
+					"null"
+					"null"
+				}
+			}
+		}
+		last_created_country = {
+			create_leader = {
+				class = official
+				species = owner_main_species
+				name = NAME_illya
+				event_leader = yes
+				skill = 10
+				set_age = 0
+				traits = {
+				}
+			}
+			set_leader = last_created_leader
+			last_created_leader = {
+				change_leader_portrait = illya
+			}
+			save_global_event_target_as = illya_country
+		}
+	}
+}
+#伊莉雅通讯
+country_event = {
+	id = illya.1018
+	is_triggered_only = yes
+	diplomatic = yes
+	title = "illya.1018.name"
+	desc = {
+		text = "illya.1018.desc"
+	}
+
+	picture_event_data = {
+		portrait = illya
+		room = "ethic_spaceship_room"
+	}
+
+	trigger = {
+		is_ai = no
+		has_origin = origin_panlon
+	}
+
+	immediate = {
+		event_target:fara_illya_country = {
+			establish_communications_no_message = root
+		}
+		event_target:illya_country = {
+			establish_communications_no_message = root
+		}
+		set_country_flag = has_illya
+	}
+
+	option = {
+		name = illya.1018.a
+		hidden_effect = {
+			country_event = { id = aom_illya_leader.1 }
+		}
+	}
+}
+
+# 法拉和伊莉雅起始通讯
+country_event = {
+	id = illya.2000
+	title = illya.2000.name
+	desc = illya.2000.desc
+
+	diplomatic = yes
+
+	picture = GFX_evt_mysterious_signal
+	picture_event_data = {
+		room = gts_fara_illya1_room
+	}
+
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			fara_illya_active_diplo = no
+			#防止视窗多开
+			NOT = { has_country_flag = fara_diplomacy_engaged }
+			from = { is_same_value = root } # returning from open sub-menu
+		}
+		from = { OR = {
+			is_country_type = fara_illya_country
+			is_same_value = root # returned from menu
+		}}
+		is_ai = no
+	}
+
+	immediate = {
+		set_country_flag = fara_illya_diplomacy_engaged
+	}
+
+	after = {
+		hidden_effect = { remove_country_flag = fara_illya_diplomacy_engaged }
+	}
+
+	option = { #请求
+		name = illya.2000.a
+		hidden_effect = {
+			country_event = {  id = illya.2001 }
+		}
+	}
+	option = {
+		name = illya.2000.c
+		default_hide_option = yes
+	}
+}
+country_event = {
+	id = illya.2001
+	title = illya.2001.name
+	desc = illya.2001.desc
+	diplomatic = yes
+
+	picture_event_data = {
+		room = gts_fara_illya1_room
+	}
+
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			fara_illya_active_diplo = no
+			#防止视窗多开
+			from = { is_same_value = root } # returning from open sub-menu
+		}
+	}
+
+	option = {
+		# 踩城市1
+		name = illya.2001.a
+		hidden_effect = {
+			country_event = { id = illya.2002 }
+		}
+		remove_country_flag = fara_illya_diplomacy_engaged
+	}
+
+	# 返回主选单
+	option = {
+		name = illya.2001.y
+		remove_country_flag = fara_illya_diplomacy_engaged
+		hidden_effect = {
+			country_event = { id = illya.2001 }
+		}
+	}
+
+	# 退出
+	option = {
+		name = illya.2001.z
+		default_hide_option = yes
+		remove_country_flag = fara_illya_diplomacy_engaged
+	}
+}
+country_event = {
+	id = illya.2002
+	title = illya.2002.name
+	desc = illya.2002.desc
+	diplomatic = yes
+	picture_event_data = {
+		room = gts_fara_illya1_room
+	}
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			fara_illya_active_diplo = no
+			#防止视窗多开
+			from = { is_same_value = root } # returning from open sub-menu
+		}
+	}
+
+	option = {
+		#鞋
+		name = illya.2002.a
+		hidden_effect = {
+			country_event = { id = illya.2003 }
+		}
+		remove_country_flag = fara_illya_diplomacy_engaged
+	}
+	option = {
+		# 袜
+		name = illya.2002.b
+		hidden_effect = {
+			country_event = { id = illya.2005 }
+		}
+		remove_country_flag = fara_illya_diplomacy_engaged
+	}
+
+	# 返回主选单
+	option = {
+		name = illya.2002.c
+		hidden_effect = {
+			country_event = { id = illya.2001 }
+		}
+	}
+
+	# 退出
+	option = {
+		name = fara_illya_exit
+		default_hide_option = yes
+		remove_country_flag = fara_illya_diplomacy_engaged
+	}
+}
+
+# 踩城市鞋
+country_event = {
+	id = illya.2003
+	title = illya.2003.name
+	desc = illya.2003.desc
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:fara_country.ruler
+		room = root
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		# 踩城市
+		name = illya.2003.a
+		random_owned_planet = {
+			planet_event = { id = illya.2004 }
+		}
+	}
+}
+planet_event = {
+	#踩城市鞋
+	id = illya.2004
+	title = illya.2004.name
+	desc = illya.2004.desc
+	picture = GFX_event_fara_illya_city_a_1
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = illya.2004.a
+		hidden_effect = {
+			planet_event = {
+				id = illya.2007
+				days = 30
+				random = 30
+			}
+		}
+	}
+}
+
+# 踩城市1袜
+country_event = {
+	id = illya.2005
+	title = illya.2005.name
+	desc = illya.2005.desc
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:fara_country.ruler
+		room = root
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		# 踩城市
+		name = illya.2004.a
+		random_owned_planet = {
+			planet_event = { id = illya.2006 }
+		}
+	}
+}
+planet_event = {
+	#踩城市鞋
+	id = illya.2006
+	title = illya.2006.name
+	desc = illya.2006.desc
+	picture = GFX_event_fara_illya_city_a_2
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = illya.2006.a
+		hidden_effect = {
+			planet_event = {
+				id = illya.2007
+				days = 30
+				random = 30
+			}
+		}
+	}
+}
+planet_event = {
+	#踩城市1复原
+	id = illya.2007
+	title = illya.2007.name
+	desc = illya.2007.desc
+	picture = GFX_event_fara_illya_city_a_3
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = illya.2007.a
+	}
+}
+#伊莉雅起始通讯
+country_event = {
+	id = illya.3000
+	title = illya.3000.name
+	desc = illya.3000.desc
+
+	diplomatic = yes
+	picture_event_data = {
+		room = gts_illya2_room
+	}
+
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			illya_active_diplo = no
+			#防止视窗多开
+			NOT = { has_country_flag = fara_diplomacy_engaged }
+			from = { is_same_value = root } # returning from open sub-menu
+		}
+		from = { OR = {
+			is_country_type = illya_country
+			is_same_value = root # returned from menu
+		}}
+		is_ai = no
+	}
+
+	immediate = {
+		set_country_flag = illya_diplomacy_engaged
+	}
+
+	after = {
+		hidden_effect = { remove_country_flag = illya_diplomacy_engaged }
+	}
+
+	option = { #我们需要您的力量
+		name = illya.3000.a
+		allow = {
+			NOR = {
+				has_country_flag = Illya_warship_active
+				has_country_flag = Illya_school_warship_active
+			}
+		}
+		hidden_effect = {
+			country_event = {  id = illya.3001 }
+		}
+	}
+	option = { #切换灵基
+		name = illya.3000.b
+		allow = {
+			OR = {
+				has_country_flag = Illya_warship_active
+				has_country_flag = Illya_school_warship_active
+			}
+		}
+		hidden_effect = {
+			country_event = {  id = illya.3001 }
+		}
+	}
+	option = { #取消战舰
+		name = illya.3000.c
+		allow = {
+			OR = {
+				has_country_flag = Illya_warship_active
+				has_country_flag = Illya_school_warship_active
+			}
+		}
+		hidden_effect = {
+			event_target:Illya_school_warship = { delete_fleet = this }
+			event_target:Illya_warship = { delete_fleet = this }
+		}
+	}
+	# 退出
+	option = {
+		name = illya.3000.d
+		remove_country_flag = illya_diplomacy_engaged
+	}
+}
+
+country_event = {
+	id = illya.3001
+	title = illya.3001.name
+	desc = illya.3001.desc
+	diplomatic = yes
+
+	picture_event_data = {
+		room = gts_illya2_room
+	}
+
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			illya_active_diplo = no
+			#防止视窗多开
+			from = { is_same_value = root } # returning from open sub-menu
+		}
+	}
+
+	option = {
+		# 第一阶段灵基
+		name = illya.3001.a
+		trigger = {
+			NOT = { has_country_flag = Illya_warship_active }
+		}
+		hidden_effect = {
+			create_Illya_warship = yes
+		}
+		remove_country_flag = illya_diplomacy_engaged
+	}
+	option = {
+		# 第二阶段灵基
+		name = illya.3001.b
+		trigger = {
+			NOT = { has_country_flag = Illya_school_warship_active }
+		}
+		hidden_effect = {
+			create_Illya_school_warship = yes
+		}
+		remove_country_flag = illya_diplomacy_engaged
+	}
+
+	# 返回主选单
+	option = {
+		name = illya.3001.c
+		hidden_effect = {
+			country_event = { id = illya.3001 }
+		}
+	}
+
+	# 退出
+	option = {
+		name = illya.3001.d
+		remove_country_flag = illya_diplomacy_engaged
+	}
+}
+
+namespace = aom_illya_leader
+#伊莉雅招募事件
+country_event = {
+	id = aom_illya_leader.1
+	title = "aom_illya_leader.1.name"
+	desc = "aom_illya_leader.1.desc"	#文案
+	show_sound = event_celebration
+	is_triggered_only = yes
+	fire_only_once = yes
+	auto_opens = yes	#自动启动
+	event_window_type = leader_recruit
+	immediate = {
+		gts_leader_illya_hired = yes
+		last_created_leader = {
+			set_leader_flag = leader_illya_flag
+			save_global_event_target_as = illya
+		}
+	}
+	picture_event_data = {
+		portrait = event_target:gts_leader
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = DISMISS
+		tag = dismiss_leader
+		hidden_effect = {
+			set_country_flag = dismissed_aom_illya_leader
+		}
+	}
+	option = {
+		name = aom_illya_leader.1.a
+		response_text = aom_illya_leader.1.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = aom_illya_leader.1.b
+		response_text = aom_illya_leader.1.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = aom_illya_leader.1.c
+		response_text = aom_illya_leader.1.c.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = aom_illya_leader.1.d
+		response_text = aom_illya_leader.1.d.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = aom_illya_leader.1.e
+		response_text = aom_illya_leader.1.e.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = aom_illya_leader.1.f
+		response_text = aom_illya_leader.1.f.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = aom_illya_leader.1.g
+		response_text = aom_illya_leader.1.g.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = aom_illya_leader.1.h
+		tag = hire_leader
+		hidden_effect = {
+			legendary_gts_leader_hire_effect = yes
+		}
+		#设置伊莉雅领袖界面各项数据
+		event_target:gts_illyasviel = {
+			set_variable = {
+				# 性欲值
+				which = gts_lust_logs
+				value = 15
+			}
+			set_variable = {
+				# 脚香程度
+				which = gts_feet_logs
+				value = 20
+			}
+			set_variable = {
+				# 吃掉的小人数量：
+				which = gts_vore_kills_logs
+				value = 0
+			}
+			set_variable = {
+				# UB掉的小人数量：
+				which = gts_ub_kills_logs
+				value = 0
+			}
+			set_variable = {
+				# 踩死的小人数量：
+				which = gts_feet_kills_logs
+				value = 0
+			}
+			set_variable = {
+				# 饲养的小人数量：
+				which = gts_bread_logs
+				value = 300
+			}
+			set_variable = {
+				# 毁灭的城市数量：
+				which = gts_city_kills_logs
+				value = 0
+			}
+			set_variable = {
+				# 毁灭的星球数量：
+				which = gts_planet_kills_logs
+				value = 0
+			}
+		}
+	}
+	after = {
+		last_created_leader = {
+			add_skill_without_trait_selection = 4
+		}
+	}
+}
+
+namespace = aom_leader
+
+#英灵召唤
+country_event = {
+	id = aom_leader.0
+	title = aom_leader.0.name
+	desc = aom_leader.0.desc
+	diplomatic = yes
+
+	picture_event_data = {
+		room = gts_fara2_room
+	}
+
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			fara_active_diplo = no
+			#防止视窗多开
+			from = { is_same_value = root } # returning from open sub-menu
+		}
+	}
+
+	picture_event_data = {
+		room = gts_fara2_room
+	}
+	option = { #随机召唤
+		name = aom_leader.0.a
+		custom_tooltip = aom_leader_0_a
+		hidden_effect = {
+			country_event = { id = fara.15 }
+		}
+	}
+	option = { #指定召唤（保底）
+		name = aom_leader.0.b
+		custom_tooltip = aom_leader_0_b
+		hidden_effect = {
+			country_event = { id = aom_leader.1 }
+		}
+	}
+	option = { #指定召唤（无记名灵基）
+		name = aom_leader.0.c
+		custom_tooltip = aom_leader_0_c
+		hidden_effect = {
+			country_event = { id = aom_leader.5 }
+		}
+	}
+	option = {
+		custom_gui = "enclave_caravaneer_option"
+		name = fara_return_to_main
+		hidden_effect = {
+			country_event = { id = fara.3 }
+		}
+	}
+}
+#指定召唤
+country_event = {
+	id = aom_leader.1
+	title = "aom_leader.1.name"
+	desc = "aom_leader.1.desc"
+
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		room = gts_fara2_room
+	}
+
+	trigger = {
+		OR = {
+			fara_active_diplo = no
+			#防止视窗多开
+			from = { is_same_value = root } # returning from open sub-menu
+		}
+	}
+	immediate = {
+		random_country = {
+			limit = {
+				is_ai = no
+				OR = {
+					has_origin = origin_panlon
+				}
+			}
+		}
+	}
+	option = {
+		custom_gui = "enclave_caravaneer_option"
+		name = "aom_leader.1.a"
+		allow = {
+			custom_tooltip = {
+				resource_stockpile_compare = { resource = gts_aom_saint_uartz value >= 900 }
+			}
+			NOT = { has_country_flag = leader_Miyu_flag_max }
+		}
+		add_resource = {
+			gts_aom_saint_uartz = -900
+		}
+		custom_tooltip = aom_leader.1.a.tooltip
+		hidden_effect = {
+			if = {
+				limit = {
+					owner = {
+						NOR = {
+							has_country_flag = Miyu
+						}
+					}
+				}
+				country_event = { id = aom_leader.2 }
+			}
+			else_if= {
+				limit = {
+					has_country_flag = Miyu
+				}
+				country_event = { id = aom_leader.100 }
+			}
+		}
+	}
+	option = {
+		custom_gui = "enclave_caravaneer_option"
+		name = "aom_leader.1.b"
+		allow = {
+			custom_tooltip = {
+				resource_stockpile_compare = { resource = gts_aom_saint_uartz value >= 900 }
+			}
+			NOT = { has_country_flag = leader_Chloe_flag_max }
+		}
+		add_resource = {
+			gts_aom_saint_uartz = -900
+		}
+		custom_tooltip = aom_leader.1.b.tooltip
+		hidden_effect = {
+			if = {
+				limit = {
+					owner = {
+						NOR = {
+							has_country_flag = Chloe
+						}
+					}
+				}
+				country_event = { id = aom_leader.3 }
+			}
+			else_if = {
+				limit = {
+					has_country_flag = Chloe
+				}
+				country_event = { id = aom_leader.101 }
+			}
+		}
+	}
+	option = {
+		custom_gui = "enclave_caravaneer_option"
+		name = "aom_leader.1.c"
+		allow = {
+			custom_tooltip = {
+				resource_stockpile_compare = { resource = gts_aom_saint_uartz value >= 900 }
+			}
+			NOT = { has_country_flag = leader_altria_pendragon_frian_flag_max }
+		}
+		add_resource = {
+			gts_aom_saint_uartz = -900
+		}
+		custom_tooltip = aom_leader.1.c.tooltip
+		hidden_effect = {
+			if = {
+				limit = {
+					owner = {
+						NOR = {
+							has_country_flag = altria_pendragon_frian
+						}
+					}
+				}
+				country_event = { id = aom_leader.4 }
+			}
+			else_if= {
+				limit = {
+					has_country_flag = altria_pendragon_frian
+				}
+				country_event = { id = aom_leader.102 }
+			}
+		}
+	}
+	option = {
+		custom_gui = "enclave_caravaneer_option"
+		name = "aom_leader.5.d"
+		allow = {
+			custom_tooltip = {
+				resource_stockpile_compare = { resource = gts_aom_unregistered_spirit_origin value >= 10 }
+			}
+			NOT = { has_country_flag = leader_shiro_flag_max }
+		}
+		add_resource = {
+			gts_aom_unregistered_spirit_origin = -10
+		}
+		custom_tooltip = aom_leader.5.d.tooltip
+		hidden_effect = {
+			if = {
+				limit = {
+					owner = {
+						NOR = {
+							has_country_flag = shiro
+						}
+					}
+				}
+				country_event = { id = aom_leader.6 }
+			}
+			else_if = {
+				limit = {
+					has_country_flag = shiro
+				}
+				country_event = { id = aom_leader.103 }
+			}
+		}
+	}
+	option = {
+		custom_gui = "enclave_caravaneer_option"
+		name = "aom_leader.5.e"
+		allow = {
+			custom_tooltip = {
+				resource_stockpile_compare = { resource = gts_aom_unregistered_spirit_origin value >= 10 }
+			}
+			NOT = { has_country_flag = leader_galahad_flag_max }
+		}
+		add_resource = {
+			gts_aom_unregistered_spirit_origin = -10
+		}
+		custom_tooltip = aom_leader.5.e.tooltip
+		hidden_effect = {
+			if = {
+				limit = {
+					owner = {
+						NOR = {
+							has_country_flag = galahad
+						}
+					}
+				}
+				country_event = { id = aom_leader.7 }
+			}
+			else_if = {
+				limit = {
+					has_country_flag = galahad
+				}
+				country_event = { id = aom_leader.104 }
+			}
+		}
+	}
+	option = {
+		custom_gui = "enclave_caravaneer_option"
+		name = fara_return_to_main
+		hidden_effect = {
+			country_event = { id = fara.3 }
+		}
+	}
+}
+#指定召唤
+country_event = {
+	id = aom_leader.5
+	title = "aom_leader.5.name"
+	desc = "aom_leader.5.desc"
+
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		room = gts_fara2_room
+	}
+
+	trigger = {
+		OR = {
+			fara_active_diplo = no
+			#防止视窗多开
+			from = { is_same_value = root } # returning from open sub-menu
+		}
+	}
+	immediate = {
+		random_country = {
+			limit = {
+				is_ai = no
+				OR = {
+					has_origin = origin_panlon
+				}
+			}
+		}
+	}
+	option = {
+		custom_gui = "enclave_caravaneer_option"
+		name = "aom_leader.5.a"
+		allow = {
+			custom_tooltip = {
+				resource_stockpile_compare = { resource = gts_aom_unregistered_spirit_origin value >= 10 }
+			}
+			NOT = { has_country_flag = leader_Miyu_flag_max }
+		}
+		add_resource = {
+			gts_aom_unregistered_spirit_origin = -10
+		}
+		custom_tooltip = aom_leader.5.a.tooltip
+		hidden_effect = {
+			if = {
+				limit = {
+					owner = {
+						NOR = {
+							has_country_flag = Miyu
+						}
+					}
+				}
+				country_event = { id = aom_leader.2 }
+			}
+			else_if= {
+				limit = {
+					has_country_flag = Miyu
+				}
+				country_event = { id = aom_leader.100 }
+			}
+		}
+	}
+	option = {
+		custom_gui = "enclave_caravaneer_option"
+		name = "aom_leader.5.b"
+		allow = {
+			custom_tooltip = {
+				resource_stockpile_compare = { resource = gts_aom_unregistered_spirit_origin value >= 10 }
+			}
+			NOT = { has_country_flag = leader_altria_pendragon_frian_flag_max }
+		}
+		add_resource = {
+			gts_aom_unregistered_spirit_origin = -10
+		}
+		custom_tooltip = aom_leader.5.b.tooltip
+		hidden_effect = {
+			if = {
+				limit = {
+					owner = {
+						NOR = {
+							has_country_flag = Chloe
+						}
+					}
+				}
+				country_event = { id = aom_leader.3 }
+			}
+			else_if = {
+				limit = {
+					has_country_flag = Chloe
+				}
+				country_event = { id = aom_leader.101 }
+			}
+		}
+	}
+	option = {
+		custom_gui = "enclave_caravaneer_option"
+		name = "aom_leader.5.c"
+		allow = {
+			custom_tooltip = {
+				resource_stockpile_compare = { resource = gts_aom_unregistered_spirit_origin value >= 10 }
+			}
+			NOT = { has_country_flag = leader_Chloe_flag_max }
+		}
+		add_resource = {
+			gts_aom_unregistered_spirit_origin = -10
+		}
+		custom_tooltip = aom_leader.5.c.tooltip
+		hidden_effect = {
+			if = {
+				limit = {
+					owner = {
+						NOR = {
+							has_country_flag = altria_pendragon_frian
+						}
+					}
+				}
+				country_event = { id = aom_leader.4 }
+			}
+			else_if= {
+				limit = {
+					has_country_flag = altria_pendragon_frian
+				}
+				country_event = { id = aom_leader.102 }
+			}
+		}
+	}
+	option = {
+		custom_gui = "enclave_caravaneer_option"
+		name = "aom_leader.5.d"
+		allow = {
+			custom_tooltip = {
+				resource_stockpile_compare = { resource = gts_aom_unregistered_spirit_origin value >= 10 }
+			}
+			NOT = { has_country_flag = leader_shiro_flag_max }
+		}
+		add_resource = {
+			gts_aom_unregistered_spirit_origin = -10
+		}
+		custom_tooltip = aom_leader.5.d.tooltip
+		hidden_effect = {
+			if = {
+				limit = {
+					owner = {
+						NOR = {
+							has_country_flag = shiro
+						}
+					}
+				}
+				country_event = { id = aom_leader.6 }
+			}
+			else_if = {
+				limit = {
+					has_country_flag = shiro
+				}
+				country_event = { id = aom_leader.103 }
+			}
+		}
+	}
+	option = {
+		custom_gui = "enclave_caravaneer_option"
+		name = "aom_leader.5.e"
+		allow = {
+			custom_tooltip = {
+				resource_stockpile_compare = { resource = gts_aom_unregistered_spirit_origin value >= 10 }
+			}
+			NOT = { has_country_flag = leader_galahad_flag_max }
+		}
+		add_resource = {
+			gts_aom_unregistered_spirit_origin = -10
+		}
+		custom_tooltip = aom_leader.5.e.tooltip
+		hidden_effect = {
+			country_event = { id = aom_leader.7 }
+		}
+	}
+	option = {
+		custom_gui = "enclave_caravaneer_option"
+		name = fara_return_to_main
+		hidden_effect = {
+			if = {
+				limit = {
+					owner = {
+						NOR = {
+							has_country_flag = galahad
+						}
+					}
+				}
+				country_event = { id = aom_leader.7 }
+			}
+			else_if = {
+				limit = {
+					has_country_flag = galahad
+				}
+				country_event = { id = aom_leader.104 }
+			}
+		}
+	}
+}
+
+#美游招募事件
+country_event = {
+	id = aom_leader.2
+	title = aom_leader.2.name
+	desc = aom_leader.2.desc
+	show_sound = event_celebration
+	is_triggered_only = yes
+	fire_only_once = yes
+	event_window_type = leader_recruit
+	immediate = {
+		set_country_flag = Miyu
+		gts_leader_creator = {
+			SIZE = GTS
+			TYPE = legendary
+			LEADER_PORTRAIT = miyu
+			CLASS = commander
+			NAME = NAME_Miyu
+			LEVEL = 8
+			AGE = 11
+			EVENT_LEADER = no
+			IMMORTAL = yes
+			GENDER = female
+			ETHIC = xenophile
+			DESC = Miyu_desc
+			CATCH_PHRASE = Miyu_catch_phrase
+			RANDOMIZE_TRAITS = no
+			TARGET = Miyu
+			TRAIT1 = leader_trait_Ultra
+			TRAIT2 = leader_trait_servant1
+		}
+		last_created_leader = {
+			set_leader_flag = leader_Miyu_flag
+			save_global_event_target_as = Miyu
+		}
+	}
+	picture_event_data = {
+		portrait = event_target:gts_leader
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = DISMISS
+		tag = dismiss_leader
+	}
+	option = {
+		name = aom_leader.2.a
+		response_text = aom_leader.2.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = aom_leader.2.b
+		response_text = aom_leader.2.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = aom_leader.2.c
+		response_text = aom_leader.2.c.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = aom_leader.2.d
+		response_text = aom_leader.2.d.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = aom_leader.2.e
+		response_text = aom_leader.2.e.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = aom_leader.2.f
+		response_text = aom_leader.2.f.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = aom_leader.2.g
+		response_text = aom_leader.2.g.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = aom_leader.2.h
+		tag = hire_leader
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = legendary }
+		}
+	}
+}
+#克洛伊招募事件
+country_event = {
+	id = aom_leader.3
+	title = aom_leader.3.name
+	desc = aom_leader.3.desc
+	show_sound = event_celebration
+	is_triggered_only = yes
+	fire_only_once = yes
+	event_window_type = leader_recruit
+	immediate = {
+		set_country_flag = Chloe
+		gts_leader_creator = {
+			SIZE = GTS
+			TYPE = legendary
+			LEADER_PORTRAIT = chloe
+			CLASS = commander
+			NAME = NAME_Chloe
+			LEVEL = 8
+			AGE = 11
+			EVENT_LEADER = no
+			IMMORTAL = yes
+			GENDER = female
+			ETHIC = xenophile
+			DESC = Chloe_desc
+			CATCH_PHRASE = Chloe_catch_phrase
+			RANDOMIZE_TRAITS = no
+			TARGET = Chloe
+
+		}
+		last_created_leader = {
+			add_trait = {
+				trait = leader_trait_servant1
+			}
+			set_leader_flag = leader_Chloe_flag
+			save_global_event_target_as = Chloe
+		}
+	}
+	picture_event_data = {
+		portrait = event_target:gts_leader
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = DISMISS
+		tag = dismiss_leader
+	}
+	option = {
+		name = aom_leader.3.a
+		response_text = aom_leader.3.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = aom_leader.3.b
+		response_text = aom_leader.3.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = aom_leader.3.c
+		response_text = aom_leader.3.c.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = aom_leader.3.d
+		response_text = aom_leader.3.d.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = aom_leader.3.e
+		response_text = aom_leader.3.e.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = aom_leader.3.f
+		response_text = aom_leader.3.f.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = aom_leader.3.g
+		response_text = aom_leader.3.g.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = aom_leader.3.h
+		tag = hire_leader
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = legendary }
+		}
+	}
+}
+#阿尔托莉雅招募事件
+country_event = {
+	id = aom_leader.4
+	title = aom_leader.4.name
+	desc = aom_leader.4.desc
+	show_sound = event_celebration
+	is_triggered_only = yes
+	fire_only_once = yes
+	event_window_type = leader_recruit
+	immediate = {
+		set_country_flag = altria_pendragon_frian
+		gts_leader_creator = {
+			SIZE = GTS
+			TYPE = legendary
+			LEADER_PORTRAIT = altria_pendragon_frian
+			CLASS = commander
+			NAME = NAME_altria_pendragon_frian
+			LEVEL = 8
+			AGE = 11
+			EVENT_LEADER = no
+			IMMORTAL = yes
+			GENDER = female
+			ETHIC = xenophile
+			DESC = altria_pendragon_frian_desc
+			CATCH_PHRASE = altria_pendragon_frian_catch_phrase
+			RANDOMIZE_TRAITS = no
+			TARGET = altria_pendragon_frian
+			TRAIT1 = leader_trait_Ultra
+			TRAIT2 = leader_trait_servant1
+		}
+		last_created_leader = {
+			add_trait = {
+				trait = leader_trait_servant1
+			}
+			add_trait = {
+				trait = leader_trait_ruler_emperor
+			}
+			set_leader_flag = leader_altria_pendragon_frian_flag
+			save_global_event_target_as = altria_pendragon_frian
+		}
+	}
+	picture_event_data = {
+		portrait = event_target:gts_leader
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = DISMISS
+		tag = dismiss_leader
+	}
+	option = {
+		name = aom_leader.4.a
+		response_text = aom_leader.4.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = aom_leader.4.b
+		response_text = aom_leader.4.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = aom_leader.4.c
+		response_text = aom_leader.4.c.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = aom_leader.4.d
+		response_text = aom_leader.4.d.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = aom_leader.4.e
+		response_text = aom_leader.4.e.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = aom_leader.4.f
+		response_text = aom_leader.4.f.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = aom_leader.4.g
+		response_text = aom_leader.4.g.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = aom_leader.4.h
+		tag = hire_leader
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = legendary }
+		}
+	}
+}
+
+
+country_event = { #Collector followup
+	id = aom_leader.1000
+	title = "aom_leader.1000.name"
+	desc = "aom_leader.1000.desc"
+
+	is_triggered_only = yes
+
+	diplomatic = yes
+
+	picture_event_data = {
+		room = gts_fara2_room
+	}
+
+	immediate = {
+		random_list = {
+			90 = {
+				set_country_flag = servant_empty
+				#custom_tooltip = lootbox_contents_empty
+			}	#nothing
+			10 = {
+				set_country_flag = servant_0
+			}
+		}
+	}
+
+	option = {
+		name = Failed
+		exclusive_trigger = {
+			has_country_flag = servant_empty
+		}
+		hidden_effect = {
+			country_event = { id = aom_leader.1100 }
+		}
+	}
+	option = {
+		name = servant_joins
+		exclusive_trigger = {
+			NOT = { has_country_flag = servant_empty }
+		}
+		switch = {
+			trigger = has_country_flag
+			servant_0 = {
+				country_event = { id = aom_leader.1001 }
+			}
+		}
+	}
+	after = {
+		hidden_effect = {
+			remove_country_flag = servant_0
+			remove_country_flag = servant_empty
+		}
+	}
+}
+country_event = { #Collector followup
+	id = aom_leader.1100
+	title = "aom_leader.1100.name"
+	desc = "aom_leader.1100.desc"
+
+	is_triggered_only = yes
+
+	diplomatic = yes
+
+	picture_event_data = {
+		room = gts_fara2_room
+	}
+
+	option = {
+		name = aom_leader.1100.a
+		remove_country_flag = fara_diplomacy_engaged
+	}
+	option = {
+		name = continue
+		add_resource = {
+			gts_aom_saint_uartz = -3
+		}
+		hidden_effect = {
+			country_event = { id = aom_leader.1000 }
+		}
+	}
+	# 返回主选单
+	option = {
+		name = aom_leader.1100.c
+		hidden_effect = {
+			country_event = { id = fara.3 }
+		}
+	}
+}
+country_event = { #Collector followup
+	id = aom_leader.1001
+	title = "aom_leader.1001.name"
+	desc = "aom_leader.1001.desc"
+	picture = GFX_evt_aom_servant_joins
+
+	is_triggered_only = yes
+
+	immediate = {
+		random_list = {
+			20 = {
+				set_country_flag = servant_1
+			}
+			20 = {
+				set_country_flag = servant_2
+			}
+			20 = {
+				set_country_flag = servant_3
+			}
+			20 = {
+				set_country_flag = servant_4
+			}
+			20 = {
+				set_country_flag = servant_5
+			}
+		}
+	}
+
+	option = {
+		name = marvelous
+		exclusive_trigger = {
+			NOT = { has_country_flag = collector_empty }
+		}
+		switch = {
+			trigger = has_country_flag
+			servant_1 = {
+				if = {
+					limit = {
+						owner = {
+							NOR = {
+								has_country_flag = Miyu
+							}
+						}
+					}
+					country_event = { id = aom_leader.2 }
+				}
+				else_if= {
+					limit = {
+						has_country_flag = Miyu
+					}
+					country_event = { id = aom_leader.100 }
+				}
+			}
+			servant_2 = {
+				if = {
+					limit = {
+						owner = {
+							NOR = {
+								has_country_flag = Chloe
+							}
+						}
+					}
+					country_event = { id = aom_leader.3 }
+				}
+				else_if = {
+					limit = {
+						has_country_flag = Chloe
+					}
+					country_event = { id = aom_leader.101 }
+				}
+			}
+			servant_3 = {
+				if = {
+					limit = {
+						owner = {
+							NOR = {
+								has_country_flag = altria_pendragon_frian
+							}
+						}
+					}
+					country_event = { id = aom_leader.4 }
+				}
+				else_if= {
+					limit = {
+						has_country_flag = altria_pendragon_frian
+					}
+					country_event = { id = aom_leader.102 }
+				}
+			}
+			servant_4 = {
+				if = {
+					limit = {
+						owner = {
+							NOR = {
+								has_country_flag = shiro
+							}
+						}
+					}
+					country_event = { id = aom_leader.6 }
+				}
+				else_if = {
+					limit = {
+						has_country_flag = shiro
+					}
+					country_event = { id = aom_leader.103 }
+				}
+			}
+			servant_5 = {
+				if = {
+					limit = {
+						owner = {
+							NOR = {
+								has_country_flag = galahad
+							}
+						}
+					}
+					country_event = { id = aom_leader.7 }
+				}
+				else_if = {
+					limit = {
+						has_country_flag = galahad
+					}
+					country_event = { id = aom_leader.104 }
+				}
+			}
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			remove_country_flag = servant_1
+			remove_country_flag = servant_2
+			remove_country_flag = servant_3
+			remove_country_flag = servant_4
+			remove_country_flag = servant_5
+		}
+	}
+
+}
+#美游宝具等级提升事件
+country_event = {
+	id = aom_leader.100
+	title = "aom_leader.100.name"
+	desc = "aom_leader.100.desc"
+	show_sound = event_celebration
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		room = gts_miyu2_room
+	}
+	immediate = {
+		every_owned_leader = {
+			if = {
+				limit = {
+					has_leader_flag = leader_Miyu_flag
+					has_trait = leader_trait_servant4
+				}
+				add_trait = {
+					trait = leader_trait_servant5
+				}
+				remove_trait = leader_trait_servant4
+			}
+			else_if = {
+				limit = {
+					has_leader_flag = leader_Miyu_flag
+					has_trait = leader_trait_servant3
+				}
+				add_trait = {
+					trait = leader_trait_servant4
+				}
+				remove_trait = leader_trait_servant3
+			}
+			else_if = {
+				limit = {
+					has_leader_flag = leader_Miyu_flag
+					has_trait = leader_trait_servant2
+				}
+				add_trait = {
+					trait = leader_trait_servant3
+				}
+				remove_trait = leader_trait_servant2
+			}
+			else_if = {
+				limit = {
+					has_leader_flag = leader_Miyu_flag
+					has_trait = leader_trait_servant1
+				}
+				add_trait = {
+					trait = leader_trait_servant2
+				}
+				remove_trait = leader_trait_servant1
+			}
+		}
+	}
+	option = {
+		name = aom_leader.100.a
+	}
+	option = {
+		custom_gui = "enclave_caravaneer_option"
+		name = aom_leader.100.b
+		exclusive_trigger = {
+			any_owned_leader = {
+				AND= {
+					has_leader_flag = leader_Miyu_flag
+					has_trait = leader_trait_servant5
+				}
+			}
+		}
+		hidden_effect = {
+			set_country_flag = leader_Miyu_flag_max
+		}
+	}
+	option = {
+		custom_gui = "enclave_caravaneer_option"
+		name = aom_leader.100.c
+		exclusive_trigger = {
+			has_country_flag = leader_Miyu_flag_max
+		}
+		add_resource = {
+			gts_aom_unregistered_spirit_origin = 1
+		}
+		custom_tooltip = aom_leader.100.c.tooltip
+	}
+}
+#克洛伊宝具等级提升事件
+country_event = {
+	id = aom_leader.101
+	title = "aom_leader.101.name"
+	desc = "aom_leader.101.desc"
+	show_sound = event_celebration
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		room = gts_chloe2_room
+	}
+	immediate = {
+		every_owned_leader = {
+			if = {
+				limit = {
+					has_leader_flag = leader_Chloe_flag
+					has_trait = leader_trait_servant4
+				}
+				add_trait = {
+					trait = leader_trait_servant5
+				}
+				remove_trait = leader_trait_servant4
+			}
+			else_if = {
+				limit = {
+					has_leader_flag = leader_Chloe_flag
+					has_trait = leader_trait_servant3
+				}
+				add_trait = {
+					trait = leader_trait_servant4
+				}
+				remove_trait = leader_trait_servant3
+			}
+			else_if = {
+				limit = {
+					has_leader_flag = leader_Chloe_flag
+					has_trait = leader_trait_servant2
+				}
+				add_trait = {
+					trait = leader_trait_servant3
+				}
+				remove_trait = leader_trait_servant2
+			}
+			else_if = {
+				limit = {
+					has_leader_flag = leader_Chloe_flag
+					has_trait = leader_trait_servant1
+				}
+				add_trait = {
+					trait = leader_trait_servant2
+				}
+				remove_trait = leader_trait_servant1
+			}
+		}
+	}
+	option = {
+		name = aom_leader.101.a
+	}
+	option = {
+		custom_gui = "enclave_caravaneer_option"
+		name = aom_leader.101.b
+		exclusive_trigger = {
+			any_owned_leader = {
+				AND= {
+					has_leader_flag = leader_Chloe_flag
+					has_trait = leader_trait_servant5
+				}
+			}
+		}
+		hidden_effect = {
+			set_country_flag = leader_Chloe_flag_max
+		}
+	}
+	option = {
+		custom_gui = "enclave_caravaneer_option"
+		name = aom_leader.101.c
+		exclusive_trigger = {
+			has_country_flag = leader_Chloe_flag_max
+		}
+		add_resource = {
+			gts_aom_unregistered_spirit_origin = 1
+		}
+		custom_tooltip = aom_leader.101.c.tooltip
+	}
+}
+#阿尔托莉雅宝具等级提升事件
+country_event = {
+	id = aom_leader.102
+	title = "aom_leader.102.name"
+	desc = "aom_leader.102.desc"
+	show_sound = event_celebration
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		room = gts_altria_pendragon_frian2_room
+	}
+	immediate = {
+		every_owned_leader = {
+			if = {
+				limit = {
+					has_leader_flag = leader_altria_pendragon_frian_flag
+					has_trait = leader_trait_servant4
+				}
+				add_trait = {
+					trait = leader_trait_servant5
+				}
+				remove_trait = leader_trait_servant4
+			}
+			else_if = {
+				limit = {
+					has_leader_flag = leader_altria_pendragon_frian_flag
+					has_trait = leader_trait_servant3
+				}
+				add_trait = {
+					trait = leader_trait_servant4
+				}
+				remove_trait = leader_trait_servant3
+			}
+			else_if = {
+				limit = {
+					has_leader_flag = leader_altria_pendragon_frian_flag
+					has_trait = leader_trait_servant2
+				}
+				add_trait = {
+					trait = leader_trait_servant3
+				}
+				remove_trait = leader_trait_servant2
+			}
+			else_if = {
+				limit = {
+					has_leader_flag = leader_altria_pendragon_frian_flag
+					has_trait = leader_trait_servant1
+				}
+				add_trait = {
+					trait = leader_trait_servant2
+				}
+				remove_trait = leader_trait_servant1
+			}
+		}
+	}
+	option = {
+		name = aom_leader.102.a
+	}
+	option = {
+		custom_gui = "enclave_caravaneer_option"
+		name = aom_leader.102.b
+		exclusive_trigger = {
+			any_owned_leader = {
+				AND= {
+					has_leader_flag = leader_altria_pendragon_frian_flag
+					has_trait = leader_trait_servant5
+				}
+			}
+		}
+		hidden_effect = {
+			set_country_flag = leader_altria_pendragon_frian_flag_max
+		}
+	}
+	option = {
+		custom_gui = "enclave_caravaneer_option"
+		name = aom_leader.102.c
+		exclusive_trigger = {
+			has_country_flag = leader_altria_pendragon_frian_flag_max
+		}
+		add_resource = {
+			gts_aom_unregistered_spirit_origin = 1
+		}
+		custom_tooltip = aom_leader.101.c.tooltip
+	}
+}
+#希洛宝具等级提升事件
+country_event = {
+	id = aom_leader.103
+	title = "aom_leader.103.name"
+	desc = "aom_leader.103.desc"
+	show_sound = event_celebration
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		room = gts_shiro2_room
+	}
+	immediate = {
+		every_owned_leader = {
+			if = {
+				limit = {
+					has_leader_flag = leader_shiro_flag
+					has_trait = leader_trait_servant4
+				}
+				add_trait = {
+					trait = leader_trait_servant5
+				}
+				remove_trait = leader_trait_servant4
+			}
+			else_if = {
+				limit = {
+					has_leader_flag = leader_shiro_flag
+					has_trait = leader_trait_servant3
+				}
+				add_trait = {
+					trait = leader_trait_servant4
+				}
+				remove_trait = leader_trait_servant3
+			}
+			else_if = {
+				limit = {
+					has_leader_flag = leader_shiro_flag
+					has_trait = leader_trait_servant2
+				}
+				add_trait = {
+					trait = leader_trait_servant3
+				}
+				remove_trait = leader_trait_servant2
+			}
+			else_if = {
+				limit = {
+					has_leader_flag = leader_shiro_flag
+					has_trait = leader_trait_servant1
+				}
+				add_trait = {
+					trait = leader_trait_servant2
+				}
+				remove_trait = leader_trait_servant1
+			}
+		}
+	}
+	option = {
+		name = aom_leader.103.a
+	}
+	option = {
+		custom_gui = "enclave_caravaneer_option"
+		name = aom_leader.103.b
+		exclusive_trigger = {
+			any_owned_leader = {
+				AND= {
+					has_leader_flag = leader_shiro_flag
+					has_trait = leader_trait_servant5
+				}
+			}
+		}
+		hidden_effect = {
+			set_country_flag = leader_shiro_flag_max
+		}
+	}
+	option = {
+		custom_gui = "enclave_caravaneer_option"
+		name = aom_leader.101.c
+		exclusive_trigger = {
+			has_country_flag = leader_shiro_flag_max
+		}
+		add_resource = {
+			gts_aom_unregistered_spirit_origin = 1
+		}
+		custom_tooltip = aom_leader.101.c.tooltip
+	}
+}
+#加拉哈德宝具等级提升事件
+country_event = {
+	id = aom_leader.104
+	title = "aom_leader.104.name"
+	desc = "aom_leader.104.desc"
+	show_sound = event_celebration
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		room = gts_galahad2_room
+	}
+	immediate = {
+		every_owned_leader = {
+			if = {
+				limit = {
+					has_leader_flag = leader_galahad_flag
+					has_trait = leader_trait_servant4
+				}
+				add_trait = {
+					trait = leader_trait_servant5
+				}
+				remove_trait = leader_trait_servant4
+			}
+			else_if = {
+				limit = {
+					has_leader_flag = leader_galahad_flag
+					has_trait = leader_trait_servant3
+				}
+				add_trait = {
+					trait = leader_trait_servant4
+				}
+				remove_trait = leader_trait_servant3
+			}
+			else_if = {
+				limit = {
+					has_leader_flag = leader_galahad_flag
+					has_trait = leader_trait_servant2
+				}
+				add_trait = {
+					trait = leader_trait_servant3
+				}
+				remove_trait = leader_trait_servant2
+			}
+			else_if = {
+				limit = {
+					has_leader_flag = leader_galahad_flag
+					has_trait = leader_trait_servant1
+				}
+				add_trait = {
+					trait = leader_trait_servant2
+				}
+				remove_trait = leader_trait_servant1
+			}
+		}
+	}
+	option = {
+		name = aom_leader.103.a
+	}
+	option = {
+		custom_gui = "enclave_caravaneer_option"
+		name = aom_leader.103.b
+		exclusive_trigger = {
+			any_owned_leader = {
+				AND= {
+					has_leader_flag = leader_galahad_flag
+					has_trait = leader_trait_servant5
+				}
+			}
+		}
+		hidden_effect = {
+			set_country_flag = leader_galahad_flag_max
+		}
+	}
+	option = {
+		custom_gui = "enclave_caravaneer_option"
+		name = aom_leader.101.c
+		exclusive_trigger = {
+			has_country_flag = leader_galahad_flag_max
+		}
+		add_resource = {
+			gts_aom_unregistered_spirit_origin = 1
+		}
+		custom_tooltip = aom_leader.101.c.tooltip
+	}
+}
+namespace = fara_belief
+#信仰
+country_event = {
+	id = fara_belief.1
+	title = fara_belief.1.name
+	desc = fara_belief.1.desc
+	diplomatic = yes
+
+	picture_event_data = {
+		room = gts_fara2_room
+	}
+
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			fara_active_diplo = no
+			#防止视窗多开
+			from = { is_same_value = root } # returning from open sub-menu
+		}
+	}
+
+	picture_event_data = {
+		room = gts_fara2_room
+	}
+
+	option = {
+		# 赐福
+		name = fara_belief.1.a
+		allow = {
+			NOT = { has_modifier = aom_fara_blessing_1 }
+			NOT = { has_modifier = aom_fara_blessing_2 }
+			NOT = { has_modifier = aom_fara_blessing_3 }
+			NOT = { has_modifier = aom_fara_blessing_4 }
+			NOT = { has_modifier = aom_fara_blessing_5 }
+			NOT = { has_modifier = aom_fara_blessing_6 }
+			NOT = { has_modifier = aom_fara_blessing_7 }
+			NOT = { has_modifier = aom_fara_blessing_8 }
+			NOT = { has_modifier = aom_fara_blessing_9 }
+			NOT = { has_modifier = aom_fara_blessing_10 }
+			NOT = { has_modifier = aom_fara_blessing_11 }
+			NOT = { has_modifier = aom_fara_blessing_12 }
+			NOT = { has_modifier = aom_fara_blessing_13 }
+			NOT = { has_modifier = aom_fara_blessing_14 }
+		}
+		hidden_effect = {
+			country_event = { id = fara_belief.2 }
+		}
+	}
+	option = {
+		custom_gui = "enclave_caravaneer_option"
+		name = fara_return_to_main
+		hidden_effect = {
+			country_event = { id = fara.3 }
+		}
+	}
+}
+#赐福
+country_event = {
+	id = fara_belief.2
+	title = fara_belief.2.name
+	desc = fara_belief.2.desc
+	diplomatic = yes
+
+	picture_event_data = {
+		room = gts_fara2_room
+	}
+
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			has_authority = auth_hales_panlon
+		}
+		is_ai = no
+	}
+
+	picture_event_data = {
+		room = gts_fara2_room
+	}
+
+	option = {
+		#迅疾如风
+		name = fara_belief.2.a
+		allow = {
+			custom_tooltip = {
+				resource_stockpile_compare = { resource = gts_aom_Belief value >= 20 }
+			}
+		}
+		add_resource = {
+			gts_aom_Belief = -20
+		}
+		add_modifier = {
+			modifier = aom_fara_blessing_1
+			years = 5
+		}
+		remove_country_flag = fara_diplomacy_engaged
+	}
+
+	option = {
+		# 神恩护体
+		name = fara_belief.2.b
+		allow = {
+			custom_tooltip = {
+				resource_stockpile_compare = { resource = gts_aom_Belief value >= 25 }
+			}
+		}
+		add_resource = {
+			gts_aom_Belief = -25
+		}
+		add_modifier = {
+			modifier = aom_fara_blessing_2
+			years = 5
+		}
+		remove_country_flag = fara_diplomacy_engaged
+	}
+
+	option = {
+		#坚韧不屈
+		name = fara_belief.2.c
+		allow = {
+			custom_tooltip = {
+				resource_stockpile_compare = { resource = gts_aom_Belief value >= 40 }
+			}
+		}
+		add_resource = {
+			gts_aom_Belief = -40
+		}
+		add_modifier = {
+			modifier = aom_fara_blessing_3
+			years = 5
+		}
+		remove_country_flag = fara_diplomacy_engaged
+	}
+	option = {
+		# 永恒堡垒
+		name = fara_belief.2.d
+		allow = {
+			custom_tooltip = {
+				resource_stockpile_compare = { resource = gts_aom_Belief value >= 50 }
+			}
+		}
+		add_resource = {
+			gts_aom_Belief = -50
+		}
+		add_modifier = {
+			modifier = aom_fara_blessing_4
+			years = 5
+		}
+		remove_country_flag = fara_diplomacy_engaged
+	}
+	option = {
+		# 普天同庆
+		name = fara_belief.2.e
+		allow = {
+			custom_tooltip = {
+				resource_stockpile_compare = { resource = gts_aom_Belief value >= 25 }
+			}
+		}
+		add_resource = {
+			gts_aom_Belief = -25
+		}
+		add_modifier = {
+			modifier = aom_fara_blessing_5
+			years = 5
+		}
+		remove_country_flag = fara_diplomacy_engaged
+	}
+	option = {
+		# 伟大狩猎
+		name = fara_belief.2.f
+		allow = {
+			custom_tooltip = {
+				resource_stockpile_compare = { resource = gts_aom_Belief value >= 30 }
+			}
+		}
+		add_resource = {
+			gts_aom_Belief = -30
+		}
+		add_modifier = {
+			modifier = aom_fara_blessing_6
+			years = 5
+		}
+		remove_country_flag = fara_diplomacy_engaged
+	}
+	option = {
+		# 光荣远征
+		name = fara_belief.2.g
+		allow = {
+			custom_tooltip = {
+				resource_stockpile_compare = { resource = gts_aom_Belief value >= 30 }
+			}
+		}
+		add_resource = {
+			gts_aom_Belief = -30
+		}
+		add_modifier = {
+			modifier = aom_fara_blessing_7
+			years = 5
+		}
+		remove_country_flag = fara_diplomacy_engaged
+	}
+	option = {
+		# 渴求真理
+		name = fara_belief.2.h
+		allow = {
+			custom_tooltip = {
+				resource_stockpile_compare = { resource = gts_aom_Belief value >= 30 }
+			}
+		}
+		add_resource = {
+			gts_aom_Belief = -30
+		}
+		add_modifier = {
+			modifier = aom_fara_blessing_8
+			years = 5
+		}
+		remove_country_flag = fara_diplomacy_engaged
+	}
+	option = {
+		# 探索神秘
+		name = fara_belief.2.i
+		allow = {
+			custom_tooltip = {
+				resource_stockpile_compare = { resource = gts_aom_Belief value >= 30 }
+			}
+		}
+		add_resource = {
+			gts_aom_Belief = -30
+		}
+		add_modifier = {
+			modifier = aom_fara_blessing_9
+			years = 5
+		}
+		remove_country_flag = fara_diplomacy_engaged
+	}
+	option = {
+		# 繁荣贸易
+		name = fara_belief.2.j
+		allow = {
+			custom_tooltip = {
+				resource_stockpile_compare = { resource = gts_aom_Belief value >= 50 }
+			}
+		}
+		add_resource = {
+			gts_aom_Belief = -50
+		}
+		add_modifier = {
+			modifier = aom_fara_blessing_10
+			years = 5
+		}
+		remove_country_flag = fara_diplomacy_engaged
+	}
+	option = {
+		# 建设行动
+		name = fara_belief.2.k
+		allow = {
+			custom_tooltip = {
+				resource_stockpile_compare = { resource = gts_aom_Belief value >= 30 }
+			}
+		}
+		add_resource = {
+			gts_aom_Belief = -30
+		}
+		add_modifier = {
+			modifier = aom_fara_blessing_11
+			years = 5
+		}
+		remove_country_flag = fara_diplomacy_engaged
+	}
+	option = {
+		# 丰饶国度
+		name = fara_belief.2.l
+		allow = {
+			custom_tooltip = {
+				resource_stockpile_compare = { resource = gts_aom_Belief value >= 50 }
+			}
+		}
+		add_resource = {
+			gts_aom_Belief = -50
+		}
+		add_modifier = {
+			modifier = aom_fara_blessing_12
+			years = 5
+		}
+		remove_country_flag = fara_diplomacy_engaged
+	}
+	option = {
+		# 帝国人杰
+		name = fara_belief.2.m
+		allow = {
+			custom_tooltip = {
+				resource_stockpile_compare = { resource = gts_aom_Belief value >= 30 }
+			}
+		}
+		add_resource = {
+			gts_aom_Belief = -30
+		}
+		add_modifier = {
+			modifier = aom_fara_blessing_13
+			years = 5
+		}
+		remove_country_flag = fara_diplomacy_engaged
+	}
+	option = {
+		# 皇家使团
+		name = fara_belief.2.n
+		allow = {
+			custom_tooltip = {
+				resource_stockpile_compare = { resource = gts_aom_Belief value >= 30 }
+			}
+		}
+		add_resource = {
+			gts_aom_Belief = -30
+		}
+		add_modifier = {
+			modifier = aom_fara_blessing_14
+			years = 5
+		}
+		remove_country_flag = fara_diplomacy_engaged
+	}
+	option = {
+		name = fara_belief.2.z
+		hidden_effect = {
+			country_event = { id = fara.3 }
+		}
+	}
+}
+#仪式
+namespace = aom_ritual
+#大型时间魔法
+planet_event = {
+	id = aom_ritual.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		random_list = {
+			10 = {
+				planet_event = { id = aom_ritual.2 }
+			}
+			10 = {
+				planet_event = { id = aom_ritual.3 }
+			}
+			10 = {
+				planet_event = { id = aom_ritual.4 }
+			}
+			10 = {
+				planet_event = { id = aom_ritual.5 }
+			}
+			10 = {
+				planet_event = { id = aom_ritual.6 }
+			}
+			10 = {
+				planet_event = { id = aom_ritual.7 }
+			}
+			10 = {
+				planet_event = { id = aom_ritual.8 }
+			}
+			10 = {
+				planet_event = { id = aom_ritual.9 }
+			}
+		}
+	}
+}
+#加速生长
+planet_event = {
+	id = aom_ritual.2
+	title = aom_ritual.2.name
+	desc = aom_ritual.2.desc
+	picture = GFX_evt_psionics
+
+	is_triggered_only = yes
+
+
+	option = {
+
+		name = aom_ritual.2.a
+		add_modifier = {
+			modifier = aom_magical_ritual_1_0
+			modifier = aom_magical_ritual_1_1
+			years = 5
+		}
+	}
+}
+#奇异波动
+
+planet_event = {
+	id = aom_ritual.3
+	title = aom_ritual.3.name
+	desc = aom_ritual.3.desc
+	picture = GFX_evt_psionics
+
+	is_triggered_only = yes
+
+	option = {
+
+		name = aom_ritual.3.a
+		add_modifier = {
+			modifier = aom_magical_ritual_1_0
+			modifier = aom_magical_ritual_1_2
+			years = 5
+		}
+	}
+}
+#超频运转
+
+planet_event = {
+	id = aom_ritual.4
+	title = aom_ritual.4.name
+	desc = aom_ritual.4.desc
+	picture = GFX_evt_psionics
+
+	is_triggered_only = yes
+
+	option = {
+
+		name = aom_ritual.4.a
+		add_modifier = {
+			modifier = aom_magical_ritual_1_0
+			modifier = aom_magical_ritual_1_3
+			years = 5
+		}
+	}
+}
+#矿脉恢复
+
+planet_event = {
+	id = aom_ritual.5
+	title = aom_ritual.5.name
+	desc = aom_ritual.5.desc
+	picture = GFX_evt_psionics
+
+	is_triggered_only = yes
+
+	option = {
+
+		name = aom_ritual.5.a
+		add_modifier = {
+			modifier = aom_magical_ritual_1_0
+			modifier = aom_magical_ritual_1_4
+			years = 5
+		}
+	}
+}
+#快节奏生活
+
+planet_event = {
+	id = aom_ritual.6
+	title = aom_ritual.6.name
+	desc = aom_ritual.6.desc
+	picture = GFX_evt_psionics
+
+	is_triggered_only = yes
+
+	option = {
+
+		name = aom_ritual.6.a
+		add_modifier = {
+			modifier = aom_magical_ritual_1_0
+			modifier = aom_magical_ritual_1_5
+			years = 5
+		}
+	}
+}
+#能源障碍
+
+planet_event = {
+	id = aom_ritual.7
+	title = aom_ritual.7.name
+	desc = aom_ritual.7.desc
+	picture = GFX_evt_psionics
+
+	is_triggered_only = yes
+
+	option = {
+
+		name = aom_ritual.7.a
+		add_modifier = {
+			modifier = aom_magical_ritual_1_0
+			modifier = aom_magical_ritual_1_6
+			years = 5
+		}
+	}
+}
+#植被枯萎
+planet_event = {
+	id = aom_ritual.8
+	title = aom_ritual.8.name
+	desc = aom_ritual.8.desc
+	picture = GFX_evt_psionics
+
+	is_triggered_only = yes
+
+	option = {
+
+		name = aom_ritual.8.a
+		add_modifier = {
+			modifier = aom_magical_ritual_1_0
+			modifier = aom_magical_ritual_1_7
+			years = 5
+		}
+	}
+}
+#城区老化
+planet_event = {
+	id = aom_ritual.9
+	title = aom_ritual.9.name
+	desc = aom_ritual.9.desc
+	picture = GFX_evt_psionics
+
+	is_triggered_only = yes
+
+	option = {
+		name = aom_ritual.9.a
+		add_deposit = d_abandoned_city
+		while = {
+			count = 1
+			remove_district = district_city
+		}
+	}
+}
+#领袖cg
+namespace = aom_leader_cg
+# 伊莉雅cg事件（一）
+country_event = {
+
+	id = aom_leader_cg.1
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		is_ai = no
+		has_modifier = aom_fara_blessing_5
+		any_owned_leader = {
+			has_leader_flag = leader_illya_flag
+		}
+	}
+
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				count_owned_pop_amount = {
+					count > 500
+				}
+			}
+			planet_event = {
+				id = aom_leader_cg.2
+			}
+		}
+	}
+}
+
+planet_event = {
+
+	id = aom_leader_cg.2
+	title = aom_leader_cg.2.name
+	desc = aom_leader_cg.2.desc
+
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_Illya_cg1_room
+	}
+	show_sound = event_default
+	is_triggered_only = yes
+	immediate = {
+		add_modifier = {
+			modifier = aom_modifier_illya_1
+			years = 5
+		}
+	}
+
+	option = {
+		name = aom_leader_cg.2.a
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = 6
+			}
+		}
+	}
+}
+# 阿尔托莉雅cg事件（一）
+country_event = {
+
+	id = aom_leader_cg.3
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		is_ai = no
+		has_modifier = aom_fara_blessing_11
+		any_owned_leader = {
+			has_leader_flag = leader_altria_pendragon_frian_flag
+		}
+		any_owned_planet = {
+			has_deposit = d_abandoned_city
+		}
+	}
+
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				has_deposit = d_abandoned_city
+			}
+			planet_event = {
+				id = aom_leader_cg.4
+			}
+		}
+	}
+}
+
+planet_event = {
+
+	id = aom_leader_cg.4
+	title = aom_leader_cg.4.name
+	desc = aom_leader_cg.4.desc
+
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_altria_cg1_room
+	}
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = aom_leader_cg.4.a
+		remove_deposit = d_abandoned_city
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = 6
+			}
+			add_resource = {
+				food = -100
+			}
+		}
+	}
+}
+# 希洛cg事件（一）
+country_event = {
+
+	id = aom_leader_cg.6
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		is_ai = no
+		has_modifier = aom_fara_blessing_5
+		any_owned_leader = {
+			has_leader_flag = leader_shiro_flag
+		}
+	}
+
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				count_owned_pop_amount = {
+					count > 500
+				}
+			}
+			planet_event = {
+				id = aom_leader_cg.7
+			}
+		}
+	}
+}
+
+planet_event = {
+
+	id = aom_leader_cg.7
+	title = aom_leader_cg.7.name
+	desc = aom_leader_cg.7.desc
+
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_shiro_cg1_room
+	}
+	show_sound = event_default
+	is_triggered_only = yes
+
+	immediate = {
+		add_deposit = d_mountain_sword
+	}
+
+	option = {
+		name = aom_leader_cg.7.a
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = 6
+			}
+			add_resource = {
+				food = 200
+			}
+		}
+	}
+}
+# 加拉哈德cg事件（一）
+country_event = {
+
+	id = aom_leader_cg.8
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		is_ai = no
+		has_modifier = aom_fara_blessing_8
+		any_owned_leader = {
+			has_leader_flag = leader_galahad_flag
+		}
+	}
+
+	immediate = {
+		random_owned_planet = {
+			planet_event = {
+				id = aom_leader_cg.9
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = aom_leader_cg.9
+	title = "aom_leader_cg.9.name"
+	desc = "aom_leader_cg.9.desc"
+	picture = GFX_evt_asteroid_approaching_planet
+	show_sound = event_air_raid_siren
+	location = ROOT
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		is_ai = no
+		has_ground_combat = no
+		is_capital = no
+		is_occupied_flag = no
+	}
+
+	trigger = {
+		NOR = {
+			is_planet_class = pc_habitat
+			is_planet_class = pc_ringworld_habitable
+			is_planet_class = pc_shattered_ring_habitable
+			has_planet_flag = asteroid_sighted
+			has_planet_flag = asteroid_collision
+			has_global_flag = asteroid_sighted_global
+		}
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		owner = {
+			set_country_flag = asteroid_sighted_country
+		}
+		set_global_flag = asteroid_sighted_global
+		set_planet_flag = asteroid_sighted
+		create_country = {
+			name = "NAME_Incoming_Magic_Asteroid"
+			type = faction
+			auto_delete = no
+			flag = {
+				icon = {
+					category = "zoological"
+					file = "flag_zoological_1.dds"
+				}
+				background= {
+					category = "backgrounds"
+					file = "new_dawn.dds"
+				}
+				colors={
+					"black"
+					"black"
+					"null"
+					"null"
+				}
+			}
+			effect = {
+				establish_communications_no_message = root.owner
+			}
+		}
+		last_created_country = {
+			set_country_flag = incoming_asteroid
+			create_fleet = {
+				name = "NAME_Magic_Asteroid"
+				effect = {
+					set_aggro_range = 0
+					set_fleet_stance = aggressive
+					set_aggro_range_measure_from = self
+					set_owner = PREV
+					set_fleet_flag = magic_asteroid_fleet
+					save_event_target_as = magic_asteroid_fleet_target
+					create_ship = {
+						name = "NAME_Asteroid"
+						design = "NAME_Asteroid"
+					}
+					set_location = {
+						target = ROOT
+						distance = 75
+						angle = random
+					}
+					queue_actions = {
+						move_to = ROOT
+						effect = {
+							id = "colony.180.effect.1"
+							ROOT = {
+								planet_event = { id = aom_leader_cg.11 }
+							}
+						}
+					}
+				}
+			}
+			set_relation_flag = {
+				who = root.owner
+				flag = asteroid_magic_enemy
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = aom_leader_cg.10
+	title = "aom_leader_cg.10.name"
+	desc = aom_leader_cg.10.desc
+	picture = GFX_evt_atmospheric_entry
+	show_sound = event_ship_explosion
+	location = ROOT
+
+	is_triggered_only = yes
+
+	immediate = {
+		fromfrom = {
+			remove_relation_flag = { who = root.owner flag = asteroid_magic_enemy }
+			destroy_country = yes
+		}
+		remove_global_flag = magic_asteroid_sighted_global
+		remove_planet_flag = magic_asteroid_sighted
+		owner = {
+			add_event_chain_counter = {
+				event_chain = "magic_asteroid_sighted_chain"
+				counter = "asteroid_destroyed"
+				amount = 1
+			}
+		}
+	}
+
+	option = {
+		name = aom_leader_cg.10.a
+		owner = {
+			end_event_chain = "magic_asteroid_sighted_chain"
+			add_monthly_resource_mult = {
+				resource = energy
+				value = @tier2materialreward
+				min = @tier2materialmin
+				max = @tier2materialmax
+			}
+			add_monthly_resource_mult = {
+				resource = gts_aom_magicstones
+				value = @tier2materialreward
+				min = 20
+				max = 300
+			}
+		}
+	}
+}
+
+
+planet_event = {
+
+	id = aom_leader_cg.11
+	title = aom_leader_cg.11.name
+	desc = aom_leader_cg.11.desc
+
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_galahad_cg1_room
+	}
+	show_sound = event_default
+	is_triggered_only = yes
+
+	immediate = {
+		owner = {
+			country_event = { id = aom_leader_cg.12 days = 1 }
+		}
+		remove_global_flag = magic_asteroid_sighted_global
+		remove_planet_flag = magic_asteroid_sighted
+		owner = { end_event_chain = "magic_asteroid_sighted_chain" }
+	}
+	option = {
+		name = aom_leader_cg.10.a
+		owner = {
+			add_monthly_resource_mult = {
+				resource = energy
+				value = @tier2materialreward
+				min = @tier2materialmin
+				max = @tier2materialmax
+			}
+			add_monthly_resource_mult = {
+				resource = gts_aom_magicstones
+				value = @tier2materialreward
+				min = 20
+				max = 300
+			}
+		}
+	}
+}
+country_event = {
+	id = aom_leader_cg.12
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+
+		random_country = {
+			limit = {
+				has_relation_flag = {
+					who = root
+					flag = asteroid_magic_enemy
+				}
+			}
+			every_controlled_ship = {
+				fleet = {
+					destroy_fleet = this
+				}
+			}
+			destroy_country = yes
+		}
+	}
+}

@@ -1,0 +1,67 @@
+first_contact_custom_greeting = {
+    OR = {
+        has_opinion_modifier = {
+            who = event_target:contact_empire
+            modifier = opinion_hostile_first_contact_vivisection
+        }
+        has_opinion_modifier = {
+            who = event_target:contact_empire
+            modifier = opinion_hostile_first_contact_hungry
+        }
+        event_target:contact_empire = {
+            OR = {
+                AND = {
+                    is_homicidal = no
+                    has_opinion_modifier = {
+                        who = root
+                        modifier = opinion_caught_hacking
+                    }
+                }
+
+                has_opinion_modifier = {
+                    who = root
+                    modifier = opinion_hostile_first_contactgts_interrogation
+                }
+                has_opinion_modifier = {
+                    who = root
+                    modifier = opinion_hostile_first_contactgts_vivisection
+                }
+                has_opinion_modifier = {
+                    who = root
+                    modifier = opinion_hostile_first_contactgts_death
+                }
+                has_opinion_modifier = {
+                    who = root
+                    modifier = opinion_hostile_first_contactgts_sendback
+                }
+
+                has_opinion_modifier = {
+                    who = root
+                    modifier = opinion_hostile_first_contact
+                }
+                has_opinion_modifier = {
+                    who = root
+                    modifier = opinion_hostile_first_contact_vivisection
+                }
+                has_opinion_modifier = {
+                    who = root
+                    modifier = opinion_hostile_first_contact_hungry
+                }
+                # Special case for MSI (pre-scripted slavers empire)
+                has_origin = origin_slavers
+                AND = {
+                    has_country_flag = human_1
+                    root = {
+                        has_country_flag = human_lithoid
+                    }
+                }
+                AND = {
+                    has_country_flag = human_lithoid
+                    root = {
+                        has_country_flag = human_1
+                    }
+                }
+            }
+        }
+    }
+}

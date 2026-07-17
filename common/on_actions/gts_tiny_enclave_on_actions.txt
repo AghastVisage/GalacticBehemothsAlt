@@ -1,0 +1,64 @@
+###############################################
+#这里是重要的on_action
+#在复制模板进行更改时，请同时复制这个文件，更改文件名，还有内部的事件ID
+###############################################
+
+
+##################################
+#开局时触发事件，没有scope的event。
+#用于生成飞地
+##################################
+on_game_start = {
+	events = {
+		tiny_enclave_event.1		#飞地的生成
+		gts_oversystem.3
+	}
+}
+
+
+##################################
+#用于在联络菜单中，点击country_type中 custom_diplomacy = yes 的国家图标后触发事件
+#用于打开飞地对应的菜单
+##################################
+# Triggers when trying to open the diplomacy view for countries with custom diplomacy.
+# Country scope
+# This = target country (player)	#点击图标的国家（玩家国家）
+# From = source country				#图标对应的国家（飞地）
+on_custom_diplomacy = {
+	events = {
+		tiny_enclave_event.3
+	}
+}
+
+##################################
+#在飞地被摧毁时触发事件
+##################################
+# This = owner of fleet 1 (combatant)	#攻击舰队的所有者
+# From = owner of fleet 2 (destroyed)	#遇害舰队的所有者
+# FromFrom = fleet 1	#攻击舰队
+# FromFromFrom = fleet 2	#遇害舰队
+on_fleet_destroyed_perp = {
+	events = {
+		tiny_enclave_event.4
+	}
+}
+
+on_yearly_pulse_country = {
+	random_events = {
+		99 = 0
+		1 = tiny_enclave_event.500
+	}
+}
+
+on_first_contact = {
+    events = {
+        tiny_enclave_common.1000
+		gts_oversystem.1
+    }
+}
+
+on_post_communications_established_always_fire = {
+    events = {
+        tiny_enclave_common.2000
+    }
+}

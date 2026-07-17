@@ -1,0 +1,903 @@
+civic_gts_terminator = {
+
+	# 小人清除者
+
+	description = civic_tooltip_gts_terminator_effects
+
+	potential = {
+		ethics = {
+			NOT = {
+				value = ethic_gestalt_consciousness
+			}
+		}
+	}
+
+	possible = {
+		civics = {
+			NOR = {
+				value = civic_gts_servitor
+				value = civic_gts_assimilator
+				value = civic_inwards_perfection
+				value = civic_fanatic_purifiers
+				value = civic_barbaric_despoilers
+				value = civic_hive_devouring_swarm
+			}
+		}
+		ethics = {
+			OR = {
+				value = ethic_xenophobe
+				value = ethic_fanatic_xenophobe
+			}
+			NOR = {
+				value = ethic_pacifist
+				value = ethic_fanatic_pacifist
+			}
+		}
+		origin = {
+			NOT = {
+				value = origin_Hexie
+			}
+		}
+	}
+
+	traits = {
+		trait = trait_gts_begin
+	}
+
+	modifier = {
+		country_starbase_influence_cost_mult = -0.1
+		job_stocking_crushed_purge_add = 1000
+	}
+
+	modification = no
+
+	random_weight = {
+		base = 0
+	}
+}
+
+civic_gts_assimilator = {
+
+	# 小人同化者
+
+	description = civic_tooltip_gts_assimilator_effects
+
+	potential = {
+		ethics = {
+			NOT = {
+				value = ethic_gestalt_consciousness
+			}
+		}
+	}
+
+	possible = {
+		civics = {
+			NOR = {
+				value = civic_gts_servitor
+				value = civic_gts_terminator
+				value = civic_fanatic_purifiers
+				value = civic_barbaric_despoilers
+				value = civic_pompous_purists
+				value = civic_hive_devouring_swarm
+				value = civic_shared_burden
+			}
+		}
+		origin = {
+			NOT = {
+				value = origin_Hexie
+			}
+			NOT = {
+				value = origin_Jiju
+			}
+		}
+		ethics = {
+			NOR = {
+				value = ethic_xenophobe
+				value = ethic_fanatic_xenophobe
+			}
+		}
+	}
+
+	traits = {
+		trait = trait_gts_begin
+	}
+
+	has_secondary_species = {
+		title = civic_syncretic_evolution_secondary_species
+		traits = {
+			trait = trait_Small
+		}
+	}
+
+	modifier = {
+		category_biology_research_speed_mult = 0.25
+	}
+
+	modification = no
+
+	random_weight = {
+		base = 0
+	}
+}
+
+civic_gts_servitor = {
+
+	# 小人保護者
+
+	description = civic_tooltip_gts_servitor_effects
+
+	potential = {
+		ethics = {
+			NOT = {
+				value = ethic_gestalt_consciousness
+			}
+		}
+	}
+
+	possible = {
+		civics = {
+			NOR = {
+				value = civic_gts_assimilator
+				value = civic_gts_terminator
+				value = civic_fanatic_purifiers
+				value = civic_barbaric_despoilers
+				value = civic_pompous_purists
+				value = civic_hive_devouring_swarm
+				value = civic_shared_burden
+			}
+		}
+		origin = {
+			NOT = {
+				value = origin_Hexie
+			}
+		}
+		ethics = {
+			NOR = {
+				value = ethic_xenophobe
+				value = ethic_fanatic_xenophobe
+			}
+		}
+	}
+
+	traits = {
+		trait = trait_gts_begin
+	}
+
+	has_secondary_species = {
+		title = civic_machine_servitor_secondary_species
+		traits = {
+			trait = trait_Small
+		}
+	}
+
+	modification = no
+
+	random_weight = {
+		base = 0
+	}
+}
+
+civic_god_servitor = {
+	#侍从
+	potential = {
+	}
+	possible = {
+		#（满足条件可选）
+		origin = {
+			value = origin_parasitic_robot
+		}
+		civics = {
+			NOR = {
+				value = civic_machine_assimilator				#互斥（铁心、机仆、同化）
+				value = civic_machine_servitor
+				value = civic_machine_terminator
+			}
+		}
+	}
+	modifier = {
+		planet_jobs_unity_produces_mult = 0.1
+	}
+	modification = no	#可否去除/添加
+	random_weight = {
+		#随机概率
+		base = 0
+	}
+}
+
+civic_gts_maid = {
+
+	# 女僕之國
+
+	potential = {
+		ethics = {
+			NOT = {
+				value = ethic_gestalt_consciousness
+			}
+		}
+	}
+
+	possible = {
+		ethics = {
+			NOR = {
+				value = ethic_egalitarian
+				value = ethic_fanatic_egalitarian
+			}
+		}
+	}
+
+	traits = {
+		trait = trait_gts_begin
+	}
+
+	modifier = {
+		planet_pops_upkeep_mult = -0.05
+		pop_amenities_usage_mult = -0.10
+		job_gts_maid_per_pop = 0.01
+		job_gts_maid_leader_per_pop = 0.0001
+	}
+
+	modification = no
+
+	random_weight = {
+		base = 0
+	}
+}
+
+civic_gts_hcomic = {
+
+	# 埃羅芒阿老師
+
+	#description = "civic_tooltip_gts_hcomic_effects"
+
+	potential = {
+		ethics = {
+			NOT = {
+				value = ethic_gestalt_consciousness
+			}
+		}
+	}
+
+	modifier = {
+		planet_jobs_unity_produces_mult = 0.10
+		planet_jobs_trade_produces_mult = 0.10
+		job_gts_drawer_per_pop = 0.01
+		job_gts_writer_per_pop = 0.01
+	}
+
+	modification = yes
+
+	random_weight = {
+		base = @ai_civic_default_base_weight
+	}
+}
+
+civic_gts_bare = {
+	#果体传统
+	icon = "gfx/interface/icons/governments/civics/civic_gts_bare.dds"
+	potential = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+			}
+		}
+	}
+	modifier = {
+		envoys_add = 2
+		planet_jobs_trade_produces_mult = 0.1
+		diplo_weight_mult = 0.3
+		country_trust_cap_add = 120
+		planet_jobs_consumer_goods_upkeep_mult = -0.15
+	}
+	modification = yes	#可否去除/添加
+	random_weight = {
+		#随机概率
+		base = @ai_civic_default_base_weight
+	}
+}
+
+civic_gts_aryans = {
+	#雅利安超人
+	icon = "gfx/interface/icons/governments/civics/civic_malfunctioning_custodian.dds"
+	potential = {
+		ethics = {
+			NOT = {
+				value = ethic_gestalt_consciousness
+			}
+		}
+	}
+	possible = {
+		ethics = {
+			OR = {
+				value = ethic_xenophobe
+				value = ethic_fanatic_xenophobe
+			}
+		}
+	}
+	potential = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+			}
+		}
+	}
+	traits = {
+		#特质要求
+		trait = trait_tiny_begin
+    }
+	modifier = {
+		planet_jobs_ruler_produces_mult = 1
+		planet_jobs_specialist_produces_mult = 0.15
+		planet_jobs_worker_produces_mult = 0.25
+		army_damage_mult = 3
+		logistic_growth_mult = -0.25
+	    bonus_pop_growth_mult = -0.25
+		planet_pops_upkeep_mult = 0.1
+	}
+	modification = no	#可否去除/添加
+	random_weight = {
+		#随机概率
+		base = 0
+	}
+}
+
+civic_gts_city = {
+	#巢都
+	icon = "gfx/interface/icons/governments/civics/civic_salvagers.dds"
+	possible = {
+		civics = {
+			NOT = {
+				value = civic_gts_country
+			}
+		}
+	}
+	potential = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+			}
+		}
+	}
+	modifier = {
+		planet_jobs_alloys_produces_mult = 0.5
+		planet_jobs_consumer_goods_produces_mult = 0.5
+		logistic_growth_mult = -0.25
+	    bonus_pop_growth_mult = -0.25
+		army_defense_damage_mult = -1
+	}
+	modification = yes	#可否去除/添加
+	random_weight = {
+		#随机概率
+		base = @ai_civic_default_base_weight
+	}
+}
+
+civic_gts_country = {
+	#杞人忧天
+	icon = "gfx/interface/icons/governments/civics/civic_mercenaries.dds"
+	possible = {
+		civics = {
+			NOT = {
+				value = civic_gts_city
+			}
+		}
+	}
+	potential = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+			}
+		}
+	}
+	modifier = {
+		planet_building_build_speed_mult = -0.25
+		starbase_shipyard_build_speed_mult = -0.25
+		ship_home_territory_fire_rate_mult = 0.5
+		army_defense_damage_mult = 0.5
+	}
+	modification = yes	#可否去除/添加
+	random_weight = {
+		#随机概率
+		base = @ai_civic_default_base_weight
+	}
+}
+
+civic_gts_scp = {
+
+	# GTS基金會
+
+	description = civic_gts_scp_effects
+
+	potential = {
+		ethics = {
+			NOT = {
+				value = ethic_gestalt_consciousness
+			}
+		}
+	}
+
+	possible = {
+		civics = {
+			NOT = {
+				value = civic_gts_cixiaogui
+			}
+		}
+	}
+
+	modifier = {
+		envoys_add = 3
+		intel_encryption_add = 3
+		intel_decryption_add = 3
+		first_contact_clues_add = 1
+		first_contact_speed_mult = 0.25
+		espionage_operation_skill_add = 1
+		espionage_operation_difficulty_add = -1
+		diplo_weight_mult = -0.20
+		espionage_operation_speed_mult = 0.25
+		spy_network_daily_value_mult = 0.50
+		country_trust_cap_add = -50
+		country_trust_growth = -0.50
+	}
+
+	modification = no
+
+	random_weight = {
+		base = @ai_civic_default_base_weight
+	}
+}
+
+civic_gts_cixiaogui = {
+	#天外恶作剧
+	icon = "gfx/interface/icons/governments/civics/civic_gts_cixiaogui.dds"	#改贴图
+	potential = {
+		ethics = {
+			NOT = {
+				value = ethic_gestalt_consciousness
+			}
+		}
+		civics = {
+			NOT = {
+				value = civic_gts_scp
+			}
+		}
+	}
+	modifier = {
+		envoys_add = 2
+		intel_decryption_add = 2		#破译
+		espionage_operation_difficulty_add = -5		#行动难度
+		spy_network_daily_value_mult = 1		#渗透速度
+		intel_encryption_add = -2		#加密
+		country_trust_growth = -0.3		#好感增速
+		diplo_weight_mult = -0.3		#外交权重减少
+		country_trust_cap_add = -50		#最大好感度
+	}
+	description = civic_gts_cixiaogui_effects
+	random_weight = {
+		#随机概率
+		base = @ai_civic_default_base_weight
+	}
+}
+
+civic_gts_feudalism = {
+	#封邑
+	icon = "gfx/interface/icons/governments/civics/civic_gts_feudalism.dds"	#改贴图
+	potential = {
+		ethics = {
+			NOT = {
+				value = ethic_gestalt_consciousness
+			}
+		}
+	}
+	possible = {
+		authority = {
+			NOR = {
+				value = auth_democratic
+				value = auth_oligarchic
+				value = auth_corporate
+			}
+		}
+	}
+	modifier = {
+		country_leader_cap_add = 2		#领袖上限
+		planetary_ascension_effect_mult = 0.5		#星球飞升效果
+		empire_size_pops_mult = -0.1		#人口产生的帝国规模
+		empire_size_colonies_mult = -0.25		#殖民地产生的帝国规模
+	}
+	description = civic_gts_feudalism_effects
+	modification = no	#可否去除/添加
+	random_weight = {
+		#随机概率
+		base = @ai_civic_default_base_weight
+	}
+}
+
+civic_origin_from_micro = {
+
+	# 始於微末
+
+	description = "civic_origin_from_micro_effects"
+
+	potential = {
+		ethics = {
+			NOT = {
+				value = ethic_gestalt_consciousness
+			}
+		}
+	}
+
+	possible = {
+		origin = {
+			NOT = {
+				value = origin_Hexie
+			}
+		}
+		authority = { NOT = { value = auth_machine_intelligence } }
+	}
+
+	traits = {
+		trait = trait_gts_begin
+	}
+
+	modifier = {
+		logistic_growth_mult = -0.10
+	    bonus_pop_growth_mult = -0.10
+	}
+
+	modification = no
+
+	random_weight = {
+		base = 0
+	}
+}
+
+#变化灵
+civic_changeling = {
+	#description = "civic_changeling_effects"
+	modifier = {
+		leaders_upkeep_mult = -0.1
+		leader_trait_selection_options_add = 2
+		country_leader_pool_size = 1
+		spawn_pool_stimulants = 1
+		leader_initial_skill = 2
+		species_leader_exp_gain = -0.1
+		country_trust_growth = -0.1
+		empire_size_pops_mult = 0.25
+	}
+	random_weight = {
+		base = @ai_civic_default_base_weight
+	}
+}
+
+civic_ub_ritual = {
+
+	# 入陰禮
+
+	description = "civic_ub_ritual_effects"
+
+	potential = {
+		ethics = {
+			NOT = {
+				value = ethic_gestalt_consciousness
+			}
+		}
+	}
+
+	possible = {
+		ethics = {
+			NOR = {
+				value = ethic_xenophobe
+				value = ethic_fanatic_xenophobe
+			}
+		}
+	}
+
+	modifier = {
+		envoys_add = 3
+		diplo_action_acceptance_add = 10
+		diplomacy_upkeep_mult = 0.3
+		pop_ethic_xenophile_attraction_mult = 0.10
+	}
+
+	random_weight = {
+		base = @ai_civic_default_base_weight
+	}
+}
+
+#三角贸易
+civic_delta_trade = {
+	description = "civic_delta_trade_effects"
+	possible = {
+		authority = {
+			value = auth_corporate
+		}
+	}
+	traits = {
+		trait = trait_tiny_begin
+	}
+	modifier = {
+		planet_jobs_trade_produces_mult = 0.05
+		country_trade_fee = -0.05
+	}
+	modification = {	
+		add = {
+			hidden_trigger = {
+				gts_is_tiny_empire = yes
+			}
+		}
+		remove = {
+			hidden_trigger = {
+				gts_is_tiny_empire = yes
+			}
+		}
+	}
+	random_weight = {
+		base = 0
+	}
+}
+
+civic_focus_gts_fluid = {
+
+	# 妹汁本位
+
+	description = "civic_focus_gts_fluid_effects"
+
+	traits = {
+		trait = trait_tiny_begin
+	}
+
+	modifier = {
+		planet_jobs_gts_giantess_fluid_produces_mult = 0.5
+	}
+
+	modification = {	
+		add = {
+			hidden_trigger = {
+				gts_is_tiny_empire = yes
+			}
+		}
+		remove = {
+			hidden_trigger = {
+				gts_is_tiny_empire = yes
+			}
+		}
+	}
+
+	random_weight = {
+		base = 0
+	}
+}
+
+civic_focus_tiny = {
+
+	# 小人本位
+
+	description = "civic_focus_tiny_effects"
+
+	traits = {
+		trait = trait_gts_begin
+	}
+
+	modifier = {
+		planet_jobs_gts_micro_produces_mult = 0.5
+	}
+
+	modification = {	
+		add = {
+			hidden_trigger = {
+				gts_is_giantess_empire = yes
+			}
+		}
+		remove = {
+			hidden_trigger = {
+				gts_is_giantess_empire = yes
+			}
+		}
+	}
+
+	random_weight = {
+		base = 0
+	}
+}
+
+#卓越巨娘教育
+civic_distinguished_gts = {
+	description = "civic_distinguished_gts_effects"
+	traits = {
+		trait = trait_gts_begin
+	}
+	modifier = {
+		country_physics_tech_research_speed = -0.15
+		country_engineering_tech_research_speed = -0.15
+		planet_researchers_produces_mult = -0.25
+		planet_jobs_gts_micro_produces_mult = 1
+		planet_jobs_gts_micro_city_produces_mult = 1
+		planet_jobs_gts_micro_planet_produces_mult = 1
+	}
+	modification = {	
+		add = {
+			hidden_trigger = {
+				gts_is_giantess_empire = yes
+			}
+		}
+		remove = {
+			hidden_trigger = {
+				gts_is_giantess_empire = yes
+			}
+		}
+	}
+	random_weight = {
+		base = 0
+	}
+}
+
+civic_hehuanpai = {
+
+	# 巨娘合歡派
+
+	description = "civic_hehuanpai_effects"
+
+	potential = {
+		civics = {
+			value = civic_hehuanpai 
+		}
+	}
+
+	modifier = {
+		pop_happiness = 0.05
+		logistic_growth_mult = 0.10
+		bonus_pop_growth_mult = 0.10
+		country_government_civic_points_add = 1
+	}
+
+	modification = no
+	pickable_at_start = no
+
+	random_weight = {
+		base = 0
+	}
+}
+
+#豢养神明——王权至上
+civic_god_lord = {
+	description = "civic_god_lord_effects"
+	traits = {
+		trait = trait_tiny_begin
+	}
+	possible = {
+		origin = {
+			value = origin_god_keeper
+		}
+		ethics = {
+			value = ethic_authoritarian
+			value = ethic_spiritualist
+			value = ethic_militarist
+		}
+	}
+	potential = {
+		origin = {
+			value = origin_god_keeper
+		}
+	}
+	modifier = {
+		starbase_building_capacity_add = 1
+		ship_military_upkeep_mult = -0.15
+		country_claim_influence_cost_mult = -0.15
+		leader_lifespan_add = 5
+	}
+	random_weight = {
+		base = 0
+		modifier = {
+			add = 1000
+			has_origin = origin_god_keeper
+		}
+	}
+}
+#巨兽猎手
+civic_titan_hunter = {
+	description = "civic_titan_hunter_effects"
+	traits = {
+		trait = trait_tiny_begin
+	}
+	modifier = {
+		damage_vs_country_type_amoeba_mult = 0.5
+		damage_vs_country_type_crystal_mult = 0.5
+		damage_vs_country_type_cloud_mult = 0.5
+		# 对巨娘文明伤害+30% 目前做不出来
+		planet_army_build_speed_mult = 0.8
+		armies_cost_mult = -0.8
+		armies_upkeep_mult = -0.8
+		ship_orbital_bombardment_mult = 1
+	}
+	modification = {
+		add = {
+			hidden_trigger = {
+				gts_is_tiny_empire = yes
+			}
+		}
+		remove = {
+			hidden_trigger = {
+				gts_is_tiny_empire = yes
+			}
+		}
+	}
+	random_weight = {
+		base = 0
+	}
+}
+#进化触媒
+civic_evolution_catalyst = {
+	description = "civic_evolution_catalyst_effects"
+	traits = {
+		trait = trait_tiny_begin
+		trait = trait_tiny_catalyst
+	}
+	modifier = {
+		empire_size_colonies_mult = -0.25
+		ship_base_speed_mult = 0.2
+		ship_colonizer_cost_mult = -0.5
+		planet_colony_development_speed_mult = 1
+	}
+	modification = {
+		add = {
+			hidden_trigger = {
+				gts_is_tiny_empire = yes
+			}
+		}
+		remove = {
+			hidden_trigger = {
+				gts_is_tiny_empire = yes
+			}
+		}
+	}
+	random_weight = {
+		base = 0
+	}
+}
+#巨娘崇拜
+civic_gts_worship = {
+	description = "civic_gts_worship_effects"
+	possible = {
+	}
+	traits = {
+		trait = trait_tiny_begin
+	}
+	modifier = {
+		
+	}
+	modification = no
+	random_weight = {
+		base = @ai_civic_default_base_weight
+	}
+}
+#八圣灵信仰
+#人皇之辉
+#骑士之国
+civic_panlon_knights = {
+	icon = "gfx/interface/icons/governments/civics/civic_panlon_knights.dds"
+	potential={
+		origin = {
+			value = origin_panlon
+		}
+	}
+	possible = {}
+	random_weight = { base = 0 }
+	modifier = {
+		army_damage_mult = 0.2
+		ship_weapon_damage = 0.1
+	}
+}
+
+#法师协会
+civic_panlon_Wizard  = {
+	icon = "gfx/interface/icons/governments/civics/civic_panlon_Wizard.dds"
+	potential={
+		origin = {
+			value = origin_panlon
+		}
+	}
+	possible = {}
+	random_weight = { base = 0 }
+	modifier = {
+		num_tech_alternatives_add = 1
+		all_technology_research_speed = 0.1
+	}
+}

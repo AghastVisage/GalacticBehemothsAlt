@@ -1,0 +1,482 @@
+namespace = gts_seele_li
+country_event = {
+	id = gts_seele_li.1
+	title = "gts_seele_li.1.name"
+	desc = gts_seele_li.1.desc
+	picture = GFX_gts_seele_li_1
+	is_triggered_only = yes
+	immediate = {
+		country_event = {
+			id = gts_azure_waters.1
+		}
+
+	}
+	option = {
+		name = gts_seele_li.1.a
+		custom_tooltip = gts_seele_li.1.a_custom
+		enable_special_project = {
+			name = gts_seele_li_special_project
+		}
+		hidden_effect = {
+		}
+	}
+	option = {
+		name = gts_seele_li.1.b
+		custom_tooltip = gts_seele_li.1.b_custom
+		add_resource = {
+			physics_research = 100000
+			sr_dark_matter = 5000
+			astral_threads = 2500
+		}
+		hidden_effect = {
+		}
+	}
+	after = {
+	}
+}
+country_event = {
+	id = gts_seele_li.11
+	title = "gts_seele_li.11.name"
+	desc = gts_seele_li.11.desc
+	picture = GFX_gts_seele_li_11
+	is_triggered_only = yes
+	immediate = {
+	}
+	option = {
+		name = gts_seele_li.11.a
+		enable_special_project = {
+			name = gts_seele_li_special_project
+		}
+		hidden_effect = {
+		}
+	}
+	after = {
+	}
+}
+country_event = {
+	#特殊事件完成
+	id = gts_seele_li.2
+	title = "gts_seele_li.2.name"
+	desc = gts_seele_li.2.desc
+	picture = GFX_gts_seele_li_2
+	is_triggered_only = yes
+	immediate = {
+
+	}
+	option = {
+		name = gts_seele_li.2.a
+		add_resource = {
+			influence = 50
+			physics_research = 1500
+		}
+		hidden_effect = {
+		}
+	}
+	option = {
+		name = gts_seele_li.2.b
+		add_resource = {
+			energy = 2500
+			unity = 2000
+		}
+		hidden_effect = {
+		}
+	}
+	after = {
+		country_event = {
+			id = gts_seele_li.4
+			days = 60
+		}
+	}
+}
+country_event = {
+	#特殊事件失败
+	id = gts_seele_li.3
+	title = "gts_seele_li.3.name"
+	desc = gts_seele_li.3.desc
+	picture = GFX_gts_seele_li_3
+	is_triggered_only = yes
+	immediate = {
+	}
+	option = {
+		name = gts_seele_li.3.a
+		hidden_effect = {
+		}
+	}
+	option = {
+		name = gts_seele_li.3.b
+		custom_tooltip = gts_seele_li.3.b_custom
+		hidden_effect = {
+		}
+	}
+	after = {
+		every_system_within_border = {
+			limit = {
+				star = {
+					has_planet_flag = gts_azure_waters_astral_rift
+				}
+			}
+			star = {
+				add_anomaly = {
+					category = gts_seele_li_anomaly_1
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_seele_li.4
+	title = "gts_seele_li.4.name"
+	desc = gts_seele_li.4.desc
+	picture = GFX_gts_seele_li_4
+	is_triggered_only = yes
+	immediate = {
+
+	}
+	option = {
+		name = gts_seele_li.4.a
+		add_tech_progress = {
+			tech = tech_psionic_theory
+			progress = 0.15
+		}
+		hidden_effect = {
+		}
+	}
+	option = {
+		name = gts_seele_li.4.b
+		add_resource = {
+			physics_research = 3000
+		}
+		hidden_effect = {
+		}
+	}
+	option = {
+		name = gts_seele_li.4.c
+		add_resource = {
+			energy = 1500
+			sr_dark_matter = 100
+			astral_threads = 50
+		}
+		hidden_effect = {
+		}
+	}
+	after = {
+		country_event = {
+			id = gts_seele_li.5
+			days = 30
+		}
+	}
+}
+country_event = {
+	id = gts_seele_li.5
+	title = "gts_seele_li.5.name"
+	desc = gts_seele_li.5.desc
+	picture = GFX_gts_seele_li_5
+	is_triggered_only = yes
+	immediate = {
+	}
+	option = {
+		name = gts_seele_li.5.a
+		country_event = {
+			id = gts_seele_li.6
+		}
+		hidden_effect = {
+		}
+	}
+	after = {
+	}
+}
+country_event = {
+	id = gts_seele_li.6
+	title = "gts_seele_li.6.name"
+	desc = gts_seele_li.6.desc
+	is_triggered_only = yes
+	picture = GFX_leader_recruitment_bg_renowned
+	auto_opens = yes
+	event_window_type = leader_recruit
+	notification_event_icon = "GFX_message_leader_gts_seele_4"
+	immediate = {
+		gts_leader_seele_li_hired = yes
+	}
+	picture_event_data = {
+		portrait = event_target:gts_leader
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = gts_seele_li.6.a.name
+		response_text = gts_seele_li.6.a.desc
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_seele_li.6.b.name
+		response_text = gts_seele_li.6.b.desc
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_seele_li.6.c.name
+		response_text = gts_seele_li.6.c.desc
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_seele_li.6.d.name
+		response_text = gts_seele_li.6.d.desc
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_seele_li.6.e.name
+		response_text = gts_seele_li.6.e.desc
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_seele_li.6.f.name
+		response_text = gts_seele_li.6.f.desc
+		is_dialog_only = yes
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		custom_tooltip = gts_seele_li.hire_custom_tooltip
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = legendary }
+		}
+	}
+	after = {
+		country_event = {
+			id = gts_seele_li.7
+			days = 3
+		}
+	}
+}
+country_event = {
+	id = gts_seele_li.7
+	title = "gts_seele_li.7.name"
+	desc = gts_seele_li.7.desc
+	picture = GFX_gts_seele_li_1
+	is_triggered_only = yes
+	immediate = {
+
+	}
+	option = {
+		name = gts_seele_li.7.a
+		if = {
+			limit = {
+				root = { is_nomadic = no }
+			}
+			every_system_within_border = {
+				limit = {
+					star = {
+						has_planet_flag = gts_azure_waters_astral_rift
+					}
+				}
+				star = {
+					add_anomaly = {
+						category = gts_seele_li_anomaly_2
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				root = { is_nomadic = yes }
+			}
+			every_galaxy_planet = {
+				limit = {
+					has_planet_flag = gts_azure_waters_astral_rift
+				}
+				add_anomaly = {
+					category = gts_seele_li_anomaly_2
+				}
+			}
+			every_system = {
+				limit = {
+					star = {
+						has_planet_flag = gts_azure_waters_astral_rift
+					}
+				}
+				set_surveyed = {
+					surveyor = root
+				}
+			}
+		}
+		hidden_effect = {
+		}
+	}
+	after = {
+	}
+}
+ship_event = {
+	id = gts_seele_li.8
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		# if = {
+		# 	limit = {
+		# 		owner = {
+		# 			has_country_flag = can_trigger_futa_content
+		# 		}
+		# 	}
+		# 	owner = {
+		# 		country_event = {
+		# 			id = gts_seele_li.9
+		# 		}
+		# 	}
+		# }
+		# if = {
+		# 	limit = {
+		# 		owner = {
+		# 			not = {
+		# 				has_country_flag = can_trigger_futa_content
+		# 			}
+		# 		}
+		# 	}
+		# 	owner = {
+		# 		country_event = {
+		# 			id = gts_seele_li.10
+		# 		}
+		# 	}
+		# }
+	}
+	after = {
+		owner = {
+			country_event = {
+				id = gts_seele_li.10
+			}
+		}
+	}
+}
+# country_event = {
+# 	id = gts_seele_li.9
+# 	title = "gts_seele_li.9.name"
+# 	desc = gts_seele_li.9.desc
+# 	picture = GFX_gts_seele_li_9
+# 	is_triggered_only = yes
+# 	immediate = {
+# 	}
+# 	option = {
+# 		name = gts_seele_li.9.a
+# 		hidden_effect = {
+# 		}
+# 	}
+# 	after = {
+# 		country_event = {
+# 			id = gts_seele_li.12
+# 		}
+# 	}
+# }
+country_event = {
+	id = gts_seele_li.10
+	title = "gts_seele_li.10.name"
+	desc = gts_seele_li.10.desc
+	picture = GFX_gts_seele_li_10
+	is_triggered_only = yes
+	immediate = {
+	}
+	option = {
+		name = gts_seele_li.10.a
+		hidden_effect = {
+		}
+	}
+	after = {
+		country_event = {
+			id = gts_seele_li.12
+		}
+	}
+}
+country_event = {
+	id = gts_seele_li.12
+	title = "gts_seele_li.12.name"
+	desc = gts_seele_li.12.desc
+	is_triggered_only = yes
+	picture = GFX_leader_recruitment_bg_renowned
+	auto_opens = yes
+	event_window_type = leader_recruit
+	notification_event_icon = "GFX_message_leader_gts_seele_3"
+	immediate = {
+		gts_leader_creator = {
+			SIZE = GTS
+			TYPE = legendary
+			LEADER_PORTRAIT = gts_portrait_seele_2
+			CLASS = official
+			NAME = NAME_gts_seele
+			LEVEL = 5
+			AGE = 14
+			GENDER = female
+			ETHIC = materialist
+			EVENT_LEADER = no
+			DESC = DESC_gts_seele
+			CATCH_PHRASE = gts_seele_catch_phrase
+			RANDOMIZE_TRAITS = no
+			IMMORTAL = yes
+			HAS_ALTER_CLOTH = yes
+			HAS_COMMUNICATION = yes
+			TARGET = gts_seele
+			TRAIT1 = leader_trait_Ultra
+			TRAIT2 = gts_trait_leader_seele_one_a
+			TRAIT3 = gts_trait_leader_seele_h
+			TRAIT4 = gts_trait_leader_seele_e
+		}
+		last_created_leader = {
+			gts_love_normal_system_launch = yes
+			add_trait = {
+				trait = trait_leader_gts_love_logs_normal
+				show_message = no
+			}
+			set_leader_flag = gts_seele_pillow_Swallowtail_Phantasm
+		}
+	}
+	picture_event_data = {
+		portrait = event_target:gts_leader
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = gts_seele_li.12.a.name
+		response_text = gts_seele_li.12.a.desc
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_seele_li.12.b.name
+		response_text = gts_seele_li.12.b.desc
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_seele_li.12.c.name
+		response_text = gts_seele_li.12.c.desc
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_seele_li.12.d.name
+		response_text = gts_seele_li.12.d.desc
+		is_dialog_only = yes
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		custom_tooltip = gts_seele.hire_custom_tooltip
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = legendary }
+		}
+	}
+	after = {
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.9
+				days = 720
+			}
+		}
+	}
+}
+# country_event = {
+# 	id = gts_seele_li.XX
+# 	title = "gts_seele_li.XX.name"
+# 	desc = gts_seele_li.XX.desc
+# 	picture = GFX_gts_seele_li_XX
+# 	is_triggered_only = yes
+# 	immediate = {
+# 	}
+# 	option = {
+# 		name = gts_seele_li.XX.a
+# 		hidden_effect = {
+# 		}
+# 	}
+# 	after = {
+# 	}
+# }

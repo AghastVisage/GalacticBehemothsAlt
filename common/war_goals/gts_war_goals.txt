@@ -1,0 +1,622 @@
+wg_gts_terminator = {
+	#战争目标（灭绝）
+	casus_belli = cb_gts_terminator	#战争借口
+	hide_if_no_cb = yes	#没有战争借口就不显示
+	total_war = yes	#全面战争
+	set_defender_wargoal = wg_tiny_end_threat	#防御方战争目标
+	threat_multiplier = 1.2	#侵扩
+	surrender_acceptance = -1000	#投降倾向
+	war_exhaustion = 0.8 #战争疲劳
+	galactic_empire_joins_defender = {
+		from = { is_galactic_emperor = yes }
+		imperial_authority >= 100
+	}
+    forbidden_peace_offers = {
+        demand_surrender = ""
+        surrender = ""
+    }
+	potential = {
+		#可见
+		has_civic = civic_gts_terminator
+		from = {
+			#对方
+			NOT = {
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+		NAND = {
+			is_galactic_community_member = yes			#是星海共同体成员（在很多地方都能看到，先不管了）
+			from = {
+				is_galactic_community_member = yes
+			}
+			is_active_resolution = resolution_emperor_pax_galactica
+		}
+	}
+	possible = {
+		custom_tooltip = {
+			fail_text = cannot_use_against_emperor
+			OR = {
+				from = {
+					is_galactic_emperor = no
+				}
+				is_galactic_community_member = no
+			}
+		}
+		custom_tooltip = {
+			fail_text = pax_galactica_active
+			NAND = {
+				is_active_resolution = resolution_emperor_pax_galactica
+				is_galactic_community_member = yes
+				from = {
+					is_galactic_community_member = yes
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = no_tiny_country
+			from = {
+				gts_is_tiny_empire = yes
+			}
+		}
+	}
+	ai_weight = {
+		#使用权重
+		weight = 100
+	}
+}
+wg_tiny_end_threat = {
+	casus_belli = cb_tiny_end_threat
+	hide_if_no_cb = yes
+	total_war = yes
+	set_defender_wargoal = wg_gts_terminator
+	war_exhaustion = 0.8
+	allowed_peace_offers = {
+		status_quo
+	}
+	surrender_acceptance = -1000
+	potential = {
+		from = {			
+			has_valid_civic = civic_gts_terminator		
+		}
+		NAND = {
+			is_galactic_community_member = yes
+			from = {
+				is_galactic_community_member = yes
+			}
+			is_active_resolution = resolution_emperor_pax_galactica
+		}
+	}
+	possible = {
+		custom_tooltip = {
+			fail_text = cannot_use_against_emperor
+			OR = {
+				from = {
+					is_galactic_emperor = no
+				}
+				is_galactic_community_member = no
+			}
+		}
+		custom_tooltip = {
+			fail_text = pax_galactica_active
+			NAND = {
+				is_active_resolution = resolution_emperor_pax_galactica
+				is_galactic_community_member = yes
+				from = {
+					is_galactic_community_member = yes
+				}
+			}
+		}
+	}
+	ai_weight = {
+		weight = 100
+	}
+}
+
+#小人保护者
+wg_gts_servitor = {
+	#战争目标
+	casus_belli = cb_gts_servitor	#战争借口
+	hide_if_no_cb = yes	#没有战争借口就不显示
+	threat_multiplier = 0.5	#侵扩
+	surrender_acceptance = -150	#投降倾向
+	#星海国家加入战斗
+	galactic_empire_joins_defender = {
+		from = { is_galactic_emperor = yes }
+		imperial_authority >= 100
+	}
+	potential = {
+		#可见
+		OR = {
+			has_civic = civic_gts_assimilator
+			has_civic = civic_gts_servitor
+		}
+		from = {
+			NOR = {
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+		NAND = {
+			is_galactic_community_member = yes			#是星海共同体成员（在很多地方都能看到，先不管了）
+			from = {
+				is_galactic_community_member = yes
+			}
+			is_active_resolution = resolution_emperor_pax_galactica
+		}
+	}
+	possible = {
+		custom_tooltip = {
+			fail_text = cannot_use_against_emperor
+			OR = {
+				from = {
+					is_galactic_emperor = no
+				}
+				is_galactic_community_member = no
+			}
+		}
+		custom_tooltip = {
+			fail_text = pax_galactica_active
+			NAND = {
+				is_active_resolution = resolution_emperor_pax_galactica
+				is_galactic_community_member = yes
+				from = {
+					is_galactic_community_member = yes
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = no_tiny_country
+			from = {
+				gts_is_tiny_empire = yes
+			}
+		}
+	}
+	#战争胜利
+	on_accept = {
+		custom_tooltip = wg_gts_assimilator_accept_them
+		from = {
+			add_resource = {
+				energy = 2500
+				minerals = 2500
+				food = 2500
+			}
+		}
+		hidden_effect = {
+			set_variable = {
+				which = raided_tiny
+				value = 0
+			}
+			from = {
+				random_owned_species = {
+					limit = {
+						gts_is_tiny = yes
+					}
+					save_event_target_as = raided_tiny_species
+				}
+				every_owned_pop_group = {
+					limit = {
+						gts_is_tiny = yes
+					}
+					random_list = {
+						1 = {
+							root = {
+								change_variable = {
+									which = raided_tiny
+									value = 1
+								}
+							}
+							kill_all_pop = yes
+						}
+						1 = { }
+					}
+				}
+			}
+			while = {
+				count = raided_tiny
+				random_owned_planet = {
+					create_pop_group = {
+						species = event_target:raided_tiny_species
+					}
+				}
+			}
+			#附庸，照抄的源代码
+			if = {
+				limit = { from = { has_been_declared_crisis = no } }
+				from = {
+					ROOT = {
+						switch = {
+							trigger = has_policy_flag
+							oppressive_terms = {
+								if = {
+									limit = {
+										ROOT = { is_ai = yes }
+									}
+									FROM = {
+										set_subject_of = {
+											who = ROOT
+											preset = preset_vassal_oppressive_ai
+										}
+									}
+								}
+								else = {
+									FROM = {
+										set_subject_of = {
+											who = ROOT
+											preset = preset_vassal_oppressive
+										}
+									}
+								}
+							}
+							balanced_terms = {
+								FROM = {
+									set_subject_of = {
+										who = ROOT
+										preset = preset_vassal_balanced
+									}
+								}
+							}
+							benevolent_terms = {
+								FROM = {
+									set_subject_of = {
+										who = ROOT
+										preset = preset_vassal_benevolent
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	ai_weight = {
+		#使用权重
+		weight = 1000
+	}
+}
+#三角贸易
+wg_tiny_plunder = {
+	casus_belli = cb_tiny_despoliation
+	hide_if_no_cb = no
+	total_war = no
+	galactic_empire_joins_defender = {
+		from = {
+			is_galactic_emperor = yes
+		}
+		imperial_authority >= 100
+	}
+	surrender_acceptance = -25
+	potential = {
+		has_total_war_cb = no
+		has_civic = civic_delta_trade
+		NOT = {
+			is_in_federation_with = from
+		}
+		NAND = {
+			is_galactic_emperor = yes
+			from = {
+				is_galactic_community_member = yes
+			}
+		}
+	}
+	possible = {
+		custom_tooltip = {
+			fail_text = cannot_use_against_emperor
+			OR = {
+				from = { is_galactic_emperor = no }
+				is_galactic_community_member = no
+			}
+		}
+		custom_tooltip = {
+			fail_text = pax_galactica_active
+			NAND = {
+				is_active_resolution = resolution_emperor_pax_galactica
+				is_galactic_community_member = yes
+				from = { is_galactic_community_member = yes }
+			}
+		}
+		custom_tooltip = {
+			fail_text = no_tiny_country
+			from = {
+				gts_is_tiny_empire = yes
+			}
+		}
+	}
+	on_accept = {
+		custom_tooltip = wg_plunder_accept_them
+		add_resource = {
+			energy = 250
+			minerals = 250
+			gts_micro = 200
+			gts_micro_city = 20
+			mult = from.trigger:num_owned_planets
+		}
+		hidden_effect = {
+			from = {
+				add_modifier = {
+					modifier = raided
+					days = 3600
+				}
+			}
+		}
+	}
+	ai_weight = {
+		weight = 100
+	}
+}
+#合欢派
+wg_hehuanpai = {
+	casus_belli = cb_hehuanpai
+	hide_if_no_cb = no
+	total_war = no
+	galactic_empire_joins_defender = {
+		from = {
+			is_galactic_emperor = yes
+		}
+		imperial_authority >= 100
+	}
+	surrender_acceptance = -25
+	potential = {
+		has_civic = civic_hehuanpai
+		NOT = {
+			is_in_federation_with = from
+		}
+		NAND = {
+			is_galactic_emperor = yes
+			from = {
+				is_galactic_community_member = yes
+			}
+		}
+	}
+	possible = {
+		custom_tooltip = {
+			fail_text = cannot_use_against_emperor
+			OR = {
+				from = { is_galactic_emperor = no }
+				is_galactic_community_member = no
+			}
+		}
+		custom_tooltip = {
+			fail_text = pax_galactica_active
+			NAND = {
+				is_active_resolution = resolution_emperor_pax_galactica
+				is_galactic_community_member = yes
+				from = { is_galactic_community_member = yes }
+			}
+		}
+		custom_tooltip = {
+			fail_text = both_hehuaipai
+			NOR = {
+				from = {
+					has_civic = civic_hehuanpai
+				}
+			}
+		}
+	}
+	on_accept = {
+		custom_tooltip = wg_hehuanpai_accept_them
+		every_owned_pop_group = {
+			add_modifier = {
+				modifier = hehuanpai_win
+				days = 3600
+			}
+		}
+		hidden_effect = {
+			from = {
+				force_add_civic = civic_hehuanpai
+			}
+		}
+	}
+	ai_weight = {
+		weight = 100
+	}
+}
+#寰海
+wg_ultracompany_subjugate = {
+	casus_belli = cb_megacorp_subjugate
+
+	hide_if_no_cb = no
+	release_occupied_systems_on_status_quo = yes
+
+	galactic_empire_joins_defender = {
+		from = { is_galactic_emperor = yes }
+		imperial_authority >= 100
+	}
+
+	surrender_acceptance = -100
+
+
+	potential = {
+		has_origin = origin_Ultra_company
+		NOT = { has_ascension_perk = ap_become_the_crisis }
+		NAND = {
+			is_galactic_emperor = yes
+			from = { is_galactic_community_member = yes }
+		}
+	}
+	possible = {
+		custom_tooltip = {
+			fail_text = has_claimed_all_systems
+			from = {
+				is_country_type = default
+				any_owned_planet = {
+					is_colony = yes
+					root = {
+						NOT = { has_claim = prev.solar_system }
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = cannot_subjugate_empire_member
+			NAND = {
+				has_galactic_emperor = yes
+				is_galactic_community_member = no
+				from = { is_galactic_community_member = yes }
+			}
+		}
+		custom_tooltip = {
+			fail_text = "cannot_use_against_custodian"
+			from = { is_galactic_custodian = no }
+		}
+		custom_tooltip = {
+			fail_text = "cannot_use_against_emperor"
+			from = { is_galactic_emperor = no }
+		}
+		custom_tooltip = {
+			fail_text = "cannot_use_against_btc"
+			from = { has_been_declared_crisis = no }
+		}
+		custom_tooltip = {
+			fail_text = pax_galactica_active
+			NAND = {
+				is_active_resolution = resolution_emperor_pax_galactica
+				is_galactic_community_member = yes
+				from = { is_galactic_community_member = yes }
+			}
+		}
+	}
+	on_accept = {
+		hidden_effect = {
+			from = {
+				add_threat = {
+					who = root
+					amount = 0.5
+				}
+			}
+			set_truce = {
+				target = FROM
+				type = war
+			}
+			FROM = {
+				set_truce = {
+					target = ROOT
+					type = war
+				}
+			}
+		}
+		FROM = {
+			if = {
+				limit = { has_been_declared_crisis = no }
+				ROOT = {
+					FROM = {
+						set_subject_of = {
+							who = ROOT
+							preset = preset_ultracompany
+						}
+					}
+				}
+				add_modifier = {
+					modifier = newly_subjugated_loyalty
+					years = 5
+				}
+			}
+		}
+	}
+
+	on_status_quo = {
+		if = {
+			limit = {
+				exists = last_created_country
+				last_created_country = {
+					has_country_flag = released_empire
+				}
+			}
+
+			last_created_country = {
+				set_origin_effect = yes
+				ROOT = {
+					FROM = {
+						set_subject_of = {
+							who = ROOT
+							preset = preset_ultracompany
+						}
+					}
+				}
+				add_modifier = {
+					modifier = newly_subjugated_loyalty
+					years = 5
+				}
+			}
+
+			if = {
+				limit = {
+					root = { is_megacorp = yes }
+					last_created_country = { is_megacorp = yes }
+				}
+				last_created_country = {
+					set_merchant_government_effect = yes
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+}
+wg_ultracompany_expel = {
+	casus_belli = cb_ultracompany_expel
+	hide_if_no_cb = yes
+	release_occupied_systems_on_status_quo = no
+
+	galactic_empire_joins_defender = {
+		from = { is_galactic_emperor = yes }
+		imperial_authority >= 100
+	}
+	set_defender_wargoal = wg_megacorp_subjugate
+
+	surrender_acceptance = -50
+
+	potential = {
+		has_origin = origin_Ultra_company
+	}
+	possible = {
+		custom_tooltip = {
+			fail_text = has_claimed_all_systems
+			from = {
+				is_country_type = default
+				any_owned_planet = {
+					is_colony = yes
+					root = {
+						NOT = { has_claim = prev.solar_system }
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = cannot_use_against_emperor
+			OR = {
+				from = { is_galactic_emperor = no }
+				is_galactic_community_member = no
+			}
+		}
+		custom_tooltip = {
+			fail_text = pax_galactica_active
+			NAND = {
+				is_active_resolution = resolution_emperor_pax_galactica
+				is_galactic_community_member = yes
+				from = { is_galactic_community_member = yes }
+			}
+		}
+	}
+	on_accept = {
+		hidden_effect = {
+			from = {
+				save_event_target_as = defender
+				add_resource = {
+					influence = -1000
+				}
+			}
+			every_galaxy_planet = {
+				limit = { has_branch_office = event_target:defender }
+				close_branch_office = yes
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+}

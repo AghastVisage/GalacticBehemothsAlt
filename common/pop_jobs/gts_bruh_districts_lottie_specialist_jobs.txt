@@ -1,0 +1,359 @@
+################################################################################
+#################                洛蒂鞋內專家崗位                #################
+################################################################################
+
+
+
+shoe_researcher = {
+
+	# 鞋內研究員
+
+	category = specialist
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_research_lab_3
+		}
+	}
+
+	tags = { research }
+
+	inline_script = "jobs/automodding_priority_research"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+
+	resources = {
+		category = planet_researchers
+		produces = {
+			# 15
+			physics_research = 5
+			engineering_research = 5
+			society_research = 5
+		}
+		upkeep = {
+			# 10
+			energy = 4
+			consumer_goods = 3
+		}
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+	}
+}
+
+shoe_entertainer = {
+
+	# 鞋墊導遊
+
+	category = specialist
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_holo_theatres
+			icon = servant
+		}
+	}
+
+	tags = { unity amenities }
+
+	inline_script = "jobs/automodding_priority_unity"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	resources = {
+		category = planet_entertainers
+		produces = {
+			# 15
+			unity = 7.5
+		}
+		upkeep = {
+			# 10
+			energy = 4
+			consumer_goods = 3
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		planet_amenities_add = 625
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+	}
+}
+
+shoe_artisan = {
+
+	# 鞋內工匠
+
+	category = specialist
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_factory_1
+		}
+	}
+
+	tags = { consumer_goods }
+
+	inline_script = "jobs/automodding_priority_consumer_goods"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+	}
+
+	possible_precalc = can_fill_specialist_job
+
+	resources = {
+		category = planet_artisans
+		produces = {
+			# 15
+			consumer_goods = 7.5
+		}
+		upkeep = {
+			# 10
+			energy = 5
+			minerals = 10
+		}
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+	}
+}
+
+shoe_foundry = {
+
+	# 鞋內冶金師
+
+	category = specialist
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_foundry_1
+		}
+	}
+
+	tags = { alloys }
+
+	inline_script = "jobs/automodding_priority_alloys"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+	}
+
+	possible_precalc = can_fill_specialist_job
+
+	resources = {
+		category = planet_metallurgists
+		produces = {
+			# 15
+			alloys = 7.5
+		}
+		upkeep = {
+			# 10
+			energy = 5
+			minerals = 10
+		}
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+	}
+}
+
+
+
+
+cyrene_shoe_researcher = {
+
+	# 天体记忆分析员
+
+	category = specialist
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_research_lab_3
+			icon = researcher
+		}
+	}
+
+	tags = { research }
+
+	inline_script = "jobs/automodding_priority_research"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+
+	resources = {
+		category = planet_researchers
+		produces = {
+			# 15
+			physics_research = 22
+			# engineering_research = 5
+			society_research = 8
+		}
+		upkeep = {
+			consumer_goods = 4
+			rare_crystals = 1
+			astral_threads = 1
+		}
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+	}
+}
+
+cyrene_shoe_entertainer = {
+
+	# 爱之祭司
+
+	category = specialist
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_holo_theatres
+			icon = priest
+		}
+	}
+
+	tags = { unity amenities }
+
+	inline_script = "jobs/automodding_priority_unity"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+	planet_modifier = {
+		logistic_growth_mult = 0.01
+	}
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		planet_amenities_add = 700
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+	resources = {
+		category = planet_entertainers
+		produces = {
+			# 15
+			unity = 22
+			exotic_gases = 2
+		}
+		upkeep = {
+			# 10
+			consumer_goods = 5
+			rare_crystals = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		planet_amenities_add = 625
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+	}
+}

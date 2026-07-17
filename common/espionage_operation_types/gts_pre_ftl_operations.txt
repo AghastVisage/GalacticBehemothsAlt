@@ -1,0 +1,472 @@
+@diff_t0 = 4
+@diff_t1 = 5
+@diff_t2 = 6
+@diff_t3 = 7
+@diff_t4 = 8
+@diff_t5 = 9
+@diff_t6 = 10
+@diff_t7 = 11
+@diff_t8 = 12
+@diff_t9 = 13
+@operationTargetedByTimer = 10800
+operation_gts_close_observation = {
+	#近距离观测
+	categories = {
+		op_cat_infiltration
+		op_cat_government
+	}	#行动类型：渗透+政府
+	picture = GFX_evt_spymaster	#贴图
+	desc = operation_gts_close_observation_desc	#介绍文本
+	stages = 1	#阶段
+	resources = {
+		category = operations
+		cost = {
+			#花费
+			influence = 10
+		}
+		upkeep = {
+			#维护费
+			energy = 4
+		}
+	}
+	spy_power_cost = 10	#间谍网花费
+	potential = {
+		#可见
+		owner = {
+			has_civic = civic_gts_cixiaogui
+		}
+		target = {
+			is_primitive = yes
+		}		#是土著
+	}
+	allow = {
+		#可用
+		custom_tooltip = {
+			#保留
+			is_running_espionage_operation = no
+			fail_text = operation_one_at_a_time
+		}
+		custom_tooltip = {
+			NOT = {
+				has_country_flag = gts_close_observation
+			}
+			fail_text = operation_gts_research_over
+		}
+	}
+	stage = {
+		difficulty = @diff_t3
+		icon = GFX_espionage_chapter_icon_success
+		event = gts_civ_trick.10
+	}
+	on_roll_failed = {
+		#阶段失败  
+		standard_espionage_operation_on_roll_failed = {
+			RANDOM_EVENTS = operation_random_events_pre_ftl
+		}
+	}
+	on_create = {
+		target = {
+			set_timed_country_flag = {
+				flag = preftl_espionage_operation_targeted_by@root.owner
+				days = @operationTargetedByTimer
+			}
+		}
+	}
+}
+
+operation_gts_XP_guide = {
+	#XP引导
+	categories = {
+		op_cat_infiltration
+		op_cat_government
+	}	#行动类型：渗透+政府
+	picture = GFX_evt_spymaster	#贴图
+	desc = operation_gts_XP_guide_desc	#介绍文本
+	stages = 1	#阶段
+	resources = {
+		category = operations
+		cost = {
+			#花费
+			influence = 20
+		}
+		upkeep = {
+			#维护费
+			energy = 6
+		}
+	}
+	spy_power_cost = 15	#间谍网花费
+	potential = {
+		#可见
+		owner = {
+			has_civic = civic_gts_cixiaogui
+		}
+		target = {
+			is_primitive = yes
+		}
+	}
+	allow = {
+		#可用
+		custom_tooltip = {
+			#保留
+			is_running_espionage_operation = no
+			fail_text = operation_one_at_a_time
+		}
+	}
+	stage = {
+		difficulty = @diff_t3
+		icon = GFX_espionage_chapter_icon_success
+		event = gts_civ_trick.12
+	}
+	on_roll_failed = {
+		#阶段失败  
+		standard_espionage_operation_on_roll_failed = {
+			RANDOM_EVENTS = operation_random_events_pre_ftl
+		}
+	}
+	on_create = {
+		target = {
+			set_timed_country_flag = {
+				flag = preftl_espionage_operation_targeted_by@root.owner
+				days = @operationTargetedByTimer
+			}
+		}
+	}
+}
+
+operation_gts_kidnap = {
+	#绑架研究
+	categories = {
+		op_cat_infiltration
+		op_cat_government
+	}	#行动类型：渗透+政府
+	picture = GFX_evt_spymaster	#贴图
+	desc = operation_gts_kidnap_desc	#介绍文本
+	stages = 1	#阶段
+	resources = {
+		category = operations
+		cost = {
+			#花费
+			influence = 25
+		}
+		upkeep = {
+			#维护费
+			energy = 8
+		}
+	}
+	spy_power_cost = 25	#间谍网花费
+	potential = {
+		#可见
+		owner = {
+			has_civic = civic_gts_cixiaogui
+		}
+		target = {
+			is_primitive = yes
+		}
+	}
+	allow = {
+		#可用
+		custom_tooltip = {
+			#保留
+			is_running_espionage_operation = no
+			fail_text = operation_one_at_a_time
+		}
+	}
+	stage = {
+		difficulty = @diff_t4
+		icon = GFX_espionage_chapter_icon_success
+		event = gts_civ_trick.16
+	}
+	on_roll_failed = {
+		#阶段失败  
+		standard_espionage_operation_on_roll_failed = {
+			RANDOM_EVENTS = operation_random_events_pre_ftl
+		}
+	}
+	on_create = {
+		target = {
+			set_timed_country_flag = {
+				flag = preftl_espionage_operation_targeted_by@root.owner
+				days = @operationTargetedByTimer
+			}
+		}
+	}
+}
+
+operation_gts_set_abnormal = {
+	#制造异常
+	categories = {
+		op_cat_infiltration
+		op_cat_government
+	}	#行动类型：渗透+政府
+	picture = GFX_evt_spymaster	#贴图
+	desc = operation_gts_set_abnormal_desc	#介绍文本
+	stages = 1	#阶段
+	resources = {
+		category = operations
+		cost = {
+			#花费
+			influence = 20
+		}
+		upkeep = {
+			#维护费
+			energy = 6
+		}
+	}
+	spy_power_cost = 35	#间谍网花费
+	potential = {
+		#可见
+		owner = {
+			has_civic = civic_gts_cixiaogui
+		}
+		target = {
+			is_primitive = yes
+		}
+	}
+	allow = {
+		#可用
+		custom_tooltip = {
+			#保留
+			is_running_espionage_operation = no
+			fail_text = operation_one_at_a_time
+		}
+	}
+	stage = {
+		difficulty = @diff_t5
+		icon = GFX_espionage_chapter_icon_success
+		event = gts_civ_trick.17
+	}
+	on_roll_failed = {
+		#阶段失败  
+		standard_espionage_operation_on_roll_failed = {
+			RANDOM_EVENTS = operation_random_events_pre_ftl
+		}
+	}
+	on_create = {
+		target = {
+			set_timed_country_flag = {
+				flag = preftl_espionage_operation_targeted_by@root.owner
+				days = @operationTargetedByTimer
+			}
+		}
+	}
+}
+
+operation_gts_miracle_fall = {
+	#降下神迹
+	categories = {
+		op_cat_infiltration
+		op_cat_government
+	}	#行动类型：渗透+政府
+	picture = GFX_evt_spymaster	#贴图
+	desc = operation_gts_miracle_fall_desc	#介绍文本
+	stages = 1	#阶段
+	resources = {
+		category = operations
+		cost = {
+			#花费
+			influence = 60
+		}
+		upkeep = {
+			#维护费
+			energy = 12
+		}
+	}
+	spy_power_cost = 40	#间谍网花费
+	potential = {
+		#可见
+		owner = {
+			has_civic = civic_gts_cixiaogui
+		}
+		target = {
+			is_primitive = yes
+		}
+	}
+	allow = {
+		#可用
+		custom_tooltip = {
+			#保留
+			is_running_espionage_operation = no
+			fail_text = operation_one_at_a_time
+		}
+	}
+	stage = {
+		difficulty = @diff_t6
+		icon = GFX_espionage_chapter_icon_success
+		event = gts_civ_trick.18
+	}
+	on_roll_failed = {
+		#阶段失败  
+		standard_espionage_operation_on_roll_failed = {
+			RANDOM_EVENTS = operation_random_events_pre_ftl
+		}
+	}
+	on_create = {
+		target = {
+			set_timed_country_flag = {
+				flag = preftl_espionage_operation_targeted_by@root.owner
+				days = @operationTargetedByTimer
+			}
+		}
+	}
+}
+
+operation_pre_ftl_yarong_god = {
+	#降下神迹
+	categories = {
+		op_cat_infiltration
+		op_cat_government
+	}	#行动类型：渗透+政府
+	picture = GFX_gts_yarong_4	#贴图
+	desc = operation_pre_ftl_yarong_god_desc	#介绍文本
+	stages = 1	#阶段
+	resources = {
+		category = operations
+		cost = {
+			#花费
+			influence = 0
+		}
+		upkeep = {
+			#维护费
+			energy = 0
+		}
+	}
+	spy_power_cost = 0	#间谍网花费
+	potential = {
+		#可见
+		owner = {
+			has_origin = origin_god_keeper
+			has_tradition = tr_gts_godkeeper_1
+		}
+		target = {
+			is_primitive = yes
+			not = { has_country_flag = gts_yarong_god_country }
+		}
+	}
+	allow = {
+		#可用
+		custom_tooltip = {
+			#保留
+			is_running_espionage_operation = no
+			fail_text = operation_one_at_a_time
+		}
+	}
+	stage = {
+		difficulty = @diff_t0
+		icon = GFX_espionage_chapter_icon_success
+		event = gts_god_keeper.5501
+	}
+	on_roll_failed = {
+		#阶段失败
+		standard_espionage_operation_on_roll_failed = {
+			RANDOM_EVENTS = operation_random_events_pre_ftl
+		}
+	}
+	on_create = {
+		target = {
+			set_timed_country_flag = {
+				flag = preftl_espionage_operation_targeted_by@root.owner
+				days = @operationTargetedByTimer
+			}
+		}
+	}
+}
+operation_gts_ftl_insurance = {
+	target = none
+	categories = { op_cat_economy op_cat_government }
+	picture = GFX_gtsra_city_crash_9
+	desc = operation_gts_ftl_insurance_desc
+	stages = 3
+
+	resources = {
+		category = operations
+		cost = {
+			trigger = {
+				always = yes
+			}
+			influence = 50
+		}
+		upkeep = {
+			energy = 8
+		}
+	}
+	spy_power_cost = 10
+
+	potential = {
+		owner = {
+			has_civic = civic_gts_cixiaogui
+			has_origin = origin_Ultra_company
+		}
+		target = {
+			is_primitive = yes
+			NOR = {
+				has_country_flag = fotd_seperatist_country@root.owner
+			}
+		}
+	}
+	allow = {
+		custom_tooltip = {
+			is_running_espionage_operation = no
+			fail_text = operation_one_at_a_time
+		}
+		custom_tooltip = {
+			owner = {
+				NOT = {
+					has_policy_flag = interference_not_allowed
+				}
+			}
+			fail_text = operation_wrong_interference_policy
+		}
+		custom_tooltip = {
+			target = {
+				capital_scope = {
+					has_observation_outpost = yes
+					observation_outpost_owner = { is_same_value = root.owner }
+				}
+			}
+			fail_text = operation_requires_observation_outpost
+		}
+	}
+	abort = {
+		OR = {
+			owner = {
+				has_policy_flag = interference_not_allowed
+			}
+			target = {
+				OR = {
+					is_primitive = no
+					capital_scope = {
+						has_observation_outpost = no
+					}
+				}
+			}
+		}
+	}
+
+	stage = {
+		difficulty = @diff_t1
+		icon = GFX_espionage_chapter_icon_document
+		event = gts_ultra_company.3001
+	}
+	stage = {
+		difficulty = @diff_t2
+		icon = GFX_espionage_chapter_icon_document
+		event = gts_ultra_company.3002
+	}
+	stage = {
+		difficulty = @diff_t3
+		icon = GFX_espionage_chapter_icon_document
+		event = gts_ultra_company.3003
+	}
+
+	on_roll_failed = {
+		pre_ftl_espionage_operation_on_roll_failed = { RANDOM_EVENTS = operation_random_events_pre_ftl }
+	}
+	on_create = {
+		target = {
+			set_timed_country_flag = {
+				flag = preftl_espionage_operation_targeted_by@root.owner #Used in random Spy Network events
+				days = @operationTargetedByTimer
+			}
+		}
+	}
+}

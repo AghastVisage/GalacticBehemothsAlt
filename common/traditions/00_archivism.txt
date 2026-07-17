@@ -1,0 +1,337 @@
+tr_archivism_adopt = {
+	unlocks_agenda = agenda_astute_observation
+	modifier = {
+		country_exhibit_unlocking_cost_mult = -0.5
+		ship_anomaly_generation_chance_mult = 0.05
+	}
+
+	on_enabled = {
+		add_research_option = tech_galactic_archivism
+	}
+}
+
+tr_archivism_finish = {
+	custom_tooltip_with_modifiers = tr_archivism_finish_tt
+	modifier = {
+		specimens_produces_mult = 0.15
+		ascension_perks_add = 1
+	}
+
+	on_enabled = {
+		hidden_effect = {
+			country_event = {
+				id = grand_archive.4200
+			}
+		}
+	}
+}
+
+tr_archivism_xeno_paleontology = {
+	modifier = {
+		ship_archaeological_site_excavation_speed_mult = 0.3
+		ship_archaeological_site_clues_add = 1
+		scientist_exp_gain = 0.3
+	}
+
+	ai_weight = {
+		factor = 1000
+	}
+	tradition_swap = {
+		name = tr_archivism_xeno_paleontology_gts
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_giantess_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+	tradition_swap = {
+		name = tr_archivism_xeno_paleontology_tiny
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_tiny_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+}
+
+tr_archivism_expert_negociation = {
+	modifier = {
+		country_specimen_selling_cost_mult = 2
+	}
+	custom_tooltip_with_modifiers = tr_archivism_expert_negociation_tt
+
+	on_enabled = {
+		hidden_effect = {
+			country_event = {
+				id = grand_archive.4210
+			}
+		}
+	}
+
+	tradition_swap = {
+		inherit_icon = yes
+		name = tr_archivism_expert_negociation_homicidal
+		trigger = {
+			is_homicidal = yes
+		}
+		custom_tooltip = tr_archivism_expert_negociation_homicidal_tt
+
+		on_enabled = {
+			hidden_effect = {
+				country_event = {
+					id = grand_archive.4210
+				}
+			}
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		inherit_icon = yes
+		name = tr_archivism_expert_negociation_gts
+		trigger = {
+			gts_is_giantess_empire = yes
+		}
+		custom_tooltip = tr_archivism_expert_negociation_tt
+
+		on_enabled = {
+			hidden_effect = {
+				country_event = {
+					id = grand_archive.4210
+				}
+			}
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		inherit_icon = yes
+		name = tr_archivism_expert_negociation_tiny
+		trigger = {
+			gts_is_tiny_empire = yes
+		}
+		custom_tooltip = tr_archivism_expert_negociation_tt
+
+		on_enabled = {
+			hidden_effect = {
+				country_event = {
+					id = grand_archive.4210
+				}
+			}
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	ai_weight = {
+		factor = 1000
+	}
+}
+
+tr_archivism_frontier_archaeology = {
+	possible = {
+		has_tradition = tr_archivism_xeno_paleontology
+	}
+
+	custom_tooltip_with_modifiers = tr_archivism_frontier_archaeology_tt
+	modifier = {
+		ship_science_speed_mult = 0.35
+		ship_science_upkeep_mult = -0.5
+	}
+
+	on_enabled = {
+		hidden_effect = {
+			artifact_analysis_give_xeno_geology_specimen = { ORIGIN = tr_archivism_frontier_archaeology }
+		}
+	}
+
+	tradition_swap = {
+		inherit_name = yes
+		inherit_effects = no
+		inherit_icon = yes
+		trigger = {
+			is_nomadic = yes
+		}
+		custom_tooltip_with_modifiers = tr_archivism_frontier_archaeology_nomads_tt
+		modifier = {
+			ship_science_speed_mult = 0.35
+			ship_science_upkeep_mult = -0.5
+		}
+
+		on_enabled = {
+			hidden_effect = {
+				artifact_analysis_give_xeno_geology_specimen = { ORIGIN = tr_archivism_frontier_archaeology }
+			}
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_archivism_frontier_archaeology_gts
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_giantess_empire = yes
+		}
+		on_enabled = {
+			hidden_effect = {
+				artifact_analysis_give_xeno_geology_specimen = { ORIGIN = tr_archivism_frontier_archaeology }
+			}
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+	tradition_swap = {
+		name = tr_archivism_frontier_archaeology_tiny
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_tiny_empire = yes
+		}
+		on_enabled = {
+			hidden_effect = {
+				artifact_analysis_give_xeno_geology_specimen = { ORIGIN = tr_archivism_frontier_archaeology }
+			}
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+tr_archivism_flawless_display = {
+	custom_tooltip = tr_archivism_flawless_display_tt
+	possible = {
+		has_tradition = tr_archivism_expert_negociation
+	}
+
+	on_enabled = {
+		artifact_analysis_give_aesthetic_wonders_specimen = { ORIGIN = tr_archivism_flawless_display }
+		hidden_effect = {
+			country_event = {
+				id = grand_archive.4220
+			}
+		}
+	}
+
+	tradition_swap = {
+		name = tr_archivism_flawless_display_gts
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_giantess_empire = yes
+		}
+		on_enabled = {
+			artifact_analysis_give_aesthetic_wonders_specimen = { ORIGIN = tr_archivism_flawless_display }
+			hidden_effect = {
+				country_event = {
+					id = grand_archive.4220
+				}
+			}
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+	tradition_swap = {
+		name = tr_archivism_flawless_display_tiny
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_tiny_empire = yes
+		}
+		on_enabled = {
+			artifact_analysis_give_aesthetic_wonders_specimen = { ORIGIN = tr_archivism_flawless_display }
+			hidden_effect = {
+				country_event = {
+					id = grand_archive.4220
+				}
+			}
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+tr_archivism_exhibition_specialization = {
+	custom_tooltip = tr_archivism_exhibition_specialization_tt
+	possible = {
+		has_tradition = tr_archivism_expert_negociation
+	}
+
+	modifier = {
+		country_specimen_storage_cooldown_mult = -0.25
+	}
+
+	on_enabled = {
+		artifact_analysis_give_historical_items_specimen = { ORIGIN = tr_archivism_exhibition_specialization }
+	}
+
+	tradition_swap = {
+		name = tr_archivism_exhibition_specialization_gts
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_giantess_empire = yes
+		}
+		on_enabled = {
+			artifact_analysis_give_historical_items_specimen = { ORIGIN = tr_archivism_exhibition_specialization }
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+	tradition_swap = {
+		name = tr_archivism_exhibition_specialization_tiny
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_tiny_empire = yes
+		}
+		on_enabled = {
+			artifact_analysis_give_historical_items_specimen = { ORIGIN = tr_archivism_exhibition_specialization }
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}

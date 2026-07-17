@@ -1,0 +1,753 @@
+namespace = gts_sonxi
+
+country_event = {
+	# 殖民地数量大于3个时触发事件
+	id = gts_sonxi.0
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		is_ai = no
+		num_owned_planets > 2
+		any_owned_planet = {
+			NOR = {
+				is_planet_class = pc_shattered_ring_habitable
+				is_planet_class = pc_ringworld_habitable
+				is_planet_class = pc_habitat
+				is_eatable_planet = no
+			}
+
+		}
+	}
+	immediate = {
+		country_event = {
+			id = gts_sonxi.1
+		}
+	}
+}
+
+country_event = {
+	# 选择目标星球
+	id = gts_sonxi.1
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = {
+		NOT = {
+			any_system = {
+				has_star_flag = gts_sleepbear_system
+			}
+		}
+		is_ai = no
+	}
+	immediate = {
+		random_system_within_border = {
+			limit = {
+				any_system_planet = {
+					is_colony = yes
+					is_controlled_by = root
+					NOR = {
+						is_planet_class = pc_shattered_ring_habitable
+						is_planet_class = pc_ringworld_habitable
+						is_planet_class = pc_habitat
+						is_eatable_planet = no
+					}
+
+				}
+			}
+			set_star_flag = gts_sleepbear_system
+			random_system_planet = {
+				limit = {
+					is_colony = yes
+					is_controlled_by = root
+					NOR = {
+						is_planet_class = pc_shattered_ring_habitable
+						is_planet_class = pc_ringworld_habitable
+						is_planet_class = pc_habitat
+						is_eatable_planet = no
+					}
+
+				}
+				save_global_event_target_as = gts_sleepbear_planet
+				set_planet_flag = gts_sleepbear_planet
+				set_planet_flag = gts_body_planet
+			}
+		}
+		country_event = {
+			id = gts_sonxi.2
+		}
+	}
+}
+
+country_event = {
+	# 创建颂汐国家
+	id = gts_sonxi.2
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		create_country = {
+			name = "NAME_sleepbear"
+			type = sonxi
+			flag = {
+				icon = {
+					category = spherical
+					file = flag_spherical_4.dds
+				}
+				background = {
+					category = backgrounds
+					file = "00_solid.dds"
+				}
+				colors = {
+					"black"
+					"black"
+					"null"
+				}
+			}
+			effect = {
+				save_global_event_target_as = gts_sleepbear_country
+			}
+		}
+		event_target:gts_sleepbear_country = {
+			set_graphical_culture = guardian_01
+			gts_create_songxi_enemy = yes
+		}
+		every_country = {
+			establish_communications_no_message = event_target:gts_sleepbear_country
+		}
+	}
+	after = {
+		country_event = {
+			id = gts_sonxi.3
+			days = 30
+		}
+	}
+}
+
+country_event = {
+	# 发现颂汐
+	id = gts_sonxi.3
+	title = gts_sonxi.3.name
+	desc = gts_sonxi.3.desc
+	picture = GFX_gts_sonxi_2
+	show_sound = event_mystic_reveal
+	location = event_target:gts_sleepbear_planet
+	is_triggered_only = yes
+	immediate = {
+		# # 如果有卫星就摧毁一颗卫星，没有就随机摧毁一个星球
+		# event_target:gts_sleepbear_planet = {
+		# 	if = {
+		# 		limit = {
+		# 			has_moon = yes
+		# 			any_moon = {
+		# 				NOR = {
+		# 					is_planet_class = pc_shattered
+		# 					habitable_planet = yes
+		# 					is_planet_class = pc_habitat
+		# 				}
+		# 			}
+		# 		}
+		# 		random_moon = {
+		# 			limit = {
+		# 				NOR = {
+		# 					is_planet_class = pc_shattered
+		# 					habitable_planet = yes
+		# 					is_planet_class = pc_habitat
+		# 				}
+		# 			}
+		# 			gts_destroy_planet = yes
+		# 		}
+		# 	}
+		# 	else = {
+		# 		event_target:gts_sleepbear_planet.owner = {
+		# 			random_system_within_border = {
+		# 				limit = {
+		# 					has_star_flag = gts_sleepbear_system
+		# 				}
+		# 				random_system_planet = {
+		# 					limit = {
+		# 						gts_can_destory_planet = yes
+		# 					}
+		# 					gts_destroy_planet = yes
+		# 				}
+		# 			}
+		# 		}
+		# 	}
+		# }
+	}
+	option = {
+		name = gts_sonxi.3.a
+		enable_special_project = {
+			name = "SLEEP_BEAR_PROJECT"
+			location = event_target:gts_sleepbear_planet
+			owner = event_target:gts_sleepbear_planet.owner
+		}
+	}
+	option = {
+		name = gts_sonxi.3.b
+		custom_tooltip = gts_sonxi.3.b.tooltip
+		add_resource = {
+			influence = 50
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_sonxi.6
+				days = 3600
+			}
+		}
+	}
+	option = {
+		name = gts_sonxi.3.c
+		custom_tooltip = gts_sonxi.3.c.tooltip
+		allow = {
+			always = no
+		}
+	}
+	after = {
+		event_target:gts_sleepbear_planet = {
+			add_modifier = {
+				modifier = "sleepbear_in_orbit"
+				days = -1
+			}
+		}
+	}
+}
+
+country_event = {
+	# 唤醒颂汐
+	id = gts_sonxi.4
+	title = gts_sonxi.4.name
+	desc = gts_sonxi.4.desc
+	picture = GFX_gts_sonxi_3
+	show_sound = event_mystic_reveal
+	location = event_target:gts_sleepbear_planet
+	is_triggered_only = yes
+	immediate = {
+		event_target:gts_sleepbear_country = {
+			set_faction_hostility = {
+				target = root
+				set_hostile = no
+				set_neutral = no
+				set_friendly = yes
+			}
+		}
+		# random_system_within_border = {
+		# 	limit = {
+		# 		has_star_flag = gts_sleepbear_system
+		# 	}
+		# 	random_system_planet = {
+		# 		limit = {
+		# 			gts_can_destory_planet = yes
+		# 		}
+		# 		save_event_target_as = gts_sonxi_eat_planet
+		# 		remove_planet = yes
+		# 	}
+		# }
+	}
+	option = {
+		name = gts_sonxi.4.a
+		event_target:gts_sleepbear_planet = {
+			add_modifier = {
+				modifier = "sleepbear_lab"
+				days = -1
+			}
+		}
+		country_event = {
+			id = gts_sonxi.999
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_sonxi.100
+				days = 1800
+			}
+		}
+	}
+}
+
+country_event = {
+	# 颂汐
+	id = gts_sonxi.999
+	title = "gts_sonxi.999.name"
+	desc = "gts_sonxi.999.desc"
+	show_sound = event_celebration
+	is_triggered_only = yes
+	picture = GFX_leader_recruitment_bg_renowned
+	auto_opens = yes
+	event_window_type = leader_recruit
+	notification_event_icon = "GFX_message_leader_gts_sonxi"
+	immediate = {
+		gts_leader_sonxi_hired = yes
+	}
+	picture_event_data = {
+		portrait = event_target:gts_leader
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = gts_sonxi.999.a
+		response_text = gts_sonxi.999.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_sonxi.999.b
+		response_text = gts_sonxi.999.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_sonxi.999.c
+		response_text = gts_sonxi.999.c.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		custom_tooltip = gts_sonxi.999.hire_custom_tooltip
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = legendary }
+		}
+	}
+	option = {
+		name = DISMISS
+		tag = dismiss_leader
+		hidden_effect = {
+			country_event = {
+				id = gts_sonxi.999
+			}
+		}
+	}
+}
+
+ship_event = {
+	# 颂汐被攻击后消失
+	id = gts_sonxi.5
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		has_ship_flag = gts_sleepbear_ship
+	}
+	immediate = {
+		create_ambient_object = {
+			location = this
+			type = horror_spawn_object
+		}
+		event_target:gts_sleepbear_planet = {
+			remove_modifier = sleepbear_in_orbit
+			remove_modifier = sleepbear_lab
+		}
+		if = {
+			limit = {
+				any_playable_country = {
+					has_special_project = SLEEP_BEAR_PROJECT
+				}
+			}
+			random_playable_country = {
+				limit = {
+					has_special_project = SLEEP_BEAR_PROJECT
+				}
+				abort_special_project = {
+					type = SLEEP_BEAR_PROJECT
+				}
+			}
+			# delete_ship = this
+			# break = yes
+		}
+		delete_ship = this
+		From.owner = {
+			set_country_flag = gts_attack_sonxi_country
+			save_event_target_as = gts_attack_sonxi_country
+			country_event = {
+				id = gts_sonxi.8
+				days = 7
+			}
+		}
+		destroy_fleet = From.fleet
+	}
+}
+
+country_event = {
+	# 一段时间后离开
+	id = gts_sonxi.6
+	title = gts_sonxi.6.name
+	desc = gts_sonxi.6.desc
+	picture = GFX_gts_sonxi_5
+	show_sound = event_default
+	location = event_target:gts_sleepbear_planet
+	is_triggered_only = yes
+	immediate = {
+		# 移除模型
+		create_ambient_object = {
+			location = event_target:gts_sleepbear_ship
+			type = horror_spawn_object
+		}
+		last_created_ambient_object = {
+			save_event_target_as = gts_sleepbear_leave
+		}
+		event_target:gts_sleepbear_planet = {
+			remove_modifier = sleepbear_in_orbit
+			remove_modifier = sleepbear_lab
+		}
+		delete_ship = event_target:gts_sleepbear_ship
+		if = {
+			# 选择第一个星球
+			limit = {
+				any_owned_planet = {
+					is_colony = yes
+				}
+			}
+			random_owned_planet = {
+				limit = {
+					is_colony = yes
+				}
+				set_planet_flag = gts_sonxi_next_planet_1
+				save_event_target_as = gts_sonxi_next_planet_1
+			}
+		}
+		else = {
+			random_owned_planet = {
+				limit = {
+					is_colony = no
+				}
+				set_planet_flag = gts_sonxi_next_planet_1
+				save_event_target_as = gts_sonxi_next_planet_1
+			}
+		}
+		if = {
+			# 选择第二个星球
+			limit = {
+				any_owned_planet = {
+					is_colony = yes
+					NOT = {
+						has_planet_flag = gts_sonxi_next_planet_1
+					}
+				}
+			}
+			random_owned_planet = {
+				limit = {
+					is_colony = yes
+					NOT = {
+						has_planet_flag = gts_sonxi_next_planet_1
+					}
+				}
+				set_planet_flag = gts_sonxi_next_planet_2
+				save_event_target_as = gts_sonxi_next_planet_2
+			}
+		}
+		else = {
+			random_owned_planet = {
+				limit = {
+					is_colony = no
+					NOT = {
+						has_planet_flag = gts_sonxi_next_planet_1
+					}
+				}
+				set_planet_flag = gts_sonxi_next_planet_2
+				save_event_target_as = gts_sonxi_next_planet_2
+			}
+		}
+	}
+	option = {
+		name = gts_continue
+		hidden_effect = {
+			country_event = {
+				id = gts_sonxi.7
+			}
+		}
+	}
+}
+
+country_event = {
+	# 一段时间后离开
+	id = gts_sonxi.7
+	title = gts_sonxi.7.name
+	desc = gts_sonxi.7.desc
+	picture = GFX_gts_sonxi_7
+	show_sound = event_mystic_reveal
+	location = event_target:gts_sonxi_next_planet_1
+	is_triggered_only = yes
+	immediate = {
+		event_target:gts_sleepbear_leave = {
+			destroy_ambient_object = this
+		}
+		event_target:gts_sonxi_next_planet_1 = {
+			if = {
+				limit = {
+					is_eatable_planet = yes
+
+				}
+				remove_planet = yes
+			}
+		}
+		event_target:gts_sonxi_next_planet_2 = {
+			if = {
+				limit = {
+					is_eatable_planet = yes
+				}
+				remove_planet = yes
+			}
+		}
+	}
+	option = {
+		name = gts_sonxi.7.a
+	}
+}
+
+country_event = {
+	# 神罚-摧毁随机一个星球
+	id = gts_sonxi.8
+	title = gts_sonxi.8.name
+	desc = gts_sonxi.8.desc
+	picture = GFX_gts_sonxi_5
+	show_sound = event_default
+	location = event_target:gts_sonxi_next_planet
+	is_triggered_only = yes
+	immediate = {
+		event_target:gts_attack_sonxi_country = {
+			if = {
+				limit = {
+					any_owned_planet = {
+						is_colony = yes
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						is_colony = yes
+					}
+					save_event_target_as = gts_sonxi_next_planet
+				}
+			}
+			else = {
+				random_owned_planet = {
+					limit = {
+						is_colony = no
+					}
+					save_event_target_as = gts_sonxi_next_planet
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_continue
+		hidden_effect = {
+			country_event = {
+				id = gts_sonxi.9
+			}
+		}
+	}
+}
+
+country_event = {
+	# 神罚-摧毁随机一个星球
+	id = gts_sonxi.9
+	title = gts_sonxi.9.name
+	desc = gts_sonxi.9.desc
+	picture = GFX_gts_sonxi_6
+	show_sound = event_mystic_reveal
+	location = event_target:gts_sonxi_next_planet
+	is_triggered_only = yes
+	immediate = {
+		event_target:gts_sonxi_next_planet = {
+			if = {
+				limit = {
+					is_eatable_planet = yes
+				}
+				remove_planet = yes
+			}
+
+		}
+	}
+	option = {
+		name = gts_sonxi.9.a
+		hidden_effect = {
+			country_event = {
+				id = gts_sonxi.10
+				days = 15
+			}
+		}
+	}
+}
+
+country_event = {
+	# 别吃啦-摧毁随机一个星球
+	id = gts_sonxi.10
+	title = gts_sonxi.10.name
+	desc = gts_sonxi.10.desc
+	picture = GFX_gts_sonxi_8
+	show_sound = event_default
+	location = event_target:gts_sonxi_next_planet
+	is_triggered_only = yes
+	immediate = {
+		event_target:gts_attack_sonxi_country = {
+			if = {
+				limit = {
+					any_owned_planet = {
+						is_colony = yes
+						is_eatable_planet = yes
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						is_colony = yes
+						is_eatable_planet = yes
+					}
+					save_event_target_as = gts_sonxi_next_planet
+				}
+			}
+			else = {
+				random_owned_planet = {
+					limit = {
+						is_colony = no
+						is_eatable_planet = yes
+					}
+					save_event_target_as = gts_sonxi_next_planet
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_continue
+		hidden_effect = {
+			country_event = {
+				id = gts_sonxi.11
+			}
+		}
+	}
+}
+
+country_event = {
+	# 别吃啦-摧毁随机一个星球
+	id = gts_sonxi.11
+	title = gts_sonxi.11.name
+	desc = gts_sonxi.11.desc
+	picture = GFX_gts_sonxi_4
+	show_sound = event_mystic_reveal
+	is_triggered_only = yes
+	location = event_target:gts_sonxi_next_planet
+	immediate = {
+		event_target:gts_sonxi_next_planet = {
+			if = {
+				limit = {
+					is_eatable_planet = yes
+				}
+				remove_planet = yes
+			}
+		}
+	}
+	option = {
+		name = gts_sonxi.11.a
+	}
+	option = {
+		name = gts_sonxi.11.b
+	}
+}
+
+### 颂汐后续事件
+country_event = {
+	id = gts_sonxi.100
+	title = gts_sonxi.100.name
+	desc = gts_sonxi.100.desc
+	picture = GFX_gts_sonxi_1
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_sonxi.100.a
+		add_resource = {
+			influence = 50
+		}
+	}
+	option = {
+		name = gts_sonxi.100.b
+		add_resource = {
+			unity = 1000
+		}
+	}
+	option = {
+		name = gts_sonxi.100.c
+		add_resource = {
+			society_research = 1500
+		}
+	}
+	after = {
+		country_event = {
+			id = gts_sonxi.110
+			days = 1800
+		}
+	}
+}
+
+country_event = {
+	id = gts_sonxi.110
+	title = gts_sonxi.110.name
+	desc = gts_sonxi.110.desc
+	picture = GFX_gts_sonxi_1
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_sonxi.110.a
+		add_monthly_resource_mult = {
+			resource = physics_research
+			value = @tier4researchreward
+			min = @tier4researchmin
+			max = @tier4researchmax
+		}
+	}
+	option = {
+		name = gts_sonxi.110.b
+		trigger = {
+			has_country_flag = can_trigger_futa_content
+		}
+		add_monthly_resource_mult = {
+			resource = physics_research
+			value = @tier4researchreward
+			min = @tier4researchmin
+			max = @tier4researchmax
+		}
+	}
+	option = {
+		name = gts_sonxi.110.c
+		trigger = {
+			has_country_flag = can_trigger_scat_content
+		}
+		add_monthly_resource_mult = {
+			resource = physics_research
+			value = @tier4researchreward
+			min = @tier4researchmin
+			max = @tier4researchmax
+		}
+	}
+}
+
+# 用于判定星球改造的触发
+planet_event = {
+	id = gts_sonxi.1000
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		switch = {
+			trigger = is_planet_class
+			pc_tropical = {
+				planet_event = { id = gts_ap_planet.5002 }
+			}
+			pc_continental = {
+				planet_event = { id = gts_ap_planet.5002 }
+			}
+			pc_ocean = {
+				planet_event = { id = gts_ap_planet.5002 }
+			}
+			pc_tundra = {
+				planet_event = { id = gts_ap_planet.5003 }
+			}
+			pc_arctic = {
+				planet_event = { id = gts_ap_planet.5003 }
+			}
+			pc_alpine = {
+				planet_event = { id = gts_ap_planet.5003 }
+			}
+			pc_desert= {
+				planet_event = { id = gts_ap_planet.5004 }
+			}
+			pc_arid= {
+				planet_event = { id = gts_ap_planet.5004 }
+			}
+			pc_savannah= {
+				planet_event = { id = gts_ap_planet.5004 }
+			}
+		}
+	}
+}

@@ -1,0 +1,1829 @@
+namespace = gts_ultra_road
+
+# 初始化
+country_event = {
+	# 生成母星
+	id = gts_ultra_road.1
+	hide_window = yes
+
+	is_triggered_only = yes
+	trigger = {
+		has_origin = origin_ultra_road
+	}
+
+	fire_only_once = yes
+
+	immediate = {
+		save_global_event_target_as = gts_ultra_country
+		# 更换国家类型
+		set_country_type = gts_ultra_origin
+		# 清除原有舰队
+		every_controlled_fleet = {
+			destroy_fleet = {
+				target = this
+				kill_leader = no
+			}
+		}
+		# 创建母星
+		set_spawn_system_batch = begin
+		no_scope = {
+			spawn_system = {
+				min_distance >= 550
+				max_distance <= 560
+				min_orientation_angle = 314
+				max_orientation_angle = 316
+				initializer = gts_ultra_system_1
+				hyperlane = no
+				effect = {
+					save_global_event_target_as = ucluster1
+				}
+			}
+			event_target:ucluster1 = {
+				spawn_system = {
+					min_distance >= 29
+					max_distance <= 31
+					min_orientation_angle = 24
+					max_orientation_angle = 66
+					initializer = gts_ultra_system_2
+					hyperlane = no
+					effect = {
+						save_global_event_target_as = ucluster2
+					}
+				}
+				spawn_system = {
+					min_distance >= 29
+					max_distance <= 31
+					min_orientation_angle = 114
+					max_orientation_angle = 156
+					initializer = gts_ultra_system_2
+					hyperlane = no
+					effect = {
+						save_global_event_target_as = ucluster3
+					}
+				}
+				spawn_system = {
+					min_distance >= 30
+					max_distance <= 60
+					min_orientation_angle = 340
+					max_orientation_angle = 20
+					initializer = gts_ultra_system_2
+					hyperlane = no
+					effect = {
+						save_global_event_target_as = ucluster1b
+					}
+				}
+			}
+			event_target:ucluster2 = {
+				spawn_system = {
+					min_distance >= 30
+					max_distance <= 60
+					min_orientation_angle = 0
+					max_orientation_angle = 40
+					initializer = gts_ultra_system_3
+					hyperlane = no
+					effect = {
+						save_global_event_target_as = ucluster2b
+					}
+				}
+			}
+			event_target:ucluster2 = {
+				spawn_system = {
+					min_distance >= 30
+					max_distance <= 60
+					min_orientation_angle = 0
+					max_orientation_angle = 40
+					initializer = gts_ultra_system_4
+					hyperlane = no
+					effect = {
+						save_global_event_target_as = ucluster2c
+					}
+				}
+			}
+			event_target:ucluster3 = {
+				spawn_system = {
+					min_distance >= 20
+					max_distance <= 30
+					min_orientation_angle = 24
+					max_orientation_angle = 66
+					initializer = gts_ultra_system_2
+					hyperlane = no
+					effect = {
+						save_global_event_target_as = ucluster4
+					}
+				}
+				spawn_system = {
+					min_distance >= 10
+					max_distance <= 50
+					min_orientation_angle = 250
+					max_orientation_angle = 290
+					initializer = gts_ultra_system_2
+					hyperlane = no
+					effect = {
+						save_global_event_target_as = ucluster3b
+					}
+				}
+			}
+			event_target:ucluster4 = {
+				spawn_system = {
+					min_distance >= 30
+					max_distance <= 60
+					min_orientation_angle = 20
+					max_orientation_angle = 160
+					initializer = gts_ultra_system_3
+					hyperlane = no
+					effect = {
+						save_global_event_target_as = ucluster4b
+					}
+				}
+			}
+			event_target:ucluster4 = {
+				spawn_system = {
+					min_distance >= 30
+					max_distance <= 60
+					min_orientation_angle = 20
+					max_orientation_angle = 160
+					initializer = gts_ultra_system_5
+					hyperlane = no
+					effect = {
+						save_global_event_target_as = ucluster4c
+					}
+				}
+			}
+		}
+
+		event_target:ucluster4 = {
+			add_hyperlane = {
+				from = event_target:ucluster4
+				to = event_target:ucluster3
+			}
+			add_hyperlane = {
+				from = event_target:ucluster4
+				to = event_target:ucluster2
+			}
+			add_hyperlane = {
+				from = event_target:ucluster4
+				to = event_target:ucluster4b
+			}
+			add_hyperlane = {
+				from = event_target:ucluster4
+				to = event_target:ucluster4c
+			}
+		}
+		event_target:ucluster3 = {
+			add_hyperlane = {
+				from = event_target:ucluster3
+				to = event_target:ucluster1
+			}
+			add_hyperlane = {
+				from = event_target:ucluster3
+				to = event_target:ucluster3b
+			}
+		}
+		event_target:ucluster2 = {
+			add_hyperlane = {
+				from = event_target:ucluster2
+				to = event_target:ucluster1
+			}
+			add_hyperlane = {
+				from = event_target:ucluster2
+				to = event_target:ucluster3
+			}
+			add_hyperlane = {
+				from = event_target:ucluster2
+				to = event_target:ucluster2b
+			}
+			add_hyperlane = {
+				from = event_target:ucluster2
+				to = event_target:ucluster2c
+			}
+		}
+
+		event_target:ucluster1 = {
+			add_hyperlane = {
+				from = event_target:ucluster1
+				to = event_target:ucluster1b
+			}
+		}
+		event_target:ucluster1b = {
+			add_hyperlane = {
+				from = event_target:ucluster1b
+				to = event_target:ucluster2b
+			}
+		}
+		set_spawn_system_batch = end
+		# 迁都到目标星球
+		event_target:ucluster1 = {
+			create_starbase = {
+				owner = event_target:gts_ultra_country
+				size = starbase_starport
+				module = shipyard
+				module = anchorage
+				building = crew_quarters
+			}
+		}
+		random_planet_within_border = {
+			limit = {
+				has_planet_flag = ultra_home_planet
+			}
+			create_colony = {
+				owner = event_target:gts_ultra_country
+			}
+			while = {
+				count = 5
+				create_pop_group = {
+					species = owner
+				}
+			}
+			set_capital = yes
+		}
+		#移除原有星球
+		every_owned_planet = {
+			limit = {
+				NOT = {
+					has_planet_flag = ultra_home_planet
+				}
+			}
+			change_pc = pc_barren
+			clear_planet_modifiers = yes
+			clear_deposits = yes
+		}
+		# 蠢驴似乎没做这一部分
+		# every_galaxy_planet = {
+		# 	set_surveyed = { surveyed = no surveyor = event_target:gts_ultra_country }
+		# }
+		country_event = {
+			id = gts_ultra_road.10
+			days = 7
+		}
+	}
+}
+
+#开局事件
+country_event = {
+	id = gts_ultra_road.10
+	title = gts_ultra_road.10.name
+	desc = gts_ultra_road.10.desc
+	picture = GFX_gtsra_load_14
+	show_sound = event_default
+	is_triggered_only = yes
+
+	option = {
+		name = gts_ultra_road.10.a
+	}
+	option = {
+		name = gts_ultra_road.10.b
+	}
+	option = {
+		name = gts_ultra_road.10.c
+	}
+	
+	after = {
+		hidden_effect = {
+			country_event = {
+				id = gts_ultra_road.11
+				days = 7
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_ultra_road.11
+	title = gts_ultra_road.11.name
+	desc = gts_ultra_road.11.desc
+	picture = GFX_gtsra_load_14
+	show_sound = event_default
+	is_triggered_only = yes
+
+	option = {
+		name = gts_ultra_road.11.a
+		custom_tooltip = gts_ultra_road.11.a.tooltip
+	}
+	option = {
+		name = gts_ultra_road.11.b
+		custom_tooltip = gts_ultra_road.11.b.tooltip
+	}
+	option = {
+		name = gts_ultra_road.11.c
+		custom_tooltip = gts_ultra_road.11.c.tooltip
+	}
+}
+ship_event = {
+	id = gts_ultra_road.12
+	title = gts_ultra_road.12.name
+	desc = gts_ultra_road.12.desc
+	picture = GFX_gtsra_load_14
+	show_sound = event_default
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		from = {
+			has_star_flag = gts_ultra_system
+		}
+		owner = {
+			has_origin = origin_ultra_road
+		}
+	}
+
+	option = {
+		name = gts_ultra_road.12.a
+		owner = {
+			add_resource = {
+				unity = 1000
+			}
+		}
+	}
+	option = {
+		name = gts_ultra_road.12.b
+		owner = {
+			add_resource = {
+				unity = 1000
+			}
+		}
+	}
+}
+ship_event = {
+	id = gts_ultra_road.13
+	title = gts_ultra_road.13.name
+	desc = gts_ultra_road.13.desc
+	picture = GFX_gtsra_load_14
+	show_sound = event_default
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		from = {
+			has_star_flag = gts_ultra_system
+			any_system_planet = {
+				is_colonizable = yes
+			}
+		}
+		owner = {
+			has_origin = origin_ultra_road
+		}
+	}
+
+	option = {
+		name = gts_ultra_road.13.a
+		owner = {
+			add_resource = {
+				influence = 50
+			}
+		}
+	}
+	option = {
+		name = gts_ultra_road.13.b
+		owner = {
+			add_resource = {
+				unity = 500
+			}
+		}
+	}
+}
+ship_event = {
+	id = gts_ultra_road.14
+	title = gts_ultra_road.14.name
+	desc = gts_ultra_road.14.desc
+	picture = GFX_gtsra_load_14
+	show_sound = event_default
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		from = {
+			has_star_flag = gts_ultra_system
+			any_system_planet = {
+				has_anomaly = yes
+			}
+		}
+		owner = {
+			has_origin = origin_ultra_road
+		}
+	}
+
+	option = {
+		name = gts_ultra_road.14.a
+		owner = {
+			add_resource = {
+				influence = 50
+			}
+		}
+	}
+	option = {
+		name = gts_ultra_road.14.b
+		owner = {
+			add_resource = {
+				unity = 500
+			}
+		}
+	}
+}
+ship_event = {
+	id = gts_ultra_road.15
+	title = gts_ultra_road.15.name
+	desc = gts_ultra_road.15.desc
+	picture = GFX_gtsra_load_14
+	show_sound = event_default
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		from = {
+			has_star_flag = gts_ultra_system_with_wormhole
+		}
+		owner = {
+			has_origin = origin_ultra_road
+		}
+	}
+
+	option = {
+		name = gts_ultra_road.15.a
+		
+	}
+	option = {
+		name = gts_ultra_road.15.b
+		
+	}
+	after = {
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = gts_ultra_road.16
+					days = 30
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_ultra_road.16
+	title = gts_ultra_road.16.name
+	desc = gts_ultra_road.16.desc
+	picture = GFX_gtsra_load_14
+	show_sound = event_default
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = gts_ultra_road.16.a
+		
+	}
+	option = {
+		name = gts_ultra_road.16.b
+		
+	}
+	after = {
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = gts_ultra_road.17
+					days = 60
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_ultra_road.17
+	title = gts_ultra_road.17.name
+	desc = gts_ultra_road.17.desc
+	picture = GFX_gtsra_load_14
+	show_sound = event_default
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		set_country_flag = finish_gts_ultra_road_wormhole
+	}
+
+	option = {
+		name = gts_ultra_road.17.a
+		add_resource = {
+			energy = -200
+			engineering_research = 500
+		}
+	}
+	option = {
+		name = gts_ultra_road.17.b
+		
+	}
+}
+ship_event = {
+	id = gts_ultra_road.18
+	title = gts_ultra_road.18.name
+	desc = gts_ultra_road.18.desc
+	picture = GFX_gtsra_load_14
+	show_sound = event_default
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		from = {
+			has_star_flag = gts_ultra_system_with_gateway
+		}
+		owner = {
+			has_origin = origin_ultra_road
+		}
+	}
+
+	immediate = {
+		owner = {
+			set_country_flag =  finish_gts_ultra_gate_way
+		}
+	}
+
+	option = {
+		name = gts_ultra_road.18.a
+		owner = {
+			add_resource = {
+				engineering_research = 200
+			}
+		}
+	}
+	option = {
+		name = gts_ultra_road.18.b
+		trigger = {
+			owner = {
+				has_country_flag = finish_gts_ultra_road_wormhole
+			}
+		}
+		owner = {
+			add_resource = {
+				engineering_research = 200
+			}
+		}
+	}
+	option = {
+		name = gts_ultra_road.18.c
+		trigger = {
+			owner = {
+				has_country_flag = finish_gts_ultra_road_wormhole
+			}
+		}
+		owner = {
+			add_resource = {
+				engineering_research = 200
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_ultra_road.19
+	title = gts_ultra_road.19.name
+	desc = gts_ultra_road.19.desc
+	picture = GFX_gtsra_load_14
+	show_sound = event_default
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		has_origin = origin_ultra_road
+		and = {
+			has_country_flag = finish_gts_ultra_road_wormhole
+			has_country_flag = finish_gts_ultra_road_gateway
+		}
+	}
+
+	option = {
+		name = gts_ultra_road.19.a
+		
+	}
+	after = {
+		hidden_effect = {
+			country_event = {
+				id = gts_ultra_road.20
+				days = 30
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_ultra_road.20
+	title = gts_ultra_road.20.name
+	desc = gts_ultra_road.20.desc
+	picture = GFX_gtsra_load_14
+	show_sound = event_default
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = gts_ultra_road.20.a
+		give_technology = {
+			tech = tech_wormhole_stabilization
+		}
+	}
+}
+ship_event = {
+	id = gts_ultra_road.21
+	title = gts_ultra_road.21.name
+	desc = gts_ultra_road.21.desc
+	picture = GFX_gtsra_load_14
+	show_sound = event_default
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		from = {
+			NOR = {
+				has_star_flag = gts_ultra_system
+				has_star_flag = ultra_home_system
+			}
+		}
+		owner = {
+			has_origin = origin_ultra_road
+		}
+	}
+
+	option = {
+		name = gts_ultra_road.21.a
+		owner = {
+			add_resource = {
+				unity = 2000
+			}
+		}
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = gts_ultra_road.22
+					days = 90
+					random = 90
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_ultra_road.22
+	title = gts_ultra_road.22.name
+	desc = gts_ultra_road.22.desc
+	picture = GFX_gtsra_load_14
+	show_sound = event_default
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = gts_ultra_road.22.a
+		add_resource = {
+			physics_research = 1000
+			society_research = 1000
+			engineering_research = 1000
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_ultra_road.23
+				days = 180
+				random = 60
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_ultra_road.23
+	title = gts_ultra_road.23.name
+	desc = gts_ultra_road.23.desc
+	picture = GFX_gtsra_load_14
+	show_sound = event_default
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		random_country = {
+			limit = {
+				is_country_type = default
+			}
+			save_event_target_as = gts_ultra_road_communicate_country
+		}
+	}
+
+	option = {
+		name = gts_ultra_road.23.a
+		hidden_effect = {
+			country_event = {
+				id = gts_ultra_road.24
+			}
+		}
+	}
+	option = {
+		name = gts_ultra_road.23.b
+		hidden_effect = {
+			country_event = {
+				id = gts_ultra_road.28
+			}
+		}
+	}
+	option = {
+		name = gts_ultra_road.23.c
+		hidden_effect = {
+			country_event = {
+				id = gts_ultra_road.29
+			}
+		}
+		
+	}
+}
+country_event = {
+	id = gts_ultra_road.24
+	title = gts_ultra_road.24.name
+	desc = gts_ultra_road.24.desc
+	diplomatic = yes
+	
+	picture_event_data = {
+		portrait = event_target:gts_ultra_road_communicate_country.ruler
+		room = default_room
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = gts_ultra_road.24.a
+		hidden_effect = {
+			country_event = {
+				id = gts_ultra_road.25
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_ultra_road.25
+	title = gts_ultra_road.25.name
+	desc = gts_ultra_road.25.desc
+	diplomatic = yes
+	
+	picture_event_data = {
+		portrait = event_target:gts_ultra_road_communicate_country.ruler
+		room = default_room
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = gts_ultra_road.25.a
+		hidden_effect = {
+			country_event = {
+				id = gts_ultra_road.26
+			}
+		}
+	}
+	option = {
+		name = gts_ultra_road.25.b
+		hidden_effect = {
+			country_event = {
+				id = gts_ultra_road.27
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_ultra_road.26
+	title = gts_ultra_road.26.name
+	desc = gts_ultra_road.26.desc
+	diplomatic = yes
+	
+	picture_event_data = {
+		portrait = event_target:gts_ultra_road_communicate_country.ruler
+		room = default_room
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = gts_ultra_road.26.a
+		hidden_effect = {
+			country_event = {
+				id = gts_ultra_road.32
+				days = 30
+				random = 90
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_ultra_road.27
+	title = gts_ultra_road.27.name
+	desc = gts_ultra_road.27.desc
+	diplomatic = yes
+	
+	picture_event_data = {
+		portrait = event_target:gts_ultra_road_communicate_country.ruler
+		room = default_room
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = gts_ultra_road.27.a
+		hidden_effect = {
+			country_event = {
+				id = gts_ultra_road.32
+				days = 30
+				random = 90
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_ultra_road.28
+	title = gts_ultra_road.28.name
+	desc = gts_ultra_road.28.desc
+	diplomatic = yes
+	
+	picture_event_data = {
+		portrait = event_target:gts_ultra_road_communicate_country.ruler
+		room = default_room
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = {
+		name = gts_ultra_road.28.a
+		hidden_effect = {
+			country_event = {
+				id = gts_ultra_road.32
+				days = 30
+				random = 90
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_ultra_road.29
+	title = gts_ultra_road.29.name
+	desc = gts_ultra_road.29.desc
+	diplomatic = yes
+	
+	picture_event_data = {
+		portrait = event_target:gts_ultra_road_communicate_country.ruler
+		room = default_room
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = gts_ultra_road.29.a
+		hidden_effect = {
+			country_event = {
+				id =  gts_ultra_road.30
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_ultra_road.30
+	title = gts_ultra_road.30.name
+	desc = gts_ultra_road.30.desc
+	diplomatic = yes
+	
+	picture_event_data = {
+		portrait = event_target:gts_ultra_road_communicate_country.ruler
+		room = default_room
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = gts_ultra_road.30.a
+		hidden_effect = {
+			country_event = {
+				id =  gts_ultra_road.31
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_ultra_road.31
+	title = gts_ultra_road.31.name
+	desc = gts_ultra_road.31.desc
+	diplomatic = yes
+	
+	picture_event_data = {
+		portrait = event_target:gts_ultra_road_communicate_country.ruler
+		room = default_room
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = gts_ultra_road.31.a
+		hidden_effect = {
+			country_event = {
+				id = gts_ultra_road.32
+				days = 30
+				random = 90
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_ultra_road.32
+	title = gts_ultra_road.32.name
+	desc = gts_ultra_road.32.desc
+	picture = GFX_load_49
+	show_sound = event_default
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = gts_ultra_road.32.a
+		custom_tooltip = gts_ultra_road.32.a.tooltip
+		hidden_effect = {
+			country_event = {
+				id = gts_ultra_road.100
+			}
+		}
+	}
+	option = {
+		name = gts_ultra_road.32.b
+		custom_tooltip = gts_ultra_road.32.b.tooltip
+		allow = {
+			always = no
+		}
+	}
+	option = {
+		name = gts_ultra_road.32.c
+		custom_tooltip = gts_ultra_road.32.c.tooltip
+		allow = {
+			always = no
+		}
+	}
+}
+
+# 进入局势分支
+country_event = {
+	id = gts_ultra_road.100
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		start_situation = {
+			type = gts_situation_ultra_road_cruel_1
+			target = root
+		}
+	}
+}
+
+# 残忍分支1
+situation_event = {
+	id = gts_ultra_road.200
+	title = gts_ultra_road.200.name
+	desc = gts_ultra_road.200.desc
+	picture = GFX_lottie_site5
+	show_sound = event_default
+	is_triggered_only = yes
+	situation = this
+	force_open = yes
+	option = {
+		name = gts_ultra_road.200.a
+		
+	}
+}
+
+# 残忍分支2
+situation_event = {
+	id = gts_ultra_road.300
+	title = gts_ultra_road.300.name
+	desc = gts_ultra_road.300.desc
+	picture = GFX_lottie_site5
+	show_sound = event_default
+	is_triggered_only = yes
+	situation = this
+	force_open = yes
+	option = {
+		name = gts_ultra_road.300.a
+		owner = {
+			start_situation = {
+				type = gts_situation_ultra_road_cruel_2
+				target = root
+			}
+		}
+	}
+}
+# 绝对残忍系
+situation_event = {
+	id = gts_ultra_road.310
+	title = gts_ultra_road.310.name
+	desc = gts_ultra_road.310.desc
+	picture = GFX_gtsra_load_14
+	show_sound = event_default
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+
+	}
+
+	immediate = {
+		
+	}
+
+	option = {
+		name = gts_ultra_road.310.a
+
+	}
+}
+situation_event = {
+	id = gts_ultra_road.311
+	title = gts_ultra_road.311.name
+	desc = gts_ultra_road.311.desc
+	picture = GFX_gtsra_load_14
+	show_sound = event_default
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+
+	}
+
+	immediate = {
+		
+	}
+
+	option = {
+		name = gts_ultra_road.311.a
+
+	}
+}
+situation_event = {
+	id = gts_ultra_road.312
+	title = gts_ultra_road.312.name
+	desc = gts_ultra_road.312.desc
+	picture = GFX_gtsra_load_14
+	show_sound = event_default
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+
+	}
+
+	immediate = {
+		
+	}
+
+	option = {
+		name = gts_ultra_road.312.a
+		hidden_effect = {
+			owner = {
+				set_country_flag = gts_situation_ultra_road_cruel_2_buy
+			}
+		}
+	}
+	option = {
+		name = gts_ultra_road.312.b
+		hidden_effect = {
+			owner = {
+				set_country_flag = gts_situation_ultra_road_cruel_2_loot
+			}
+		}
+	}
+}
+situation_event = {
+	id = gts_ultra_road.313
+	title = gts_ultra_road.313.name
+	desc = gts_ultra_road.313.desc
+	picture = GFX_gtsra_load_14
+	show_sound = event_default
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+
+	}
+
+	immediate = {
+		
+	}
+
+	option = {
+		name = gts_ultra_road.313.a
+
+	}
+}
+situation_event = {
+	id = gts_ultra_road.314
+	title = gts_ultra_road.314.name
+	desc = gts_ultra_road.314.desc
+	picture = GFX_gtsra_load_14
+	show_sound = event_default
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+
+	}
+
+	immediate = {
+		
+	}
+
+	option = {
+		name = gts_ultra_road.314.a
+
+	}
+}
+situation_event = {
+	id = gts_ultra_road.315
+	title = gts_ultra_road.315.name
+	desc = gts_ultra_road.315.desc
+	picture = GFX_gtsra_load_14
+	show_sound = event_default
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+
+	}
+
+	immediate = {
+		
+	}
+
+	option = {
+		name = gts_ultra_road.315.a
+
+	}
+	option = {
+		name = gts_ultra_road.315.b
+		
+	}
+}
+situation_event = {
+	id = gts_ultra_road.316
+	title = gts_ultra_road.316.name
+	desc = gts_ultra_road.316.desc
+	picture = GFX_gtsra_load_14
+	show_sound = event_default
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+
+	}
+
+	immediate = {
+		
+	}
+
+	option = {
+		name = gts_ultra_road.316.a
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = gts_ultra_road.317
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_ultra_road.316.b
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = gts_ultra_road.318
+					days = 365
+					random = 365
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_ultra_road.317
+	title = gts_ultra_road.317.name
+	desc = gts_ultra_road.317.desc
+	show_sound = event_announcement
+	diplomatic = yes
+	
+	picture_event_data = {
+		portrait = root.ruler
+		room = "crisis_room"
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = gts_ultra_road.317.a
+		hidden_effect = {
+			country_event = {
+				id = gts_ultra_road.400
+				days = 60
+				random = 300
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_ultra_road.318
+	title = gts_ultra_road.318.name
+	desc = gts_ultra_road.318.desc
+	show_sound = event_announcement
+	diplomatic = yes
+	
+	picture_event_data = {
+		portrait = root.ruler
+		room = "crisis_room"
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = gts_ultra_road.318.a
+		hidden_effect = {
+			country_event = {
+				id = gts_ultra_road.400
+				days = 60
+				random = 300
+			}
+		}
+	}
+}
+
+
+
+# 秩序残忍系
+situation_event = {
+	id = gts_ultra_road.320
+	title = gts_ultra_road.320.name
+	desc = gts_ultra_road.320.desc
+	picture = GFX_gtsra_load_14
+	show_sound = event_default
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+
+	}
+
+	immediate = {
+		
+	}
+
+	option = {
+		name = gts_ultra_road.320.a
+		hidden_effect = {
+			owner = {
+				set_country_flag = gts_situation_ultra_road_cruel_2_order
+			}
+		}
+	}
+	option = {
+		name = gts_ultra_road.320.b
+		hidden_effect = {
+			owner = {
+				set_country_flag = gts_situation_ultra_road_cruel_2_hamony
+			}
+		}
+	}
+}
+situation_event = {
+	id = gts_ultra_road.321
+	title = gts_ultra_road.321.name
+	desc = gts_ultra_road.321.desc
+	picture = GFX_gtsra_load_14
+	show_sound = event_default
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+
+	}
+
+	immediate = {
+		
+	}
+
+	option = {
+		name = gts_ultra_road.321.a
+
+	}
+}
+situation_event = {
+	id = gts_ultra_road.322
+	title = gts_ultra_road.322.name
+	desc = gts_ultra_road.322.desc
+	picture = GFX_gtsra_load_14
+	show_sound = event_default
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+
+	}
+
+	immediate = {
+		
+	}
+
+	option = {
+		name = gts_ultra_road.322.a
+
+	}
+}
+situation_event = {
+	id = gts_ultra_road.323
+	title = gts_ultra_road.323.name
+	desc = gts_ultra_road.323.desc
+	picture = GFX_gtsra_load_14
+	show_sound = event_default
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+
+	}
+
+	immediate = {
+		
+	}
+
+	option = {
+		name = gts_ultra_road.323.a
+
+	}
+	option = {
+		name = gts_ultra_road.323.b
+		
+	}
+}
+situation_event = {
+	id = gts_ultra_road.324
+	title = gts_ultra_road.324.name
+	desc = gts_ultra_road.324.desc
+	picture = GFX_gtsra_load_14
+	show_sound = event_default
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+
+	}
+
+	immediate = {
+		
+	}
+
+	option = {
+		name = gts_ultra_road.324.a
+
+	}
+}
+situation_event = {
+	id = gts_ultra_road.325
+	title = gts_ultra_road.325.name
+	desc = gts_ultra_road.325.desc
+	picture = GFX_gtsra_load_14
+	show_sound = event_default
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+
+	}
+
+	immediate = {
+		
+	}
+
+	option = {
+		name = gts_ultra_road.325.a
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = gts_ultra_road.326
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_ultra_road.325.b
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = gts_ultra_road.326
+					days = 365
+					random = 365
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_ultra_road.326
+	title = gts_ultra_road.326.name
+	desc = gts_ultra_road.326.desc
+	show_sound = event_announcement
+	diplomatic = yes
+	
+	picture_event_data = {
+		portrait = root.ruler
+		room = "crisis_room"
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = gts_ultra_road.326.a
+		hidden_effect = {
+			country_event = {
+				id = gts_ultra_road.400
+				days = 60
+				random = 300
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_ultra_road.327
+	title = gts_ultra_road.327.name
+	desc = gts_ultra_road.327.desc
+	show_sound = event_announcement
+	diplomatic = yes
+	
+	picture_event_data = {
+		portrait = root.ruler
+		room = "crisis_room"
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = gts_ultra_road.327.a
+		hidden_effect = {
+			country_event = {
+				id = gts_ultra_road.400
+				days = 60
+				random = 300
+			}
+		}
+	}
+}
+
+# 秩序线结束后
+country_event = {
+	id = gts_ultra_road.400
+	title = gts_ultra_road.400.name
+	desc = gts_ultra_road.400.desc
+	picture = GFX_gtsra_load_14
+	show_sound = event_default
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+
+	}
+
+	immediate = {
+		set_country_flag = gts_ultra_road_first_war
+	}
+
+	option = {
+		name = gts_ultra_road.400.a
+
+	}
+}
+country_event = {
+	id = gts_ultra_road.410
+	title = gts_ultra_road.410.name
+	desc = gts_ultra_road.410.desc
+	picture = GFX_gtsra_load_14
+	show_sound = event_default
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		root = {
+			has_country_flag = gts_ultra_road_first_war
+		}
+	}
+
+	immediate = {
+		
+	}
+
+	option = {
+		name = gts_ultra_road.410.a
+		root = {
+			add_resource = {
+				influence = 75
+			}
+		}
+	}
+	option = {
+		name = gts_ultra_road.410.b
+		root = {
+			add_resource = {
+				unity = 7500
+			}
+		}
+	}
+}
+fleet_event = {
+	id = gts_ultra_road.411
+	title = gts_ultra_road.411.name
+	desc = gts_ultra_road.411.desc
+	picture = GFX_gtsra_load_14
+	show_sound = event_default
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		owner = {
+			has_country_flag = gts_ultra_road_first_war
+		}
+		from = {
+			# 舰队距离交战帝国首都一跳
+			any_neighbor_system = {
+				exists = owner
+				any_system_planet = {
+					is_capital = yes
+					owner = {
+						is_at_war_with = root.owner
+					}
+				}
+			}
+		}
+	}
+
+	immediate = {
+		
+	}
+
+	option = {
+		name = gts_ultra_road.411.a
+
+	}
+	option = {
+		name = gts_ultra_road.411.b
+
+	}
+}
+fleet_event = {
+	id = gts_ultra_road.412
+	title = gts_ultra_road.412.name
+	desc = gts_ultra_road.412.desc
+	picture = GFX_gtsra_load_14
+	show_sound = event_default
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		owner = {
+			has_country_flag = gts_ultra_road_first_war
+		}
+		from = {
+			# 舰队到达帝国首都
+			any_system_planet = {
+				is_capital = yes
+				owner = {
+					is_at_war_with = root.owner
+				}
+			}
+		}
+	}
+
+	immediate = {
+		
+	}
+
+	option = {
+		name = gts_ultra_road.412.a
+
+	}
+	option = {
+		name = gts_ultra_road.412.b
+
+	}
+}
+country_event = {
+	id = gts_ultra_road.413
+	title = gts_ultra_road.413.name
+	desc = gts_ultra_road.413.desc
+	picture = GFX_gtsra_load_14
+	show_sound = event_default
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		root = {
+			has_country_flag = gts_ultra_road_first_war
+		}
+	}
+
+	immediate = {
+		
+	}
+
+	option = {
+		name = gts_ultra_road.413.a
+
+	}
+	option = {
+		name = gts_ultra_road.413.b
+
+	}
+	after = {
+		hidden_effect = {
+			remove_country_flag = gts_ultra_road_first_war
+			country_event = {
+				id = gts_ultra_road.420
+				days = 180
+				random = 180
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_ultra_road.420
+	title = gts_ultra_road.420.name
+	desc = gts_ultra_road.420.desc
+	picture = GFX_gtsra_load_14
+	show_sound = event_default
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+
+	}
+
+	immediate = {
+		set_country_flag = gts_ultra_road_sec_war
+	}
+
+	option = {
+		name = gts_ultra_road.420.a
+
+	}
+	option = {
+		name = gts_ultra_road.420.b
+
+	}
+}
+country_event = {
+	id = gts_ultra_road.421
+	title = gts_ultra_road.421.name
+	desc = gts_ultra_road.421.desc
+	picture = GFX_gtsra_load_14
+	show_sound = event_default
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		root = {
+			has_country_flag = gts_ultra_road_sec_war
+		}
+	}
+
+	immediate = {
+		
+	}
+
+	option = {
+		name = gts_ultra_road.421.a
+
+	}
+}
+fleet_event = {
+	id = gts_ultra_road.422
+	title = gts_ultra_road.422.name
+	desc = gts_ultra_road.422.desc
+	picture = GFX_gtsra_load_14
+	show_sound = event_default
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		owner = {
+			has_country_flag = gts_ultra_road_sec_war
+		}
+		from = {
+			# 舰队距离交战帝国首都一跳
+			any_neighbor_system = {
+				exists = owner
+				any_system_planet = {
+					is_capital = yes
+					owner = {
+						is_at_war_with = root.owner
+					}
+				}
+			}
+		}
+	}
+
+	immediate = {
+		
+	}
+
+	option = {
+		name = gts_ultra_road.422.a
+
+	}
+	option = {
+		name = gts_ultra_road.422.b
+
+	}
+}
+country_event = {
+	id = gts_ultra_road.423
+	title = gts_ultra_road.423.name
+	desc = gts_ultra_road.423.desc
+	picture = GFX_gtsra_load_14
+	show_sound = event_default
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		root = {
+			has_country_flag = gts_ultra_road_sec_war
+		}
+	}
+
+	immediate = {
+		
+	}
+
+	option = {
+		name = gts_ultra_road.423.a
+
+	}
+	option = {
+		name = gts_ultra_road.423.b
+
+	}
+}
+country_event = {
+	# 这个事件的触发方式有待考虑，暂时不做
+	id = gts_ultra_road.424
+	title = gts_ultra_road.424.name
+	desc = gts_ultra_road.424.desc
+	picture = GFX_gtsra_load_14
+	show_sound = event_default
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+
+	}
+
+	immediate = {
+		
+	}
+
+	option = {
+		name = gts_ultra_road.424.a
+
+	}
+	option = {
+		name = gts_ultra_road.424.b
+
+	}
+}

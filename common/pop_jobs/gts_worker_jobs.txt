@@ -1,0 +1,273 @@
+#巨娘地貌开拓者
+gts_deposit_explorer = {
+	category = worker
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_ruined
+			icon = researcher
+		}
+	}
+
+	tags = { unity amenities }
+
+	inline_script = "jobs/automodding_priority_unity"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = worker
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+	possible = {
+		gts_is_tiny = yes
+	}
+	possible_precalc = can_fill_worker_job
+	resources = {
+		category = planet_jobs
+		produces = {
+			unity = 4
+			gts_giantess_fluid = 2
+			gts_giantess_underwear = 0.5
+		}
+		upkeep = {
+			trigger = {
+				is_lithoid = no
+			}
+			consumer_goods = 1
+			food = 4
+		}
+		upkeep = {
+			trigger = {
+				is_lithoid = yes
+			}
+			consumer_goods = 1
+			minerals = 4
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					is_machine_empire = yes
+				}
+			}
+			energy = 6
+		}
+	}
+	triggered_planet_modifier = {
+		potential = { always = yes }
+		planet_amenities_add = 50
+	}
+
+	weight = {
+		weight = 10
+	}
+}
+
+lingruzhe_producer = { #拾荒者
+	category = worker
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_hstar_lingruzhe_factory
+		}
+	}
+
+	tags = { }
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = worker
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_worker_job #可能前提：可以胜任工人职务
+	resources = {
+		category = planet_jobs
+		produces = {
+			gts_hstar_lingruzhe = 0.5
+		}
+		upkeep = { 
+			consumer_goods = 2
+			food = 2	#维护费
+		}
+	}
+    weight = {
+		weight = @worker_job_weight
+	}
+}
+
+nano_robot_taker = {
+	category = worker
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_hstar_lingruzhe_factory
+		}
+	}
+
+	tags = { }
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = worker
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_worker_job #可能前提：可以胜任工人职务
+	resources = {
+		category = planet_jobs
+		produces = {
+			nanites = 1 
+		}
+		upkeep = { 
+			consumer_goods = 2
+			minerals = 2
+			energy = 2	#维护费
+		}
+	}
+    weight = {
+		weight = @worker_job_weight
+	}
+}
+
+gts_godness_power_keeper = {
+    #再教育职工
+    category = worker
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_residence
+		}
+	}
+
+	tags = { }
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = worker
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+    possible_pre_triggers = {
+        has_owner = yes
+        is_being_purged = no
+        is_being_assimilated = no
+        is_sapient = yes
+    }
+    possible = {
+        gts_is_tiny = yes
+    }
+    possible_precalc = can_fill_worker_job
+    resources = {
+        category = planet_jobs		#类型
+        produces = {
+            unity = 2
+            gts_giantess_fluid = 0.1
+        }
+	    upkeep = { 
+			energy = 2
+	    }
+    }
+	planet_modifier = {
+        planet_jobs_produces_mult = 0.015
+    }
+    weight = {
+        weight = @worker_job_weight
+        modifier = {
+            factor = 10
+            gts_is_tiny = yes
+        }
+        modifier = {
+            factor = 10
+            has_job = gts_godness_power_keeper
+        }
+    }
+}
+
+gts_wastedlander = {
+	#拾荒者
+	category = worker
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_residence
+		}
+	}
+
+	tags = { unity food minerals }
+
+	inline_script = "jobs/automodding_priority_unity"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = worker
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+	possible_precalc = can_fill_worker_job
+	possible = {
+
+	}
+	resources = {
+		category = planet_jobs		#类型
+		produces = {
+			food = 1
+			minerals = 1
+			unity = 1
+		}
+		#	upkeep = { #维护费
+		#	}
+	}
+	weight = {
+		weight = @worker_job_weight
+	}
+}
+

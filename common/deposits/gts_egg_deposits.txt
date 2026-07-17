@@ -1,0 +1,638 @@
+# 卵子
+
+d_damaged_generator_ruins = {
+
+	# 沖毀的能源廢墟
+
+	is_for_colonizable = yes
+	icon = d_city_ruins
+	category = deposit_cat_blockers_natural
+	time = 360
+
+	blocker_swap_types = {
+		d_gts_generator_deposit
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -2
+	}
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 1000
+		}
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_gts_generator_deposit = {
+
+	# 水能-生物能發電區
+
+	is_for_colonizable = yes
+	icon = d_building_complex
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		planet_jobs_energy_produces_mult = 0.05
+		job_technician_add = 200
+	}
+
+	resources = {
+		category = planet_deposits
+		produces = {
+			energy = 20
+		}
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_damaged_farming_ruins = {
+
+	# 沖毀的農場廢墟
+
+	is_for_colonizable = yes
+	icon = d_city_ruins
+	category = deposit_cat_blockers_natural
+	time = 360
+
+	blocker_swap_types = {
+		d_gts_farming_deposit
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -2
+	}
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 1000
+		}
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_gts_farming_deposit = {
+
+	# 新式農業技術區
+
+	is_for_colonizable = yes
+	icon = d_toxic_kelp
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		planet_jobs_food_produces_mult = 0.05
+		job_farmer_add = 200
+	}
+
+	resources = {
+		category = planet_deposits
+		produces = {
+			food = 20
+		}
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+
+}
+
+d_damaged_mining_ruins = {
+
+	# 沖毀的礦區廢墟
+
+	is_for_colonizable = yes
+	icon = d_city_ruins
+	category = deposit_cat_blockers_natural
+	time = 360
+
+	blocker_swap_types = {
+		d_gts_mining_deposit
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -2
+	}
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 1000
+		}
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_gts_mining_deposit = {
+
+	# 高品位大型礦區
+
+	is_for_colonizable = yes
+	icon = d_marvelous_oasis
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		planet_jobs_minerals_produces_mult = 0.05
+		job_miner_add = 200
+	}
+
+	resources = {
+		category = planet_deposits
+		produces = {
+			minerals = 20
+		}
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_gts_egg_dig_a = {
+
+	# 卵子外層-1
+
+	is_for_colonizable = yes
+	icon = d_gtsra_giga_loli_egg
+	category = deposit_cat_blockers_natural
+	time = 360
+
+	planet_modifier = {
+		planet_max_districts_add = -200
+	}
+
+	on_cleared = {
+		random_list = {
+			2 = {
+				planet_event = {
+					id = gts_egg.1
+				}
+			}
+			1 = {
+				planet_event = {
+					id = gts_egg.2
+				}
+			}
+			1 = {
+				planet_event = {
+					id = gts_egg.3
+				}
+			}
+		}
+		add_deposit = d_gts_egg_dig_b
+	}
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 5000
+		}
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_gts_egg_dig_b = {
+
+	# 卵子外層-2
+
+	is_for_colonizable = yes
+	icon = d_gtsra_giga_loli_egg
+	category = deposit_cat_blockers_natural
+	time = 360
+
+	planet_modifier = {
+		planet_max_districts_add = -190
+	}
+
+	on_cleared = {
+		random_list = {
+			2 = {
+				planet_event = {
+					id = gts_egg.1
+				}
+			}
+			1 = {
+				planet_event = {
+					id = gts_egg.2
+				}
+			}
+			1 = {
+				planet_event = {
+					id = gts_egg.3
+				}
+			}
+		}
+		add_deposit = d_gts_egg_dig_c
+	}
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 6000
+		}
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_gts_egg_dig_c = {
+
+	# 卵子外層-3
+
+	is_for_colonizable = yes
+	icon = d_gtsra_giga_loli_egg
+	category = deposit_cat_blockers_natural
+	time = 360
+
+	planet_modifier = {
+		planet_max_districts_add = -165
+	}
+
+	on_cleared = {
+		random_list = {
+			2 = {
+				planet_event = {
+					id = gts_egg.1
+				}
+			}
+			1 = {
+				planet_event = {
+					id = gts_egg.2
+				}
+			}
+			1 = {
+				planet_event = {
+					id = gts_egg.3
+				}
+			}
+		}
+		add_deposit = d_gts_egg_dig_d
+	}
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 7000
+		}
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_gts_egg_dig_d = {
+
+	# 卵子中層-1
+
+	is_for_colonizable = yes
+	icon = d_gtsra_giga_loli_egg
+	category = deposit_cat_blockers_natural
+	time = 360
+
+	planet_modifier = {
+		planet_max_districts_add = -140
+	}
+
+	on_cleared = {
+		random_list = {
+			2 = {
+				planet_event = {
+					id = gts_egg.1
+				}
+			}
+			1 = {
+				planet_event = {
+					id = gts_egg.2
+				}
+			}
+			1 = {
+				planet_event = {
+					id = gts_egg.3
+				}
+			}
+		}
+		add_deposit = d_gts_egg_dig_e
+	}
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 8000
+		}
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_gts_egg_dig_e = {
+
+	# 卵子中層-2
+
+	is_for_colonizable = yes
+	icon = d_gtsra_giga_loli_egg
+	category = deposit_cat_blockers_natural
+	time = 360
+
+	planet_modifier = {
+		planet_max_districts_add = -115
+	}
+
+	on_cleared = {
+		random_list = {
+			2 = {
+				planet_event = {
+					id = gts_egg.1
+				}
+			}
+			1 = {
+				planet_event = {
+					id = gts_egg.2
+				}
+			}
+			1 = {
+				planet_event = {
+					id = gts_egg.3
+				}
+			}
+		}
+		add_deposit = d_gts_egg_dig_f
+	}
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 9000
+		}
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_gts_egg_dig_f = {
+
+	# 卵子中層-3
+
+	is_for_colonizable = yes
+	icon = d_gtsra_giga_loli_egg
+	category = deposit_cat_blockers_natural
+	time = 360
+
+	planet_modifier = {
+		planet_max_districts_add = -90
+	}
+
+	on_cleared = {
+		random_list = {
+			2 = {
+				planet_event = {
+					id = gts_egg.1
+				}
+			}
+			1 = {
+				planet_event = {
+					id = gts_egg.2
+				}
+			}
+			1 = {
+				planet_event = {
+					id = gts_egg.3
+				}
+			}
+		}
+		add_deposit = d_gts_egg_dig_g
+	}
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 10000
+		}
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_gts_egg_dig_g = {
+
+	# 卵子深層-1
+
+	is_for_colonizable = yes
+	icon = d_gtsra_giga_loli_egg
+	category = deposit_cat_blockers_natural
+	time = 360
+
+	planet_modifier = {
+		planet_max_districts_add = -65
+	}
+
+	on_cleared = {
+		random_list = {
+			2 = {
+				planet_event = {
+					id = gts_egg.1
+				}
+			}
+			1 = {
+				planet_event = {
+					id = gts_egg.2
+				}
+			}
+			1 = {
+				planet_event = {
+					id = gts_egg.3
+				}
+			}
+		}
+		add_deposit = d_gts_egg_dig_h
+	}
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 11000
+		}
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_gts_egg_dig_h = {
+
+	# 卵子深層-2
+
+	is_for_colonizable = yes
+	icon = d_gtsra_giga_loli_egg
+	category = deposit_cat_blockers_natural
+	time = 360
+
+	planet_modifier = {
+		planet_max_districts_add = -40
+	}
+
+	on_cleared = {
+		random_list = {
+			2 = {
+				planet_event = {
+					id = gts_egg.1
+				}
+			}
+			1 = {
+				planet_event = {
+					id = gts_egg.2
+				}
+			}
+			1 = {
+				planet_event = {
+					id = gts_egg.3
+				}
+			}
+		}
+		add_deposit = d_gts_egg_dig_i
+	}
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 12000
+		}
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_gts_egg_dig_i = {
+
+	# 卵子深層-3
+
+	is_for_colonizable = yes
+	icon = d_gtsra_giga_loli_egg
+	category = deposit_cat_blockers_natural
+	time = 360
+
+	planet_modifier = {
+		planet_max_districts_add = -15
+	}
+
+	on_cleared = {
+		random_list = {
+			2 = {
+				planet_event = {
+					id = gts_egg.1
+				}
+			}
+			1 = {
+				planet_event = {
+					id = gts_egg.2
+				}
+			}
+			1 = {
+				planet_event = {
+					id = gts_egg.3
+				}
+			}
+		}
+		add_deposit = d_gts_egg_dig_j
+	}
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 13000
+		}
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_gts_egg_dig_j = {
+
+	# 卵子核心
+
+	is_for_colonizable = yes
+	icon = d_gtsra_giga_loli_egg
+	category = deposit_cat_blockers_natural
+	time = 1800
+
+	planet_modifier = {
+		planet_max_districts_add = -10
+	}
+
+	on_cleared = {
+		planet_event = {
+			id = gts_egg.4
+		}
+	}
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 15000
+		}
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_Egg_core = {
+
+	# 生命之核
+
+	is_for_colonizable = yes
+	icon = d_gtsra_giga_loli_egg
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		planet_housing_mult = 0.30
+		logistic_growth_mult = 0.10
+		bonus_pop_growth = 0.10
+		planet_jobs_unity_produces_mult = 0.20
+		planet_max_districts_add = -150
+	}
+
+	resources = {
+		category = planet_deposits
+		produces = {
+			unity = 50
+		}
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+

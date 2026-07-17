@@ -1,0 +1,254 @@
+# gts_create_t1_arkship_effect = {
+# 	create_fleet = {
+# 		name = random
+# 		effect = {
+# 			set_owner = $OWNER$
+# 			create_ship = {
+# 				name = random
+# 				design = NAME_gts_arkship_tier_1
+# 				graphical_culture = military_arkship
+# 				effect = {
+# 					set_ship_flag = gts_body_ship
+# 					initialize_arkship_starbase_effect = yes
+# 				}
+# 			}
+# 			set_location = $LOCATION$
+# 		}
+# 	}
+# }
+
+# gts_create_base_arkship_effect = {
+# 	if = {
+# 		limit = {
+# 			NOT = {
+# 				any_owned_ship = {
+# 					OR = {
+# 						is_ship_size = gts_arkship_tier_1
+# 						is_ship_size = gts_arkship_tier_2
+# 						is_ship_size = gts_arkship_tier_3
+# 					}
+# 				}
+# 			}
+# 		}
+# 		create_fleet = {
+# 			name = random
+# 			effect = {
+# 				set_owner = root
+# 				if = {
+# 					limit = {
+# 						root = { has_technology = tech_gts_titan_ship }
+# 					}
+# 					create_ship = {
+# 						name = random
+# 						design = NAME_gts_arkship_tier_3
+# 						graphical_culture = military_arkship
+# 						effect = {
+# 							set_ship_flag = gts_body_ship
+# 							initialize_arkship_starbase_effect = yes
+# 						}
+# 					}
+# 				}
+# 				else_if = {
+# 					limit = {
+# 						root = { has_technology = tech_gts_battleship_ship }
+# 					}
+# 					create_ship = {
+# 						name = random
+# 						design = NAME_gts_arkship_tier_2
+# 						graphical_culture = military_arkship
+# 						effect = {
+# 							set_ship_flag = gts_body_ship
+# 							initialize_arkship_starbase_effect = yes
+# 						}
+# 					}
+# 				}
+# 				else = {
+# 					create_ship = {
+# 						name = random
+# 						design = NAME_gts_arkship_tier_1
+# 						graphical_culture = military_arkship
+# 						effect = {
+# 							set_ship_flag = gts_body_ship
+# 							initialize_arkship_starbase_effect = yes
+# 						}
+# 					}
+# 				}
+# 				set_location = {
+# 					target = root.capital_scope
+# 					distance = 10
+# 					angle = 90
+# 					direction = in_system
+# 				}
+# 			}
+# 		}
+# 	}
+# }
+
+
+
+
+########################  领袖   ###################
+
+
+gts_create_seele_arkship_effect = {
+	if = {
+		limit = {
+			NOT = {
+				any_owned_ship = {
+					OR = {
+						is_ship_size = gts_seele_1_swallowtail_phantasm
+						is_ship_size = gts_seele_2_stygian_nymph
+						is_ship_size = gts_seele_3_herrscher_of_rebirth
+						is_ship_size = gts_seele_4_wings_of_panacea
+					}
+				}
+			}
+		}
+		# set_ship_design = { design = NAME_gts_bronya_3_silverwing_n_ex }
+		create_fleet = {
+			name = gts_seele
+			effect = {
+				set_owner = root
+				create_ship = {
+					name = gts_seele
+					design = NAME_gts_seele_1_swallowtail_phantasm
+					graphical_culture = civilian_arkship
+					effect = {
+						add_modifier = {
+							modifier = natural_beauty
+						}
+						add_modifier = {
+							modifier = atmospheric_aphrodisiac
+						}
+						add_modifier = {
+							modifier = atmospheric_hallucinogen
+						}
+						add_modifier = {
+							modifier = ultra_rich
+						}
+						add_modifier = {
+							modifier = hazardous_weather
+						}
+						add_district = district_bfbf_seele_0
+						save_global_event_target_as = gts_seele_arkship
+						set_ship_flag = gts_body_ship
+						initialize_arkship_starbase_effect = yes
+					}
+				}
+				set_location = {
+					target = root.capital_scope
+					distance = 10
+					angle = 90
+					direction = in_system
+				}
+			}
+		}
+	}
+}
+
+gts_create_seele_li_arkship_effect = {
+	if = {
+		limit = {
+			NOT = {
+				any_owned_ship = {
+					OR = {
+						is_ship_size = gts_seele_li_1_stygian_nymph
+						is_ship_size = gts_seele_li_2_starchasm_nyx
+					}
+				}
+			}
+		}
+		create_fleet = {
+			name = gts_seele_li
+			effect = {
+				set_owner = root
+				create_ship = {
+					name = gts_seele_li
+					design = NAME_gts_seele_li_1_stygian_nymph
+					graphical_culture = military_arkship
+					effect = {
+						add_modifier = {
+							modifier = natural_beauty
+						}
+						add_modifier = {
+							modifier = atmospheric_aphrodisiac
+						}
+						add_modifier = {
+							modifier = atmospheric_hallucinogen
+						}
+						add_modifier = {
+							modifier = ultra_rich
+						}
+						add_modifier = {
+							modifier = hazardous_weather
+						}
+						add_district = district_bfbf_seele_li_0
+						save_global_event_target_as = gts_seele_li_arkship
+						set_ship_flag = gts_body_ship
+						initialize_arkship_starbase_effect = yes
+					}
+				}
+				set_location = {
+					target = root.capital_scope
+					distance = 10
+					angle = 90
+					direction = in_system
+				}
+			}
+		}
+	}
+}
+#
+gts_create_bronya_arkship_effect = {
+	if = {
+		limit = {
+			NOT = {
+				any_owned_ship = {
+					OR = {
+						is_ship_size = gts_bronya_1_herrscher_of_reason
+						is_ship_size = gts_bronya_2_herrscher_of_truth
+						is_ship_size = gts_bronya_3_silverwing_n_ex
+					}
+				}
+			}
+		}
+		create_fleet = {
+			name = gts_bronya
+			effect = {
+				set_owner = root
+				create_ship = {
+					name = gts_bronya
+					design = NAME_gts_bronya_1_herrscher_of_reason
+					graphical_culture = military_arkship
+					effect = {
+						add_modifier = {
+							modifier = natural_beauty
+						}
+						add_modifier = {
+							modifier = atmospheric_aphrodisiac
+						}
+						add_modifier = {
+							modifier = atmospheric_hallucinogen
+						}
+						add_modifier = {
+							modifier = ultra_rich
+						}
+						add_modifier = {
+							modifier = hazardous_weather
+						}
+						add_district = district_bfbf_bronya_0
+						save_global_event_target_as = gts_bronya_arkship
+						set_ship_flag = gts_body_ship
+						initialize_arkship_starbase_effect = yes
+					}
+				}
+				set_location = {
+					target = root.capital_scope
+					distance = 10
+					angle = 90
+					direction = in_system
+				}
+			}
+		}
+	}
+}

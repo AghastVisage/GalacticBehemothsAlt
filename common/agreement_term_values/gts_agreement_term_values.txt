@@ -1,0 +1,534 @@
+################################################################################
+######################                 特化                ######################
+################################################################################
+
+
+
+specialist_ultracompany = {
+	term = specialist_type
+	#宗主国修正
+	owner_modifier = {
+
+	}
+	#宗主产资源
+	overlord_resources = {
+		category = subjects
+		produces = {
+			influence = 0.5
+		}
+	}
+	#附庸国修正
+	target_modifier = {
+		diplo_weight_mult = -0.5
+	}
+	loyalty_change = 0 #默认忠诚度不变
+	ai_acceptance = {
+		overlord = 5000 #当狗
+		subject = 5000 #让别人当狗
+	}
+	triggered_loyalty_change = { #后面转温柔系或者残忍系可以改
+		trigger = {
+			target = { is_ai = yes }
+		}
+		loyalty_change = 0
+		ai_acceptance = {
+			overlord = 0
+			subject = 0
+		}
+	}
+
+	activate_effect = {
+		convert_to_specialist = specialist_ultracompany
+	}
+	potential = {
+		agreement_preset = preset_ultracompany
+	}
+}
+
+specialist_gts_livestock = {
+
+	term = specialist_type
+
+	#宗主产资源
+	overlord_resources = {
+		category = subjects
+		produces = {
+			influence = 0.25
+		}
+	}
+
+	loyalty_change = -30
+
+	target_modifier = {
+		monthly_loyalty = -3
+	}
+
+	ai_acceptance = {
+		overlord = 180
+		subject = -150
+	}
+
+	#宗主国修正
+	#owner_modifier = {}
+
+	#附庸国修正
+	#target_modifier = {}
+
+	#triggered_loyalty_change = { #后面转温柔系或者残忍系可以改
+	#	trigger = {
+	#		target = { is_ai = yes }
+	#	}
+	#	loyalty_change = 0
+	#	ai_acceptance = {
+	#		overlord = 0
+	#		subject = 0
+	#	}
+	#}
+
+	activate_effect = {
+		convert_to_specialist = specialist_gts_livestock
+	}
+
+	potential = {
+		agreement_preset = preset_gts_livestock_subject
+	}
+}
+
+specialist_gts_slave = {
+
+	term = specialist_type
+
+	overlord_resources = {
+		category = subjects
+		produces = {
+			influence = 0.25
+		}
+	}
+
+	loyalty_change = -20
+
+	target_modifier = {
+		monthly_loyalty = -2
+	}
+
+	ai_acceptance = {
+		overlord = 120
+		subject = -100
+	}
+
+	activate_effect = {
+		convert_to_specialist = specialist_gts_slave
+	}
+	potential = {
+		agreement_preset = preset_gts_slave_subject
+	}
+}
+
+specialist_gts_reserve = {
+
+	term = specialist_type
+
+	overlord_resources = {
+		category = subjects
+		produces = {
+			influence = 0.25
+		}
+	}
+
+	loyalty_change = -10
+
+	target_modifier = {
+		monthly_loyalty = -1
+	}
+
+	ai_acceptance = {
+		overlord = 60
+		subject = -50
+	}
+
+	activate_effect = {
+		convert_to_specialist = specialist_gts_reserve
+	}
+	potential = {
+		agreement_preset = preset_gts_reserve_subject
+	}
+}
+
+specialist_gts_pet = {
+
+	term = specialist_type
+
+	overlord_resources = {
+		category = subjects
+		produces = {
+			influence = 0.25
+		}
+	}
+
+	activate_effect = {
+		convert_to_specialist = specialist_gts_pet
+	}
+	potential = {
+		agreement_preset = preset_gts_pet_subject
+	}
+}
+
+
+
+################################################################################
+######################                 其他                ######################
+################################################################################
+
+
+
+gts_subject_leader_keep = {
+
+	term = gts_subject_leader
+
+	ai_acceptance = {
+		overlord = -10
+		subject = 5
+	}
+
+	activate_effect = {}
+
+	potential = {
+		OR = {
+			has_term_value = {
+				term = specialist_type
+				value = specialist_ultracompany
+			}
+			has_term_value = {
+				term = specialist_type
+				value = specialist_gts_livestock
+			}
+			has_term_value = {
+				term = specialist_type
+				value = specialist_gts_slave
+			}
+			has_term_value = {
+				term = specialist_type
+				value = specialist_gts_reserve
+			}
+			has_term_value = {
+				term = specialist_type
+				value = specialist_gts_pet
+			}
+		}
+	}
+}
+
+gts_subject_leader_gts = {
+
+	term = gts_subject_leader
+
+	loyalty_change = -5
+
+	ai_acceptance = {
+		overlord = 10
+		subject = -5
+	}
+
+	activate_effect = {}
+
+	target_modifier = {
+		monthly_loyalty = -0.25
+	}
+
+	potential = {
+		OR = {
+			has_term_value = {
+				term = specialist_type
+				value = specialist_ultracompany
+			}
+			has_term_value = {
+				term = specialist_type
+				value = specialist_gts_livestock
+			}
+			has_term_value = {
+				term = specialist_type
+				value = specialist_gts_slave
+			}
+			has_term_value = {
+				term = specialist_type
+				value = specialist_gts_reserve
+			}
+			has_term_value = {
+				term = specialist_type
+				value = specialist_gts_pet
+			}
+		}
+	}
+}
+
+gts_subject_pop_take_allow = {
+
+	term = gts_subject_pop_take
+
+	ai_acceptance = {
+		overlord = 20
+		subject = -10
+	}
+
+	activate_effect = {}
+
+	potential = {
+		OR = {
+			has_term_value = {
+				term = specialist_type
+				value = specialist_ultracompany
+			}
+			has_term_value = {
+				term = specialist_type
+				value = specialist_gts_livestock
+			}
+			has_term_value = {
+				term = specialist_type
+				value = specialist_gts_slave
+			}
+			has_term_value = {
+				term = specialist_type
+				value = specialist_gts_reserve
+			}
+			has_term_value = {
+				term = specialist_type
+				value = specialist_gts_pet
+			}
+		}
+	}
+}
+
+gts_subject_pop_take_forbid = {
+
+	term = gts_subject_pop_take
+
+	loyalty_change = 10
+
+	target_modifier = {
+		monthly_loyalty = 1.0
+	}
+
+	ai_acceptance = {
+		overlord = -20
+		subject = 10
+	}
+
+	activate_effect = {}
+
+	potential = {
+		OR = {
+			has_term_value = {
+				term = specialist_type
+				value = specialist_ultracompany
+			}
+			has_term_value = {
+				term = specialist_type
+				value = specialist_gts_livestock
+			}
+			has_term_value = {
+				term = specialist_type
+				value = specialist_gts_slave
+			}
+			has_term_value = {
+				term = specialist_type
+				value = specialist_gts_reserve
+			}
+			has_term_value = {
+				term = specialist_type
+				value = specialist_gts_pet
+			}
+		}
+	}
+}
+
+gts_subject_pop_usage_1 = {
+
+	term = gts_subject_pop_usage
+
+	loyalty_change = -5
+
+	target_modifier = {
+		monthly_loyalty = -0.5
+	}
+
+	ai_acceptance = {
+		overlord = 30
+		subject = -25
+	}
+
+	activate_effect = {
+		owner = {
+			set_country_flag = gts_bruh_has_overlord_pop_usage_1_flag
+		}
+		target = {
+			set_country_flag = gts_bruh_has_subject_pop_usage_1_flag
+		}
+	}
+
+	deactivate_effect = {
+		owner = {
+			remove_country_flag = gts_bruh_has_overlord_pop_usage_1_flag
+		}
+		target = {
+			remove_country_flag = gts_bruh_has_subject_pop_usage_1_flag
+		}
+	}
+
+	potential = {
+		has_term_value = {
+			term = gts_subject_pop_take
+			value = gts_subject_pop_take_allow
+		}
+	}
+}
+
+gts_subject_pop_usage_2 = {
+
+	term = gts_subject_pop_usage
+
+	loyalty_change = -10
+
+	target_modifier = {
+		monthly_loyalty = -1.0
+	}
+
+	ai_acceptance = {
+		overlord = 60
+		subject = -50
+	}
+
+	activate_effect = {
+		owner = {
+			set_country_flag = gts_bruh_has_overlord_pop_usage_2_flag
+		}
+		target = {
+			set_country_flag = gts_bruh_has_subject_pop_usage_2_flag
+		}
+	}
+
+	deactivate_effect = {
+		owner = {
+			remove_country_flag = gts_bruh_has_overlord_pop_usage_2_flag
+		}
+		target = {
+			remove_country_flag = gts_bruh_has_subject_pop_usage_2_flag
+		}
+	}
+
+	potential = {
+		has_term_value = {
+			term = gts_subject_pop_take
+			value = gts_subject_pop_take_allow
+		}
+	}
+}
+
+gts_subject_pop_usage_3 = {
+
+	term = gts_subject_pop_usage
+
+	loyalty_change = -20
+
+	target_modifier = {
+		monthly_loyalty = -2.0
+	}
+
+	ai_acceptance = {
+		overlord = 120
+		subject = -100
+	}
+
+	activate_effect = {
+		owner = {
+			set_country_flag = gts_bruh_has_overlord_pop_usage_3_flag
+		}
+		target = {
+			set_country_flag = gts_bruh_has_subject_pop_usage_3_flag
+		}
+	}
+
+	deactivate_effect = {
+		owner = {
+			remove_country_flag = gts_bruh_has_overlord_pop_usage_3_flag
+		}
+		target = {
+			remove_country_flag = gts_bruh_has_subject_pop_usage_3_flag
+		}
+	}
+
+	potential = {
+		has_term_value = {
+			term = gts_subject_pop_take
+			value = gts_subject_pop_take_allow
+		}
+	}
+}
+
+
+
+################################################################################
+######################                 資源                ######################
+################################################################################
+
+
+
+resource_subsidies_gts = {
+
+	term = resource_subsidies
+
+	resources = {
+		gts_micro
+		gts_micro_city
+		gts_micro_planet
+	}
+
+	subsidy_multiplier = 0.15
+	subsidy_monthly_multiplier = 5
+
+	resource_min = {
+		base = -0.75
+	}
+
+	resource_max = {
+		base = 0.75
+	}
+}
+
+resource_subsidies_tiny = {
+
+	term = resource_subsidies
+
+	resources = {
+		gts_giantess_fluid
+		gts_giantess_human
+		gts_giantess_underwear
+	}
+
+	subsidy_multiplier = 0.15
+	subsidy_monthly_multiplier = 5
+
+	resource_min = {
+		base = -0.75
+		modifier = {
+			set = 0.50
+			agreement_preset = preset_ultracompany
+		}
+		modifier = {
+			set = 0.30
+			agreement_preset = preset_gts_livestock_subject
+		}
+		modifier = {
+			set = 0.20
+			agreement_preset = preset_gts_slave_subject
+		}
+		modifier = {
+			set = 0.10
+			agreement_preset = preset_gts_reserve_subject
+		}
+	}
+
+	resource_max = {
+		base = 0.75
+	}
+}
+

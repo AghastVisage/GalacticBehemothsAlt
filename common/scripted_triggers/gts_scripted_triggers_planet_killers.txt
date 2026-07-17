@@ -1,0 +1,916 @@
+can_destroy_planet_with_PLANET_KILLER_FINGER = {
+	custom_tooltip = {
+		fail_text = is_not_a_standard_planet_or_megastructure
+		is_a_planet_megastructure = yes
+	}
+	custom_tooltip = {
+		fail_text = fotd_cant_collossus
+		NOT = { has_planet_flag = fotd_seperatist_planet@from.owner }
+		exists = from.owner
+		from.owner = { 
+			NOT = { has_country_flag = fotd_seperatist_country@from.owner }
+		}
+	}
+	custom_tooltip = {
+		fail_text = is_shielded
+		NOR = {
+			is_planet_class = pc_shielded
+			is_planet_class = pc_ringworld_shielded
+			is_planet_class = pc_habitat_shielded
+		}
+	}
+	custom_tooltip = {
+		text = not_barren_molten_frozen_toxic_test_fire
+		NOT = { exists = owner }
+		OR = {
+			NOT = { exists = space_owner }
+			AND = {
+				exists = space_owner
+				space_owner = { is_same_value = from.owner }
+			}
+		}
+		OR = {
+			is_planet_class = pc_barren
+			is_planet_class = pc_barren_cold
+			is_planet_class = pc_frozen
+			is_planet_class = pc_molten
+			is_planet_class = pc_toxic
+			is_planet_class = pc_desert
+			is_planet_class = pc_tropical
+			is_planet_class = pc_arid
+			is_planet_class = pc_continental
+			is_planet_class = pc_ocean
+			is_planet_class = pc_tundra
+			is_planet_class = pc_arctic
+			is_planet_class = pc_alpine
+			is_planet_class = pc_savannah
+			is_planet_class = pc_gaia
+			is_planet_class = pc_relic
+			is_planet_class = pc_nuked
+			is_planet_class = pc_ringworld_habitable
+			is_planet_class = pc_habitat
+		}			
+	}
+}
+
+
+can_destroy_planet_with_PLANET_KILLER_UNBIRTH = {
+	custom_tooltip = {
+		fail_text = is_not_a_habitable_planet_or_megastructure
+		OR = {
+			is_a_habitable_planet_megastructure = yes
+			is_planet_class = pc_ai
+		}
+	}
+	custom_tooltip = {
+		fail_text = fotd_cant_collossus
+		NOT = { has_planet_flag = fotd_seperatist_planet@from.owner }
+		exists = from.owner
+		from.owner = { 
+			NOT = { has_country_flag = fotd_seperatist_country@from.owner }
+		}
+	}
+	custom_tooltip = {
+		fail_text = is_shielded
+		NOR = {
+			is_planet_class = pc_shielded
+			is_planet_class = pc_ringworld_shielded
+			is_planet_class = pc_habitat_shielded
+		}
+	}
+}
+
+can_destroy_planet_with_PLANET_KILLER_TONGUE = {
+	custom_tooltip = {
+		fail_text = is_not_a_habitable_planet_or_megastructure
+		is_a_habitable_planet_megastructure = yes
+	}
+	custom_tooltip = {
+		fail_text = is_shielded
+		NOR = {
+			is_planet_class = pc_shielded
+			is_planet_class = pc_ringworld_shielded
+			is_planet_class = pc_habitat_shielded
+		}
+	}
+	custom_tooltip = {
+		fail_text = fotd_cant_collossus
+		NOT = { has_planet_flag = fotd_seperatist_planet@from.owner }
+		exists = from.owner
+		from.owner = { 
+			NOT = { has_country_flag = fotd_seperatist_country@from.owner }
+		}
+	}
+	custom_tooltip = {
+		fail_text = is_unpopulated
+		OR = {
+			pop_amount > 0
+			is_planet_class = pc_infested
+		}
+	}
+}
+
+can_destroy_planet_with_PLANET_KILLER_HERMONE = {
+	custom_tooltip = {
+		fail_text = is_not_a_habitable_planet_or_megastructure
+		OR = {
+			is_a_habitable_planet_megastructure = yes
+			is_planet_class = pc_ai
+		}
+	}
+	custom_tooltip = {
+		fail_text = is_shielded
+		NOR = {
+			is_planet_class = pc_shielded
+			is_planet_class = pc_ringworld_shielded
+			is_planet_class = pc_habitat_shielded
+		}
+	}
+	custom_tooltip = {
+		fail_text = fotd_cant_collossus
+		NOT = { has_planet_flag = fotd_seperatist_planet@from.owner }
+		exists = from.owner
+		from.owner = { 
+			NOT = { has_country_flag = fotd_seperatist_country@from.owner }
+		}
+	}
+	# target own colony
+	if = {
+		limit = {
+			NOR = {
+				planet_is_hostile = yes
+				AND = {
+					exists = owner
+					owner = { is_country_type = primitive }
+				}
+			}
+			exists = owner
+			owner = {
+				is_same_value = from.owner
+			}
+		}
+		custom_tooltip = {
+			text = not_owned_test_fire
+			exists = owner
+			owner = {
+				is_same_value = from.owner
+			}
+		}
+	}
+
+}
+
+can_destroy_planet_with_PLANET_KILLER_URINE = {
+	custom_tooltip = {
+		fail_text = is_habitable_non_artificial
+		OR = {
+			is_colonizable = yes
+			is_colony = yes
+		}
+		is_artificial = no
+	}
+	custom_tooltip = {
+		fail_text = fotd_cant_collossus
+		NOT = { has_planet_flag = fotd_seperatist_planet@from.owner }
+		exists = from.owner
+		from.owner = { 
+			NOT = { has_country_flag = fotd_seperatist_country@from.owner }
+		}
+	}
+	custom_tooltip = {
+		fail_text = is_not_suitable_for_urine
+		NOT = { is_planet_class = pc_ocean }
+	}
+}
+
+can_destroy_planet_with_PLANET_KILLER_FART = {
+	custom_tooltip = {
+		fail_text = is_habitable_non_artificial
+		OR = {
+			is_colonizable = yes
+			is_colony = yes
+		}
+		is_artificial = no
+	}
+	custom_tooltip = {
+		fail_text = fotd_cant_collossus
+		NOT = { has_planet_flag = fotd_seperatist_planet@from.owner }
+		exists = from.owner
+		from.owner = { 
+			NOT = { has_country_flag = fotd_seperatist_country@from.owner }
+		}
+	}
+}
+
+can_destroy_planet_with_PLANET_KILLER_ACID = {
+	custom_tooltip = {
+		fail_text = is_habitable_non_artificial
+		OR = {
+			is_colonizable = yes
+			is_colony = yes
+		}
+		is_artificial = no
+	}
+	custom_tooltip = {
+		fail_text = fotd_cant_collossus
+		NOT = { has_planet_flag = fotd_seperatist_planet@from.owner }
+		exists = from.owner
+		from.owner = { 
+			NOT = { has_country_flag = fotd_seperatist_country@from.owner }
+		}
+	}
+	custom_tooltip = {
+		fail_text = master_need_time_to_digest
+		NOT = { has_country_flag = master_is_full } 
+	}
+}
+
+can_destroy_planet_with_gts_tensi_PLANET_KILLER = {
+	custom_tooltip = {
+		fail_text =  gts_tensi_is_not_planet
+		OR = {
+			is_a_habitable_planet_megastructure = yes
+			is_planet_class = pc_ai
+		}
+	}
+	custom_tooltip = {
+		fail_text = is_shielded
+		NOR = {
+			is_planet_class = pc_shielded
+			is_planet_class = pc_ringworld_shielded
+			is_planet_class = pc_habitat_shielded
+		}
+	}
+	custom_tooltip = {
+		fail_text = fotd_cant_collossus
+		NOT = { has_planet_flag = fotd_seperatist_planet@from.owner }
+		exists = from.owner
+		from.owner = {
+			NOT = { has_country_flag = fotd_seperatist_country@from.owner }
+		}
+	}
+	custom_tooltip = {
+		#success_text = "is at war with player"
+		fail_text = is_not_hostile_or_primitive
+		OR = {
+			planet_is_hostile = yes
+			is_planet_class = pc_ai
+			AND = {
+				exists = owner
+				owner = { is_country_type = primitive }
+			}
+			AND = {
+				exists = owner
+				owner = { is_same_value = from.owner }
+			}
+		}
+	}
+	custom_tooltip = {
+		fail_text = gts_tensi_is_loli_planet
+		NOR = {
+			has_planet_flag = gtsra_loli_planet
+		}
+	}
+	if = {
+		limit = {
+			exists = owner
+			owner = { is_country_type = primitive }
+		}
+		custom_tooltip = {
+			fail_text = primitives_not_full_interference
+			from.owner = {
+				has_policy_flag = interference_aggressive
+			}
+		}
+	}
+	# target own colony
+	if = {
+		limit = {
+			NOR = {
+				planet_is_hostile = yes
+				AND = {
+					exists = owner
+					owner = { is_country_type = primitive }
+				}
+			}
+			exists = owner
+			owner = {
+				is_same_value = from.owner
+			}
+		}
+		custom_tooltip = {
+			text = not_owned_test_fire
+			exists = owner
+			owner = {
+				is_same_value = from.owner
+			}
+		}
+	}
+}
+
+can_destroy_planet_with_gts_sera_PLANET_KILLER = {
+	custom_tooltip = {
+		fail_text = is_not_a_standard_planet_or_megastructure
+		is_a_planet_megastructure = yes
+	}
+	custom_tooltip = {
+		fail_text = fotd_cant_collossus
+		NOT = { has_planet_flag = fotd_seperatist_planet@from.owner }
+		exists = from.owner
+		from.owner = {
+			NOT = { has_country_flag = fotd_seperatist_country@from.owner }
+		}
+	}
+	custom_tooltip = {
+		fail_text = is_shielded
+		NOR = {
+			is_planet_class = pc_shielded
+			is_planet_class = pc_ringworld_shielded
+			is_planet_class = pc_habitat_shielded
+		}
+	}
+	custom_tooltip = {
+		text = not_barren_molten_frozen_toxic_test_fire
+		NOT = { exists = owner }
+		OR = {
+			NOT = { exists = space_owner }
+			AND = {
+				exists = space_owner
+				space_owner = { is_same_value = from.owner }
+			}
+		}
+		OR = {
+			is_planet_class = pc_barren
+			is_planet_class = pc_barren_cold
+			is_planet_class = pc_frozen
+			is_planet_class = pc_molten
+			is_planet_class = pc_toxic
+			is_planet_class = pc_desert
+			is_planet_class = pc_tropical
+			is_planet_class = pc_arid
+			is_planet_class = pc_continental
+			is_planet_class = pc_ocean
+			is_planet_class = pc_tundra
+			is_planet_class = pc_arctic
+			is_planet_class = pc_alpine
+			is_planet_class = pc_savannah
+			is_planet_class = pc_gaia
+			is_planet_class = pc_relic
+			is_planet_class = pc_nuked
+			is_planet_class = pc_ringworld_habitable
+			is_planet_class = pc_habitat
+		}
+	}
+}
+can_destroy_planet_with_gts_115tiny_PLANET_KILLER_STAR_CRACKER = {
+    custom_tooltip = {
+        fail_text = gts_115tiny_is_your_megastructure_system
+        NOT = {
+            solar_system = {
+                has_star_flag = crisis_sphere_system@from.owner
+                any_system_megastructure = { has_megastructure_flag = crisis_sphere }
+            }
+        }
+    }
+    custom_tooltip = {
+        fail_text = is_not_star
+        is_star = yes
+    }
+    custom_tooltip = {
+        fail_text = is_black_hole
+        NOT = { is_planet_class = pc_black_hole }
+    }
+    custom_tooltip = {
+        fail_text = star_owner_is_not_hostile
+        OR = {
+            NOT = { exists = space_owner }
+            space_owner = { is_hostile = from.owner }
+            space_owner = { is_same_value = from.owner }
+        }
+    }
+}
+can_destroy_planet_with_gts_115_PLANET_KILLER_yarong1 = {
+    custom_tooltip = {
+        fail_text = is_not_a_habitable_planet_or_megastructure
+        OR = {
+            is_a_habitable_planet_megastructure = yes
+            is_planet_class = pc_ai
+        }
+    }
+    custom_tooltip = {
+        fail_text = is_shielded
+        NOR = {
+            is_planet_class = pc_shielded
+            is_planet_class = pc_ringworld_shielded
+            is_planet_class = pc_habitat_shielded
+        }
+    }
+    custom_tooltip = {
+        fail_text = fotd_cant_collossus
+        NOT = { has_planet_flag = fotd_seperatist_planet@from.owner }
+        exists = from.owner
+        from.owner = {
+            NOT = { has_country_flag = fotd_seperatist_country@from.owner }
+        }
+    }
+    custom_tooltip = {
+        #success_text = "is at war with player"
+        fail_text = is_not_hostile_or_primitive
+        OR = {
+            planet_is_hostile = yes
+            is_planet_class = pc_ai
+            AND = {
+                exists = owner
+                owner = { is_country_type = primitive }
+            }
+            AND = {
+                exists = owner
+                owner = { is_same_value = from.owner }
+            }
+        }
+    }
+    custom_tooltip = {
+        fail_text = gts_yarong_is_loli_planet
+        NOR = {
+            has_planet_flag = gtsra_loli_planet
+        }
+    }
+    if = {
+        limit = {
+            exists = owner
+            owner = { is_country_type = primitive }
+        }
+        custom_tooltip = {
+            fail_text = primitives_not_full_interference
+            from.owner = {
+                has_policy_flag = interference_aggressive
+            }
+        }
+    }
+    # target own colony
+    if = {
+        limit = {
+            NOR = {
+                planet_is_hostile = yes
+                AND = {
+                    exists = owner
+                    owner = { is_country_type = primitive }
+                }
+            }
+            exists = owner
+            owner = {
+                is_same_value = from.owner
+            }
+        }
+        custom_tooltip = {
+            text = not_owned_test_fire
+            exists = owner
+            owner = {
+                is_same_value = from.owner
+            }
+        }
+    }
+}
+can_destroy_planet_with_gts_115_PLANET_KILLER_yarong2 = {
+    custom_tooltip = {
+        fail_text = is_not_a_habitable_planet_or_megastructure
+        OR = {
+            is_a_habitable_planet_megastructure = yes
+            is_planet_class = pc_ai
+        }
+    }
+    custom_tooltip = {
+        fail_text = is_shielded
+        NOR = {
+            is_planet_class = pc_shielded
+            is_planet_class = pc_ringworld_shielded
+            is_planet_class = pc_habitat_shielded
+        }
+    }
+    custom_tooltip = {
+        fail_text = fotd_cant_collossus
+        NOT = { has_planet_flag = fotd_seperatist_planet@from.owner }
+        exists = from.owner
+        from.owner = {
+            NOT = { has_country_flag = fotd_seperatist_country@from.owner }
+        }
+    }
+    custom_tooltip = {
+        #success_text = "is at war with player"
+        fail_text = is_not_hostile_or_primitive
+        OR = {
+            planet_is_hostile = yes
+            is_planet_class = pc_ai
+            AND = {
+                exists = owner
+                owner = { is_country_type = primitive }
+            }
+            AND = {
+                exists = owner
+                owner = { is_same_value = from.owner }
+            }
+        }
+    }
+    custom_tooltip = {
+        fail_text = gts_yarong_is_loli_planet
+        NOR = {
+            has_planet_flag = gtsra_loli_planet
+        }
+    }
+    if = {
+        limit = {
+            exists = owner
+            owner = { is_country_type = primitive }
+        }
+        custom_tooltip = {
+            fail_text = primitives_not_full_interference
+            from.owner = {
+                has_policy_flag = interference_aggressive
+            }
+        }
+    }
+    # target own colony
+    if = {
+        limit = {
+            NOR = {
+                planet_is_hostile = yes
+                AND = {
+                    exists = owner
+                    owner = { is_country_type = primitive }
+                }
+            }
+            exists = owner
+            owner = {
+                is_same_value = from.owner
+            }
+        }
+        custom_tooltip = {
+            text = not_owned_test_fire
+            exists = owner
+            owner = {
+                is_same_value = from.owner
+            }
+        }
+    }
+}
+
+can_destroy_planet_with_PLANET_KILLER_whaletrap = {
+	custom_tooltip = {
+		fail_text = is_not_a_habitable_planet_or_megastructure
+		OR = {
+			is_a_habitable_planet_megastructure = yes
+			is_planet_class = pc_ai
+		}
+	}
+	custom_tooltip = {
+		fail_text = is_shielded
+		NOR = {
+			is_planet_class = pc_shielded
+			is_planet_class = pc_ringworld_shielded
+			is_planet_class = pc_habitat_shielded
+		}
+	}
+	custom_tooltip = {
+		fail_text = fotd_cant_collossus
+		NOT = { has_planet_flag = fotd_seperatist_planet@from.owner }
+		exists = from.owner
+		from.owner = { 
+			NOT = { has_country_flag = fotd_seperatist_country@from.owner }
+		}
+	}
+	custom_tooltip = {
+		#success_text = "is at war with player"
+		fail_text = is_not_hostile_or_primitive
+		OR = {
+			planet_is_hostile = yes
+			is_planet_class = pc_ai
+			AND = {
+				exists = owner
+				owner = { is_country_type = primitive }
+			}
+			AND = {
+				exists = owner
+				owner = { is_same_value = from.owner }
+			}
+		}
+	}
+	custom_tooltip = {
+		fail_text = skadi_is_loli_planet
+		NOR = {
+			has_planet_flag = gtsra_loli_planet
+		}
+	}
+	custom_tooltip = {
+		fail_text = skadi_is_used_planet
+		is_gts_reformed_planet = no
+	}
+	#custom_tooltip = {
+	#	fail_text = gts_bruh_colossus_destroy_planet_cool_down
+	#	from.owner = {
+	#		NOT = { has_country_flag = gts_bruh_colossus_destroy_planet_effect_cool_down }
+	#	}
+	#}
+	if = {
+		limit = {
+			exists = owner
+			owner = { is_country_type = primitive }
+		}
+		custom_tooltip = {
+			fail_text = primitives_not_full_interference
+			from.owner = {
+				has_policy_flag = interference_aggressive
+			}
+		}
+	}
+	# target own colony
+	if = {
+		limit = {
+			NOR = {
+				planet_is_hostile = yes
+				AND = {
+					exists = owner
+					owner = { is_country_type = primitive }
+				}
+			}
+			exists = owner
+			owner = {
+				is_same_value = from.owner
+			}
+		}
+		custom_tooltip = {
+			text = not_owned_test_fire
+			exists = owner
+			owner = {
+				is_same_value = from.owner
+			}
+		}
+	}
+}
+
+can_destroy_planet_with_gts_research_star_killer = {
+	custom_tooltip = {
+		fail_text = is_your_megastructure_system
+		NOT = {
+			solar_system = {
+				has_star_flag = crisis_sphere_system@from.owner
+				any_system_megastructure = { has_megastructure_flag = crisis_sphere }
+			}
+		}
+	}
+	custom_tooltip = {
+		OR = {
+			is_planet_class = pc_barren
+			is_planet_class = pc_barren_cold
+			is_planet_class = pc_frozen
+			is_planet_class = pc_molten
+			is_planet_class = pc_toxic
+			is_planet_class = pc_desert
+			is_planet_class = pc_tropical
+			is_planet_class = pc_arid
+			is_planet_class = pc_continental
+			is_planet_class = pc_ocean
+			is_planet_class = pc_tundra
+			is_planet_class = pc_arctic
+			is_planet_class = pc_alpine
+			is_planet_class = pc_savannah
+			is_planet_class = pc_gaia
+			is_planet_class = pc_relic
+			is_planet_class = pc_nuked
+			is_planet_class = pc_ringworld_habitable
+			is_planet_class = pc_habitat
+			is_planet_class = pc_city
+			is_planet_class = pc_hive
+			is_star = yes
+		}
+	}
+	custom_tooltip = {
+		fail_text = is_black_hole
+		NOT = { is_planet_class = pc_black_hole }
+	}
+	custom_tooltip = {
+		fail_text = star_owner_is_not_hostile
+		OR = {
+			NOT = { exists = space_owner }
+			space_owner = { is_hostile = from.owner }
+			space_owner = { is_same_value = from.owner }
+		}
+	}
+}
+
+can_destroy_planet_with_PLANET_KILLER_xinuotongue = {
+    custom_tooltip = {
+        fail_text = is_not_a_habitable_planet_or_megastructure
+        OR = {
+            is_a_habitable_planet_megastructure = yes
+            is_planet_class = pc_ai
+        }
+    }
+    custom_tooltip = {
+        fail_text = is_shielded
+        NOR = {
+            is_planet_class = pc_shielded
+            is_planet_class = pc_ringworld_shielded
+            is_planet_class = pc_habitat_shielded
+        }
+    }
+    custom_tooltip = {
+        fail_text = pop_amount_lower_15000
+        pop_amount >= 15000
+    }
+    custom_tooltip = {
+        fail_text = is_not_friendly_planet
+        exists = owner
+        owner = {
+            is_same_value = from.owner
+        }
+    }
+    custom_tooltip = {
+        fail_text = xinuo_is_full
+        from.owner = {
+            NOR = { has_country_flag = gts_xinuo_colossus_destroy_planet_effect_cool_down }
+        }
+    }
+    #custom_tooltip = {
+        #success_text = "is at war with player"
+    #    fail_text = is_not_hostile_or_primitive
+    #    OR = {
+    #        planet_is_hostile = yes
+    #        is_planet_class = pc_ai
+    #        AND = {
+    #            exists = owner
+    #            owner = { is_country_type = primitive }
+    #        }
+    #        AND = {
+    #            exists = owner
+    #            owner = { is_same_value = from.owner }
+    #        }
+    #    }
+    #}
+}
+
+can_destroy_planet_with_PLANET_KILLER_GTS_SHRINK = {
+	custom_tooltip = {
+		fail_text = is_not_a_habitable_planet_or_megastructure
+		OR = {
+			is_a_habitable_planet_megastructure = yes
+			is_planet_class = pc_ai
+			is_planet_class = pc_gts_kasa
+			is_planet_class = pc_gts_luanzi
+			is_planet_class = pc_gtsra_loli
+			is_planet_class = pc_gtsra_shipgirl_body
+			is_planet_class = pc_gtsra_loli_slave
+		}
+	}
+	custom_tooltip = {
+		fail_text = is_shielded
+		NOR = {
+			is_planet_class = pc_shielded
+			is_planet_class = pc_ringworld_shielded
+			is_planet_class = pc_habitat_shielded
+		}
+	}
+	custom_tooltip = {
+		#success_text = "is at war with player"
+		fail_text = is_not_hostile_or_primitive
+		OR = {
+			planet_is_hostile = yes
+			is_planet_class = pc_ai
+			AND = {
+				exists = owner
+				owner = {
+					is_country_type = primitive
+				}
+			}
+			AND = {
+				exists = owner
+				owner = {
+					is_same_value = from.owner
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			exists = owner
+			owner = {
+				is_country_type = primitive
+			}
+		}
+		custom_tooltip = {
+			fail_text = primitives_not_active_or_full_interference
+			from.owner = {
+				OR = {
+					has_policy_flag = interference_active
+					has_policy_flag = interference_aggressive
+					#		has_policy_flag = interference_full  #新版本取消了全面调查姿态，等出bug再修吧（
+				}
+			}
+		}
+	}
+	# target own colony
+	if = {
+		limit = {
+			owner = {
+				is_same_value = from.owner
+			}
+		}
+		custom_tooltip = {
+			text = not_owned_test_fire
+			exists = owner
+			owner = {
+				is_same_value = from.owner
+			}
+		}
+	}
+}
+
+can_destroy_planet_with_GTS_PLANET_KILLER_hitomi = {
+	custom_tooltip = {
+		fail_text = is_not_a_habitable_planet_or_megastructure
+		OR = {
+			is_a_habitable_planet_megastructure = yes
+			is_planet_class = pc_ai
+		}
+	}
+	custom_tooltip = {
+		fail_text = is_shielded
+		NOR = {
+			is_planet_class = pc_shielded
+			is_planet_class = pc_ringworld_shielded
+			is_planet_class = pc_habitat_shielded
+		}
+	}
+
+	custom_tooltip = {
+		fail_text = fotd_cant_collossus
+		exists = owner
+		owner = { NOT = { is_same_value = from.owner } }
+	}
+	custom_tooltip = {
+		#success_text = "is at war with player"
+		fail_text = is_not_hostile_or_primitive
+		OR = {
+			planet_is_hostile = yes
+			is_planet_class = pc_ai
+			AND = {
+				exists = owner
+				owner = { is_country_type = primitive }
+			}
+			AND = {
+				exists = owner
+				owner = { is_same_value = from.owner }
+			}
+		}
+	}
+	custom_tooltip = {
+		fail_text = hitomi_fail_is_loli_planet
+		NOR = {
+			has_planet_flag = gtsra_loli_planet
+		}
+	}
+	custom_tooltip = {
+		fail_text = hitomi_fail_is_used_planet
+		is_gts_reformed_planet = no
+	}
+	#custom_tooltip = {
+	#	fail_text = gts_bruh_colossus_destroy_planet_cool_down
+	#	from.owner = {
+	#		NOT = { has_country_flag = gts_bruh_colossus_destroy_planet_effect_cool_down }
+	#	}
+	#}
+	if = {
+		limit = {
+			exists = owner
+			owner = { is_country_type = primitive }
+		}
+		custom_tooltip = {
+			fail_text = primitives_not_full_interference
+			from.owner = {
+				has_policy_flag = interference_aggressive
+			}
+		}
+	}
+	# target own colony
+	if = {
+		limit = {
+			NOR = {
+				planet_is_hostile = yes
+				AND = {
+					exists = owner
+					owner = { is_country_type = primitive }
+				}
+			}
+			exists = owner
+			owner = {
+				is_same_value = from.owner
+			}
+		}
+		custom_tooltip = {
+			text = not_owned_test_fire
+			exists = owner
+			owner = {
+				is_same_value = from.owner
+			}
+		}
+	}
+}

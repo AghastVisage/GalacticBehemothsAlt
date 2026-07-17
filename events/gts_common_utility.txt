@@ -1,0 +1,1133 @@
+namespace = gts_utility
+# 一些工具性事件
+# gts_utility.1xx 基本功能
+# gts_utility.2xx 种族
+# gts_utility.3xx 领袖
+country_event = {
+	# 创建时给国家选定默认的政策
+	id = gts_utility.100
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		# 添加政策
+		gts_set_empire_type = yes
+		if = {
+			# 巨娘默认政策
+			limit = {
+				is_same_species = owner_main_species
+				species = {
+					gts_is_giantess = yes
+				}
+			}
+			set_country_flag = gts_finish_change_giant_buildings
+			set_country_flag = gts_finish_change_giant_fleet
+			set_policy = {
+				policy = gts_building_style
+				option = giant_building_style
+				cooldown = no
+			}
+			set_policy = {
+				policy = gts_fleet_style
+				option = giant_fleet_style
+				cooldown = no
+			}
+		}
+		else = {
+			# 小人默认政策
+			set_policy = {
+				policy = gts_building_style
+				option = tiny_building_style
+				cooldown = no
+			}
+			set_policy = {
+				policy = gts_fleet_style
+				option = tiny_fleet_style
+				cooldown = no
+			}
+		}
+		if = {
+			# 给AI帝国添加不嫩随机产生的国策
+			limit = {
+				is_gestalt = no
+				is_ai = yes
+				gts_is_giantess_empire = yes
+			}
+			switch = {
+				trigger = has_ethic
+				ethic_fanatic_authoritarian = {
+					country_not_have_civic = {
+						civic = civic_gts_maid
+					}
+					force_add_civic = civic_gts_maid
+				}
+				ethic_fanatic_egalitarian = {
+					country_not_have_civic = {
+						civic = civic_gts_assimilator
+					}
+					force_add_civic = civic_gts_assimilator
+				}
+				ethic_fanatic_spiritualist = {
+					country_not_have_civic = {
+						civic = civic_gts_maid
+					}
+					force_add_civic = civic_gts_maid
+				}
+				ethic_fanatic_materialist = {
+					country_not_have_civic = {
+						civic = civic_gts_assimilator
+					}
+					force_add_civic = civic_gts_assimilator
+				}
+				ethic_fanatic_xenophobe = {
+					country_not_have_civic = {
+						civic = civic_gts_terminator
+					}
+					force_add_civic = civic_gts_terminator
+				}
+				ethic_fanatic_xenophile = {
+					country_not_have_civic = {
+						civic = civic_gts_servitor
+					}
+					force_add_civic = civic_gts_servitor
+				}
+				ethic_fanatic_pacifist = {
+					country_not_have_civic = {
+						civic = civic_gts_servitor
+					}
+					force_add_civic = civic_gts_servitor
+				}
+				ethic_fanatic_militarist = {
+					country_not_have_civic = {
+						civic = civic_gts_terminator
+					}
+					force_add_civic = civic_gts_terminator
+				}
+			}
+			if = {
+				limit = {
+					NOR = {
+						has_civic = civic_gts_assimilator
+						has_civic = civic_gts_terminator
+						has_civic = civic_gts_servitor
+						has_civic = civic_gts_maid
+					}
+				}
+				random_list = {
+					1 = {
+						country_not_have_civic = {
+							civic = civic_origin_from_micro
+						}
+						force_add_civic = civic_origin_from_micro
+					}
+					1 = {
+						country_not_have_civic = {
+							civic = civic_focus_tiny
+						}
+						force_add_civic = civic_focus_tiny
+					}
+					1 = {
+						country_not_have_civic = {
+							civic = civic_distinguished_gts
+						}
+						force_add_civic = civic_distinguished_gts
+					}
+					1 = {
+						country_not_have_civic = {
+							civic = civic_delta_trade
+						}
+						force_add_civic = civic_delta_trade
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				is_gestalt = no
+				is_ai = yes
+				gts_is_tiny_empire = yes
+			}
+			random_list = {
+				1 = {
+					country_not_have_civic = {
+						civic = civic_gts_aryans
+					}
+					force_add_civic = civic_gts_aryans
+				}
+				1 = {
+					country_not_have_civic = {
+						civic = civic_delta_trade
+					}
+					force_add_civic = civic_delta_trade
+				}
+				1 = {
+					country_not_have_civic = {
+						civic = civic_focus_gts_fluid
+					}
+					force_add_civic = civic_focus_gts_fluid
+				}
+				1 = {
+					country_not_have_civic = {
+						civic = civic_titan_hunter
+					}
+					force_add_civic = civic_titan_hunter
+				}
+				1 = {
+					country_not_have_civic = {
+						civic = civic_evolution_catalyst
+					}
+					force_add_civic = civic_evolution_catalyst
+				}
+				1 = {
+					country_not_have_civic = {
+						civic = civic_gts_worship
+					}
+					force_add_civic = civic_gts_worship
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+
+	# 檢測更新變量
+
+	id = gts_utility.101
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		save_event_target_as = gts_country_value_scope
+		set_variable = {
+			# 開局設定情報頁面
+			which = gts_ui_intel_page
+			value = 1
+		}
+		# 計算方式改在gts_script_values.txt裡
+		#set_variable = {
+		#	# 升级为巨娘尺寸舰队单价
+		#	which = gts_change_ship_cost
+		#	value = 500
+		#}
+		set_variable = {
+			# 升級為巨娘尺寸艦隊的總花費
+			which = gts_change_ship_total_cost
+			value = 0
+		}
+		set_variable = {
+			# 升級為巨娘尺寸太空生物艦隊的總花費
+			which = gts_change_bio_ship_total_cost
+			value = 0
+		}
+		set_variable = {
+			# 升级为巨娘尺寸建筑总花费
+			which = gts_change_total_cost
+			value = 0
+		}
+		set_variable = {
+			# 建筑升级花费
+			which = gts_change_building_cost
+			value = 1000
+		}
+		set_variable = {
+			# 建筑数量(事件结束后清除)
+			which = gts_total_building_amount
+			value = 0
+		}
+		set_variable = {
+			# 區劃升級花費
+			which = gts_change_district_cost
+			value = 500
+		}
+		set_variable = {
+			# 區劃數量(事件結束後清除)
+			which = gts_total_district_amount
+			value = 0
+		}
+
+		every_owned_planet = {
+			save_event_target_as = gts_planet_value_scope
+			limit = {
+				is_colony = yes
+				is_under_colonization = no
+			}
+			# 檢測每個星球上的建築數量
+			set_variable = {
+				# 本地建築數量
+				which = gts_local_building_amount
+				value = 0
+			}
+			change_variable = {
+				which = gts_local_building_amount
+				value = value:gts_count_buildings
+			}
+
+			# 偵測每個星球上的區劃數量
+			set_variable = {
+				# 本地建築數量
+				which = gts_local_district_amount
+				value = 0
+			}
+			change_variable = {
+				which = gts_local_district_amount
+				value = value:gts_count_districts
+			}
+
+			# 累加到counrty value
+			event_target:gts_country_value_scope = {
+				change_variable = {
+					which = gts_total_building_amount
+					value = event_target:gts_planet_value_scope.gts_local_building_amount
+				}
+				change_variable = {
+					which = gts_total_district_amount
+					value = event_target:gts_planet_value_scope.gts_local_district_amount
+				}
+			}
+			# 删除planet value
+			event_target:gts_planet_value_scope = {
+				clear_variable = gts_local_building_amount
+				clear_variable = gts_local_district_amount
+			}
+		}
+
+		# 統計升級建築總花費
+		multiply_variable = {
+			which = gts_change_building_cost
+			value = gts_total_building_amount
+		}
+		multiply_variable = {
+			which = gts_change_district_cost
+			value = gts_total_district_amount
+		}
+		change_variable = {
+			which = gts_change_total_cost
+			value = gts_change_building_cost
+		}
+		change_variable = {
+			which = gts_change_total_cost
+			value = gts_change_district_cost
+		}
+
+		# 統計升級艦船總花費
+		change_variable = {
+			which = gts_change_ship_total_cost
+			value = value:gts_count_ships
+		}
+		change_variable = {
+			which = gts_change_bio_ship_total_cost
+			value = value:gts_count_bio_hips
+		}
+		# 計算方式改在gts_script_values.txt裡
+		#multiply_variable = {
+		#	which = gts_change_ship_total_cost
+		#	value = gts_change_ship_cost
+		#}
+
+		# 刪除不需要的變量
+		clear_variable = gts_change_building_cost
+		clear_variable = gts_change_district_cost
+		clear_variable = gts_total_building_amount
+		clear_variable = gts_total_district_amount
+		clear_variable = gts_change_ship_cost
+		clear_variable = gts_change_bio_ship_cost
+	}
+}
+
+country_event = {
+	# 给予通信面板
+	id = gts_utility.102
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		is_ai = no
+	}
+	immediate = {
+		every_system = {
+			limit = {
+				is_surveyed = {
+					who = root
+				}
+			}
+			set_star_flag = gts_start_system
+		}
+		add_relic = "relic_gts_communication"
+		set_variable = {
+			which = gts_leader_cost_mult
+			value = 1
+		}
+	}
+}
+
+country_event = {
+	# 巨娘动态加成
+	id = gts_utility.103
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		gts_is_giantess_empire = yes
+	}
+	immediate = {
+		remove_modifier = gts_level_1_modifier
+		remove_modifier = gts_level_2_modifier
+		remove_modifier = gts_level_3_modifier
+		remove_modifier = gts_level_4_modifier
+		remove_modifier = gts_level_5_modifier
+		if = {
+			limit = {
+				has_global_flag = gts_level_1
+			}
+			add_modifier = {
+				modifier = "gts_level_1_modifier"
+				days = -1
+			}
+		}
+		else_if = {
+			limit = {
+				has_global_flag = gts_level_2
+			}
+			add_modifier = {
+				modifier = "gts_level_2_modifier"
+				days = -1
+			}
+		}
+		else_if = {
+			limit = {
+				has_global_flag = gts_level_3
+			}
+			add_modifier = {
+				modifier = "gts_level_3_modifier"
+				days = -1
+			}
+		}
+		else_if = {
+			limit = {
+				has_global_flag = gts_level_4
+			}
+			add_modifier = {
+				modifier = "gts_level_4_modifier"
+				days = -1
+			}
+		}
+		else_if = {
+			limit = {
+				has_global_flag = gts_level_5
+			}
+			add_modifier = {
+				modifier = "gts_level_5_modifier"
+				days = -1
+			}
+		}
+	}
+}
+
+event = {
+	# 添加全局flag
+	id = gts_utility.104
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		set_global_flag = gts_level_1
+	}
+}
+
+planet_event = {
+	# 防止gts星球被碎星
+	id = gts_utility.105
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		OR = {
+			has_planet_flag = gtsra_loli_planet
+			has_planet_flag = gtsra_slave_planet
+			has_planet_flag = gts_kasa_planet
+		}
+	}
+	immediate = {
+		from.owner = {
+			country_event = {
+				id = gts_utility.106
+			}
+		}
+		owner = {
+			country_event = {
+				id = gts_utility.107
+			}
+		}
+	}
+}
+
+country_event = {
+	# 防止巨娘星球被炸(轰炸者)
+	id = gts_utility.106
+	title = gts_utility.106.name
+	desc = gts_utility.106.desc
+	picture = GFX_gtsra_load_6
+	show_sound = event_mystic_reveal
+	location = root
+	is_triggered_only = yes
+	immediate = {
+		destroy_country = yes
+	}
+	option = {
+		name = gts_utility.106.a
+	}
+}
+
+country_event = {
+	# 防止巨娘星球被炸(被轰炸者)
+	id = gts_utility.107
+	title = gts_utility.107.name
+	desc = gts_utility.107.desc
+	picture = GFX_evt_crisis_defeated
+	show_sound = event_mystic_reveal
+	location = root
+	is_triggered_only = yes
+	option = {
+		name = gts_utility.107.a
+	}
+}
+
+country_event = {
+	# 开局给所有没有体型的物种增加体型
+	# mod的起源和国策，以及体型特质不再会随机赋予AI，而是通过以下事件来实现
+	# 除了强制生成的AI外，堕落和游牧随机体型、高级开局的AI为巨娘帝国、其他的AI随机
+	id = gts_utility.200
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		if = {
+			limit = {
+				owner_main_species = {
+					gts_has_size_trait = no
+				}
+			}
+			if = {
+			# 堕落、觉醒、游牧帝国按照概率给予主体物种体型
+				limit = {
+					OR = {
+						is_country_type = fallen_empire
+						is_country_type = marauder_raiders
+					}
+				}
+				owner_main_species = {
+					random_list = {
+						14 = {
+							change_species_characteristics = {
+								add_trait = trait_Titan
+							}
+						}
+						10 = {
+							change_species_characteristics = {
+								add_trait = trait_Giant
+							}
+						}
+						8 = {
+							change_species_characteristics = {
+								add_trait = trait_Tall
+							}
+						}
+						3 = {
+							change_species_characteristics = {
+								add_trait = trait_Normal
+							}
+						}
+						2 = {
+							change_species_characteristics = {
+								add_trait = trait_Small
+							}
+						}
+						2 = {
+							change_species_characteristics = {
+								add_trait = trait_Tiny
+							}
+						}
+						1 = {
+							change_species_characteristics = {
+								add_trait = trait_Micro
+							}
+						}
+					}
+				}
+			}
+			else_if = {
+				# 无体型特质的巨娘开局主体物种
+				limit = {
+					owner_main_species = {
+						has_trait = trait_gts_begin
+					}
+				}
+				owner_main_species = {
+					gts_species_add_giantess_size = yes
+				}
+			}
+			else_if = {
+				# 无体型特质的小人开局主体物种
+				limit = {
+					owner_main_species = {
+						has_trait = trait_tiny_begin
+					}
+				}
+				owner_main_species = {
+					gts_species_add_tiny_size = yes
+				}
+			}
+			else_if = {
+				# 高级开局AI主体物种为巨娘
+				limit = {
+					has_country_flag = is_advanced_start_AI
+				}
+				owner_main_species = {
+					gts_species_add_giantess_size = yes
+				}
+			}
+			else = {
+				# 其他没有特殊限制的帝国添加随机特质
+				owner_main_species = {
+					gts_species_add_random_size = yes
+				}
+			}
+		}
+	}
+}
+
+event = {
+	# 其他没有特殊限制的物种添加随机特质（土著与事件物种）
+	# on_monthly_pulse
+	id = gts_utility.201
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		every_galaxy_species = {
+			limit = {
+				gts_has_size_trait = no
+			}
+			gts_species_add_random_size = yes
+		}
+	}
+}
+
+# country_event = {
+
+# 	# 给ai物种增加体型
+
+# 	id = gts_utility.200
+# 	hide_window = yes
+# 	is_triggered_only = yes
+# 	immediate = {
+# 		# 墮落/掠奪
+# 		if = {
+# 			limit = {
+# 				OR = {
+# 					is_country_type = fallen_empire
+# 					is_country_type = marauder_raiders
+# 				}
+# 			}
+# 			owner_main_species = {
+# 				random_list = {
+# 					14 = {
+# 						change_species_characteristics = {
+# 							add_trait = trait_Titan
+# 						}
+# 					}
+# 					10 = {
+# 						change_species_characteristics = {
+# 							add_trait = trait_Giant
+# 						}
+# 					}
+# 					8 = {
+# 						change_species_characteristics = {
+# 							add_trait = trait_Tall
+# 						}
+# 					}
+# 					3 = {
+# 						change_species_characteristics = {
+# 							add_trait = trait_Normal
+# 						}
+# 					}
+# 					2 = {
+# 						change_species_characteristics = {
+# 							add_trait = trait_Small
+# 						}
+# 					}
+# 					2 = {
+# 						change_species_characteristics = {
+# 							add_trait = trait_Tiny
+# 						}
+# 					}
+# 					1 = {
+# 						change_species_characteristics = {
+# 							add_trait = trait_Micro
+# 						}
+# 					}
+# 				}
+# 			}
+# 		}
+
+# 		else_if = {
+# 			limit = {
+# 				owner_main_species = {
+# 					gts_is_giantess = no
+# 					has_trait = trait_gts_begin
+# 				}
+# 			}
+
+# 			# 巨娘開局
+# 			owner_main_species = {
+# 				random_list = {
+# 					1 = {
+# 						change_species_characteristics = {
+# 							add_trait = trait_Titan
+# 						}
+# 					}
+# 					1 = {
+# 						change_species_characteristics = {
+# 							add_trait = trait_Giant
+# 						}
+# 					}
+# 					1 = {
+# 						change_species_characteristics = {
+# 							add_trait = trait_Tall
+# 						}
+# 					}
+# 				}
+# 			}
+# 		}
+
+# 		else_if = {
+# 			limit = {
+# 				owner_main_species = {
+# 					gts_is_tiny = no
+# 					has_trait = trait_tiny_begin
+# 				}
+# 			}
+
+# 			# 小人開局
+# 			owner_main_species = {
+# 				random_list = {
+# 					1 = {
+# 						change_species_characteristics = {
+# 							add_trait = trait_Normal
+# 						}
+# 					}
+# 					1 = {
+# 						change_species_characteristics = {
+# 							add_trait = trait_Small
+# 						}
+# 					}
+# 					1 = {
+# 						change_species_characteristics = {
+# 							add_trait = trait_Tiny
+# 						}
+# 					}
+# 					1 = {
+# 						change_species_characteristics = {
+# 							add_trait = trait_Micro
+# 						}
+# 					}
+# 				}
+# 			}
+# 		}
+
+# 		else = {
+# 			# 其餘的
+# 			every_galaxy_species = {
+# 				limit = {
+# 					gts_is_giantess = no
+# 					gts_is_tiny = no
+# 				}
+# 				random_list = {
+# 					1 = {
+# 						change_species_characteristics = {
+# 							add_trait = trait_Titan
+# 						}
+# 					}
+# 					1 = {
+# 						change_species_characteristics = {
+# 							add_trait = trait_Giant
+# 						}
+# 					}
+# 					1 = {
+# 						change_species_characteristics = {
+# 							add_trait = trait_Tall
+# 						}
+# 					}
+# 					1 = {
+# 						change_species_characteristics = {
+# 							add_trait = trait_Normal
+# 						}
+# 					}
+# 					1 = {
+# 						change_species_characteristics = {
+# 							add_trait = trait_Small
+# 						}
+# 					}
+# 					1 = {
+# 						change_species_characteristics = {
+# 							add_trait = trait_Tiny
+# 						}
+# 					}
+# 					1 = {
+# 						change_species_characteristics = {
+# 							add_trait = trait_Micro
+# 						}
+# 					}
+# 				}
+# 			}
+# 		}
+# 	}
+
+# 	after = {
+# 		every_galaxy_species  = {
+# 			limit = {
+# 				OR = {
+# 					has_trait = trait_gts_begin
+# 					has_trait = trait_tiny_begin
+# 				}
+# 			}
+# 			change_species_characteristics = {
+# 				remove_trait = trait_gts_begin
+# 			}
+# 			change_species_characteristics = {
+# 				remove_trait = trait_tiny_begin
+# 			}
+# 		}
+# 	}
+# }
+
+# country_event = {
+
+# 	# 為所有國家添加體型flag
+
+# 	id = gts_utility.201
+# 	hide_window = yes
+# 	is_triggered_only = yes
+
+# 	trigger = {
+# 		NOR = {
+# 			gts_is_giantess_empire = yes
+# 			gts_is_tiny_empire = yes
+# 		}
+# 	}
+
+# 	immediate = {
+# 		gts_ra_set_country_flag = yes
+# 	}
+# }
+
+country_event = {
+
+	# 將新生成的領袖設定為與來源種族相同的大小特質
+
+	id = gts_utility.300
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+
+		# 所有已招募领袖
+		every_owned_leader = {
+			limit = {
+				NOT = { has_leader_flag = gts_bruh_intentional_size_leader_flag } # 有些領袖會刻意擁有與種族不同的體型(這個視需求自己添加)
+				NOR = {
+					is_special_leader = yes
+					has_trait = trait_great_species
+					has_trait = leader_trait_Ultra
+				}
+			}
+			add_leader_trait_gts = yes # 將新生成的領袖設定為與來源種族相同的大小特質
+		}
+
+		#所有领袖池领袖
+		every_pool_leader = {
+			add_leader_trait_gts = yes
+		}
+		from = {
+			leader_event = {
+				id = gts_utility.301
+			}
+		}
+	}
+}
+
+leader_event = {
+
+	# 將新生成的領袖設定為與來源種族相同的大小特質(有些領袖因不明原因在生成時沒應用到上面那個，這裡再來一次確保)
+
+	id = gts_utility.301
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		gts_is_giantess = no
+		gts_is_tiny = no
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				NOR = {
+					is_special_leader = yes
+					has_trait = trait_great_species
+					has_trait = leader_trait_Ultra
+				}
+			}
+			add_leader_trait_gts = yes
+		}
+	}
+}
+
+country_event = {
+	id = gts_utility.302
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		revive_gts_leader = { name = aurora event = gts_utility.304 ruler_event = gts_utility.305 }
+		revive_gts_leader = { name = arlo event = gts_utility.304 ruler_event = gts_utility.305 }
+		revive_gts_leader = { name = luodi event = gts_utility.304 ruler_event = gts_utility.305 }
+		revive_gts_leader = { name = sonxi event = gts_utility.304 ruler_event = gts_utility.305 }
+		revive_gts_leader = { name = yiyan event = gts_utility.304 ruler_event = gts_utility.305 }
+		revive_gts_leader = { name = linglu event = gts_utility.304 ruler_event = gts_utility.305 }
+		revive_gts_leader = { name = eyjafjalla event = gts_utility.304 ruler_event = gts_utility.305 }
+		revive_gts_leader = { name = koharu event = gts_utility.304 ruler_event = gts_utility.305 }
+		revive_gts_leader = { name = hanako event = gts_utility.304 ruler_event = gts_utility.305 }
+		revive_gts_leader = { name = jifeng event = gts_utility.304 ruler_event = gts_utility.305 }
+		revive_gts_leader = { name = erika event = gts_utility.304 ruler_event = gts_utility.305 }
+		revive_gts_leader = { name = goldenglow event = gts_utility.304 ruler_event = gts_utility.305 }
+		revive_gts_leader = { name = huatian event = gts_utility.304 ruler_event = gts_utility.305 }
+		revive_gts_leader = { name = aya event = gts_utility.304 ruler_event = gts_utility.305 }
+		revive_gts_leader = { name = eliza event = gts_utility.304 ruler_event = gts_utility.305 }
+		revive_gts_leader = { name = xiaomiao event = gts_utility.304 ruler_event = gts_utility.305 }
+		revive_gts_leader = { name = archetto event = gts_utility.304 ruler_event = gts_utility.305 }
+		revive_gts_leader = { name = blemishine event = gts_utility.304 ruler_event = gts_utility.305 }
+		revive_gts_leader = { name = satori event = gts_utility.304 ruler_event = gts_utility.305 }
+		revive_gts_leader = { name = doctor event = gts_utility.304 ruler_event = gts_utility.305 }
+		revive_gts_leader = { name = mari event = gts_utility.304 ruler_event = gts_utility.305 }
+		revive_gts_leader = { name = tiantiao event = gts_utility.304 ruler_event = gts_utility.305 }
+		revive_gts_leader = { name = guya event = gts_utility.304 ruler_event = gts_utility.305 }
+		revive_gts_leader = { name = mizuki event = gts_utility.304 ruler_event = gts_utility.305 }
+		revive_gts_leader = { name = sera event = gts_utility.304 ruler_event = gts_utility.305 }
+		revive_gts_leader = { name = allomerus event = gts_utility.304 ruler_event = gts_utility.305 }
+		revive_gts_leader = { name = saratoga event = gts_utility.304 ruler_event = gts_utility.305 }
+		revive_gts_leader = { name = tlipoca event = gts_utility.304 ruler_event = gts_utility.305 }
+		revive_gts_leader = { name = qhai event = gts_leader_qhai.999 ruler_event = gts_utility.305 }
+		revive_gts_leader = { name = tensi event = gts_leader_qhai.1000 ruler_event = gts_utility.305 }
+		revive_gts_leader = { name = seele event = gts_utility.304 ruler_event = gts_utility.305 }
+		revive_gts_leader = { name = seele_li event = gts_utility.304 ruler_event = gts_utility.305 }
+		revive_gts_leader = { name = bronya event = gts_utility.304 ruler_event = gts_utility.305 }
+		revive_gts_leader = { name = firefly event = gts_utility.304 ruler_event = gts_utility.305 }
+		revive_gts_leader = { name = xinuo event = gts_utility.304 ruler_event = gts_utility.305 }
+		revive_gts_leader = { name = carlotta event = gts_utility.304 ruler_event = gts_utility.305 }
+		revive_gts_leader = { name = linfeng event = gts_utility.304 ruler_event = gts_utility.305 }
+		revive_gts_leader = { name = suxiaobai event = gts_utility.304 ruler_event = gts_utility.305 }
+		revive_gts_leader = { name = hitomi event = gts_utility.304 ruler_event = gts_utility.305 }
+		revive_gts_leader = { name = aplog event = gts_aplog.21 ruler_event = gts_utility.305 }
+	}
+}
+
+country_event = {
+	id = gts_utility.304
+	title = gts_utility.304.name
+	desc = gts_utility.304.desc
+	is_triggered_only = yes
+	picture = GFX_load_47
+	immediate = {
+
+	}
+	option = { 
+		name = gts_utility.304.option
+	}
+}
+country_event = {
+	id = gts_utility.305
+	title = gts_utility.305.name
+	desc = gts_utility.305.desc
+	is_triggered_only = yes
+	picture = GFX_load_47
+	immediate = {
+	}
+	option = {
+		name = gts_utility.305.option
+	}
+}
+
+# 从原版抄的著名/传奇领袖抽奖机制。
+# 没来的及或者没有招募前事件的领袖也可以这么抽？
+country_event = {
+	id = gts_utility.303
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		has_paragon_dlc = yes
+		is_ai = no
+		is_homicidal = no
+		has_technology = tech_xeno_linguistics
+		NOT = {
+			has_country_flag = leader_recruited_recently
+		}
+	}
+	immediate = {
+		random_list = {
+			1 = {
+				modifier = {
+					add = 2
+					any_owned_starbase = {
+						has_starbase_building = recruitment_office
+					}
+				}
+				country_event = {
+					id = gts_utility.304
+					days = 1
+					random = 360
+				}
+			}
+			0 = {
+				modifier = {
+					add = value:ethic_leader_lower_chance
+				}
+			}
+		}
+	}
+}
+
+# ethic leader lottery machine
+# 原版是 paragon.40001
+country_event = {
+	id = gts_utility.306
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+		random_list = {
+			1 = {
+				modifier = {
+					set = 0
+					any_owned_leader = {
+						has_leader_flag = gts_jifeng
+					}
+				}
+				country_event = {
+					id = gts_jifeng.999
+				}
+			}
+			1 = {
+				modifier = {
+					set = 0
+					any_owned_leader = {
+						has_leader_flag = gts_goldenglow
+					}
+				}
+				country_event = {
+					id = gts_goldenglow.999
+				}
+			}
+			1 = {
+				modifier = {
+					set = 0
+					any_owned_leader = {
+						has_leader_flag = gts_doctor
+					}
+				}
+				modifier = {
+					set = 0
+					has_global_flag = gts_has_trigger_doctor
+				}
+				country_event = {
+					id = gts_doctor.5
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	# 测试用
+	id = gts_utility.500
+	title = gts_utility.500.name
+	desc = gts_utility.500.desc
+	picture = GFX_gts_event_46
+	show_sound = event_bad_omen
+	is_triggered_only = yes
+
+	option = {
+		name = gts_utility.500.a
+		owner_main_species = {
+			gts_species_size_increase = yes
+		}
+
+	}
+	option = {
+		name = gts_utility.500.b
+		owner_main_species = {
+			gts_species_size_reduce = yes
+		}
+	}
+	option = {
+		name = gts_utility.500.c
+		owner_main_species = {
+			gts_species_size_change_to = {
+				SIZE_TRAIT = trait_Titan
+			}
+		}
+	}
+	option = {
+		name = gts_utility.500.d
+		every_owned_leader = {
+			gts_leader_size_increase = yes
+		}
+	}
+	option = {
+		name = gts_utility.500.e
+		every_owned_leader = {
+			gts_leader_size_reduce = yes
+		}
+	}
+	option = {
+		name = gts_utility.500.f
+		random_owned_leader = {
+			gts_leader_size_change_to = {
+				SIZE_TRAIT = leader_trait_Titan
+			}
+		}
+	}
+	option = {
+		name = gts_utility.500.g
+		random_owned_pop_group = {
+			gts_pop_size_increase = yes
+		}
+	}
+	option = {
+		name = gts_utility.500.h
+		random_owned_pop_group = {
+			gts_pop_size_reduce = yes
+		}
+	}
+	option = {
+		name = gts_utility.500.i
+		random_owned_pop_group = {
+			gts_pop_size_change_to = {
+				SIZE_TRAIT = trait_Titan
+			}
+		}
+	}
+	option = {
+		default_hide_option = yes
+		name = gts_back
+	}
+}
+
+country_event = {
+	# 测试用
+	id = gts_utility.501
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		owner_main_species = {
+			gts_is_giantess = yes
+			gts_is_tiny = no
+		}
+	}
+}

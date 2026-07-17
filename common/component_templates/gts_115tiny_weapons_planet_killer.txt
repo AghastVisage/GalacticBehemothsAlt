@@ -1,0 +1,85 @@
+# ####################
+# Planet killer beam?
+# ####################
+
+#weapon_component_template = {
+#	key = "PLANET_DESTRUCTION_COMPONENT"
+#	size = planet_killer
+#	type = planet_killer
+#	use_ship_kill_target = no
+#
+#	icon = GFX_technology_unknown
+#	icon_frame = 1
+#
+#	component_set = "PLANET_KILLER_1"
+#
+#	planet_destruction_gfx = "neutron_planet_gfx"
+#}
+
+weapon_component_template = {
+    key = "gts_115tiny_PLANET_KILLER_STAR_CRACKER"
+    size = planet_killer
+    type = planet_killer
+    use_ship_kill_target = no
+    can_destroy_stars = yes
+    power = -7500
+    windup = {min = 60 max = 60 }   # 在巨像类武器中，这个数值被定义为开火准备时间，单位天
+    total_fire_time = 30            # 在巨像类武器中，这个数值被定义为开火时间，单位为天
+    damage = {min = 0 max = 0 }
+    range = 0
+    prerequisites = { "tech_gts_115tiny_btc_1" }
+
+    icon = GFX_ship_part_nanobot_diffuser
+    icon_frame = 1
+
+    size_restriction = { gts_115tiny_star_eater }
+    component_set = "gts_115tiny_PLANET_KILLER_STAR_CRACKER"
+
+    planet_destruction_gfx = "star_destroyer_effect_gfx"
+}
+weapon_component_template = { # 鸭绒巨像1
+    key = "gts_115_PLANET_KILLER_yarong1"
+    size = planet_killer
+    type = planet_killer
+    use_ship_kill_target = no
+    prerequisites = { "tech_gts_115_PLANET_KILLER_yarong1" } #前置科技
+    size_restriction = { gts_yarong_ship }
+    power = -7500
+    windup = {min = 15 max = 15 }
+    total_fire_time = 15
+    accuracy = 1
+    damage = {min = 0 max = 0 }
+    range = 0
+
+    icon = "GFX_ship_part_divine_enforcer"
+    icon_frame = 1
+
+    #size_restriction = { colossus }
+    component_set = "gts_115_PLANET_KILLER_yarong1"
+
+    planet_destruction_gfx = "global_pacifier_gfx" #粒子效果
+
+}
+weapon_component_template = { # 鸭绒巨像2
+    key = "gts_115_PLANET_KILLER_yarong2"
+    size = planet_killer
+    type = planet_killer
+    use_ship_kill_target = no
+    prerequisites = { "tech_gts_115_PLANET_KILLER_yarong1" } #前置科技
+    size_restriction = { gts_yarong_ship }
+    power = -7500
+    windup = {min = 15 max = 15 }
+    total_fire_time = 15
+    accuracy = 1
+    damage = {min = 0 max = 0 }
+    range = 0
+
+    icon = "GFX_ship_part_divine_enforcer"
+    icon_frame = 1
+
+    #size_restriction = { colossus }
+    component_set = "gts_115_PLANET_KILLER_yarong2"
+
+    planet_destruction_gfx = "global_pacifier_gfx" #粒子效果
+
+}

@@ -1,0 +1,202 @@
+namespace = gts_egg
+
+# 卵開
+country_event = {
+
+	id = gts_egg.0
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { has_origin = origin_Luanzi }
+
+	immediate = {
+
+		set_country_flag = Luanzi_country
+		set_country_flag = starting_event
+
+		capital_scope = {
+			set_planet_flag = gts_hometown_planet
+			gts_bruh_clear_planet_effect = yes
+			remove_zone = {
+				district = district_body_1
+				zone = zone_urban
+				zone_slot = 2
+			}
+			remove_building = building_precinct_house
+			add_building = building_capital
+			add_building = building_planet_jiansheshu_1
+			add_building = building_active_weihuxitong_1
+			add_building = building_holo_theatres
+			add_building = building_factory_1
+			#add_building = building_gts_bruh_administrative_tower
+			if = {
+				limit = {
+					Root = {
+						gts_is_tiny_empire = yes
+					}
+				}
+				disable_building = building_planet_jiansheshu_1
+				disable_building = building_active_weihuxitong_1
+			}
+			while = {
+				count = 1
+				add_district = district_body_5
+				add_district = district_body_7
+			}
+			while = {
+				count = 3
+				add_district = district_body_1
+			}
+			while = {
+				count = 5
+				add_district = district_body_2
+				add_district = district_body_4
+			}
+			while = {
+				count = 7
+				add_district = district_body_3
+			}
+
+			luanzi_origin_effect = yes
+			save_global_event_target_as = gts_luanzi_planet
+		}
+
+		owner_main_species = {
+			change_species_characteristics = {
+				remove_trait = trait_pc_savannah_preference
+			}
+			change_species_characteristics = {
+				remove_trait = trait_pc_arid_preference
+			}
+			change_species_characteristics = {
+				remove_trait = trait_pc_desert_preference
+			}
+			change_species_characteristics = {
+				remove_trait = trait_pc_continental_preference
+			}
+			change_species_characteristics = {
+				remove_trait = trait_pc_tropical_preference
+			}
+			change_species_characteristics = {
+				remove_trait = trait_pc_ocean_preference
+			}
+			change_species_characteristics = {
+				remove_trait = trait_pc_arctic_preference
+			}
+			change_species_characteristics = {
+				remove_trait = trait_pc_tundra_preference
+			}
+			change_species_characteristics = {
+				remove_trait = trait_pc_alpine_preference
+			}
+			change_species_characteristics = {
+				add_trait = trait_pc_gts_luanzi_preference
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = gts_egg.1	#正常
+	title = "gts_egg.1.name"
+	desc = "gts_egg.1.desc"
+	picture = GFX_evt_wormhole
+	location = ROOT
+	is_triggered_only = yes
+
+	option = {
+		name = gts_egg.1.a
+		owner = {
+			add_resource = {
+				minor_artifacts = 100
+			}
+			add_resource = {
+				unity = 2500
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = gts_egg.2	#正面
+	title = "gts_egg.2.name"
+	desc = "gts_egg.2.desc"
+	picture = GFX_evt_wormhole
+	location = ROOT
+	is_triggered_only = yes
+
+	option = {
+		name = gts_egg.2.a
+		owner = {
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = 12
+			}
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = 12
+			}
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = 12
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = gts_egg.3	#负面
+	title = "gts_egg.3.name"
+	desc = "gts_egg.3.desc"
+	picture = GFX_evt_wormhole
+	location = ROOT
+	is_triggered_only = yes
+
+	option = {
+		name = gts_egg.3.a
+		add_planet_devastation = 10
+		while = {
+			count = 3
+			random_owned_pop_group = {
+				kill_single_pop = yes
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = gts_egg.4	#结束
+	title = "gts_egg.4.name"
+	desc = "gts_egg.4.desc"
+	picture = GFX_evt_wormhole
+	location = ROOT
+	is_triggered_only = yes
+	immediate = {
+	}
+	option = {
+		name = gts_egg.4.a
+		add_modifier = {
+			modifier = Luanzi_end
+		}
+		add_deposit = d_Egg_core
+	}
+}
+
+country_event = {# 卵子星球吞食星系
+	id = gts_egg.10
+	title = gts_egg.10.name
+	desc = gts_egg.10.desc
+	picture = GFX_gts_eyjafjalla_10
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			event_target:gts_nutrition_planet = {
+				destroy_colony = yes
+				remove_planet = yes
+			}
+		}
+	}
+	
+	option = {
+		name = gts_terror
+	}
+}

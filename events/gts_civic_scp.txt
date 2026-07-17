@@ -1,0 +1,259 @@
+namespace = gts_civ_scp
+
+# 基金会
+
+espionage_operation_event = {
+	id = gts_civ_scp.11
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_espionage_operation_progress_locked = yes
+		owner = {
+			country_event = {
+				id = gts_civ_scp.21
+			}
+		}
+	}
+
+	after = {
+		set_espionage_operation_progress_locked = no
+	}
+}
+
+espionage_operation_event = {
+
+	id = gts_civ_scp.12
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_espionage_operation_progress_locked = yes
+		owner = {
+			country_event = {
+				id = gts_civ_scp.22
+			}
+		}
+	}
+
+	after = {
+		set_espionage_operation_progress_locked = no
+	}
+}
+
+espionage_operation_event = {
+	id = gts_civ_scp.13
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_espionage_operation_progress_locked = yes
+		owner = {
+			country_event = {
+				id = gts_civ_scp.23
+			}
+		}
+	}
+
+	after = {
+		set_espionage_operation_progress_locked = no
+	}
+}
+
+country_event = {
+
+	# 完成收容
+
+	id = gts_civ_scp.21
+	title = gts_civ_scp.21.name
+	desc = gts_civ_scp.21.desc
+	picture = GFX_gtsra_load_16
+	show_sound = event_mystic_reveal
+	is_triggered_only = yes
+	location = fromfrom
+
+	option = {
+		name = gts_civ_scp.21.a
+		# 轉進了庫存科研點
+		root = {
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = 12
+			}
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = 12
+			}
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = 12
+			}
+		}
+		from.spynetwork = {
+			add_spy_network_level_on_success_effect = { VALUE = -30 }
+		}
+		destroy_espionage_operation = from
+	}
+}
+
+country_event = {
+
+	# 研究異常獲得獎勵-對面出事件獲得1800天debuff
+
+	id = gts_civ_scp.22
+	title = gts_civ_scp.22.name
+	desc = gts_civ_scp.22.desc
+	picture = GFX_gtsra_load_13
+	is_triggered_only = yes
+	location = fromfrom
+
+	option = {
+		name = gts_civ_scp.22.a
+		# 轉進了庫存科研點
+		root = {
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = 12
+			}
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = 12
+			}
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = 12
+			}
+		}
+		from.spynetwork = {
+			add_spy_network_level_on_success_effect = { VALUE = -50 }
+		}
+		destroy_espionage_operation = from
+		hidden_effect = {
+			fromfrom = {
+				country_event = {
+					id = gts_civ_scp.31
+					months = 1
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+
+	# 引發異常
+
+	id = gts_civ_scp.23
+	title = gts_civ_scp.23.name
+	desc = gts_civ_scp.23.desc
+	show_sound = event_air_raid_siren
+	picture = GFX_gtsra_load_22
+	is_triggered_only = yes
+	location = fromfrom
+
+	immediate = {
+		fromfrom = {
+			random_owned_planet = {
+				limit = {
+					NOT = {
+						is_planet_class = pc_habitat
+					}
+				}
+				save_event_target_as = gts_bruh_get_event_location
+			}
+		}
+	}
+
+	option = {
+		name = gts_civ_scp.23.a
+		event_target:gts_bruh_get_event_location = {
+			planet_event = {
+				id = gts_civ_scp.32
+			}
+		}
+		from.spynetwork = {
+			add_spy_network_level_on_success_effect = { VALUE = -80 }
+		}
+		destroy_espionage_operation = from
+	}
+}
+
+country_event = {
+
+	# 都市傳說(對方的事件)
+
+	id = gts_civ_scp.31
+	title = gts_civ_scp.31.name
+	desc = gts_civ_scp.31.desc
+	picture = GFX_gtsra_load_5
+	is_triggered_only = yes
+
+	option = {
+		name = gts_civ_scp.4.a
+		add_modifier = {
+			modifier = gts_city_mistory
+			years = 3
+		}
+	}
+}
+
+planet_event = {
+
+	# 巨娘襲擊！(對方的事件)
+
+	id = gts_civ_scp.32
+	title = gts_civ_scp.32.name
+	desc = gts_civ_scp.32.desc
+	picture = GFX_load_53
+	is_triggered_only = yes
+	location = root
+
+	immediate = {
+		add_planet_devastation = 10
+		while = {
+			count = 3
+			random_owned_pop_group = {
+				kill_single_pop = yes
+			}
+		}
+	}
+
+	option = {
+		name = gts_civ_scp.32.a
+		hidden_effect = {
+			create_country = {
+				name = "NAME_GTS"
+				type = faction
+				flag = {
+					icon = {
+						category = "special"
+						file = "unknown.dds"
+					}
+					background = {
+						category = "backgrounds"
+						file = "00_solid.dds"
+					}
+					colors = {
+						"light_orange"
+						"light_orange"
+						"null"
+						"null"
+					}
+				}
+				effect = {
+					establish_communications_no_message = root.owner
+					save_event_target_as = gts_bruh_get_invade_event_country
+				}
+			}
+		}
+		while = {
+			count = 10
+			create_army = {
+				name = "NAME_GTS"
+				owner = event_target:gts_bruh_get_invade_event_country
+				type = "gts_army"
+			}
+		}
+	}
+}
+

@@ -1,0 +1,119 @@
+tech_gts_bfbf_habitability = {
+    icon =tech_climate_restoration
+    area = engineering
+    cost = 5000
+    tier = 0
+    category = { statecraft }
+    ai_update_type = all
+    is_rare = yes
+    weight = @tier5weight1
+    #icon =
+    #prerequisites = {
+    # } #前置科技，当没有研究前置科技之前，无法刷到本科技
+    potential = {
+        has_ascension_perk = ap_gts_planet
+    }
+    weight_modifier = {
+        modifier = {
+            factor = 3
+            or = {
+                has_technology =tech_gts_dirt_colonies
+                has_technology =tech_gts_juice_colonies
+                has_technology = tech_gts_milk_colonies
+                has_technology = tech_gts_semen_colonies
+                has_technology = tech_gts_shit_colonies
+            }
+        }
+    }
+    modifier = {
+        custom_tooltip = tech_gts_bfbf_habitability_tooltip
+        pc_gts_dirt0_habitability = 0.3
+        pc_gts_dirt1_habitability = 0.3
+        pc_gts_dirt2_habitability =0.3
+        pc_gts_dirt3_habitability = 0.3
+        pc_gts_dirt4_habitability = 0.3
+        pc_gts_juice_habitability = 0.3
+        pc_gts_juice2_habitability = 0.3
+        pc_gts_juice3_habitability = 0.3
+        pc_gts_milk_habitability = 0.3
+        pc_gts_semen_habitability = 0.3
+        pc_gts_shit_habitability = 0.3
+        pc_gts_urine_habitability = 0.3
+        pc_gts_urine2_habitability = 0.3
+    }
+}
+
+
+tech_gts_bfbf_habitability_dirt = {
+    area = society
+    cost = 4000
+    tier = 3
+    icon = tech_gts_dirt_colonies
+    category = { statecraft }
+    ai_update_type = all
+    weight = @tier5weight1
+    prerequisites = {
+        tech_gts_bfbf_habitability
+     } #前置科技，当没有研究前置科技之前，无法刷到本科技
+    modifier = {#并非并非修改处
+        custom_tooltip = tech_gts_bfbf_habitability_dirt_tooltip
+        pc_gts_dirt0_habitability = 0.7
+        pc_gts_dirt1_habitability = 0.7
+        pc_gts_dirt2_habitability =0.7
+        pc_gts_dirt3_habitability = 0.7
+        pc_gts_dirt4_habitability = 0.7
+        pc_gts_shit_habitability = 0.7
+        pc_gts_urine_habitability = 0.7
+        pc_gts_urine2_habitability = 0.7
+    }
+}
+
+tech_gts_bfbf_habitability_milk = {
+    icon =  tech_gts_milk_colonies
+    area = society
+    cost = 4000
+    tier = 3
+    category = { statecraft }
+    ai_update_type = all
+    weight = @tier5weight1
+    prerequisites = {
+        tech_gts_bfbf_habitability
+    } #前置科技，当没有研究前置科技之前，无法刷到本科技
+    modifier = {#并非并非修改处
+        custom_tooltip = tech_gts_bfbf_habitability_milk_tooltip
+        pc_gts_milk_habitability = 0.7
+        planet_jobs_food_produces_mult = 0.05			#岗位生产的食物
+    }
+}
+
+tech_gts_bfbf_habitability_juiceandsemen = {
+    icon = tech_gts_juice_colonies
+    area = society
+    cost = 4000
+    tier = 3
+    category = { statecraft }
+    ai_update_type = all
+    weight = @tier5weight1
+
+    potential = {
+        OR = {
+            has_ethic = "ethic_spiritualist"
+            has_ethic = "ethic_fanatic_spiritualist"
+        }
+    }
+
+    prerequisites = {
+        tech_gts_bfbf_habitability
+    } #前置科技，当没有研究前置科技之前，无法刷到本科技
+
+    modifier = {#并非并非修改处
+        custom_tooltip = tech_gts_bfbf_habitability_juiceandsemen_tooltip
+        pc_gts_juice_habitability = 0.7
+        pc_gts_juice2_habitability = 0.7#蒂蒂的爱液球
+        pc_gts_juice3_habitability = 0.7#千海的爱液球
+        pc_gts_semen_habitability = 0.7
+        logistic_growth_mult = 0.05
+	    bonus_pop_growth_mult = 0.05
+    }
+}
+

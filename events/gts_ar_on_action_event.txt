@@ -1,0 +1,175 @@
+namespace = gts_o_action
+
+# 开局调整人口数
+country_event = {
+    id = gts_o_action.0011
+    hide_window = yes
+    is_triggered_only = yes
+
+    trigger = {
+        # 只针对有人口的国家
+        pop_amount > 0
+    }
+
+    immediate = {
+        # 考虑到多物种国家的情况，按照国内物种最大体型定义
+        every_owned_pop_group = {
+            # 大体型-全世界按百分比杀
+            if = {
+                limit = { has_trait = trait_Titan }
+                kill_pop_group = {
+                    pop_group = this
+                    percentage = 0.75
+                }
+            }
+            else_if = {
+                limit = { has_trait = trait_Giant }
+                kill_pop_group = {
+                    pop_group = this
+                    percentage = 0.6
+                }
+            }
+            else_if = {
+                limit = { has_trait = trait_Tall }
+                kill_pop_group = {
+                    pop_group = this
+                    percentage = 0.4
+                }
+            }
+
+            # 小体型-全世界倍乘
+            else_if = {
+                limit = { has_trait = trait_Small }
+                scale_pop_amount = 1.0 #1.25
+            }
+            else_if = {
+                limit = { has_trait = trait_Tiny }
+                scale_pop_amount = 1.0 #1.50
+            }
+            else_if = {
+                limit = { has_trait = trait_Micro }
+                scale_pop_amount = 1.0 #1.75
+            }
+            else_if = {
+                limit = { has_trait = trait_Nano }
+                scale_pop_amount = 1.0 #2.0
+            }
+        }
+    }
+
+    after = {
+        capital_scope = {
+            if = {
+                limit = {
+                    owner_main_species = {
+                        has_trait = trait_Small
+                    }
+                }
+                create_pop_group = {
+                    species = owner_main_species
+                    category = civilian
+                    size = 1300
+                }
+            }
+            else_if = {
+                limit = {
+                    owner_main_species = {
+                        has_trait = trait_Tiny
+                    }
+                }
+                create_pop_group = {
+                    species = owner_main_species
+                    category = civilian
+                    size = 2600
+                }
+            }
+            else_if = {
+                limit = {
+                    owner_main_species = {
+                        has_trait = trait_Micro
+                    }
+                }
+                create_pop_group = {
+                    species = owner_main_species
+                    category = civilian
+                    size = 3900
+                }
+            }
+            else_if = {
+                limit = {
+                    owner_main_species = {
+                        has_trait = trait_Nano
+                    }
+                }
+                create_pop_group = {
+                    species = owner_main_species
+                    category = civilian
+                    size = 5200
+                }
+            }
+        }
+    }
+}
+
+# 完成殖民调整人口数
+planet_event = {
+    id = gts_o_action.0012
+    hide_window = yes
+    is_triggered_only = yes
+
+    trigger = {
+        or = {
+            any_owned_pop_group = { has_trait = trait_Titan }
+            any_owned_pop_group = { has_trait = trait_Giant }
+            any_owned_pop_group = { has_trait = trait_Tall }
+            any_owned_pop_group = { has_trait = trait_Small }
+            any_owned_pop_group = { has_trait = trait_Tiny }
+            any_owned_pop_group = { has_trait = trait_Micro }
+            any_owned_pop_group = { has_trait = trait_Nano }
+        }
+    }
+
+    immediate = {
+        every_owned_pop_group = {
+            if = {
+                limit = { has_trait = trait_Titan }
+                kill_pop_group = {
+                    pop_group = this
+                    percentage = 0.75
+                }
+            }
+            else_if = {
+                limit = { has_trait = trait_Giant }
+                kill_pop_group = {
+                    pop_group = this
+                    percentage = 0.6
+                }
+            }
+            else_if = {
+                limit = { has_trait = trait_Tall }
+                kill_pop_group = {
+                    pop_group = this
+                    percentage = 0.4
+                }
+            }
+
+            else_if = {
+                limit = { has_trait = trait_Small }
+                scale_pop_amount = 1.25
+            }
+            else_if = {
+                limit = { has_trait = trait_Tiny }
+                scale_pop_amount = 1.5
+            }
+            else_if = {
+                limit = { has_trait = trait_Micro }
+                scale_pop_amount = 1.75
+            }
+            else_if = {
+                limit = { has_trait = trait_Nano }
+                scale_pop_amount = 2.0
+            }
+        }
+    }
+}
+

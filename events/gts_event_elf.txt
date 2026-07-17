@@ -1,0 +1,932 @@
+namespace = gts_evt_elf
+
+country_event = {
+
+	# 創建精靈
+
+	id = gts_evt_elf.9
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		# 創建精靈星系
+		random_system = {
+			limit = {
+				is_neighbor_of = root
+			}
+			save_event_target_as = gts_bruh_get_elf_country_neighbor_system
+		}
+		event_target:gts_bruh_get_elf_country_neighbor_system = {
+			spawn_system = {
+				min_distance >= 20
+				max_distance <= 50
+				max_jumps = 1
+				initializer = basic_init_05
+				effect = {
+					save_event_target_as = gts_bruh_get_elf_country_system
+				}
+			}
+		}
+		last_created_system = {
+			random_system_planet = {
+				limit = {
+					is_star = no
+					is_moon = no
+					is_asteroid = no
+					has_anomaly = no
+				}
+				change_pc = pc_gaia
+				change_planet_size = 25
+				clear_deposits = yes
+				save_global_event_target_as = gts_bruh_get_elf_capital
+			}
+		}
+
+		# 創建精靈種族
+		create_species = {
+			name = "NAME_gts_elf"
+			plural = "NAME_gts_elfs"
+			class = random_non_machine
+			portrait = random
+			namelist = random
+			gender = female
+			traits = {
+				trait = trait_pc_gaia_preference
+				trait = trait_Titan
+				trait = trait_docile
+				trait = trait_traditional
+				trait = trait_gts_beautiful
+				trait = trait_humanoid_psychological_infertility
+				trait = trait_nonadaptive
+			}
+			homeworld = event_target:gts_bruh_get_elf_capital
+			effect = {
+				save_global_event_target_as = gts_bruh_get_elf_species
+			}
+		}
+
+		# 創建精靈國家
+		create_country = {
+			name = NAME_gts_elf_empire
+			authority = auth_imperial
+			civics = {
+				civic = civic_inwards_perfection
+				civic = civic_agrarian_idyll
+				civic = civic_environmentalist
+			}
+			species = event_target:gts_bruh_get_elf_species
+			ignore_initial_colony_error = yes
+			type = default
+			ethos = {
+				ethic = ethic_fanatic_xenophobe
+				ethic = ethic_pacifist
+			}
+			flag = {
+				icon = {
+					category = "plantoid"
+					file = "plantoid_04.dds"
+				}
+				background = {
+					category = "backgrounds"
+					file = "rounded_middle.dds"
+				}
+				colors = {
+					"dark_green"
+					"light_green"
+					"null"
+					"null"
+				}
+			}
+			effect = {
+				save_global_event_target_as = gts_bruh_get_elf_country
+				add_resource = {
+					energy = 30000
+				}
+				add_resource = {
+					minerals = 30000
+				}
+				add_resource = {
+					food = 30000
+				}
+				add_resource = {
+					consumer_goods = 15000
+				}
+				add_resource = {
+					alloys = 15000
+				}
+				add_resource = {
+					influence = 100
+				}
+				set_ai_personality = fallen_empire_xenophobe# 排外老逼燈性格
+			}
+		}
+		last_created_country = {
+			# 夏露爾
+			create_leader = {
+				class = official
+				species = event_target:gts_bruh_get_elf_species
+				name = NAME_gts_elf_queen
+				event_leader = yes
+				skill = 10
+				gender = female
+				set_age = 24
+				traits = {
+					trait = subclass_official_economy_councilor
+					trait = trait_ruler_eye_for_talent_2
+					trait = leader_trait_principled_2
+				}
+				effect = {
+					change_leader_portrait = gts_elf_queen
+				}
+			}
+			set_leader = last_created_leader
+			room_name_override = gts_elf_room
+		}
+
+		# 創建殖民地與人口
+		event_target:gts_bruh_get_elf_capital = {
+			#create_colony = {
+			#	owner = event_target:gts_bruh_get_elf_country
+			#}
+			set_capital = yes
+			set_owner = event_target:gts_bruh_get_elf_country
+			create_pop_group = {
+				species = event_target:gts_bruh_get_elf_species
+				category = civilian
+				size = 1500
+			}
+			solar_system = {
+				set_name = "NAME_gts_elf_system"
+				create_starbase = {
+					size = starbase_outpost
+					owner = event_target:gts_bruh_get_elf_country
+				}
+				every_system_planet = {
+					set_surveyed = {
+						surveyed = yes
+						surveyor = root.owner
+					}
+				}
+			}
+			create_elf_empire_fleet = yes
+		}
+
+		# 與玩家建立通訊
+		event_target:gts_bruh_get_elf_country = {
+			establish_communications_no_message = root
+			add_opinion_modifier = {
+				who = root
+				modifier = opinion_gts_elf_favour
+			}
+		}
+	}
+
+	after = {
+		# 星球的細節
+		event_target:gts_bruh_get_elf_capital = {
+			set_name = "NAME_gts_elf_planet"
+			reroll_deposits = yes
+			add_zone = {
+				district = district_city
+				zone = zone_factory
+			}
+			while = {
+				count = 3
+				add_district = district_city
+				add_district = district_generator
+				add_district = district_mining
+				add_district = district_farming
+			}
+			remove_building = building_colony_shelter
+			add_building = building_capital
+			add_building = building_research_lab_1
+			add_building = building_foundry_1
+			add_building = building_factory_1
+			add_building = building_gts_bruh_administrative_tower
+		}
+		country_event = {
+			id = gts_evt_elf.10
+			days = 7
+		}
+	}
+}
+
+country_event = {
+
+	# 第一次通訊鍵入
+
+	id = gts_evt_elf.10
+	title = gts_evt_elf.10.name
+	desc = gts_evt_elf.10.desc
+	diplomatic = yes
+	is_triggered_only = yes
+	location = event_target:gts_bruh_get_elf_capital
+
+	picture_event_data = {
+		portrait = event_target:gts_bruh_get_elf_country.ruler
+		room = gts_elf_room
+	}
+
+	option = {
+		name = gts_evt_elf.10.a
+	}
+	option = {
+		name = gts_evt_elf.10.b
+	}
+	option = {
+		name = gts_evt_elf.10.c
+	}
+}
+
+country_event = {
+
+	# 秘密訪問
+
+	id = gts_evt_elf.11
+	title = gts_evt_elf.11.name
+	desc = gts_evt_elf.11.desc
+	picture = GFX_evt_fleet_neutral
+	show_sound = event_mysterious_signal
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = elf_intro
+	}
+
+	trigger = {
+		exists = event_target:gts_bruh_get_elf_country
+		NOR = {
+			has_global_flag = elf_intro
+		}
+		event_target:gts_bruh_get_elf_country = {
+			NOT = {
+				is_at_war_with = root
+			}
+			#trust = {
+			#	who = root
+			#	value >= 1
+			#}
+		}
+	}
+
+	option = {
+		name = gts_evt_elf.11.a
+		country_event = {
+			id = gts_evt_elf.12
+		}
+	}
+}
+
+country_event = {
+
+	# 蒂法妮婭通訊
+
+	id = gts_evt_elf.12
+	title = gts_evt_elf.12.name
+	desc = gts_evt_elf.12.desc
+	picture = GFX_evt_diplomatic_visit
+	diplomatic = yes
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = Teifuania
+		room = gts_elf_room
+	}
+
+	option = {
+		name = gts_evt_elf.12.a
+		is_dialog_only = yes
+		response_text = gts_evt_elf.12.a.respond
+	}
+	option = {
+		name = gts_evt_elf.12.b
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_elf.121
+			}
+			country_event = {
+				id = gts_evt_elf.13
+				days = 30
+			}
+		}
+	}
+	option = {
+		name = gts_evt_elf.12.c
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_elf.122
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_elf.121
+	base = gts_evt_elf.12
+	desc = gts_evt_elf.12.b.respond
+	#desc_clear = yes
+	option_clear = yes
+
+	option = {
+		name = OK
+	}
+}
+
+country_event = {
+	id = gts_evt_elf.122
+	base = gts_evt_elf.12
+	desc = gts_evt_elf.12.c.respond
+	desc_clear = yes
+	option_clear = yes
+	is_triggered_only = yes
+
+	option = {
+		name = OK
+	}
+}
+
+country_event = {
+
+	# 緊急通訊
+
+	id = gts_evt_elf.13
+	title = gts_evt_elf.13.name
+	desc = gts_evt_elf.13.desc
+	picture = GFX_evt_fleet_neutral
+	show_sound = event_mysterious_signal
+	is_triggered_only = yes
+
+	option = {
+		name = OK
+		country_event = {
+			id = gts_evt_elf.14
+		}
+	}
+}
+
+country_event = {
+
+	# 沒交回去的夏露爾通訊-1
+
+	id = gts_evt_elf.14
+	title = gts_evt_elf.10.name
+	desc = gts_evt_elf.14.desc
+	diplomatic = yes
+	is_triggered_only = yes
+	location = event_target:gts_bruh_get_elf_capital
+
+	picture_event_data = {
+		portrait = event_target:gts_bruh_get_elf_country.ruler
+		room = gts_elf_room
+	}
+
+	option = {
+		name = gts_evt_elf.14.a
+		is_dialog_only = yes
+		response_text = gts_evt_elf.14.a.respond
+	}
+	option = {
+		name = gts_evt_elf.14.b
+		response_text = gts_evt_elf.14.b.respond
+		add_resource = {
+			influence = 75
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_elf.17
+				days = 30
+			}
+		}
+	}
+	option = {
+		name = gts_evt_elf.14.c
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_elf.15
+			}
+		}
+	}
+}
+
+country_event = {
+
+	# 沒交回去的夏露爾通訊-2
+
+	id = gts_evt_elf.15
+	base = gts_evt_elf.14
+	desc_clear = yes
+	option_clear = yes
+	is_triggered_only = yes
+	desc = gts_evt_elf.15.desc
+
+	option = {
+		name = gts_evt_elf.14.a
+		hidden_effect = {
+			event_target:gts_bruh_get_elf_country = {
+				add_opinion_modifier = {
+					who = root
+					modifier = opinion_gts_elf_disgrace
+				}
+			}
+			country_event = {
+				id = gts_evt_elf.16
+				days = 7
+			}
+		}
+	}
+}
+
+country_event = {
+
+	# 蒂法妮婭招募
+
+	id = gts_evt_elf.16
+	title = gts_evt_elf.16.name
+	desc = gts_evt_elf.16.desc
+	event_window_type = leader_recruit
+	show_sound = event_mystic_reveal
+	picture = GFX_leader_recruitment_bg_legendary_skrand
+	auto_opens = yes
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = event_target:gts_teifuania
+		room = "crisis_room"
+	}
+
+	immediate = {
+		gts_leader_teifuania_hired = yes
+	}
+
+	option = {
+		name = DISMISS
+		tag = dismiss_leader
+	}
+	option = {
+		name = gts_evt_elf.16.a
+		is_dialog_only = yes
+		response_text = gts_evt_elf.16.a.respond
+	}
+	option = {
+		name = gts_evt_elf.16.b
+		is_dialog_only = yes
+		response_text = gts_evt_elf.16.b.respond
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		response_text = gts_evt_elf.16.c.respond
+		hidden_effect = {
+			event_target:gts_teifuania = {
+				set_owner = root
+			}
+			random_list = {
+				1 = {
+					country_event = {
+						id = gts_evt_elf.19
+						days = 1800
+					}
+				}
+				2 = {
+					country_event = {
+						id = gts_evt_elf.22
+						days = 1800
+					}
+				}
+				2 = {
+					country_event = {
+						id = gts_evt_elf.25
+						days = 1800
+					}
+				}
+			}
+			create_message = {
+				#弹信息
+				type = MESSAGE_RECRUITED_LEADER
+				localization = MESSAGE_RECRUITED_LEADER_DESC
+				days = @toast_message_days
+				target = event_target:gts_teifuania
+				variable = {
+					type = name
+					localization = LEADER
+					scope = event_target:gts_teifuania
+				}
+				variable = {
+					key = "border"
+					value = "GFX_border_veteran"
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+
+	# 交回去
+
+	id = gts_evt_elf.17
+	title = gts_evt_elf.17.name
+	desc = gts_evt_elf.17.desc
+	picture = GFX_evt_fleet_neutral
+	show_sound = event_mysterious_signal
+	is_triggered_only = yes
+
+	option = {
+		name = gts_evt_elf.11.a
+		country_event = {
+			id = gts_evt_elf.18
+		}
+	}
+}
+
+country_event = {
+
+	# 交回去的夏露爾通訊
+
+	id = gts_evt_elf.18
+	title = gts_evt_elf.18.name
+	desc = gts_evt_elf.18.desc
+	diplomatic = yes
+	is_triggered_only = yes
+	location = event_target:gts_bruh_get_elf_capital
+
+	picture_event_data = {
+		portrait = event_target:gts_bruh_get_elf_country.ruler
+		room = gts_elf_room
+	}
+
+	option = {
+		name = gts_evt_elf.18.a
+		add_modifier = {
+			modifier = elf_gift
+			years = 10
+		}
+		event_target:gts_bruh_get_elf_country = {
+			add_opinion_modifier = {
+				who = root
+				modifier = opinion_gts_elf_grace
+			}
+		}
+	}
+}
+
+# 五年後隨機觸發一個事件
+
+country_event = {
+
+	# 爆發內亂
+
+	id = gts_evt_elf.19
+	title = gts_evt_elf.19.name
+	desc = gts_evt_elf.19.desc
+	picture = GFX_evt_burning_settlement
+	show_sound = event_planetary_riot
+	is_triggered_only = yes
+	location = event_target:gts_bruh_get_elf_capital
+
+	option = {
+		name = gts_evt_elf.19.a
+		hidden_effect = {
+			event_target:gts_bruh_get_elf_country = {
+				leader = {
+					kill_leader = {
+						show_notification = yes
+					}
+				}
+				change_government = {
+					authority = auth_dictatorial
+					cooldown = no
+					remove_invalid_civics = yes
+				}
+			}
+			event_target:gts_teifuania = {
+				save_global_event_target_as = Teifuania_go_home
+				exile_leader_as = Teifuania_go_home
+			}
+			#一年后触发新事件
+			country_event = {
+				id = gts_evt_elf.20
+				days = 360
+			}
+		}
+	}
+}
+
+country_event = {
+
+	# 平定內亂
+
+	id = gts_evt_elf.20
+	title = gts_evt_elf.20.name
+	desc = gts_evt_elf.20.desc
+	picture = GFX_evt_burning_settlement
+	is_triggered_only = yes
+	location = event_target:gts_bruh_get_elf_capital
+
+	trigger = {
+		exists = event_target:gts_bruh_get_elf_country
+	}
+	option = {
+		name = gts_evt_elf.20.a
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_elf.21
+			}
+			event_target:gts_bruh_get_elf_country = {
+				change_government = {
+					authority = auth_imperial
+					cooldown = yes
+					remove_invalid_civics = yes
+				}
+				create_leader = {
+					class = official
+					species = event_target:gts_bruh_get_elf_species
+					name = NAME_gts_elf_queen
+					event_leader = yes
+					skill = 1
+					gender = female
+					set_age = 24
+					traits = {
+						trait = elf_leader_trait_elf
+						trait = elf_leader_trait_bigbreast
+						trait = subclass_official_economy_councilor
+						trait = leader_trait_legendary_autarky
+						trait = leader_trait_irenic
+						trait = leader_trait_Titan
+					}
+					effect = {
+						change_leader_portrait = gts_elf_queen
+						save_global_event_target_as = elf_queen
+					}
+				}
+				set_leader = last_created_leader
+				room_name_override = gts_elf_room
+			}
+		}
+	}
+}
+
+country_event = {
+
+	# 平定內亂的夏露爾通訊
+
+	id = gts_evt_elf.21
+	title = gts_evt_elf.21.name
+	desc = gts_evt_elf.21.desc
+	diplomatic = yes
+	is_triggered_only = yes
+	location = event_target:gts_bruh_get_elf_capital
+
+	picture_event_data = {
+		#portrait = event_target:gts_bruh_get_elf_country.ruler
+		portrait = event_target:elf_queen
+		room = gts_elf_room
+	}
+
+	immediate = {
+		event_target:gts_bruh_get_elf_country = {
+			remove_opinion_modifier = {
+				who = root
+				modifier = opinion_gts_elf_disgrace
+			}
+			add_opinion_modifier = {
+				who = root
+				modifier = opinion_gts_elf_grace
+			}
+		}
+	}
+	option = {
+		# 附庸
+		name = gts_evt_elf.21.a
+		event_target:gts_bruh_get_elf_country = {
+			set_subject_of = {
+				who = root
+			}
+		}
+	}
+	option = {
+		# 吞併
+		name = gts_evt_elf.21.b
+		hidden_effect = {
+			event_target:elf_queen = {
+				set_owner = root
+			}
+			event_target:gts_bruh_get_elf_country = {
+				every_owned_starbase = {
+					set_owner = root
+				}
+				every_owned_fleet = {
+					set_owner = root
+				}
+				every_owned_planet = {
+					set_owner = root
+				}
+				destroy_country = yes
+			}
+			event_target:Teifuania_go_home = {
+				set_owner = root
+			}
+		}
+	}
+	option = {
+		# 資源
+		name = gts_evt_elf.21.c
+		add_resource = {
+			influence = 375
+		}
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 12
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			event_target:elf_queen = {
+				add_skill_without_trait_selection = 4
+			}
+		}
+	}
+}
+
+country_event = {
+
+	# 爆發政變
+
+	id = gts_evt_elf.22
+	title = gts_evt_elf.22.name
+	desc = gts_evt_elf.22.desc
+	picture = GFX_evt_crisis_declared
+	show_sound = event_planetary_riot
+	is_triggered_only = yes
+	location = event_target:gts_bruh_get_elf_capital
+
+	option = {
+		name = gts_evt_elf.22.a
+		event_target:gts_bruh_get_elf_country = {
+			leader = {
+				kill_leader = {
+					show_notification = yes
+				}
+			}
+			change_government = {
+				authority = auth_democratic
+				cooldown = no
+				remove_invalid_civics = yes
+			}
+		}
+		hidden_effect = {
+			#一年后触发新事件
+			event_target:gts_teifuania = {
+				save_global_event_target_as = Teifuania_go_home
+				exile_leader_as = Teifuania_go_home
+			}
+			country_event = {
+				id = gts_evt_elf.23
+				days = 360
+			}
+		}
+	}
+}
+
+country_event = {
+
+	# 蒂法妮婭繼位
+
+	id = gts_evt_elf.23
+	title = gts_evt_elf.23.name
+	desc = gts_evt_elf.23.desc
+	picture = GFX_evt_fleet_neutral
+	show_sound = event_mysterious_signal
+	is_triggered_only = yes
+	location = event_target:gts_bruh_get_elf_capital
+
+	trigger = {
+		exists = event_target:gts_bruh_get_elf_country
+	}
+	immediate = {
+		event_target:gts_bruh_get_elf_country = {
+			change_government = auth_imperial
+			set_leader = event_target:gts_teifuania
+		}
+	}
+
+	option = {
+		name = gts_evt_elf.23.a
+		country_event = {
+			id = gts_evt_elf.24
+		}
+	}
+}
+
+country_event = {
+
+	# 政變後的蒂法妮婭通訊
+
+	id = gts_evt_elf.24
+	title = gts_evt_elf.24.name
+	desc = gts_evt_elf.24.desc
+	diplomatic = yes
+	is_triggered_only = yes
+	location = event_target:gts_bruh_get_elf_capital
+
+	picture_event_data = {
+		portrait = event_target:gts_teifuania
+		room = gts_elf_room
+	}
+
+	immediate = {
+		event_target:gts_bruh_get_elf_country = {
+			remove_opinion_modifier = {
+				who = root
+				modifier = opinion_gts_elf_disgrace
+			}
+			add_opinion_modifier = {
+				who = root
+				modifier = opinion_gts_elf_grace
+			}
+		}
+	}
+	option = {
+		# 附庸
+		name = gts_evt_elf.21.a
+		event_target:gts_bruh_get_elf_country = {
+			set_subject_of = {
+				who = root
+			}
+		}
+	}
+	option = {
+		# 吞併
+		name = gts_evt_elf.21.b
+		hidden_effect = {
+			event_target:gts_bruh_get_elf_country = {
+				every_owned_starbase = {
+					set_owner = root
+				}
+				every_owned_fleet = {
+					set_owner = root
+				}
+				every_owned_planet = {
+					set_owner = root
+				}
+				destroy_country = yes
+			}
+			event_target:Teifuania_go_home = {
+				set_owner = root
+			}
+		}
+	}
+	option = {
+		# 資源
+		name = gts_evt_elf.21.c
+		add_resource = {
+			influence = 300
+		}
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 12
+		}
+	}
+}
+
+country_event = {
+
+	# 女皇去世
+
+	id = gts_evt_elf.25
+	title = gts_evt_elf.25.name
+	desc = gts_evt_elf.25.desc
+	picture = GFX_evt_tradedeal
+	show_sound = event_planetary_riot
+	is_triggered_only = yes
+	location = event_target:gts_bruh_get_elf_capital
+
+	option = {
+		name = gts_evt_elf.25.a
+		event_target:gts_bruh_get_elf_country = {
+			leader = {
+				kill_leader = {
+					show_notification = yes
+				}
+			}
+			change_government = {
+				authority = auth_democratic
+				cooldown = no
+				remove_invalid_civics = yes
+			}
+		}
+		hidden_effect = {
+			#一年后触发新事件
+			event_target:gts_teifuania = {
+				exile_leader_as = Teifuania_go_home
+			}
+			country_event = {
+				id = gts_evt_elf.23
+				days = 360
+			}
+		}
+	}
+}
+

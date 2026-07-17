@@ -1,0 +1,173 @@
+gts_fallout_destory_all = {
+	trigger = {
+		owner = {
+			AND = {
+				has_tradition = tr_gts_fallout_cruel_nuked_planet_production
+				has_origin = origin_gts_fallout
+				has_policy_flag = orbital_bombardment_gts_fallout_destory_all
+			}
+		}
+	}
+	default = no
+	stop_when_armies_dead = no
+	abduct_pops = no
+	planet_damage = 3
+	army_damage = 4
+	kill_pop_chance = {
+		base = 5
+	}
+	min_pops_to_kill_pop = 0
+	# root = fleet
+	# from = planet
+	ai_weight = {
+		weight = 0
+	}
+}
+
+#三角贸易
+tinyraiding = {
+	trigger = {
+		OR = {
+			owner = { has_civic = civic_delta_trade }
+		}
+	}
+
+	default = no
+
+	stop_when_armies_dead = no
+	abduct_pops = yes
+
+	planet_damage = 0.5
+	army_damage = 1.5
+
+	kill_pop_chance = {
+		base = 1
+	}
+	min_pops_to_kill_pop = 0
+
+	# root = fleet
+	# from = planet
+	ai_weight = {
+		weight = 8
+		modifier = {
+			factor = 0
+			exists = from
+			from = {
+				OR = {
+					pop_amount < 200
+					owner = { NOT = { is_hostile = root.owner } }
+				}
+			}
+			NOT = {
+				owner = { has_civic = civic_delta_trade }
+			}
+		}
+		modifier = {
+			factor = 0.01
+			exists = from
+			from = {
+				owner = { has_claim = root.solar_system }
+			}
+			NOT = {
+				owner = { has_civic = civic_delta_trade }
+			}
+		}
+		modifier = {
+			factor = 100
+			owner = { has_civic = civic_delta_trade }
+		}
+	}
+}
+
+gts_115tiny_armageddon = {
+	trigger = {
+		OR = {
+			owner = {
+				OR = {
+					has_crisis_perk = gts_115tiny_menp_death_from_above		# Menace Perk: Death From Above
+				}
+			}
+			AND = {
+				owner = { is_country_type = enclave_mercenary }
+				controller = {
+					OR = {
+						has_menace_perk = gts_115tiny_menp_death_from_above		# Menace Perk: Death From Above
+					}
+				}
+			}
+		}
+	}
+
+	default = no
+
+	stop_when_armies_dead = no
+	abduct_pops = no
+
+	planet_damage = 7.0
+	army_damage = 7.0
+
+	kill_pop_chance = {
+		base = 4.5
+	}
+	min_pops_to_kill_pop = 0
+
+	# root = fleet
+	# from = planet
+	ai_weight = {
+		weight = 20
+		modifier = {
+			factor = 0.01
+			exists = from
+			from = {
+				owner = { NOT = { is_hostile = root.owner } }
+				NAND = {
+					controller = { is_crisis_faction = yes }
+					planet_garrison_strength > 0
+				}
+			}
+			exists = owner
+			owner = { is_crisis_faction = no }
+		}
+	}
+}
+gts_shipgirl_armageddon = {
+	trigger = {
+		fleet = {
+			or = {
+				is_ship_size = gts_destroyer_ship
+				is_ship_size = gts_battleship_ship
+				is_ship_size = gts_titan_ship
+				is_ship_size = gts_bruh_shipgirl_ship_sizes_1
+				is_ship_size = gts_bruh_shipgirl_ship_sizes_2
+				is_ship_size = gts_bruh_shipgirl_ship_sizes_3
+			}
+		}
+	}
+	default = no
+	stop_when_armies_dead = no
+	abduct_pops = no
+	planet_damage = 20
+	army_damage = 20
+	kill_pop_chance = {
+		base = 25
+	}
+	min_pops_to_kill_pop = 0
+	# root = fleet
+	# from = planet
+	ai_weight = {
+		weight = 20
+		modifier = {
+			factor = 0.01
+			exists = from
+			from = {
+				owner = { NOT = { is_hostile = root.owner } }
+				NAND = {
+					controller = { has_ascension_perk = ap_space_gts }
+					planet_garrison_strength > 0
+				}
+			}
+			exists = owner
+			owner = { has_ascension_perk = ap_space_gts }
+		}
+	}
+}

@@ -1,0 +1,64 @@
+gts_artifact_lgate_clue = {
+	resources = {
+		category = artifact_actions
+		cost = {
+			minor_artifacts = 50
+		}
+	}
+	potential = {
+		NOT = {
+			has_country_flag = gts_completed_gts_survey
+		}
+		has_distar = yes
+	}
+	allow = {
+		NOT = {
+			has_modifier = gts_artifact_lgate_insight_cooldown
+		}
+	}
+	effect = {
+		custom_tooltip = artifact_lgate_clue_effect
+		add_event_chain_counter = {
+			event_chain = "gts_chain"
+			counter = "gts_planets"
+			amount = 1
+		}
+		hidden_effect = {
+			add_modifier = {
+				modifier = "gts_artifact_lgate_insight_cooldown"
+				days = 1800
+			}
+		}
+	}
+}
+gts_artifact_extra_hint = {
+	resources = {
+		category = artifact_actions
+		cost = {
+			minor_artifacts = 50
+		}
+	}
+
+	potential = {
+		has_event_chain = gts_advanced_technology_research_institude_chain
+		has_distar = yes
+	}
+
+	allow = {
+		NOT = { has_modifier = gts_extra_hint_cooldown }
+	}
+
+	effect = {
+		add_event_chain_counter = {
+			event_chain = gts_advanced_technology_research_institude_chain
+			counter = hint_of_detect
+			amount = 1
+		}
+		hidden_effect = {
+			add_modifier = {
+				modifier = gts_extra_hint_cooldown
+				days = 180
+			}
+		}
+	}
+}

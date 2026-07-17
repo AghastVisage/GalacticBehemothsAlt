@@ -1,0 +1,904 @@
+
+gts_sweat_storm_apply_aftermath_modifier = {
+    every_system_planet = {
+        limit = {
+            OR = {
+                is_colonizable = yes
+                is_colony = yes
+            }
+        }
+
+        storm_apply_aftermath_modifier = {
+            severity = {
+                modifier = "electric_storm_aftermath_modifier_severity_1"
+                days = @Severity1Duration
+                chance = {
+                    base = @Severity1BaseChance
+                    modifier = {
+                        factor = 0
+                        OR = {
+                            has_modifier = "electric_storm_aftermath_modifier_severity_2"
+                            has_modifier = "electric_storm_aftermath_modifier_severity_3"
+                        }
+                    }
+                    modifier = {
+                        factor =  $FactorSev1|1$
+                    }
+                }
+            }
+
+            severity = {
+                modifier = "electric_storm_aftermath_modifier_severity_2"
+                days = @Severity2Duration
+                chance = {
+                    base = @Severity2BaseChance
+                    modifier = {
+                        factor = 0
+                        has_modifier = "electric_storm_aftermath_modifier_severity_3"
+                    }
+                    modifier = {
+                        factor =  $FactorSev2|1$
+                    }
+                }
+            }
+
+            severity = {
+                modifier = "electric_storm_aftermath_modifier_severity_3"
+                days = @Severity3Duration
+                chance = {
+                    base = @Severity3BaseChance
+                    modifier = {
+                        factor =  $FactorSev3|1$
+                    }
+                }
+            }
+        }
+
+        if = {
+            limit = { is_colony = yes }
+            owner = {
+                create_message = {
+                    type = ELECTRIC_STORM_AFTERMATH
+                    localization = MESSAGE_STORM_AFTERMATH_DESC
+                    days = @toast_important_message_days
+                    target = prev
+                    variable = {
+                        type = name
+                        localization = PLANET
+                        scope = prev
+                    }
+                    custom_toast_content_text = electric_storm_aftermath_custom_desc
+                }
+            }
+        }
+    }
+}
+gts_sweat_storm_apply_deposits = {
+    every_system_planet = {
+        limit = {
+            OR = {
+                is_colonizable = yes
+                is_colony = yes
+            }
+            is_artificial = no
+            NOR = {
+                has_deposit = d_electric_storm_1_engineering
+                has_deposit = d_electric_storm_2_unity
+                has_deposit = d_electric_storm_3_physics
+            }
+        }
+
+        random_list = {
+            80 = {}
+            20 = {
+                random_list = {
+                    30 = { add_deposit = d_electric_storm_1_engineering }
+                    30 = { add_deposit = d_electric_storm_2_unity }
+                    30 = { add_deposit = d_electric_storm_3_physics }
+                }
+                if = {
+                    limit = {
+                        has_owner = yes
+                    }
+                    planet_event = { id = cstorms.8000 }
+                }
+            }
+        }
+    }
+}
+gts_sweat_storm_remove = {
+    remove_storm_visuals_effect = yes
+    remove_star_flag = storm_system
+    gts_sweat_storm_apply_aftermath_modifier = yes
+    gts_sweat_storm_apply_deposits = yes
+}
+gts_sweat_storm_add = {
+    set_star_flag = storm_system
+    set_global_flag = cosmic_storm_has_occurred
+
+    inline_script = {
+        script = cosmic_storms/StormVisuals
+        STORM_NAME = "electric_storm"
+    }
+}
+
+gts_urine_storm_apply_aftermath_modifier = {
+    every_system_planet = {
+        limit = {
+            OR = {
+                is_colonizable = yes
+                is_colony = yes
+            }
+        }
+
+        storm_apply_aftermath_modifier = {
+            severity = {
+                modifier = "particle_storm_aftermath_modifier_severity_1"
+                days = @Severity1Duration
+                chance = {
+                    base = @Severity1BaseChance
+                    modifier = {
+                        factor = 0
+                        OR = {
+                            has_modifier = "particle_storm_aftermath_modifier_severity_2"
+                            has_modifier = "particle_storm_aftermath_modifier_severity_3"
+                        }
+                    }
+                    modifier = {
+                        factor =  $FactorSev1|1$
+                    }
+                }
+            }
+
+            severity = {
+                modifier = "particle_storm_aftermath_modifier_severity_2"
+                days = @Severity2Duration
+                chance = {
+                    base = @Severity2BaseChance
+                    modifier = {
+                        factor = 0
+                        has_modifier = "particle_storm_aftermath_modifier_severity_3"
+                    }
+                    modifier = {
+                        factor =  $FactorSev2|1$
+                    }
+                }
+            }
+
+            severity = {
+                modifier = "particle_storm_aftermath_modifier_severity_3"
+                days = @Severity3Duration
+                chance = {
+                    base = @Severity3BaseChance
+                    modifier = {
+                        factor =  $FactorSev3|1$
+                    }
+                }
+            }
+        }
+
+        if = {
+            limit = { is_colony = yes }
+            owner = {
+                create_message = {
+                    type = GRAVITY_STORM_AFTERMATH
+                    localization = MESSAGE_STORM_AFTERMATH_DESC
+                    days = @toast_important_message_days
+                    target = prev
+                    variable = {
+                        type = name
+                        localization = PLANET
+                        scope = prev
+                    }
+                    custom_toast_content_text = particle_storm_aftermath_custom_desc
+                }
+            }
+        }
+    }
+}
+gts_urine_storm_apply_deposits = {
+    every_system_planet = {
+        limit = {
+            OR = {
+                is_colonizable = yes
+                is_colony = yes
+            }
+            is_artificial = no
+            NOR = {
+                has_deposit = d_particle_storm_1_society
+                has_deposit = d_particle_storm_2_unity
+                has_deposit = d_particle_storm_3_motes
+            }
+        }
+
+        random_list = {
+            80 = {}
+            20 = {
+                random_list = {
+                    30 = { add_deposit = d_particle_storm_1_society }
+                    30 = { add_deposit = d_particle_storm_2_unity }
+                    30 = { add_deposit = d_particle_storm_3_motes }
+                }
+                if = {
+                    limit = {
+                        has_owner = yes
+                    }
+                    planet_event = { id = cstorms.8000 }
+                }
+            }
+        }
+    }
+}
+gts_urine_storm_remove = {
+    remove_storm_visuals_effect = yes
+    remove_star_flag = storm_system
+    gts_urine_storm_apply_aftermath_modifier = yes
+    gts_urine_storm_apply_deposits = yes
+}
+gts_urine_storm_add = {
+    set_star_flag = storm_system
+    set_global_flag = cosmic_storm_has_occurred
+
+
+    inline_script = {
+        script = cosmic_storms/StormVisuals
+        STORM_NAME = "particle_storm"
+    }
+}
+
+gts_whisper_storm_apply_aftermath_modifier = {
+    every_system_planet = {
+        limit = {
+            OR = {
+                is_colonizable = yes
+                is_colony = yes
+            }
+        }
+
+        storm_apply_aftermath_modifier = {
+            severity = {
+                modifier = "gravity_storm_aftermath_modifier_severity_1"
+                days = @Severity1Duration
+                chance = {
+                    base = @Severity1BaseChance
+                    modifier = {
+                        factor = 0
+                        OR = {
+                            has_modifier = "gravity_storm_aftermath_modifier_severity_2"
+                            has_modifier = "gravity_storm_aftermath_modifier_severity_3"
+                        }
+                    }
+                    modifier = {
+                        factor =  $FactorSev1|1$
+                    }
+                }
+            }
+
+            severity = {
+                modifier = "gravity_storm_aftermath_modifier_severity_2"
+                days = @Severity2Duration
+                chance = {
+                    base = @Severity2BaseChance
+                    modifier = {
+                        factor = 0
+                        has_modifier = "gravity_storm_aftermath_modifier_severity_3"
+                    }
+                    modifier = {
+                        factor =  $FactorSev2|1$
+                    }
+                }
+            }
+
+            severity = {
+                modifier = "gravity_storm_aftermath_modifier_severity_3"
+                days = @Severity3Duration
+                chance = {
+                    base = @Severity3BaseChance
+                    modifier = {
+                        factor =  $FactorSev3|1$
+                    }
+                }
+            }
+        }
+
+        if = {
+            limit = { is_colony = yes }
+            owner = {
+                create_message = {
+                    type = GRAVITY_STORM_AFTERMATH
+                    localization = MESSAGE_STORM_AFTERMATH_DESC
+                    days = @toast_important_message_days
+                    target = prev
+                    variable = {
+                        type = name
+                        localization = PLANET
+                        scope = prev
+                    }
+                    custom_toast_content_text = gravity_storm_aftermath_custom_desc
+                }
+            }
+        }
+    }
+}
+gts_whisper_storm_apply_deposits = {
+    every_system_planet = {
+        limit = {
+            OR = {
+                is_colonizable = yes
+                is_colony = yes
+            }
+            is_artificial = no
+            NOR = {
+                has_deposit = d_gravity_storm_1_districts
+                has_deposit = d_gravity_storm_2_unity
+                has_deposit = d_gravity_storm_3_engineering
+            }
+        }
+
+        random_list = {
+            80 = {}
+            20 = {
+                random_list = {
+                    30 = { add_deposit = d_gravity_storm_1_districts }
+                    30 = { add_deposit = d_gravity_storm_2_unity }
+                    30 = { add_deposit = d_gravity_storm_3_engineering }
+                }
+                if = {
+                    limit = {
+                        has_owner = yes
+                    }
+                    planet_event = { id = cstorms.8000 }
+                }
+            }
+        }
+    }
+}
+gts_whisper_storm_remove = {
+    remove_storm_visuals_effect = yes
+    remove_star_flag = storm_system
+    gts_whisper_storm_apply_aftermath_modifier = yes
+    gts_whisper_storm_apply_deposits = yes
+}
+gts_whisper_storm_add = {
+    set_star_flag = storm_system
+    set_global_flag = cosmic_storm_has_occurred
+
+    inline_script = {
+        script = cosmic_storms/StormVisuals
+        STORM_NAME = "gravity_storm"
+    }
+}
+
+gts_milk_storm_apply_aftermath_modifier = {
+    every_system_planet = {
+        limit = {
+            OR = {
+                is_colonizable = yes
+                is_colony = yes
+            }
+        }
+
+        storm_apply_aftermath_modifier = {
+            severity = {
+                modifier = "magnetic_storm_aftermath_modifier_severity_1"
+                days = @Severity1Duration
+                chance = {
+                    base = @Severity1BaseChance
+                    modifier = {
+                        factor = 0
+                        OR = {
+                            has_modifier = "magnetic_storm_aftermath_modifier_severity_2"
+                            has_modifier = "magnetic_storm_aftermath_modifier_severity_3"
+                        }
+                    }
+                    modifier = {
+                        factor =  $FactorSev1|1$
+                    }
+                }
+            }
+
+            severity = {
+                modifier = "magnetic_storm_aftermath_modifier_severity_2"
+                days = @Severity2Duration
+                chance = {
+                    base = @Severity2BaseChance
+                    modifier = {
+                        factor = 0
+                        has_modifier = "magnetic_storm_aftermath_modifier_severity_3"
+                    }
+                    modifier = {
+                        factor =  $FactorSev2|1$
+                    }
+                }
+            }
+
+            severity = {
+                modifier = "magnetic_storm_aftermath_modifier_severity_3"
+                days = @Severity3Duration
+                chance = {
+                    base = @Severity3BaseChance
+                    modifier = {
+                        factor =  $FactorSev3|1$
+                    }
+                }
+            }
+        }
+
+        if = {
+            limit = { is_colony = yes }
+            owner = {
+                create_message = {
+                    type = MAGNETIC_STORM_AFTERMATH
+                    localization = MESSAGE_STORM_AFTERMATH_DESC
+                    days = @toast_important_message_days
+                    target = prev
+                    variable = {
+                        type = name
+                        localization = PLANET
+                        scope = prev
+                    }
+                    custom_toast_content_text = magnetic_storm_aftermath_custom_desc
+                }
+            }
+        }
+    }
+}
+gts_milk_storm_apply_deposits = {
+    every_system_planet = {
+        limit = {
+            OR = {
+                is_colonizable = yes
+                is_colony = yes
+            }
+            is_artificial = no
+            NOR = {
+                has_deposit = d_magnetic_storm_1_minerals
+                has_deposit = d_magnetic_storm_2_alloys
+                has_deposit = d_magnetic_storm_3_mix
+            }
+        }
+
+        random_list = {
+            80 = {}
+            20 = {
+                random_list = {
+                    30 = { add_deposit = d_magnetic_storm_1_minerals }
+                    30 = { add_deposit = d_magnetic_storm_2_alloys }
+                    30 = { add_deposit = d_magnetic_storm_3_mix }
+                }
+                if = {
+                    limit = {
+                        has_owner = yes
+                    }
+                    planet_event = { id = cstorms.8000 }
+                }
+            }
+        }
+    }
+}
+gts_milk_storm_remove = {
+    remove_storm_visuals_effect = yes
+    remove_star_flag = storm_system
+    gts_milk_storm_apply_aftermath_modifier = yes
+    gts_milk_storm_apply_deposits = yes
+}
+gts_milk_storm_add = {
+    set_star_flag = storm_system
+    set_global_flag = cosmic_storm_has_occurred
+
+    inline_script = {
+        script = cosmic_storms/StormVisuals
+        STORM_NAME = "magnetic_storm"
+    }
+}
+
+gts_foot_odor_storm_apply_aftermath_modifier = {
+    every_system_planet = {
+        limit = {
+            OR = {
+                is_colonizable = yes
+                is_colony = yes
+            }
+        }
+
+        storm_apply_aftermath_modifier = {
+            severity = {
+                modifier = "solar_storm_aftermath_modifier_severity_1"
+                days = @Severity1Duration
+                chance = {
+                    base = @Severity1BaseChance
+                    modifier = {
+                        factor = 0
+                        OR = {
+                            has_modifier = "solar_storm_aftermath_modifier_severity_2"
+                            has_modifier = "solar_storm_aftermath_modifier_severity_3"
+                        }
+                    }
+                    modifier = {
+                        factor =  $FactorSev1|1$
+                    }
+                }
+            }
+
+            severity = {
+                modifier = "solar_storm_aftermath_modifier_severity_2"
+                days = @Severity2Duration
+                chance = {
+                    base = @Severity2BaseChance
+                    modifier = {
+                        factor = 0
+                        has_modifier = "solar_storm_aftermath_modifier_severity_3"
+                    }
+                    modifier = {
+                        factor =  $FactorSev2|1$
+                    }
+                }
+            }
+
+            severity = {
+                modifier = "solar_storm_aftermath_modifier_severity_3"
+                days = @Severity3Duration
+                chance = {
+                    base = @Severity3BaseChance
+                    modifier = {
+                        factor =  $FactorSev3|1$
+                    }
+                }
+            }
+        }
+
+        if = {
+            limit = { is_colony = yes }
+            owner = {
+                create_message = {
+                    type = SOLAR_STORM_AFTERMATH
+                    localization = MESSAGE_STORM_AFTERMATH_DESC
+                    days = @toast_important_message_days
+                    target = prev
+                    variable = {
+                        type = name
+                        localization = PLANET
+                        scope = prev
+                    }
+                    custom_toast_content_text = solar_storm_aftermath_custom_desc
+                }
+            }
+        }
+    }
+}
+gts_foot_odor_storm_apply_deposits = {
+    every_system_planet = {
+        limit = {
+            OR = {
+                is_colonizable = yes
+                is_colony = yes
+            }
+            is_artificial = no
+            NOR = {
+                has_deposit = d_solar_storm_1_energy
+                has_deposit = d_solar_storm_2_districts
+                has_deposit = d_solar_storm_3_output
+            }
+        }
+
+        random_list = {
+            80 = {}
+            20 = {
+                random_list = {
+                    30 = { add_deposit = d_solar_storm_1_energy }
+                    30 = { add_deposit = d_solar_storm_2_districts }
+                    30 = { add_deposit = d_solar_storm_3_output }
+                }
+                if = {
+                    limit = {
+                        has_owner = yes
+                    }
+                    planet_event = { id = cstorms.8000 }
+                }
+            }
+        }
+    }
+}
+gts_foot_odor_storm_remove = {
+    remove_storm_visuals_effect = yes
+    remove_star_flag = storm_system
+    gts_foot_odor_storm_apply_aftermath_modifier = yes
+    gts_foot_odor_storm_apply_deposits = yes
+}
+gts_foot_odor_storm_add = {
+    set_star_flag = storm_system
+    set_global_flag = cosmic_storm_has_occurred
+
+    inline_script = {
+        script = cosmic_storms/StormVisuals
+        STORM_NAME = "solar_storm"
+    }
+}
+
+gts_anus_storm_apply_aftermath_modifier = {
+    every_system_planet = {
+        limit = {
+            OR = {
+                is_colonizable = yes
+                is_colony = yes
+            }
+        }
+
+        storm_apply_aftermath_modifier = {
+            severity = {
+                modifier = "celestial_storm_aftermath_modifier_severity_1"
+                days = @Severity1Duration
+                chance = {
+                    base = @Severity1BaseChance
+                    modifier = {
+                        factor = 0
+                        OR = {
+                            has_modifier = "celestial_storm_aftermath_modifier_severity_2"
+                            has_modifier = "celestial_storm_aftermath_modifier_severity_3"
+                        }
+                    }
+                    modifier = {
+                        factor =  $FactorSev1|1$
+                    }
+                }
+            }
+
+            severity = {
+                modifier = "celestial_storm_aftermath_modifier_severity_2"
+                days = @Severity2Duration
+                chance = {
+                    base = @Severity2BaseChance
+                    modifier = {
+                        factor = 0
+                        has_modifier = "celestial_storm_aftermath_modifier_severity_3"
+                    }
+                    modifier = {
+                        factor =  $FactorSev2|1$
+                    }
+                }
+            }
+
+            severity = {
+                modifier = "celestial_storm_aftermath_modifier_severity_3"
+                days = @Severity3Duration
+                chance = {
+                    base = @Severity3BaseChance
+                    modifier = {
+                        factor =  $FactorSev3|1$
+                    }
+                }
+            }
+        }
+
+        if = {
+            limit = { is_colony = yes }
+            owner = {
+                create_message = {
+                    type = CELESTIAL_STORM_AFTERMATH
+                    localization = MESSAGE_STORM_AFTERMATH_DESC
+                    days = @toast_important_message_days
+                    target = prev
+                    variable = {
+                        type = name
+                        localization = PLANET
+                        scope = prev
+                    }
+                    custom_toast_content_text = celestial_storm_aftermath_custom_desc
+                }
+            }
+        }
+    }
+}
+gts_anus_storm_apply_deposits = {
+    every_system_planet = {
+        limit = {
+            OR = {
+                is_colonizable = yes
+                is_colony = yes
+            }
+            is_artificial = no
+            NOR = {
+                has_deposit = d_celestial_storm_1_mines
+                has_deposit = d_celestial_storm_2_society
+                has_deposit = d_celestial_storm_3_crystal
+            }
+        }
+
+        random_list = {
+            80 = {}
+            20 = {
+                random_list = {
+                    30 = { add_deposit = d_celestial_storm_1_mines }
+                    30 = { add_deposit = d_celestial_storm_2_society }
+                    30 = { add_deposit = d_celestial_storm_3_crystal }
+                }
+                if = {
+                    limit = {
+                        has_owner = yes
+                    }
+                    planet_event = { id = cstorms.8000 }
+                }
+            }
+        }
+    }
+}
+gts_anus_storm_remove = {
+    remove_storm_visuals_effect = yes
+    remove_star_flag = storm_system
+    gts_anus_storm_apply_aftermath_modifier = yes
+    gts_anus_storm_apply_deposits = yes
+}
+gts_anus_storm_add = {
+    set_star_flag = storm_system
+    set_global_flag = cosmic_storm_has_occurred
+
+    inline_script = {
+        script = cosmic_storms/StormVisuals
+        STORM_NAME = "celestial_storm"
+    }
+}
+
+gts_juice_storm_apply_aftermath_modifier = {
+    every_system_planet = {
+        limit = {
+            OR = {
+                is_colonizable = yes
+                is_colony = yes
+            }
+        }
+
+        storm_apply_aftermath_modifier = {
+            severity = {
+                modifier = "shroud_storm_aftermath_modifier_severity_1"
+                days = @Severity1Duration
+                chance = {
+                    base = @Severity1BaseChance
+                    modifier = {
+                        factor = 0
+                        OR = {
+                            has_modifier = "shroud_storm_aftermath_modifier_severity_2"
+                            has_modifier = "shroud_storm_aftermath_modifier_severity_3"
+                        }
+                    }
+                    modifier = {
+                        factor =  $FactorSev1|1$
+                    }
+                }
+            }
+
+            severity = {
+                modifier = "shroud_storm_aftermath_modifier_severity_2"
+                days = @Severity2Duration
+                chance = {
+                    base = @Severity2BaseChance
+                    modifier = {
+                        factor = 0
+                        has_modifier = "shroud_storm_aftermath_modifier_severity_3"
+                    }
+                    modifier = {
+                        factor =  $FactorSev2|1$
+                    }
+                }
+            }
+
+            severity = {
+                modifier = "shroud_storm_aftermath_modifier_severity_3"
+                days = @Severity3Duration
+                chance = {
+                    base = @Severity3BaseChance
+                    modifier = {
+                        factor =  $FactorSev3|1$
+                    }
+                }
+            }
+        }
+
+        if = {
+            limit = { is_colony = yes }
+            owner = {
+                create_message = {
+                    type = SHROUD_STORM_AFTERMATH
+                    localization = MESSAGE_STORM_AFTERMATH_DESC
+                    days = @toast_important_message_days
+                    target = prev
+                    variable = {
+                        type = name
+                        localization = PLANET
+                        scope = prev
+                    }
+                    custom_toast_content_text = shroud_storm_aftermath_custom_desc
+                }
+            }
+        }
+    }
+}
+gts_juice_storm_apply_deposits = {
+    every_system_planet = {
+        limit = {
+            OR = {
+                is_colonizable = yes
+                is_colony = yes
+            }
+            is_artificial = no
+            NOR = {
+                has_deposit = d_shroud_storm_1_society
+                has_deposit = d_shroud_storm_2_zro
+                has_deposit = d_shroud_storm_3_happy
+            }
+        }
+
+        random_list = {
+            80 = {}
+            20 = {
+                random_list = {
+                    30 = { add_deposit = d_shroud_storm_1_society }
+                    30 = { add_deposit = d_shroud_storm_2_zro }
+                    30 = { add_deposit = d_shroud_storm_3_happy }
+                }
+                if = {
+                    limit = {
+                        has_owner = yes
+                    }
+                    planet_event = { id = cstorms.8000 }
+                }
+            }
+        }
+    }
+}
+gts_juice_storm_remove = {
+    remove_storm_visuals_effect = yes
+    remove_star_flag = storm_system
+    gts_juice_storm_apply_aftermath_modifier = yes
+    gts_juice_storm_apply_deposits = yes
+}
+gts_juice_storm_add = {
+    set_star_flag = storm_system
+    set_global_flag = cosmic_storm_has_occurred
+
+    inline_script = {
+        script = cosmic_storms/StormVisuals
+        STORM_NAME = "shroud_storm"
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

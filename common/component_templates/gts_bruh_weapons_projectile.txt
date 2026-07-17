@@ -1,0 +1,1414 @@
+############################################################################################################################################
+##################################################                  魚雷                  ##################################################
+############################################################################################################################################
+
+# 艦娘魚雷 - 驅逐
+weapon_component_template = {
+	key = "gts_bruh_shipgirl_torpedo_1_S"
+	size = torpedo
+
+	icon = "GFX_gts_bruh_shipgirl_torpedo_ship_part_1"
+	icon_frame = 1
+	type = missile
+
+	entity = "turret_torpedo_entity"
+
+	power = -10000
+	damage = { min = 17500 max = 25000 }
+	# 準備時間
+	# 每 10 ticks 為 1 天
+	windup = { min = 5 max = 10 }
+	# 下次發射所需的時間
+	# 要加上準備時間
+	# 100 ticks發射一次
+	total_fire_time = 85
+	accuracy = 1.0
+	tracking = 0.1
+	range = 300
+	min_range = 45.0
+	shield_penetration = 1.0
+	armor_damage = 1.5
+	firing_arc = 25.0
+
+	# 魚雷數值
+	
+	missile_health = 1250
+	missile_armor = 1250
+	missile_evasion = 0
+	missile_speed = 25
+	missile_retarget_range = 100
+	
+	prerequisites = { "tech_gts_bruh_shipgirl_torpedo_1" }
+	component_set = "gts_bruh_shipgirl_torpedo_component_set_1"
+	projectile_gfx = "gts_bruh_destroyer_torpedo_projectile"
+	tags = { weapon_type_explosive g_slot }
+	ai_tags = { weapon_role_anti_shield explosive explosive_stealth }
+	resources = {
+		category = ship_components
+		cost = {
+			# 150
+			alloys = 45
+			volatile_motes = 10
+			exotic_gases = 10
+			rare_crystals = 10
+		}
+		cost = {
+			# 100
+			trigger = {
+				from = {
+					gts_is_tiny_empire = yes
+				}
+			}
+			gts_giantess_fluid = 25
+			gts_giantess_underwear = 12.5
+		}
+		cost = {
+			# 100
+			trigger = {
+				from = {
+					gts_is_giantess_empire = yes
+				}
+			}
+			gts_micro = 25
+			gts_micro_city = 12.5
+		}
+		upkeep = {
+			# 25
+			energy = 25
+			alloys = 12.5
+		}
+	}
+	
+	size_restriction = {
+		gts_bruh_shipgirl_ship_sizes_1
+	}
+}
+
+# 艦娘魚雷 - 戰列
+weapon_component_template = {
+	key = "gts_bruh_shipgirl_torpedo_1_M"
+	size = torpedo
+
+	icon = "GFX_gts_bruh_shipgirl_torpedo_ship_part_1"
+	icon_frame = 1
+	type = missile
+
+	entity = "turret_torpedo_entity"
+
+	power = -20000
+	damage = { min = 35000 max = 50000 }
+	# 準備時間
+	# 每 10 ticks 為 1 天
+	windup = { min = 5 max = 10 }
+	# 下次發射所需的時間
+	# 要加上準備時間
+	# 100 ticks發射一次
+	total_fire_time = 85
+	accuracy = 1.0
+	tracking = 0.1
+	range = 300
+	min_range = 45.0
+	shield_penetration = 1.0
+	armor_damage = 1.5
+	firing_arc = 25.0
+
+	# 魚雷數值
+
+	missile_health = 2500
+	missile_armor = 2500
+	missile_evasion = 0
+	missile_speed = 25
+	missile_retarget_range = 100
+
+	prerequisites = { "tech_gts_bruh_shipgirl_torpedo_1" }
+	component_set = "gts_bruh_shipgirl_torpedo_component_set_1"
+	projectile_gfx = "gts_bruh_battleship_torpedo_projectile"
+	tags = { weapon_type_explosive g_slot }
+	ai_tags = { weapon_role_anti_shield explosive explosive_stealth }
+	resources = {
+		category = ship_components
+		cost = {
+			# 300
+			alloys = 90
+			volatile_motes = 20
+			exotic_gases = 20
+			rare_crystals = 20
+		}
+		cost = {
+			# 200
+			trigger = {
+				from = {
+					gts_is_tiny_empire = yes
+				}
+			}
+			gts_giantess_fluid = 50
+			gts_giantess_underwear = 25
+		}
+		cost = {
+			# 200
+			trigger = {
+				from = {
+					gts_is_giantess_empire = yes
+				}
+			}
+			gts_micro = 50
+			gts_micro_city = 25
+		}
+		upkeep = {
+			# 50
+			energy = 25
+			alloys = 12.5
+		}
+	}
+	
+	size_restriction = {
+		gts_bruh_shipgirl_ship_sizes_2
+	}
+}
+
+# 艦娘魚雷 - 無畏
+weapon_component_template = {
+	key = "gts_bruh_shipgirl_torpedo_1_L"
+	size = torpedo
+	entity = "turret_torpedo_entity"
+	icon = "GFX_gts_bruh_shipgirl_torpedo_ship_part_1"
+	icon_frame = 1
+	type = missile
+
+	power = -40000
+	damage = { min = 70000 max = 100000 }
+	# 準備時間
+	# 每 10 ticks 為 1 天
+	windup = { min = 5 max = 10 }
+	# 下次發射所需的時間
+	# 要加上準備時間
+	# 100 ticks發射一次
+	total_fire_time = 85
+	accuracy = 1.0
+	tracking = 0.1
+	range = 300
+	min_range = 45.0
+	shield_penetration = 1.0
+	armor_damage = 1.5
+	firing_arc = 25.0
+
+	# 魚雷數值
+
+	missile_health = 5000
+	missile_armor = 5000
+	missile_evasion = 0
+	missile_speed = 25
+	missile_retarget_range = 100
+
+	prerequisites = { "tech_gts_bruh_shipgirl_torpedo_1" }
+	component_set = "gts_bruh_shipgirl_torpedo_component_set_1"
+	projectile_gfx = "gts_bruh_titan_torpedo_projectile"
+	tags = { weapon_type_explosive g_slot }
+	ai_tags = { weapon_role_anti_shield explosive explosive_stealth }
+	resources = {
+		category = ship_components
+		cost = {
+			# 600
+			alloys = 180
+			volatile_motes = 40
+			exotic_gases = 40
+			rare_crystals = 40
+		}
+		cost = {
+			# 400
+			trigger = {
+				from = {
+					gts_is_tiny_empire = yes
+				}
+			}
+			gts_giantess_fluid = 100
+			gts_giantess_underwear = 50
+		}
+		cost = {
+			# 400
+			trigger = {
+				from = {
+					gts_is_giantess_empire = yes
+				}
+			}
+			gts_micro = 100
+			gts_micro_city = 50
+		}
+		upkeep = {
+			# 100
+			energy = 50
+			alloys = 25
+		}
+	}
+	
+	size_restriction = {
+		gts_bruh_shipgirl_ship_sizes_3
+	}
+}
+
+############################################################################################################################################
+##################################################                  動能                  ##################################################
+############################################################################################################################################
+
+# 高斯
+# 艦娘動能副炮 - S
+weapon_component_template = {
+	type = instant
+
+	key = "gts_bruh_shipgirl_kinetic_artillery_1_S"
+	size = small
+
+	icon = "GFX_gts_bruh_shipgirl_kinetic_artillery_ship_part_1"
+	icon_frame = 1
+
+	power = -2500
+	damage = { min = 1600 max = 4600 }
+	# 準備時間
+	# 每 10 ticks 為 1 天
+	windup = { min = 5 max = 15 }
+	# 下次發射所需的時間
+	# 要加上準備時間
+	# 40 ticks發射一次
+	total_fire_time = 20
+	accuracy = 0.75
+	tracking = 0.50
+	range = 150
+	shield_damage = 1.5
+	armor_damage = 0.5
+
+	prerequisites = { "tech_gts_bruh_shipgirl_kinetic_artillery_1" }
+	component_set = "gts_bruh_shipgirl_kinetic_artillery_component_set_1"
+	projectile_gfx = "adv_kinetic_artillery"
+	tags = { weapon_type_kinetic s_slot }
+	ai_tags = { weapon_role_anti_shield brawler brawler_stealth gunship }
+	resources = {
+		category = ship_components
+		cost = {
+			# 150
+			alloys = 45
+			volatile_motes = 10
+			exotic_gases = 10
+			rare_crystals = 10
+		}
+		cost = {
+			# 100
+			trigger = {
+				from = {
+					gts_is_tiny_empire = yes
+				}
+			}
+			gts_giantess_fluid = 25
+			gts_giantess_underwear = 12.5
+		}
+		cost = {
+			# 100
+			trigger = {
+				from = {
+					gts_is_giantess_empire = yes
+				}
+			}
+			gts_micro = 25
+			gts_micro_city = 12.5
+		}
+		upkeep = {
+			# 25
+			energy = 25
+			alloys = 12.5
+		}
+	}
+	
+	size_restriction = {
+		gts_bruh_shipgirl_ship_sizes_1
+		gts_bruh_shipgirl_ship_sizes_2
+		gts_bruh_shipgirl_ship_sizes_3
+	}
+}
+
+# 艦娘動能副炮 - M
+weapon_component_template = {
+	type = instant
+
+	key = "gts_bruh_shipgirl_kinetic_artillery_1_M"
+	size = medium
+
+	icon = "GFX_gts_bruh_shipgirl_kinetic_artillery_ship_part_1"
+	icon_frame = 1
+
+	power = -5000
+	damage = { min = 4000 max = 11500 }
+	# 準備時間
+	# 每 10 ticks 為 1 天
+	windup = { min = 5 max = 15 }
+	# 下次發射所需的時間
+	# 要加上準備時間
+	# 80 ticks發射一次
+	total_fire_time = 60
+	accuracy = 0.75
+	tracking = 0.30
+	range = 225
+	shield_damage = 1.5
+	armor_damage = 0.5
+
+	prerequisites = { "tech_gts_bruh_shipgirl_kinetic_artillery_1" }
+	component_set = "gts_bruh_shipgirl_kinetic_artillery_component_set_1"
+	projectile_gfx = "gts_bruh_adv_kinetic_artillery_projectile"
+	tags = { weapon_type_kinetic m_slot }
+	ai_tags = { weapon_role_anti_shield gunship }
+	resources = {
+		category = ship_components
+		cost = {
+			# 300
+			alloys = 90
+			volatile_motes = 20
+			exotic_gases = 20
+			rare_crystals = 20
+		}
+		cost = {
+			# 200
+			trigger = {
+				from = {
+					gts_is_tiny_empire = yes
+				}
+			}
+			gts_giantess_fluid = 50
+			gts_giantess_underwear = 25
+		}
+		cost = {
+			# 200
+			trigger = {
+				from = {
+					gts_is_giantess_empire = yes
+				}
+			}
+			gts_micro = 50
+			gts_micro_city = 25
+		}
+		upkeep = {
+			# 50
+			energy = 25
+			alloys = 12.5
+		}
+	}
+	
+	size_restriction = {
+		gts_bruh_shipgirl_ship_sizes_1
+		gts_bruh_shipgirl_ship_sizes_2
+		gts_bruh_shipgirl_ship_sizes_3
+	}
+}
+
+# 艦娘動能副炮 - L
+weapon_component_template = {
+	type = instant
+
+	key = "gts_bruh_shipgirl_kinetic_artillery_1_L"
+	size = large
+
+	icon = "GFX_gts_bruh_shipgirl_kinetic_artillery_ship_part_1"
+	icon_frame = 1
+
+	power = -10000
+	damage = { min = 9600 max = 27600 }
+	# 準備時間
+	# 每 10 ticks 為 1 天
+	windup = { min = 5 max = 20 }
+	# 下次發射所需的時間
+	# 要加上準備時間
+	# 160 ticks發射一次
+	total_fire_time = 135
+	accuracy = 0.75
+	tracking = 0.05
+	range = 300
+	min_range = 45.0
+	shield_damage = 1.5
+	armor_damage = 0.5
+	firing_arc = 25.0
+
+	prerequisites = { "tech_gts_bruh_shipgirl_kinetic_artillery_1" }
+	component_set = "gts_bruh_shipgirl_kinetic_artillery_component_set_1"
+	projectile_gfx = "gts_bruh_large_adv_kinetic_artillery_projectile"
+	tags = { weapon_type_kinetic l_slot }
+	ai_tags = { weapon_role_anti_shield gunship }
+	resources = {
+		category = ship_components
+		cost = {
+			# 600
+			alloys = 180
+			volatile_motes = 40
+			exotic_gases = 40
+			rare_crystals = 40
+		}
+		cost = {
+			# 400
+			trigger = {
+				from = {
+					gts_is_tiny_empire = yes
+				}
+			}
+			gts_giantess_fluid = 100
+			gts_giantess_underwear = 50
+		}
+		cost = {
+			# 400
+			trigger = {
+				from = {
+					gts_is_giantess_empire = yes
+				}
+			}
+			gts_micro = 100
+			gts_micro_city = 50
+		}
+		upkeep = {
+			# 100
+			energy = 50
+			alloys = 25
+		}
+	}
+	
+	size_restriction = {
+		gts_bruh_shipgirl_ship_sizes_3
+	}
+}
+
+# 艦娘動能主炮 - 驅逐專用的强化大型動能主炮(更高的命中、更快射速、更低的射程、更低的追蹤)
+weapon_component_template = {
+	type = instant
+
+	key = "gts_bruh_shipgirl_kinetic_artillery_2_L"
+	size = large
+	
+	icon = "GFX_gts_bruh_shipgirl_kinetic_artillery_ship_part_2"
+	icon_frame = 1
+
+	power = -10000
+	damage = { min = 9600 max = 27600 }
+	# 準備時間
+	# 每 10 ticks 為 1 天
+	windup = { min = 5 max = 15 }
+	# 下次發射所需的時間
+	# 要加上準備時間
+	# 120 ticks發射一次
+	total_fire_time = 100
+	accuracy = 0.90
+	tracking = 0.15
+	range = 150
+	min_range = 30.0
+	shield_damage = 1.5
+	armor_damage = 0.5
+	firing_arc = 25.0
+
+	prerequisites = { "tech_gts_bruh_shipgirl_kinetic_artillery_2" }
+	component_set = "gts_bruh_shipgirl_kinetic_artillery_component_set_2"
+	projectile_gfx = "gts_bruh_large_adv_kinetic_artillery_projectile"
+	tags = { weapon_type_kinetic l_slot }
+	ai_tags = { weapon_role_anti_shield gunship }
+	resources = {
+		category = ship_components
+		cost = {
+			# 600
+			alloys = 180
+			volatile_motes = 40
+			exotic_gases = 40
+			rare_crystals = 40
+		}
+		cost = {
+			# 400
+			trigger = {
+				from = {
+					gts_is_tiny_empire = yes
+				}
+			}
+			gts_giantess_fluid = 100
+			gts_giantess_underwear = 50
+		}
+		cost = {
+			# 400
+			trigger = {
+				from = {
+					gts_is_giantess_empire = yes
+				}
+			}
+			gts_micro = 100
+			gts_micro_city = 50
+		}
+		upkeep = {
+			# 100
+			energy = 50
+			alloys = 25
+		}
+	}
+	
+	size_restriction = {
+		gts_bruh_shipgirl_ship_sizes_1
+	}
+}
+
+# 千兆級加農炮
+# 艦娘動能巨炮
+weapon_component_template = {
+	type = instant
+
+	key = "gts_bruh_shipgirl_kinetic_artillery_1_X"
+	size = extra_large
+	
+	icon = "GFX_gts_bruh_shipgirl_kinetic_artillery_ship_part_3"
+	icon_frame = 1
+
+	power = -20000
+	damage = { min = 70000 max = 200000 }
+	# 準備時間
+	# 每 10 ticks 為 1 天
+	windup = { min = 15 max = 55 }
+	# 下次發射所需的時間
+	# 要加上準備時間
+	# 320 ticks發射一次
+	total_fire_time = 250
+	accuracy = 0.75
+	tracking = 0
+	range = 300
+	min_range = 45.0
+	shield_damage = 1.5
+	armor_damage = 0.75
+	firing_arc = 25.0
+
+	use_ship_main_target = no
+
+	prerequisites = { "tech_gts_bruh_shipgirl_kinetic_artillery_3" }
+	component_set = "gts_bruh_shipgirl_kinetic_artillery_component_set_3"
+	projectile_gfx = "gts_bruh_xl_adv_kinetic_artillery_projectile"
+	tags = { weapon_type_kinetic weapon_role_artillery x_slot }
+	ai_tags = { weapon_role_artillery artillery }
+
+	resources = {
+		category = ship_components
+		cost = {
+			# 1200
+			alloys = 360
+			volatile_motes = 80
+			exotic_gases = 80
+			rare_crystals = 80
+		}
+		cost = {
+			# 800
+			trigger = {
+				from = {
+					gts_is_tiny_empire = yes
+				}
+			}
+			gts_giantess_fluid = 200
+			gts_giantess_underwear = 100
+		}
+		cost = {
+			# 800
+			trigger = {
+				from = {
+					gts_is_giantess_empire = yes
+				}
+			}
+			gts_micro = 200
+			gts_micro_city = 100
+		}
+		upkeep = {
+			# 200
+			energy = 100
+			alloys = 50
+		}
+	}
+
+	target_weights = {
+		titan = 3
+		battleship = 2
+		stinger_stage_1 = 1.5
+		stinger_stage_2 = 2
+		stinger_stage_3 = 2
+	}
+	
+	size_restriction = {
+		gts_bruh_shipgirl_ship_sizes_2
+		gts_bruh_shipgirl_ship_sizes_3
+	}
+}
+
+############################################################################################################################################
+#################################################                  斬艦刀                  #################################################
+############################################################################################################################################
+
+# 艦娘斬艦刀
+weapon_component_template = {
+	type = instant
+
+	key = "gts_bruh_shipgirl_kinetic_sword_1_T"
+	size = titanic
+	entity = "turret_torpedo_entity"
+	
+	icon = "GFX_gts_bruh_shipgirl_kinetic_sword_titanic_ship_part_1"
+	icon_frame = 1
+
+	power = 0
+	damage = { min = 1000000 max = 1000000 }
+	# 準備時間
+	# 每 10 ticks 為 1 天
+	windup = { min = 5 max = 5 }
+	# 下次發射所需的時間
+	# 要加上準備時間
+	# 300 ticks發射一次
+	total_fire_time = 245
+	accuracy = 1.0
+	tracking = 0
+	range = 300
+	min_range = 75.0
+	shield_penetration = 1.0
+	firing_arc = 25.0
+
+	use_ship_main_target = no
+
+	prerequisites = { "tech_gts_bruh_shipgirl_kinetic_sword_1" }
+	component_set = "gts_bruh_shipgirl_kinetic_sword_component_set_1"
+	projectile_gfx = "gts_bruh_titanic_kinetic_sword_projectile"
+	tags = { weapon_type_kinetic t_slot }
+	ai_tags = { weapon_role_anti_shield brawler brawler_stealth gunship }
+
+	resources = {
+		category = ship_components
+		cost = {
+			# 2400
+			alloys = 720
+			volatile_motes = 160
+			exotic_gases = 160
+			rare_crystals = 160
+		}
+		cost = {
+			# 1600
+			trigger = {
+				from = {
+					gts_is_tiny_empire = yes
+				}
+			}
+			gts_giantess_fluid = 400
+			gts_giantess_underwear = 200
+		}
+		cost = {
+			# 1600
+			trigger = {
+				from = {
+					gts_is_giantess_empire = yes
+				}
+			}
+			gts_micro = 400
+			gts_micro_city = 200
+		}
+		upkeep = {
+			# 400
+			energy = 200
+			alloys = 100
+		}
+	}
+
+	target_weights = {
+		titan = 3
+		battleship = 2
+		stinger_stage_1 = 1.5
+		stinger_stage_2 = 2
+		stinger_stage_3 = 2
+	}
+	
+	size_restriction = {
+		gts_bruh_shipgirl_ship_sizes_3
+	}
+}
+
+############################################################################################################################################
+##################################################                  防空                  ##################################################
+############################################################################################################################################
+
+# 三連裝防空炮(能量防空炮) - 驅逐
+weapon_component_template = {
+	type = point_defence
+
+	key = "gts_bruh_shipgirl_point_defence_S"
+	size = point_defence
+
+	icon = "GFX_gts_bruh_shipgirl_point_defence_ship_part_1"
+	icon_frame = 1
+
+	power = -1000
+	damage = { min = 400 max = 800 }
+	# 準備時間
+	# 每 10 ticks 為 1 天
+	# 下次發射所需的時間
+	# 要加上準備時間
+	# 15 ticks發射一次
+	total_fire_time = 15
+	accuracy = 0.75
+	tracking = 0.30
+	range = 90
+	armor_penetration = 0.25
+	shield_damage = 0.25
+	armor_damage = 2.0
+
+	prerequisites = { "tech_gts_bruh_shipgirl_point_defence_1" }
+	component_set = "gts_bruh_shipgirl_point_defence_component_set_1"
+	projectile_gfx = "gts_bruh_destroyer_stormfire_auto_cannons_projectile"
+	tags = { weapon_type_point_defense weapon_type_energy }
+	ai_tags = { weapon_role_point_defense screen }
+	resources = {
+		category = ship_components
+		cost = {
+			# 30
+			alloys = 9
+			volatile_motes = 2
+			exotic_gases = 2
+			rare_crystals = 2
+		}
+		cost = {
+			# 20
+			trigger = {
+				from = {
+					gts_is_tiny_empire = yes
+				}
+			}
+			gts_giantess_fluid = 5
+			gts_giantess_underwear = 2.5
+		}
+		cost = {
+			# 20
+			trigger = {
+				from = {
+					gts_is_giantess_empire = yes
+				}
+			}
+			gts_micro = 5
+			gts_micro_city = 2.5
+		}
+		upkeep = {
+			# 10
+			energy = 5
+			alloys = 2.5
+		}
+	}
+
+	point_defence_targets = { "missile" "strike_craft" }
+
+	size_restriction = {
+		gts_bruh_shipgirl_ship_sizes_1
+	}
+}
+
+# 三連裝防空炮(能量防空炮) - 戰列
+weapon_component_template = {
+	type = point_defence
+
+	key = "gts_bruh_shipgirl_point_defence_M"
+	size = point_defence
+
+	icon = "GFX_gts_bruh_shipgirl_point_defence_ship_part_1"
+	icon_frame = 1
+
+	power = -2000
+	damage = { min = 800 max = 1600 }
+	# 準備時間
+	# 每 10 ticks 為 1 天
+	# 下次發射所需的時間
+	# 要加上準備時間
+	# 30 ticks發射一次
+	total_fire_time = 30
+	accuracy = 0.75
+	tracking = 0.30
+	range = 90
+	armor_penetration = 0.25
+	shield_damage = 0.25
+	armor_damage = 2.0
+
+	prerequisites = { "tech_gts_bruh_shipgirl_point_defence_1" }
+	component_set = "gts_bruh_shipgirl_point_defence_component_set_1"
+	projectile_gfx = "gts_bruh_battleship_stormfire_auto_cannons_projectile"
+	tags = { weapon_type_point_defense weapon_type_energy }
+	ai_tags = { weapon_role_point_defense screen }
+	resources = {
+		category = ship_components
+		cost = {
+			# 60
+			alloys = 18
+			volatile_motes = 4
+			exotic_gases = 4
+			rare_crystals = 4
+		}
+		cost = {
+			# 40
+			trigger = {
+				from = {
+					gts_is_tiny_empire = yes
+				}
+			}
+			gts_giantess_fluid = 10
+			gts_giantess_underwear = 5
+		}
+		cost = {
+			# 40
+			trigger = {
+				from = {
+					gts_is_giantess_empire = yes
+				}
+			}
+			gts_micro = 10
+			gts_micro_city = 5
+		}
+		upkeep = {
+			# 20
+			energy = 10
+			alloys = 5
+		}
+	}
+
+	point_defence_targets = { "missile" "strike_craft" }
+
+	size_restriction = {
+		gts_bruh_shipgirl_ship_sizes_2
+	}
+}
+
+# 三連裝防空炮(能量防空炮) - 無畏
+weapon_component_template = {
+	type = point_defence
+
+	key = "gts_bruh_shipgirl_point_defence_L"
+	size = point_defence
+
+	icon = "GFX_gts_bruh_shipgirl_point_defence_ship_part_1"
+	icon_frame = 1
+
+	power = -4000
+	damage = { min = 1600 max = 3200 }
+	# 準備時間
+	# 每 10 ticks 為 1 天
+	# 下次發射所需的時間
+	# 要加上準備時間
+	# 60 ticks發射一次
+	total_fire_time = 60
+	accuracy = 0.75
+	tracking = 0.30
+	range = 90
+	armor_penetration = 0.25
+	shield_damage = 0.25
+	armor_damage = 2.0
+
+	prerequisites = { "tech_gts_bruh_shipgirl_point_defence_1" }
+	component_set = "gts_bruh_shipgirl_point_defence_component_set_1"
+	projectile_gfx = "gts_bruh_titan_stormfire_auto_cannons_projectile"
+	tags = { weapon_type_point_defense weapon_type_energy }
+	ai_tags = { weapon_role_point_defense screen }
+	resources = {
+		category = ship_components
+		cost = {
+			# 120
+			alloys = 36
+			volatile_motes = 8
+			exotic_gases = 8
+			rare_crystals = 8
+		}
+		cost = {
+			# 80
+			trigger = {
+				from = {
+					gts_is_tiny_empire = yes
+				}
+			}
+			gts_giantess_fluid = 20
+			gts_giantess_underwear = 10
+		}
+		cost = {
+			# 80
+			trigger = {
+				from = {
+					gts_is_giantess_empire = yes
+				}
+			}
+			gts_micro = 20
+			gts_micro_city = 10
+		}
+		upkeep = {
+			energy = 40
+			alloys = 20
+		}
+	}
+
+	point_defence_targets = { "missile" "strike_craft" }
+
+	size_restriction = {
+		gts_bruh_shipgirl_ship_sizes_3
+	}
+}
+
+# 三連裝防空炮(動能防空炮) - 驅逐
+weapon_component_template = {
+	type = point_defence
+
+	key = "gts_bruh_shipgirl_flak_battery_S"
+	size = point_defence
+
+	icon = "GFX_gts_bruh_shipgirl_flak_battery_ship_part_1"
+	icon_frame = 1
+
+	power = -1000
+	damage = { min = 400 max = 800 }
+	# 準備時間
+	# 每 10 ticks 為 1 天
+	# 下次發射所需的時間
+	# 要加上準備時間
+	# 15 ticks發射一次
+	total_fire_time = 15
+	accuracy = 0.75
+	tracking = 0.80
+	range = 90
+	shield_penetration = 0.25
+	shield_damage = 2.0
+	armor_damage = 0.25
+
+	prerequisites = { "tech_gts_bruh_shipgirl_flak_battery_1" }
+	component_set = "gts_bruh_shipgirl_flak_battery_component_set_1"
+	projectile_gfx = "gts_bruh_destroyer_stormfire_auto_cannons_projectile"
+	tags = { weapon_type_point_defense weapon_type_kinetic }
+	ai_tags = { weapon_role_point_defense screen }
+	resources = {
+		category = ship_components
+		cost = {
+			# 30
+			alloys = 9
+			volatile_motes = 2
+			exotic_gases = 2
+			rare_crystals = 2
+		}
+		cost = {
+			# 20
+			trigger = {
+				from = {
+					gts_is_tiny_empire = yes
+				}
+			}
+			gts_giantess_fluid = 5
+			gts_giantess_underwear = 2.5
+		}
+		cost = {
+			# 20
+			trigger = {
+				from = {
+					gts_is_giantess_empire = yes
+				}
+			}
+			gts_micro = 5
+			gts_micro_city = 2.5
+		}
+		upkeep = {
+			# 10
+			energy = 5
+			alloys = 2.5
+		}
+	}
+
+	point_defence_targets = { "missile" "strike_craft" }
+	
+	size_restriction = {
+		gts_bruh_shipgirl_ship_sizes_1
+	}
+}
+
+# 三連裝防空炮(動能防空炮) - 戰列
+weapon_component_template = {
+	type = point_defence
+
+	key = "gts_bruh_shipgirl_flak_battery_M"
+	size = point_defence
+
+	icon = "GFX_gts_bruh_shipgirl_flak_battery_ship_part_1"
+	icon_frame = 1
+
+	power = -2000
+	damage = { min = 800 max = 1600 }
+	# 準備時間
+	# 每 10 ticks 為 1 天
+	# 下次發射所需的時間
+	# 要加上準備時間
+	# 30 ticks發射一次
+	total_fire_time = 30
+	accuracy = 0.75
+	tracking = 0.80
+	range = 90
+	shield_penetration = 0.25
+	shield_damage = 2.0
+	armor_damage = 0.25
+
+	prerequisites = { "tech_gts_bruh_shipgirl_flak_battery_1" }
+	component_set = "gts_bruh_shipgirl_flak_battery_component_set_1"
+	projectile_gfx = "gts_bruh_battleship_stormfire_auto_cannons_projectile"
+	tags = { weapon_type_point_defense weapon_type_kinetic }
+	ai_tags = { weapon_role_point_defense screen }
+	resources = {
+		category = ship_components
+		cost = {
+			# 60
+			alloys = 18
+			volatile_motes = 4
+			exotic_gases = 4
+			rare_crystals = 4
+		}
+		cost = {
+			# 40
+			trigger = {
+				from = {
+					gts_is_tiny_empire = yes
+				}
+			}
+			gts_giantess_fluid = 10
+			gts_giantess_underwear = 5
+		}
+		cost = {
+			# 40
+			trigger = {
+				from = {
+					gts_is_giantess_empire = yes
+				}
+			}
+			gts_micro = 10
+			gts_micro_city = 5
+		}
+		upkeep = {
+			# 20
+			energy = 10
+			alloys = 5
+		}
+	}
+
+	point_defence_targets = { "missile" "strike_craft" }
+
+	size_restriction = {
+		gts_bruh_shipgirl_ship_sizes_2
+	}
+}
+
+# 三連裝防空炮(動能防空炮) - 無畏
+weapon_component_template = {
+	type = point_defence
+
+	key = "gts_bruh_shipgirl_flak_battery_L"
+	size = point_defence
+
+	icon = "GFX_gts_bruh_shipgirl_flak_battery_ship_part_1"
+	icon_frame = 1
+
+	power = -4000
+	damage = { min = 1600 max = 3200 }
+	# 準備時間
+	# 每 10 ticks 為 1 天
+	# 下次發射所需的時間
+	# 要加上準備時間
+	# 60 ticks發射一次
+	total_fire_time = 60
+	accuracy = 0.75
+	tracking = 0.80
+	range = 90
+	shield_penetration = 0.25
+	shield_damage = 2.0
+	armor_damage = 0.25
+
+	prerequisites = { "tech_gts_bruh_shipgirl_flak_battery_1" }
+	component_set = "gts_bruh_shipgirl_flak_battery_component_set_1"
+	projectile_gfx = "gts_bruh_titan_stormfire_auto_cannons_projectile"
+	tags = { weapon_type_point_defense weapon_type_kinetic }
+	ai_tags = { weapon_role_point_defense screen }
+	resources = {
+		category = ship_components
+		cost = {
+			# 120
+			alloys = 36
+			volatile_motes = 8
+			exotic_gases = 8
+			rare_crystals = 8
+		}
+		cost = {
+			# 80
+			trigger = {
+				from = {
+					gts_is_tiny_empire = yes
+				}
+			}
+			gts_giantess_fluid = 20
+			gts_giantess_underwear = 10
+		}
+		cost = {
+			# 80
+			trigger = {
+				from = {
+					gts_is_giantess_empire = yes
+				}
+			}
+			gts_micro = 20
+			gts_micro_city = 10
+		}
+		upkeep = {
+			# 40
+			energy = 20
+			alloys = 10
+		}
+	}
+
+	point_defence_targets = { "missile" "strike_craft" }
+
+	size_restriction = {
+		gts_bruh_shipgirl_ship_sizes_3
+	}
+}
+
+############################################################################################################################################
+##################################################                 艦載機                 ##################################################
+############################################################################################################################################
+
+# 海火
+strike_craft_component_template = {
+	key = "gts_bruh_shipgirl_strike_craft_hangar_1"
+	size = LARGE
+
+	icon = "GFX_gts_bruh_shipgirl_strike_craft_ship_part_1"
+	icon_frame = 1
+	weapon_type = point_defence
+
+	entity = "GTS_Seafire_body_entity"
+
+	power = -500
+
+	count = 48
+	regeneration_per_day = 0.5
+	launch_time = 2
+
+	damage = { min = 10 max = 20 }
+	cooldown = 2.5
+	range = 10
+	engagement_range = 300
+	accuracy = 1.0
+	tracking = 1.0
+	health = 20
+	armor = 10
+	shield = 5
+	evasion = 0.80
+	speed = 700
+	rotation_speed = 0.8
+	acceleration = 1
+	shield_penetration = 1.0
+	armor_damage = 1.5
+
+	ship_behavior = "fighters_behavior"
+
+	prerequisites = { "tech_gts_bruh_shipgirl_strike_craft_1" }
+	component_set = "gts_bruh_shipgirl_strike_craft_hangar_component_set_1"
+	projectile_gfx = "auto_cannons_s"
+	tags = { weapon_type_strike_craft weapon_archaeotech }
+	ai_tags = { weapon_role_point_defense carrier }
+	point_defence_targets = { "strike_craft" }
+	resources = {
+		category = ship_components
+		cost = {
+			# 60
+			alloys = 18
+			volatile_motes = 4
+			exotic_gases = 4
+			rare_crystals = 4
+		}
+		cost = {
+			# 40
+			trigger = {
+				from = {
+					gts_is_tiny_empire = yes
+				}
+			}
+			gts_giantess_fluid = 10
+			gts_giantess_underwear = 5
+		}
+		cost = {
+			# 40
+			trigger = {
+				from = {
+					gts_is_giantess_empire = yes
+				}
+			}
+			gts_micro = 10
+			gts_micro_city = 5
+		}
+		upkeep = {
+			# 10
+			energy = 5
+			alloys = 2.5
+		}
+	}
+
+	size_restriction = {
+		gts_bruh_shipgirl_ship_sizes_1
+		gts_bruh_shipgirl_ship_sizes_2
+		gts_bruh_shipgirl_ship_sizes_3
+	}
+}
+
+# F6F
+strike_craft_component_template = {
+	key = "gts_bruh_shipgirl_strike_craft_hangar_2"
+	size = LARGE
+	
+	icon = "GFX_gts_bruh_shipgirl_strike_craft_ship_part_2"
+	icon_frame = 1
+	weapon_type = instant
+
+	entity = "GTS_F6F_Fighters_body_entity"
+
+	power = -500
+
+	count = 12
+	regeneration_per_day = 0.5
+	launch_time = 2
+
+	damage = { min = 150 max = 200 }
+	cooldown = 5
+	range = 10
+	engagement_range = 300
+	accuracy = 1.0
+	tracking = 0.6
+	health = 35
+	armor = 10
+	shield = 5
+	evasion = 0.6
+	speed = 500
+	rotation_speed = 0.7
+	acceleration = 1
+	shield_penetration = 1.0
+	armor_damage = 1.75
+
+	ship_behavior = "bombers_behavior"
+
+	prerequisites = { "tech_gts_bruh_shipgirl_strike_craft_1" }
+	component_set = "gts_bruh_shipgirl_strike_craft_hangar_component_set_2"
+	projectile_gfx = "neutron_torpedoes"
+	tags = { weapon_type_strike_craft weapon_archaeotech }
+	ai_tags = { weapon_role_point_defense carrier }
+	resources = {
+		category = ship_components
+		cost = {
+			# 60
+			alloys = 18
+			volatile_motes = 4
+			exotic_gases = 4
+			rare_crystals = 4
+		}
+		cost = {
+			# 40
+			trigger = {
+				from = {
+					gts_is_tiny_empire = yes
+				}
+			}
+			gts_giantess_fluid = 10
+			gts_giantess_underwear = 5
+		}
+		cost = {
+			# 40
+			trigger = {
+				from = {
+					gts_is_giantess_empire = yes
+				}
+			}
+			gts_micro = 10
+			gts_micro_city = 5
+		}
+		upkeep = {
+			# 10
+			energy = 5
+			alloys = 2.5
+		}
+	}
+
+	size_restriction = {
+		gts_bruh_shipgirl_ship_sizes_1
+		gts_bruh_shipgirl_ship_sizes_2
+		gts_bruh_shipgirl_ship_sizes_3
+	}
+}
+
+# PE8
+strike_craft_component_template = {
+	key = "gts_bruh_shipgirl_strike_craft_hangar_3"
+	size = LARGE
+	
+	icon = "GFX_gts_bruh_shipgirl_strike_craft_ship_part_3"
+	icon_frame = 1
+	weapon_type = instant
+
+	entity = "GTS_Pe8_body_entity"
+
+	power = -500
+
+	count = 1
+	regeneration_per_day = 0.5
+	launch_time = 2
+
+	damage = { min = 5000 max = 10000 }
+	cooldown = 7.5
+	range = 10
+	engagement_range = 300
+	accuracy = 1.0
+	tracking = 0.2
+	health = 450
+	armor = 200
+	shield = 100
+	evasion = 0.4
+	speed = 300
+	rotation_speed = 0.6
+	acceleration = 1
+	shield_penetration = 1.0
+	armor_damage = 2.0
+
+	ship_behavior = "bombers_behavior"
+
+	prerequisites = { "tech_gts_bruh_shipgirl_strike_craft_1" }
+	component_set = "gts_bruh_shipgirl_strike_craft_hangar_component_set_3"
+	projectile_gfx = "neutron_torpedoes"
+	tags = { weapon_type_strike_craft weapon_archaeotech }
+	ai_tags = { weapon_role_point_defense carrier }
+	resources = {
+		category = ship_components
+		cost = {
+			# 120
+			alloys = 36
+			volatile_motes = 8
+			exotic_gases = 8
+			rare_crystals = 8
+		}
+		cost = {
+			# 80
+			trigger = {
+				from = {
+					gts_is_tiny_empire = yes
+				}
+			}
+			gts_giantess_fluid = 20
+			gts_giantess_underwear = 10
+		}
+		cost = {
+			# 80
+			trigger = {
+				from = {
+					gts_is_giantess_empire = yes
+				}
+			}
+			gts_micro = 20
+			gts_micro_city = 10
+		}
+		upkeep = {
+			# 20
+			energy = 10
+			alloys = 5
+		}
+	}
+
+	size_restriction = {
+		gts_bruh_shipgirl_ship_sizes_1
+		gts_bruh_shipgirl_ship_sizes_2
+		gts_bruh_shipgirl_ship_sizes_3
+	}
+}
+

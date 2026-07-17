@@ -1,0 +1,108 @@
+gts_hstar_custom_system = { 
+	class = sc_trinary_2 #等级：联星
+	name = "system_gts_hstar_custom"
+
+	flags = { gts_hstar_custom_system } #星系flag	
+
+	planet = { #一个恒星
+		count = 1
+		name = "star_gts_htsar_sun"
+		class = star
+		orbit_distance = 0
+		size = 100 
+		init_effect = {
+		    prevent_anomaly = yes #避免异常出现
+	    }
+	}
+
+	planet = { #一个行星
+		count = 1
+		name = "planet_gts_hstar_custom"
+		class = pc_ocean
+		orbit_distance = 110
+		orbit_angle = { min = 90 max = 270 }
+		init_effect = { #内部设置
+			clear_deposits = yes #清空地块
+			prevent_anomaly = yes #避免异常出现
+			set_planet_flag = hstar_custom_planet
+			save_global_event_target_as = hstar_custom_joint_planet
+		}
+	}
+
+}
+
+gts_hstar_D_system = {
+	class = sc_black_hole
+	name = "system_hstar_D"
+
+	flags = { gts_hstar_D_system }
+
+	planet = {
+		count = 1
+		name = "star_broken_space"
+		class = pc_black_hole
+		orbit_distance = 0
+		size = 100
+		init_effect = {
+		    prevent_anomaly = yes #避免异常出现
+			save_global_event_target_as = hstar_D_blackhole
+	    }
+	}
+
+	planet = {
+		count = 1
+		name = "broken_research_core"
+		class = pc_machine_broken
+		orbit_distance = 130
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+		anomaly = gts_hstar_anomaly_secret_research
+		init_effect = {
+			#内部设置
+			clear_deposits = yes			#清空地块
+			prevent_anomaly = yes			#避免异常出现
+			set_planet_flag = hstar_D_planet
+		}
+	}
+	
+	
+}
+
+gts_hstar_crisis_system = {
+	class = sc_a
+	name = "system_hstar_crisis"
+
+	flags = { gts_hstar_crisis_system }
+
+	planet = {
+		count = 1
+		name = "000"
+		class = pc_a_star
+		orbit_distance = 0
+		size = 100
+		init_effect = {
+		    prevent_anomaly = yes #避免异常出现
+	    }
+	}
+
+	planet = {
+		count = 1
+		name = "001"
+		class = random_colonizable
+		orbit_distance = 130
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+		anomaly = gts_hstar_anomaly_secret_research
+		init_effect = {
+			#内部设置
+			clear_deposits = yes			#清空地块
+			prevent_anomaly = yes			#避免异常出现
+			set_planet_flag = hstar_D_planet
+		}
+	}
+
+}

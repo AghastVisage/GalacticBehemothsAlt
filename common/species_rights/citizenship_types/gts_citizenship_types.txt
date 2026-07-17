@@ -1,0 +1,53 @@
+citizenship_organic_trophy = {
+	potential = {
+		has_synthetic_dawn = yes
+		exists = from
+
+		# 模組添加的東西
+
+		#---------- Bruh ----------
+		#---------- 開始 -----------
+
+		from = {
+			OR = {
+				AND = {
+					is_machine_empire = yes
+					has_civic = civic_machine_servitor
+				}
+				AND = {
+					has_civic = civic_gts_servitor
+					root = {
+						gts_is_tiny = yes
+					}
+				}
+			}
+		}
+
+		#---------- Bruh ----------
+		#---------- 結束 -----------
+
+		is_disconnected_drone_pop = no
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = "lonely_hive_mind_pops_kill_themselves_citizenship"
+			is_lonely_hive_mind_pop = no
+		}
+		custom_tooltip = {
+			fail_text = "disconnected_machine_pops_kill_themselves_citizenship"
+			is_disconnected_machine_pop = no
+		}
+		custom_tooltip = {
+			fail_text = not_organic
+			NOR = {
+				has_trait = trait_mechanical
+				has_trait = trait_machine_unit
+			}
+		}
+	}
+	ai_will_do = {
+		factor = 100
+	}
+}
+

@@ -1,0 +1,116 @@
+#保险合约国
+ultracompany_aftermarket = {
+	icon = "GFX_starbase_offworld_trading_company"
+	construction_days = 360
+
+	potential = {
+		exists = owner
+		owner = {
+			has_country_flag = ultracompany_aftermarket_allow
+		}
+		is_normal_starbase = yes
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_starport"
+			has_starbase_size >= starbase_starport
+		}
+		NOR = { has_starbase_building = ultracompany_aftermarket }
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 100
+		}
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	triggered_station_modifier = {
+		potential = {
+			hidden_trigger = { exists = this }
+		}
+		station_observers_produces_mult = 2
+	}
+
+
+	ai_weight = {
+		weight = 100 #use same weight here - ai weighting is done in starbase_types.txt
+		modifier = {
+			factor = 0
+			count_starbase_modules = {
+				type = trading_hub
+				count < 3
+			}
+		}
+	}
+}
+
+#豢养神明
+godkeeper_dragonclone = {
+	icon = "GFX_GODKEEPER_DRAGONCLONE"
+	construction_days = 360
+
+	potential = {
+		exists = owner
+		owner = {
+			has_origin = origin_god_keeper
+			has_tradition = tr_gts_godkeeper_4
+		}
+		is_normal_starbase = yes
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_citadel"
+			has_starbase_size >= starbase_citadel
+		}
+		OR = {
+			has_starbase_module = shipyard
+			has_starbase_module = hatchery
+			has_starbase_module = beastport
+			starbase_buildable_is_in_queue_before = {
+				first = shipyard
+				second = godkeeper_dragonclone
+			}
+		}
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 7500
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	# triggered_station_modifier = {
+	# 	potential = {
+	# 		hidden_trigger = { exists = this }
+	# 	}
+	# 	starbase_trade_collection_range_add = 5
+	# 	starbase_trade_protection_add = 10
+	# 	station_observers_produces_mult = 2
+	# }
+
+
+	ai_weight = {
+		weight = 100 #use same weight here - ai weighting is done in starbase_types.txt
+		modifier = {
+			factor = 0
+			owner = {
+				count_owned_starbase = {
+					count >= 1
+					limit = {
+						has_starbase_building = godkeeper_dragonclone
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,908 @@
+gts_shrink_transdrone_1 = {
+	category = complex_drone
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_research_lab_1
+		}
+	}
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = complex_drone
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+	possible_precalc = can_fill_drone_job
+	possible = {
+		can_think = yes
+	}
+	resources = {
+		category = planet_jobs
+		produces = {
+			gts_micro = 4
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_1
+				}
+			}
+			gts_micro = 3
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_2
+				}
+			}
+			gts_micro = 3
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_3
+				}
+			}
+			gts_micro = 2
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_5
+				}
+			}
+			gts_micro = 1
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_6
+				}
+			}
+			gts_micro = 2
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_7
+				}
+			}
+			gts_micro = 3
+		}
+		upkeep = {
+			trigger = {
+				is_lithoid = no
+			}
+			energy = 4
+			food = 6
+		}
+		upkeep = {
+			trigger = {
+				is_lithoid = yes
+			}
+			energy = 4
+			minerals = 6
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_1
+				}
+			}
+			nanites = 0.01
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_2
+				}
+			}
+			sr_zro = 0.01
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_3
+				}
+			}
+			volatile_motes = 0.01
+		}
+		upkeep = {
+			trigger = {
+				is_lithoid = no
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_4
+				}
+			}
+			energy = -2
+			food = -3
+		}
+		upkeep = {
+			trigger = {
+				is_lithoid = yes
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_4
+				}
+			}
+			energy = -2
+			minerals = -3
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				OR = {
+					has_policy_flag = gts_shrink_method_5
+					has_policy_flag = gts_shrink_method_6
+					has_policy_flag = gts_shrink_method_7
+				}
+			}
+		}
+		logistic_growth_mult = -0.01
+		bonus_pop_growth_mult = -0.01
+	}
+	#	overlord_resources = {
+	#		category = planet_requisitioned_research
+	#		produces = {
+	#			trigger = {
+	#				planet = {
+	#					has_planet_flag = has_science_ministry
+	#				}
+	#			}
+	#			society_research = 2
+	#		}
+	#	}
+	weight = {
+		weight = @complex_drone_job_weight
+	}
+}
+
+gts_shrink_transdrone_2 = {
+	category = complex_drone
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_research_lab_1
+		}
+	}
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = complex_drone
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+	possible_precalc = can_fill_drone_job
+	possible = {
+		can_think = yes
+	}
+	resources = {
+		category = planet_jobs
+		produces = {
+			gts_micro_city = 4
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_1
+				}
+			}
+			gts_micro_city = 3
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_2
+				}
+			}
+			gts_micro_city = 3
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_3
+				}
+			}
+			gts_micro_city = 2
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_5
+				}
+			}
+			gts_micro_city = 1
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_6
+				}
+			}
+			gts_micro_city = 2
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_7
+				}
+			}
+			gts_micro_city = 3
+		}
+		upkeep = {
+			minerals = 10
+			gts_micro = 12
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_1
+				}
+			}
+			nanites = 0.01
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_2
+				}
+			}
+			sr_zro = 0.01
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_3
+				}
+			}
+			volatile_motes = 0.01
+		}
+		upkeep = {
+			trigger = {
+				is_lithoid = no
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_4
+				}
+			}
+			minerals = -5
+			gts_micro = -6
+		}
+	}
+	#	overlord_resources = {
+	#		category = planet_requisitioned_research
+	#		produces = {
+	#			trigger = {
+	#				planet = {
+	#					has_planet_flag = has_science_ministry
+	#				}
+	#			}
+	#			society_research = 2
+	#		}
+	#	}
+	weight = {
+		weight = @complex_drone_job_weight
+	}
+}
+
+gts_shrink_transdrone_3 = {
+	category = complex_drone
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_research_lab_1
+		}
+	}
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = complex_drone
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+	possible_precalc = can_fill_drone_job
+	possible = {
+		can_think = yes
+	}
+	resources = {
+		category = planet_jobs
+		produces = {
+			gts_micro_planet = 4
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_1
+				}
+			}
+			gts_micro_planet = 3
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_2
+				}
+			}
+			gts_micro_planet = 3
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_3
+				}
+			}
+			gts_micro_planet = 2
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_5
+				}
+			}
+			gts_micro_planet = 1
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_6
+				}
+			}
+			gts_micro_planet = 2
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_7
+				}
+			}
+			gts_micro_planet = 3
+		}
+		upkeep = {
+			minerals = 10
+			gts_micro_city = 12
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_1
+				}
+			}
+			nanites = 0.01
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_2
+				}
+			}
+			sr_zro = 0.01
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_3
+				}
+			}
+			volatile_motes = 0.01
+		}
+		upkeep = {
+			trigger = {
+				is_lithoid = no
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_4
+				}
+			}
+			minerals = -5
+			gts_micro_city = -6
+		}
+	}
+	#	overlord_resources = {
+	#		category = planet_requisitioned_research
+	#		produces = {
+	#			trigger = {
+	#				planet = {
+	#					has_planet_flag = has_science_ministry
+	#				}
+	#			}
+	#			society_research = 2
+	#		}
+	#	}
+	weight = {
+		weight = @complex_drone_job_weight
+	}
+}
+
+gts_shrink_transcalculator_1 = {
+	category = complex_drone
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_research_lab_1
+		}
+	}
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = complex_drone
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+	possible_precalc = can_fill_drone_job
+	possible = {
+		can_think = yes
+	}
+	resources = {
+		category = planet_jobs
+		produces = {
+			gts_micro = 4
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_1
+				}
+			}
+			gts_micro = 3
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_2
+				}
+			}
+			gts_micro = 3
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_3
+				}
+			}
+			gts_micro = 2
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_5
+				}
+			}
+			gts_micro = 1
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_6
+				}
+			}
+			gts_micro = 2
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_7
+				}
+			}
+			gts_micro = 3
+		}
+		upkeep = {
+			energy = 4
+			alloys = 0.6
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_1
+				}
+			}
+			nanites = 0.01
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_2
+				}
+			}
+			sr_zro = 0.01
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_3
+				}
+			}
+			volatile_motes = 0.01
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_4
+				}
+			}
+			energy = -2
+			alloys = -0.3
+		}
+	}
+	#	overlord_resources = {
+	#		category = planet_requisitioned_research
+	#		produces = {
+	#			trigger = {
+	#				planet = {
+	#					has_planet_flag = has_science_ministry
+	#				}
+	#			}
+	#			physics_research = 2
+	#		}
+	#	}
+	weight = {
+		weight = @complex_drone_job_weight
+	}
+}
+
+gts_shrink_transcalculator_2 = {
+	category = complex_drone
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_research_lab_1
+		}
+	}
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = complex_drone
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+	possible_precalc = can_fill_drone_job
+	possible = {
+		can_think = yes
+	}
+	resources = {
+		category = planet_jobs
+		produces = {
+			gts_micro_city = 4
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_1
+				}
+			}
+			gts_micro_city = 3
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_2
+				}
+			}
+			gts_micro_city = 3
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_3
+				}
+			}
+			gts_micro_city = 2
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_5
+				}
+			}
+			gts_micro_city = 1
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_6
+				}
+			}
+			gts_micro_city = 2
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_7
+				}
+			}
+			gts_micro_city = 3
+		}
+		upkeep = {
+			minerals = 10
+			gts_micro = 12
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_1
+				}
+			}
+			nanites = 0.01
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_2
+				}
+			}
+			sr_zro = 0.01
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_3
+				}
+			}
+			volatile_motes = 0.01
+		}
+		upkeep = {
+			trigger = {
+				is_lithoid = no
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_4
+				}
+			}
+			minerals = -5
+			gts_micro = -6
+		}
+	}
+	#	overlord_resources = {
+	#		category = planet_requisitioned_research
+	#		produces = {
+	#			trigger = {
+	#				planet = {
+	#					has_planet_flag = has_science_ministry
+	#				}
+	#			}
+	#			physics_research = 2
+	#		}
+	#	}
+	weight = {
+		weight = @complex_drone_job_weight
+	}
+}
+
+gts_shrink_transcalculator_3 = {
+	category = complex_drone
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_research_lab_1
+		}
+	}
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = complex_drone
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+	possible_precalc = can_fill_drone_job
+	possible = {
+		can_think = yes
+	}
+	resources = {
+		category = planet_jobs
+		produces = {
+			gts_micro_planet = 4
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_1
+				}
+			}
+			gts_micro_planet = 3
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_2
+				}
+			}
+			gts_micro_planet = 3
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_3
+				}
+			}
+			gts_micro_planet = 2
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_5
+				}
+			}
+			gts_micro_planet = 1
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_6
+				}
+			}
+			gts_micro_planet = 2
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_7
+				}
+			}
+			gts_micro_planet = 3
+		}
+		upkeep = {
+			minerals = 10
+			gts_micro_city = 12
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_1
+				}
+			}
+			nanites = 0.01
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_2
+				}
+			}
+			sr_zro = 0.01
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_3
+				}
+			}
+			volatile_motes = 0.01
+		}
+		upkeep = {
+			trigger = {
+				is_lithoid = no
+				exists = owner
+				owner = {
+					has_policy_flag = gts_shrink_method_4
+				}
+			}
+			minerals = -5
+			gts_micro_city = -6
+		}
+	}
+	#	overlord_resources = {
+	#		category = planet_requisitioned_research
+	#		produces = {
+	#			trigger = {
+	#				planet = {
+	#					has_planet_flag = has_science_ministry
+	#				}
+	#			}
+	#			physics_research = 2
+	#		}
+	#	}
+	weight = {
+		weight = @complex_drone_job_weight
+	}
+}

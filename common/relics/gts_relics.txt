@@ -1,0 +1,576 @@
+@activation_cost = 3000
+@triumph_duration = 3600
+@triumph_duration_short = 1800
+@triumph_duration_veryshort = 900
+r_gts_endsweat = {
+	#高维汁液 从瞭望站中搜出的神秘物质，不知是被那位星系级巨娘自身分泌或是从外世界带进来的，我们只能确定其有扭曲本宇宙客观规律和激起本宇宙生物强烈性欲的能力。
+	activation_duration = 5	#激活持续时间（看来可以直接引用）
+	portrait = "GFX_relic_zro_crystal"	#贴图（这里直接写的名字而不是位置啊）
+	sound = "relic_activation_intact_zro_soulstone"	#启动音效
+	resources = {
+		category = relics		#
+		# Activation cost
+		cost = {
+			#启动花费
+			unity = 1000
+		}
+	}
+	ai_weight = {
+		#ai使用权重
+		weight = 10
+	}
+	triggered_country_modifier = {
+		#静态效果
+		potential = {
+			always = yes
+		}
+		planet_jobs_produces_mult = 0.1
+		pop_amenities_usage_mult = -0.1
+	}
+	score = 1000	#计入分数
+	active_effect = {
+		#启动效果
+		custom_tooltip = relic_endsweat_active		#自定义提示
+		custom_tooltip = relic_triumph_cooldown
+		hidden_effect = {
+			#隐藏效果
+			add_modifier = {
+				#添加修正
+				modifier = "relic_activation_cooldown"
+				days = 5
+			}
+			country_event = {
+				id = gts_evt_ancient.200
+			}			#启动事件
+		}
+	}
+	possible = {
+		#猜测是冷却效果
+		custom_tooltip = {
+			fail_text = "requires_relic_no_cooldown"
+			NOT = {
+				has_modifier = relic_activation_cooldown
+			}
+		}
+	}
+}
+
+r_gtsra_lottie_shoes = {
+	activation_duration = @triumph_duration
+	portrait = "GFX_lottie_shoes"
+	sound = "relic_activation_generic"
+	resources = {
+		category = relics
+		# Activation cost
+		cost = {
+			energy = @activation_cost
+		}
+		produces = {
+			volatile_motes = 10
+			exotic_gases = 10
+			rare_crystals = 10
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+	triggered_country_modifier = {
+		potential = {
+			always = yes
+		}
+	}
+	score = 11451		# 好臭的鞋
+	active_effect = {
+		add_modifier = {
+			modifier = "r_lottie_shoes_active"
+			days = @triumph_duration_short
+		}
+		custom_tooltip = relic_triumph_cooldown
+		hidden_effect = {
+			add_modifier = {
+				modifier = "relic_activation_cooldown"
+				days = @triumph_duration
+			}
+		}
+	}
+	# Possible check for activation
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_relic_no_cooldown"
+			NOT = {
+				has_modifier = relic_activation_cooldown
+			}
+		}
+	}
+}
+
+r_size_machine = {
+
+	# 體型縮放器
+
+	activation_duration = @triumph_duration
+	portrait = "GFX_relic_galatron"
+	sound = "relic_activation_intact_zro_soulstone"
+
+	resources = {
+		category = relics
+		cost = {
+			energy = 3000
+		}
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+
+	score = 1000
+
+	active_effect = {
+		custom_tooltip = relic_size_machine_active
+		country_event = { id = gts_evt_xiankeyan.60 }
+		hidden_effect = {
+			add_modifier = {
+				modifier = "relic_activation_cooldown"
+				days = @triumph_duration
+			}
+		}
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_relic_no_cooldown"
+			NOT = { has_modifier = relic_activation_cooldown }
+		}
+	}
+}
+
+r_yarong_ring = { #犽戎满好感永恒誓约
+	activation_duration = 0
+	portrait = "GFX_relic_yarong_ring"
+	sound = "relic_activation_ether_drake_trophy"
+
+	resources = {
+		category = relics
+		# Activation cost
+		cost = {
+			unity = 1800000
+		}
+	}
+
+	ai_weight = {
+		weight = 100
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			always = yes
+		}
+		empire_size_mult = -0.8
+		country_naval_cap_add = 500
+		country_resource_max_add = 1000000
+	}
+
+	score = 1000
+
+	active_effect = {
+		custom_tooltip = relic_triumph_cooldown
+		hidden_effect = {
+			add_modifier = {
+				modifier = "relic_activation_cooldown"
+				days = @triumph_duration
+			}
+		}
+	}
+
+	# Possible check for activation
+	possible = {
+		always = no
+	}
+}
+r_yarong_tooth = { #犽戎的牙
+	activation_duration = @triumph_duration
+	portrait = "GFX_relic_odryskan_crystal"
+	sound = "relic_activation_intact_zro_soulstone"
+
+	resources = {
+		category = relics
+	}
+
+	ai_weight = {
+		weight = 50
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			always = yes
+		}
+		planet_jobs_minerals_produces_mult = 0.15
+		planet_jobs_alloys_produces_mult = 0.15
+	}
+
+	score = 1000
+
+	# Possible check for activation
+	possible = {
+		always = no
+	}
+}
+r_yarong_nail = { #犽戎的指甲
+	activation_duration = @triumph_duration
+	portrait = "GFX_relic_worm_scales"
+	sound = "relic_activation_scales_of_the_worm"
+
+	resources = {
+		category = relics
+		produces = {
+			physics_research = 400
+			society_research = 400
+			engineering_research = 400
+		}
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			always = yes
+		}
+		army_attack_morale_mult = 0.1
+	}
+
+	score = 1000
+
+	active_effect = {
+		
+	}
+
+	# Possible check for activation
+	possible = {
+		always = no
+	}
+}
+r_gtsra_bronya_core = {
+	activation_duration = @triumph_duration_short
+	portrait = "GFX_bronya_core"
+	sound = "relic_activation_generic"
+	resources = {
+		category = relics
+		# Activation cost
+		cost = {
+			energy = 5000
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+	triggered_country_modifier = {
+		potential = {
+			always = yes
+		}
+		ROBOT_species_trait_picks_add = 3
+		ROBOT_species_trait_points_add = 3
+	}
+	score = 1018
+	active_effect = {
+		add_modifier = {
+			modifier = "r_bronya_core_active"
+			days = @triumph_duration_short
+		}
+		custom_tooltip = relic_triumph_cooldown
+		hidden_effect = {
+			add_modifier = {
+				modifier = "relic_activation_cooldown"
+				days = @triumph_duration
+			}
+		}
+	}
+	# Possible check for activation
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_relic_no_cooldown"
+			NOT = {
+				has_modifier = relic_activation_cooldown
+			}
+		}
+	}
+}
+r_gtsra_seele_core = {
+	activation_duration = @triumph_duration_short
+	portrait = "GFX_seele_core"
+	sound = "relic_activation_generic"
+	resources = {
+		category = relics
+		# Activation cost
+		cost = {
+			energy = 5000
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+	triggered_country_modifier = {
+		potential = {
+			always = yes
+		}
+		BIOLOGICAL_species_trait_points_add = 3
+		BIOLOGICAL_species_trait_picks_add = 3
+	}
+	score = 818
+	active_effect = {
+		add_modifier = {
+			modifier = "r_seele_core_active"
+			days = @triumph_duration_short
+		}
+		custom_tooltip = relic_triumph_cooldown
+		hidden_effect = {
+			add_modifier = {
+				modifier = "relic_activation_cooldown"
+				days = @triumph_duration
+			}
+		}
+	}
+	# Possible check for activation
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_relic_no_cooldown"
+			NOT = {
+				has_modifier = relic_activation_cooldown
+			}
+		}
+	}
+}
+r_gtsra_seele_book = {
+	activation_duration = @triumph_duration_short
+	portrait = "GFX_seele_book"
+	#sound = "relic_activation_generic"
+	active_effect = {
+		country_event = {
+			id = gts_seele.60
+		}
+	}
+	resources = {
+		category = relics
+		# Activation cost
+		cost = {
+			influence = 0
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+	score = 818
+	possible = {
+		always = yes
+	}
+}
+
+r_gtsra_huatian_flower = {
+
+	# 片瓣
+
+	activation_duration = @triumph_duration
+	portrait = "GFX_huatian_flower"
+	sound = "relic_activation_generic"
+
+	resources = {
+		category = relics
+		# Activation cost
+		cost = {
+			unity = @activation_cost
+		}
+	}
+
+
+	ai_weight = {
+		weight = 0
+	}
+
+	score = 1000
+
+	active_effect = {
+		custom_tooltip = r_gtsra_huatian_flower_active_effect_tt
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 120
+		}
+		country_event = {
+			id = gts_huatian.1078
+		}
+		hidden_effect = {
+			add_modifier = {
+				modifier = "relic_activation_cooldown"
+				days = @triumph_duration
+			}
+		}
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_relic_no_cooldown"
+			NOT = {
+				has_modifier = relic_activation_cooldown
+			}
+		}
+	}
+}
+r_gtsra_Mitsuki_Hitomi_Figure = {
+	activation_duration = 1
+	portrait = "GFX_gtsra_Mitsuki_Hitomi_Figure"
+	sound = "relic_activation_generic"
+	resources = {
+		category = relics
+		cost = {
+		}
+		produces = {
+			society_research = 100
+			engineering_research = 100
+			physics_research = 100
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+	triggered_country_modifier = {
+		potential = {
+			always = yes
+		}
+	}
+	active_effect = {
+		if = {
+			limit = {
+				not = {
+					has_country_flag = gts_mitsuki_hitomi_warning_active
+					has_country_flag = gts_mitsuki_hitomi_relics_leave_event_activitied
+				}
+			}
+			country_event = {
+				id = gts_hitomi.30004
+			}
+		}
+		if = {
+			limit = {
+				has_country_flag = gts_mitsuki_hitomi_warning_active
+				not = {
+					has_country_flag = gts_mitsuki_hitomi_relics_other
+					has_country_flag = gts_mitsuki_hitomi_relics_leave_event_activitied
+				}
+			}
+			country_event = {
+				id = gts_hitomi.30008
+			}
+		}
+		if = {
+			limit = {
+				has_country_flag = gts_mitsuki_hitomi_relics_other
+				not = {
+					has_country_flag = gts_mitsuki_hitomi_relics_leave_event_activitied
+				}
+			}
+			country_event = {
+				id = gts_hitomi.30009
+			}
+		}
+		if = {
+			limit = {
+				has_country_flag = gts_mitsuki_hitomi_relics_leave_event_activitied
+			}
+			country_event = {
+				id = gts_hitomi.30015
+			}
+		}
+		hidden_effect = {
+		}
+	}
+	# Possible check for activation
+	possible = {
+		custom_tooltip_fail = {
+			text = r_gtsra_Mitsuki_Hitomi_Figure_custom_tooltip_fail
+			has_country_flag = gts_mitsuki_hitomi_allow_leave
+		}
+	}
+}
+r_gtsra_qinwen_book = {
+	activation_duration = 1
+	portrait = "GFX_gtsra_qinwen_book"
+	sound = "relic_activation_generic"
+	resources = {
+		category = relics
+		cost = {
+		}
+		produces = {
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+	triggered_country_modifier = {
+		planet_jobs_minor_artifacts_produces_mult = 0.2  # 岗位产出的稀有文物 | 星球岗位少量文物产出倍率
+		specimens_produces_mult = 0.5# 标本产出 | 标本产出倍率
+		potential = {
+			always = yes
+		}
+	}
+	active_effect = {
+		country_event = {
+			id = gts_qinwen.8
+		}
+		hidden_effect = {
+		}
+	}
+	# Possible check for activation
+	possible = {
+
+	}
+}
+
+r_gtsra_ora_book = {
+	activation_duration = 1
+	portrait = "GFX_gtsra_ora_book"
+	sound = "relic_activation_generic"
+	resources = {
+		category = relics
+		cost = {
+		}
+		produces = {
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+	triggered_country_modifier = {
+		potential = {
+			always = yes
+		}
+		planet_building_build_speed_mult = 0.05 #建造速度
+	}
+	active_effect = {
+		if = {
+			limit = {
+				not = {
+					has_country_flag = gts_ora_1004_leave
+				}
+			}
+			country_event = {
+				id = gts_ora.1004
+			}
+		}
+		else_if = {
+			limit = {
+				has_country_flag = gts_ora_1004_leave
+			}
+			country_event = {
+				id = gts_ora.1006
+			}
+		}
+		else_if = {
+			limit = {
+				has_country_flag = gts_ora_1007_active
+			}
+
+		}
+		hidden_effect = {
+		}
+	}
+	# Possible check for activation
+	possible = {
+
+	}
+}

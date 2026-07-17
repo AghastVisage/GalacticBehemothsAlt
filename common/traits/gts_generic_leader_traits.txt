@@ -1,0 +1,3173 @@
+################################################################################
+###################                領袖種族特質                ###################
+################################################################################
+
+
+
+leader_trait_Galaxy = {
+
+	# 此體質尚未進行各類 effect、modifier、condition 的維護，且大機率造成數值溢出，請謹慎使用
+
+	initial = no
+	randomized = no
+
+	icon = "gfx/interface/icons/traits/leader_traits/leader_trait_Galaxy.dds"
+
+	opposites = {
+		"leader_trait_Ultra"
+		"leader_trait_Titan"
+		"leader_trait_Giant"
+		"leader_trait_Tall"
+		"leader_trait_Normal"
+		"leader_trait_Small"
+		"leader_trait_Tiny"
+		"leader_trait_Micro"
+		"leader_trait_Nano"
+	}
+
+	# 領袖
+	triggered_self_modifier = {
+		potential = {
+			owner = {
+				NOT = {
+					has_policy_flag = gts_gaintess_apartheid
+				}
+			}
+		}
+		leaders_cost_mult = 16.0
+		leaders_upkeep_mult = 16.0
+	}
+	triggered_self_modifier = {
+		potential = {
+			owner = {
+				has_policy_flag = gts_tinies_apartheid
+			}
+		}
+		leaders_cost_mult = 8.0
+		leaders_upkeep_mult = 8.0
+	}
+	triggered_self_modifier = {
+		potential = {
+			owner = {
+				has_policy_flag = gts_gaintess_apartheid
+			}
+		}
+		leaders_cost_mult = 32.0
+		leaders_upkeep_mult = 32.0
+	}
+
+	# 科學官
+	triggered_modifier = {
+		potential = {
+			leader_class = scientist
+		}
+		science_ship_survey_speed = 0.30
+	}
+	triggered_modifier = {
+		potential = {
+			leader_class = scientist
+			owner = {
+				has_policy_flag = using_tiny_fleet_style
+			}
+		}
+		ship_archaeological_site_excavation_speed_mult = 0.30
+	}
+
+	# 指揮官
+	triggered_fleet_modifier = {
+		potential = {
+			leader_class = commander
+		}
+		ship_hull_mult = 0.30
+		ship_evasion_mult = -0.30
+	}
+	triggered_fleet_modifier = {
+		potential = {
+			leader_class = commander
+			owner = {
+				has_policy_flag = using_tiny_fleet_style
+			}
+		}
+		command_limit_mult = 0.30
+	}
+
+	# 陸軍
+	triggered_army_modifier = {
+		potential = {
+			leader_class = commander
+		}
+		army_morale = 0.30
+		army_collateral_damage_mult = 0.30
+	}
+
+	# 行政官
+	triggered_planet_modifier = {
+		potential = {
+			leader_class = official
+		}
+		planet_clear_blocker_speed_mult = 0.60
+	}
+	triggered_planet_modifier = {
+		potential = {
+			leader_class = official
+			owner = {
+				has_policy_flag = using_tiny_building_style
+			}
+		}
+		planet_building_build_speed_mult = 0.60
+	}
+
+	leader_class = all
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+leader_trait_Ultra = {
+
+	# 天體級生物
+
+	initial = no
+	randomized = no
+
+	icon = "gfx/interface/icons/traits/leader_traits/leader_trait_Ultra.dds"
+
+	opposites = {
+		"leader_trait_Galaxy"
+		"leader_trait_Titan"
+		"leader_trait_Giant"
+		"leader_trait_Tall"
+		"leader_trait_Normal"
+		"leader_trait_Small"
+		"leader_trait_Tiny"
+		"leader_trait_Micro"
+		"leader_trait_Nano"
+	}
+
+	# 領袖
+	triggered_self_modifier = {
+		potential = {
+			owner = {
+				NOT = {
+					has_policy_flag = gts_gaintess_apartheid
+				}
+			}
+		}
+		leaders_cost_mult = 8.0
+		leaders_upkeep_mult = 8.0
+	}
+	triggered_self_modifier = {
+		potential = {
+			owner = {
+				has_policy_flag = gts_tinies_apartheid
+			}
+		}
+		leaders_cost_mult = 4.0
+		leaders_upkeep_mult = 4.0
+	}
+	triggered_self_modifier = {
+		potential = {
+			owner = {
+				has_policy_flag = gts_gaintess_apartheid
+			}
+		}
+		leaders_cost_mult = 16.0
+		leaders_upkeep_mult = 16.0
+	}
+
+	# 科學官
+	triggered_modifier = {
+		potential = {
+			leader_class = scientist
+		}
+		science_ship_survey_speed = 0.25
+	}
+	triggered_modifier = {
+		potential = {
+			leader_class = scientist
+			owner = {
+				has_policy_flag = using_tiny_fleet_style
+			}
+		}
+		ship_archaeological_site_excavation_speed_mult = 0.25
+	}
+
+	# 指揮官
+	triggered_fleet_modifier = {
+		potential = {
+			leader_class = commander
+		}
+		ship_hull_mult = 0.25
+		ship_evasion_mult = -0.25
+	}
+	triggered_fleet_modifier = {
+		potential = {
+			leader_class = commander
+			owner = {
+				has_policy_flag = using_tiny_fleet_style
+			}
+		}
+		command_limit_mult = 0.25
+	}
+
+	# 陸軍
+	triggered_army_modifier = {
+		potential = {
+			leader_class = commander
+		}
+		army_morale = 0.25
+		army_collateral_damage_mult = 0.25
+	}
+
+	# 行政官
+	triggered_planet_modifier = {
+		potential = {
+			leader_class = official
+		}
+		planet_clear_blocker_speed_mult = 0.50
+	}
+	triggered_planet_modifier = {
+		potential = {
+			leader_class = official
+			owner = {
+				has_policy_flag = using_tiny_building_style
+			}
+		}
+		planet_building_build_speed_mult = 0.50
+	}
+
+	leader_class = all
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+leader_trait_Titan = {
+
+	# 泰坦級生物
+
+	initial = no
+	randomized = no
+
+	opposites = {
+		"leader_trait_Galaxy"
+		"leader_trait_Ultra"
+		"leader_trait_Giant"
+		"leader_trait_Tall"
+		"leader_trait_Normal"
+		"leader_trait_Small"
+		"leader_trait_Tiny"
+		"leader_trait_Micro"
+		"leader_trait_Nano"
+	}
+
+	icon = "gfx/interface/icons/traits/leader_traits/leader_trait_Titan.dds"
+
+	# 領袖
+	triggered_self_modifier = {
+		potential = {
+			owner = {
+				NOT = {
+					has_policy_flag = gts_gaintess_apartheid
+				}
+			}
+		}
+		leaders_cost_mult = 2.0
+		leaders_upkeep_mult = 2.0
+	}
+	triggered_self_modifier = {
+		potential = {
+			owner = {
+				has_policy_flag = gts_tinies_apartheid
+			}
+		}
+		leaders_cost_mult = 1.0
+		leaders_upkeep_mult = 1.0
+	}
+	triggered_self_modifier = {
+		potential = {
+			owner = {
+				has_policy_flag = gts_gaintess_apartheid
+			}
+		}
+		leaders_cost_mult = 4.0
+		leaders_upkeep_mult = 4.0
+	}
+
+	# 科學官
+	triggered_modifier = {
+		potential = {
+			leader_class = scientist
+		}
+		science_ship_survey_speed = 0.15
+	}
+	triggered_modifier = {
+		potential = {
+			leader_class = scientist
+			owner = {
+				has_policy_flag = using_tiny_fleet_style
+			}
+		}
+		ship_archaeological_site_excavation_speed_mult = 0.15
+	}
+
+	# 指揮官
+	triggered_fleet_modifier = {
+		potential = {
+			leader_class = commander
+		}
+		ship_hull_mult = 0.15
+		ship_evasion_mult = -0.15
+	}
+	triggered_fleet_modifier = {
+		potential = {
+			leader_class = commander
+			owner = {
+				has_policy_flag = using_tiny_fleet_style
+			}
+		}
+		command_limit_mult = 0.15
+	}
+
+	# 陸軍
+	triggered_army_modifier = {
+		potential = {
+			leader_class = commander
+		}
+		army_morale = 0.15
+		army_collateral_damage_mult = 0.15
+	}
+
+	# 行政官
+	triggered_planet_modifier = {
+		potential = {
+			leader_class = official
+		}
+		planet_clear_blocker_speed_mult = 0.30
+	}
+	triggered_planet_modifier = {
+		potential = {
+			leader_class = official
+			owner = {
+				has_policy_flag = using_tiny_building_style
+			}
+		}
+		planet_building_build_speed_mult = 0.30
+	}
+
+	leader_class = all
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+leader_trait_Giant = {
+
+	# 巨娘
+
+	initial = no
+	randomized = no
+
+	opposites = {
+		"leader_trait_Galaxy"
+		"leader_trait_Ultra"
+		"leader_trait_Titan"
+		"leader_trait_Tall"
+		"leader_trait_Normal"
+		"leader_trait_Small"
+		"leader_trait_Tiny"
+		"leader_trait_Micro"
+		"leader_trait_Nano"
+	}
+
+	icon = "gfx/interface/icons/traits/leader_traits/leader_trait_Giant.dds"
+
+	# 領袖
+	triggered_self_modifier = {
+		potential = {
+			owner = {
+				NOT = {
+					has_policy_flag = gts_gaintess_apartheid
+				}
+			}
+		}
+		leaders_cost_mult = 1.0
+		leaders_upkeep_mult = 1.0
+	}
+	triggered_self_modifier = {
+		potential = {
+			owner = {
+				has_policy_flag = gts_tinies_apartheid
+			}
+		}
+		leaders_cost_mult = 0.50
+		leaders_upkeep_mult = 0.50
+	}
+	triggered_self_modifier = {
+		potential = {
+			owner = {
+				has_policy_flag = gts_gaintess_apartheid
+			}
+		}
+		leaders_cost_mult = 2.0
+		leaders_upkeep_mult = 2.0
+	}
+
+	# 科學官
+	triggered_modifier = {
+		potential = {
+			leader_class = scientist
+		}
+		science_ship_survey_speed = 0.10
+	}
+	triggered_modifier = {
+		potential = {
+			leader_class = scientist
+			owner = {
+				has_policy_flag = using_tiny_fleet_style
+			}
+		}
+		ship_archaeological_site_excavation_speed_mult = 0.10
+	}
+
+	# 指揮官
+	triggered_fleet_modifier = {
+		potential = {
+			leader_class = commander
+		}
+		ship_hull_mult = 0.10
+		ship_evasion_mult = -0.10
+	}
+	triggered_fleet_modifier = {
+		potential = {
+			leader_class = commander
+			owner = {
+				has_policy_flag = using_tiny_fleet_style
+			}
+		}
+		command_limit_mult = 0.10
+	}
+
+	# 陸軍
+	triggered_army_modifier = {
+		potential = {
+			leader_class = commander
+		}
+		army_morale = 0.10
+		army_collateral_damage_mult = 0.10
+	}
+
+	# 行政官
+	triggered_planet_modifier = {
+		potential = {
+			leader_class = official
+		}
+		planet_clear_blocker_speed_mult = 0.20
+	}
+	triggered_planet_modifier = {
+		potential = {
+			leader_class = official
+			owner = {
+				has_policy_flag = using_tiny_building_style
+			}
+		}
+		planet_building_build_speed_mult = 0.20
+	}
+
+	leader_class = all
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+leader_trait_Tall = {
+
+	# 身材高大
+
+	initial = no
+	randomized = no
+
+	opposites = {
+		"leader_trait_Galaxy"
+		"leader_trait_Ultra"
+		"leader_trait_Titan"
+		"leader_trait_Giant"
+		"leader_trait_Normal"
+		"leader_trait_Small"
+		"leader_trait_Tiny"
+		"leader_trait_Micro"
+		"leader_trait_Nano"
+	}
+
+	icon = "gfx/interface/icons/traits/leader_traits/leader_trait_Tall.dds"
+
+	# 領袖
+	triggered_self_modifier = {
+		potential = {
+			owner = {
+				NOT = {
+					has_policy_flag = gts_gaintess_apartheid
+				}
+			}
+		}
+		leaders_cost_mult = 0.5
+		leaders_upkeep_mult = 0.5
+	}
+	triggered_self_modifier = {
+		potential = {
+			owner = {
+				has_policy_flag = gts_tinies_apartheid
+			}
+		}
+		leaders_cost_mult = 0.25
+		leaders_upkeep_mult = 0.25
+	}
+	triggered_self_modifier = {
+		potential = {
+			owner = {
+				has_policy_flag = gts_gaintess_apartheid
+			}
+		}
+		leaders_cost_mult = 1.0
+		leaders_upkeep_mult = 1.0
+	}
+
+	# 科學官
+	triggered_modifier = {
+		potential = {
+			leader_class = scientist
+		}
+		science_ship_survey_speed = 0.05
+	}
+	triggered_modifier = {
+		potential = {
+			leader_class = scientist
+			owner = {
+				has_policy_flag = using_tiny_fleet_style
+			}
+		}
+		ship_archaeological_site_excavation_speed_mult = 0.05
+	}
+
+	# 指揮官
+	triggered_fleet_modifier = {
+		potential = {
+			leader_class = commander
+		}
+		ship_hull_mult = 0.05
+		ship_evasion_mult = -0.05
+	}
+	triggered_fleet_modifier = {
+		potential = {
+			leader_class = commander
+			owner = {
+				has_policy_flag = using_tiny_fleet_style
+			}
+		}
+		command_limit_mult = 0.05
+	}
+
+	# 陸軍
+	triggered_army_modifier = {
+		potential = {
+			leader_class = commander
+		}
+		army_morale = 0.05
+		army_collateral_damage_mult = 0.05
+	}
+
+	# 行政官
+	triggered_planet_modifier = {
+		potential = {
+			leader_class = official
+		}
+		planet_clear_blocker_speed_mult = 0.10
+	}
+	triggered_planet_modifier = {
+		potential = {
+			leader_class = official
+			owner = {
+				has_policy_flag = using_tiny_building_style
+			}
+		}
+		planet_building_build_speed_mult = 0.10
+	}
+
+	leader_class = all
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+leader_trait_Normal = {
+
+	# 正常人
+
+	initial = no
+	randomized = no
+
+	icon = "gfx/interface/icons/traits/leader_traits/leader_trait_Normal.dds"
+
+	opposites = {
+		"leader_trait_Galaxy"
+		"leader_trait_Ultra"
+		"leader_trait_Titan"
+		"leader_trait_Giant"
+		"leader_trait_Tall"
+		"leader_trait_Small"
+		"leader_trait_Tiny"
+		"leader_trait_Micro"
+		"leader_trait_Nano"
+	}
+
+	leader_class = all
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+leader_trait_Small = {
+
+	# 身材矮小
+
+	initial = no
+	randomized = no
+
+	icon = "gfx/interface/icons/traits/leader_traits/leader_trait_Small.dds"
+
+	opposites = {
+		"leader_trait_Galaxy"
+		"leader_trait_Ultra"
+		"leader_trait_Titan"
+		"leader_trait_Giant"
+		"leader_trait_Tall"
+		"leader_trait_Normal"
+		"leader_trait_Tiny"
+		"leader_trait_Micro"
+		"leader_trait_Nano"
+	}
+
+	# 領袖
+	triggered_self_modifier = {
+		potential = {
+			owner = {
+				NOT = {
+					has_policy_flag = gts_tinies_apartheid
+				}
+			}
+		}
+		leaders_cost_mult = -0.25
+		leaders_upkeep_mult = -0.25
+	}
+	triggered_self_modifier = {
+		potential = {
+			owner = {
+				has_policy_flag = gts_gaintess_apartheid
+			}
+		}
+		species_leader_exp_gain = 0.10
+	}
+	triggered_self_modifier = {
+		potential = {
+			owner = {
+				has_policy_flag = gts_tinies_apartheid
+			}
+		}
+		leaders_cost_mult = 1.0
+		leaders_upkeep_mult = 1.0
+	}
+
+	# 科學官
+	triggered_modifier = {
+		potential = {
+			leader_class = scientist
+		}
+		ship_disengage_chance_mult = 0.05
+	}
+	triggered_modifier = {
+		potential = {
+			leader_class = scientist
+			owner = {
+				has_policy_flag = using_giant_fleet_style
+			}
+		}
+		ship_anomaly_generation_chance_mult = 0.05
+	}
+
+	# 指揮官
+	triggered_fleet_modifier = {
+		potential = {
+			leader_class = commander
+		}
+		ship_evasion_mult = 0.05
+		command_limit_mult = -0.05
+	}
+	triggered_fleet_modifier = {
+		potential = {
+			leader_class = commander
+			owner = {
+				has_policy_flag = using_giant_fleet_style
+			}
+		}
+		weapon_type_strike_craft_weapon_damage_mult = 0.05
+	}
+
+	# 陸軍
+	triggered_army_modifier = {
+		potential = {
+			leader_class = commander
+		}
+		army_damage_taken_mult = -0.05
+		army_morale = -0.05
+	}
+
+	# 行政官
+	triggered_planet_modifier = {
+		potential = {
+			leader_class = official
+		}
+		planet_buildings_upkeep_mult = -0.10
+		planet_districts_upkeep_mult = -0.10
+	}
+	triggered_planet_modifier = {
+		potential = {
+			leader_class = official
+			owner = {
+				has_policy_flag = using_giant_building_style
+			}
+		}
+		planet_housing_mult = 0.10
+	}
+
+	leader_class = all
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+leader_trait_Tiny = {
+
+	# 小人
+
+	initial = no
+	randomized = no
+
+	icon = "gfx/interface/icons/traits/leader_traits/leader_trait_Tiny.dds"
+
+	opposites = {
+		"leader_trait_Galaxy"
+		"leader_trait_Ultra"
+		"leader_trait_Titan"
+		"leader_trait_Giant"
+		"leader_trait_Tall"
+		"leader_trait_Normal"
+		"leader_trait_Small"
+		"leader_trait_Micro"
+		"leader_trait_Nano"
+	}
+
+	# 領袖
+	triggered_self_modifier = {
+		potential = {
+			owner = {
+				NOT = {
+					has_policy_flag = gts_tinies_apartheid
+				}
+			}
+		}
+		leaders_cost_mult = -0.50
+		leaders_upkeep_mult = -0.50
+	}
+	triggered_self_modifier = {
+		potential = {
+			owner = {
+				has_policy_flag = gts_gaintess_apartheid
+			}
+		}
+		species_leader_exp_gain = 0.20
+	}
+	triggered_self_modifier = {
+		potential = {
+			owner = {
+				has_policy_flag = gts_tinies_apartheid
+			}
+		}
+		leaders_cost_mult = 0.75
+		leaders_upkeep_mult = 0.75
+	}
+
+	# 科學官
+	triggered_modifier = {
+		potential = {
+			leader_class = scientist
+		}
+		ship_disengage_chance_mult = 0.10
+	}
+	triggered_modifier = {
+		potential = {
+			leader_class = scientist
+			owner = {
+				has_policy_flag = using_giant_fleet_style
+			}
+		}
+		ship_anomaly_generation_chance_mult = 0.10
+	}
+
+	# 指揮官
+	triggered_fleet_modifier = {
+		potential = {
+			leader_class = commander
+		}
+		ship_evasion_mult = 0.10
+		command_limit_mult = -0.10
+	}
+	triggered_fleet_modifier = {
+		potential = {
+			leader_class = commander
+			owner = {
+				has_policy_flag = using_giant_fleet_style
+			}
+		}
+		weapon_type_strike_craft_weapon_damage_mult = 0.10
+	}
+
+	# 陸軍
+	triggered_army_modifier = {
+		potential = {
+			leader_class = commander
+		}
+		army_damage_taken_mult = -0.10
+		army_morale = -0.10
+	}
+
+	# 行政官
+	triggered_planet_modifier = {
+		potential = {
+			leader_class = official
+		}
+		planet_buildings_upkeep_mult = -0.20
+		planet_districts_upkeep_mult = -0.20
+	}
+	triggered_planet_modifier = {
+		potential = {
+			leader_class = official
+			owner = {
+				has_policy_flag = using_giant_building_style
+			}
+		}
+		planet_housing_mult = 0.20
+	}
+
+	leader_class = all
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+leader_trait_Micro = {
+
+	# 微生物
+
+	initial = no
+	randomized = no
+
+	icon = "gfx/interface/icons/traits/leader_traits/leader_trait_Micro.dds"
+
+	opposites = {
+		"leader_trait_Galaxy"
+		"leader_trait_Ultra"
+		"leader_trait_Titan"
+		"leader_trait_Giant"
+		"leader_trait_Tall"
+		"leader_trait_Normal"
+		"leader_trait_Small"
+		"leader_trait_Tiny"
+		"leader_trait_Nano"
+	}
+
+	# 領袖
+	triggered_self_modifier = {
+		potential = {
+			owner = {
+				NOT = {
+					has_policy_flag = gts_tinies_apartheid
+				}
+			}
+		}
+		leaders_cost_mult = -0.75
+		leaders_upkeep_mult = -0.75
+	}
+	triggered_self_modifier = {
+		potential = {
+			owner = {
+				has_policy_flag = gts_gaintess_apartheid
+			}
+		}
+		species_leader_exp_gain = 0.30
+	}
+	triggered_self_modifier = {
+		potential = {
+			owner = {
+				has_policy_flag = gts_tinies_apartheid
+			}
+		}
+		leaders_cost_mult = 0.50
+		leaders_upkeep_mult = 0.50
+	}
+
+	# 科學官
+	triggered_modifier = {
+		potential = {
+			leader_class = scientist
+		}
+		ship_disengage_chance_mult = 0.15
+	}
+	triggered_modifier = {
+		potential = {
+			leader_class = scientist
+			owner = {
+				has_policy_flag = using_giant_fleet_style
+			}
+		}
+		ship_anomaly_generation_chance_mult = 0.15
+	}
+
+	# 指揮官
+	triggered_fleet_modifier = {
+		potential = {
+			leader_class = commander
+		}
+		ship_evasion_mult = 0.15
+		command_limit_mult = -0.15
+	}
+	triggered_fleet_modifier = {
+		potential = {
+			leader_class = commander
+			owner = {
+				has_policy_flag = using_giant_fleet_style
+			}
+		}
+		weapon_type_strike_craft_weapon_damage_mult = 0.15
+	}
+
+	# 陸軍
+	triggered_army_modifier = {
+		potential = {
+			leader_class = commander
+		}
+		army_damage_taken_mult = -0.15
+		army_morale = -0.15
+	}
+
+	# 行政官
+	triggered_planet_modifier = {
+		potential = {
+			leader_class = official
+		}
+		planet_buildings_upkeep_mult = -0.30
+		planet_districts_upkeep_mult = -0.30
+	}
+	triggered_planet_modifier = {
+		potential = {
+			leader_class = official
+			owner = {
+				has_policy_flag = using_giant_building_style
+			}
+		}
+		planet_housing_mult = 0.30
+	}
+
+	leader_class = all
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+leader_trait_Nano = {
+
+	# 分子生物
+
+	initial = no
+	randomized = no
+
+	icon = "gfx/interface/icons/traits/leader_trait_icons/leader_trait_Nano.dds"
+
+	opposites = {
+		"leader_trait_Galaxy"
+		"leader_trait_Ultra"
+		"leader_trait_Titan"
+		"leader_trait_Giant"
+		"leader_trait_Tall"
+		"leader_trait_Normal"
+		"leader_trait_Small"
+		"leader_trait_Tiny"
+		"leader_trait_Micro"
+	}
+
+	# 領袖
+	triggered_self_modifier = {
+		potential = {
+			owner = {
+				NOT = {
+					has_policy_flag = gts_tinies_apartheid
+				}
+			}
+		}
+		leaders_cost_mult = -1.0
+		leaders_upkeep_mult = -1.0
+	}
+	triggered_self_modifier = {
+		potential = {
+			owner = {
+				has_policy_flag = gts_gaintess_apartheid
+			}
+		}
+		species_leader_exp_gain = 0.40
+	}
+	triggered_self_modifier = {
+		potential = {
+			owner = {
+				has_policy_flag = gts_tinies_apartheid
+			}
+		}
+		leaders_cost_mult = 0.25
+		leaders_upkeep_mult = 0.25
+	}
+
+	# 科學官
+	triggered_modifier = {
+		potential = {
+			leader_class = scientist
+		}
+		ship_disengage_chance_mult = 0.20
+	}
+	triggered_modifier = {
+		potential = {
+			leader_class = scientist
+			owner = {
+				has_policy_flag = using_giant_fleet_style
+			}
+		}
+		ship_anomaly_generation_chance_mult = 0.20
+	}
+
+	# 指揮官
+	triggered_fleet_modifier = {
+		potential = {
+			leader_class = commander
+		}
+		ship_evasion_mult = 0.20
+		command_limit_mult = -0.20
+	}
+	triggered_fleet_modifier = {
+		potential = {
+			leader_class = commander
+			owner = {
+				has_policy_flag = using_giant_fleet_style
+			}
+		}
+		weapon_type_strike_craft_weapon_damage_mult = 0.20
+	}
+
+	# 陸軍
+	triggered_army_modifier = {
+		potential = {
+			leader_class = commander
+		}
+		army_damage_taken_mult = -0.2
+		army_morale = -0.2
+	}
+
+	# 行政官
+	triggered_planet_modifier = {
+		potential = {
+			leader_class = official
+		}
+		planet_buildings_upkeep_mult = -0.40
+		planet_districts_upkeep_mult = -0.40
+	}
+	triggered_planet_modifier = {
+		potential = {
+			leader_class = official
+			owner = {
+				has_policy_flag = using_giant_building_style
+			}
+		}
+		planet_housing_mult = 0.40
+	}
+
+	leader_class = all
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+leader_trait_tinyunbending = {
+
+	# 不屈
+
+	initial = no
+	randomized = no
+
+	icon = "gfx/interface/icons/traits/traits/trait_tinyunbending.dds"
+
+	army_modifier = {
+		army_health = 0.2
+		army_morale = 1.0
+	}
+
+	fleet_modifier = {
+		ship_weapon_damage = 0.1
+		ship_fire_rate_mult = 0.2
+	}
+
+	leader_class = { commander }
+
+	selectable_weight = {
+		weight = 0
+	}
+}
+
+leader_trait_gts_futa = {
+
+	# 扶她
+
+	initial = no
+	randomized = no
+
+	icon = "gfx/interface/icons/traits/traits/trait_tiny_futa.dds"
+
+	self_modifier = {
+		leaders_cost_mult = -0.20
+		leaders_upkeep_mult = 0.10
+		species_leader_exp_gain = -0.10
+	}
+
+	triggered_planet_modifier = {
+		potential = { leader_class = official }
+
+		planet_jobs_gts_giantess_fluid_produces_mult = 0.10
+		pop_amenities_usage_organic_mult = 0.10
+	}
+	triggered_modifier = {
+		potential = { leader_class = scientist }
+
+		science_ship_survey_speed = 0.10
+		ship_anomaly_research_speed_mult = -0.10
+	}
+	triggered_fleet_modifier = {
+		potential = { leader_class = commander }
+
+		ship_speed_mult = 0.10
+		ships_upkeep_mult = 0.10
+	}
+
+	leader_class = all
+
+	selectable_weight = {
+		weight = 0
+	}
+}
+
+################################################################################
+###################                通用領袖特質                ###################
+################################################################################
+
+
+
+# 巨娘通用普通特質
+
+gts_leader_trait_micro_master = {
+
+	# 小人飼養者
+
+	inline_script = {
+		script = trait/icon
+		CLASS = leader
+		ICON = "GFX_leader_trait_homesteader"
+		RARITY = common
+		COUNCIL = no
+		TIER = 1
+	}
+	inline_script = {
+		script = paragon/leader_resource_produces
+		RESOURCE = gts_micro
+		AMOUNT = 10
+	}
+
+	leader_potential_add = {
+		has_global_flag = game_started
+		gts_is_giantess = no
+	}
+
+	leader_class = all
+
+	selectable_weight = {
+		weight = @shared_trait_weight
+		modifier = {
+			gts_is_giantess = no
+			factor = 0
+		}
+	}
+}
+
+gts_leader_trait_micro_master_2 = {
+
+	# 小人飼養者-2
+
+	inline_script = {
+		script = trait/icon
+		CLASS = leader
+		ICON = "GFX_leader_trait_homesteader"
+		RARITY = common
+		COUNCIL = no
+		TIER = 2
+	}
+	inline_script = {
+		script = paragon/leader_resource_produces
+		RESOURCE = gts_micro
+		AMOUNT = 20
+	}
+
+	leader_class = all
+
+	replace_traits = {
+		"gts_leader_trait_micro_master"
+	}
+
+	selectable_weight = {
+		weight = @shared_trait_weight
+		modifier = {
+			gts_is_giantess = no
+			factor = 0
+		}
+	}
+}
+
+gts_leader_trait_micro_city_master = {
+
+	# 城市管理者
+
+	inline_script = {
+		script = trait/icon
+		CLASS = leader
+		ICON = "GFX_leader_trait_homesteader"
+		RARITY = common
+		COUNCIL = no
+		TIER = 1
+	}
+	inline_script = {
+		script = paragon/leader_resource_produces
+		RESOURCE = gts_micro_city
+		AMOUNT = 5
+	}
+
+	leader_potential_add = {
+		has_global_flag = game_started
+		gts_is_giantess = no
+	}
+
+	leader_class = all
+
+	selectable_weight = {
+		weight = @shared_trait_weight
+		modifier = {
+			gts_is_giantess = no
+			factor = 0
+		}
+	}
+}
+
+gts_leader_trait_micro_city_master_2 = {
+
+	# 城市管理者-2
+
+	inline_script = {
+		script = trait/icon
+		CLASS = leader
+		ICON = "GFX_leader_trait_homesteader"
+		RARITY = common
+		COUNCIL = no
+		TIER = 2
+	}
+
+	inline_script = {
+		script = paragon/leader_resource_produces
+		RESOURCE = gts_micro_city
+		AMOUNT = 10
+	}
+
+	leader_class = all
+
+	replace_traits = {
+		"gts_leader_trait_micro_city_master"
+	}
+
+	selectable_weight = {
+		modifier = {
+			gts_is_giantess = no
+			factor = 0
+		}
+	}
+}
+
+# 巨娘通用老練特質
+
+leader_trait_gtsfoster = {
+
+	# 私人養殖業
+
+	leader_trait_type = veteran
+
+	inline_script = {
+		script = trait/icon
+		ICON = "gfx/interface/icons/traits/traits/leader_trait_gtsfoster.dds"
+		CLASS = leader
+		RARITY = veteran
+		COUNCIL = no
+		TIER = 1
+	}
+	inline_script = {
+		script = paragon/leader_resource_produces
+		RESOURCE = gts_micro
+		AMOUNT = 10
+	}
+
+	icon = "gfx/interface/icons/traits/traits/leader_trait_gtsfoster.dds"
+
+	triggered_planet_modifier = {
+		potential = {
+			leader_class = official
+		}
+		planet_jobs_trade_produces_mult = 0.10
+	}
+	triggered_army_modifier = {
+		potential = {
+			leader_class = commander
+		}
+		armies_upkeep_mult = -0.10
+	}
+	triggered_fleet_modifier = {
+		potential = {
+			leader_class = commander
+		}
+		ship_hull_regen_add_perc = 0.005
+		ship_armor_regen_add_perc = 0.01
+	}
+	triggered_self_modifier = {
+		potential = {
+			leader_class = scientist
+		}
+		species_leader_exp_gain = 0.10
+	}
+
+	leader_class = all
+
+	selectable_weight = {
+		weight = @shared_trait_weight
+		modifier = {
+			gts_is_giantess = no
+			factor = 0
+		}
+	}
+}
+
+leader_trait_gtsfoster_2 = {
+
+	# 私人養殖業-2
+
+	leader_trait_type = veteran
+
+	inline_script = {
+		script = trait/icon
+		ICON = "gfx/interface/icons/traits/traits/leader_trait_gtsfoster.dds"
+		CLASS = leader
+		RARITY = veteran
+		COUNCIL = no
+		TIER = 2
+	}
+	inline_script = {
+		script = paragon/leader_resource_produces
+		RESOURCE = gts_micro
+		AMOUNT = 20
+	}
+
+	icon = "gfx/interface/icons/traits/traits/leader_trait_gtsfoster.dds"
+
+	triggered_planet_modifier = {
+		potential = {
+			leader_class = official
+		}
+		planet_jobs_trade_produces_mult = 0.20
+	}
+	triggered_army_modifier = {
+		potential = {
+			leader_class = commander
+		}
+		armies_upkeep_mult = -0.20
+	}
+	triggered_fleet_modifier = {
+		potential = {
+			leader_class = commander
+		}
+		ship_hull_regen_add_perc = 0.01
+		ship_armor_regen_add_perc = 0.02
+	}
+	triggered_self_modifier = {
+		potential = {
+			leader_class = scientist
+		}
+		species_leader_exp_gain = 0.20
+	}
+
+	leader_class = all
+
+	replace_traits = {
+		"leader_trait_gtsfoster"
+	}
+
+	selectable_weight = {
+		modifier = {
+			gts_is_giantess = no
+			factor = 0
+		}
+	}
+}
+
+leader_trait_gtsfoster_3 = {
+
+	# 私人養殖業-3
+
+	leader_trait_type = veteran
+
+	inline_script = {
+		script = trait/icon
+		ICON = "gfx/interface/icons/traits/traits/leader_trait_gtsfoster.dds"
+		CLASS = leader
+		RARITY = veteran
+		COUNCIL = no
+		TIER = 3
+	}
+	inline_script = {
+		script = paragon/leader_resource_produces
+		RESOURCE = gts_micro
+		AMOUNT = 40
+	}
+
+	icon = "gfx/interface/icons/traits/traits/leader_trait_gtsfoster.dds"
+
+	triggered_planet_modifier = {
+		potential = {
+			leader_class = official
+		}
+		planet_jobs_trade_produces_mult = 0.30
+	}
+	triggered_army_modifier = {
+		potential = {
+			leader_class = commander
+		}
+		armies_upkeep_mult = -0.30
+	}
+	triggered_fleet_modifier = {
+		potential = {
+			leader_class = commander
+		}
+		ship_hull_regen_add_perc = 0.015
+		ship_armor_regen_add_perc = 0.03
+	}
+	triggered_self_modifier = {
+		potential = {
+			leader_class = scientist
+		}
+		species_leader_exp_gain = 0.30
+	}
+
+	leader_class = all
+
+	replace_traits = {
+		"leader_trait_gtsfoster_2"
+	}
+
+	selectable_weight = {
+		modifier = {
+			gts_is_giantess = no
+			factor = 0
+		}
+	}
+}
+
+leader_trait_selfcolony = {
+
+	# 移動殖民地
+
+	leader_trait_type = veteran
+
+	inline_script = {
+		script = trait/icon
+		ICON = "gfx/interface/icons/traits/traits/leader_trait_selfcolony.dds"
+		CLASS = leader
+		RARITY = veteran
+		COUNCIL = no
+		TIER = 1
+	}
+
+	icon = "gfx/interface/icons/traits/traits/leader_trait_selfcolony.dds"
+
+	self_modifier = {
+		leaders_upkeep_mult = -0.10
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			leader_class = official
+		}
+		planet_jobs_unity_produces_mult = 0.10
+	}
+	triggered_army_modifier = {
+		potential = {
+			leader_class = commander
+		}
+		army_health = 0.10
+	}
+	triggered_fleet_modifier = {
+		potential = {
+			leader_class = commander
+		}
+		ships_upkeep_mult = -0.10
+	}
+	triggered_self_modifier = {
+		potential = {
+			leader_class = scientist
+		}
+		leader_scientists_physics_research_produces_add = 30
+		leader_scientists_society_research_produces_add = 30
+		leader_scientists_engineering_research_produces_add = 30
+	}
+
+	leader_class = all
+
+	selectable_weight = {
+		weight = @shared_trait_weight
+		modifier = {
+			gts_is_giantess = no
+			factor = 0
+		}
+	}
+}
+
+leader_trait_selfcolony_2 = {
+
+	# 移動殖民地-2
+
+	leader_trait_type = veteran
+
+	inline_script = {
+		script = trait/icon
+		ICON = "gfx/interface/icons/traits/traits/leader_trait_selfcolony.dds"
+		CLASS = leader
+		RARITY = veteran
+		COUNCIL = no
+		TIER = 2
+	}
+
+	icon = "gfx/interface/icons/traits/traits/leader_trait_selfcolony.dds"
+
+	self_modifier = {
+		leaders_upkeep_mult = -0.20
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			leader_class = official
+		}
+		planet_jobs_unity_produces_mult = 0.20
+	}
+	triggered_army_modifier = {
+		potential = {
+			leader_class = commander
+		}
+		army_health = 0.20
+	}
+	triggered_fleet_modifier = {
+		potential = {
+			leader_class = commander
+		}
+		ships_upkeep_mult = -0.20
+	}
+	triggered_self_modifier = {
+		potential = {
+			leader_class = scientist
+		}
+		leader_scientists_physics_research_produces_add = 60
+		leader_scientists_society_research_produces_add = 60
+		leader_scientists_engineering_research_produces_add = 60
+	}
+
+	leader_class = all
+
+	replace_traits = {
+		"leader_trait_selfcolony"
+	}
+
+	selectable_weight = {
+		modifier = {
+			gts_is_giantess = no
+			factor = 0
+		}
+	}
+}
+
+leader_trait_selfcolony_3 = {
+
+	# 移動殖民地-3
+
+	leader_trait_type = veteran
+
+	inline_script = {
+		script = trait/icon
+		ICON = "gfx/interface/icons/traits/traits/leader_trait_selfcolony.dds"
+		CLASS = leader
+		RARITY = veteran
+		COUNCIL = yes
+		TIER = 3
+	}
+
+	icon = "gfx/interface/icons/traits/traits/leader_trait_selfcolony.dds"
+
+	self_modifier = {
+		leaders_upkeep_mult = -0.30
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			leader_class = official
+		}
+		planet_jobs_unity_produces_mult = 0.30
+	}
+	triggered_army_modifier = {
+		potential = {
+			leader_class = commander
+		}
+		army_health = 0.30
+	}
+	triggered_fleet_modifier = {
+		potential = {
+			leader_class = commander
+		}
+		ships_upkeep_mult = -0.30
+	}
+	triggered_self_modifier = {
+		potential = {
+			leader_class = scientist
+		}
+		leader_scientists_physics_research_produces_add = 120
+		leader_scientists_society_research_produces_add = 120
+		leader_scientists_engineering_research_produces_add = 120
+	}
+
+	leader_class = all
+
+	replace_traits = {
+		"leader_trait_selfcolony_2"
+	}
+
+	selectable_weight = {
+		modifier = {
+			gts_is_giantess = no
+			factor = 0
+		}
+	}
+}
+
+leader_trait_galaxyinside = {
+
+	# 腔內星系
+
+	leader_trait_type = veteran
+
+	inline_script = {
+		script = trait/icon
+		ICON = "gfx/interface/icons/traits/traits/leader_trait_galaxyinside.dds"
+		CLASS = leader
+		RARITY = veteran
+		COUNCIL = yes
+		TIER = 1
+	}
+
+	icon = "gfx/interface/icons/traits/traits/leader_trait_galaxyinside.dds"
+
+	planet_modifier = {
+		logistic_growth_mult = 0.10
+	}
+
+	sector_modifier = {
+		logistic_growth_mult = 0.05
+	}
+
+	triggered_self_modifier = {
+		potential = {
+			leader_class = official
+		}
+		official_exp_gain = 0.10
+	}
+	triggered_self_modifier = {
+		potential = {
+			leader_class = commander
+		}
+		commander_exp_gain = 0.10
+	}
+	triggered_councilor_modifier = {
+		potential = {
+			leader_class = scientist
+		}
+		scientist_exp_gain = 0.05
+		all_technology_research_speed = 0.05
+	}
+
+	leader_class = all
+
+	selectable_weight = {
+		weight = @shared_trait_weight
+		modifier = {
+			gts_is_giantess = no
+			factor = 0
+		}
+	}
+}
+
+leader_trait_galaxyinside_2 = {
+
+	# 腔內星系-2
+
+	leader_trait_type = veteran
+
+	inline_script = {
+		script = trait/icon
+		ICON = "gfx/interface/icons/traits/traits/leader_trait_galaxyinside.dds"
+		CLASS = leader
+		RARITY = veteran
+		COUNCIL = yes
+		TIER = 2
+	}
+
+	icon = "gfx/interface/icons/traits/traits/leader_trait_galaxyinside.dds"
+
+	councilor_modifier = {
+		BIOLOGICAL_species_trait_points_add = 1
+		BIOLOGICAL_species_trait_picks_add = 1
+	}
+
+	planet_modifier = {
+		logistic_growth_mult = 0.10
+	}
+
+	sector_modifier = {
+		logistic_growth_mult = 0.05
+	}
+
+	triggered_self_modifier = {
+		potential = {
+			leader_class = official
+		}
+		official_exp_gain = 0.20
+	}
+	triggered_self_modifier = {
+		potential = {
+			leader_class = commander
+		}
+		commander_exp_gain = 0.20
+	}
+	triggered_councilor_modifier = {
+		potential = {
+			leader_class = scientist
+		}
+		scientist_exp_gain = 0.10
+		all_technology_research_speed = 0.10
+	}
+
+	leader_class = all
+
+	replace_traits = {
+		"leader_trait_galaxyinside"
+	}
+
+	selectable_weight = {
+		modifier = {
+			gts_is_giantess = no
+			factor = 0
+		}
+	}
+}
+
+leader_trait_galaxyinside_3 = {
+
+	# 腔內星系-3
+
+	leader_trait_type = veteran
+
+	inline_script = {
+		script = trait/icon
+		ICON = "gfx/interface/icons/traits/traits/leader_trait_galaxyinside.dds"
+		CLASS = leader
+		RARITY = veteran
+		COUNCIL = yes
+		TIER = 3
+	}
+
+	icon = "gfx/interface/icons/traits/traits/leader_trait_galaxyinside.dds"
+
+	councilor_modifier = {
+		BIOLOGICAL_species_trait_points_add = 1
+		BIOLOGICAL_species_trait_picks_add = 1
+		empire_size_mult = -0.10
+	}
+
+	planet_modifier = {
+		logistic_growth_mult = 0.10
+	}
+
+	sector_modifier = {
+		logistic_growth_mult = 0.05
+	}
+
+	triggered_self_modifier = {
+		potential = {
+			leader_class = official
+		}
+		official_exp_gain = 0.30
+	}
+	triggered_self_modifier = {
+		potential = {
+			leader_class = commander
+		}
+		commander_exp_gain = 0.30
+	}
+	triggered_councilor_modifier = {
+		potential = {
+			leader_class = scientist
+		}
+		scientist_exp_gain = 0.15
+		all_technology_research_speed = 0.15
+	}
+
+	leader_class = all
+
+	replace_traits = {
+		"leader_trait_galaxyinside_2"
+	}
+
+	selectable_weight = {
+		modifier = {
+			gts_is_giantess = no
+			factor = 0
+		}
+	}
+}
+
+# 巨娘通用傳奇特質
+
+leader_trait_gtscarer = {
+
+	# 飼養者
+
+	leader_trait_type = destiny
+
+	inline_script = {
+		script = trait/icon
+		CLASS = scientist
+		ICON = "GFX_leader_trait_excessive"
+		RARITY = paragon
+		COUNCIL = no
+		TIER = none
+	}
+	inline_script = {
+		script = paragon/leader_resource_produces
+		RESOURCE = gts_micro_city
+		AMOUNT = 10
+	}
+	inline_script = {
+		script = paragon/leader_resource_produces
+		RESOURCE = gts_micro
+		AMOUNT = 20
+	}
+
+	self_modifier = {
+		leader_scientists_physics_research_produces_add = 100
+		leader_scientists_society_research_produces_add = 100
+		leader_scientists_engineering_research_produces_add = 100
+	}
+
+	planet_modifier = {
+		empire_size_districts_mult = -0.75
+		planet_buildings_upkeep_mult = -0.5
+		planet_districts_upkeep_mult = -0.5
+	}
+
+	sector_modifier = {
+		empire_size_districts_mult = -0.375
+		planet_buildings_upkeep_mult = -0.25
+		planet_districts_upkeep_mult = -0.25
+	}
+
+	leader_class = all
+
+	selectable_weight = {
+		weight = @shared_trait_weight
+		modifier = {
+			gts_is_giantess = no
+			factor = 0
+		}
+	}
+	background_icon = GFX_leader_background_destiny_1
+}
+
+leader_trait_gtsruler = {
+
+	# 支配者
+
+	leader_trait_type = destiny
+
+	inline_script = {
+		script = trait/icon
+		CLASS = official
+		ICON = "GFX_leader_trait_totalitarian"
+		RARITY = paragon
+		COUNCIL = no
+		TIER = none
+	}
+
+	planet_modifier = {
+		planet_jobs_produces_mult = 0.10
+		pop_happiness = 0.10
+		pop_amenities_usage_mult = -0.20
+		pop_category_workers_unity_produces_add = 0.3
+		pop_category_specialists_unity_produces_add = 0.3
+		pop_category_rulers_unity_produces_add = 0.3
+		pop_government_ethic_attraction = 0.3
+	}
+
+	sector_modifier = {
+		planet_jobs_produces_mult = 0.05
+		pop_happiness = 0.05
+		pop_amenities_usage_mult = -0.10
+		pop_category_workers_unity_produces_add = 0.15
+		pop_category_specialists_unity_produces_add = 0.15
+		pop_category_rulers_unity_produces_add = 0.15
+		pop_government_ethic_attraction = 0.15
+	}
+
+	leader_class = { official }
+
+	selectable_weight = {
+		weight = @shared_trait_weight
+		modifier = {
+			gts_is_giantess = no
+			factor = 0
+		}
+	}
+	background_icon = GFX_leader_background_destiny_1
+}
+
+leader_trait_gtsdestroyer = {
+
+	# 毀滅者
+
+	leader_trait_type = destiny
+
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_intimidator"
+		RARITY = paragon
+		COUNCIL = no
+		TIER = none
+	}
+
+	army_modifier = {
+		army_damage_mult = 0.5
+		army_damage_taken_mult = -0.5
+		army_collateral_damage_mult = 1.0
+	}
+
+	fleet_modifier = {
+		ship_weapon_damage = 0.25
+		create_debris_chance = 0.25
+		ship_ftl_jumpdrive_range_mult = 1
+		ship_orbital_bombardment_army_damage_mult = 1.0
+	}
+
+	leader_class = { commander }
+
+	selectable_weight = {
+		weight = @shared_trait_weight
+		modifier = {
+			gts_is_giantess = no
+			factor = 0
+		}
+	}
+	background_icon = GFX_leader_background_destiny_1
+}
+
+gts_leader_trait_micro_planet_master = {
+
+	# 異世界傳送門
+
+	leader_trait_type = destiny
+
+	inline_script = {
+		script = trait/icon
+		CLASS = leader
+		ICON = "GFX_leader_trait_homesteader"
+		RARITY = paragon
+		COUNCIL = no
+		TIER = none
+	}
+	inline_script = {
+		script = paragon/leader_resource_produces
+		RESOURCE = gts_micro_planet
+		AMOUNT = 10
+	}
+
+	self_modifier = {
+		species_leader_exp_gain = 0.5
+	}
+
+	modifier = {
+		ship_astral_rift_clues_add = 3
+		ship_astral_rift_speed_mult = 0.25
+		ship_jumpdrive_cooldown_mult = -0.25
+		fleet_mia_time_mult = -0.5
+	}
+
+	leader_class = {
+		scientist
+	}
+
+	selectable_weight = {
+		weight = @shared_trait_weight
+		modifier = {
+			gts_is_giantess = no
+			factor = 0
+		}
+	}
+}
+
+# 巨娘通用負面特質
+
+gts_leader_trait_micro_phila = {
+
+	# 沉迷於縮小人
+
+	leader_trait_type = negative
+
+	inline_script = {
+		script = trait/icon_negative
+		ICON = "GFX_leader_trait_lavish_lifestyle"
+		COUNCIL = no
+		TIER = 1
+	}
+	inline_script = {
+		script = paragon/leader_resource_upkeep
+		RESOURCE = gts_micro
+		AMOUNT = 20
+	}
+
+	leader_potential_add = {
+		has_global_flag = game_started
+		gts_is_giantess = no
+	}
+
+	opposites = {
+		gts_leader_trait_micro_master
+		gts_leader_trait_micro_master_2
+	}
+
+	leader_class = all
+
+	selectable_weight = {
+		weight = @shared_negative_trait_weight
+		modifier = {
+			gts_is_giantess = no
+			factor = 0
+		}
+	}
+}
+
+gts_leader_trait_micro_phila_2 = {
+
+	# 重度縮小人依賴
+
+	leader_trait_type = negative
+
+	inline_script = {
+		script = trait/icon_negative
+		ICON = "GFX_leader_trait_lavish_lifestyle"
+		COUNCIL = no
+		TIER = 2
+	}
+	inline_script = {
+		script = paragon/leader_resource_upkeep
+		RESOURCE = gts_micro
+		AMOUNT = 40
+	}
+
+	opposites = {
+		gts_leader_trait_micro_master
+		gts_leader_trait_micro_master_2
+	}
+
+	replace_traits = {
+		"gts_leader_trait_micro_phila"
+	}
+
+	leader_class = all
+
+	selectable_weight = @tier2_negative_trait_weight
+}
+
+gts_leader_trait_micro_city_phila = {
+
+	# 沉迷於縮小城市
+
+	leader_trait_type = negative
+
+	inline_script = {
+		script = trait/icon_negative
+		ICON = "GFX_leader_trait_lavish_lifestyle"
+		COUNCIL = no
+		TIER = 1
+	}
+	inline_script = {
+		script = paragon/leader_resource_upkeep
+		RESOURCE = gts_micro_city
+		AMOUNT = 10
+	}
+
+	leader_potential_add = {
+		has_global_flag = game_started
+		gts_is_giantess = no
+	}
+
+	opposites = {
+		gts_leader_trait_micro_city_master
+		gts_leader_trait_micro_city_master_2
+	}
+
+	leader_class = all
+
+	selectable_weight = {
+		weight = @shared_negative_trait_weight
+		modifier = {
+			gts_is_giantess = no
+			factor = 0
+		}
+	}
+}
+
+gts_leader_trait_micro_city_phila_2 = {
+
+	# 重度縮小城市依賴
+
+	leader_trait_type = negative
+
+	inline_script = {
+		script = trait/icon_negative
+		ICON = "GFX_leader_trait_lavish_lifestyle"
+		COUNCIL = no
+		TIER = 2
+	}
+	inline_script = {
+		script = paragon/leader_resource_upkeep
+		RESOURCE = gts_micro
+		AMOUNT = 20
+	}
+
+	opposites = {
+		gts_leader_trait_micro_city_master
+		gts_leader_trait_micro_city_master_2
+	}
+
+	replace_traits = {
+		"gts_leader_trait_micro_city_phila"
+	}
+
+	leader_class = all
+
+	selectable_weight = {
+		weight = @tier2_negative_trait_weight
+	}
+}
+
+
+
+################################################################################
+###################                小人通用特質                ###################
+################################################################################
+
+
+
+# 小人通用老練特質
+
+leader_trait_fluidcollector = {
+
+	# 體液收集者
+
+	leader_trait_type = veteran
+
+	inline_script = {
+		script = trait/icon
+		CLASS = leader
+		ICON = "GFX_leader_trait_beaker"
+		RARITY = veteran
+		COUNCIL = yes
+		TIER = none
+	}
+	inline_script = {
+		script = paragon/leader_resource_produces
+		RESOURCE = gts_giantess_fluid
+		AMOUNT = 40
+	}
+
+	self_modifier = {
+		species_leader_exp_gain = -0.20
+		leaders_upkeep_mult = 1.0
+	}
+
+	councilor_modifier = {
+		country_gts_giantess_fluid_produces_mult = 0.15
+	}
+
+	leader_class = all
+
+	selectable_weight = {
+		weight = @shared_trait_weight
+		modifier = {
+			gts_is_tiny = no
+			factor = 0
+		}
+	}
+}
+
+leader_trait_underwearwasher = {
+
+	# 內衣清洗員
+
+	leader_trait_type = veteran
+
+	inline_script = {
+		script = trait/icon
+		CLASS = leader
+		ICON = "GFX_leader_trait_slothful"
+		RARITY = veteran
+		COUNCIL = yes
+		TIER = none
+	}
+	inline_script = {
+		script = paragon/leader_resource_produces
+		RESOURCE = gts_giantess_underwear
+		AMOUNT = 20
+	}
+
+	self_modifier = {
+		species_leader_exp_gain = -0.20
+		leaders_upkeep_mult = 1.0
+	}
+
+	councilor_modifier = {
+		country_gts_giantess_underwear_produces_mult = 0.15
+	}
+
+	leader_class = all
+
+	selectable_weight = {
+		weight = @shared_trait_weight
+		modifier = {
+			gts_is_tiny = no
+			factor = 0
+		}
+	}
+}
+
+leader_trait_toegapprobe = {
+
+	# 趾縫探索者
+
+	leader_trait_type = veteran
+
+	inline_script = {
+		script = trait/icon
+		CLASS = leader
+		ICON = "GFX_leader_trait_rift_warped"
+		RARITY = veteran
+		COUNCIL = no
+		TIER = none
+	}
+	inline_script = {
+		script = paragon/leader_resource_produces
+		RESOURCE = alloys
+		AMOUNT = 10
+	}
+	inline_script = {
+		script = paragon/leader_resource_produces
+		RESOURCE = consumer_goods
+		AMOUNT = 10
+	}
+	inline_script = {
+		script = paragon/leader_resource_produces
+		RESOURCE = minerals
+		AMOUNT = 40
+	}
+
+	self_modifier = {
+		species_leader_exp_gain = -0.20
+		leaders_upkeep_mult = 1.0
+	}
+
+	leader_class = all
+
+	selectable_weight = {
+		weight = @shared_trait_weight
+		modifier = {
+			gts_is_tiny = no
+			factor = 0
+		}
+	}
+}
+
+leader_trait_gtskeen = {
+
+	# 巨娘控
+
+	leader_trait_type = veteran
+
+	inline_script = {
+		script = trait/icon
+		CLASS = leader
+		ICON = "GFX_leader_trait_emotional_support_pet"
+		RARITY = veteran
+		COUNCIL = no
+		TIER = none
+	}
+	inline_script = {
+		script = paragon/leader_resource_produces
+		RESOURCE = minerals
+		AMOUNT = 80
+	}
+
+	self_modifier = {
+		species_leader_exp_gain = -0.20
+		leaders_upkeep_mult = 1.0
+	}
+
+	leader_class = all
+
+	selectable_weight = {
+		weight = @shared_trait_weight
+		modifier = {
+			gts_is_tiny = no
+			factor = 0
+		}
+	}
+}
+
+# 小人通用傳奇特質
+
+leader_trait_footbug = {
+
+	# 足部護理蟲
+
+	leader_trait_type = destiny
+
+	inline_script = {
+		script = trait/icon
+		CLASS = leader
+		ICON = "GFX_leader_trait_recruiter"
+		RARITY = paragon
+		COUNCIL = no
+		TIER = none
+	}
+
+	planet_modifier = { #小人矿军
+		job_miner_add = 600
+		planet_miners_minerals_produces_mult = 0.30
+		planet_jobs_volatile_motes_produces_mult = 0.20
+		planet_jobs_gts_giantess_fluid_produces_mult = 0.10
+		planet_soldiers_minerals_produces_add = 2
+	}
+
+	sector_modifier = {
+		job_miner_add = 300
+		planet_miners_minerals_produces_mult = 0.15
+		planet_jobs_volatile_motes_produces_mult = 0.10
+		planet_jobs_gts_giantess_fluid_produces_mult = 0.05
+		planet_soldiers_minerals_produces_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			leader_class = official
+		}
+		job_miner_add = 300
+	}
+	triggered_planet_modifier = {
+		potential = {
+			leader_class = commander
+		}
+		job_soldier_add = 300
+	}
+	triggered_planet_modifier = {
+		potential = {
+			from = {
+				OR = {
+					is_planet_class = pc_gts_dirt0
+					is_planet_class = pc_gts_dirt1
+					is_planet_class = pc_gts_dirt2
+					is_planet_class = pc_gts_dirt3
+					is_planet_class = pc_gts_dirt4
+				}
+			}
+		}
+		planet_jobs_gts_giantess_fluid_produces_mult = 0.05
+		planet_jobs_minerals_produces_mult = 0.10
+	}
+
+	leader_class = { official commander }
+
+	selectable_weight = {
+		weight = @shared_trait_weight
+		modifier = {
+			gts_is_tiny = no
+			factor = 0
+		}
+	}
+	background_icon = GFX_leader_background_destiny_1
+}
+
+leader_trait_virginbug = {
+
+	# 陰部護理蟲
+
+	leader_trait_type = destiny
+
+	inline_script = {
+		script = trait/icon
+		CLASS = leader
+		ICON = "GFX_leader_trait_intolerant"
+		RARITY = paragon
+		COUNCIL = no
+		TIER = none
+	}
+
+	planet_modifier = {
+		job_technician_add = 600
+		planet_technician_energy_produces_mult = 0.30
+		planet_jobs_exotic_gases_produces_mult = 0.20
+		planet_jobs_gts_giantess_fluid_produces_mult = 0.10
+		planet_physicists_physics_research_produces_add = 2
+		planet_biologists_society_research_produces_add = 2
+		planet_engineers_engineering_research_produces_add = 2
+	}
+
+	sector_modifier = {
+		job_technician_add = 300
+		planet_technician_energy_produces_mult = 0.15
+		planet_jobs_exotic_gases_produces_mult = 0.10
+		planet_jobs_gts_giantess_fluid_produces_mult = 0.25
+		planet_physicists_physics_research_produces_add = 1
+		planet_biologists_society_research_produces_add = 1
+		planet_engineers_engineering_research_produces_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			leader_class = official
+		}
+		job_technician_add = 300
+	}
+	triggered_planet_modifier = {
+		potential = {
+			leader_class = scientist
+		}
+		job_physicist_add = 100
+		job_biologist_add = 100
+		job_engineer_add = 100
+	}
+	triggered_planet_modifier = {
+		potential = {
+			from = {
+				OR = {
+					is_planet_class = pc_gts_juice
+					is_planet_class = pc_gts_juice2
+					is_planet_class = pc_gts_juice3
+				}
+			}
+		}
+		planet_jobs_gts_giantess_fluid_produces_mult = 0.05
+		planet_jobs_energy_produces_mult = 0.10
+	}
+
+	leader_class = { official scientist }
+
+	selectable_weight = {
+		weight = @shared_trait_weight
+		modifier = {
+			gts_is_tiny = no
+			factor = 0
+		}
+	}
+	background_icon = GFX_leader_background_destiny_1
+}
+
+leader_trait_boobbug = {
+
+	# 乳腺護理蟲
+
+	leader_trait_type = destiny
+
+	inline_script = {
+		script = trait/icon
+		CLASS = leader
+		ICON = "GFX_leader_trait_environmental_engineer"
+		RARITY = paragon
+		COUNCIL = no
+		TIER = none
+	}
+
+	planet_modifier = {
+		job_farmer_add = 600
+		planet_farmers_food_produces_mult = 0.30
+		planet_jobs_rare_crystals_produces_mult = 0.20
+		planet_jobs_gts_giantess_fluid_produces_mult = 0.10
+		planet_farmers_food_produces_add = 2
+	}
+
+	sector_modifier = {
+		job_farmer_add = 300
+		planet_farmers_food_produces_mult = 0.15
+		planet_jobs_rare_crystals_produces_mult = 0.10
+		planet_jobs_gts_giantess_fluid_produces_mult = 0.05
+		planet_farmers_food_produces_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			leader_class = official
+		}
+		job_farmer_add = 300
+	}
+	triggered_planet_modifier = {
+		potential = {
+			leader_class = scientist
+		}
+		job_physicist_add = 100
+		job_biologist_add = 100
+		job_engineer_add = 100
+	}
+	triggered_planet_modifier = {
+		potential = {
+			from = {
+				OR = {
+					is_planet_class = pc_gts_milk
+				}
+			}
+		}
+		planet_jobs_gts_giantess_fluid_produces_mult = 0.05
+		planet_jobs_food_produces_mult = 0.10
+	}
+
+	leader_class = { official scientist }
+
+	selectable_weight = {
+		weight = @shared_trait_weight
+		modifier = {
+			gts_is_tiny = no
+			factor = 0
+		}
+	}
+	background_icon = GFX_leader_background_destiny_1
+}
+
+leader_trait_gtspotential = {
+
+	# 巨娘潛力
+
+	leader_trait_type = destiny
+
+	inline_script = {
+		script = trait/icon
+		CLASS = official
+		ICON = "GFX_leader_trait_restore_point"
+		RARITY = paragon
+		COUNCIL = no
+		TIER = none
+	}
+
+	planet_modifier = {
+		pop_government_ethic_attraction = 0.2
+		planet_stability_add = 0.2
+		planet_crime_mult = -0.3
+		planet_building_build_speed_mult = 0.5
+		planet_clear_blocker_speed_mult = -0.5
+	}
+
+	sector_modifier = {
+		pop_government_ethic_attraction = 0.1
+		planet_stability_add = 0.1
+		planet_crime_mult = -0.15
+		planet_building_build_speed_mult = 0.25
+		planet_clear_blocker_speed_mult = -0.25
+	}
+
+	leader_class = { official }
+
+	selectable_weight = {
+		weight = @shared_trait_weight
+		modifier = {
+			gts_is_tiny = no
+			factor = 0
+		}
+	}
+	background_icon = GFX_leader_background_destiny_1
+}
+
+leader_trait_dirtfighter = {
+
+	# 微塵抗爭者
+
+	leader_trait_type = destiny
+
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_hells_heart"
+		RARITY = paragon
+		COUNCIL = no
+		TIER = none
+	}
+
+	army_modifier = {
+		army_damage_mult = 0.25
+		army_morale = 0.25
+		army_damage_taken_mult = -0.50
+	}
+
+	fleet_modifier = {
+		ship_cloaking_strength_add = 2
+		ship_disengage_opportunities_add = 2
+		ship_evasion_add = 10
+		weapon_type_strike_craft_weapon_damage_mult = 0.25
+		weapon_type_strike_craft_weapon_fire_rate_mult = 0.25
+		command_limit_mult = -0.25
+		fleet_mia_time_mult = -0.5
+		ship_disengage_chance_mult = 0.5
+	}
+
+	leader_class = { commander }
+
+	selectable_weight = {
+		weight = @shared_trait_weight
+		modifier = {
+			gts_is_tiny = no
+			factor = 0
+		}
+	}
+	background_icon = GFX_leader_background_destiny_1
+}
+
+leader_trait_gtsconfidant = {
+
+	# 巨娘至交
+
+	leader_trait_type = destiny
+
+	inline_script = {
+		script = trait/icon
+		CLASS = scientist
+		ICON = "GFX_leader_trait_reinforcer"
+		RARITY = paragon
+		COUNCIL = no
+		TIER = none
+	}
+	inline_script = {
+		script = paragon/leader_resource_produces
+		RESOURCE = gts_giantess_human
+		AMOUNT = 1
+	}
+
+	modifier = {
+		ship_disengage_opportunities_add = 1
+		ship_sensor_range_add = 2
+		ship_cloaking_strength_add = -3
+		ship_hyperlane_range_add = 4
+		ship_anomaly_generation_chance_mult = 0.20
+		science_ship_survey_speed = 0.25
+		ship_speed_mult = 0.25
+		ship_disengage_chance_mult = 0.5
+		ship_hull_mult = 1.0
+	}
+
+	leader_class = { scientist }
+
+	selectable_weight = {
+		weight = @shared_trait_weight
+		modifier = {
+			gts_is_tiny = no
+			factor = 0
+		}
+	}
+	background_icon = GFX_leader_background_destiny_1
+}
+
+leader_trait_mayflyprobe = {
+
+	# 蜉蝣探索者
+
+	leader_trait_type = destiny
+
+	inline_script = {
+		script = trait/icon
+		CLASS = scientist
+		ICON = "GFX_leader_trait_sentinel"
+		RARITY = paragon
+		COUNCIL = no
+		TIER = none
+	}
+
+	modifier = {
+		ship_disengage_opportunities_add = 3
+		deposit_increase_on_survey_chance_mult = 0.25
+		science_ship_survey_speed = 0.5
+		ship_speed_mult = 0.5
+		ship_jumpdrive_cooldown_mult = -0.5
+		ship_disengage_chance_mult = 0.75
+	}
+
+	leader_class = { scientist }
+
+	selectable_weight = {
+		weight = @shared_trait_weight
+		modifier = {
+			gts_is_tiny = no
+			factor = 0
+		}
+	}
+	background_icon = GFX_leader_background_destiny_1
+}
+
+# 小人通用負面特質
+
+leader_trait_yummy = {
+
+	# 美味
+
+	leader_trait_type = negative
+
+	icon = gfx/interface/icons/traits/traits/trait_tiny_vore.dds
+
+	self_modifier = {
+		leader_lifespan_mult = -0.25
+	}
+
+	leader_potential_add = {
+		has_global_flag = game_started
+		gts_is_giantess = no
+	}
+
+	leader_class = all
+
+	selectable_weight = {
+		weight = @shared_negative_trait_weight
+		modifier = {
+			gts_is_tiny = no
+			factor = 0
+		}
+	}
+}
+
+leader_trait_vored = {
+
+	# 被吞食
+
+	leader_trait_type = negative
+
+	icon = gfx/interface/icons/traits/traits/trait_tiny_vore.dds
+
+	self_modifier = {
+		leader_lifespan_mult = -0.50
+	}
+
+	replace_traits = {
+		"leader_trait_yummy"
+	}
+
+	leader_class = all
+
+	selectable_weight = {
+		weight = @tier2_negative_trait_weight
+		modifier = {
+			has_trait = leader_trait_yummy
+			add = 500
+		}
+	}
+}
+
+leader_trait_gts_abused1 = {
+
+	# 遭受巨娘虐待
+
+	leader_trait_type = negative
+
+	inline_script = {
+		script = trait/icon_negative
+		ICON = "GFX_leader_trait_maimed"
+		COUNCIL = no
+		TIER = 1
+	}
+
+	self_modifier = {
+		species_leader_exp_gain = -0.10
+		leader_lifespan_mult = -0.10
+	}
+
+	leader_potential_add = {
+		has_global_flag = game_started
+		gts_is_giantess = no
+	}
+
+	leader_class = all
+
+	selectable_weight = {
+		weight = @shared_negative_trait_weight
+		modifier = {
+			gts_is_tiny = no
+			factor = 0
+		}
+	}
+}
+
+leader_trait_gts_abused2 = {
+
+	# 多次遭受巨娘虐待
+
+	leader_trait_type = negative
+
+	inline_script = {
+		script = trait/icon_negative
+		ICON = "GFX_leader_trait_maimed"
+		COUNCIL = no
+		TIER = 2
+	}
+	inline_script = {
+		script = paragon/leader_resource_produces
+		RESOURCE = gts_giantess_fluid
+		AMOUNT = 10
+	}
+
+	self_modifier = {
+		species_leader_exp_gain = -0.20
+		leader_lifespan_mult = -0.20
+	}
+
+	replace_traits = {
+		"leader_trait_gts_abused1"
+	}
+
+	leader_class = all
+
+	selectable_weight = {
+		weight = @tier2_negative_trait_weight
+	}
+}
+
+leader_trait_tinynoted = {
+
+	# 惹娘注意
+
+	leader_trait_type = negative
+
+	inline_script = {
+		script = trait/icon_negative
+		ICON = "GFX_leader_trait_neurotic"
+		COUNCIL = no
+		TIER = none
+	}
+
+	councilor_modifier = {
+		council_agenda_progress_speed = -0.05
+		diplo_weight_council_mult = -0.05
+	}
+
+	leader_potential_add = {
+		has_global_flag = game_started
+		gts_is_giantess = no
+	}
+
+	leader_class = all
+
+	selectable_weight = {
+		weight = @shared_negative_trait_weight
+		modifier = {
+			gts_is_tiny = no
+			factor = 0
+		}
+	}
+}
+
+leader_trait_tinycaught = {
+
+	# 鞋襪之獄
+
+	leader_trait_type = negative
+
+	inline_script = {
+		script = trait/icon_negative
+		ICON = "GFX_leader_trait_sentinel"
+		COUNCIL = no
+		TIER = none
+	}
+	inline_script = {
+		script = paragon/leader_resource_produces
+		RESOURCE = exotic_gases
+		AMOUNT = 10
+	}
+
+	self_modifier = {
+		leaders_upkeep_mult = 0.50
+	}
+
+	leader_potential_add = {
+		has_global_flag = game_started
+		gts_is_giantess = no
+	}
+
+	leader_class = all
+
+	selectable_weight = {
+		weight = @shared_negative_trait_weight
+		modifier = {
+			gts_is_tiny = no
+			factor = 0
+		}
+	}
+}
+
+leader_trait_tinyubed = {
+
+	# 胎內回歸
+
+	leader_trait_type = negative
+
+	icon = "gfx/interface/icons/traits/leader_trait_icons/gts_leader_body_4.dds"
+
+	inline_script = {
+		script = paragon/leader_resource_produces
+		RESOURCE = gts_giantess_fluid
+		AMOUNT = 10
+	}
+
+	self_modifier = {
+		leaders_upkeep_mult = 0.50
+	}
+
+	leader_potential_add = {
+		has_global_flag = game_started
+		gts_is_giantess = no
+	}
+
+	leader_class = all
+
+	selectable_weight = {
+		weight = @shared_negative_trait_weight
+		modifier = {
+			gts_is_tiny = no
+			factor = 0
+		}
+		modifier = {
+			owner = {
+				has_civic = civic_ub_ritual
+			}
+			add = 500
+		}
+	}
+}
+
+leader_trait_tinysmash = {
+
+	# 腳墊
+
+	leader_trait_type = negative
+
+	icon = "gfx/interface/icons/traits/leader_trait_icons/gts_leader_body_5.dds"
+
+	inline_script = {
+		script = trait/icon_negative
+		ICON = "GFX_leader_trait_annihilator"
+		COUNCIL = no
+		TIER = none
+	}
+
+	self_modifier = {
+		leader_lifespan_mult = -0.75
+		leaders_upkeep_mult = -1.0
+	}
+
+	leader_potential_add = {
+		has_global_flag = game_started
+		gts_is_giantess = no
+	}
+
+	leader_class = all
+
+	selectable_weight = {
+		weight = @shared_negative_trait_weight
+		modifier = {
+			gts_is_tiny = no
+			factor = 0
+		}
+	}
+}
+
+leader_trait_mfetish = {
+
+	# 受虐傾向
+
+	leader_trait_type = negative
+
+	inline_script = {
+		script = trait/icon_negative
+		ICON = "GFX_leader_trait_gifted"
+		COUNCIL = no
+		TIER = none
+	}
+	inline_script = {
+		script = paragon/leader_resource_upkeep
+		RESOURCE = consumer_goods
+		AMOUNT = 10
+	}
+
+	self_modifier = {
+		species_leader_exp_gain = -0.10
+		leader_lifespan_mult = -0.10
+	}
+
+	leader_potential_add = {
+		has_global_flag = game_started
+		gts_is_tiny = no
+	}
+
+	leader_class = all
+
+	selectable_weight = {
+		weight = @shared_negative_trait_weight
+		modifier = {
+			gts_is_tiny = no
+			factor = 0
+		}
+	}
+}
+
+leader_trait_pet = {
+
+	# 豢養寵物
+
+	leader_trait_type = negative
+
+	inline_script = {
+		script = trait/icon_negative
+		ICON = "GFX_leader_trait_passive"
+		COUNCIL = no
+		TIER = none
+	}
+
+	self_modifier = {
+		species_leader_exp_gain = -0.25
+	}
+
+	leader_potential_add = {
+		has_global_flag = game_started
+		gts_is_giantess = no
+	}
+
+	opposites = {
+		"leader_trait_tinyunbending"
+	}
+
+	leader_class = all
+
+	selectable_weight = {
+		weight = @shared_negative_trait_weight
+		modifier = {
+			gts_is_tiny = no
+			factor = 0
+		}
+	}
+}
+
+leader_trait_reborn = {
+
+	# 重生者
+
+	leader_trait_type = negative
+
+	inline_script = {
+		script = trait/icon_negative
+		ICON = "GFX_leader_trait_maven_of_war"
+		COUNCIL = no
+		TIER = none
+	}
+
+	immortal_leaders = yes
+
+	self_modifier = {
+		species_leader_exp_gain = -0.75
+		leaders_upkeep_mult = -1.0
+	}
+
+	leader_potential_add = {
+		has_global_flag = game_started
+		gts_is_giantess = no
+	}
+
+	leader_class = all
+
+	selectable_weight = {
+		weight = @shared_negative_trait_weight
+		modifier = {
+			gts_is_tiny = no
+			factor = 0
+		}
+	}
+}
+
+leader_trait_shrunken_experience = {
+
+	# 縮小經歷
+
+	inline_script = {
+		script = trait/icon_negative
+		ICON = "GFX_leader_trait_whisperers_chosen"
+		COUNCIL = no
+		TIER = none
+	}
+
+	self_modifier = {
+		leaders_upkeep_mult = -0.10
+	}
+
+	leader_class = all
+
+	selectable_weight = {
+		weight = 0
+	}
+}
+

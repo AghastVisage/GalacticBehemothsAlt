@@ -1,0 +1,215 @@
+# CRISIS LEVELS
+# Levels can be unlocked in the order they are written in this file. A later listed level with lower requirements will not be unlocked until the previous levels have been unlocked.
+#
+# level_name = {
+#	perks = {
+#		menp_undertaker		# The menace perks that will be applied when the level is unlocked.
+#		menp_ship_chipper
+#	}
+#	required_menace = 0		# The required amount of Menace to unlock the level
+#	allow = { has_completed_special_project_in_log = CRISIS_SPECIAL_PROJECT_1 }	# You can only unlock this level when this trigger returns true
+#																			# scope COUNTRY, This = country trying to unlock the level
+#	on_unlock = { set_country_flag = CRISIS_LEVEL_FLAG }	# an effect that is triggered when you unlock the level
+#															# scope COUNTRY, This = country the level is being unlocked for
+# }
+
+gts_115tiny_crisis_level_1 = {
+    # REQUIREMENTS
+    required_crisis_currency = 0
+
+    # REWARDS
+    perks = {
+        gts_115tiny_menp_focus
+        gts_115tiny_menp_undertaker
+        gts_115tiny_menp_intimidation
+        gts_115tiny_menp_cosmo_features_1
+    }
+
+    on_unlock = {
+        hidden_effect = {
+            owner = {
+                country_event = { id = 115tiny_crisis.1001 }
+
+            }
+        }
+    }
+}
+
+gts_115tiny_crisis_level_2 = {
+    # REQUIREMENTS
+    allow = {
+        custom_tooltip = {
+            success_text = gts_115tiny_crisis_level_2_req_clear_tooltip
+            fail_text =	gts_115tiny_crisis_level_2_req_tooltip
+            has_country_flag = crisis_special_project_1_complete
+        }
+        hidden_trigger = {
+            NOT = {
+                has_active_event = {
+                    115tiny_crisis.4120
+                }
+            }
+        }
+    }
+    required_crisis_currency = 2500
+
+    # REWARDS
+    perks = {
+        gts_115tiny_menp_crisis_corvette
+        gts_115tiny_menp_clearer
+        gts_115tiny_menp_fearless
+    }
+
+    on_unlock = {
+        hidden_effect = {
+            owner = {
+                add_event_chain_counter = {
+                    event_chain = "gts_115tiny_become_the_crisis_chain"
+                    counter = "crisis_level_reached"
+                    amount = 1
+                }
+                country_event = { id = 115tiny_crisis.4145 days = 3 }
+            }
+        }
+    }
+}
+
+gts_115tiny_crisis_level_3 = {
+    # REQUIREMENTS
+    allow = {
+        custom_tooltip = {
+            success_text = gts_115tiny_crisis_level_3_req_clear_tooltip
+            fail_text =	gts_115tiny_crisis_level_3_req_tooltip
+            has_country_flag = crisis_special_project_2_complete
+        }
+        hidden_trigger = {
+            NOT = {
+                has_active_event = {
+                    115tiny_crisis.4125
+                }
+            }
+        }
+    }
+    required_crisis_currency = 8000
+
+    # REWARDS
+    perks = {
+        gts_115tiny_menp_crisis_destroyer
+        gts_115tiny_menp_recycle
+        gts_115tiny_menp_death_from_above
+        gts_115tiny_menp_ruthless_raiders
+    }
+
+    on_unlock = {
+        hidden_effect = {
+            owner = {
+                add_event_chain_counter = {
+                    event_chain = "gts_115tiny_become_the_crisis_chain"
+                    counter = "crisis_level_reached"
+                    amount = 1
+                }
+                country_event = { id = 115tiny_crisis.4150 days = 3 }
+            }
+        }
+    }
+}
+
+gts_115tiny_crisis_level_4 = {
+    # REQUIREMENTS
+    allow = {
+        custom_tooltip = {
+            success_text = gts_115tiny_crisis_level_4_req_clear_tooltip
+            fail_text =	gts_115tiny_crisis_level_4_req_tooltip
+            has_country_flag = crisis_special_project_3_complete
+        }
+        hidden_trigger = {
+            NOT = {
+                has_active_event = {
+                    115tiny_crisis.4130
+                }
+            }
+        }
+    }
+    required_crisis_currency = 20000
+
+    # REWARDS
+    perks = {
+        gts_115tiny_menp_crisis_cruiser
+        gts_115tiny_menp_ship_chipper
+        gts_115tiny_menp_flyswatter
+    }
+
+    on_unlock = {
+        hidden_effect = {
+            owner = {
+                add_event_chain_counter = {
+                    event_chain = "gts_115tiny_become_the_crisis_chain"
+                    counter = "crisis_level_reached"
+                    amount = 1
+                }
+                country_event = { id = 115tiny_crisis.4155 days = 3 }
+            }
+        }
+    }
+}
+
+gts_115tiny_crisis_level_5 = {
+    # REQUIREMENTS
+    allow = {
+        custom_tooltip = {
+            success_text = gts_115tiny_crisis_level_5_req_clear_tooltip
+            fail_text =	gts_115tiny_crisis_level_5_req_tooltip
+            has_country_flag = crisis_special_project_4_complete
+        }
+        hidden_trigger = {
+            NOT = {
+                has_active_event = {
+                    115tiny_crisis.4135
+                }
+            }
+        }
+        is_subject = no
+    }
+    required_crisis_currency = 50000
+
+    # REWARDS
+    perks = {
+        gts_115tiny_menp_megastructure
+        gts_115tiny_menp_star_eater
+        gts_115tiny_menp_mobile_bulwark
+        gts_115tiny_menp_paid_in_ambition
+    }
+
+    on_unlock = {
+        owner = {
+            if = {
+                limit = { has_federation = yes }
+                leave_alliance = { override_requirements = yes }
+            }
+            tooltip = {
+                if = {
+                    limit = {
+                        is_galactic_community_formed = yes
+                        is_galactic_community_member = yes
+                    }
+                    remove_from_galactic_community = yes
+                }
+            }
+        }
+        hidden_effect = {
+            # force Declare Crisis resolution through an appropriate party
+            declare_crisis_effect = yes
+
+            owner = {
+                room_name_override = ""
+                add_event_chain_counter = {
+                    event_chain = "gts_115tiny_become_the_crisis_chain"
+                    counter = "crisis_level_reached"
+                    amount = 1
+                }
+                end_event_chain = gts_115tiny_become_the_crisis_chain
+                country_event = { id = 115tiny_crisis.6000 days = 5 }
+            }
+        }
+    }
+}

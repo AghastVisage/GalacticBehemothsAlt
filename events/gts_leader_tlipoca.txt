@@ -1,0 +1,2108 @@
+namespace = gts_tlipoca
+
+country_event = {
+	# 特莉波卡招募
+	id = gts_tlipoca.999
+	title = gts_tlipoca.999.name
+	desc = gts_tlipoca.999.desc
+	show_sound = event_celebration
+	picture = GFX_leader_recruitment_bg_renowned
+	event_window_type = leader_recruit
+	notification_event_icon = "GFX_leader_trait_gts_tlipoca_event"
+	#auto_opens = yes
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = event_target:gts_leader
+		room = ethic_spaceship_room
+	}
+
+	immediate = {
+		gts_leader_tlipoca_hired = yes
+	}
+
+	option = {
+		name = gts_tlipoca.999.a
+		response_text = gts_tlipoca.999.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_tlipoca.999.b
+		response_text = gts_tlipoca.999.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_tlipoca.999.c
+		response_text = gts_tlipoca.999.c.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = DISMISS
+		tag = dismiss_leader
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		custom_tooltip = gts_tlipoca.999.hire_custom_tooltip
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = legendary }
+			country_event = {
+				id = gts_tlipoca.99
+				days = 30
+			}
+			set_variable = {
+				which = gts_tlipoca_resource_soul_temp_bloody_night
+				value = 0
+			}
+			country_event = {
+				id = gts_tlipoca_comm.0
+			}
+			country_event = { id = gts_tlipoca.401 days = 30 random = 120 }
+			country_event = { id = gts_tlipoca.402 days = 180 random = 120 }
+			country_event = { id = gts_tlipoca.403 days = 360 random = 120 }
+		}
+	}
+}
+
+country_event = {
+	# 創建特莉波卡星系
+	id = gts_tlipoca.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		random_system = {
+			limit = {
+				distance = {
+					source = root.capital_scope.solar_system
+					use_bypasses = yes
+					min_jumps = 1
+					max_jumps = 6
+				}
+			}
+			spawn_system = {
+				min_distance >= 10
+				max_distance <= 30
+				max_jumps = 1
+				initializer = tlipoca_gts_system
+				effect = {
+					save_event_target_as = gts_bruh_get_tlipoca_system_location
+				}
+			}
+		}
+	}
+}
+
+ship_event = {
+	id = gts_tlipoca.666
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		owner = {
+			country_event = {
+				id = gts_tlipoca.2
+			}
+		}
+	}
+}
+
+country_event = {
+	# 蒼白花樹
+	id = gts_tlipoca.2
+	title = gts_tlipoca.2.name
+	desc = gts_tlipoca.2.desc
+	picture = GFX_gts_event_31 #GFX_gts_tlipoca_2
+	show_sound = high_war_exhaustion
+	location = event_target:gts_tlipoca_planet
+	is_triggered_only = yes
+
+	immediate = {
+		random_planet_within_border = {
+			limit = {
+				has_planet_flag = gts_tlipoca_homeworld
+			}
+			gts_destroy_planet = yes
+		}
+		random_owned_planet = {
+			limit = {
+				is_colony = yes
+			}
+			save_event_target_as = gts_tlipoca_planet
+			add_planet_devastation = 10
+		}
+	}
+
+	option = {
+		name = gts_tlipoca.2.a
+		custom_tooltip = gts_tlipoca.2.a_tooltip
+		hidden_effect = {
+			start_situation = {
+				type = gts_situation_tlipoca
+				target = event_target:gts_tlipoca_planet
+			}
+		}
+	}
+}
+
+# 局勢事件
+situation_event = {
+	# 死魂靈的餘息
+	id = gts_tlipoca.3
+	title = gts_tlipoca.3.name
+	desc = gts_tlipoca.3.desc
+	picture = GFX_gts_event_72 #GFX_gts_tlipoca_2
+	show_sound = event_default
+	is_triggered_only = yes
+
+	option = {
+		name = gts_tlipoca.3.a
+		#owner = {
+		#	add_resource = {
+		#		sr_dark_matter = 100
+		#	}
+		#}
+	}
+}
+
+situation_event = {
+	# 好禮
+	id = gts_tlipoca.4
+	title = gts_tlipoca.4.name
+	desc = gts_tlipoca.4.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	show_sound = event_default
+	is_triggered_only = yes
+
+	picture_event_data = {
+		room = gts_tlipoca_situation_room
+	}
+
+	option = {
+		name = gts_tlipoca.4.a
+		owner = {
+			hidden_effect = {
+				country_event = { id = gts_tlipoca.999 }
+			}
+		}
+	}
+
+	after = {
+		destroy_situation = this
+	}
+}
+
+country_event = { #通信界面
+	id = gts_tlipoca.10
+	title = INCOMING_TRANSMISSION
+	desc = {
+		text = gts_tlipoca.10.desc
+	}
+	desc = {
+		text = gts_tlipoca.10.desc.1
+	}
+	desc = {
+		text = gts_tlipoca.10.desc.2
+	}
+	desc = {
+		text = gts_tlipoca.10.desc.3
+	}
+	desc = {
+		text = gts_tlipoca.10.desc.4
+	}
+	diplomatic = yes
+	diplomatic_title = gts_tlipoca.10.title
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = event_target:gts_tlipoca
+		room = ethic_spaceship_room
+	}
+
+	immediate = {
+		set_country_flag = gts_tlipoca_message
+	}
+	
+	option = {
+		name = gts_tlipoca.10.a
+		hidden_effect = {
+			country_event = { id = gts_tlipoca.20 }
+		}
+	}
+	option = {
+		name = gts_tlipoca.10.b
+		hidden_effect = {
+			set_country_flag = gts_tlipoca_event_1
+			remove_country_flag = gts_tlipoca_event_2
+			remove_country_flag = gts_tlipoca_event_3
+		}
+	}
+	option = {
+		name = gts_tlipoca.10.c
+		hidden_effect = {
+			set_country_flag = gts_tlipoca_event_2
+			remove_country_flag = gts_tlipoca_event_1
+			remove_country_flag = gts_tlipoca_event_3
+		}
+	}
+	option = {
+		name = gts_tlipoca.10.d
+		hidden_effect = {
+			set_country_flag = gts_tlipoca_event_3
+			remove_country_flag = gts_tlipoca_event_1
+			remove_country_flag = gts_tlipoca_event_2
+		}
+	}
+	option = {
+		name = gts_tlipoca.10.e
+		hidden_effect = {
+			remove_country_flag = gts_tlipoca_event_1
+			remove_country_flag = gts_tlipoca_event_2
+			remove_country_flag = gts_tlipoca_event_3
+		}
+	}
+	option = {
+		name = gts_tlipoca.10.back
+	}
+
+	after = {
+		hidden_effect = {
+			remove_country_flag = gts_tlipoca_message
+		}
+	}
+}
+
+country_event = {
+	# 換裝
+	id = gts_tlipoca.20
+	title = gts_tlipoca.20.name #INCOMING_TRANSMISSION
+	desc = gts_tlipoca.20.desc
+	picture = GFX_gts_tlipoca_3
+	show_sound = event_default
+	is_triggered_only = yes
+
+	option = {
+		name = gts_tlipoca.20.a
+		hidden_effect = {
+            country_event = { id = gts_tlipoca.21 }
+        }
+	}
+	option = {
+		name = gts_tlipoca.20.b
+		hidden_effect = {
+            country_event = { id = gts_tlipoca.22 }
+        }
+	}
+	option = {
+		name = gts_tlipoca.20.c
+		hidden_effect = {
+            country_event = { id = gts_tlipoca.23 }
+        }
+	}
+	option = {
+		name = gts_tlipoca.20.d
+		hidden_effect = {
+            country_event = { id = gts_tlipoca.24 }
+        }
+	}
+	option = {
+		name = gts_tlipoca.20.e
+		hidden_effect = {
+            country_event = { id = gts_tlipoca.25 }
+        }
+	}
+}
+
+country_event = {
+	# 換裝（常服）
+	id = gts_tlipoca.21
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_country_flag = gts_tlipoca_portrait_default
+		event_target:gts_tlipoca = {
+			change_leader_portrait = gts_portrait_tlipoca_casual
+		}
+	}
+}
+
+country_event = {
+	# 換裝（預設）
+	id = gts_tlipoca.22
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+        country_event = { id = gts_tlipoca.2226 }
+		set_country_flag = gts_tlipoca_portrait_casual
+		event_target:gts_tlipoca = {
+			change_leader_portrait = gts_portrait_tlipoca
+		}
+	}
+}
+
+country_event = {
+	# 換裝（宅家服）
+	id = gts_tlipoca.23
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+        country_event = { id = gts_tlipoca.2226 }
+		set_country_flag = gts_tlipoca_portrait_game
+		event_target:gts_tlipoca = {
+			change_leader_portrait = gts_portrait_tlipoca_game
+		}
+	}
+}
+
+country_event = {
+	# 換裝（JK服）
+	id = gts_tlipoca.24
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+        country_event = { id = gts_tlipoca.2226 }
+		set_country_flag = gts_tlipoca_portrait_jk
+		event_target:gts_tlipoca = {
+			change_leader_portrait = gts_portrait_tlipoca_jk
+		}
+	}
+}
+
+country_event = {
+	# 換裝（教會服裝）
+	id = gts_tlipoca.25
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+        country_event = { id = gts_tlipoca.2226 }
+		set_country_flag = gts_tlipoca_portrait_bless
+		event_target:gts_tlipoca = {
+			change_leader_portrait = gts_portrait_tlipoca_bless
+		}
+	}
+}
+
+country_event = {
+	# 換裝（沙漠死神祭司）
+	id = gts_tlipoca.26
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+        country_event = { id = gts_tlipoca.2226 }
+		set_country_flag = gts_tlipoca_portrait_blessdeath
+		event_target:gts_tlipoca = {
+			change_leader_portrait = gts_portrait_tlipoca_blessdeath
+		}
+	}
+}
+
+country_event = {
+	# 換裝（今晚加班）
+	id = gts_tlipoca.27
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+        country_event = { id = gts_tlipoca.2226 }
+		set_country_flag = gts_tlipoca_portrait_work
+		event_target:gts_tlipoca = {
+			change_leader_portrait = gts_portrait_tlipoca_work
+		}
+	}
+}
+country_event = {
+	# 換裝（冬日溫暖）
+	id = gts_tlipoca.28
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+        country_event = { id = gts_tlipoca.2226 }
+		set_country_flag = gts_tlipoca_portrait_winter
+		event_target:gts_tlipoca = {
+			change_leader_portrait = gts_portrait_tlipoca_winter
+		}
+	}
+}
+
+country_event = {
+	# 換裝（假日威龍）
+	id = gts_tlipoca.29
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+        country_event = { id = gts_tlipoca.2226 }
+		set_country_flag = gts_tlipoca_portrait_swim
+		event_target:gts_tlipoca = {
+			change_leader_portrait = gts_portrait_tlipoca_swim
+		}
+	}
+}
+
+country_event = {
+	# 換裝（完美女僕）
+	id = gts_tlipoca.30
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+        country_event = { id = gts_tlipoca.2226 }
+		set_country_flag = gts_tlipoca_portrait_maid
+		event_target:gts_tlipoca = {
+			change_leader_portrait = gts_portrait_tlipoca_maid
+		}
+	}
+}
+
+country_event = {
+	# 換裝（黑暗料理界新人）
+	id = gts_tlipoca.31
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+        country_event = { id = gts_tlipoca.2226 }
+		set_country_flag = gts_tlipoca_portrait_food
+		event_target:gts_tlipoca = {
+			change_leader_portrait = gts_portrait_tlipoca_food
+		}
+	}
+}
+
+country_event = {
+	# 換裝（煉金術士）
+	id = gts_tlipoca.32
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+        country_event = { id = gts_tlipoca.2226 }
+		set_country_flag = gts_tlipoca_portrait_alch
+		event_target:gts_tlipoca = {
+			change_leader_portrait = gts_portrait_tlipoca_alch
+		}
+	}
+}
+
+country_event = {
+	# 換裝（芙蓉出水）
+	id = gts_tlipoca.33
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+        country_event = { id = gts_tlipoca.2226 }
+		set_country_flag = gts_tlipoca_portrait_bath
+		event_target:gts_tlipoca = {
+			change_leader_portrait = gts_portrait_tlipoca_bath
+		}
+	}
+}
+
+country_event = {
+	# 換裝（縱欲惡魔）
+	id = gts_tlipoca.34
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+        country_event = { id = gts_tlipoca.2226 }
+		set_country_flag = gts_tlipoca_portrait_evil
+		event_target:gts_tlipoca = {
+			change_leader_portrait = gts_portrait_tlipoca_evil
+		}
+	}
+}
+
+country_event = {
+	# 換裝（死神優雅）
+	id = gts_tlipoca.35
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+        country_event = { id = gts_tlipoca.2226 }
+		set_country_flag = gts_tlipoca_portrait_greatedath
+		event_target:gts_tlipoca = {
+			change_leader_portrait = gts_portrait_tlipoca_greatedath
+		}
+	}
+}
+
+country_event = {
+	# 換裝（綻放於血色圓頂）
+	id = gts_tlipoca.36
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+        country_event = { id = gts_tlipoca.2226 }
+		set_country_flag = gts_tlipoca_portrait_nightone
+		event_target:gts_tlipoca = {
+			change_leader_portrait = gts_portrait_tlipoca_nightone
+		}
+	}
+}
+
+country_event = {
+	# 換裝 - 清除所有標籤
+	id = gts_tlipoca.2226
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		remove_country_flag = gts_tlipoca_portrait_default
+		remove_country_flag = gts_tlipoca_portrait_casual
+		remove_country_flag = gts_tlipoca_portrait_game
+		remove_country_flag = gts_tlipoca_portrait_jk
+		remove_country_flag = gts_tlipoca_portrait_bless
+		remove_country_flag = gts_tlipoca_portrait_blessdeath
+		remove_country_flag = gts_tlipoca_portrait_work
+		remove_country_flag = gts_tlipoca_portrait_winter
+		remove_country_flag = gts_tlipoca_portrait_swim
+		remove_country_flag = gts_tlipoca_portrait_maid
+		remove_country_flag = gts_tlipoca_portrait_food
+		remove_country_flag = gts_tlipoca_portrait_alch
+		remove_country_flag = gts_tlipoca_portrait_bath
+		remove_country_flag = gts_tlipoca_portrait_evil
+		remove_country_flag = gts_tlipoca_portrait_greatdeath
+		remove_country_flag = gts_tlipoca_portrait_nightone
+	}
+}
+
+country_event = {
+	# 年度事件
+	id = gts_tlipoca.99
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				owner = { has_country_flag = gts_tlipoca_event_1 }
+			}
+			set_variable = {
+				which = gts_tlipoca_empire_pop
+				value = 0
+			}
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_tlipoca_empire_pop
+			}
+			set_variable = {
+				which = gts_tlipoca_empire_pop_5_percent
+				value = gts_tlipoca_empire_pop
+			}
+			divide_variable = {
+				which = gts_tlipoca_empire_pop_5_percent
+				value = 20
+			}
+			set_variable = {
+				which = gts_tlipoca_kill_count
+				value = 0
+			}
+			country_event = {
+				id = gts_tlipoca.101
+			}
+			add_modifier = {
+				modifier = gts_tlipoca_event_cooldown
+				days = 360
+			}
+			
+		}
+		else_if = {
+			limit = {
+				owner = { has_country_flag = gts_tlipoca_event_2 }
+			}
+			country_event = {
+				id = gts_tlipoca.200
+			}
+			add_modifier = {
+				modifier = gts_tlipoca_event_cooldown
+				days = 360
+			}
+		}
+		else_if = {
+			limit = {
+				owner = { has_country_flag = gts_tlipoca_event_3 }
+			}
+			random_owned_planet = {
+				planet_event = {
+					id = gts_tlipoca.300
+				}
+			}
+			add_modifier = {
+				modifier = gts_tlipoca_event_cooldown
+				days = 360
+			}
+		}
+		else = {
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			country_event = {
+				id = gts_tlipoca.99
+				days = 360
+			}
+		}
+	}
+}
+
+country_event = { #真正的血红之夜（开图）
+	id = gts_tlipoca.101
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		while = {
+			limit = {
+				check_variable = {
+					which = gts_tlipoca_resource_soul_temp_bloody_night
+					value < gts_tlipoca_empire_pop_5_percent
+				}
+				check_variable = {
+					which = gts_tlipoca_kill_count
+					value < 50000
+				}
+			}
+			random_owned_pop_group = {
+				kill_single_pop = yes
+				root = {
+					change_variable = {
+						which = gts_tlipoca_resource_soul_temp_bloody_night
+						value = 100
+					}
+				}
+			}
+			change_variable = {
+				which = gts_tlipoca_kill_count
+				value = 100
+			}
+		}
+		country_event = {
+			id = gts_tlipoca.100
+		}
+	}
+}
+
+country_event = { #血红之夜
+	id = gts_tlipoca.100
+	title = gts_tlipoca.100.name
+	desc = gts_tlipoca.100.desc
+	picture = GFX_gts_tlipoca_2
+	show_sound = event_default
+	is_triggered_only = yes
+	trigger = {
+		is_ai = no
+		has_country_flag = gts_tlipoca_event_1
+		#NOR = { has_modifier = gts_tlipoca_event_cooldown }
+	}
+	immediate = {
+		random_owned_pop_group = {
+			kill_single_pop = yes
+			root = {
+				change_variable = {
+					which = gts_tlipoca_resource_soul_temp_bloody_night
+					value = 100
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_tlipoca.100.a
+		if = {
+			limit = {
+				check_variable = {
+					which = gts_tlipoca_resource_soul_temp_bloody_night
+					value >= 1 #你总得杀一个吧
+				}
+			}
+			custom_tooltip = gts_tlipoca.100.a.tooltip
+		}
+		else = {
+			custom_tooltip = gts_tlipoca.100.a.tooltip.2
+		}
+		hidden_effect = {
+			set_country_flag = gts_tlipoca_event_1
+			remove_country_flag = gts_tlipoca_event_2
+			remove_country_flag = gts_tlipoca_event_3
+		}
+	}
+	option = {
+		name = gts_tlipoca.100.b
+		if = {
+			limit = {
+				check_variable = {
+					which = gts_tlipoca_resource_soul_temp_bloody_night
+					value >= 1 #你总得杀一个吧
+				}
+			}
+			custom_tooltip = gts_tlipoca.100.b.tooltip
+		}
+		else = {
+			custom_tooltip = gts_tlipoca.100.b.tooltip.2
+		}
+		hidden_effect = {
+			remove_country_flag = gts_tlipoca_event_1
+			remove_country_flag = gts_tlipoca_event_2
+			remove_country_flag = gts_tlipoca_event_3
+		}
+	}
+	after = {
+		if = {
+			limit = {
+				check_variable = {
+					which = gts_tlipoca_resource_soul_temp_bloody_night
+					value >= 1 #你总得杀一个吧
+				}
+			}
+			add_modifier = {
+				modifier = gts_tlipoca_buff_the_great_death
+				days = 180
+			}
+		}
+		add_resource = {
+			sr_dark_matter = 100
+		}
+		hidden_effect = {
+			set_variable = {
+				which = gts_tlipoca_resource_soul_temp_bloody_night
+				value = 0
+			}
+			#country_event = {
+			#	id = gts_tlipoca.102
+			#	days = 1
+			#}
+		}
+	}
+}
+
+country_event = { #夜星之祈
+	id = gts_tlipoca.200
+	title = gts_tlipoca.200.name
+	desc = gts_tlipoca.200.desc
+	picture = GFX_gts_tlipoca_1
+	show_sound = event_default
+	is_triggered_only = yes
+	trigger = {
+		is_ai = no
+		has_country_flag = gts_tlipoca_event_2
+		#NOR = { has_modifier = gts_tlipoca_event_cooldown }
+	}
+	option = {
+		name = gts_tlipoca.200.a
+		custom_tooltip = gts_tlipoca.200.a.tooltip
+		hidden_effect = {
+			random_list = {
+				1 = {
+					country_event = {
+						id = gts_tlipoca.202
+						#days = 3
+					}
+				}
+				1 = {
+					country_event = {
+						id = gts_tlipoca.203
+						#days = 3
+					}
+				}
+				1 = {
+					country_event = {
+						id = gts_tlipoca.204
+						#days = 3
+					}
+				}
+				1 = {
+					country_event = {
+						id = gts_tlipoca.205
+						#days = 3
+					}
+				}
+				1 = {
+					country_event = {
+						id = gts_tlipoca.206
+						#days = 3
+					}
+				}
+				1 = {
+					country_event = {
+						id = gts_tlipoca.207
+						#days = 3
+					}
+				}
+				1 = {
+					country_event = {
+						id = gts_tlipoca.208
+						#days = 3
+					}
+				}
+				1 = {
+					country_event = {
+						id = gts_tlipoca.209
+						#days = 3
+					}
+				}
+				1 = {
+					country_event = {
+						id = gts_tlipoca.210
+						#days = 3
+					}
+				}
+			}
+			remove_country_flag = gts_tlipoca_event_1
+			set_country_flag = gts_tlipoca_event_2
+			remove_country_flag = gts_tlipoca_event_3
+		}
+	}
+	option = {
+		name = gts_tlipoca.200.b
+		custom_tooltip = gts_tlipoca.200.b.tooltip
+		hidden_effect = {
+			remove_country_flag = gts_tlipoca_event_1
+			remove_country_flag = gts_tlipoca_event_2
+			remove_country_flag = gts_tlipoca_event_3
+		}
+	}
+}
+
+country_event = { #莉耶芙的笑声
+	id = gts_tlipoca.202
+	hide_window = yes
+	# title = gts_tlipoca_buff_oracle_1
+	#picture = GFX_gts_tlipoca_1
+	#show_sound = event_default
+	is_triggered_only = yes
+	after = {
+		add_modifier = {
+			modifier = gts_tlipoca_buff_oracle_1
+			days = 180
+		}
+	}
+}
+
+country_event = { #罗丽娜的敕令
+	id = gts_tlipoca.203
+	hide_window = yes
+	# title = gts_tlipoca_buff_oracle_2
+	#picture = GFX_gts_tlipoca_1
+	#show_sound = event_default
+	is_triggered_only = yes
+	after = {
+		add_modifier = {
+			modifier = gts_tlipoca_buff_oracle_2
+			days = 180
+		}
+	}
+}
+
+country_event = { #班达斯奈奇的怒吼
+	id = gts_tlipoca.204
+	hide_window = yes
+	# title = gts_tlipoca_buff_oracle_3
+	#picture = GFX_gts_tlipoca_1
+	#show_sound = event_default
+	is_triggered_only = yes
+	after = {
+		add_modifier = {
+			modifier = gts_tlipoca_buff_oracle_3
+			days = 180
+		}
+	}
+}
+
+country_event = { #贾布加布的歌声
+	id = gts_tlipoca.205
+	hide_window = yes
+	# title = gts_tlipoca_buff_oracle_4
+	#picture = GFX_gts_tlipoca_1
+	#show_sound = event_default
+	is_triggered_only = yes
+	after = {
+		add_modifier = {
+			modifier = gts_tlipoca_buff_oracle_4
+			days = 180
+		}
+	}
+}
+
+country_event = { #贾巴沃克的轻语
+	id = gts_tlipoca.206
+	hide_window = yes
+	# title = gts_tlipoca_buff_oracle_5
+	#picture = GFX_gts_tlipoca_1
+	#show_sound = event_default
+	is_triggered_only = yes
+	after = {
+		add_modifier = {
+			modifier = gts_tlipoca_buff_oracle_5
+			days = 180
+		}
+	}
+}
+
+country_event = { #克缇的低泣
+	id = gts_tlipoca.207
+	hide_window = yes
+	# title = gts_tlipoca_buff_oracle_6
+	#picture = GFX_gts_tlipoca_1
+	#show_sound = event_default
+	is_triggered_only = yes
+	after = {
+		add_modifier = {
+			modifier = gts_tlipoca_buff_oracle_6
+			days = 180
+		}
+	}
+}
+
+country_event = { #梅莉菲利亚的嘶哑
+	id = gts_tlipoca.208
+	hide_window = yes
+	# title = gts_tlipoca_buff_oracle_7
+	#picture = GFX_gts_tlipoca_1
+	#show_sound = event_default
+	is_triggered_only = yes
+	after = {
+		add_modifier = {
+			modifier = gts_tlipoca_buff_oracle_7
+			days = 180
+		}
+	}
+}
+
+country_event = { #诺登的相诉
+	id = gts_tlipoca.209
+	hide_window = yes
+	# title = gts_tlipoca_buff_oracle_8
+	#picture = GFX_gts_tlipoca_1
+	#show_sound = event_default
+	is_triggered_only = yes
+	after = {
+		add_modifier = {
+			modifier = gts_tlipoca_buff_oracle_8
+			days = 180
+		}
+	}
+}
+
+country_event = { #梅贝尔的神秘
+	id = gts_tlipoca.210
+	hide_window = yes
+	# title = gts_tlipoca_buff_oracle_9
+	#picture = GFX_gts_tlipoca_1
+	#show_sound = event_default
+	is_triggered_only = yes
+	after = {
+		add_modifier = {
+			modifier = gts_tlipoca_buff_oracle_9
+			days = 180
+		}
+	}
+}
+
+planet_event = { #绽心之祀
+	id = gts_tlipoca.300
+	title = gts_tlipoca.300.name
+	desc = gts_tlipoca.300.desc
+	picture = GFX_gts_tlipoca_1
+	location = this
+	show_sound = event_default
+	is_triggered_only = yes
+	trigger = {
+			exists = owner
+			owner = {
+			is_ai = no
+			has_country_flag = gts_tlipoca_event_3
+			#NOR = { has_modifier = gts_tlipoca_event_cooldown }
+		}
+	}
+	immediate = {
+		hidden_effect = {
+			owner = {
+				export_trigger_value_to_variable = {
+					trigger = pop_amount
+					variable = gts_tlipoca_heart_sacrifice_witness
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_tlipoca.300.a
+		custom_tooltip = gts_tlipoca.300.a.tooltip
+		random_owned_pop_group = {
+			limit = {
+				pop_amount >= 100
+			}
+			kill_single_pop = yes
+		}
+		owner = {
+			add_resource = {
+				unity = 1
+				mult = gts_tlipoca_heart_sacrifice_witness
+			}
+		}
+		hidden_effect = {
+			random_list = {
+				1 = {
+					planet_event = {
+						id = gts_tlipoca.302
+						#days = 30
+					}
+				}
+				1 = {
+					planet_event = {
+						id = gts_tlipoca.303
+						#days = 30
+					}
+				}
+				1 = {
+					planet_event = {
+						id = gts_tlipoca.304
+						#days = 30
+					}
+				}
+				1 = {
+					planet_event = {
+						id = gts_tlipoca.305
+						#days = 30
+					}
+				}
+				1 = {
+					planet_event = {
+						id = gts_tlipoca.306
+						#days = 30
+					}
+				}
+				1 = {
+					planet_event = {
+						id = gts_tlipoca.307
+						#days = 30
+					}
+				}
+				1 = {
+					planet_event = {
+						id = gts_tlipoca.308
+						#days = 30
+					}
+				}
+				1 = {
+					planet_event = {
+						id = gts_tlipoca.309
+						#days = 30
+					}
+				}
+				1 = {
+					planet_event = {
+						id = gts_tlipoca.310
+						#days = 30
+					}
+				}
+			}
+			owner = {
+				remove_country_flag = gts_tlipoca_event_1
+				remove_country_flag = gts_tlipoca_event_2
+				set_country_flag = gts_tlipoca_event_3
+			}
+		}
+	}
+	option = {
+		name = gts_tlipoca.300.b
+		custom_tooltip = gts_tlipoca.300.b.tooltip
+		hidden_effect = {
+			owner = {
+				remove_country_flag = gts_tlipoca_event_1
+				remove_country_flag = gts_tlipoca_event_2
+				remove_country_flag = gts_tlipoca_event_3
+			}
+		}
+	}
+}
+
+planet_event = { #屠戮之怖
+	id = gts_tlipoca.302
+	hide_window = yes
+	#title = gts_tlipoca_buff_sacrifice_1
+	#picture = GFX_gts_tlipoca_1
+	#location = this
+	#show_sound = event_default
+	is_triggered_only = yes
+	after = {
+		this = {
+			add_modifier = {
+				modifier = gts_tlipoca_buff_sacrifice_1
+				days = 180
+			}
+		}
+	}
+}
+
+planet_event = { #死神狂热
+	id = gts_tlipoca.303
+	hide_window = yes
+	#title = gts_tlipoca_buff_sacrifice_2
+	#picture = GFX_gts_tlipoca_1
+	#location = this
+	#show_sound = event_default
+	is_triggered_only = yes
+	after = {
+		this = {
+			add_modifier = {
+				modifier = gts_tlipoca_buff_sacrifice_2
+				days = 180
+			}
+		}
+	}
+}
+
+planet_event = { #惊惧之瘴
+	id = gts_tlipoca.304
+	hide_window = yes
+	#title = gts_tlipoca_buff_sacrifice_3
+	#picture = GFX_gts_tlipoca_1
+	#location = this
+	#show_sound = event_default
+	is_triggered_only = yes
+	after = {
+		this = {
+			add_modifier = {
+				modifier = gts_tlipoca_buff_sacrifice_3
+				days = 180
+			}
+		}
+	}
+}
+
+planet_event = { #扩散的不安
+	id = gts_tlipoca.305
+	hide_window = yes
+	#title = gts_tlipoca_buff_sacrifice_4
+	#picture = GFX_gts_tlipoca_1
+	#location = this
+	#show_sound = event_default
+	is_triggered_only = yes
+	after = {
+		this = {
+			add_modifier = {
+				modifier = gts_tlipoca_buff_sacrifice_4
+				days = 180
+			}
+		}
+	}
+}
+
+planet_event = { #迫近之日
+	id = gts_tlipoca.306
+	hide_window = yes
+	#title = gts_tlipoca_buff_sacrifice_5
+	#picture = GFX_gts_tlipoca_1
+	#location = this
+	#show_sound = event_default
+	is_triggered_only = yes
+	after = {
+		this = {
+			add_modifier = {
+				modifier = gts_tlipoca_buff_sacrifice_5
+				days = 180
+			}
+		}
+	}
+}
+
+planet_event = { #夜空的庇佑
+	id = gts_tlipoca.307
+	hide_window = yes
+	#title = gts_tlipoca_buff_sacrifice_6
+	#picture = GFX_gts_tlipoca_1
+	#location = this
+	#show_sound = event_default
+	is_triggered_only = yes
+	after = {
+		this = {
+			add_modifier = {
+				modifier = gts_tlipoca_buff_sacrifice_6
+				days = 180
+			}
+		}
+	}
+}
+
+planet_event = { #失控仪祭
+	id = gts_tlipoca.308
+	hide_window = yes
+	#title = gts_tlipoca_buff_sacrifice_7
+	#picture = GFX_gts_tlipoca_1
+	#location = this
+	#show_sound = event_default
+	is_triggered_only = yes
+	after = {
+		this = {
+			add_modifier = {
+				modifier = gts_tlipoca_buff_sacrifice_7
+				days = 180
+			}
+		}
+	}
+}
+
+planet_event = { #梦幻游行
+	id = gts_tlipoca.309
+	hide_window = yes
+	#title = gts_tlipoca_buff_sacrifice_8
+	#picture = GFX_gts_tlipoca_1
+	#location = this
+	#show_sound = event_default
+	is_triggered_only = yes
+	after = {
+		this = {
+			add_modifier = {
+				modifier = gts_tlipoca_buff_sacrifice_8
+				days = 180
+			}
+		}
+	}
+}
+
+planet_event = { #追悼游行
+	id = gts_tlipoca.310
+	hide_window = yes
+	#title = gts_tlipoca_buff_sacrifice_9
+	#picture = GFX_gts_tlipoca_1
+	#location = this
+	#show_sound = event_default
+	is_triggered_only = yes
+	after = {
+		this = {
+			add_modifier = {
+				modifier = gts_tlipoca_buff_sacrifice_9
+				days = 180
+			}
+		}
+	}
+}
+
+country_event = { #来自遥远星系的消息——大怪兽
+	id = gts_tlipoca.401
+	title = gts_tlipoca.401.name
+	desc = gts_tlipoca.401.desc
+	picture = GFX_gts_tlipoca_3
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+ 		any_owned_leader = {
+ 			has_leader_flag = gts_tlipoca
+ 		}
+	}
+	option = {
+		name = gts_tlipoca.401.a
+	}
+	after = {
+		add_resource = { unity = 3000 }
+	}
+}
+
+country_event = { #来自遥远星系的消息——新鲜的食物
+	id = gts_tlipoca.402
+	title = gts_tlipoca.402.name
+	desc = gts_tlipoca.402.desc
+	picture = GFX_gts_tlipoca_3
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+ 		any_owned_leader = {
+ 			has_leader_flag = gts_tlipoca
+ 		}
+	}
+	option = {
+		name = gts_tlipoca.402.a
+	}
+	after = {
+		add_resource = { unity = 3000 }
+	}
+}
+
+country_event = { #来自遥远星系的消息——惊喜礼物
+	id = gts_tlipoca.403
+	title = gts_tlipoca.403.name
+	desc = gts_tlipoca.403.desc
+	picture = GFX_gts_tlipoca_3
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+ 		any_owned_leader = {
+ 			has_leader_flag = gts_tlipoca
+ 		}
+	}
+	option = {
+		name = gts_tlipoca.403.a
+	}
+	after = {
+		add_resource = { unity = 3000 }
+	}
+}
+
+country_event = { #来自遥远星系的消息——奇趣恶作剧
+	id = gts_tlipoca.404
+	title = gts_tlipoca.404.name
+	desc = gts_tlipoca.404.desc
+	picture = GFX_gts_tlipoca_3
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+ 		any_owned_leader = {
+ 			has_leader_flag = gts_tlipoca
+ 		}
+	}
+	option = {
+		name = gts_tlipoca.404.a
+	}
+	after = {
+		add_resource = { unity = 3000 }
+	}
+}
+
+# this = owner of aggressor fleet | from = owner of attacked fleet | fromfrom = aggressor fleet | fromfromfrom = attacked fleet
+country_event = { #有1%的概率使用横断
+	id = gts_tlipoca.500
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		fromfromfrom = {
+			exists = leader
+			leader = { has_trait = tlipoca_leader_trait_b }
+		}
+	}
+
+	immediate = {
+		random_list = {
+			1 = {
+				fromfromfrom = {
+					fleet_event = {
+						id = gts_tlipoca.501
+					}
+				}
+			}
+			99 = {}
+		}
+	}
+}
+
+fleet_event = { #横断
+	id = gts_tlipoca.501
+	title = gts_tlipoca.501.name
+	desc = gts_tlipoca.501.desc
+	picture = GFX_gts_tlipoca_2
+	show_sound = event_default
+	is_triggered_only = yes
+
+	trigger = {
+		exists = leader
+		leader = { has_trait = tlipoca_leader_trait_b }
+		is_in_combat = yes
+	}
+
+	immediate = {
+		fromfromfrom = {
+			every_owned_ship = {
+				reduce_hp_percent = 49.9
+				damage_ship = 1
+			}
+		}
+	}
+	option = {
+		name = OK
+	}
+}
+
+country_event = { #502的计时器
+	id = gts_tlipoca.5021
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		fromfromfrom = {
+			exists = leader
+			leader = { has_trait = tlipoca_leader_trait_k }
+		}
+	}
+
+	immediate = {
+		fromfromfrom = {
+			fleet_event = {
+				id = gts_tlipoca.502
+				days = 30
+			}
+		}
+	}
+}
+
+fleet_event = { #悲叹、哀恸、破灭吧
+	id = gts_tlipoca.502
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		exists = leader
+		leader = { has_trait = tlipoca_leader_trait_k }
+		is_in_combat = yes
+	}
+
+	immediate = {
+		solar_system = {
+			every_fleet_in_system = {
+				limit = {
+					owner = {
+						NOT = {
+							is_same_value = event_target:gts_tlipoca_titan.owner
+						}
+					}
+				}
+				add_modifier = {
+					modifier = gts_tlipoca_debuff_swallowed
+					days = 15
+				}
+			}
+		}
+	}
+}
+
+
+country_event = { #战胜后随机出事件
+	id = gts_tlipoca.600
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		fromfromfrom = {
+			exists = leader
+			leader = { has_trait = tlipoca_leader_trait_b }
+		}
+	}
+	immediate = {
+		random_list = {
+			1 = { country_event = { id = gts_tlipoca.601 } }
+			1 = { country_event = { id = gts_tlipoca.602 } }
+			1 = { country_event = { id = gts_tlipoca.603 } }
+			1 = { }
+		}
+	}
+}
+
+country_event = { #灵魂饗宴
+	id = gts_tlipoca.601
+	title = gts_tlipoca.601.name
+	desc = gts_tlipoca.601.desc
+	picture = GFX_gts_tlipoca_2
+	show_sound = event_default
+	is_triggered_only = yes
+	#fire_only_once = yes
+	trigger = {
+ 		any_owned_leader = {
+ 			has_leader_flag = gts_tlipoca
+ 		}
+	}
+	option = {
+		name = gts_tlipoca.601.a
+	}
+	after = {
+		add_resource = { sr_dark_matter = 3000 }
+	}
+}
+
+country_event = { #宰杀处置
+	id = gts_tlipoca.602
+	title = gts_tlipoca.602.name
+	desc = gts_tlipoca.602.desc
+	picture = GFX_gts_tlipoca_2
+	show_sound = event_default
+	is_triggered_only = yes
+	#fire_only_once = yes
+	trigger = {
+ 		any_owned_leader = {
+ 			has_leader_flag = gts_tlipoca
+ 		}
+	}
+	option = {
+		name = gts_tlipoca.602.a
+	}
+	after = {
+		add_resource = { sr_zro = 3000 }
+	}
+}
+
+country_event = { #收尾工作
+	id = gts_tlipoca.603
+	title = gts_tlipoca.603.name
+	desc = gts_tlipoca.603.desc
+	picture = GFX_gts_tlipoca_2
+	show_sound = event_default
+	is_triggered_only = yes
+	#fire_only_once = yes
+	trigger = {
+ 		any_owned_leader = {
+ 			has_leader_flag = gts_tlipoca
+ 		}
+	}
+	option = {
+		name = gts_tlipoca.603.a
+	}
+	after = {
+		add_resource = { alloys = 3000 }
+	}
+}
+
+namespace = gts_tlipoca_comm
+
+country_event = {
+	id = gts_tlipoca_comm.0
+	title = "TRANSMISSION"
+	desc = "gts_tlipoca_comm.0.desc"
+	force_open = yes
+	diplomatic = yes
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = event_target:gts_tlipoca
+		room = ethic_spaceship_room
+	}
+
+	option = {
+		name = gts_tlipoca_comm.0.a
+		response_text = gts_tlipoca_comm.0.a.response
+		#custom_tooltip = gts_tlipoca_comm.0.a_tooltip		#通讯已建立
+		hidden_effect = {
+			set_country_flag = gts_tlipoca_online
+			country_event = {
+				id = gts_tlipoca_comm.1
+			}
+			create_ship_design = { design = "NAME_Tlipoca_Titan" }
+			add_ship_design = last_created_design
+			create_ship_design = { design = "NAME_Tlipoca_Battleship" }
+			add_ship_design = last_created_design
+			create_ship_design = { design = "NAME_Tlipoca_Harrier" }
+			add_ship_design = last_created_design
+			# country_event = { id = gts_tlipoca_comm.200 }
+		}
+	}
+}
+
+country_event = {
+	id = gts_tlipoca_comm.1
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		create_country = {
+			name = gts_tlipoca_comm.country_name #NAME_gts_tlipoca
+			type = gts_tli_comm
+			flag = {
+				icon= {
+					category = "spherical"
+					file = "flag_spherical_5.dds"
+				}
+				background= {
+					category = "backgrounds"
+					file = "sinus.dds"
+				}
+				colors={
+					"black"
+					"black"
+					"null"
+					"null"
+				}
+			}
+			effect = {
+				save_global_event_target_as = gts_tlipoca_country@root
+			}
+		}
+		last_created_country = {
+			establish_communications_no_message = root
+		}
+		#set_country_flag = machine_age_nanites_studied # Familiarity with nanites gained for Machine Ascension
+	}
+}
+
+country_event = {
+	id = gts_tlipoca_comm.10
+	title = NAME_gts_tlipoca
+	desc = gts_tlipoca.10.desc
+	desc = gts_tlipoca.10.desc.1
+	desc = gts_tlipoca.10.desc.2
+	desc = gts_tlipoca.10.desc.3
+	desc = gts_tlipoca.10.desc.4
+	#diplomatic = yes
+	#diplomatic_title = gts_tlipoca.10.title
+	event_window_type = leader_recruit
+	picture = GFX_leader_recruitment_bg_renowned
+	picture_event_data = {
+		portrait = event_target:gts_tlipoca
+		room = gts_tlipoca_room
+	}
+	is_triggered_only = yes
+	trigger = {
+		NOR = {
+			has_country_flag = gts_tlipoca_comm_activated
+			has_country_flag = gts_tlipoca_busy
+		}
+		from = {
+			is_country_type = gts_tli_comm
+			is_same_value = event_target:gts_tlipoca_country@root
+		}
+		exists = event_target:gts_tlipoca
+	}
+	immediate = {
+		set_country_flag = gts_tlipoca_comm_activated
+	}
+	after = {
+		if = {
+			limit = {
+				has_country_flag = gts_tlipoca_comm_activated
+			}
+			remove_country_flag = gts_tlipoca_comm_activated
+		}
+	}
+	option = {
+		name = gts_leave
+		tag = dismiss_leader
+		default_hide_option = yes
+		hidden_effect = {
+			remove_country_flag = gts_tlipoca_comm_activated
+			remove_country_flag = gts_tlipoca_changing_skin_note_flag
+			remove_country_flag = gts_tlipoca_changing_skin_flag
+		}
+	}
+	option = {
+		##查询年度事件
+		name = gts_tlipoca_comm.10.ask
+		response_text = gts_tlipoca_comm.10.ask.response
+		is_dialog_only = yes
+		tag = hire_leader
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_flag = gts_tlipoca_event_1
+				}
+				country_event = { id = gts_tlipoca_comm.101 }
+			}
+			else_if = {
+				limit = {
+					has_country_flag = gts_tlipoca_event_2
+				}
+				country_event = { id = gts_tlipoca_comm.102 }
+			}
+			else_if = {
+				limit = {
+					has_country_flag = gts_tlipoca_event_3
+				}
+				country_event = { id = gts_tlipoca_comm.103 }
+			}
+			else = {
+				country_event = { id = gts_tlipoca_comm.104 }
+			}
+		}
+	}
+	option = {
+		##换装
+		name = gts_tlipoca.10.a
+		response_text = gts_tlipoca.10.desc.4
+		is_dialog_only = yes
+		hidden_effect = {
+			set_country_flag = gts_tlipoca_changing_skin_flag
+			country_event = {
+				id = gts_tlipoca_comm.20
+			}
+		}
+	}
+	option = {
+		##血红之夜
+		name = gts_tlipoca.10.b
+		is_dialog_only = yes
+		response_text = gts_tlipoca_comm.10.b.response
+		hidden_effect = {
+			set_country_flag = gts_tlipoca_event_1
+			remove_country_flag = gts_tlipoca_event_2
+			remove_country_flag = gts_tlipoca_event_3
+		}
+	}
+	option = {
+		##夜星之祈
+		name = gts_tlipoca.10.c
+		is_dialog_only = yes
+		response_text = gts_tlipoca_comm.10.c.response
+		hidden_effect = {
+			remove_country_flag = gts_tlipoca_event_1
+			set_country_flag = gts_tlipoca_event_2
+			remove_country_flag = gts_tlipoca_event_3
+		}
+	}
+	option = {
+		##绽心之祀
+		name = gts_tlipoca.10.d
+		is_dialog_only = yes
+		response_text = gts_tlipoca_comm.10.d.response
+		hidden_effect = {
+			remove_country_flag = gts_tlipoca_event_1
+			remove_country_flag = gts_tlipoca_event_2
+			set_country_flag = gts_tlipoca_event_3
+		}
+	}
+	option = {
+		##全停
+		name = gts_tlipoca.10.e
+		is_dialog_only = yes
+		response_text = gts_tlipoca_comm.10.e.response
+		hidden_effect = {
+			remove_country_flag = gts_tlipoca_event_1
+			remove_country_flag = gts_tlipoca_event_2
+			remove_country_flag = gts_tlipoca_event_3
+		}
+	}
+	option = {
+		##召唤狂猎
+		name = gts_tlipoca_comm.10.summon
+		allow = {
+			custom_tooltip_fail = {
+				NOT = { has_country_flag = gts_tlipoca_summon_cooldown }
+				text = gts_tlipoca_comm.10.summon.no
+			}
+		}
+		is_dialog_only = yes
+		response_text = gts_tlipoca_comm.10.summon.response
+		hidden_effect = {
+			country_event = { id = gts_tlipoca_comm.201 }
+			set_timed_country_flag = {
+				flag = gts_tlipoca_summon_cooldown
+				days = 30
+			}
+		}
+	}
+}
+
+country_event = { #作出回答 - 血红之夜
+	id = gts_tlipoca_comm.101
+	title =gts_tlipoca_comm.10.ask
+	desc = gts_tlipoca_comm.10.ask.response.1
+	picture = GFX_gts_tlipoca_1
+	is_triggered_only = yes
+	option = {
+		name = gts_knows
+	}
+}
+
+country_event = { #作出回答 - 夜星之祈
+	id = gts_tlipoca_comm.102
+	title =gts_tlipoca_comm.10.ask
+	desc = gts_tlipoca_comm.10.ask.response.2
+	picture = GFX_gts_tlipoca_1
+	is_triggered_only = yes
+	option = {
+		name = gts_knows
+	}
+}
+
+country_event = { #作出回答 - 绽心之祀
+	id = gts_tlipoca_comm.103
+	title =gts_tlipoca_comm.10.ask
+	desc = gts_tlipoca_comm.10.ask.response.3
+	picture = GFX_gts_tlipoca_1
+	is_triggered_only = yes
+	option = {
+		name = gts_knows
+	}
+}
+
+country_event = { #作出回答 - 无
+	id = gts_tlipoca_comm.104
+	title =gts_tlipoca_comm.10.ask
+	desc = gts_tlipoca_comm.10.ask.response.4
+	picture = GFX_gts_tlipoca_1
+	is_triggered_only = yes
+	option = {
+		name = gts_knows
+	}
+}
+
+country_event = {   ###换装
+	id = gts_tlipoca_comm.20
+	is_triggered_only = yes
+	title = gts_tlipoca.20.name
+	desc = gts_tlipoca.20.desc
+	diplomatic = yes
+	picture_event_data = {
+		portrait = event_target:gts_tlipoca
+		room = ethic_spaceship_room
+	}
+	trigger = {
+		has_country_flag = gts_tlipoca_changing_skin_flag
+		#防止连点
+		NOT = { has_country_flag = gts_tlipoca_changing_skin_note_flag }
+	}
+	immediate = {
+		set_country_flag = gts_tlipoca_changing_skin_note_flag
+	}
+	after = {
+		hidden_effect = {
+			remove_country_flag = gts_tlipoca_changing_skin_note_flag
+			remove_country_flag = gts_tlipoca_changing_skin_flag
+		}
+	}
+	option = {
+		#退出换装
+		name = gts_leave
+		default_hide_option = yes
+	}
+	option = {
+		name = gts_tlipoca.20.a
+		response_text = gts_tlipoca.20.a.response
+		is_dialog_only = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_tlipoca.21
+			}
+		}
+	}
+	option = {
+		name = gts_tlipoca.20.b
+		response_text = gts_tlipoca.20.b.response
+		is_dialog_only = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_tlipoca.22
+			}
+		}
+	}
+	option = {
+		name = gts_tlipoca.20.c
+		response_text = gts_tlipoca.20.c.response
+		is_dialog_only = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_tlipoca.23
+			}
+		}
+	}
+	option = {
+		name = gts_tlipoca.20.d
+		response_text = gts_tlipoca.20.d.response
+		is_dialog_only = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_tlipoca.24
+			}
+		}
+	}
+	option = {
+		name = gts_tlipoca.20.e
+		response_text = gts_tlipoca.20.e.response
+		is_dialog_only = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_tlipoca.25
+			}
+		}
+	}
+	option = {
+		name = gts_tlipoca.20.f
+		response_text = gts_tlipoca.20.f.response
+		is_dialog_only = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_tlipoca.26
+			}
+		}
+	}
+	option = {
+		name = gts_tlipoca.20.g
+		response_text = gts_tlipoca.20.g.response
+		is_dialog_only = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_tlipoca.27
+			}
+		}
+	}
+	option = {
+		name = gts_tlipoca.20.h
+		response_text = gts_tlipoca.20.h.response
+		is_dialog_only = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_tlipoca.28
+			}
+		}
+	}
+	option = {
+		name = gts_tlipoca.20.i
+		response_text = gts_tlipoca.20.i.response
+		is_dialog_only = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_tlipoca.29
+			}
+		}
+	}
+	option = {
+		name = gts_tlipoca.20.j
+		response_text = gts_tlipoca.20.j.response
+		is_dialog_only = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_tlipoca.30
+			}
+		}
+	}
+	option = {
+		name = gts_tlipoca.20.k
+		response_text = gts_tlipoca.20.k.response
+		is_dialog_only = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_tlipoca.31
+			}
+		}
+	}
+	option = {
+		name = gts_tlipoca.20.l
+		response_text = gts_tlipoca.20.l.response
+		is_dialog_only = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_tlipoca.32
+			}
+		}
+	}
+	option = {
+		name = gts_tlipoca.20.m
+		response_text = gts_tlipoca.20.m.response
+		is_dialog_only = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_tlipoca.33
+			}
+		}
+	}
+	option = {
+		name = gts_tlipoca.20.n
+		response_text = gts_tlipoca.20.n.response
+		is_dialog_only = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_tlipoca.34
+			}
+		}
+	}
+	option = {
+		name = gts_tlipoca.20.o
+		response_text = gts_tlipoca.20.o.response
+		is_dialog_only = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_tlipoca.35
+			}
+		}
+	}
+	option = {
+		name = gts_tlipoca.20.z
+		response_text = gts_tlipoca.20.z.response
+		is_dialog_only = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_tlipoca.36
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_tlipoca_comm.200
+	hide_window = yes
+	is_triggered_only = yes
+	immediate ={
+		create_fleet = {
+			settings = {
+				spawn_debris = no
+				can_change_composition = no
+				uses_naval_capacity = no
+			}
+			effect = {
+				set_owner = root
+				create_ship = {
+					name = tlipoca_titan_fleet_name
+					design = "NAME_Tlipoca_Titan"
+				}
+				set_location = {
+					target = root.capital_scope
+					distance = 20
+					angle = 0
+				}
+				set_fleet_stance = passive
+				set_aggro_range_measure_from = self
+				set_aggro_range = 350
+				set_fleet_flag = gts_tlipoca_titan
+			}
+		}
+	}
+}
+
+country_event = { #手动档狂猎
+	id = gts_tlipoca_comm.201
+	title = gts_tlipoca_comm.201.name
+	desc = gts_tlipoca_comm.201.desc
+	picture = GFX_gts_event_48
+	show_sound = event_mystic_reveal
+	#hide_window = yes
+	is_triggered_only = yes
+
+	option = {
+		name = GOOD
+		hidden_effect = {
+			capital_scope = {
+				create_fleet = {
+					name = NAME_Tlipoca_Convoys
+					effect = {
+						set_owner = root
+						while = {
+							count = 3
+							create_ship = {
+								name = random
+								prefix = no
+								design = "NAME_Tlipoca_Battleship"
+								graphical_culture = root.owner
+							}
+						}
+						while = {
+							count = 18
+							create_ship = {
+								name = random
+								prefix = no
+								design = "NAME_Tlipoca_Harrier"
+								graphical_culture = root.owner
+							}
+						}
+						set_location = {
+							target = prev
+							distance = 45
+							angle = random
+						}
+					}
+					settings = {
+						can_change_composition = yes
+						uses_naval_capacity = no
+						can_disband = yes
+					}
+				}
+			}
+		}
+	}
+}

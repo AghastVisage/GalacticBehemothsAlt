@@ -1,0 +1,307 @@
+gts_set_first_contact_starting_stage = {
+	# Custom tooltips for contact with 'dummy' countries
+	if = {
+		limit = {
+			contact_country = {
+				is_country_type = dragon_dummy
+			}
+		}
+		custom_tooltip = start_dragon_communications_study
+	}
+	else_if = {
+		limit = {
+			contact_country = {
+				is_country_type = jaunting_traveler_dummy
+			}
+		}
+		custom_tooltip = start_jaunting_traveler_communications_study
+	}
+	else = {
+		custom_tooltip = start_first_contact
+	}
+	# Start proper First Contact
+	hidden_effect = {
+		owner = {
+			set_timed_country_flag = {
+				flag = recent_first_contact_process_started
+				years = 20
+			}
+		}
+		# If it's a pre-ftl country, abort
+		if = {
+			limit = {
+				root.owner = { is_country_type = primitive }
+			}
+			contact_country = {
+				establish_communications_no_message = root.owner
+			}
+		}
+		if = {
+			# is this the first contact between the slavers and Payback/Broken Shackles?
+			limit = {
+				contact_country = {
+					is_country_type = default
+					has_origin = origin_slavers
+				}
+				root.owner = { has_slave_origin = yes }
+			}
+			setup_first_contact_path = { TYPE = slavers }
+		}
+		else_if = {
+			limit = {
+				contact_country = {
+					is_country_type = default
+				}
+			}
+			set_first_contact_stage = gts_default_stage_1
+		}
+		
+		else = {
+			contact_country = {
+				switch = {
+					trigger = is_country_type
+					# Enclaves
+					enclave = {
+						setup_first_contact_path = { TYPE = enclave }
+						country_event = { id = leviathans.97 days = 720 random = 360 } #they'll establish contact if you aren't quick enough
+					}
+					enclave_mercenary = {
+						setup_first_contact_path = { TYPE = enclave }
+						country_event = { id = leviathans.97 days = 720 random = 360 } #they'll establish contact if you aren't quick enough
+					}
+					# Space Fauna
+					tiyanki = { setup_first_contact_path = { TYPE = tiyanki } }
+					tiyanki_garrison = { setup_first_contact_path = { TYPE = tiyanki } }
+					amoeba = { setup_first_contact_path = { TYPE = amoeba } }
+					amoeba_borderless = { setup_first_contact_path = { TYPE = amoeba } }
+					amoeba_garrison = { setup_first_contact_path = { TYPE = amoeba } }
+					amoeba_faction = { setup_first_contact_path = { TYPE = amoeba } }
+					crystal = { setup_first_contact_path = { TYPE = crystals } }
+					crystal_faction = { setup_first_contact_path = { TYPE = crystals } }
+					drone = { setup_first_contact_path = { TYPE = drones } }
+					drone_faction = { setup_first_contact_path = { TYPE = drones } }
+					cloud = { setup_first_contact_path = { TYPE = void_clouds } }
+					voidworms = { setup_first_contact_path = { TYPE = voidworms } }
+					voidworms_crisis = { setup_first_contact_path = { TYPE = voidworms } }
+					voidworms_treasure_hunters = { setup_first_contact_path = { TYPE = voidworms } }
+					cutholoids = { setup_first_contact_path = { TYPE = cutholoids } }
+					# NPC factions
+					dormant_marauders = { setup_first_contact_path = { TYPE = marauders } }
+					pirate = { setup_first_contact_path = { TYPE = pirates } }
+					neutral_faction = { setup_first_contact_path = { TYPE = neutrals } }
+					caravaneer_fleet = {
+						setup_first_contact_path = { TYPE = caravaneers }
+						if = {
+							limit = {
+								exists = event_target:caravaneer_fleet1_country
+								is_same_value = event_target:caravaneer_fleet1_country
+							}
+							root.owner = { country_event = { id = cara.1020 days = 720 random = 360 } }
+						}
+						else_if = {
+							limit = {
+								exists = event_target:caravaneer_fleet2_country
+								is_same_value = event_target:caravaneer_fleet2_country
+							}
+							root.owner = { country_event = { id = cara.2020 days = 720 random = 360 } }
+						}
+						else_if = {
+							limit = {
+								exists = event_target:caravaneer_fleet3_country
+								is_same_value = event_target:caravaneer_fleet3_country
+							}
+							root.owner = { country_event = { id = cara.3020 days = 720 random = 360 } }
+						}
+					}
+					caravaneer_home = { setup_first_contact_path = { TYPE = caravaneers } }
+					nomad = { setup_first_contact_path = { TYPE = nomad } }
+					# Misc.
+					dragon_dummy = { setup_first_contact_path = { TYPE = origin_dragon } }
+					jaunting_traveler_dummy = { setup_first_contact_path = { TYPE = jaunting_traveler } }
+					default = { # note that this does not refer to 'default'-type countries, but is instead a function of 'switch = {}'
+						root = {
+							fire_on_action = { on_action = on_first_contact_stage_1_no_path }
+							# log_error = "No valid first contact path for encounter with [This.ContactCountry.GetName] (country type: [This.ContactCountry.GetCountryType])"
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+tiny_set_first_contact_starting_stage = {
+	# Custom tooltips for contact with 'dummy' countries
+	if = {
+		limit = {
+			contact_country = {
+				is_country_type = dragon_dummy
+			}
+		}
+		custom_tooltip = start_dragon_communications_study
+	}
+	else_if = {
+		limit = {
+			contact_country = {
+				is_country_type = jaunting_traveler_dummy
+			}
+		}
+		custom_tooltip = start_jaunting_traveler_communications_study
+	}
+	else = {
+		custom_tooltip = start_first_contact
+	}
+	# Start proper First Contact
+	hidden_effect = {
+		owner = {
+			set_timed_country_flag = {
+				flag = recent_first_contact_process_started
+				years = 20
+			}
+		}
+		# If it's a pre-ftl country, abort
+		if = {
+			limit = {
+				root.owner = { is_country_type = primitive }
+			}
+			contact_country = {
+				establish_communications_no_message = root.owner
+			}
+		}
+		if = {
+			# is this the first contact between the slavers and Payback/Broken Shackles?
+			limit = {
+				contact_country = {
+					is_country_type = default
+					has_origin = origin_slavers
+				}
+				root.owner = { has_slave_origin = yes }
+			}
+			setup_first_contact_path = { TYPE = slavers }
+		}
+		else_if = {
+			limit = {
+				contact_country = {
+					is_country_type = default
+				}
+			}
+			set_first_contact_stage = default_stage_1
+		}
+		
+		else = {
+			contact_country = {
+				switch = {
+					trigger = is_country_type
+					# Enclaves
+					enclave = {
+						setup_first_contact_path = { TYPE = enclave }
+						country_event = { id = leviathans.97 days = 720 random = 360 } #they'll establish contact if you aren't quick enough
+					}
+					enclave_mercenary = {
+						setup_first_contact_path = { TYPE = enclave }
+						country_event = { id = leviathans.97 days = 720 random = 360 } #they'll establish contact if you aren't quick enough
+					}
+					# Space Fauna
+					tiyanki = { setup_first_contact_path = { TYPE = tiyanki } }
+					tiyanki_garrison = { setup_first_contact_path = { TYPE = tiyanki } }
+					amoeba = { setup_first_contact_path = { TYPE = amoeba } }
+					amoeba_borderless = { setup_first_contact_path = { TYPE = amoeba } }
+					amoeba_garrison = { setup_first_contact_path = { TYPE = amoeba } }
+					amoeba_faction = { setup_first_contact_path = { TYPE = amoeba } }
+					crystal = { setup_first_contact_path = { TYPE = crystals } }
+					crystal_faction = { setup_first_contact_path = { TYPE = crystals } }
+					drone = { setup_first_contact_path = { TYPE = drones } }
+					drone_faction = { setup_first_contact_path = { TYPE = drones } }
+					cloud = { setup_first_contact_path = { TYPE = void_clouds } }
+					voidworms = { setup_first_contact_path = { TYPE = voidworms } }
+					voidworms_crisis = { setup_first_contact_path = { TYPE = voidworms } }
+					voidworms_treasure_hunters = { setup_first_contact_path = { TYPE = voidworms } }
+					cutholoids = { setup_first_contact_path = { TYPE = cutholoids } }
+					# NPC factions
+					dormant_marauders = { setup_first_contact_path = { TYPE = marauders } }
+					pirate = { setup_first_contact_path = { TYPE = pirates } }
+					neutral_faction = { setup_first_contact_path = { TYPE = neutrals } }
+					caravaneer_fleet = {
+						setup_first_contact_path = { TYPE = caravaneers }
+						if = {
+							limit = {
+								exists = event_target:caravaneer_fleet1_country
+								is_same_value = event_target:caravaneer_fleet1_country
+							}
+							root.owner = { country_event = { id = cara.1020 days = 720 random = 360 } }
+						}
+						else_if = {
+							limit = {
+								exists = event_target:caravaneer_fleet2_country
+								is_same_value = event_target:caravaneer_fleet2_country
+							}
+							root.owner = { country_event = { id = cara.2020 days = 720 random = 360 } }
+						}
+						else_if = {
+							limit = {
+								exists = event_target:caravaneer_fleet3_country
+								is_same_value = event_target:caravaneer_fleet3_country
+							}
+							root.owner = { country_event = { id = cara.3020 days = 720 random = 360 } }
+						}
+					}
+					caravaneer_home = { setup_first_contact_path = { TYPE = caravaneers } }
+					nomad = { setup_first_contact_path = { TYPE = nomad } }
+					# Misc.
+					dragon_dummy = { setup_first_contact_path = { TYPE = origin_dragon } }
+					jaunting_traveler_dummy = { setup_first_contact_path = { TYPE = jaunting_traveler } }
+					default = { # note that this does not refer to 'default'-type countries, but is instead a function of 'switch = {}'
+						root = {
+							fire_on_action = { on_action = on_first_contact_stage_1_no_path }
+							# log_error = "No valid first contact path for encounter with [This.ContactCountry.GetName] (country type: [This.ContactCountry.GetCountryType])"
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+leader_gts_abused = {
+	if = {
+		limit = {
+			has_trait = leader_trait_gts_abused1
+		}
+		remove_trait = leader_trait_gts_abused1
+		add_trait = {
+			trait = leader_trait_gts_abused2
+			show_message = no
+		}			
+	}
+	else_if = {
+		limit = {
+			NOT = { has_trait = leader_trait_gts_abused2 }
+		}
+		add_trait = {
+			trait = leader_trait_gts_abused1
+			show_message = no
+		}
+	}
+}
+
+leader_gts_abused2 = {
+	if = {
+		limit = {
+			has_trait = leader_trait_gts_abused1
+		}
+		remove_trait = leader_trait_gts_abused1
+		add_trait = {
+			trait = leader_trait_gts_abused2
+			show_message = no
+		}			
+	}
+	else_if = {
+		limit = {
+			NOT = { has_trait = leader_trait_gts_abused2 }
+		}
+		add_trait = {
+			trait = leader_trait_gts_abused2
+			show_message = no
+		}
+	}
+}

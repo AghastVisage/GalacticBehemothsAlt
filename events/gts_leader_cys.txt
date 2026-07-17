@@ -1,0 +1,354 @@
+namespace = gts_cys
+
+country_event = {
+    #创建星系
+    id = gts_cys.1
+    hide_window = yes
+    is_triggered_only = yes
+    immediate = {
+        random_system = {
+            limit = {
+                distance = {
+                    source = root.capital_scope.solar_system
+                    use_bypasses = yes
+                    min_jumps = 1
+                    max_jumps = 6
+                }
+            }
+            spawn_system = {
+                min_distance >= 10
+                max_distance <= 30
+                max_jumps = 1
+                initializer = gts_cys_system
+            }
+        }
+        set_country_flag = gts_cys_owner
+    }
+}
+#第一次进入星系
+ship_event = {
+    id = gts_cys.2
+    title = "gts_cys.2.name"
+    desc = "gts_cys.2.desc"
+    picture = GFX_evt_ruined_system
+    show_sound = event_radio_chatter
+
+    is_triggered_only = yes
+
+    trigger = {
+        has_global_flag = gts_has_trigger_cys
+        from = { has_star_flag = gts_cys_system }
+        fromfrom = {
+            has_country_flag = gts_cys_owner
+        }
+    }
+    location = event_target:gts_cys_star
+
+    option = {
+        name = gts_cys.2.a
+        owner = {
+            add_modifier = {
+                modifier = gts_cys_buff1
+                days = -1
+            }
+        }
+    }
+    option = {
+        name = gts_cys.2.b
+    }
+    option = {
+        name = gts_cys.2.c
+        owner = {
+            start_situation = {
+                type = situation_cys
+                target = this
+            }
+        }
+    }
+}
+
+#局势文本
+situation_event = {
+    id = gts_cys.100
+    title = TRANSMISSION
+    desc = "gts_cys.100.desc"
+    show_sound = event_mystic_reveal
+    diplomatic = yes
+    picture_event_data = {
+        room = cosmic_storm_room
+    }
+
+    is_triggered_only = yes
+
+    option = {
+        name = gts_cys.100.a
+        is_dialog_only = yes
+        response_text = gts_cys.100.a.rt
+    }
+    option = {
+        name = gts_cys.100.b
+        owner = {
+            add_resource = {
+                influence = 25
+            }
+        }
+    }
+}
+situation_event = {
+    id = gts_cys.101
+    title = TRANSMISSION
+    desc = "gts_cys.101.desc"
+    show_sound = event_mystic_reveal
+    diplomatic = yes
+    picture_event_data = {
+        room = cosmic_storm_room
+    }
+
+    is_triggered_only = yes
+
+    option = {
+        name = gts_cys.100.a
+        is_dialog_only = yes
+        response_text = gts_cys.101.a.rt
+    }
+    option = {
+        name = gts_cys.101.a
+        is_dialog_only = yes
+        response_text = gts_cys.101.b.rt
+    }
+    option = {
+        name = gts_cys.100.b
+        owner = {
+            add_resource = {
+                influence = 25
+            }
+        }
+    }
+}
+situation_event = {
+    id = gts_cys.102
+    title = TRANSMISSION
+    desc = "gts_cys.102.desc"
+    show_sound = event_mystic_reveal
+    diplomatic = yes
+    picture_event_data = {
+        room = cosmic_storm_room
+    }
+
+    is_triggered_only = yes
+
+    option = {
+        name = gts_cys.100.b
+        situation_event = {
+            id = gts_cys.103
+        }
+    }
+}
+situation_event = {
+    id = gts_cys.103
+    title = TRANSMISSION
+    desc = "gts_cys.103.desc"
+    show_sound = event_red_alert
+    diplomatic = yes
+    picture_event_data = {
+        room = gts_cys1_room
+    }
+
+    is_triggered_only = yes
+
+    option = {
+        name = gts_cys.100.b
+    }
+}
+situation_event = {
+    id = gts_cys.104
+    title = TRANSMISSION
+    desc = "gts_cys.104.desc"
+    show_sound = event_mystic_reveal
+    diplomatic = yes
+    picture_event_data = {
+        room = paragon_keides_room
+        portrait = owner_main_species
+    }
+
+    is_triggered_only = yes
+
+    option = {
+        name = gts_cys.100.b
+        situation_event = {
+            id = gts_cys.105
+        }
+    }
+}
+situation_event = {
+    id = gts_cys.105
+    title = TRANSMISSION
+    desc = "gts_cys.105.desc"
+    show_sound = event_cityscape
+    diplomatic = yes
+    custom_gui = "gts_vertical_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+        room = gts_cys2_room
+    }
+
+    is_triggered_only = yes
+
+    option = {
+        name = gts_cys.105.a
+        situation_event = {
+            id = gts_cys.106
+        }
+    }
+}
+situation_event = {
+    id = gts_cys.106
+    title = TRANSMISSION
+    desc = "gts_cys.106.desc"
+    show_sound = event_conversation
+    diplomatic = yes
+    picture_event_data = {
+        room = shroudwalkers_room
+        portrait = gts_cys
+    }
+
+    is_triggered_only = yes
+
+    option = {
+        name = gts_cys.100.b
+        situation_event = {
+            id = gts_cys.107
+        }
+    }
+}
+situation_event = {
+    id = gts_cys.107
+    title = TRANSMISSION
+    desc = "gts_cys.107.desc"
+    show_sound = event_super_explosion
+    diplomatic = yes
+    custom_gui = "gts_vertical_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+        room = gts_cys4_room
+    }
+
+    is_triggered_only = yes
+
+    option = {
+        name = gts_cys.100.b
+        owner = {
+            add_resource = {
+                influence = 25
+            }
+        }
+    }
+}
+situation_event = {
+    id = gts_cys.108
+    title = TRANSMISSION
+    desc = "gts_cys.108.desc"
+    show_sound = event_mystic_reveal
+    diplomatic = yes
+    picture_event_data = {
+        room = cosmic_storm_room
+        portrait = owner_main_species
+    }
+
+    is_triggered_only = yes
+
+    option = {
+        name = gts_cys.100.a
+        is_dialog_only = yes
+        response_text = gts_cys.108.a.rt
+    }
+    option = {
+        name = gts_cys.100.b
+        owner = {
+            add_resource = {
+                influence = 25
+            }
+        }
+    }
+}
+situation_event = {
+    id = gts_cys.109
+    title = TRANSMISSION
+    desc = "gts_cys.109.desc"
+    show_sound = event_mystic_reveal
+    diplomatic = yes
+    picture_event_data = {
+        room = cosmic_storm_room
+        portrait = owner_main_species
+    }
+
+    is_triggered_only = yes
+
+    option = {
+        name = gts_cys.100.a
+        is_dialog_only = yes
+        response_text = gts_cys.109.a.rt
+    }
+    option = {
+        name = gts_cys.100.b
+        situation_event = {
+            id = gts_cys.110
+        }
+    }
+}
+situation_event = {
+    id = gts_cys.110
+    title = TRANSMISSION
+    desc = "gts_cys.110.desc"
+    show_sound = event_mystic_reveal
+    diplomatic = yes
+    picture_event_data = {
+        room = cosmic_storm_room
+    }
+
+    is_triggered_only = yes
+
+    option = {
+        name = gts_cys.110.a
+        is_dialog_only = yes
+        response_text = gts_cys.110.a.rt
+    }
+    option = {
+        name = gts_cys.100.b
+        owner = {
+            add_resource = {
+                influence = 25
+            }
+        }
+    }
+}
+situation_event = {
+    id = gts_cys.111
+    title = TRANSMISSION
+    desc = "gts_cys.111.desc"
+    show_sound = event_mystic_reveal
+    diplomatic = yes
+    picture_event_data = {
+        room = slaver_room
+        portrait = owner.ruler
+    }
+
+    is_triggered_only = yes
+
+    option = {
+        name = gts_cys.111.a
+        is_dialog_only = yes
+        response_text = gts_cys.111.a.rt
+    }
+    option = {
+        name = gts_cys.100.a
+        is_dialog_only = yes
+        response_text = gts_cys.111.b.rt
+    }
+    option = {
+        name = gts_cys.111.b
+        owner = {
+
+        }
+    }
+}

@@ -1,0 +1,765 @@
+################################################################################
+#####################                起源崗位                #####################
+################################################################################
+
+
+
+################################################################################
+###################                寰海極宇崗位                ###################
+################################################################################
+
+
+
+gts_ultra_sale = {
+
+	# 巨娘保險銷售員
+
+	category = ruler
+
+	#is_capped_by_modifier = no
+
+	swappable_data = {
+		default = {
+			condition_string = RULER_JOB_TRIGGER
+			building_icon = holding_emporium
+			icon = manager
+		}
+	}
+
+	tags = { trade }
+
+	inline_script = "jobs/automodding_priority_trade"
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	#possible_pre_triggers = {
+	#	has_planet = yes
+	#	is_sapient = yes
+	#}
+
+	possible = {
+		owner = { has_origin = origin_Ultra_company }
+		has_trait = trait_Ultra
+		#has_trait = trait_great_species
+	}
+
+	possible_precalc = can_fill_ruler_job
+
+	resources = {
+		category = planet_managers
+		produces = {
+			# 8000
+			trade = 35
+			unity = 20
+			influence = 0.625 # 800
+		}
+		upkeep = {
+			# 4000
+			consumer_goods = 900
+			gts_micro = 500
+			gts_micro_city = 250
+			gts_micro_planet = 25
+		}
+	}
+
+	planet_modifier = {
+		planet_jobs_trade_produces_mult = 5
+	}
+
+	weight = {
+		weight = @ruler_job_weight
+	}
+}
+
+gts_ultra_sale_assistant = {
+
+	# 巨娘保險銷售員助理
+
+	category = worker
+
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = holding_emporium
+			icon = manager
+		}
+	}
+
+	tags = { trade }
+
+	inline_script = "jobs/automodding_priority_trade"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = worker
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible = {
+		gts_is_giantess = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+
+	resources = {
+		category = planet_traders
+		produces = {
+			# 25
+			trade = 25
+		}
+		upkeep = {
+			# 20
+			energy = 10
+			food = 10
+		}
+	}
+
+	weight = {
+		weight = @worker_job_weight
+		modifier = {
+			factor = 10
+			gts_is_giantess = yes
+		}
+	}
+}
+
+# 沒用到
+
+gts_ultra_sale2 = {
+
+	# 正在摸魚的巨娘保險銷售員
+
+	category = ruler
+
+	#is_capped_by_modifier = no
+
+	swappable_data = {
+		default = {
+			condition_string = RULER_JOB_TRIGGER
+			building_icon = building_ai_emporium
+			icon = manager
+		}
+	}
+
+	tags = { trade }
+
+	#possible_pre_triggers = {
+	#	has_planet = yes
+	#	is_sapient = yes
+	#}
+
+	possible = {
+		owner = { has_origin = origin_Ultra_company }
+		has_trait = trait_Ultra
+		has_trait = trait_great_species
+	}
+
+	resources = {
+		category = planet_managers
+
+	}
+
+	weight = {
+		weight = 0.01
+	}
+}
+
+
+
+################################################################################
+###################                異塵餘生崗位                ###################
+################################################################################
+
+
+
+gts_fallout_radiation_researcher = {
+
+	# 巨娘輻射研究員
+
+	category = specialist
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_research_lab_2
+			icon = researcher
+		}
+	}
+
+	tags = { research }
+
+	inline_script = "jobs/automodding_priority_research"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible = {
+		gts_is_giantess = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+
+	resources = {
+		category = planet_researchers
+		produces = {
+			# 45
+			physics_research = 15
+			engineering_research = 15
+			society_research = 15
+		}
+		upkeep = {
+			# 30
+			energy = 15
+			consumer_goods = 7.5
+		}
+		produces = {
+			# 15
+			trigger = {
+				owner = {
+					has_tradition = tr_gts_fallout_cruel_finish
+				}
+			}
+			physics_research = 5
+			engineering_research = 5
+			society_research = 5
+		}
+		upkeep = {
+			# 10
+			trigger = {
+				owner = {
+					has_tradition = tr_gts_fallout_cruel_finish
+				}
+			}
+			gts_micro = 5
+		}
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+		modifier = {
+			factor = 1.5
+			has_trait = trait_Tall
+		}
+		modifier = {
+			factor = 2.0
+			has_trait = trait_Giant
+		}
+		modifier = {
+			factor = 2.5
+			has_trait = trait_Titan
+		}
+	}
+}
+
+gts_fallout_radiation_usage = {
+
+	# 消耗品小人
+
+	category = purge
+
+	first_come_first_served = yes
+
+	swappable_data = {
+		default = {
+			building_icon = building_crude_huts
+			icon = purge
+		}
+	}
+
+	demotion = {
+		time = 0
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = purge
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	ignores_sapience = yes
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = yes
+	}
+
+	possible = {
+		planet = {
+			has_building = gts_fallout_building_radiation_research_lab
+		}
+		gts_is_tiny = yes
+	}
+
+	resources = {
+		category = planet_entertainers
+		produces = {
+			# 30
+			physics_research = 10
+			engineering_research = 10
+			society_research = 10
+		}
+	}
+
+	weight = {
+		weight = 9999
+		modifier = {
+			factor = 9999
+			gts_is_tiny = yes
+		}
+	}
+}
+
+gts_fallout_resident = {
+
+	# 生態居所居民
+
+	category = specialist
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_paradise_dome
+			icon = fe_hedonist
+		}
+	}
+
+	tags = { unity amenities }
+
+	inline_script = "jobs/automodding_priority_charisma"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible = {
+		gts_is_tiny = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+
+	resources = {
+		category = planet_entertainers
+		produces = {
+			# 30
+			unity = 10
+			society_research = 10
+		}
+		upkeep = {
+			# 20
+			food = 10
+			consumer_goods = 5
+		}
+		produces = {
+			# 15
+			trigger = {
+				owner = {
+					has_tradition = tr_gts_fallout_gentle_nuked_house
+				}
+			}
+			unity = 5
+			society_research = 5
+		}
+		upkeep = {
+			# 10
+			trigger = {
+				owner = {
+					has_tradition = tr_gts_fallout_gentle_nuked_house
+				}
+			}
+			food = 5
+			consumer_goods = 2.5
+		}
+	}
+
+	planet_modifier = {
+		planet_jobs_productive_produces_mult = 0.01
+		pop_government_ethic_attraction = 0.05
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		planet_amenities_add = 1250
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+		modifier = {
+			factor = 10
+			gts_is_tiny = yes
+		}
+	}
+}
+
+
+
+################################################################################
+###################                虔心崇聖崗位                ###################
+################################################################################
+
+
+
+gts_saintess = {
+
+	# 聖女
+
+	category = ruler
+
+	swappable_data = {
+		default = {
+			condition_string = RULER_JOB_TRIGGER
+			building_icon = building_empyrean_shrine
+			icon = priest
+		}
+	}
+
+	tags = { unity amenities enforcer }
+
+	inline_script = "jobs/automodding_priority_unity"
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_ruler_job
+
+	possible = {
+		gts_is_giantess = yes
+	}
+
+	resources = {
+		category = planet_jobs_ruler
+		produces = {
+			# 60
+			unity = 20
+			influence = 0.025 # 800
+		}
+		upkeep = {
+			# 30
+			consumer_goods = 15
+		}
+	}
+
+	planet_modifier = {
+		planet_crime_mult = -0.10
+		planet_stability_mult = 0.10
+		pop_government_ethic_attraction = 1.0
+		psionic_pop_bonus_workforce_mult = 0.10
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		planet_amenities_add = 1250
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_valid_civic = civic_efficient_bureaucracy }
+		}
+		country_edict_fund_add = 1
+		mult = value:job_total_output_modifier|JOB|bureaucrat|RESOURCE|unity|
+	}
+
+	weight = {
+		weight = @ruler_job_weight
+	}
+}
+
+gts_nun = {
+
+	# 修女
+
+	category = specialist
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_holotemple
+		}
+	}
+
+	tags = { unity }
+
+	inline_script = "jobs/automodding_priority_unity"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+
+	possible = {
+		gts_is_giantess = yes
+	}
+
+	resources = {
+		category = planet_bureaucrats
+		produces = {
+			# 45
+			unity = 22.5
+		}
+		upkeep = {
+			# 30
+			energy = 10
+			consumer_goods = 10
+		}
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+	}
+}
+
+
+
+################################################################################
+####################                靴底人崗位                ####################
+################################################################################
+
+
+
+gts_footminer = {
+
+	# 足垢採掘者
+
+	category = worker
+
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_primitive_mine
+		}
+	}
+
+	tags = { minerals strategic_resource rare_crystals }
+
+	inline_script = "jobs/automodding_priority_minerals"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = worker
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+
+	resources = {
+		category = planet_miners
+		produces = {
+			# 12.5
+			minerals = 10
+			rare_crystals = 1.25
+		}
+		upkeep = {
+			# 10
+			energy = 5
+			food = 5
+		}
+	}
+
+	weight = {
+		weight = @worker_job_weight
+		modifier = {
+			factor = 10
+			has_trait = trait_cave_dweller
+		}
+	}
+}
+
+gts_footsmeller = {
+
+	# 足汗提煉員
+
+	category = worker
+
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_coordinated_fulfillment_center_2
+		}
+	}
+
+	tags = { strategic_resource exotic_gases }
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = worker
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+
+	resources = {
+		category = planet_sr_miners
+		produces = {
+			# 12.5
+			exotic_gases = 6.25
+		}
+		upkeep = {
+			# 10
+			energy = 5
+			food = 5
+		}
+	}
+
+	weight = {
+		weight = @worker_job_weight
+		modifier = {
+			factor = 10
+			has_trait = trait_cave_dweller
+		}
+	}
+}
+
+gts_foot_prist = {
+
+	# 襪足牧師
+
+	category = specialist
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_sanctuary_of_toil
+		}
+	}
+
+	tags = { unity }
+
+	inline_script = "jobs/automodding_priority_unity"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+
+	resources = {
+		category = planet_bureaucrats
+		produces = {
+			# 30
+			unity = 15
+		}
+		upkeep = {
+			# 20
+			consumer_goods = 10
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		planet_amenities_add = 625
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+		modifier = {
+			factor = 10
+			has_trait = trait_cave_dweller
+		}
+	}
+}
+

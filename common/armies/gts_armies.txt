@@ -1,0 +1,464 @@
+gts_bruh_sperm_army = {
+
+	# 超巨型精子 # xenomorph_army*3
+
+	health = 4.0
+	damage = 4.0
+	morale_damage = 4.0
+	collateral_damage = 5.0
+	war_exhaustion = 0.25
+	time = 200
+	icon = GFX_army_type_behemoth
+	has_morale = no
+	has_species = no
+
+	prerequisites = { "tech_morphogenetic_field_mastery" }
+
+	resources = {
+		category = armies
+		cost = {
+			trigger = {
+				owner = {
+					gts_is_giantess = yes
+				}
+			}
+			gts_micro = 400
+		}
+		cost = {
+			trigger = {
+				owner = {
+					gts_is_tiny = yes
+				}
+			}
+			gts_giantess_fluid = 200
+		}
+
+		upkeep = {
+			trigger = {
+				owner = {
+					gts_is_giantess = yes
+				}
+			}
+			gts_micro = 4.0
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					gts_is_tiny = yes
+				}
+			}
+			gts_giantess_fluid = 2.0
+		}
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = "MUST_HAVE_GTS_BRUH_SEMEN_SYSTEM_CAPITAL"
+			has_building = building_gts_bruh_semen_system_capital
+		}
+	}
+
+	potential = {
+		is_planet_class = pc_gts_semen
+	}
+}
+
+gts_small_army = {
+
+	# 小人滲透部隊 # assault_army*3
+
+	health = 1.0
+	damage = 2.0
+	morale = 2.0
+	morale_damage = 2.0
+	collateral_damage = 1.0
+	war_exhaustion = 1.0
+	time = 45
+	icon = GFX_army_type_clone
+
+	prerequisites = { "tech_giantess_fluid_1" }
+
+	resources = {
+		category = armies
+		cost = {
+			gts_giantess_fluid = 100
+		}
+
+		upkeep = {
+			gts_giantess_fluid = 1
+		}
+	}
+
+	potential = {
+		from = {
+			gts_is_tiny = yes
+		}
+	}
+}
+
+gts_big_army = {
+
+	# 巨娘破壞部隊 # assault_army*3
+
+	health = 2.0
+	damage = 2.0
+	morale = 1.0
+	morale_damage = 2.0
+	collateral_damage = 1.0
+	war_exhaustion = 1.0
+	time = 180
+	icon = GFX_army_type_assault
+
+	prerequisites = { "tech_gts_shrink_man_hormone_1" }
+
+	resources = {
+		category = armies
+		cost = {
+			gts_micro = 200
+		}
+
+		upkeep = {
+			gts_micro = 2
+		}
+	}
+
+	potential = {
+		from = {
+			gts_is_giantess = yes
+		}
+	}
+}
+
+tiny_slave_army = {
+
+	# 小人奴隸軍團 # slave_army*3
+
+	health = 8.0
+	damage = 1.0
+	morale = 0.75
+	morale_damage = 0.75
+	collateral_damage = 1.5
+	war_exhaustion = 0.50
+	time = 30
+	icon = GFX_army_type_slave
+
+	prerequisites = { "tech_gts_shrink_man_hormone_1" }
+
+	resources = {
+		category = armies
+		cost = {
+			trigger = {
+				owner = {
+					gts_is_giantess = yes
+				}
+			}
+			gts_micro = 100
+		}
+		cost = {
+			trigger = {
+				owner = {
+					gts_is_tiny = yes
+				}
+			}
+			gts_giantess_fluid = 50
+		}
+
+		upkeep = {
+			trigger = {
+				owner = {
+					gts_is_giantess = yes
+				}
+			}
+			gts_micro = 1.0
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					gts_is_tiny = yes
+				}
+			}
+			gts_giantess_fluid = 0.5
+		}
+	}
+
+	potential = {
+		owner = {
+			OR = {
+				gts_is_giantess = yes
+				AND = {
+					gts_is_tiny = yes
+					has_ethic = ethic_authoritarian
+					has_ethic = ethic_fanatic_authoritarian
+					has_ethic = ethic_xenophobe
+					has_ethic = ethic_fanatic_xenophobe
+				}
+			}
+		}
+		from = {
+			gts_is_tiny = yes
+		}
+	}
+}
+
+gts_psionic_army = {
+
+	# 巨大魔法少女 # psionic_army*3
+
+	health = 1.75
+	damage = 2.0
+	morale = 5.0
+	morale_damage = 6.0
+	collateral_damage = 0.50
+	war_exhaustion = 3.0
+	time = 240
+	icon = GFX_army_type_psionic
+
+	prerequisites = { "tech_telepathy" }
+
+	resources = {
+		category = armies
+		cost = {
+			gts_micro = 500
+		}
+
+		upkeep = {
+			gts_micro = 5.0
+		}
+	}
+
+	potential_country = {
+		has_tradition = tr_psionics_psi_corps
+	}
+
+	potential = {
+		from = {
+			gts_is_giantess = yes
+			is_robotic = no
+			OR = {
+				has_trait = trait_latent_psionic
+				has_trait = trait_psionic
+			}
+		}
+	}
+}
+
+gts_xenomorph_army = {
+
+	# 超性能巨娘 # gene_warrior_army*3
+
+	health = 5.0
+	damage = 8.0
+	morale = 2.5
+	morale_damage = 1.0
+	collateral_damage = 0.75
+	war_exhaustion = 3.0
+	time = 300
+	icon = GFX_army_type_gene_warrior
+
+	prerequisites = { "tech_gene_seed_purification" }
+
+	resources = {
+		category = armies
+		cost = {
+			gts_micro = 600
+		}
+
+		upkeep = {
+			gts_micro = 6
+		}
+	}
+
+	potential_country = {
+		has_ascension_perk = ap_engineered_evolution
+	}
+
+	potential = {
+		from = {
+			gts_is_giantess = yes
+			is_robotic = no
+		}
+	}
+}
+
+gts_radiation_army = {
+
+	# 輻射裝甲機娘 # Robotic Armies*3
+
+	health = 4.0
+	damage = 4.0
+	morale = 1.0
+	morale_damage = 1.00
+	collateral_damage = 1.5
+	war_exhaustion = 0.50
+	time = 180
+	icon = GFX_army_type_robot
+
+	resources = {
+		category = armies
+		cost = {
+			minerals = 100
+			energy = 200
+		}
+		upkeep = {
+			energy = 3
+		}
+	}
+
+	potential_country = {
+		has_tradition = tr_gts_fallout_cruel_punishment
+	}
+
+	potential = {
+		from = {
+			gts_is_giantess = yes
+		}
+	}
+}
+
+gts_crusader_army = {
+
+	# 聖女騎士團 # assault_army*4
+
+	health = 2.0
+	damage = 2.0
+	morale = 2.0
+	morale_damage = 2.0
+	collateral_damage = 1.0
+	war_exhaustion = 1.0
+	time = 180
+	icon = GFX_army_type_psionic
+
+	prerequisites = { "tech_assault_armies" }
+
+	resources = {
+		category = armies
+		cost = {
+			unity = 200
+		}
+
+		upkeep = {
+			unity = 2
+		}
+	}
+
+	potential = {
+		owner = {
+			has_origin = origin_Qianxin
+			has_ascension_perk = ap_mind_over_matter
+		}
+		from = {
+			gts_is_giantess = yes
+			is_robotic = no
+			OR = {
+				has_trait = trait_latent_psionic
+				has_trait = trait_psionic
+			}
+		}
+	}
+
+}
+
+gts_army = {
+
+	# 巨娘 # xenomorph_army*3
+
+	health = 4.0
+	damage = 4.0
+	morale_damage = 4.0
+	collateral_damage = 5.0
+	icon = GFX_army_type_behemoth
+	has_morale = no
+	has_species = no
+
+	potential = {
+		always = no
+	}
+}
+
+gts_swarm_army = {
+
+	# 蟲蠱之潮
+
+	damage = 2.0
+	morale_damage = 2.0
+	health = 2.0
+	has_morale = no
+	time = 180
+	icon = GFX_army_type_xenomorph
+	has_species = no
+
+	potential_country = {
+		has_country_flag = gts_can_have_swarm_army
+	}
+}
+
+gts_evolution_catalyst_kemono = {
+
+	# 獸娘遠征軍團
+
+	damage = 10
+	health = 10
+	morale = 10
+	morale_damage = 20
+	collateral_damage = 20
+	war_exhaustion = 1
+	time = 180
+	icon = GFX_army_type_behemoth
+
+	resources = {
+		category = armies
+		cost = {
+			gts_micro = 200
+		}
+		upkeep = {
+			gts_micro = 2
+		}
+	}
+	potential_country = {
+		has_policy_flag = gts_evolution_catalyst_army_vanguard
+	}
+}
+
+gts_firefly_army = {
+	damage = 52.3
+	health = 81.4
+	morale = 77.6
+	morale_damage = 210.5
+	collateral_damage = 105.2
+	war_exhaustion = 1
+	time = 5
+	icon = GFX_army_type_psionic
+	resources = {
+		category = armies
+		upkeep = {
+			energy = 10
+			minerals = 10
+		}
+	}
+	has_species = no
+	potential_country = {
+		always = no
+	}
+}
+
+chenghui_army = {
+	damage = 100
+	health = 100
+	morale = 100
+	morale_damage = 500
+	collateral_damage = 100
+	war_exhaustion = 2
+	time = 5
+	resources = {
+		category = armies
+		upkeep = {
+			unity = 12
+		}
+	}
+	has_species = no
+	icon = GFX_army_type_psionic
+	potential_country = {
+		always = no
+	}
+}
+

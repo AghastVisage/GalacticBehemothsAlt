@@ -1,0 +1,248 @@
+#######################
+# DIPLOMACY: GREETINGS
+#######################
+
+# FROM = initiator of the diplomatic action; ROOT = recipient of the diplomatic action
+
+greetings = {
+
+	### HOSTILE GREETINGS
+
+
+	HOSTILE_GREETING_H_TO_GTS_01 = {
+		trigger = {
+			has_origin = origin_hstar
+			OR = {
+				is_hostile_to = FROM
+				is_domineering_to = FROM
+				is_unfriendly_to = FROM
+			}
+			FROM = {
+				OR = {
+					gts_is_giantess_empire = yes
+					has_country_flag = giantess_crisis
+				}
+			}
+		}
+	}
+	
+	HOSTILE_GREETING_H_TO_GTS_02 = {
+		trigger = {
+			has_origin = origin_hstar
+			OR = {
+				is_hostile_to = FROM
+				is_domineering_to = FROM
+				is_unfriendly_to = FROM
+			}
+			FROM = {
+				OR = {
+					gts_is_giantess_empire = yes
+					has_country_flag = giantess_crisis
+				}
+			}
+		}
+	}
+
+	HOSTILE_GREETING_GTS_TO_H_01 = {
+		trigger = {
+			gts_is_giantess_empire = yes
+			OR = {
+				is_hostile_to = FROM
+				is_domineering_to = FROM
+				is_unfriendly_to = FROM
+			}
+			FROM = {
+				has_origin = origin_hstar
+			}
+		}
+	}
+
+	HOSTILE_GREETING_GTS_TO_H_02 = {
+		trigger = {
+			gts_is_giantess_empire = yes
+			OR = {
+				is_hostile_to = FROM
+				is_domineering_to = FROM
+				is_unfriendly_to = FROM
+			}
+			FROM = {
+				has_origin = origin_hstar
+			}
+		}
+	}
+
+	### NEUTRAL GREETINGS
+
+	# Neutral Generic 1
+	NEUTRAL_GREETING_H_TO_GTS_01 = {
+		trigger = {
+			has_origin = origin_hstar
+			FROM = {
+				OR = {
+					gts_is_giantess_empire = yes
+					has_country_flag = giantess_crisis
+				}
+			}
+			OR = {
+				is_neutral_to = FROM
+				is_threatened_to = FROM
+			}
+		}
+	}
+	# Neutral Generic 2
+	NEUTRAL_GREETING_H_TO_GTS_02 = {
+		trigger = {
+			has_origin = origin_hstar
+			FROM = {
+				OR = {
+					gts_is_giantess_empire = yes
+					has_country_flag = giantess_crisis
+				}
+			}
+			OR = {
+				is_neutral_to = FROM
+				is_threatened_to = FROM
+			}
+		}
+	}
+	# Neutral Generic 3
+	NEUTRAL_GREETING_GTS_TO_H_01 = {
+		trigger = {
+			gts_is_giantess_empire = yes
+			FROM = {
+				has_origin = origin_hstar
+			}
+			OR = {
+				is_neutral_to = FROM
+				is_threatened_to = FROM
+			}
+		}
+	}
+	# Neutral Generic Same Species
+	NEUTRAL_GREETING_GTS_TO_H_02 = {
+		trigger = {
+			gts_is_giantess_empire = yes
+			FROM = {
+				has_origin = origin_hstar
+			}
+			OR = {
+				is_neutral_to = FROM
+				is_threatened_to = FROM
+			}
+		}
+	}
+
+	### FRIENDLY GREETINGS
+
+	# Friendly Generic 1
+	FRIENDLY_GREETING_H_TO_GTS_01 = {
+		trigger = {
+			has_origin = origin_hstar
+			FROM = {
+				OR = {
+					gts_is_giantess_empire = yes
+					has_country_flag = giantess_crisis
+				}
+			}
+			OR = {
+				is_friendly_to = FROM
+				is_cordial_to = FROM
+				is_protective_to = FROM
+			}
+		}
+	}
+	# Friendly Generic 2
+	FRIENDLY_GREETING_H_TO_GTS_02 = {
+		trigger = {
+			has_origin = origin_hstar
+			FROM = {
+				OR = {
+					gts_is_giantess_empire = yes
+					has_country_flag = giantess_crisis
+				}
+			}
+			OR = {
+				is_friendly_to = FROM
+				is_cordial_to = FROM
+				is_protective_to = FROM
+			}
+		}
+	}
+	# Friendly Generic 3
+	FRIENDLY_GREETING_GTS_TO_H_01 = {
+		trigger = {
+			gts_is_giantess_empire = yes
+			FROM = {
+				has_origin = origin_hstar
+			}
+			OR = {
+				is_friendly_to = FROM
+				is_cordial_to = FROM
+				is_protective_to = FROM
+			}
+		}
+	}
+	# Friendly Generic Same Species
+	FRIENDLY_GREETING_GTS_TO_H_02 = {
+		trigger = {
+			gts_is_giantess_empire = yes
+			FROM = {
+				has_origin = origin_hstar
+			}
+			OR = {
+				is_friendly_to = FROM
+				is_cordial_to = FROM
+				is_protective_to = FROM
+			}
+		}
+	}
+	
+	### WAR GREETINGS
+
+	WAR_GREETING_H_TO_GTS_01 = {
+		trigger = {
+			has_origin = origin_hstar
+			FROM = {
+				OR = {
+					gts_is_giantess_empire = yes
+					has_country_flag = giantess_crisis
+				}
+			}
+			is_at_war_with = FROM
+		}
+	}
+
+	WAR_GREETING_H_TO_GTS_02 = {
+		trigger = {
+			has_origin = origin_hstar
+			FROM = {
+				OR = {
+					gts_is_giantess_empire = yes
+					has_country_flag = giantess_crisis
+				}
+			}
+			is_at_war_with = FROM
+		}
+	}
+
+	WAR_GREETING_GTS_TO_H_01 = {
+		trigger = {
+			gts_is_giantess_empire = yes
+			FROM = {
+				has_origin = origin_hstar
+			}
+			is_at_war_with = FROM
+		}
+	}
+
+	WAR_GREETING_GTS_TO_H_02 = {
+		trigger = {
+			gts_is_giantess_empire = yes
+			FROM = {
+				has_origin = origin_hstar
+			}
+			is_at_war_with = FROM
+		}
+	}
+	
+}

@@ -1,0 +1,527 @@
+namespace = gts_xiaomiao
+# 晓淼领袖链
+country_event = {
+	#创建母星星系
+	id = gts_xiaomiao.3000
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		random_owned_planet = {
+			spawn_system = {
+				min_distance >= 10
+				max_distance <= 30
+				max_jumps = 0
+				initializer = gts_lab_fault_system
+			}
+		}
+	}
+}
+country_event = {
+	#初次
+	id = gts_xiaomiao.3100
+	title = gts_xiaomiao.3100.name
+	desc = gts_xiaomiao.3100.desc
+	picture = GFX_gtsra_5
+	show_sound = event_mystic_reveal
+	is_triggered_only = yes
+
+	option = {
+		name = gts_xiaomiao.3100.a
+	}
+}
+fleet_event = {
+	#阶段1
+	id = gts_xiaomiao.3101
+	title = gts_xiaomiao.3101.name
+	desc = gts_xiaomiao.3101.desc
+	picture = GFX_gtsra_6
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_xiaomiao.3101.a
+		owner = {
+			add_resource = {
+				minor_artifacts = 10
+			}
+		}
+	}
+}
+fleet_event = {
+	#阶段2
+	id = gts_xiaomiao.3102
+	title = gts_xiaomiao.3102.name
+	desc = gts_xiaomiao.3102.desc
+	picture = GFX_gtsra_9
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_xiaomiao.3102.a
+		owner = {
+			add_resource = {
+				minor_artifacts = 5
+			}
+		}
+	}
+}
+fleet_event = {
+	#阶段3
+	id = gts_xiaomiao.3103
+	title = gts_xiaomiao.3103.name
+	desc = gts_xiaomiao.3103.desc
+	picture = GFX_gtsra_load_7
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_xiaomiao.3103.a
+		owner = {
+			add_resource = {
+				minor_artifacts = 20
+			}
+		}
+	}
+}
+fleet_event = {
+	#阶段4
+	id = gts_xiaomiao.3104
+	title = gts_xiaomiao.3104.name
+	desc = gts_xiaomiao.3104.desc
+	picture = GFX_evt_ancient_records
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_xiaomiao.3104.a
+		owner = {
+			add_resource = {
+				minor_artifacts = 30
+			}
+		}
+	}
+}
+fleet_event = {
+	#阶段5
+	id = gts_xiaomiao.3105
+	title = gts_xiaomiao.3105.name
+	desc = gts_xiaomiao.3105.desc
+	picture = GFX_gtsra_black_stockings
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_xiaomiao.3105.a
+		owner = {
+			add_resource = {
+				minor_artifacts = 40
+			}
+			country_event = {
+				id = gts_xiaomiao.3106
+				days = 7
+			}
+		}
+	}
+}
+country_event = {
+	#意外发现
+	id = gts_xiaomiao.3106
+	title = gts_xiaomiao.3106.name
+	desc = gts_xiaomiao.3106.desc
+	picture = GFX_evt_infiltration_failure
+	show_sound = event_default
+	is_triggered_only = yes
+
+	option = {
+		name = gts_xiaomiao.3106.a
+	}
+	option = {
+		name = gts_xiaomiao.3106.b
+		country_event = {
+			id = gts_xiaomiao.3200
+		}
+	}
+}
+country_event = {
+	# 晓淼领袖招募
+	id = gts_xiaomiao.3200
+	title = "gts_xiaomiao.3200.name"
+	desc = "gts_xiaomiao.3200.desc"
+	show_sound = event_celebration
+	is_triggered_only = yes
+	picture = GFX_leader_recruitment_bg_renowned
+	auto_opens = yes
+	event_window_type = leader_recruit
+	notification_event_icon = "GFX_message_leader_gts_xiaomiao"
+	immediate = {
+		gts_leader_xiaomiao_hired = yes
+	}
+	picture_event_data = {
+		portrait = event_target:gts_leader
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = gts_xiaomiao.3200.a
+		response_text = gts_xiaomiao.3200.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_xiaomiao.3200.b
+		response_text = gts_xiaomiao.3200.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_xiaomiao.3200.c
+		response_text = gts_xiaomiao.3200.c.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_xiaomiao.3200.d
+		response_text = gts_xiaomiao.3200.d.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_xiaomiao.3200.ignore
+		custom_tooltip = gts_xiaomiao.3200.tooltip
+		tag = dismiss_leader
+		hidden_effect = {
+			country_event = {
+				id = gts_xiaomiao.3201
+			}
+		}
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		custom_tooltip = gts_xiaomiao.3200.hire_custom_tooltip
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = renowned }
+			country_event = {
+				id = gts_xiaomiao.3300
+				days = 1800
+			}
+		}
+	}
+}
+country_event = {
+	#拒绝招募
+	id = gts_xiaomiao.3201
+	title = gts_xiaomiao.3201.name
+	desc = gts_xiaomiao.3201.desc
+	picture = GFX_load_69
+	show_sound = event_default
+	is_triggered_only = yes
+
+	option = {
+		name = gts_xiaomiao.3201.a
+		custom_tooltip = gts_xiaomiao.3201.tooltip
+		hidden_effect = {
+			country_event = {
+				id = gts_xiaomiao.3202
+				days = 90
+			}
+		}
+	}
+}
+country_event = {
+	#重新发现
+	id = gts_xiaomiao.3202
+	title = gts_xiaomiao.3202.name
+	desc = gts_xiaomiao.3202.desc
+	picture = GFX_evt_hostile_infiltration
+	show_sound = event_default
+	is_triggered_only = yes
+
+	option = {
+		name = gts_xiaomiao.3202.a
+		hidden_effect = {
+			country_event = {
+				id = gts_xiaomiao.3203
+			}
+		}
+	}
+}
+
+country_event = {
+	# 晓淼领袖招募
+	id = gts_xiaomiao.3203
+	title = "gts_xiaomiao.3200.name"
+	desc = "gts_xiaomiao.3200.desc"
+	show_sound = event_celebration
+	is_triggered_only = yes
+	picture = GFX_leader_recruitment_bg_renowned
+	auto_opens = yes
+	event_window_type = leader_recruit
+	notification_event_icon = "GFX_message_leader_gts_xiaomiao"
+	immediate = {
+		gts_leader_xiaomiao_hired = yes
+	}
+	picture_event_data = {
+		portrait = event_target:gts_leader
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = gts_xiaomiao.3200.d
+		response_text = gts_xiaomiao.3200.d.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		custom_tooltip = gts_xiaomiao.3200.hire_custom_tooltip
+		add_modifier = {
+			modifier = gts_leader_upkeep_add
+		}
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = renowned }
+			country_event = {
+				id = gts_xiaomiao.3300
+				days = 1800
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_xiaomiao.3300
+	title = gts_xiaomiao.3300.name
+	desc = gts_xiaomiao.3300.desc
+	picture = GFX_gts_xiaomiao_1
+	show_sound = event_default
+	is_triggered_only = yes
+
+	option = {
+		name = gts_xiaomiao.3300.a
+		custom_tooltip = gts_xiaomiao.3300.tooltip
+		hidden_effect = {
+			country_event = {
+				id = gts_xiaomiao.3302
+				days = 30
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_xiaomiao.3302
+	title = gts_xiaomiao.3302.name
+	desc = gts_xiaomiao.3302.desc
+	picture = GFX_gts_xiaomiao_2
+	show_sound = event_default
+	is_triggered_only = yes
+
+	option = {
+		name = gts_xiaomiao.3302.a
+		custom_tooltip = gts_xiaomiao.3302.tooltip
+		add_research_option = tech_gene_tailoring
+		hidden_effect = {
+			country_event = {
+				id = gts_xiaomiao.3303
+				days = 365
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_xiaomiao.3303
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		if = {
+			limit = {
+				has_technology = tech_gene_tailoring
+			}
+			country_event = {
+				id = gts_xiaomiao.3304
+			}
+		}else = {
+			country_event = {
+				id = gts_xiaomiao.3303
+				days = 365
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_xiaomiao.3304
+	title = gts_xiaomiao.3304.name
+	desc = gts_xiaomiao.3304.desc
+	picture = GFX_gts_xiaomiao_3
+	show_sound = event_default
+	is_triggered_only = yes
+
+	option = {
+		name = gts_xiaomiao.3304.a
+		custom_tooltip = gts_xiaomiao.3304.tooltip
+		add_research_option = tech_integrated_cybernetics
+		hidden_effect = {
+			country_event = {
+				id = gts_xiaomiao.3305
+				days = 365
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_xiaomiao.3305
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		if = {
+			limit = {
+				has_technology = tech_integrated_cybernetics
+			}
+			country_event = {
+				id = gts_xiaomiao.3306
+			}
+		}else = {
+			country_event = {
+				id = gts_xiaomiao.3305
+				days = 365
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_xiaomiao.3306
+	title = gts_xiaomiao.3306.name
+	desc = gts_xiaomiao.3306.desc
+	picture = GFX_gts_xiaomiao_4
+	show_sound = event_default
+	is_triggered_only = yes
+
+	option = {
+		name = gts_xiaomiao.3306.a
+		custom_tooltip = gts_xiaomiao.3306.tooltip
+		add_research_option = tech_synthetic_workers
+		hidden_effect = {
+			country_event = {
+				id = gts_xiaomiao.3307
+				days = 365
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_xiaomiao.3307
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		if = {
+			limit = {
+				has_technology = tech_synthetic_workers
+			}
+			country_event = {
+				id = gts_xiaomiao.3308
+			}
+		}else = {
+			country_event = {
+				id = gts_xiaomiao.3307
+				days = 365
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_xiaomiao.3308
+	title = gts_xiaomiao.3308.name
+	desc = gts_xiaomiao.3308.desc
+	picture = GFX_gts_xiaomiao_5
+	show_sound = event_default
+	is_triggered_only = yes
+
+	option = {
+		name = gts_xiaomiao.3308.a
+		custom_tooltip = gts_xiaomiao.3308.tooltip
+		add_research_option = tech_psionic_theory
+		hidden_effect = {
+			country_event = {
+				id = gts_xiaomiao.3309
+				days = 365
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_xiaomiao.3309
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		if = {
+			limit = {
+				has_technology = tech_psionic_theory
+			}
+			country_event = {
+				id = gts_xiaomiao.3310
+			}
+		}else = {
+			country_event = {
+				id = gts_xiaomiao.3309
+				days = 365
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_xiaomiao.3310
+	title = gts_xiaomiao.3310.name
+	desc = gts_xiaomiao.3310.desc
+	picture = GFX_gts_xiaomiao_6
+	show_sound = event_default
+	is_triggered_only = yes
+
+	option = {
+		name = gts_xiaomiao.3310.a
+		add_resource = {
+			unity = 10721
+		}
+	}
+}

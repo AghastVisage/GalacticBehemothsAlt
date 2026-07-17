@@ -1,0 +1,674 @@
+namespace = gts_civ_common
+
+# 如果国策的事件只有一两个的话可以放在这里，多的话请新开一个gts_civic文件
+
+# 小人灭绝者人口特效
+# 現在似乎沒有用
+
+country_event = {
+	id = gts_civ_common.10
+	title = gts_civ_common.10.name
+	desc = gts_civ_common.10.desc
+	picture = GFX_evt_gts_inside_body_1
+	show_sound = event_death_cult
+	location = capital_scope
+	is_triggered_only = yes
+
+	trigger = {
+		has_valid_civic = civic_gts_assimilator
+	}
+
+	immediate = {
+		gts_assimilation_pop_effect = yes
+		gts_assimilation_pop_effect_A = yes
+	}
+
+	option = {
+		name = gts_civ_common.10.a
+	}
+}
+
+# 小人清除者 - 自動設定公民權
+
+country_event = {
+	id = gts_civ_common.11
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_civic = civic_gts_terminator
+		any_owned_pop_group = {
+			gts_is_giantess = no
+			gts_is_tiny = yes
+			is_being_purged = no
+		}
+	}
+
+	immediate = {
+		every_owned_pop_group = {
+			limit = {
+				gts_is_giantess = no
+				gts_is_tiny = yes
+				is_being_purged = no
+			}
+			set_citizenship_type = {
+				type = citizenship_purge
+			}
+		}
+		country_event = {
+			id = gts_civ_common.12
+			days = 1
+		}
+	}
+}
+
+# 小人清除者 - 自動設定淨化方式
+
+country_event = {
+	id = gts_civ_common.12
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		every_owned_pop_group = {
+			limit = {
+				gts_is_giantess = no
+				gts_is_tiny = yes
+				is_being_purged = yes
+			}
+			set_purge_type = {
+				type = purge_stocking_crushed
+			}
+		}
+	}
+}
+
+# 小人保護者
+
+country_event = {
+	id = gts_civ_common.20
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_civic = civic_gts_servitor
+	}
+
+	immediate = {
+		every_owned_pop_group = {
+			limit = {
+				gts_is_tiny = yes
+				NOR = {
+					has_citizenship_type = {
+						type = citizenship_organic_trophy
+					}
+				}
+			}
+			set_citizenship_type = {
+				type = citizenship_organic_trophy
+			}
+		}
+		every_owned_pop_group = {
+			limit = {
+				gts_is_tiny = yes
+				NOR = {
+					has_living_standard = {
+						type = living_standard_organic_trophy
+					}
+				}
+			}
+			set_living_standard = {
+				type = living_standard_organic_trophy
+			}
+		}
+	}
+}
+
+#掠夺人口的事件
+pop_group_event = {
+	id = gts_civ_common.30
+	title =  gts_civ_common.30.name
+	desc = gts_civ_common.30.desc
+	picture = GFX_gtsra_tiny_city_2
+	is_triggered_only = yes
+	show_sound = event_structural_collapse
+	trigger = {
+		owner = {
+			OR = {
+				gts_is_giantess_empire = yes
+				has_civic = civic_delta_trade
+			}
+		}
+	}
+	option = {
+		name = gts_civ_common.30.a
+		owner = {
+			add_resource = {
+				gts_micro = 500
+				gts_micro_city = 10
+			}
+		}
+	}
+	option = {
+		name = gts_civ_common.30.b
+		owner = {
+			add_resource = {
+				gts_micro = 500
+				gts_micro_city = 10
+			}
+		}
+	}
+}
+
+# 始於微末 - 每個組裝的人口加修正
+
+planet_event = {
+	id = gts_civ_common.40
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		exists = owner
+		has_building = building_micro_civilization_greenhouse
+		owner = {
+			has_civic = civic_origin_from_micro
+		}
+	}
+
+	immediate = {
+		fromfrom = {
+			add_modifier = { modifier = "origin_from_micro_modifier" days = -1 }
+		}
+	}
+}
+
+# 入陰禮 - 添加人口特質
+
+country_event = {
+	id = gts_civ_common.50
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_civic = civic_ub_ritual
+		any_owned_pop_group = {
+			OR = {
+				NOR = {
+					has_trait = trait_tiny_ub
+					has_trait = trait_gts_ub
+				}
+				OR = {
+					has_trait = trait_gts_ass
+					has_trait = trait_gts_vore
+					has_trait = trait_gts_milk
+					has_trait = trait_gts_ass
+					has_trait = trait_tiny_futa
+					has_trait = trait_tiny_milk
+					has_trait = trait_tiny_armpit
+					has_trait = trait_tiny_ass
+					has_trait = trait_tiny_vore
+					has_trait = trait_tiny_finger
+					has_trait = trait_tiny_feet
+					has_trait = trait_tiny_butt
+				}
+			}
+		}
+	}
+
+	immediate = {
+		owner_main_species = {
+			if = {
+				limit = {
+					gts_is_tiny = yes
+				}
+				change_species_characteristics = {
+					add_trait = trait_tiny_ub
+				}
+			}
+			else_if = {
+				limit = {
+					gts_is_giantess = yes
+				}
+				change_species_characteristics = {
+					add_trait = trait_gts_ub
+				}
+			}
+		}
+		every_owned_pop_group = {
+			limit = {
+				OR = {
+					NOR = {
+						has_trait = trait_tiny_ub
+						has_trait = trait_gts_ub
+					}
+					OR = {
+						has_trait = trait_gts_ass
+						has_trait = trait_gts_vore
+						has_trait = trait_gts_milk
+						has_trait = trait_gts_ass
+						has_trait = trait_tiny_futa
+						has_trait = trait_tiny_milk
+						has_trait = trait_tiny_armpit
+						has_trait = trait_tiny_ass
+						has_trait = trait_tiny_vore
+						has_trait = trait_tiny_finger
+						has_trait = trait_tiny_feet
+						has_trait = trait_tiny_butt
+					}
+				}
+			}
+			if = {
+				limit = {
+					gts_is_giantess = yes
+				}
+				modify_species = {
+					add_trait = trait_gts_ub
+				}
+			}
+			if = {
+				limit = {
+					gts_is_tiny = yes
+				}
+				modify_species = {
+					add_trait = trait_tiny_ub
+				}
+			}
+			if = {
+				limit = {
+					gts_is_giantess = yes
+					OR = {
+						has_trait = trait_gts_ass
+						has_trait = trait_gts_vore
+						has_trait = trait_gts_milk
+					}
+				}
+				modify_species = {
+					remove_trait = trait_gts_ass
+					remove_trait = trait_gts_vore
+					remove_trait = trait_gts_milk
+				}
+			}
+			if = {
+				limit = {
+					gts_is_tiny = yes
+					OR = {
+						has_trait = trait_gts_ass
+						has_trait = trait_tiny_futa
+						has_trait = trait_tiny_milk
+						has_trait = trait_tiny_armpit
+						has_trait = trait_tiny_ass
+						has_trait = trait_tiny_vore
+						has_trait = trait_tiny_finger
+						has_trait = trait_tiny_feet
+						has_trait = trait_tiny_butt
+					}
+				}
+				modify_species = {
+					remove_trait = trait_gts_ass
+					remove_trait = trait_tiny_futa
+					remove_trait = trait_tiny_milk
+					remove_trait = trait_tiny_armpit
+					remove_trait = trait_tiny_ass
+					remove_trait = trait_tiny_vore
+					remove_trait = trait_tiny_finger
+					remove_trait = trait_tiny_feet
+					remove_trait = trait_tiny_butt
+				}
+			}
+		}
+	}
+}
+
+# 妹汁本味 - 添加國家修正(每年更新)
+
+country_event = {
+	id = gts_civ_common.60
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_civic = civic_focus_gts_fluid
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				resource_stockpile_compare = {
+					resource = gts_giantess_fluid
+					value >= 1000000
+				}
+			}
+			add_modifier = {
+				modifier = tiny_focus_gts_fluid_1
+				months = 1
+			}
+		}
+		else_if = {
+			limit = {
+				resource_stockpile_compare = {
+					resource = gts_giantess_fluid
+					value >= 500000
+				}
+			}
+			add_modifier = {
+				modifier = tiny_focus_gts_fluid_2
+				months = 1
+			}
+		}
+		else_if = {
+			limit = {
+				resource_stockpile_compare = {
+					resource = gts_giantess_fluid
+					value >= 250000
+				}
+			}
+			add_modifier = {
+				modifier = tiny_focus_gts_fluid_3
+				months = 1
+			}
+		}
+		else_if = {
+			limit = {
+				resource_stockpile_compare = {
+					resource = gts_giantess_fluid
+					value >= 125000
+				}
+			}
+			add_modifier = {
+				modifier = tiny_focus_gts_fluid_4
+				months = 1
+			}
+		}
+		else = {
+			add_modifier = {
+				modifier = tiny_focus_gts_fluid_5
+				months = 1
+			}
+		}
+	}
+}
+
+# 小人本味 - 添加國家修正(每年更新)
+
+country_event = {
+	id = gts_civ_common.70
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_civic = civic_focus_tiny
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				resource_stockpile_compare = {
+					resource = gts_micro
+					value >= 1000000
+				}
+			}
+			add_modifier = {
+				modifier = gts_focus_tiny_1
+				months = 1
+			}
+		}
+		else_if = {
+			limit = {
+				resource_stockpile_compare = {
+					resource = gts_micro
+					value >= 500000
+				}
+			}
+			add_modifier = {
+				modifier = gts_focus_tiny_2
+				months = 1
+			}
+		}
+		else_if = {
+			limit = {
+				resource_stockpile_compare = {
+					resource = gts_micro
+					value >= 250000
+				}
+			}
+			add_modifier = {
+				modifier = gts_focus_tiny_3
+				months = 1
+			}
+		}
+		else_if = {
+			limit = {
+				resource_stockpile_compare = {
+					resource = gts_micro
+					value >= 125000
+				}
+			}
+			add_modifier = {
+				modifier = gts_focus_tiny_4
+				months = 1
+			}
+		}
+		else = {
+			add_modifier = {
+				modifier = gts_focus_tiny_5
+				months = 1
+			}
+		}
+	}
+}
+
+#合欢派的每月检测有无变形虫和太空鲸
+country_event = {
+	id = gts_civ_common.80
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		has_country_flag = hehuanpai_intro
+		NOR = {
+			has_country_flag = hehuanpai_end
+		}
+	}
+	immediate = {
+		if = {
+			limit = {
+				any_system_within_border = {
+					any_fleet_in_system = {
+						owner = {
+							OR = {
+								is_tiyanki_country_type = yes
+								is_amoeba_country_type = yes
+							}
+						}
+					}
+				}
+			}
+			set_timed_country_flag = {
+				flag = hehuanpai_worship_titan_fulfill
+				days = 30
+			}
+		}
+	}
+}
+
+# 小人同化者 - 開局人口設定
+
+country_event = {
+	id = gts_civ_common.90
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_civic = civic_gts_assimilator
+	}
+
+	immediate = {
+		owner_main_species = {
+			set_citizenship_type = {
+				country = root
+				type = citizenship_full
+			}
+		}
+		random_owned_species = {
+			limit = {
+				has_trait = trait_Small
+			}
+			set_citizenship_type = {
+				country = root
+				type = citizenship_inside_body_assimilation
+			}
+			save_event_target_as = gts_bruh_sub_tiny_species
+		}
+		capital_scope = {
+			create_pop_group = {
+				species = event_target:gts_bruh_sub_tiny_species
+				category = civilian
+				size = 3000
+			}
+		}
+	}
+}
+
+# 小人同化者 - 同化人口
+
+country_event = {
+	id = gts_civ_common.91
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_civic = civic_gts_assimilator
+		any_owned_pop_group = {
+			has_citizenship_type = {
+				type = citizenship_inside_body_assimilation
+			}
+		}
+	}
+
+	immediate = {
+		every_owned_planet = {
+			random_owned_pop_group = {
+				limit = {
+					NOR = {
+						has_pop_group_flag = gts_bruh_already_shrank
+					}
+					has_citizenship_type = {
+						type = citizenship_inside_body_assimilation
+					}
+				}
+				save_event_target_as = gts_bruh_shrink_pop_group
+				species = {
+					save_event_target_as = gts_bruh_shrink_species
+				}
+				# If a modified species hasn't been created, create one
+				# and save them as an event target
+				if = {
+					limit = {
+						NOT = {
+							any_galaxy_species = {
+								has_species_flag = gts_bruh_assimilation_species_of_species@event_target:gts_bruh_shrink_species
+								has_species_flag = gts_bruh_assimilation_species_of_empire@root.owner
+							}
+						}
+					}
+					create_species = {
+						is_mod = yes
+						name = this
+						plural = this
+						class = this
+						portrait = this
+						traits = this
+						can_be_modified = this
+						homeworld = this
+						namelist = this
+						gender = this
+						effect = {
+							modify_species = {
+								species = this
+								remove_trait = trait_Giant
+								remove_trait = trait_Tall
+								remove_trait = trait_Normal
+								remove_trait = trait_Small
+								remove_trait = trait_Tiny
+								add_trait = trait_Micro
+								add_trait = trait_Beironghe
+								change_scoped_species = no
+
+								effect = {
+									set_species_flag = gts_bruh_assimilation_species_of_species@event_target:gts_bruh_shrink_species
+									set_species_flag = gts_bruh_assimilation_species_of_empire@root.owner
+									save_event_target_as = target_species
+								}
+							}
+						}
+					}
+				}
+				# If a modified species does exist, save them as the event target
+				else = {
+					random_galaxy_species = {
+						limit = {
+							has_species_flag = gts_bruh_assimilation_species_of_species@event_target:gts_bruh_shrink_species
+							has_species_flag = gts_bruh_assimilation_species_of_empire@root.owner
+						}
+						save_event_target_as = target_species
+					}
+				}
+			}
+			create_pop_group = {
+				pop_group = event_target:gts_bruh_shrink_pop_group
+				species = event_target:target_species
+				size = 0
+				effect = {
+					transfer_pop_amount = {
+						source = event_target:gts_bruh_shrink_pop_group
+						target = this
+						amount = 100
+					}
+					set_timed_pop_group_flag = {
+						flag = gts_bruh_already_shrank
+						days = 15
+					}
+				}
+			}
+		}
+		set_update_modifiers_batch = end			# Unfreeze modifier calculation for performance
+	}
+}
+
+# 小人保護者 - 開局人口設定
+
+country_event = {
+	id = gts_civ_common.92
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_civic = civic_gts_servitor
+	}
+
+	immediate = {
+		#owner_main_species = {
+		#	set_citizenship_type = {
+		#		country = root
+		#		type = citizenship_full
+		#	}
+		#}
+		random_owned_species = {
+			limit = {
+				has_trait = trait_Small
+			}
+			set_citizenship_type = {
+				country = root
+				type = citizenship_organic_trophy
+			}
+			save_event_target_as = gts_bruh_sub_tiny_species
+		}
+		capital_scope = {
+			create_pop_group = {
+				species = event_target:gts_bruh_sub_tiny_species
+				category = bio_trophy_unemployment
+				size = 1000
+			}
+		}
+	}
+}
+

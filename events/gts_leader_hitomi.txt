@@ -1,0 +1,3672 @@
+namespace = gts_hitomi
+
+# country_event = {
+#     id = gts_hitomi.0
+#     hide_window = yes
+#     is_triggered_only = yes
+#     immediate = {
+#         set_variable = {
+#             value = 1
+#             which = hitomi_love_desc_event_number
+#         }
+#         set_variable = {
+#             value = 1
+#             which = hitomi_love_desc_number
+#         }
+#     }
+#     after = {
+#     }
+# }
+ship_event = {
+    id = gts_hitomi.1
+    title = gts_hitomi.1.name
+    desc = gts_hitomi.1.desc
+    picture = GFX_gts_hitomi_1
+    is_triggered_only = yes
+    immediate = {
+
+    }
+    after = {
+
+    }
+    option = {
+        name = gts_hitomi.1.a
+        every_galaxy_planet = {
+            limit = {
+                has_planet_flag = gts_hitomi_planets
+            }
+            create_archaeological_site = gts_hitomi_digsite
+        }
+    }
+}
+fleet_event = {
+    id = gts_hitomi.2
+    title = gts_hitomi.2.name
+    desc = gts_hitomi.2.desc
+    picture = GFX_gts_hitomi_3
+    archaeology = yes
+    is_triggered_only = yes
+    immediate = {
+        from = {
+            set_site_progress_locked = yes
+        }
+    }
+    after = {
+        from = {
+            set_site_progress_locked = no
+        }
+    }
+    option = {
+        name = gts_hitomi.2.a
+        owner = {
+            add_resource = {
+                minor_artifacts = 5
+                society_research = 500
+            }
+        }
+    }
+}
+fleet_event = {
+    id = gts_hitomi.3
+    title = gts_hitomi.3.name
+    desc = gts_hitomi.3.desc
+    picture = GFX_gts_hitomi_4
+    archaeology = yes
+    is_triggered_only = yes
+    immediate = {
+        from = {
+            set_site_progress_locked = yes
+        }
+    }
+    after = {
+        from = {
+            set_site_progress_locked = no
+        }
+    }
+    option = {
+        name = gts_hitomi.3.a
+        owner = {
+            add_resource = {
+                minor_artifacts = 5
+                physics_research = 500
+            }
+        }
+    }
+}
+fleet_event = {
+    id = gts_hitomi.4
+    title = gts_hitomi.4.name
+    desc = gts_hitomi.4.desc
+    picture = GFX_gts_hitomi_5
+    archaeology = yes
+    is_triggered_only = yes
+    immediate = {
+        from = {
+            set_site_progress_locked = yes
+        }
+    }
+    after = {
+        from = {
+            set_site_progress_locked = no
+        }
+    }
+    option = {
+        name = gts_hitomi.4.a
+        owner = {
+            add_resource = {
+                minor_artifacts = 5
+                engineering_research = 500
+            }
+        }
+    }
+}
+fleet_event = {
+    id = gts_hitomi.5
+    title = gts_hitomi.5.name
+    desc = gts_hitomi.5.desc
+    picture = GFX_gts_hitomi_6
+    archaeology = yes
+    is_triggered_only = yes
+    immediate = {
+        from = {
+            set_site_progress_locked = yes
+        }
+    }
+    after = {
+        from = {
+            set_site_progress_locked = no
+        }
+    }
+    option = {
+        name = gts_hitomi.5.a
+        owner = {
+            add_resource = {
+                minor_artifacts = 5
+                alloys = 200
+            }
+        }
+    }
+}
+fleet_event = {
+    id = gts_hitomi.6
+    title = gts_hitomi.6.name
+    desc = gts_hitomi.6.desc
+    picture = GFX_gts_hitomi_7
+    archaeology = yes
+    is_triggered_only = yes
+    immediate = {
+        from = {
+            set_site_progress_locked = yes
+        }
+    }
+    after = {
+        from = {
+            set_site_progress_locked = no
+        }
+    }
+    option = {
+        name = gts_hitomi.6.a
+        owner = {
+            add_resource = {
+                minor_artifacts = 5
+                alloys = 200
+            }
+        }
+    }
+}
+fleet_event = {
+    id = gts_hitomi.7
+    title = gts_hitomi.7.name
+    desc = gts_hitomi.7.desc
+    picture = GFX_gts_hitomi_8
+    archaeology = yes
+    is_triggered_only = yes
+    immediate = {
+        from = {
+            set_site_progress_locked = yes
+        }
+    }
+    after = {
+        from = {
+            set_site_progress_locked = no
+        }
+    }
+    option = {
+        name = gts_hitomi.7.a
+        owner = {
+            add_resource = {
+                minor_artifacts = 5
+                alloys = 200
+            }
+        }
+    }
+}
+fleet_event = {
+    #
+    id = gts_hitomi.8
+    title = gts_hitomi.8.name
+    desc = gts_hitomi.8.desc
+    picture = GFX_gts_hitomi_9
+    show_sound = event_default
+    is_triggered_only = yes
+    fire_only_once = yes
+    archaeology = yes
+    immediate = {
+        from = {
+            set_site_progress_locked = yes
+        }
+    }
+    after = {
+        from = {
+            set_site_progress_locked = no
+        }
+    }
+    option = {
+        name = gts_hitomi.8.a
+        owner = {
+            add_resource = {
+                minor_artifacts = 5
+                alloys = 200
+            }
+        }
+    }
+}
+fleet_event = {
+    #
+    id = gts_hitomi.9
+    title = gts_hitomi.9.name
+    desc = gts_hitomi.9.desc
+    picture = GFX_gts_hitomi_10
+    show_sound = event_default
+    is_triggered_only = yes
+    fire_only_once = yes
+    archaeology = yes
+    immediate = {
+        owner = {
+            country_event = {
+                id = gts_hitomi.99
+            }
+            country_event = {
+                days = 3
+                id = gts_hitomi.11
+            }
+        }
+        from = {
+            set_site_progress_locked = yes
+        }
+        every_galaxy_planet = {
+            limit = {
+                has_planet_flag = gts_hitomi_planets
+            }
+            change_pc = pc_broken
+        }
+    }
+    after = {
+        from = {
+            set_site_progress_locked = no
+        }
+    }
+    option = {
+        name = gts_hitomi.8.a
+        owner = {
+            add_resource = {
+                minor_artifacts = 5
+                alloys = 200
+            }
+        }
+    }
+}
+country_event = {
+    id = gts_hitomi.99
+    hide_window = yes
+
+    is_triggered_only = yes
+
+    immediate = {
+        create_country = {
+            name = NAME_gts_hitomi
+            type = gts_hitomi_commnunicate
+            flag = {
+                icon={
+                    category="gts_country_flag"
+                    file="flag_gts_hitomi.dds"
+                }
+                background={
+                    category="backgrounds"
+                    file="pattern_01.dds"
+                }
+                colors={
+                    "dark_blue"
+                    "black"
+                    "null"
+                    "null"
+                }
+            }
+        }
+        last_created_country = {
+            set_country_flag = protected_from_queen_storm
+            establish_communications_no_message = root
+            set_country_flag = hitomi_country
+            save_global_event_target_as = gts_hitomi_country_target
+        }
+    }
+}
+country_event = {
+    id = gts_hitomi.10
+    title = "gts_hitomi.10.title"
+    desc = "gts_hitomi.10.a.desc"
+    diplomatic = yes
+    picture = GFX_evt_mysterious_signal
+    picture_event_data = {
+        portrait = gts_portrait_hitomi
+        room = gts_hitomi_diplomatic_room
+    }
+
+    is_triggered_only = yes
+
+    trigger = {
+        from = {
+            has_country_flag = hitomi_country
+        }
+        NOT = { has_country_flag = gts_hitomi_diplomacy_engaged }
+    }
+
+    immediate = {
+        set_country_flag = gts_hitomi_diplomacy_engaged
+    }
+
+    after = {
+        hidden_effect = { remove_country_flag = gts_hitomi_diplomacy_engaged }
+    }
+
+
+    option = {
+        name = gts_hitomi.10.a
+        response_text = gts_hitomi.10.a.response
+        is_dialog_only = yes
+#       1xx系列事件
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.101
+            }
+        }
+    }
+    option = {
+        name = gts_hitomi.10.b
+        response_text = gts_hitomi.10.b.response
+        is_dialog_only = yes
+        #2xx系列事件
+        hide_option_if_not_allowed = yes
+        trigger = {
+            not = {
+                has_country_flag = gts_hitomi_ship_gril_start
+            }
+        }
+        hidden_effect = {
+            custom_tooltip = gts_hitomi.10.b_custom
+            set_variable = {
+                which = hitomi_love_desc_event_number
+                value = 2
+            }
+            set_variable = {
+                which = hitomi_love_desc_number
+                value = 1
+            }
+            country_event = {
+                id = gts_hitomi.201
+            }
+        }
+    }
+    option = {
+        name = gts_hitomi.10.b2
+        # response_text = gts_hitomi.10.b2.response
+        #2xx系列事件
+        hide_option_if_not_allowed = yes
+        trigger = {
+            has_country_flag = gts_hitomi_ship_gril_success
+            not = {
+                any_owned_ship = {
+                    has_ship_flag = gts_hitomi_ship
+                }
+            }
+        }
+        hidden_effect = {
+            set_variable = {
+                which = hitomi_love_desc_event_number
+                value = 3
+            }
+            set_variable = {
+                which = hitomi_love_desc_number
+                value = 1
+            }
+            country_event = {
+                id = gts_hitomi.202
+            }
+        }
+    }
+    option = {
+        name = gts_hitomi.10.b3
+        is_dialog_only = yes
+        response_text = gts_hitomi.10.b3.response
+        #2xx系列事件
+        hide_option_if_not_allowed = yes
+        trigger = {
+            any_owned_ship = {
+                has_ship_flag = gts_hitomi_ship
+            }
+        }
+        hidden_effect = {
+            event_target:gts_hitomi_ship = {
+                unassign_leader = this
+                delete_ship = this
+            }
+        }
+    }
+    option = {
+        name = gts_hitomi.10.c
+        is_dialog_only = yes
+        response_text = gts_hitomi.10.c.response
+        #3xx系列事件
+        trigger = {
+        }
+        hidden_effect = {
+            country_event = { 
+                id = gts_hitomi.301
+            }
+        }
+    }
+    option = {
+        name = gts_hitomi.10.d
+        is_dialog_only = yes
+        response_text = gts_hitomi.10.d.response
+        hide_option_if_not_allowed = yes
+        #4xx系列事件
+        trigger = {
+            not = {
+                has_country_flag = gts_hitomi_love_communication_end
+            }
+        }
+        hidden_effect = {
+            set_variable = {
+                which = hitomi_love_desc_event_number
+                value = 1
+            }
+            set_variable = {
+                which = hitomi_love_desc_number
+                value = 1
+            }
+            country_event = {
+                id = gts_hitomi.401
+            }
+        }
+    }
+    option = {
+        name = gts_hitomi.10.d2
+        is_dialog_only = yes
+        response_text = gts_hitomi.10.d2.response
+        hide_option_if_not_allowed = yes
+        #4xx系列事件
+        trigger = {
+            has_country_flag = gts_hitomi_love_communication_end
+        }
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.402
+            }
+        }
+    }
+    option = {
+        name = gts_hitomi.10.e
+        is_dialog_only = yes
+        response_text = gts_hitomi.10.e.response
+        hide_option_if_not_allowed = yes
+        trigger = {
+            event_target:gts_hitomi = {
+                has_trait = gts_trait_hitomi3
+            }
+        }
+        hidden_effect = {
+            event_target:gts_hitomi = {
+                add_trait = {
+                    trait = gts_trait_hitomi4
+                    show_message = no
+                }
+                change_leader_portrait = gts_portrait_hitomi_3
+                remove_trait = gts_trait_hitomi3
+            }
+        }
+    }
+    option = {
+        name = gts_hitomi.10.e2
+        is_dialog_only = yes
+        response_text = gts_hitomi.10.e2.response
+        hide_option_if_not_allowed = yes
+        trigger = {
+            event_target:gts_hitomi = {
+                has_trait = gts_trait_hitomi4
+            }
+        }
+        hidden_effect = {
+            event_target:gts_hitomi = {
+                change_leader_portrait = gts_portrait_hitomi
+                remove_trait = gts_trait_hitomi4
+                add_trait = {
+                    trait = gts_trait_hitomi3
+                    show_message = no
+                }
+            }
+        }
+    }
+    option = {
+        name = gts_hitomi.10.g
+        is_dialog_only = yes
+        response_text = gts_hitomi.10.g.response
+        hide_option_if_not_allowed = yes
+        trigger = {
+            event_target:gts_hitomi = {
+                and = {
+                    gts_normal_leader_love_lv4_trigger = yes
+                    not = {
+                        has_trait = gts_trait_hitomi6
+                    }
+                }
+            }
+            has_country_flag = gts_hitomi_love_100_end
+        }
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.425
+            }
+            event_target:gts_hitomi = {
+                set_leader_flag = gts_married
+                add_trait = {
+                    trait = gts_trait_hitomi6
+                    show_message = no
+                }
+            }
+        }
+    }
+    option = {
+        name = gts_hitomi.10.h
+        # is_dialog_only = yes
+        # response_text = gts_hitomi.10.h.response
+        hide_option_if_not_allowed = yes
+        trigger = {
+            event_target:gts_hitomi = {
+                and = {
+                    check_variable = {
+                        which = gts_love_logs
+                        value >= 100
+                    }
+                    has_trait = gts_trait_hitomi6
+                }
+            }
+            any_owned_leader = {
+                not = {
+                    has_leader_flag = gts_hitomi_yuyue
+                }
+            }
+            has_country_flag = gts_hitomi_love_100_end
+        }
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.426
+            }
+        }
+    }
+    option = {
+        name = gts_hitomi.10.f
+        default_hide_option = yes
+    }
+}
+country_event = {
+    id = gts_hitomi.11
+    title = "gts_hitomi.11.name"
+    desc = gts_hitomi.11.desc
+    is_triggered_only = yes
+    picture = GFX_leader_recruitment_bg_renowned
+    auto_opens = yes
+    event_window_type = leader_recruit
+    picture_event_data = {
+        portrait = event_target:gts_hitomi
+        #room =
+    }
+    immediate = {
+        gts_leader_hitomi_hired = yes
+        event_target:gts_hitomi = {
+            set_owner = root
+            freeze_leader_age = yes
+        }
+    }
+    picture_event_data = {
+        portrait = event_target:gts_leader
+        room = gts_hitomi_diplomatic_room
+    }
+    option = {
+        name =  gts_hitomi.11.a.name
+        response_text =  gts_hitomi.11.a.desc
+        is_dialog_only = yes
+    }
+    option = {
+        name =  gts_hitomi.12.a.name
+        response_text =  gts_hitomi.12.a.desc
+        is_dialog_only = yes
+    }
+    option = {
+        name =  gts_hitomi.13.a.name
+        response_text =  gts_hitomi.13.a.desc
+        is_dialog_only = yes
+    }
+    option = {
+        name = HIRE
+        tag = hire_leader
+        hidden_effect = {
+            add_modifier = {
+                modifier = gts_leader_upkeep_add
+            }
+        }
+    }
+}
+
+
+
+country_event = {
+    id = gts_hitomi.101
+    title = "gts_hitomi.101.title"
+    desc = "gts_hitomi.101.a.desc"
+ 
+    picture = GFX_evt_mysterious_signal
+    
+    is_triggered_only = yes
+    trigger = {
+    }
+    immediate = {
+    }
+    after = {
+    }
+
+    option = {
+        name = gts_hitomi.next
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.102
+            }
+        }
+    }
+    option = {
+        name =  gts_hitomi.file.a
+    }
+}
+country_event = {
+    id = gts_hitomi.102
+    title = "gts_hitomi.102.title"
+    desc = "gts_hitomi.102.a.desc"
+ 
+    picture = GFX_evt_mysterious_signal
+    
+    is_triggered_only = yes
+    trigger = {
+    }
+    immediate = {
+    }
+    after = {
+    }
+
+    option = {
+        name = gts_hitomi.next
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.103
+            }
+        }
+    }
+    option = {
+        name =  gts_hitomi.file.a
+    }
+}
+country_event = {
+    id = gts_hitomi.103
+    title = "gts_hitomi.103.title"
+    desc = "gts_hitomi.103.a.desc"
+ 
+    picture = GFX_evt_mysterious_signal
+    
+    is_triggered_only = yes
+    trigger = {
+    }
+    immediate = {
+    }
+    after = {
+    }
+
+    option = {
+        name = gts_hitomi.next
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.104
+            }
+        }
+    }
+    option = {
+        name =  gts_hitomi.file.a
+    }
+}
+country_event = {
+    id = gts_hitomi.104
+    title = "gts_hitomi.104.title"
+    desc = "gts_hitomi.104.a.desc"
+ 
+    picture = GFX_evt_mysterious_signal
+    
+    is_triggered_only = yes
+    trigger = {
+    }
+    immediate = {
+    }
+    after = {
+    }
+
+    option = {
+        name = gts_hitomi.next
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.105
+            }
+        }
+    }
+    option = {
+        name =  gts_hitomi.file.a
+    }
+}
+country_event = {
+    id = gts_hitomi.105
+    title = "gts_hitomi.105.title"
+    desc = "gts_hitomi.105.a.desc"
+ 
+    picture = GFX_evt_mysterious_signal
+    
+    is_triggered_only = yes
+    trigger = {
+    }
+    immediate = {
+    }
+    after = {
+    }
+
+    option = {
+        name = gts_hitomi.next
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.106
+            }
+        }
+    }
+    option = {
+        name =  gts_hitomi.file.a
+    }
+}
+country_event = {
+    id = gts_hitomi.106
+    title = "gts_hitomi.106.title"
+    desc = "gts_hitomi.106.a.desc"
+ 
+    picture = GFX_evt_mysterious_signal
+    
+    is_triggered_only = yes
+    trigger = {
+    }
+    immediate = {
+    }
+    after = {
+    }
+
+    option = {
+        name = gts_hitomi.next
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.107
+            }
+        }
+    }
+    option = {
+        name =  gts_hitomi.file.a
+    }
+}
+country_event = {
+    id = gts_hitomi.107
+    title = "gts_hitomi.107.title"
+    desc = "gts_hitomi.107.a.desc"
+ 
+    picture = GFX_evt_mysterious_signal
+    
+    is_triggered_only = yes
+    trigger = {
+    }
+    immediate = {
+    }
+    after = {
+    }
+
+    option = {
+        name = gts_hitomi.next
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.108
+            }
+        }
+    }
+    option = {
+        name =  gts_hitomi.file.a
+    }
+}
+country_event = {
+    id = gts_hitomi.108
+    title = "gts_hitomi.108.title"
+    desc = "gts_hitomi.108.a.desc"
+ 
+    picture = GFX_evt_mysterious_signal
+    
+    is_triggered_only = yes
+    trigger = {
+    }
+    immediate = {
+    }
+    after = {
+    }
+
+    option = {
+        name = gts_hitomi.next
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.109
+            }
+        }
+    }
+    option = {
+        name =  gts_hitomi.file.a
+    }
+}
+country_event = {
+    id = gts_hitomi.109
+    title = "gts_hitomi.109.title"
+    desc = "gts_hitomi.109.a.desc"
+ 
+    picture = GFX_evt_mysterious_signal
+    
+    is_triggered_only = yes
+    trigger = {
+    }
+    immediate = {
+    }
+    after = {
+    }
+
+    option = {
+        name = gts_hitomi.next
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.110
+            }
+        }
+    }
+    option = {
+        name =  gts_hitomi.file.a
+    }
+}
+country_event = {
+    id = gts_hitomi.110
+    title = "gts_hitomi.110.title"
+    desc = "gts_hitomi.110.a.desc"
+ 
+    picture = GFX_evt_mysterious_signal
+    
+    is_triggered_only = yes
+    trigger = {
+    }
+    immediate = {
+    }
+    after = {
+    }
+
+    option = {
+        name = gts_hitomi.next
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.111
+            }
+        }
+    }
+    option = {
+        name =  gts_hitomi.file.a
+    }
+}
+country_event = {
+    id = gts_hitomi.111
+    title = "gts_hitomi.111.title"
+    desc = "gts_hitomi.111.a.desc"
+ 
+    picture = GFX_evt_mysterious_signal
+    
+    is_triggered_only = yes
+    trigger = {
+    }
+    immediate = {
+    }
+    after = {
+    }
+
+    option = {
+        name = gts_hitomi.next
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.112
+            }
+        }
+    }
+    option = {
+        name =  gts_hitomi.file.a
+    }
+}
+country_event = {
+    id = gts_hitomi.112
+    title = "gts_hitomi.112.title"
+    desc = "gts_hitomi.112.a.desc"
+ 
+    picture = GFX_evt_mysterious_signal
+    
+    is_triggered_only = yes
+    trigger = {
+    }
+    immediate = {
+    }
+    after = {
+    }
+
+    option = {
+        name = gts_hitomi.next
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.113
+            }
+        }
+    }
+    option = {
+        name =  gts_hitomi.file.a
+    }
+}
+country_event = {
+    id = gts_hitomi.113
+    title = "gts_hitomi.113.title"
+    desc = "gts_hitomi.113.a.desc"
+ 
+    picture = GFX_evt_mysterious_signal
+    
+    is_triggered_only = yes
+    trigger = {
+    }
+    immediate = {
+    }
+    after = {
+    }
+
+    option = {
+        name = gts_hitomi.next
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.114
+            }
+        }
+    }
+    option = {
+        name =  gts_hitomi.file.a
+    }
+}
+country_event = {
+    id = gts_hitomi.114
+    title = "gts_hitomi.114.title"
+    desc = "gts_hitomi.114.a.desc"
+ 
+    picture = GFX_evt_mysterious_signal
+    
+    is_triggered_only = yes
+    trigger = {
+    }
+    immediate = {
+    }
+    after = {
+    }
+
+    option = {
+        name = gts_hitomi.next
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.115
+            }
+        }
+    }
+    option = {
+        name =  gts_hitomi.file.a
+    }
+}
+country_event = {
+    id = gts_hitomi.115
+    title = "gts_hitomi.115.title"
+    desc = "gts_hitomi.115.a.desc"
+ 
+    picture = GFX_evt_mysterious_signal
+    
+    is_triggered_only = yes
+    trigger = {
+    }
+    immediate = {
+    }
+    after = {
+    }
+
+    option = {
+        name = gts_hitomi.next
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.116
+            }
+        }
+    }
+    option = {
+        name =  gts_hitomi.file.a
+    }
+}
+country_event = {
+    id = gts_hitomi.116
+    title = "gts_hitomi.116.title"
+    desc = "gts_hitomi.116.a.desc"
+ 
+    picture = GFX_evt_mysterious_signal
+    
+    is_triggered_only = yes
+    trigger = {
+    }
+    immediate = {
+    }
+    after = {
+    }
+
+    option = {
+        name = gts_hitomi.next
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.117
+            }
+        }
+    }
+    option = {
+        name =  gts_hitomi.file.a
+    }
+}
+country_event = {
+    id = gts_hitomi.117
+    title = "gts_hitomi.117.title"
+    desc = "gts_hitomi.117.a.desc"
+ 
+    picture = GFX_evt_mysterious_signal
+    
+    is_triggered_only = yes
+    trigger = {
+    }
+    immediate = {
+    }
+    after = {
+    }
+
+    option = {
+        name = gts_hitomi.next
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.118
+            }
+        }
+    }
+    option = {
+        name =  gts_hitomi.file.a
+    }
+}
+country_event = {
+    id = gts_hitomi.118
+    title = "gts_hitomi.118.title"
+    desc = "gts_hitomi.118.a.desc"
+ 
+    picture = GFX_evt_mysterious_signal
+    
+    is_triggered_only = yes
+    trigger = {
+    }
+    immediate = {
+    }
+    after = {
+    }
+
+    option = {
+        name = gts_hitomi.next
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.119
+            }
+        }
+    }
+    option = {
+        name =  gts_hitomi.file.a
+    }
+}
+country_event = {
+    id = gts_hitomi.119
+    title = "gts_hitomi.119.title"
+    desc = "gts_hitomi.119.a.desc"
+ 
+    picture = GFX_evt_mysterious_signal
+    
+    is_triggered_only = yes
+    trigger = {
+    }
+    immediate = {
+    }
+    after = {
+    }
+
+    option = {
+        name = gts_hitomi.next
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.120
+            }
+        }
+    }
+    option = {
+        name =  gts_hitomi.file.a
+    }
+}
+country_event = {
+    id = gts_hitomi.120
+    title = "gts_hitomi.120.title"
+    desc = "gts_hitomi.120.a.desc"
+ 
+    picture = GFX_evt_mysterious_signal
+    
+    is_triggered_only = yes
+    trigger = {
+    }
+    immediate = {
+    }
+    after = {
+    }
+
+    option = {
+        name = gts_hitomi.next
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.121
+            }
+        }
+    }
+    option = {
+        name =  gts_hitomi.file.a
+    }
+}
+country_event = {
+    id = gts_hitomi.121
+    title = "gts_hitomi.121.title"
+    desc = "gts_hitomi.121.a.desc"
+ 
+    picture = GFX_evt_mysterious_signal
+    
+    is_triggered_only = yes
+    trigger = {
+    }
+    immediate = {
+    }
+    after = {
+    }
+
+    option = {
+        name = gts_hitomi.next
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.122
+            }
+        }
+    }
+    option = {
+        name =  gts_hitomi.file.a
+    }
+}
+country_event = {
+    id = gts_hitomi.122
+    title = "gts_hitomi.122.title"
+    desc = "gts_hitomi.122.a.desc"
+ 
+    picture = GFX_evt_mysterious_signal
+    
+    is_triggered_only = yes
+    trigger = {
+    }
+    immediate = {
+    }
+    after = {
+    }
+
+    option = {
+        name = gts_hitomi.next
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.123
+            }
+        }
+    }
+    option = {
+        name =  gts_hitomi.file.a
+    }
+}
+country_event = {
+    id = gts_hitomi.123
+    title = "gts_hitomi.123.title"
+    desc = "gts_hitomi.123.a.desc"
+ 
+    picture = GFX_evt_mysterious_signal
+    
+    is_triggered_only = yes
+    trigger = {
+    }
+    immediate = {
+    }
+    after = {
+    }
+
+    # option = {
+    #     name = gts_hitomi.next
+    #     hidden_effect = {
+    #         country_event = {
+    #             id = gts_hitomi.124
+    #         }
+    #     }
+    # }
+    option = {
+        name =  gts_hitomi.file.a
+    }
+}
+country_event = {
+    id = gts_hitomi.124
+    title = "gts_hitomi.124.title"
+    desc = "gts_hitomi.124.a.desc"
+ 
+    picture = GFX_evt_mysterious_signal
+    
+    is_triggered_only = yes
+    trigger = {
+    }
+    immediate = {
+    }
+    after = {
+    }
+
+    option = {
+        name = gts_hitomi.next
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.125
+            }
+        }
+    }
+    option = {
+        name =  gts_hitomi.file.a
+    }
+}
+country_event = {
+    id = gts_hitomi.125
+    title = "gts_hitomi.125.title"
+    desc = "gts_hitomi.125.a.desc"
+ 
+    picture = GFX_evt_mysterious_signal
+    
+    is_triggered_only = yes
+    trigger = {
+    }
+    immediate = {
+    }
+    after = {
+    }
+
+    option = {
+        name = gts_hitomi.next
+        hidden_effect = {
+        }
+    }
+}
+
+
+
+country_event = {
+    #该gui无title,仅作为标注事件主要内容使用
+    id = gts_hitomi.201
+    title = gts_hitomi.201.title
+    desc = gts_hitomi_DESCText
+    is_triggered_only = yes
+    diplomatic = yes
+    picture_event_data = {
+        portrait = gts_portrait_hitomi
+        room = gts_hitomi_diplomatic_room
+    }
+    custom_gui = "gts_hitomi_background_gui"
+    custom_gui_option = gts_hitomi_option_gui
+    option = {
+        allow = {
+            hidden_trigger = {
+                not = {
+                    has_country_flag = gts_hitomi_ship_gril_start
+                }
+                check_variable = {
+                    which = hitomi_love_desc_number
+                    value >= 11
+                }
+            }
+            custom_tooltip =  gts_hitomi.201.custom
+        }
+        name = "gts_hitomi.201.a"
+        hidden_effect = {
+            enable_special_project = {
+                name = "gts_hitomi_ship_gril"
+            }
+            set_country_flag = gts_hitomi_ship_gril_start
+        }
+    }
+    after = {
+        hidden_effect = {
+        }
+    }
+}
+country_event = {
+    #该gui无title,仅作为标注事件主要内容使用
+    id = gts_hitomi.202
+    title = gts_hitomi.201.title
+    desc = gts_hitomi_DESCText
+    is_triggered_only = yes
+    diplomatic = yes
+    picture_event_data = {
+        portrait = gts_portrait_hitomi
+        room = gts_hitomi_diplomatic_room
+    }
+    custom_gui = "gts_hitomi_background_gui"
+    custom_gui_option = gts_hitomi_option_gui
+    option = {
+        allow = {
+            hidden_trigger = {
+                check_variable = {
+                    which = hitomi_love_desc_number
+                    value >= 8
+                }
+            }
+            custom_tooltip =  gts_hitomi.202.custom
+        }
+        name = "gts_hitomi.202.a"
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.298
+            }
+        }
+    }
+    after = {
+        hidden_effect = {
+        }
+    }
+}
+country_event = {
+    #获得舰娘
+    id = gts_hitomi.298
+    hide_window = yes
+    is_triggered_only = yes
+    immediate = {
+        gts_create_hitomi_fleet = yes
+    }
+}
+country_event = {
+    #改造完成的
+    id = gts_hitomi.299
+    title = gts_hitomi.299.title
+    desc = gts_hitomi.299.desc
+    diplomatic = yes
+    # picture =
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+        room = gts_hitomi_event17_room
+    }
+    is_triggered_only = yes
+    trigger = {
+    }
+
+    option = {
+        name = gts_hitomi.299.a
+    }
+    after = {
+    }
+}
+
+country_event = {
+    #舰队胜利
+    id = gts_hitomi.211
+    title = "gts_hitomi.211.title"
+    desc = "gts_hitomi.211.desc"
+    # picture = GFX_evt_mysterious_signal
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+        room = gts_hitomi_event16_room
+    }
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = {
+        This = {
+            is_at_war_with = FROM
+        }
+        fromfrom = {
+            is_same_value = event_target:gts_hitomi_ship
+        }
+    }
+    immediate = {
+    }
+    after = {
+    }
+
+    option = {
+        name = gts_hitomi.211.a
+        hidden_effect = {
+        }
+    }
+}
+country_event  = {
+    #舰队胜利  联动
+    id = gts_hitomi.212
+    title = "gts_hitomi.212.title"
+    desc = "gts_hitomi.212.desc"
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+        room = gts_hitomi_event21_room
+    }
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = {
+        and = {
+            any_owned_ship = {
+                has_ship_flag = gts_hitomi_ship
+            }
+            any_owned_leader = {
+                has_leader_flag = gts_linfeng
+            }
+        }
+    }
+    immediate = {
+    }
+    after = {
+    }
+
+    option = {
+        name = gts_hitomi.212.a
+        hidden_effect = {
+            random_list = {
+                1 = {
+                    country_event = {
+                        id = gts_hitomi.213
+                    }
+                }
+                1 = {
+                    country_event = {
+                        id = gts_hitomi.214
+                    }
+                }
+            }
+        }
+    }
+}
+country_event  = {
+    #舰队胜利  联动
+    id = gts_hitomi.213
+    title = "gts_hitomi.213.title"
+    desc = "gts_hitomi.213.desc"
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+        room = gts_hitomi_event22_room
+    }
+    is_triggered_only = yes
+    immediate = {
+    }
+    after = {
+    }
+    option = {
+        name = gts_hitomi.213.a
+        hidden_effect = {
+        }
+    }
+}
+country_event  = {
+    #舰队胜利  联动
+    id = gts_hitomi.214
+    title = "gts_hitomi.214.title"
+    desc = "gts_hitomi.214.desc"
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+        room = gts_hitomi_event23_room
+    }
+    is_triggered_only = yes
+    immediate = {
+    }
+    after = {
+    }
+    option = {
+        name = gts_hitomi.214.a
+        hidden_effect = {
+        }
+    }
+}
+
+planet_event = {
+    id = gts_hitomi.215
+    hide_window = yes
+
+    is_triggered_only = yes
+
+    immediate = {#天灾老三样
+
+        # 天災相關
+
+        # Contingency Machine World
+        if = {
+            limit = {
+                is_planet_class = pc_ai
+                NOT = { has_planet_flag = machine_lair }
+            }
+            set_planet_flag = destroyed_by_colossus
+            set_planet_flag = planet_cracked
+            planet_event = { id = crisis.2040 }
+        }
+
+        # Contingency Final Machine World
+        if = {
+            limit = {
+                is_planet_class = pc_ai
+                has_planet_flag = machine_lair
+            }
+            set_planet_flag = destroyed_by_colossus
+            set_planet_flag = planet_cracked
+            from.owner = { save_event_target_as = final_machine_world_destroyer }
+            stop_crisis_sound = yes
+            planet_event = { id = crisis.2046 }
+        }
+
+        # Swarm Situation Log counter
+        if = {
+            limit = {
+                exists = owner
+                owner = { is_country_type = swarm }
+            }
+            every_country = {
+                limit = { has_event_chain = "prethoryn_scourge_chain" }
+                add_event_chain_counter = {
+                    event_chain = "prethoryn_scourge_chain"
+                    counter = "infested_worlds"
+                    amount = -1
+                }
+                add_event_chain_counter = {
+                    event_chain = "prethoryn_scourge_chain"
+                    counter = "infested_worlds_cleansed"
+                    amount = 1
+                }
+            }
+        }
+
+        # 產生威脅度
+
+        if = {
+            limit = {
+                exists = owner
+                owner = {
+                    NOT = { is_same_value = from.owner }
+                    OR = {
+                        is_country_type = default
+                        is_country_type = fallen_empire
+                        is_country_type = awakened_fallen_empire
+                    }
+                }
+            }
+            # Generate threat
+            if = {
+                limit = {
+                    is_colony = yes
+                }
+                add_threat = { who = from.owner amount = 3 }
+                # modifier for allies + those upset by genocide
+                every_country = {
+                    limit = {
+                        NOR = {
+                            is_same_value = from.owner
+                            is_same_value = root.owner
+                            AND = {
+                                has_federation = yes
+                                is_in_federation_with = from.owner
+                            }
+                        }
+                        OR = {
+                            has_communications = from.owner
+                            has_communications = root.owner
+                        }
+                        OR = {
+                            AND = {
+                                has_federation = yes
+                                is_in_federation_with = root.owner
+                            }
+                            has_ai_personality = awakened_fallen_empire_xenophile
+                            AND = {
+                                is_country_type = default
+                                OR = {
+                                    is_egalitarian = yes
+                                    is_xenophile = yes
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            else = {
+                add_threat = { who = from.owner amount = 1 }
+            }
+
+        }
+
+        # 產生倦怠度
+
+        # Add war exhaustion to planet owner
+        if = {
+            limit = {
+                exists = owner
+            }
+            owner = {
+                if = {
+                    limit = { #isn't the case when the crisis bombards planets, for instance
+                        is_at_war_with = from.fleet.owner
+                    }
+                    add_static_war_exhaustion = {
+                        attacker = from.fleet.owner
+                        location = root
+                        value_for_planet_destruction = 1.0
+                    }
+                }
+            }
+        }
+
+        # 摧毀軌道站
+
+        if = {
+            limit = {
+                exists = orbital_defence
+            }
+            destroy_fleet = orbital_defence
+        }
+
+        # 拆建築
+
+        remove_all_buildings = yes
+
+        # 拆特殊星球
+
+        # destroy habitats and ringworlds
+        if = {
+            limit = {
+                is_planet_class = pc_habitat
+            }
+            spawn_habitat_cracker_effect = yes
+        }
+        else_if = {
+            limit = {
+                is_planet_class = pc_cosmogenesis_world
+            }
+            spawn_lathe_cracker_effect = yes
+        }
+        else_if = {
+            limit = {
+                is_ringworld = yes
+            }
+            spawn_ringworld_cracker_effect = yes
+            change_pc = pc_ringworld_habitable_damaged
+        }
+
+        # 轉變成愛液星球
+
+        else = {
+            clear_planet_modifiers = yes
+            clear_deposits = yes
+            change_pc = pc_broken
+        }
+
+        # 拆觀測站
+
+        if = {
+            limit = {
+                has_observation_outpost = yes
+            }
+            observation_outpost = {
+                dismantle = yes
+            }
+        }
+
+        # 別人的球
+
+        if = {
+            limit = {
+                exists = owner
+                owner = { NOT = { is_same_value = from.owner } }
+            }
+
+            gts_set_count_kill_pop_effect = yes
+
+            root = {
+                # 計算人口數量
+                export_trigger_value_to_variable = {
+                    trigger = pop_amount
+                    variable = gts_bruh_get_planet_killed_pop_count
+                }
+                # 計算城市數量
+                export_trigger_value_to_variable = {
+                    trigger = pop_amount
+                    variable = gts_bruh_get_planet_destroyed_city_count
+                }
+                divide_variable = {
+                    which = gts_bruh_get_planet_destroyed_city_count
+                    value = 100
+                }
+                round_variable = gts_bruh_get_planet_destroyed_city_count
+                # 計算經驗獲取
+                export_trigger_value_to_variable = {
+                    trigger = pop_amount
+                    variable = gts_bruh_get_experience_count
+                }
+                divide_variable = {
+                    which = gts_bruh_get_experience_count
+                    value = 100
+                }
+                round_variable = gts_bruh_get_experience_count
+            }
+
+            event_target:gts_hitomi = {
+                change_variable = {
+                    which = gts_city_kills_logs
+                    value = root.gts_bruh_get_planet_destroyed_city_count
+                }
+                change_variable = {
+                    which = gts_planet_kills_logs
+                    value = 1
+                }
+            }
+
+            from.owner = {
+                country_event = { id = gts_hitomi.216 }
+            }
+        }
+
+
+    }
+
+    after = {
+
+        # 人口消除
+
+        every_owned_pop_group = {
+            kill_all_pop = yes
+        }
+
+
+        destroy_colony = yes
+    }
+}
+#炸球后弹出事件
+country_event = {
+    id = gts_hitomi.216
+    title = gts_hitomi.216.title
+    desc = gts_hitomi.216.desc
+    # picture =
+    show_sound = event_mystic_reveal
+    location = from
+
+    is_triggered_only = yes
+
+    trigger = {
+        NOT = { has_country_flag = GTS_PLANET_KILLER_hitomi_used }
+    }
+    option = {
+        name = gts_hitomi.216.a
+        hidden_effect = {
+            set_country_flag = GTS_PLANET_KILLER_hitomi_used
+        }
+    }
+}
+
+
+
+
+
+
+
+
+country_event = {
+    id = gts_hitomi.301
+    title = "gts_hitomi.301.title"
+    desc = "gts_hitomi.301.desc"
+    diplomatic = yes
+    picture = GFX_evt_mysterious_signal
+    picture_event_data = {
+        portrait = gts_portrait_hitomi
+        room = gts_hitomi_diplomatic_room
+    }
+    is_triggered_only = yes
+    option = {
+        name = gts_hitomi.301.a
+        is_dialog_only = yes
+        # response_text = gts_hitomi.10.a.response
+        hidden_effect = {
+            event_target:gts_hitomi = {
+                change_leader_portrait = gts_portrait_hitomi
+            }
+        }
+    }
+    option = {
+        name = gts_hitomi.301.b
+        is_dialog_only = yes
+        # response_text = gts_hitomi.10.a.response
+        hidden_effect = {
+            event_target:gts_hitomi = {
+                change_leader_portrait = gts_portrait_hitomi_2
+            }
+        }
+    }
+    option = {
+        name = gts_hitomi.301.c
+        is_dialog_only = yes
+        # response_text = gts_hitomi.10.a.response
+        hidden_effect = {
+            event_target:gts_hitomi = {
+                change_leader_portrait = gts_portrait_hitomi_4
+            }
+        }
+    }
+    option = {
+        name = gts_hitomi.301.d
+        is_dialog_only = yes
+        # response_text = gts_hitomi.10.a.response
+        hidden_effect = {
+            event_target:gts_hitomi = {
+                change_leader_portrait = gts_portrait_hitomi_5
+            }
+        }
+    }
+    option = {
+        name = gts_hitomi.301.e
+        is_dialog_only = yes
+        # response_text = gts_hitomi.10.a.response
+        hidden_effect = {
+            event_target:gts_hitomi = {
+                change_leader_portrait = gts_portrait_hitomi_6
+            }
+        }
+    }
+    # option = {
+    #     name = gts_hitomi.301.f
+    #     is_dialog_only = yes
+    #     # response_text = gts_hitomi.10.a.response
+    #     hidden_effect = {
+    #         event_target:gts_hitomi = {
+    #             change_leader_portrait = gts_portrait_hitomi_2
+    #         }
+    #     }
+    # }
+    # option = {
+    #     name = gts_hitomi.301.g
+    #     is_dialog_only = yes
+    #     # response_text = gts_hitomi.10.a.response
+    #     hidden_effect = {
+    #         event_target:gts_hitomi = {
+    #             change_leader_portrait = gts_portrait_hitomi_2
+    #         }
+    #     }
+    # }
+    option = {
+        name = gts_hitomi.10.f
+        default_hide_option = yes
+    }
+}
+
+country_event = {
+    id = gts_hitomi.401
+    title = gts_hitomi.401.name
+    desc = gts_hitomi_DESCText
+    is_triggered_only = yes
+    diplomatic = yes
+    picture_event_data = {
+        portrait = gts_portrait_hitomi
+        room = gts_hitomi_diplomatic_room
+    }
+    custom_gui = "gts_hitomi_background_gui"
+    custom_gui_option = gts_hitomi_option_gui
+    option = {
+        hide_option_if_not_allowed = yes
+        trigger = {
+        }
+        name = "gts_hitomi.401.a"
+        hidden_effect = {
+        }
+    }
+    after = {
+        hidden_effect = {
+            set_country_flag = gts_hitomi_love_communication_end
+            set_variable = {
+                value = 1
+                which = hitomi_love_desc_number
+            }
+        }
+    }
+}
+country_event = {
+    id = gts_hitomi.402
+    title = "gts_hitomi.402.name"
+    desc = "gts_hitomi.402.desc"
+    diplomatic = yes
+    picture = GFX_evt_mysterious_signal
+    picture_event_data = {
+        portrait = gts_portrait_hitomi
+        room = gts_hitomi_diplomatic_room
+    }
+    is_triggered_only = yes
+    option = {
+        name = gts_hitomi.402.a
+        # is_dialog_only = yes
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.403
+            }
+        }
+    }
+    option = {
+        name = gts_hitomi.402.b
+        # is_dialog_only = yes
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.404
+            }
+        }
+    }
+    option = {
+        name = gts_hitomi.402.c
+        # is_dialog_only = yes
+        trigger = {
+            # any_owned_ship = {
+            #     has_ship_flag = gts_hitomi_ship
+            # }
+            has_country_flag = gts_hitomi_ship_gril_success
+        }
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.405
+            }
+        }
+    }
+    option = {
+        name = gts_hitomi.402.d
+        hide_option_if_not_allowed = yes
+        trigger = {
+            not = {
+                has_country_flag = gts_hitomi_love_reduce_triggered
+            }
+        }
+        # is_dialog_only = yes
+        hidden_effect = {
+            set_variable = {
+                which = hitomi_love_desc_event_number
+                value = 4
+            }
+            set_variable = {
+                which = hitomi_love_desc_number
+                value = 1
+            }
+            country_event = {
+                id = gts_hitomi.406
+            }
+        }
+    }
+    # option = {
+    #     name = gts_hitomi.402.e
+    #     hide_option_if_not_allowed = yes
+    #     trigger = {
+    #         not = {
+    #             has_country_flag = gts_hitomi_love_enhance_triggered
+    #         }
+    #         event_target:gts_hitomi = {
+    #             check_variable = {
+    #                 which = gts_love_logs
+    #                 value >= 100
+    #             }
+    #         }
+    #     }
+    #     # is_dialog_only = yes
+    #     hidden_effect = {
+    #         country_event = {
+    #             id = gts_hitomi.407
+    #         }
+    #     }
+    # }
+    option = {
+        name = gts_hitomi.return
+        # is_dialog_only = yes
+        default_hide_option = yes
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.10
+            }
+        }
+    }
+    option = {
+        name = gts_hitomi.10.f
+        default_hide_option = yes
+    }
+}
+
+country_event = {
+    #
+    id = gts_hitomi.403
+    title = gts_hitomi.403.name
+    desc = gts_hitomi.403.desc
+    picture = GFX_gts_hitomi_14
+    show_sound = event_default
+    is_triggered_only = yes
+    immediate = {
+       
+    }
+    option = { 
+        name = gts_hitomi.403.a
+        hidden_effect = {
+            event_target:gts_hitomi = {
+                gts_love_system_increase = { value = 5 }
+            }
+        }
+    }
+}
+country_event = {
+    #
+    id = gts_hitomi.404
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    title = gts_hitomi.404.name
+    desc = gts_hitomi.404.desc
+    picture_event_data = {
+        room = gts_hitomi_event18_room
+    }
+    show_sound = event_default
+    is_triggered_only = yes
+    immediate = {
+
+    }
+    option = {
+        name = gts_hitomi.404.a
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.4042
+            }
+        }
+    }
+}
+country_event = {
+    #
+    id = gts_hitomi.4042
+    title = gts_hitomi.4042.name
+    desc = gts_hitomi.4042.desc
+    picture_event_data = {
+        room = gts_hitomi_event19_room
+    }
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    show_sound = event_default
+    is_triggered_only = yes
+    immediate = {
+
+    }
+    option = {
+        name = gts_hitomi.4042.a
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.4043
+            }
+        }
+    }
+}
+country_event = {
+    #
+    id = gts_hitomi.4043
+    title = gts_hitomi.4043.name
+    desc = gts_hitomi.4043.desc
+    picture_event_data = {
+        room = gts_hitomi_event20_room
+    }
+    show_sound = event_default
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    is_triggered_only = yes
+    immediate = {
+
+    }
+    option = {
+        name = gts_hitomi.4043.a
+        hidden_effect = {
+            event_target:gts_hitomi = {
+                gts_love_system_increase = { value = 10 }
+            }
+        }
+    }
+}
+country_event = {
+    #
+    id = gts_hitomi.405
+    hide_window = yes
+    picture = GFX_evt_atmospheric_entry
+    show_sound = event_default
+    is_triggered_only = yes
+    immediate = {
+        enable_special_project = {
+            name = "gts_hitomi_fleet_love_exercise"
+            location = capital_star
+        }
+    }
+}
+country_event = {
+    #
+    id = gts_hitomi.4052
+    title = gts_hitomi.4052.name
+    desc = gts_hitomi.4052.desc
+    picture = GFX_evt_atmospheric_entry
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+        room = gts_hitomi_event13_room
+    }
+    show_sound = event_default
+    is_triggered_only = yes
+    immediate = {
+
+    }
+    option = {
+        name = gts_hitomi.4052.a
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.4053
+            }
+        }
+    }
+}
+country_event = {
+    #
+    id = gts_hitomi.4053
+    title = gts_hitomi.4053.name
+    desc = gts_hitomi.4053.desc
+    picture = GFX_evt_atmospheric_entry
+    show_sound = event_default
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+        room = gts_hitomi_event14_room
+    }
+    is_triggered_only = yes
+    immediate = {
+
+    }
+    option = {
+        name = gts_hitomi.4053.a
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.4054
+            }
+        }
+    }
+}
+country_event = {
+    #
+    id = gts_hitomi.4054
+    title = gts_hitomi.4054.name
+    desc = gts_hitomi.4054.desc
+    picture = GFX_evt_atmospheric_entry
+    show_sound = event_default
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+        room = gts_hitomi_event15_room
+    }
+    is_triggered_only = yes
+    immediate = {
+
+    }
+    option = {
+        name = gts_hitomi.4054.a
+        hidden_effect = {
+            event_target:gts_hitomi = {
+                gts_love_system_increase = { value = 10 }
+            }
+        }
+    }
+}
+
+country_event = {
+    #
+    id = gts_hitomi.406
+    title = gts_hitomi.406.name
+    desc = gts_hitomi_DESCText
+    diplomatic = yes
+    picture = GFX_evt_atmospheric_entry
+    custom_gui = "gts_hitomi_background_gui"
+    custom_gui_option = gts_hitomi_option_gui
+    show_sound = event_default
+    is_triggered_only = yes
+    after = {
+        set_country_flag = gts_hitomi_love_reduce_triggered
+    }
+    option = {
+        name = gts_hitomi.406.a
+        hidden_effect = {
+            country_event = {
+                id =  gts_hitomi.4061
+            }
+        }
+    }
+}
+country_event = {
+    #
+    id = gts_hitomi.4061
+    title = gts_hitomi.4061.name
+    desc = gts_hitomi.4061.desc
+    diplomatic = yes
+    # picture =
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+        room = gts_hitomi_event1_room
+    }
+    show_sound = event_default
+    is_triggered_only = yes
+    immediate = {
+    }
+    option = {
+        name = gts_hitomi.4061.a
+        hidden_effect = { 
+            country_event = { 
+                id = gts_hitomi.4062
+            }
+        }
+    }
+}
+country_event = {
+    #
+    id = gts_hitomi.4062
+    title = gts_hitomi.4062.name
+    desc = gts_hitomi.4062.desc
+    diplomatic = yes
+    # picture =
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+        room = gts_hitomi_event2_room
+    }
+    show_sound = event_default
+    is_triggered_only = yes
+    immediate = {
+    }
+    option = {
+        name = gts_hitomi.4062.a
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.4063
+            }
+        }
+    }
+}
+country_event = {
+    #
+    id = gts_hitomi.4063
+    title = gts_hitomi.4063.name
+    desc = gts_hitomi.4063.desc
+    diplomatic = yes
+    # picture =
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+        room = gts_hitomi_event3_room
+    }
+    show_sound = event_default
+    is_triggered_only = yes
+    immediate = {
+    }
+    option = {
+        name = gts_hitomi.4063.a
+        hidden_effect = {
+
+        }
+    }
+}
+country_event = {
+    #
+    id = gts_hitomi.407
+    title = gts_hitomi.407.name
+    desc = gts_hitomi.407.desc
+    picture = GFX_evt_atmospheric_entry
+    show_sound = event_default
+    is_triggered_only = yes
+    after = {
+        set_country_flag = gts_hitomi_love_enhance_triggered
+    }
+    option = {
+        name = gts_hitomi.407.a
+    }
+}
+
+country_event = {
+    id =  gts_hitomi.420
+    hide_window = yes
+    is_triggered_only = yes
+    immediate = {
+        if = {
+            limit = {
+                event_target:gts_hitomi = {
+                 gts_normal_leader_love_lv2_trigger = yes
+                }
+            }
+            country_event = {
+                id = gts_hitomi.421
+            }
+        }
+
+
+        if = {
+            limit = {
+                and = {
+                    event_target:gts_hitomi = {
+                        check_variable = {
+                            which = gts_love_logs
+                            value >= @gts_love_level3
+                        }
+                    }
+                    has_country_flag = gts_hitomi_love_25_end
+                }
+            }
+            country_event = {
+                id = gts_hitomi.423
+            }
+        }
+        if = {
+            limit = {
+                and = {
+                    event_target:gts_hitomi = {
+                        check_variable = {
+                            which = gts_love_logs
+                            value >= @gts_love_level4
+                        }
+                    }
+                    has_country_flag = gts_hitomi_love_50_end
+                }
+            }
+            country_event = {
+                id = gts_hitomi.424
+            }
+        }
+        if = {
+            limit = {
+                and = {
+                    event_target:gts_hitomi = {
+                        check_variable = {
+                            which = gts_love_logs
+                            value >= @gts_love_level5
+                        }
+                    }
+                    has_country_flag = gts_hitomi_love_75_end
+                }
+            }
+            country_event = {
+                id = gts_hitomi.422
+            }
+        }
+        # if = {
+        #     limit = {
+        #         and = {
+        #             event_target:gts_hitomi = {
+        #                 check_variable = {
+        #                     which = gts_love_logs
+        #                     value >= 100
+        #                 }
+        #             }
+        #             has_country_flag = gts_hitomi_love_80_end
+        #         }
+        #     }
+        #     country_event = {
+        #         id = gts_hitomi.425
+        #     }
+        # }
+        # if = {
+        #     limit = {
+        #         event_target:gts_hitomi = {
+        #             and = {
+        #                 check_variable = {
+        #                     which = gts_love_logs
+        #                     value >= 100
+        #                 }
+        #                 has_trait = gts_trait_hitomi6
+        #             }
+        #         }
+        #         has_country_flag = gts_hitomi_love_100_end
+        #     }
+        #     country_event = {
+        #         id = gts_hitomi.426
+        #     }
+        # }
+    }
+}
+country_event = {
+    #
+    id = gts_hitomi.421
+    title = gts_hitomi.421.name
+    desc = gts_hitomi.421.desc
+    # picture = GFX_evt_atmospheric_entry
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+        room = gts_hitomi_event4_room
+    }
+    show_sound = event_default
+    is_triggered_only = yes
+    fire_only_once = yes
+    after = {
+        set_country_flag = gts_hitomi_love_25_end
+    }
+    option = {
+        name = gts_hitomi.421.a
+        hidden_effect = {
+        }
+    }
+}
+
+country_event = {
+    #
+    id = gts_hitomi.423
+    title = gts_hitomi.423.name
+    desc = gts_hitomi.423.desc
+    diplomatic = yes
+    custom_gui = "gts_vertical_event_window"
+    picture_event_data = {
+        room = gts_hitomi_event5_room
+    }
+    show_sound = event_default
+    is_triggered_only = yes
+    fire_only_once = yes
+    after = {
+        set_country_flag = gts_hitomi_love_50_end
+    }
+    option = {
+        name = gts_hitomi.423.a
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.4231
+            }
+        }
+    }
+    option = {
+        name = gts_hitomi.423.b
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.4232
+            }
+        }
+    }
+}
+country_event = {
+    #
+    id = gts_hitomi.4231
+    title = gts_hitomi.423.name
+    desc = gts_hitomi.4231.desc
+    picture = GFX_gts_hitomi_11
+    show_sound = event_default
+    is_triggered_only = yes
+    fire_only_once = yes
+    immediate = {
+    }
+    option = {
+        name = gts_hitomi.4231.a
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.4232
+            }
+        }
+    }
+}
+country_event = {
+    #
+    id = gts_hitomi.4232
+    title = gts_hitomi.423.name
+    desc = gts_hitomi.4232.desc
+    # picture = GFX_evt_atmospheric_entry
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+        room = gts_hitomi_event6_room
+    }
+    show_sound = event_default
+    is_triggered_only = yes
+    fire_only_once = yes
+    immediate = {
+    }
+    option = {
+        name = gts_hitomi.4232.a
+        hidden_effect = {
+        }
+    }
+}
+country_event = {
+    #
+    id = gts_hitomi.424
+    title = gts_hitomi.424.name
+    desc = gts_hitomi.424.desc
+    picture = GFX_evt_atmospheric_entry
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+        room = gts_hitomi_event7_room
+    }
+    show_sound = event_default
+    is_triggered_only = yes
+    fire_only_once = yes
+    after = {
+        set_country_flag = gts_hitomi_love_75_end
+    }
+    option = {
+        name = gts_hitomi.424.a
+        hidden_effect = {
+            country_event = { 
+                id = gts_hitomi.4241
+            }
+        }
+    }
+}
+country_event = {
+    #
+    id = gts_hitomi.4241
+    title = gts_hitomi.4241.name
+    desc = gts_hitomi.4241.desc
+    picture = GFX_evt_atmospheric_entry
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+        room = gts_hitomi_event8_room
+    }
+    show_sound = event_default
+    is_triggered_only = yes
+    fire_only_once = yes
+    after = {
+    }
+    option = {
+        name = gts_hitomi.4241.a
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.4242
+            }
+        }
+    }
+}
+country_event = {
+    #
+    id = gts_hitomi.4242
+    title = gts_hitomi.4242.name
+    desc = gts_hitomi.4242.desc
+    picture = GFX_evt_atmospheric_entry
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+        room = gts_hitomi_event9_room
+    }
+    show_sound = event_default
+    is_triggered_only = yes
+    fire_only_once = yes
+    after = {
+    }
+    option = {
+        name = gts_hitomi.4242.a
+        hidden_effect = {
+        }
+    }
+}
+country_event = {
+    #
+    id = gts_hitomi.422
+    title = gts_hitomi.422.name
+    desc = gts_hitomi.422.desc
+    picture = GFX_gts_hitomi_12
+    show_sound = event_default
+    is_triggered_only = yes
+    fire_only_once = yes
+    after = {
+        set_country_flag = gts_hitomi_love_100_end
+
+    }
+    option = {
+        name = gts_hitomi.422.a
+        hidden_effect = {
+        }
+    }
+}
+country_event = {
+    id = gts_hitomi.425
+    title = gts_hitomi.425.name
+    desc = gts_hitomi.425.desc
+    is_triggered_only = yes
+    event_window_type = leader_recruit
+    # picture = GFX_evt_gaia
+    immediate = {
+    }
+    picture_event_data = {
+        portrait = event_target:gts_hitomi
+        #room =
+    }
+    option = {
+        hidden_effect = {
+            set_country_flag = gts_hitomi.425_a
+        }
+        name = gts_hitomi.425.a
+        response_text = gts_hitomi.425.a_effect
+        is_dialog_only = yes
+    }
+    option = {
+        hide_option_if_not_allowed = yes
+        trigger = {
+            root = {
+                has_country_flag = gts_hitomi.425_a
+            }
+        }
+        hidden_effect = {
+            set_country_flag = gts_hitomi.425_b
+        }
+        name = gts_hitomi.425.b
+        response_text = gts_hitomi.425.b_effect
+        is_dialog_only = yes
+    }
+    option = {
+        hide_option_if_not_allowed = yes
+        trigger = {
+            root = {
+                has_country_flag = gts_hitomi.425_b
+            }
+        }
+        hidden_effect = {
+            set_country_flag = gts_hitomi.425_c
+        }
+        name = gts_hitomi.425.c
+        response_text = gts_hitomi.425.c_effect
+        is_dialog_only = yes
+    }
+    option = {
+        hide_option_if_not_allowed = yes
+        trigger = {
+            root = {
+                has_country_flag = gts_hitomi.425_c
+            }
+        }
+        hidden_effect = {
+            set_country_flag = gts_hitomi.425_d
+        }
+        name = gts_hitomi.425.d
+        response_text = gts_hitomi.425.d_effect
+        is_dialog_only = yes
+    }
+    option = {
+        hide_option_if_not_allowed = yes
+        trigger = {
+            root = {
+                has_country_flag = gts_hitomi.425_d
+            }
+        }
+        hidden_effect = {
+            set_country_flag = gts_hitomi.425_e
+        }
+        name = gts_hitomi.425.e
+        response_text = gts_hitomi.425.e_effect
+        is_dialog_only = yes
+    }
+    option = {
+        hide_option_if_not_allowed = yes
+        trigger = {
+            root = {
+                has_country_flag = gts_hitomi.425_e
+            }
+        }
+        hidden_effect = {
+            set_country_flag = gts_hitomi.425_f
+        }
+        name = gts_hitomi.425.f
+        response_text = gts_hitomi.425.f_effect
+        is_dialog_only = yes
+    }
+    option = {
+        hide_option_if_not_allowed = yes
+        trigger = {
+            root = {
+                has_country_flag = gts_hitomi.425_f
+            }
+        }
+        hidden_effect = {
+            set_country_flag = gts_hitomi.425_g
+        }
+        name = gts_hitomi.425.g
+        response_text = gts_hitomi.425.g_effect
+        is_dialog_only = yes
+    }
+    option = {
+        hide_option_if_not_allowed = yes
+        trigger = {
+            root = {
+                has_country_flag = gts_hitomi.425_g
+            }
+        }
+        hidden_effect = {
+            set_country_flag = gts_hitomi.425_h
+        }
+        name = gts_hitomi.425.h
+        response_text = gts_hitomi.425.h_effect
+        is_dialog_only = yes
+    }
+    option = {
+        allow = {
+            hidden_trigger = {
+                has_country_flag = gts_hitomi.425_h
+                # fail_text = {
+                #     text = gts_hitomi.425.i
+                # }
+            }
+        }
+        tag = hire_leader
+        name = gts_hitomi.425.i
+    }
+    option = {
+        name = DISMISS
+        tag = dismiss_leader
+        hidden_effect = {
+        }
+    }
+}
+country_event = {
+    #
+    id = gts_hitomi.425
+    title = gts_hitomi.425.name
+    desc = gts_hitomi_DESCText
+    # picture = GFX_evt_atmospheric_entry
+    show_sound = event_default
+    custom_gui = "gts_hitomi_background_gui"
+    custom_gui_option = gts_hitomi_option_gui
+    diplomatic = yes
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = {
+
+    }
+    immediate = {
+        event_target:gts_hitomi = {
+            add_trait = {
+                trait = gts_trait_hitomi6
+            }
+        }
+    }
+    option = {
+        name = gts_hitomi.425.a
+        hidden_effect = {
+        }
+    }
+    after = {
+    }
+}
+country_event = {
+    #
+    id = gts_hitomi.426
+    title = gts_hitomi.426.name
+    desc = gts_hitomi.426.desc
+    picture = GFX_evt_atmospheric_entry
+    show_sound = event_default
+    is_triggered_only = yes
+    fire_only_once = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+        room = gts_hitomi_event12_room
+    }
+    trigger = {
+
+    }
+    immediate = {
+    }
+    option = {
+        name = gts_hitomi.426.a
+        hidden_effect = {
+            country_event = { 
+                id = gts_hitomi.427
+            }
+        }
+    }
+}
+country_event = {
+    id = gts_hitomi.427
+    title = "gts_hitomi.427.name"
+    desc = gts_hitomi.427.desc
+    is_triggered_only = yes
+    picture = GFX_leader_recruitment_bg_renowned
+    auto_opens = yes
+    event_window_type = leader_recruit
+    picture_event_data = {
+        portrait = event_target:gts_hitomi_yuyue
+        #room =
+    }
+    immediate = {
+        gts_leader_hitomi_yuyue_hired = yes
+        event_target:gts_hitomi_yuyue = {
+            set_owner = root
+        }
+    }
+    picture_event_data = {
+        portrait = event_target:gts_leader
+        room = gts_hitomi_diplomatic_room
+    }
+    option = {
+        name =  gts_hitomi.427.a.name
+        response_text =  gts_hitomi.427.a.desc
+        is_dialog_only = yes
+    }
+    option = {
+        name =  gts_hitomi.428.a.name
+        response_text =  gts_hitomi.428.a.desc
+        is_dialog_only = yes
+    }
+    option = {
+        name =  gts_hitomi.429.a.name
+        response_text =  gts_hitomi.429.a.desc
+        is_dialog_only = yes
+    }
+    option = {
+        name = HIRE
+        tag = hire_leader
+        hidden_effect = {
+            add_modifier = {
+                modifier = gts_leader_upkeep_add
+            }
+        }
+    }
+}
+
+
+
+country_event = {
+    #生日  开始算日期
+    id = gts_hitomi.501
+    hide_window = yes
+    picture = GFX_evt_mysterious_signal
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = {
+        any_owned_leader = {
+            has_leader_flag = gts_hitomi
+        }
+    }
+    immediate = {
+        # country_event = {
+        #     id = gts_hitomi.502
+        #     days = 280
+        # }
+        country_event = {
+            id = gts_hitomi.506
+            days = 280
+        }
+    }
+    after = {
+    }
+}
+# country_event = {
+#     #生日  1年
+#     id = gts_hitomi.502
+#     title = "gts_hitomi.502.title"
+#     desc = "gts_hitomi.502.desc"
+#     diplomatic = yes
+#     picture = GFX_evt_mysterious_signal
+#     is_triggered_only = yes
+#     trigger = {
+#     }
+#     immediate = {
+#         country_event = {
+#             id = gts_hitomi.503
+#             days = 1440
+#         }
+#     }
+#     after = {
+#     }
+#
+#     option = {
+#         name = gts_hitomi.502.a
+#         hidden_effect = {
+#         }
+#     }
+# }
+# country_event = {
+#     #生日  5年
+#     id = gts_hitomi.503
+#     title = "gts_hitomi.503.title"
+#     desc = "gts_hitomi.503.desc"
+#     diplomatic = yes
+#     picture = GFX_evt_mysterious_signal
+#
+#     is_triggered_only = yes
+#     trigger = {
+#     }
+#     immediate = {
+#         country_event = {
+#             id = gts_hitomi.504
+#             days = 1800
+#         }
+#     }
+#     after = {
+#     }
+#
+#     option = {
+#         name = gts_hitomi.503.a
+#         hidden_effect = {
+#         }
+#     }
+# }
+# country_event = {
+#     #生日  10年
+#     id = gts_hitomi.504
+#     title = "gts_hitomi.504.title"
+#     desc = "gts_hitomi.504.desc"
+#     diplomatic = yes
+#     picture = GFX_evt_mysterious_signal
+#
+#     is_triggered_only = yes
+#     trigger = {
+#     }
+#     immediate = {
+#         country_event = {
+#             id = gts_hitomi.505
+#             days = 3600
+#         }
+#     }
+#     after = {
+#     }
+#
+#     option = {
+#         name = gts_hitomi.504.a
+#         hidden_effect = {
+#         }
+#     }
+# }
+# country_event = {
+#     #生日  10年
+#     id = gts_hitomi.505
+#     title = "gts_hitomi.505.title"
+#     desc = "gts_hitomi.505.desc"
+#     diplomatic = yes
+#     picture = GFX_evt_mysterious_signal
+#
+#     is_triggered_only = yes
+#     trigger = {
+#     }
+#     immediate = {
+#     }
+#     after = {
+#     }
+#
+#     option = {
+#         name = gts_hitomi.505.a
+#         hidden_effect = {
+#         }
+#     }
+# }
+
+country_event = {
+    #直播 1年
+    id = gts_hitomi.506
+    title = "gts_hitomi.506.title"
+    desc = "gts_hitomi.506.desc"
+    picture = GFX_gts_hitomi_13
+    is_triggered_only = yes
+    trigger = {
+    }
+    immediate = {
+    }
+    after = {
+    }
+
+    option = {
+        name = gts_hitomi.506.a
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.507
+            }
+        }
+    }
+}
+country_event = {
+    #直播 1年
+    id = gts_hitomi.507
+    title = "gts_hitomi.507.title"
+    desc = "gts_hitomi.507.desc"
+    diplomatic = yes
+    custom_gui = "gts_vertical_event_window"
+    picture_event_data = {
+        room = gts_hitomi_event10_room
+    }
+    is_triggered_only = yes
+    trigger = {
+    }
+    immediate = {
+    }
+    after = {
+    }
+
+    option = {
+        name = gts_hitomi.507.a
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.508
+            }
+        }
+    }
+}
+country_event = {
+    #直播 1年
+    id = gts_hitomi.508
+    title = "gts_hitomi.508.title"
+    desc = "gts_hitomi.508.desc"
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+        room = gts_hitomi_event11_room
+    }
+    is_triggered_only = yes
+    trigger = {
+    }
+    immediate = {
+    }
+    after = {
+    }
+
+    option = {
+        name = gts_hitomi.508.a
+        hidden_effect = {
+        }
+    }
+}
+
+
+
+# country_event = {
+#     #
+#     id = gts_hitomi.601
+#     is_triggered_only = yes
+#     hide_window = yes
+#     trigger = {
+#         fromfrom = {
+#             exists = leader
+#             OR = {
+#                 AND = {
+#                     leader = {
+#                         has_trait = gts_trait_hitomi1
+#                     }
+#                     NOT = {
+#                         has_fleet_flag = gts_hitomi_fleet_ability_1_passivity
+#                     }
+#                     NOT = {
+#                         has_fleet_flag = gts_hitomi_fleet_ability_2_passivity
+#                     }
+#                 }
+#             }
+#         }
+#     }
+#     immediate = {
+#         fromfrom = {
+#             if = {
+#                 limit = {
+#                     leader = {
+#                         has_trait = gts_trait_hitomi1
+#                     }
+#                 }
+#                 add_modifier = {
+#                     modifier = gts_hitomi_fleet_ability_1_passivity
+#                     days = 30
+#                 }
+#                 add_modifier = {
+#                     modifier = gts_hitomi_fleet_ability_2_passivity
+#                     days = 30
+#                 }
+#                 set_timed_fleet_flag = {
+#                     flag = gts_hitomi_fleet_ability_1_passivity
+#                     days = 30
+#                 }
+#                 set_timed_fleet_flag = {
+#                     flag = gts_hitomi_fleet_ability_2_passivity
+#                     days = 30
+#                 }
+#             }
+#         }
+#     }
+# }
+# fleet_event = {
+# 	id = gts_hitomi.602
+# 	is_triggered_only = yes
+# 	hide_window = yes
+# 	immediate = {
+#         random_system = {
+#             limit = {
+#                 any_fleet_in_system = {
+#                     is_ship_size = gts_hitomi_ship
+#                 }
+#             }
+#             set_star_class = sc_black_hole
+#             every_galaxy_planet = {
+#                 gts_destroy_planet = yes
+#                 gts_destroy_colony = yes
+#             }
+#         }
+#     }
+# }
+country_event = {
+    id = gts_hitomi.30001
+    is_triggered_only = yes
+    title = "gts_hitomi.30001.name"
+    desc = gts_hitomi.30001.desc
+    picture = GFX_gts_hitomi_30001
+    immediate = {
+    }
+    option = {
+        name = gts_hitomi.30001.a
+    }
+    after = {
+        country_event = {
+            id = gts_hitomi.30002
+        }
+    }
+}
+country_event = {
+    id = gts_hitomi.30002
+    title = "gts_hitomi.30002.name"
+    desc = gts_hitomi.30002.desc
+    is_triggered_only = yes
+    picture = GFX_leader_recruitment_bg_renowned
+    auto_opens = yes
+    event_window_type = leader_recruit
+    picture_event_data = {
+        portrait = event_target:gts_mitsuki_hitomi
+    }
+    immediate = {
+        gts_leader_Mitsuki_Hitomi_hired = yes
+        event_target:gts_mitsuki_hitomi = {
+            set_owner = root
+            set_skill = 10
+        }
+    }
+    picture_event_data = {
+        portrait = event_target:gts_leader
+    }
+    option = {
+        name =  gts_hitomi.30002.a.name
+        response_text =  gts_hitomi.30002.a.response
+        is_dialog_only = yes
+    }
+    option = {
+        name =  gts_hitomi.30002.b.name
+        response_text =  gts_hitomi.30002.b.response
+        is_dialog_only = yes
+    }
+    option = {
+        name =  gts_hitomi.30002.c.name
+        response_text =  gts_hitomi.30002.c.response
+        is_dialog_only = yes
+    }
+    option = {
+        name = HIRE
+        tag = hire_leader
+        hidden_effect = {
+            add_modifier = {
+                modifier = gts_leader_upkeep_add
+            }
+        }
+    }
+    after = {
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.30003
+            }
+            country_event = {
+                id = gts_hitomi.30005
+                years = 1
+            }
+            country_event = {
+                id = gts_hitomi.30008
+                years = 15
+            }
+        }
+    }
+}
+country_event = {
+    id = gts_hitomi.30003
+    is_triggered_only = yes
+    title = "gts_hitomi.30003.name"
+    desc = gts_hitomi.30003.desc
+    picture = GFX_gts_event_25
+    immediate = {
+    }
+    option = {
+        name = gts_hitomi.30003.a
+        add_relic = r_gtsra_Mitsuki_Hitomi_Figure
+    }
+    after = {
+
+    }
+}
+country_event = {
+    id = gts_hitomi.30004
+    is_triggered_only = yes
+    title = "gts_hitomi.30004.name"
+    desc = gts_hitomi.30004.desc
+    picture = GFX_gts_hitomi_30004
+    immediate = {
+    }
+    option = {
+        name = gts_hitomi.30004.a
+        country_event = {
+            id = gts_hitomi.30008
+        }
+    }
+    option = {
+        name = gts_hitomi.30004.b
+    }
+    after = {
+        set_country_flag = gts_mitsuki_hitomi_warning_active
+    }
+}
+country_event = {
+    id = gts_hitomi.30005
+    is_triggered_only = yes
+    title = "gts_hitomi.30005.name"
+    desc = gts_hitomi.30005.desc
+    picture = GFX_gts_hitomi_30005
+    immediate = {
+    }
+    option = {
+        name = gts_hitomi.30005.a
+    }
+    after = {
+        country_event = { 
+            id = gts_hitomi.30006
+        }
+    }
+}
+country_event = {
+    id = gts_hitomi.30006
+    is_triggered_only = yes
+    title = "gts_hitomi.30006.name"
+    desc = gts_hitomi.30006.desc
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+        room = gts_hitomi_30006_room
+    }
+    immediate = {
+    }
+    option = {
+        name = gts_hitomi.next
+    }
+    after = {
+        country_event = {
+            id = gts_hitomi.30007
+        }
+    }
+}
+country_event = {
+    id = gts_hitomi.30007
+    is_triggered_only = yes
+    title = "gts_hitomi.30006.name"
+    desc = gts_hitomi.30007.desc
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+        room = gts_hitomi_30006_room
+    }
+    immediate = {
+    }
+    option = {
+        name = gts_hitomi.30006.a
+    }
+    after = {
+        set_country_flag = gts_mitsuki_hitomi_allow_leave
+    }
+}
+
+country_event = {
+    id = gts_hitomi.30008
+    is_triggered_only = yes
+    title = "gts_hitomi.30008.name"
+    desc = gts_hitomi.30008.desc
+    picture = GFX_gts_hitomi_30008
+    immediate = {
+        event_target:gts_mitsuki_hitomi = {
+            kill_leader = {
+                show_notification = no
+            }
+        }
+        #正常走,为了减少剧情违和感默认已经警告过
+        set_country_flag = gts_mitsuki_hitomi_warning_active
+    }
+    option = {
+        name = gts_hitomi.30008.a
+        custom_tooltip = gts_hitomi.30008.a_custom
+    }
+    after = {
+        set_country_flag = gts_mitsuki_hitomi_relics_other
+    }
+}
+country_event = {
+    id = gts_hitomi.30009
+    is_triggered_only = yes
+    title = "gts_hitomi.30009.name"
+    desc = gts_hitomi.30009.desc
+    picture = GFX_gts_hitomi_30009
+    immediate = {
+    }
+    option = {
+        name = gts_hitomi.30009.a
+        custom_tooltip = gts_hitomi.30009.a_custom
+        enable_special_project = {
+            name = gts_mitsuki_hitomi_special_project
+        }
+    }
+    after = {
+        set_country_flag = gts_mitsuki_hitomi_relics_leave_event_activitied
+    }
+}
+country_event = {
+    #刷新星系
+    id = gts_hitomi.30010
+    is_triggered_only = yes
+    hide_window = yes
+    immediate = {
+        random_system_within_border = {
+            spawn_system = {
+                min_distance >= 10
+                max_distance <= 30
+                max_jumps = 0
+                initializer = gts_mitsuki_hitomi_system
+            }
+        }
+    }
+    after = {
+    }
+}
+fleet_event = {
+    #进入星系触发的事件
+    id = gts_hitomi.30011
+    title = gts_hitomi.30011.name
+    desc = gts_hitomi.30011.desc
+    is_triggered_only = yes
+    fire_only_once = yes
+    location = this
+    picture = GFX_gts_hitomi_30011
+    trigger = {
+        owner = {is_ai = no}
+        from = {
+            has_star_flag = gts_mitsuki_hitomi_system
+        }
+    }
+    option = {
+        name = gts_hitomi.30011.a
+        custom_tooltip = gts_hitomi.30011.a_custom
+    }
+}
+country_event = {
+    #打完第一支舰队,刷并非并非超级削弱版本体
+    id = gts_hitomi.30012
+    is_triggered_only = yes
+    title = "gts_hitomi.30012.name"
+    desc = gts_hitomi.30012.desc
+    picture = GFX_gts_hitomi_30012
+    trigger = {
+        #fleet_flag 用不了
+        # FromFromFrom = {
+        #     has_fleet_flag = gts_Mitsuki_Hitomi_fleet_0
+        # }
+        #用country_flag
+        from = {
+            has_country_flag = gts_mitsuki_hitomi_country_flag_0
+        }
+    }
+    immediate = {
+    }
+    option = {
+        name = gts_hitomi.30012.a
+        custom_tooltip = gts_hitomi.30012.a_custom
+
+    }
+    after = {
+        hidden_effect = {
+            create_country = {
+                name = NAME_gts_Mitsuki_Hitomi
+                type = faction
+                effect = {
+                    set_country_flag = gts_mitsuki_hitomi_country_flag_1
+                }
+            }
+            last_created_country = {
+                add_modifier = {
+                    modifier = "gts_level_1_modifier"
+                    days = -1
+                }
+                add_modifier = {
+                    modifier = "gts_bruh_shipgirl_country_debuff_1"
+                    days = -1
+                }
+                create_fleet = {
+                    name = "NAME_gts_Mitsuki_Hitomi"
+                    settings = {
+                        spawn_debris = no
+                        #is_boss = yes
+                    }
+                    effect = {
+                        set_owner = PREV
+                        while = {
+                            count = 1
+                            create_ship = {
+                                name = "NAME_gts_Mitsuki_Hitomi"
+                                design = "NAME_gts_Mitsuki_Hitomi_1"
+                            }
+                        }
+                        set_location = event_target:gts_mitsuki_hitomi_star
+                        set_fleet_stance = aggressive
+                        set_aggro_range_measure_from = self
+                        set_aggro_range = 500
+                        save_global_event_target_as = gts_Mitsuki_Hitomi_fleet_1
+                        set_fleet_flag = gts_Mitsuki_Hitomi_fleet_1
+                    }
+                }
+            }
+        }
+    }
+}
+country_event = {
+    #打完第二次,待会触发事件
+    id = gts_hitomi.30013
+    is_triggered_only = yes
+    title = "gts_hitomi.30013.name"
+    desc = gts_hitomi.30013.desc
+    picture = GFX_evt_small_space_battle
+    trigger = {
+        from = {
+            has_country_flag = gts_mitsuki_hitomi_country_flag_1
+        }
+    }
+    immediate = {
+    }
+    option = {
+        name = gts_hitomi.30013.a
+        custom_tooltip = gts_hitomi.30013.a_custom
+    }
+    after = {
+        hidden_effect = {
+            country_event = {
+                id = gts_hitomi.30014
+                days = 3
+            }
+        }
+    }
+}
+country_event = {
+    #刷削弱版本体
+    id = gts_hitomi.30014
+    is_triggered_only = yes
+    title = "gts_hitomi.30014.name"
+    desc = gts_hitomi.30014.desc
+    picture = GFX_gts_hitomi_30014
+    immediate = {
+    }
+    option = {
+        name = gts_hitomi.30014.a
+        custom_tooltip = gts_hitomi.30014.a_custom
+
+    }
+    after = {
+        hidden_effect = {
+            create_country = {
+                name = NAME_gts_Mitsuki_Hitomi
+                type = faction
+                effect = {
+                    set_country_flag = gts_mitsuki_hitomi_country_flag_2
+                }
+            }
+            last_created_country = {
+                add_modifier = {
+                    modifier = "gts_level_3_modifier"
+                    days = -1
+                }
+                add_modifier = {
+                    modifier = "gts_bruh_shipgirl_country_debuff_1"
+                    days = -1
+                }
+                create_fleet = {
+                    name = "NAME_gts_Mitsuki_Hitomi"
+                    settings = {
+                        spawn_debris = no
+                        #is_boss = yes
+                    }
+                    effect = {
+                        add_modifier = {
+                            modifier = gts_gts_mitsuki_hitomi_fleet_modifier
+                        }
+                        set_owner = PREV
+                        while = {
+                            count = 1
+                            create_ship = {
+                                name = "NAME_gts_Mitsuki_Hitomi"
+                                design = "NAME_gts_Mitsuki_Hitomi_1"
+                            }
+                        }
+                        set_location = event_target:gts_mitsuki_hitomi_star
+                        set_fleet_stance = aggressive
+                        set_aggro_range_measure_from = self
+                        set_aggro_range = 500
+                        save_global_event_target_as = gts_Mitsuki_Hitomi_fleet_2
+                        set_fleet_flag = gts_Mitsuki_Hitomi_fleet_2
+                    }
+                }
+            }
+        }
+    }
+}
+country_event = {
+    #打完第三次,彻底的招募
+    id = gts_hitomi.30015
+    is_triggered_only = yes
+    title = "gts_hitomi.30015.name"
+    desc = gts_hitomi.30015.desc
+    picture = GFX_gts_hitomi_30015
+    trigger = {
+        from = {
+            has_country_flag = gts_mitsuki_hitomi_country_flag_2
+        }
+    }
+    immediate = {
+    }
+    option = {
+        name = gts_hitomi.30015.a
+        custom_tooltip = gts_hitomi.30015.a_custom
+
+    }
+    after = {
+        country_event = {
+            id = gts_hitomi.30017
+        }
+    }
+}
+country_event = {
+    #已经刷新了星系再点击的 告诉你没有任何效果
+    id = gts_hitomi.30016
+    is_triggered_only = yes
+    title = "gts_hitomi.30016.name"
+    desc = gts_hitomi.30016.desc
+    picture = GFX_gts_hitomi_30004
+    immediate = {
+    }
+    option = {
+        name = gts_hitomi.30016.a
+        custom_tooltip = gts_hitomi.30016.a_custom
+
+    }
+    after = {
+    }
+}
+country_event = {
+    id = gts_hitomi.30017
+    title = "gts_hitomi.30017.name"
+    desc = gts_hitomi.30017.desc
+    is_triggered_only = yes
+    picture = GFX_leader_recruitment_bg_renowned
+    auto_opens = yes
+    event_window_type = leader_recruit
+    picture_event_data = {
+        portrait = event_target:gts_mitsuki_hitomi
+    }
+    immediate = {
+        gts_leader_Mitsuki_Hitomi_hired = yes
+        event_target:gts_mitsuki_hitomi = {
+            set_owner = root
+        }
+    }
+    picture_event_data = {
+        portrait = event_target:gts_leader
+    }
+    option = {
+        name =  gts_hitomi.30017.a.name
+        response_text =  gts_hitomi.30017.a.response
+        is_dialog_only = yes
+    }
+    # option = {
+    #     name =  gts_hitomi.30017.b.name
+    #     response_text =  gts_hitomi.30017.b.response
+    #     is_dialog_only = yes
+    # }
+    # option = {
+    #     name =  gts_hitomi.30017.c.name
+    #     response_text =  gts_hitomi.30017.c.response
+    #     is_dialog_only = yes
+    # }
+    option = {
+        name = HIRE
+        tag = hire_leader
+        hidden_effect = {
+
+        }
+    }
+    after = {
+        hidden_effect = {
+            add_modifier = {
+                modifier = gts_leader_upkeep_add
+            }
+            gts_create_mitsuki_hitomi_fleet = yes
+            event_target:gts_mitsuki_hitomi_fleet = {
+                assign_leader = event_target:gts_mitsuki_hitomi
+            }
+        }
+        event_target:gts_bronya = {
+            add_trait = {
+                trait = gts_trait_leader_bronya_silverwing
+            }
+        }
+    }
+}

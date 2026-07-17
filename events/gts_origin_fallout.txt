@@ -1,0 +1,543 @@
+namespace = gts_fallout
+
+country_event = {
+	id = gts_fallout.0
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { has_origin = origin_gts_fallout }
+
+	immediate = {
+		country_event = {
+			id = gts_fallout.1
+			years = 30
+			random = 20
+		}
+
+		# 有bug使我不得不用這些東西(bruh)
+		owner_main_species = {
+			change_species_characteristics = {
+				remove_trait = trait_pc_savannah_preference
+			}
+			change_species_characteristics = {
+				remove_trait = trait_pc_arid_preference
+			}
+			change_species_characteristics = {
+				remove_trait = trait_pc_desert_preference
+			}
+			change_species_characteristics = {
+				remove_trait = trait_pc_continental_preference
+			}
+			change_species_characteristics = {
+				remove_trait = trait_pc_tropical_preference
+			}
+			change_species_characteristics = {
+				remove_trait = trait_pc_ocean_preference
+			}
+			change_species_characteristics = {
+				remove_trait = trait_pc_arctic_preference
+			}
+			change_species_characteristics = {
+				remove_trait = trait_pc_tundra_preference
+			}
+			change_species_characteristics = {
+				remove_trait = trait_pc_alpine_preference
+			}
+			change_species_characteristics = {
+				add_trait = trait_pc_nuked_preference
+			}
+		}
+		capital_scope = {
+			set_planet_size = 30
+			gts_bruh_clear_planet_effect = yes
+			reroll_deposits = yes
+			clear_blockers = yes
+			add_deposit = d_gts_iss
+			add_deposit = d_gts_frozen_human
+			add_deposit = d_frozen_gas_lake
+			add_deposit = d_geothermal_vent
+			add_deposit = d_prosperous_mesa
+			add_deposit = d_rich_mountain
+			add_deposit = d_lush_jungle
+			add_deposit = d_black_soil
+		}
+	}
+
+	after = {
+		capital_scope = {
+			add_building = building_capital
+			add_building = {
+				zone = zone_research_unity
+				building = building_gts_bruh_administrative_tower
+			}
+			add_building = {
+				zone = zone_research_unity
+				building = building_research_lab_1
+			}
+			add_building = {
+				zone = zone_industrial
+				building = building_factory_1
+			}
+			while = {
+				count = 3
+				add_deposit = d_bomb_crater
+				add_deposit = d_tomb_world_wasteland
+				add_deposit = d_gts_fallout_raider
+				add_deposit = d_gts_fallout_settlement
+			}
+			while = {
+				count = 5
+				add_district = district_generator
+				add_district = district_mining
+				add_district = district_farming
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_fallout.1
+	title = gts_fallout.1.name
+	desc = gts_fallout.1.desc
+	picture = GFX_evt_genetic_modification
+	show_sound = event_ship_thrusters
+	is_triggered_only = yes
+
+	trigger = {
+		has_origin = origin_gts_fallout
+	}
+
+	option = {
+		name = gts_fallout.a
+		random_list = {
+			1 = {
+				modifier = {
+					factor = 0
+					owner_main_species = {
+						has_trait = trait_erudite
+					}
+				}
+				modify_species = {
+					species = owner_main_species
+					remove_trait = trait_intelligent
+					add_trait = trait_erudite
+				}
+			}
+			1 = {
+				modifier = {
+					factor = 0
+					owner_main_species = {
+						has_trait = trait_robust
+					}
+				}
+				modify_species = {
+					species = owner_main_species
+					remove_trait = trait_nonadaptive
+					remove_trait = trait_adaptive
+					remove_trait = trait_extremely_adaptive
+					remove_trait = trait_adaptive_lithoid
+					add_trait = trait_robust
+				}
+			}
+			1 = {
+				modifier = {
+					factor = 0
+					owner_main_species = {
+						has_trait = trait_fertile
+					}
+				}
+				modify_species = {
+					species = owner_main_species
+					remove_trait = trait_slow_breeders
+					add_trait = trait_fertile
+				}
+			}
+			2 = {
+				modifier = {
+					factor = 0
+					owner_main_species = {
+						has_trait = trait_lithoid_scintillating
+					}
+				}
+				modify_species = {
+					species = owner_main_species
+					add_trait = trait_lithoid_scintillating
+				}
+			}
+			2 = {
+				modifier = {
+					factor = 0
+					owner_main_species = {
+						has_trait = trait_lithoid_gaseous_byproducts
+					}
+				}
+				modify_species = {
+					species = owner_main_species
+					add_trait = trait_lithoid_gaseous_byproducts
+				}
+			}
+			2 = {
+				modifier = {
+					factor = 0
+					owner_main_species = {
+						has_trait = trait_lithoid_volatile_excretions
+					}
+				}
+				modify_species = {
+					species = owner_main_species
+					add_trait = trait_lithoid_volatile_excretions
+				}
+			}
+			2 = {
+				modifier = {
+					factor = 0
+					owner_main_species = {
+						has_trait = trait_bioadaptability
+					}
+				}
+				modify_species = {
+					species = owner_main_species
+					add_trait = trait_bioadaptability
+				}
+			}
+			2 = {
+				modifier = {
+					factor = 0
+					owner_main_species = {
+						has_trait = trait_social_pheromones
+					}
+				}
+				modify_species = {
+					species = owner_main_species
+					add_trait = trait_social_pheromones
+				}
+			}
+			2 = {
+				modifier = {
+					factor = 0
+					owner_main_species = {
+						has_trait = trait_limited_regeneration
+					}
+				}
+				modify_species = {
+					species = owner_main_species
+					add_trait = trait_limited_regeneration
+				}
+			}
+			6 = {
+				modifier = {
+					factor = 0
+					owner_main_species = {
+						has_trait = trait_enduring
+					}
+				}
+				modify_species = {
+					species = owner_main_species
+					remove_trait = trait_fleeting
+					add_trait = trait_enduring
+				}
+			}
+			6 = {
+				modifier = {
+					factor = 0
+					owner_main_species = {
+						has_trait = trait_resilient
+					}
+				}
+				modify_species = {
+					species = owner_main_species
+					add_trait = trait_resilient
+				}
+			}
+			6 = {
+				modifier = {
+					factor = 0
+					owner_main_species = {
+						has_trait = trait_quick_learners
+					}
+				}
+				modify_species = {
+					species = owner_main_species
+					remove_trait = trait_slow_learners
+					add_trait = trait_quick_learners
+				}
+			}
+			6 = {
+				modifier = {
+					factor = 0
+					owner_main_species = {
+						has_trait = trait_conservational
+					}
+				}
+				modify_species = {
+					species = owner_main_species
+					remove_trait = trait_wasteful
+					add_trait = trait_conservational
+				}
+			}
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			country_event = {
+				id = gts_fallout.1
+				years = 75
+				random = 25
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = gts_fallout.2
+	title = gts_fallout.2.name
+	desc = gts_fallout.2.desc
+	picture = GFX_evt_caravaneers
+	show_sound = event_ship_thrusters
+	is_triggered_only = yes
+
+	immediate = {
+		owner_main_species = {
+			create_species = {
+				is_mod = yes
+				name = this
+				plural = this
+				class = this
+				portrait = this
+				traits = this
+				can_be_modified = this
+				homeworld = this
+				namelist = this
+				gender = this
+				traits = this
+				effect = {
+					modify_species = {
+						species = this
+						add_trait = trait_Normal
+						change_scoped_species = no
+						effect = {
+							save_event_target_as = gts_bruh_original_fallout_species
+						}
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = gts_fallout.2.a
+		create_pop_group = {
+			species = event_target:gts_bruh_original_fallout_species
+			category = civilian
+			size = 1000
+		}
+		owner = {
+			add_modifier = {
+				modifier = gts_fallout_space_station_modifier
+				days = -1
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = gts_fallout.3
+	title = gts_fallout.3.name
+	desc = gts_fallout.3.desc
+	picture = GFX_evt_caravaneers
+	show_sound = event_ship_thrusters
+	is_triggered_only = yes
+
+	immediate = {
+		owner_main_species = {
+			create_species = {
+				is_mod = yes
+				name = this
+				plural = this
+				class = this
+				portrait = this
+				traits = this
+				can_be_modified = this
+				homeworld = this
+				namelist = this
+				gender = this
+				traits = this
+				effect = {
+					modify_species = {
+						species = this
+						add_trait = trait_Normal
+						change_scoped_species = no
+						effect = {
+							save_event_target_as = gts_bruh_original_fallout_species
+						}
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = gts_fallout.3.a
+		create_pop_group = {
+			species = event_target:gts_bruh_original_fallout_species
+			category = civilian
+			size = 1000
+		}
+		owner = {
+			add_modifier = {
+				modifier = gts_fallout_frozen_human_modifier
+				days = -1
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_fallout.601
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = {
+		has_tradition = tr_gts_fallout_gentle_genebuff
+	}
+	immediate = {
+		every_owned_pop_group = {
+			limit = {
+				is_same_species = root
+				has_trait = trait_gts_fallout
+			}
+			modify_species = {
+				species = this
+				remove_trait = trait_gts_fallout
+				add_trait = trait_gts_fallout_buff
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_fallout.602
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = {
+		has_tradition = tr_gts_fallout_cruel_nuked_planet_enhance
+	}
+	immediate = {
+		every_owned_pop_group = {
+			limit = {
+				is_same_species = root
+				has_trait = trait_gts_fallout
+			}
+			modify_species = {
+				species = this
+				remove_trait = trait_gts_fallout
+				add_trait = trait_gts_fallout_enhance
+			}
+		}
+	}
+}
+
+namespace = gts_fallout_bombard
+planet_event = {
+	id = gts_fallout_bombard.1
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		OR = {
+			has_orbital_bombardment_stance = gts_fallout_destory_all
+		}
+		from = {
+			OR = {
+				is_country_type = default
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+		habitable_planet = yes
+	}
+	immediate = {
+		owner = {
+			if = {
+				limit = {
+					owner = {
+						is_at_war_with = from
+					}
+				}
+				add_static_war_exhaustion = {
+					attacker = from
+					location = root
+					value_for_planet_destruction = 0.5
+				}
+			}
+			if = {
+				limit = {
+					NAND = {
+						has_origin = origin_progenitor_hive
+						root = {
+							is_capital = yes
+						}
+					}
+				}
+				country_event = {
+					id = gts_fallout_bombard.2
+				}
+			}
+			else = {
+				country_event = {
+					id = origin.3265
+				}
+			}
+		}
+		from = {
+			country_event = {
+				id = gts_fallout_bombard.3
+			}
+		}
+		change_pc = pc_nuked
+		remove_all_buildings = yes
+		reroll_deposits = yes
+		remove_modifier = "natural_beauty"
+		remove_modifier = "atmospheric_aphrodisiac"
+		remove_modifier = "atmospheric_hallucinogen"
+		remove_modifier = "lush_planet"
+		remove_modifier = "dangerous_wildlife"
+	}
+}
+
+# Planet is turned into tomb world by Armageddon bombing stance (former owner)
+country_event = {
+	id = gts_fallout_bombard.2
+	title = "gts_fallout_bombard.2.name"
+	picture = GFX_evt_nuclear_explosion
+	desc = gts_fallout_bombard.2.desc
+	show_sound = event_super_explosion
+	location = from
+	is_triggered_only = yes
+	option = {
+		name = gts_fallout_bombard.2.a
+		custom_tooltip = bombed_to_tomb_world
+	}
+}
+
+# Planet is turned into tomb world by Armageddon bombing stance (bombarder)
+country_event = {
+	id = gts_fallout_bombard.3
+	title = "gts_fallout_bombard.2.name"
+	picture = GFX_evt_nuclear_explosion
+	desc = gts_fallout_bombard.2.desc
+	show_sound = event_super_explosion
+	location = from
+	is_triggered_only = yes
+	immediate = {
+		if = {
+			limit = {
+				has_ascension_perk = ap_become_the_crisis
+			}
+			complete_crisis_objective = crisobj_destroy_worlds
+		}
+	}
+	option = {
+		name = gts_fallout_bomb_finish
+		custom_tooltip = bombed_to_tomb_world
+	}
+}

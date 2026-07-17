@@ -1,0 +1,3342 @@
+namespace = gts_leader_qhai
+
+country_event = {
+	#创建千海的bug星系
+	id = gts_leader_qhai.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		random_system = {
+			limit = {
+				distance = {
+					source = root.capital_scope.solar_system
+					use_bypasses = yes
+					min_jumps = 1
+					max_jumps = 6
+				}
+			}
+			spawn_system = {
+				min_distance >= 10
+				max_distance <= 30
+				max_jumps = 0
+				initializer = gts_qhai_system
+				effect = {
+					save_event_target_as = gts_bruh_get_qhai_system_location
+				}
+			}
+		}
+	}
+}
+
+fleet_event = {
+	id = gts_leader_qhai.2
+	title = gts_leader_qhai.2.title
+	desc = gts_leader_qhai.2.desc
+	is_triggered_only = yes
+	fire_only_once = yes
+	location = this
+	show_sound = event_mystic_reveal
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qhai6_room
+	}
+	trigger = {
+		owner = {
+			is_ai = no
+		}
+		from = {
+			has_star_flag = gts_qhai_system
+		}
+		is_ship_class = shipclass_science_ship
+		exists = leader
+		leader = {
+			has_trait = leader_trait_Ultra
+		}
+	}
+	option = {
+		name = gts_leader_qhai.2.option
+		leader = {
+			set_leader_flag = gts_qhai_daughter_flag
+			save_global_event_target_as = gts_qhai_daughter
+			add_trait = {
+				trait = gts_trait_qhai3_give
+				}
+		}
+		owner = {
+			hidden_effect = {
+				country_event = {
+					id = gts_leader_qhai.3
+					days = 30
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.3
+	title = gts_leader_qhai.3.title
+	desc = gts_leader_qhai.3.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qhai7_room
+	}
+	show_sound = event_mystic_reveal
+	immediate = {
+		set_country_flag = gts_leader_qhai_event_going
+	}
+	option = {
+		name = gts_leader_qhai.3.option
+		owner = {
+			hidden_effect = {
+				start_situation = {
+					type = gts_situation_qhai_ub
+				}
+			}
+		}
+	}
+}
+
+situation_event = {
+	id = gts_leader_qhai.4
+	title = gts_leader_qhai.4.title
+	desc = gts_leader_qhai.4.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qhai7_room
+	}
+	show_sound = event_mystic_reveal
+	option = {
+		name = gts_leader_qhai.4.option
+	}
+}
+
+situation_event = {
+	id = gts_leader_qhai.5
+	title = gts_leader_qhai.5.title
+	desc = gts_leader_qhai.5.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qhai1_room
+	}
+	show_sound = event_mystic_reveal
+	option = {
+		name = gts_leader_qhai.5.option
+		event_target:gts_qhai_daughter = {
+			add_trait = {
+				trait = gts_trait_qhai1_give
+				}
+		}
+	}
+}
+
+situation_event = {
+	id = gts_leader_qhai.6
+	title = gts_leader_qhai.6.title
+	desc = gts_leader_qhai.6.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_qhai2_room
+	}
+	show_sound = swarm_crisis_ambient_stage_3
+	option = {
+		name = gts_leader_qhai.6.option
+		owner = {
+			hidden_effect = {
+				country_event = {
+					id = gts_leader_qhai.7
+				}
+			}
+		}
+	}
+	after = {
+		destroy_situation = this
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.7
+	title = gts_leader_qhai.7.title
+	desc = gts_leader_qhai.7.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_qhai2_room
+	}
+	show_sound = event_gts_masturbate
+	option = {
+		name = gts_leader_qhai.7.option
+		owner = {
+			hidden_effect = {
+				country_event = {
+					id = gts_leader_qhai.8
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.8
+	title = gts_leader_qhai.8.title
+	desc = gts_leader_qhai.8.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_qhai4_room
+	}
+	show_sound = event_gts_masturbate
+	option = {
+		name = gts_leader_qhai.8.option
+		owner = {
+			hidden_effect = {
+				country_event = {
+					id = gts_leader_qhai.9
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.9
+	title = gts_leader_qhai.9.title
+	desc = gts_leader_qhai.9.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_qhai4_room
+	}
+	show_sound = event_gts_masturbate
+	option = {
+		name = gts_leader_qhai.9.option
+		hidden_effect = {
+			country_event = {
+				id = gts_leader_qhai.10
+				days = 1
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.10
+	title = gts_leader_qhai.10.title
+	desc = gts_leader_qhai.10.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qhai3_room
+	}
+	show_sound = event_gts_masturbate
+	option = {
+		name = gts_leader_qhai.10.option
+		hidden_effect = {
+			country_event = {
+				id = gts_leader_qhai.11
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.11
+	title = gts_leader_qhai.11.title
+	desc = gts_leader_qhai.11.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qhai3_room
+	}
+	show_sound = event_default
+	option = {
+		name = gts_leader_qhai.11.option
+		hidden_effect = {
+			set_country_flag = gts_leader_qhai_unbirth
+			country_event = {
+				id = gts_leader_qhai.12
+				days = 3
+			}
+			event_target:gts_qhai_daughter = {
+				remove_all_negative_traits = yes
+				remove_trait = gts_trait_qhai3_give
+				add_trait = {
+					trait = gts_trait_qhai2_give
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.12
+	title = gts_leader_qhai.12.title
+	desc = gts_leader_qhai.12.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qhai14_room
+	}
+	show_sound = event_default
+	option = {
+		name = gts_leader_qhai.12.option
+		country_event = {
+			id = gts_leader_qhai.13
+			days = 11
+		}
+	}
+	after = {
+		remove_country_flag = gts_leader_qhai_event_going
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.13
+	title = gts_leader_qhai.13.title
+	desc = gts_leader_qhai.13.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qhai10_room
+	}
+	show_sound = event_default
+	option = {
+		name = gts_leader_qhai.13.option
+		hidden_effect = {
+			country_event = {
+				id = gts_leader_qhai.14
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.14
+	title = gts_leader_qhai.14.title
+	desc = gts_leader_qhai.14.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qhai10_room
+	}
+	show_sound = event_default
+	option = {
+		name = gts_leader_qhai.14.option
+		response_text = gts_leader_qhai.14.respond
+		set_country_flag = gts_leader_qhai_con
+		is_dialog_only = yes
+	}
+	option = {
+		allow = {
+			has_country_flag = gts_leader_qhai_con
+		}
+		name = gts_leader_qhai.14.option.1
+		response_text = gts_leader_qhai.14.respond.1
+		set_country_flag = gts_leader_qhai_con2
+		is_dialog_only = yes
+	}
+	option = {
+		allow = {
+			has_country_flag = gts_leader_qhai_con2
+		}
+		name = gts_leader_qhai.14.option.2
+		response_text = gts_leader_qhai.14.respond.2
+		set_country_flag = gts_leader_qhai_con3
+		is_dialog_only = yes
+	}
+	option = {
+		allow = {
+			has_country_flag = gts_leader_qhai_con3
+		}
+		name = gts_leader_qhai.14.option.4
+		if = {
+			limit = {
+				event_target:gts_qhai_daughter = {
+					has_leader_flag = gts_huatian
+				}
+			}
+			country_event = {
+				id = gts_leader_qhai.16
+			}
+		}
+		else = {
+			country_event = {
+				id = gts_leader_qhai.15
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.15
+	title = gts_leader_qhai.15.title
+	desc = gts_leader_qhai.15.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_qhai8_room
+	}
+	show_sound = event_default
+	option = {
+		name = gts_leader_qhai.14.option.3
+		response_text = gts_leader_qhai.14.respond.3
+		set_country_flag = gts_leader_qhai_con4
+		is_dialog_only = yes
+	}
+	option = {
+		allow = {
+			has_country_flag = gts_leader_qhai_con4
+		}
+		set_country_flag = gts_leader_qhai_confinish
+		name = gts_leader_qhai.15.option
+		response_text = gts_leader_qhai.15.respond
+		is_dialog_only = yes
+	}
+	option = {
+		allow = {
+			has_country_flag = gts_leader_qhai_confinish
+		}
+		name = gts_leader_qhai.15.option.2
+		remove_gts_qhai_conflag = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_leader_qhai.17
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.16
+	title = gts_leader_qhai.16.title
+	desc = gts_leader_qhai.16.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_qhai8_room
+	}
+	show_sound = event_default
+	option = {
+		name = gts_leader_qhai.14.option.3
+		response_text = gts_leader_qhai.14.respond.3
+		set_country_flag = gts_leader_qhai_con4
+		is_dialog_only = yes
+	}
+	option = {
+		allow = {
+			has_country_flag = gts_leader_qhai_con4
+		}
+		set_country_flag = gts_leader_qhai_confinish
+		name = gts_leader_qhai.16.option
+		response_text = gts_leader_qhai.16.respond
+		is_dialog_only = yes
+	}
+	option = {
+		allow = {
+			has_country_flag = gts_leader_qhai_confinish
+		}
+		name = gts_leader_qhai.15.option.2
+		remove_gts_qhai_conflag = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_leader_qhai.17
+				days = 1
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.17
+	title = gts_leader_qhai.17.title
+	desc = gts_leader_qhai.17.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_qhai13_room
+	}
+	show_sound = event_default
+	option = {
+		name = gts_leader_qhai.17.option
+		country_event = {
+			id = gts_leader_qhai.18
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.18
+	title = gts_leader_qhai.18.title
+	desc = gts_leader_qhai.18.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qhai11_room
+	}
+	show_sound = event_gts_masturbate
+	option = {
+		name = gts_leader_qhai.18.option
+		hidden_effect = {
+			country_event = {
+				id = gts_leader_qhai.19
+				days = 15
+			}
+		}
+		add_modifier = {
+			modifier = gts_conutry_qhai
+		}
+		add_resource = {
+			influence = 150
+		}
+		add_resource = {
+			gts_giantess_fluid = 10000
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.19
+	title = "TRANSMISSION"
+	desc = gts_leader_qhai.19.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = {
+		portrait = gts_portrait_qhai
+		room = "crisis_room"
+	}
+	show_sound = event_default
+	option = {
+		name = gts_leader_qhai.19.option
+		response_text = gts_leader_qhai.19.respond
+		is_dialog_only = yes
+		hidden_effect = {
+			set_country_flag = gts_leader_qhai_con
+		}
+	}
+	option = {
+		allow = {
+			has_country_flag = gts_leader_qhai_con
+		}
+		name = gts_leader_qhai.19.option.2
+		response_text = gts_leader_qhai.19.respond.2
+		is_dialog_only = yes
+		hidden_effect = {
+			set_country_flag = gts_leader_qhai_con2
+		}
+	}
+	option = {
+		allow = {
+			has_country_flag = gts_leader_qhai_con2
+		}
+		name = gts_leader_qhai.19.option.3
+		hidden_effect = {
+			remove_gts_qhai_conflag = yes
+			set_country_flag = gts_leader_qhai_p1_finish
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.20
+	title = "TRANSMISSION"
+	desc = gts_leader_qhai.20.desc
+	desc = gts_leader_qhai.20.desc.2
+	desc = gts_leader_qhai.20.desc.3
+	desc = gts_leader_qhai.20.desc.4
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = {
+		portrait = gts_portrait_qhai
+		room = "crisis_room"
+	}
+	trigger = {
+		has_country_flag = gts_leader_qhai_p1_finish
+		NOT = {
+			has_country_flag = gts_leader_qhai_confinish2
+		}
+	}
+	show_sound = event_default
+	option = {
+		name = gts_leader_qhai.20.option
+		response_text = gts_leader_qhai.20.respond
+		is_dialog_only = yes
+		set_country_flag = gts_leader_qhai_con
+	}
+	option = {
+		allow = {
+			has_country_flag = gts_leader_qhai_con
+			NOT = {
+				has_country_flag = gts_leader_qhai_con2
+			}
+		}
+		name = gts_leader_qhai.20.option.2
+		response_text = gts_leader_qhai.20.respond.2
+		is_dialog_only = yes
+		set_country_flag = gts_leader_qhai_con2
+	}
+	option = {
+		allow = {
+			has_country_flag = gts_leader_qhai_con2
+		}
+		name = gts_leader_qhai.20.option.3
+		response_text = gts_leader_qhai.20.respond.3
+		is_dialog_only = yes
+		set_country_flag = gts_leader_qhai_con3
+	}
+	option = {
+		allow = {
+			has_country_flag = gts_leader_qhai_con3
+		}
+		name = gts_leader_qhai.20.option.4
+		response_text = gts_leader_qhai.20.respond.4
+		hidden_effect = {
+			remove_gts_qhai_conflag = yes
+			set_country_flag = gts_leader_qhai_confinish2
+			country_event = {
+				id = gts_leader_qhai.21
+				days = 45
+				random = 30
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.21
+	title = gts_leader_qhai.21.title
+	desc = gts_leader_qhai.21.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_qhai15_room
+	}
+	trigger = {
+		any_owned_leader = {
+			has_leader_flag = gts_qhai_daughter_flag
+		}
+	}
+	show_sound = event_default
+	option = {
+		name = gts_leader_qhai.21.option
+		country_event = {
+			id = gts_leader_qhai.22
+		}
+	}
+	option = {
+		trigger = {
+			has_origin = origin_god_keeper
+			any_owned_leader = {
+				has_leader_flag = gts_yarong
+			}
+		}
+		name = gts_leader_qhai.21.option.2
+		country_event = {
+			id = gts_leader_qhai.23
+		}
+	}
+	option = {
+		trigger = {
+			has_origin = origin_Ultra_company
+		}
+		name = gts_leader_qhai.21.option.3
+		country_event = {
+			id = gts_leader_qhai.24
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.22
+	title = gts_leader_qhai.22.title
+	desc = gts_leader_qhai.22.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_qhai15_room
+	}
+	show_sound = event_default
+	option = {
+		name = gts_leader_qhai.22.option
+		country_event = {
+			id = gts_leader_qhai.30
+		}
+		add_resource = {
+			unity = 1000
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.23
+	title = gts_leader_qhai.23.title
+	desc = gts_leader_qhai.23.desc
+	is_triggered_only = yes
+	show_sound = event_default
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_qhai15_room
+	}
+	option = {
+		name = gts_leader_qhai.23.option
+		country_event = {
+			id = gts_leader_qhai.30
+		}
+		add_resource = {
+			unity = 1000
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.24
+	title = gts_leader_qhai.24.title
+	desc = gts_leader_qhai.24.desc
+	is_triggered_only = yes
+	show_sound = event_default
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_qhai15_room
+	}
+	option = {
+		name = gts_leader_qhai.24.option
+		country_event = {
+			id = gts_leader_qhai.30
+		}
+		add_resource = {
+			unity = 1000
+		}
+	}
+}
+
+# 千海 招募事件
+country_event = {
+	id = gts_leader_qhai.30
+	title = "TRANSMISSION"
+	desc = gts_leader_qhai.30.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	auto_opens = yes
+	event_window_type = leader_recruit
+	notification_event_icon = "GFX_message_leader_gts_qhai"
+	show_sound = event_celebration
+	picture = GFX_leader_recruitment_bg_renowned
+	immediate = {
+		gts_leader_qhai_hired = yes
+		if = {
+			limit = {
+				any_owned_leader = {
+					not = {
+						has_leader_flag = gts_qhai_daughter_flag
+					}
+				}
+			}
+			gts_qhai_find_daughter = yes
+		}
+	}
+	picture_event_data = {
+		portrait = event_target:gts_qhai
+		room = "crisis_room"
+	}
+	option = {
+		name = gts_leader_qhai.30.option
+		response_text = gts_leader_qhai.30.respond
+		set_country_flag = gts_leader_qhai_con
+		is_dialog_only = yes
+	}
+	option = {
+		allow = { has_country_flag = gts_leader_qhai_con }
+		name = gts_leader_qhai.30.option.2
+		response_text = gts_leader_qhai.30.respond.2
+		set_country_flag = gts_leader_qhai_con2
+		is_dialog_only = yes
+	}
+	option = {
+		allow = { has_country_flag = gts_leader_qhai_con2 }
+		name = gts_leader_qhai.30.option.3
+		response_text = gts_leader_qhai.30.respond.3
+		set_country_flag = gts_leader_qhai_con3
+		is_dialog_only = yes
+	}
+	option = {
+		allow = { has_country_flag = gts_leader_qhai_con3 }
+		name = gts_leader_qhai.30.option.4
+		response_text = gts_leader_qhai.30.respond.4
+		is_dialog_only = yes
+	}
+	option = {
+		allow = { has_country_flag = gts_leader_qhai_con3 }
+		name = gts_leader_qhai.30.option.5
+		response_text = gts_leader_qhai.30.respond.5
+		is_dialog_only = yes
+	}
+	option = {
+		allow = { has_country_flag = gts_leader_qhai_con3 }
+		name = gts_leader_qhai.30.option.6
+		response_text = gts_leader_qhai.30.respond.6
+		is_dialog_only = yes
+	}
+	option = {
+		name = DISMISS
+		tag = dismiss_leader
+		allow = {
+			always = no
+		}
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		gts_leader_hire_effect = { TYPE = legendary }
+		give_specimen = {
+			key = gts_specimens_display_cabinet
+			origin = gts_specimens_display_cabinet
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_leader_qhai.50
+				days = 30
+			}
+			country_event = {
+				id = gts_leader_qhai.62
+				days = 1080
+			}
+		}
+	}
+	after = {
+		hidden_effect = {
+			remove_country_flag = gts_leader_qhai_event_going
+			remove_gts_qhai_conflag = yes
+		}
+	}
+}
+
+# 千海 常驻聊天
+country_event = {
+	id = gts_leader_qhai.35
+	title = "TRANSMISSION"
+	desc = gts_leader_qhai.35.desc
+	desc = gts_leader_qhai.35.desc.2
+	desc = gts_leader_qhai.35.desc.3
+	desc = gts_leader_qhai.35.desc.4
+	desc = gts_leader_qhai.35.desc.5
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = {
+		portrait = gts_portrait_qhai
+		room = "crisis_room"
+	}
+	trigger = {
+		any_owned_leader = {
+			has_leader_flag = gts_qhai
+		}
+	}
+	show_sound = event_default
+	option = {
+		name = gts_leader_qhai.35.option
+		country_event = {
+			id = gts_leader_qhai.36
+		}
+	}
+	option = {
+		name = gts_leader_qhai.35.option.2
+		country_event = {
+			id = gts_leader_qhai.37
+		}
+	}
+	option = {
+		name = gts_leader_qhai.35.option.3
+		country_event = {
+			id = gts_leader_qhai.38
+		}
+	}
+	option = {
+		name = gts_leader_qhai.35.option.5
+		hidden_effect = {
+			country_event = {
+				id = gts_guide_qhai.1
+			}
+		}
+	}
+	option = {
+		name = gts_leader_qhai.35.option.4
+		default_hide_option = yes
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.36
+	title = "TRANSMISSION"
+	desc = gts_leader_qhai.36.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = {
+		portrait = gts_portrait_qhai
+		room = "crisis_room"
+	}
+	trigger = {
+		any_owned_leader = {
+			has_leader_flag = gts_qhai
+		}
+	}
+	show_sound = event_default
+	option = {
+		allow = {
+			has_country_flag = gts_yarong_adult_ceremony
+			not = {
+				has_country_flag = traggered_qhai_yarong
+			}
+		}
+		name = gts_leader_qhai.36.option
+		response_text = gts_leader_qhai.36.respond
+		set_country_flag = traggered_qhai_yarong
+		country_event = {
+			id = gts_leader_qhai.600
+			days = 100
+		}
+	}
+	option = {
+		name = gts_leader_qhai.36.option.4
+		country_event = {
+			id = gts_leader_qhai.35
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.37
+	title = "TRANSMISSION"
+	desc = gts_leader_qhai.37.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = {
+		portrait = gts_portrait_qhai
+		room = "crisis_room"
+	}
+	trigger = {
+		any_owned_leader = {
+			has_leader_flag = gts_qhai
+		}
+	}
+	show_sound = event_default
+	option = {
+		name = gts_leader_qhai.37.option
+		hidden_effect = {
+			event_target:gts_qhai = {
+				gts_leader_size_increase = yes
+			}
+			country_event = {
+				id = gts_leader_qhai.37
+			}
+		}
+	}
+	option = {
+		name = gts_leader_qhai.37.option.2
+		hidden_effect = {
+			event_target:gts_qhai = {
+				gts_leader_size_reduce = yes
+			}
+			country_event = {
+				id = gts_leader_qhai.37
+			}
+		}
+	}
+	option = {
+		name = gts_leader_qhai.37.option.7
+		hidden_effect = {
+			if = {
+				limit = {
+					event_target:gts_qhai = {
+						gts_is_tiny = yes
+					}
+				}
+				event_target:gts_qhai = {
+					remove_gts_leader_size_trait = yes
+					add_trait = {
+						trait = leader_trait_Titan
+						show_message = no
+					}
+				}
+			}
+			country_event = {
+				id = gts_leader_qhai.35
+			}
+		}
+		default_hide_option = yes
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.38
+	title = "TRANSMISSION"
+	desc = gts_leader_qhai.38.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = {
+		portrait = gts_portrait_qhai
+		room = "crisis_room"
+	}
+	trigger = {
+		any_owned_leader = {
+			has_leader_flag = gts_qhai
+		}
+	}
+	show_sound = event_default
+	option = {
+		name = gts_leader_qhai.38.option
+		response_text = gts_leader_qhai.38.respond
+		hidden_effect = {
+			event_target:gts_qhai = {
+				change_leader_portrait = gts_portrait_qhai3
+			}
+		}
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_leader_qhai.38.option.2
+		response_text = gts_leader_qhai.38.respond.2
+		hidden_effect = {
+			event_target:gts_qhai = {
+				change_leader_portrait = gts_portrait_qhai2
+			}
+		}
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_leader_qhai.38.option.3
+		response_text = gts_leader_qhai.38.respond.3
+		hidden_effect = {
+			event_target:gts_qhai = {
+				change_leader_portrait = gts_portrait_qhai
+			}
+		}
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_leader_qhai.38.option.6
+		country_event = {
+			id = gts_leader_qhai.35
+		}
+		default_hide_option = yes
+	}
+}
+
+# 千海 招募后定期触发
+country_event = {
+	id = gts_leader_qhai.50
+	title = gts_leader_qhai.50.title
+	desc = gts_leader_qhai.50.desc
+	is_triggered_only = yes
+	show_sound = event_gts_enn
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qhai10_room
+	}
+	show_sound = event_default
+	option = {
+		name = gts_leader_qhai.50.option
+		country_event = {
+			id = gts_leader_qhai.51
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.51
+	title = gts_leader_qhai.51.title
+	desc = gts_leader_qhai.51.desc
+	is_triggered_only = yes
+	show_sound = event_gts_enn
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qhai10_room
+	}
+	option = {
+		name = gts_leader_qhai.51.option
+		response_text = gts_leader_qhai.51.respond
+		is_dialog_only = yes
+		set_country_flag = gts_leader_qhai_con
+	}
+	option = {
+		trigger = {
+			not = {
+				has_country_flag = can_trigger_qhai_planet
+			}
+		}
+		name = gts_leader_qhai.51.option.2
+		response_text = gts_leader_qhai.51.respond.2
+		set_country_flag = can_trigger_qhai_planet
+		set_country_flag = gts_leader_qhai_con2
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_leader_qhai.51.option.3
+		response_text = gts_leader_qhai.51.respond.3
+		hidden_effect = {
+			set_country_flag = gts_leader_qhai_con3
+		}
+		is_dialog_only = yes
+	}
+	option = {
+		allow = {
+			has_country_flag = gts_leader_qhai_con
+			has_country_flag = gts_leader_qhai_con2
+			has_country_flag = gts_leader_qhai_con3
+		}
+		name = gts_leader_qhai.51.option.4
+		hidden_effect = {
+			remove_gts_qhai_conflag = yes
+			country_event = {
+				id = gts_leader_qhai.52
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.52
+	title = gts_leader_qhai.52.title
+	desc = gts_leader_qhai.52.desc
+	is_triggered_only = yes
+	show_sound = event_gts_enn
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qhai10_room
+	}
+	option = {
+		allow = {
+			not = {
+				has_country_flag = gts_leader_qhai_con
+			}
+		}
+		name = gts_leader_qhai.52.option
+		response_text = gts_leader_qhai.52.respond
+		is_dialog_only = yes
+		hidden_effect = {
+			set_country_flag = gts_leader_qhai_con
+		}
+	}
+	option = {
+		allow = {
+			has_country_flag = gts_leader_qhai_con
+			NOT = {
+				has_country_flag = gts_leader_qhai_con2
+			}
+		}
+		name = gts_leader_qhai.52.option.2
+		response_text = gts_leader_qhai.52.respond.2
+		hidden_effect = {
+			set_country_flag = gts_leader_qhai_con2
+		}
+		is_dialog_only = yes
+	}
+	option = {
+		allow = {
+			has_country_flag = gts_leader_qhai_con
+			has_country_flag = gts_leader_qhai_con2
+		}
+		name = gts_leader_qhai.52.option.3
+		hidden_effect = {
+			remove_gts_qhai_conflag = yes
+			country_event = {
+				id = gts_leader_qhai.53
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.53
+	title = gts_leader_qhai.53.title
+	desc = gts_leader_qhai.53.desc
+	is_triggered_only = yes
+	show_sound = event_gts_breath
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qhai18_room
+	}
+	option = {
+		name = gts_leader_qhai.53.option
+		hidden_effect = {
+			country_event = {
+				id = gts_leader_qhai.54
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.54
+	title = gts_leader_qhai.54.title
+	desc = gts_leader_qhai.54.desc
+	is_triggered_only = yes
+	show_sound = event_gts_gulp
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_qhai17_room
+	}
+	option = {
+		name = gts_leader_qhai.54.option
+		hidden_effect = {
+			remove_gts_qhai_conflag = yes
+			ruler = {
+				add_trait = {
+					trait = gts_trait_qhai4_give
+				}
+			}
+			country_event = {
+				id = gts_leader_qhai.80
+				days = 4800
+			}
+		}
+	}
+}
+
+# 千海 星球改造后定期触发
+country_event = {
+	id = gts_leader_qhai.55
+	title = gts_leader_qhai.55.title
+	desc = gts_leader_qhai.55.desc
+	is_triggered_only = yes
+	show_sound = event_gts_enn
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qhai10_room
+	}
+	option = {
+		name = gts_leader_qhai.55.option
+		response_text = gts_leader_qhai.55.respond
+		hidden_effect = {
+			set_country_flag = gts_leader_qhai_con
+		}
+		is_dialog_only = yes
+	}
+	option = {
+		allow = {
+			has_country_flag = gts_leader_qhai_con
+			NOT = {
+				has_country_flag = gts_leader_qhai_con2
+			}
+		}
+		name = gts_leader_qhai.55.option.2
+		response_text = gts_leader_qhai.55.respond.2
+		hidden_effect = {
+			every_owned_planet = {
+				limit = {
+					has_planet_flag = gts_qhai_juice_planet
+				}
+				while = {
+					count = 50
+					create_pop_group = {
+						species = root.owner
+					}
+				}
+			}
+			set_country_flag = gts_leader_qhai_con2
+		}
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_leader_qhai.55.option.3
+		response_text = gts_leader_qhai.55.respond.3
+		hidden_effect = {
+			set_country_flag = gts_leader_qhai_con2
+		}
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_leader_qhai.55.option.4
+		hidden_effect = {
+			remove_gts_qhai_conflag = yes
+			country_event = {
+				id = gts_leader_qhai.56
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.56
+	title = gts_leader_qhai.56.title
+	desc = gts_leader_qhai.56.desc
+	is_triggered_only = yes
+	show_sound = event_gts_footfloor
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qhai19_room
+	}
+	option = {
+		name = gts_leader_qhai.56.option
+		hidden_effect = {
+			country_event = {
+				id = gts_leader_qhai.57
+			}
+		}
+	}
+	option = {
+		name = gts_leader_qhai.56.option.2
+	}
+	after = {
+		add_resource = {
+			influence = 55
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.57
+	title = gts_leader_qhai.57.title
+	desc = gts_leader_qhai.57.desc
+	is_triggered_only = yes
+	show_sound = event_default
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qhai20_room
+	}
+	option = {
+		name = gts_leader_qhai.57.option
+		hidden_effect = {
+			country_event = {
+				id = gts_leader_qhai.58
+				days = 1
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.58
+	title = gts_leader_qhai.58.title
+	desc = gts_leader_qhai.58.desc
+	is_triggered_only = yes
+	show_sound = event_gts_run
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qhai21_room
+	}
+	option = {
+		name = gts_leader_qhai.58.option
+		hidden_effect = {
+			country_event = {
+				id = gts_leader_qhai.59
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.59
+	title = gts_leader_qhai.59.title
+	desc = gts_leader_qhai.59.desc
+	is_triggered_only = yes
+	show_sound = event_gts_sign
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_qhai22_room
+	}
+	option = {
+		name = gts_leader_qhai.59.option
+		hidden_effect = {
+			country_event = {
+				id = gts_leader_qhai.60
+			}
+		}
+	}
+	option = {
+		name = gts_leader_qhai.59.option.2
+		hidden_effect = {
+			country_event = {
+				id = gts_leader_qhai.61
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.60
+	title = gts_leader_qhai.60.title
+	desc = gts_leader_qhai.60.desc
+	is_triggered_only = yes
+	show_sound = event_gts_sign
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_qhai22_room
+	}
+	option = {
+		name = gts_leader_qhai.60.option
+		hidden_effect = {
+			ruler = {
+				add_trait = {
+					trait = gts_trait_qhai5_give
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.61
+	title = gts_leader_qhai.61.title
+	desc = gts_leader_qhai.61.desc
+	is_triggered_only = yes
+	show_sound = event_gts_sign
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_qhai22_room
+	}
+	option = {
+		name = gts_leader_qhai.61.option
+		hidden_effect = {
+			ruler = {
+				add_trait = {
+					trait = gts_trait_qhai5_give
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.62
+	title = gts_leader_qhai.62.title
+	desc = gts_leader_qhai.62.desc
+	is_triggered_only = yes
+	show_sound = event_default
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_qhai23_room
+	}
+	option = {
+		name = gts_leader_qhai.62.option
+		hidden_effect = {
+			set_country_flag = gts_leader_qhai_event1_fin
+			add_resource = {
+				influence = 50
+			}
+		}
+	}
+}
+
+# 用于判断是否存在泰坦级领袖
+country_event = {
+	id = gts_leader_qhai.63
+	is_triggered_only = yes
+	fire_only_once = yes
+	hide_window = yes
+	trigger = {
+		has_country_flag = gts_leader_qhai_event1_fin
+		any_owned_leader = {
+			not = {
+				has_leader_flag = hired_gts_leader
+			}
+			has_trait = leader_trait_Titan
+		}
+	}
+	immediate = {
+		random_owned_leader = {
+			limit = {
+				not = {
+					has_leader_flag = hired_gts_leader
+				}
+				has_trait = leader_trait_Titan
+			}
+			set_leader_flag = gts_qhai_av_flag
+			save_global_event_target_as = gts_qhai_av_target
+		}
+		country_event = {
+			id = gts_leader_qhai.64
+			days = 360
+			random = 360
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.64
+	title = gts_leader_qhai.64.title
+	desc = gts_leader_qhai.64.desc
+	is_triggered_only = yes
+	show_sound = event_default
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qhai24_room
+	}
+	trigger = {
+		any_owned_leader = {
+			has_leader_flag = gts_qhai_av_flag
+		}
+	}
+	option = {
+		name = gts_leader_qhai.64.option
+		hidden_effect = {
+			random_owned_planet = {
+				limit = {
+					is_capital = no
+					is_eatable_planet = yes
+				}
+				add_deposit = d_crater
+				add_deposit = d_bomb_crater
+				add_planet_devastation = 10
+			}
+			country_event = {
+				id = gts_leader_qhai.65
+				days = 7
+			}
+			add_resource = {
+				influence = 50
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.65
+	title = gts_leader_qhai.65.title
+	desc = gts_leader_qhai.65.desc
+	is_triggered_only = yes
+	show_sound = event_default
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qhai25_room
+	}
+	option = {
+		name = gts_leader_qhai.65.option
+		hidden_effect = {
+			country_event = {
+				id = gts_leader_qhai.66
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.66
+	title = gts_leader_qhai.66.title
+	desc = gts_leader_qhai.66.desc
+	is_triggered_only = yes
+	show_sound = event_default
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qhai25_room
+	}
+	option = {
+		name = gts_leader_qhai.66.option
+		hidden_effect = {
+			country_event = {
+				id = gts_leader_qhai.67
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.67
+	title = gts_leader_qhai.67.title
+	desc = gts_leader_qhai.67.desc
+	is_triggered_only = yes
+	show_sound = event_default
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qhai26_room
+	}
+	option = {
+		name = gts_leader_qhai.67.option
+		hidden_effect = {
+			country_event = {
+				id = gts_leader_qhai.68
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.68
+	title = gts_leader_qhai.68.title
+	desc = gts_leader_qhai.68.desc
+	is_triggered_only = yes
+	show_sound = event_gts_heartbeat
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qhai27_room
+	}
+	option = {
+		name = gts_leader_qhai.68.option
+		custom_tooltip = gts_qhai_upgrade
+		hidden_effect = {
+			event_target:gts_qhai_av_target = {
+				remove_gts_leader_size_trait = yes
+				add_trait = {
+					trait = leader_trait_Giant
+					show_message = no
+				}
+				add_trait = {
+					trait = gts_trait_qhai3_give
+				}
+			}
+			set_country_flag = gts_leader_qhai_event2_fin
+			country_event = {
+				id = gts_leader_qhai.69
+				days = 7
+			}
+		}
+	}
+}
+
+# 领袖缩小后移除事件
+country_event = {
+	id = gts_leader_qhai.69
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		if = {
+			limit = {
+				event_target:gts_qhai_av_target = {
+					not = {
+						has_trait = leader_trait_Nano
+					}
+				}
+			}
+			event_target:gts_qhai_av_target = {
+				gts_leader_size_reduce = yes
+			}
+			country_event = {
+				id = gts_leader_qhai.69
+				days = 7
+			}
+		}
+		else = {
+			hidden_effect = {
+				event_target:gts_qhai_av_target = {
+					kill_leader = {
+						show_notification = no
+					}
+				}
+				country_event = {
+					id = gts_leader_qhai.70
+					days = 5
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.70
+	title = gts_leader_qhai.70.title
+	desc = gts_leader_qhai.70.desc
+	is_triggered_only = yes
+	show_sound = event_gts_enn
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qhai28_room
+	}
+	option = {
+		name = gts_leader_qhai.70.option
+		response_text = gts_leader_qhai.70.respond
+		hidden_effect = {
+			set_country_flag = gts_leader_qhai_con
+		}
+		is_dialog_only = yes
+	}
+	option = {
+		allow = {
+			has_country_flag = gts_leader_qhai_con
+		}
+		name = gts_leader_qhai.70.option.2
+		response_text = gts_leader_qhai.70.respond.2
+		hidden_effect = {
+			set_country_flag = gts_leader_qhai_con2
+		}
+		is_dialog_only = yes
+	}
+	option = {
+		allow = {
+			has_country_flag = gts_leader_qhai_con2
+		}
+		name = gts_leader_qhai.70.option.3
+		hidden_effect = {
+			country_event = {
+				id = gts_leader_qhai.71
+			}
+		}
+	}
+	option = {
+		allow = {
+			has_country_flag = gts_leader_qhai_con2
+		}
+		name = gts_leader_qhai.70.option.4
+		hidden_effect = {
+			country_event = {
+				id = gts_leader_qhai.72
+			}
+		}
+	}
+	after = {
+		remove_gts_qhai_conflag = yes
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.71
+	title = gts_leader_qhai.71.title
+	desc = gts_leader_qhai.71.desc
+	is_triggered_only = yes
+	show_sound = event_default
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qhai28_room
+	}
+	option = {
+		name = gts_leader_qhai.71.option
+		response_text = gts_leader_qhai.71.respond
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_leader_qhai.71.option.2
+		hidden_effect = {
+			add_resource = {
+				unity = 50
+				influence = 50
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.72
+	title = gts_leader_qhai.72.title
+	desc = gts_leader_qhai.72.desc
+	is_triggered_only = yes
+	show_sound = event_default
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qhai28_room
+	}
+	option = {
+		name = gts_leader_qhai.72.option
+		response_text = gts_leader_qhai.72.respond
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_leader_qhai.72.option.2
+		hidden_effect = {
+			add_resource = {
+				unity = 50
+				influence = 50
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.80
+	title = gts_leader_qhai.80.title
+	desc = gts_leader_qhai.80.desc
+	is_triggered_only = yes
+	show_sound = event_gts_water_drop
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qhai32_room
+	}
+	option = {
+		name = gts_leader_qhai.80.option
+		hidden_effect = {
+			country_event = {
+				id = gts_leader_qhai.81
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.81
+	title = gts_leader_qhai.81.title
+	desc = gts_leader_qhai.81.desc
+	is_triggered_only = yes
+	show_sound = event_default
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_qhai33_room
+	}
+	option = {
+		name = gts_leader_qhai.81.option
+		hidden_effect = {
+			country_event = {
+				id = gts_leader_qhai.82
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.82
+	title = gts_leader_qhai.82.title
+	desc = gts_leader_qhai.82.desc
+	is_triggered_only = yes
+	show_sound = event_default
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_qhai33_room
+	}
+	option = {
+		name = gts_leader_qhai.82.option
+		hidden_effect = {
+			country_event = {
+				id = gts_leader_qhai.83
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.83
+	title = gts_leader_qhai.83.title
+	desc = gts_leader_qhai.83.desc
+	is_triggered_only = yes
+	show_sound = event_gts_enn
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qhai34_room
+	}
+	option = {
+		name = gts_leader_qhai.83.option
+		custom_tooltip = gts_leader_qhai.83.option.custiom_tooltip
+		hidden_effect = {
+			set_country_flag = gts_leader_qhai_event3_fin
+		}
+	}
+}
+
+# 星球改造 星球决议触发
+planet_event = {
+	# 转化为爱液星球-拥有千海
+	id = gts_leader_qhai.301
+	title = gts_leader_qhai.301.title
+	desc = gts_leader_qhai.301.desc
+	fire_only_once = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qhai16_room
+	}
+	show_sound = event_mystic_reveal
+	location = root
+	is_triggered_only = yes
+	immediate = {
+		owner = {
+			set_country_flag = triggered_qhai_planet
+		}
+	}
+	option = {
+		name = gts_leader_qhai.301.option.1
+	}
+	option = {
+		name = gts_leader_qhai.301.option.2
+	}
+	after = {
+		owner = {
+			hidden_effect = {
+				country_event = {
+					id = gts_leader_qhai.55
+					days = 60
+				}
+			}
+			give_specimen = {
+				key = gts_specimens_love_fluid_qhai
+				origin = gts_specimens_love_fluid_qhai
+			}
+		}
+	}
+}
+
+# 用于触发随机事件
+country_event = {
+	id = gts_leader_qhai.400
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		any_owned_leader = {
+			has_leader_flag = gts_qhai
+		}
+	}
+	immediate = {
+		if = {
+			limit = {
+				not = {
+					has_country_flag = gts_qhai_random_fin
+				}
+			}
+			country_event = {
+				id = gts_leader_qhai.401
+			}
+		}
+		switch = {
+			trigger = has_country_flag
+			gts_qhai_yarong_1_fin = {
+				country_event = {
+					id = gts_leader_qhai.607
+					days = 360
+				}
+			}
+			gts_qhai_yarong_2_fin = {
+				country_event = {
+					id = gts_leader_qhai.615
+					days = 360
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.401
+	title = gts_leader_qhai.401.title
+	desc = gts_leader_qhai.401.desc
+	is_triggered_only = yes
+	show_sound = event_gts_vore
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qhai30_room
+	}
+	trigger = {
+		any_owned_planet = {
+			is_eatable_planet = yes
+		}
+		any_owned_leader = {
+			has_leader_flag = gts_qhai
+		}
+	}
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				is_eatable_planet = yes
+			}
+			save_global_event_target_as = gts_qhai_wish_target
+		}
+	}
+	option = {
+		name = gts_leader_qhai.401.option
+		hidden_effect = {
+			country_event = {
+				id = gts_leader_qhai.402
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.402
+	title = gts_leader_qhai.402.title
+	desc = gts_leader_qhai.402.desc
+	is_triggered_only = yes
+	show_sound = event_gts_enn
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_qhai29_room
+	}
+	option = {
+		name = gts_leader_qhai.402.option
+		hidden_effect = {
+			country_event = {
+				id = gts_leader_qhai.403
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.403
+	title = gts_leader_qhai.403.title
+	desc = gts_leader_qhai.403.desc
+	is_triggered_only = yes
+	show_sound = event_gts_enn
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_qhai29_room
+	}
+	option = {
+		name = gts_leader_qhai.403.option
+		hidden_effect = {
+			set_country_flag = gts_qhai_random_fin
+			event_target:gts_qhai_wish_target = {
+				add_modifier = {
+					modifier = gts_planet_qhai
+					days = -1
+				}
+			}
+			add_resource = {
+				unity = 3000
+			}
+		}
+	}
+}
+
+# 制服鞋触发的特有事件
+ship_event = {
+	id = gts_leader_qhai.501
+	title = gts_leader_qhai.501.title
+	desc = gts_leader_qhai.501.desc
+	is_triggered_only = yes
+	show_sound = event_default
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_event_42_room
+	}
+	option = {
+		name = gts_leader_qhai.501.option
+		ship_event = {
+			id = gts_leader_qhai.502
+		}
+	}
+}
+
+ship_event = {
+	id = gts_leader_qhai.502
+	title = gts_leader_qhai.502.title
+	desc = gts_leader_qhai.502.desc
+	is_triggered_only = yes
+	show_sound = event_default
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qhai31_room
+	}
+	immediate = {
+		owner = {
+			random_system_within_border = {
+				limit = {
+					has_star_flag = gts_shoe_cabinet
+				}
+				random_system_planet = {
+					limit = {
+						has_planet_flag = gts_uniform_shoes
+					}
+					remove_planet = yes
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_leader_qhai.502.option
+		owner = {
+			hidden_effect = {
+				set_country_flag = gts_uniform_shoes_fin
+				country_event = {
+					id = gts_leader_qhai.503
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	# 用于创建可殖民制服鞋殖民地
+	id = gts_leader_qhai.503
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		capital_scope.solar_system = {
+			if = {
+				limit = {
+					root.capital_scope = {
+						is_ringworld = no
+					}
+				}
+				spawn_planet = {
+					class = pc_gts_uniform_shoes_colonizable
+					location = root.capital_scope
+					orbit_angle_offset = 90
+					size = 35
+					init_effect = {
+						set_planet_flag = colony_event
+						set_planet_flag = gts_uniform_shoes_colonizable
+						prevent_anomaly = yes
+						set_name = "NAME_gts_uniform_shoes_colonizable"
+						add_deposit = d_uniform_shoes_qhai_sweaty
+					}
+				}
+			}
+			else = {
+				spawn_planet = {
+					class = pc_gts_uniform_shoes_colonizable
+					location = root.capital_scope
+					orbit_angle_offset = 180
+					orbit_distance_offset = 12
+					size = 35
+					init_effect = {
+						set_planet_flag = colony_event
+						set_planet_flag = gts_uniform_shoes_colonizable
+						prevent_anomaly = yes
+						set_name = "NAME_gts_uniform_shoes_colonizable"
+						add_deposit = d_uniform_shoes_qhai_sweaty
+					}
+				}
+			}
+			every_system_planet = {
+				limit = {
+					is_capital = yes
+				}
+				add_modifier = {
+					modifier = gts_planet_qhai2
+					days = -1
+				}
+			}
+		}
+	}
+}
+
+# 星际行动 星系级行动
+country_event = {
+	#灭星系
+	id = gts_leader_qhai.551
+	title = gts_leader_qhai.551.title
+	desc = gts_leader_qhai.551.desc
+	is_triggered_only = yes
+	location = event_target:gts_leader_system
+	show_sound = event_red_alert
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_event_43_room
+	}
+	option = {
+		name = gts_leader_qhai.551.option
+		hidden_effect = {
+			country_event = {
+				id = gts_leader_qhai.552
+			}
+		}
+	}
+}
+
+country_event = {
+	#灭星系
+	id = gts_leader_qhai.552
+	title = gts_leader_qhai.552.title
+	desc = gts_leader_qhai.552.desc
+	is_triggered_only = yes
+	location = event_target:gts_leader_system
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_event_44_room
+	}
+	immediate = {
+		gts_set_count_kill_pop_effect = yes
+		event_target:gts_leader_system = {
+			gts_count_system_killed_pop_effect = yes
+		}
+		event_target:current_gts_leader = {
+			change_variable = {
+				which = gts_vore_kills_logs
+				value = root.gts_event_kills_logs
+			}
+			change_variable = {
+				which = gts_city_kills_logs
+				value = root.gts_event_city_kills_logs
+			}
+			change_variable = {
+				which = gts_planet_kills_logs
+				value = root.gts_event_planet_kills_logs
+			}
+		}
+		add_threat = {
+			who = root
+			amount = 10
+		}
+		root = {
+			save_event_target_as = crisis_country
+			add_victory_score = {
+				source = destroyed_stars_score
+				score = 10
+			}
+			switch = {
+				trigger = galaxy_size
+				huge = {
+					add_resource = {
+						sr_dark_matter = 1000
+					}
+				}
+				large = {
+					add_resource = {
+						sr_dark_matter = 1500
+					}
+				}
+				medium = {
+					add_resource = {
+						sr_dark_matter = 2000
+					}
+				}
+				small = {
+					add_resource = {
+						sr_dark_matter = 2500
+					}
+				}
+				tiny = {
+					add_resource = {
+						sr_dark_matter = 3000
+					}
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = cracked_first_star
+					}
+				}
+				set_country_flag = cracked_first_star
+			}
+		}
+		event_target:gts_leader_planet = {
+			solar_system = {
+				save_event_target_as = destroyed_system
+			}
+			every_playable_country = {
+				limit = {
+					is_ai = no
+					has_communications = event_target:crisis_country
+					NOR = {
+						is_same_value = event_target:crisis_country
+						has_country_flag = can_build_star_eaters
+						has_country_flag = star_eater_alert@event_target:crisis_country
+					}
+					intel_level = {
+						system = event_target:destroyed_system
+						level = none
+					}
+				}
+				country_event = {
+					id = crisis.6180
+				}
+			}
+			every_playable_country = {
+				limit = {
+					is_ai = no
+					has_communications = event_target:crisis_country
+					NOR = {
+						is_same_value = event_target:crisis_country
+						has_country_flag = can_build_star_eaters
+						has_country_flag = star_eater_alert@event_target:crisis_country
+					}
+					intel_level = {
+						system = event_target:destroyed_system
+						level > none
+					}
+				}
+				country_event = {
+					id = crisis.6181
+				}
+			}
+			every_playable_country = {
+				limit = {
+					is_ai = no
+					has_communications = event_target:crisis_country
+					NOR = {
+						is_same_value = event_target:crisis_country
+						has_country_flag = star_eater_alert@event_target:crisis_country
+					}
+					has_country_flag = can_build_star_eaters
+				}
+				country_event = {
+					id = crisis.6182
+				}
+			}
+			every_playable_country = {
+				limit = {
+					has_communications = event_target:crisis_country
+					NOT = {
+						has_opinion_modifier = {
+							who = event_target:crisis_country
+							modifier = opinion_destroying_systems
+						}
+					}
+				}
+				add_opinion_modifier = {
+					who = event_target:crisis_country
+					modifier = opinion_destroying_systems
+				}
+			}
+			solar_system = {
+				random_system_planet = {
+					limit = {
+						has_modifier = holy_planet
+					}
+					planet_event = {
+						id = planet_destruction.605
+					}
+				}
+				destroy_star_system = yes
+			}
+		}
+		gts_leader_interact_cooldown_effect = {
+			DAYS = 360
+		}
+	}
+	option = {
+		name = gts_leader_qhai.552.option
+		add_resource = {
+			gts_giantess_fluid = 1000
+		}
+	}
+}
+
+# 犽戎 贴贴
+country_event = {
+	id = gts_leader_qhai.600
+	title = gts_leader_qhai.600.title
+	desc = gts_leader_qhai.600.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	show_sound = event_gts_enn
+	picture_event_data = {
+		room = gts_qhai36_room
+	}
+	option = {
+		name = gts_leader_qhai.600.option
+		hidden_effect = {
+			country_event = {
+				id = gts_leader_qhai.601
+				days = 1
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.601
+	title = gts_leader_qhai.601.title
+	desc = gts_leader_qhai.601.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_qhai37_room
+	}
+	option = {
+		name = gts_leader_qhai.601.option
+		hidden_effect = {
+			country_event = {
+				id = gts_leader_qhai.602
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.602
+	title = gts_leader_qhai.602.title
+	desc = gts_leader_qhai.602.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_qhai40_room
+	}
+	option = {
+		name = gts_leader_qhai.602.option
+		hidden_effect = {
+			country_event = {
+				id = gts_leader_qhai.603
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.603
+	title = gts_leader_qhai.603.title
+	desc = gts_leader_qhai.603.desc
+	show_sound = event_gts_breath
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qhai39_room
+	}
+	option = {
+		name = gts_leader_qhai.603.option
+		hidden_effect = {
+			country_event = {
+				id = gts_leader_qhai.604
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.604
+	title = gts_leader_qhai.604.title
+	desc = gts_leader_qhai.604.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_qhai41_room
+	}
+	option = {
+		name = gts_leader_qhai.604.option
+		hidden_effect = {
+			country_event = {
+				id = gts_leader_qhai.605
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.605
+	title = gts_leader_qhai.605.title
+	desc = gts_leader_qhai.605.desc
+	show_sound = event_gts_masturbate
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_qhai41_room
+	}
+	option = {
+		name = gts_leader_qhai.605.option
+		hidden_effect = {
+			country_event = {
+				id = gts_leader_qhai.606
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.606
+	title = gts_leader_qhai.606.title
+	desc = gts_leader_qhai.606.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qhai42_room
+	}
+	option = {
+		name = gts_leader_qhai.606.option
+		hidden_effect = {
+			set_country_flag = gts_qhai_yarong_1_fin
+			capital_star = {
+				while = {
+					count = 3
+					add_deposit = d_gts_giantess_fluid_100
+				}
+			}
+			event_target:gts_qhai = {
+				add_timed_trait = {
+					trait = gts_trait_qhai7
+					days = 720
+				}
+			}
+			event_target:gts_yarong = {
+				add_timed_trait = {
+					trait = gts_trait_qhai7_give
+					days = 30
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.607
+	title = gts_leader_qhai.607.title
+	desc = gts_leader_qhai.607.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	trigger = {
+		or = {
+			any_owned_leader = {
+				has_trait = god_keeper_ruler_trait1
+			}
+			any_owned_leader = {
+				has_leader_flag = gts_yarong_ruler
+			}
+		}
+	}
+	immediate = {
+		remove_country_flag = gts_qhai_yarong_1_fin
+	}
+	picture_event_data = {
+		room = gts_qhai43_room
+	}
+	option = {
+		name = gts_leader_qhai.607.option
+		hidden_effect = {
+			hidden_effect = {
+				country_event = {
+					id = gts_leader_qhai.608
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.608
+	title = gts_leader_qhai.608.title
+	desc = gts_leader_qhai.608.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qhai44_room
+	}
+	option = {
+		name = gts_leader_qhai.608.option
+		hidden_effect = {
+			country_event = {
+				id = gts_leader_qhai.609
+				days = 1
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.609
+	title = gts_leader_qhai.609.title
+	desc = gts_leader_qhai.609.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qhai30_room
+	}
+	option = {
+		name = gts_leader_qhai.609.option
+		hidden_effect = {
+			country_event = {
+				id = gts_leader_qhai.610
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.610
+	title = gts_leader_qhai.610.title
+	desc = gts_leader_qhai.610.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_qhai45_room
+	}
+	option = {
+		name = gts_leader_qhai.610.option
+		hidden_effect = {
+			country_event = {
+				id = gts_leader_qhai.611
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.611
+	title = gts_leader_qhai.611.title
+	desc = gts_leader_qhai.611.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_qhai45_room
+	}
+	option = {
+		name = gts_leader_qhai.611.option
+		hidden_effect = {
+			country_event = {
+				id = gts_leader_qhai.612
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.612
+	title = gts_leader_qhai.612.title
+	desc = gts_leader_qhai.612.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qhai46_room
+	}
+	option = {
+		name = gts_leader_qhai.612.option
+		hidden_effect = {
+			country_event = {
+				id = gts_leader_qhai.613
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.613
+	title = gts_leader_qhai.613.title
+	desc = gts_leader_qhai.613.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_qhai47_room
+	}
+	option = {
+		name = gts_leader_qhai.613.option
+		hidden_effect = {
+			country_event = {
+				id = gts_leader_qhai.614
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.614
+	title = gts_leader_qhai.614.title
+	desc = gts_leader_qhai.614.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	show_sound = event_gts_masturbate
+	picture_event_data = {
+		room = gts_qhai48_room
+	}
+	option = {
+		name = gts_leader_qhai.614.option
+		hidden_effect = {
+			set_country_flag = gts_qhai_yarong_2_fin
+			event_target:gts_yarong = {
+				add_timed_trait = {
+					trait = gts_trait_qhai3_give
+					days = 7
+				}
+			}
+			add_resource = {
+				unity = 5000
+				influence = 200
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.615
+	title = gts_leader_qhai.615.title
+	desc = gts_leader_qhai.615.desc
+	is_triggered_only = yes
+	trigger = {
+		has_country_flag = gts_yarong_favor100
+	}
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	immediate = {
+		remove_country_flag = gts_qhai_yarong_2_fin
+	}
+	picture_event_data = {
+		room = gts_qhai51_room
+	}
+	option = {
+		name = gts_leader_qhai.616.option
+		hidden_effect = {
+			country_event = {
+				id = gts_leader_qhai.616
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.616
+	title = gts_leader_qhai.616.title
+	desc = gts_leader_qhai.616.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_qhai50_room
+	}
+	option = {
+		name = gts_leader_qhai.616.option
+		hidden_effect = {
+			set_country_flag = gts_qhai_yarong_3_fin
+			event_target:gts_qhai = {
+				add_timed_trait = {
+					trait = gts_trait_qhai7
+					days = 720
+				}
+			}
+			event_target:gts_yarong = {
+				add_timed_trait = {
+					trait = gts_trait_qhai7_give
+					days = 30
+				}
+			}
+			add_resource = {
+				influence = 200
+				gts_giantess_fluid = 1500
+			}
+		}
+	}
+}
+
+country_event = {
+	# 用于检测千海的给予的特质是否存在，若消失则补充
+	id = gts_leader_qhai.998
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		has_country_flag = gts_leader_qhai_unbirth
+		any_owned_leader = {
+			has_leader_flag = gts_qhai_daughter_flag
+			NOT = {
+				has_trait = gts_trait_qhai2_give
+			}
+		}
+	}
+	immediate = {
+		event_target:gts_qhai_daughter = {
+			remove_all_negative_traits = yes
+			add_trait = {
+					trait = gts_trait_qhai2_give
+				}
+		}
+	}
+}
+
+# 千海复活事件 死后触发
+country_event = {
+	# 用于检测千海的给予的特质是否存在，若消失则补充
+	id = gts_leader_qhai.999
+	title = gts_leader_qhai.999.title
+	desc = gts_leader_qhai.999.desc
+	picture = GFX_gts_qhai_event_4
+	show_sound = event_gts_enn
+	is_triggered_only = yes
+	immediate = {
+		if = {
+			limit = {
+				any_owned_leader = {
+					not = { has_leader_flag = gts_qhai_daughter_flag }
+				}
+			}
+			gts_qhai_find_daughter = yes
+		}
+	}
+	option = {
+		name = gts_leader_qhai.999.option
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_flag = gts_qhai_die_once
+				}
+				ruler = {
+					add_trait = {
+					trait = gts_trait_qhai6_give
+				}
+				}
+			}
+			set_country_flag = gts_qhai_die_once
+		}
+	}
+}
+
+# 安露复活事件 死后触发
+country_event = {
+	# 用于检测千海的给予的特质是否存在，若消失则补充
+	id = gts_leader_qhai.1000
+	title = gts_leader_qhai.1000.title
+	desc = gts_leader_qhai.1000.desc
+	picture = GFX_gts_qhai_event_1
+	show_sound = event_gts_enn
+	is_triggered_only = yes
+	immediate = {
+		gts_create_tensi_fleet = yes
+	}
+	option = {
+		name = gts_leader_qhai.1000.option
+	}
+}
+
+# 安露招募事件 安露宠物佩戴后触发
+country_event = {
+	id = gts_leader_qhai.2000
+	title = "TRANSMISSION"
+	desc = gts_leader_qhai.2000.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	auto_opens = yes
+	event_window_type = leader_recruit
+	notification_event_icon = "GFX_message_leader_gts_qhai"
+	show_sound = event_celebration
+	picture = GFX_leader_recruitment_bg_renowned
+	immediate = {
+		gts_leader_tensi_hired = yes
+		gts_leader_hire_effect = { TYPE = legendary }
+		gts_create_tensi_fleet = yes
+	}
+	picture_event_data = {
+		portrait = event_target:gts_tensi
+		room = "crisis_room"
+	}
+	option = {
+		name = gts_leader_qhai.2000.option
+		response_text = gts_leader_qhai.2000.respond
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_leader_qhai.2000.option.2
+		response_text = gts_leader_qhai.2000.respond.2
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_leader_qhai.2000.option.3
+		response_text = gts_leader_qhai.2000.respond.3
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_leader_qhai.2000.option.4
+		response_text = gts_leader_qhai.2000.respond.4
+		is_dialog_only = yes
+	}
+	option = {
+		name = DISMISS
+		tag = dismiss_leader
+		allow = {
+			always = no
+		}
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		hidden_effect = {
+		}
+	}
+}
+
+# 安露地爆天星 自带巨像武器
+planet_event = {
+	id = gts_leader_qhai.2001
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		save_event_target_as = gts_tensi_destroyed_planet
+		gts_set_count_kill_pop_effect = yes
+		event_target:gts_tensi_destroyed_planet = {
+			# 計算人口數量
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_planet_killed_pop_count
+			}
+			# 計算城市數量
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_planet_destroyed_city_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_planet_destroyed_city_count
+				value = 100
+			}
+			change_pc = pc_broken
+			destroy_colony = yes
+		}
+		event_target:gts_tensi = {
+			change_variable = {
+				which = gts_feet_kills_logs
+				value = event_target:gts_tensi_destroyed_planet.gts_bruh_get_planet_killed_pop_count
+			}
+			change_variable = {
+				which = gts_city_kills_logs
+				value = event_target:gts_tensi_destroyed_planet.gts_bruh_get_planet_destroyed_city_count
+			}
+			change_variable = {
+				which = gts_planet_kills_logs
+				value = 1
+			}
+		}
+		if = {
+			limit = {
+				planet_is_hostile = yes
+			}
+			from.owner = {
+				country_event = {
+					id = gts_leader_qhai.2002
+				}
+			}
+		}
+		#Dismantle observation post
+		if = {
+			limit = {
+				has_observation_outpost = yes
+			}
+			observation_outpost_owner = {
+				country_event = {
+					id = planet_destruction.1000
+					days = 1
+				}
+			}
+		}
+		# Contingency Machine World
+		if = {
+			limit = {
+				is_planet_class = pc_ai
+				NOT = {
+					has_planet_flag = machine_lair
+				}
+			}
+			set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_cracked
+			planet_event = {
+				id = crisis.2040
+			}
+		}
+		# Contingency Final Machine World
+		if = {
+			limit = {
+				is_planet_class = pc_ai
+				has_planet_flag = machine_lair
+			}
+			set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_cracked
+			from.owner = {
+				save_event_target_as = final_machine_world_destroyer
+			}
+			stop_crisis_sound = yes
+			planet_event = {
+				id = crisis.2046
+			}
+		}
+		# Swarm Situation Log counter
+		if = {
+			limit = {
+				exists = owner
+				owner = {
+					is_country_type = swarm
+				}
+			}
+			every_country = {
+				limit = {
+					has_event_chain = "prethoryn_scourge_chain"
+				}
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds"
+					amount = -1
+				}
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds_cleansed"
+					amount = 1
+				}
+			}
+		}
+		if = {
+			limit = {
+				OR = {
+					is_active_resolution = "resolution_rulesofwar_reverence_for_life"
+					is_active_resolution = "resolution_rulesofwar_independent_tribunals"
+					is_active_resolution = "resolution_rulesofwar_last_resort_doctrine"
+					is_active_resolution = "resolution_rulesofwar_demobilization_initiative"
+				}
+			}
+			from.owner = {
+				set_timed_country_flag = {
+					flag = resolution_breached_fired_cracker
+					days = 3600
+				}
+			}
+		}
+		# Exterminatus Achievement
+		if = {
+			limit = {
+				is_capital = yes
+			}
+			from.owner = {
+				set_country_flag = exterminatus
+			}
+		}
+		if = {
+			limit = {
+				exists = owner
+				owner = {
+					NOT = {
+						is_same_value = from.owner
+					}
+					OR = {
+						is_country_type = default
+						is_country_type = fallen_empire
+						is_country_type = awakened_fallen_empire
+					}
+				}
+			}
+			# Generate threat
+			if = {
+				limit = {
+					is_colony = yes
+				}
+				add_threat = {
+					who = from.owner
+					amount = 3
+				}
+				# modifier for allies + those upset by genocide
+				every_country = {
+					limit = {
+						NOR = {
+							is_same_value = from.owner
+							is_same_value = root.owner
+							AND = {
+								has_federation = yes
+								is_in_federation_with = from.owner
+							}
+						}
+						OR = {
+							has_communications = from.owner
+							has_communications = root.owner
+						}
+						OR = {
+							AND = {
+								has_federation = yes
+								is_in_federation_with = root.owner
+							}
+							has_ai_personality = awakened_fallen_empire_xenophile
+							AND = {
+								is_country_type = default
+								OR = {
+									is_egalitarian = yes
+									is_xenophile = yes
+								}
+							}
+						}
+					}
+					if = {
+						limit = {
+							root = {
+								is_colony = no
+							}
+						}
+						add_opinion_modifier = {
+							modifier = opinion_cracked_an_uninhabited_world
+							who = from.owner
+						}
+					}
+					else = {
+						add_opinion_modifier = {
+							modifier = opinion_cracked_a_world
+							who = from.owner
+						}
+					}
+				}
+			}
+			else = {
+				add_threat = {
+					who = from.owner
+					amount = 1
+				}
+			}
+			# modifiers for victim
+			owner = {
+				if = {
+					limit = {
+						root = {
+							is_colony = no
+						}
+					}
+					add_opinion_modifier = {
+						modifier = opinion_cracked_my_uninhabited_world
+						who = from.owner
+					}
+				}
+				else = {
+					add_opinion_modifier = {
+						modifier = opinion_cracked_my_world
+						who = from.owner
+					}
+				}
+				if = {
+					limit = {
+						NOT = {
+							has_ethic = ethic_gestalt_consciousness
+						}
+					}
+					add_modifier = {
+						modifier = colossus_victim
+						days = 10800						# 30 years
+					}
+				}
+			}
+			if = {
+				limit = {
+					exists = owner
+					owner = {
+						is_country_type = primitive
+					}
+				}
+				# modifier for allies + those upset by genocide
+				every_country = {
+					limit = {
+						NOT = {
+							is_same_value = from.owner
+						}
+						OR = {
+							has_communications = from.owner
+							has_communications = root.owner
+						}
+						OR = {
+							has_ai_personality = awakened_fallen_empire_xenophile
+							AND = {
+								is_country_type = default
+								NOR = {
+									is_xenophobe = yes
+									is_homicidal = yes
+									is_xenophile = yes
+								}
+							}
+						}
+					}
+					add_opinion_modifier = {
+						modifier = opinion_cracked_a_primitive_world
+						who = from.owner
+					}
+				}
+				every_country = {
+					limit = {
+						NOT = {
+							is_same_value = from.owner
+						}
+						OR = {
+							has_communications = from.owner
+							has_communications = root.owner
+						}
+						OR = {
+							has_ai_personality = awakened_fallen_empire_xenophile
+							AND = {
+								is_country_type = default
+								is_xenophile = yes
+							}
+						}
+					}
+					add_opinion_modifier = {
+						modifier = opinion_cracked_a_primitive_world_phile
+						who = from.owner
+					}
+				}
+			}
+		}
+		# Add war exhaustion to planet owner
+		if = {
+			limit = {
+				exists = owner
+			}
+			owner = {
+				if = {
+					limit = {
+						#isn't the case when the crisis bombards planets, for instance
+						is_at_war_with = from.fleet.owner
+					}
+					add_static_war_exhaustion = {
+						attacker = from.fleet.owner
+						location = root
+						value_for_planet_destruction = 1
+					}
+				}
+			}
+		}
+		every_owned_pop_group = {
+			kill_pop_group = {
+				pop_group = this
+				percentage = 1
+			}
+		}
+		if = {
+			limit = {
+				exists = orbital_defence
+			}
+			destroy_fleet = orbital_defence
+		}
+		remove_all_buildings = yes
+		# destroy habitats and ringworlds
+		if = {
+			limit = {
+				is_planet_class = pc_habitat
+			}
+			remove_planet = yes
+		}
+		else_if = {
+			limit = {
+				is_planet_class = pc_cosmogenesis_world
+			}
+			remove_planet = yes
+		}
+		else_if = {
+			limit = {
+				is_ringworld = yes
+			}
+			remove_planet = yes
+		}
+		else_if = {
+			limit = {
+				habitable_planet = yes
+			}
+			remove_planet = yes
+		}
+		else = {
+			remove_planet = yes
+		}
+		create_ambient_object = {
+			location = this
+			type = habitat_cracker_object
+			duration = 5
+			use_3d_location = yes
+			base_angle_towards = star
+			entity_face_object = star
+			entity_offset = {
+				min = 0
+				max = 0
+			}
+			entity_scale_to_size = yes
+			scale = 0.5
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.2002
+	title = gts_leader_qhai.2002.title
+	desc = gts_leader_qhai.2002.desc
+	diplomatic = yes
+	fire_only_once = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_qhai35_room
+	}
+	show_sound = event_mystic_reveal
+	location = from
+	is_triggered_only = yes
+	option = {
+		name = gts_leader_qhai.2002.option
+		hidden_effect = {
+			country_event = {
+				id = gts_leader_qhai.2003
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_qhai.2003
+	title = gts_leader_qhai.2003.title
+	desc = gts_leader_qhai.2003.desc
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_qhai35_room
+	}
+	# show_sound = event_mystic_reveal
+	location = from
+	is_triggered_only = yes
+	option = {
+		name = gts_leader_qhai.2003.option
+		add_resource = {
+			gts_micro_planet = 1
+		}
+		custom_tooltip = gts_leader_qhai.2003.tooltip
+	}
+}

@@ -1,0 +1,1066 @@
+namespace = gts_evt_xiankeyan
+
+country_event = {
+	id = gts_evt_xiankeyan.0
+	title = gts_evt_xiankeyan.0.name
+	desc = gts_evt_xiankeyan.0.desc
+	picture = GFX_evt_society_research
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		set_country_flag = gts_on_investigation
+	}
+	option = {
+		name = gts_evt_xiankeyan.0.a
+		begin_event_chain = {
+			event_chain = gts_advanced_technology_research_institude_chain
+		}
+		country_event = {
+			id = gts_evt_xiankeyan.1 days = 2
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_xiankeyan.1 #最近一次失踪
+	title = gts_evt_xiankeyan.1.name
+	desc = gts_evt_xiankeyan.1.desc
+	picture = GFX_evt_city_ruins
+	show_sound = event_airlock
+	location = FROM
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = {
+			random_owned_leader = {
+				limit = {
+					leader_class = scientist
+				}
+				save_event_target_as = main_invesigator
+			}
+		}
+	}
+
+	option = {
+		name = gts_evt_xiankeyan.1.a
+		
+		leader = { add_experience = 200 }
+		add_event_chain_counter = {
+			event_chain = gts_advanced_technology_research_institude_chain
+			counter = hint_of_detect
+			amount = 1
+		}
+		country_event = {
+			id = gts_evt_xiankeyan.3
+			days = 1
+		}
+	}
+
+	option = {
+		name = gts_evt_xiankeyan.1.b
+		leader = { add_experience = 200 }
+		add_event_chain_counter = {
+			event_chain = gts_advanced_technology_research_institude_chain
+			counter = hint_of_detect
+			amount = 2
+		}
+		country_event = {
+			id = gts_evt_xiankeyan.2
+			days = 1
+		}
+	}
+}	
+
+country_event = {
+	id = gts_evt_xiankeyan.2 #首先调查住宅区
+	title = gts_evt_xiankeyan.2.name
+	desc = gts_evt_xiankeyan.2.desc
+	picture = GFX_evt_investigation_homes
+
+	is_triggered_only = yes
+
+	option = {
+		name = gts_evt_xiankeyan.2.a
+		
+		hidden_effect = {
+			add_event_chain_counter = {
+				event_chain = gts_advanced_technology_research_institude_chain
+				counter = hint_of_detect
+				amount = 1
+			}
+			start_situation = {
+				type = situation_investigation
+			}
+			country_event = {
+				id = gts_evt_xiankeyan.10
+			}
+		}
+	}
+
+	option = {
+		name = gts_evt_xiankeyan.2.b
+		leader = { add_experience = 200 }
+		hidden_effect = {
+			add_event_chain_counter = {
+				event_chain = gts_advanced_technology_research_institude_chain
+				counter = suspecious
+				amount = 1
+			}
+			start_situation = {
+				type = situation_investigation
+			}
+			country_event = {
+				id = gts_evt_xiankeyan.10
+			}
+		}
+	}
+}	
+
+country_event = {
+	id = gts_evt_xiankeyan.3 #首先调查学校
+	title = gts_evt_xiankeyan.3.name
+	desc = gts_evt_xiankeyan.3.desc
+	picture = GFX_evt_investigation_school
+
+	is_triggered_only = yes
+
+	option = {
+		name = gts_evt_xiankeyan.3.a
+		
+		leader = { add_experience = 200 }
+		hidden_effect = {
+			add_event_chain_counter = {
+				event_chain = gts_advanced_technology_research_institude_chain
+				counter = hint_of_detect
+				amount = 1
+			}
+			start_situation = {
+				type = situation_investigation
+			}
+			country_event = {
+				id = gts_evt_xiankeyan.10
+			}
+		}
+	}
+
+	option = {
+		name = gts_evt_xiankeyan.3.b
+		leader = { add_experience = 200 }
+		hidden_effect = {
+			add_event_chain_counter = {
+				event_chain = gts_advanced_technology_research_institude_chain
+				counter = suspecious
+				amount = 1
+			}
+			start_situation = {
+				type = situation_investigation
+			}
+			country_event = {
+				id = gts_evt_xiankeyan.10
+			}
+		}
+	}
+}	
+
+country_event = {
+	id = gts_evt_xiankeyan.5
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_country_flag = gts_investigation_stop
+		remove_country_flag = gts_investigation_keep
+		remove_country_flag = gts_investigation_press
+	}
+}
+
+country_event = {
+	id = gts_evt_xiankeyan.6
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		remove_country_flag = gts_investigation_stop
+		set_country_flag = gts_investigation_keep
+		remove_country_flag = gts_investigation_press
+	}
+}
+
+country_event = {
+	id = gts_evt_xiankeyan.7
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		remove_country_flag = gts_investigation_stop
+		remove_country_flag = gts_investigation_keep
+		set_country_flag = gts_investigation_press
+	}
+}
+
+country_event = { #每月调查
+	id = gts_evt_xiankeyan.10
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = {
+		has_country_flag = gts_on_investigation
+	}
+	immediate = {
+		owner = {
+			if = {
+				limit = { NAND = {
+					has_country_flag = gts_investigation_stop
+					has_country_flag = gts_investigation_keep
+					has_country_flag = gts_investigation_press
+				} }
+			
+				random_list = {
+				25 = { country_event = { id = gts_evt_xiankeyan.11 days = 1 } }
+				25 = { country_event = { id = gts_evt_xiankeyan.12 days = 1 } }
+				25 = { country_event = { id = gts_evt_xiankeyan.13 days = 1 } }
+				25 = { country_event = { id = gts_evt_xiankeyan.14 days = 1 } }
+				}
+			}
+			else_if = {
+				limit = { 
+					has_country_flag = gts_investigation_stop
+				}
+			random_list = {
+					5 = { country_event = { id = gts_evt_xiankeyan.11 days = 1 } }
+					85 = { country_event = { id = gts_evt_xiankeyan.12 days = 1 } }
+					5 = { country_event = { id = gts_evt_xiankeyan.13 days = 1 } }
+					5 = { country_event = { id = gts_evt_xiankeyan.14 days = 1 } }
+				}	
+			}
+			else_if = {
+				limit = { 
+					has_country_flag = gts_investigation_keep
+				}
+				random_list = {
+					20 = { country_event = { id = gts_evt_xiankeyan.11 days = 1 } }
+					25 = { country_event = { id = gts_evt_xiankeyan.12 days = 1 } }
+					45 = { country_event = { id = gts_evt_xiankeyan.13 days = 1 } }
+					10 = { country_event = { id = gts_evt_xiankeyan.14 days = 1 } }
+				}
+			}
+			else_if = {
+				limit = { has_country_flag = gts_investigation_press }
+				random_list = {
+					25 = { country_event = { id = gts_evt_xiankeyan.11 days = 1 } }
+					10 = { country_event = { id = gts_evt_xiankeyan.12 days = 1 } }
+					30 = { country_event = { id = gts_evt_xiankeyan.13 days = 1 } }
+					35 = { country_event = { id = gts_evt_xiankeyan.14 days = 1 } }
+				}
+			}
+		}
+	}
+}
+
+country_event = { #每月调查失败
+	id = gts_evt_xiankeyan.11
+	title = gts_evt_xiankeyan.11.name
+	desc = gts_evt_xiankeyan.11.desc
+	is_triggered_only = yes
+	picture = GFX_evt_investigation3
+	show_sound = event_mind_over_matter
+	
+	option = {
+		name = gts_evt_xiankeyan.11.a
+		hidden_effect = {
+			add_event_chain_counter = {
+				event_chain = gts_advanced_technology_research_institude_chain
+				counter = suspecious
+				amount = 1
+			}
+			country_event = {
+				id = gts_evt_xiankeyan.10 days = 180
+			}
+		}
+	}
+}
+
+country_event = { #每月调查无用
+	id = gts_evt_xiankeyan.12
+	title = gts_evt_xiankeyan.12.name
+	desc = gts_evt_xiankeyan.12.desc
+	is_triggered_only = yes
+	picture = GFX_evt_investigation4
+	show_sound = event_mind_over_matter
+	
+	option = {
+		name = gts_evt_xiankeyan.12.a
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_xiankeyan.10 days = 180
+			}
+		}
+	}
+}
+
+country_event = { #每月调查成功
+	id = gts_evt_xiankeyan.13
+	title = gts_evt_xiankeyan.13.name
+	desc = gts_evt_xiankeyan.13.desc
+	is_triggered_only = yes
+	picture = GFX_evt_investigation5
+	show_sound = event_mind_over_matter
+	
+	option = {
+		name = gts_evt_xiankeyan.13.a
+		hidden_effect = {
+			add_event_chain_counter = {
+				event_chain = gts_advanced_technology_research_institude_chain
+				counter = hint_of_detect
+				amount = 1
+			}
+			country_event = {
+				id = gts_evt_xiankeyan.10 days = 180
+			}
+		}
+	}
+}
+
+country_event = { #每月调查激进
+	id = gts_evt_xiankeyan.14
+	title = gts_evt_xiankeyan.14.name
+	desc = gts_evt_xiankeyan.14.desc
+	is_triggered_only = yes
+	picture = GFX_evt_investigation6
+	show_sound = event_mind_over_matter
+	
+	option = {
+		name = gts_evt_xiankeyan.11.a
+		hidden_effect = {
+			add_event_chain_counter = {
+				event_chain = gts_advanced_technology_research_institude_chain
+				counter = suspecious
+				amount = 1
+			}
+			add_event_chain_counter = {
+				event_chain = gts_advanced_technology_research_institude_chain
+				counter = hint_of_detect
+				amount = 2
+			}
+			country_event = {
+				id = gts_evt_xiankeyan.10 days = 180
+			}
+		}
+	}
+}
+
+situation_event = {
+	id = gts_evt_xiankeyan.20
+	title = gts_evt_xiankeyan.20.name
+	desc = gts_evt_xiankeyan.20.desc
+	is_triggered_only = yes
+	picture = GFX_evt_investigation7
+	show_sound = event_mind_over_matter
+
+	option = {
+		name = gts_evt_xiankeyan.20.a
+		hidden_effect = {
+			owner = { 
+				add_event_chain_counter = {
+					event_chain = gts_advanced_technology_research_institude_chain
+					counter = suspecious
+					amount = -1
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_evt_xiankeyan.20.b
+		hidden_effect = {
+			owner = {
+				add_event_chain_counter = {
+					event_chain = gts_advanced_technology_research_institude_chain
+					counter = hint_of_detect
+					amount = 1
+				}
+			}
+		}
+	}
+}
+
+country_event = { #成功调查
+	id = gts_evt_xiankeyan.30
+	title = gts_evt_xiankeyan.30.name
+	desc = gts_evt_xiankeyan.30.desc
+	picture = GFX_evt_society_research
+	show_sound = event_laboratory_sound
+	is_triggered_only = yes
+
+	trigger = {
+		has_event_chain = gts_advanced_technology_research_institude_chain
+		has_completed_event_chain_counter = {
+			event_chain = gts_advanced_technology_research_institude_chain
+			counter = hint_of_detect
+		}
+		NOT = { has_country_flag = gts_investigation_completed }
+	}
+
+	immediate = {
+		remove_country_flag = gts_on_investigation
+		set_country_flag = gts_investigation_completed
+		end_event_chain = "gts_advanced_technology_research_institude_chain"
+	}
+
+	option = {
+		name = gts_evt_xiankeyan.30.a
+		hidden_effect = {
+			set_country_flag = giantess_kaijiang_country
+			set_global_flag = kaijiang_sighted_global
+			create_country = {
+				name = "NAME_Incoming_kaijiang"
+				type = faction
+				auto_delete = no
+				flag = {
+					icon = {
+						category = "zoological"
+						file = "flag_zoological_1.dds"
+					}
+					background= {
+						category = "backgrounds"
+						file = "new_dawn.dds"
+					}
+					colors={
+						"black"
+						"black"
+						"null"
+						"null"
+					}
+				}
+				effect = {
+					establish_communications_no_message = root.owner
+				}
+			}
+			last_created_country = {
+				set_country_flag = incoming_kaijiang
+				create_fleet = {
+					name = "NAME_Kaijiang"
+					effect = {
+						set_aggro_range = 0
+						set_fleet_stance = aggressive
+						set_aggro_range_measure_from = self
+						set_owner = PREV
+						set_fleet_flag = Kaijiang_fleet
+						save_event_target_as = Kaijiang_fleet_target
+						create_ship = {
+							name = "NAME_Kaijiang"
+							design = "NAME_Kaijiang"
+						}
+						set_location = {
+							target = root.capital_scope
+							distance = 180
+							angle = random
+						}
+						queue_actions = {
+							move_to = root.capital_scope
+							effect = {
+								id = "gts_evt_xiankeyan.30.effect.1"
+								root.capital_scope = {
+									planet_event = { id = gts_evt_xiankeyan.33 }
+								}
+							}
+						}
+					}
+				}
+				set_relation_flag = {
+					who = root.owner
+					flag = Kaijiang_enemy
+				}
+			}
+		}
+	}
+}
+
+#会长消失
+country_event = {
+	id = gts_evt_xiankeyan.31
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		exists = from
+		from = { has_country_flag = incoming_kaijiang }
+		NOT = {
+			has_country_flag = kaijiang_landed
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				has_country_flag = giantess_kaijiang_country
+				from = {
+					has_relation_flag = {
+						who = root
+						flag = Kaijiang_enemy
+					}
+				}
+			}
+			random_owned_planet = {
+				limit = { is_capital = yes }
+				planet_event = { id = gts_evt_xiankeyan.32 }
+			}
+		}
+		else = {
+			random_country = {
+				limit = {
+					reverse_has_relation_flag = {
+						who = from
+						flag = Kaijiang_enemy
+					}
+					has_country_flag = giantess_kaijiang_country
+				}
+				random_owned_planet = {
+					limit = { is_capital = yes }
+					planet_event = { id = gts_evt_xiankeyan.32 }
+				}
+			}
+		}
+	}
+}
+
+# Asteroid Destroyed
+planet_event = {
+	id = gts_evt_xiankeyan.32
+	title = gts_evt_xiankeyan.32.name
+	desc = {
+		trigger = {
+			owner = { NOT = { has_authority = auth_machine_intelligence } }
+		}
+		text = gts_evt_xiankeyan.32.desc
+	}
+	desc = {
+		trigger = {
+			owner = { has_authority = auth_machine_intelligence }
+		}
+		text = gts_evt_xiankeyan.32.desc.mach
+	}
+	picture = GFX_evt_atmospheric_entry
+	show_sound = event_ship_explosion
+	location = ROOT
+
+	is_triggered_only = yes
+
+	immediate = {
+		fromfrom = {
+			remove_relation_flag = { who = root.owner flag = Kaijiang_enemy }
+			destroy_country = yes
+		}
+		remove_global_flag = kaijiang_sighted_global
+
+		root.owner = {
+			country_event = {
+				id = gts_evt_xiankeyan.40
+			}
+		}
+	}
+
+	option = {
+		name = EXCELLENT
+	}
+}
+
+# Asteroid Impacts Planet
+planet_event = {
+	id = gts_evt_xiankeyan.33
+	title = gts_evt_xiankeyan.33.name
+	desc = {
+		trigger = {
+			owner = { NOT = { has_authority = auth_machine_intelligence } }
+		}
+		text = gts_evt_xiankeyan.33.desc
+	}
+	desc = {
+ 		trigger = {
+ 			owner = { has_authority = auth_machine_intelligence }
+ 		}
+ 		text = gts_evt_xiankeyan.33.desc.mach
+ 	}
+	picture = GFX_evt_nuclear_explosion
+	show_sound = event_super_explosion
+	location = ROOT
+
+	is_triggered_only = yes
+
+	immediate = {
+		owner = {
+			set_country_flag = kaijiang_landed
+			country_event = { id = gts_evt_xiankeyan.34 days = 1 }
+		}
+		remove_global_flag = kaijiang_sighted_global
+
+		add_deposit = d_crater
+	}
+
+	option = {
+		name = gts_evt_xiankeyan.33.a
+		if = {
+			limit = {
+				pop_amount < 2000
+			}
+			while = {
+				count = 10
+				random_owned_pop_group = {
+					kill_single_pop = yes
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				pop_amount > 2000
+				pop_amount < 6000
+			}
+			while = {
+				count = 20
+				random_owned_pop_group = {
+					kill_single_pop = yes
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				pop_amount > 6000
+			}
+            while = {
+				count = 40
+				random_owned_pop_group = {
+					kill_single_pop = yes
+				}
+			}
+		}
+	}
+}
+
+# Destroy Asteroid after fleet actions have completed and event fired
+country_event = {
+	id = gts_evt_xiankeyan.34
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		random_country = {
+			limit = {
+				has_relation_flag = {
+					who = root
+					flag = Kaijiang_enemy
+				}
+			}
+			every_controlled_ship = {
+				fleet = {
+					destroy_fleet = this
+				}
+			}
+			destroy_country = yes
+		}
+	}
+}
+
+# Colony Consumed
+country_event = {
+	id = gts_evt_xiankeyan.35
+	title = gts_evt_xiankeyan.35.name
+	desc = gts_evt_xiankeyan.35.desc
+
+	is_triggered_only = yes
+
+	show_sound = event_super_explosion
+
+	trigger = {
+		owner = {
+			is_lithoid_devouring_swarm = yes
+		}
+
+		from = {
+			num_free_districts = { type = any value <= 0 }
+		}
+	}
+
+	picture = GFX_evt_shattered_planet
+
+	immediate = {
+		if = {
+			limit = {
+				from = {
+					is_planet_class = pc_desert # You can't eat your desert if it isn't a desert!
+					has_planet_flag = tasty_desert
+				}
+			}
+			set_country_flag = room_for_desert_achievement
+		}
+		from = {
+			every_owned_pop_group = {
+				resettle_pop = {
+					pop = this
+					planet = owner.capital_scope
+				}
+			}
+			change_pc = pc_shattered
+			clear_deposits = yes
+		}
+	}
+
+	option = {
+		name = gts_evt_xiankeyan.35.a
+		custom_tooltip = gts_evt_xiankeyan.35.a.tooltip
+		if = {
+			limit = {
+				has_ascension_perk = ap_become_the_crisis
+			}
+			complete_crisis_objective = crisobj_destroy_worlds
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_xiankeyan.40
+	title = INCOMING_TRANSMISSION
+	desc = gts_evt_xiankeyan.40.desc
+	show_sound = event_whispering
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = gts_Kaijiang
+		room = "ethic_spaceship_room"
+	}
+
+	option = {
+		name = gts_evt_xiankeyan.40.a
+		country_event = {
+			id = gts_evt_xiankeyan.41
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_xiankeyan.41
+	title = INCOMING_TRANSMISSION
+	desc = gts_evt_xiankeyan.41.desc
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = gts_Kaijiang
+		room = "ethic_spaceship_room"
+	}
+
+	option = {
+		name = gts_evt_xiankeyan.41.a 
+		country_event = {
+			id = gts_evt_xiankeyan.42
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_xiankeyan.42
+	title = INCOMING_TRANSMISSION
+	desc = gts_evt_xiankeyan.42.desc
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = gts_Kaijiang
+		room = "ethic_spaceship_room"
+	}
+
+	option = {
+		name = gts_evt_xiankeyan.42.a 
+		country_event = {
+			id = gts_evt_xiankeyan.43
+		}
+	}
+}
+
+
+country_event = {
+	id = gts_evt_xiankeyan.43
+	title = INCOMING_TRANSMISSION
+	desc = gts_evt_xiankeyan.43.desc
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = gts_Kaijiang
+		room = "ethic_spaceship_room"
+	}
+
+	option = {
+		name = gts_evt_xiankeyan.43.a
+		response_text = gts_evt_xiankeyan.43.a.response
+		is_dialog_only = yes
+	}
+
+	option = {
+		name = gts_evt_xiankeyan.43.b
+		response_text = gts_evt_xiankeyan.43.b.response
+		is_dialog_only = yes
+	}
+
+	option = {
+		name = gts_evt_xiankeyan.43.c
+		country_event = {
+			id = gts_evt_xiankeyan.44
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_xiankeyan.44
+	title = INCOMING_TRANSMISSION
+	desc = gts_evt_xiankeyan.44.desc
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = gts_Kaijiang
+		room = "ethic_spaceship_room"
+	}
+
+	option = {
+		name = gts_evt_xiankeyan.44.a 
+		add_modifier = {
+			modifier = gts_advanced_technology_research_institude_total
+			}
+		add_relic = r_size_machine
+		end_event_chain = gts_advanced_technology_research_institude_chain
+	}
+}
+
+country_event = { #调查失败
+	id = gts_evt_xiankeyan.50
+	title = gts_evt_xiankeyan.50.name
+	desc = gts_evt_xiankeyan.50.desc
+	picture = GFX_evt_investigation2
+	show_sound = event_laboratory_sound
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		owner = {
+			has_event_chain = gts_advanced_technology_research_institude_chain
+			has_completed_event_chain_counter = {
+				event_chain = gts_advanced_technology_research_institude_chain
+				counter = suspecious
+			}
+			NOT = { has_country_flag = gts_investigation_completed }
+		}
+	}
+
+	immediate = {
+		owner = {
+			remove_country_flag = gts_on_investigation
+			set_country_flag = gts_investigation_completed
+			destroy_situation = event_target:situation_investigation
+			end_event_chain = gts_advanced_technology_research_institude_chain
+		}
+	}
+
+	option = {
+		name = gts_evt_xiankeyan.50.a
+		end_event_chain = gts_advanced_technology_research_institude_chain
+		every_owned_species = {
+			if = {
+				limit = {
+					has_trait = trait_Tiny
+				}
+				change_species_characteristics = {
+					remove_trait = trait_Tiny
+					add_trait = trait_Micro
+				}
+			}
+			else_if = {
+				limit = { 
+					has_trait = trait_Small
+				}
+				change_species_characteristics = {
+				remove_trait = trait_Small
+				add_trait = trait_Tiny
+				}
+			}
+			else_if = {
+				limit = { 
+					has_trait = trait_Normal
+				}
+				change_species_characteristics = {
+				remove_trait = trait_Normal
+				add_trait = trait_Small
+				}
+			}
+			else_if = {
+				limit = { 
+					has_trait = trait_Tall
+				}
+				change_species_characteristics = {
+				remove_trait = trait_Tall
+				add_trait = trait_Normal
+				}
+			}
+			else_if = {
+				limit = { 
+					has_trait = trait_Giant
+				}
+				change_species_characteristics = {
+				remove_trait = trait_Giant
+				add_trait = trait_Tall
+				}
+			}
+			else_if = {
+				limit = { 
+					has_trait = trait_Titan
+				}
+				change_species_characteristics = {
+				remove_trait = trait_Titan
+				add_trait = trait_Giant
+				}
+			}
+			else = {
+				change_species_characteristics = {
+				add_trait = trait_Small
+				}
+			}
+		}
+		every_owned_ship = {
+			save_event_target_as = toys_of_end
+		}
+		destroy_ship = event_target:toys_of_end
+		
+	}
+}
+
+country_event = { #启动遗珍
+	id = gts_evt_xiankeyan.60
+	title = gts_evt_xiankeyan.60.name
+	desc = gts_evt_xiankeyan.60.desc
+	picture = GFX_evt_gaia
+	show_sound = event_psionic
+	is_triggered_only = yes
+
+    immediate = {
+		random_owned_species = {
+			limit = {
+				NOR = {
+					is_exact_same_species = root
+					has_trait = trait_Nano
+					has_trait = trait_Micro
+					has_trait = trait_Ultra
+					has_citizenship_type = { country = root type = citizenship_assimilation }
+					has_citizenship_type = { country = root type = citizenship_purge }
+				}
+			}
+			save_event_target_as = gts_bruh_reduce_species_size_target
+		}
+		random_owned_species = {
+			limit = {
+				NOR = {
+					is_exact_same_species = root
+					has_trait = trait_Nano
+					has_trait = trait_Titan
+					has_trait = trait_Ultra
+					has_citizenship_type = { country = root type = citizenship_assimilation }
+					has_citizenship_type = { country = root type = citizenship_purge }
+				}
+			}
+			save_event_target_as = gts_bruh_increase_species_size_target
+		}
+	}
+
+	option = {
+		name = gts_evt_xiankeyan.60.a
+		allow = {
+			owner_main_species = {
+				NOT = {
+					has_trait = trait_Nano
+					has_trait = trait_Micro
+					has_trait = trait_Ultra
+				}
+			}
+		}
+		owner_main_species = {
+			gts_species_size_reduce = yes
+		}
+	}
+
+	option = {
+		name = gts_evt_xiankeyan.60.b
+		allow = {
+			owner_main_species = {
+				NOT = {
+					has_trait = trait_Nano
+					has_trait = trait_Titan
+					has_trait = trait_Ultra
+				}
+			}
+		}
+		owner_main_species = {
+			gts_species_size_increase = yes
+		}
+	}
+
+	option = {
+		name = gts_evt_xiankeyan.60.c
+		remove_relic = r_size_machine
+		add_resource = {
+			physics_research = 100000
+			society_research = 100000
+			engineering_research = 100000
+			energy = 5000
+		}
+		country_event = {
+			id = gts_evt_xiankeyan.301 days = 1
+		}
+	}
+
+	option = {
+		name = gts_evt_xiankeyan.60.d
+		remove_relic = r_size_machine
+		add_resource = {
+			minor_artifacts = 500
+		}
+		country_event = {
+			id = gts_evt_xiankeyan.301 days = 1
+		}
+	}
+
+	option = {
+		name = gts_evt_xiankeyan.60.e
+		hidden_effect = {
+			event_target:gts_bruh_reduce_species_size_target = {
+				gts_species_size_reduce = yes
+			}
+		}
+	}
+
+	option = {
+		name = gts_evt_xiankeyan.60.f
+		hidden_effect = {
+			event_target:gts_bruh_increase_species_size_target = {
+				gts_species_size_increase = yes
+			}
+		}
+	}
+
+	option = {
+		name = gts_evt_xiankeyan.60.g
+		remove_modifier = relic_activation_cooldown
+	}
+}
+
+country_event = {
+	id = gts_evt_xiankeyan.301
+	title = gts_evt_xiankeyan.301.name
+	desc = gts_evt_xiankeyan.301.desc
+	picture = GFX_gtsra_load_29
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = gts_evt_xiankeyan.301.a
+	}
+}

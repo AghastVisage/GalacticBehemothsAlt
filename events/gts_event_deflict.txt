@@ -1,0 +1,212 @@
+namespace = gts_evt_deficit
+situation_event = {
+	#极糟
+	id = gts_evt_deficit.1
+	title = gts_evt_deficit.1.name
+	desc = gts_evt_deficit.1.desc
+	picture = GFX_evt_deficit
+	show_sound = event_life_support_fail
+	is_triggered_only = yes
+	situation = this
+	force_open = yes
+	option = {
+		name = gts_evt_deficit.1.a
+	}
+	option = {
+		name = gts_evt_deficit.1.b
+	}
+}
+
+situation_event = {
+	#较糟
+	id = gts_evt_deficit.2
+	title = gts_evt_deficit.2.name
+	desc = gts_evt_deficit.2.desc
+	picture = GFX_evt_deficit
+	show_sound = event_life_support_fail
+	is_triggered_only = yes
+	situation = this
+	force_open = yes
+	option = {
+		name = gts_evt_deficit.2.a
+	}
+	option = {
+		name = gts_evt_deficit.2.b
+	}
+}
+
+situation_event = {
+	#较好
+	id = gts_evt_deficit.3
+	title = gts_evt_deficit.3.name
+	desc = gts_evt_deficit.3.desc
+	picture = GFX_evt_deficit
+	show_sound = event_life_support_fail
+	is_triggered_only = yes
+	situation = this
+	force_open = yes
+	option = {
+		name = gts_evt_deficit.3.a
+	}
+	option = {
+		name = gts_evt_deficit.3.b
+	}
+}
+
+situation_event = {
+	#极好
+	id = gts_evt_deficit.4
+	title = gts_evt_deficit.4.name
+	desc = gts_evt_deficit.4.desc
+	picture = GFX_evt_deficit
+	show_sound = event_life_support_fail
+	is_triggered_only = yes
+	situation = this
+	force_open = yes
+	option = {
+		name = gts_evt_deficit.4.a
+	}
+	option = {
+		name = gts_evt_deficit.4.b
+	}
+}
+
+situation_event = {
+	#和平
+	id = gts_evt_deficit.5
+	title = gts_evt_deficit.5.name
+	desc = gts_evt_deficit.5.desc
+	picture = GFX_evt_deficit
+	show_sound = event_life_support_fail
+	is_triggered_only = yes
+	situation = this
+	force_open = yes
+	option = {
+		name = gts_evt_deficit.5.a
+		custom_tooltip = "Jiju_standard_on"
+		owner = {
+			set_country_flag = gts_Jiju_assimilation
+			add_modifier = {
+				modifier = jiju_unity
+			}
+			set_country_flag = Jiju_standard_on
+		}
+	}
+	option = {
+		name = gts_evt_deficit.5.b
+		custom_tooltip = "Jiju_standard_on"
+		owner = {
+			set_country_flag = gts_Jiju_assimilation
+			add_modifier = {
+				modifier = jiju_unity
+			}
+			set_country_flag = Jiju_standard_on
+		}
+	}
+	after = {
+		destroy_situation = this
+	}
+}
+
+situation_event = {
+	#战争
+	id = gts_evt_deficit.6
+	title = gts_evt_deficit.6.name
+	desc = gts_evt_deficit.6.desc
+	picture = GFX_evt_deficit
+	show_sound = event_life_support_fail
+	is_triggered_only = yes
+	situation = this
+	force_open = yes
+	option = {
+		name = gts_evt_deficit.6.a
+		owner = {
+			add_modifier = {
+				modifier = jiju_destory
+			}
+			add_modifier = {
+				modifier = jiju_destory_anti
+				days = 1800
+			}
+		}
+		hidden_effect = {
+			owner = {
+				modify_species = {
+					remove_trait = trait_Jiju
+					add_trait = trait_Jiju_anti
+					add_traits_at_start_of_list = yes
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_evt_deficit.6.b
+		owner = {
+			add_modifier = {
+				modifier = jiju_destory
+			}
+			add_modifier = {
+				modifier = jiju_destory_anti
+				days = 1800
+			}
+		}
+		hidden_effect = {
+			owner = {
+				modify_species = {
+					remove_trait = trait_Jiju
+					add_trait = trait_Jiju_anti
+					add_traits_at_start_of_list = yes
+				}
+			}
+		}
+	}
+	after = {
+		destroy_situation = this
+	}
+}
+
+situation_event = {
+	id = gts_evt_deficit.7
+	title = gts_evt_deficit.7.name
+	desc = gts_evt_deficit.7.desc
+	picture = GFX_evt_physics_research
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	}
+	option = {
+		name = gts_evt_deficit.7.a
+		owner = {
+			add_resource = {
+				minerals = -1500
+			}
+		}
+		situation_event = {
+			id = gts_evt_deficit.8
+			days = 150
+		}
+	}
+	option = {
+		name = gts_evt_deficit.7.b
+	}
+}
+
+situation_event = {
+	id = gts_evt_deficit.8
+	title = gts_evt_deficit.8.name
+	desc = gts_evt_deficit.8.desc
+	picture = GFX_evt_treasure_pile
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	}
+	option = {
+		name = gts_evt_deficit.8.a
+		owner = {
+			add_resource = {
+				energy = 20000
+				food = 5000
+			}
+		}
+	}
+}

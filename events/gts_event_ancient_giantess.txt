@@ -1,0 +1,2080 @@
+namespace = gts_evt_ancient
+
+# 远古巨大少女，mod的主线剧情
+
+country_event = {
+	#起源
+	id = gts_evt_ancient.1
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		country_event = {
+			id = gts_evt_ancient.2
+		}
+	}
+}
+
+country_event = {
+	#起源
+	id = gts_evt_ancient.2
+	title = gts_evt_ancient.2.name
+	desc = gts_evt_ancient.2.desc
+	picture = GFX_gts_hitomi_6
+	is_triggered_only = yes
+	trigger = {
+		is_ai = no
+	}
+	option = {
+		name = gts_evt_ancient.2.a
+		hidden_effect = {
+			country_event = {
+				id = gts_setting.0
+			}
+		}
+	}
+	option = {
+		name = gts_good
+	}
+	after = {
+		if = {
+			limit = {
+			}
+			begin_event_chain = {
+				event_chain = "gts_chain"
+				target = this
+			}
+			add_modifier = {
+				modifier = "long_for_mistery"
+				days = 3600
+			}
+		}
+	}
+}
+
+ship_event = {
+	id = gts_evt_ancient.10	#沃陶姆
+	title = "gts_evt_ancient.10.name"
+	desc = "gts_evt_ancient.10.desc"
+	picture = GFX_gtsra_load_9
+	show_sound = event_airlock
+	location = FROM
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_ancient.10.a
+		leader = {
+			add_experience = 200
+		}
+		from = {
+			create_archaeological_site = site_gts_wotaomu
+		}
+	}
+}
+
+fleet_event = {
+	id = gts_evt_ancient.11
+	title = "gts_evt_ancient.11.name"
+	desc = "gts_evt_ancient.11.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = INTERESTING
+		small_artifact_reward = yes
+	}
+}
+
+fleet_event = {
+	id = gts_evt_ancient.12
+	title = "gts_evt_ancient.12.name"
+	desc = "gts_evt_ancient.12.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = INTERESTING
+		medium_artifact_reward = yes
+	}
+}
+
+fleet_event = {
+	id = gts_evt_ancient.13
+	title = "gts_evt_ancient.13.name"
+	desc = "gts_evt_ancient.13.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = INTERESTING
+		large_artifact_reward = yes
+	}
+}
+
+fleet_event = {
+	id = gts_evt_ancient.14
+	title = "gts_evt_ancient.14.name"
+	desc = "gts_evt_ancient.14.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = INTERESTING
+		great_artifact_reward = yes
+		owner = {
+			add_event_chain_counter = {
+				event_chain = "gts_chain"
+				counter = "gts_planets"
+				amount = 1
+			}
+			add_modifier = {
+				modifier = "wotaomu_university"
+				days = -1
+			}
+		}
+	}
+}
+
+ship_event = {
+	id = gts_evt_ancient.20
+	title = "gts_evt_ancient.20.name"	#泽洛
+	desc = "gts_evt_ancient.20.desc"
+	picture = GFX_evt_archaeological_dig
+	show_sound = event_airlock
+	location = FROM
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_ancient.10.a
+		leader = {
+			add_experience = 200
+		}
+		from = {
+			create_archaeological_site = site_gts_zeluo
+		}
+		FROM = {
+			add_deposit = d_zro_deposit_5
+		}
+	}
+}
+
+fleet_event = {
+	id = gts_evt_ancient.21
+	title = "gts_evt_ancient.21.name"
+	desc = "gts_evt_ancient.21.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = INTERESTING
+		small_artifact_reward = yes
+	}
+}
+
+fleet_event = {
+	id = gts_evt_ancient.22
+	title = "gts_evt_ancient.22.name"
+	desc = "gts_evt_ancient.22.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = INTERESTING
+		medium_artifact_reward = yes
+	}
+}
+
+fleet_event = {
+	id = gts_evt_ancient.23
+	title = "gts_evt_ancient.23.name"
+	desc = "gts_evt_ancient.23.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = INTERESTING
+		large_artifact_reward = yes
+	}
+}
+
+fleet_event = {
+	id = gts_evt_ancient.24
+	title = "gts_evt_ancient.24.name"
+	desc = "gts_evt_ancient.24.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = INTERESTING
+		great_artifact_reward = yes
+		owner = {
+			add_event_chain_counter = {
+				event_chain = "gts_chain"
+				counter = "gts_planets"
+				amount = 1
+			}
+			give_technology = {
+				tech = tech_mine_zro
+			}
+		}
+		hidden_effect = {
+			FROM = {
+				add_deposit = d_zro_deposit_5
+			}
+		}
+	}
+}
+
+ship_event = {
+	id = gts_evt_ancient.30
+	title = "gts_evt_ancient.30.name"	#第一联盟
+	desc = "gts_evt_ancient.30.desc"
+	picture = GFX_evt_dead_city
+	show_sound = event_airlock
+	location = FROM
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_ancient.10.a
+		leader = {
+			add_experience = 200
+		}
+		from = {
+			create_archaeological_site = site_gts_deyilianmeng
+		}
+	}
+}
+
+fleet_event = {
+	id = gts_evt_ancient.31
+	title = "gts_evt_ancient.31.name"
+	desc = "gts_evt_ancient.31.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = INTERESTING
+		small_artifact_reward = yes
+	}
+}
+
+fleet_event = {
+	id = gts_evt_ancient.32
+	title = "gts_evt_ancient.32.name"
+	desc = "gts_evt_ancient.32.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = INTERESTING
+		medium_artifact_reward = yes
+	}
+}
+
+fleet_event = {
+	id = gts_evt_ancient.33
+	title = "gts_evt_ancient.33.name"
+	desc = "gts_evt_ancient.33.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = INTERESTING
+		large_artifact_reward = yes
+	}
+}
+
+fleet_event = {
+	id = gts_evt_ancient.34
+	title = "gts_evt_ancient.34.name"
+	desc = "gts_evt_ancient.34.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = INTERESTING
+		great_artifact_reward = yes
+		owner = {
+			add_event_chain_counter = {
+				event_chain = "gts_chain"
+				counter = "gts_planets"
+				amount = 1
+			}
+			give_technology = {
+				tech = tech_mega_engineering
+			}
+		}
+	}
+}
+
+ship_event = {
+	id = gts_evt_ancient.40
+	title = "gts_evt_ancient.40.name"	#尤特
+	desc = "gts_evt_ancient.40.desc"
+	picture = GFX_evt_archaeological_dig
+	show_sound = event_airlock
+	location = FROM
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_ancient.10.a
+		leader = {
+			add_experience = 200
+		}
+		from = {
+			create_archaeological_site = site_gts_jiabadini
+		}
+		FROM = {
+			add_deposit = d_alloys_10
+		}
+	}
+}
+
+fleet_event = {
+	id = gts_evt_ancient.41
+	title = "gts_evt_ancient.41.name"
+	desc = "gts_evt_ancient.41.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = INTERESTING
+		small_artifact_reward = yes
+	}
+}
+
+fleet_event = {
+	id = gts_evt_ancient.42
+	title = "gts_evt_ancient.42.name"
+	desc = "gts_evt_ancient.42.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = INTERESTING
+		medium_artifact_reward = yes
+	}
+}
+
+fleet_event = {
+	id = gts_evt_ancient.43
+	title = "gts_evt_ancient.43.name"
+	desc = "gts_evt_ancient.43.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = INTERESTING
+		large_artifact_reward = yes
+	}
+}
+
+fleet_event = {
+	id = gts_evt_ancient.44
+	title = "gts_evt_ancient.44.name"
+	desc = "gts_evt_ancient.44.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = INTERESTING
+		great_artifact_reward = yes
+		owner = {
+			add_event_chain_counter = {
+				event_chain = "gts_chain"
+				counter = "gts_planets"
+				amount = 1
+			}
+		}
+		hidden_effect = {
+			FROM = {
+				add_deposit = d_alloys_10
+			}
+		}
+	}
+}
+
+ship_event = {
+	id = gts_evt_ancient.50
+	title = "gts_evt_ancient.50.name"	#伊拉斯
+	desc = "gts_evt_ancient.50.desc"
+	picture = GFX_evt_archaeological_dig
+	show_sound = event_airlock
+	location = FROM
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_ancient.10.a
+		leader = {
+			add_experience = 200
+		}
+		from = {
+			create_archaeological_site = site_gts_yilasi
+		}
+	}
+}
+
+fleet_event = {
+	id = gts_evt_ancient.51
+	title = "gts_evt_ancient.51.name"
+	desc = "gts_evt_ancient.51.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = INTERESTING
+		small_artifact_reward = yes
+	}
+}
+
+fleet_event = {
+	id = gts_evt_ancient.52
+	title = "gts_evt_ancient.52.name"
+	desc = "gts_evt_ancient.52.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = INTERESTING
+		medium_artifact_reward = yes
+	}
+}
+
+fleet_event = {
+	id = gts_evt_ancient.53
+	title = "gts_evt_ancient.53.name"
+	desc = "gts_evt_ancient.53.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = INTERESTING
+		large_artifact_reward = yes
+	}
+}
+
+fleet_event = {
+	id = gts_evt_ancient.54
+	title = "gts_evt_ancient.54.name"
+	desc = "gts_evt_ancient.54.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = INTERESTING
+		great_artifact_reward = yes
+		owner = {
+			add_event_chain_counter = {
+				event_chain = "gts_chain"
+				counter = "gts_planets"
+				amount = 1
+			}
+			add_modifier = {
+				modifier = "jiawozhen_gts"
+				days = -1
+			}
+		}
+	}
+}
+
+ship_event = {
+	id = gts_evt_ancient.60
+	title = "gts_evt_ancient.60.name"	#地球
+	desc = "gts_evt_ancient.60.desc"
+	picture = GFX_evt_asteroid_approaching_planet
+	show_sound = event_airlock
+	location = FROM
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_ancient.10.a
+		leader = {
+			add_experience = 500
+		}
+		from = {
+			create_archaeological_site = site_gts_soI
+		}
+		#是大写的i
+		FROM = {
+			add_deposit = d_society_10
+		}
+	}
+}
+
+fleet_event = {
+	id = gts_evt_ancient.61
+	title = "gts_evt_ancient.61.name"
+	desc = "gts_evt_ancient.61.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = INTERESTING
+		small_artifact_reward = yes
+		hidden_effect = {
+			from.planet = {
+				change_pc = pc_nuked
+				set_planet_size = 30
+				add_deposit = d_radioactive_wasteland
+				add_deposit = d_radioactive_wasteland
+				add_deposit = d_radioactive_wasteland
+				add_deposit = d_city_ruins
+				add_deposit = d_city_ruins
+				add_deposit = d_bomb_crater
+				add_deposit = d_bomb_crater
+				add_deposit = d_bomb_crater
+			}
+		}
+	}
+}
+
+fleet_event = {
+	id = gts_evt_ancient.62
+	title = "gts_evt_ancient.62.name"
+	desc = "gts_evt_ancient.62.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = INTERESTING
+		medium_artifact_reward = yes
+	}
+}
+
+fleet_event = {
+	id = gts_evt_ancient.63
+	title = "gts_evt_ancient.63.name"
+	desc = "gts_evt_ancient.63.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = INTERESTING
+		large_artifact_reward = yes
+	}
+}
+
+fleet_event = {
+	id = gts_evt_ancient.64
+	title = "gts_evt_ancient.64.name"
+	desc = "gts_evt_ancient.64.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = INTERESTING
+		great_artifact_reward = yes
+		owner = {
+			add_event_chain_counter = {
+				event_chain = "gts_chain"
+				counter = "gts_planets"
+				amount = 1
+			}
+		}
+		hidden_effect = {
+			FROM = {
+				add_deposit = d_society_10
+			}
+		}
+	}
+}
+
+ship_event = {
+	id = gts_evt_ancient.70
+	title = "gts_evt_ancient.70.name"	#L星
+	desc = "gts_evt_ancient.70.desc"
+	picture = GFX_evt_shrouded_planet
+	show_sound = event_airlock
+	location = FROM
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_ancient.10.a
+		leader = {
+			add_experience = 200
+		}
+		from = {
+			create_archaeological_site = site_gts_gurunuer
+		}
+		FROM = {
+			add_deposit = d_nanites_deposit
+		}
+	}
+}
+
+fleet_event = {
+	id = gts_evt_ancient.71
+	title = "gts_evt_ancient.71.name"
+	desc = "gts_evt_ancient.71.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = INTERESTING
+		small_artifact_reward = yes
+	}
+}
+
+fleet_event = {
+	id = gts_evt_ancient.72
+	title = "gts_evt_ancient.72.name"
+	desc = "gts_evt_ancient.72.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = INTERESTING
+		medium_artifact_reward = yes
+	}
+}
+
+fleet_event = {
+	id = gts_evt_ancient.73
+	title = "gts_evt_ancient.73.name"
+	desc = "gts_evt_ancient.73.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = INTERESTING
+		large_artifact_reward = yes
+	}
+}
+
+fleet_event = {
+	id = gts_evt_ancient.74
+	title = "gts_evt_ancient.74.name"
+	desc = "gts_evt_ancient.74.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = INTERESTING
+		great_artifact_reward = yes
+		owner = {
+			add_event_chain_counter = {
+				event_chain = "gts_chain"
+				counter = "gts_planets"
+				amount = 1
+			}
+		}
+		hidden_effect = {
+			FROM = {
+				add_deposit = d_nanites_deposit
+			}
+		}
+	}
+}
+
+ship_event = {
+	id = gts_evt_ancient.80
+	title = "gts_evt_ancient.80.name"	#巴奥
+	desc = "gts_evt_ancient.80.desc"
+	picture = GFX_evt_baol_grunur
+	show_sound = event_airlock
+	location = FROM
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_ancient.10.a
+		leader = {
+			add_experience = 200
+		}
+		from = {
+			create_archaeological_site = site_gts_baol
+		}
+	}
+}
+
+fleet_event = {
+	id = gts_evt_ancient.81
+	title = "gts_evt_ancient.81.name"
+	desc = "gts_evt_ancient.81.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	immediate = {
+		from = {
+			change_pc = pc_tropical
+			set_planet_size = 30
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = INTERESTING
+		small_artifact_reward = yes
+		hidden_effect = {
+			from.planet = {
+				change_pc = pc_tropical
+				set_planet_size = 30
+				add_deposit = d_crystal_forest
+				add_deposit = d_rich_mountain
+				add_deposit = d_bountiful_plains
+				add_deposit = d_fertile_lands
+				add_deposit = d_fertile_lands
+				add_deposit = d_lush_jungle
+				add_deposit = d_lush_jungle
+				add_deposit = d_lush_jungle
+				add_deposit = d_lush_jungle
+				add_deposit = d_black_soil
+				add_deposit = d_black_soil
+			}
+		}
+	}
+}
+
+fleet_event = {
+	id = gts_evt_ancient.82
+	title = "gts_evt_ancient.82.name"
+	desc = "gts_evt_ancient.82.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = INTERESTING
+		medium_artifact_reward = yes
+	}
+}
+
+fleet_event = {
+	id = gts_evt_ancient.83
+	title = "gts_evt_ancient.83.name"
+	desc = "gts_evt_ancient.83.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = INTERESTING
+		large_artifact_reward = yes
+	}
+}
+
+fleet_event = {
+	id = gts_evt_ancient.84
+	title = "gts_evt_ancient.84.name"
+	desc = "gts_evt_ancient.84.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = INTERESTING
+		great_artifact_reward = yes
+		owner = {
+			add_event_chain_counter = {
+				event_chain = "gts_chain"
+				counter = "gts_planets"
+				amount = 1
+			}
+		}
+		from.planet = {
+			add_modifier = {
+				modifier = gts_sweat_planet
+			}
+		}
+	}
+}
+
+ship_event = {
+	id = gts_evt_ancient.90	#肃正
+	title = "gts_evt_ancient.0.name"	#本地化标题
+	desc = "gts_evt_ancient.0.desc"	#本地化文本
+	picture = GFX_gtsra_load_32
+	show_sound = event_airlock	#音效
+	location = FROM	#定位在哪
+	is_triggered_only = yes	#只会被触发（不会随机生成）
+	option = {
+		#选项
+		name = gts_evt_ancient.10.a		#本地化选项
+		leader = {
+			add_experience = 200
+		}
+		from = {
+			create_archaeological_site = site_gtsrobot
+		}
+		FROM = {
+			add_deposit = d_alloys_5
+		}
+	}
+}
+
+fleet_event = {
+	id = gts_evt_ancient.91
+	title = "gts_evt_ancient.91.name"
+	desc = "gts_evt_ancient.91.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = INTERESTING
+		small_artifact_reward = yes
+		hidden_effect = {
+			from.planet = {
+				change_pc = pc_relic
+				set_planet_size = 30
+				add_deposit = d_bomb_crater
+				add_deposit = d_bomb_crater
+				add_deposit = d_bomb_crater
+				add_deposit = d_bomb_crater
+				add_deposit = d_radioactive_wasteland
+				add_deposit = d_radioactive_wasteland
+				add_deposit = d_radioactive_wasteland
+				add_deposit = d_radioactive_wasteland
+				add_deposit = d_city_ruins
+			}
+		}
+	}
+}
+
+fleet_event = {
+	id = gts_evt_ancient.92
+	title = "gts_evt_ancient.92.name"
+	desc = "gts_evt_ancient.92.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = INTERESTING
+		medium_artifact_reward = yes
+	}
+}
+
+fleet_event = {
+	id = gts_evt_ancient.93
+	title = "gts_evt_ancient.93.name"
+	desc = "gts_evt_ancient.93.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = INTERESTING
+		large_artifact_reward = yes
+	}
+}
+
+fleet_event = {
+	id = gts_evt_ancient.94
+	title = "gts_evt_ancient.94.name"
+	desc = "gts_evt_ancient.94.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = GTSPRISE
+		great_artifact_reward = yes
+		owner = {
+			add_modifier = {
+				modifier = gts_anti_crisis				#添加修正：天灾预演
+			}
+			add_event_chain_counter = {
+				event_chain = "gts_chain"
+				counter = "gts_planets"
+				amount = 1
+			}
+			hidden_effect = {
+				FROM = {
+					add_deposit = d_alloys_5
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	#大事件链搜索完成
+	id = gts_evt_ancient.100
+	title = "gts_evt_ancient.100.name"
+	desc = "gts_evt_ancient.100.desc"
+	picture = GFX_evt_society_research
+	show_sound = event_laboratory_sound
+	is_triggered_only = yes
+	location = event_target:gts_bruh_get_end_system_location
+
+	trigger = {
+		has_event_chain = "gts_chain"
+		has_completed_event_chain_counter = {
+			event_chain = "gts_chain"
+			counter = "gts_planets"
+		}
+		NOT = {
+			has_country_flag = gts_completed_gts_survey
+		}
+	}
+
+	immediate = {
+		set_country_flag = gts_completed_gts_survey
+		root = {
+			capital_scope.solar_system = {
+				spawn_system = {
+					min_distance = 10
+					max_distance = 30
+					max_jumps = 0
+					initializer = "gts_end_system"
+					effect = {
+						save_event_target_as = gts_bruh_get_end_system_location
+					}
+				}
+				add_extra_hyperlane_to_spawned_system_effect = yes
+			}
+		}
+	}
+
+	option = {
+		name = "gts_evt_ancient.100.a"
+	}
+}
+
+ship_event = {
+	id = gts_evt_ancient.101	#终点
+	title = "gts_evt_ancient.101.name"
+	desc = "gts_evt_ancient.101.desc"
+	picture = GFX_gtsra_load_30
+	show_sound = event_airlock
+	location = FROM
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			add_modifier = {
+				modifier = gts_endscout
+				days = -1
+			}
+		}
+	}
+	option = {
+		name = gts_evt_ancient.10.a
+		leader = {
+			add_experience = 200
+		}
+		from = {
+			create_archaeological_site = site_gtsend
+		}
+	}
+}
+
+fleet_event = {
+	id = gts_evt_ancient.102
+	title = "gts_evt_ancient.102.name"
+	desc = "gts_evt_ancient.102.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = INTERESTING
+		medium_artifact_reward = yes
+	}
+}
+
+fleet_event = {
+	id = gts_evt_ancient.103
+	title = "gts_evt_ancient.103.name"
+	desc = "gts_evt_ancient.103.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = INTERESTING
+		large_artifact_reward = yes
+	}
+}
+
+fleet_event = {
+	id = gts_evt_ancient.104
+	title = "gts_evt_ancient.104.name"
+	desc = "gts_evt_ancient.104.desc"
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = INTERESTING
+		great_artifact_reward = yes
+		hidden_effect = {
+			solar_system = {
+				random_system_planet = {
+					limit = {
+						has_planet_flag = gts_end_blackhole
+					}
+					enable_special_project = {
+						name = "GTS_GETINTO_BLACKHOLE_PROJECT"
+						#event_chain = "gts_chain" #新版本特殊项目似乎不用在这说属于哪个事件链 而是直接在特殊项目界面编辑归属
+						location = event_target:gts_end_blackhole
+						owner = root.owner
+					}
+				}
+			}
+		}
+	}
+}
+
+ship_event = {
+	id = gts_evt_ancient.105	#失踪
+	title = "gts_evt_ancient.105.name"
+	desc = "gts_evt_ancient.105.desc"
+	picture = GFX_load_68
+	show_sound = event_airlock
+	location = FROM
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_ancient.10.a
+		owner = {
+			random_list = {
+				1 = {
+					country_event = {
+						id = gts_evt_ancient.110
+						days = 1
+					}
+				}
+				1 = {
+					country_event = {
+						id = gts_evt_ancient.111
+						days = 1
+					}
+				}
+				1 = {
+					country_event = {
+						id = gts_evt_ancient.112
+						days = 1
+					}
+				}
+			}
+			#			country_event = { id = gts_evt_ancient.110 days = 1 }
+		}
+		root.leader = {
+			add_trait = {
+				trait = gts_trait_avatar
+				show_message = no
+			}
+		}
+	}
+	option = {
+		name = gts_evt_ancient.105.a
+		allow = {
+			owner = {
+				any_owned_leader = {
+					has_leader_flag = gts_huatian
+				}
+			}
+		}
+		owner = {
+			country_event = {
+				id = gts_huatian.1020
+				days = 1
+			}
+		}
+	}
+	option = {
+		name = gts_evt_ancient.105.b
+		allow = {
+			owner = {
+				has_country_flag = can_trigger_futa_content
+				any_owned_leader = {
+					has_leader_flag = gts_aplog
+				}
+			}
+		}
+		owner = {
+			country_event = {
+				id = gts_aplog.1020
+				days = 1
+			}
+		}
+	}
+}
+
+country_event = {
+	#大事件链结束
+	id = gts_evt_ancient.110
+	title = "gts_evt_ancient.110.name"
+	desc = "gts_evt_ancient.110.desc"
+	picture = GFX_evt_society_research
+	is_triggered_only = yes
+	trigger = {
+	}
+	option = {
+		name = "gts_evt_ancient.110.a"
+		owner = {
+			add_modifier = {
+				modifier = find_gts_end
+			}
+			add_relic = r_gts_endsweat
+			end_event_chain = gts_chain
+			hidden_effect = {
+				set_country_flag = gts_end_beyond
+			}
+		}
+	}
+}
+
+country_event = {
+	#大事件链结束
+	id = gts_evt_ancient.111
+	title = "gts_evt_ancient.111.name"
+	desc = "gts_evt_ancient.111.desc"
+	picture = GFX_evt_society_research
+	is_triggered_only = yes
+	trigger = {
+	}
+	option = {
+		name = "gts_evt_ancient.110.a"
+		owner = {
+			add_modifier = {
+				modifier = find_gts_end
+			}
+			add_relic = r_gts_endsweat
+			end_event_chain = gts_chain
+			hidden_effect = {
+				set_country_flag = gts_end_reborn
+			}
+		}
+	}
+}
+
+country_event = {
+	#大事件链结束
+	id = gts_evt_ancient.112
+	title = "gts_evt_ancient.112.name"
+	desc = "gts_evt_ancient.112.desc"
+	picture = GFX_evt_society_research
+	is_triggered_only = yes
+	trigger = {
+	}
+	option = {
+		name = "gts_evt_ancient.110.a"
+		owner = {
+			add_modifier = {
+				modifier = find_gts_end
+			}
+			add_relic = r_gts_endsweat
+			end_event_chain = gts_chain
+			hidden_effect = {
+				set_country_flag = gts_end_god
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_ancient.200
+	title = gts_evt_ancient.200.name
+	desc = gts_evt_ancient.200.desc
+	picture = GFX_evt_news_room
+	show_sound = event_mystic_reveal
+	location = from
+	is_triggered_only = yes
+	option = {
+		name = EXCELLENT		#1/7概率 将3人口更改为..特质
+		custom_tooltip = gts_evt_ancient.200.tooltip
+		hidden_effect = {
+			random_list = {
+				15 = {
+					country_event = {
+						id = gts_evt_ancient.201
+					}
+				}
+				#极大
+				15 = {
+					country_event = {
+						id = gts_evt_ancient.202
+					}
+				}
+				#大二
+				15 = {
+					country_event = {
+						id = gts_evt_ancient.203
+					}
+				}
+				#大一
+				10 = {
+					country_event = {
+						id = gts_evt_ancient.204
+					}
+				}
+				#正常
+				15 = {
+					country_event = {
+						id = gts_evt_ancient.205
+					}
+				}
+				#小一
+				15 = {
+					country_event = {
+						id = gts_evt_ancient.206
+					}
+				}
+				#小二
+				15 = {
+					country_event = {
+						id = gts_evt_ancient.207
+					}
+				}
+				#极小
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_ancient.201
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		owner = {
+			while = {
+				count = 3
+				random_owned_pop_group = {
+					modify_species = {
+						species = this
+						remove_trait = trait_Titan
+						remove_trait = trait_Giant
+						remove_trait = trait_Tall
+						remove_trait = trait_Normal
+						remove_trait = trait_Small
+						remove_trait = trait_Tiny
+						add_trait = trait_Micro
+						add_traits_at_start_of_list = yes
+						change_scoped_species = yes
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_ancient.202
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		owner = {
+			while = {
+				count = 3
+				random_owned_pop_group = {
+					modify_species = {
+						species = this
+						remove_trait = trait_Titan
+						remove_trait = trait_Giant
+						remove_trait = trait_Tall
+						remove_trait = trait_Normal
+						remove_trait = trait_Small
+						remove_trait = trait_Micro
+						add_trait = trait_Tiny
+						add_traits_at_start_of_list = yes
+						change_scoped_species = yes
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_ancient.203
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		owner = {
+			while = {
+				count = 3
+				random_owned_pop_group = {
+					modify_species = {
+						species = this
+						remove_trait = trait_Titan
+						remove_trait = trait_Giant
+						remove_trait = trait_Tall
+						remove_trait = trait_Normal
+						remove_trait = trait_Tiny
+						remove_trait = trait_Micro
+						add_trait = trait_Small
+						add_traits_at_start_of_list = yes
+						change_scoped_species = yes
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_ancient.204
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		owner = {
+			while = {
+				count = 3
+				random_owned_pop_group = {
+					modify_species = {
+						species = this
+						remove_trait = trait_Titan
+						remove_trait = trait_Giant
+						remove_trait = trait_Tall
+						remove_trait = trait_Small
+						remove_trait = trait_Tiny
+						remove_trait = trait_Micro
+						add_trait = trait_Normal
+						add_traits_at_start_of_list = yes
+						change_scoped_species = yes
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_ancient.205
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		owner = {
+			while = {
+				count = 3
+				random_owned_pop_group = {
+					modify_species = {
+						species = this
+						remove_trait = trait_Titan
+						remove_trait = trait_Giant
+						remove_trait = trait_Normal
+						remove_trait = trait_Small
+						remove_trait = trait_Tiny
+						remove_trait = trait_Micro
+						add_trait = trait_Tall
+						add_traits_at_start_of_list = yes
+						change_scoped_species = yes
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_ancient.206
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		owner = {
+			while = {
+				count = 3
+				random_owned_pop_group = {
+					modify_species = {
+						species = this
+						remove_trait = trait_Titan
+						remove_trait = trait_Tall
+						remove_trait = trait_Normal
+						remove_trait = trait_Small
+						remove_trait = trait_Tiny
+						remove_trait = trait_Micro
+						add_trait = trait_Giant
+						add_traits_at_start_of_list = yes
+						change_scoped_species = yes
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_ancient.207
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		owner = {
+			while = {
+				count = 3
+				random_owned_pop_group = {
+					modify_species = {
+						species = this
+						remove_trait = trait_Giant
+						remove_trait = trait_Tall
+						remove_trait = trait_Normal
+						remove_trait = trait_Small
+						remove_trait = trait_Tiny
+						remove_trait = trait_Micro
+						add_trait = trait_Titan
+						add_traits_at_start_of_list = yes
+						change_scoped_species = yes
+					}
+				}
+			}
+		}
+	}
+}
+planet_event = { # About to dive - Planet Action
+	id = gts_evt_ancient.7514
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		from.owner = {
+			has_country_flag = exodus_ready
+			has_country_flag = cosmogenesis_any_black_hole
+			has_modifier = find_gts_end
+		}
+	}
+
+	immediate = {
+		# #阻止原版事件触发(好像没用)
+		# from.owner = {
+		# 	remove_country_flag = exodus_ready
+		# 	remove_country_flag = cosmogenesis_any_black_hole
+		# }
+		create_ambient_object = {
+			type = "horizon_needle_dive"
+			play_animation_once = yes
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		from.owner = { country_event = { id = gts_evt_ancient.7515 days = 7 } }
+	}
+}
+
+country_event = { # Diving in
+	id = gts_evt_ancient.7515
+	title = "gts_evt_ancient.7515.name"
+	desc = gts_evt_ancient.7515.desc
+	picture = GFX_evt_horizon_needle
+	show_sound = event_airlock
+	event_chain = cosmogenesis_planet_pickup_chain
+
+	is_triggered_only = yes
+
+	immediate = {
+		random_owned_fleet = {
+			limit = {
+				has_fleet_flag = cosmogenesis_needle
+			}
+			solar_system = {
+				save_event_target_as = cosmo_ending_system
+			}
+			delete_fleet = this
+		}
+		save_event_target_as = cosmogenesis_empire
+	}
+
+	option = {
+		name = gts_evt_ancient.7515.a
+	}
+
+	after = {
+		hidden_effect = {
+			country_event = { id = gts_evt_ancient.7516 days = 15 }
+			every_playable_country = {
+				limit = {
+					NOT = {
+						is_same_value = root
+					}
+				}
+				country_event = { id = crisis.7517 days = 1 }
+			}
+		}
+	}
+}
+
+country_event = { # To infinity and beyond the event horizon
+	id = gts_evt_ancient.7516
+	title = "gts_evt_ancient.7516.name"
+	desc = {
+		trigger = {
+			has_country_flag = gts_end_beyond
+		}
+		text = gts_evt_ancient.7516.desc.beyond
+	}
+	desc = {
+		trigger = {
+			has_country_flag = gts_end_reborn
+		}
+		text = gts_evt_ancient.7516.desc.reborn
+	}
+	desc = {
+		trigger = {
+			has_country_flag = gts_end_god
+		}
+		text = gts_evt_ancient.7516.desc.god
+	}
+	desc = {
+		trigger = {
+			has_country_flag = gts_end_huatian
+		}
+		text = gts_evt_ancient.7516.desc.huatian
+	}
+	desc = {
+		# 然而并没有文案
+		trigger = {
+			has_country_flag = gts_end_aplog
+		}
+		text = gts_evt_ancient.7516.desc.aplog
+	}
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_event_23_room
+	}
+	show_sound = event_airlock
+	event_chain = cosmogenesis_planet_pickup_chain
+
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				can_create_paperclip_universe = yes
+			}
+			set_country_flag = a_universe_of_paperclips_achievement
+		}
+	}
+
+	option = {
+		name = gts_evt_ancient.7516.a
+		custom_tooltip = crisis.7516.tt
+	}
+
+	after = {
+		hidden_effect = {
+			if = {
+				limit = {
+					has_origin = origin_toxic_knights
+					event_target:cosmo_ending_system = {
+						is_capital_system = yes
+						has_star_flag = cosmogenesis_project
+					}
+				}
+				set_global_flag = no_end_of_cycle
+			}
+			save_event_target_as = cosmogenesis_empire
+			set_country_flag = cosmogenesis_empire_has_won
+			make_fallen_empire = yes
+			every_country = {
+				limit = {
+					is_country_type = default
+				}
+				country_event = { id = gts_evt_ancient.7518 days = 5 }
+			}
+			if = {
+				limit = {
+					galaxy_size = tiny
+				}
+				while = { #Destroy ~10% random stars, for good measure
+					count = 18
+					random_system = {
+						limit = {
+							NOT = {
+								is_star_class = sc_black_hole
+								any_system_planet = {
+									pop_amount > 0
+								}
+							}
+						}
+						destroy_star_system = yes
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					galaxy_size = small
+				}
+				while = { #Destroy ~10% random stars, for good measure
+					count = 36
+					random_system = {
+						limit = {
+							NOT = {
+								is_star_class = sc_black_hole
+								any_system_planet = {
+									pop_amount > 0
+								}
+							}
+						}
+						destroy_star_system = yes
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					galaxy_size = medium
+				}
+				while = { #Destroy ~10% random stars, for good measure
+					count = 52
+					random_system = {
+						limit = {
+							NOT = {
+								is_star_class = sc_black_hole
+								any_system_planet = {
+									pop_amount > 0
+								}
+							}
+						}
+						destroy_star_system = yes
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					galaxy_size = large
+				}
+				while = { #Destroy ~10% random stars, for good measure
+					count = 70
+					random_system = {
+						limit = {
+							NOT = {
+								is_star_class = sc_black_hole
+								any_system_planet = {
+									pop_amount > 0
+								}
+							}
+						}
+						destroy_star_system = yes
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					galaxy_size = huge
+				}
+				while = { #Destroy ~10% random stars, for good measure
+					count = 88
+					random_system = {
+						limit = {
+							NOT = {
+								is_star_class = sc_black_hole
+								any_system_planet = {
+									pop_amount > 0
+								}
+							}
+						}
+						destroy_star_system = yes
+					}
+				}
+			}
+			date_distortion = yes
+			event_target:global_event_country = {
+				country_event = { id = gts_evt_ancient.7519 days = 30 }
+			}
+		}
+		win = yes
+	}
+}

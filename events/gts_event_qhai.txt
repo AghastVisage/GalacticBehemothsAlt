@@ -1,0 +1,1346 @@
+namespace = gts_event_qhai
+# 异常事件完成后触发事件
+# 一言堂考古事件
+ship_event = {
+    # 判断是否为泰坦巨娘小人等都是基于国家领袖的特质
+    id = gts_event_qhai.0
+    title = gts_event_qhai.0.title
+    is_triggered_only = yes
+    picture = GFX_gts_event_50
+    # 当国家领袖不为泰坦级生物时,可以触发考古事件
+    desc = {
+        text = gts_event_qhai.0.desc.a
+        trigger = {
+            NOT = {
+                owner_main_species = {
+                    has_trait = trait_Titan
+                 }
+            }
+        }
+    }
+    desc = {
+        text = gts_event_qhai.0.desc.b
+        trigger = {
+            owner_main_species = {
+                has_trait = trait_Titan
+            }
+        }
+    }
+
+
+    option = {
+        name = INTRIGUING
+        trigger = {
+            NOT = {
+                owner_main_species = {
+                    has_trait = trait_Titan
+                }
+            }
+        }
+        hidden_effect = {
+            from = {
+                create_archaeological_site = site_qhai
+            }
+        }
+    }
+    option = {
+        name = gts_event_qhai.0.option
+        trigger = {
+            owner_main_species = {
+                has_trait = trait_Titan
+            }
+        }
+    }
+}
+# 考古一阶段
+fleet_event = {
+    # 巨娘和小人体型触发不同的文本和选项
+    id = gts_event_qhai.1
+    title = gts_event_qhai.1.title
+    picture = GFX_gts_event_50
+    show_sound = event_default
+    archaeology = yes
+    is_triggered_only = yes
+    immediate = {
+        from = {
+            # 锁定考古进度
+            set_site_progress_locked = yes
+        }
+    }
+    desc = {
+        text = gts_event_qhai.1.desc.a
+        trigger = {
+            owner_main_species = {
+                gts_is_giantess = no
+            }
+        }
+    }
+    desc = {
+        text = gts_event_qhai.1.desc.b
+        trigger = {
+            owner_main_species = {
+                gts_is_giantess = yes
+            }
+        }
+    }
+    option = {
+        name = gts_event_qhai.1.option.a
+        trigger = {
+            owner_main_species = {
+                gts_is_giantess = no
+            }
+        }
+    }
+    option = {
+        name = gts_event_qhai.1.option.b
+        trigger = {
+            owner_main_species = {
+                gts_is_giantess = yes
+            }
+        }
+    }
+    after = {
+        from = {
+            # 解锁考古进度
+            set_site_progress_locked = no
+        }
+    }
+}
+# 考古二阶段
+fleet_event = {
+    # 巨娘和小人体型触发不同的文本和选项
+    id = gts_event_qhai.2
+    title = gts_event_qhai.2.title
+    archaeology = yes
+    is_triggered_only = yes
+    picture = GFX_gts_event_50
+    show_sound = event_default
+    immediate = {
+        from = {
+            # 锁定考古进度
+            set_site_progress_locked = yes
+        }
+    }
+    desc = {
+        text = gts_event_qhai.2.desc.a
+        trigger = {
+            owner_main_species = {
+                gts_is_giantess = no
+            }
+        }
+    }
+    desc = {
+        text = gts_event_qhai.2.desc.b
+        trigger = {
+            owner_main_species = {
+                gts_is_giantess = no
+            }
+        }
+    }
+    option = {
+        name = gts_event_qhai.2.option.a
+        trigger = {
+            owner_main_species = {
+                gts_is_giantess = no
+            }
+        }
+    }
+    option = {
+        name = gts_event_qhai.2.option.b
+        trigger = {
+            owner_main_species = {
+                gts_is_giantess = yes
+            }
+        }
+    }
+    after = {
+        from = {
+            # 解锁考古进度
+            set_site_progress_locked = no
+        }
+    }
+}
+# 考古三阶段
+fleet_event = {
+    id = gts_event_qhai.3
+    # 巨娘和小人体型触发不同的文本和选项
+    title = gts_event_qhai.3.title
+    archaeology = yes
+    is_triggered_only = yes
+    picture = GFX_gts_event_50
+    show_sound = event_default
+    immediate = {
+        from = {
+            # 锁定考古进度
+            set_site_progress_locked = yes
+        }
+    }
+    desc = {
+        text = gts_event_qhai.3.desc.a
+        trigger = {
+            owner_main_species = {
+                gts_is_giantess = yes
+            }
+        }
+    }
+    desc = {
+        text = gts_event_qhai.3.desc.b
+        trigger = {
+            owner_main_species = {
+                gts_is_giantess = yes
+            }
+        }
+    }
+    option = {
+        name = gts_event_qhai.3.option.a
+        trigger = {
+            owner_main_species = {
+                gts_is_giantess = no
+            }
+        }
+    }
+    option = {
+        name = gts_event_qhai.3.option.b
+        trigger = {
+            owner_main_species = {
+                gts_is_giantess = yes
+            }
+        }
+    }
+    after = {
+        from = {
+            # 解锁考古进度
+            set_site_progress_locked = no
+        }
+    }
+}
+# 考古四阶段
+fleet_event = {
+    id = gts_event_qhai.4
+    # 巨娘和小人体型触发不同的文本和选项，并且巨娘的选项仅可以触发一次。不同体型的选项互相对对方隐藏。
+    # 该事件需要四个旗帜 flag:首次选择文本是否触发,有旗帜为未触发 flag1,2,3:分别为三个事件，有旗帜是为触发
+    title = gts_event_qhai.4.title
+    archaeology = yes
+    is_triggered_only = yes
+    show_sound = event_default
+    immediate = {
+        from = {
+            # 锁定考古进度
+            set_site_progress_locked = yes
+        }
+    }
+    desc = {
+        text = gts_event_qhai.4.desc.a
+        trigger = {
+            owner_main_species = {
+                gts_is_giantess = no
+            }
+        }
+    }
+    desc = {
+        text = gts_event_qhai.4.desc.b
+        trigger = {
+            owner_main_species = {
+                gts_is_giantess = yes
+            }
+        }
+    }
+    option = {
+        name = gts_event_qhai.4.option.a
+        this.owner = {
+            country_event = {
+                id = gts_event_qhai.5
+            }
+            set_country_flag = gts_event_qhai_flag
+            set_country_flag = gts_event_qhai_flag1
+        }
+    }
+    option = {
+        name = gts_event_qhai.4.option.b
+        this.owner = {
+            country_event = {
+                id = gts_event_qhai.6
+            }
+            set_country_flag = gts_event_qhai_flag
+            set_country_flag = gts_event_qhai_flag2
+        }
+    }
+
+    option = {
+        name = gts_event_qhai.4.option.c
+        this.owner = {
+            country_event = {
+                id = gts_event_qhai.7
+            }
+            set_country_flag = gts_event_qhai_flag
+            set_country_flag = gts_event_qhai_flag3
+        }
+    }
+
+
+    after = {
+        from = {
+            # 解锁考古进度
+            set_site_progress_locked = no
+        }
+    }
+}
+# 考古完成后知识事件1
+country_event = {
+    # 巨娘和小人体型触发不同的文本和选项
+    id = gts_event_qhai.5
+    title = gts_event_qhai.5.title
+    desc = gts_event_qhai.5.desc
+    is_triggered_only = yes
+    # 当三个事件都被满足时则不再允许出现，三个旗帜分别控制三个事件
+    trigger = {
+        NAND = {
+            has_country_flag = gts_event_qhai_flag1
+            has_country_flag = gts_event_qhai_flag2
+            has_country_flag = gts_event_qhai_flag3
+        }
+    }
+
+    option = {
+        name = gts_event_qhai.4.option.a
+        # 未拥有旗帜时可以进行
+        trigger = {
+            NOT = { has_country_flag = gts_event_qhai_flag }
+        }
+        allow = {
+            NOT = { has_country_flag = gts_event_qhai_flag1 }
+        }
+        # 触发后增加触发旗帜
+        set_country_flag = gts_event_qhai_flag
+        country_event = {
+            id = gts_event_qhai.5
+        }
+    }
+    option = {
+        name = gts_event_qhai.4.option.b
+        trigger = {
+            NOT = { has_country_flag = gts_event_qhai_flag }
+        }
+        allow = {
+            NOT = { has_country_flag = gts_event_qhai_flag2 }
+        }
+        set_country_flag = gts_event_qhai_flag
+        country_event = {
+            id = gts_event_qhai.6
+        }
+    }
+
+    option = {
+        name = gts_event_qhai.4.option.c
+        trigger = {
+            NOT = { has_country_flag = gts_event_qhai_flag }
+        }
+        allow = {
+            NOT = { has_country_flag = gts_event_qhai_flag3 }
+        }
+        set_country_flag = gts_event_qhai_flag
+        country_event = {
+            id = gts_event_qhai.7
+        }
+    }
+
+    option = {
+        name = gts_event_qhai.5.option.a
+        trigger = {
+            AND = {
+                has_country_flag = gts_event_qhai_flag
+                owner_main_species = {
+                    gts_is_giantess = no
+                }
+            }
+        }
+
+        set_country_flag = gts_event_qhai_flag1
+        remove_country_flag = gts_event_qhai_flag
+        country_event = {
+            id = gts_event_qhai.5
+        }
+        add_modifier = {
+            modifier = gts_qhai_gift1
+        }
+    }
+    option = {
+        name = gts_event_qhai.5.option.b
+        trigger = {
+            AND = {
+                has_country_flag = gts_event_qhai_flag
+                owner_main_species = {
+                    gts_is_giantess = yes
+                }
+            }
+        }
+        add_modifier = {
+            modifier = gts_qhai_gift1
+        }
+    }
+}
+# 考古完成后知识事件2
+country_event = {
+    id = gts_event_qhai.6
+    # 每次
+    title = gts_event_qhai.6.title
+    desc = gts_event_qhai.6.desc
+    is_triggered_only = yes
+    # 当三个事件都被满足时则不再允许出现
+    trigger = {
+        NAND = {
+            has_country_flag = gts_event_qhai_flag1
+            has_country_flag = gts_event_qhai_flag2
+            has_country_flag = gts_event_qhai_flag3
+        }
+    }
+    option = {
+        name = gts_event_qhai.4.option.a
+        trigger = {
+            NOT = { has_country_flag = gts_event_qhai_flag }
+        }
+        allow = {
+            NOT = { has_country_flag = gts_event_qhai_flag1 }
+        }
+        set_country_flag = gts_event_qhai_flag
+        country_event = {
+            id = gts_event_qhai.5
+        }
+    }
+    option = {
+        name = gts_event_qhai.4.option.b
+        trigger = {
+            NOT = { has_country_flag = gts_event_qhai_flag }
+        }
+        allow = {
+            NOT = { has_country_flag = gts_event_qhai_flag2 }
+        }
+        set_country_flag = gts_event_qhai_flag
+        country_event = {
+            id = gts_event_qhai.6
+        }
+    }
+
+    option = {
+        name = gts_event_qhai.4.option.c
+        trigger = {
+            NOT = { has_country_flag = gts_event_qhai_flag }
+        }
+        allow = {
+            NOT = { has_country_flag = gts_event_qhai_flag3 }
+        }
+        set_country_flag = gts_event_qhai_flag
+        country_event = {
+            id = gts_event_qhai.7
+        }
+    }
+
+    option = {
+        name = gts_event_qhai.6.option.a
+        trigger = {
+            AND = {
+                has_country_flag = gts_event_qhai_flag
+                owner_main_species = {
+                    gts_is_giantess = no
+                }
+            }
+        }
+        set_country_flag = gts_event_qhai_flag2
+        remove_country_flag = gts_event_qhai_flag
+        country_event = {
+            id = gts_event_qhai.6
+        }
+        add_modifier = {
+            modifier = gts_qhai_gift2
+        }
+        give_technology = {
+            #灵能护盾找不到 放了个灵能理论
+            tech = tech_psionic_theory
+        }
+        give_technology = {
+            # 灵能引擎跃迁器
+            tech = tech_psi_jump_drive_1
+        }
+    }
+    option = {
+        name = gts_event_qhai.6.option.b
+        trigger = {
+            AND = {
+                has_country_flag = gts_event_qhai_flag
+                owner_main_species = {
+                    gts_is_giantess = yes
+                }
+            }
+        }
+        add_modifier = {
+            modifier = gts_qhai_gift2
+        }
+        give_technology = {
+            #灵能护盾找不到 放了个灵能理论
+            tech = tech_psionic_theory
+        }
+        give_technology = {
+            # 灵能引擎跃迁器
+            tech = tech_psi_jump_drive_1
+        }
+    }
+}
+# 考古完成后知识事件3
+country_event = {
+    id = gts_event_qhai.7
+    title = gts_event_qhai.7.title
+    desc = gts_event_qhai.7.desc
+    is_triggered_only = yes
+    # 当三个事件都被满足时则不再允许出现
+    trigger = {
+        NAND = {
+            has_country_flag = gts_event_qhai_flag1
+            has_country_flag = gts_event_qhai_flag2
+            has_country_flag = gts_event_qhai_flag3
+        }
+    }
+    option = {
+        name = gts_event_qhai.4.option.a
+        trigger = {
+            NOT = { has_country_flag = gts_event_qhai_flag }
+        }
+        allow = {
+            NOT = { has_country_flag = gts_event_qhai_flag1 }
+        }
+        set_country_flag = gts_event_qhai_flag
+        country_event = {
+            id = gts_event_qhai.5
+        }
+    }
+    option = {
+        name = gts_event_qhai.4.option.b
+        trigger = {
+            NOT = { has_country_flag = gts_event_qhai_flag }
+        }
+        allow = {
+            NOT = { has_country_flag = gts_event_qhai_flag2 }
+        }
+        set_country_flag = gts_event_qhai_flag
+        country_event = {
+            id = gts_event_qhai.7
+        }
+    }
+    option = {
+        name = gts_event_qhai.4.option.c
+        trigger = {
+            NOT = { has_country_flag = gts_event_qhai_flag }
+        }
+        allow = {
+            NOT = { has_country_flag = gts_event_qhai_flag3 }
+        }
+        set_country_flag = gts_event_qhai_flag
+        country_event = {
+            id = gts_event_qhai.7
+        }
+    }
+    option = {
+        name = gts_event_qhai.7.option.a
+        trigger = {
+            AND = {
+                has_country_flag = gts_event_qhai_flag
+                owner_main_species = {
+                    gts_is_giantess = no
+                }
+            }
+        }
+        set_country_flag = gts_event_qhai_flag3
+        remove_country_flag = gts_event_qhai_flag
+        country_event = {
+            id = gts_event_qhai.7
+        }
+        add_modifier = {
+            modifier = gts_qhai_gift1
+        }
+        give_technology = {
+            # 暗物质偏导护盾
+            tech = tech_dark_matter_deflector
+        }
+    }
+    option = {
+        name = gts_event_qhai.5.option.b
+        trigger = {
+            AND = { has_country_flag = gts_event_qhai_flag
+                owner_main_species = {
+                    gts_is_giantess = yes
+                }
+            }
+        }
+
+        allow = {
+            owner_main_species = {
+                gts_is_giantess = yes
+            }
+        }
+        add_modifier = {
+            modifier = gts_qhai_gift2
+        }
+        give_technology = {
+            # 暗物质偏导护盾
+            tech = tech_dark_matter_deflector
+        }
+    }
+}
+# 一言堂考古测试用事件，仅控制台触发
+country_event = {
+    id = gts_event_qhai.1999
+    # 使用该事件触发考古事件后的国家事件从gts_event_qhai.5的三个选项开始，仅用于测试
+    title = gts_event_qhai.1999.title
+    desc = gts_event_qhai.1999.desc
+    is_triggered_only = yes
+    option = {
+        name = gts_event_qhai.1999.option.a
+        set_country_flag = gts_event_qhai_flag
+        set_country_flag = gts_event_qhai_flag1
+        country_event = {
+            id = gts_event_qhai.5
+        }
+    }
+    option = {
+        name = gts_event_qhai.1999.option.b
+        set_country_flag = gts_event_qhai_flag
+        set_country_flag = gts_event_qhai_flag2
+        country_event = {
+            id = gts_event_qhai.6
+        }
+    }
+    option = {
+        name = gts_event_qhai.1999.option.c
+        set_country_flag = gts_event_qhai_flag
+        set_country_flag = gts_event_qhai_flag3
+        country_event = {
+            id = gts_event_qhai.7
+        }
+    }
+}
+# 随机击杀领袖测试事件
+country_event = {
+    id = gts_event_qhai.2000
+    # 使用该事件触发考古事件后的国家事件从gts_event_qhai.5的三个选项开始，仅用于测试
+    title = gts_event_qhai.1999.desc
+    desc = gts_event_qhai.1999.desc
+    picture = GFX_gts_qhai_event_2
+    is_triggered_only = yes
+    option = {
+        name = gts_event_qhai.1999.option.a
+        random_owned_leader = {
+            if = {
+                limit = {
+                    not = {has_leader_flag = hired_gts_leader}
+                    gts_is_tiny = yes
+                    is_ruler = no
+                }
+                kill_leader = {
+                    show_notification = yes
+                }
+            }
+        }
+    }
+}
+# 国家事件：行星菠菜事件触发事件
+country_event = {
+    id = gts_event_qhai.999
+    hide_window = yes # 隐藏窗口
+    # 100年触发一次
+    # mean_time_to_happen = { years = 100 }
+    fire_only_once = yes
+    is_triggered_only = yes
+    trigger = {
+        # 随机一个拥有观测站的且土著文明等级至少为铁器时代
+        # 帝国边境内任意一个前超光速文明
+        any_pre_ftl_within_border = {
+            # 当前文明时代
+            OR = {
+                has_pre_ftl_age = iron_age # 铁器时代
+                has_pre_ftl_age = late_medieval_age # 中古时代后期
+                has_pre_ftl_age = renaissance_age # 文艺复兴时代
+                has_pre_ftl_age = steam_age # 蒸汽时代
+                has_pre_ftl_age = industrial_age # 工业时代
+                has_pre_ftl_age = machine_age # 机械时代
+                has_pre_ftl_age = atomic_age # 原子时代
+                has_pre_ftl_age = early_space_age # 太空时代早期
+            }
+
+            capital_scope = {
+                # 是否存在观测站
+                has_observation_outpost = yes
+                observation_outpost = {
+                    # 观测站观测模式为主动观测
+                    has_mission = specimen_collection
+                }
+                observation_outpost_owner = {
+                    # 观测站拥有者为玩家
+                    is_ai = no # 非AI控制
+                    # is_gestalt = no #非格式塔意识
+                }
+            }
+        }
+    }
+    immediate = {
+        random_pre_ftl_within_border = {
+            limit = {
+                OR = {
+                    has_pre_ftl_age = iron_age # 铁器时代
+                    has_pre_ftl_age = late_medieval_age # 中古时代后期
+                    has_pre_ftl_age = renaissance_age # 文艺复兴时代
+                    has_pre_ftl_age = steam_age # 蒸汽时代
+                    has_pre_ftl_age = industrial_age # 工业时代
+                    has_pre_ftl_age = machine_age # 机械时代
+                    has_pre_ftl_age = atomic_age # 原子时代
+                    has_pre_ftl_age = early_space_age # 太空时代早期
+                }
+                capital_scope = {
+                    has_observation_outpost = yes
+                    observation_outpost = {
+                        has_mission = specimen_collection # 观测站观测模式为主动观测
+                    }
+                    observation_outpost_owner = {
+                        is_ai = no # 非AI控制
+                        # is_gestalt = no #非格式塔意识
+                    }
+
+                }
+            }
+            # 储存全局旗帜（记得移除）
+            save_global_event_target_as = qhai_pre_ftl_county
+            capital_scope = {
+                save_global_event_target_as = qhai_pre_ftl_planet
+            }
+        }
+        country_event = {
+            id = gts_event_qhai.8
+            # days = 0
+            # random = 360
+        }
+    }
+}
+# 国家事件：行星菠菜事件
+country_event = {
+    id = gts_event_qhai.8
+    title = gts_event_qhai.8.title
+    desc = gts_event_qhai.8.desc
+    # fire_only_once = yes
+    is_triggered_only = yes
+    location = event_target:qhai_pre_ftl_planet
+    trigger = {
+        owner = {
+            exists = event_target:qhai_pre_ftl_county
+        }
+    }
+    option = {
+        name = gts_event_qhai.8.option.a
+        add_resource = {
+            unity = 2333
+        }
+        # 应当为星域，但是老是报错不知道怎么用
+        #event_target:qhai_pre_ftl_planet = {
+            #sector = {
+                every_owned_planet = {
+                    add_modifier = {
+                        modifier = gts_qhai_modifier_bocai
+                        years = 20
+                    }
+                }
+            #}
+        #}
+    }
+    option = {
+        name = gts_event_qhai.8.option.b
+        # 增加一年的能量币 6个月凝聚力
+        add_monthly_resource_mult = {
+            resource = energy
+            value = 12
+        }
+        add_monthly_resource_mult = {
+            resource = unity
+            value = 6
+        }
+        hidden_effect = {
+            # 启动后续事件
+            IF = {
+                limit = {
+                    event_target:qhai_pre_ftl_planet = {
+                        owner = {
+                            OR = {
+                                has_pre_ftl_age = stone_age # 石器时代
+                                has_pre_ftl_age = bronze_age # 青铜时代
+                                has_pre_ftl_age = iron_age # 铁器时代
+                                has_pre_ftl_age = late_medieval_age # 中古时代后期
+                                has_pre_ftl_age = renaissance_age # 文艺复兴时代
+                                has_pre_ftl_age = steam_age # 蒸汽时代
+                            }
+                        }
+                    }
+                }
+                set_country_flag = gts_event_qhai_bocai_flag
+            }
+            ELSE = {
+                set_country_flag = gts_event_qhai_bocai_flag2
+            }
+            country_event = {
+                id = gts_event_qhai.9
+                #  = 0
+                # random = 30 #360
+            }
+        }
+    }
+    option = {
+        name = gts_event_qhai.8.option.c
+        #event_target:qhai_pre_ftl_planet = {
+            #sector = {
+                every_owned_planet = {
+                    add_modifier = {
+                        modifier = gts_qhai_modifier_bocai2
+                        years = 20
+                    }
+                }
+            }
+        #}
+    #}
+}
+# 国家事件：行星破坏事件
+country_event = {
+    id = gts_event_qhai.9
+    title = gts_event_qhai.9.title
+
+    # 文案1
+    desc = {
+        text = gts_event_qhai.9.desc.a
+        trigger = {
+            has_country_flag = gts_event_qhai_bocai_flag
+        }
+    }
+    # 文案2
+    desc = {
+        text = gts_event_qhai.9.desc.b
+        trigger = {
+            has_country_flag = gts_event_qhai_bocai_flag2
+        }
+    }
+    location = event_target:qhai_pre_ftl_planet
+    is_triggered_only = yes
+    trigger = {
+        event_target:qhai_pre_ftl_planet = {
+            owner = {
+                is_primitive = yes # 星球统治者是土著
+                species = {
+                   gts_is_tiny = yes # 土著种族为小人
+                }
+            }
+        }
+        owner_main_species = {
+            gts_is_giantess = yes # 帝国主流种族为巨娘
+        }
+    }
+    immediate = {
+		
+		# 測試用的代碼
+		
+		#random_pre_ftl_within_border = {
+        #    capital_scope = {
+        #        save_event_target_as = qhai_pre_ftl_planet
+        #    }
+        #}
+	}
+    option = {
+        name = gts_event_qhai.9.option.a
+        add_resource = {
+            energy = -100
+        }
+        # 应当为星域，但是老是报错不知道怎么用
+        #event_target:qhai_pre_ftl_planet = {
+            #sector = {
+                every_owned_planet = {
+                    limit = {
+                        is_colony = yes
+                    }
+                    add_modifier = {
+                        modifier = gts_qhai_modifier_bocai3
+                    }
+                #}
+            #}
+        }
+    }
+
+    option = {
+        name = gts_event_qhai.9.option.b
+    }
+    option = {
+        name = gts_event_qhai.9.option.c
+        add_resource = {
+            unity = 1000
+        }
+        add_resource = {
+            influence = 100
+        }
+    }
+
+    after = {
+        event_target:qhai_pre_ftl_planet = {
+            add_planet_devastation = 10 # 增加行星破坏度
+            # 该行星观测站产出调整
+            observation_outpost = {
+                add_modifier = {
+                    modifier = gts_qhai_observation_bocai
+                    years = 10
+                }
+            }
+            owner = {
+                while = {
+					count = 10
+					random_owned_pop_group = {
+						kill_single_pop = yes
+					}
+				}
+            }
+        }
+        IF = {
+            limit = {
+                has_country_flag = gts_event_qhai_bocai_flag
+            }
+            event_target:qhai_pre_ftl_planet = {
+                owner = {
+                    add_awareness = 20 # 增加土著觉醒度
+                    set_country_flag = spiritualist_development# 设置当前土著文明为唯心主义的旗帜
+                    shift_ethic = "ethic_spiritualist" # 给当前帝国增加唯心主义思潮
+                    every_owned_pop_group = {
+						limit = {
+							has_any_ethic = yes
+						}
+						pop_group_transfer_ethic = {
+							POP_GROUP = this
+							ETHOS = ethic_spiritualist
+							PERCENTAGE = 1
+						}
+					}
+                }
+
+            }
+        }
+        ELSE_IF = {
+            limit = {
+                has_country_flag = gts_event_qhai_bocai_flag2
+            }
+            event_target:qhai_pre_ftl_planet = {
+                owner = {
+                    add_awareness = 100 # 增加觉醒度 100
+                    add_opinion_modifier = {
+                        who = root
+                        modifier = opinion_gts_qhai_bocai
+                    }
+                }
+            }
+        }
+    }
+}
+# 制服鞋事件
+fleet_event = {
+    # 制服鞋触发时的事件
+    id = gts_event_qhai.20
+    title = gts_event_qhai.20.title
+    desc = gts_event_qhai.20.desc
+    is_triggered_only = yes
+    fire_only_once = yes
+    location = this
+    picture = GFX_gts_uniformshoes_2
+    trigger = {
+        owner = {is_ai = no}
+        from = {
+            has_star_flag = gts_shoe_cabinet
+        }
+        is_ship_class = shipclass_science_ship
+        exists = leader
+    }
+    option = {
+        name =  gts_event_qhai.20.option.1
+        enable_special_project = {
+            name = "GTS_UNIFORM_SHOES_TINY_SPECIAL_PROJECT"
+            location = from
+            owner = root.owner
+        }
+    }
+    option = {
+        name =  gts_event_qhai.20.option.2
+        custom_tooltip = gts_event_qhai.20.option.2.custom_tooltip
+        allow = {
+            owner = {
+                any_owned_leader = {
+                    has_trait = leader_trait_Ultra
+                    leader_class = scientist
+                }
+            }
+        }
+        enable_special_project = {
+            name = "GTS_UNIFORM_SHOES_SPECIAL_PROJECT"
+            location = from
+            owner = root.owner
+        }
+    }
+    option = {
+        name =  gts_event_qhai.20.option.3
+        trigger = {
+            owner = {
+                any_owned_leader = {
+                    has_leader_flag = gts_qhai
+                }
+            }
+        }
+        enable_special_project = {
+            name = "GTS_UNIFORM_SHOES_QHAI_SPECIAL_PROJECT"
+            location = from
+            owner = root.owner
+        }
+    }
+}
+
+ship_event = {
+    # 制服鞋触发时的事件
+    id = gts_event_qhai.21
+    title = gts_event_qhai.21.title
+    desc = gts_event_qhai.21.desc
+    is_triggered_only = yes
+    show_sound = event_structural_collapse
+    diplomatic = yes
+    custom_gui = "gts_vertical_event_window"
+    picture_event_data = {
+        room = gts_event_42_room
+    }
+    immediate = {
+        owner = {
+            random_system_within_border = {
+                limit = {
+                    has_star_flag = gts_shoe_cabinet
+                }
+                random_system_planet = {
+                    limit = {
+                        has_planet_flag = gts_uniform_shoes
+                    }
+                    remove_planet = yes
+                }
+            }
+        }
+    }
+    option = {
+        name =  gts_event_qhai.21.option
+        owner = {
+            hidden_effect = {
+                country_event = {
+                    id = gts_event_qhai.22
+                }
+            }
+        }
+    }
+}
+
+country_event = {
+    # 用于创建可殖民制服鞋殖民地
+    id = gts_event_qhai.22
+    is_triggered_only = yes
+    hide_window = yes
+    immediate = {
+        capital_scope.solar_system = {
+            if = {
+                limit = {
+                    root.capital_scope = {
+                        is_ringworld = no
+                    }
+                }
+                spawn_planet = {
+                    class = pc_gts_uniform_shoes_colonizable
+                    location = root.capital_scope
+                    orbit_angle_offset = 90
+                    size = 35
+                    init_effect = {
+                        set_planet_flag = gts_uniform_shoes_colonizable
+                        prevent_anomaly = yes
+                        set_name = "NAME_gts_uniform_shoes_colonizable"
+                        add_deposit = d_uniform_shoes_scale
+                    }
+                }
+            }
+            else = {
+                spawn_planet = {
+                    class = pc_gts_uniform_shoes_colonizable
+                    location = root.capital_scope
+                    orbit_angle_offset = 180
+                    orbit_distance_offset = 12
+                    size = 35
+                    init_effect = {
+                        set_planet_flag = gts_uniform_shoes_colonizable
+                        prevent_anomaly = yes
+                        set_name = "NAME_gts_uniform_shoes_colonizable"
+                        add_deposit = d_uniform_shoes_scale
+                    }
+                }
+            }
+        }
+    }
+}
+
+ship_event = {
+    # 制服鞋触发时的事件
+    id = gts_event_qhai.23
+    title = gts_event_qhai.23.title
+    desc = gts_event_qhai.23.desc
+    is_triggered_only = yes
+    show_sound = event_default
+    picture = GFX_gts_uniformshoes_2
+    option = {
+        name =  gts_event_qhai.23.option
+        enable_special_project = {
+            name = "GTS_UNIFORM_SHOES_TINY2_SPECIAL_PROJECT"
+            location = from
+            owner = root.owner
+        }
+    }
+}
+
+ship_event = {
+    # 制服鞋触发时的事件
+    id = gts_event_qhai.24
+    title = gts_event_qhai.24.title
+    desc = gts_event_qhai.24.desc
+    is_triggered_only = yes
+    show_sound = event_default
+    picture = GFX_gts_uniformshoes_3
+    option = {
+        name =  gts_event_qhai.24.option
+        enable_special_project = {
+            name = "GTS_UNIFORM_SHOES_TINY3_SPECIAL_PROJECT"
+            location = from
+            owner = root.owner
+        }
+        owner = {
+            add_resource = {
+                unity = 500
+                minerals = 150
+            }
+        }
+    }
+}
+
+ship_event = {
+    # 制服鞋触发时的事件
+    id = gts_event_qhai.25
+    title = gts_event_qhai.25.title
+    desc = gts_event_qhai.25.desc
+    is_triggered_only = yes
+    show_sound = event_default
+    picture = GFX_gts_uniformshoes_4
+    option = {
+        name =  gts_event_qhai.25.option
+        owner = {
+            add_resource = {
+                unity = 500
+                alloys = 150
+            }
+        }
+        enable_special_project = {
+            name = "GTS_UNIFORM_SHOES_TINY4_SPECIAL_PROJECT"
+            location = from
+            owner = root.owner
+        }
+    }
+}
+
+ship_event = {
+    # 制服鞋触发时的事件
+    id = gts_event_qhai.26
+    title = gts_event_qhai.26.title
+    desc = gts_event_qhai.26.desc
+    is_triggered_only = yes
+    show_sound = event_default
+    picture = GFX_gts_uniformshoes_5
+    immediate = {
+        owner = {
+            random_system_within_border = {
+                limit = {
+                    has_star_flag = gts_shoe_cabinet
+                }
+                random_system_planet = {
+                    limit = {
+                        has_planet_flag = gts_uniform_shoes
+                    }
+                    change_pc = pc_gts_uniform_shoes_colonizable
+                    set_name = NAME_gts_uniform_shoes_colonizable
+                    remove_planet_flag = gts_uniform_shoes
+                    set_planet_flag = gts_uniform_shoes_colonizable
+                }
+            }
+
+        }
+    }
+    option = {
+        name =  gts_event_qhai.26.option
+        leader = {
+            add_experience = 200
+        }
+    }
+    option = {
+        name =  gts_event_qhai.26.option.2
+        owner = {
+            add_resource = {
+                gts_micro = 20
+            }
+        }
+    }
+    option = {
+        name =  gts_event_qhai.26.option.3
+        owner = {
+            random_system_within_border = {
+                limit = {
+                    has_star_flag = gts_shoe_cabinet
+                }
+                random_system_planet = {
+                    limit = {
+                        has_planet_flag = gts_uniform_shoes_colonizable
+                    }
+                    add_deposit = d_uniform_shoes_micro
+                }
+            }
+        }
+    }
+}
+
+country_event = {
+    #创建鞋柜星系 仅测试时使用
+    id = gts_event_qhai.998
+    hide_window = yes
+    is_triggered_only = yes
+    immediate = {
+        random_owned_planet = {
+            spawn_system = {
+                min_distance >= 10
+                max_distance <= 30
+                max_jumps = 0
+                initializer = gts_uniform_shoes_system
+            }
+        }
+    }
+}
+
+# 陆军登陆胜利事件
+country_event = {
+    id = gts_event_qhai.30
+    title = gts_event_qhai.30.title
+    desc = gts_event_qhai.30.desc
+    location = fromfrom
+    is_triggered_only = yes
+    fire_only_once = yes
+    picture = GFX_gts_slave_1
+    trigger = {
+        gts_is_giantess_empire = yes
+        is_ai = no
+        fromfrom = {
+            any_owned_pop_group = {
+                gts_is_tiny = yes
+            }
+        }
+    }
+    option = {
+        name = gts_event_qhai.30.option.a
+        custom_tooltip = gts_event_qhai.30.option.a.custiontooltip
+        country_event = {
+            id = gts_event_qhai.31
+        }
+        fromfrom = {
+            add_planet_devastation = 1
+        }
+    }
+    option = {
+        name = gts_event_qhai.30.option.b
+        custom_tooltip = gts_event_qhai.30.option.b.custiontooltip
+        country_event = {
+            id = gts_event_qhai.32
+        }
+        fromfrom = {
+            add_planet_devastation = 10
+            hidden_effect = {
+                add_modifier = {
+                    modifier = gts_army_captive_1
+                    days = -1
+                }
+            }
+        }
+    }
+    option = {
+        trigger = {
+            has_country_flag = can_trigger_futa_content
+        }
+        name = gts_event_qhai.30.option.c
+        custom_tooltip = gts_event_qhai.30.option.c.custiontooltip
+        country_event = {
+            id = gts_event_qhai.33
+        }
+        fromfrom = {
+            add_planet_devastation = 30
+            while = {
+				count = 30
+				random_owned_pop_group = {
+					kill_single_pop = yes
+				}
+			}
+            hidden_effect = {
+                add_modifier = {
+                    modifier = gts_army_captive_2
+                    days = -1
+                }
+            }
+        }
+    }
+}
+
+country_event = {
+    id = gts_event_qhai.31
+    title = gts_event_qhai.31.title
+    desc = gts_event_qhai.31.desc
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+        room = gts_event_qhai_room
+    }
+    is_triggered_only = yes
+    option = {
+        name = gts_event_qhai.31.option
+        custom_tooltip = gts_event_qhai.31.option.custiontooltip
+    }
+}
+
+country_event = {
+    id = gts_event_qhai.32
+    title = gts_event_qhai.32.title
+    desc = gts_event_qhai.32.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+        room = gts_event_qhai2_room
+    }
+    option = {
+        name = gts_event_qhai.32.option
+        custom_tooltip = gts_event_qhai.32.option.custiontooltip
+    }
+}
+
+country_event = {
+    id = gts_event_qhai.33
+    title = gts_event_qhai.33.title
+    desc = gts_event_qhai.33.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+        room = gts_event_qhai3_room
+    }
+    option = {
+        name = gts_event_qhai.33.option
+        custom_tooltip = gts_event_qhai.33.option.custiontooltip
+    }
+}

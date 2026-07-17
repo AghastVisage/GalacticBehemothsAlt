@@ -1,0 +1,4528 @@
+############################################################################################################################################
+################################################                身體星球區劃                ################################################
+############################################################################################################################################
+
+@base_cost = 300
+@city_cost = 500
+
+district_body_1 = {
+
+    # 體內城市(住房)
+
+    base_buildtime = 480
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_city_government
+        slot_city_01
+        slot_city_02
+    }
+
+    show_on_uncolonized = {
+        uses_district_set = gts_body
+    }
+
+    potential = {
+        uses_district_set = gts_body
+        exists = owner
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @city_cost
+        }
+        cost = {
+            food = @city_cost
+        }
+        upkeep = {
+            energy = 2
+        }
+        upkeep = {
+            food = 2
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 1000
+    }
+
+    # 一些影響住房數的東西
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_valid_civic = civic_agrarian_idyll
+            }
+        }
+        modifier = {
+            planet_housing_add = -200
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { has_active_tradition = tr_prosperity_public_works }
+        }
+        modifier = {
+            planet_housing_add = 100
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_technology = tech_housing_1
+            }
+        }
+        modifier = {
+            planet_housing_add = 100
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_technology = tech_housing_2
+                NOT = { has_valid_civic = civic_agrarian_idyll }
+            }
+        }
+        modifier = {
+            planet_housing_add = 200
+        }
+    }
+}
+
+district_body_2 = {
+
+    # 代謝物挖掘區(礦物)
+
+    base_buildtime = 240
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_minerals
+    }
+
+    show_on_uncolonized = {
+        uses_district_set = gts_body
+    }
+
+    potential = {
+        uses_district_set = gts_body
+        exists = owner
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+            NOR = {
+                has_planet_flag = use_gts_resource
+                has_planet_flag = use_tiny_resource
+            }
+        }
+        modifier = {
+            job_miner_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+            NOR = {
+                has_planet_flag = use_gts_resource
+                has_planet_flag = use_tiny_resource
+            }
+        }
+        modifier = {
+            job_mining_drone_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            has_planet_flag = use_gts_resource
+        }
+        modifier = {
+            job_micro_miner_add = 50
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            has_planet_flag = use_tiny_resource
+        }
+        modifier = {
+            job_gts_miner_add = 50
+        }
+    }
+}
+
+district_body_3 = {
+
+    # 生物能發電區(能量)
+
+    base_buildtime = 240
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_energy
+    }
+
+    show_on_uncolonized = {
+        uses_district_set = gts_body
+    }
+
+    potential = {
+        uses_district_set = gts_body
+        exists = owner
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+            NOR = {
+                has_planet_flag = use_gts_resource
+                has_planet_flag = use_tiny_resource
+            }
+        }
+        modifier = {
+            job_technician_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+            NOR = {
+                has_planet_flag = use_gts_resource
+                has_planet_flag = use_tiny_resource
+            }
+        }
+        modifier = {
+            job_technician_drone_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            has_planet_flag = use_gts_resource
+        }
+        modifier = {
+            job_redlight_worker_add = 50
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            has_planet_flag = use_tiny_resource
+        }
+        modifier = {
+            job_gts_bathhouse_worker_add = 50
+        }
+    }
+}
+
+district_body_4 = {
+
+    # 沃土種植區(食物)
+
+    base_buildtime = 240
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_food
+    }
+
+    show_on_uncolonized = {
+        uses_district_set = gts_body
+    }
+
+    potential = {
+        uses_district_set = gts_body
+        exists = owner
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        cost = {
+            food = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+            NOR = {
+                has_planet_flag = use_gts_resource
+                has_planet_flag = use_tiny_resource
+            }
+        }
+        modifier = {
+            job_farmer_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+            NOR = {
+                has_planet_flag = use_gts_resource
+                has_planet_flag = use_tiny_resource
+            }
+        }
+        modifier = {
+            job_agri_drone_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            has_planet_flag = use_gts_resource
+        }
+        modifier = {
+            job_micro_food_worker_add = 50
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            has_planet_flag = use_tiny_resource
+        }
+        modifier = {
+            job_gts_food_worker_add = 50
+        }
+    }
+}
+
+district_body_5 = {
+
+    # 體內研究區(科研)
+
+    base_buildtime = 240
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_research
+    }
+
+    show_on_uncolonized = {
+        uses_district_set = gts_body
+    }
+
+    potential = {
+        uses_district_set = gts_body
+        exists = owner
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+            NOR = {
+                has_planet_flag = use_gts_resource
+                has_planet_flag = use_tiny_resource
+            }
+        }
+        modifier = {
+            job_physicist_add = 100
+            job_biologist_add = 100
+            job_engineer_add = 100
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            has_planet_flag = use_gts_resource
+        }
+        modifier = {
+            job_micro_researcher_add = 50
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            has_planet_flag = use_tiny_resource
+        }
+        modifier = {
+            job_gts_research_center_worker_add = 50
+        }
+    }
+}
+
+district_body_6 = {
+
+    # 體內度假區(凝聚力)
+
+    base_buildtime = 240
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_unity
+    }
+
+    show_on_uncolonized = {
+        uses_district_set = gts_body
+    }
+
+    potential = {
+        uses_district_set = gts_body
+        exists = owner
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+            NOR = {
+                has_planet_flag = use_gts_resource
+                has_planet_flag = use_tiny_resource
+            }
+        }
+        modifier = {
+            job_bureaucrat_add = 100
+            job_entertainer_add = 100
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+            NOR = {
+                has_planet_flag = use_gts_resource
+                has_planet_flag = use_tiny_resource
+            }
+        }
+        modifier = {
+            job_maintenance_drone_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            has_planet_flag = use_gts_resource
+        }
+        modifier = {
+            job_sock_park_worker_add = 50
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            has_planet_flag = use_tiny_resource
+        }
+        modifier = {
+            job_gts_extreme_worker_add = 50
+        }
+    }
+}
+
+district_body_7 = {
+
+    # 體內工業區(混合工業)
+
+    base_buildtime = 240
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_industrial
+    }
+
+    show_on_uncolonized = {
+        uses_district_set = gts_body
+    }
+
+    potential = {
+        uses_district_set = gts_body
+        exists = owner
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+            NOR = {
+                has_planet_flag = use_gts_resource
+                has_planet_flag = use_tiny_resource
+            }
+        }
+        modifier = {
+            job_artisan_add = 100
+            job_foundry_add = 100
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+            NOR = {
+                has_planet_flag = use_gts_resource
+                has_planet_flag = use_tiny_resource
+            }
+        }
+        modifier = {
+            job_alloy_drone_add = 100
+            job_artisan_drone_add = 100
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            has_planet_flag = use_gts_resource
+        }
+        modifier = {
+            job_transmutation_worker_add  = 25
+            job_microcity_foundry_worker_add  = 25
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            has_planet_flag = use_tiny_resource
+        }
+        modifier = {
+            job_gts_art_college_worker_add  = 25
+            job_gts_transmutation_worker_add  = 25
+        }
+    }
+}
+
+district_body_8 = {
+
+    # 體內精煉區(混合工業)
+
+    base_buildtime = 240
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_industrial
+    }
+
+    show_on_uncolonized = {
+        uses_district_set = gts_body
+    }
+
+    potential = {
+        uses_district_set = gts_body
+        exists = owner
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+            NOR = {
+                has_planet_flag = use_gts_resource
+                has_planet_flag = use_tiny_resource
+            }
+        }
+        modifier = {
+            job_chemist_add = 90
+            job_gas_refiner_add = 90
+            job_translucer_add = 90
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+            NOR = {
+                has_planet_flag = use_gts_resource
+                has_planet_flag = use_tiny_resource
+            }
+        }
+        modifier = {
+            job_chemist_drone_add = 90
+            job_gas_refiner_drone_add = 90
+            job_translucer_drone_add = 90
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            has_planet_flag = use_gts_resource
+        }
+        modifier = {
+            job_micro_refinery_worker_add = 50
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            has_planet_flag = use_tiny_resource
+        }
+        modifier = {
+            job_gts_high_transmutation_worker_add = 50
+        }
+    }
+}
+
+district_body_9 = {
+
+    # 特殊資源生產區(巨娘資源)
+
+    base_buildtime = 240
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_resource
+    }
+
+    show_on_uncolonized = {
+        uses_district_set = gts_body
+    }
+
+    potential = {
+        uses_district_set = gts_body
+        exists = owner
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_gestalt = no
+                gts_is_tiny_empire = yes
+            }
+        }
+        modifier = {
+            job_gts_giantess_fluid_worker_add = 100
+            job_gts_giantess_underwear_worker_add = 50
+            job_gts_giantess_human_worker_add = 25
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_gestalt = no
+                gts_is_giantess_empire = yes
+            }
+        }
+        modifier = {
+            job_shrink_pop_worker_add = 100
+            job_shrink_city_worker_add = 50
+            job_shrink_planet_worker_add = 25
+        }
+    }
+
+    # 崗位種類及數量(每個區劃)
+
+    # 這個在inline_scripts\job\zone_gts_bruh_tiny_worker_add.txt
+
+    # 沒用到了
+
+    #inline_script = {
+    #	script = jobs/zone_gts_bruh_tiny_worker_add
+    #	AMOUNT = 100
+    #}
+    #
+    ## 這個在inline_scripts\job\zone_gts_bruh_gts_worker_add.txt
+    #
+    #inline_script = {
+    #	script = jobs/zone_gts_bruh_gts_worker_add
+    #	AMOUNT = 100
+    #}
+}
+
+# 板鴨的區劃
+
+district_bronya_1 = {
+
+    # 體內城市(住房)
+
+    base_buildtime = 480
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_city_government
+        slot_city_01
+        slot_city_02
+    }
+
+    show_on_uncolonized = {
+        uses_district_set = gts_bronya
+    }
+
+    potential = {
+        uses_district_set = gts_bronya
+        exists = owner
+        is_planet_class = pc_gtsra_bronya_slave
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @city_cost
+        }
+        cost = {
+            food = @city_cost
+        }
+        upkeep = {
+            energy = 2
+        }
+        upkeep = {
+            food = 2
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 2500
+    }
+
+    # 一些影響住房數的東西
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_valid_civic = civic_agrarian_idyll
+            }
+        }
+        modifier = {
+            planet_housing_add = -200
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { has_active_tradition = tr_prosperity_public_works }
+        }
+        modifier = {
+            planet_housing_add = 100
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_technology = tech_housing_1
+            }
+        }
+        modifier = {
+            planet_housing_add = 100
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_technology = tech_housing_2
+                NOT = { has_valid_civic = civic_agrarian_idyll }
+            }
+        }
+        modifier = {
+            planet_housing_add = 200
+        }
+    }
+}
+
+district_bronya_2 = {
+
+    # 體內工業區(混合工業)
+
+    base_buildtime = 240
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_industrial
+    }
+
+    show_on_uncolonized = {
+        uses_district_set = gts_bronya
+    }
+
+    potential = {
+        uses_district_set = gts_bronya
+        exists = owner
+        is_planet_class = pc_gtsra_bronya_slave
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+            NOR = {
+                has_planet_flag = use_gts_resource
+                has_planet_flag = use_tiny_resource
+            }
+        }
+        modifier = {
+            job_artisan_add = 100
+            job_foundry_add = 100
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+            NOR = {
+                has_planet_flag = use_gts_resource
+                has_planet_flag = use_tiny_resource
+            }
+        }
+        modifier = {
+            job_alloy_drone_add = 100
+            job_artisan_drone_add = 100
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            has_planet_flag = use_gts_resource
+        }
+        modifier = {
+            job_transmutation_worker_add  = 25
+            job_microcity_foundry_worker_add  = 25
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            has_planet_flag = use_tiny_resource
+        }
+        modifier = {
+            job_gts_art_college_worker_add  = 25
+            job_gts_transmutation_worker_add  = 25
+        }
+    }
+}
+
+district_bronya_3 = {
+
+    # 代謝物挖掘區(礦物)
+
+    base_buildtime = 240
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_minerals
+    }
+
+    show_on_uncolonized = {
+        uses_district_set = gts_bronya
+    }
+
+    potential = {
+        uses_district_set = gts_bronya
+        exists = owner
+        is_planet_class = pc_gtsra_bronya_slave
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+            NOR = {
+                has_planet_flag = use_gts_resource
+                has_planet_flag = use_tiny_resource
+            }
+        }
+        modifier = {
+            job_miner_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+            NOR = {
+                has_planet_flag = use_gts_resource
+                has_planet_flag = use_tiny_resource
+            }
+        }
+        modifier = {
+            job_mining_drone_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            has_planet_flag = use_gts_resource
+        }
+        modifier = {
+            job_micro_miner_add = 50
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            has_planet_flag = use_tiny_resource
+        }
+        modifier = {
+            job_gts_miner_add = 50
+        }
+    }
+}
+
+district_bronya_4 = {
+
+    # 生物能發電區(能量)
+
+    base_buildtime = 240
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_energy
+    }
+
+    show_on_uncolonized = {
+        uses_district_set = gts_bronya
+    }
+
+    potential = {
+        uses_district_set = gts_bronya
+        exists = owner
+        is_planet_class = pc_gtsra_bronya_slave
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+            NOR = {
+                has_planet_flag = use_gts_resource
+                has_planet_flag = use_tiny_resource
+            }
+        }
+        modifier = {
+            job_technician_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+            NOR = {
+                has_planet_flag = use_gts_resource
+                has_planet_flag = use_tiny_resource
+            }
+        }
+        modifier = {
+            job_technician_drone_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            has_planet_flag = use_gts_resource
+        }
+        modifier = {
+            job_redlight_worker_add = 50
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            has_planet_flag = use_tiny_resource
+        }
+        modifier = {
+            job_gts_bathhouse_worker_add = 50
+        }
+    }
+}
+
+district_bronya_5 = {
+
+    # 沃土種植區(食物)
+
+    base_buildtime = 240
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_food
+    }
+
+    show_on_uncolonized = {
+        uses_district_set = gts_bronya
+    }
+
+    potential = {
+        uses_district_set = gts_bronya
+        exists = owner
+        is_planet_class = pc_gtsra_bronya_slave
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        cost = {
+            food = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+            NOR = {
+                has_planet_flag = use_gts_resource
+                has_planet_flag = use_tiny_resource
+            }
+        }
+        modifier = {
+            job_farmer_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+            NOR = {
+                has_planet_flag = use_gts_resource
+                has_planet_flag = use_tiny_resource
+            }
+        }
+        modifier = {
+            job_agri_drone_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            has_planet_flag = use_gts_resource
+        }
+        modifier = {
+            job_micro_food_worker_add = 50
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            has_planet_flag = use_tiny_resource
+        }
+        modifier = {
+            job_gts_food_worker_add = 50
+        }
+    }
+}
+
+district_bronya_6 = {
+
+    # 體內精煉區(混合工業)
+
+    base_buildtime = 240
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_industrial
+    }
+
+    show_on_uncolonized = {
+        uses_district_set = gts_bronya
+    }
+
+    potential = {
+        uses_district_set = gts_bronya
+        exists = owner
+        is_planet_class = pc_gtsra_bronya_slave
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+            NOR = {
+                has_planet_flag = use_gts_resource
+                has_planet_flag = use_tiny_resource
+            }
+        }
+        modifier = {
+            job_chemist_add = 90
+            job_gas_refiner_add = 90
+            job_translucer_add = 90
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+            NOR = {
+                has_planet_flag = use_gts_resource
+                has_planet_flag = use_tiny_resource
+            }
+        }
+        modifier = {
+            job_chemist_drone_add = 90
+            job_gas_refiner_drone_add = 90
+            job_translucer_drone_add = 90
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            has_planet_flag = use_gts_resource
+        }
+        modifier = {
+            job_micro_refinery_worker_add = 50
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            has_planet_flag = use_tiny_resource
+        }
+        modifier = {
+            job_gts_high_transmutation_worker_add = 50
+        }
+    }
+}
+
+district_bronya_7 = {
+
+    # 體內研究區(科研)
+
+    base_buildtime = 240
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_research
+    }
+
+    show_on_uncolonized = {
+        uses_district_set = gts_bronya
+    }
+
+    potential = {
+        uses_district_set = gts_bronya
+        exists = owner
+        is_planet_class = pc_gtsra_bronya_slave
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+            NOR = {
+                has_planet_flag = use_gts_resource
+                has_planet_flag = use_tiny_resource
+            }
+        }
+        modifier = {
+            job_physicist_add = 100
+            job_biologist_add = 100
+            job_engineer_add = 100
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            has_planet_flag = use_gts_resource
+        }
+        modifier = {
+            job_micro_researcher_add = 50
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            has_planet_flag = use_tiny_resource
+        }
+        modifier = {
+            job_gts_research_center_worker_add = 50
+        }
+    }
+}
+
+district_bronya_8 = {
+
+    # 體內度假區(凝聚力)
+
+    base_buildtime = 240
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_unity
+    }
+
+    show_on_uncolonized = {
+        uses_district_set = gts_bronya
+    }
+
+    potential = {
+        uses_district_set = gts_bronya
+        exists = owner
+        is_planet_class = pc_gtsra_bronya_slave
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+            NOR = {
+                has_planet_flag = use_gts_resource
+                has_planet_flag = use_tiny_resource
+            }
+        }
+        modifier = {
+            job_bureaucrat_add = 100
+            job_entertainer_add = 100
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+            NOR = {
+                has_planet_flag = use_gts_resource
+                has_planet_flag = use_tiny_resource
+            }
+        }
+        modifier = {
+            job_maintenance_drone_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            has_planet_flag = use_gts_resource
+        }
+        modifier = {
+            job_sock_park_worker_add = 50
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            has_planet_flag = use_tiny_resource
+        }
+        modifier = {
+            job_gts_extreme_worker_add = 50
+        }
+    }
+}
+
+district_bronya_9 = {
+
+    # 特殊資源生產區(巨娘資源)
+
+    base_buildtime = 240
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_resource
+    }
+
+    show_on_uncolonized = {
+        uses_district_set = gts_bronya
+    }
+
+    potential = {
+        uses_district_set = gts_bronya
+        exists = owner
+        is_planet_class = pc_gtsra_bronya_slave
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_gestalt = no
+                gts_is_tiny_empire = yes
+            }
+        }
+        modifier = {
+            job_gts_giantess_fluid_worker_add = 100
+            job_gts_giantess_underwear_worker_add = 50
+            job_gts_giantess_human_worker_add = 25
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_gestalt = no
+                gts_is_giantess_empire = yes
+            }
+        }
+        modifier = {
+            job_shrink_pop_worker_add = 100
+            job_shrink_city_worker_add = 50
+            job_shrink_planet_worker_add = 25
+        }
+    }
+
+    # 崗位種類及數量(每個區劃)
+
+    # 這個在inline_scripts\job\zone_gts_bruh_tiny_worker_add.txt
+
+    # 沒用到了
+
+    #inline_script = {
+    #	script = jobs/zone_gts_bruh_tiny_worker_add
+    #	AMOUNT = 100
+    #}
+    #
+    ## 這個在inline_scripts\job\zone_gts_bruh_gts_worker_add.txt
+    #
+    #inline_script = {
+    #	script = jobs/zone_gts_bruh_gts_worker_add
+    #	AMOUNT = 100
+    #}
+}
+
+#希儿区划
+
+
+district_bfbf_seele_0 = {
+    base_buildtime = 300
+    exempt_from_ai_planet_specialization = yes
+    # overlay_icon = GFX_district_government
+    custom_gui = planet_district_entry_width_3
+    district_width = 3
+
+    zone_slots = {
+        slot_city_government
+        slot_bfbf_seele_0_01
+        slot_bfbf_seele_0_01
+        slot_bfbf_seele_0_01
+        slot_bfbf_seele_0_01
+    }
+
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = seele
+        }
+    }
+
+    potential = {
+        OR = {
+            uses_district_set = seele
+        }
+        exists = owner
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 2500
+        # job_gts_civilian_unlimited_seele_add = 99999
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_regular_empire = yes }
+        }
+        modifier = {
+            job_clerk_add = 100
+            job_enforcer_add = 100
+            job_bureaucrat_add = 100
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_machine_empire = yes }
+        }
+        modifier = {
+            job_logistics_drone_add = 100
+            job_patrol_drone_add = 100
+            job_coordinator_add = 100
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+            job_logistics_drone_add = 100
+            job_patrol_drone_add = 100
+            job_synapse_drone_add = 100
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_wilderness_empire = yes }
+        }
+        modifier = {
+            job_coordinator_add = 100
+            job_logistics_drone_add = 300
+            job_patrol_drone_add = 100
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_giantess_empire = yes }
+        }
+        modifier = {
+            job_gts_prision_worker_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_tiny_empire = yes }
+        }
+        modifier = {
+            job_tiny_prison_worker_add = 200
+        }
+    }
+}
+district_bfbf_seele_1 = {
+
+    #希儿 城市（主要的那个）
+    base_buildtime = 240
+    # is_capped_by_modifier = no
+    exempt_from_ai_planet_specialization = yes
+    zone_slots = {
+        slot_city_government
+        slot_city_01
+        slot_city_02
+    }
+
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = seele
+        }
+    }
+
+    potential = {
+        OR = {
+            uses_district_set = seele
+        }
+        exists = owner
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 2500
+        # job_gts_civilian_unlimited_seele_add = 99999
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_valid_civic = civic_agrarian_idyll
+            }
+        }
+        modifier = {
+            planet_housing_add = -200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { has_active_tradition = tr_prosperity_public_works }
+        }
+        modifier = {
+            planet_housing_add = 100
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_technology = tech_housing_2
+                NOT = { has_valid_civic = civic_agrarian_idyll }
+            }
+        }
+        modifier = {
+            planet_housing_add = 200
+        }
+    }
+
+}
+district_bfbf_seele_2 = {
+    #主要是矿
+    base_buildtime = 240
+    # is_capped_by_modifier = no
+    exempt_from_ai_planet_specialization = yes
+    allow = {
+        custom_tooltip = district_bfbf_seele_2_allow
+        hidden_trigger = {
+            OR = {
+                uses_district_set = seele
+            }
+            exists = owner
+
+            or = {
+                event_target:gts_seele = {
+                    check_variable = {
+                        which = gts_love_logs
+                        value > 25
+                    }
+                }
+                event_target:gts_seele = {
+                    or = {
+                        has_trait = gts_leader_body_5_1_trait
+                        has_trait = gts_leader_body_5_2_trait
+                        has_trait = gts_leader_body_5_3_trait
+                    }
+                }
+            }
+        }
+    }
+    zone_slots = {
+        slot_gts_bruh_minerals
+    }
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = seele
+        }
+    }
+    potential = {
+        OR = {
+            uses_district_set = seele
+        }
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 200
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_miner_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+            job_mining_drone_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_giantess_empire = yes }
+        }
+        modifier = {
+            job_micro_miner_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_tiny_empire = yes }
+        }
+        modifier = {
+            job_gts_miner_add = 200
+        }
+    }
+}
+district_bfbf_seele_3 = {
+
+    # 腋下，电
+    base_buildtime = 240
+    # is_capped_by_modifier = no
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_energy
+    }
+
+    allow = {
+        custom_tooltip = district_bfbf_seele_2_allow
+        hidden_trigger = {
+            OR = {
+                uses_district_set = seele
+            }
+            exists = owner
+            or = {
+                event_target:gts_seele = {
+                    check_variable = {
+                        which = gts_love_logs
+                        value > 25
+                    }
+                }
+                event_target:gts_seele = {
+                    or = {
+                        has_trait = gts_leader_body_1_1_trait
+                        has_trait = gts_leader_body_1_2_trait
+                        has_trait = gts_leader_body_1_3_trait
+                    }
+                }
+            }
+        }
+    }
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = seele
+        }
+    }
+
+    potential = {
+        OR = {
+            uses_district_set = seele
+        }
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 200
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_technician_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+            job_technician_drone_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_giantess_empire = yes }
+        }
+        modifier = {
+            job_redlight_worker_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_tiny_empire = yes }
+        }
+        modifier = {
+            job_gts_bathhouse_worker_add = 200
+        }
+    }
+}
+district_bfbf_seele_4 = {
+
+    # 希儿的肠胃 三稀有
+
+    base_buildtime = 240
+    # is_capped_by_modifier = no
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_industrial
+    }
+
+    allow = {
+        custom_tooltip = district_bfbf_seele_2_allow
+        hidden_trigger = {
+            OR = {
+                uses_district_set = seele
+            }
+            exists = owner
+            or = {
+                event_target:gts_seele = {
+                    check_variable = {
+                        which = gts_love_logs
+                        value > 50
+                    }
+                }
+                event_target:gts_seele = {
+                    or = {
+                        has_trait = gts_leader_body_3_1_trait
+                        has_trait = gts_leader_body_3_2_trait
+                        has_trait = gts_leader_body_3_3_trait
+                    }
+                }
+            }
+        }
+    }
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = seele
+        }
+    }
+
+    potential = {
+        OR = {
+            uses_district_set = seele
+        }
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 200
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_chemist_add = 90
+            job_gas_refiner_add = 90
+            job_translucer_add = 90
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+            job_chemist_drone_add = 90
+            job_gas_refiner_drone_add = 90
+            job_translucer_drone_add = 90
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_giantess_empire = yes }
+        }
+        modifier = {
+            job_micro_refinery_worker_add = 270
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_tiny_empire = yes }
+        }
+        modifier = {
+            job_gts_high_transmutation_worker_add = 270
+        }
+    }
+}
+district_bfbf_seele_5 = {
+
+    # 小穴 凝聚力
+
+    base_buildtime = 240
+    # is_capped_by_modifier = no
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_unity
+    }
+
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = seele
+        }
+    }
+
+    potential = {
+        OR = {
+            uses_district_set = seele
+        }
+    }
+
+    allow = {
+        custom_tooltip = district_bfbf_seele_2_allow
+        hidden_trigger = {
+            OR = {
+                uses_district_set = seele
+            }
+            exists = owner
+            or = {
+                event_target:gts_seele = {
+                    check_variable = {
+                        which = gts_love_logs
+                        value > 75
+                    }
+                }
+                event_target:gts_seele = {
+                    or = {
+                        has_trait = gts_leader_body_4_1_trait
+                        has_trait = gts_leader_body_4_2_trait
+                        has_trait = gts_leader_body_4_3_trait
+                    }
+                }
+            }
+        }
+    }
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 200
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_bureaucrat_add = 100
+            job_entertainer_add = 100
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+            job_maintenance_drone_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_giantess_empire = yes }
+        }
+        modifier = {
+            job_micro_teacher_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_tiny_empire = yes }
+        }
+        modifier = {
+            job_gts_exhibition_worker_add = 200
+        }
+    }
+}
+district_bfbf_seele_6 = {
+
+    # 希儿的丝袜 合金和消费品
+
+    base_buildtime = 240
+    # is_capped_by_modifier = no
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_industrial
+    }
+
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = seele
+        }
+    }
+
+    potential = {
+        OR = {
+            uses_district_set = seele
+        }
+    }
+
+    allow = {
+        custom_tooltip = district_bfbf_seele_2_allow
+        hidden_trigger = {
+            OR = {
+                uses_district_set = seele
+            }
+            exists = owner
+            or = {
+                event_target:gts_seele = {
+                    check_variable = {
+                        which = gts_love_logs
+                        value > 25
+                    }
+                }
+                event_target:gts_seele = {
+                    or = {
+                        has_trait = gts_leader_body_5_1_trait
+                        has_trait = gts_leader_body_5_2_trait
+                        has_trait = gts_leader_body_5_3_trait
+                    }
+                }
+            }
+        }
+    }
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 200
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_artisan_add = 100
+            job_foundry_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+            job_alloy_drone_add = 100
+            job_artisan_drone_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_giantess_empire = yes }
+        }
+        modifier = {
+            job_transmutation_worker_add  = 300
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_tiny_empire = yes }
+        }
+        modifier = {
+            job_gts_transmutation_worker_add = 300
+        }
+    }
+}
+district_bfbf_seele_7 = {
+
+    # 希儿的乳腺，好吃的
+
+    base_buildtime = 240
+    # is_capped_by_modifier = no
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_food
+    }
+
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = seele
+        }
+    }
+
+    potential = {
+        OR = {
+            uses_district_set = seele
+        }
+    }
+
+    allow = {
+        custom_tooltip = district_bfbf_seele_2_allow
+        hidden_trigger = {
+
+            OR = {
+                uses_district_set = seele
+            }
+            exists = owner
+            or = {
+                event_target:gts_seele = {
+                    check_variable = {
+                        which = gts_love_logs
+                        value > 75
+                    }
+                }
+                event_target:gts_seele = {
+                    or = {
+                        has_trait = gts_leader_body_2_1_trait
+                        has_trait = gts_leader_body_2_2_trait
+                        has_trait = gts_leader_body_2_3_trait
+                    }
+                }
+            }
+        }
+    }
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        cost = {
+            food = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 200
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_farmer_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+            job_agri_drone_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_giantess_empire = yes }
+        }
+        modifier = {
+            job_micro_food_worker_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_tiny_empire = yes }
+        }
+        modifier = {
+            job_gts_food_worker_add = 200
+        }
+    }
+}
+district_bfbf_seele_8 = {
+
+    # 希儿的肉棒 科技
+
+    base_buildtime = 240
+    # is_capped_by_modifier = no
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_research
+    }
+
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = seele
+        }
+    }
+
+    potential = {
+        OR = {
+            uses_district_set = seele
+        }
+        exists = owner
+        and = {
+            event_target:gts_seele = {
+                check_variable = {
+                    which = gts_love_logs
+                    value > 75
+                }
+            }
+            owner = {
+                has_country_flag = can_trigger_futa_content
+            }
+        }
+    }
+    allow = {
+
+    }
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 200
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_physicist_add = 90
+            job_biologist_add = 90
+            job_engineer_add = 90
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+            job_brain_drone_add = 270
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_giantess_empire = yes }
+        }
+        modifier = {
+            job_micro_researcher_add = 270
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_tiny_empire = yes }
+        }
+        modifier = {
+            job_gts_inside_institute_worker_add = 270
+        }
+    }
+}
+district_bfbf_seele_9 = {
+
+    # military
+
+    base_buildtime = 240
+    # is_capped_by_modifier = no
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_fortress
+    }
+
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = seele
+        }
+    }
+
+    potential = {
+        OR = {
+            uses_district_set = seele
+        }
+        exists = owner
+        and = {
+            event_target:gts_seele = {
+                check_variable = {
+                    which = gts_love_logs
+                    value > 75
+                }
+            }
+            owner = {
+                has_country_flag = can_trigger_futa_content
+            }
+        }
+    }
+    allow = {
+
+    }
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 200
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_soldier_add = 270
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+            job_warrior_drone_add = 270
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_tiny_empire = yes }
+        }
+        modifier = {
+            job_tiny_sperm_commander_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_giantess_empire = yes }
+        }
+        modifier = {
+            job_gts_sperm_soldier_add = 200
+        }
+    }
+}
+district_bfbf_seele_10 = {
+
+    # military
+
+    base_buildtime = 240
+    # is_capped_by_modifier = no
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_fortress
+    }
+
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = seele
+        }
+    }
+
+    potential = {
+        OR = {
+            uses_district_set = seele
+        }
+        exists = owner
+        and = {
+            event_target:gts_seele = {
+                check_variable = {
+                    which = gts_love_logs
+                    value >= 100
+                }
+            }
+        }
+    }
+    allow = {
+
+    }
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 200
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_tiny_empire = yes }
+        }
+        modifier = {
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_giantess_empire = yes }
+        }
+        modifier = {
+        }
+    }
+}
+
+
+#黑希区划
+
+
+district_bfbf_seele_li_0 = {
+    base_buildtime = 300
+    exempt_from_ai_planet_specialization = yes
+    # overlay_icon = GFX_district_government
+    custom_gui = planet_district_entry_width_3
+    district_width = 3
+
+    zone_slots = {
+        slot_city_government
+        slot_bfbf_seele_li_0_01
+        slot_bfbf_seele_li_0_01
+        slot_bfbf_seele_li_0_01
+        slot_bfbf_seele_li_0_01
+    }
+
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = seele_li
+        }
+    }
+
+    potential = {
+        OR = {
+            uses_district_set = seele_li
+        }
+        exists = owner
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 2500
+        # job_gts_civilian_unlimited_seele_li_add = 99999
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_regular_empire = yes }
+        }
+        modifier = {
+            job_clerk_add = 100
+            job_enforcer_add = 100
+            job_bureaucrat_add = 100
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_machine_empire = yes }
+        }
+        modifier = {
+            job_logistics_drone_add = 100
+            job_patrol_drone_add = 100
+            job_coordinator_add = 100
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+            job_logistics_drone_add = 100
+            job_patrol_drone_add = 100
+            job_synapse_drone_add = 100
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_wilderness_empire = yes }
+        }
+        modifier = {
+            job_coordinator_add = 100
+            job_logistics_drone_add = 300
+            job_patrol_drone_add = 100
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_giantess_empire = yes }
+        }
+        modifier = {
+            job_gts_prision_worker_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_tiny_empire = yes }
+        }
+        modifier = {
+            job_tiny_prison_worker_add = 200
+        }
+    }
+}
+district_bfbf_seele_li_1 = {
+
+    #希儿 城市（主要的那个）
+
+    base_buildtime = 240
+    # is_capped_by_modifier = no
+    exempt_from_ai_planet_specialization = yes
+    zone_slots = {
+        slot_city_government
+        slot_city_01
+        slot_city_02
+    }
+
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = seele_li
+        }
+    }
+
+    potential = {
+        OR = {
+            uses_district_set = seele_li
+        }
+        exists = owner
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 2500
+        # job_gts_civilian_unlimited_seele_li_add = 99999
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_valid_civic = civic_agrarian_idyll
+            }
+        }
+        modifier = {
+            planet_housing_add = -200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { has_active_tradition = tr_prosperity_public_works }
+        }
+        modifier = {
+            planet_housing_add = 100
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_technology = tech_housing_2
+                NOT = { has_valid_civic = civic_agrarian_idyll }
+            }
+        }
+        modifier = {
+            planet_housing_add = 200
+        }
+    }
+
+}
+district_bfbf_seele_li_2 = {
+
+    #主要是矿
+
+    base_buildtime = 240
+    # is_capped_by_modifier = no
+    exempt_from_ai_planet_specialization = yes
+    allow = {
+        custom_tooltip = district_bfbf_seele_2_allow
+        hidden_trigger = {
+            OR = {
+                uses_district_set = seele_li
+            }
+            exists = owner
+
+            or = {
+                event_target:gts_seele_li = {
+                    check_variable = {
+                        which = gts_love_logs
+                        value > 25
+                    }
+                }
+                event_target:gts_seele_li = {
+                    or = {
+                        has_trait = gts_leader_body_5_1_trait
+                        has_trait = gts_leader_body_5_2_trait
+                        has_trait = gts_leader_body_5_3_trait
+                    }
+                }
+            }
+        }
+    }
+    zone_slots = {
+        slot_gts_bruh_minerals
+    }
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = seele_li
+        }
+    }
+    potential = {
+        OR = {
+            uses_district_set = seele_li
+        }
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 200
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_miner_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+            job_mining_drone_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_giantess_empire = yes }
+        }
+        modifier = {
+            job_micro_miner_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_tiny_empire = yes }
+        }
+        modifier = {
+            job_gts_miner_add = 200
+        }
+    }
+}
+district_bfbf_seele_li_3 = {
+
+    # 腋下，电
+
+    base_buildtime = 240
+    # is_capped_by_modifier = no
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_energy
+    }
+
+    allow = {
+        custom_tooltip = district_bfbf_seele_2_allow
+        hidden_trigger = {
+            OR = {
+                uses_district_set = seele_li
+            }
+            exists = owner
+            or = {
+                event_target:gts_seele_li = {
+                    check_variable = {
+                        which = gts_love_logs
+                        value > 25
+                    }
+                }
+                event_target:gts_seele_li = {
+                    or = {
+                        has_trait = gts_leader_body_1_1_trait
+                        has_trait = gts_leader_body_1_2_trait
+                        has_trait = gts_leader_body_1_3_trait
+                    }
+                }
+            }
+        }
+    }
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = seele_li
+        }
+    }
+
+    potential = {
+        OR = {
+            uses_district_set = seele_li
+        }
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 200
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_technician_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+            job_technician_drone_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_giantess_empire = yes }
+        }
+        modifier = {
+            job_redlight_worker_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_tiny_empire = yes }
+        }
+        modifier = {
+            job_gts_bathhouse_worker_add = 200
+        }
+    }
+}
+district_bfbf_seele_li_4 = {
+
+    # 希儿的肠胃 三稀有
+
+    base_buildtime = 240
+    # is_capped_by_modifier = no
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_industrial
+    }
+
+    allow = {
+        custom_tooltip = district_bfbf_seele_2_allow
+        hidden_trigger = {
+            OR = {
+                uses_district_set = seele_li
+            }
+            exists = owner
+            or = {
+                event_target:gts_seele_li = {
+                    check_variable = {
+                        which = gts_love_logs
+                        value > 50
+                    }
+                }
+                event_target:gts_seele_li = {
+                    or = {
+                        has_trait = gts_leader_body_3_1_trait
+                        has_trait = gts_leader_body_3_2_trait
+                        has_trait = gts_leader_body_3_3_trait
+                    }
+                }
+            }
+        }
+    }
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = seele_li
+        }
+    }
+
+    potential = {
+        OR = {
+            uses_district_set = seele_li
+        }
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 200
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_chemist_add = 90
+            job_gas_refiner_add = 90
+            job_translucer_add = 90
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+            job_chemist_drone_add = 90
+            job_gas_refiner_drone_add = 90
+            job_translucer_drone_add = 90
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_giantess_empire = yes }
+        }
+        modifier = {
+            job_micro_refinery_worker_add = 270
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_tiny_empire = yes }
+        }
+        modifier = {
+            job_gts_high_transmutation_worker_add = 270
+        }
+    }
+}
+district_bfbf_seele_li_5 = {
+
+    # 小穴 凝聚力
+
+    base_buildtime = 240
+    # is_capped_by_modifier = no
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_unity
+    }
+
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = seele_li
+        }
+    }
+
+    potential = {
+        OR = {
+            uses_district_set = seele_li
+        }
+    }
+
+    allow = {
+        custom_tooltip = district_bfbf_seele_2_allow
+        hidden_trigger = {
+            OR = {
+                uses_district_set = seele_li
+            }
+            exists = owner
+            or = {
+                event_target:gts_seele_li = {
+                    check_variable = {
+                        which = gts_love_logs
+                        value > 75
+                    }
+                }
+                event_target:gts_seele_li = {
+                    or = {
+                        has_trait = gts_leader_body_4_1_trait
+                        has_trait = gts_leader_body_4_2_trait
+                        has_trait = gts_leader_body_4_3_trait
+                    }
+                }
+            }
+        }
+    }
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 200
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_bureaucrat_add = 100
+            job_entertainer_add = 100
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+            job_maintenance_drone_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_giantess_empire = yes }
+        }
+        modifier = {
+            job_micro_teacher_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_tiny_empire = yes }
+        }
+        modifier = {
+            job_gts_exhibition_worker_add = 200
+        }
+    }
+}
+district_bfbf_seele_li_6 = {
+
+    # 希儿的丝袜 合金和消费品
+
+    base_buildtime = 240
+    # is_capped_by_modifier = no
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_industrial
+    }
+
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = seele_li
+        }
+    }
+
+    potential = {
+        OR = {
+            uses_district_set = seele_li
+        }
+    }
+
+    allow = {
+        custom_tooltip = district_bfbf_seele_2_allow
+        hidden_trigger = {
+            OR = {
+                uses_district_set = seele_li
+            }
+            exists = owner
+            or = {
+                event_target:gts_seele_li = {
+                    check_variable = {
+                        which = gts_love_logs
+                        value > 25
+                    }
+                }
+                event_target:gts_seele_li = {
+                    or = {
+                        has_trait = gts_leader_body_5_1_trait
+                        has_trait = gts_leader_body_5_2_trait
+                        has_trait = gts_leader_body_5_3_trait
+                    }
+                }
+            }
+        }
+    }
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 200
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_artisan_add = 100
+            job_foundry_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+            job_alloy_drone_add = 100
+            job_artisan_drone_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_giantess_empire = yes }
+        }
+        modifier = {
+            job_transmutation_worker_add  = 300
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_tiny_empire = yes }
+        }
+        modifier = {
+            job_gts_transmutation_worker_add = 300
+        }
+    }
+}
+district_bfbf_seele_li_7 = {
+
+    # 希儿的乳腺，好吃的
+
+    base_buildtime = 240
+    # is_capped_by_modifier = no
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_food
+    }
+
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = seele_li
+        }
+    }
+
+    potential = {
+        OR = {
+            uses_district_set = seele_li
+        }
+    }
+
+    allow = {
+        custom_tooltip = district_bfbf_seele_2_allow
+        hidden_trigger = {
+
+            OR = {
+                uses_district_set = seele_li
+            }
+            exists = owner
+            or = {
+                event_target:gts_seele_li = {
+                    check_variable = {
+                        which = gts_love_logs
+                        value > 75
+                    }
+                }
+                event_target:gts_seele_li = {
+                    or = {
+                        has_trait = gts_leader_body_2_1_trait
+                        has_trait = gts_leader_body_2_2_trait
+                        has_trait = gts_leader_body_2_3_trait
+                    }
+                }
+            }
+        }
+    }
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        cost = {
+            food = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 200
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_farmer_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+            job_agri_drone_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_giantess_empire = yes }
+        }
+        modifier = {
+            job_micro_food_worker_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_tiny_empire = yes }
+        }
+        modifier = {
+            job_gts_food_worker_add = 200
+        }
+    }
+}
+district_bfbf_seele_li_8 = {
+
+    # 希儿的肉棒 科技
+
+    base_buildtime = 240
+    # is_capped_by_modifier = no
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_research
+    }
+
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = seele_li
+        }
+    }
+
+    potential = {
+        OR = {
+            uses_district_set = seele_li
+        }
+        exists = owner
+        and = {
+            event_target:gts_seele_li = {
+                check_variable = {
+                    which = gts_love_logs
+                    value > 75
+                }
+            }
+            owner = {
+                has_country_flag = can_trigger_futa_content
+            }
+        }
+    }
+    allow = {
+
+    }
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 200
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_physicist_add = 90
+            job_biologist_add = 90
+            job_engineer_add = 90
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+            job_brain_drone_add = 270
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_giantess_empire = yes }
+        }
+        modifier = {
+            job_micro_researcher_add = 270
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_tiny_empire = yes }
+        }
+        modifier = {
+            job_gts_inside_institute_worker_add = 270
+        }
+    }
+}
+district_bfbf_seele_li_9 = {
+
+    # military
+    base_buildtime = 240
+    # is_capped_by_modifier = no
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_fortress
+    }
+
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = seele_li
+        }
+    }
+
+    potential = {
+        OR = {
+            uses_district_set = seele_li
+        }
+        exists = owner
+        and = {
+            event_target:gts_seele_li = {
+                check_variable = {
+                    which = gts_love_logs
+                    value > 75
+                }
+            }
+            owner = {
+                has_country_flag = can_trigger_futa_content
+            }
+        }
+    }
+    allow = {
+
+    }
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 200
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_soldier_add = 270
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+            job_warrior_drone_add = 270
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_tiny_empire = yes }
+        }
+        modifier = {
+            job_tiny_sperm_commander_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_giantess_empire = yes }
+        }
+        modifier = {
+            job_gts_sperm_soldier_add = 200
+        }
+    }
+}
+district_bfbf_seele_li_10 = {
+
+    # military
+    base_buildtime = 240
+    # is_capped_by_modifier = no
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_fortress
+    }
+
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = seele_li
+        }
+    }
+
+    potential = {
+        OR = {
+            uses_district_set = seele_li
+        }
+        exists = owner
+        and = {
+            event_target:gts_seele_li = {
+                check_variable = {
+                    which = gts_love_logs
+                    value >= 100
+                }
+            }
+        }
+    }
+    allow = {
+
+    }
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 200
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_tiny_empire = yes }
+        }
+        modifier = {
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_giantess_empire = yes }
+        }
+        modifier = {
+        }
+    }
+}
+
+
+#板鸭区划
+district_bfbf_bronya_0 = {
+    base_buildtime = 300
+    exempt_from_ai_planet_specialization = yes
+    # overlay_icon = GFX_district_government
+    custom_gui = planet_district_entry_width_3
+    district_width = 3
+
+    zone_slots = {
+        slot_city_government
+        slot_bfbf_bronya_0_01
+        slot_bfbf_bronya_0_01
+        slot_bfbf_bronya_0_01
+        slot_bfbf_bronya_0_01
+    }
+
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = bronya
+        }
+    }
+
+    potential = {
+        OR = {
+            uses_district_set = bronya
+        }
+        exists = owner
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 1500
+        # job_gts_civilian_unlimited_bronya_add = 99999
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_regular_empire = yes }
+        }
+        modifier = {
+            job_clerk_add = 100
+            job_enforcer_add = 100
+            job_bureaucrat_add = 100
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_machine_empire = yes }
+        }
+        modifier = {
+            job_logistics_drone_add = 100
+            job_patrol_drone_add = 100
+            job_coordinator_add = 100
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+            job_logistics_drone_add = 100
+            job_patrol_drone_add = 100
+            job_synapse_drone_add = 100
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_wilderness_empire = yes }
+        }
+        modifier = {
+            job_coordinator_add = 100
+            job_logistics_drone_add = 300
+            job_patrol_drone_add = 100
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_giantess_empire = yes }
+        }
+        modifier = {
+            job_gts_prision_worker_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_tiny_empire = yes }
+        }
+        modifier = {
+            job_tiny_prison_worker_add = 200
+        }
+    }
+}
+district_bfbf_bronya_1 = {
+
+    #希儿 城市（主要的那个）
+
+    base_buildtime = 240
+    # is_capped_by_modifier = no
+    exempt_from_ai_planet_specialization = yes
+    zone_slots = {
+        slot_city_government
+        slot_city_01
+        slot_city_02
+    }
+
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = bronya
+        }
+    }
+
+    potential = {
+        OR = {
+            uses_district_set = bronya
+        }
+        exists = owner
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 2500
+        # job_gts_civilian_unlimited_bronya_add = 99999
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_valid_civic = civic_agrarian_idyll
+            }
+        }
+        modifier = {
+            planet_housing_add = -200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { has_active_tradition = tr_prosperity_public_works }
+        }
+        modifier = {
+            planet_housing_add = 100
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_technology = tech_housing_2
+                NOT = { has_valid_civic = civic_agrarian_idyll }
+            }
+        }
+        modifier = {
+            planet_housing_add = 200
+        }
+    }
+
+}
+district_bfbf_bronya_2 = {
+
+    #主要是矿
+
+    base_buildtime = 240
+    # is_capped_by_modifier = no
+    exempt_from_ai_planet_specialization = yes
+    allow = {
+        custom_tooltip = district_bfbf_seele_2_allow
+        hidden_trigger = {
+            OR = {
+                uses_district_set = bronya
+            }
+            exists = owner
+
+            or = {
+                event_target:gts_bronya = {
+                    check_variable = {
+                        which = gts_love_logs
+                        value > 25
+                    }
+                }
+                event_target:gts_bronya = {
+                    or = {
+                        has_trait = gts_leader_body_5_1_trait
+                        has_trait = gts_leader_body_5_2_trait
+                        has_trait = gts_leader_body_5_3_trait
+                    }
+                }
+            }
+        }
+    }
+    zone_slots = {
+        slot_gts_bruh_minerals
+    }
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = bronya
+        }
+    }
+    potential = {
+        OR = {
+            uses_district_set = bronya
+        }
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 200
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_miner_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+            job_mining_drone_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_giantess_empire = yes }
+        }
+        modifier = {
+            job_micro_miner_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_tiny_empire = yes }
+        }
+        modifier = {
+            job_gts_miner_add = 200
+        }
+    }
+}
+district_bfbf_bronya_3 = {
+
+    # 腋下，电
+
+    base_buildtime = 240
+    # is_capped_by_modifier = no
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_energy
+    }
+
+    allow = {
+        custom_tooltip = district_bfbf_seele_2_allow
+        hidden_trigger = {
+            OR = {
+                uses_district_set = bronya
+            }
+            exists = owner
+            or = {
+                event_target:gts_bronya = {
+                    check_variable = {
+                        which = gts_love_logs
+                        value > 25
+                    }
+                }
+                event_target:gts_bronya = {
+                    or = {
+                        has_trait = gts_leader_body_1_1_trait
+                        has_trait = gts_leader_body_1_2_trait
+                        has_trait = gts_leader_body_1_3_trait
+                    }
+                }
+            }
+        }
+    }
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = bronya
+        }
+    }
+
+    potential = {
+        OR = {
+            uses_district_set = bronya
+        }
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 200
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_technician_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+            job_technician_drone_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_giantess_empire = yes }
+        }
+        modifier = {
+            job_redlight_worker_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_tiny_empire = yes }
+        }
+        modifier = {
+            job_gts_bathhouse_worker_add = 200
+        }
+    }
+}
+district_bfbf_bronya_4 = {
+
+    # 希儿的肠胃 三稀有
+
+    base_buildtime = 240
+    # is_capped_by_modifier = no
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_industrial
+    }
+
+    allow = {
+        custom_tooltip = district_bfbf_seele_2_allow
+        hidden_trigger = {
+            OR = {
+                uses_district_set = bronya
+            }
+            exists = owner
+            or = {
+                event_target:gts_bronya = {
+                    check_variable = {
+                        which = gts_love_logs
+                        value > 50
+                    }
+                }
+                event_target:gts_bronya = {
+                    or = {
+                        has_trait = gts_leader_body_3_1_trait
+                        has_trait = gts_leader_body_3_2_trait
+                        has_trait = gts_leader_body_3_3_trait
+                    }
+                }
+            }
+        }
+    }
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = bronya
+        }
+    }
+
+    potential = {
+        OR = {
+            uses_district_set = bronya
+        }
+    }
+
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 200
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_chemist_add = 90
+            job_gas_refiner_add = 90
+            job_translucer_add = 90
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+            job_chemist_drone_add = 90
+            job_gas_refiner_drone_add = 90
+            job_translucer_drone_add = 90
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_giantess_empire = yes }
+        }
+        modifier = {
+            job_micro_refinery_worker_add = 270
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_tiny_empire = yes }
+        }
+        modifier = {
+            job_gts_high_transmutation_worker_add = 270
+        }
+    }
+}
+district_bfbf_bronya_5 = {
+
+    # 小穴 凝聚力
+
+    base_buildtime = 240
+    # is_capped_by_modifier = no
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_unity
+    }
+
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = bronya
+        }
+    }
+
+    potential = {
+        OR = {
+            uses_district_set = bronya
+        }
+    }
+
+    allow = {
+        custom_tooltip = district_bfbf_seele_2_allow
+        hidden_trigger = {
+            OR = {
+                uses_district_set = bronya
+            }
+            exists = owner
+            or = {
+                event_target:gts_bronya = {
+                    check_variable = {
+                        which = gts_love_logs
+                        value > 75
+                    }
+                }
+                event_target:gts_bronya = {
+                    or = {
+                        has_trait = gts_leader_body_4_1_trait
+                        has_trait = gts_leader_body_4_2_trait
+                        has_trait = gts_leader_body_4_3_trait
+                    }
+                }
+            }
+        }
+    }
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 200
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_bureaucrat_add = 100
+            job_entertainer_add = 100
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+            job_maintenance_drone_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_giantess_empire = yes }
+        }
+        modifier = {
+            job_micro_teacher_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_tiny_empire = yes }
+        }
+        modifier = {
+            job_gts_exhibition_worker_add = 200
+        }
+    }
+}
+district_bfbf_bronya_6 = {
+
+    # 希儿的丝袜 合金和消费品
+
+    base_buildtime = 240
+    # is_capped_by_modifier = no
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_industrial
+    }
+
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = bronya
+        }
+    }
+
+    potential = {
+        OR = {
+            uses_district_set = bronya
+        }
+    }
+
+    allow = {
+        custom_tooltip = district_bfbf_seele_2_allow
+        hidden_trigger = {
+            OR = {
+                uses_district_set = bronya
+            }
+            exists = owner
+            or = {
+                event_target:gts_bronya = {
+                    check_variable = {
+                        which = gts_love_logs
+                        value > 25
+                    }
+                }
+                event_target:gts_bronya = {
+                    or = {
+                        has_trait = gts_leader_body_5_1_trait
+                        has_trait = gts_leader_body_5_2_trait
+                        has_trait = gts_leader_body_5_3_trait
+                    }
+                }
+            }
+        }
+    }
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 200
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_artisan_add = 100
+            job_foundry_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+            job_alloy_drone_add = 100
+            job_artisan_drone_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_giantess_empire = yes }
+        }
+        modifier = {
+            job_transmutation_worker_add  = 300
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_tiny_empire = yes }
+        }
+        modifier = {
+            job_gts_transmutation_worker_add = 300
+        }
+    }
+}
+district_bfbf_bronya_7 = {
+
+    # 希儿的乳腺，好吃的
+
+    base_buildtime = 240
+    # is_capped_by_modifier = no
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_food
+    }
+
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = bronya
+        }
+    }
+
+    potential = {
+        OR = {
+            uses_district_set = bronya
+        }
+    }
+
+    allow = {
+        custom_tooltip = district_bfbf_seele_2_allow
+        hidden_trigger = {
+
+            OR = {
+                uses_district_set = bronya
+            }
+            exists = owner
+            or = {
+                event_target:gts_bronya = {
+                    check_variable = {
+                        which = gts_love_logs
+                        value > 75
+                    }
+                }
+                event_target:gts_bronya = {
+                    or = {
+                        has_trait = gts_leader_body_2_1_trait
+                        has_trait = gts_leader_body_2_2_trait
+                        has_trait = gts_leader_body_2_3_trait
+                    }
+                }
+            }
+        }
+    }
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        cost = {
+            food = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 200
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_farmer_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+            job_agri_drone_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_giantess_empire = yes }
+        }
+        modifier = {
+            job_micro_food_worker_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_tiny_empire = yes }
+        }
+        modifier = {
+            job_gts_food_worker_add = 200
+        }
+    }
+}
+district_bfbf_bronya_8 = {
+
+    # 希儿的肉棒 科技
+
+    base_buildtime = 240
+    # is_capped_by_modifier = no
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_research
+    }
+
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = bronya
+        }
+    }
+
+    potential = {
+        OR = {
+            uses_district_set = bronya
+        }
+        exists = owner
+        and = {
+            event_target:gts_bronya = {
+                check_variable = {
+                    which = gts_love_logs
+                    value > 75
+                }
+            }
+            owner = {
+                has_country_flag = can_trigger_futa_content
+            }
+        }
+    }
+    allow = {
+
+    }
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 200
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_physicist_add = 90
+            job_biologist_add = 90
+            job_engineer_add = 90
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+            job_brain_drone_add = 270
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_giantess_empire = yes }
+        }
+        modifier = {
+            job_micro_researcher_add = 270
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_tiny_empire = yes }
+        }
+        modifier = {
+            job_gts_inside_institute_worker_add = 270
+        }
+    }
+}
+district_bfbf_bronya_9 = {
+
+    # military
+    base_buildtime = 240
+    # is_capped_by_modifier = no
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_fortress
+    }
+
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = bronya
+        }
+    }
+
+    potential = {
+        OR = {
+            uses_district_set = bronya
+        }
+        exists = owner
+        and = {
+            event_target:gts_bronya = {
+                check_variable = {
+                    which = gts_love_logs
+                    value > 75
+                }
+            }
+            owner = {
+                has_country_flag = can_trigger_futa_content
+            }
+        }
+    }
+    allow = {
+
+    }
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 200
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = no }
+        }
+        modifier = {
+            job_soldier_add = 270
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+            job_warrior_drone_add = 270
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_tiny_empire = yes }
+        }
+        modifier = {
+                    job_tiny_sperm_commander_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_giantess_empire = yes }
+        }
+        modifier = {
+                    job_gts_sperm_soldier_add = 200
+        }
+    }
+}
+district_bfbf_bronya_10 = {
+
+    # military
+    base_buildtime = 240
+    # is_capped_by_modifier = no
+    exempt_from_ai_planet_specialization = yes
+
+    zone_slots = {
+        slot_gts_bruh_fortress
+    }
+
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = bronya
+        }
+    }
+
+    potential = {
+        OR = {
+            uses_district_set = bronya
+        }
+        exists = owner
+        and = {
+            event_target:gts_bronya = {
+                check_variable = {
+                    which = gts_love_logs
+                    value >= 100
+                }
+            }
+        }
+    }
+    allow = {
+
+    }
+    resources = {
+        category = planet_districts
+        cost = {
+            minerals = @base_cost
+        }
+        upkeep = {
+            energy = 1
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 200
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_tiny_empire = yes }
+        }
+        modifier = {
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { gts_is_giantess_empire = yes }
+        }
+        modifier = {
+        }
+    }
+}

@@ -1,0 +1,1061 @@
+namespace = gts_setting
+
+country_event = {
+	# 总控制面板
+	id = gts_setting.0
+	title = gts_setting.0.name
+	desc = gts_setting.0.desc
+	picture = GFX_load_68
+	is_triggered_only = yes
+
+	option = {
+		name = gts_setting.0.a
+		hidden_effect = {
+			country_event = {
+				id = gts_setting.1
+			}
+		}
+	}
+	option = {
+		name = gts_setting.0.b
+		hidden_effect = {
+			country_event = {
+				id = gts_setting.2
+			}
+		}
+	}
+	option = {
+		name = gts_setting.0.c
+		hidden_effect = {
+			country_event = {
+				id = gts_setting.3
+			}
+		}
+	}
+	option = {
+		name = gts_setting.0.d
+		hidden_effect = {
+			country_event = {
+				id = gts_setting.4
+			}
+		}
+	}
+	option = {
+		name = gts_setting.0.e
+		hidden_effect = {
+			country_event = {
+				id = gts_setting.5
+			}
+		}
+	}
+	option = {
+		name = gts_thanks
+		default_hide_option = yes
+	}
+}
+country_event = {
+	# 极限区事件开关
+	id = gts_setting.1
+	title = gts_setting.1.name
+	desc = gts_setting.1.desc
+	picture = GFX_load_62
+	is_triggered_only = yes
+
+	option = {
+		name = gts_setting.1.futa.on
+		trigger = {
+			NOT = {
+				has_country_flag = can_trigger_futa_content
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_setting.10
+			}
+		}
+	}
+	option = {
+		name = gts_setting.1.futa.off
+		trigger = {
+			has_country_flag = can_trigger_futa_content
+		}
+		hidden_effect = {
+			remove_country_flag = can_trigger_futa_content
+			remove_country_flag = gts_intel_panel_show_penis
+			country_event = {
+				id = gts_setting.1
+			}
+		}
+	}
+	option = {
+		name = gts_setting.1.scat.on
+		trigger = {
+			NOT = {
+				has_country_flag = can_trigger_scat_content
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_setting.11
+			}
+		}
+	}
+	option = {
+		name = gts_setting.1.scat.off
+		trigger = {
+			has_country_flag = can_trigger_scat_content
+		}
+		hidden_effect = {
+			remove_country_flag = can_trigger_scat_content
+			country_event = {
+				id = gts_setting.1
+			}
+		}
+	}
+	option = {
+		name = gts_setting.1.humiliate.on
+		custom_tooltip = can_trigger_humiliate_content.tooltip
+		trigger = {
+			NOT = {
+				has_country_flag = can_trigger_humiliate_content
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_setting.12
+			}
+		}
+	}
+	option = {
+		name = gts_setting.1.humiliate.off
+		trigger = {
+			has_country_flag = can_trigger_humiliate_content
+		}
+		hidden_effect = {
+			remove_country_flag = can_trigger_humiliate_content
+			country_event = {
+				id = gts_setting.1
+			}
+		}
+	}
+	# option = {
+	# 	name = gts_setting.1.gc.on
+	# 	trigger = {
+	# 		NOT = {
+	# 			has_country_flag = can_trigger_gc_content
+	# 		}
+	# 	}
+	# 	hidden_effect = {
+	# 		country_event = {
+	# 			id = gts_setting.12
+	# 		}
+	# 	}
+	# }
+	# option = {
+	# 	name = gts_setting.1.gc.off
+	# 	trigger = {
+	# 		has_country_flag = can_trigger_gc_content
+	# 	}
+	# 	hidden_effect = {
+	# 		remove_country_flag = can_trigger_gc_content
+	# 		country_event = {
+	# 			id = gts_setting.1
+	# 		}
+	# 	}
+	# }
+	# option = {
+	# 	name = gts_setting.1.furry.on
+	# 	trigger = {
+	# 		NOT = {
+	# 			has_country_flag = can_trigger_furry_content
+	# 		}
+	# 	}
+	# 	hidden_effect = {
+	# 		country_event = {
+	# 			id = gts_setting.12
+	# 		}
+	# 	}
+	# }
+	# option = {
+	# 	name = gts_setting.1.furry.off
+	# 	trigger = {
+	# 		has_country_flag = can_trigger_furry_content
+	# 	}
+	# 	hidden_effect = {
+	# 		remove_country_flag = can_trigger_furry_content
+	# 		country_event = {
+	# 			id = gts_setting.1
+	# 		}
+	# 	}
+	# }
+	option = {
+		name = gts_setting.1.show.penis.on
+		trigger = {
+			has_country_flag = can_trigger_futa_content
+			NOT = {
+				has_country_flag = gts_intel_panel_show_penis
+			}
+		}
+		hidden_effect = {
+			set_country_flag = gts_intel_panel_show_penis
+			country_event = {
+				id = gts_setting.1
+			}
+		}
+	}
+	option = {
+		name = gts_setting.1.show.penis.off
+		trigger = {
+			has_country_flag = can_trigger_futa_content
+			has_country_flag = gts_intel_panel_show_penis
+		}
+		hidden_effect = {
+			remove_country_flag = gts_intel_panel_show_penis
+			country_event = {
+				id = gts_setting.1
+			}
+		}
+	}
+	option = {
+		name = gts_thanks
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_setting.0
+			}
+		}
+	}
+}
+country_event = {
+	# 巨娘强度控制
+	id = gts_setting.2
+	title = gts_setting.2.name
+	desc = gts_setting.2.desc
+	picture = GFX_gtsra_load_13
+	is_triggered_only = yes
+
+	option = {
+		name = gts_setting.2.level1
+		custom_tooltip = gts_setting.2.level1.tooltips
+		trigger = {
+			NOT = {
+				has_global_flag = gts_level_1
+			}
+		}
+		hidden_effect = {
+			remove_global_flag = gts_level_1
+			remove_global_flag = gts_level_2
+			remove_global_flag = gts_level_3
+			remove_global_flag = gts_level_4
+			remove_global_flag = gts_level_5
+			set_global_flag = gts_level_1
+			country_event = {
+				id = gts_setting.2
+			}
+		}
+	}
+	option = {
+		name = gts_setting.2.level2
+		custom_tooltip = gts_setting.2.level2.tooltips
+		trigger = {
+			NOT = {
+				has_global_flag = gts_level_2
+			}
+		}
+		hidden_effect = {
+			remove_global_flag = gts_level_1
+			remove_global_flag = gts_level_2
+			remove_global_flag = gts_level_3
+			remove_global_flag = gts_level_4
+			remove_global_flag = gts_level_5
+			set_global_flag = gts_level_2
+			country_event = {
+				id = gts_setting.2
+			}
+		}
+	}
+	option = {
+		name = gts_setting.2.level3
+		custom_tooltip = gts_setting.2.level3.tooltips
+		trigger = {
+			NOT = {
+				has_global_flag = gts_level_3
+			}
+		}
+		hidden_effect = {
+			remove_global_flag = gts_level_1
+			remove_global_flag = gts_level_2
+			remove_global_flag = gts_level_3
+			remove_global_flag = gts_level_4
+			remove_global_flag = gts_level_5
+			set_global_flag = gts_level_3
+			country_event = {
+				id = gts_setting.2
+			}
+		}
+	}
+	option = {
+		name = gts_setting.2.level4
+		custom_tooltip = gts_setting.2.level4.tooltips
+		trigger = {
+			NOT = {
+				has_global_flag = gts_level_4
+			}
+		}
+		hidden_effect = {
+			remove_global_flag = gts_level_1
+			remove_global_flag = gts_level_2
+			remove_global_flag = gts_level_3
+			remove_global_flag = gts_level_4
+			remove_global_flag = gts_level_5
+			set_global_flag = gts_level_4
+			country_event = {
+				id = gts_setting.2
+			}
+		}
+	}
+	option = {
+		name = gts_setting.2.level5
+		custom_tooltip = gts_setting.2.level5.tooltips
+		trigger = {
+			NOT = {
+				has_global_flag = gts_level_5
+			}
+		}
+		hidden_effect = {
+			remove_global_flag = gts_level_1
+			remove_global_flag = gts_level_2
+			remove_global_flag = gts_level_3
+			remove_global_flag = gts_level_4
+			remove_global_flag = gts_level_5
+			set_global_flag = gts_level_5
+			country_event = {
+				id = gts_setting.2
+			}
+		}
+	}
+	option = {
+		name = gts_thanks
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_setting.0
+			}
+		}
+	}
+}
+country_event = {
+	# 游戏遇到了BUG
+	id = gts_setting.3
+	title = gts_setting.3.name
+	desc = gts_setting.3.desc
+	picture = GFX_gts_event_25
+	is_triggered_only = yes
+
+	option = {
+		name = gts_setting.3.a
+		hidden_effect = {
+			country_event = {
+				id = gts_setting.3001
+			}
+		}
+	}
+	option = {
+		name = gts_setting.3.b
+		hidden_effect = {
+			country_event = {
+				id = gts_setting.3002
+			}
+		}
+	}
+	option = {
+		name = gts_knows
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_setting.0
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_setting.3001
+	title = gts_setting.3001.name
+	desc = gts_setting.3001.desc
+	picture = GFX_gts_event_25
+	is_triggered_only = yes
+
+	option = {
+		name = gts_knows
+		hidden_effect = {
+			country_event = {
+				id = gts_setting.3
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_setting.3002
+	title = gts_setting.3002.name
+	desc = gts_setting.3002.desc
+	picture = GFX_gts_event_25
+	is_triggered_only = yes
+
+	option = {
+		name = gts_knows
+		hidden_effect = {
+			country_event = {
+				id = gts_setting.3
+			}
+		}
+	}
+}
+country_event = {
+	# 查看领袖图鉴
+	id = gts_setting.4
+	title = gts_setting.4.name
+	desc = gts_setting.4.desc
+	picture = GFX_gtsra_load_2
+	is_triggered_only = yes
+	
+	option = {
+		name = gts_setting.4.a
+		hidden_effect = {
+			country_event = {
+				id = gts_setting.101
+			}
+		}
+	}
+	option = {
+		name = gts_setting.4.b
+		hidden_effect = {
+			country_event = {
+				id = gts_setting.102
+			}
+		}
+	}
+	option = {
+		name = gts_setting.4.c
+		hidden_effect = {
+			country_event = {
+				id = gts_setting.103
+			}
+		}
+	}
+	option = {
+		name = gts_setting.4.d
+		hidden_effect = {
+			country_event = {
+				id = gts_setting.104
+			}
+		}
+	}
+	option = {
+		name = gts_setting.4.e
+		hidden_effect = {
+			country_event = {
+				id = gts_setting.105
+			}
+		}
+	}
+	option = {
+		name = gts_thanks
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_setting.0
+			}
+		}
+	}
+}
+country_event = {
+	# 新版本更新了什么？
+	id = gts_setting.5
+	title = gts_setting.5.name
+	desc = concept_gts_update_content
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_xiahuo_5_room
+	}
+	is_triggered_only = yes
+	
+	option = {
+		name = gts_knows
+		hidden_effect = {
+			country_event = {
+				id = gts_setting.0
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_setting.10
+	title = gts_setting.10.name
+	desc = gts_setting.10.desc
+	picture = GFX_load_62
+	is_triggered_only = yes
+
+	option = {
+		name = gts_setting.10.a
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_setting.1
+			}
+		}
+	}
+	option = {
+		name = gts_setting.10.b
+		hidden_effect = {
+			set_country_flag = can_trigger_futa_content
+			country_event = {
+				id = gts_setting.1
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_setting.11
+	title = gts_setting.11.name
+	desc = gts_setting.11.desc
+	picture = GFX_load_62
+	is_triggered_only = yes
+
+	option = {
+		name = gts_setting.11.a
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_setting.1
+			}
+		}
+	}
+	option = {
+		name = gts_setting.11.b
+		hidden_effect = {
+			set_country_flag = can_trigger_scat_content
+			country_event = {
+				id = gts_setting.1
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_setting.12
+	title = gts_setting.12.name
+	desc = gts_setting.12.desc
+	picture = GFX_load_62
+	is_triggered_only = yes
+
+	option = {
+		name = gts_setting.12.a
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_setting.1
+			}
+		}
+	}
+	option = {
+		name = gts_setting.12.b
+		hidden_effect = {
+			set_country_flag = can_trigger_humiliate_content
+			country_event = {
+				id = gts_setting.1
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_setting.13
+	title = gts_setting.13.name
+	desc = gts_setting.13.desc
+	picture = GFX_load_62
+	is_triggered_only = yes
+
+	option = {
+		name = gts_setting.13.a
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_setting.1
+			}
+		}
+	}
+	option = {
+		name = gts_setting.13.b
+		hidden_effect = {
+			set_country_flag = can_trigger_gc_content
+			country_event = {
+				id = gts_setting.1
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_setting.14
+	title = gts_setting.14.name
+	desc = gts_setting.14.desc
+	picture = GFX_load_62
+	is_triggered_only = yes
+
+	option = {
+		name = gts_setting.14.a
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_setting.1
+			}
+		}
+	}
+	option = {
+		name = gts_setting.14.b
+		hidden_effect = {
+			set_country_flag = can_trigger_furry_content
+			country_event = {
+				id = gts_setting.1
+			}
+		}
+	}
+}
+# country_event = {
+# 	# 接下来的更新计划
+# 	id = gts_setting.6
+# 	title = gts_setting.6.name
+# 	desc = gts_update_plan.2.3.0
+# 	picture = GFX_gts_event_1
+# 	is_triggered_only = yes
+	
+# 	option = {
+# 		name = gts_knows
+# 		hidden_effect = {
+# 			country_event = {
+# 				id = gts_setting.4
+# 			}
+# 		}
+# 	}
+# }
+
+#领袖图鉴
+country_event = {
+	# 查看领袖图鉴-第一页
+	id = gts_setting.101
+	title = gts_setting.101.name
+	desc = gts_setting.101.desc
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		room = enclave_curator_room
+		portrait = gts_portrait_rawls
+	}
+	is_triggered_only = yes
+	
+	option = {
+		name = gts_setting.101.1
+		is_dialog_only = yes
+		response_text = gts_setting.101.1a
+	}
+	option = {
+		name = gts_setting.101.2
+		is_dialog_only = yes
+		response_text = gts_setting.101.2a
+	}
+	option = {
+		name = gts_setting.101.3
+		is_dialog_only = yes
+		response_text = gts_setting.101.3a
+	}
+	option = {
+		name = gts_setting.101.4
+		is_dialog_only = yes
+		response_text = gts_setting.101.4a
+	}
+	option = {
+		name = gts_setting.101.5
+		is_dialog_only = yes
+		response_text = gts_setting.101.5a
+	}
+	option = {
+		name = gts_setting.101.6
+		is_dialog_only = yes
+		response_text = gts_setting.101.6a
+	}
+	option = {
+		name = gts_setting.101.7
+		is_dialog_only = yes
+		response_text = gts_setting.101.7a
+	}
+	option = {
+		name = gts_setting.101.8
+		is_dialog_only = yes
+		response_text = gts_setting.101.8a
+	}
+	option = {
+		name = gts_setting.101.9
+		is_dialog_only = yes
+		response_text = gts_setting.101.9a
+	}
+	option = {
+		name = gts_setting.101.10
+		is_dialog_only = yes
+		response_text = gts_setting.101.10a
+	}
+	option = {
+		name = gts_setting.101.11
+		is_dialog_only = yes
+		response_text = gts_setting.101.11a
+	}
+	option = {
+		name = gts_setting.101.12
+		is_dialog_only = yes
+		response_text = gts_setting.101.12a
+	}
+	
+	option = {
+		name = gts_back
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_setting.4
+			}
+		}
+	}
+}
+country_event = {
+	# 查看领袖图鉴-第二页
+	id = gts_setting.102
+	title = gts_setting.102.name
+	desc = gts_setting.102.desc
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		room = enclave_curator_room
+		portrait = gts_portrait_rawls
+	}
+	is_triggered_only = yes
+	
+	option = {
+		name = gts_setting.102.1
+		is_dialog_only = yes
+		response_text = gts_setting.102.1a
+	}
+	option = {
+		name = gts_setting.102.2
+		is_dialog_only = yes
+		response_text = gts_setting.102.2a
+	}
+	option = {
+		name = gts_setting.102.3
+		is_dialog_only = yes
+		response_text = gts_setting.102.3a
+	}
+	option = {
+		name = gts_setting.102.4
+		is_dialog_only = yes
+		response_text = gts_setting.102.4a
+	}
+	option = {
+		name = gts_setting.102.5
+		is_dialog_only = yes
+		response_text = gts_setting.102.5a
+	}
+	option = {
+		name = gts_setting.102.6
+		is_dialog_only = yes
+		response_text = gts_setting.102.6a
+	}
+	option = {
+		name = gts_setting.102.7
+		is_dialog_only = yes
+		response_text = gts_setting.102.7a
+	}
+	option = {
+		name = gts_setting.102.8
+		is_dialog_only = yes
+		response_text = gts_setting.102.8a
+	}
+	option = {
+		name = gts_setting.102.9
+		is_dialog_only = yes
+		response_text = gts_setting.102.9a
+	}
+	option = {
+		name = gts_setting.102.10
+		is_dialog_only = yes
+		response_text = gts_setting.102.10a
+	}
+	option = {
+		name = gts_setting.102.11
+		is_dialog_only = yes
+		response_text = gts_setting.102.11a
+	}
+	option = {
+		name = gts_setting.102.12
+		is_dialog_only = yes
+		response_text = gts_setting.102.12a
+	}
+	
+	option = {
+		name = gts_back
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_setting.4
+			}
+		}
+	}
+}
+country_event = {
+	# 查看领袖图鉴-第三页
+	id = gts_setting.103
+	title = gts_setting.103.name
+	desc = gts_setting.103.desc
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		room = enclave_curator_room
+		portrait = gts_portrait_rawls
+	}
+	is_triggered_only = yes
+	
+	option = {
+		name = gts_setting.103.1
+		is_dialog_only = yes
+		response_text = gts_setting.103.1a
+	}
+	option = {
+		name = gts_setting.103.2
+		is_dialog_only = yes
+		response_text = gts_setting.103.2a
+	}
+	option = {
+		name = gts_setting.103.3
+		is_dialog_only = yes
+		response_text = gts_setting.103.3a
+	}
+	option = {
+		name = gts_setting.103.4
+		is_dialog_only = yes
+		response_text = gts_setting.103.4a
+	}
+	option = {
+		name = gts_setting.103.5
+		is_dialog_only = yes
+		response_text = gts_setting.103.5a
+	}
+	option = {
+		name = gts_setting.103.6
+		is_dialog_only = yes
+		response_text = gts_setting.103.6a
+	}
+	option = {
+		name = gts_setting.103.7
+		is_dialog_only = yes
+		response_text = gts_setting.103.7a
+	}
+	option = {
+		name = gts_setting.103.8
+		is_dialog_only = yes
+		response_text = gts_setting.103.8a
+	}
+	option = {
+		name = gts_setting.103.9
+		is_dialog_only = yes
+		response_text = gts_setting.103.9a
+	}
+	option = {
+		name = gts_setting.103.10
+		is_dialog_only = yes
+		response_text = gts_setting.103.10a
+	}
+	option = {
+		name = gts_setting.103.11
+		is_dialog_only = yes
+		response_text = gts_setting.103.11a
+	}
+	option = {
+		name = gts_setting.103.12
+		is_dialog_only = yes
+		response_text = gts_setting.103.12a
+	}
+	
+	option = {
+		name = gts_back
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_setting.4
+			}
+		}
+	}
+}
+country_event = {
+	# 查看领袖图鉴-第四页
+	id = gts_setting.104
+	title = gts_setting.104.name
+	desc = gts_setting.104.desc
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		room = enclave_curator_room
+		portrait = gts_portrait_rawls
+	}
+	is_triggered_only = yes
+	
+	option = {
+		name = gts_setting.104.1
+		is_dialog_only = yes
+		response_text = gts_setting.104.1a
+	}
+	option = {
+		name = gts_setting.104.2
+		is_dialog_only = yes
+		response_text = gts_setting.104.2a
+	}
+	option = {
+		name = gts_setting.104.3
+		is_dialog_only = yes
+		response_text = gts_setting.104.3a
+	}
+	option = {
+		name = gts_setting.104.4
+		is_dialog_only = yes
+		response_text = gts_setting.104.4a
+	}
+	option = {
+		name = gts_setting.104.5
+		is_dialog_only = yes
+		response_text = gts_setting.104.5a
+	}
+	option = {
+		name = gts_setting.104.6
+		is_dialog_only = yes
+		response_text = gts_setting.104.6a
+	}
+	option = {
+		name = gts_setting.104.7
+		is_dialog_only = yes
+		response_text = gts_setting.104.7a
+	}
+	option = {
+		name = gts_setting.104.8
+		is_dialog_only = yes
+		response_text = gts_setting.104.8a
+	}
+	option = {
+		name = gts_setting.104.9
+		is_dialog_only = yes
+		response_text = gts_setting.104.9a
+	}
+	option = {
+		name = gts_setting.104.10
+		is_dialog_only = yes
+		response_text = gts_setting.104.10a
+	}
+	option = {
+		name = gts_setting.104.11
+		is_dialog_only = yes
+		response_text = gts_setting.104.11a
+	}
+	option = {
+		name = gts_setting.104.12
+		is_dialog_only = yes
+		response_text = gts_setting.104.12a
+	}
+	
+	option = {
+		name = gts_back
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_setting.4
+			}
+		}
+	}
+}
+country_event = {
+	# 查看领袖图鉴-第五页
+	id = gts_setting.105
+	title = gts_setting.105.name
+	desc = gts_setting.105.desc
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		room = enclave_curator_room
+		portrait = gts_portrait_rawls
+	}
+	is_triggered_only = yes
+	
+	option = {
+		name = gts_setting.105.1
+		is_dialog_only = yes
+		response_text = gts_setting.105.1a
+	}
+	option = {
+		name = gts_setting.105.2
+		is_dialog_only = yes
+		response_text = gts_setting.105.2a
+	}
+	option = {
+		name = gts_setting.105.3
+		is_dialog_only = yes
+		response_text = gts_setting.105.3a
+	}
+	option = {
+		name = gts_setting.105.4
+		is_dialog_only = yes
+		response_text = gts_setting.105.4a
+	}
+	# option = {
+	# 	name = gts_setting.105.5
+	# 	is_dialog_only = yes
+	# 	response_text = gts_setting.105.5a
+	# }
+	# option = {
+	# 	name = gts_setting.105.6
+	# 	is_dialog_only = yes
+	# 	response_text = gts_setting.105.6a
+	# }
+	# option = {
+	# 	name = gts_setting.105.7
+	# 	is_dialog_only = yes
+	# 	response_text = gts_setting.105.7a
+	# }
+	# option = {
+	# 	name = gts_setting.105.8
+	# 	is_dialog_only = yes
+	# 	response_text = gts_setting.105.8a
+	# }
+	# option = {
+	# 	name = gts_setting.105.9
+	# 	is_dialog_only = yes
+	# 	response_text = gts_setting.105.9a
+	# }
+	# option = {
+	# 	name = gts_setting.105.10
+	# 	is_dialog_only = yes
+	# 	response_text = gts_setting.105.10a
+	# }
+	# option = {
+	# 	name = gts_setting.105.11
+	# 	is_dialog_only = yes
+	# 	response_text = gts_setting.105.11a
+	# }
+	# option = {
+	# 	name = gts_setting.105.12
+	# 	is_dialog_only = yes
+	# 	response_text = gts_setting.105.12a
+	# }
+	
+	option = {
+		name = gts_back
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_setting.4
+			}
+		}
+	}
+}

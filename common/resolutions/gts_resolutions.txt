@@ -1,0 +1,1264 @@
+@resolution_weight_hated = 3
+@resolution_weight_disliked = 4
+@resolution_weight_unpopular = 5
+@resolution_weight_normal = 6
+@resolution_weight_popular = 6.5
+@resolution_weight_loved = 7
+@resolution_cost_t1 = 100
+@resolution_cost_t2 = 150
+@resolution_cost_t3 = 200
+@resolution_cost_t4 = 250
+@resolution_cost_t5 = 300
+@resolution_cost_denounce = 25
+@resolution_flag_timer = 360
+resolution_shrink_rights_repeal_2 = {
+	icon = "GFX_repeal_orange"
+	resources = {
+		#花费
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_denounce
+		}
+	}
+	target = no
+	sanction = yes	#可进行制裁
+	fire_and_forget = yes
+	effect = {
+		#成功结果
+		custom_tooltip = resolution_shrink_rights_repeal_2_effect_success
+		hidden_effect = {
+			cancel_resolution = "resolution_shrink_rights_B"			#解除法案
+			set_timed_country_flag = {
+				flag = galactic_community_resolution_passed_general
+				days = @resolution_flag_timer
+			}
+			add_modifier = {
+				#奖励外交权重
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+	fail_effects = {
+		#失败结果：减外交权重
+		hidden_effect = {
+			set_timed_country_flag = {
+				flag = galactic_community_resolution_failed_general
+				days = @resolution_flag_timer
+			}
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+	potential = {
+		#何时显示
+		is_active_resolution = "resolution_shrink_rights_B"
+	}
+	ai_weight = {
+		base = @resolution_weight_unpopular
+		modifier = {
+			factor = 2
+			OR = {
+				has_ethic = ethic_authoritarian
+				has_ethic = ethic_militarist
+				has_ethic = ethic_xenophobe
+				has_authority = auth_corporate
+			}
+		}
+		modifier = {
+			factor = 5
+			OR = {
+				has_ethic = ethic_fanatic_militarist
+				has_ethic = ethic_fanatic_authoritarian
+				has_ethic = ethic_fanatic_xenophobe
+			}
+		}
+		modifier = {
+			factor = 0.33
+			OR = {
+				has_ethic = ethic_pacifist
+				has_ethic = ethic_xenophile
+				has_ethic = ethic_egalitarian
+			}
+		}
+		modifier = {
+			factor = 0
+			OR = {
+				has_ethic = ethic_fanatic_pacifist
+				has_ethic = ethic_fanatic_xenophile
+				has_ethic = ethic_fanatic_egalitarian
+			}
+		}
+	}
+}
+
+resolution_shrink_rights_repeal_3 = {
+	icon = "GFX_repeal_orange"
+	resources = {
+		#花费
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_denounce
+		}
+	}
+	target = no
+	sanction = yes	#可进行制裁
+	fire_and_forget = yes
+	effect = {
+		#成功结果
+		custom_tooltip = resolution_shrink_rights_repeal_3_effect_success
+		hidden_effect = {
+			cancel_resolution = "resolution_shrink_rights_C"			#解除法案
+			set_timed_country_flag = {
+				flag = galactic_community_resolution_passed_general
+				days = @resolution_flag_timer
+			}
+			add_modifier = {
+				#奖励外交权重
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+	fail_effects = {
+		#失败结果：减外交权重
+		hidden_effect = {
+			set_timed_country_flag = {
+				flag = galactic_community_resolution_failed_general
+				days = @resolution_flag_timer
+			}
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+	potential = {
+		#何时显示
+		is_active_resolution = "resolution_shrink_rights_C"
+	}
+	ai_weight = {
+		base = @resolution_weight_unpopular
+		modifier = {
+			factor = 2
+			OR = {
+				has_ethic = ethic_authoritarian
+				has_ethic = ethic_militarist
+				has_ethic = ethic_xenophobe
+				has_authority = auth_corporate
+			}
+		}
+		modifier = {
+			factor = 5
+			OR = {
+				has_ethic = ethic_fanatic_militarist
+				has_ethic = ethic_fanatic_authoritarian
+				has_ethic = ethic_fanatic_xenophobe
+			}
+		}
+		modifier = {
+			factor = 0.33
+			OR = {
+				has_ethic = ethic_pacifist
+				has_ethic = ethic_xenophile
+				has_ethic = ethic_egalitarian
+			}
+		}
+		modifier = {
+			factor = 0
+			OR = {
+				has_ethic = ethic_fanatic_pacifist
+				has_ethic = ethic_fanatic_xenophile
+				has_ethic = ethic_fanatic_egalitarian
+			}
+		}
+	}
+}
+
+resolution_shrink_rights_repeal_4 = {
+	icon = "GFX_repeal_orange"
+	resources = {
+		#花费
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_denounce
+		}
+	}
+	target = no
+	sanction = yes	#可进行制裁
+	fire_and_forget = yes
+	effect = {
+		#成功结果
+		custom_tooltip = resolution_shrink_rights_repeal_4_effect_success
+		hidden_effect = {
+			cancel_resolution = "resolution_shrink_rights_D"			#解除法案
+			set_timed_country_flag = {
+				flag = galactic_community_resolution_passed_general
+				days = @resolution_flag_timer
+			}
+			add_modifier = {
+				#奖励外交权重
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+	fail_effects = {
+		#失败结果：减外交权重
+		hidden_effect = {
+			set_timed_country_flag = {
+				flag = galactic_community_resolution_failed_general
+				days = @resolution_flag_timer
+			}
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+	potential = {
+		#何时显示
+		is_active_resolution = "resolution_shrink_rights_D"
+	}
+	ai_weight = {
+		base = @resolution_weight_unpopular
+		modifier = {
+			factor = 2
+			OR = {
+				has_ethic = ethic_authoritarian
+				has_ethic = ethic_militarist
+				has_ethic = ethic_xenophobe
+				has_authority = auth_corporate
+			}
+		}
+		modifier = {
+			factor = 5
+			OR = {
+				has_ethic = ethic_fanatic_militarist
+				has_ethic = ethic_fanatic_authoritarian
+				has_ethic = ethic_fanatic_xenophobe
+			}
+		}
+		modifier = {
+			factor = 0.33
+			OR = {
+				has_ethic = ethic_pacifist
+				has_ethic = ethic_xenophile
+				has_ethic = ethic_egalitarian
+			}
+		}
+		modifier = {
+			factor = 0
+			OR = {
+				has_ethic = ethic_fanatic_pacifist
+				has_ethic = ethic_fanatic_xenophile
+				has_ethic = ethic_fanatic_egalitarian
+			}
+		}
+	}
+}
+
+resolution_shrink_rights_repeal_5 = {
+	icon = "GFX_repeal_orange"
+	resources = {
+		#花费
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_denounce
+		}
+	}
+	target = no
+	sanction = yes	#可进行制裁
+	fire_and_forget = yes
+	effect = {
+		#成功结果
+		custom_tooltip = resolution_shrink_rights_repeal_5_effect_success
+		hidden_effect = {
+			cancel_resolution = "resolution_shrink_rights_E"			#解除法案
+			set_timed_country_flag = {
+				flag = galactic_community_resolution_passed_general
+				days = @resolution_flag_timer
+			}
+			add_modifier = {
+				#奖励外交权重
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+	fail_effects = {
+		#失败结果：减外交权重
+		hidden_effect = {
+			set_timed_country_flag = {
+				flag = galactic_community_resolution_failed_general
+				days = @resolution_flag_timer
+			}
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+	potential = {
+		#何时显示
+		is_active_resolution = "resolution_shrink_rights_E"
+	}
+	ai_weight = {
+		base = @resolution_weight_unpopular
+		modifier = {
+			factor = 2
+			OR = {
+				has_ethic = ethic_authoritarian
+				has_ethic = ethic_militarist
+				has_ethic = ethic_xenophobe
+				has_authority = auth_corporate
+			}
+		}
+		modifier = {
+			factor = 5
+			OR = {
+				has_ethic = ethic_fanatic_militarist
+				has_ethic = ethic_fanatic_authoritarian
+				has_ethic = ethic_fanatic_xenophobe
+			}
+		}
+		modifier = {
+			factor = 0.33
+			OR = {
+				has_ethic = ethic_pacifist
+				has_ethic = ethic_xenophile
+				has_ethic = ethic_egalitarian
+			}
+		}
+		modifier = {
+			factor = 0
+			OR = {
+				has_ethic = ethic_fanatic_pacifist
+				has_ethic = ethic_fanatic_xenophile
+				has_ethic = ethic_fanatic_egalitarian
+			}
+		}
+	}
+}
+
+resolution_shrink_rights_E = {
+	icon = "GFX_sanctions_orange"
+	level = 1
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_denounce
+		}
+	}
+	target = no
+	sanction = yes
+	effect = {
+		custom_tooltip = resolution_shrink_rights_E_effect
+		hidden_effect = {
+			set_timed_country_flag = {
+				flag = galactic_community_resolution_passed_general
+				days = @resolution_flag_timer
+			}
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+			set_timed_global_flag = {
+				flag = recent_galcom_sanctions_passed
+				years = 10
+			}
+		}
+	}
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = {
+				flag = galactic_community_resolution_failed_general
+				days = @resolution_flag_timer
+			}
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+	breach = {
+		AND = {
+			is_gestalt = no
+			has_policy_flag = gts_shrink_use_5
+		}
+	}
+	allow = {
+		custom_tooltip = {
+			fail_text = "resolution_already_active"
+			NOT = {
+				is_active_resolution = "resolution_shrink_rights_E"
+			}
+		}
+	}
+	ai_weight = {
+		base = @resolution_weight_normal
+		modifier = {
+			factor = 2
+			OR = {
+				has_ethic = ethic_pacifist
+				has_ethic = ethic_xenophile
+				has_ethic = ethic_egalitarian
+			}
+		}
+		modifier = {
+			factor = 5
+			OR = {
+				has_ethic = ethic_fanatic_pacifist
+				has_ethic = ethic_fanatic_xenophile
+				has_ethic = ethic_fanatic_egalitarian
+			}
+		}
+		modifier = {
+			factor = 0.33
+			OR = {
+				has_ethic = ethic_authoritarian
+				has_ethic = ethic_militarist
+				has_ethic = ethic_xenophobe
+				has_authority = auth_corporate
+			}
+		}
+		modifier = {
+			factor = 0
+			OR = {
+				has_ethic = ethic_fanatic_militarist
+				has_ethic = ethic_fanatic_authoritarian
+				has_ethic = ethic_fanatic_xenophobe
+			}
+		}
+	}
+}
+
+resolution_shrink_rights_D = {
+	icon = "GFX_sanctions_orange"
+	level = 2
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_denounce
+		}
+	}
+	target = no
+	sanction = yes
+	effect = {
+		custom_tooltip = resolution_shrink_rights_D_effect
+		hidden_effect = {
+			set_timed_country_flag = {
+				flag = galactic_community_resolution_passed_general
+				days = @resolution_flag_timer
+			}
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+			set_timed_global_flag = {
+				flag = recent_galcom_sanctions_passed
+				years = 10
+			}
+		}
+	}
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = {
+				flag = galactic_community_resolution_failed_general
+				days = @resolution_flag_timer
+			}
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+	breach = {
+		AND = {
+			is_gestalt = no
+			OR = {
+				has_policy_flag = gts_shrink_use_4
+				has_policy_flag = gts_shrink_use_5
+			}
+		}
+	}
+	allow = {
+		is_active_resolution = "resolution_shrink_rights_E"
+		custom_tooltip = {
+			fail_text = "resolution_already_active"
+			NOT = {
+				is_active_resolution = "resolution_shrink_rights_D"
+			}
+		}
+	}
+	ai_weight = {
+		base = @resolution_weight_normal
+		modifier = {
+			factor = 2
+			OR = {
+				has_ethic = ethic_pacifist
+				has_ethic = ethic_xenophile
+				has_ethic = ethic_egalitarian
+			}
+		}
+		modifier = {
+			factor = 5
+			OR = {
+				has_ethic = ethic_fanatic_pacifist
+				has_ethic = ethic_fanatic_xenophile
+				has_ethic = ethic_fanatic_egalitarian
+			}
+		}
+		modifier = {
+			factor = 0.33
+			OR = {
+				has_ethic = ethic_authoritarian
+				has_ethic = ethic_militarist
+				has_ethic = ethic_xenophobe
+				has_authority = auth_corporate
+			}
+		}
+		modifier = {
+			factor = 0
+			OR = {
+				has_ethic = ethic_fanatic_militarist
+				has_ethic = ethic_fanatic_authoritarian
+				has_ethic = ethic_fanatic_xenophobe
+			}
+		}
+	}
+}
+
+resolution_shrink_rights_C = {
+	icon = "GFX_sanctions_orange"
+	level = 3
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_denounce
+		}
+	}
+	target = no
+	sanction = yes
+	effect = {
+		custom_tooltip = resolution_shrink_rights_C_effect
+		hidden_effect = {
+			set_timed_country_flag = {
+				flag = galactic_community_resolution_passed_general
+				days = @resolution_flag_timer
+			}
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+			set_timed_global_flag = {
+				flag = recent_galcom_sanctions_passed
+				years = 10
+			}
+		}
+	}
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = {
+				flag = galactic_community_resolution_failed_general
+				days = @resolution_flag_timer
+			}
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+	breach = {
+		AND = {
+			is_gestalt = no
+			OR = {
+				has_policy_flag = gts_shrink_use_3
+				has_policy_flag = gts_shrink_use_4
+				has_policy_flag = gts_shrink_use_5
+			}
+		}
+	}
+	allow = {
+		is_active_resolution = "resolution_shrink_rights_D"
+		custom_tooltip = {
+			fail_text = "resolution_already_active"
+			NOR = {
+				is_active_resolution = "resolution_shrink_rights_C"
+			}
+		}
+	}
+	ai_weight = {
+		base = @resolution_weight_normal
+		modifier = {
+			factor = 2
+			OR = {
+				has_ethic = ethic_pacifist
+				has_ethic = ethic_xenophile
+				has_ethic = ethic_egalitarian
+			}
+		}
+		modifier = {
+			factor = 5
+			OR = {
+				has_ethic = ethic_fanatic_pacifist
+				has_ethic = ethic_fanatic_xenophile
+				has_ethic = ethic_fanatic_egalitarian
+			}
+		}
+		modifier = {
+			factor = 0.33
+			OR = {
+				has_ethic = ethic_authoritarian
+				has_ethic = ethic_militarist
+				has_ethic = ethic_xenophobe
+				has_authority = auth_corporate
+			}
+		}
+		modifier = {
+			factor = 0
+			OR = {
+				has_ethic = ethic_fanatic_militarist
+				has_ethic = ethic_fanatic_authoritarian
+				has_ethic = ethic_fanatic_xenophobe
+			}
+		}
+	}
+}
+
+resolution_shrink_rights_B = {
+	icon = "GFX_sanctions_orange"
+	level = 4
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_denounce
+		}
+	}
+	target = no
+	sanction = yes
+	effect = {
+		custom_tooltip = resolution_shrink_rights_B_effect
+		hidden_effect = {
+			set_timed_country_flag = {
+				flag = galactic_community_resolution_passed_general
+				days = @resolution_flag_timer
+			}
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+			set_timed_global_flag = {
+				flag = recent_galcom_sanctions_passed
+				years = 10
+			}
+		}
+	}
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = {
+				flag = galactic_community_resolution_failed_general
+				days = @resolution_flag_timer
+			}
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+	breach = {
+		AND = {
+			is_gestalt = no
+			OR = {
+				has_policy_flag = gts_shrink_use_2
+				has_policy_flag = gts_shrink_use_3
+				has_policy_flag = gts_shrink_use_4
+				has_policy_flag = gts_shrink_use_5
+			}
+		}
+	}
+	allow = {
+		is_active_resolution = "resolution_shrink_rights_C"
+		custom_tooltip = {
+			fail_text = "resolution_already_active"
+			NOT = {
+				is_active_resolution = "resolution_shrink_rights_B"
+			}
+		}
+	}
+	ai_weight = {
+		base = @resolution_weight_normal
+		modifier = {
+			factor = 2
+			OR = {
+				has_ethic = ethic_pacifist
+				has_ethic = ethic_xenophile
+				has_ethic = ethic_egalitarian
+			}
+		}
+		modifier = {
+			factor = 5
+			OR = {
+				has_ethic = ethic_fanatic_pacifist
+				has_ethic = ethic_fanatic_xenophile
+				has_ethic = ethic_fanatic_egalitarian
+			}
+		}
+		modifier = {
+			factor = 0.33
+			OR = {
+				has_ethic = ethic_authoritarian
+				has_ethic = ethic_militarist
+				has_ethic = ethic_xenophobe
+				has_authority = auth_corporate
+			}
+		}
+		modifier = {
+			factor = 0
+			OR = {
+				has_ethic = ethic_fanatic_militarist
+				has_ethic = ethic_fanatic_authoritarian
+				has_ethic = ethic_fanatic_xenophobe
+			}
+		}
+	}
+}
+
+resolution_shrink_produces_repeal_1 = {
+	icon = "GFX_repeal_orange"
+	resources = {
+		#花费
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_denounce
+		}
+	}
+	target = no
+	sanction = yes	#可进行制裁
+	fire_and_forget = yes
+	effect = {
+		#成功结果
+		custom_tooltip = resolution_shrink_produces_repeal_1_effect_success
+		hidden_effect = {
+			cancel_resolution = "resolution_shrink_produces_A"			#解除法案
+			set_timed_country_flag = {
+				flag = galactic_community_resolution_passed_general
+				days = @resolution_flag_timer
+			}
+			add_modifier = {
+				#奖励外交权重
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+	fail_effects = {
+		#失败结果：减外交权重
+		hidden_effect = {
+			set_timed_country_flag = {
+				flag = galactic_community_resolution_failed_general
+				days = @resolution_flag_timer
+			}
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+	potential = {
+		#何时显示
+		is_active_resolution = "resolution_shrink_produces_A"
+	}
+	ai_weight = {
+		base = @resolution_weight_unpopular
+		modifier = {
+			factor = 2
+			OR = {
+				has_ethic = ethic_authoritarian
+				has_ethic = ethic_militarist
+				has_ethic = ethic_xenophobe
+				has_authority = auth_corporate
+			}
+		}
+		modifier = {
+			factor = 5
+			OR = {
+				has_ethic = ethic_fanatic_militarist
+				has_ethic = ethic_fanatic_authoritarian
+				has_ethic = ethic_fanatic_xenophobe
+			}
+		}
+		modifier = {
+			factor = 0.33
+			OR = {
+				has_ethic = ethic_pacifist
+				has_ethic = ethic_xenophile
+				has_ethic = ethic_egalitarian
+			}
+		}
+		modifier = {
+			factor = 0
+			OR = {
+				has_ethic = ethic_fanatic_pacifist
+				has_ethic = ethic_fanatic_xenophile
+				has_ethic = ethic_fanatic_egalitarian
+			}
+		}
+	}
+}
+
+resolution_shrink_produces_repeal_2 = {
+	icon = "GFX_repeal_orange"
+	resources = {
+		#花费
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_denounce
+		}
+	}
+	target = no
+	sanction = yes	#可进行制裁
+	fire_and_forget = yes
+	effect = {
+		#成功结果
+		custom_tooltip = resolution_shrink_produces_repeal_2_effect_success
+		hidden_effect = {
+			cancel_resolution = "resolution_shrink_produces_B"			#解除法案
+			set_timed_country_flag = {
+				flag = galactic_community_resolution_passed_general
+				days = @resolution_flag_timer
+			}
+			add_modifier = {
+				#奖励外交权重
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+	fail_effects = {
+		#失败结果：减外交权重
+		hidden_effect = {
+			set_timed_country_flag = {
+				flag = galactic_community_resolution_failed_general
+				days = @resolution_flag_timer
+			}
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+	potential = {
+		#何时显示
+		is_active_resolution = "resolution_shrink_produces_B"
+	}
+	ai_weight = {
+		base = @resolution_weight_unpopular
+		modifier = {
+			factor = 2
+			OR = {
+				has_ethic = ethic_authoritarian
+				has_ethic = ethic_militarist
+				has_ethic = ethic_xenophobe
+				has_authority = auth_corporate
+			}
+		}
+		modifier = {
+			factor = 5
+			OR = {
+				has_ethic = ethic_fanatic_militarist
+				has_ethic = ethic_fanatic_authoritarian
+				has_ethic = ethic_fanatic_xenophobe
+			}
+		}
+		modifier = {
+			factor = 0.33
+			OR = {
+				has_ethic = ethic_pacifist
+				has_ethic = ethic_xenophile
+				has_ethic = ethic_egalitarian
+			}
+		}
+		modifier = {
+			factor = 0
+			OR = {
+				has_ethic = ethic_fanatic_pacifist
+				has_ethic = ethic_fanatic_xenophile
+				has_ethic = ethic_fanatic_egalitarian
+			}
+		}
+	}
+}
+
+resolution_shrink_produces_repeal_3 = {
+	icon = "GFX_repeal_orange"
+	resources = {
+		#花费
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_denounce
+		}
+	}
+	target = no
+	sanction = yes	#可进行制裁
+	fire_and_forget = yes
+	effect = {
+		#成功结果
+		custom_tooltip = resolution_shrink_produces_repeal_3_effect_success
+		hidden_effect = {
+			cancel_resolution = "resolution_shrink_produces_C"			#解除法案
+			set_timed_country_flag = {
+				flag = galactic_community_resolution_passed_general
+				days = @resolution_flag_timer
+			}
+			add_modifier = {
+				#奖励外交权重
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+	fail_effects = {
+		#失败结果：减外交权重
+		hidden_effect = {
+			set_timed_country_flag = {
+				flag = galactic_community_resolution_failed_general
+				days = @resolution_flag_timer
+			}
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+	potential = {
+		#何时显示
+		is_active_resolution = "resolution_shrink_produces_C"
+	}
+	ai_weight = {
+		base = @resolution_weight_unpopular
+		modifier = {
+			factor = 2
+			OR = {
+				has_ethic = ethic_authoritarian
+				has_ethic = ethic_militarist
+				has_ethic = ethic_xenophobe
+				has_authority = auth_corporate
+			}
+		}
+		modifier = {
+			factor = 5
+			OR = {
+				has_ethic = ethic_fanatic_militarist
+				has_ethic = ethic_fanatic_authoritarian
+				has_ethic = ethic_fanatic_xenophobe
+			}
+		}
+		modifier = {
+			factor = 0.33
+			OR = {
+				has_ethic = ethic_pacifist
+				has_ethic = ethic_xenophile
+				has_ethic = ethic_egalitarian
+			}
+		}
+		modifier = {
+			factor = 0
+			OR = {
+				has_ethic = ethic_fanatic_pacifist
+				has_ethic = ethic_fanatic_xenophile
+				has_ethic = ethic_fanatic_egalitarian
+			}
+		}
+	}
+}
+
+resolution_shrink_produces_C = {
+	icon = "GFX_sanctions_orange"
+	level = 1
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_denounce
+		}
+	}
+	target = no
+	sanction = yes
+	effect = {
+		custom_tooltip = resolution_shrink_produces_C_effect
+		hidden_effect = {
+			set_timed_country_flag = {
+				flag = galactic_community_resolution_passed_general
+				days = @resolution_flag_timer
+			}
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+			set_timed_global_flag = {
+				flag = recent_galcom_sanctions_passed
+				years = 10
+			}
+		}
+	}
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = {
+				flag = galactic_community_resolution_failed_general
+				days = @resolution_flag_timer
+			}
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+	breach = {
+		AND = {
+			is_gestalt = no
+			has_policy_flag = gts_shrink_method_7
+		}
+	}
+	allow = {
+		custom_tooltip = {
+			fail_text = "resolution_already_active"
+			NOR = {
+				is_active_resolution = "resolution_shrink_produces_C"
+				is_active_resolution = "resolution_shrink_produces_B"
+				is_active_resolution = "resolution_shrink_produces_A"
+			}
+		}
+	}
+	ai_weight = {
+		base = @resolution_weight_normal
+		modifier = {
+			factor = 2
+			OR = {
+				has_ethic = ethic_pacifist
+				has_ethic = ethic_xenophile
+				has_ethic = ethic_egalitarian
+			}
+		}
+		modifier = {
+			factor = 5
+			OR = {
+				has_ethic = ethic_fanatic_pacifist
+				has_ethic = ethic_fanatic_xenophile
+				has_ethic = ethic_fanatic_egalitarian
+			}
+		}
+		modifier = {
+			factor = 0.33
+			OR = {
+				has_ethic = ethic_authoritarian
+				has_ethic = ethic_militarist
+				has_ethic = ethic_xenophobe
+				has_authority = auth_corporate
+			}
+		}
+		modifier = {
+			factor = 0
+			OR = {
+				has_ethic = ethic_fanatic_militarist
+				has_ethic = ethic_fanatic_authoritarian
+				has_ethic = ethic_fanatic_xenophobe
+			}
+		}
+	}
+}
+
+resolution_shrink_produces_B = {
+	icon = "GFX_sanctions_orange"
+	level = 2
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_denounce
+		}
+	}
+	target = no
+	sanction = yes
+	effect = {
+		custom_tooltip = resolution_shrink_produces_B_effect
+		hidden_effect = {
+			set_timed_country_flag = {
+				flag = galactic_community_resolution_passed_general
+				days = @resolution_flag_timer
+			}
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+			set_timed_global_flag = {
+				flag = recent_galcom_sanctions_passed
+				years = 10
+			}
+		}
+	}
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = {
+				flag = galactic_community_resolution_failed_general
+				days = @resolution_flag_timer
+			}
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+	breach = {
+		AND = {
+			is_gestalt = no
+			OR = {
+				has_policy_flag = gts_shrink_method_6
+				has_policy_flag = gts_shrink_method_7
+			}
+		}
+	}
+	allow = {
+		is_active_resolution = "resolution_shrink_produces_C"
+		custom_tooltip = {
+			fail_text = "resolution_already_active"
+			NOR = {
+				is_active_resolution = "resolution_shrink_produces_B"
+				is_active_resolution = "resolution_shrink_produces_A"
+			}
+		}
+	}
+	ai_weight = {
+		base = @resolution_weight_normal
+		modifier = {
+			factor = 2
+			OR = {
+				has_ethic = ethic_pacifist
+				has_ethic = ethic_xenophile
+				has_ethic = ethic_egalitarian
+			}
+		}
+		modifier = {
+			factor = 5
+			OR = {
+				has_ethic = ethic_fanatic_pacifist
+				has_ethic = ethic_fanatic_xenophile
+				has_ethic = ethic_fanatic_egalitarian
+			}
+		}
+		modifier = {
+			factor = 0.33
+			OR = {
+				has_ethic = ethic_authoritarian
+				has_ethic = ethic_militarist
+				has_ethic = ethic_xenophobe
+				has_authority = auth_corporate
+			}
+		}
+		modifier = {
+			factor = 0
+			OR = {
+				has_ethic = ethic_fanatic_militarist
+				has_ethic = ethic_fanatic_authoritarian
+				has_ethic = ethic_fanatic_xenophobe
+			}
+		}
+	}
+}
+
+resolution_shrink_produces_A = {
+	icon = "GFX_sanctions_orange"
+	level = 3
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_denounce
+		}
+	}
+	target = no
+	sanction = yes
+	effect = {
+		custom_tooltip = resolution_shrink_produces_A_effect
+		hidden_effect = {
+			set_timed_country_flag = {
+				flag = galactic_community_resolution_passed_general
+				days = @resolution_flag_timer
+			}
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+			set_timed_global_flag = {
+				flag = recent_galcom_sanctions_passed
+				years = 10
+			}
+		}
+	}
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = {
+				flag = galactic_community_resolution_failed_general
+				days = @resolution_flag_timer
+			}
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+	breach = {
+		AND = {
+			is_gestalt = no
+			OR = {
+				has_policy_flag = gts_shrink_method_5
+				has_policy_flag = gts_shrink_method_6
+				has_policy_flag = gts_shrink_method_7
+			}
+		}
+	}
+	allow = {
+		is_active_resolution = "resolution_shrink_produces_B"
+		custom_tooltip = {
+			fail_text = "resolution_already_active"
+			NOT = {
+				is_active_resolution = "resolution_shrink_produces_A"
+			}
+		}
+	}
+	ai_weight = {
+		base = @resolution_weight_normal
+		modifier = {
+			factor = 2
+			OR = {
+				has_ethic = ethic_pacifist
+				has_ethic = ethic_xenophile
+				has_ethic = ethic_egalitarian
+			}
+		}
+		modifier = {
+			factor = 5
+			OR = {
+				has_ethic = ethic_fanatic_pacifist
+				has_ethic = ethic_fanatic_xenophile
+				has_ethic = ethic_fanatic_egalitarian
+			}
+		}
+		modifier = {
+			factor = 0.33
+			OR = {
+				has_ethic = ethic_authoritarian
+				has_ethic = ethic_militarist
+				has_ethic = ethic_xenophobe
+				has_authority = auth_corporate
+			}
+		}
+		modifier = {
+			factor = 0
+			OR = {
+				has_ethic = ethic_fanatic_militarist
+				has_ethic = ethic_fanatic_authoritarian
+				has_ethic = ethic_fanatic_xenophobe
+			}
+		}
+	}
+}

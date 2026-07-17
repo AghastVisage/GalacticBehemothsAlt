@@ -1,0 +1,337 @@
+################################################################################
+####################                附庸建築                ####################
+################################################################################
+
+building_hstar_custom_service_center = {
+    base_buildtime = @b2_time
+    base_cap_amount = 1
+
+    owner_type = corporate
+
+    category = resource
+
+    potential = {
+        has_branch_office = yes
+        branch_office_owner = {
+            is_ai = no
+            is_criminal_syndicate = no
+            has_origin = origin_hstar
+        }
+        NOR = {
+            is_planet_class = pc_hive
+            is_planet_class = pc_machine
+            is_planet_class = pc_relic
+        }
+    }
+
+    country_modifier = {
+        spy_network_levels_add = 5
+        all_technology_research_speed = 0.3
+    }
+
+    planet_modifier = {
+        job_entertainer_add = 200
+    }
+
+
+    resources = {
+        category = planet_branch_office_buildings
+        cost = {
+            minerals = @b3_minerals
+        }
+        produces = {
+            gts_micro = 1
+        }
+        upkeep = {
+            energy = 3
+        }
+    }
+
+    on_built = {
+        planet = {
+            set_planet_flag = has_hstar_custom_service_center
+        }
+    }
+
+    on_destroy = {
+        planet = {
+            remove_planet_flag = has_hstar_custom_service_center
+        }
+    }
+
+
+    ai_weight = {
+        weight = 5
+    }
+}
+
+building_advanced_technology_research_institute_branch = {
+
+    # 先科研分部
+
+    base_buildtime = @b2_time
+    owner_type = subject_holding
+    icon = building_imperial_concession_port
+    planet_limit = 1
+
+    category = research
+
+    prerequisites = { tech_gts_advanced_technology_research_institute }
+
+    allow = {
+        owner.overlord = {
+            has_country_flag = gts_has_trigger_xiankeyan
+            OR = {
+                has_technology = tech_gts_size_affecting_device
+                has_relic = r_size_machine
+            }
+        }
+    }
+
+    country_modifier = {
+        all_technology_research_speed = 0.05
+    }
+
+    planet_modifier = {
+        monthly_loyalty = -1.5
+        logistic_growth_mult = -0.20
+    }
+
+    resources = {
+        category = planet_holdings
+        cost = {
+            minerals = @b3_minerals
+        }
+        produces = {
+            gts_micro = 0.02
+            mult = value:gts_bruh_counter_is_pop
+        }
+        upkeep = {
+            energy = @b3_upkeep
+        }
+    }
+
+    on_built = {
+        planet = {
+            set_planet_flag = has_advanced_technology_research_institute_branch
+        }
+    }
+
+    on_destroy = {
+        planet = {
+            remove_planet_flag = has_advanced_technology_research_institute_branch
+        }
+    }
+
+    triggered_desc = {
+        text = advanced_technology_research_institute_branch_desc
+    }
+
+    ai_weight = {
+        weight = 0
+    }
+}
+
+holding_gts_shrink_factory = {
+
+    # 附庸人口稅納稅辦公室
+
+    base_buildtime = @b2_time
+    owner_type = subject_holding
+    icon = building_corporate_clinic
+    planet_limit = 1
+
+    category = resource
+
+    allow = {
+        owner.overlord = {
+            OR = {
+                has_technology = tech_gts_size_affecting_device
+                has_relic = r_size_machine
+            }
+        }
+    }
+
+    planet_modifier = {
+        monthly_loyalty = -1.5
+        logistic_growth_mult = -0.20
+    }
+
+    resources = {
+        category = planet_holdings
+        cost = {
+            minerals = @b3_minerals
+        }
+        produces = {
+            gts_micro = 0.1
+            mult = value:gts_bruh_counter_is_pop
+        }
+        upkeep = {
+            energy = @b3_upkeep
+        }
+    }
+}
+
+holding_gts_maid_cafe = {
+
+    # 女僕咖啡廳
+
+    base_buildtime = @b2_time
+    owner_type = subject_holding
+    icon = building_offspring_nest
+    planet_limit = 1
+
+    category = unity
+
+    allow = {
+        owner.overlord = {
+            has_valid_civic = civic_gts_maid
+        }
+    }
+
+    planet_modifier = {
+        monthly_loyalty = 0.5
+        pop_ethic_xenophile_attraction_mult = 0.50
+        job_gts_maid_add = 200
+    }
+
+    resources = {
+        category = planet_holdings
+        cost = {
+            minerals = @b3_minerals
+        }
+        upkeep = {
+            energy = @b3_upkeep
+        }
+    }
+}
+
+holding_gts_church = {
+
+    # 聖嘉百璃教堂
+
+    base_buildtime = @b2_time
+    owner_type = subject_holding
+    icon = building_holotemple
+    planet_limit = 1
+
+    category = unity
+
+    allow = {
+        owner.overlord = {
+            has_origin = origin_Qianxin
+        }
+    }
+
+    planet_modifier = {
+        monthly_loyalty = 0.5
+        pop_ethic_spiritualist_attraction_mult = 0.50
+        job_gts_overlord_nun_add = 200
+    }
+
+    resources = {
+        category = planet_holdings
+        cost = {
+            minerals = @b3_minerals
+        }
+        upkeep = {
+            energy = @b3_upkeep
+        }
+    }
+}
+
+holding_gts_servitor_office = {
+
+    #　小人監護站
+
+    base_buildtime = @b2_time
+    owner_type = subject_holding
+    icon = holding_gts_servitor_office
+    planet_limit = 1
+
+    category = unity
+
+    allow = {
+        owner.overlord = {
+            has_civic = civic_gts_servitor
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = planet.owner
+            planet.owner = { is_gestalt = no }
+        }
+        job_overlord_gts_servitor_add = 100
+        job_overlord_tinypropagandist_add = 100
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = planet.owner
+            planet.owner = { is_gestalt = yes }
+        }
+        job_overlord_gts_servitor_drone_add = 100
+        job_overlord_tinypropagandist_drone_add = 100
+    }
+
+    planet_modifier = {
+        monthly_loyalty = 1.0
+        planet_stability_add = 10
+    }
+
+    resources = {
+        category = planet_holdings
+        cost = {
+            minerals = @b3_minerals
+        }
+        upkeep = {
+            energy = @b3_upkeep
+        }
+    }
+
+    triggered_desc = {
+        text = job_overlord_tinypropagandist_effect_desc
+    }
+    triggered_desc = {
+        text = job_overlord_gts_servitor_effect_desc
+    }
+}
+
+holding_delta_trade = {
+
+    # 强制缩小中心
+
+    base_buildtime = @b2_time
+    owner_type = subject_holding
+    icon = building_league_offices
+    planet_limit = 1
+
+    category = resource
+
+    allow = {
+        owner.overlord = {
+            has_civic = civic_delta_trade
+            has_civic = civic_criminal_heritage
+        }
+    }
+
+    planet_modifier = {
+        monthly_loyalty = -1.5
+        logistic_growth_mult = -0.20
+    }
+
+    resources = {
+        category = planet_holdings
+        cost = {
+            minerals = @b3_minerals
+        }
+        produces = {
+            gts_micro = 0.15
+            mult = value:gts_bruh_counter_is_pop
+        }
+        upkeep = {
+            energy = @b3_upkeep
+        }
+    }
+}

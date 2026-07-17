@@ -1,0 +1,6187 @@
+# 從 custom_starting_initializers.txt 來的函數
+
+@distance = 50
+@jumps = 3
+@planet_min_size = 10
+@planet_max_size = 25
+@base_moon_distance = 10
+@moon_min_size = 6
+@moon_max_size = 10
+@homeworld_min_size = 18
+@homeworld_max_size = 21
+
+Luanzi_sol_system_initializer = {
+
+	# 卵子太陽系
+
+	name = "NAME_Sol"	#名称
+	class = sc_g	#级别
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 290
+	}
+	flags = {
+		Luanzi
+	}
+	#标志
+	usage = origin	#用途：自定义帝国
+	init_effect = {
+		generate_home_system_resources = yes		#母星系生成资源
+	}
+	planet = {
+		name = "NAME_Sol"
+		class = star
+		orbit_distance = 0
+		orbit_angle = 0
+	}
+	change_orbit = 50
+	planet = {
+		name = "NAME_Mercury"		#水星
+		class = "pc_shattered"
+		orbit_distance = 40
+		orbit_angle = 15
+		size = 10
+		has_ring = no
+	}
+	planet = {
+		name = "NAME_Venus"		#金星
+		class = "pc_shattered"
+		orbit_distance = 25
+		orbit_angle = 125
+		size = 20
+		has_ring = no
+	}
+	planet = {
+		name = "NAME_Luanzi"		#地球
+		class = "pc_gaia"
+		orbit_distance = 25
+		orbit_angle = 120
+		size = 250
+		home_planet = yes
+		starting_planet = yes		#是否为起始星球
+		has_ring = no
+		deposit_blockers = none		#是否有障碍物
+		flags = {
+			origin_Luanzi_on_start
+		}
+		#标记
+		init_effect = {
+			#初始化效果
+			prevent_anomaly = yes			#避免异常出现
+			set_planet_flag = Luanzi_home_planet			#设置星球标记
+		}
+	}
+	planet = {
+		name = "NAME_Mars"		#火星
+		class = "pc_shattered"
+		orbit_distance = 25
+		orbit_angle = 60
+		size = 13
+		has_ring = no
+	}
+	planet = {
+		name = "NAME_Jupiter"		#木星
+		class = "pc_shattered"
+		orbit_distance = 40
+		orbit_angle = -160
+		size = 35
+		has_ring = no
+		change_orbit = 6
+	}
+	planet = {
+		name = "NAME_Saturn"		#土星
+		class = "pc_shattered"
+		orbit_distance = 25
+		orbit_angle = 170
+		size = 30
+		has_ring = yes
+		change_orbit = 7
+	}
+	planet = {
+		name = "NAME_Uranus"		#天王星
+		class = "pc_shattered"
+		orbit_distance = 25
+		orbit_angle = 125
+		size = 20
+		has_ring = no
+	}
+	planet = {
+		name = "NAME_Neptune"		#海王星
+		class = "pc_broken"
+		orbit_distance = 25
+		orbit_angle = -195
+		size = 20
+		has_ring = no
+		change_orbit = 4
+	}
+	planet = {
+		name = "NAME_134340_Pluto"		#冥王星
+		class = "pc_broken"
+		orbit_distance = 30
+		orbit_angle = -210
+		size = 5
+		has_ring = no
+	}
+}
+
+Aya_sol_system_initializer = {
+
+	# aya太陽系
+
+	name = "NAME_Sol"
+	class = "sc_g"
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 145
+	}
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 290
+	}
+	flags = {
+		Aya
+	}
+	usage = origin
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+	planet = {
+		name = "NAME_Sol"
+		class = "pc_g_star"
+		orbit_distance = 0
+		orbit_angle = 1
+		size = 30
+		has_ring = no
+	}
+	planet = {
+		name = "NAME_Mercury"
+		class = "pc_molten"
+		orbit_distance = 40
+		orbit_angle = 15
+		size = 10
+		has_ring = no
+	}
+	planet = {
+		name = "NAME_Venus"
+		class = "pc_toxic"
+		orbit_distance = 25
+		orbit_angle = 125
+		size = 17
+		has_ring = no
+	}
+	planet = {
+		name = "NAME_Earth"		#地球
+		class = "pc_city"
+		orbit_distance = 25
+		orbit_angle = 120
+		size = 25
+		home_planet = yes
+		starting_planet = yes
+		has_ring = no
+		flags = {
+			planet_Aya_on_start
+		}
+		init_effect = {
+			prevent_anomaly = yes
+			set_planet_flag = Aya_home_planet
+		}
+		moon = {
+			name = "NAME_Luna"
+			class = "pc_barren_cold"
+			size = 5
+			orbit_distance = 12
+			orbit_angle = 40
+			has_ring = no
+			entity = "cold_barren_planet_luna_entity"
+		}
+	}
+	planet = {
+		name = "NAME_Mars"
+		class = "pc_barren"
+		orbit_distance = 25
+		orbit_angle = 60
+		size = 13
+		has_ring = no
+		entity = "barren_planet_mars_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = "terraforming_candidate"
+				days = -1
+			}
+		}
+	}
+	planet = {
+		name = "NAME_1_Ceres"
+		class = "pc_asteroid"
+		orbit_distance = 30
+		orbit_angle = -210
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		name = "NAME_2_Pallas"
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = -95
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		name = "NAME_3_Juno"
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = 285
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		name = "NAME_4_Vesta"
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = -80
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		name = "NAME_Jupiter"
+		class = "pc_gas_giant"
+		orbit_distance = 40
+		orbit_angle = -160
+		size = 35
+		has_ring = no
+		entity = "gas_giant_jupiter_entity"
+		change_orbit = 6
+		moon = {
+			name = "NAME_Io"
+			class = "pc_molten"
+			size = 6
+			orbit_distance = 10
+			orbit_angle = 110
+			has_ring = no
+		}
+		moon = {
+			name = "NAME_Europa"
+			class = "pc_frozen"
+			size = 6
+			orbit_distance = 2.5
+			orbit_angle = 10
+			has_ring = no
+		}
+		moon = {
+			name = "NAME_Ganymede"
+			class = "pc_frozen"
+			size = 9
+			orbit_distance = 2.5
+			orbit_angle = 80
+			has_ring = no
+		}
+		moon = {
+			name = "NAME_Callisto"
+			class = "pc_frozen"
+			size = 7
+			orbit_distance = 2.5
+			orbit_angle = -155
+			has_ring = no
+		}
+	}
+	planet = {
+		name = "NAME_Saturn"
+		class = "pc_gas_giant"
+		orbit_distance = 25
+		orbit_angle = 170
+		size = 30
+		has_ring = yes
+		entity = "gas_giant_05_entity"
+		change_orbit = 7
+		moon = {
+			name = "NAME_Titan"
+			class = "pc_frozen"
+			size = 8
+			orbit_distance = 12
+			orbit_angle = 320
+			has_ring = no
+		}
+	}
+	planet = {
+		name = "NAME_Uranus"
+		class = "pc_gas_giant"
+		orbit_distance = 25
+		orbit_angle = 125
+		size = 20
+		has_ring = no
+		entity = "gas_giant_03_entity"
+	}
+	planet = {
+		name = "NAME_Neptune"
+		class = "pc_gas_giant"
+		orbit_distance = 25
+		orbit_angle = -195
+		size = 20
+		has_ring = no
+		entity = "gas_giant_02_entity"
+		change_orbit = 4
+		moon = {
+			name = "NAME_Triton"
+			class = "pc_frozen"
+			size = 6
+			orbit_distance = 7
+			orbit_angle = 115
+			has_ring = no
+		}
+	}
+	planet = {
+		name = "NAME_134340_Pluto"
+		class = "pc_asteroid"
+		orbit_distance = 30
+		orbit_angle = -210
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		name = "NAME_136472_Makemake"
+		class = "pc_ice_asteroid"
+		orbit_distance = 0
+		orbit_angle = -95
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		name = "NAME_136108_Haumea"
+		class = "pc_ice_asteroid"
+		orbit_distance = 0
+		orbit_angle = 285
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		name = "NAME_20000_Varuna"
+		class = "pc_ice_asteroid"
+		orbit_distance = 0
+		orbit_angle = -80
+		size = 5
+		has_ring = no
+	}
+}
+
+Robot_sol_system_initializer = {
+	#巨娘星系（总体设计）
+	name = "NAME_Sol"	#名称
+	class = "sc_g"
+	# class = sc_cheng_hui	#级别
+	flags = {
+		robot_gts
+	}
+	#标志
+	usage = origin	#用途：自定义帝国
+	planet = {
+		name = "NAME_Sol"
+		class = "pc_g_star"
+		orbit_distance = 0
+		orbit_angle = 0
+		init_effect = {
+			set_planet_flag = gts_hometown_planet
+		}
+	}
+	planet = {
+		name = "NAME_Chenghui"
+		class = pc_cheng_hui
+		orbit_distance = 0
+		orbit_angle = 0
+		init_effect = {
+			set_planet_flag = gts_body_planet
+		}
+	}
+	planet = {
+		name = "NAME_Stomach"		#胃
+		class = "pc_molten"
+		orbit_distance = 40
+		orbit_angle = 120
+		size = 35
+		has_ring = no
+		init_effect = {
+			#初始化效果
+			prevent_anomaly = yes			#避免异常出现
+			set_planet_flag = Robot_gts_Stomach_planet			#设置星球标记
+			set_planet_flag = gts_body_planet
+		}
+	}
+	planet = {
+		name = "NAME_Body"		#躯干
+		class = "pc_gaia"
+		orbit_distance = 25
+		orbit_angle = 110
+		size = 35
+		home_planet = yes
+		starting_planet = yes		#是否为起始星球
+		has_ring = no
+		flags = {
+			origin_robot_gts_on_start
+		}
+
+		#标记
+		init_effect = {
+			add_deposit = d_chenghui_district_added
+			#初始化效果
+			prevent_anomaly = yes			#避免异常出现
+			set_planet_flag = Robot_gts_home_planet			#设置星球标记
+			set_planet_flag = gts_body_planet
+		}
+	}
+	planet = {
+		name = "NAME_Puss"		#阴
+		class = "pc_shrouded"
+		orbit_distance = 40
+		orbit_angle = 130
+		size = 30
+		has_ring = no
+		init_effect = {
+			#初始化效果
+			prevent_anomaly = yes			#避免异常出现
+			set_planet_flag = Robot_gts_Puss_planet			#设置星球标记
+			set_planet_flag = gts_body_planet
+		}
+	}
+	planet = {
+		name = "NAME_Anal"		#菊
+		class = "pc_toxic"
+		orbit_distance = 25
+		orbit_angle = -170
+		size = 30
+		has_ring = no
+		init_effect = {
+			#初始化效果
+			prevent_anomaly = yes			#避免异常出现
+			set_planet_flag = Robot_gts_Anal_planet			#设置星球标记
+			set_planet_flag = gts_body_planet
+		}
+	}
+	planet = {
+		name = "NAME_Leftfoot"		#左足
+		class = "pc_toxic"
+		orbit_distance = 25
+		orbit_angle = 125
+		size = 30
+		has_ring = no
+		flags = {
+			origin_robot_gts_Leftfoot
+		}
+		#标记
+		init_effect = {
+			#初始化效果
+			prevent_anomaly = yes			#避免异常出现
+			set_planet_flag = Robot_gts_Leftfoot_planet			#设置星球标记
+			set_planet_flag = gts_body_planet
+		}
+	}
+	planet = {
+		name = "NAME_Rightfoot"		#右足
+		class = "pc_toxic"
+		orbit_distance = 25
+		orbit_angle = 195
+		size = 30
+		has_ring = no
+		flags = {
+			origin_robot_gts_Rightfoot
+		}
+		#标记
+		init_effect = {
+			#初始化效果
+			prevent_anomaly = yes			#避免异常出现
+			set_planet_flag = Robot_gts_Rightfoot_planet			#设置星球标记
+			set_planet_flag = gts_body_planet
+		}
+	}
+}
+
+suzheng_gts_system = {
+	#考古起始星系（总体设计）
+	name = "NAME_1000"	#名称 
+	class = sc_g	#级别
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 140
+	}
+	planet = {
+		name = "NAME_1000"
+		class = star
+		orbit_distance = 0
+		orbit_angle = 0
+	}
+	planet = {
+		name = "NAME_1091"
+		class = "pc_shattered"
+		orbit_distance = 160
+		orbit_angle = 150
+		size = 35
+		has_ring = no
+		init_effect = {
+			#初始化效果
+			prevent_anomaly = yes			#避免异常出现
+		}
+	}
+	planet = {
+		name = "NAME_1099"
+		class = "pc_shattered"
+		orbit_distance = 50
+		orbit_angle = 120
+		size = 30
+		has_ring = no
+		init_effect = {
+			#初始化效果
+			prevent_anomaly = yes			#避免异常出现
+		}
+	}
+	planet = {
+		name = "NAME_1096"
+		class = "pc_relic"
+		orbit_distance = 30
+		orbit_angle = 175
+		size = 25
+		has_ring = no
+		init_effect = {
+			set_planet_flag = gtsrobot_planet
+			save_global_event_target_as = gtsrobot_planet
+			prevent_anomaly = yes			#避免异常出现
+		}
+	}
+}
+
+gts_breast_system = {
+	#腺星系入口
+	class = "sc_gts_breast"
+	name = "system_breast"
+	flags = {
+		gts_breast_system
+	}
+	#星系flag	
+	usage = misc_system_init	#用法
+	usage_odds = {
+		#出现概率
+		base = 90000
+		modifier = {
+			#没有远星dlc就不生成
+			factor = 0
+			has_distar = no
+		}
+		modifier = {
+			#XXX就不生成
+			factor = 0
+			is_fe_cluster = yes
+		}
+		modifier = {
+			#XXX就不生成
+			factor = 0
+			has_star_flag = empire_cluster
+		}
+	}
+	scaled_spawn_chance = 100	#有待研究 按比例生成几率？
+	max_instances = 1	#最多生成几个
+	# 看不见的恒星
+	# planet = {
+	# 	class = star
+	# 	orbit_distance = 0
+	# 	size = 0	
+	# }
+	# planet = {
+	# 	#一个恒星
+	# 	count = 1
+	# 	class = star
+	# 	orbit_distance = 25
+	# 	orbit_angle = 0
+	# 	size = {
+	# 		min = 25
+	# 		max = 30
+	# 	}
+	# 	has_ring = no
+	# }
+	planet = {
+		#一个恒星
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 160
+		size = {
+			min = 20
+			max = 25
+		}
+		has_ring = no
+	}
+	change_orbit = 55
+	planet = {
+		#一个行星
+		count = {
+			min = 2
+			max = 3
+		}
+		#生成2-3个
+		orbit_distance = 20
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+		change_orbit = @base_moon_distance
+		moon = {
+			#行星的卫星
+			count = {
+				min = 0
+				max = 1
+			}
+			#生成0-1个
+			orbit_angle = {
+				min = 90
+				max = 270
+			}
+			orbit_distance = 5
+		}
+	}
+	change_orbit = 35
+	planet = {
+		#一个行星
+		count = 1
+		name = "planet_breast"
+		class = "pc_ocean"
+		anomaly = "gts_breast_category"
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+		init_effect = {
+			#内部设置
+			clear_deposits = yes			#清空地块(待定)
+			save_global_event_target_as = gts_breast_planet			#设置event_target
+			set_planet_flag = gts_breast_active			#设置flag
+		}
+	}
+	change_orbit = 35
+	planet = {
+		count = {
+			min = 2
+			max = 3
+		}
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+		change_orbit = @base_moon_distance
+	}
+}
+
+gts_end_system = {
+
+	# 終點星系
+
+	class = "sc_black_hole"	#等级：联星
+	name = "system_gts_end"
+	flags = {
+		gts_end_system
+	}
+	#星系flag	
+	planet = {
+		#一个恒星
+		count = 1
+		name = "star_gts_end"
+		class = star
+		orbit_distance = 0
+		size = 100
+		init_effect = {
+			set_planet_flag = gts_end_blackhole
+			save_global_event_target_as = gts_end_blackhole
+			prevent_anomaly = yes			#避免异常出现
+		}
+	}
+	planet = {
+		#一个行星
+		count = 1
+		name = "planet_gts_end"
+		class = "pc_habitat"
+		anomaly = "gts_end_habitat_category"
+		orbit_distance = 110
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+		init_effect = {
+			#内部设置
+			clear_deposits = yes
+			set_planet_flag = gts_endscout_planet
+		}
+	}
+}
+
+gts_inner_world_system = {
+	#星盘星系
+	class = "sc_g"
+	name = "system_inner_world"
+	usage = misc_system_init	#用法
+	usage_odds = {
+		#出现概率
+		base = 90000
+		modifier = {
+			#XXX就不生成
+			factor = 0
+			is_fe_cluster = yes
+		}
+		modifier = {
+			#XXX就不生成
+			factor = 0
+			has_star_flag = empire_cluster
+		}
+	}
+	scaled_spawn_chance = 100	#有待研究 按比例生成几率？
+	max_instances = 1	#最多生成几个
+	planet = {
+		#一个恒星
+		count = 1
+		class = "pc_g_star"
+		orbit_distance = 0
+		orbit_angle = 1
+		size = 30
+		has_ring = no
+	}
+	planet = {
+		#几个行星
+		count = {
+			min = 2
+			max = 3
+		}
+		#生成2-3个
+		orbit_distance = {
+			min = 25
+			max = 40
+		}
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+		change_orbit = @base_moon_distance
+		moon = {
+			#行星的卫星
+			count = {
+				min = 0
+				max = 1
+			}
+			#生成0-1个
+			orbit_angle = {
+				min = 90
+				max = 270
+			}
+			orbit_distance = 5
+		}
+	}
+	planet = {
+		#一个行星
+		count = 1
+		name = "planet_inner_world"
+		class = "pc_desert"
+		anomaly = "gts_inner_world_category"		#锁定异常事件
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+		init_effect = {
+			#内部设置
+			clear_deposits = yes			#清空地块
+			save_global_event_target_as = gts_inner_world_planet			#设置event_target
+		}
+	}
+}
+
+gts_ring_system = {
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 150
+	}
+	usage = misc_system_init	#用法
+	usage_odds = {
+		#出现概率
+		base = 2000000
+		modifier = {
+			factor = 0
+			is_fe_cluster = yes
+		}
+		modifier = {
+			factor = 0
+			has_star_flag = empire_cluster
+		}
+	}
+	scaled_spawn_chance = 100	#scales by galaxy size (1000 stars = 10x base)
+	max_instances = 1
+	flags = {
+		gts_ring_system
+		ring_world_built
+	}
+	name = "NAME_GTS_RING"
+	class = "sc_g"
+	planet = {
+		class = star
+		orbit_distance = 0
+		anomaly = "gts_ring_world_category"		#锁定异常事件
+		init_effect = {
+			#内部设置
+			save_global_event_target_as = gts_ring_world_planet				#设置event_target
+		}
+	}
+	change_orbit = 45
+	planet = {
+		#宜居环世界
+		class = "pc_ringworld_habitable"
+		name = "NAME_GTS_RING-A"
+		orbit_angle = 30
+		orbit_distance = 0
+		deposit_blockers = none
+		modifiers = none
+		init_effect = {
+			prevent_anomaly = yes
+			create_species = {
+				name = NAME_GTS_LOCAL_4
+				plural = NAME_GTS_LOCAL_4_plural
+				class = "TOX"				#毒素
+				portrait = "tox4"
+				homeworld = THIS
+				traits = {
+					trait = "trait_inorganic_breath"
+					trait = "trait_noxious"
+					trait = "trait_latent_psionic"
+				}
+			}
+			create_country = {
+				name = random
+				authority = random
+				civics = {
+					civic = civic_landed_nobility
+					civic = civic_flat_world_theory
+				}
+				species = last_created_species
+				ethos = {
+					ethic = "ethic_xenophobe"
+					ethic = "ethic_fanatic_spiritualist"
+				}
+				origin = origin_default_pre_ftl
+				flag = {
+					icon = {
+						category = "ornate"
+						file = "flag_ornate_11.dds"
+					}
+					background = {
+						category = "backgrounds"
+						file = "00_solid.dds"
+					}
+					colors = {
+						"dark_blue"
+						"dark_blue"
+						"null"
+						"null"
+					}
+				}
+				day_zero_contact = no
+				type = primitive
+			}
+			last_created_country = {
+				set_graphical_culture = preindustrial_01
+				set_country_flag = late_medieval_age
+				set_country_flag = humans_late_medieval_age
+				set_pre_ftl_age = late_medieval_age
+			}
+			set_owner = last_created_country
+			while = {
+				count = @late_medieval_age_pops
+				create_pop_group = {
+					species = last_created_species
+				}
+			}
+			add_building = building_primitive_dwellings
+			add_building = building_primitive_dwellings
+			add_building = building_stone_palace
+			while = {
+				count = 3
+				create_army = {
+					name = "NAME_Feudal_Levies"
+					owner = last_created_country
+					species = last_created_species
+					type = "primitive_army"
+				}
+			}
+			add_modifier = {
+				modifier = "gts_ringworld_life"
+			}
+			add_modifier = {
+				modifier = "gts_ringworld_lost"
+			}
+			add_modifier = {
+				modifier = "gts_ringworld"
+			}
+			add_deposit = d_segment_rubble_1			#城市
+			add_deposit = d_segment_rubble_1
+			add_deposit = d_segment_rubble_1
+			add_deposit = d_foot_dirt_ringworld			#足垢沉积矿区
+			add_deposit = d_foot_dirt_ringworld
+			add_deposit = d_foot_dirt_ringworld
+			add_deposit = d_foot_sweat_ringworld			#足汗湖
+			add_deposit = d_foot_sweat_ringworld
+			add_deposit = d_foot_sweat_ringworld
+		}
+	}
+	planet = {
+		#科研环世界
+		class = "pc_ringworld_tech"
+		name = "NAME_GTS_RING-B"
+		orbit_angle = 30
+		orbit_distance = 0
+		init_effect = {
+			prevent_anomaly = yes
+		}
+	}
+	planet = {
+		#环世界接缝
+		class = "pc_ringworld_seam"
+		name = "NAME_GTS_RING-C"
+		orbit_angle = 30
+		orbit_distance = 0
+		init_effect = {
+			prevent_anomaly = yes
+		}
+	}
+	planet = {
+		#宜居环世界
+		class = "pc_ringworld_habitable"
+		name = "NAME_GTS_RING-D"
+		orbit_angle = 30
+		orbit_distance = 0
+		deposit_blockers = none
+		modifiers = none
+		init_effect = {
+			prevent_anomaly = yes
+			create_species = {
+				name = NAME_GTS_LOCAL_3
+				plural = NAME_GTS_LOCAL_3_plural
+				class = "FUN"				#真菌
+				portrait = "fun12"
+				homeworld = THIS
+				traits = {
+					trait = "trait_plantoid_budding"
+					trait = "trait_plantoid_phototrophic"
+					trait = "trait_latent_psionic"
+					trait = "trait_Normal"
+				}
+			}
+			create_country = {
+				name = random
+				authority = random
+				civics = {
+					civic = civic_landed_nobility
+					civic = civic_flat_world_theory
+				}
+				species = last_created_species
+				ethos = {
+					ethic = "ethic_xenophobe"
+					ethic = "ethic_fanatic_spiritualist"
+				}
+				origin = origin_default_pre_ftl
+				flag = {
+					icon = {
+						category = "ornate"
+						file = "flag_ornate_11.dds"
+					}
+					background = {
+						category = "backgrounds"
+						file = "00_solid.dds"
+					}
+					colors = {
+						"dark_blue"
+						"dark_blue"
+						"null"
+						"null"
+					}
+				}
+				day_zero_contact = no
+				type = primitive
+			}
+			last_created_country = {
+				set_graphical_culture = preindustrial_01
+				set_country_flag = late_medieval_age
+				set_country_flag = humans_late_medieval_age
+				set_pre_ftl_age = late_medieval_age
+			}
+			set_owner = last_created_country
+			while = {
+				count = @late_medieval_age_pops
+				create_pop_group = {
+					species = last_created_species
+				}
+			}
+			add_building = building_primitive_dwellings
+			add_building = building_primitive_dwellings
+			add_building = building_stone_palace
+			while = {
+				count = 3
+				create_army = {
+					name = "NAME_Feudal_Levies"
+					owner = last_created_country
+					species = last_created_species
+					type = "primitive_army"
+				}
+			}
+			add_modifier = {
+				modifier = "gts_ringworld_life"
+			}
+			add_modifier = {
+				modifier = "gts_ringworld_lost"
+			}
+			add_modifier = {
+				modifier = "gts_ringworld"
+			}
+			add_deposit = d_segment_rubble_1			#城市
+			add_deposit = d_segment_rubble_1
+			add_deposit = d_segment_rubble_1
+			add_deposit = d_foot_dirt_ringworld			#足垢沉积矿区
+			add_deposit = d_foot_dirt_ringworld
+			add_deposit = d_foot_dirt_ringworld
+			add_deposit = d_foot_sweat_ringworld			#足汗湖
+			add_deposit = d_foot_sweat_ringworld
+			add_deposit = d_foot_sweat_ringworld
+		}
+	}
+	planet = {
+		#科研环世界
+		class = "pc_ringworld_tech"
+		name = "NAME_GTS_RING-E"
+		orbit_angle = 30
+		orbit_distance = 0
+		init_effect = {
+			prevent_anomaly = yes
+		}
+	}
+	planet = {
+		#环世界接缝
+		class = "pc_ringworld_seam"
+		name = "NAME_GTS_RING-F"
+		orbit_angle = 30
+		orbit_distance = 0
+		init_effect = {
+			prevent_anomaly = yes
+		}
+	}
+	planet = {
+		#宜居环世界
+		class = "pc_ringworld_habitable"
+		name = "NAME_GTS_RING-G"
+		orbit_angle = 30
+		orbit_distance = 0
+		deposit_blockers = none
+		modifiers = none
+		init_effect = {
+			prevent_anomaly = yes
+			create_species = {
+				name = NAME_GTS_LOCAL_2
+				plural = NAME_GTS_LOCAL_2_plural
+				class = "LITHOID"				#石质
+				portrait = "lith11"
+				homeworld = THIS
+				traits = {
+					trait = "trait_lithoid"
+					trait = "trait_lithoid_gaseous_byproducts"
+					trait = "trait_latent_psionic"
+					trait = "trait_Normal"
+				}
+			}
+			create_country = {
+				name = random
+				authority = random
+				civics = {
+					civic = civic_landed_nobility
+					civic = civic_flat_world_theory
+				}
+				species = last_created_species
+				ethos = {
+					ethic = "ethic_xenophobe"
+					ethic = "ethic_fanatic_spiritualist"
+				}
+				origin = origin_default_pre_ftl
+				flag = {
+					icon = {
+						category = "ornate"
+						file = "flag_ornate_11.dds"
+					}
+					background = {
+						category = "backgrounds"
+						file = "00_solid.dds"
+					}
+					colors = {
+						"dark_blue"
+						"dark_blue"
+						"null"
+						"null"
+					}
+				}
+				day_zero_contact = no
+				type = primitive
+			}
+			last_created_country = {
+				set_graphical_culture = preindustrial_01
+				set_country_flag = late_medieval_age
+				set_country_flag = humans_late_medieval_age
+				set_pre_ftl_age = late_medieval_age
+			}
+			set_owner = last_created_country
+			while = {
+				count = @late_medieval_age_pops
+				create_pop_group = {
+					species = last_created_species
+				}
+			}
+			add_building = building_primitive_dwellings
+			add_building = building_primitive_dwellings
+			add_building = building_stone_palace
+			while = {
+				count = 3
+				create_army = {
+					name = "NAME_Feudal_Levies"
+					owner = last_created_country
+					species = last_created_species
+					type = "primitive_army"
+				}
+			}
+			add_modifier = {
+				modifier = "gts_ringworld_life"
+			}
+			add_modifier = {
+				modifier = "gts_ringworld_lost"
+			}
+			add_modifier = {
+				modifier = "gts_ringworld"
+			}
+			add_deposit = d_segment_rubble_1			#城市
+			add_deposit = d_segment_rubble_1
+			add_deposit = d_segment_rubble_1
+			add_deposit = d_foot_dirt_ringworld			#足垢沉积矿区
+			add_deposit = d_foot_dirt_ringworld
+			add_deposit = d_foot_dirt_ringworld
+			add_deposit = d_foot_sweat_ringworld			#足汗湖
+			add_deposit = d_foot_sweat_ringworld
+			add_deposit = d_foot_sweat_ringworld
+		}
+	}
+	planet = {
+		#科研环世界
+		class = "pc_ringworld_tech"
+		name = "NAME_GTS_RING-H"
+		orbit_angle = 30
+		orbit_distance = 0
+		init_effect = {
+			prevent_anomaly = yes
+		}
+	}
+	planet = {
+		#环世界接缝
+		class = "pc_ringworld_seam"
+		name = "NAME_GTS_RING-I"
+		orbit_angle = 30
+		orbit_distance = 0
+		init_effect = {
+			prevent_anomaly = yes
+		}
+	}
+	planet = {
+		#宜居环世界
+		class = "pc_ringworld_habitable"
+		name = "NAME_GTS_RING-J"
+		orbit_angle = 30
+		orbit_distance = 0
+		deposit_blockers = none
+		modifiers = none
+		init_effect = {
+			prevent_anomaly = yes
+			create_species = {
+				name = NAME_GTS_LOCAL_1
+				plural = NAME_GTS_LOCAL_1_plural
+				class = "LITHOID"				#石质
+				portrait = "lith11"
+				homeworld = THIS
+				traits = {
+					trait = "trait_lithoid"
+					trait = "trait_lithoid_budding"
+					trait = "trait_latent_psionic"
+					trait = "trait_Normal"
+				}
+			}
+			create_country = {
+				name = random
+				authority = random
+				civics = {
+					civic = civic_landed_nobility
+					civic = civic_flat_world_theory
+				}
+				species = last_created_species
+				ethos = {
+					ethic = "ethic_xenophobe"
+					ethic = "ethic_fanatic_spiritualist"
+				}
+				origin = origin_default_pre_ftl
+				flag = {
+					icon = {
+						category = "ornate"
+						file = "flag_ornate_11.dds"
+					}
+					background = {
+						category = "backgrounds"
+						file = "00_solid.dds"
+					}
+					colors = {
+						"dark_blue"
+						"dark_blue"
+						"null"
+						"null"
+					}
+				}
+				day_zero_contact = no
+				type = primitive
+			}
+			last_created_country = {
+				set_graphical_culture = preindustrial_01
+				set_country_flag = late_medieval_age
+				set_country_flag = humans_late_medieval_age
+				set_pre_ftl_age = late_medieval_age
+			}
+			set_owner = last_created_country
+			while = {
+				count = @late_medieval_age_pops
+				create_pop_group = {
+					species = last_created_species
+				}
+			}
+			add_building = building_primitive_dwellings
+			add_building = building_primitive_dwellings
+			add_building = building_stone_palace
+			while = {
+				count = 3
+				create_army = {
+					name = "NAME_Feudal_Levies"
+					owner = last_created_country
+					species = last_created_species
+					type = "primitive_army"
+				}
+			}
+			add_modifier = {
+				modifier = "gts_ringworld_life"
+			}
+			add_modifier = {
+				modifier = "gts_ringworld_lost"
+			}
+			add_modifier = {
+				modifier = "gts_ringworld"
+			}
+			add_deposit = d_segment_rubble_1			#城市
+			add_deposit = d_segment_rubble_1
+			add_deposit = d_segment_rubble_1
+			add_deposit = d_foot_dirt_ringworld			#足垢沉积矿区
+			add_deposit = d_foot_dirt_ringworld
+			add_deposit = d_foot_dirt_ringworld
+			add_deposit = d_foot_sweat_ringworld			#足汗湖
+			add_deposit = d_foot_sweat_ringworld
+			add_deposit = d_foot_sweat_ringworld
+		}
+	}
+	planet = {
+		#科研环世界
+		class = "pc_ringworld_tech"
+		name = "NAME_GTS_RING-K"
+		orbit_angle = 30
+		orbit_distance = 0
+		init_effect = {
+			prevent_anomaly = yes
+		}
+	}
+	planet = {
+		#环世界接缝
+		class = "pc_ringworld_seam"
+		name = "NAME_GTS_RING-L"
+		orbit_angle = 30
+		orbit_distance = 0
+		init_effect = {
+			prevent_anomaly = yes
+		}
+	}
+	change_orbit = 105
+	planet = {
+		count = {
+			min = 1
+			max = 4
+		}
+		class = pc_asteroid
+		orbit_distance = 0
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+	}
+}
+
+gts_eyjafjalla_system = {
+	#艾雅法拉星系
+	class = "sc_m"
+	name = "system_gts_eyjafjalla"
+	usage = misc_system_init	#用法
+	#usage_odds = {
+	#出现概率
+	#base = 90000
+	#modifier = {
+	#XXX就不生成
+	#factor = 0
+	#is_fe_cluster = yes
+	#}
+	#modifier = {
+	#XXX就不生成
+	#factor = 0
+	#has_star_flag = empire_cluster
+	#}
+	#}
+	#scaled_spawn_chance = 100	#有待研究 按比例生成几率？
+	max_instances = 1	#最多生成几个
+	planet = {
+		#一个恒星
+		count = 1
+		class = "pc_m_giant_star"
+		orbit_distance = 0
+		orbit_angle = 1
+		size = 30
+		has_ring = no
+	}
+	#	planet = {
+	#		class = "pc_molten"
+	#		orbit_distance = 60
+	#		orbit_angle = 45
+	#		size = 10
+	#		has_ring = no
+	#	}
+	planet = {
+		#几个行星
+		count = {
+			min = 2
+			max = 3
+		}
+		#生成2-3个
+		orbit_distance = {
+			min = 25
+			max = 40
+		}
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+		class = "pc_molten"
+		change_orbit = @base_moon_distance
+		moon = {
+			#行星的卫星
+			count = {
+				min = 0
+				max = 1
+			}
+			#生成0-1个
+			orbit_angle = {
+				min = 90
+				max = 270
+			}
+			orbit_distance = 5
+		}
+	}
+	planet = {
+		#一个行星
+		count = 1
+		name = "planet_gts_eyjafjalla"
+		class = "pc_volcanic"
+		anomaly = "gts_eyjafjalla_category"		#锁定异常事件
+		size = 30
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+		init_effect = {
+			#内部设置
+			add_modifier = {
+				modifier = "gts_star_volcano"
+				days = -1
+			}
+			add_deposit = d_active_volcano
+			add_deposit = d_active_volcano
+			add_deposit = d_active_volcano
+			add_deposit = d_active_volcano
+			add_deposit = d_gts_eyjafjalla
+			set_planet_flag = gts_hometown_planet
+			set_planet_flag = gts_eyjafjalla_planet_flag
+			save_global_event_target_as = gts_eyjafjalla_planet			#设置event_target
+		}
+	}
+}
+
+# gts_extension_leader_yukikake_black_hole = {
+# 	class = "rl_starting_stars"
+# 	name = "gts_extension_leader_yukikake_black_hole_name"
+# 	max_instances = 1
+# 	planet = {
+# 		count = 1
+# 		class = star
+# 		orbit_distance = 0
+# 		orbit_angle = 0
+# 		size = {
+# 			min = 30
+# 			max = 35
+# 		}
+# 		has_ring = no
+# 		anomaly = "gts_extension_anomaly_leader_yukikake"
+# 	}
+# 	planet = {
+# 		class = pc_barren
+# 		orbit_distance = 30
+# 		size = {
+# 			min = 20
+# 			max = 25
+# 		}
+# 		change_orbit = @base_moon_distance
+# 		moon = {
+# 			class = pc_barren_cold
+# 			count = {
+# 				min = 0
+# 				max = 1
+# 			}
+# 			orbit_distance = 5
+# 		}
+# 	}
+# 	planet = {
+# 		class = pc_gas_giant
+# 		size = 22
+# 		orbit_distance = 30
+# 		orbit_angle = {
+# 			min = 90
+# 			max = 270
+# 		}
+# 		moon = {
+# 			class = "pc_barren_cold"
+# 			orbit_distance = 14
+# 			orbit_angle = {
+# 				min = 90
+# 				max = 270
+# 			}
+# 		}
+# 		moon = {
+# 			class = "pc_barren_cold"
+# 			orbit_distance = 6
+# 			orbit_angle = {
+# 				min = 90
+# 				max = 270
+# 			}
+# 		}
+# 		moon = {
+# 			class = "pc_frozen"
+# 			orbit_distance = 6
+# 			orbit_angle = {
+# 				min = 90
+# 				max = 270
+# 			}
+# 		}
+# 	}
+# 	planet = {
+# 		class = pc_frozen
+# 		count = 1
+# 		orbit_distance = 30
+# 	}
+# 	planet = {
+# 		class = pc_gas_giant
+# 		size = 20
+# 		has_ring = no
+# 		orbit_distance = 40
+# 		orbit_angle = {
+# 			min = 90
+# 			max = 270
+# 		}
+# 	}
+# }
+gtsra_leader_lottie_system = {
+	class = "rl_standard_stars"
+	name = lottie_system.1
+	max_instances = 1
+	planet = {
+		count = 1
+		class = star
+		name = lottie_system.1
+		orbit_distance = 0
+		size = {
+			min = 15
+			max = 25
+		}
+	}
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 168
+	}
+	planet = {
+		class = pc_molten
+		name = lottie_system.2
+		size = 12
+		orbit_distance = 30
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+	}
+	planet = {
+		class = pc_toxic
+		name = lottie_system.3
+		size = 15
+		orbit_distance = 20
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+		has_ring = yes
+	}
+	planet = {
+		class = pc_nuked
+		name = lottie_system.4
+		size = 24
+		orbit_distance = 20
+		has_ring = no
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+		init_effect = {
+			set_planet_flag = gtsra_lottie_anomaly_planet
+			create_archaeological_site = site_gtsra_lottie
+			set_planet_entity = {
+				entity = "shoesspaceport_entity_01_entity"
+			}
+		}
+		moon = {
+			class = pc_barren_cold
+			name = lottie_system.5
+			orbit_distance = 12
+			size = 10
+			has_ring = no
+			orbit_angle = {
+				min = 90
+				max = 270
+			}
+		}
+		moon = {
+			class = pc_molten
+			name = lottie_system.6
+			orbit_distance = 5
+			size = 6
+			has_ring = no
+			orbit_angle = {
+				min = 90
+				max = 270
+			}
+		}
+	}
+	planet = {
+		class = pc_gas_giant
+		name = lottie_system.7
+		size = 30
+		orbit_distance = 40
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+		moon = {
+			class = pc_barren
+			name = lottie_system.8
+			size = 9
+			orbit_distance = 15
+			orbit_angle = {
+				min = 90
+				max = 270
+			}
+		}
+		moon = {
+			class = pc_barren
+			name = lottie_system.9
+			size = 9
+			orbit_distance = 5
+			orbit_angle = {
+				min = 90
+				max = 270
+			}
+		}
+		moon = {
+			class = pc_barren
+			name = lottie_system.10
+			size = 9
+			orbit_distance = 5
+			orbit_angle = {
+				min = 90
+				max = 270
+			}
+		}
+	}
+}
+
+# 歐若拉考古星系
+
+gtsra_aurora_system = {
+	name = "NAME_Aurora_system"
+	class = "sc_f"
+	max_instances = 1
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 125
+	}
+	planet = {
+		class = star
+		orbit_distance = 0
+	}
+	planet = {
+		class = "pc_molten"
+		orbit_distance = 35
+		orbit_angle = 40
+		size = 15
+		has_ring = no
+	}
+	planet = {
+		class = "pc_broken"
+		orbit_distance = 20
+		orbit_angle = 210
+		size = 25
+		has_ring = yes
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 20
+		orbit_angle = 70
+		size = 20
+		has_ring = no
+	}
+	planet = {
+		class = "pc_broken"
+		orbit_distance = 20
+		orbit_angle = 275
+		size = 15
+		has_ring = no
+	}
+	planet = {
+		class = "pc_asteroid"
+		orbit_distance = 30
+		orbit_angle = -210
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = -95
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = "pc_barren"
+		orbit_distance = 30
+		orbit_angle = 45
+		size = 20
+		has_ring = no
+	}
+	planet = {
+		name = "NAME_Aurora_Prime"
+		class = pc_nuked
+		orbit_distance = 50
+		orbit_angle = 145
+		size = 35
+		has_ring = no
+		flags = {
+			Aurora_homeworld
+		}
+		init_effect = {
+			prevent_anomaly = yes
+			create_archaeological_site = aurora_digsite
+		}
+	}
+	planet = {
+		class = "pc_gas_giant"
+		orbit_distance = 20
+		orbit_angle = 145
+		size = 20
+		has_ring = no
+		moon = {
+			class = "pc_frozen"
+			size = 8
+			orbit_distance = 12
+			orbit_angle = 320
+			has_ring = no
+		}
+		moon = {
+			class = "pc_frozen"
+			size = 8
+			orbit_distance = 4
+			orbit_angle = 150
+			has_ring = no
+		}
+	}
+	planet = {
+		class = "pc_gas_giant"
+		orbit_distance = 20
+		orbit_angle = 145
+		size = 25
+		has_ring = no
+		init_effect = {
+			prevent_anomaly = yes
+		}
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 20
+		orbit_angle = 45
+		size = 15
+		has_ring = no
+	}
+}
+
+### 绘里香考古星系
+gts_erika_system = {
+	name = "NAME_gts_erika_system"
+	class = "sc_f"
+	max_instances = 1
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 125
+	}
+	planet = {
+		class = star
+		orbit_distance = 0
+	}
+	planet = {
+		class = "pc_molten"
+		orbit_distance = 35
+		orbit_angle = 40
+		size = 15
+		has_ring = no
+	}
+	planet = {
+		class = "pc_broken"
+		orbit_distance = 20
+		orbit_angle = 210
+		size = 25
+		has_ring = yes
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 20
+		orbit_angle = 70
+		size = 20
+		has_ring = no
+	}
+	planet = {
+		class = "pc_broken"
+		orbit_distance = 20
+		orbit_angle = 275
+		size = 15
+		has_ring = no
+	}
+	planet = {
+		class = "pc_asteroid"
+		orbit_distance = 30
+		orbit_angle = -210
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = -95
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = "pc_barren"
+		orbit_distance = 30
+		orbit_angle = 45
+		size = 20
+		has_ring = no
+	}
+	planet = {
+		class = "pc_nuked"
+		orbit_distance = 50
+		orbit_angle = 145
+		size = 35
+		has_ring = no
+		flags = {
+			gts_erika_homeworld
+		}
+		init_effect = {
+			prevent_anomaly = yes
+			create_archaeological_site = gts_erika_digsite
+		}
+	}
+	planet = {
+		class = "pc_gas_giant"
+		orbit_distance = 20
+		orbit_angle = 145
+		size = 20
+		has_ring = no
+		moon = {
+			class = "pc_frozen"
+			size = 8
+			orbit_distance = 12
+			orbit_angle = 320
+			has_ring = no
+		}
+		moon = {
+			class = "pc_frozen"
+			size = 8
+			orbit_distance = 4
+			orbit_angle = 150
+			has_ring = no
+		}
+	}
+	planet = {
+		class = "pc_gas_giant"
+		orbit_distance = 20
+		orbit_angle = 145
+		size = 25
+		has_ring = no
+		init_effect = {
+			prevent_anomaly = yes
+		}
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 20
+		orbit_angle = 45
+		size = 15
+		has_ring = no
+	}
+}
+
+### 花田考古星系
+gts_huatian_system = {
+	name = "NAME_gts_huatian_system"
+	flags = {
+		huatian
+	}
+	class = "sc_f"
+	max_instances = 1
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 125
+	}
+	planet = {
+		class = star
+		orbit_distance = 0
+	}
+	planet = {
+		class = "pc_molten"
+		orbit_distance = 35
+		orbit_angle = 40
+		size = 15
+		has_ring = no
+	}
+	planet = {
+		class = "pc_broken"
+		orbit_distance = 20
+		orbit_angle = 210
+		size = 25
+		has_ring = yes
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 20
+		orbit_angle = 70
+		size = 20
+		has_ring = no
+	}
+	planet = {
+		class = "pc_broken"
+		orbit_distance = 20
+		orbit_angle = 275
+		size = 15
+		has_ring = no
+	}
+	planet = {
+		class = "pc_asteroid"
+		orbit_distance = 30
+		orbit_angle = -210
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = -95
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = "pc_barren"
+		orbit_distance = 30
+		orbit_angle = 45
+		size = 20
+		has_ring = no
+	}
+	planet = {
+		class = "pc_nuked"
+		orbit_distance = 50
+		orbit_angle = 145
+		size = 35
+		has_ring = no
+		flags = {
+			gts_huatian_homeworld
+		}
+		init_effect = {
+			prevent_anomaly = yes
+			create_archaeological_site = gts_huatian_digsite
+		}
+	}
+	planet = {
+		class = "pc_gas_giant"
+		orbit_distance = 20
+		orbit_angle = 145
+		size = 20
+		has_ring = no
+		moon = {
+			class = "pc_frozen"
+			size = 8
+			orbit_distance = 12
+			orbit_angle = 320
+			has_ring = no
+		}
+		moon = {
+			class = "pc_frozen"
+			size = 8
+			orbit_distance = 4
+			orbit_angle = 150
+			has_ring = no
+		}
+	}
+	planet = {
+		class = "pc_gas_giant"
+		orbit_distance = 20
+		orbit_angle = 145
+		size = 25
+		has_ring = no
+		init_effect = {
+			prevent_anomaly = yes
+		}
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 20
+		orbit_angle = 45
+		size = 15
+		has_ring = no
+	}
+}
+#花田考古二
+gts_huatian_system_b = {
+	name = "NAME_gts_huatian_system_b"
+	class = "sc_f"
+	max_instances = 1
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 125
+	}
+	planet = {
+		class = star
+		orbit_distance = 0
+	}
+	planet = {
+		class = "pc_molten"
+		orbit_distance = 35
+		orbit_angle = 40
+		size = 15
+		has_ring = no
+	}
+	planet = {
+		class = "pc_broken"
+		orbit_distance = 20
+		orbit_angle = 210
+		size = 25
+		has_ring = yes
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 20
+		orbit_angle = 70
+		size = 20
+		has_ring = no
+	}
+	planet = {
+		class = "pc_broken"
+		orbit_distance = 20
+		orbit_angle = 275
+		size = 15
+		has_ring = no
+	}
+	planet = {
+		class = "pc_asteroid"
+		orbit_distance = 30
+		orbit_angle = -210
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = -95
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = "pc_barren"
+		orbit_distance = 30
+		orbit_angle = 45
+		size = 20
+		has_ring = no
+	}
+	planet = {
+		class = "pc_continental"
+		orbit_distance = 50
+		orbit_angle = 145
+		size = 35
+		has_ring = no
+		flags = {
+			gts_huatian_archworld
+		}
+		init_effect = {
+			prevent_anomaly = yes
+			create_archaeological_site = gts_huatian_digsite_b
+		}
+	}
+	planet = {
+		class = "pc_gas_giant"
+		orbit_distance = 20
+		orbit_angle = 145
+		size = 20
+		has_ring = no
+		moon = {
+			class = "pc_frozen"
+			size = 8
+			orbit_distance = 12
+			orbit_angle = 320
+			has_ring = no
+		}
+		moon = {
+			class = "pc_frozen"
+			size = 8
+			orbit_distance = 4
+			orbit_angle = 150
+			has_ring = no
+		}
+	}
+	planet = {
+		class = "pc_gas_giant"
+		orbit_distance = 20
+		orbit_angle = 145
+		size = 25
+		has_ring = no
+		init_effect = {
+			prevent_anomaly = yes
+		}
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 20
+		orbit_angle = 45
+		size = 15
+		has_ring = no
+	}
+}
+
+### 天条考古星系
+gts_tiantiao_system = {
+	name = "NAME_gts_tiantiao_system"
+	class = "sc_b"
+	max_instances = 1
+	flags = {
+		gts_tiantiao_system
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 125
+	}
+	planet = {
+		class = star
+		orbit_distance = 0
+	}
+	planet = {
+		class = "pc_molten"
+		orbit_distance = 35
+		orbit_angle = 40
+		size = 15
+		has_ring = no
+	}
+	planet = {
+		class = "pc_broken"
+		orbit_distance = 20
+		orbit_angle = 210
+		size = 25
+		has_ring = yes
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 20
+		orbit_angle = 70
+		size = 20
+		has_ring = no
+	}
+	planet = {
+		class = "pc_broken"
+		orbit_distance = 20
+		orbit_angle = 275
+		size = 15
+		has_ring = no
+	}
+	planet = {
+		class = "pc_asteroid"
+		orbit_distance = 30
+		orbit_angle = -210
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = -95
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = "pc_barren"
+		orbit_distance = 30
+		orbit_angle = 45
+		size = 20
+		has_ring = no
+	}
+	planet = {
+		class = "pc_nuked"
+		orbit_distance = 50
+		orbit_angle = 145
+		size = 35
+		anomaly = gts_tiantiao_anomaly
+		has_ring = no
+		flags = {
+			gts_tiantiao_homeworld
+		}
+	}
+	planet = {
+		class = "pc_gas_giant"
+		orbit_distance = 20
+		orbit_angle = 145
+		size = 20
+		has_ring = no
+		moon = {
+			class = "pc_frozen"
+			size = 8
+			orbit_distance = 12
+			orbit_angle = 320
+			has_ring = no
+		}
+		moon = {
+			class = "pc_frozen"
+			size = 8
+			orbit_distance = 4
+			orbit_angle = 150
+			has_ring = no
+		}
+	}
+	planet = {
+		class = "pc_gas_giant"
+		orbit_distance = 20
+		orbit_angle = 145
+		size = 25
+		has_ring = no
+		init_effect = {
+			prevent_anomaly = yes
+		}
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 20
+		orbit_angle = 45
+		size = 15
+		has_ring = no
+	}
+}
+
+### 晓淼考古星系
+gts_lab_fault_system = {
+	name = "NAME_gts_lab_fault_system"
+	class = "sc_f"
+	max_instances = 1
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 125
+	}
+	planet = {
+		class = star
+		orbit_distance = 0
+	}
+	planet = {
+		class = "pc_molten"
+		orbit_distance = 35
+		orbit_angle = 40
+		size = 15
+		has_ring = no
+	}
+	planet = {
+		class = "pc_broken"
+		orbit_distance = 20
+		orbit_angle = 210
+		size = 25
+		has_ring = yes
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 20
+		orbit_angle = 70
+		size = 20
+		has_ring = no
+	}
+	planet = {
+		class = "pc_broken"
+		orbit_distance = 20
+		orbit_angle = 275
+		size = 15
+		has_ring = no
+	}
+	planet = {
+		class = "pc_asteroid"
+		orbit_distance = 30
+		orbit_angle = -210
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = -95
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = "pc_barren"
+		orbit_distance = 30
+		orbit_angle = 45
+		size = 20
+		has_ring = no
+	}
+	planet = {
+		name = "NAME_gts_lab_fault_Prime"
+		class = pc_relic
+		orbit_distance = 50
+		orbit_angle = 145
+		size = 35
+		has_ring = no
+		flags = {
+			gts_lab_fault_homeworld
+		}
+		init_effect = {
+			prevent_anomaly = yes
+			create_archaeological_site = gts_lab_fault_digsite
+		}
+	}
+	planet = {
+		class = "pc_gas_giant"
+		orbit_distance = 20
+		orbit_angle = 145
+		size = 20
+		has_ring = no
+		moon = {
+			class = "pc_frozen"
+			size = 8
+			orbit_distance = 12
+			orbit_angle = 320
+			has_ring = no
+		}
+		moon = {
+			class = "pc_frozen"
+			size = 8
+			orbit_distance = 4
+			orbit_angle = 150
+			has_ring = no
+		}
+	}
+	planet = {
+		class = "pc_gas_giant"
+		orbit_distance = 20
+		orbit_angle = 145
+		size = 25
+		has_ring = no
+		init_effect = {
+			prevent_anomaly = yes
+		}
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 20
+		orbit_angle = 45
+		size = 15
+		has_ring = no
+	}
+}
+
+gts_extension_leader_fox_black_hole = {
+	class = "sc_black_hole"
+	max_instances = 1
+	name = "gts_extension_leader_fox_black_hole_name"
+	planet = {
+		count = 1
+		name = "gts_extension_leader_fox_black_hole_name"
+		class = star
+		orbit_distance = 0
+		size = 100
+		init_effect = {
+			set_planet_flag = gts_extension_anomaly_leader_fox_blackhole_flag
+		}
+		anomaly = "gts_extension_anomaly_leader_fox"
+	}
+}
+
+gts_ultra_system_1 = {
+	# 泰坦起源星系
+	class = "rl_starting_stars"
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 50
+	}
+	flags = {
+		ultra_home_system
+	}
+	init_effect = {
+		generate_home_system_resources = yes
+		add_modifier = {
+			modifier = gts_ultra_system
+		}
+	}
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = {
+			min = 20
+			max = 30
+		}
+		has_ring = no
+		init_effect = {
+			add_modifier = {
+				modifier = gtsra_ultra_planet
+			}
+		}
+	}
+	change_orbit = 50
+	planet = {
+		count = {
+			min = 1
+			max = 3
+		}
+		class = pc_asteroid
+		orbit_distance = 0
+		orbit_angle = {
+			min = 40
+			max = 100
+		}
+		init_effect = {
+			add_modifier = {
+				modifier = gtsra_ultra_planet
+			}
+		}
+	}
+	planet = {
+		count = {
+			min = 0
+			max = 2
+		}
+		orbit_distance = 20
+		class = random_non_colonizable
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+		init_effect = {
+			add_modifier = {
+				modifier = gtsra_ultra_planet
+			}
+		}
+		change_orbit = @base_moon_distance
+		moon = {
+			count = {
+				min = 0
+				max = 1
+			}
+			class = random_non_colonizable
+			orbit_angle = {
+				min = 90
+				max = 270
+			}
+			orbit_distance = 5
+			init_effect = {
+				add_modifier = {
+					modifier = gtsra_ultra_planet
+				}
+			}
+		}
+	}
+	planet = {
+		count = 1
+		orbit_distance = 20
+		home_planet = yes
+		class = pc_gaia
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+		size = 40
+		deposit_blockers = none
+		init_effect = {
+			generate_empire_home_planet = yes
+			prevent_anomaly = yes
+			add_modifier = {
+				modifier = gtsra_ultra_planet
+			}
+		}
+		flags = {
+			ultra_home_planet
+		}
+		change_orbit = @base_moon_distance
+		moon = {
+			count = {
+				min = 0
+				max = 1
+			}
+			class = random_non_colonizable
+			orbit_angle = {
+				min = 90
+				max = 270
+			}
+			orbit_distance = 5
+			init_effect = {
+				add_modifier = {
+					modifier = gtsra_ultra_planet
+				}
+			}
+		}
+	}
+	planet = {
+		count = 1
+		orbit_distance = 20
+		class = pc_desert
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+		size = {
+			min = 18
+			max = 21
+		}
+		deposit_blockers = none
+		init_effect = {
+			add_modifier = {
+				modifier = gtsra_ultra_planet
+			}
+		}
+		init_effect = {
+			prevent_anomaly = yes
+		}
+		flags = {
+			ultra_desert_planet
+		}
+	}
+	planet = {
+		count = {
+			min = 2
+			max = 4
+		}
+		orbit_distance = 20
+		class = random_non_colonizable
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+		init_effect = {
+			add_modifier = {
+				modifier = gtsra_ultra_planet
+			}
+		}
+		change_orbit = @base_moon_distance
+		moon = {
+			count = {
+				min = 0
+				max = 1
+			}
+			class = random_non_colonizable
+			orbit_angle = {
+				min = 90
+				max = 270
+			}
+			orbit_distance = 5
+			init_effect = {
+				add_modifier = {
+					modifier = gtsra_ultra_planet
+				}
+			}
+		}
+	}
+	planet = {
+		count = {
+			min = 1
+			max = 2
+		}
+		orbit_distance = 20
+		class = pc_gas_giant
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+		init_effect = {
+			add_modifier = {
+				modifier = gtsra_ultra_planet
+			}
+		}
+		change_orbit = @base_moon_distance
+		moon = {
+			count = {
+				min = 0
+				max = 3
+			}
+			class = random_non_colonizable
+			orbit_angle = {
+				min = 90
+				max = 270
+			}
+			orbit_distance = 5
+			init_effect = {
+				add_modifier = {
+					modifier = gtsra_ultra_planet
+				}
+			}
+		}
+	}
+}
+
+
+
+Annihilator_sol_system_initializer = {
+	#毁灭巨娘星系（总体设计）
+	name = "NAME_annihilator"	#名称
+	class = sc_g	#级别
+	flags = {
+		annihilator_gts
+	}	#标志
+	usage = origin	#用途：自定义帝国
+	planet = {
+		name = "NAME_navel"
+		class = pc_black_hole
+		orbit_distance = 0
+		orbit_angle = 0
+	}
+	planet = {
+		name = "NAME_annihilator"
+		class = pc_shrouded
+		orbit_distance = 75
+		orbit_angle = 0
+		size = 35
+		has_ring = no
+		init_effect = {
+			#初始化效果
+			prevent_anomaly = yes			#避免异常出现
+		}
+	}
+	planet = {
+		name = "NAME_tummy"		#胃
+		class = pc_molten
+		orbit_distance = 10
+		orbit_angle = 210
+		size = 35
+		has_ring = no
+		init_effect = {
+			#初始化效果
+			prevent_anomaly = yes			#避免异常出现
+			set_planet_flag = annihilator_gts_tummy_planet			#设置星球标记
+		}
+	}
+	planet = {
+		name = "NAME_belly"		#肚皮
+		class = pc_gaia
+		orbit_distance = 15
+		orbit_angle = 150
+		size = 40
+		home_planet = yes
+		starting_planet = yes		#是否为起始星球
+		has_ring = no
+		deposit_blockers = none		#没有其他障碍
+		flags = {
+			origin_annihilator_on_start
+		}		#标记
+		init_effect = {
+			#初始化效果
+			prevent_anomaly = yes			#避免异常出现
+			set_planet_flag = annihilator_gts_belly_planet			#设置星球标记
+		}
+	}
+	planet = {
+		name = "NAME_pussy"		#阴
+		class = pc_shrouded
+		orbit_distance = 32
+		orbit_angle = 170
+		size = 30
+		has_ring = no
+		init_effect = {
+			#初始化效果
+			prevent_anomaly = yes			#避免异常出现
+			set_planet_flag = annihilator_gts_pussy_planet			#设置星球标记
+		}
+	}
+	planet = {
+		name = "NAME_anal"		#菊
+		class = pc_shrouded
+		orbit_distance = 30
+		orbit_angle = -170
+		size = 30
+		has_ring = no
+		init_effect = {
+			#初始化效果
+			prevent_anomaly = yes			#避免异常出现
+			set_planet_flag = annihilator_gts_anal_planet			#设置星球标记
+		}
+	}
+	planet = {
+		name = "NAME_leftfoot"		#左足
+		class = pc_shrouded
+		orbit_distance = 75
+		orbit_angle = 125
+		size = 30
+		has_ring = no
+		flags = {
+			origin_annihilator_gts_leftfoot
+		}		#标记
+		init_effect = {
+			#初始化效果
+			prevent_anomaly = yes			#避免异常出现
+			set_planet_flag = annihilator_gts_leftfoot_planet			#设置星球标记
+		}
+	}
+	planet = {
+		name = "NAME_rightfoot"		#右足
+		class = pc_shrouded
+		orbit_distance = 75
+		orbit_angle = 195
+		size = 30
+		has_ring = no
+		flags = {
+			origin_annihilator_gts_rightfoot
+		}		#标记
+		init_effect = {
+			#初始化效果
+			prevent_anomaly = yes			#避免异常出现
+			set_planet_flag = annihilator_gts_rightfoot_planet			#设置星球标记
+		}
+	}
+	planet = {
+		name = "NAME_leftarm"		#左臂
+		class = pc_shrouded
+		orbit_distance = 50
+		orbit_angle = 75
+		size = 30
+		has_ring = no
+		flags = {
+			origin_annihilator_gts_leftarm
+		}		#标记
+		init_effect = {
+			#初始化效果
+			prevent_anomaly = yes			#避免异常出现
+			set_planet_flag = annihilator_gts_leftarm_planet			#设置星球标记
+		}
+	}
+	planet = {
+		name = "NAME_rightarm"		#右臂
+		class = pc_shrouded
+		orbit_distance = 50
+		orbit_angle = -75
+		size = 30
+		has_ring = no
+		flags = {
+			origin_annihilator_gts_rightarm
+		}		#标记
+		init_effect = {
+			#初始化效果
+			prevent_anomaly = yes			#避免异常出现
+			set_planet_flag = annihilator_gts_rightfoot_planet			#设置星球标记
+		}
+	}
+	planet = {
+		name = "NAME_head"		#头
+		class = pc_shrouded
+		orbit_distance = 60
+		orbit_angle = 10
+		size = 30
+		has_ring = no
+		flags = {
+			origin_annihilator_gts_head
+		}		#标记
+		init_effect = {
+			#初始化效果
+			prevent_anomaly = yes			#避免异常出现
+			set_planet_flag = annihilator_gts_rightfoot_planet			#设置星球标记
+		}
+	}
+}
+
+solar_system_initializer = {
+	class = sc_binary_1
+	name = "the_final_war"
+	flags = {
+		advanced_research_institude_investigation
+	}
+	planet = {
+		name = "broken_divice"
+		class = pc_black_hole
+		orbit_distance = 0
+		orbit_angle = 0
+	}
+	planet = {
+		name = "broken_research_station"
+		class = pc_machine_broken
+		orbit_distance = 25
+		orbit_angle = 120
+		size = 18
+		has_ring = no
+		init_effect = {
+			#初始化效果
+			prevent_anomaly = no			#避免异常出现
+			set_planet_flag = broken_advanced_research_insititude_station			#设置星球标记
+		}
+	}
+}
+
+gts_mari_system = {
+
+	# 聖三一
+
+	class = "rl_standard_stars"
+	name = "NAME_gts_mari_system"
+	flags = {
+		gts_mari_hometown_system
+	}
+	max_instances = 1
+	planet = {
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = {
+			min = 25
+			max = 30
+		}
+		has_ring = no
+	}
+	change_orbit = {
+		min = 60
+		max = 80
+	}
+	planet = {
+		class = pc_gas_giant
+		orbit_angle = {
+			min = 25
+			max = 30
+		}
+		size = 30
+	}
+	change_orbit = 15
+	planet = {
+		count = {
+			min = 2
+			max = 4
+		}
+		class = pc_asteroid
+		size = {
+			min = 2
+			max = 3
+		}
+		orbit_distance = {
+			min = -1
+			max = 1
+		}
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+		has_ring = no
+	}
+	change_orbit = {
+		min = 5
+		max = 15
+	}
+	planet = {
+		count = {
+			min = 2
+			max = 3
+		}
+		orbit_distance = {
+			min = 25
+			max = 40
+		}
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+		class = "pc_molten"
+		change_orbit = @base_moon_distance
+		moon = {
+			count = {
+				min = 0
+				max = 1
+			}
+			orbit_angle = {
+				min = 90
+				max = 270
+			}
+			orbit_distance = 5
+		}
+	}
+	planet = {
+		count = 1
+		flags = {
+			gts_mari_hometown_planet
+		}
+		class = "pc_gaia"
+		orbit_angle = 30
+		orbit_distance = 0
+		deposit_blockers = none
+		modifiers = none
+		anomaly = gts_mari_anomaly
+		init_effect = {
+			create_species = {
+				name = NAME_Human
+				plural = NAME_Human_plural
+				class = random_non_machine
+				homeworld = THIS
+				traits = {
+					trait = "trait_adaptive"
+					trait = "trait_nomadic"
+					trait = "trait_Normal"
+				}
+			}
+			create_country = {
+				name = random
+				authority = random
+				civics = {
+					civic = civic_landed_nobility
+				}
+				species = last_created_species
+				ethos = {
+					ethic = "ethic_xenophile"
+					ethic = "ethic_pacifist"
+					ethic = "ethic_spiritualist"
+				}
+				origin = origin_default_pre_ftl
+				flag = {
+					icon = {
+						category = "ornate"
+						file = "flag_ornate_11.dds"
+					}
+					background = {
+						category = "backgrounds"
+						file = "00_solid.dds"
+					}
+					colors = {
+						"dark_blue"
+						"dark_blue"
+						"null"
+						"null"
+					}
+				}
+				day_zero_contact = no
+				type = primitive
+			}
+			last_created_country = {
+				set_graphical_culture = preindustrial_01
+				set_country_flag = atomic_age
+				set_country_flag = foo_hometown
+				set_country_flag = humans_atomic_age
+				set_pre_ftl_age = atomic_age
+			}
+			set_owner = last_created_country
+			while = {
+				count = @late_medieval_age_pops
+				create_pop_group = {
+					species = last_created_species
+				}
+			}
+			add_building = building_primitive_capital
+			add_building = building_urban_dwellings
+			add_building = building_urban_dwellings
+			while = {
+				count = 3
+				create_army = {
+					name = "NAME_Feudal_Levies"
+					owner = last_created_country
+					species = last_created_species
+					type = "primitive_army"
+				}
+			}
+			add_deposit = d_segment_rubble_1			#城市
+			add_deposit = d_segment_rubble_1
+			add_deposit = d_segment_rubble_1
+		}
+	}
+}
+
+gts_doctor_system = {
+	class = "rl_standard_stars"
+	name = "NAME_gts_doctor_system"
+	flags = {
+		gts_doctor_hometown_system
+	}
+	max_instances = 1
+	planet = {
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = {
+			min = 25
+			max = 30
+		}
+		has_ring = no
+	}
+	change_orbit = {
+		min = 60
+		max = 80
+	}
+	planet = {
+		class = pc_gas_giant
+		orbit_angle = {
+			min = 25
+			max = 30
+		}
+		size = 30
+	}
+	change_orbit = 15
+	planet = {
+		count = {
+			min = 2
+			max = 4
+		}
+		class = pc_asteroid
+		size = {
+			min = 2
+			max = 3
+		}
+		orbit_distance = {
+			min = -1
+			max = 1
+		}
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+		has_ring = no
+	}
+	change_orbit = {
+		min = 5
+		max = 15
+	}
+	planet = {
+		count = {
+			min = 2
+			max = 3
+		}
+		orbit_distance = {
+			min = 25
+			max = 40
+		}
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+		class = "pc_molten"
+		change_orbit = @base_moon_distance
+		moon = {
+			count = {
+				min = 0
+				max = 1
+			}
+			orbit_angle = {
+				min = 90
+				max = 270
+			}
+			orbit_distance = 5
+		}
+	}
+	planet = {
+		count = 1
+		flags = {
+			gts_doctor_hometown_planet
+		}
+		class = "pc_continental"
+		orbit_angle = 30
+		orbit_distance = 0
+		deposit_blockers = none
+		modifiers = none
+		anomaly = gts_doctor_anomaly
+		init_effect = {
+
+			# 種族與國家
+			create_species = {
+				name = NAME_Human
+				plural = NAME_Human_plural
+				class = "HUM"
+				portrait = "human"
+				homeworld = this
+				traits = {
+					trait = "trait_adaptive"
+					trait = "trait_nomadic"
+					trait = "trait_Normal"
+				}
+			}
+			create_country = {
+				name = random
+				authority = auth_democratic
+				civics = {
+					civic = civic_beacon_of_liberty
+					civic = civic_idealistic_foundation
+				}
+				species = last_created_species
+				ethos = {
+					ethic = "ethic_xenophile"
+					ethic = "ethic_fanatic_egalitarian"
+				}
+				origin = origin_default_pre_ftl
+				flag = {
+					icon = {
+						category = "ornate"
+						file = "flag_ornate_11.dds"
+					}
+					background = {
+						category = "backgrounds"
+						file = "00_solid.dds"
+					}
+					colors = {
+						"dark_blue"
+						"dark_blue"
+						"null"
+						"null"
+					}
+				}
+				day_zero_contact = no
+				type = primitive
+			}
+			last_created_country = {
+				set_graphical_culture = preindustrial_01
+				set_country_flag = atomic_age
+				set_country_flag = foo_hometown
+				set_country_flag = humans_atomic_age
+				set_pre_ftl_age = atomic_age
+			}
+			set_owner = last_created_country
+
+			# 星球細節
+			create_pop_group = {
+				species = last_created_species
+				size = @atomic_age_pops
+			}
+			reroll_deposits = yes
+			add_building = building_primitive_capital
+			add_building = building_primitive_factory
+			add_building = building_primitive_offices
+			add_building = building_primitive_research
+			add_building = building_urban_dwellings
+			while = {
+				count = 3
+				add_deposit = d_segment_rubble_1
+				add_district = district_city
+				add_district = district_generator
+				add_district = district_mining
+				add_district = district_farming
+			}
+		}
+	}
+}
+
+gts_goldenglow_system = {
+	class = "rl_starting_stars"
+	name = "NAME_gts_goldenglow_system"
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 85
+	}
+	flags = {
+	}
+	init_effect = {
+	}
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = {
+			min = 20
+			max = 30
+		}
+		has_ring = no
+	}
+	change_orbit = 40
+	planet = {
+		count = 1
+		orbit_distance = 20
+		class = random_non_colonizable
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+		change_orbit = @base_moon_distance
+		moon = {
+			count = {
+				min = 0
+				max = 1
+			}
+			class = random_non_colonizable
+			orbit_angle = {
+				min = 90
+				max = 270
+			}
+			orbit_distance = 5
+		}
+	}
+	change_orbit = 25
+	planet = {
+		count = {
+			min = 1
+			max = 2
+		}
+		class = pc_asteroid
+		orbit_distance = 0
+		orbit_angle = {
+			min = 120
+			max = 300
+		}
+	}
+	planet = {
+		count = 1
+		orbit_distance = 25
+		anomaly = "gts_goldenglow_anomaly"
+		class = pc_barren
+		init_effect = {
+			save_global_event_target_as = gts_goldenglow_anomaly_planet
+		}
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+		change_orbit = @base_moon_distance
+		moon = {
+			count = {
+				min = 0
+				max = 1
+			}
+			class = random_non_colonizable
+			orbit_angle = {
+				min = 90
+				max = 270
+			}
+			orbit_distance = 5
+		}
+	}
+	planet = {
+		count = 1
+		orbit_distance = 25
+		class = pc_gas_giant
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+		size = 25
+		change_orbit = @base_moon_distance
+		moon = {
+			count = 1
+			class = random_non_colonizable
+			orbit_angle = {
+				min = 90
+				max = 270
+			}
+			orbit_distance = 4
+		}
+	}
+	planet = {
+		count = {
+			min = 1
+			max = 3
+		}
+		orbit_distance = 25
+		class = random_non_colonizable
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+	}
+	planet = {
+		count = {
+			min = 1
+			max = 2
+		}
+		orbit_distance = 20
+		class = pc_gas_giant
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+		change_orbit = @base_moon_distance
+		moon = {
+			count = {
+				min = 0
+				max = 3
+			}
+			class = random_non_colonizable
+			orbit_angle = {
+				min = 90
+				max = 270
+			}
+			orbit_distance = 5
+		}
+	}
+	planet = {
+		count = {
+			min = 0
+			max = 1
+		}
+		orbit_distance = 20
+		class = random_non_colonizable
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+	}
+	neighbor_system = {
+		trigger = {
+			num_guaranteed_colonies >= 2
+		}
+		hyperlane_jumps = {
+			min = 1
+			max = @jumps
+		}
+		initializer = "neighbor_t1"
+	}
+	neighbor_system = {
+		trigger = {
+			num_guaranteed_colonies >= 1
+		}
+		hyperlane_jumps = {
+			min = 1
+			max = @jumps
+		}
+		initializer = "neighbor_t1_first_colony"
+	}
+}
+
+gts_cys_system = {
+	class = rl_standard_stars
+	name = NAME_gts_cys_system
+	max_instances = 1
+	init_effect = {
+		every_system_planet = {
+			prevent_anomaly = yes
+		}
+	}
+	flags = {
+		gts_cys_system
+	}
+	asteroid_belt = {
+		type = crystal_asteroid_belt
+		radius = 150
+	}
+	asteroid_belt = {
+		type = crystal_asteroid_belt
+		radius = 300
+	}
+	planet = {
+		name = NAME_gts_cys_star
+		class = pc_black_hole
+		orbit_distance = 0
+		orbit_angle = 1
+		size = 50
+		init_effect = {
+			create_ambient_object = {
+				type = shroud_storm
+				location = this
+				scale = 5
+			}
+			save_global_event_target_as = gts_cys_star
+		}
+	}
+	planet = {
+		class = pc_shrouded
+		orbit_distance = 150
+		orbit_angle = 72
+		size = 50
+	}
+	planet = {
+		class = pc_shrouded
+		orbit_distance = 150
+		orbit_angle = 144
+		size = 50
+	}
+	planet = {
+		class = pc_shrouded
+		orbit_distance = 150
+		orbit_angle = 216
+		size = 50
+	}
+	planet = {
+		class = pc_shrouded
+		orbit_distance = 150
+		orbit_angle = 288
+		size = 50
+	}
+}
+gts_ultra_system_2 = {
+	# 泰坦起源星系
+	class = "rl_starting_stars"
+	flags = {
+		gts_ultra_system
+	}
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 0
+		size = {
+			min = 30
+			max = 35
+		}
+		has_ring = no
+	}
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 230
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+		size = {
+			min = 20
+			max = 30
+		}
+		has_ring = no
+		change_orbit = 30
+		planet = {
+			count = {
+				min = 2
+				max = 3
+			}
+			orbit_angle = {
+				min = 90
+				max = 270
+			}
+			class = random_non_colonizable
+			orbit_distance = 25
+			change_orbit = @base_moon_distance
+			moon = {
+				count = {
+					min = 0
+					max = 1
+				}
+				class = random_non_colonizable
+				orbit_angle = {
+					min = 90
+					max = 270
+				}
+				orbit_distance = 5
+			}
+		}
+	}
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+		size = {
+			min = 15
+			max = 30
+		}
+		has_ring = no
+		change_orbit = 30
+		planet = {
+			count = {
+				min = 2
+				max = 4
+			}
+			orbit_angle = {
+				min = 90
+				max = 270
+			}
+			class = random_non_colonizable
+			orbit_distance = 25
+			change_orbit = @base_moon_distance
+		}
+	}
+	change_orbit = -210
+	planet = {
+		count = {
+			min = 1
+			max = 2
+		}
+		orbit_distance = 15
+		class = random_non_colonizable
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+	}
+	planet = {
+		count = 1
+		orbit_distance = 15
+		class = random_non_colonizable
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+		size = {
+			min = 18
+			max = 21
+		}
+		deposit_blockers = none
+		change_orbit = @base_moon_distance
+		moon = {
+			count = {
+				min = 0
+				max = 1
+			}
+			class = random_non_colonizable
+			orbit_angle = {
+				min = 90
+				max = 270
+			}
+			orbit_distance = 5
+		}
+	}
+	planet = {
+		count = {
+			min = 1
+			max = 2
+		}
+		orbit_distance = 15
+		class = pc_gas_giant
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+		change_orbit = @base_moon_distance
+		moon = {
+			count = {
+				min = 1
+				max = 2
+			}
+			class = random_non_colonizable
+			orbit_angle = {
+				min = 90
+				max = 270
+			}
+			orbit_distance = 5
+		}
+	}
+}
+
+gts_ultra_system_3 = {
+	# 泰坦起源星系
+	class = "rl_starting_stars"
+	flags = {
+		gts_ultra_system
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 50
+	}
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = {
+			min = 20
+			max = 30
+		}
+		has_ring = no
+	}
+	change_orbit = 50
+	planet = {
+		count = {
+			min = 1
+			max = 3
+		}
+		class = pc_asteroid
+		orbit_distance = 0
+		orbit_angle = {
+			min = 40
+			max = 100
+		}
+	}
+	planet = {
+		count = {
+			min = 0
+			max = 2
+		}
+		orbit_distance = 20
+		class = random_non_colonizable
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+		change_orbit = @base_moon_distance
+		moon = {
+			count = {
+				min = 0
+				max = 1
+			}
+			class = random_non_colonizable
+			orbit_angle = {
+				min = 90
+				max = 270
+			}
+			orbit_distance = 5
+		}
+	}
+	planet = {
+		count = 1
+		orbit_distance = 20
+		home_planet = yes
+		class = pc_gaia
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+		size = 120
+		deposit_blockers = none
+		init_effect = {
+			prevent_anomaly = yes
+		}
+		change_orbit = @base_moon_distance
+		moon = {
+			count = {
+				min = 0
+				max = 1
+			}
+			class = random_non_colonizable
+			orbit_angle = {
+				min = 90
+				max = 270
+			}
+			orbit_distance = 5
+		}
+		anomaly = gts_anomaly_ww1_category
+	}
+	planet = {
+		count = {
+			min = 2
+			max = 4
+		}
+		orbit_distance = 20
+		class = random_non_colonizable
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+		change_orbit = @base_moon_distance
+		moon = {
+			count = {
+				min = 0
+				max = 1
+			}
+			class = random_non_colonizable
+			orbit_angle = {
+				min = 90
+				max = 270
+			}
+			orbit_distance = 5
+		}
+	}
+	planet = {
+		count = {
+			min = 1
+			max = 2
+		}
+		orbit_distance = 20
+		class = pc_gas_giant
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+		change_orbit = @base_moon_distance
+		moon = {
+			count = {
+				min = 0
+				max = 3
+			}
+			class = random_non_colonizable
+			orbit_angle = {
+				min = 90
+				max = 270
+			}
+			orbit_distance = 5
+		}
+	}
+}
+gts_ultra_system_4 = {
+	#巨娘星系-带虫洞
+	class = "sc_rift_star"
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 60
+	}
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 150
+	}
+	flags = { 
+		gts_ultra_system 
+		gts_ultra_system_with_wormhole 
+	}
+	planet = {
+		class = "pc_rift_star"
+		orbit_distance = 0
+		orbit_angle = 0
+		size = 12
+		has_ring = no
+	}
+
+	planet = {
+		class = "pc_crystal_asteroid"
+		orbit_distance = 60
+		orbit_angle = 0
+		size = 8
+		has_ring = no
+		init_effect = {
+			set_deposit = d_rare_crystals_1
+		}
+	}
+
+	planet = {
+		class = "pc_crystal_asteroid"
+		orbit_distance = 0
+		orbit_angle = 90
+		size = 8
+		has_ring = no
+		init_effect = {
+			set_deposit = d_rare_crystals_2
+		}
+	}
+
+	planet = {
+		class = "pc_crystal_asteroid"
+		orbit_distance = 0
+		orbit_angle = 90
+		size = 8
+		has_ring = no
+		init_effect = {
+			set_deposit = d_rare_crystals_1
+		}
+	}
+
+	planet = {
+		class = "pc_crystal_asteroid"
+		orbit_distance = 0
+		orbit_angle = 90
+		size = 8
+		has_ring = no
+		init_effect = {
+			set_deposit = d_rare_crystals_2
+		}
+	}
+
+	planet = {
+		class = "pc_crystal_asteroid"
+		orbit_distance = 40
+		orbit_angle = 45
+		size = 8
+		has_ring = no
+		init_effect = {
+			set_deposit = d_rare_crystals_2
+		}
+	}
+
+	planet = {
+		class = "pc_crystal_asteroid"
+		orbit_distance = 0
+		orbit_angle = 90
+		size = 8
+		has_ring = no
+		init_effect = {
+			set_deposit = d_rare_crystals_1
+		}
+	}
+
+	planet = {
+		class = "pc_crystal_asteroid"
+		orbit_distance = 0
+		orbit_angle = 90
+		size = 8
+		has_ring = no
+		init_effect = {
+			set_deposit = d_rare_crystals_2
+		}
+	}
+
+	planet = {
+		class = "pc_crystal_asteroid"
+		orbit_distance = 0
+		orbit_angle = 90
+		size = 8
+		has_ring = no
+		init_effect = {
+			set_deposit = d_rare_crystals_1
+		}
+	}
+
+	init_effect = {
+		random_system = {
+			limit = {
+				has_natural_wormhole = no
+				is_fe_cluster = no
+				NOR = {
+					has_star_flag = gts_ultra_system
+					has_star_flag = ultra_home_system
+				}
+			}
+			spawn_natural_wormhole = {
+				bypass_type = wormhole
+				random_pos = no
+				orbit_angle = 360
+			}
+			prev = {
+				spawn_natural_wormhole = {
+					bypass_type = wormhole
+					random_pos = no
+					orbit_angle = 270
+				}
+				link_wormholes = prev
+			}
+		}
+	}
+}
+gts_ultra_system_5 = {
+	#巨娘星系-带星门
+	class = rl_trinary_stars
+	flags = { 
+		gts_ultra_system 
+		gts_ultra_system_with_gateway
+	}
+
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 25
+		orbit_angle = 350
+		size = { min = 30 max = 35 }
+		has_ring = no
+	}
+
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = -50
+		orbit_angle = 10
+		size = { min = 25 max = 30 }
+		has_ring = no
+	}
+
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 60
+		orbit_angle = 80
+		size = { min = 15 max = 20 }
+		has_ring = no
+	}
+
+	change_orbit = 40
+
+	planet = {
+		class = random_non_colonizable
+		orbit_angle = { min = 0 max = 360 }
+		size = { min = 10 max = 25}
+		has_ring = no
+		change_orbit = 10
+	}
+
+	change_orbit = 30
+
+	planet = {
+		count = { min = 1 }
+		class = random_colonizable
+		size = { min = 12 max = 22 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+	}
+
+	planet = {
+		class = random_non_colonizable
+		orbit_distance = 30
+		orbit_angle = 80
+		size = 13
+		has_ring = no
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			class = random_non_colonizable
+			size = { min = 9 max = 11 }
+			orbit_distance = 2
+			has_ring = no
+		}
+		moon = {
+			class = random_non_colonizable
+			size = 6
+			orbit_distance = 5
+			orbit_angle = { min = 90 max = 270 }
+			has_ring = no
+		}
+	}
+
+	change_orbit = 30
+
+	planet = {
+		count = { min = 1 max = 2 }
+		class = random_non_colonizable
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+	}
+
+	planet = {
+		class = random_non_colonizable
+		orbit_distance = 30
+		orbit_angle = -160
+		size = { min = 10 max = 20}
+		has_ring = no
+		change_orbit = 6
+
+		moon = {
+			size = 9
+			orbit_distance = 2.5
+			orbit_angle = 80
+			has_ring = no
+		}
+	}
+
+	init_effect = {
+		spawn_megastructure = {
+			type = gateway_ruined
+			random_pos = yes
+			orbit_angle = 360
+		}
+	}
+}
+### 虫惑魔考古星系
+gts_traptirx_system = {
+	name = "NAME_gts_traptirx_system"
+	class = "sc_f"
+	max_instances = 1
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 125
+	}
+	planet = {
+		class = star
+		orbit_distance = 0
+	}
+	planet = {
+		class = "pc_molten"
+		orbit_distance = 35
+		orbit_angle = 40
+		size = 15
+		has_ring = no
+	}
+	planet = {
+		class = "pc_broken"
+		orbit_distance = 20
+		orbit_angle = 210
+		size = 25
+		has_ring = yes
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 20
+		orbit_angle = 70
+		size = 20
+		has_ring = no
+	}
+	planet = {
+		class = "pc_broken"
+		orbit_distance = 20
+		orbit_angle = 275
+		size = 15
+		has_ring = no
+	}
+	planet = {
+		class = "pc_asteroid"
+		orbit_distance = 30
+		orbit_angle = -210
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = -95
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = "pc_barren"
+		orbit_distance = 30
+		orbit_angle = 45
+		size = 20
+		has_ring = no
+	}
+	planet = {
+		class = "pc_tropical"
+		orbit_distance = 50
+		orbit_angle = 145
+		size = 35
+		has_ring = no
+		flags = {
+			gts_traptrix_homeworld
+		}
+		anomaly = gts_traptirx_anomaly
+	}
+	planet = {
+		class = "pc_gas_giant"
+		orbit_distance = 20
+		orbit_angle = 145
+		size = 20
+		has_ring = no
+		moon = {
+			class = "pc_frozen"
+			size = 8
+			orbit_distance = 12
+			orbit_angle = 320
+			has_ring = no
+		}
+		moon = {
+			class = "pc_frozen"
+			size = 8
+			orbit_distance = 4
+			orbit_angle = 150
+			has_ring = no
+		}
+	}
+	planet = {
+		class = "pc_gas_giant"
+		orbit_distance = 20
+		orbit_angle = 145
+		size = 25
+		has_ring = no
+		init_effect = {
+			prevent_anomaly = yes
+		}
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 20
+		orbit_angle = 45
+		size = 15
+		has_ring = no
+	}
+}
+
+### 遗迹之壹
+gts_uniform_shoes_system = {
+	name = "NAME_gts_uniform_shoes_system"
+	class = "sc_f"
+	#星系flag	
+	usage = misc_system_init	#用法
+	flags = {
+		gts_shoe_cabinet
+	}
+	# 仅在测试时候注释，如果忘了那就..
+	usage_odds = {
+		#出现概率
+		base = 90000
+		modifier = {
+			#没有远星dlc就不生成
+			factor = 0
+			has_distar = no
+		}
+		modifier = {
+			#XXX就不生成
+			factor = 0
+			is_fe_cluster = yes
+		}
+		modifier = {
+			#XXX就不生成
+			factor = 0
+			has_star_flag = empire_cluster
+		}
+	}
+	scaled_spawn_chance = 100	#有待研究 按比例生成几率？
+	max_instances = 1	#最多生成几个
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 125
+	}
+	planet = {
+		class = star
+		orbit_distance = 0
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 35
+		orbit_angle = 40
+		size = 15
+		has_ring = no
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 20
+		orbit_angle = 210
+		size = 25
+		has_ring = yes
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 20
+		orbit_angle = 70
+		size = 20
+		has_ring = no
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 20
+		orbit_angle = 275
+		size = 15
+		has_ring = no
+	}
+	planet = {
+		class = "pc_asteroid"
+		orbit_distance = 30
+		orbit_angle = -210
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = -95
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 30
+		orbit_angle = 45
+		size = 20
+		has_ring = no
+	}
+	planet = {
+		class = "pc_gts_uniform_shoes"
+		orbit_distance = 50
+		orbit_angle = 145
+		size = 35
+		has_ring = no
+		flags = {
+			gts_uniform_shoes
+			gts_clothes_planet
+			gts_shoes_planet
+		}
+		name = NAME_gts_uniform_shoes
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 20
+		orbit_angle = 145
+		size = 20
+		has_ring = no
+		moon = {
+			class = "pc_shattered"
+			size = 8
+			orbit_distance = 12
+			orbit_angle = 320
+			has_ring = no
+		}
+		moon = {
+			class = "pc_shattered"
+			size = 8
+			orbit_distance = 4
+			orbit_angle = 150
+			has_ring = no
+		}
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 20
+		orbit_angle = 145
+		size = 25
+		has_ring = no
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 20
+		orbit_angle = 45
+		size = 15
+		has_ring = no
+	}
+}
+### 遗迹之贰
+gts_laceup_heel_system = {
+	name = "NAME_gts_laceup_heel_system"
+	class = "sc_m"
+	#星系flag	
+	usage = misc_system_init	#用法
+	usage_odds = {
+		#出现概率
+		base = 90000
+		modifier = {
+			#没有远星dlc就不生成
+			factor = 0
+			has_distar = no
+		}
+		modifier = {
+			#XXX就不生成
+			factor = 0
+			is_fe_cluster = yes
+		}
+		modifier = {
+			#XXX就不生成
+			factor = 0
+			has_star_flag = empire_cluster
+		}
+	}
+	scaled_spawn_chance = 100	#有待研究 按比例生成几率？
+	max_instances = 1	#最多生成几个
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 125
+	}
+	planet = {
+		class = star
+		orbit_distance = 0
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 35
+		orbit_angle = 40
+		size = 15
+		has_ring = no
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 20
+		orbit_angle = 210
+		size = 25
+		has_ring = yes
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 20
+		orbit_angle = 70
+		size = 20
+		has_ring = no
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 20
+		orbit_angle = 275
+		size = 15
+		has_ring = no
+	}
+	planet = {
+		class = "pc_asteroid"
+		orbit_distance = 30
+		orbit_angle = -210
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = -95
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 30
+		orbit_angle = 45
+		size = 20
+		has_ring = no
+	}
+	planet = {
+		class = "pc_gts_laceup_heel"
+		orbit_distance = 50
+		orbit_angle = 145
+		size = 35
+		has_ring = no
+		flags = {
+			gts_laceup_heel
+			gts_clothes_planet
+			gts_shoes_planet
+		}
+		name = NAME_gts_laceup_heel
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 20
+		orbit_angle = 145
+		size = 20
+		has_ring = no
+		moon = {
+			class = "pc_shattered"
+			size = 8
+			orbit_distance = 12
+			orbit_angle = 320
+			has_ring = no
+		}
+		moon = {
+			class = "pc_shattered"
+			size = 8
+			orbit_distance = 4
+			orbit_angle = 150
+			has_ring = no
+		}
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 20
+		orbit_angle = 145
+		size = 25
+		has_ring = no
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 20
+		orbit_angle = 45
+		size = 15
+		has_ring = no
+	}
+}
+
+### 遗迹之叁
+
+gts_oscillator_system = {
+
+	# 跳蛋星系
+
+	name = "NAME_gts_oscillator_system"
+	class = sc_pulsar
+	#星系flag
+	flags = { gts_oscillator_system }
+	usage = misc_system_init	#用法
+	usage_odds = {
+		#出现概率
+		base = 90000
+		modifier = {
+			#没有远星dlc就不生成
+			factor = 0
+			has_distar = no
+		}
+		modifier = {
+			#XXX就不生成
+			factor = 0
+			is_fe_cluster = yes
+		}
+		modifier = {
+			#XXX就不生成
+			factor = 0
+			has_star_flag = empire_cluster
+		}
+	}
+	scaled_spawn_chance = 100	# 有待研究 按比例生成几率？
+	max_instances = 1	#最多生成几个
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 125
+	}
+	planet = {
+		class = pc_pulsar
+		orbit_distance = 0
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 35
+		orbit_angle = { min = 90 max = 270 }
+		size = 15
+		has_ring = no
+		init_effect = {
+			add_deposit = d_gts_giantess_fluid_3
+		}
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 20
+		orbit_angle = { min = 90 max = 270 }
+		size = 25
+		has_ring = yes
+		init_effect = {
+			add_deposit = d_gts_giantess_fluid_3
+		}
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 20
+		orbit_angle = { min = 90 max = 270 }
+		size = 20
+		has_ring = no
+		init_effect = {
+			add_deposit = d_gts_giantess_fluid_3
+		}
+	}
+	planet = {
+		count = 1
+		class = pc_gts_juice
+		size = 15
+		orbit_angle = { min = 90 max = 270 }
+		init_effect = {
+			prevent_anomaly = yes
+		}
+	}
+	planet = {
+		count = 1
+		class = pc_gts_juice
+		size = 30
+		orbit_angle = { min = 90 max = 270 }
+		init_effect = {
+			prevent_anomaly = yes
+		}
+	}
+	planet = {
+		class = "pc_gts_oscillator"
+		orbit_distance = 50
+		orbit_angle = 145
+		size = 35
+		has_ring = no
+		flags = {
+			gts_oscillator
+		}
+		name = NAME_gts_oscillator
+		init_effect = {
+			add_deposit = d_oscillator_surface
+			add_deposit = d_oscillator_ruin1
+			add_deposit = d_oscillator_ruin2
+			add_deposit = d_oscillator_ruin3
+		}
+	}
+}
+
+tlipoca_gts_system = {
+	#特莉波卡起始星系
+	name = "NAME_gts_tlipoca_system"	#名称 
+	class = sc_g	#级别
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 180
+	}
+	planet = {
+		name = "NAME_gts_tlipoca_system_1"
+		class = pc_black_hole
+		orbit_distance = 0
+		orbit_angle = 0
+	}
+	change_orbit = 60
+	planet = {
+		name = "NAME_gts_tlipoca_system_2"
+		class = "pc_ocean"
+		orbit_distance = 180
+		orbit_angle = -45
+		size = 40
+		has_ring = no
+		init_effect = {
+			#初始化效果
+			#prevent_anomaly = yes			#避免异常出现
+		}
+		moon = {
+			name = "NAME_gts_tlipoca_system_3"
+			class = "pc_frozen"
+			size = 25
+			orbit_distance = 60
+			orbit_angle = 270
+			has_ring = no
+			anomaly = gts_tlipoca_anomaly
+			flags = {
+				gts_tlipoca_homeworld
+			}
+		}
+	}
+}
+### 千海的获取星系
+gts_qhai_system = {
+	name = "NAME_gts_qhai_system"
+	class = "sc_black_hole"
+	max_instances = 1
+	flags = {
+		gts_qhai_system
+	}
+	usage = misc_system_init
+	# 测试时固定在首都边缘新建。
+	# 需要实现随机在星系中产生的逻辑。
+	prevent_anomalies = yes
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 60
+	}
+	planet = {
+		class = star
+		size = 1
+		orbit_distance = 0
+		name = gts_qhai_system.0
+	}
+	planet = {
+		class = pc_molten
+		name = gts_qhai_system.1
+		size = 12
+		orbit_distance = 30
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+	}
+	planet = {
+		class = pc_toxic
+		name = gts_qhai_system.2
+		size = 15
+		orbit_distance = 20
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+		has_ring = yes
+	}
+	planet = {
+		class = pc_nuked
+		name = gts_qhai_system.3
+		size = 24
+		orbit_distance = 20
+		has_ring = no
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+
+		moon = {
+			class = pc_gts_juice
+			name = gts_qhai_system.4
+			orbit_distance = 5
+			size = 6
+			has_ring = no
+			orbit_angle = {
+				min = 90
+				max = 270
+			}
+			init_effect = {
+				pc_gts_juice_change = yes
+				while = {
+					count = 2
+					remove_deposit = d_juice_ruin1
+					remove_deposit = d_juice_ruin2
+				}
+			}
+		}
+	}
+	planet = {
+		class = pc_gts_urine
+		name = gts_qhai_system.5
+		size = 30
+		init_effect = {
+			add_modifier = {
+				modifier = gts_urine_colony_1
+				days = -1
+			}
+			add_modifier = {
+				modifier = gts_urine_colony_2
+				days = -1
+			}
+			add_modifier = {
+				modifier = gts_urine_colony_3
+				days = -1
+			}
+			add_modifier = {
+				modifier = gts_urine_colony_4
+				days = -1
+			}
+			add_deposit = d_urine_ruin1
+			remove_building = building_colony_shelter
+			remove_building = building_capital
+			remove_building = building_major_capital
+			remove_building = building_system_capital
+			add_building = building_gts_bruh_urine_colony_shelter
+		}
+		orbit_distance = 40
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+	}
+}
+
+### 犽戎的体内
+gts_yarong_internal_system = {
+	name = "NAME_gts_yarong_internal_system"
+	class = "sc_black_hole"
+	max_instances = 1
+	flags = {
+		gts_yarong_internal_system
+	}
+	usage = misc_system_init
+	# 测试时固定在首都边缘新建。
+	# 需要实现随机在星系中产生的逻辑。
+	prevent_anomalies = yes
+	planet = {
+		class = star
+		orbit_distance = 0
+		size = 1
+		name = gts_yarong_internal_system.0
+		flags = {
+			gts_yarong_internal_star
+		}
+	}
+	planet = {
+		class = pc_gts_yarong
+		name = gts_yarong_internal_system.1
+		orbit_distance = 50
+		orbit_angle = 120
+		size = 300
+		has_ring = no
+		deposit_blockers = none		#是否有障碍物
+		flags = {
+			gts_yarong_internal_planet
+			gts_body_planet
+		}
+	}
+}
+gts_firefly_system = {
+	#苍穹战线格拉默
+	class = "sc_m"
+	name = "system_gts_firefly"
+	usage = misc_system_init	#用法
+	max_instances = 1	#最多生成几个
+	planet = {
+		#一个恒星
+		count = 1
+		class = "pc_m_giant_star"
+		orbit_distance = 0
+		orbit_angle = 1
+		size = 30
+		has_ring = no
+	}
+	planet = {
+		#几个行星
+		count = {
+			min = 2
+			max = 3
+		}
+		#生成2-3个
+		orbit_distance = {
+			min = 25
+			max = 40
+		}
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+		class = "pc_molten"
+		change_orbit = @base_moon_distance
+		moon = {
+			#行星的卫星
+			count = {
+				min = 0
+				max = 1
+			}
+			#生成0-1个
+			orbit_angle = {
+				min = 90
+				max = 270
+			}
+			orbit_distance = 5
+		}
+	}
+	planet = {
+		#一个行星
+		count = 1
+		name = "planet_gts_firefly"
+		class = "pc_nuked"
+		size = 35
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+		init_effect = {
+			#内部设置
+			create_archaeological_site = site_firefly_potral
+			add_deposit = d_noxious_swamp
+			add_deposit = d_radioactive_wasteland
+			add_deposit = d_exterminators_ruins
+			add_deposit = d_ruined_district
+			set_planet_flag = gts_hometown_planet
+			set_planet_flag = gts_firefly_planet_flag
+			set_global_flag = gts_firefly_started			#设置event_target
+		}
+	}
+	planet = {
+		#一个行星
+		count = 1
+		name = "gts_firefly_transform"
+		class = "pc_nuked"
+		size = 20
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
+		init_effect = {
+			#内部设置
+			add_deposit = d_radioactive_wasteland
+			add_deposit = d_exterminators_ruins
+			add_deposit = d_ruined_district
+			set_planet_flag = gts_hometown_planet
+			set_planet_flag = gts_firefly_planet_flag
+			set_planet_flag = gts_firefly_transform_flag			#设置event_target
+		}
+	}
+}
+
+#希诺考古星系
+gts_xinuo_system = {
+	class = rl_standard_stars
+	name = NAME_gts_xinuo_system
+	max_instances = 1
+	init_effect = {
+		every_system_planet = {
+			prevent_anomaly = yes
+		}
+	}
+	flags = {
+		gts_xinuo_system
+	}
+	asteroid_belt = {
+		type = crystal_asteroid_belt
+		radius = 150
+	}
+	asteroid_belt = {
+		type = crystal_asteroid_belt
+		radius = 300
+	}
+	planet = {
+		#name = random
+		class = pc_g_star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = 50
+		init_effect = {
+			add_deposit = d_energy_5
+		}
+	}
+	planet = {
+		name = NAME_gts_xinuo_planet
+		class = pc_continental
+		orbit_distance = 320
+		orbit_angle = 145
+		size = {
+			min = 15
+			max = 30
+		}
+		has_ring = yes
+		init_effect = {
+			add_anomaly = {
+				category = gts_xinuo_anomaly
+			}
+		}
+	}
+	planet = {
+		class = "pc_asteroid"
+		orbit_distance = 30
+		orbit_angle = -210
+		size = 5
+		has_ring = no
+	}
+
+	planet = {
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = -95
+		size = 5
+		has_ring = no
+	}
+
+	planet = {
+		class = "pc_barren"
+		orbit_distance = 30
+		orbit_angle = 45
+		size = 20
+		has_ring = no
+	}
+	spawn_chance = 0
+}
+
+
+gts_cyrene_shoes_system = {
+	name = "NAME_gts_cyrene_shoes_system"
+	class = "sc_m"
+	#星系flag
+	usage = misc_system_init	#用法
+	usage_odds = {
+		#出现概率
+		base = 90000
+		modifier = {
+			#没有远星dlc就不生成
+			factor = 0
+			has_distar = no
+		}
+		modifier = {
+			#XXX就不生成
+			factor = 0
+			is_fe_cluster = yes
+		}
+		modifier = {
+			#XXX就不生成
+			factor = 0
+			has_star_flag = empire_cluster
+		}
+	}
+	scaled_spawn_chance = 100	#有待研究 按比例生成几率？
+	max_instances = 1	#最多生成几个
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 125
+	}
+	planet = {
+		class = star
+		orbit_distance = 0
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 35
+		orbit_angle = 40
+		size = 15
+		has_ring = no
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 20
+		orbit_angle = 210
+		size = 25
+		has_ring = yes
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 20
+		orbit_angle = 70
+		size = 20
+		has_ring = no
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 20
+		orbit_angle = 275
+		size = 15
+		has_ring = no
+	}
+	planet = {
+		class = "pc_asteroid"
+		orbit_distance = 30
+		orbit_angle = -210
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = -95
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 30
+		orbit_angle = 45
+		size = 20
+		has_ring = no
+	}
+	planet = {
+		class = "pc_gts_cyrene_shoes_1"
+		orbit_distance = 50
+		orbit_angle = 145
+		size = 35
+		has_ring = no
+		flags = {
+			gts_cyrene_shoes_1
+			gts_clothes_planet
+			gts_shoes_planet
+		}
+		name = NAME_gts_cyrene_shoes
+		init_effect = {
+			add_deposit = d_cyrene_shoes_1
+			add_deposit = d_cyrene_shoes_2
+			add_modifier = {
+				modifier = gts_cyrene_shoes_1
+			}
+			add_modifier = {
+				modifier = gts_cyrene_shoes_2
+			}
+		}
+	}
+	planet = {
+		class = "pc_gts_cyrene_shoes_2"
+		orbit_distance = 20
+		orbit_angle = 145
+		size = 35
+		has_ring = no
+		flags = {
+			gts_cyrene_shoes_2
+			gts_clothes_planet
+			gts_shoes_planet
+		}
+		name = NAME_gts_cyrene_shoes
+		init_effect = {
+			add_deposit = d_cyrene_shoes_1
+			add_deposit = d_cyrene_shoes_2
+			add_modifier = {
+				modifier = gts_cyrene_shoes_1
+			}
+			add_modifier = {
+				modifier = gts_cyrene_shoes_2
+			}
+		}
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 20
+		orbit_angle = 145
+		size = 25
+		has_ring = no
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 20
+		orbit_angle = 45
+		size = 15
+		has_ring = no
+	}
+}
+
+gts_hitomi_system = {
+	class = rl_standard_stars
+	name = NAME_gts_hitomi_system
+	max_instances = 1
+	init_effect = {
+		every_system_planet = {
+			prevent_anomaly = yes
+		}
+	}
+	flags = {
+		gts_hitomi_system
+	}
+	asteroid_belt = {
+		type = crystal_asteroid_belt
+		radius = 150
+	}
+	asteroid_belt = {
+		type = crystal_asteroid_belt
+		radius = 300
+	}
+	planet = {
+		name = NAME_gts_hitomi_star
+		class = pc_pulsar
+		orbit_distance = 0
+		orbit_angle = 1
+		size = 50
+		init_effect = {
+			add_deposit = d_energy_5
+		}
+	}
+	planet = {
+		name = NAME_gts_hitomi_planet
+		class = pc_continental
+		orbit_distance = 320
+		orbit_angle = 145
+		size = {
+			min = 15
+			max = 30
+		}
+		has_ring = yes
+		deposit_blockers = none
+		modifiers = none
+		anomaly = gts_hitomi_anomaly
+		flags = {
+			gts_hitomi_planets
+		}
+		init_effect = {
+
+			# 種族與國家
+			create_species = {
+				name = NAME_Human
+				plural = NAME_Human_plural
+				class = "HUM"
+				portrait = "human"
+				homeworld = this
+				traits = {
+					trait = "trait_adaptive"
+					trait = "trait_nomadic"
+					trait = "trait_Normal"
+				}
+			}
+			create_country = {
+				name = random
+				authority = auth_democratic
+				civics = {
+					civic = civic_beacon_of_liberty
+					civic = civic_idealistic_foundation
+				}
+				species = last_created_species
+				ethos = {
+					ethic = "ethic_xenophile"
+					ethic = "ethic_fanatic_egalitarian"
+				}
+				origin = origin_default_pre_ftl
+				flag = {
+					icon = {
+						category = "ornate"
+						file = "flag_ornate_11.dds"
+					}
+					background = {
+						category = "backgrounds"
+						file = "00_solid.dds"
+					}
+					colors = {
+						"dark_blue"
+						"dark_blue"
+						"null"
+						"null"
+					}
+				}
+				day_zero_contact = no
+				type = primitive
+			}
+			last_created_country = {
+				set_graphical_culture = preindustrial_01
+				set_country_flag = atomic_age
+				set_country_flag = foo_hometown
+				set_country_flag = humans_atomic_age
+				set_pre_ftl_age = atomic_age
+			}
+			set_owner = last_created_country
+
+			# 星球細節
+			create_pop_group = {
+				species = last_created_species
+				size = @atomic_age_pops
+			}
+			reroll_deposits = yes
+			add_building = building_primitive_capital
+			add_building = building_primitive_factory
+			add_building = building_primitive_offices
+			add_building = building_primitive_research
+			add_building = building_urban_dwellings
+			while = {
+				count = 3
+				add_deposit = d_segment_rubble_1
+				add_district = district_city
+				add_district = district_generator
+				add_district = district_mining
+				add_district = district_farming
+			}
+		}
+	}
+	planet = {
+		class = "pc_asteroid"
+		orbit_distance = 30
+		orbit_angle = -210
+		size = 5
+		has_ring = no
+		init_effect = {
+			add_deposit = d_minerals_2
+		}
+	}
+
+	planet = {
+		name = NAME_gts_hitomi_planet1
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = -95
+		size = 5
+		has_ring = no
+	}
+
+	planet = {
+		name = NAME_gts_hitomi_planet2
+		class = "pc_barren"
+		orbit_distance = 30
+		orbit_angle = 45
+		size = 20
+		has_ring = no
+		init_effect = {
+			add_deposit = d_minerals_4
+		}
+		moon = {
+			name =NAME_gts_hitomi_planet02
+
+		}
+	}
+	planet = {
+		class = "pc_shattered"
+		name = NAME_gts_hitomi_planet3
+		orbit_distance = 35
+		orbit_angle = 40
+		size = 15
+		has_ring = no
+		moon = {
+			name =NAME_gts_hitomi_planet03
+		}
+	}
+	planet = {
+		name = NAME_gts_hitomi_planet4
+		class = "pc_broken"
+		orbit_distance = 20
+		orbit_angle = 210
+		size = 25
+		has_ring = yes
+	}
+	planet = {
+		name = NAME_gts_hitomi_planet5
+		class = "pc_frozen"
+		orbit_distance = 20
+		orbit_angle = 70
+		size = 20
+		has_ring = no
+	}
+	planet = {
+		class = "pc_asteroid"
+		orbit_distance = 40
+		orbit_angle = -95
+		size = 5
+		has_ring = no
+		init_effect = {
+			add_deposit = d_minerals_1
+		}
+	}
+	spawn_chance = 0
+}
+
+gts_linfeng_shoes1_system = {
+	name = "NAME_gts_linfeng_shoes1_system"
+	class = "sc_f"
+	max_instances = 0
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 125
+	}
+	planet = {
+		class = star
+		orbit_distance = 0
+	}
+	planet = {
+		class = "pc_molten"
+		orbit_distance = 35
+		orbit_angle = 40
+		size = 15
+		has_ring = no
+	}
+	planet = {
+		class = "pc_broken"
+		orbit_distance = 20
+		orbit_angle = 210
+		size = 25
+		has_ring = yes
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 20
+		orbit_angle = 70
+		size = 20
+		has_ring = no
+	}
+	planet = {
+		class = "pc_broken"
+		orbit_distance = 20
+		orbit_angle = 275
+		size = 15
+		has_ring = no
+	}
+	planet = {
+		class = "pc_asteroid"
+		orbit_distance = 30
+		orbit_angle = -210
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = -95
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = "pc_barren"
+		orbit_distance = 30
+		orbit_angle = 45
+		size = 20
+		has_ring = no
+	}
+	planet = {
+		class = "pc_gts_linfeng_shoes1_planet"
+		orbit_distance = 50
+		orbit_angle = -60
+		size = 40
+		has_ring = no
+		name = NAME_gts_linfeng_shoes1
+		flags = {
+			gts_clothes_planet
+			gts_shoes_planet
+		}
+		init_effect = {
+			prevent_anomaly = yes
+			add_deposit = d_linfeng_shoes_1
+			add_deposit = d_linfeng_shoes_2
+			add_modifier = {
+				modifier = gts_linfeng_shoes_1
+			}
+			add_modifier = {
+				modifier = gts_linfeng_shoes_2
+			}
+		}
+	}
+	planet = {
+		class = "pc_gas_giant"
+		orbit_distance = 20
+		orbit_angle = 145
+		size = 20
+		has_ring = no
+		moon = {
+			class = "pc_frozen"
+			size = 8
+			orbit_distance = 12
+			orbit_angle = 320
+			has_ring = no
+		}
+		moon = {
+			class = "pc_frozen"
+			size = 8
+			orbit_distance = 4
+			orbit_angle = 150
+			has_ring = no
+		}
+	}
+	planet = {
+		class = "pc_gas_giant"
+		orbit_distance = 20
+		orbit_angle = 145
+		size = 25
+		has_ring = no
+		init_effect = {
+			prevent_anomaly = yes
+		}
+	}
+	planet = {
+		class = "pc_gts_linfeng_shoes1_planet"
+		orbit_distance = 250
+		orbit_angle = 300
+		size = 40
+		has_ring = no
+		name = NAME_gts_linfeng_shoes1
+		flags = {
+			gts_clothes_planet
+			gts_shoes_planet
+		}
+		init_effect = {
+			prevent_anomaly = yes
+			add_deposit = d_linfeng_shoes_1
+			add_deposit = d_linfeng_shoes_2
+			add_modifier = {
+				modifier = gts_linfeng_shoes_1
+			}
+			add_modifier = {
+				modifier = gts_linfeng_shoes_2
+			}
+		}
+	}
+}
+
+gts_linfeng_shoes2_system = {
+	name = "NAME_gts_linfeng_shoes2_system"
+	class = "sc_f"
+	max_instances = 0
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 125
+	}
+	planet = {
+		class = star
+		orbit_distance = 0
+	}
+	planet = {
+		class = "pc_molten"
+		orbit_distance = 35
+		orbit_angle = 40
+		size = 15
+		has_ring = no
+	}
+	planet = {
+		class = "pc_broken"
+		orbit_distance = 20
+		orbit_angle = 210
+		size = 25
+		has_ring = yes
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 20
+		orbit_angle = 70
+		size = 20
+		has_ring = no
+	}
+	planet = {
+		class = "pc_broken"
+		orbit_distance = 20
+		orbit_angle = 275
+		size = 15
+		has_ring = no
+	}
+	planet = {
+		class = "pc_asteroid"
+		orbit_distance = 30
+		orbit_angle = -210
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = -95
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = "pc_barren"
+		orbit_distance = 30
+		orbit_angle = 45
+		size = 20
+		has_ring = no
+	}
+	planet = {
+		class = "pc_gts_linfeng_shoes2_planet"
+		orbit_distance = 50
+		orbit_angle = 30
+		size = 40
+		has_ring = no
+		name = NAME_gts_linfeng_shoes2
+		flags = {
+			gts_clothes_planet
+			gts_shoes_planet
+		}
+		init_effect = {
+			prevent_anomaly = yes
+			add_deposit = d_linfeng_shoes_1
+			add_deposit = d_linfeng_shoes_2
+			add_modifier = {
+				modifier = gts_linfeng_shoes_1
+			}
+			add_modifier = {
+				modifier = gts_linfeng_shoes_4
+			}
+		}
+	}
+	planet = {
+		class = "pc_gas_giant"
+		orbit_distance = 20
+		orbit_angle = 145
+		size = 20
+		has_ring = no
+		moon = {
+			class = "pc_frozen"
+			size = 8
+			orbit_distance = 12
+			orbit_angle = 320
+			has_ring = no
+		}
+		moon = {
+			class = "pc_frozen"
+			size = 8
+			orbit_distance = 4
+			orbit_angle = 150
+			has_ring = no
+		}
+	}
+	planet = {
+		class = "pc_gas_giant"
+		orbit_distance = 20
+		orbit_angle = 145
+		size = 25
+		has_ring = no
+		init_effect = {
+			prevent_anomaly = yes
+		}
+	}
+	planet = {
+		class = "pc_gts_linfeng_shoes2_planet"
+		orbit_distance = 20
+		orbit_angle = 45
+		size = 40
+		has_ring = no
+		name = NAME_gts_linfeng_shoes2
+		flags = {
+			gts_clothes_planet
+			gts_shoes_planet
+		}
+		init_effect = {
+			prevent_anomaly = yes
+			add_deposit = d_linfeng_shoes_1
+			add_deposit = d_linfeng_shoes_2
+			add_modifier = {
+				modifier = gts_linfeng_shoes_1
+			}
+			add_modifier = {
+				modifier = gts_linfeng_shoes_4
+			}
+		}
+	}
+}
+
+gts_linfeng_shoes3_system = {
+	name = "NAME_gts_linfeng_shoes3_system"
+	class = "sc_f"
+	max_instances = 0
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 125
+	}
+	planet = {
+		class = star
+		orbit_distance = 0
+	}
+	planet = {
+		class = "pc_molten"
+		orbit_distance = 35
+		orbit_angle = 40
+		size = 15
+		has_ring = no
+	}
+	planet = {
+		class = "pc_broken"
+		orbit_distance = 20
+		orbit_angle = 210
+		size = 25
+		has_ring = yes
+	}
+	planet = {
+		class = "pc_shattered"
+		orbit_distance = 20
+		orbit_angle = 70
+		size = 20
+		has_ring = no
+	}
+	planet = {
+		class = "pc_broken"
+		orbit_distance = 20
+		orbit_angle = 275
+		size = 15
+		has_ring = no
+	}
+	planet = {
+		class = "pc_asteroid"
+		orbit_distance = 30
+		orbit_angle = -210
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = -95
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = "pc_barren"
+		orbit_distance = 30
+		orbit_angle = 45
+		size = 20
+		has_ring = no
+	}
+	planet = {
+		class = "pc_gts_linfeng_shoes3_planet"
+		orbit_distance = 50
+		orbit_angle = 0
+		size = 40
+		has_ring = no
+		name = NAME_gts_linfeng_shoes3
+		flags = {
+			gts_clothes_planet
+			gts_shoes_planet
+		}
+		init_effect = {
+			prevent_anomaly = yes
+			add_deposit = d_linfeng_shoes_1
+			add_deposit = d_linfeng_shoes_2
+			add_modifier = {
+				modifier = gts_linfeng_shoes_1
+			}
+			add_modifier = {
+				modifier = gts_linfeng_shoes_3
+			}
+		}
+	}
+	planet = {
+		class = "pc_gas_giant"
+		orbit_distance = 20
+		orbit_angle = 145
+		size = 20
+		has_ring = no
+		moon = {
+			class = "pc_frozen"
+			size = 8
+			orbit_distance = 12
+			orbit_angle = 320
+			has_ring = no
+		}
+		moon = {
+			class = "pc_frozen"
+			size = 8
+			orbit_distance = 4
+			orbit_angle = 150
+			has_ring = no
+		}
+	}
+	planet = {
+		class = "pc_gas_giant"
+		orbit_distance = 20
+		orbit_angle = 145
+		size = 25
+		has_ring = no
+		init_effect = {
+			prevent_anomaly = yes
+		}
+	}
+	planet = {
+		class = "pc_gts_linfeng_shoes3_planet"
+		orbit_distance = 70
+		orbit_angle = -60
+		size = 40
+		has_ring = no
+		name = NAME_gts_linfeng_shoes3
+		flags = {
+			gts_clothes_planet
+			gts_shoes_planet
+		}
+		init_effect = {
+			prevent_anomaly = yes
+			add_deposit = d_linfeng_shoes_1
+			add_deposit = d_linfeng_shoes_2
+			add_modifier = {
+				modifier = gts_linfeng_shoes_1
+			}
+			add_modifier = {
+				modifier = gts_linfeng_shoes_3
+			}
+		}
+	}
+}
+gts_ora_system = {
+	name = "NAME_gts_ora_system"
+	class = "sc_k"
+	max_instances = 1
+	flags = {
+		gts_ora_system
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 125
+	}
+	planet = {
+		class = star
+		orbit_distance = 0
+		init_effect = {
+			set_planet_flag = gts_ora_star
+		}
+	}
+	planet = {
+		name = NAME_gts_ora_planet5
+		class = "pc_shattered"
+		size = 20
+		has_ring = no
+	}
+	planet = {
+		name = "NAME_gts_ora_planet4"
+		class = "pc_barren"
+		has_ring = no
+		init_effect = {
+		}
+	}
+	planet = {
+		name = NAME_gts_ora_planet3
+		count = 1
+		flags = {
+		}
+		class = "pc_continental"
+		deposit_blockers = none
+		modifiers = none
+		init_effect = {
+			# 種族與國家
+			create_species = {
+				name = NAME_Human
+				plural = NAME_Human_plural
+				class = "HUM"
+				portrait = "human"
+				homeworld = this
+				traits = {
+					trait = "trait_adaptive"
+					trait = "trait_nomadic"
+					trait = "trait_Normal"
+				}
+			}
+			create_country = {
+				name = random
+				authority = auth_democratic
+				civics = {
+					civic = civic_beacon_of_liberty
+					civic = civic_idealistic_foundation
+				}
+				species = last_created_species
+				ethos = {
+					ethic = "ethic_xenophile"
+					ethic = "ethic_fanatic_egalitarian"
+				}
+				origin = origin_default_pre_ftl
+				flag = {
+					icon = {
+						category = "ornate"
+						file = "flag_ornate_11.dds"
+					}
+					background = {
+						category = "backgrounds"
+						file = "00_solid.dds"
+					}
+					colors = {
+						"dark_blue"
+						"dark_blue"
+						"null"
+						"null"
+					}
+				}
+				day_zero_contact = no
+				type = primitive
+			}
+			last_created_country = {
+				set_graphical_culture = preindustrial_01
+				set_country_flag = atomic_age
+				set_country_flag = foo_hometown
+				set_country_flag = humans_atomic_age
+				set_pre_ftl_age = atomic_age
+			}
+			set_owner = last_created_country
+
+			# 星球細節
+			create_pop_group = {
+				species = last_created_species
+				size = @atomic_age_pops
+			}
+			reroll_deposits = yes
+			add_building = building_primitive_capital
+			add_building = building_primitive_factory
+			add_building = building_primitive_offices
+			add_building = building_primitive_research
+			add_building = building_urban_dwellings
+			while = {
+				count = 3
+				add_deposit = d_segment_rubble_1
+				add_district = district_city
+				add_district = district_generator
+				add_district = district_mining
+				add_district = district_farming
+			}
+		}
+	}
+	planet = {
+		class = "pc_ocean"
+		name = NAME_gts_ora_planet2
+		orbit_distance = 30
+		orbit_angle = 45
+		size = 20
+		has_ring = no
+		anomaly = gts_ora_anomaly
+		flags = {
+			gts_ora_homeworld
+			gts_hometown_planet
+		}
+		init_effect = {
+			save_global_event_target_as = NAME_gts_ora_planet2
+			add_deposit = gts_d_straw_planet1
+			add_deposit = gts_d_straw_planet1
+			add_deposit = gts_d_straw_planet1
+			add_deposit = gts_d_straw_planet2
+		}
+	}
+	planet = {
+		class = "pc_continental"
+		name = NAME_gts_ora_planet1
+		orbit_distance = 50
+		orbit_angle = 145
+		size = 35
+		has_ring = no
+	}
+}
+gts_qinwen_system = {
+	name = "NAME_gts_qinwen_system"
+	class = "sc_k"
+	max_instances = 1
+	flags = {
+		gts_qinwen_system
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 125
+	}
+	planet = {
+		class = star
+		name = NAME_gts_qinwen_star
+		orbit_distance = 0
+
+	}
+	planet = {
+		class = "pc_arctic"
+		name = NAME_gts_qinwen_planet
+		init_effect = {
+			save_global_event_target_as = qinwen_home_planet
+			prevent_anomaly = yes
+			set_planet_flag = qinwen_home_planet
+			add_anomaly = {
+				category = gts_qinwen_anomaly
+			}
+		}
+	}
+	planet = {
+		class = "pc_arctic"
+	}
+	planet = {
+		class = "pc_arctic"
+	}
+	planet = {
+		class = "pc_arctic"
+	}
+}
+
+gts_oversystem_leather_shoes_system = {
+	name = "oversystem_leather_shoes_system"
+	class = "sc_gts_leather_shoes_star"
+	#星系flag
+	flags = {
+		oversystem_leather_shoes_system
+	}
+	usage = misc_system_init	#用法
+	usage_odds = {
+		#出现概率
+		base = 30
+	}
+	change_orbit = 45
+	scaled_spawn_chance = 100	#有待研究 按比例生成几率？
+	max_instances = 1	#最多生成几个
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 125
+	}
+	planet = {
+		class = pc_neutron_star
+		orbit_distance = 0
+		size = 0
+		orbit_angle = 40
+	}
+	planet = {
+		class = pc_shattered
+		orbit_distance = 0
+		size = 0
+		orbit_angle = 40
+	}
+	planet = {
+		class = pc_shattered
+		init_effect = {
+			prevent_anomaly = yes			#避免异常出现
+		}
+	}
+	planet = {
+		class = pc_shattered
+		init_effect = {
+			prevent_anomaly = yes			#避免异常出现
+		}
+	}
+	planet = {
+		class = pc_shattered
+		init_effect = {
+			prevent_anomaly = yes			#避免异常出现
+		}
+	}
+	planet = {
+		class = pc_shattered
+		init_effect = {
+			prevent_anomaly = yes			#避免异常出现
+		}
+	}
+	planet = {
+		class = pc_shattered
+		init_effect = {
+			prevent_anomaly = yes			#避免异常出现
+		}
+	}
+	planet = {
+		class = pc_shattered
+		init_effect = {
+			prevent_anomaly = yes			#避免异常出现
+		}
+	}
+	planet = {
+		class = "pc_gts_dirt2"
+		init_effect = {
+			prevent_anomaly = yes			#避免异常出现
+		}
+		orbit_distance = 35
+		orbit_angle = 40
+		size = 15
+		has_ring = no
+	}
+	planet = {
+		class = "pc_shattered"
+		init_effect = {
+			prevent_anomaly = yes			#避免异常出现
+		}
+		orbit_distance = 20
+		orbit_angle = 210
+		size = 25
+		has_ring = yes
+	}
+	planet = {
+		class = pc_shattered
+		init_effect = {
+			prevent_anomaly = yes			#避免异常出现
+		}
+	}
+	planet = {
+		class = pc_shattered
+		init_effect = {
+			prevent_anomaly = yes			#避免异常出现
+		}
+	}
+	planet = {
+		class = pc_gts_dirt4
+		init_effect = {
+			prevent_anomaly = yes			#避免异常出现
+		}
+	}
+	planet = {
+		class = pc_shattered
+		init_effect = {
+			prevent_anomaly = yes			#避免异常出现
+		}
+	}
+	planet = {
+		class = "pc_shattered"
+		init_effect = {
+			prevent_anomaly = yes			#避免异常出现
+		}
+		orbit_distance = 20
+		orbit_angle = 70
+		size = 20
+		has_ring = no
+	}
+	planet = {
+		class = "pc_gts_dirt3"
+		init_effect = {
+			prevent_anomaly = yes			#避免异常出现
+		}
+		orbit_distance = 20
+		orbit_angle = 275
+		size = 15
+		has_ring = no
+	}
+	planet = {
+		class = "pc_asteroid"
+		init_effect = {
+			prevent_anomaly = yes			#避免异常出现
+		}
+		orbit_distance = 30
+		orbit_angle = -210
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = "pc_asteroid"
+		init_effect = {
+			prevent_anomaly = yes			#避免异常出现
+		}
+		orbit_distance = 0
+		orbit_angle = -95
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = "pc_gts_dirt0"
+		init_effect = {
+			prevent_anomaly = yes			#避免异常出现
+		}
+		orbit_distance = 30
+		orbit_angle = 45
+		size = 20
+		has_ring = no
+	}
+	planet = {
+		class = "pc_shattered"
+		init_effect = {
+			prevent_anomaly = yes			#避免异常出现
+		}
+		orbit_distance = 50
+		orbit_angle = 145
+		size = 35
+		has_ring = no
+	}
+	planet = {
+		class = "pc_shattered"
+		init_effect = {
+			prevent_anomaly = yes			#避免异常出现
+		}
+		orbit_distance = 50
+		orbit_angle = 145
+		size = 35
+		has_ring = no
+	}
+	planet = {
+		class = "pc_shattered"
+		init_effect = {
+			prevent_anomaly = yes			#避免异常出现
+		}
+		orbit_distance = 20
+		orbit_angle = 145
+		size = 25
+		has_ring = no
+	}
+	planet = {
+		class = "pc_gts_dirt0"
+		init_effect = {
+			prevent_anomaly = yes			#避免异常出现
+		}
+		orbit_distance = 20
+		orbit_angle = 45
+		size = 15
+		has_ring = no
+	}
+}
+
+gts_oversystem_leather_shoes_system_2 = {
+	name = "oversystem_leather_shoes_system"
+	class = "sc_gts_leather_shoes_star"
+	#星系flag
+	flags = {
+		oversystem_leather_shoes_system_2
+	}
+	usage = misc_system_init	#用法
+	usage_odds = {
+		#出现概率
+		base = 0
+	}
+	change_orbit = 45
+	scaled_spawn_chance = 100	#有待研究 按比例生成几率？
+	max_instances = 0	#最多生成几个
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 125
+	}
+	planet = {
+		class = pc_neutron_star
+		orbit_distance = 0
+		size = 0
+		orbit_angle = 40
+	}
+	planet = {
+		class = pc_shattered
+		orbit_distance = 0
+		size = 0
+		orbit_angle = 40
+	}
+	planet = {
+		class = pc_shattered
+		init_effect = {
+			prevent_anomaly = yes			#避免异常出现
+		}
+	}
+	planet = {
+		class = pc_shattered
+		init_effect = {
+			prevent_anomaly = yes			#避免异常出现
+		}
+	}
+	planet = {
+		class = pc_shattered
+		init_effect = {
+			prevent_anomaly = yes			#避免异常出现
+		}
+	}
+	planet = {
+		class = pc_shattered
+		init_effect = {
+			prevent_anomaly = yes			#避免异常出现
+		}
+	}
+	planet = {
+		class = pc_shattered
+		init_effect = {
+			prevent_anomaly = yes			#避免异常出现
+		}
+	}
+	planet = {
+		class = "pc_shattered"
+		init_effect = {
+			prevent_anomaly = yes			#避免异常出现
+		}
+		orbit_distance = 35
+		orbit_angle = 40
+		size = 15
+		has_ring = no
+	}
+	planet = {
+		class = "pc_shattered"
+		init_effect = {
+			prevent_anomaly = yes			#避免异常出现
+		}
+		orbit_distance = 20
+		orbit_angle = 210
+		size = 25
+		has_ring = yes
+	}
+	planet = {
+		class = pc_shattered
+		init_effect = {
+			prevent_anomaly = yes			#避免异常出现
+		}
+	}
+	planet = {
+		class = pc_shattered
+		init_effect = {
+			prevent_anomaly = yes			#避免异常出现
+		}
+	}
+	planet = {
+		class = pc_shattered
+		init_effect = {
+			prevent_anomaly = yes			#避免异常出现
+		}
+	}
+	planet = {
+		class = pc_shattered
+		init_effect = {
+			prevent_anomaly = yes			#避免异常出现
+		}
+	}
+	planet = {
+		class = "pc_shattered"
+		init_effect = {
+			prevent_anomaly = yes			#避免异常出现
+		}
+		orbit_distance = 20
+		orbit_angle = 70
+		size = 20
+		has_ring = no
+	}
+	planet = {
+		class = "pc_gts_dirt3"
+		init_effect = {
+			prevent_anomaly = yes			#避免异常出现
+		}
+		orbit_distance = 20
+		orbit_angle = 275
+		size = 15
+		has_ring = no
+	}
+	planet = {
+		class = "pc_asteroid"
+		init_effect = {
+			prevent_anomaly = yes			#避免异常出现
+		}
+		orbit_distance = 30
+		orbit_angle = -210
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = "pc_asteroid"
+		init_effect = {
+			prevent_anomaly = yes			#避免异常出现
+		}
+		orbit_distance = 0
+		orbit_angle = -95
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = "pc_gts_dirt0"
+		init_effect = {
+			prevent_anomaly = yes			#避免异常出现
+		}
+		orbit_distance = 30
+		orbit_angle = 45
+		size = 20
+		has_ring = no
+	}
+	planet = {
+		class = "pc_shattered"
+		init_effect = {
+			prevent_anomaly = yes			#避免异常出现
+		}
+		orbit_distance = 50
+		orbit_angle = 145
+		size = 35
+		has_ring = no
+	}
+	planet = {
+		class = "pc_shattered"
+		init_effect = {
+			prevent_anomaly = yes			#避免异常出现
+		}
+		orbit_distance = 50
+		orbit_angle = 145
+		size = 35
+		has_ring = no
+	}
+	planet = {
+		class = "pc_shattered"
+		init_effect = {
+			prevent_anomaly = yes			#避免异常出现
+		}
+		orbit_distance = 20
+		orbit_angle = 145
+		size = 25
+		has_ring = no
+	}
+	planet = {
+		class = "pc_shattered"
+		init_effect = {
+			prevent_anomaly = yes			#避免异常出现
+		}
+		orbit_distance = 20
+		orbit_angle = 45
+		size = 15
+		has_ring = no
+	}
+}
+gts_mitsuki_hitomi_system = {
+
+	# 三月 开战星系
+
+	class = "sc_black_hole"	#等级：联星
+	name = "gts_mitsuki_hitomi_system"
+	flags = {
+		gts_mitsuki_hitomi_system
+	}
+	#星系flag
+	planet = {
+		#一个恒星
+		count = 1
+		name = "gts_mitsuki_hitomi_star"
+		class = star
+		size = 100
+		init_effect = {
+			create_country = {
+				name = NAME_gts_Mitsuki_Hitomi_0
+				type = faction
+				effect = {
+					set_country_flag = gts_mitsuki_hitomi_country_flag_0
+				}
+			}
+			last_created_country = {
+				add_modifier = {
+					modifier = "gts_level_1_modifier"
+					days = -1
+				}
+				add_modifier = {
+					modifier = "gts_bruh_shipgirl_country_debuff_1"
+					days = -1
+				}
+				create_fleet = {
+					name = "NAME_gts_Mitsuki_Hitomi_0"
+					settings = {
+						spawn_debris = no
+						#is_boss = yes
+					}
+					effect = {
+						set_owner = PREV
+						while = {
+							count = 30
+							create_ship = {
+								name = "NAME_gts_Mitsuki_Hitomi_0"
+								design = "NAME_Scholar"
+							}
+						}
+						set_location = prevprevprev
+						set_fleet_stance = aggressive
+						set_aggro_range_measure_from = self
+						set_aggro_range = 500
+						save_global_event_target_as = gts_Mitsuki_Hitomi_fleet_0
+						set_fleet_flag = gts_Mitsuki_Hitomi_fleet_0
+					}
+				}
+			}
+		}
+		init_effect = {
+			save_global_event_target_as = gts_mitsuki_hitomi_star
+			prevent_anomaly = yes			#避免异常出现
+			#以下为生成残骸
+			while = {
+				count = 30
+				create_ambient_object = {
+					type = "large_debris_object"
+					entity_offset_height = { min = -0 max = -25 }
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 45
+						angle = random
+					}
+				}
+			}
+			while = {
+				count = 50
+				create_ambient_object = {
+					type = "medium_debris_01_object"
+					entity_offset_height = { min = -0 max = -25 }
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 45
+						angle = random
+					}
+				}
+			}
+			while = {
+				count = 50
+				create_ambient_object = {
+					type = "medium_debris_02_object"
+					entity_offset_height = { min = -0 max = -25 }
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 45
+						angle = random
+					}
+				}
+			}
+			while = {
+				count = 100
+				create_ambient_object = {
+					type = "small_debris_object"
+					entity_offset_height = { min = -0 max = -25 }
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 45
+						angle = random
+					}
+				}
+			}
+		}
+	}
+}

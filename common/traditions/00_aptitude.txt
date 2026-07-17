@@ -1,0 +1,258 @@
+tr_aptitude_adopt = {
+#	custom_tooltip = tr_aptitude_adopt_desc
+	unlocks_agenda = agenda_leadership_conditioning
+	modifier = {
+		leader_trait_selection_options_add = 1
+	}
+}
+
+tr_aptitude_finish = {
+	custom_tooltip_with_modifiers = tr_aptitude_adopt_desc
+
+	on_enabled = {
+		hidden_effect = {
+			every_owned_leader = {
+				add_trait = {
+					trait = random_common
+					show_message = yes
+				}
+			}
+			every_pool_leader = {
+				add_trait = {
+					trait = random_common
+					show_message = no
+				}
+			}
+		}
+	}
+
+	triggered_modifier = {
+		potential = {
+			always = yes
+		}
+		ascension_perks_add = 1
+	}
+}
+
+tr_aptitude_the_empire_needs_you = {
+	modifier = {
+		leaders_cost_mult = -0.25
+		country_leader_pool_size = 1
+	}
+	ai_weight = { factor = 1000 }
+
+	tradition_swap = {
+		name = tr_aptitude_the_empire_needs_you_gts
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_giantess_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+	tradition_swap = {
+		name = tr_aptitude_the_empire_needs_you_tiny
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_tiny_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	inline_script = {
+		script = paragon/tradition_swap_desc_hive
+		tradition = tr_aptitude_the_empire_needs_you
+	}
+	inline_script = {
+		script = paragon/tradition_swap_desc_machine
+		tradition = tr_aptitude_the_empire_needs_you
+	}
+}
+
+tr_aptitude_specialist_training = {
+	custom_tooltip = tr_aptitude_specialist_training_tt
+
+	modifier = {
+	}
+	ai_weight = { factor = 1000 }
+
+	tradition_swap = {
+		name = tr_aptitude_specialist_training_gts
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_giantess_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+	tradition_swap = {
+		name = tr_aptitude_specialist_training_tiny
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_tiny_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_aptitude_specialist_training_hive
+		inherit_icon = yes
+		trigger = { is_hive_empire = yes }
+		custom_tooltip = tr_aptitude_specialist_training_gestalt_tt
+		modifier = {
+		}
+	}
+
+	tradition_swap = {
+		name = tr_aptitude_specialist_training_machine
+		inherit_icon = yes
+		trigger = { is_machine_empire = yes }
+		custom_tooltip = tr_aptitude_specialist_training_gestalt_tt
+		modifier = {
+		}
+	}
+}
+
+tr_aptitude_psychological_profiling = {
+	custom_tooltip = BLANK_STRING	# Since the Modifier uses only a scripted modifier, we'll get an error without a custom tooltip.
+
+	possible = { has_tradition = tr_aptitude_the_empire_needs_you }
+	modifier = {
+		negative_traits_country = -1
+		country_commander_cap_add = 1
+		country_official_cap_add = 1
+		country_scientist_cap_add = 1
+	}
+	ai_weight = { factor = 1000 }
+
+	inline_script = {
+		script = paragon/tradition_swap_desc_hive
+		tradition = tr_aptitude_psychological_profiling
+	}
+	inline_script = {
+		script = paragon/tradition_swap_desc_machine
+		tradition = tr_aptitude_psychological_profiling
+	}
+
+	tradition_swap = {
+		name = tr_aptitude_psychological_profiling_gts
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_giantess_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+	tradition_swap = {
+		name = tr_aptitude_psychological_profiling_tiny
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_tiny_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+}
+
+tr_aptitude_healthcare_program = {
+	possible = { has_tradition = tr_aptitude_the_empire_needs_you }
+	modifier = {
+		leader_lifespan_mult = 0.10
+		leaders_upkeep_mult = -0.25
+	}
+	ai_weight = { factor = 1000 }
+
+	inline_script = {
+		script = paragon/tradition_swap_desc_hive
+		tradition = tr_aptitude_healthcare_program
+	}
+	inline_script = {
+		script = paragon/tradition_swap_desc_machine
+		tradition = tr_aptitude_healthcare_program
+	}
+
+	tradition_swap = {
+		name = tr_aptitude_healthcare_program_gts
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_giantess_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+	tradition_swap = {
+		name = tr_aptitude_healthcare_program_tiny
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_tiny_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+}
+
+tr_aptitude_champions_of_the_empire = {
+	possible = { has_tradition = tr_aptitude_specialist_training }
+	modifier = {
+		leader_skill_add = 1
+	}
+	ai_weight = { factor = 1000 }
+
+	inline_script = {
+		script = paragon/tradition_swap_desc_hive
+		tradition = tr_aptitude_champions_of_the_empire
+	}
+	inline_script = {
+		script = paragon/tradition_swap_desc_machine
+		tradition = tr_aptitude_champions_of_the_empire
+	}
+
+	tradition_swap = {
+		name = tr_aptitude_champions_of_the_empire_gts
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_giantess_empire = yes
+		}
+		weight = {
+			factor = 1
+		}
+	}
+	tradition_swap = {
+		name = tr_aptitude_champions_of_the_empire_tiny
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_tiny_empire = yes
+		}
+		weight = {
+			factor = 1
+		}
+	}
+}

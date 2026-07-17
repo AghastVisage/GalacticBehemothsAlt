@@ -1,0 +1,511 @@
+# 创建巨娘舰队
+# scope = country
+call_gts_fleet = {
+    # design = 舰船设计
+    # name = gts_xxxx
+    hidden_effect = {
+        if = { #若舰船已存在，但不受当前国家控制
+            limit = {
+                exists = event_target:$name$_ship
+                event_target:$name$_ship = {
+                    NOT = { is_controlled_by = prev }
+                }
+            }
+            event_target:$name$_ship= {
+                if = {
+                    limit = { exists = leader }
+                    leader = { unassign_leader = this }
+                }
+                delete_ship = this
+                clear_global_event_target = $name$_ship
+            }
+        }
+        if = { #若舰船不存在则重新创建
+            limit = { NOT = { exists = event_target:$name$_ship} }
+            create_fleet = {
+                name = NAME_$name$_fleet
+                settings = {
+                    spawn_debris = no
+                    is_boss = no
+                    can_change_leader = $can_change_leader|no$
+                    uses_naval_capacity = no
+                    can_upgrade = no
+                    can_disband = no
+                }
+                effect = {
+                    set_owner = prev
+                    create_ship = {
+                        name = NAME_$name$
+                        prefix = no
+                        design = $class$
+                        graphical_culture = owner
+                        upgradable = $upgradable|no$
+                        effect = {
+                            set_ship_flag = $name$_ship
+                            set_ship_flag = gts_body_ship
+                            save_global_event_target_as = $name$_ship
+                        }
+                    }
+                    set_location = $set_location|owner.capital_scope$
+                    set_fleet_stance = passive
+                    set_aggro_range_measure_from = self
+                    set_aggro_range = 350
+                    set_fleet_flag = $name$_fleet
+                    save_global_event_target_as = $name$_fleet
+                    [[!set_leader]set_leader = event_target:$name$]
+                }
+            }
+        }
+        [[!set_leader]
+            event_target:$name$_ship = {
+                set_leader = event_target:$name$
+        }]
+    }
+}
+# 销毁巨娘舰队
+# scope = country
+remove_gts_fleet = {
+    hidden_effect = {
+        event_target:$name$ = {
+            unassign_leader = this
+        }
+        event_target:$name$_ship = {
+            delete_ship = this
+        }
+    }
+}
+
+###领袖单独方法###
+
+# 创建希诺舰队
+gts_create_xinuo_fleet = {
+    event_target:gts_xinuo = {
+        hidden_effect = {
+            remove_gts_leader_size_trait = yes
+        }
+        add_trait = {
+            trait = leader_trait_Ultra
+            show_message = yes
+        }
+        add_trait = {
+            trait = xinuo_leader_trait_greedy
+            show_message = yes
+        }
+    }
+    call_gts_fleet = {
+        name = gts_xinuo
+        class = NAME_xinuo_leader
+    }
+}
+# 删除希诺舰队
+gts_delete_xinuo_fleet = {
+    remove_gts_fleet = { name = gts_xinuo }
+    event_target:gts_xinuo = {
+        hidden_effect = {
+            remove_gts_leader_size_trait = yes
+        }
+        add_trait = {
+            trait = leader_trait_Normal
+            show_message = yes
+        }
+        add_trait = {
+            trait = xinuo_leader_trait_feather
+            show_message = yes
+        }
+    }
+
+}
+# 创建林凤舰队
+gts_create_linfeng_fleet = {
+    call_gts_fleet = {
+        name = gts_linfeng
+        class = NAME_gts_linfeng_ship
+        can_change_leader = yes
+        set_location = event_target:gts_linfeng_grilship_transform_planet
+        set_leader = no
+    }
+    event_target:gts_linfeng_fleet = {
+        assign_leader = event_target:gts_linfeng_shipgril
+    }
+}
+# 创建林凤扶她舰队
+gts_create_linfeng_futa_fleet = {
+    call_gts_fleet = {
+        name = gts_linfeng
+        class = NAME_gts_linfeng_futa_ship
+        can_change_leader = yes
+        set_location = event_target:gts_linfeng_grilship_transform_planet
+        set_leader = no
+    }
+    event_target:gts_linfeng_fleet = {
+        assign_leader = event_target:gts_linfeng_shipgril
+        set_fleet_flag = gts_linfeng_futa_fleet
+    }
+}
+# 创建咕丫舰队
+gts_create_guya_fleet = {
+    call_gts_fleet = {
+        name = gts_guya
+        class = NAME_gts_guya
+        set_location = event_target:gts_loli_egg_planet
+    }
+}
+# 创建萨拉托加舰队
+gts_create_saratoga_fleet = {
+    call_gts_fleet = {
+        name = gts_saratoga
+        class = NAME_gts_saratoga_titan
+    }
+}
+# 创建希瞳舰队
+gts_create_hitomi_fleet = {
+    call_gts_fleet = {
+        name = gts_hitomi
+        class = NAME_gts_hitomi_ship
+        upgradable = yes
+    }
+}
+# 创建三月希瞳舰队
+gts_create_mitsuki_hitomi_fleet = {
+    call_gts_fleet = {
+        name = gts_mitsuki_hitomi
+        class = NAME_gts_Mitsuki_Hitomi
+        upgradable = yes
+    }
+}
+# 创建安露舰队
+gts_create_tensi_fleet = {
+    call_gts_fleet = {
+        name = gts_tensi
+        class = NAME_gts_tensi_ship
+    }
+}
+# 创建北方舰队
+gts_create_hoppo_fleet = {
+    call_gts_fleet = {
+        name = gts_hoppo
+        class = NAME_hoppo_ship
+        set_leader = no
+    }
+}
+# 创建塞拉舰队
+gts_create_sera_fleet = {
+    call_gts_fleet = {
+        class = NAME_gts_sera_ship
+        name = gts_sera
+        set_leader = no
+    }
+}
+# 创建阿洛美勒斯舰队
+gts_create_allomerus_fleet = {
+    call_gts_fleet = {
+        class = NAME_gts_allomerus_ship
+        name = gts_allomerus
+        set_leader = no
+    }
+}
+# 创建希儿科研舰队
+gts_create_seele_reseach_fleet = {
+    call_gts_fleet = {
+        class =  NAME_gts_seele_reseach
+        name = gts_seele
+        upgradable = yes
+        [[set_location]set_location = $set_location$]
+    }
+}
+# 创建希儿战舰舰队
+gts_create_seele_military_fleet = {
+    call_gts_fleet = {
+        class =  NAME_gts_seele_military
+        name = gts_seele
+        upgradable = yes
+        [[set_location]set_location = $set_location$]
+    }
+}
+# 创建希儿里科研舰队
+gts_create_seele_li_reseach_fleet = {
+    call_gts_fleet = {
+        class = NAME_gts_seele_li_fleet_research
+        name = gts_seele_li
+        upgradable = yes
+        [[set_location]set_location = $set_location$]
+    }
+}
+# 创建希儿里战舰舰队
+gts_create_seele_li_military_fleet = {
+    call_gts_fleet = {
+        class = NAME_gts_seele_li_military
+        name = gts_seele_li
+        upgradable = yes
+        [[set_location]set_location = $set_location$]
+    }
+}
+# 创建布洛妮娅科研舰队
+gts_create_bronya_reseach_fleet = {
+    call_gts_fleet = {
+        class = name_gts_bronya_fleet_reseach
+        name = gts_bronya
+        upgradable = yes
+        [[set_location]set_location = $set_location$]
+    }
+}
+# 创建布洛妮娅战舰舰队
+gts_create_bronya_military_fleet = {
+    call_gts_fleet = {
+        class = NAME_gts_bronya_military
+        name = gts_bronya
+        upgradable = yes
+        [[set_location]set_location = $set_location$]
+    }
+}
+# 创建神吞舰队
+gts_create_shentun_fleet = {
+    call_gts_fleet = {
+        class = NAME_gts_shentun_ship
+        name = gts_shentun
+    }
+}
+# 创建花田科研舰队
+gts_create_huatian_fleet = {
+    call_gts_fleet = {
+        class = gts_huatian_fleet
+        name = gts_huatian
+        upgradable = yes
+    }
+}
+
+###其他方法###
+
+# 创建愤怒的颂汐
+gts_create_songxi_enemy = {
+    create_fleet = {
+        name = "NAME_sleepbear"
+        settings = {
+            spawn_debris = no
+            is_boss = yes
+        }
+        effect = {
+            save_global_event_target_as = gts_sleepbear_fleet
+            set_owner = event_target:gts_sleepbear_country
+            create_ship = {
+                name = "NAME_sleepbear"
+                design = NAME_sleepbear
+                effect = {
+                    set_disable_at_health = 0.9
+                    save_global_event_target_as = gts_sleepbear_ship
+                    set_ship_flag = gts_sleepbear_ship
+                }
+            }
+            set_fleet_flag = gts_sleepbear_fleet
+            set_location = {
+                target = event_target:gts_sleepbear_planet
+                distance = 160
+                angle = 220
+            }
+            set_fleet_stance = passive
+            set_aggro_range_measure_from = self
+            set_aggro_range = 100
+            auto_move_to_planet = {
+                target = event_target:gts_sleepbear_planet
+                clear_auto_move_on_arrival = yes
+            }
+        }
+    }
+}
+# 创建敌对布洛妮娅
+gts_create_bronya_enemy = {
+    create_fleet = {
+        name = "NAME_gts_bronya_name"
+        settings = {
+            spawn_debris = no
+            is_boss = yes
+        }
+        effect = {
+            set_owner = event_target:gts_seele_fail_country
+            create_ship = {
+                name = "NAME_gts_bronya_name"
+                design = "NAME_gts_bronya"
+                effect = {
+                    set_ship_flag = gts_seele_fail_ship
+                    set_ship_flag = gts_body_ship
+                    save_global_event_target_as = gts_seele_fail_ship
+                    set_disabled = no
+                }
+            }
+            save_global_event_target_as = gts_seele_fail_fleet
+            set_location = {
+                target = root.capital_scope
+                distance = 10
+                angle = 90
+                direction = in_system
+            }
+            set_fleet_stance = passive
+            set_aggro_range_measure_from = self
+            set_aggro_range = 350
+        }
+    }
+}
+# 创建敌对欧若拉
+gts_create_aurora_enemy = {
+    create_fleet = {
+        name = "NAME_gtsra_titans"
+        settings = {
+            spawn_debris = no
+            is_boss = yes
+        }
+        effect = {
+            set_owner = event_target:gtsra_giga_loli_country
+            create_ship = {
+                name = "NAME_gtsra_giga_loli"
+                design = "NAME_loliship"
+                effect = {
+                    set_ship_flag = gts_body_ship
+                    set_ship_flag = gtsra_giga_loli_ship
+                    save_global_event_target_as = gtsra_giga_loli_ship
+                    set_disabled = no
+                }
+            }
+            save_global_event_target_as = gtsra_giga_loli_fleet
+            set_location = {
+                target = event_target:gtsra_loli_world
+                distance = 10
+                angle = 90
+                direction = in_system
+            }
+            set_fleet_stance = passive
+            set_aggro_range_measure_from = self
+            set_aggro_range = 350
+        }
+    }
+}
+# 创建海嗣
+gts_create_seaheirs = {
+    create_fleet = {
+        name = "NAME_seaheirs"
+        settings = {
+            spawn_debris = no
+            can_change_leader = no
+            uses_naval_capacity = no
+            can_disband = no
+        }
+        effect = {
+            set_owner = root
+            while = {
+                count = 1
+                create_ship = {
+                    name = "NAME_seaheirs"
+                    design = "NAME_seaheirs"
+                }
+            }
+            set_location = prev
+            set_fleet_stance = aggressive
+            set_aggro_range_measure_from = return_point
+            set_aggro_range = 3000
+        }
+    }
+}
+# 创建一只中立的犽戎
+gts_create_yarong_friendly = {
+    #创建犽戎舰队
+    create_gts_friendly_country = {
+        name = gts_yarong
+        icon_category = spherical
+        icon_file = flag_spherical_6.dds
+    }
+    event_target:gts_yarong_country_target = {
+        gts_leader_yarong_hired = yes
+    }
+    gts_yarong_add_trait = yes
+    last_created_leader = {
+        set_owner = event_target:gts_yarong_country_target
+        save_event_target_as = gts_yarong
+    }
+    create_fleet = {
+        name = "NAME_gts_yarong"
+        settings = {
+            spawn_debris = no
+            is_boss = no
+            can_change_leader = no
+            uses_naval_capacity = no
+            can_upgrade = no
+            can_disband = no
+            can_change_composition = no
+        }
+        effect = {
+            create_ship = {
+                name = "NAME_gts_yarong_ship"
+                design = "NAME_gts_yarong_ship_4"
+                effect = {
+                    set_disabled = no
+                    set_ship_flag = gts_yarong_ship
+                    set_ship_flag = gts_body_ship
+                    save_global_event_target_as = gts_yarong_ship
+                    add_modifier = {
+                        modifier = gts_qhai_yarong_punish
+                        days = 1
+                    }
+                }
+            }
+            set_owner = event_target:gts_yarong_country_target
+            set_location = {
+                target = root.capital_scope
+                distance = 10
+                angle = 90
+                direction = in_system
+            }
+            set_fleet_stance = passive
+            set_aggro_range_measure_from = self
+            set_aggro_range = 350
+            set_leader = event_target:gts_yarong
+            set_event_locked = yes
+            save_global_event_target_as = gts_yarong_fleet
+        }
+    }
+}
+# 创建一只中立的泡泡
+gts_create_paopao_friendly = {
+    create_gts_friendly_country = {
+        name = gts_paopao
+        icon_category = pirate
+        icon_file = flag_pirate_3.dds
+    }
+    event_target:gts_paopao_country_target = {
+    create_fleet = {
+        name = "NAME_gts_paopao"
+            effect = {
+                set_owner = event_target:gts_paopao_country_target
+                create_ship = {
+                    name = "NAME_gts_paopao"
+                    design = "NAME_gts_paopao"
+                    prefix = no
+                    upgradable = no
+                    effect = {
+                        set_ship_flag = gts_paopao_ship
+                        set_ship_flag = gts_body_ship
+                        save_global_event_target_as = gts_paopao_ship
+                        set_disabled = no
+                    }
+                }
+                save_global_event_target_as = gts_paopao_fleet
+                set_location = {
+                    target = root.capital_scope
+                    distance = 10
+                    angle = 90
+                    direction = in_system
+                }
+                set_fleet_stance = passive
+                set_aggro_range_measure_from = self
+                set_aggro_range = 350
+                assign_leader = event_target:gts_paopao
+            }
+            settings = {
+                spawn_debris = yes
+                is_boss = no
+                can_change_leader = no
+                uses_naval_capacity = no
+                can_upgrade = no
+                can_disband = no
+            }
+        }
+    }
+}

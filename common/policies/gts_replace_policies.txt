@@ -1,0 +1,382 @@
+orbital_bombardment = {
+	potential = {
+		OR = {
+			is_country_type = default
+			is_country_type = vol
+		}
+	}
+	option = {
+		name = "orbital_bombardment_selective"
+		policy_flags = {
+			orbital_bombardment_selective
+		}
+		AI_weight = {
+			modifier = {
+				factor = 0
+				NOR = {
+					has_ethic = "ethic_pacifist"
+					has_ethic = "ethic_fanatic_pacifist"
+				}
+				NOT = {
+					is_galactic_community_member = yes
+					OR = {
+						is_active_resolution = "resolution_rulesofwar_independent_tribunals"
+						is_active_resolution = "resolution_rulesofwar_last_resort_doctrine"
+						is_active_resolution = "resolution_rulesofwar_demobilization_initiative"
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = "orbital_bombardment_indiscriminate"
+		in_breach_of = {
+			{
+				key = resolution_rulesofwar_independent_tribunals
+			}
+			{
+				key = resolution_rulesofwar_last_resort_doctrine
+			}
+			{
+				key = resolution_rulesofwar_demobilization_initiative
+			}
+		}
+		policy_flags = {
+			orbital_bombardment_indiscriminate
+		}
+		modifier = {
+		}
+		valid = {
+			NOR = {
+				has_ethic = "ethic_pacifist"
+				has_ethic = "ethic_fanatic_pacifist"
+			}
+		}
+		AI_weight = {
+			modifier = {
+				factor = 0.1
+				is_galactic_community_member = yes
+				OR = {
+					is_active_resolution = "resolution_rulesofwar_independent_tribunals"
+					is_active_resolution = "resolution_rulesofwar_last_resort_doctrine"
+					is_active_resolution = "resolution_rulesofwar_demobilization_initiative"
+				}
+			}
+		}
+	}
+	option = {
+		name = "orbital_bombardment_armageddon"
+		in_breach_of = {
+			{
+				key = resolution_rulesofwar_independent_tribunals
+			}
+			{
+				key = resolution_rulesofwar_last_resort_doctrine
+			}
+			{
+				key = resolution_rulesofwar_demobilization_initiative
+			}
+		}
+		potential = {
+			OR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_machine_terminator
+			}
+		}
+		policy_flags = {
+			orbital_bombardment_armageddon
+		}
+		modifier = {
+		}
+		AI_weight = {
+			modifier = {
+				factor = 10
+				OR = {
+					has_valid_civic = civic_fanatic_purifiers
+					has_valid_civic = civic_machine_terminator
+				}
+			}
+			modifier = {
+				factor = 10
+				has_ascension_perk = ap_become_the_crisis
+			}
+		}
+	}
+
+	# 模組添加的東西
+
+	# 開始
+
+	option = {
+		name = "orbital_bombardment_gts_fallout_destory_all"
+		in_breach_of = {
+			{
+				key = resolution_rulesofwar_independent_tribunals
+			}
+			{
+				key = resolution_rulesofwar_last_resort_doctrine
+			}
+			{
+				key = resolution_rulesofwar_demobilization_initiative
+			}
+		}
+		potential = {
+			AND = {
+				has_origin = origin_gts_fallout
+				has_tradition = tr_gts_fallout_cruel_nuked_planet_production
+			}
+		}
+		policy_flags = {
+			orbital_bombardment_gts_fallout_destory_all
+		}
+		modifier = {
+		}
+		AI_weight = {
+			factor = 0
+		}
+	}
+
+	# 結束
+
+}
+
+interference = {
+
+	potential = {
+		has_met_primitives = yes
+	}
+
+	option = {
+		name = "interference_not_allowed"
+
+		policy_flags = {
+			interference_not_allowed
+		}
+
+		on_enabled = {
+			hidden_effect = {
+				set_country_flag = encountered_first_primitive
+			}
+		}
+
+		in_breach_of = {
+			{
+				key = resolution_galacticstudies_advanced_xenostudies
+			}
+			{
+				key = resolution_galacticstudies_ethical_guideline_refactoring
+			}
+			{
+				key = resolution_galacticstudies_extradimensional_experimentation
+			}
+			{
+				key = resolution_pre_ftl_stances_equal_standing
+			}
+			{
+				key = resolution_pre_ftl_stances_exploitation
+			}
+		}
+
+		valid = {
+			OR = {
+				custom_tooltip = {
+					text = is_a_signatory_vassal
+					any_agreement = { agreement_preset = preset_signatory }
+				}
+				is_active_resolution = resolution_pre_ftl_stances_non_interference
+				NOR = {
+					has_ethic = "ethic_fanatic_xenophobe"
+					has_valid_civic = "civic_fanatic_purifiers"
+					has_valid_civic = "civic_hive_devouring_swarm"
+					has_valid_civic = "civic_machine_terminator"
+				}
+			}
+		}
+
+		AI_weight = {
+			modifier = {
+				factor = 0.1
+				is_galactic_community_member = yes
+				OR = {
+					is_active_resolution = "resolution_galacticstudies_advanced_xenostudies"
+					is_active_resolution = "resolution_galacticstudies_ethical_guideline_refactoring"
+					is_active_resolution = "resolution_galacticstudies_extradimensional_experimentation"
+					is_active_resolution = "resolution_pre_ftl_stances_equal_standing"
+					is_active_resolution = "resolution_pre_ftl_stances_exploitation"
+				}
+			}
+		}
+	}
+
+	option = {
+		name = "interference_subtle"
+
+		policy_flags = {
+			interference_subtle
+		}
+
+		on_enabled = {
+			hidden_effect = { set_country_flag = encountered_first_primitive }
+		}
+
+		valid = {
+			OR = {
+				custom_tooltip = {
+					text = is_a_signatory_vassal
+					any_agreement = { agreement_preset = preset_signatory }
+				}
+				NOR = {
+					has_ethic = "ethic_fanatic_xenophobe"
+					has_valid_civic = "civic_fanatic_purifiers"
+					has_valid_civic = "civic_hive_devouring_swarm"
+					has_valid_civic = "civic_machine_terminator"
+
+					# 模組添加的東西
+
+					# 開始
+
+					has_valid_civic = "civic_gts_cixiaogui"
+
+					# 結束
+				}
+			}
+		}
+
+		AI_weight = {
+			modifier = {
+				factor = 2
+				has_valid_ai_personality = yes
+				has_ai_personality_behaviour = infiltrator
+			}
+			modifier = {
+				factor = 0
+				has_valid_ai_personality = yes
+				NOT = {
+					has_ai_personality_behaviour = infiltrator
+				}
+			}
+		}
+	}
+
+	option = {
+		name = "interference_active"
+
+		policy_flags = {
+			interference_active
+		}
+
+		in_breach_of = {
+			{
+				key = resolution_pre_ftl_stances_non_interference
+			}
+		}
+
+		on_enabled = {
+			hidden_effect = { set_country_flag = encountered_first_primitive }
+		}
+
+		valid = {
+			NOR = {
+				custom_tooltip = {
+					text = is_a_signatory_vassal
+					any_agreement = { agreement_preset = preset_signatory }
+				}
+				has_valid_civic = "civic_fanatic_purifiers"
+				has_valid_civic = "civic_hive_devouring_swarm"
+			}
+		}
+
+		AI_weight = {
+			modifier = {
+				factor = 2
+				has_valid_ai_personality = yes
+				OR = {
+					has_ai_personality_behaviour = infiltrator
+					has_ai_personality_behaviour = dominator
+				}
+			}
+			modifier = {
+				factor = 0
+				has_valid_ai_personality = yes
+				NOR = {
+					has_ai_personality_behaviour = infiltrator
+					has_ai_personality_behaviour = dominator
+				}
+			}
+			modifier = {
+				factor = 0.1
+				is_galactic_community_member = yes
+				OR = {
+					is_active_resolution = "resolution_galacticstudies_advanced_xenostudies"
+					is_active_resolution = "resolution_galacticstudies_ethical_guideline_refactoring"
+					is_active_resolution = "resolution_galacticstudies_extradimensional_experimentation"
+					is_active_resolution = "resolution_pre_ftl_stances_non_interference"
+				}
+			}
+		}
+	}
+	option = {
+		name = "interference_aggressive"
+
+		in_breach_of = {
+			{
+				key = resolution_pre_ftl_stances_non_interference
+			}
+			{
+				key = resolution_pre_ftl_stances_equal_standing
+			}
+		}
+
+		valid = {
+			custom_tooltip = {
+				success_text = is_not_a_signatory_vassal_success
+				fail_text = is_not_a_signatory_vassal_fail
+				NOT = { any_agreement = { agreement_preset = preset_signatory } }
+			}
+			NOR = {
+				has_ethic = "ethic_pacifist"
+				has_ethic = "ethic_fanatic_pacifist"
+				has_ethic = "ethic_xenophile"
+				has_ethic = "ethic_fanatic_xenophile"
+				has_valid_civic = civic_machine_exploration_protocol
+			}
+		}
+		on_enabled = {
+			hidden_effect = { set_country_flag = encountered_first_primitive }
+		}
+		policy_flags = {
+			interference_aggressive
+		}
+		modifier = {}
+		AI_weight = {
+			modifier = {
+				factor = 3
+				has_valid_ai_personality = yes
+				has_ai_personality_behaviour = dominator
+			}
+			modifier = {
+				factor = 0
+				has_valid_ai_personality = yes
+				NOT = {
+					has_ai_personality_behaviour = dominator
+				}
+			}
+			modifier = {
+				factor = 0
+				OR = {
+					has_ethic = "ethic_pacifist"
+					has_ethic = "ethic_fanatic_pacifist"
+				}
+			}
+			modifier = {
+				factor = 0.1
+				is_galactic_community_member = yes
+				OR = {
+					is_active_resolution = "resolution_pre_ftl_stances_non_interference"
+					is_active_resolution = "resolution_pre_ftl_stances_equal_standing"
+				}
+			}
+		}
+	}
+}
+

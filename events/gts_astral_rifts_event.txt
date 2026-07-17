@@ -1,0 +1,1951 @@
+namespace = gts_astral_rift
+
+################################
+# Astral Rift - Genesis Events #
+################################
+
+#“创世”星界裂隙——决定并生成一个带有三组特质的新物种
+
+astral_rift_event = {
+    id = gts_astral_rift.2300
+    title = gts_astral_rift.2300.name
+    desc = gts_astral_rift.2300.desc
+    picture = GFX_evt_astral_rift_genesis_1
+    show_sound = ap_rift_event_23_alien_holoprojection
+    difficulty = @astral_rift_initial_difficulty
+    astral_rift = yes
+
+    is_triggered_only = yes
+
+    immediate = {
+        create_species = {
+            name = random
+            class = random_pre_ftl
+            portrait = random
+            traits = {}
+            effect = {
+                save_global_event_target_as = gts_genesis_new_species_base
+            }
+        }
+
+        # Selects a planet to spawn the new pop
+        solar_system = {
+            find_closest_player_planet = {
+                OWNER_SCOPE = root.explorer
+                GLOBAL_TARGET = gts_genesis_new_species_selected_planet
+            }
+        }
+    }
+
+    option = {
+        name = gts_astral_rift.2300.a
+        set_next_astral_rift_event = { id = gts_astral_rift.2305 }
+
+        ai_chance = {
+            modifier = {
+                add = 10
+                explorer = {
+                    OR = {
+                        has_ethic = ethic_militarist
+                        has_ethic = ethic_authoritarian
+                    }
+                }
+            }
+            modifier = {
+                add = 100
+                explorer = {
+                    OR = {
+                        has_ethic = ethic_fanatic_militarist
+                        has_ethic = ethic_fanatic_authoritarian
+                    }
+                }
+            }
+        }
+    }
+    option = {
+        name = gts_astral_rift.2300.b
+        set_next_astral_rift_event = { id = gts_astral_rift.2310 }
+
+        ai_chance = {
+            modifier = {
+                add = 10
+                explorer = {
+                    OR = {
+                        has_ethic = ethic_egalitarian
+                        has_ethic = ethic_pacifist
+                        has_ethic = ethic_materialist
+                    }
+                }
+            }
+            modifier = {
+                add = 100
+                explorer = {
+                    OR = {
+                        has_ethic = ethic_fanatic_egalitarian
+                        has_ethic = ethic_fanatic_pacifist
+                        has_ethic = ethic_fanatic_materialist
+                    }
+                }
+            }
+        }
+    }
+    option = {
+        name = gts_astral_rift.2300.c
+        set_next_astral_rift_event = { id = gts_astral_rift.2315 }
+
+        ai_chance = {
+            modifier = {
+                add = 10
+                explorer = {
+                    OR = {
+                        has_ethic = ethic_xenophobe
+                        has_ethic = ethic_spiritualist
+                    }
+                }
+            }
+            modifier = {
+                add = 100
+                explorer = {
+                    OR = {
+                        has_ethic = ethic_fanatic_xenophobe
+                        has_ethic = ethic_fanatic_spiritualist
+                    }
+                }
+            }
+        }
+    }
+
+    after = {
+        explorer = {
+            astral_thread_small_reward = yes
+        }
+    }
+}
+
+astral_rift_event = {
+    id = gts_astral_rift.2305
+    title = gts_astral_rift.2305.name
+    desc = gts_astral_rift.2305.desc
+    picture = GFX_evt_astral_rift_genesis_2
+    show_sound = ap_rift_event_23_alien_holoprojection
+    difficulty = @astral_rift_easy_plus_difficulty
+    astral_rift = yes
+
+    is_triggered_only = yes
+
+    immediate = {
+        set_astral_rift_flag = new_civ_strength_path
+        event_target:gts_genesis_new_species_base = {
+            modify_species = {
+                species = this
+                base = none
+                add_trait = trait_strong
+                add_trait = trait_Titan
+                effect = {
+                    save_global_event_target_as = gts_genesis_new_species_first_step
+                }
+            }
+        }
+    }
+
+    option = {
+        name = gts_astral_rift.2305.a
+        set_next_astral_rift_event = { id = gts_astral_rift.2320 }
+
+        ai_chance = {
+            base = 1
+            modifier = {
+                add = 10
+                explorer = {
+                    OR = {
+                        has_ethic = ethic_xenophobe
+                        has_ethic = ethic_militarist
+                        has_ethic = ethic_authoritarian
+                        has_ethic = ethic_materialist
+                    }
+                }
+            }
+            modifier = {
+                add = 100
+                explorer = {
+                    OR = {
+                        has_ethic = ethic_fanatic_xenophobe
+                        has_ethic = ethic_fanatic_militarist
+                        has_ethic = ethic_fanatic_authoritarian
+                        has_ethic = ethic_fanatic_materialist
+                    }
+                }
+            }
+        }
+    }
+    option = {
+        name = gts_astral_rift.2305.b
+        set_next_astral_rift_event = { id = gts_astral_rift.2325 }
+
+        ai_chance = {
+            base = 1
+            modifier = {
+                add = 10
+                explorer = {
+                    OR = {
+                        has_ethic = ethic_pacifist
+                        has_ethic = ethic_egalitarian
+                        has_ethic = ethic_spiritualist
+                        has_ethic = ethic_xenophile
+                    }
+                }
+            }
+            modifier = {
+                add = 100
+                explorer = {
+                    OR = {
+                        has_ethic = ethic_fanatic_pacifist
+                        has_ethic = ethic_fanatic_egalitarian
+                        has_ethic = ethic_fanatic_spiritualist
+                        has_ethic = ethic_fanatic_xenophile
+                    }
+                }
+            }
+        }
+    }
+
+    after = {
+        explorer = {
+            astral_thread_small_reward = yes
+        }
+    }
+}
+
+astral_rift_event = {
+    id = gts_astral_rift.2310
+    title = gts_astral_rift.2310.name
+    desc = gts_astral_rift.2310.desc
+    picture = GFX_evt_astral_rift_genesis_2
+    show_sound = ap_rift_event_23_alien_holoprojection
+    difficulty = @astral_rift_easy_plus_difficulty
+    astral_rift = yes
+
+    is_triggered_only = yes
+
+    immediate = {
+        set_astral_rift_flag = new_civ_intelligence_path
+        event_target:gts_genesis_new_species_base = {
+            modify_species = {
+                species = this
+                base = none
+                add_trait = trait_presapient_natural_intellectuals
+                add_trait = trait_Tiny
+                effect = {
+                    save_global_event_target_as = gts_genesis_new_species_first_step
+                }
+            }
+        }
+    }
+
+    option = {
+        name = gts_astral_rift.2310.a
+        set_next_astral_rift_event = { id = gts_astral_rift.2320 }
+
+        ai_chance = {
+            base = 1
+            modifier = {
+                add = 10
+                explorer = {
+                    OR = {
+                        has_ethic = ethic_xenophobe
+                        has_ethic = ethic_militarist
+                        has_ethic = ethic_authoritarian
+                        has_ethic = ethic_materialist
+                    }
+                }
+            }
+            modifier = {
+                add = 100
+                explorer = {
+                    OR = {
+                        has_ethic = ethic_fanatic_xenophobe
+                        has_ethic = ethic_fanatic_militarist
+                        has_ethic = ethic_fanatic_authoritarian
+                        has_ethic = ethic_fanatic_materialist
+                    }
+                }
+            }
+        }
+    }
+    option = {
+        name = gts_astral_rift.2310.b
+        set_next_astral_rift_event = { id = gts_astral_rift.2325 }
+
+        ai_chance = {
+            base = 1
+            modifier = {
+                add = 10
+                explorer = {
+                    OR = {
+                        has_ethic = ethic_pacifist
+                        has_ethic = ethic_egalitarian
+                        has_ethic = ethic_spiritualist
+                        has_ethic = ethic_xenophile
+                    }
+                }
+            }
+            modifier = {
+                add = 100
+                explorer = {
+                    OR = {
+                        has_ethic = ethic_fanatic_pacifist
+                        has_ethic = ethic_fanatic_egalitarian
+                        has_ethic = ethic_fanatic_spiritualist
+                        has_ethic = ethic_fanatic_xenophile
+                    }
+                }
+            }
+        }
+    }
+
+    after = {
+        explorer = {
+            astral_thread_small_reward = yes
+        }
+    }
+}
+
+astral_rift_event = {
+    id = gts_astral_rift.2315
+    title = gts_astral_rift.2315.name
+    desc = gts_astral_rift.2315.desc
+    picture = GFX_evt_sapient_AI
+    show_sound = ap_rift_event_10_emp_sound
+
+    difficulty = @astral_rift_easy_plus_difficulty
+    astral_rift = yes
+    is_triggered_only = yes
+    #specimen = genesis_core
+
+    option = {
+        name = OK
+        explorer = {
+            add_monthly_resource_mult = {
+                resource = alloys
+                value = @tier5materialreward
+                min = @tier5materialmin
+                max = @tier5materialmax
+            }
+            astral_thread_large_reward = yes
+        }
+        finish_astral_rift = yes
+    }
+}
+
+astral_rift_event = {
+    id = gts_astral_rift.2320
+    title = gts_astral_rift.2320.name
+    desc = {
+        trigger = {
+            switch = {
+                trigger = has_astral_rift_flag
+                new_civ_strength_path = { text = gts_astral_rift.2320.desc.strength }
+                new_civ_intelligence_path = { text = gts_astral_rift.2320.desc.intelligence }
+            }
+        }
+    }
+    picture = GFX_evt_astral_rift_genesis_3
+    show_sound = ap_rift_event_23_alien_holoprojection
+    difficulty = @astral_rift_easy_plus_difficulty
+    astral_rift = yes
+
+    is_triggered_only = yes
+
+    immediate = {
+        set_astral_rift_flag = new_civ_diligence_path
+        event_target:gts_genesis_new_species_first_step = {
+            modify_species = {
+                species = this
+                base = none
+                add_trait = trait_presapient_proles
+                add_trait = trait_Sese
+                effect = {
+                    save_global_event_target_as = gts_genesis_new_species_second_step
+                }
+            }
+        }
+    }
+
+    option = {
+        name = gts_astral_rift.2320.a
+        set_astral_rift_flag = new_civ_conservative_path
+        set_next_astral_rift_event = { id = gts_astral_rift.2330 }
+
+        ai_chance = {
+            base = 1
+            modifier = {
+                add = 10
+                explorer = {
+                    OR = {
+                        has_ethic = ethic_xenophobe
+                        has_ethic = ethic_militarist
+                        has_ethic = ethic_authoritarian
+                        has_ethic = ethic_materialist
+                    }
+                }
+            }
+            modifier = {
+                add = 100
+                explorer = {
+                    OR = {
+                        has_ethic = ethic_fanatic_xenophobe
+                        has_ethic = ethic_fanatic_militarist
+                        has_ethic = ethic_fanatic_authoritarian
+                        has_ethic = ethic_fanatic_materialist
+                    }
+                }
+            }
+        }
+    }
+    option = {
+        name = gts_astral_rift.2320.b
+        set_astral_rift_flag = new_civ_starborn_path
+        set_next_astral_rift_event = { id = gts_astral_rift.2330 }
+
+        ai_chance = {
+            base = 1
+            modifier = {
+                add = 10
+                explorer = {
+                    OR = {
+                        has_ethic = ethic_pacifist
+                        has_ethic = ethic_egalitarian
+                        has_ethic = ethic_spiritualist
+                        has_ethic = ethic_xenophile
+                    }
+                }
+            }
+            modifier = {
+                add = 100
+                explorer = {
+                    OR = {
+                        has_ethic = ethic_fanatic_pacifist
+                        has_ethic = ethic_fanatic_egalitarian
+                        has_ethic = ethic_fanatic_spiritualist
+                        has_ethic = ethic_fanatic_xenophile
+                    }
+                }
+            }
+        }
+    }
+
+    after = {
+        explorer = {
+            astral_thread_small_reward = yes
+        }
+    }
+}
+
+astral_rift_event = {
+    id = gts_astral_rift.2325
+    title = gts_astral_rift.2325.name
+    desc = {
+        trigger = {
+            switch = {
+                trigger = has_astral_rift_flag
+                new_civ_strength_path = { text = gts_astral_rift.2325.desc.strength }
+                new_civ_intelligence_path = { text = gts_astral_rift.2325.desc.intelligence }
+            }
+        }
+    }
+    picture = GFX_evt_astral_rift_genesis_3
+    show_sound = ap_rift_event_23_alien_holoprojection
+    difficulty = @astral_rift_easy_plus_difficulty
+    astral_rift = yes
+
+    is_triggered_only = yes
+
+    immediate = {
+        set_astral_rift_flag = new_civ_creativity_path
+        event_target:gts_genesis_new_species_first_step = {
+            modify_species = {
+                species = this
+                base = none
+                add_trait = trait_ingenious
+                add_trait = trait_Nosese
+                effect = {
+                    save_global_event_target_as = gts_genesis_new_species_second_step
+                }
+            }
+        }
+    }
+
+    option = {
+        name = gts_astral_rift.2325.a
+        set_astral_rift_flag = new_civ_conservative_path
+        set_next_astral_rift_event = { id = gts_astral_rift.2330 }
+
+        ai_chance = {
+            base = 1
+            modifier = {
+                add = 10
+                explorer = {
+                    OR = {
+                        has_ethic = ethic_xenophobe
+                        has_ethic = ethic_militarist
+                        has_ethic = ethic_authoritarian
+                        has_ethic = ethic_materialist
+                    }
+                }
+            }
+            modifier = {
+                add = 100
+                explorer = {
+                    OR = {
+                        has_ethic = ethic_fanatic_xenophobe
+                        has_ethic = ethic_fanatic_militarist
+                        has_ethic = ethic_fanatic_authoritarian
+                        has_ethic = ethic_fanatic_materialist
+                    }
+                }
+            }
+        }
+    }
+    option = {
+        name = gts_astral_rift.2325.b
+        set_astral_rift_flag = new_civ_starborn_path
+        set_next_astral_rift_event = { id = gts_astral_rift.2330 }
+
+        ai_chance = {
+            base = 1
+            modifier = {
+                add = 10
+                explorer = {
+                    OR = {
+                        has_ethic = ethic_pacifist
+                        has_ethic = ethic_egalitarian
+                        has_ethic = ethic_spiritualist
+                        has_ethic = ethic_xenophile
+                    }
+                }
+            }
+            modifier = {
+                add = 100
+                explorer = {
+                    OR = {
+                        has_ethic = ethic_fanatic_pacifist
+                        has_ethic = ethic_fanatic_egalitarian
+                        has_ethic = ethic_fanatic_spiritualist
+                        has_ethic = ethic_fanatic_xenophile
+                    }
+                }
+            }
+        }
+    }
+
+    after = {
+        explorer = {
+            astral_thread_small_reward = yes
+        }
+    }
+}
+
+astral_rift_event = {
+    id = gts_astral_rift.2330
+    title = gts_astral_rift.2330.name
+    desc = gts_astral_rift.2330.desc
+    picture = GFX_evt_astral_rift_genesis_3
+    show_sound = ap_rift_event_23_alien_holoprojection_shutdown
+    difficulty = @astral_rift_easy_plus_difficulty
+    astral_rift = yes
+
+    is_triggered_only = yes
+
+    immediate = {
+        event_target:gts_genesis_new_species_second_step = {
+            if = {
+                limit = {
+                    root = { has_astral_rift_flag = new_civ_conservative_path }
+                }
+                modify_species = {
+                    species = this
+                    base = none
+                    add_trait = trait_presapient_conservative
+                    add_trait = trait_fear_gts
+                    ideal_planet_class = event_target:gts_genesis_new_species_selected_planet
+                    effect = {
+                        save_event_target_as = gts_genesis_new_species_final_step
+                    }
+                }
+            }
+            else_if = {
+                limit = {
+                    root = { has_astral_rift_flag = new_civ_starborn_path }
+                }
+                modify_species = {
+                    species = this
+                    base = none
+                    add_trait = trait_presapient_starborn
+                    add_trait = trait_love_gts
+                    ideal_planet_class = event_target:gts_genesis_new_species_selected_planet
+                    effect = {
+                        save_event_target_as = gts_genesis_new_species_final_step
+                    }
+                }
+            }
+        }
+    }
+
+    option = {
+        name = FASCINATING
+        explorer = {
+            astral_thread_large_reward = yes
+            if = {
+                limit = { is_gestalt = yes }
+                add_monthly_resource_mult = {
+                    resource = society_research
+                    value = @tier3researchreward
+                    min = @tier3researchmin
+                    max = @tier3researchmax
+                }
+                add_modifier = {
+                    modifier = "genesis_insight_modifier"
+                }
+            }
+        }
+        event_target:gts_genesis_new_species_selected_planet = {
+            create_pop_group = {
+                species = event_target:gts_genesis_new_species_final_step
+            }
+        }
+        finish_astral_rift = yes
+    }
+}
+
+# Lock Genesis rift from pool when it's drawn (once at a time)
+# THIS = Country: Explorer country
+# FROM = AstralRift: Explored astral rift
+# FROMFROM = Explorer fleet
+country_event = {
+    id = gts_astral_rift.2398
+    hide_window = yes
+
+    is_triggered_only = yes
+
+    trigger = {
+        has_astral_planes_dlc = yes
+        from = {
+            has_astral_rift_flag = gts_genesis_rift
+        }
+    }
+
+    immediate = {
+        set_global_flag = gts_genesis_rift_being_explored
+
+        # Clear global event targets that will be used by the rift
+        if = {
+            limit = { exists = event_target:gts_genesis_new_species_base }
+            clear_global_event_target = gts_genesis_new_species_base
+        }
+        if = {
+            limit = { exists = event_target:gts_genesis_new_species_first_step }
+            clear_global_event_target = gts_genesis_new_species_first_step
+        }
+        if = {
+            limit = { exists = event_target:gts_genesis_new_species_second_step }
+            clear_global_event_target = gts_genesis_new_species_second_step
+        }
+        if = {
+            limit = { exists = event_target:gts_genesis_new_species_selected_planet }
+            clear_global_event_target = gts_genesis_new_species_selected_planet
+        }
+    }
+}
+
+# Unlock Genesis rift from pool when it's over
+# THIS = Country: Explorer country
+# FROM = AstralRift: Explored astral rift
+# FROMFROM = Explorer fleet
+country_event = {
+    id = gts_astral_rift.2399
+    hide_window = yes
+
+    is_triggered_only = yes
+
+    trigger = {
+        has_astral_planes_dlc = yes
+        from = {
+            has_astral_rift_flag = gts_genesis_rift
+        }
+    }
+
+    immediate = {
+        remove_global_flag = gts_genesis_rift_being_explored
+    }
+}
+
+
+
+##############################
+# Astral Rift - Fluid Events #
+##############################
+
+#“流体”
+
+namespace = gts_astral_rift
+
+astral_rift_event = {
+    id = gts_astral_rift.1300
+    title = gts_astral_rift.1300.name
+    desc = gts_astral_rift.1300.desc
+    picture = GFX_evt_astral_rift_fluid
+    show_sound = ap_rift_event_13_blood_pulse
+    difficulty = @astral_rift_initial_difficulty
+    astral_rift = yes
+
+    is_triggered_only = yes
+
+    immediate = {
+        set_astral_rift_flag = sample_rig_available
+        #重灾区
+        explorer = {
+            random_owned_leader = {
+                limit = {
+                    is_special_leader = yes
+                }
+                set_leader_flag = gts_astral_rift_fluid_leader_flag
+                save_event_target_as = gts_astral_rift_fluid
+            }
+        }
+    }
+
+
+    option = {
+        name = gts_astral_rift.1300.a
+        set_next_astral_rift_event = { id = gts_astral_rift.1305 }
+
+        ai_chance = {
+            inline_script = astral_rift/rift_difficulty_ai_weight
+        }
+    }
+    option = {
+        name = gts_astral_rift.1300.b
+        set_next_astral_rift_event = { id = gts_astral_rift.1310 }
+
+        ai_chance = {
+            inline_script = astral_rift/rift_difficulty_ai_weight
+        }
+    }
+
+    after = {
+        explorer = {
+            astral_thread_small_reward = yes
+        }
+    }
+}
+
+astral_rift_event = {
+    id = gts_astral_rift.1305
+    title = gts_astral_rift.1305.name
+    desc = {
+        trigger = {
+            explorer = {
+                OR = {
+                    has_technology = tech_exotic_gases
+                    has_resource = { type = exotic_gases amount > 0 }
+                }
+            }
+        }
+        text = gts_astral_rift.1305.desc.gases
+    }
+    desc = {
+        trigger = {
+            explorer = {
+                NOR = {
+                    has_technology = tech_exotic_gases
+                    has_resource = { type = exotic_gases amount > 0 }
+                }
+            }
+        }
+        text = gts_astral_rift.1305.desc.no_gases
+    }
+    picture = GFX_evt_astral_rift_fluid
+    show_sound = event_bad_omen
+    difficulty = @astral_rift_medium_plus_difficulty
+    astral_rift = yes
+
+    is_triggered_only = yes
+
+    option = {
+        name = gts_astral_rift.1305.a
+        hidden_effect = {
+            remove_astral_rift_flag = sample_rig_available
+        }
+        explorer = {
+            astral_thread_small_reward = yes
+        }
+        set_next_astral_rift_event = { id = gts_astral_rift.1310 }
+
+        ai_chance = {
+            inline_script = astral_rift/rift_difficulty_ai_weight
+        }
+    }
+    option = {
+        name = gts_astral_rift.1305.b
+        trigger = {
+            explorer = {
+                OR = {
+                    has_technology = tech_exotic_gases
+                    has_resource = { type = exotic_gases amount > 0 }
+                }
+            }
+        }
+        allow = {
+            explorer = { has_resource = { type = exotic_gases amount >= 50 } }
+        }
+        explorer = {
+            add_resource = { exotic_gases = -50 }
+            add_random_research_option = {
+                add_progress = 0.15
+                category = biology
+                ignore_prereqs = yes
+                fail_effects = {
+                    add_monthly_resource_mult = {
+                        resource = society_research
+                        value = @tier3researchreward
+                        min = @tier3researchmin
+                        max = @tier3researchmax
+                    }
+                }
+            }
+            astral_thread_small_reward = yes
+        }
+
+        set_next_astral_rift_event = { id = gts_astral_rift.1311 }
+
+        ai_chance = {
+            inline_script = astral_rift/rift_difficulty_ai_weight
+        }
+    }
+}
+
+astral_rift_event = {
+    id = gts_astral_rift.1310
+    title = gts_astral_rift.1310.name
+    desc = {
+        trigger = {
+            if = {
+                limit = {
+                    has_astral_rift_flag = sample_rig_available
+                }
+                text = gts_astral_rift.1310.desc.common
+            }
+            else = {
+                text = gts_astral_rift.1310.desc
+            }
+        }
+    }
+    desc = gts_astral_rift.1310.desc
+    picture = GFX_evt_astral_rift_fluid
+    show_sound = ap_rift_event_13_blood_pulse
+    difficulty = @astral_rift_easy_difficulty
+    astral_rift = yes
+
+    is_triggered_only = yes
+
+    option = {
+        name = gts_astral_rift.1310.a
+        set_next_astral_rift_event = { id = gts_astral_rift.1315 }
+
+        ai_chance = {
+            inline_script = astral_rift/rift_difficulty_ai_weight
+        }
+    }
+    option = {
+        name = gts_astral_rift.1310.b
+        set_next_astral_rift_event = { id = gts_astral_rift.1316 }
+
+        ai_chance = {
+            inline_script = astral_rift/rift_difficulty_ai_weight
+        }
+    }
+
+    after = {
+        explorer = {
+            astral_thread_small_reward = yes
+        }
+    }
+}
+
+astral_rift_event = {
+    id = gts_astral_rift.1311
+    title = gts_astral_rift.1311.name
+    desc = gts_astral_rift.1311.desc
+    picture = GFX_evt_astral_rift_fluid
+    show_sound = ap_rift_event_13_blood_pulse
+    difficulty = @astral_rift_hard_difficulty
+    astral_rift = yes
+
+    is_triggered_only = yes
+
+    specimen = gts_dimensional_endothelial_lining
+
+    option = {
+        name = gts_astral_rift.1310.a
+        explorer = { add_resource = { exotic_gases = 200 } }
+        set_next_astral_rift_event = { id = gts_astral_rift.1315 }
+
+        ai_chance = {
+            inline_script = astral_rift/rift_difficulty_ai_weight
+        }
+    }
+    option = {
+        name = gts_astral_rift.1310.b
+        explorer = { add_resource = { rare_crystals = 200 } }
+        set_next_astral_rift_event = { id = gts_astral_rift.1316 }
+
+        ai_chance = {
+            inline_script = astral_rift/rift_difficulty_ai_weight
+        }
+    }
+}
+
+astral_rift_event = {
+    id = gts_astral_rift.1315
+    title = gts_astral_rift.1315.name
+    desc = {
+        trigger = {
+            explorer = {
+                OR = {
+                    has_technology = tech_exotic_gases
+                    has_resource = { type = exotic_gases amount > 0 }
+                }
+                is_gestalt = yes
+            }
+        }
+        text = gts_astral_rift.1315.desc.gases.gestalt
+    }
+    desc = {
+        trigger = {
+            explorer = {
+                OR = {
+                    has_technology = tech_exotic_gases
+                    has_resource = { type = exotic_gases amount > 0 }
+                }
+                is_gestalt = no
+            }
+        }
+        text = gts_astral_rift.1315.desc.gases.default
+    }
+    desc = {
+        trigger = {
+            explorer = {
+                NOR = {
+                    has_technology = tech_exotic_gases
+                    has_resource = { type = exotic_gases amount > 0 }
+                }
+            }
+        }
+        text = gts_astral_rift.1315.desc.default
+    }
+    picture = GFX_evt_astral_rift_fluid_devour
+    show_sound = ap_rift_event_13_absorbed_by_blob
+    difficulty = @astral_rift_easy_difficulty
+    astral_rift = yes
+
+    is_triggered_only = yes
+
+    option = {
+        name = gts_astral_rift.1315.a
+        set_next_astral_rift_event = { id = gts_astral_rift.1320 }
+
+        ai_chance = {
+            inline_script = astral_rift/rift_difficulty_ai_weight
+            modifier = {
+                factor = 0
+                explorer = {
+                    OR = {
+                        is_militarist = yes
+                        is_homicidal = yes
+                    }
+                    has_resource = { type = exotic_gases amount >= 100 }
+                }
+            }
+        }
+    }
+    option = {
+        name = gts_astral_rift.1315.b
+        trigger = {
+            explorer = {
+                OR = {
+                    has_technology = tech_exotic_gases
+                    has_resource = { type = exotic_gases amount > 0 }
+                }
+            }
+        }
+        allow = {
+            explorer = { has_resource = { type = exotic_gases amount >= 100 } }
+        }
+        explorer = { add_resource = { exotic_gases = -100 } }
+        set_next_astral_rift_event = {
+            id = gts_astral_rift.1325
+            on_roll_failed = astral_rift.1330
+            fail_probability = @default_failure_probability
+        }
+
+        ai_chance = {
+            inline_script = astral_rift/rift_difficulty_ai_weight
+            modifier = {
+                factor = 0
+                explorer = {
+                    OR = {
+                        is_pacifist = yes
+                        is_spiritualist = yes
+                    }
+                }
+            }
+            modifier = {
+                add = 100
+                explorer = {
+                    OR = {
+                        is_militarist = yes
+                        is_homicidal = yes
+                    }
+                }
+            }
+        }
+    }
+
+    after = {
+        explorer = {
+            astral_thread_small_reward = yes
+        }
+    }
+}
+
+astral_rift_event = {
+    id = gts_astral_rift.1316
+    title = gts_astral_rift.1316.name
+    desc = {
+        trigger = {
+            explorer = {
+                OR = {
+                    has_technology = tech_exotic_gases
+                    has_resource = { type = exotic_gases amount > 0 }
+                }
+                is_gestalt = yes
+            }
+        }
+        text = gts_astral_rift.1316.desc.gases.gestalt
+    }
+    desc = {
+        trigger = {
+            explorer = {
+                OR = {
+                    has_technology = tech_exotic_gases
+                    has_resource = { type = exotic_gases amount > 0 }
+                }
+                is_gestalt = no
+            }
+        }
+        text = gts_astral_rift.1316.desc.gases.default
+    }
+    desc = {
+        trigger = {
+            explorer = {
+                NOR = {
+                    has_technology = tech_exotic_gases
+                    has_resource = { type = exotic_gases amount > 0 }
+                }
+            }
+        }
+        text = gts_astral_rift.1316.desc.default
+    }
+    picture = GFX_evt_astral_rift_fluid_devour
+    show_sound = ap_rift_event_13_absorbed_by_blob
+    difficulty = @astral_rift_medium_plus_difficulty
+    astral_rift = yes
+
+    is_triggered_only = yes
+
+    option = {
+        name = gts_astral_rift.1316.a
+        set_next_astral_rift_event = { id = gts_astral_rift.1320 }
+
+        ai_chance = {
+            inline_script = astral_rift/rift_difficulty_ai_weight
+            modifier = {
+                factor = 0
+                explorer = {
+                    OR = {
+                        is_militarist = yes
+                        is_homicidal = yes
+                    }
+                    has_resource = { type = exotic_gases amount >= 100 }
+                }
+            }
+        }
+    }
+    option = {
+        name = gts_astral_rift.1316.b
+        trigger = {
+            explorer = {
+                OR = {
+                    has_technology = tech_exotic_gases
+                    has_resource = { type = exotic_gases amount > 0 }
+                }
+            }
+        }
+        allow = {
+            explorer = { has_resource = { type = exotic_gases amount >= 100 } }
+        }
+        explorer = { add_resource = { exotic_gases = -100 } }
+        set_next_astral_rift_event = {
+            id = gts_astral_rift.1325
+            on_roll_failed = astral_rift.1330
+            fail_probability = @default_failure_probability
+        }
+
+        ai_chance = {
+            inline_script = astral_rift/rift_difficulty_ai_weight
+            modifier = {
+                factor = 0
+                explorer = {
+                    OR = {
+                        is_pacifist = yes
+                        is_spiritualist = yes
+                    }
+                }
+            }
+            modifier = {
+                add = 100
+                explorer = {
+                    OR = {
+                        is_militarist = yes
+                        is_homicidal = yes
+                    }
+                }
+            }
+        }
+    }
+
+    after = {
+        explorer = {
+            astral_thread_small_reward = yes
+        }
+    }
+}
+
+astral_rift_event = {
+    id = gts_astral_rift.1320
+    title = gts_astral_rift.1320.name
+    desc = {
+        trigger = {
+            has_astral_rift_flag = sample_rig_available
+        }
+        text = gts_astral_rift.1320.desc.rig
+    }
+    desc = {
+        trigger = {
+            NOT = { has_astral_rift_flag = sample_rig_available }
+        }
+        text = gts_astral_rift.1320.desc.no_rig
+    }
+    picture = GFX_evt_astral_rift_fluid_devour
+    show_sound = ap_rift_event_6_anchor_retrieval
+    difficulty = @astral_rift_transition_difficulty
+    astral_rift = yes
+
+    is_triggered_only = yes
+
+    option = {
+        name = OK
+        explorer = {
+            astral_thread_large_reward = yes
+        }
+        if = {
+            limit = { has_astral_rift_flag = sample_rig_available }
+            explorer = {
+                add_modifier = {
+                    modifier = rift_samples_biology_modifier
+                    years = 10
+                }
+            }
+        }
+        else = {
+            explorer = {
+                add_modifier = {
+                    modifier = rift_samples_biology_modifier
+                    years = 5
+                }
+            }
+        }
+        finish_astral_rift = yes
+    }
+}
+
+astral_rift_event = {
+    id = gts_astral_rift.1325
+    title = gts_astral_rift.1325.name
+    desc = {
+        trigger = {
+            has_astral_rift_flag = sample_rig_available
+        }
+        text = gts_astral_rift.1325.desc.rig
+    }
+    desc = {
+        trigger = {
+            NOT = { has_astral_rift_flag = sample_rig_available }
+        }
+        text = gts_astral_rift.1325.desc.no_rig
+    }
+    picture = GFX_evt_astral_rift_fluid_devour
+    show_sound = ap_rift_event_13_blob_dissolve
+    difficulty = @astral_rift_hard_difficulty
+    astral_rift = yes
+
+    is_triggered_only = yes
+
+    option = {
+        name = GOOD
+        explorer = {
+            add_relic = gts_r_plasmic_core
+            astral_thread_large_reward = yes
+        }
+        finish_astral_rift = yes
+    }
+}
+
+astral_rift_event = {
+    id = gts_astral_rift.1330
+    title = gts_astral_rift.1330.name
+    desc = {
+        trigger = {
+            switch = {
+                trigger = has_astral_rift_flag
+                description_gestalt = { text = gts_astral_rift.1330.desc.gestalt }
+                default = { text = gts_astral_rift.1330.desc.default }
+            }
+        }
+    }
+    picture = GFX_evt_astral_rift_fluid_devour
+    show_sound = ap_rift_event_13_absorbed_by_blob
+    difficulty = @astral_rift_easy_difficulty
+    astral_rift = yes
+
+    is_triggered_only = yes
+
+    option = {
+        name = UNFORTUNATE
+        explorer = {
+            add_modifier = {
+                modifier = rift_samples_biology_modifier
+                years = 10
+            }
+            astral_thread_large_reward = yes
+        }
+        fleet = {
+            kill_leader = { show_notification = yes }
+            destroy_fleet = this
+        }
+        finish_astral_rift = yes
+    }
+}
+
+
+
+#########################################
+# Astral Rift - Windswept Planet Events #
+#########################################
+
+#"风扫行星"
+
+namespace = gts_astral_rift
+
+astral_rift_event = {
+    id = gts_astral_rift.2700
+    title = gts_astral_rift.2700.name
+    desc = gts_astral_rift.2700.desc
+    picture = GFX_evt_astral_rift_windswept_planet
+    show_sound = event_wind_ruins
+    difficulty = @astral_rift_initial_difficulty
+    astral_rift = yes
+
+    is_triggered_only = yes
+
+    option = {
+        name = gts_astral_rift.2700.a
+        set_next_astral_rift_event = { id = gts_astral_rift.2705 }
+    }
+
+    option = {
+        #对巨娘国家
+        trigger = {
+            explorer = {
+                gts_is_giantess_empire = yes
+            }
+        }
+        name = gts_astral_rift.2700.b
+        set_next_astral_rift_event = { id = gts_astral_rift.2710 }
+    }
+    option = {
+        #对小人国家
+        trigger = {
+            explorer = {
+                gts_is_tiny_empire = yes
+            }
+        }
+        name = gts_astral_rift.2700.b
+        set_next_astral_rift_event = { id = gts_astral_rift.2711 }
+    }
+
+    after = {
+        explorer = {
+            add_monthly_resource_mult = {
+                resource = exotic_gases
+                value = @tier1materialreward
+                min = @tier1materialmin
+                max = @tier1materialmax
+            }
+        }
+    }
+}
+
+astral_rift_event = {
+    id = gts_astral_rift.2705
+    title = gts_astral_rift.2705.name
+    desc = gts_astral_rift.2705.desc
+    picture = GFX_evt_astral_rift_windswept_planet
+    show_sound = event_wind_ruins
+    difficulty = @astral_rift_easy_difficulty
+    astral_rift = yes
+
+    is_triggered_only = yes
+
+    option = {
+        name = gts_astral_rift.2705.a
+        set_next_astral_rift_event = { id = gts_astral_rift.2715 }
+    }
+
+    after = {
+        explorer = {
+            astral_thread_small_reward = yes
+        }
+    }
+}
+
+astral_rift_event = {
+    #对巨娘国家
+    id = gts_astral_rift.2710
+    title = gts_astral_rift.2710.name
+    desc = gts_astral_rift.2710.desc
+    picture = GFX_evt_astral_rift_windswept_planet
+    show_sound = ap_rift_event_27_toxic_spores_burst
+    difficulty = @astral_rift_easy_difficulty
+    astral_rift = yes
+
+    is_triggered_only = yes
+
+    option = {
+        name = gts_astral_rift.2710
+        set_next_astral_rift_event = { id = gts_astral_rift.2720 }
+    }
+
+    after = {
+        explorer = {
+            astral_thread_small_reward = yes
+        }
+    }
+}
+
+astral_rift_event = {
+    #对小人国家
+    id = gts_astral_rift.2711
+    title = gts_astral_rift.2711.name
+    desc = gts_astral_rift.2711.desc
+    picture = GFX_evt_astral_rift_windswept_planet
+    show_sound = ap_rift_event_27_toxic_spores_burst
+    difficulty = @astral_rift_easy_difficulty
+    astral_rift = yes
+
+    is_triggered_only = yes
+
+    option = {
+        name = gts_astral_rift.2710
+        set_next_astral_rift_event = { id = gts_astral_rift.2720 }
+    }
+
+    after = {
+        explorer = {
+            astral_thread_small_reward = yes
+        }
+    }
+}
+
+astral_rift_event = {
+    id = gts_astral_rift.2715
+    title = gts_astral_rift.2715.name
+    desc = gts_astral_rift.2715.desc
+    picture = GFX_evt_astral_rift_windswept_planet
+    show_sound = ap_rift_event_27_living_wind
+    difficulty = @astral_rift_medium_difficulty
+    astral_rift = yes
+
+    is_triggered_only = yes
+
+    option = {
+        name = gts_astral_rift.2715.a
+        set_next_astral_rift_event = { id = gts_astral_rift.2725 }
+    }
+
+    after = {
+        explorer = {
+            astral_thread_small_reward = yes
+        }
+    }
+}
+
+astral_rift_event = {
+    id = gts_astral_rift.2720
+    title = gts_astral_rift.2720.name
+    desc = gts_astral_rift.2720.desc
+    picture = GFX_evt_astral_rift_windswept_planet
+    show_sound = ap_rift_event_27_toxic_spores_burst
+    difficulty = @astral_rift_medium_difficulty
+    astral_rift = yes
+
+    is_triggered_only = yes
+
+    option = {
+        name = gts_astral_rift.2720.a
+        set_next_astral_rift_event = { id = gts_astral_rift.2730 }
+    }
+
+    after = {
+        explorer = {
+            astral_thread_small_reward = yes
+        }
+    }
+}
+
+astral_rift_event = {
+    id = gts_astral_rift.2725
+    title = gts_astral_rift.2725.name
+    desc = gts_astral_rift.2725.desc
+    picture = GFX_evt_astral_rift_windswept_planet
+    show_sound = ap_rift_event_27_toxic_spores_burst
+    difficulty = @astral_rift_easy_difficulty
+    astral_rift = yes
+
+    is_triggered_only = yes
+
+    option = {
+        name = gts_astral_rift.2725.a
+        allow = {
+            explorer = {
+                has_resource = { type = alloys amount >= 25 }
+                has_resource = { type = gts_giantess_fluid amount >= 20 }
+            }
+        }
+        explorer = {
+            add_resource = {
+                alloys = -25
+                gts_giantess_fluid = -20
+            }
+        }
+        set_next_astral_rift_event = { id = gts_astral_rift.2755 }
+
+        ai_chance = {
+            inline_script = astral_rift/rift_difficulty_ai_weight
+        }
+    }
+    option = {
+        name = gts_astral_rift.2725.b
+        set_next_astral_rift_event = { id = gts_astral_rift.2735 }
+
+        ai_chance = {
+            inline_script = astral_rift/rift_difficulty_ai_weight
+        }
+    }
+
+    after = {
+        explorer = {
+            astral_thread_small_reward = yes
+        }
+    }
+}
+
+astral_rift_event = {
+    id = gts_astral_rift.2730
+    title = gts_astral_rift.2730.name
+    desc = gts_astral_rift.2730.desc
+    picture = GFX_evt_astral_rift_windswept_planet
+    show_sound = ap_rift_event_27_living_wind
+    difficulty = @astral_rift_easy_plus_difficulty
+    astral_rift = yes
+
+    is_triggered_only = yes
+
+    option = {
+        name = gts_astral_rift.2730.a
+        allow = {
+            explorer = { has_resource = { type = gts_giantess_fluid amount >= 50 } }
+        }
+        explorer = { add_resource = { gts_giantess_fluid = -50 } }
+        set_next_astral_rift_event = { id = gts_astral_rift.2760 }
+
+
+        ai_chance = {
+            inline_script = astral_rift/rift_difficulty_ai_weight
+            modifier = {
+                factor = 0
+                explorer = { is_unfriendly = yes }
+            }
+        }
+    }
+    option = {
+        name = gts_astral_rift.2730.b
+        set_next_astral_rift_event = { id = gts_astral_rift.2740 }
+
+        ai_chance = {
+            inline_script = astral_rift/rift_difficulty_ai_weight
+        }
+    }
+
+    after = {
+        explorer = {
+            astral_thread_small_reward = yes
+        }
+    }
+}
+
+astral_rift_event = {
+    id = gts_astral_rift.2735
+    title = gts_astral_rift.2735.name
+    desc = gts_astral_rift.2735.desc
+    picture = GFX_evt_astral_rift_windswept_planet
+    show_sound = ap_rift_event_27_toxic_spores_burst
+    difficulty = @astral_rift_easy_plus_difficulty
+    astral_rift = yes
+
+    is_triggered_only = yes
+
+    option = {
+        name = gts_astral_rift.2735.a
+        set_next_astral_rift_event = { id = gts_astral_rift.2745 }
+    }
+
+    after = {
+        explorer = {
+            astral_thread_small_reward = yes
+        }
+    }
+}
+
+astral_rift_event = {
+    id = gts_astral_rift.2740
+    title = gts_astral_rift.2740.name
+    desc = gts_astral_rift.2740.desc
+    picture = GFX_evt_astral_rift_windswept_planet
+    show_sound = ap_rift_event_27_living_wind
+    difficulty = @astral_rift_easy_plus_difficulty
+    astral_rift = yes
+
+    is_triggered_only = yes
+
+    option = {
+        name = gts_astral_rift.2740.a
+        set_next_astral_rift_event = { id = gts_astral_rift.2750 }
+    }
+
+    after = {
+        explorer = {
+            astral_thread_small_reward = yes
+        }
+    }
+}
+
+astral_rift_event = {
+    id = gts_astral_rift.2745
+    title = gts_astral_rift.2745.name
+    desc = {
+        trigger = {
+            explorer = { is_unfriendly = no }
+        }
+        text = gts_astral_rift.2745.desc.default
+    }
+    desc = {
+        trigger = {
+            explorer = { is_unfriendly = yes }
+        }
+        text = gts_astral_rift.2745.desc.unfriendly
+    }
+    picture = GFX_evt_astral_rift_windswept_planet
+    show_sound = ap_rift_event_27_toxic_spores_burst
+    difficulty = @astral_rift_easy_plus_difficulty
+    astral_rift = yes
+
+    is_triggered_only = yes
+
+    option = {
+        name = gts_astral_rift.2745.a
+        allow = {
+            explorer = {
+                has_resource = { type = alloys amount >= 25 }
+                has_resource = { type = gts_giantess_fluid amount >= 20 }
+            }
+        }
+        explorer = {
+            add_resource = {
+                alloys = -25
+                gts_giantess_fluid = -20
+            }
+        }
+        hidden_effect = {
+            add_stage_modifier = { modifier = astral_rift_difficulty_decrease_3 }
+        }
+        set_next_astral_rift_event = { id = gts_astral_rift.2755 }
+
+        ai_chance = {
+            inline_script = astral_rift/rift_difficulty_ai_weight
+        }
+    }
+    option = {
+        name = gts_astral_rift.2745.b
+        allow = {
+            explorer = { has_resource = { type = gts_giantess_fluid amount >= 50 } }
+        }
+        explorer = { add_resource = { gts_giantess_fluid = -50 } }
+        hidden_effect = {
+            add_stage_modifier = { modifier = astral_rift_difficulty_decrease_3 }
+        }
+        set_next_astral_rift_event = { id = gts_astral_rift.2760 }
+
+        ai_chance = {
+            inline_script = astral_rift/rift_difficulty_ai_weight
+        }
+    }
+    option = {
+        trigger = {
+            explorer = {
+                is_homicidal = no
+            }
+        }
+        name = gts_astral_rift.2745.c
+        set_next_astral_rift_event = { id = gts_astral_rift.2765 }
+
+        ai_chance = {
+            inline_script = astral_rift/rift_difficulty_ai_weight
+        }
+    }
+    option = {
+        trigger = {
+            explorer = {
+                is_homicidal = yes
+            }
+        }
+        name = gts_astral_rift.2745.d
+        set_next_astral_rift_event = { id = gts_astral_rift.2770 }
+
+        ai_chance = {
+            inline_script = astral_rift/rift_difficulty_ai_weight
+            modifier = {
+                add = 100
+                always = yes
+            }
+        }
+    }
+
+    after = {
+        explorer = {
+            astral_thread_small_reward = yes
+        }
+    }
+}
+
+astral_rift_event = {
+    id = gts_astral_rift.2750
+    title = gts_astral_rift.2750.name
+    desc = {
+        trigger = {
+            explorer = { is_unfriendly = no }
+        }
+        text = gts_astral_rift.2750.desc.default
+    }
+    desc = {
+        trigger = {
+            explorer = { is_unfriendly = yes }
+        }
+        text = gts_astral_rift.2750.desc.unfriendly
+    }
+    picture = GFX_evt_astral_rift_windswept_planet
+    show_sound = ap_rift_event_27_living_wind
+    difficulty = @astral_rift_easy_plus_difficulty
+    astral_rift = yes
+
+    is_triggered_only = yes
+
+    option = {
+        name = gts_astral_rift.2750.a
+        allow = {
+            explorer = { has_resource = { type = gts_giantess_fluid amount >= 50 } }
+        }
+        explorer = { add_resource = { gts_giantess_fluid = -50 } }
+        hidden_effect = {
+            add_stage_modifier = { modifier = astral_rift_difficulty_decrease_3 }
+        }
+        set_next_astral_rift_event = { id = gts_astral_rift.2760 }
+
+        ai_chance = {
+            inline_script = astral_rift/rift_difficulty_ai_weight
+        }
+    }
+    option = {
+        name = gts_astral_rift.2750.b
+        allow = {
+            explorer = {
+                has_resource = { type = alloys amount >= 25 }
+                has_resource = { type = gts_giantess_fluid amount >= 20 }
+            }
+        }
+        explorer = { add_resource = { alloys = -25 } }
+        explorer = { add_resource = { gts_giantess_fluid = -20 } }
+        hidden_effect = {
+            add_stage_modifier = { modifier = astral_rift_difficulty_decrease_3 }
+        }
+        set_next_astral_rift_event = { id = gts_astral_rift.2755 }
+
+        ai_chance = {
+            inline_script = astral_rift/rift_difficulty_ai_weight
+        }
+    }
+    option = {
+        trigger = {
+            explorer = {
+                is_homicidal = no
+            }
+        }
+        name = gts_astral_rift.2750.c
+        set_next_astral_rift_event = { id = gts_astral_rift.2765 }
+
+        ai_chance = {
+            inline_script = astral_rift/rift_difficulty_ai_weight
+        }
+    }
+    option = {
+        trigger = {
+            explorer = {
+                is_homicidal = yes
+            }
+        }
+        name = gts_astral_rift.2745.d
+        set_next_astral_rift_event = { id = gts_astral_rift.2770 }
+
+        ai_chance = {
+            inline_script = astral_rift/rift_difficulty_ai_weight
+            modifier = {
+                add = 100
+                always = yes
+            }
+        }
+    }
+
+    after = {
+        explorer = {
+            astral_thread_small_reward = yes
+        }
+    }
+}
+
+astral_rift_event = {
+    id = gts_astral_rift.2755
+    title = gts_astral_rift.2755.name
+    desc = gts_astral_rift.2755.desc
+    picture = GFX_evt_astral_rift_windswept_planet
+    show_sound = ap_rift_event_27_cutting_winds
+    difficulty = @astral_rift_hard_difficulty
+    astral_rift = yes
+
+    is_triggered_only = yes
+
+    option = {
+        name = GOOD
+        explorer = {
+            hidden_effect = {
+                set_variable = {
+                    which = num_authorized_gts_wind_creatures
+                    value = 10
+                }
+            }
+            custom_tooltip = gts_can_incubate_wind_creatures_tt
+        }
+        finish_astral_rift = yes
+    }
+}
+
+astral_rift_event = {
+    id = gts_astral_rift.2760
+    title = gts_astral_rift.2760.name
+    desc = gts_astral_rift.2760.desc
+    picture = GFX_evt_astral_rift_windswept_planet
+    show_sound = ap_rift_event_27_fungal_spread
+
+    difficulty = @astral_rift_hard_difficulty
+    astral_rift = yes
+    is_triggered_only = yes
+    specimen = gts_extradimensional_fungus
+
+    option = {
+        name = GOOD
+        explorer = {
+            add_modifier = { modifier = gts_extra_dimensional_spores_modifier }
+        }
+        finish_astral_rift = yes
+    }
+}
+
+astral_rift_event = {
+    id = gts_astral_rift.2765
+    title = gts_astral_rift.2765.name
+    desc = gts_astral_rift.2765.desc
+    picture = GFX_evt_astral_rift_windswept_planet
+    show_sound = evn_fc_observation
+    difficulty = @astral_rift_hard_difficulty
+    astral_rift = yes
+
+    is_triggered_only = yes
+
+    option = {
+        name = GOOD
+        add_deposit = d_society_10
+        explorer = {
+            add_monthly_resource_mult = {
+                resource = exotic_gases
+                value = @tier3materialreward
+                min = @tier3materialmin
+                max = @tier3materialmax
+            }
+            add_monthly_resource_mult = {
+                resource = energy
+                value = @tier3materialreward
+                min = @tier3materialmin
+                max = @tier3materialmax
+            }
+            add_monthly_resource_mult = {
+                resource = gts_giantess_fluid
+                value = @tier3materialreward
+                min = @tier3materialmin
+                max = @tier3materialmax
+            }
+            astral_thread_large_reward = yes
+        }
+        if = {
+            limit = {
+                explorer = { is_gestalt = yes }
+            }
+            explorer = {
+                add_monthly_resource_mult = {
+                    resource = unity
+                    value = @tier3unityreward
+                    min = @tier3unitymin
+                    max = @tier3unitymax
+                }
+            }
+        }
+        else = {
+            fleet.leader = {
+                leader_event = {
+                    id = gts_astral_rift.2790
+                    days = 2
+                    scopes = {
+                        from = root
+                    }
+                }
+            }
+        }
+        finish_astral_rift = yes
+    }
+}
+
+astral_rift_event = {
+    id = gts_astral_rift.2770
+    title = gts_astral_rift.2770.name
+    desc = gts_astral_rift.2770.desc
+    picture = GFX_evt_astral_rift_windswept_planet
+    show_sound = evn_fc_observation
+    difficulty = @astral_rift_hard_difficulty
+    astral_rift = yes
+
+    is_triggered_only = yes
+
+    option = {
+        name = gts_astral_rift.2770.a
+        explorer = {
+            add_monthly_resource_mult = {
+                resource = food
+                value = @tier5materialreward
+                min = @tier5materialmin
+                max = @tier5materialmax
+            }
+            add_monthly_resource_mult = {
+                resource = unity
+                value = @tier3unityreward
+                min = @tier3unitymin
+                max = @tier3unitymax
+            }
+            astral_thread_large_reward = yes
+        }
+        finish_astral_rift = yes
+    }
+}
+
+leader_event = {
+    id = gts_astral_rift.2790
+    title = gts_astral_rift.2790.name
+    desc = gts_astral_rift.2790.desc
+    picture = GFX_evt_astral_rift_windswept_planet
+    show_sound = event_default
+
+    is_triggered_only = yes
+
+    option = {
+        name = gts_astral_rift.2790.a
+        custom_tooltip = gts_astral_rift.2790.a.tt
+        hidden_effect = {
+            unassign_leader = this
+            owner = { add_modifier = { modifier = gts_reconverted_official_modifier } }
+        }
+        change_leader_class = official
+
+        ai_chance = {
+            modifier = {
+                factor = 0
+                owner = {
+                    OR = {
+                        is_unfriendly = yes
+                        is_militarist = yes
+                        is_xenophobe = yes
+                    }
+                }
+            }
+        }
+    }
+    option = {
+        name = gts_astral_rift.2790.b
+        hidden_effect = {
+            unassign_leader = this
+            owner = { add_modifier = { modifier = gts_reconverted_scientist_modifier } }
+        }
+
+        ai_chance = {
+            modifier = {
+                factor = 0
+                owner = { is_xenophile = yes }
+            }
+            modifier = {
+                add = 1
+                owner = {
+                    OR = {
+                        is_unfriendly = yes
+                        is_militarist = yes
+                    }
+                }
+            }
+        }
+    }
+}

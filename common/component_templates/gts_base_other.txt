@@ -1,0 +1,353 @@
+############################################################################################################################################
+###################################################                輔助配件                ###################################################
+############################################################################################################################################
+
+utility_component_template = {
+	key = "AUTO_REPAIR_GTS"
+	size = aux
+	icon = "GFX_tech_gts_self_repair"
+	icon_frame = 1
+
+	ship_limit = 1
+	power = 0
+	resources = {
+		category = ship_components
+		cost = {
+			food = 1500
+		}
+		upkeep = {
+			food = 150
+		}
+	}
+
+	modifier = {
+		ship_hull_regen_add_perc = 0.025
+	}
+
+	prerequisites = { tech_gts_self_repair }
+	component_set = "AUTO_REPAIR_GTS"
+
+	size_restriction = {
+		gts_destroyer_ship
+		gts_battleship_ship
+		gts_titan_ship
+	}
+
+	ai_weight = {
+		weight = 2
+	}
+}
+
+# 有些船會用
+utility_component_template = {
+	key = "AUTO_REPAIR_GTS_SPECIAL"
+	size = aux
+	icon = "GFX_tech_gts_self_repair"
+	icon_frame = 1
+	ship_limit = 1
+
+	power = 0
+	resources = {
+		category = ship_components
+		cost = {
+			food = 3000
+		}
+	}
+
+	modifier = {
+		ship_hull_regen_add_perc = 0.05
+	}
+
+	prerequisites = { tech_gts_self_repair }
+	component_set = "AUTO_REPAIR_GTS"
+
+	size_restriction = {
+		gts_xinuo_ship
+	}
+}
+
+utility_component_template = {
+	key = "AID_REPAIR_GTS"
+	size = aux
+	icon = "GFX_tech_gts_self_repair"
+	icon_frame = 1
+	ship_limit = 1
+
+	power = 0
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 750
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					gts_is_tiny_empire = yes
+				}
+			}
+			gts_giantess_fluid = 75
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					gts_is_giantess_empire = yes
+				}
+			}
+			gts_micro = 75
+		}
+	}
+
+	modifier = {
+		ship_armor_regen_add_perc = 0.025
+	}
+
+	prerequisites = { tech_gts_aid_repair }
+	component_set = "AID_REPAIR_GTS"
+
+	size_restriction = {
+		gts_destroyer_ship
+		gts_battleship_ship
+		gts_titan_ship
+	}
+
+	ai_weight = {
+		weight = 2
+	}
+}
+
+utility_component_template = {
+	key = "BODY_STRENGTHEN_GTS"
+	size = aux
+	icon = "GFX_tech_gts_body_strengthen"
+	icon_frame = 1
+
+	ship_limit = 1
+	power = 0
+	resources = {
+		category = ship_components
+		cost = {
+			food = 1500
+		}
+		upkeep = {
+			food = 150
+		}
+	}
+	
+	modifier = {
+		ship_base_speed_mult = 0.15
+	}
+
+	prerequisites = { tech_gts_body_strengthen }
+	component_set = "BODY_STRENGTHEN_GTS"
+
+	size_restriction = {
+		gts_destroyer_ship
+		gts_battleship_ship
+		gts_titan_ship
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+utility_component_template = {
+	key = "MIND_STRENGTHEN_GTS"
+	size = aux
+	icon = "GFX_tech_gts_body_strengthen"
+	icon_frame = 1
+
+	ship_limit = 1
+	power = 0
+	resources = {
+		category = ship_components
+		cost = {
+			food = 1500
+		}
+		upkeep = {
+			food = 150
+		}
+	}
+	
+	modifier = {
+		ship_accuracy_add = 10
+	}
+
+	prerequisites = { tech_gts_mind_strengthen }
+	component_set = "MIND_STRENGTHEN_GTS"
+
+	size_restriction = {
+		gts_destroyer_ship
+		gts_battleship_ship
+		gts_titan_ship
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+utility_component_template = {
+	key = "BEAUTY_GTS"
+	size = aux
+	icon = "GFX_tech_gts_beauty"
+	icon_frame = 1
+
+	ship_limit = 1
+	power = 0
+	resources = {
+		category = ship_components
+		cost = {
+			consumer_goods = 750
+		}
+		upkeep = {
+			consumer_goods = 75
+		}
+	}
+	ship_modifier = {
+		ship_fire_rate_mult = 0.05
+	}
+
+	prerequisites = { tech_gts_beauty }
+	component_set = "BEAUTY_GTS"
+
+	size_restriction = {
+		gts_destroyer_ship
+		gts_battleship_ship
+		gts_titan_ship
+	}
+
+	ai_weight = {
+		weight = 2
+	}
+}
+
+utility_component_template = {
+	key = "ENERGY_BLANK_GTS"
+	size = aux
+	icon = "GFX_ship_part_reactor_booster_3"
+	icon_frame = 1
+
+	ship_limit = 1
+	power = 0
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 750
+		}
+		upkeep = {
+			alloys = 75
+		}
+	}
+	ship_modifier = {
+		ships_energy_upkeep_mult = -0.10
+	}
+
+	prerequisites = { tech_gts_energy_blank }
+	component_set = "ENERGY_BLANK_GTS"
+
+	size_restriction = {
+		gts_destroyer_ship
+		gts_battleship_ship
+		gts_titan_ship
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+utility_component_template = {
+	key = "BOMBING_GTS"
+	size = aux
+	icon = "GFX_tech_gts_bombing"
+	icon_frame = 1
+
+	ship_limit = 1
+	power = 0
+	resources = {
+		category = ship_components
+		cost = {
+			volatile_motes = 375
+		}
+		upkeep = {
+			volatile_motes = 37.5
+		}
+	}
+	modifier = {
+		ship_orbital_bombardment_mult = 1.0
+	}
+
+	prerequisites = { tech_gts_bombing }
+	component_set = "BOMBING_GTS"
+
+	size_restriction = {
+		gts_destroyer_ship
+		gts_battleship_ship
+		gts_titan_ship
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+
+
+############################################################################################################################################
+####################################################                無實裝                ####################################################
+############################################################################################################################################
+
+
+
+# 主人
+utility_component_template = {
+	key = "AUTO_REPAIR_MASTER"
+	size = aux
+	icon = "GFX_ship_part_auto_repair"
+	icon_frame = 1
+	power = -100
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 10
+		}
+	}
+
+	modifier = {
+		ship_hull_regen_add_perc = 4
+		ship_armor_regen_add_perc = 4
+	}
+
+
+	component_set = "AUTO_REPAIR_MASTER"
+	size_restriction = { master }
+	ai_weight = {
+		weight = 100
+	}
+}
+
+utility_component_template = {
+	key = "BOMBING_MASTER"
+	size = aux
+	icon = "GFX_ship_part_orbital_trash_dispersal"
+	icon_frame = 1
+	power = -100
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 10
+		}
+	}
+
+	modifier = {
+	ship_orbital_bombardment_mult = 5
+	}
+
+	component_set = "BOMBING_MASTER"
+	size_restriction = { master }
+	ai_weight = {
+		weight = 100
+	}
+}
+

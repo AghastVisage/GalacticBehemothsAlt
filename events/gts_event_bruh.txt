@@ -1,0 +1,1715 @@
+namespace = gts_event_bruh
+
+country_event = {
+	id = gts_event_bruh.0001
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_country_flag = gts_bruh_has_overlord_pop_usage_1_flag
+		any_subject = {
+			has_country_flag = gts_bruh_has_subject_pop_usage_1_flag
+			NOT = {
+				has_modifier = gts_bruh_has_been_subject_pop_usage
+			}
+		}
+	}
+
+	immediate = {
+		random_subject = {
+			limit = {
+				has_country_flag = gts_bruh_has_subject_pop_usage_1_flag
+				NOT = {
+					has_modifier = gts_bruh_has_been_subject_pop_usage
+				}
+			}
+			save_event_target_as = gts_bruh_get_subject_pop_usage_1_country
+		}
+		event_target:gts_bruh_get_subject_pop_usage_1_country = {
+			random_owned_planet = {
+				save_event_target_as = gts_bruh_get_subject_pop_usage_1_planet
+			}
+		}
+		country_event = {
+			id = gts_event_bruh.0010
+		}
+		event_target:gts_bruh_get_subject_pop_usage_1_country = {
+			country_event = {
+				id = gts_event_bruh.0020
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_event_bruh.0010
+	title = gts_event_bruh.0010.name
+	desc = gts_event_bruh.0010.desc
+	is_triggered_only = yes
+	show_sound = event_scanner
+	picture = GFX_evt_diplomatic_visit
+	location = event_target:gts_bruh_get_subject_pop_usage_1_country
+
+	immediate = {
+		event_target:gts_bruh_get_subject_pop_usage_1_planet = {
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_subject_planet_pop_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_subject_planet_pop_count
+				value = 100
+			}
+			round_variable = gts_bruh_get_subject_planet_pop_count
+		}
+	}
+
+	option = {
+		name = gts_event_bruh.0010.a
+		custom_tooltip = gts_event_bruh.0010.a.custom_tooltip
+		add_resource = {
+			gts_micro = 1
+			mult = event_target:gts_bruh_get_subject_pop_usage_1_planet.gts_bruh_get_subject_planet_pop_count
+		}
+	}
+	option = {
+		name = gts_event_bruh.0010.b
+		custom_tooltip = gts_event_bruh.0010.b.custom_tooltip
+		add_resource = {
+			trade = 12
+			mult = event_target:gts_bruh_get_subject_pop_usage_1_planet.gts_bruh_get_subject_planet_pop_count
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			event_target:gts_bruh_get_subject_pop_usage_1_planet = {
+				clear_variable = gts_bruh_get_subject_planet_pop_count
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_event_bruh.0020
+	title = gts_event_bruh.0020.name
+	desc = gts_event_bruh.0020.desc
+	is_triggered_only = yes
+	show_sound = event_scanner
+	picture = GFX_evt_diplomatic_visit
+	location = event_target:gts_bruh_get_subject_pop_usage_1_planet
+
+	option = {
+		name = gts_event_bruh.0020.a
+		custom_tooltip = gts_event_bruh.0020.a.custom_tooltip
+		event_target:gts_bruh_get_subject_pop_usage_1_planet = {
+			every_owned_pop_group = {
+				kill_pop_group = {
+					pop_group = this
+					percentage = 0.01
+				}
+			}
+		}
+		add_resource = {
+			energy = -1000
+		}
+		add_modifier = {
+			modifier = gts_bruh_has_been_subject_pop_usage
+			years = 10
+		}
+	}
+	option = {
+		name = gts_event_bruh.0020.b
+		custom_tooltip = gts_event_bruh.0020.b.custom_tooltip
+		allow = {
+			resource_stockpile_compare = {
+				resource = energy
+				value >= 3000
+			}
+		}
+		add_resource = {
+			# 250/10*12*10
+			energy = -3000
+		}
+		add_modifier = {
+			modifier = gts_bruh_has_been_subject_pop_usage
+			years = 10
+		}
+	}
+}
+
+country_event = {
+	id = gts_event_bruh.0030
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_country_flag = gts_bruh_has_overlord_pop_usage_2_flag
+		any_subject = {
+			has_country_flag = gts_bruh_has_subject_pop_usage_2_flag
+			NOT = {
+				has_modifier = gts_bruh_has_been_subject_pop_usage
+			}
+		}
+	}
+
+	immediate = {
+		random_subject = {
+			limit = {
+				has_country_flag = gts_bruh_has_subject_pop_usage_2_flag
+				NOT = {
+					has_modifier = gts_bruh_has_been_subject_pop_usage
+				}
+			}
+			save_event_target_as = gts_bruh_get_subject_pop_usage_2_country
+		}
+		event_target:gts_bruh_get_subject_pop_usage_2_country = {
+			random_owned_planet = {
+				save_event_target_as = gts_bruh_get_subject_pop_usage_2_planet
+			}
+		}
+		country_event = {
+			id = gts_event_bruh.0040
+		}
+		event_target:gts_bruh_get_subject_pop_usage_2_country = {
+			country_event = {
+				id = gts_event_bruh.0050
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_event_bruh.0040
+	title = gts_event_bruh.0040.name
+	desc = gts_event_bruh.0040.desc
+	is_triggered_only = yes
+	show_sound = event_scanner
+	picture = GFX_evt_diplomatic_visit
+	location = event_target:gts_bruh_get_subject_pop_usage_2_country
+
+	immediate = {
+		event_target:gts_bruh_get_subject_pop_usage_2_planet = {
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_subject_planet_pop_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_subject_planet_pop_count
+				value = 20
+			}
+			round_variable = gts_bruh_get_subject_planet_pop_count
+		}
+	}
+
+	option = {
+		name = gts_event_bruh.0040.a
+		custom_tooltip = gts_event_bruh.0040.a.custom_tooltip
+		add_resource = {
+			gts_micro = 1
+			mult = event_target:gts_bruh_get_subject_pop_usage_2_planet.gts_bruh_get_subject_planet_pop_count
+		}
+		add_resource = {
+			trade = 8
+			mult = event_target:gts_bruh_get_subject_pop_usage_2_planet.gts_bruh_get_subject_planet_pop_count
+		}
+	}
+	option = {
+		name = gts_event_bruh.0040.b
+		custom_tooltip = gts_event_bruh.0040.b.custom_tooltip
+		add_resource = {
+			unity = 4
+			mult = event_target:gts_bruh_get_subject_pop_usage_1_planet.gts_bruh_get_subject_planet_pop_count
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			event_target:gts_bruh_get_subject_pop_usage_2_planet = {
+				clear_variable = gts_bruh_get_subject_planet_pop_count
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_event_bruh.0050
+	title = gts_event_bruh.0050.name
+	desc = gts_event_bruh.0050.desc
+	is_triggered_only = yes
+	show_sound = event_scanner
+	picture = GFX_evt_diplomatic_visit
+	location = event_target:gts_bruh_get_subject_pop_usage_2_planet
+
+	option = {
+		name = gts_event_bruh.0050.a
+		custom_tooltip = gts_event_bruh.0050.a.custom_tooltip
+		event_target:gts_bruh_get_subject_pop_usage_2_planet = {
+			every_owned_pop_group = {
+				kill_pop_group = {
+					pop_group = this
+					percentage = 0.05
+				}
+			}
+		}
+		add_resource = {
+			influence = -100
+		}
+		add_modifier = {
+			modifier = gts_bruh_has_been_subject_pop_usage
+			years = 10
+		}
+	}
+	option = {
+		name = gts_event_bruh.0050.b
+		custom_tooltip = gts_event_bruh.0050.b.custom_tooltip
+		event_target:gts_bruh_get_subject_pop_usage_2_planet = {
+			every_owned_pop_group = {
+				kill_pop_group = {
+					pop_group = this
+					percentage = 0.10
+				}
+			}
+		}
+		add_resource = {
+			influence = 200
+		}
+		add_modifier = {
+			modifier = gts_bruh_has_been_subject_pop_usage
+			years = 10
+		}
+	}
+}
+
+country_event = {
+	id = gts_event_bruh.0060
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_country_flag = gts_bruh_has_overlord_pop_usage_3_flag
+		any_subject = {
+			has_country_flag = gts_bruh_has_subject_pop_usage_3_flag
+			NOT = {
+				has_modifier = gts_bruh_has_been_subject_pop_usage
+			}
+		}
+	}
+
+	immediate = {
+		random_subject = {
+			limit = {
+				has_country_flag = gts_bruh_has_subject_pop_usage_3_flag
+				NOT = {
+					has_modifier = gts_bruh_has_been_subject_pop_usage
+				}
+			}
+			save_event_target_as = gts_bruh_get_subject_pop_usage_3_country
+		}
+		event_target:gts_bruh_get_subject_pop_usage_3_country = {
+			random_owned_planet = {
+				save_event_target_as = gts_bruh_get_subject_pop_usage_3_planet
+			}
+		}
+		country_event = {
+			id = gts_event_bruh.0070
+		}
+		event_target:gts_bruh_get_subject_pop_usage_3_country = {
+			country_event = {
+				id = gts_event_bruh.0080
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_event_bruh.0070
+	title = gts_event_bruh.0070.name
+	desc = gts_event_bruh.0070.desc
+	is_triggered_only = yes
+	show_sound = event_scanner
+	picture = GFX_evt_diplomatic_visit
+	location = event_target:gts_bruh_get_subject_pop_usage_3_country
+
+	immediate = {
+		event_target:gts_bruh_get_subject_pop_usage_3_planet = {
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_subject_planet_pop_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_subject_planet_pop_count
+				value = 10
+			}
+			round_variable = gts_bruh_get_subject_planet_pop_count
+		}
+	}
+
+	option = {
+		name = gts_event_bruh.0070.a
+		custom_tooltip = gts_event_bruh.0070.a.custom_tooltip
+		add_resource = {
+			gts_micro = 0.5
+			mult = event_target:gts_bruh_get_subject_pop_usage_3_planet.gts_bruh_get_subject_planet_pop_count
+		}
+		add_resource = {
+			trade = 4
+			mult = event_target:gts_bruh_get_subject_pop_usage_3_planet.gts_bruh_get_subject_planet_pop_count
+		}
+	}
+	option = {
+		name = gts_event_bruh.0070.b
+		custom_tooltip = gts_event_bruh.0070.b.custom_tooltip
+		add_resource = {
+			gts_micro = 0.5
+			mult = event_target:gts_bruh_get_subject_pop_usage_3_planet.gts_bruh_get_subject_planet_pop_count
+		}
+		add_resource = {
+			food = 4
+			mult = event_target:gts_bruh_get_subject_pop_usage_3_planet.gts_bruh_get_subject_planet_pop_count
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			event_target:gts_bruh_get_subject_pop_usage_3_planet = {
+				clear_variable = gts_bruh_get_subject_planet_pop_count
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_event_bruh.0080
+	title = gts_event_bruh.0080.name
+	desc = gts_event_bruh.0080.desc
+	is_triggered_only = yes
+	show_sound = event_scanner
+	picture = GFX_evt_diplomatic_visit
+	location = event_target:gts_bruh_get_subject_pop_usage_3_planet
+
+	option = {
+		name = gts_event_bruh.0080.a
+		custom_tooltip = gts_event_bruh.0080.a.custom_tooltip
+		event_target:gts_bruh_get_subject_pop_usage_3_planet = {
+			every_owned_pop_group = {
+				kill_pop_group = {
+					pop_group = this
+					percentage = 0.10
+				}
+			}
+		}
+		add_modifier = {
+			modifier = gts_bruh_has_been_subject_pop_usage
+			years = 10
+		}
+	}
+	option = {
+		name = gts_event_bruh.0080.b
+		custom_tooltip = gts_event_bruh.0080.b.custom_tooltip
+		allow = {
+			resource_stockpile_compare = {
+				resource = energy
+				value >= 9000
+			}
+		}
+		event_target:gts_bruh_get_subject_pop_usage_3_planet = {
+			every_owned_pop_group = {
+				kill_pop_group = {
+					pop_group = this
+					percentage = 0.25
+				}
+			}
+		}
+		add_resource = {
+			# 250/10*12*30
+			energy = -9000
+		}
+		add_modifier = {
+			modifier = gts_bruh_has_been_subject_pop_usage
+			years = 30
+		}
+	}
+}
+
+# 生成子宮星系
+
+#event = {
+#	id = gts_event_bruh.71
+#	hide_window = yes
+#	is_triggered_only = yes
+#
+#	immediate = {
+#		no_scope = {
+#			spawn_system = {
+#				min_distance >= 3000
+#				max_distance <= 3000
+#				min_orientation_angle = 270
+#				max_orientation_angle = 270
+#				initializer = gts_bruh_womb_system
+#				hyperlane = no
+#			}
+#		}
+#		#spawn_planet = {
+#		#	generate_random_name = yes
+#		#	class = pc_crystal_asteroid
+#		#	orbit_distance = { min = 1 max = 260 }
+#		#	orbit_angle = { min = 0 max = 360 }
+#		#	flags = { asteroid_triplet }
+#		#	init_effect = {
+#		#		clear_deposits = yes
+#		#	}
+#		#}
+#	}
+#}
+
+# 添加開局建築
+
+event = {
+	id = gts_event_bruh.1000
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+        # 只针对有人口的国家
+        pop_amount > 0
+    }
+	immediate = {
+		every_country = {
+			limit = {
+				owner_main_species = {
+					OR = {
+						has_trait = trait_Titan
+						has_trait = trait_Giant
+					}
+				}
+				capital_scope = {
+					NOT = {
+						has_building = building_gts_bruh_administrative_tower
+					}
+				}
+			}
+			capital_scope = {
+				add_building = building_gts_bruh_administrative_tower
+			}
+		}
+	}
+}
+
+# 刪除與體型特質衝突的種族特質
+
+event = {
+
+	# 刪除與體型特質衝突的種族特質(巨娘)
+
+	id = gts_event_bruh.1010
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		any_galaxy_species = {
+			OR = {
+				has_trait = trait_Ultra
+				has_trait = trait_Titan
+				has_trait = trait_Giant
+				has_trait = trait_Tall
+				AND = {
+					has_trait = trait_gts_begin
+					OR = {
+						has_trait = trait_Normal
+						has_trait = trait_Small
+						has_trait = trait_Tiny
+						has_trait = trait_Micro
+						has_trait = trait_Nano
+					}
+				}
+			}
+			OR = {
+				has_trait = trait_gts_cave_dweller
+				has_trait = trait_gts_under_feet_fungus
+				has_trait = trait_tiny_scaven
+				has_trait = trait_tiny_catalyst
+				has_trait = trait_tinyunbending
+				has_trait = trait_tinyslave
+				has_trait = trait_tiny_reproduce
+				has_trait = trait_love_gts
+				has_trait = trait_fear_gts
+
+				has_trait = trait_tiny_futa
+				has_trait = trait_tiny_milk
+				has_trait = trait_tiny_armpit
+				has_trait = trait_tiny_ub
+				has_trait = trait_tiny_ass
+				has_trait = trait_tiny_vore
+				has_trait = trait_tiny_finger
+				has_trait = trait_tiny_feet
+				has_trait = trait_tiny_butt
+			}
+		}
+	}
+
+	immediate = {
+		every_galaxy_species = {
+			limit = {
+				OR = {
+					has_trait = trait_Ultra
+					has_trait = trait_Titan
+					has_trait = trait_Giant
+					has_trait = trait_Tall
+				}
+				OR = {
+					has_trait = trait_gts_cave_dweller
+					has_trait = trait_gts_under_feet_fungus
+					has_trait = trait_tiny_scaven
+					has_trait = trait_tiny_catalyst
+					has_trait = trait_tinyunbending
+					has_trait = trait_tinyslave
+					has_trait = trait_tiny_reproduce
+					has_trait = trait_love_gts
+					has_trait = trait_fear_gts
+
+					has_trait = trait_tiny_futa
+					has_trait = trait_tiny_milk
+					has_trait = trait_tiny_armpit
+					has_trait = trait_tiny_ub
+					has_trait = trait_tiny_ass
+					has_trait = trait_tiny_vore
+					has_trait = trait_tiny_finger
+					has_trait = trait_tiny_feet
+					has_trait = trait_tiny_butt
+				}
+			}
+			change_species_characteristics = {
+				remove_trait = trait_gts_cave_dweller
+			}
+			change_species_characteristics = {
+				remove_trait = trait_gts_under_feet_fungus
+			}
+			change_species_characteristics = {
+				remove_trait = trait_tiny_scaven
+			}
+			change_species_characteristics = {
+				remove_trait = trait_tiny_catalyst
+			}
+			change_species_characteristics = {
+				remove_trait = trait_tinyunbending
+			}
+			change_species_characteristics = {
+				remove_trait = trait_tinyslave
+			}
+			change_species_characteristics = {
+				remove_trait = trait_tiny_reproduce
+			}
+			change_species_characteristics = {
+				remove_trait = trait_love_gts
+			}
+			change_species_characteristics = {
+				remove_trait = trait_fear_gts
+			}
+			change_species_characteristics = {
+				remove_trait = trait_tiny_futa
+			}
+			change_species_characteristics = {
+				remove_trait = trait_tiny_milk
+			}
+			change_species_characteristics = {
+				remove_trait = trait_tiny_armpit
+			}
+			change_species_characteristics = {
+				remove_trait = trait_tiny_ub
+			}
+			change_species_characteristics = {
+				remove_trait = trait_tiny_ass
+			}
+			change_species_characteristics = {
+				remove_trait = trait_tiny_vore
+			}
+			change_species_characteristics = {
+				remove_trait = trait_tiny_finger
+			}
+			change_species_characteristics = {
+				remove_trait = trait_tiny_feet
+			}
+			change_species_characteristics = {
+				remove_trait = trait_tiny_butt
+			}
+		}
+	}
+}
+
+event = {
+
+	# 刪除與體型特質衝突的種族特質(小人)
+
+	id = gts_event_bruh.1020
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		any_galaxy_species = {
+			OR = {
+				has_trait = trait_Normal
+				has_trait = trait_Small
+				has_trait = trait_Tiny
+				has_trait = trait_Micro
+				has_trait = trait_Nano
+			}
+			OR = {
+				has_trait = trait_gts_ub
+				has_trait = trait_gts_ass
+				has_trait = trait_gts_vore
+				has_trait = trait_gts_milk
+			}
+		}
+	}
+
+	immediate = {
+		every_galaxy_species = {
+			limit = {
+				OR = {
+					has_trait = trait_Normal
+					has_trait = trait_Small
+					has_trait = trait_Tiny
+					has_trait = trait_Micro
+					has_trait = trait_Nano
+				}
+				OR = {
+					has_trait = trait_gts_ub
+					has_trait = trait_gts_ass
+					has_trait = trait_gts_vore
+					has_trait = trait_gts_milk
+					has_trait = trait_gts_breed
+				}
+			}
+			change_species_characteristics = {
+				remove_trait = trait_gts_ub
+			}
+			change_species_characteristics = {
+				remove_trait = trait_gts_ass
+			}
+			change_species_characteristics = {
+				remove_trait = trait_gts_vore
+			}
+			change_species_characteristics = {
+				remove_trait = trait_gts_milk
+			}change_species_characteristics = {
+				remove_trait = trait_gts_breed
+			}
+		}
+	}
+}
+
+event = {
+
+	# 刪除複數的體型特質(同時有巨娘特質與小人特質)
+
+	id = gts_event_bruh.1030
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		any_galaxy_species = {
+			OR = {
+				has_trait = trait_Titan
+				has_trait = trait_Giant
+				has_trait = trait_Tall
+			}
+			OR = {
+				has_trait = trait_Normal
+				has_trait = trait_Small
+				has_trait = trait_Tiny
+				has_trait = trait_Micro
+				has_trait = trait_Nano
+			}
+		}
+	}
+
+	immediate = {
+		every_galaxy_species = {
+			limit = {
+				OR = {
+					has_trait = trait_Titan
+					has_trait = trait_Giant
+					has_trait = trait_Tall
+				}
+				OR = {
+					has_trait = trait_Normal
+					has_trait = trait_Small
+					has_trait = trait_Tiny
+					has_trait = trait_Micro
+					has_trait = trait_Nano
+				}
+			}
+
+			while = {
+				count = 2
+				change_species_characteristics = {
+					remove_trait = trait_Titan
+				}
+				change_species_characteristics = {
+					remove_trait = trait_Giant
+				}
+				change_species_characteristics = {
+					remove_trait = trait_Tall
+				}
+				change_species_characteristics = {
+					remove_trait = trait_Normal
+				}
+				change_species_characteristics = {
+					remove_trait = trait_Small
+				}
+				change_species_characteristics = {
+					remove_trait = trait_Tiny
+				}
+				change_species_characteristics = {
+					remove_trait = trait_Micro
+				}
+				change_species_characteristics = {
+					remove_trait = trait_Nano
+				}
+			}
+
+			random_list = {
+				1 = {
+					change_species_characteristics = {
+						add_trait = trait_Titan
+					}
+				}
+				1 = {
+					change_species_characteristics = {
+						add_trait = trait_Giant
+					}
+				}
+				1 = {
+					change_species_characteristics = {
+						add_trait = trait_Tall
+					}
+				}
+				1 = {
+					change_species_characteristics = {
+						add_trait = trait_Normal
+					}
+				}
+				1 = {
+					change_species_characteristics = {
+						add_trait = trait_Small
+					}
+				}
+				1 = {
+					change_species_characteristics = {
+						add_trait = trait_Tiny
+					}
+				}
+				1 = {
+					change_species_characteristics = {
+						add_trait = trait_Micro
+					}
+				}
+				1 = {
+					change_species_characteristics = {
+						add_trait = trait_Nano
+					}
+				}
+			}
+		}
+	}
+}
+
+event = {
+
+	# 刪除複數的體型特質(重複的巨娘特質)
+
+	id = gts_event_bruh.1031
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		any_galaxy_species = {
+			OR = {
+				AND = {
+					has_trait = trait_Titan
+					OR = {
+						has_trait = trait_Giant
+						has_trait = trait_Tall
+					}
+				}
+				AND = {
+					has_trait = trait_Giant
+					OR = {
+						has_trait = trait_Titan
+						has_trait = trait_Tall
+					}
+				}
+				AND = {
+					has_trait = trait_Tall
+					OR = {
+						has_trait = trait_Titan
+						has_trait = trait_Giant
+					}
+				}
+			}
+		}
+	}
+
+	immediate = {
+		every_galaxy_species = {
+			limit = {
+				OR = {
+					AND = {
+						has_trait = trait_Titan
+						OR = {
+							has_trait = trait_Giant
+							has_trait = trait_Tall
+						}
+					}
+					AND = {
+						has_trait = trait_Giant
+						OR = {
+							has_trait = trait_Titan
+							has_trait = trait_Tall
+						}
+					}
+					AND = {
+						has_trait = trait_Tall
+						OR = {
+							has_trait = trait_Titan
+							has_trait = trait_Giant
+						}
+					}
+				}
+			}
+
+			while = {
+				count = 2
+				change_species_characteristics = {
+					remove_trait = trait_Titan
+				}
+				change_species_characteristics = {
+					remove_trait = trait_Giant
+				}
+				change_species_characteristics = {
+					remove_trait = trait_Tall
+				}
+			}
+
+			random_list = {
+				1 = {
+					change_species_characteristics = {
+						add_trait = trait_Titan
+					}
+				}
+				1 = {
+					change_species_characteristics = {
+						add_trait = trait_Giant
+					}
+				}
+				1 = {
+					change_species_characteristics = {
+						add_trait = trait_Tall
+					}
+				}
+			}
+		}
+	}
+}
+
+event = {
+
+	# 刪除複數的體型特質(重複的小人特質)
+
+	id = gts_event_bruh.1032
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		any_galaxy_species = {
+			OR = {
+				AND = {
+					has_trait = trait_Normal
+					OR = {
+						has_trait = trait_Small
+						has_trait = trait_Tiny
+						has_trait = trait_Micro
+						has_trait = trait_Nano
+					}
+				}
+				AND = {
+					has_trait = trait_Small
+					OR = {
+						has_trait = trait_Normal
+						has_trait = trait_Tiny
+						has_trait = trait_Micro
+						has_trait = trait_Nano
+					}
+				}
+				AND = {
+					has_trait = trait_Tiny
+					OR = {
+						has_trait = trait_Normal
+						has_trait = trait_Small
+						has_trait = trait_Micro
+						has_trait = trait_Nano
+					}
+				}
+				AND = {
+					has_trait = trait_Micro
+					OR = {
+						has_trait = trait_Normal
+						has_trait = trait_Small
+						has_trait = trait_Tiny
+						has_trait = trait_Nano
+					}
+				}
+				AND = {
+					has_trait = trait_Nano
+					OR = {
+						has_trait = trait_Normal
+						has_trait = trait_Small
+						has_trait = trait_Tiny
+						has_trait = trait_Micro
+					}
+				}
+			}
+		}
+	}
+
+	immediate = {
+		every_galaxy_species = {
+			limit = {
+				OR = {
+					AND = {
+						has_trait = trait_Normal
+						OR = {
+							has_trait = trait_Small
+							has_trait = trait_Tiny
+							has_trait = trait_Micro
+							has_trait = trait_Nano
+						}
+					}
+					AND = {
+						has_trait = trait_Small
+						OR = {
+							has_trait = trait_Normal
+							has_trait = trait_Tiny
+							has_trait = trait_Micro
+							has_trait = trait_Nano
+						}
+					}
+					AND = {
+						has_trait = trait_Tiny
+						OR = {
+							has_trait = trait_Normal
+							has_trait = trait_Small
+							has_trait = trait_Micro
+							has_trait = trait_Nano
+						}
+					}
+					AND = {
+						has_trait = trait_Micro
+						OR = {
+							has_trait = trait_Normal
+							has_trait = trait_Small
+							has_trait = trait_Tiny
+							has_trait = trait_Nano
+						}
+					}
+					AND = {
+						has_trait = trait_Nano
+						OR = {
+							has_trait = trait_Normal
+							has_trait = trait_Small
+							has_trait = trait_Tiny
+							has_trait = trait_Micro
+						}
+					}
+				}
+			}
+
+			while = {
+				count = 2
+				change_species_characteristics = {
+					remove_trait = trait_Normal
+				}
+				change_species_characteristics = {
+					remove_trait = trait_Small
+				}
+				change_species_characteristics = {
+					remove_trait = trait_Tiny
+				}
+				change_species_characteristics = {
+					remove_trait = trait_Micro
+				}
+				change_species_characteristics = {
+					remove_trait = trait_Nano
+				}
+			}
+
+			random_list = {
+				1 = {
+					change_species_characteristics = {
+						add_trait = trait_Normal
+					}
+				}
+				1 = {
+					change_species_characteristics = {
+						add_trait = trait_Small
+					}
+				}
+				1 = {
+					change_species_characteristics = {
+						add_trait = trait_Tiny
+					}
+				}
+				1 = {
+					change_species_characteristics = {
+						add_trait = trait_Micro
+					}
+				}
+				1 = {
+					change_species_characteristics = {
+						add_trait = trait_Nano
+					}
+				}
+			}
+		}
+	}
+}
+
+# 替領袖添加扶她特質
+
+country_event = {
+	id = gts_event_bruh.1060
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			NOT = {
+				has_trait = leader_trait_gts_futa
+			}
+		}
+		from.species = {
+			has_trait = trait_gts_Futa
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				from = {
+					NOT = {
+						has_trait = leader_trait_gts_futa
+					}
+				}
+				from.species = {
+					has_trait = trait_gts_Futa
+				}
+			}
+			from = {
+				add_trait = {
+					trait = leader_trait_gts_futa
+					show_message = no
+				}
+			}
+		}
+	}
+}
+
+
+# 刪除佔位符特質
+
+event = {
+	id = gts_event_bruh.1070
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		any_country = {
+			any_owned_leader = {
+				has_trait = leader_trait_gts_bruh_empty
+			}
+		}
+	}
+
+	immediate = {
+		every_country = {
+			every_owned_leader = {
+				limit = {
+					has_trait = leader_trait_gts_bruh_empty
+				}
+				remove_trait = leader_trait_gts_bruh_empty
+			}
+		}
+	}
+}
+
+# 刪除不符合星球類型的首都建築
+
+event = {
+	id = gts_event_bruh.1080
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		any_galaxy_planet = {
+			exists = owner
+			is_gts_reformed_planet = yes
+			OR = {
+				has_building = building_colony_shelter
+				has_building = building_deployment_post
+
+				has_building = building_capital
+				has_building = building_hive_capital
+				has_building = building_machine_capital
+				has_building = building_resort_capital
+				has_building = building_slave_capital
+				has_building = building_ancient_control_center
+				has_building = building_ancient_palace
+				has_building = building_capital_wilderness
+
+				has_building = building_major_capital
+				has_building = building_hive_major_capital
+				has_building = building_machine_major_capital
+				has_building = building_resort_major_capital
+				has_building = building_slave_major_capital
+				has_building = building_major_capital_wilderness
+
+				has_building = building_system_capital
+				has_building = building_machine_system_capital
+				has_building = building_system_capital_wilderness
+			}
+		}
+	}
+
+	immediate = {
+		every_galaxy_planet= {
+			limit = {
+				exists = owner
+				is_gts_reformed_planet = yes
+				OR = {
+					has_building = building_colony_shelter
+					has_building = building_deployment_post
+
+					has_building = building_capital
+					has_building = building_hive_capital
+					has_building = building_machine_capital
+					has_building = building_resort_capital
+					has_building = building_slave_capital
+					has_building = building_ancient_control_center
+					has_building = building_ancient_palace
+					has_building = building_capital_wilderness
+
+					has_building = building_major_capital
+					has_building = building_hive_major_capital
+					has_building = building_machine_major_capital
+					has_building = building_resort_major_capital
+					has_building = building_slave_major_capital
+					has_building = building_major_capital_wilderness
+
+					has_building = building_system_capital
+					has_building = building_machine_system_capital
+					has_building = building_system_capital_wilderness
+				}
+			}
+			remove_building = building_colony_shelter
+			remove_building = building_deployment_post
+
+			remove_building = building_capital
+			remove_building = building_hive_capital
+			remove_building = building_machine_capital
+			remove_building = building_resort_capital
+			remove_building = building_slave_capital
+			remove_building = building_ancient_control_center
+			remove_building = building_ancient_palace
+			remove_building = building_capital_wilderness
+
+			remove_building = building_major_capital
+			remove_building = building_hive_major_capital
+			remove_building = building_machine_major_capital
+			remove_building = building_resort_major_capital
+			remove_building = building_slave_major_capital
+			remove_building = building_major_capital_wilderness
+
+			remove_building = building_system_capital
+			remove_building = building_machine_system_capital
+			remove_building = building_system_capital_wilderness
+			if = {
+				limit = {
+					exists = owner
+					OR = {
+						is_planet_class = pc_gts_juice
+						is_planet_class = pc_gts_juice2
+						is_planet_class = pc_gts_juice3
+					}
+					NOR = {
+						has_building = building_gts_bruh_juice_colony_shelter
+						has_building = building_gts_bruh_juice_capital
+						has_building = building_gts_bruh_juice_major_capital
+						has_building = building_gts_bruh_juice_system_capital
+					}
+				}
+				add_building = building_gts_bruh_juice_colony_shelter
+			}
+			else_if = {
+				limit = {
+					exists = owner
+					is_planet_class = pc_gts_milk
+					NOR = {
+						has_building = building_gts_bruh_milk_colony_shelter
+						has_building = building_gts_bruh_milk_capital
+						has_building = building_gts_bruh_milk_major_capital
+						has_building = building_gts_bruh_milk_system_capital
+					}
+				}
+				add_building = building_gts_bruh_milk_colony_shelter
+			}
+			else_if = {
+				limit = {
+					exists = owner
+					is_planet_class = pc_gts_semen
+					NOR = {
+						has_building = building_gts_bruh_semen_colony_shelter
+						has_building = building_gts_bruh_semen_capital
+						has_building = building_gts_bruh_semen_major_capital
+						has_building = building_gts_bruh_semen_system_capital
+					}
+				}
+				add_building = building_gts_bruh_semen_colony_shelter
+			}
+			else_if = {
+				limit = {
+					exists = owner
+					OR = {
+						is_planet_class = pc_gts_dirt0
+						is_planet_class = pc_gts_dirt1
+						is_planet_class = pc_gts_dirt2
+						is_planet_class = pc_gts_dirt3
+						is_planet_class = pc_gts_dirt4
+					}
+					NOR = {
+						has_building = building_gts_bruh_dirt_colony_shelter
+						has_building = building_gts_bruh_dirt_capital
+						has_building = building_gts_bruh_dirt_major_capital
+						has_building = building_gts_bruh_dirt_system_capital
+					}
+				}
+				add_building = building_gts_bruh_dirt_colony_shelter
+			}
+			else_if = {
+				limit = {
+					exists = owner
+					is_planet_class = pc_gts_shit
+					NOR = {
+						has_building = building_gts_bruh_shit_colony_shelter
+						has_building = building_gts_bruh_shit_capital
+						has_building = building_gts_bruh_shit_major_capital
+						has_building = building_gts_bruh_shit_system_capital
+					}
+				}
+				add_building = building_gts_bruh_shit_colony_shelter
+			}
+			else_if = {
+				limit = {
+					exists = owner
+					OR = {
+						is_planet_class = pc_gts_urine
+						is_planet_class = pc_gts_urine2
+					}
+					NOR = {
+						has_building = building_gts_bruh_urine_colony_shelter
+						has_building = building_gts_bruh_urine_capital
+						has_building = building_gts_bruh_urine_major_capital
+						has_building = building_gts_bruh_urine_system_capital
+					}
+				}
+				add_building = building_gts_bruh_urine_colony_shelter
+			}
+		}
+	}
+}
+
+
+# 移除無人星球上的寰海極宇修正及建築
+
+event = {
+	id = gts_event_bruh.1090
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		any_galaxy_planet = {
+			has_owner = no
+			OR = {
+				OR = {
+					has_modifier = gts_bruh_ultra_company_insurance_01
+					has_modifier = gts_bruh_ultra_company_insurance_02
+					has_modifier = gts_bruh_ultra_company_insurance_03
+					has_modifier = gts_bruh_ultra_company_insurance_04
+					has_modifier = gts_bruh_ultra_company_insurance_05
+					has_modifier = gts_bruh_ultra_company_insurance_06
+					has_modifier = gts_bruh_ultra_company_insurance_07
+					has_modifier = gts_bruh_ultra_company_insurance_08
+					has_modifier = gts_bruh_ultra_company_insurance_09
+					has_modifier = gts_bruh_ultra_company_insurance_10
+				}
+				OR = {
+					has_building = building_gts_ultra_insurance_tongue
+					has_building = building_gts_ultra_insurance_tongue2
+					has_building = building_gts_ultra_insurance_foot
+					has_building = building_gts_ultra_insurance_breast
+					has_building = building_gts_ultra_insurance_virgin
+					has_building = building_gts_ultra_insurance_toy
+					has_building = building_gts_ultra_insurance_flood
+					has_building = building_gts_ultra_insurance_toxic
+					has_building = building_gts_ultra_insurance_scat
+					has_building = building_gts_ultra_insurance_exhale
+					has_building = building_gts_ultra_insurance_futa
+				}
+				OR = {
+					has_planet_flag = has_insurance_tongue
+					has_planet_flag = has_insurance_tongue2
+					has_planet_flag = has_insurance_foot
+					has_planet_flag = has_insurance_breast
+					has_planet_flag = has_insurance_breast2
+					has_planet_flag = has_insurance_virgin
+					has_planet_flag = has_insurance_virgin2
+					has_planet_flag = has_insurance_toy
+					has_planet_flag = has_insurance_flood
+					has_planet_flag = has_insurance_scat
+					has_planet_flag = has_insurance_exhale
+					has_planet_flag = has_insurance_futa
+					has_planet_flag = has_insurance_futa2
+				}
+			}
+		}
+	}
+
+	immediate = {
+		every_galaxy_planet= {
+			limit = {
+				has_owner = no
+				OR = {
+					OR = {
+						has_modifier = gts_bruh_ultra_company_insurance_01
+						has_modifier = gts_bruh_ultra_company_insurance_02
+						has_modifier = gts_bruh_ultra_company_insurance_03
+						has_modifier = gts_bruh_ultra_company_insurance_04
+						has_modifier = gts_bruh_ultra_company_insurance_05
+						has_modifier = gts_bruh_ultra_company_insurance_06
+						has_modifier = gts_bruh_ultra_company_insurance_07
+						has_modifier = gts_bruh_ultra_company_insurance_08
+						has_modifier = gts_bruh_ultra_company_insurance_09
+						has_modifier = gts_bruh_ultra_company_insurance_10
+					}
+					OR = {
+						has_building = building_gts_ultra_insurance_tongue
+						has_building = building_gts_ultra_insurance_tongue2
+						has_building = building_gts_ultra_insurance_foot
+						has_building = building_gts_ultra_insurance_breast
+						has_building = building_gts_ultra_insurance_virgin
+						has_building = building_gts_ultra_insurance_toy
+						has_building = building_gts_ultra_insurance_flood
+						has_building = building_gts_ultra_insurance_toxic
+						has_building = building_gts_ultra_insurance_scat
+						has_building = building_gts_ultra_insurance_exhale
+						has_building = building_gts_ultra_insurance_futa
+					}
+					OR = {
+						has_planet_flag = has_insurance_tongue
+						has_planet_flag = has_insurance_tongue2
+						has_planet_flag = has_insurance_foot
+						has_planet_flag = has_insurance_breast
+						has_planet_flag = has_insurance_breast2
+						has_planet_flag = has_insurance_virgin
+						has_planet_flag = has_insurance_virgin2
+						has_planet_flag = has_insurance_toy
+						has_planet_flag = has_insurance_flood
+						has_planet_flag = has_insurance_scat
+						has_planet_flag = has_insurance_exhale
+						has_planet_flag = has_insurance_futa
+						has_planet_flag = has_insurance_futa2
+					}
+				}
+			}
+			remove_modifier = gts_bruh_ultra_company_insurance_01
+			remove_modifier = gts_bruh_ultra_company_insurance_02
+			remove_modifier = gts_bruh_ultra_company_insurance_03
+			remove_modifier = gts_bruh_ultra_company_insurance_04
+			remove_modifier = gts_bruh_ultra_company_insurance_05
+			remove_modifier = gts_bruh_ultra_company_insurance_06
+			remove_modifier = gts_bruh_ultra_company_insurance_07
+			remove_modifier = gts_bruh_ultra_company_insurance_08
+			remove_modifier = gts_bruh_ultra_company_insurance_09
+			remove_modifier = gts_bruh_ultra_company_insurance_10
+
+			remove_building = building_gts_ultra_insurance_tongue
+			remove_building = building_gts_ultra_insurance_tongue2
+			remove_building = building_gts_ultra_insurance_foot
+			remove_building = building_gts_ultra_insurance_breast
+			remove_building = building_gts_ultra_insurance_virgin
+			remove_building = building_gts_ultra_insurance_toy
+			remove_building = building_gts_ultra_insurance_flood
+			remove_building = building_gts_ultra_insurance_toxic
+			remove_building = building_gts_ultra_insurance_scat
+			remove_building = building_gts_ultra_insurance_exhale
+			remove_building = building_gts_ultra_insurance_futa
+
+			remove_planet_flag = has_insurance_tongue
+			remove_planet_flag = has_insurance_tongue2
+			remove_planet_flag = has_insurance_foot
+			remove_planet_flag = has_insurance_breast
+			remove_planet_flag = has_insurance_breast2
+			remove_planet_flag = has_insurance_virgin
+			remove_planet_flag = has_insurance_virgin2
+			remove_planet_flag = has_insurance_toy
+			remove_planet_flag = has_insurance_flood
+			remove_planet_flag = has_insurance_scat
+			remove_planet_flag = has_insurance_exhale
+			remove_planet_flag = has_insurance_futa
+			remove_planet_flag = has_insurance_futa2
+		}
+	}
+}
+
+
+# 小人軍隊復活用
+
+country_event = {
+	id = gts_event_bruh.1100
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		exists = from.species
+		from = {
+			species = {
+				OR = {
+					has_trait = trait_Small
+					has_trait = trait_Tiny
+					has_trait = trait_Micro
+					has_trait = trait_Nano
+					has_trait = trait_tinyunbending
+				}
+			}
+			NOR = {
+				army_type = assault_army
+				has_army_flag = gts_bruh_had_second_chance
+			}
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				from = {
+					species = {
+						has_trait = trait_Small
+					}
+				}
+			}
+			random_list = {
+				4 = { }
+				1 = {
+					fromfromfrom = {
+						create_army = {
+							owner = root
+							type = defense_army
+							species = root.from.species
+						}
+					}
+					last_created_army = { set_army_flag = gts_bruh_had_second_chance }
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				from = {
+					species = {
+						has_trait = trait_Tiny
+					}
+				}
+			}
+			random_list = {
+				3 = { }
+				2 = {
+					fromfromfrom = {
+						create_army = {
+							owner = root
+							type = defense_army
+							species = root.from.species
+						}
+					}
+					last_created_army = { set_army_flag = gts_bruh_had_second_chance }
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				from = {
+					species = {
+						has_trait = trait_Micro
+					}
+				}
+			}
+			random_list = {
+				2 = { }
+				3 = {
+					fromfromfrom = {
+						create_army = {
+							owner = root
+							type = defense_army
+							species = root.from.species
+						}
+					}
+					last_created_army = { set_army_flag = gts_bruh_had_second_chance }
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				from = {
+					species = {
+						has_trait = trait_Nano
+					}
+				}
+			}
+			random_list = {
+				1 = { }
+				4 = {
+					fromfromfrom = {
+						create_army = {
+							owner = root
+							type = defense_army
+							species = root.from.species
+						}
+					}
+					last_created_army = { set_army_flag = gts_bruh_had_second_chance }
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				from = {
+					species = {
+						has_trait = trait_tinyunbending
+					}
+				}
+			}
+			fromfromfrom = {
+				create_army = {
+					owner = root
+					type = defense_army
+					species = root.from.species
+				}
+			}
+			last_created_army = { set_army_flag = gts_bruh_had_second_chance }
+		}
+	}
+}
+
+
+# 計算領袖特質所需的資源
+
+country_event = {
+	id = gts_event_bruh.1110
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		is_ai = no
+	}
+
+	immediate = {
+		root = {
+
+			# 小人資源
+
+			# 巨娘體液
+			export_resource_income_to_variable = {
+				resource = gts_giantess_fluid
+				variable = gts_bruh_get_gts_giantess_fluid_cost_amount_variable
+			}
+			multiply_variable = {
+				which = gts_bruh_get_gts_giantess_fluid_cost_amount_variable
+				value = -12
+			}
+			change_variable = {
+				which = gts_bruh_get_gts_giantess_fluid_cost_amount_variable
+				value = -10000
+			}
+
+			# 巨娘內衣
+			export_resource_income_to_variable = {
+				resource = gts_giantess_underwear
+				variable = gts_bruh_get_gts_giantess_underwear_cost_amount_variable
+			}
+			multiply_variable = {
+				which = gts_bruh_get_gts_giantess_underwear_cost_amount_variable
+				value = -12
+			}
+			change_variable = {
+				which = gts_bruh_get_gts_giantess_underwear_cost_amount_variable
+				value = -5000
+			}
+
+			# 巨娘之力
+			export_resource_income_to_variable = {
+				resource = gts_giantess_human
+				variable = gts_bruh_get_gts_giantess_human_cost_amount_variable
+			}
+			multiply_variable = {
+				which = gts_bruh_get_gts_giantess_human_cost_amount_variable
+				value = -12
+			}
+			change_variable = {
+				which = gts_bruh_get_gts_giantess_human_cost_amount_variable
+				value = -2500
+			}
+
+			# 巨娘資源
+
+			# 縮小人
+			export_resource_income_to_variable = {
+				resource = gts_micro
+				variable = gts_bruh_get_gts_micro_cost_amount_variable
+			}
+			multiply_variable = {
+				which = gts_bruh_get_gts_micro_cost_amount_variable
+				value = -12
+			}
+			change_variable = {
+				which = gts_bruh_get_gts_micro_cost_amount_variable
+				value = -10000
+			}
+
+			# 縮小城市
+			export_resource_income_to_variable = {
+				resource = gts_micro_city
+				variable = gts_bruh_get_gts_micro_city_cost_amount_variable
+			}
+			multiply_variable = {
+				which = gts_bruh_get_gts_micro_city_cost_amount_variable
+				value = -12
+			}
+			change_variable = {
+				which = gts_bruh_get_gts_micro_city_cost_amount_variable
+				value = -5000
+			}
+
+			# 縮小星球
+			export_resource_income_to_variable = {
+				resource = gts_micro_planet
+				variable = gts_bruh_get_gts_micro_planet_cost_amount_variable
+			}
+			multiply_variable = {
+				which = gts_bruh_get_gts_micro_planet_cost_amount_variable
+				value = -12
+			}
+			change_variable = {
+				which = gts_bruh_get_gts_micro_planet_cost_amount_variable
+				value = -2500
+			}
+		}
+	}
+}
+

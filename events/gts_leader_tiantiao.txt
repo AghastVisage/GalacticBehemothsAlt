@@ -1,0 +1,258 @@
+namespace = gts_tiantiao
+
+#天条
+
+country_event = {
+	#创建天条星系
+	id = gts_tiantiao.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		random_system = {
+			limit = {
+				distance = {
+					source = root.capital_scope.solar_system
+					use_bypasses = yes
+					min_jumps = 1
+					max_jumps = 6
+				}
+			}
+			spawn_system = {
+				min_distance >= 10
+				max_distance <= 30
+				max_jumps = 1
+				initializer = gts_tiantiao_system
+				effect = {
+					save_event_target_as = gts_bruh_get_tiantiao_system_location
+				}
+			}
+		}
+	}
+}
+
+ship_event = {
+	# 路障
+	id = gts_tiantiao.2
+	title = "gts_tiantiao.2.name"
+	desc = gts_tiantiao.2.desc
+	picture = GFX_load_84
+	show_sound = event_dig_site
+	is_triggered_only = yes
+
+	option = {
+		name = gts_tiantiao.2.a
+		owner = {
+			country_event = {
+				id = gts_tiantiao.3
+			}
+		}
+	}
+}
+country_event = {
+	# 突破墓场
+	id = gts_tiantiao.3
+	title = gts_tiantiao.3.name
+	desc = gts_tiantiao.3.desc
+	picture = GFX_gts_tiantiao_1
+	show_sound = event_default
+	is_triggered_only = yes
+	immediate = {
+		
+	}
+	option = {
+		name = gts_tiantiao.3.a
+		country_event = {
+			id = gts_tiantiao.4
+		}
+	}
+}
+country_event = {
+	# 天条阳晴招募
+	id = gts_tiantiao.4
+	title = "gts_tiantiao.4.name"
+	desc = gts_tiantiao.4.desc
+	show_sound = event_celebration
+	is_triggered_only = yes
+	picture = GFX_leader_recruitment_bg_renowned
+	auto_opens = yes
+	event_window_type = leader_recruit
+	notification_event_icon = "GFX_message_leader_gts_tiantiao"
+	immediate = {
+		gts_leader_tiantiao_hired = yes
+	}
+	picture_event_data = {
+		portrait = event_target:gts_leader
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = gts_tiantiao.4.a
+		response_text = gts_tiantiao.4.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_tiantiao.4.b
+		response_text = gts_tiantiao.4.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_tiantiao.4.c
+		response_text = gts_tiantiao.4.c.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_tiantiao.4.d
+		response_text = gts_tiantiao.4.d.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		custom_tooltip = gts_tiantiao.4.hire_custom_tooltip
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = legendary }
+			country_event = {
+				id = gts_tiantiao.100
+				days = 180
+			}
+			country_event = {
+				id = gts_tiantiao.200
+				days = 360
+			}
+		}
+	}
+	option = {
+		name = DISMISS
+		tag = dismiss_leader
+		hidden_effect = {
+			country_event = {
+				id = gts_tiantiao.4
+			}
+		}
+	}
+}
+country_event = {
+	# 警娘的秘密
+	id = gts_tiantiao.100
+	title = gts_tiantiao.100.name
+	desc = gts_tiantiao.100.desc
+	picture = GFX_gts_tiantiao_2
+	show_sound = event_default
+	is_triggered_only = yes
+
+	option = {
+		name = gts_tiantiao.100.a
+		add_resource = {
+			gts_micro = 1600
+			consumer_goods = 800
+		}
+	}
+	option = {
+		name = gts_tiantiao.100.b
+		add_resource = {
+			gts_micro = 800
+			consumer_goods = 1600
+		}
+	}
+	option = {
+		name = gts_tiantiao.100.c
+		add_resource = {
+			food = 4000
+		}
+	}
+}
+country_event = {
+	# 咸味世界
+	id = gts_tiantiao.200
+	title = gts_tiantiao.200.name
+	desc = gts_tiantiao.200.desc
+	picture = GFX_gts_tiantiao_3
+	show_sound = event_default
+	is_triggered_only = yes
+	immediate = {
+		
+	}
+	option = {
+		name = gts_tiantiao.200.a
+		country_event = {
+			id = gts_tiantiao.210
+			days = 7
+		}
+	}
+	option = {
+		name = gts_tiantiao.200.b
+		country_event = {
+			id = gts_tiantiao.220
+			days = 7
+		}
+	}
+}
+country_event = {
+	# 手臂探索，第一部分
+	id = gts_tiantiao.210
+	title = gts_tiantiao.210.name
+	desc = gts_tiantiao.210.desc
+	picture = GFX_gts_tiantiao_4
+	show_sound = event_default
+	is_triggered_only = yes
+	immediate = {
+		
+	}
+	option = {
+		name = gts_tiantiao.210.a
+		country_event = {
+			id = gts_tiantiao.211
+			days = 7
+		}
+	}
+}
+country_event = {
+	# 手臂探索，第二部分
+	id = gts_tiantiao.211
+	title = gts_tiantiao.211.name
+	desc = gts_tiantiao.211.desc
+	picture = GFX_gts_tiantiao_5
+	show_sound = event_default
+	is_triggered_only = yes
+	immediate = {
+		
+	}
+	option = {
+		name = gts_tiantiao.211.a
+		add_resource = {
+			gts_micro = 3000
+		}
+	}
+	option = {
+		name = gts_tiantiao.211.b
+		add_resource = {
+			society_research = 16000
+		}
+	}
+	option = {
+		name = gts_tiantiao.211.c
+		add_resource = {
+			gts_giantess_fluid = 3000
+		}
+	}
+}
+country_event = {
+	# 身体探索，第一部分
+	id = gts_tiantiao.220
+	title = gts_tiantiao.220.name
+	desc = gts_tiantiao.220.desc
+	picture = GFX_gts_tiantiao_6
+	show_sound = event_default
+	is_triggered_only = yes
+	immediate = {
+		
+	}
+	option = {
+		name = gts_tiantiao.220.a
+		
+	}
+	option = {
+		name = gts_tiantiao.220.b
+		
+	}
+}

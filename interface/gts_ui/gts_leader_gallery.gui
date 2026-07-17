@@ -1,0 +1,176 @@
+guiTypes = {
+    #界面
+    @outliner_h = 900
+    @outliner_w = 980
+    @list_w = 330
+    @list_h = 840
+    @list_x = 640
+    @list_y = 50
+
+    @text_w = 620
+    @text_h = 840
+    @text_x = 10
+    @text_y = 50
+
+    @option_w = 310
+    @option_h = 30
+    @option_x = 10
+    @option_y = 10
+    @tab_h = 30
+    containerWindowType = {
+        name = "gts_gui_gallery"
+        moveable = yes
+        orientation = center
+        origo = center
+        size = { width = @outliner_w height = @outliner_h }
+        position = { x = 600 y = 0 }
+        animation_type = decelerated animation_time = 200 show_position = { x = 0 y = 0 } fade_time = 200 fade_type = linear
+        background = { name = "bg" quadTextureSprite = GFX_window_background }
+        buttonType = {
+            name = "text_bg"
+            quadTextureSprite = GFX_dark_area_cut
+            position = { x= @text_x y = @text_y } size = { x = @text_w y = @text_h }
+            alwaysTransparent = yes
+        }
+        instantTextBoxType = {
+            name = "alien_message"
+            maxWidth = @text_w maxHeight = @text_h position = { x = @text_x y = @text_y }
+            font = malgun_goth_24 format = left borderSize = { x = 10 y = 10 } scrollbartype = "standardtext_slider"
+            text_color_code = L
+            #alwaysTransparent = yes
+        }
+        ###_	ALL OF THIS IS HIDDEN OR DISPLACED!	######################################################
+        buttonType = { name = "focus_button" position = { x = 9999 y = 9999 } spriteType = "GFX_fleetview_focus" } # hidden
+        instantTextBoxType = { name = "heading" font = "malgun_goth_24" position = { x = 9999 y = 9999 } } # hidden
+        buttonType = { name = "empire_flag" position = { x = 9999 y = 9999 } spriteType = "GFX_empire_flag_128" } # hidden
+        buttonType = { name = "confirm_button" quadTextureSprite = "GFX_standard_button_142_34_button" } # hidden
+        buttonType = { name = "tts_button" position = { x = 9999 y = 9999 } spriteType = "GFX_button_tts_start" buttonFont = "cg_16b" }
+        containerWindowType = {
+            name = "portrait_background"
+            position = { x = -1117 y = -1145 }
+            size = { width = 0 height = 0 }		# hide portrait window
+            #iconType = { name = "event_picture" spriteType = "GFX_diplomacy_portrait_frame" } # hidden
+            iconType = { name = "portrait" spriteType = "GFX_portrait_character" } # hidden
+        }
+        containerWindowType = {
+            name = "portrait"
+            position = { x = -1117 y = -1145 }
+            size = { width = 0 height = 0 } # hide portrait window
+            iconType = { name = "portrait" spriteType = "GFX_portrait_gamesetup_mask"  } # hidden
+            iconType = { name = "black_frame" spriteType = "GFX_diplomacy_portrait_shadow_frame" } # hidden
+            iconType = { name = "stripes_1" spriteType = "GFX_diplomacy_stripes_2" } # hidden
+            iconType = { name = "city_frame" spriteType = "GFX_diplomacy_portrait_frame" } # hidden
+        }
+        iconType = { name = "empire_info_bg" spriteType = "GFX_diplomacy_dark_fade_bg" } # hidden
+        instantTextBoxType={ name = "empire_name" font = "malgun_goth_24" } # hidden
+        instantTextBoxType={ name = "empire_government_type" font = "cg_16b" } # hidden
+        instantTextBoxType={ name = "empire_personality_type" font = "cg_16b" } # hidden
+        OverlappingElementsBoxType = { name = "empire_ethics_icons" position = { x = -1145 y = -11138 } } # hidden
+        containerWindowType = {
+            name = "leader_details"
+            position = { x = -1125 y = -1175 }
+            containerWindowType = { name = "empire_traits_box" } # hidden
+            instantTextBoxType = { name = "empire_traits_label" font = "cg_16b" } # hidden
+            overlappingElementsBoxType = { name = "leader_traits" } # hidden
+            instantTextBoxType = { name = "leader_name" font = "cg_16b" } # hidden
+            instantTextBoxType = { name = "leader_species" font = "cg_16b" } # hidden
+        }
+        containerWindowType = {
+            name = "opinion_window"
+            position = { x = -1127 y = -11110 }
+            size = { width = 94 height = 30 }
+            iconType = { name = "their_opinion_icon" spriteType = "GFX_diplomacy_opinion" } # hidden
+            instantTextBoxType = { name = "their_opinion" font = "cg_16b" }
+        }
+        ###_	ALL OF THIS IS HIDDEN OR DISPLACED!	######################################################
+        containerWindowType = {
+            name = "EVENT_DIPLO"
+            orientation = upper_left
+            position = { x = 0 y = 0 }
+            size = { width = @outliner_w height = @outliner_h }
+            background = { name = "bg" quadTextureSprite = GFX_tiled_window_transparent alwaysTransparent = yes }
+            iconType = { name = "line" spriteType = GFX_line_long position = { x = 10 y = 30 } alwaysTransparent = yes }
+            iconType = { name = "hex" spriteType = GFX_hex_bg position = { x = -10 y = -10 } alwaysTransparent = yes }
+            instantTextBoxType= { #
+                name = "action_title"
+                font = large_title_font_28
+                orientation = upper_left
+                position = { x = 10 y = 6 } maxWidth = 450 maxHeight = 60
+                alwaysTransparent = yes
+            }
+            instantTextBoxType = {
+                name = "action_desc"
+                font = "cg_16b"
+                orientation = upper_left
+                position = { x = 0 y = 0 }
+                maxWidth = 500 maxHeight = 180
+                format = center
+                alwaysTransparent = yes
+                text_color_code = "H"
+            }
+            buttonType = {
+                name = "list_bg"
+                quadTextureSprite = GFX_tiles_dark_area_cut_8
+                #quadTextureSprite = GFX_tiled_window_transparent
+                position = { x= @list_x y = @list_y }
+                size = { x = @list_w y = @list_h }
+                alwaysTransparent = yes
+            }
+            listboxType = {
+                name = "option_list"
+                position = { x = @list_x y = @list_y }
+                size = { x = @list_w y = @list_h }
+                scrollbarType = "standardlistbox_slider"
+                alwaysTransparent = yes
+            }
+        }
+        clipping = no
+        #close
+        buttonType = {
+            name = "close"
+            quadTextureSprite = GFX_close
+            position = { x= -40 y = 10 }
+            Orientation = upper_right
+            shortcut = "ESCAPE"
+            clicksound = "back_click"
+            actionShortcut = "cancel"
+        }
+    }
+    containerWindowType = {
+        name = "gts_gui_gallery_charactor"
+        position = { x = 0 y = 0 }
+        size = { width = @option_w height = @option_h }
+        buttonType = {
+            name = "option_button"
+            size = { x = @option_w y = @option_h } position = { x = @option_x y = @option_y }
+            quadTextureSprite = GFX_button_light
+            font = cg_16b text = "OPTION_TEXT"
+            clicksound ="back_click"
+        }
+    }
+    containerWindowType = {
+        name = "gts_gui_gallery_mark_as_read"
+        position = { x = 0 y = 0 }
+        size = { width = @option_w height = @option_w }
+        buttonType = {
+            name = "option_button"
+            size = { x = @option_w y = @option_w } position = { x = @option_x y = @option_y }
+            quadTextureSprite = GFX_button_light
+            font = map_name_border text = "OPTION_TEXT" multiline = yes
+        }
+    }
+    containerWindowType = {
+        name = "gts_gui_gallery_tab"
+        #position = { x = 0 y = 0 }
+        size = { width = @option_w height = @tab_h }
+        iconType = { name = "line" spriteType = GFX_line position = { x = 5 y = 25 } alwaysTransparent = yes }
+        iconType = { name = "hex" spriteType = GFX_hex_bg position = { x = -17 y = -7 } alwaysTransparent = yes }
+        buttonType = {
+            name = "option_button"
+            size = { x = @option_w y = @tab_h } position = { x = @option_x y = @option_y }
+            quadTextureSprite = GFX_tiled_window_transparent
+            font = cg_16b format = left text = "OPTION_TEXT" borderSize = { x = 5 y = 0 }
+            alwaysTransparent = yes
+        }
+    }
+}

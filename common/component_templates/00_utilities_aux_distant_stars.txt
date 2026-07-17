@@ -1,0 +1,64 @@
+############################
+#	Auto-Repair Module	#
+############################
+
+utility_component_template = {
+	key = "AUTO_REPAIR_2"
+	size = aux
+	icon = "GFX_ship_part_ship_part_nanite_repair_system"
+	icon_frame = 1
+	power = -15
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 10
+			nanites = 1
+		}
+	}
+
+	modifier = {
+		ship_hull_regen_add_perc = 0.15
+		ship_armor_regen_add_perc = 0.2
+	}
+
+	# 模組添加的東西
+
+	#---------- Bruh ----------
+	#---------- 開始 -----------
+
+	potential = {
+		NOR = {
+			is_ship_size = gts_destroyer_ship
+			is_ship_size = gts_battleship_ship
+			is_ship_size = gts_titan_ship
+			is_ship_size = gts_bruh_shipgirl_ship_sizes_2
+			is_ship_size = gts_bruh_shipgirl_ship_sizes_3
+			is_ship_size = gts_bruh_shipgirl_ship_sizes_1
+			is_ship_size = gts_bruh_shipgirl_ship_sizes_2
+			is_ship_size = gts_bruh_shipgirl_ship_sizes_3
+		}
+	}
+
+	#---------- Bruh ----------
+	#---------- 結束 -----------
+
+	prerequisites = { tech_nanite_repair_system }
+	component_set = "AUTO_REPAIR_2"
+
+	ai_weight = {
+		weight = 10
+		modifier = {
+			factor = 2.0
+			is_preferred_weapons = weapon_type_explosive
+		}
+
+		modifier = {
+			factor = 0.0
+			no_resource_for_component = { RESOURCE = nanites }
+		}
+		modifier = {
+			factor = 0.0
+			is_ai = yes
+		}
+	}
+}

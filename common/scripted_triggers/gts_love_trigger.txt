@@ -1,0 +1,60 @@
+gts_normal_leader_love_lv1_trigger = {
+    OR = {
+        NOT = { is_variable_set = gts_love_logs }
+        check_variable = { which = gts_love_logs value < @gts_love_level2 }
+    }
+}
+gts_normal_leader_love_lv2_trigger = {
+    check_variable = { which = gts_love_logs value >=  @gts_love_level2 }
+    check_variable = { which = gts_love_logs value <  @gts_love_level3 }
+}
+
+gts_normal_leader_love_lv3_trigger = {
+    check_variable = { which = gts_love_logs value >= @gts_love_level3 }
+    check_variable = { which = gts_love_logs value < @gts_love_level4 }
+}
+gts_normal_leader_love_lv4_trigger = {
+    if = {
+        limit = { has_leader_flag = gts_married }
+        check_variable = { which = gts_love_logs value >= @gts_love_level4 }
+        check_variable = { which = gts_love_logs value < @gts_love_level5 }
+    } else = {
+        check_variable = { which = gts_love_logs value >= @gts_love_level4 }
+    }
+
+}
+gts_normal_leader_love_lv5_trigger = {
+    check_variable = { which = gts_love_logs value >= @gts_love_level5 }
+    has_leader_flag = gts_married
+}
+
+gts_special_leader_love_lv1_trigger = {
+    OR = {
+        NOT = { is_variable_set = gts_$LEADER$_love_logs }
+        check_variable = { which = gts_$LEADER$_love_logs value < @gts_$LEADER$_love_lv2 }
+    }
+}
+gts_special_leader_love_lv2_trigger = {
+    check_variable = { which = gts_$LEADER$_love_logs value >= @gts_$LEADER$_love_lv2 }
+    check_variable = { which = gts_$LEADER$_love_logs value < @gts_$LEADER$_love_lv3 }
+
+}
+gts_special_leader_love_lv3_trigger = {
+    check_variable = { which = gts_$LEADER$_love_logs value >= @gts_$LEADER$_love_lv3 }
+    check_variable = { which = gts_$LEADER$_love_logs value < @gts_$LEADER$_love_lv4 }
+}
+gts_special_leader_love_lv4_trigger = {
+    if = {
+        limit = { has_leader_flag = $MARRIED_FLAG$ }
+        check_variable = { which = gts_$LEADER$_love_logs value >= @gts_$LEADER$_love_lv4 }
+        check_variable = { which = gts_$LEADER$_love_logs value < @gts_$LEADER$_love_lv5 }
+    } else = {
+        check_variable = { which = gts_$LEADER$_love_logs value >= @gts_$LEADER$_love_lv4 }
+    }
+
+}
+gts_special_leader_love_lv5_trigger = {
+    check_variable = { which = gts_$LEADER$_love_logs value >= @gts_$LEADER$_love_lv4 }
+    has_leader_flag = $MARRIED_FLAG$
+
+}

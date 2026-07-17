@@ -1,0 +1,413 @@
+namespace = gts_civ_trick
+
+planet_event = {
+	id = gts_civ_trick.1	#播撒文明
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		add_modifier = {
+			modifier = gts_seeds_planeted
+		}
+		random_list = {
+			35 = {
+				generate_very_early_pre_ftl_hive_on_planet = yes
+			}
+			65 = {
+				generate_very_early_pre_ftls_on_planet = yes
+			}
+		}
+	}
+}
+#恶作剧
+espionage_operation_event = {
+	#近距离观测
+	id = gts_civ_trick.10
+	title = gts_civ_trick.10.name
+	desc = gts_civ_trick.10.desc
+	picture = GFX_gtsra_tiny_city_3
+	is_triggered_only = yes
+	immediate = {
+		set_espionage_operation_progress_locked = yes
+	}
+	option = {
+		name = gts_civ_trick.10.a
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = gts_civ_trick.11
+					days = 1080
+				}
+			}
+		}
+	}
+	after = {
+		set_espionage_operation_progress_locked = no
+	}
+}
+
+country_event = {
+	id = gts_civ_trick.11
+	title = gts_civ_trick.11.name
+	desc = gts_civ_trick.11.desc
+	picture = GFX_gtsra_load_21
+	is_triggered_only = yes
+	option = {
+		name = gts_civ_trick.11.a
+		from = {
+			spynetwork = {
+				add_spy_network_level_on_success_effect = {
+					VALUE = 20
+				}				#渗透等级
+			}
+			destroy_espionage_operation = this
+		}
+		owner = {
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = 12
+				min = 200
+			}
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = 12
+				min = 200
+			}
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = 12
+				min = 200
+			}
+		}
+		set_timed_country_flag = {
+			#未生效
+			flag = gts_close_observation			#添加3年flag
+			days = 1080			# 3 years
+		}
+	}
+}
+
+espionage_operation_event = {
+	#XP引导
+	id = gts_civ_trick.12
+	title = gts_civ_trick.12.name
+	desc = gts_civ_trick.12.desc
+	picture = GFX_load_68
+	is_triggered_only = yes
+	immediate = {
+		set_espionage_operation_progress_locked = yes
+	}
+	option = {
+		name = gts_civ_trick.12.a
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = 12
+				min = 200
+			}
+		}
+		from.owner = {
+			add_awareness = 30
+			random_owned_pop_group = {
+				limit = {
+					NOR = {
+						has_ethic = "ethic_xenophile"
+						has_ethic = "ethic_gestalt_consciousness"
+						has_ethic = "ethic_fanatic_xenophile"
+					}
+				}
+				pop_group_transfer_ethic = {
+					POP_GROUP = this
+					ETHOS = ethic_xenophile
+					AMOUNT = 100
+				}
+			}
+			random_owned_pop_group = {
+				limit = {
+					NOR = {
+						has_ethic = "ethic_xenophile"
+						has_ethic = "ethic_gestalt_consciousness"
+						has_ethic = "ethic_fanatic_xenophile"
+					}
+				}
+				pop_group_transfer_ethic = {
+					POP_GROUP = this
+					ETHOS = ethic_xenophile
+					AMOUNT = 100
+				}
+			}
+		}
+		hidden_effect = {
+			owner = {
+				random_list = {
+					30 = {
+						country_event = {
+							id = gts_civ_trick.13
+						}
+					}
+					30 = {
+						country_event = {
+							id = gts_civ_trick.19
+						}
+					}
+					20 = {}
+				}
+			}
+		}
+	}
+	after = {
+		set_espionage_operation_progress_locked = no
+	}
+}
+
+country_event = {
+	id = gts_civ_trick.13
+	title = gts_civ_trick.13.name
+	desc = gts_civ_trick.13.desc
+	picture = GFX_load_40
+	is_triggered_only = yes
+	option = {
+		name = gts_civ_trick.13.a
+		add_resource = {
+			energy = -1000
+		}
+		add_resource = {
+			consumer_goods = 1000
+		}
+		add_modifier = {
+			modifier = gts_good_comic
+			days = 180
+		}
+	}
+	option = {
+		name = gts_civ_trick.13.b
+		hidden_effect = {
+			owner = {
+				random_list = {
+					10 = {
+						country_event = {
+							id = gts_civ_trick.14
+							days = 10
+						}
+					}
+					90 = {
+						country_event = {
+							id = gts_civ_trick.15
+							days = 10
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_civ_trick.14
+	title = gts_civ_trick.14.name
+	desc = gts_civ_trick.14.desc
+	picture = GFX_gtsra_load_29
+	is_triggered_only = yes
+	option = {
+		name = gts_civ_trick.14.a
+		add_modifier = {
+			modifier = gts_shock_comic_writer
+			days = 180
+		}
+	}
+}
+
+country_event = {
+	id = gts_civ_trick.15
+	title = gts_civ_trick.15.name
+	desc = gts_civ_trick.15.desc
+	picture = GFX_gtsra_load_7
+	is_triggered_only = yes
+	option = {
+		name = gts_civ_trick.15.a
+		add_modifier = {
+			modifier = gts_good_comic_writer
+			days = 180
+		}
+	}
+}
+espionage_operation_event = {
+	#绑架研究
+	id = gts_civ_trick.16
+	title = gts_civ_trick.16.name
+	desc = gts_civ_trick.16.desc
+	picture = GFX_evt_infiltration_failure
+	is_triggered_only = yes
+	immediate = {
+		set_espionage_operation_progress_locked = yes
+	}
+	option = {
+		name = gts_civ_trick.16.a
+		from.owner = {
+			add_awareness = 10
+			random_owned_pop_group = {
+				kill_all_pop = yes
+			}
+		}
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = 6
+				min = 200
+			}
+			add_modifier = {
+				modifier = gts_pre_ftl_bangjia
+				days = 360
+			}
+		}
+	}
+	after = {
+		set_espionage_operation_progress_locked = no
+	}
+}
+
+espionage_operation_event = {
+	#制造异常
+	id = gts_civ_trick.17
+	title = gts_civ_trick.17.name
+	desc = gts_civ_trick.17.desc
+	picture = GFX_load_52
+	is_triggered_only = yes
+	immediate = {
+		set_espionage_operation_progress_locked = yes
+	}
+	option = {
+		name = gts_civ_trick.17.a
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = 24
+				min = 200
+			}
+		}
+		from.owner = {
+			add_awareness = 30
+			random_owned_pop_group = {
+				kill_all_pop = yes
+			}
+			random_owned_pop_group = {
+				kill_all_pop = yes
+			}
+			add_modifier = {
+				modifier = gts_pre_ftl_chaos
+				days = 360
+			}			#可行
+		}
+	}
+	after = {
+		set_espionage_operation_progress_locked = no
+	}
+}
+
+espionage_operation_event = {
+	#降下神迹
+	id = gts_civ_trick.18
+	title = gts_civ_trick.18.name
+	desc = gts_civ_trick.18.desc
+	picture = GFX_gtsra_load_32
+	is_triggered_only = yes
+	immediate = {
+		set_espionage_operation_progress_locked = yes
+	}
+	option = {
+		name = gts_civ_trick.18.a
+		from.owner = {
+			add_awareness = 60
+			random_owned_pop_group = {
+				kill_all_pop = yes
+			}
+			random_owned_pop_group = {
+				kill_all_pop = yes
+			}
+			random_owned_pop_group = {
+				kill_all_pop = yes
+			}
+		}
+		from = {
+			add_planet_devastation = 10
+			add_deposit = d_city_ruins
+			add_deposit = d_city_ruins
+		}
+	}
+	after = {
+		set_espionage_operation_progress_locked = no
+	}
+}
+
+#电子佬的修女
+country_event = {
+	id = gts_civ_trick.19
+	title = gts_civ_trick.19.name
+	desc = gts_civ_trick.19.desc
+	picture = GFX_load_71
+	is_triggered_only = yes
+	show_sound = event_airlock
+	option = {
+		name = gts_civ_trick.19.a
+		hidden_effect = {
+			country_event = {
+				id = gts_civ_trick.20
+				days = 60
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_civ_trick.20
+	title = gts_civ_trick.20.name
+	desc = gts_civ_trick.20.desc
+	picture = GFX_load_65
+	is_triggered_only = yes
+	show_sound = event_planetary_riot
+	option = {
+		name = gts_civ_trick.20.a
+		hidden_effect = {
+			random_list = {
+				1 = {
+					country_event = {
+						id = gts_civ_trick.21
+					}
+				}
+				4 = {
+					country_event = {
+						id = gts_civ_trick.22
+					}
+				}
+			}
+		}
+	}
+}
+#KFC结局
+country_event = {
+	id = gts_civ_trick.21
+	title = gts_civ_trick.21.name
+	desc = gts_civ_trick.21.desc
+	picture = GFX_load_54
+	is_triggered_only = yes
+	show_sound = event_celebration
+	option = {
+		name = gts_civ_trick.21.a
+		add_resource = {
+			energy = -50
+			unity = 1500
+		}
+	}
+}
+country_event = {
+	id = gts_civ_trick.22
+	title = gts_civ_trick.22.name
+	desc = gts_civ_trick.22.desc
+	picture = GFX_load_59
+	is_triggered_only = yes
+	show_sound = event_celebration
+	option = {
+		name = gts_civ_trick.22.a
+		add_resource = {
+			unity = 500
+		}
+	}
+}

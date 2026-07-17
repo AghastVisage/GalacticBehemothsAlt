@@ -1,0 +1,113 @@
+namespace = gts_event_love
+
+#五年一次全国好感度校验，增长
+event = {
+    id = gts_event_love.0
+    hide_window = yes
+    is_triggered_only = yes
+
+    immediate = {
+        every_playable_country = {
+            limit = {
+                OR = {
+                    is_ai = no
+                    any_owned_leader = { is_gts_love_leader = yes }
+                }
+            }
+            every_owned_leader = {
+                leader_event = {
+                   id = gts_event_love.1
+                }
+                leader_event = {
+                    id = gts_event_love.3
+                }
+            }
+        }
+    }
+}
+# 常规好感度增加
+leader_event = {
+    id = gts_event_love.1
+    hide_window = yes
+    is_triggered_only = yes
+
+    trigger = {
+        NOT = {
+            has_leader_flag = gts_love_auto_change_no
+        }
+        has_leader_flag = has_gts_love_trait
+        NAND = {
+            NOT = { has_leader_flag = gts_married }
+            check_variable = { which = gts_love_logs value >= gts_love_level5 }
+        }
+    }
+
+    immediate = {
+        gts_love_system_increase = yes
+    }
+}
+# 常规好感度减少
+leader_event = {
+    id = gts_event_love.2
+    hide_window = yes
+    is_triggered_only = yes
+
+    trigger = {
+        has_leader_flag = has_gts_love_trait
+    }
+
+    immediate = {
+        gts_love_system_reduce = yes
+    }
+}
+# 常规好感度校验
+leader_event = {
+    id = gts_event_love.3
+    hide_window = yes
+    is_triggered_only = yes
+
+    trigger = {
+        #has_leader_flag = has_wg_affection
+    }
+
+    immediate = {
+       gts_love_normal_system_check = yes
+
+    }
+}
+# 统治者补特质
+country_event = {
+    id = gts_event_love.10
+    hide_window = yes
+    is_triggered_only = yes
+
+    trigger = {
+        ruler = {
+            has_leader_flag = has_gts_love_trait
+        }
+    }
+
+    immediate = {
+        ruler = {
+            gts_love_normal_system_check = yes
+        }
+    }
+}
+# 统治者变领袖补特质
+country_event = {
+    id = gts_event_love.11
+    hide_window = yes
+    is_triggered_only = yes
+
+    trigger = {
+        from = {
+            has_leader_flag = has_gts_love_trait
+        }
+    }
+
+    immediate = {
+        ruler = {
+            gts_love_normal_system_check = yes
+        }
+    }
+}

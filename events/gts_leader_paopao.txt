@@ -1,0 +1,209 @@
+namespace = gts_paopao
+# paopao
+country_event  = {
+    id = gts_paopao.1
+    title = gts_paopao.1.name
+    desc = gts_paopao.1.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "enclave_curator_window"
+    picture_event_data = {
+        portrait = gts_portrait_paopao
+        room = gts_paopao_room_1
+    }
+    show_sound = event_default
+    trigger = {
+        has_origin = origin_god_keeper
+    }
+    immediate = {
+        gts_create_paopao_friendly = yes
+    }
+    option = {
+        name = gts_paopao.1.a
+        custom_tooltip = gts_paopao.1.tooltip
+        hidden_effect = {
+            country_event = { #玩弄2
+                id = gts_paopao.2
+                days = 365
+                random = 15
+            }
+            event_target:gts_paopao_fleet = {
+                set_owner = root
+            }
+            owner = {
+                #country_event = { id = distar.51 days = 360 random = 60 }
+                #country_event = { id = distar.304 days = 36000 }
+            }
+        }
+    }
+}
+
+country_event = {
+    # 效忠
+    id = gts_paopao.2
+    title = "gts_paopao.2.name"
+    desc = gts_paopao.2.desc
+    show_sound = event_default
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "enclave_curator_window"
+    picture_event_data = {
+        portrait = gts_portrait_paopao
+        room = gts_paopao_room_1
+    }
+    trigger = {
+        has_origin = origin_god_keeper
+    }
+    option = {
+        name = gts_paopao.2.a
+        custom_tooltip = gts_paopao.2.a.tooltip
+        hidden_effect = {
+            country_event = {
+                id = gts_paopao.999
+            }
+            country_event = {
+                id = gts_paopao.3
+                days = 720
+            }
+        }
+    }
+}
+
+country_event = {
+    id = gts_paopao.3
+    title = gts_paopao.3.title
+    desc = gts_paopao.3.desc
+    is_triggered_only = yes
+    show_sound = event_default
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+        portrait = gts_portrait_paopao
+        room = gts_paopao_room_1
+    }
+    option = {
+        name = gts_paopao.3.option
+        home_planet = {
+            solar_system = {
+                spawn_megastructure = {
+                    type = "yarong_shoes_station_0"
+                    planet = prev
+                    owner = root
+                    graphical_culture = root
+                    init_effect = {
+                        set_megastructure_flag = yarong_capital_boots_flag
+                    }
+                }
+            }
+        }
+        country_event = {
+            id = gts_paopao.4
+        }
+    }
+}
+
+country_event = {
+    id = gts_paopao.4
+	title = gts_paopao.4.title
+	desc = gts_paopao.4.desc
+	is_triggered_only = yes
+	picture = GFX_evt_gaia
+	
+	option = {
+		name = gts_paopao.4.option
+	}
+}
+# country_event = {
+#     id = gts_paopao.6
+#     title = gts_paopao.6.name
+#     desc = gts_paopao.6.desc
+#     is_triggered_only = yes
+#     diplomatic = yes
+#     custom_gui = "enclave_curator_window"
+#     picture_event_data = {
+#         portrait = gts_portrait_paopao
+#         room = gts_goldenglow_3_room
+#     }
+#     option = {
+#         name = gts_paopao.6.a
+#         hidden_effect = {
+#             country_event = {
+#                 id = gts_paopao.7
+#             }
+#         }
+#     }
+# }
+# country_event = {
+#     id = gts_paopao.7
+#     title = gts_paopao.7.name
+#     desc = gts_paopao.7.desc
+#     is_triggered_only = yes
+#     diplomatic = yes
+#     custom_gui = "enclave_curator_window"
+#     picture_event_data = {
+#         portrait = gts_portrait_paopao
+#         room = gts_goldenglow_3_room
+#     }
+#     option = {
+#         name = gts_paopao.7.a
+#         hidden_effect = {
+#             country_event = {
+#                 id = gts_paopao.8
+#             }
+#         }
+#     }
+# }
+country_event = {
+    # 泡泡
+    id = gts_paopao.999
+    title = "gts_paopao.999.name"
+    desc = "gts_paopao.999.desc"
+    show_sound = event_celebration
+    is_triggered_only = yes
+    picture = GFX_leader_recruitment_bg_renowned
+    auto_opens = yes
+    event_window_type = leader_recruit
+    immediate = {
+        gts_leader_paopao_hired = yes
+    }
+    picture_event_data = {
+        portrait = event_target:gts_leader
+        room = ethic_spaceship_room
+    }
+    option = {
+        name = gts_paopao.999.a
+        response_text = gts_paopao.999.a.response
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_paopao.999.b
+        response_text = gts_paopao.999.b.response
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_paopao.999.c
+        response_text = gts_paopao.999.c.response
+        is_dialog_only = yes
+    }
+    option = {
+        name = HIRE
+        tag = hire_leader
+        custom_tooltip = gts_paopao.999.hire_custom_tooltip
+        hidden_effect = {
+            gts_leader_hire_effect = { TYPE = renowned }
+            event_target:gts_paopao_fleet = {
+                assign_leader = event_target:gts_paopao
+            }
+        }
+    }
+    option = {
+		name = DISMISS
+		tag = dismiss_leader
+		hidden_effect = {
+			country_event = {
+				id = gts_paopao.999
+			}
+		}
+	}
+}

@@ -1,0 +1,183 @@
+gts_ui_intel_panel_lock = {
+	# 情报界面-防止打开多个领袖或者招募窗口
+	hidden_trigger = {
+		NOR = {
+			has_country_flag = gts_pop_up_opened
+			has_country_flag = gts_leader_panel_opened
+		}
+	}
+}
+gts_ui_leader_panel_lock = {
+	# 领袖界面-防止打开多个道具或者身体窗口
+	hidden_trigger = {
+		NOR = {
+			has_country_flag = gts_leader_body_panel_opened
+			has_country_flag = gts_leader_item_panel_opened
+		}
+	}
+}
+gts_ui_intel_display = {
+	# 情报界面-显示领袖
+	from = {
+		check_variable = {
+			which = gts_ui_intel_page
+			value = $PAGE$
+		}
+	}
+}
+gts_ui_leader_display_item = {
+	# 领袖界面-展示的领袖获得的道具
+	event_target:current_gts_leader = {
+		check_variable = {
+			which = gts_leader_slot_$SLOT$_item
+			value = $ITEM$
+		}
+	}
+}
+gts_ui_item_display = {
+	# 道具界面-显示道具
+	from = {
+		check_variable = {
+			which = gts_ui_leader_item_page
+			value = $PAGE$
+		}
+		check_variable = {
+			which = gts_ui_current_slot_class
+			value = $CLASS$
+		}
+	}
+}
+gts_ui_item_lock = {
+	# 道具界面-不能选择重复的道具
+	custom_tooltip = gts_leader_item_no_repeat.tooltip
+	hidden_trigger = {
+		event_target:current_gts_leader = {
+			NOR = {
+				check_variable = {
+					which = gts_leader_slot_1_item
+					value = $ITEM$
+				}
+				check_variable = {
+					which = gts_leader_slot_2_item
+					value = $ITEM$
+				}
+				check_variable = {
+					which = gts_leader_slot_3_item
+					value = $ITEM$
+				}
+				check_variable = {
+					which = gts_leader_slot_4_item
+					value = $ITEM$
+				}
+				check_variable = {
+					which = gts_leader_slot_5_item
+					value = $ITEM$
+				}
+				check_variable = {
+					which = gts_leader_slot_6_item
+					value = $ITEM$
+				}
+				check_variable = {
+					which = gts_leader_slot_7_item
+					value = $ITEM$
+				}
+				check_variable = {
+					which = gts_leader_slot_8_item
+					value = $ITEM$
+				}
+				check_variable = {
+					which = gts_leader_slot_9_item
+					value = $ITEM$
+				}
+				check_variable = {
+					which = gts_leader_slot_10_item
+					value = $ITEM$
+				}
+				check_variable = {
+					which = gts_leader_slot_11_item
+					value = $ITEM$
+				}
+				check_variable = {
+					which = gts_leader_slot_12_item
+					value = $ITEM$
+				}
+			}
+		}
+	}
+}
+gts_leader_body_add_pop_limit = {
+	# 身体界面-点击殖民地十次限制
+	hidden_trigger = {
+		from = {
+			if = {
+				limit = {
+					check_variable = {
+						which = gts_ui_current_body
+						value = @gts_body_armpit
+					}
+				}
+				event_target:current_gts_leader = {
+					check_variable = {
+						which = gts_leader_body_type_1_$CLASS$
+						value < 10
+					}
+				}
+			}else_if = {
+				limit = {
+					check_variable = {
+						which = gts_ui_current_body
+						value = @gts_body_breast
+					}
+				}
+				event_target:current_gts_leader = {
+					check_variable = {
+						which = gts_leader_body_type_2_$CLASS$
+						value < 10
+					}
+				}
+			}else_if = {
+				limit = {
+					check_variable = {
+						which = gts_ui_current_body
+						value = @gts_body_digestion
+					}
+				}
+				event_target:current_gts_leader = {
+					check_variable = {
+						which = gts_leader_body_type_3_$CLASS$
+						value < 10
+					}
+				}
+			}else_if = {
+				limit = {
+					check_variable = {
+						which = gts_ui_current_body
+						value = @gts_body_reporduction
+					}
+				}
+				event_target:current_gts_leader = {
+					check_variable = {
+						which = gts_leader_body_type_4_$CLASS$
+						value < 10
+					}
+				}
+			}else_if = {
+				limit = {
+					check_variable = {
+						which = gts_ui_current_body
+						value = @gts_body_feet
+					}
+				}
+				event_target:current_gts_leader = {
+					check_variable = {
+						which = gts_leader_body_type_5_$CLASS$
+						value < 10
+					}
+				}
+			}
+		}
+	}
+}
+# 图鉴
+gts_cant_show_charactor = { optimize_memory NOT = {any_owned_leader = {has_leader_flag= gts_$leader_name$}}}
+gts_can_show_charactor = { optimize_memory any_owned_leader = {has_leader_flag= gts_$leader_name$} }

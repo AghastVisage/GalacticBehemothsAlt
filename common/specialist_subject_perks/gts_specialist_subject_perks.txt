@@ -1,0 +1,261 @@
+# 保險合約國特化
+
+ultracompany_1_modifier = {
+
+	main_perk = yes
+
+	subject_modifier = {
+		country_gts_micro_produces_mult = 0.10
+		country_gts_micro_city_produces_mult = 0.10
+		country_gts_micro_planet_produces_mult = 0.10
+		country_gts_giantess_fluid_produces_mult = 0.10
+		country_gts_giantess_underwear_produces_mult = 0.10
+		country_gts_giantess_human_produces_mult = 0.10
+	}
+
+	# For setting the room background
+	activate_effect = {
+		target = {
+			store_country_backup_data = {
+				flag = no
+				room = yes
+				name = no
+				ethics = no
+				government = no
+			}
+			room_name_override = ""
+		}
+	}
+
+	# Restore room background back to normal
+	deactivate_effect = {
+		target = {
+			restore_country_backup_data = yes
+		}
+	}
+}
+
+ultracompany_1_penalties = {
+
+	main_perk = yes
+
+	subject_modifier = {
+		country_unity_produces_mult = -0.10
+		country_influence_produces_mult = -0.10
+	}
+}
+
+ultracompany_1_overlord_modifier = {
+
+	icon = "GFX_specialist_perk_prospectorium_1_neighbor_bonuses"
+
+	overlord_modifier = {
+		planet_jobs_trade_produces_mult = 0.10
+		country_base_trade_produces_add = 100
+	}
+}
+
+ultracompany_1_subject_modifier = {
+
+	icon = "GFX_specialist_perk_prospectorium_1_deposits"
+
+	overlord_modifier = {
+		planet_jobs_food_produces_mult = 0.20
+	}
+}
+
+ultracompany_1_neighbor_bonuses = {
+	icon = "GFX_specialist_perk_scholarium_3_arctrellis"
+
+	overlord_relay_network_modifier = {
+		specialist_ultracompany_neighbor = 1
+	}
+
+	desc = {
+		description = ultracompany_1_neighbor_bonuses_desc
+	}
+}
+
+ultracompany_2_modifier = {
+
+	main_perk = yes
+
+	subject_modifier = {
+		country_gts_micro_produces_mult = 0.20
+		country_gts_micro_city_produces_mult = 0.20
+		country_gts_micro_planet_produces_mult = 0.20
+		country_gts_giantess_fluid_produces_mult = 0.20
+		country_gts_giantess_underwear_produces_mult = 0.20
+		country_gts_giantess_human_produces_mult = 0.20
+	}
+}
+
+ultracompany_2_penalties = {
+
+	main_perk = yes
+
+	subject_modifier = {
+		country_unity_produces_mult = -0.20
+		country_influence_produces_mult = -0.20
+	}
+}
+
+ultracompany_2_overlord_modifier = {
+
+	icon = "GFX_specialist_perk_prospectorium_1_neighbor_bonuses"
+
+	overlord_modifier = {
+		planet_jobs_trade_produces_mult = 0.10
+		country_base_trade_produces_add = 200
+	}
+}
+
+ultracompany_2_subject_modifier = {
+
+	icon = "GFX_specialist_perk_prospectorium_2_deposits"
+
+	overlord_modifier = {
+		planet_jobs_minerals_produces_mult = 0.20
+	}
+}
+
+ultracompany_2_leaders = {
+	icon = "GFX_specialist_perk_prospectorium_2_leaders"
+	subject_modifier = {
+		country_leader_cap_add = 2
+		leader_initial_skill = 1
+	}
+
+	activate_effect = {
+		target = {
+			add_specialist_leaders = {
+				TYPE = ultracompany
+				CLASS = scientist
+			}
+			add_specialist_leaders = {
+				TYPE = ultracompany
+				CLASS = commander
+			}
+			add_specialist_leaders = {
+				TYPE = ultracompany
+				CLASS = official
+			}
+		}
+	}
+
+	deactivate_effect = {
+		target = {
+			remove_specialist_leaders = {
+				TYPE = ultracompany
+				CLASS = scientist
+			}
+			remove_specialist_leaders = {
+				TYPE = ultracompany
+				CLASS = commander
+			}
+			remove_specialist_leaders = {
+				TYPE = ultracompany
+				CLASS = official
+			}
+		}
+	}
+
+	desc = {
+		description = prospectorium_2_leaders_desc
+	}
+}
+
+ultracompany_2_traits = {
+	icon = "GFX_specialist_perk_prospectorium_2_traits"
+	desc = {
+		description = ultracompany_2_traits_desc
+	}
+}
+
+ultracompany_2_insurance = {
+	icon = "GFX_specialist_perk_bulwark_3_disintegrator_field"
+	activate_effect = {
+		target = {
+			set_country_flag = ultracompany_aftermarket
+		}
+	}
+	deactivate_effect = {
+		target = {
+			remove_country_flag = ultracompany_aftermarket
+		}
+	}
+	desc = {
+		description = ultracompany_2_insurance_desc
+	}
+}
+
+ultracompany_3_modifier = {
+
+	main_perk = yes
+
+	subject_modifier = {
+		country_gts_micro_produces_mult = 0.30
+		country_gts_micro_city_produces_mult = 0.30
+		country_gts_micro_planet_produces_mult = 0.30
+		country_gts_giantess_fluid_produces_mult = 0.30
+		country_gts_giantess_underwear_produces_mult = 0.30
+		country_gts_giantess_human_produces_mult = 0.30
+	}
+}
+
+ultracompany_3_penalties = {
+
+	main_perk = yes
+
+	subject_modifier = {
+		country_unity_produces_mult = -0.30
+		country_influence_produces_mult = -0.30
+	}
+}
+
+ultracompany_3_overlord_modifier = {
+
+	icon = "GFX_specialist_perk_prospectorium_1_neighbor_bonuses"
+
+	overlord_modifier = {
+		country_base_gts_micro_produces_add = 100
+	}
+}
+
+ultracompany_3_subject_modifier = {
+
+	icon = "GFX_specialist_perk_scholarium_3_discovery"
+
+	overlord_modifier = {
+		planet_jobs_consumer_goods_produces_mult = 0.20
+	}
+}
+
+ultracompany_3_insurance = {
+	icon = "GFX_specialist_perk_bulwark_1_bulwark_array"
+	activate_effect = {
+		target = {
+			set_country_flag = decision_ultracompany_repair_allow
+		}
+	}
+	deactivate_effect = {
+		target = {
+			remove_country_flag = decision_ultracompany_repair_allow
+		}
+	}
+	desc = {
+		description = ultracompany_3_insurance_desc
+	}
+}
+
+# 其他特化
+
+gts_bruh_specialist_misc_1_modifier = {
+
+	icon = "GFX_specialist_perk_prospectorium_2_leaders"
+
+	subject_modifier = {
+		country_influence_produces_mult = -0.10
+	}
+}
+

@@ -1,0 +1,2763 @@
+namespace = gts_aurora
+
+##################
+#				 #
+# 	 loli星球     #
+#			     #
+##################
+
+# 歐若拉考古
+
+country_event = {
+
+	# 創建歐若拉星系
+
+	id = gts_aurora.1000
+	title = gts_aurora.1000.name
+	desc = gts_aurora.1000.desc
+	picture = GFX_gtsra_aurora
+	show_sound = event_mystic_reveal
+	is_triggered_only = yes
+	location = event_target:gtsra_loli_world
+
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				has_planet_flag = gtsra_loli_planet
+			}
+			spawn_system = {
+				min_distance >= 10
+				max_distance <= 30
+				max_jumps = 1
+				initializer = gtsra_aurora_system
+			}
+		}
+	}
+
+	option = {
+		name = gts_aurora.1000.a
+	}
+}
+
+fleet_event = {
+	#1非原生物种
+	id = gts_aurora.1001
+	title = gts_aurora.1001.name
+	desc = gts_aurora.1001.desc
+	picture = GFX_evt_circuitry_modification
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	option = {
+		name = gts_aurora.1001.a
+		owner = {
+			add_resource = {
+				minor_artifacts = 10
+			}
+		}
+		hidden_effect = {
+			fleet_event = {
+				id = gts_aurora.1006
+			}
+		}
+	}
+}
+
+fleet_event = {
+	#2女巫狩猎
+	id = gts_aurora.1002
+	title = gts_aurora.1002.name
+	desc = gts_aurora.1002.desc
+	picture = GFX_evt_psionic_battle
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	option = {
+		name = gts_aurora.1002.a
+		owner = {
+			add_resource = {
+				minor_artifacts = 10
+			}
+		}
+		hidden_effect = {
+			fleet_event = {
+				id = gts_aurora.1007
+			}
+		}
+	}
+}
+
+fleet_event = {
+	#3熟悉的称呼
+	id = gts_aurora.1003
+	title = gts_aurora.1003.name
+	desc = gts_aurora.1003.desc
+	picture = GFX_evt_planet_beam
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	option = {
+		name = gts_aurora.1003.a
+		owner = {
+			add_resource = {
+				minor_artifacts = 20
+			}
+		}
+		hidden_effect = {
+			fleet_event = {
+				id = gts_aurora.1008
+			}
+		}
+	}
+}
+
+fleet_event = {
+	#4过往
+	id = gts_aurora.1004
+	title = gts_aurora.1004.name
+	desc = gts_aurora.1004.desc
+	picture = GFX_evt_in_the_dark
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	option = {
+		name = gts_aurora.1004.a
+		owner = {
+			add_resource = {
+				minor_artifacts = 30
+			}
+		}
+		hidden_effect = {
+			fleet_event = {
+				id = gts_aurora.1009
+			}
+		}
+	}
+}
+
+fleet_event = {
+	#5结局
+	id = gts_aurora.1005
+	title = gts_aurora.1005.name
+	desc = gts_aurora.1005.desc
+	picture = GFX_gtsra_aurora
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	option = {
+		name = gts_aurora.1005.a
+		hidden_effect = {
+			fleet_event = {
+				id = gts_aurora.1010
+			}
+		}
+	}
+	option = {
+		name = gts_aurora.1005.b
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	after = {
+		owner = {
+			add_resource = {
+				minor_artifacts = 50
+			}
+		}
+	}
+}
+
+fleet_event = {
+	#1
+	id = gts_aurora.1006
+	title = gts_aurora.1006.name
+	desc = gts_aurora.1006.desc
+	picture = GFX_gtsra_aurora_8
+	show_sound = event_mystic_reveal
+	archaeology = yes
+	is_triggered_only = yes
+	option = {
+		name = gts_aurora.1006.a
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+}
+
+fleet_event = {
+	#2
+	id = gts_aurora.1007
+	title = gts_aurora.1007.name
+	desc = gts_aurora.1007.desc
+	picture = GFX_gtsra_aurora_4
+	show_sound = event_mystic_reveal
+	archaeology = yes
+	is_triggered_only = yes
+	option = {
+		name = gts_aurora.1007.a
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+}
+
+fleet_event = {
+	#3
+	id = gts_aurora.1008
+	title = gts_aurora.1008.name
+	desc = gts_aurora.1008.desc
+	picture = GFX_gtsra_aurora_5
+	show_sound = event_mystic_reveal
+	archaeology = yes
+	is_triggered_only = yes
+	option = {
+		name = gts_aurora.1008.a
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+}
+
+fleet_event = {
+	#4
+	id = gts_aurora.1009
+	title = gts_aurora.1009.name
+	desc = gts_aurora.1009.desc
+	picture = GFX_gtsra_aurora_7
+	show_sound = event_mystic_reveal
+	archaeology = yes
+	is_triggered_only = yes
+	option = {
+		name = gts_aurora.1009.a
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+}
+
+fleet_event = {
+	#5
+	id = gts_aurora.1010
+	title = gts_aurora.1010.name
+	desc = gts_aurora.1010.desc
+	picture = GFX_gtsra_loli_feet_1
+	show_sound = event_ground_battle
+	archaeology = yes
+	is_triggered_only = yes
+	option = {
+		name = gts_aurora.1010.a
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = @tier5unityreward
+				min = @tier5unitymin
+				max = @tier5unitymax
+			}
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+}
+
+###loli局势
+situation_event = {
+	# loli局势事件1
+	id = gts_aurora.1020
+	title = gts_aurora.1020.name
+	desc = gts_aurora.1020.desc
+	picture = GFX_gtsra_sleep_loli
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_aurora.1020.a
+		add_situation_progress = 10
+		owner = {
+			add_resource = {
+				energy = -400
+			}
+		}
+	}
+	option = {
+		name = gts_aurora.1020.b
+		owner = {
+			add_resource = {
+				unity = 500
+			}
+		}
+	}
+}
+
+situation_event = {
+	# loli局势事件2
+	id = gts_aurora.1021
+	title = gts_aurora.1021.name
+	desc = gts_aurora.1021.desc
+	picture = GFX_gtsra_sleep_loli
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_aurora.1021.a
+		add_situation_progress = 10
+		owner = {
+			add_resource = {
+				energy = -200
+				alloys = -50
+			}
+		}
+	}
+	option = {
+		name = gts_aurora.1021.b
+		owner = {
+			add_resource = {
+				unity = 500
+			}
+		}
+	}
+}
+
+situation_event = {
+	# loli局势事件3
+	id = gts_aurora.1022
+	title = gts_aurora.1022.name
+	desc = gts_aurora.1022.desc
+	picture = GFX_gtsra_sleep_loli
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_aurora.1022.a
+		add_situation_progress = -10
+		owner = {
+			add_resource = {
+				alloys = -100
+			}
+		}
+	}
+	option = {
+		name = gts_aurora.1022.b
+		owner = {
+			add_resource = {
+				unity = 500
+			}
+		}
+	}
+}
+
+planet_event = {
+	#鼓鼓的小肚子
+	id = gts_aurora.1023
+	title = gts_aurora.1023.name
+	desc = gts_aurora.1023.desc
+	picture = GFX_gtsra_hungry_loli
+	show_sound = event_default
+	is_triggered_only = yes
+	location = event_target:gtsra_loli_world
+	option = {
+		name = gts_aurora.1023.a
+		add_modifier = {
+			modifier = r_giga_loli_full
+			years = 10
+		}
+		hidden_effect = {
+			planet_event = {
+				id = gts_aurora.1024
+				years = 10
+			}
+		}
+	}
+}
+
+planet_event = {
+	#扁扁的小肚子
+	id = gts_aurora.1024
+	title = gts_aurora.1024.name
+	desc = gts_aurora.1024.desc
+	picture = GFX_gtsra_hungry_loli
+	show_sound = event_default
+	is_triggered_only = yes
+	location = event_target:gtsra_loli_world
+	option = {
+		name = gts_aurora.1024.a
+		add_deposit = d_gtsra_giga_loli_hungry
+	}
+}
+
+planet_event = {
+	#摇篮曲-1
+	id = gts_aurora.1025
+	title = gts_aurora.1025.name
+	desc = gts_aurora.1025.desc
+	picture = GFX_gtsra_aurora
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	location = event_target:gtsra_loli_world
+	trigger = {
+		has_planet_flag = gtsra_loli_planet
+	}
+	option = {
+		name = gts_aurora.1025.a
+		hidden_effect = {
+			planet_event = {
+				id = gts_aurora.1026
+			}
+		}
+	}
+}
+
+planet_event = {
+	#摇篮曲-2
+	id = gts_aurora.1026
+	title = gts_aurora.1026.name
+	desc = gts_aurora.1026.desc
+	picture = GFX_gtsra_aurora_2
+	show_sound = event_default
+	is_triggered_only = yes
+	location = event_target:gtsra_loli_world
+	option = {
+		name = gts_aurora.1026.a
+		add_modifier = {
+			modifier = r_giga_loli_melody
+		}
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = gts_aurora.1027
+					days = 30
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	#欧若拉梦游小人国（开启后续事件）
+	id = gts_aurora.1027
+	title = gts_aurora.1027.name
+	desc = gts_aurora.1027.desc
+	picture = GFX_gtsra_aurora
+	show_sound = event_default
+	is_triggered_only = yes
+	location = event_target:gtsra_loli_world
+	option = {
+		name = gts_aurora.1027.a
+		country_event = {
+			id = gts_aurora.998
+		}
+	}
+	after = {
+		hidden_effect = {
+			set_country_flag = aurora_finished
+			country_event = {
+				id = gts_aurora.1000
+				days = 1080
+			}
+		}
+	}
+}
+
+country_event = {
+	# 欧若拉
+	id = gts_aurora.998
+	title = "gts_aurora.998.name"
+	desc = "gts_aurora.998.desc"
+	show_sound = event_celebration
+	is_triggered_only = yes
+	picture = GFX_leader_recruitment_bg_renowned
+	auto_opens = yes
+	event_window_type = leader_recruit
+	notification_event_icon = "GFX_message_leader_gts_aurora"
+	immediate = {
+		gts_leader_aurora_hired = yes
+	}
+	picture_event_data = {
+		portrait = event_target:gts_leader
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = gts_aurora.998.a
+		response_text = gts_aurora.998.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_aurora.998.b
+		response_text = gts_aurora.998.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_aurora.998.c
+		response_text = gts_aurora.998.c.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_aurora.998.d
+		response_text = gts_aurora.998.d.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_aurora.998.e
+		response_text = gts_aurora.998.e.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		custom_tooltip = gts_aurora.998.hire_custom_tooltip
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = legendary }
+		}
+	}
+}
+
+ship_event = {
+	# 沉睡的泰坦
+	id = gts_aurora.1029
+	title = gts_aurora.1029.name
+	desc = gts_aurora.1029.desc
+	picture = GFX_gtsra_sleep_loli
+	show_sound = event_default
+	is_triggered_only = yes
+	location = event_target:gtsra_loli_world
+	option = {
+		name = gts_aurora.1029.a
+		owner = {
+			start_situation = {
+				type = gtsra_situation_giga_loli
+				target = from
+			}
+		}
+	}
+}
+
+situation_event = {
+	# loli事件开启
+	id = gts_aurora.1030
+	title = gts_aurora.1030.name
+	desc = gts_aurora.1030.desc
+	picture = GFX_gtsra_sleep_loli
+	show_sound = event_default
+	is_triggered_only = yes
+	location = event_target:gtsra_loli_world
+
+	option = {
+		name = gts_aurora.1030.a
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = gts_aurora.1031
+					days = 3
+				}
+			}
+		}
+	}
+	after = {
+		destroy_situation = this
+	}
+}
+
+country_event = {
+	id = gts_aurora.1031
+	title = gts_aurora.1031.name
+	desc = gts_aurora.1031.desc
+	picture = GFX_gtsra_aurora
+	show_sound = event_default
+	is_triggered_only = yes
+	location = event_target:gtsra_loli_world
+
+	immediate = {
+		event_target:gtsra_loli_world = {
+			destroy_colony = yes
+			change_pc = pc_shattered
+			clear_planet_modifiers = yes
+			clear_deposits = yes
+			solar_system = {
+				set_star_class = sc_gts_bruh_aurora_star_classes
+			}
+		}
+		create_country = {
+			name = "NAME_gtsra_giga_loli"
+			type = guardian
+			flag = {
+				icon = {
+					category = "spherical"
+					file = "flag_spherical_6.dds"
+				}
+				background = {
+					category = "backgrounds"
+					file = "00_solid.dds"
+				}
+				colors = {
+					"dark_blue"
+					"dark_blue"
+					"null"
+				}
+			}
+			effect = {
+				set_faction_hostility = {
+					target = root
+					set_hostile = no
+					set_neutral = yes
+					set_friendly = no
+				}
+				save_global_event_target_as = gtsra_giga_loli_country
+				set_country_flag = gtsra_giga_loli_country
+				every_playable_country = {
+					establish_communications_no_message = event_target:gtsra_giga_loli_country
+				}
+				create_leader = {
+					name = NAME_gtsra_giga_loli
+					species = leader
+					gender = female
+					class = official
+					skill = 1
+					set_age = 1
+				}
+				last_created_leader = {
+					save_global_event_target_as = gtsra_giga_loli_leader
+					change_leader_portrait = gts_portrait_aurora
+				}
+				create_fleet = {
+					name = "NAME_gtsra_titans"
+					settings = {
+						spawn_debris = no
+						is_boss = yes
+					}
+					effect = {
+						set_owner = event_target:gtsra_giga_loli_country
+						create_ship = {
+							name = "NAME_gtsra_giga_loli"
+							design = "NAME_loliship"
+							effect = {
+								set_ship_flag = gts_body_ship
+								set_ship_flag = gtsra_giga_loli_ship
+								save_global_event_target_as = gtsra_giga_loli_ship
+								set_disabled = no
+							}
+						}
+						save_global_event_target_as = gtsra_giga_loli_fleet
+						set_location = {
+							target = event_target:gtsra_loli_world
+							distance = 10
+							angle = 90
+							direction = in_system
+						}
+						set_fleet_stance = passive
+						set_aggro_range_measure_from = self
+						set_aggro_range = 350
+					}
+				}
+			}
+		}
+		event_target:gtsra_giga_loli_country = {
+			set_leader = last_created_leader
+		}
+	}
+	option = {
+		name = gts_aurora.1031.a
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = gts_aurora.1032
+					days = 7
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_aurora.1032
+	title = gts_aurora.1032.name
+	diplomatic_title = BLANK_STRING
+	desc = gts_aurora.1032.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		room = no_video_feed_room
+	}
+	option = {
+		name = gts_aurora.1032.a
+		hidden_effect = {
+			country_event = {
+				id = gts_aurora.1033
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_aurora.1033
+	title = gts_aurora.1033.name
+	desc = gts_aurora.1033.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		portrait = gts_portrait_aurora
+		room = shroud_room
+	}
+	option = {
+		name = gts_aurora.1033.a
+		hidden_effect = {
+			country_event = {
+				id = gts_aurora.1034
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_aurora.1034
+	title = gts_aurora.1034.name
+	desc = gts_aurora.1034.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		portrait = gts_portrait_aurora
+		room = shroud_room
+	}
+	option = {
+		name = gts_aurora.1034.a
+		hidden_effect = {
+			event_target:gtsra_giga_loli_country = {
+				set_faction_hostility = {
+					target = root
+					set_hostile = yes
+					set_neutral = no
+					set_friendly = no
+				}
+			}
+			event_target:gtsra_giga_loli_fleet = {
+				set_fleet_stance = aggressive
+			}
+		}
+	}
+	option = {
+		name = gts_aurora.1034.b
+		hidden_effect = {
+			country_event = {
+				id = gts_aurora.1035
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_aurora.1035
+	title = gts_aurora.1035.name
+	desc = gts_aurora.1035.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		portrait = gts_portrait_aurora
+		room = shroud_room
+	}
+	option = {
+		name = gts_aurora.1035.a
+		hidden_effect = {
+			country_event = {
+				id = gts_aurora.1036
+			}
+		}
+	}
+	option = {
+		name = gts_aurora.1035.b
+		hidden_effect = {
+			country_event = {
+				id = gts_aurora.1036
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_aurora.1036
+	title = gts_aurora.1036.name
+	desc = gts_aurora.1036.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		portrait = gts_portrait_aurora
+		room = shroud_room
+	}
+	option = {
+		name = gts_aurora.1036.a
+		allow = {
+			resource_stockpile_compare = {
+				resource = food
+				value >= 1000
+			}
+		}
+		add_resource = {
+			food = -1000
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_aurora.1038
+			}
+		}
+	}
+	option = {
+		name = gts_aurora.1036.b
+		hidden_effect = {
+			country_event = {
+				id = gts_aurora.1037
+				days = 180
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_aurora.1037
+	title = gts_aurora.1037.name
+	desc = gts_aurora.1037.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		portrait = gts_portrait_aurora
+		room = shroud_room
+	}
+	trigger = {
+		NOT = {
+			has_country_flag = gtsra_arlo_country
+		}
+	}
+	option = {
+		name = gts_aurora.1037.a
+		allow = {
+			resource_stockpile_compare = {
+				resource = food
+				value >= 1000
+			}
+		}
+		add_resource = {
+			food = -1000
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_aurora.1038
+			}
+		}
+	}
+	option = {
+		name = gts_aurora.1037.b
+		hidden_effect = {
+			country_event = {
+				id = gts_aurora.1037
+				days = 180
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_aurora.1038
+	title = gts_aurora.1038.name
+	desc = gts_aurora.1038.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		portrait = gts_portrait_aurora
+		room = shroud_room
+	}
+	immediate = {
+		event_target:gtsra_giga_loli_fleet = {
+			destroy_fleet = this
+		}
+	}
+	option = {
+		name = gts_aurora.1038.a
+	}
+	after = {
+		hidden_effect = {
+			event_target:gtsra_loli_world = {
+				change_pc = pc_gtsra_loli
+				clear_deposits = yes
+				clear_planet_modifiers = yes
+				change_planet_size = 30
+				set_name = "NAME_gtsra_giga_loli_body"
+				add_modifier = {
+					modifier = r_giga_loli_kawai
+				}
+				add_modifier = {
+					modifier = r_giga_loli_eat
+				}
+				add_deposit = d_gtsra_giga_loli_archive_unexploit
+				add_deposit = d_gtsra_giga_loli_chest
+				add_deposit = d_gtsra_giga_loli_chest
+				add_deposit = d_gtsra_giga_loli_armpit
+				add_deposit = d_gtsra_giga_loli_armpit
+				add_deposit = d_gtsra_giga_loli_abdomen
+				add_deposit = d_gtsra_giga_loli_pussy_unexploit
+				add_deposit = d_gtsra_giga_loli_hole_unexploit
+				add_deposit = d_gtsra_giga_loli_feet
+				add_deposit = d_gtsra_giga_loli_feet
+				add_deposit = d_gtsra_giga_loli_hungry
+				set_planet_flag = gtsra_loli_planet
+				set_planet_flag = gts_body_planet
+			}
+		}
+	}
+}
+
+situation_event = {
+	# 残忍线
+	id = gts_aurora.1039
+	title = gts_aurora.1039.name
+	desc = gts_aurora.1039.desc
+	picture = GFX_gtsra_sleep_loli
+	show_sound = event_default
+	is_triggered_only = yes
+	location = event_target:gtsra_loli_world
+	immediate = {
+		event_target:gtsra_loli_world = {
+			destroy_colony = yes
+			change_pc = pc_shattered
+			clear_planet_modifiers = yes
+			clear_deposits = yes
+		}
+	}
+	option = {
+		name = gts_aurora.1039.a
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = gts_aurora.1040
+					days = 3
+				}
+			}
+		}
+	}
+	after = {
+		destroy_situation = this
+	}
+}
+
+country_event = {
+	id = gts_aurora.1040
+	title = gts_aurora.1040.name
+	desc = gts_aurora.1040.desc
+	picture = GFX_gtsra_aurora
+	show_sound = event_default
+	is_triggered_only = yes
+	location = event_target:gtsra_loli_world
+	immediate = {
+		event_target:gtsra_loli_world = {
+			destroy_colony = yes
+			change_pc = pc_shattered
+			clear_planet_modifiers = yes
+			clear_deposits = yes
+		}
+		create_country = {
+			name = "NAME_gtsra_giga_loli"
+			type = guardian
+			flag = {
+				icon = {
+					category = "spherical"
+					file = "flag_spherical_6.dds"
+				}
+				background = {
+					category = "backgrounds"
+					file = "00_solid.dds"
+				}
+				colors = {
+					"dark_blue"
+					"dark_blue"
+					"null"
+				}
+			}
+			effect = {
+				set_faction_hostility = {
+					target = root
+					set_hostile = no
+					set_neutral = yes
+					set_friendly = no
+				}
+				save_global_event_target_as = gtsra_giga_loli_country
+				set_country_flag = gtsra_giga_loli_country
+				every_playable_country = {
+					establish_communications_no_message = event_target:gtsra_giga_loli_country
+				}
+				create_leader = {
+					name = NAME_gtsra_giga_loli
+					species = event_target:gts_leader_species
+					gender = female
+					class = official
+					skill = 1
+					set_age = 1
+				}
+				last_created_leader = {
+					save_global_event_target_as = gtsra_giga_loli_leader
+					change_leader_portrait = gts_portrait_aurora
+				}
+				create_fleet = {
+					name = "NAME_gtsra_titans"
+					settings = {
+						spawn_debris = no
+						is_boss = yes
+					}
+					effect = {
+						set_owner = event_target:gtsra_giga_loli_country
+						create_ship = {
+							name = "NAME_gtsra_giga_loli"
+							design = "NAME_loliship"
+							effect = {
+								set_ship_flag = gts_body_ship
+								set_ship_flag = gtsra_giga_loli_ship
+								save_global_event_target_as = gtsra_giga_loli_ship
+								set_disabled = no
+							}
+						}
+						save_global_event_target_as = gtsra_giga_loli_fleet
+						set_location = {
+							target = event_target:gtsra_loli_world
+							distance = 10
+							angle = 90
+							direction = in_system
+						}
+						set_fleet_stance = passive
+						set_aggro_range_measure_from = self
+						set_aggro_range = 350
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_aurora.1040.a
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = gts_aurora.1041
+					days = 7
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_aurora.1041
+	title = gts_aurora.1041.name
+	diplomatic_title = BLANK_STRING
+	desc = gts_aurora.1041.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		room = no_video_feed_room
+	}
+	option = {
+		name = gts_aurora.1041.a
+		hidden_effect = {
+			country_event = {
+				id = gts_aurora.1042
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_aurora.1042
+	title = gts_aurora.1042.name
+	desc = gts_aurora.1042.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		portrait = gts_portrait_aurora
+		room = shroud_room
+	}
+	option = {
+		name = gts_aurora.1042.a
+		hidden_effect = {
+			event_target:gtsra_giga_loli_country = {
+				set_faction_hostility = {
+					target = root
+					set_hostile = yes
+					set_neutral = no
+					set_friendly = no
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_aurora.1042.b
+		hidden_effect = {
+			event_target:gtsra_giga_loli_country = {
+				set_faction_hostility = {
+					target = root
+					set_hostile = yes
+					set_neutral = no
+					set_friendly = no
+				}
+			}
+			event_target:gtsra_giga_loli_fleet = {
+				set_fleet_stance = aggressive
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_aurora.1043
+	title = gts_aurora.1043.name
+	desc = gts_aurora.1043.desc
+	is_triggered_only = yes
+	trigger = {
+		from = {
+			has_country_flag = gtsra_giga_loli_country
+		}
+	}
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		portrait = gts_portrait_aurora
+		room = shroud_room
+	}
+	immediate = {
+		set_country_flag = gtsra_arlo_country
+	}
+	option = {
+		name = gts_aurora.1043.a
+	}
+	after = {
+		hidden_effect = {
+			event_target:gtsra_loli_world = {
+				change_pc = pc_gtsra_loli_slave
+				clear_deposits = yes
+				clear_planet_modifiers = yes
+				change_planet_size = 30
+				set_name = "NAME_gtsra_giga_salve_body"
+				add_modifier = {
+					modifier = r_giga_loli_conquer
+				}
+				add_modifier = {
+					modifier = r_giga_loli_crime
+				}
+				add_modifier = {
+					modifier = r_giga_loli_maintain
+				}
+				add_deposit = d_gtsra_giga_slave_brain_unexploit
+				add_deposit = d_gtsra_giga_slave_chest
+				add_deposit = d_gtsra_giga_slave_chest
+				add_deposit = d_gtsra_giga_slave_armpit
+				add_deposit = d_gtsra_giga_slave_armpit
+				add_deposit = d_gtsra_giga_slave_abdomen
+				add_deposit = d_gtsra_giga_slave_pussy_unexploit
+				add_deposit = d_gtsra_giga_slave_egg_unexploit
+				add_deposit = d_gtsra_giga_slave_hole_unexploit
+				add_deposit = d_gtsra_giga_slave_feet
+				add_deposit = d_gtsra_giga_slave_feet
+				set_planet_flag = gtsra_slave_planet
+			}
+		}
+	}
+}
+
+planet_event = {
+	#事件-挣脱
+	id = gts_aurora.1050
+	title = gts_aurora.1050.name
+	desc = gts_aurora.1050.desc
+	picture = GFX_gtsra_aurora_3
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	location = event_target:gtsra_loli_world
+	trigger = {
+		has_planet_flag = gtsra_slave_planet
+	}
+	option = {
+		name = gts_aurora.1050.a
+		owner = {
+			start_situation = {
+				type = gtsra_situation_giga_slave
+				target = root
+			}
+		}
+	}
+}
+
+situation_event = {
+	#事件-短时麻醉
+	id = gts_aurora.1051
+	title = gts_aurora.1051.name
+	desc = gts_aurora.1051.desc
+	picture = GFX_gtsra_aurora_3
+	show_sound = event_default
+	is_triggered_only = yes
+	location = event_target:gtsra_loli_world
+	option = {
+		name = gts_aurora.1051.a
+	}
+}
+
+situation_event = {
+	#事件-绝对服从
+	id = gts_aurora.1052
+	title = gts_aurora.1052.name
+	desc = gts_aurora.1052.desc
+	picture = GFX_gtsra_aurora_2
+	show_sound = event_default
+	is_triggered_only = yes
+	location = event_target:gtsra_loli_world
+	option = {
+		name = gts_aurora.1052.a
+		event_target:gtsra_loli_world = {
+			add_modifier = {
+				modifier = r_giga_loli_slave
+			}
+		}
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = gts_aurora.1055
+					days = 30
+				}
+			}
+		}
+	}
+	after = {
+		destroy_situation = this
+	}
+}
+
+situation_event = {
+	#事件-限时项目失败后
+	id = gts_aurora.1053
+	title = gts_aurora.1053.name
+	desc = gts_aurora.1053.desc
+	show_sound = event_default
+	picture = GFX_gtsra_aurora_3
+	is_triggered_only = yes
+	location = event_target:gtsra_loli_world
+	option = {
+		name = gts_aurora.1053.a
+		add_situation_progress = -20
+	}
+}
+
+situation_event = {
+	#事件-无声离去
+	id = gts_aurora.1054
+	title = gts_aurora.1054.name
+	desc = gts_aurora.1054.desc
+	picture = GFX_gtsra_aurora
+	show_sound = event_default
+	is_triggered_only = yes
+	location = event_target:gtsra_loli_world
+	immediate = {
+		event_target:gtsra_loli_world = {
+			destroy_colony = yes
+			change_pc = pc_shattered
+			remove_modifier = r_giga_loli_failure
+			remove_modifier = r_giga_loli_conquer
+			remove_modifier = r_giga_loli_crime
+			remove_modifier = r_giga_loli_maintain
+			remove_modifier = r_giga_loli_slave
+			clear_deposits = yes
+		}
+	}
+	option = {
+		name = gts_aurora.1054.a
+	}
+	after = {
+		destroy_situation = this
+	}
+}
+
+country_event = {
+	#事件-不再有梦（开启后续事件）
+	id = gts_aurora.1055
+	title = gts_aurora.1055.name
+	desc = gts_aurora.1055.desc
+	picture = GFX_gtsra_aurora_2
+	show_sound = event_default
+	is_triggered_only = yes
+	location = event_target:gtsra_loli_world
+	option = {
+		name = gts_aurora.1055.a
+		country_event = {
+			id = gts_aurora.999
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_aurora.1060
+				days = 1080
+			}
+		}
+	}
+}
+
+country_event = {
+	# 爱洛
+	id = gts_aurora.999
+	title = "gts_aurora.999.name"
+	desc = "gts_aurora.999.desc"
+	show_sound = event_celebration
+	is_triggered_only = yes
+	picture = GFX_leader_recruitment_bg_renowned
+	auto_opens = yes
+	event_window_type = leader_recruit
+	notification_event_icon = "GFX_message_leader_gts_arlo"
+	immediate = {
+		gts_leader_arlo_hired = yes
+	}
+	picture_event_data = {
+		portrait = event_target:gts_leader
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = gts_aurora.999.a
+		response_text = gts_aurora.999.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_aurora.999.b
+		response_text = gts_aurora.999.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_aurora.999.c
+		response_text = gts_aurora.999.c.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_aurora.999.d
+		response_text = gts_aurora.999.d.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_aurora.999.e
+		response_text = gts_aurora.999.e.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		custom_tooltip = gts_aurora.999.hire_custom_tooltip
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = legendary }
+		}
+	}
+}
+
+# 爱洛事件
+country_event = {
+	# 急性衰竭
+	id = gts_aurora.1060
+	title = gts_aurora.1060.name
+	desc = gts_aurora.1060.desc
+	picture = GFX_gtsra_aurora_4
+	show_sound = event_red_alert
+	is_triggered_only = yes
+	location = event_target:gtsra_loli_world
+	immediate = {
+		event_target:gtsra_loli_world = {
+			clear_planet_modifiers = yes
+			add_modifier = {
+				modifier = r_giga_loli_failure
+			}
+		}
+		event_target:gts_arlo = {
+			add_trait = {
+				trait = gts_trait_leader_arlo_I
+			}
+		}
+	}
+	option = {
+		name = gts_aurora.1060.a
+		hidden_effect = {
+			event_target:gtsra_loli_world = {
+				add_anomaly = {
+					category = gtsra_loli_surgery
+				}
+			}
+		}
+	}
+}
+
+ship_event = {
+	# 亡国厄咒
+	id = gts_aurora.1061
+	title = gts_aurora.1061.name
+	desc = gts_aurora.1061.desc
+	picture = GFX_gtsra_aurora_4
+	show_sound = event_bad_omen
+	is_triggered_only = yes
+	location = event_target:gtsra_loli_world
+	option = {
+		name = gts_aurora.1061.a
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = gts_aurora.1062
+					days = 30
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	# 开始对话
+	id = gts_aurora.1062
+	title = gts_aurora.1062.name
+	desc = gts_aurora.1062.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = {
+		portrait = shroud1
+		room = shroud_room
+	}
+	option = {
+		name = gts_aurora.1062.a
+		hidden_effect = {
+			country_event = {
+				id = gts_aurora.1063
+			}
+		}
+	}
+}
+
+country_event = {
+	#
+	id = gts_aurora.1063
+	title = gts_aurora.1063.name
+	desc = gts_aurora.1063.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = {
+		portrait = shroud1
+		room = shroud_room
+	}
+	option = {
+		name = gts_aurora.1063.a
+		hidden_effect = {
+			country_event = {
+				id = gts_aurora.1064
+			}
+		}
+	}
+}
+
+country_event = {
+	#
+	id = gts_aurora.1064
+	title = gts_aurora.1064.name
+	desc = gts_aurora.1064.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = {
+		portrait = shroud1
+		room = shroud_room
+	}
+	option = {
+		name = gts_aurora.1064.a
+		hidden_effect = {
+			country_event = {
+				id = gts_aurora.1065
+			}
+		}
+	}
+}
+
+country_event = {
+	# 结束对话
+	id = gts_aurora.1065
+	title = gts_aurora.1065.name
+	desc = gts_aurora.1065.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = {
+		portrait = shroud1
+		room = shroud_room
+	}
+	option = {
+		name = gts_aurora.1065.a
+		hidden_effect = {
+			country_event = {
+				id = gts_aurora.1066
+				days = 7
+			}
+		}
+	}
+}
+
+country_event = {
+	# 苏醒
+	id = gts_aurora.1066
+	title = gts_aurora.1066.name
+	desc = gts_aurora.1066.desc
+	picture = GFX_gtsra_aurora_3
+	show_sound = event_red_alert
+	is_triggered_only = yes
+	immediate = {
+		event_target:gtsra_loli_world = {
+			# 摧毁loli星球
+			destroy_colony = yes
+			change_pc = pc_shattered
+			remove_modifier = r_giga_loli_failure
+			remove_modifier = r_giga_loli_conquer
+			remove_modifier = r_giga_loli_crime
+			remove_modifier = r_giga_loli_maintain
+			remove_modifier = r_giga_loli_slave
+			clear_deposits = yes
+		}
+		random_owned_planet = {
+			# 选择攻击目标
+			limit = {
+				is_colony = yes
+				NOT = { has_planet_flag = gts_body_planet }
+			}
+			save_event_target_as = gtsra_giga_arlo_next_colony
+			set_planet_flag = gtsra_giga_arlo_next_colony
+		}
+		create_country = {
+			# 生成loli舰队单位
+			name = "NAME_gtsra_giga_arlo"
+			type = guardian
+			flag = {
+				icon = {
+					category = "spherical"
+					file = "flag_spherical_6.dds"
+				}
+				background = {
+					category = "backgrounds"
+					file = "00_solid.dds"
+				}
+				colors = {
+					"dark_blue"
+					"dark_blue"
+					"null"
+				}
+			}
+			effect = {
+				set_faction_hostility = {
+					target = root
+					set_hostile = yes
+					set_neutral = no
+					set_friendly = no
+				}
+				save_global_event_target_as = gtsra_giga_arlo_country
+				set_country_flag = gtsra_giga_arlo_country
+				every_playable_country = {
+					establish_communications_no_message = event_target:gtsra_giga_arlo_country
+				}
+				create_leader = {
+					name = NAME_gtsra_giga_arlo
+					species = event_target:gts_leader_species
+					gender = female
+					class = official
+					skill = 1
+					set_age = 1
+				}
+				last_created_leader = {
+					save_global_event_target_as = gtsra_giga_arlo_leader
+					change_leader_portrait = gts_portrait_aurora
+				}
+				create_fleet = {
+					name = "NAME_gtsra_titans"
+					settings = {
+						spawn_debris = no
+						is_boss = yes
+					}
+					effect = {
+						set_owner = event_target:gtsra_giga_arlo_country
+						create_ship = {
+							name = "NAME_gtsra_giga_arlo"
+							design = "NAME_loliship_2"
+							effect = {
+								set_ship_flag = gtsra_giga_arlo_ship
+								set_ship_flag = gts_body_ship
+								save_global_event_target_as = gtsra_giga_arlo_ship
+								set_disabled = no
+							}
+						}
+						save_global_event_target_as = gtsra_giga_arlo_fleet
+						set_location = {
+							target = event_target:gtsra_loli_world
+							distance = 10
+							angle = 90
+							direction = in_system
+						}
+						set_fleet_stance = aggressive
+						set_aggro_range_measure_from = self
+						set_aggro_range = 350
+						set_fleet_flag = gtsra_giga_arlo_fleet
+						auto_move_to_planet = {
+							target = event_target:gtsra_giga_arlo_next_colony
+							clear_auto_move_on_arrival = no
+						}
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_aurora.1066.a
+		custom_tooltip = gts_aurora.1066.a.tooltip
+	}
+}
+
+country_event = {
+	# 萝莉摧毁殖民地-1
+	id = gts_aurora.1067
+	title = gts_aurora.1067.name
+	desc = gts_aurora.1067.desc
+	picture = GFX_gtsra_aurora_6
+	show_sound = event_default
+	is_triggered_only = yes
+	location = event_target:gtsra_giga_arlo_next_colony
+	option = {
+		name = gts_aurora.1067.a
+	}
+	after = {
+		random_list = {
+			1 = {
+			}
+			2 = {
+				country_event = {
+					id = gts_aurora.1071
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	# 萝莉摧毁殖民地-2
+	id = gts_aurora.1068
+	title = gts_aurora.1068.name
+	desc = gts_aurora.1068.desc
+	picture = GFX_gtsra_aurora_6
+	show_sound = event_default
+	is_triggered_only = yes
+	location = event_target:gtsra_giga_arlo_next_colony
+	option = {
+		name = gts_aurora.1068.a
+	}
+	after = {
+		random_list = {
+			1 = {
+			}
+			2 = {
+				country_event = {
+					id = gts_aurora.1071
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	# 萝莉摧毁殖民地-3
+	id = gts_aurora.1069
+	title = gts_aurora.1069.name
+	desc = gts_aurora.1069.desc
+	picture = GFX_gtsra_aurora_6
+	show_sound = event_default
+	is_triggered_only = yes
+	location = event_target:gtsra_giga_arlo_next_colony
+	option = {
+		name = gts_aurora.1069.a
+	}
+	after = {
+		random_list = {
+			1 = {
+			}
+			2 = {
+				country_event = {
+					id = gts_aurora.1071
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	# 萝莉摧毁殖民地-4
+	id = gts_aurora.1070
+	title = gts_aurora.1070.name
+	desc = gts_aurora.1070.desc
+	picture = GFX_gtsra_aurora_6
+	show_sound = event_default
+	is_triggered_only = yes
+	location = event_target:gtsra_giga_arlo_next_colony
+	option = {
+		name = gts_aurora.1070.a
+	}
+	after = {
+		random_list = {
+			1 = {
+			}
+			2 = {
+				country_event = {
+					id = gts_aurora.1071
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	# 苏醒的爱洛
+	id = gts_aurora.1071
+	title = gts_aurora.1071.name
+	desc = gts_aurora.1071.desc
+	picture = GFX_gtsra_aurora_2
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = gts_aurora.1071.a
+		event_target:gts_arlo = {
+			kill_leader = {
+				show_notification = yes
+			}
+		}
+		event_target:gtsra_giga_arlo_fleet = {
+			destroy_fleet = this
+		}
+		hidden_effect = {
+			event_target:gtsra_loli_world = {
+				change_pc = pc_gtsra_loli_slave
+				clear_deposits = yes
+				clear_planet_modifiers = yes
+				change_planet_size = 30
+				set_name = "NAME_gtsra_giga_salve_body"
+				add_modifier = {
+					modifier = r_giga_loli_conquer
+				}
+				add_modifier = {
+					modifier = r_giga_loli_crime
+				}
+				add_modifier = {
+					modifier = r_giga_loli_maintain
+				}
+				add_deposit = d_gtsra_giga_slave_brain_unexploit
+				add_deposit = d_gtsra_giga_slave_chest
+				add_deposit = d_gtsra_giga_slave_chest
+				add_deposit = d_gtsra_giga_slave_armpit
+				add_deposit = d_gtsra_giga_slave_armpit
+				add_deposit = d_gtsra_giga_slave_abdomen
+				add_deposit = d_gtsra_giga_slave_pussy_unexploit
+				add_deposit = d_gtsra_giga_slave_egg_unexploit
+				add_deposit = d_gtsra_giga_slave_hole_unexploit
+				add_deposit = d_gtsra_giga_slave_feet
+				add_deposit = d_gtsra_giga_slave_feet
+			}
+		}
+	}
+	option = {
+		name = gts_aurora.1071.b
+	}
+}
+
+country_event = {
+	# 击败挣脱萝莉
+	id = gts_aurora.1072
+	title = gts_aurora.1072.name
+	desc = gts_aurora.1072.desc
+	picture = GFX_gtsra_aurora_9
+	show_sound = event_default
+	is_triggered_only = yes
+	trigger = {
+		from = {
+			has_country_flag = gtsra_giga_arlo_country
+		}
+	}
+	option = {
+		name = gts_aurora.1072.a
+	}
+	after = {
+		hidden_effect = {
+			event_target:gts_arlo = {
+				remove_trait = gts_trait_leader_arlo_I
+			}
+			event_target:gtsra_loli_world = {
+				change_pc = pc_gtsra_loli_slave
+				clear_deposits = yes
+				clear_planet_modifiers = yes
+				change_planet_size = 30
+				set_name = "NAME_gtsra_giga_salve_body"
+				add_modifier = {
+					modifier = r_giga_loli_conquer
+				}
+				add_modifier = {
+					modifier = r_giga_loli_crime
+				}
+				add_modifier = {
+					modifier = r_giga_loli_maintain
+				}
+				add_deposit = d_gtsra_giga_slave_brain_unexploit
+				add_deposit = d_gtsra_giga_slave_chest
+				add_deposit = d_gtsra_giga_slave_chest
+				add_deposit = d_gtsra_giga_slave_armpit
+				add_deposit = d_gtsra_giga_slave_armpit
+				add_deposit = d_gtsra_giga_slave_abdomen
+				add_deposit = d_gtsra_giga_slave_pussy_unexploit
+				add_deposit = d_gtsra_giga_slave_egg_unexploit
+				add_deposit = d_gtsra_giga_slave_hole_unexploit
+				add_deposit = d_gtsra_giga_slave_feet
+				add_deposit = d_gtsra_giga_slave_feet
+			}
+		}
+	}
+}
+
+country_event = {
+	# 萝莉摧毁殖民地
+	id = gts_aurora.1073
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		from = {
+			has_fleet_flag = gtsra_giga_arlo_fleet
+		}
+	}
+	immediate = {
+		FromFrom.owner = {
+			random_list = {
+				1 = {
+					country_event = {
+						id = gts_aurora.1067
+					}
+				}
+				1 = {
+					country_event = {
+						id = gts_aurora.1068
+					}
+				}
+				1 = {
+					country_event = {
+						id = gts_aurora.1069
+					}
+				}
+				1 = {
+					country_event = {
+						id = gts_aurora.1070
+					}
+				}
+			}
+			random_owned_planet = {
+				# 选择下一个攻击目标
+				limit = {
+					is_colony = yes
+					NOT = {
+						has_planet_flag = gts_body_planet
+						has_planet_flag = gtsra_giga_arlo_next_colony
+					}
+				}
+				save_global_event_target_as = gtsra_giga_arlo_next_colony
+				set_planet_flag = gtsra_giga_arlo_next_colony
+			}
+		}
+		FromFrom = {
+			destroy_colony = yes
+			change_pc = pc_shattered
+			clear_planet_modifiers = yes
+			clear_deposits = yes
+			remove_planet_flag = gtsra_giga_arlo_next_colony
+		}
+		from = {
+			auto_move_to_planet = {
+				target = event_target:gtsra_giga_arlo_next_colony
+				clear_auto_move_on_arrival = no
+			}
+		}
+	}
+}
+
+country_event = {
+	# 萝莉星球吞食
+	id = gts_aurora.1080
+	title = gts_aurora.1080.name
+	desc = gts_aurora.1080.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	location = event_target:gts_nutrition_planet
+	picture_event_data = {
+		room = gtsra_aurora_6_room
+	}
+
+	immediate = {
+
+		every_owned_leader = {
+			limit = {
+				has_leader_flag = gts_aurora
+			}
+			save_event_target_as = gts_bruh_aurora_kill_count
+		}
+
+		event_target:gts_nutrition_planet = {
+
+			# 計算人口數量
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_planet_killed_pop_count
+			}
+
+			# 計算城市數量
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_planet_destroyed_city_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_planet_destroyed_city_count
+				value = 100
+			}
+			round_variable = gts_bruh_get_planet_destroyed_city_count
+
+			# 計算經驗獲取
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_experience_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_experience_count
+				value = 10
+			}
+			round_variable = gts_bruh_get_experience_count
+
+			# 計算增長體型(顯示用)
+			change_variable = {
+				which = gts_bruh_get_planet_size_change_count
+				value = event_target:gts_nutrition_planet.gts_pop_nutrition_amount
+			}
+			change_variable = {
+				which = gts_bruh_get_planet_size_change_count
+				value = event_target:gts_nutrition_planet.gts_planet_size_nutrition_amount
+			}
+		}
+		hidden_effect = {
+			event_target:gts_nutrition_planet = {
+				destroy_colony = yes
+				remove_planet = yes
+			}
+		}
+	}
+
+	option = {
+		name = gts_terror
+		if = {
+			limit = {
+				any_owned_planet = {
+					has_planet_flag = gtsra_loli_planet
+				}
+			}
+			custom_tooltip = gts_aurora.1080.a.tooltip
+		}
+		else = {
+			custom_tooltip = gts_aurora.1080.b.tooltip
+		}
+		hidden_effect = {
+			event_target:gtsra_loli_world = {
+				while = {
+					count = event_target:gts_nutrition_planet.gts_pop_nutrition_amount
+					add_deposit = d_gts_nutrients
+					change_planet_size = 1
+				}
+				while = {
+					count = event_target:gts_nutrition_planet.gts_planet_size_nutrition_amount
+					add_deposit = d_gts_nutrients
+					change_planet_size = 1
+				}
+			}
+
+			event_target:gts_bruh_aurora_kill_count = {
+				change_variable = {
+					which = gts_vore_kills_logs
+					value = event_target:gts_nutrition_planet.gts_bruh_get_planet_killed_pop_count
+				}
+				change_variable = {
+					which = gts_city_kills_logs
+					value = event_target:gts_nutrition_planet.gts_bruh_get_planet_destroyed_city_count
+				}
+				change_variable = {
+					which = gts_planet_kills_logs
+					value = 1
+				}
+
+				# 根據kd獲取經驗
+				add_experience = event_target:gts_nutrition_planet.gts_bruh_get_experience_count
+			}
+		}
+	}
+}
+
+country_event = {
+
+	# 隨機死人-隨機觸發
+
+	id = gts_aurora.1090
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		any_planet_within_border = { has_planet_flag = gtsra_loli_planet }
+		count_owned_pop_amount = { count > 10000 }
+	}
+
+	immediate = {
+
+		# 每個月2%機率
+		# 觸發完所有1000人口事件後，懲罰減為500人
+		random_list = {
+
+			# 發生機率2%
+			49 = {}
+			1 = {
+				random_list = {
+
+					# 未開啟500事件
+					# 會一直發生直到隨機湊齊四個
+					1 = {
+						random_list = {
+							# 嘴唇
+							1 = {
+								#modifier = {
+								#	factor = 0
+								#	owner = { has_country_flag = triggered_loli_mounth }
+								#}
+								random_owned_planet = {
+									limit = { has_planet_flag = gtsra_loli_planet }
+									planet_event = { id = gts_aurora.1091 }
+								}
+							}
+							# 後庭
+							1 = {
+								#modifier = {
+								#	factor = 0
+								#	owner = { has_country_flag = triggered_loli_anus }
+								#}
+								random_owned_planet = {
+									limit = { has_planet_flag = gtsra_loli_planet }
+									planet_event = { id = gts_aurora.1092 }
+								}
+							}
+							# 腋下
+							1 = {
+								#modifier = {
+								#	factor = 0
+								#	owner = { has_country_flag = triggered_loli_armpit }
+								#}
+								random_owned_planet = {
+									limit = { has_planet_flag = gtsra_loli_planet }
+									planet_event = { id = gts_aurora.1093 }
+								}
+							}
+							# 小穴
+							1 = {
+								#modifier = {
+								#	factor = 0
+								#	owner = { has_country_flag = triggered_loli_virgin }
+								#}
+								random_owned_planet = {
+									limit = { has_planet_flag = gtsra_loli_planet }
+									planet_event = { id = gts_aurora.1094 }
+								}
+							}
+						}
+					}
+
+					# 已開啟500事件
+					1 = {
+						modifier = {
+							factor = 0
+							owner = { NOT = { has_country_flag = triggered_loli_1000_all } }
+						}
+						random_list = {
+							1 = {
+								random_owned_planet = {
+									limit = { has_planet_flag = gtsra_loli_planet }
+									planet_event = { id = gts_aurora.1191 }
+								}
+							}
+							1 = {
+								random_owned_planet = {
+									limit = { has_planet_flag = gtsra_loli_planet }
+									planet_event = { id = gts_aurora.1192 }
+								}
+							}
+							1 = {
+								random_owned_planet = {
+									limit = { has_planet_flag = gtsra_loli_planet }
+									planet_event = { id = gts_aurora.1193 }
+								}
+							}
+							1 = {
+								random_owned_planet = {
+									limit = { has_planet_flag = gtsra_loli_planet }
+									planet_event = { id = gts_aurora.1194 }
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+planet_event = {
+
+	# 嘴巴1000人口
+
+	id = gts_aurora.1091
+	title = "TRANSMISSION"
+	desc = gts_aurora.1091.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	location = event_target:gtsra_loli_world
+	is_triggered_only = yes
+	show_sound = event_gts_breath
+	picture_event_data = {
+		room = gtsra_aurora_6_room
+	}
+
+	immediate = {
+		owner = {
+			if = {
+				limit = {
+					any_owned_leader = {
+						has_leader_flag = gts_aurora
+					}
+				}
+				random_owned_leader = {
+					limit = {
+						has_leader_flag = gts_aurora
+					}
+					save_event_target_as = gts_bruh_aurora_kill_count
+				}
+			}
+			else = {}
+		}
+		event_target:gtsra_loli_world = {
+			# 死亡人口
+			while = {
+				count = 1000
+				random_owned_pop_group = {
+					kill_pop_group = {
+						pop_group = This
+						amount = 1
+					}
+				}
+			}
+		}
+		owner = { set_country_flag = triggered_loli_mounth }
+	}
+
+	option = {
+		name = gts_terror
+		custom_tooltip = gts_bruh_casualties_1000.tooltip
+		owner = {
+			if = {
+				limit = {
+					any_owned_leader = {
+						has_leader_flag = gts_aurora
+					}
+				}
+				event_target:gts_bruh_aurora_kill_count = {
+					change_variable = {
+						which = gts_vore_kills_logs
+						value = 1000
+					}
+					add_experience = 100
+				}
+			}
+			else = {}
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			planet_event = {
+				id = gts_aurora.1095
+				days = 10
+			}
+		}
+	}
+}
+
+planet_event = {
+
+	# 后庭1000人口
+
+	id = gts_aurora.1092
+	title = "TRANSMISSION"
+	desc = gts_aurora.1092.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	location = event_target:gtsra_loli_world
+	is_triggered_only = yes
+	show_sound = event_worrying_signal
+	picture_event_data = {
+		room = gtsra_aurora_6_room  #图片等补
+	}
+
+	immediate = {
+		event_target:gtsra_loli_world = {
+			# 死亡人口
+			while = {
+				count = 1000
+				random_owned_pop_group = {
+					kill_pop_group = {
+						pop_group = This
+						amount = 1
+					}
+				}
+			}
+		}
+		owner = { set_country_flag = triggered_loli_anus }
+	}
+
+	option = {
+		name = gts_terror
+		custom_tooltip = gts_bruh_casualties_1000.tooltip
+	}
+
+	after = {
+		hidden_effect = {
+			planet_event = {
+				id = gts_aurora.1095
+				days = 10
+			}
+		}
+	}
+}
+
+planet_event = {
+
+	# 腋下1000人口
+
+	id = gts_aurora.1093
+	title = "TRANSMISSION"
+	desc = gts_aurora.1093.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	location = event_target:gtsra_loli_world
+	is_triggered_only = yes
+	show_sound = event_gts_heartbeat
+	picture_event_data = {
+		room = gtsra_aurora_6_room #图片等补
+	}
+
+	immediate = {
+		event_target:gtsra_loli_world = {
+			# 死亡人口
+			while = {
+				count = 1000
+				random_owned_pop_group = {
+					kill_pop_group = {
+						pop_group = This
+						amount = 1
+					}
+				}
+			}
+		}
+		owner = { set_country_flag = triggered_loli_armpit }
+	}
+
+	option = {
+		name = gts_terror
+		custom_tooltip = gts_bruh_casualties_1000.tooltip
+	}
+
+	after = {
+		hidden_effect = {
+			planet_event = {
+				id = gts_aurora.1095
+				days = 10
+			}
+		}
+	}
+}
+
+planet_event = {
+
+	# 小穴1000人口
+
+	id = gts_aurora.1094
+	title = "TRANSMISSION"
+	desc = gts_aurora.1094.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	location = event_target:gtsra_loli_world
+	is_triggered_only = yes
+	show_sound = event_gts_masturbate
+	picture_event_data = {
+		room = gtsra_aurora_6_room #图片等补
+	}
+
+	immediate = {
+		owner = {
+			if = {
+				limit = {
+					any_owned_leader = {
+						has_leader_flag = gts_aurora
+					}
+				}
+				random_owned_leader = {
+					limit = {
+						has_leader_flag = gts_aurora
+					}
+					save_event_target_as = gts_bruh_aurora_kill_count
+				}
+			}
+			else = {}
+		}
+		event_target:gtsra_loli_world = {
+			# 死亡人口
+			while = {
+				count = 1000
+				random_owned_pop_group = {
+					kill_pop_group = {
+						pop_group = This
+						amount = 1
+					}
+				}
+			}
+		}
+		owner = { set_country_flag = triggered_loli_virgin }
+	}
+
+	option = {
+		name = gts_terror
+		custom_tooltip = gts_bruh_casualties_1000.tooltip
+		owner = {
+			if = {
+				limit = {
+					any_owned_leader = {
+						has_leader_flag = gts_aurora
+					}
+				}
+				event_target:gts_bruh_aurora_kill_count = {
+					change_variable = {
+						which = gts_ub_kills_logs
+						value = 1000
+					}
+					add_experience = 100
+				}
+			}
+			else = {}
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			planet_event = {
+				id = gts_aurora.1095
+				days = 10
+			}
+		}
+	}
+}
+
+planet_event = {
+
+	# 後日談改成減少500人口
+
+	id = gts_aurora.1095
+	title = "TRANSMISSION"
+	desc = gts_aurora.1095.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	location = event_target:gtsra_loli_world
+	is_triggered_only = yes
+	show_sound = event_announcement
+	picture_event_data = {
+		room = gtsra_aurora_6_room
+	}
+
+	trigger = {
+		owner = {
+			has_country_flag = triggered_loli_mounth
+			has_country_flag = triggered_loli_anus
+			has_country_flag = triggered_loli_armpit
+			has_country_flag = triggered_loli_virgin
+		}
+	}
+
+	immediate = {
+		owner = { set_country_flag = triggered_loli_1000_all }
+	}
+
+	option = {
+		name = gts_good
+		custom_tooltip = gts_aurora.1095.tooltip
+	}
+}
+
+planet_event = {
+
+	# 嘴巴500人口
+
+	id = gts_aurora.1191
+	title = "TRANSMISSION"
+	desc = gts_aurora.1191.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	location = event_target:gtsra_loli_world
+	is_triggered_only = yes
+	show_sound = event_gts_breath
+	picture_event_data = {
+		room = gtsra_aurora_6_room
+	}
+
+	immediate = {
+		owner = {
+			if = {
+				limit = {
+					any_owned_leader = {
+						has_leader_flag = gts_aurora
+					}
+				}
+				random_owned_leader = {
+					limit = {
+						has_leader_flag = gts_aurora
+					}
+					save_event_target_as = gts_bruh_aurora_kill_count
+				}
+			}
+			else = {}
+		}
+		event_target:gtsra_loli_world = {
+			# 死亡人口
+			while = {
+				count = 500
+				random_owned_pop_group = {
+					kill_pop_group = {
+						pop_group = This
+						amount = 1
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = gts_terror
+		custom_tooltip = gts_bruh_casualties_500.tooltip
+		owner = {
+			if = {
+				limit = {
+					any_owned_leader = {
+						has_leader_flag = gts_aurora
+					}
+				}
+				event_target:gts_bruh_aurora_kill_count = {
+					change_variable = {
+						which = gts_vore_kills_logs
+						value = 500
+					}
+					add_experience = 50
+				}
+			}
+			else = {}
+		}
+	}
+}
+
+planet_event = {
+
+	# 后庭500人口
+
+	id = gts_aurora.1192
+	title = "TRANSMISSION"
+	desc = gts_aurora.1192.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	location = event_target:gtsra_loli_world
+	is_triggered_only = yes
+	show_sound = event_worrying_signal
+	picture_event_data = {
+		room = gtsra_aurora_6_room  #图片等补
+	}
+
+	immediate = {
+		event_target:gtsra_loli_world = {
+			# 死亡人口
+			while = {
+				count = 500
+				random_owned_pop_group = {
+					kill_pop_group = {
+						pop_group = This
+						amount = 1
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = gts_terror
+		custom_tooltip = gts_bruh_casualties_500.tooltip
+	}
+}
+
+planet_event = {
+
+	# 足500人口
+
+	id = gts_aurora.1193
+	title = "TRANSMISSION"
+	desc = gts_aurora.1193.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	location = event_target:gtsra_loli_world
+	is_triggered_only = yes
+	show_sound = event_gts_heartbeat
+	picture_event_data = {
+		room = gtsra_aurora_6_room #图片等补
+	}
+
+	immediate = {
+		owner = {
+			if = {
+				limit = {
+					any_owned_leader = {
+						has_leader_flag = gts_aurora
+					}
+				}
+				random_owned_leader = {
+					limit = {
+						has_leader_flag = gts_aurora
+					}
+					save_event_target_as = gts_bruh_aurora_kill_count
+				}
+			}
+			else = {}
+		}
+		event_target:gtsra_loli_world = {
+			# 死亡人口
+			while = {
+				count = 500
+				random_owned_pop_group = {
+					kill_pop_group = {
+						pop_group = This
+						amount = 1
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = gts_terror
+		custom_tooltip = gts_bruh_casualties_500.tooltip
+		owner = {
+			if = {
+				limit = {
+					any_owned_leader = {
+						has_leader_flag = gts_aurora
+					}
+				}
+				event_target:gts_bruh_aurora_kill_count = {
+					change_variable = {
+						which = gts_feet_kills_logs
+						value = 500
+					}
+					add_experience = 50
+				}
+			}
+			else = {}
+		}
+	}
+}
+
+planet_event = {
+
+	# 小穴500人口
+
+	id = gts_aurora.1194
+	title = "TRANSMISSION"
+	desc = gts_aurora.1194.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	location = event_target:gtsra_loli_world
+	is_triggered_only = yes
+	show_sound = event_gts_masturbate
+	picture_event_data = {
+		room = gtsra_aurora_6_room #图片等补
+	}
+
+	immediate = {
+		owner = {
+			if = {
+				limit = {
+					any_owned_leader = {
+						has_leader_flag = gts_aurora
+					}
+				}
+				random_owned_leader = {
+					limit = {
+						has_leader_flag = gts_aurora
+					}
+					save_event_target_as = gts_bruh_aurora_kill_count
+				}
+			}
+			else = {}
+		}
+		event_target:gtsra_loli_world = {
+			# 死亡人口
+			while = {
+				count = 500
+				random_owned_pop_group = {
+					kill_pop_group = {
+						pop_group = This
+						amount = 1
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = gts_terror
+		custom_tooltip = gts_bruh_casualties_500.tooltip
+		owner = {
+			if = {
+				limit = {
+					any_owned_leader = {
+						has_leader_flag = gts_aurora
+					}
+				}
+				event_target:gts_bruh_aurora_kill_count = {
+					change_variable = {
+						which = gts_ub_kills_logs
+						value = 500
+					}
+					add_experience = 50
+				}
+			}
+			else = {}
+		}
+	}
+}
+
+# 欧若拉换装
+country_event = {
+	id = gts_aurora.500
+	title = gts_aurora.500.name
+	desc = gts_aurora.500.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		#room =
+		portrait = event_target:gts_aurora
+	}
+	option = {
+		name = gts_aurora.500.1
+		is_dialog_only = yes
+		response_text = gts_aurora.500.1a
+		hidden_effect = {
+			event_target:gts_aurora = {
+				change_leader_portrait = gts_portrait_aurora
+			}
+		}
+	}
+	option = {
+		name = gts_aurora.500.2
+		is_dialog_only = yes
+		response_text = gts_aurora.500.2a
+		hidden_effect = {
+			event_target:gts_aurora = {
+				change_leader_portrait = gts_portrait_aurora_2
+			}
+		}
+	}
+	option = {
+		name = gts_aurora.500.3
+		is_dialog_only = yes
+		response_text = gts_aurora.500.3a
+		hidden_effect = {
+			event_target:gts_aurora = {
+				change_leader_portrait = gts_portrait_aurora_3
+			}
+		}
+	}
+	option = {
+		name = gts_aurora.500.4
+		is_dialog_only = yes
+		response_text = gts_aurora.500.4a
+		hidden_effect = {
+			event_target:gts_aurora = {
+				change_leader_portrait = gts_portrait_aurora_4
+			}
+		}
+	}
+	option = {
+		name = gts_aurora.500.5
+		is_dialog_only = yes
+		response_text = gts_aurora.500.5a
+		hidden_effect = {
+			event_target:gts_aurora = {
+				change_leader_portrait = gts_portrait_aurora_5
+			}
+		}
+	}
+
+	option = {
+		name = gts_leave
+		default_hide_option = yes
+	}
+}

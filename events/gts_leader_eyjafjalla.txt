@@ -1,0 +1,2911 @@
+namespace = gts_eyjafjalla
+
+# 创建艾雅法拉星系
+country_event = {
+	id = gts_eyjafjalla.0
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		random_system = {
+			limit = {
+				distance = {
+					source = root.capital_scope.solar_system
+					use_bypasses = yes
+					min_jumps = 1
+					max_jumps = 6
+				}
+			}
+			random_system_planet = {
+				spawn_system = {
+					min_distance >= 10
+					max_distance <= 30
+					max_jumps = 0
+					initializer = gts_eyjafjalla_system
+					effect = {
+						save_event_target_as = gts_bruh_get_eyjafjalla_system_location
+					}
+				}
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = gts_eyjafjalla.2	#入口
+	title = "gts_eyjafjalla.2.name"
+	desc = "gts_eyjafjalla.2.desc"
+	picture = GFX_gts_eyjafjalla_01
+	location = ROOT
+	is_triggered_only = yes
+	option = {
+		name = gts_eyjafjalla.2.a		#结束事件
+		add_deposit = d_gts_eyjafjalla_vore
+	}
+	option = {
+		name = gts_eyjafjalla.2.b		#重新挖
+		allow = {
+			owner = {
+				resource_stockpile_compare = {
+					resource = energy
+					value >= 500
+				}
+			}
+		}
+		owner = {
+			add_resource = {
+				energy = -500
+			}
+		}
+		planet_event = {
+			id = gts_eyjafjalla.3
+			days = 30
+		}
+		from = {
+			custom_tooltip = gts_eyjafjalla.2.tooltip
+		}
+	}
+}
+
+planet_event = {
+	id = gts_eyjafjalla.3	#入乳
+	title = "gts_eyjafjalla.3.name"
+	desc = "gts_eyjafjalla.3.desc"
+	picture = GFX_gts_eyjafjalla_07
+	location = ROOT
+	is_triggered_only = yes
+	option = {
+		name = gts_eyjafjalla.3.a
+		planet_event = {
+			id = gts_eyjafjalla.5
+			days = 3
+		}
+	}
+}
+
+planet_event = {
+	id = gts_eyjafjalla.4	#入臀
+	title = "gts_eyjafjalla.4.name"
+	desc = "gts_eyjafjalla.4.desc"
+	picture = GFX_gts_eyjafjalla_10
+	location = ROOT
+	is_triggered_only = yes
+	option = {
+		name = gts_eyjafjalla.4.a
+		hidden_effect = {
+			planet_event = {
+				id = gts_eyjafjalla.6
+				days = 3
+			}
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.2.b		#重新挖
+		allow = {
+			owner = {
+				resource_stockpile_compare = {
+					resource = energy
+					value >= 500
+				}
+			}
+		}
+		owner = {
+			add_resource = {
+				energy = -500
+			}
+		}
+		planet_event = {
+			id = gts_eyjafjalla.3
+			days = 30
+		}
+		from = {
+			custom_tooltip = gts_eyjafjalla.2.tooltip
+		}
+	}
+}
+
+planet_event = {
+	id = gts_eyjafjalla.5	#入乳后续
+	title = "gts_eyjafjalla.5.name"
+	desc = "gts_eyjafjalla.5.desc"
+	picture = GFX_gts_eyjafjalla_06
+	location = ROOT
+	is_triggered_only = yes
+	option = {
+		name = gts_eyjafjalla.5.a
+		hidden_effect = {
+			event_target:gts_eyjafjalla_planet = {
+				set_planet_size = 35
+				change_pc = pc_gaia
+			}
+			owner = {
+				country_event = {
+					id = gts_eyjafjalla.7
+				}
+				#领袖招募阶段
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = gts_eyjafjalla.6	#入臀后续
+	title = "gts_eyjafjalla.6.name"
+	desc = "gts_eyjafjalla.6.desc"
+	picture = GFX_gts_eyjafjalla_11
+	location = ROOT
+	is_triggered_only = yes
+	option = {
+		name = gts_eyjafjalla.5.a
+		hidden_effect = {
+			event_target:gts_eyjafjalla_planet = {
+				set_planet_size = 35
+				change_pc = pc_gaia
+			}
+			owner = {
+				country_event = {
+					id = gts_eyjafjalla.7
+				}
+				#领袖招募阶段
+			}
+		}
+	}
+}
+
+country_event = {
+	#招募小羊
+	id = gts_eyjafjalla.7
+	title = "gts_eyjafjalla.7.name"
+	desc = "gts_eyjafjalla.7.desc"	#行为描述
+	show_sound = event_celebration
+	is_triggered_only = yes
+	picture = GFX_leader_recruitment_bg_renowned
+	auto_opens = yes	#自动启动
+	event_window_type = leader_recruit
+	notification_event_icon = "GFX_leader_trait_gts_eyjafjalla_sci"	#事件小图
+	immediate = {
+		gts_leader_eyjafjalla_hired = yes
+	}
+	picture_event_data = {
+		portrait = event_target:gts_leader
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = DISMISS
+		tag = dismiss_leader
+		hidden_effect = {
+			set_country_flag = dismissed_gts_eyjafjalla
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.7.a
+		response_text = gts_eyjafjalla.7.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_eyjafjalla.7.b
+		response_text = gts_eyjafjalla.7.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_eyjafjalla.7.c
+		response_text = gts_eyjafjalla.7.c.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		custom_tooltip = gts_eyjafjalla.7.hire_custom_tooltip		#§Y艾雅法拉§!作为一名§H领袖§!加入了我们的帝国。
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = renowned }
+			owner = {
+				event_target:gts_eyjafjalla_planet = {
+					add_deposit = d_gts_eyjafjalla_pit
+				}
+			}
+			owner = {
+				country_event = {
+					id = gts_eyjafjalla.8
+					days = 1800
+				}
+				#1800 五年
+			}
+		}
+	}
+
+}
+
+country_event = {
+	#治疗小羊
+	id = gts_eyjafjalla.8
+	title = gts_eyjafjalla.8.name
+	desc = gts_eyjafjalla.8.desc
+	picture = GFX_gts_eyjafjalla_12
+	show_sound = event_celebration
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		#要求小羊还活着
+		exists = event_target:gts_eyjafjalla
+	}
+	option = {
+		name = gts_eyjafjalla.8.a		#开启可以直接研究的特殊项目
+		enable_special_project = {
+			name = "GTS_CURE_EYJAFJALLA"
+		}
+	}
+}
+
+country_event = {
+	#小羊治好了
+	id = gts_eyjafjalla.9
+	title = gts_eyjafjalla.9.name
+	desc = gts_eyjafjalla.9.desc
+	picture = GFX_gts_eyjafjalla_13
+	show_sound = event_celebration
+	is_triggered_only = yes
+	trigger = {
+		#要求小羊还活着
+		exists = event_target:gts_eyjafjalla
+	}
+	immediate = {
+		event_target:gts_eyjafjalla = {
+			change_leader_portrait = gts_portrait_eyjafjalla_scientist
+			remove_trait = oripathy
+			remove_trait = subclass_scientist_explorer
+			add_trait = {
+				trait = subclass_scientist_scholar
+			}
+			add_trait = {
+				trait = leader_trait_collaborator_3
+			}
+			remove_leader_flag = renowned_leader
+			set_leader_flag = legendary_leader
+			set_owner = root
+			set_leader_flag = immune_to_negative_traits
+			set_leader_flag = gts_eyjafjalla
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.9.a		#移除矿石病、添加新生、变立绘、外交事件
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = gts_eyjafjalla.10
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	#招募小羊
+	id = gts_eyjafjalla.10
+	title = "gts_eyjafjalla.10.name"
+	desc = "gts_eyjafjalla.10.desc"
+	show_sound = event_celebration
+	is_triggered_only = yes
+	picture = GFX_leader_recruitment_bg_renowned
+	auto_opens = yes	#自动启动
+	event_window_type = leader_recruit
+	notification_event_icon = "GFX_leader_trait_gts_eyjafjalla"	#事件小图
+	picture_event_data = {
+		portrait = event_target:gts_eyjafjalla
+		room = ethic_spaceship_room
+	}
+	immediate = {
+	}
+	option = {
+		name = gts_eyjafjalla.10.a
+		response_text = gts_eyjafjalla.10.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_eyjafjalla.10.b
+		response_text = gts_eyjafjalla.10.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_eyjafjalla.10.c
+		response_text = gts_eyjafjalla.10.c.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		custom_tooltip = gts_eyjafjalla.7.hire_custom_tooltip		#§Y艾雅法拉§!作为一名§H领袖§!加入了我们的帝国。
+		hidden_effect = {
+			create_message = {
+				type = MESSAGE_RECRUITED_LEADER
+				localization = MESSAGE_RECRUITED_LEADER_DESC
+				days = @toast_message_days
+				target = event_target:gts_eyjafjalla
+				variable = {
+					type = name
+					localization = LEADER
+					scope = event_target:gts_eyjafjalla
+				}
+				variable = {
+					key = "border"
+					value = "GFX_border_legendary"
+				}
+			}
+			owner = {
+				country_event = {
+					id = gts_eyjafjalla.110
+					days = 90
+				}
+				country_event = {
+					id = gts_eyjafjalla.200
+					days = 360
+				}
+				country_event = {
+					id = gts_eyjafjalla.250
+					days = 1800
+					random = 720
+				}
+			}
+		}
+	}
+	option = {
+		name = DISMISS
+		tag = dismiss_leader
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.10
+			}
+		}
+	}
+}
+
+ship_event = {
+	id = gts_eyjafjalla.26
+	title = "gts_eyjafjalla.26.name"
+	desc = "gts_eyjafjalla.26.desc"
+	picture = GFX_evt_alpine_city
+	show_sound = event_mystic_reveal_light
+	location = event_target:gts_eyjafjalla_planet
+	is_triggered_only = yes
+	option = {
+		name = INCREDIBLE
+		leader = {
+			add_experience = 500
+		}
+	}
+}
+
+ship_event = {
+	#坐碎星球
+	id = gts_eyjafjalla.100
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		ship_event = {
+			id = gts_eyjafjalla.101
+			scopes = {
+				from = from
+			}
+			days = 1
+		}
+	}
+}
+
+ship_event = {
+	id = gts_eyjafjalla.101
+	title = "gts_eyjafjalla.101.name"
+	desc = "gts_eyjafjalla.101.desc"
+	picture = GFX_gts_eyjafjalla_16
+	is_triggered_only = yes
+	show_sound = event_ship_bridge
+	location = FROM
+	trackable = yes
+	trigger = {
+		exists = leader
+		leader = {
+			has_trait = scientist_gts_eyjafjalla
+		}
+		FROM = {
+			has_anomaly = no
+			is_colonizable = no
+			is_star = no
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.101.a
+		FROM = {
+			change_pc = pc_shattered
+		}
+		owner = {
+			add_resource = {
+				minerals = 10000
+				alloys = 5000
+			}
+		}
+	}
+}
+
+country_event = {
+	#涨奶（第一次）
+	id = gts_eyjafjalla.110
+	title = "gts_eyjafjalla.110.name"
+	desc = "gts_eyjafjalla.110.desc"
+	picture = GFX_gts_eyjafjalla_14
+	show_sound = event_celebration
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	trigger = {
+		exists = event_target:gts_eyjafjalla
+	}
+
+	option = {
+		name = gts_eyjafjalla.110.a		#黑洞
+		owner = {
+			country_event = {
+				id = gts_eyjafjalla.112
+				days = 10
+			}
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.110.b		#收集
+		owner = {
+			country_event = {
+				id = gts_eyjafjalla.113
+				days = 10
+			}
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.110.c		#母星
+		allow = {
+			capital_scope = {
+				NOR = {
+					is_artificial = yes
+					is_planet_class = pc_city
+				}
+			}
+		}
+		owner = {
+			country_event = {
+				id = gts_eyjafjalla.114
+				days = 10
+			}
+		}
+	}
+}
+
+country_event = {
+	#涨奶（再次）
+	id = gts_eyjafjalla.111
+	title = "gts_eyjafjalla.110.name"
+	desc = "gts_eyjafjalla.111.desc"
+	picture = GFX_gts_eyjafjalla_15
+	show_sound = event_celebration
+	is_triggered_only = yes
+
+	trigger = {
+		exists = event_target:gts_eyjafjalla
+	}
+
+	option = {
+		name = gts_eyjafjalla.110.a		#白洞
+		allow = {
+			any_planet_within_border = {
+				is_planet_class = pc_black_hole
+			}
+		}
+		owner = {
+			country_event = {
+				id = gts_eyjafjalla.112
+				days = 10
+			}
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.110.b		#收集
+		owner = {
+			country_event = {
+				id = gts_eyjafjalla.113
+				days = 10
+			}
+		}
+	}
+	option = {
+		custom_tooltip = gts_eyjafjalla.111.custom_tooltip
+		name = gts_eyjafjalla.111.c		#不再弹出
+	}
+}
+
+country_event = {
+	#黑洞
+	id = gts_eyjafjalla.112
+	title = "gts_eyjafjalla.112.name"
+	desc = "gts_eyjafjalla.112.desc"
+	picture = GFX_gts_eyjafjalla_17
+	show_sound = event_celebration
+	is_triggered_only = yes
+	location = event_target:gts_bruh_random_white_hole
+
+	trigger = {
+		exists = event_target:gts_eyjafjalla
+	}
+
+	immediate = {
+		random_planet_within_border = {
+			limit = {
+				is_planet_class = pc_black_hole
+				NOT = {
+					is_planet_class = pc_white_hole
+				}
+			}
+			save_event_target_as = gts_bruh_random_white_hole
+		}
+		every_planet_within_border = {
+			limit = {
+				is_planet_class = pc_white_hole
+			}
+			change_pc = pc_black_hole
+			solar_system = {
+				set_star_class = sc_black_hole
+			}
+		}
+	}
+
+	option = {
+		name = gts_eyjafjalla.112.a
+		event_target:gts_bruh_random_white_hole = {
+			change_pc = pc_white_hole
+			solar_system = {
+				set_star_class = sc_gts_bruh_white_hole_star_classes
+			}
+		}
+		owner = {
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = 12
+			}
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = 12
+			}
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = 12
+			}
+		}
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = gts_eyjafjalla.111
+					days = 1800
+				}
+				#1800 五年
+			}
+		}
+	}
+}
+
+country_event = {
+	#收集
+	id = gts_eyjafjalla.113
+	title = "gts_eyjafjalla.113.name"
+	desc = "gts_eyjafjalla.113.desc"
+	picture = GFX_gts_eyjafjalla_08
+	show_sound = event_celebration
+	is_triggered_only = yes
+
+	trigger = {
+		exists = event_target:gts_eyjafjalla
+	}
+
+	option = {
+		name = gts_eyjafjalla.112.a
+		owner = {
+			add_monthly_resource_mult = {
+				resource = food
+				value = 12
+			}
+		}
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = gts_eyjafjalla.111
+					days = 1800
+				}
+				#1800 五年
+			}
+		}
+	}
+}
+
+country_event = {
+	#海洋
+	id = gts_eyjafjalla.114
+	title = "gts_eyjafjalla.114.name"
+	desc = "gts_eyjafjalla.114.desc"
+	picture = GFX_gts_eyjafjalla_18
+	show_sound = event_celebration
+	is_triggered_only = yes
+	trigger = {
+		exists = event_target:gts_eyjafjalla
+	}
+	option = {
+		name = gts_eyjafjalla.112.a
+		owner = {
+			home_planet = {
+				add_planet_devastation = 10
+				add_deposit = d_eyjafjalla_milk_sea
+				random_owned_pop_group = {
+					kill_single_pop = yes
+				}
+			}
+		}
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = gts_eyjafjalla.111
+					days = 1800
+				}
+				#1800 五年
+			}
+		}
+	}
+}
+
+country_event = {
+	#小羊天体级开场
+	id = gts_eyjafjalla.200
+	title = gts_eyjafjalla.200.name
+	desc = gts_eyjafjalla.200.desc
+	is_triggered_only = yes
+	trigger = {
+		exists = event_target:gts_eyjafjalla
+		exists = event_target:gts_eyjafjalla_planet
+	}
+	picture = GFX_gts_eyjafjalla_12
+	show_sound = event_mystic_reveal
+	location = event_target:gts_eyjafjalla_planet
+	option = {
+		name = gts_eyjafjalla.200.a
+		country_event = {
+			id = gts_eyjafjalla.201
+			days = 30
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.200.b
+	}
+}
+
+country_event = {
+	id = gts_eyjafjalla.201
+	title = gts_eyjafjalla.201.name
+	desc = gts_eyjafjalla.201.desc
+	is_triggered_only = yes
+	trigger = {
+		exists = event_target:gts_eyjafjalla
+		exists = event_target:gts_eyjafjalla_planet
+	}
+	picture = GFX_gts_eyjafjalla_13
+	show_sound = event_mystic_reveal
+	location = event_target:gts_eyjafjalla_planet
+	option = {
+		name = gts_eyjafjalla.200.a
+		country_event = {
+			id = gts_eyjafjalla.202
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.240
+				days = 365
+			}
+		}
+	}
+}
+
+country_event = {
+	#艾雅法拉询问界面
+	id = gts_eyjafjalla.202
+	title = "TRANSMISSION"	#信号传入接入画面
+	desc = gts_eyjafjalla.202.desc
+	event_window_type = leader_recruit
+	picture = GFX_leader_recruitment_bg_legendary_skrand
+	is_triggered_only = yes
+	show_sound = event_default
+	picture_event_data = {
+		portrait = event_target:gts_eyjafjalla
+		room = "crisis_room"
+	}
+	option = {
+		name = gts_eyjafjalla.202.a
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.210
+			}
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.202.b
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.212
+			}
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.202.c
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.214
+			}
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.202.d
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.216
+			}
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.202.e
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.218
+			}
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.202.f
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.220
+			}
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.202.g
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.222
+			}
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.202.h
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.224
+			}
+		}
+	}
+	option = {
+		tag = dismiss_leader
+		name = END_TRANSMISSION
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.202
+			}
+		}
+	}
+	option = {
+		tag = hire_leader
+		name = CONFIRM
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.202
+			}
+		}
+	}
+}
+
+country_event = {
+	#vore
+	id = gts_eyjafjalla.210
+	base = gts_eyjafjalla.202
+	event_window_type = leader_recruit
+	desc_clear = yes
+	option_clear = yes
+	desc = gts_eyjafjalla.210.desc
+	option = {
+		tag = dismiss_leader
+		name = gts_eyjafjalla.202.back
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.202
+			}
+		}
+	}
+	option = {
+		tag = hire_leader
+		name = gts_eyjafjalla.202.back
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.202
+			}
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.210.a
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.211
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_eyjafjalla.211
+	base = gts_eyjafjalla.202
+	event_window_type = leader_recruit
+	desc_clear = yes
+	option_clear = yes
+	desc = gts_eyjafjalla.211.desc
+	option = {
+		tag = dismiss_leader
+		name = END_TRANSMISSION
+		country_event = {
+			id = gts_eyjafjalla.226
+		}
+	}
+	option = {
+		tag = hire_leader
+		name = CONFIRM
+		country_event = {
+			id = gts_eyjafjalla.226
+		}
+	}
+}
+
+country_event = {
+	#腋下
+	id = gts_eyjafjalla.212
+	base = gts_eyjafjalla.202
+	event_window_type = leader_recruit
+	desc_clear = yes
+	option_clear = yes
+	desc = gts_eyjafjalla.212.desc
+	option = {
+		tag = dismiss_leader
+		name = gts_eyjafjalla.202.back
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.202
+			}
+		}
+	}
+	option = {
+		tag = hire_leader
+		name = gts_eyjafjalla.202.back
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.202
+			}
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.212.a
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.213
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_eyjafjalla.213
+	base = gts_eyjafjalla.202
+	event_window_type = leader_recruit
+	desc_clear = yes
+	option_clear = yes
+	#is_triggered_only = yes
+	desc = gts_eyjafjalla.213.desc
+	option = {
+		tag = dismiss_leader
+		name = END_TRANSMISSION
+		country_event = {
+			id = gts_eyjafjalla.228
+		}
+	}
+	option = {
+		tag = hire_leader
+		name = CONFIRM
+		country_event = {
+			id = gts_eyjafjalla.228
+		}
+	}
+}
+
+country_event = {
+	#双乳
+	id = gts_eyjafjalla.214
+	base = gts_eyjafjalla.202
+	event_window_type = leader_recruit
+	desc_clear = yes
+	option_clear = yes
+	#is_triggered_only = yes
+	desc = gts_eyjafjalla.214.desc
+	option = {
+		tag = dismiss_leader
+		name = gts_eyjafjalla.202.back
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.202
+			}
+		}
+	}
+	option = {
+		tag = hire_leader
+		name = gts_eyjafjalla.202.back
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.202
+			}
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.214.a
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.215
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_eyjafjalla.215
+	base = gts_eyjafjalla.202
+	event_window_type = leader_recruit
+	desc_clear = yes
+	option_clear = yes
+	#is_triggered_only = yes
+	desc = gts_eyjafjalla.215.desc
+	option = {
+		tag = dismiss_leader
+		name = END_TRANSMISSION
+		country_event = {
+			id = gts_eyjafjalla.230
+		}
+	}
+	option = {
+		tag = hire_leader
+		name = CONFIRM
+		country_event = {
+			id = gts_eyjafjalla.230
+		}
+	}
+}
+
+country_event = {
+	#尿道
+	id = gts_eyjafjalla.216
+	base = gts_eyjafjalla.202
+	event_window_type = leader_recruit
+	desc_clear = yes
+	option_clear = yes
+	#is_triggered_only = yes
+	desc = gts_eyjafjalla.216.desc
+	option = {
+		tag = dismiss_leader
+		name = gts_eyjafjalla.202.back
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.202
+			}
+		}
+	}
+	option = {
+		tag = hire_leader
+		name = gts_eyjafjalla.202.back
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.202
+			}
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.216.a
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.217
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_eyjafjalla.217
+	base = gts_eyjafjalla.202
+	event_window_type = leader_recruit
+	desc_clear = yes
+	option_clear = yes
+	#is_triggered_only = yes
+	desc = gts_eyjafjalla.217.desc
+	option = {
+		tag = dismiss_leader
+		name = END_TRANSMISSION
+		country_event = {
+			id = gts_eyjafjalla.231
+		}
+	}
+	option = {
+		tag = hire_leader
+		name = CONFIRM
+		country_event = {
+			id = gts_eyjafjalla.231
+		}
+	}
+}
+
+country_event = {
+	#阴道
+	id = gts_eyjafjalla.218
+	base = gts_eyjafjalla.202
+	event_window_type = leader_recruit
+	desc_clear = yes
+	option_clear = yes
+	#is_triggered_only = yes
+	desc = gts_eyjafjalla.218.desc
+	option = {
+		tag = dismiss_leader
+		name = gts_eyjafjalla.202.back
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.202
+			}
+		}
+	}
+	option = {
+		tag = hire_leader
+		name = gts_eyjafjalla.202.back
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.202
+			}
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.218.a
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.219
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_eyjafjalla.219
+	base = gts_eyjafjalla.202
+	event_window_type = leader_recruit
+	desc_clear = yes
+	option_clear = yes
+	#is_triggered_only = yes
+	desc = gts_eyjafjalla.219.desc
+	option = {
+		tag = dismiss_leader
+		name = END_TRANSMISSION
+		country_event = {
+			id = gts_eyjafjalla.232
+		}
+	}
+	option = {
+		tag = hire_leader
+		name = CONFIRM
+		country_event = {
+			id = gts_eyjafjalla.232
+		}
+	}
+}
+
+country_event = {
+	#av
+	id = gts_eyjafjalla.220
+	base = gts_eyjafjalla.202
+	event_window_type = leader_recruit
+	desc_clear = yes
+	option_clear = yes
+	#is_triggered_only = yes
+	desc = gts_eyjafjalla.220.desc
+	option = {
+		tag = dismiss_leader
+		name = gts_eyjafjalla.202.back
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.202
+			}
+		}
+	}
+	option = {
+		tag = hire_leader
+		name = gts_eyjafjalla.202.back
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.202
+			}
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.220.a
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.221
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_eyjafjalla.221
+	base = gts_eyjafjalla.202
+	event_window_type = leader_recruit
+	desc_clear = yes
+	option_clear = yes
+	#is_triggered_only = yes
+	desc = gts_eyjafjalla.221.desc
+	option = {
+		tag = dismiss_leader
+		name = END_TRANSMISSION
+		country_event = {
+			id = gts_eyjafjalla.236
+		}
+	}
+	option = {
+		tag = hire_leader
+		name = CONFIRM
+		country_event = {
+			id = gts_eyjafjalla.236
+		}
+	}
+}
+
+country_event = {
+	#裸足
+	id = gts_eyjafjalla.222
+	base = gts_eyjafjalla.202
+	event_window_type = leader_recruit
+	desc_clear = yes
+	option_clear = yes
+	#is_triggered_only = yes
+	desc = gts_eyjafjalla.222.desc
+	option = {
+		tag = dismiss_leader
+		name = gts_eyjafjalla.202.back
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.202
+			}
+		}
+	}
+	option = {
+		tag = hire_leader
+		name = gts_eyjafjalla.202.back
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.202
+			}
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.222.a
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.223
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_eyjafjalla.223
+	base = gts_eyjafjalla.202
+	event_window_type = leader_recruit
+	desc_clear = yes
+	option_clear = yes
+	#is_triggered_only = yes
+	desc = gts_eyjafjalla.223.desc
+	option = {
+		tag = dismiss_leader
+		name = END_TRANSMISSION
+		country_event = {
+			id = gts_eyjafjalla.234
+		}
+	}
+	option = {
+		tag = hire_leader
+		name = CONFIRM
+		country_event = {
+			id = gts_eyjafjalla.234
+		}
+	}
+}
+
+country_event = {
+	#裤袜
+	id = gts_eyjafjalla.224
+	base = gts_eyjafjalla.202
+	event_window_type = leader_recruit
+	desc_clear = yes
+	option_clear = yes
+	#is_triggered_only = yes
+	desc = gts_eyjafjalla.224.desc
+	option = {
+		tag = dismiss_leader
+		name = gts_eyjafjalla.202.back
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.202
+			}
+		}
+	}
+	option = {
+		tag = hire_leader
+		name = gts_eyjafjalla.202.back
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.202
+			}
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.224.a
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.225
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_eyjafjalla.225
+	base = gts_eyjafjalla.202
+	event_window_type = leader_recruit
+	desc_clear = yes
+	option_clear = yes
+	#is_triggered_only = yes
+	desc = gts_eyjafjalla.225.desc
+	option = {
+		tag = dismiss_leader
+		name = END_TRANSMISSION
+		country_event = {
+			id = gts_eyjafjalla.235
+		}
+	}
+	option = {
+		tag = hire_leader
+		name = CONFIRM
+		country_event = {
+			id = gts_eyjafjalla.235
+		}
+	}
+}
+
+country_event = {
+	#vore
+	id = gts_eyjafjalla.226
+	title = gts_eyjafjalla.226.name
+	desc = gts_eyjafjalla.226.desc
+	is_triggered_only = yes
+	trigger = {
+		exists = event_target:gts_eyjafjalla
+		exists = event_target:gts_eyjafjalla_planet
+	}
+	picture = GFX_load_105
+	show_sound = event_structural_collapse
+	location = event_target:gts_eyjafjalla_planet
+	option = {
+		name = OK
+		country_event = {
+			id = gts_eyjafjalla.227
+		}
+	}
+}
+
+country_event = {
+	#vore
+	id = gts_eyjafjalla.227
+	title = gts_eyjafjalla.226.name
+	desc = gts_eyjafjalla.227.desc
+	is_triggered_only = yes
+	trigger = {
+		exists = event_target:gts_eyjafjalla
+		exists = event_target:gts_eyjafjalla_planet
+	}
+	picture = GFX_gts_eyjafjalla_eat_1
+	show_sound = event_structural_collapse
+	location = event_target:gts_eyjafjalla_planet
+	immediate = {
+		event_target:gts_eyjafjalla_planet = {
+			clear_planet_modifiers = yes
+			clear_deposits = yes
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_planet_killed_pop_count
+			}
+			round_variable = gts_bruh_get_planet_killed_pop_count
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_planet_destroyed_city_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_planet_destroyed_city_count
+				value = 100
+			}
+			round_variable = gts_bruh_get_planet_destroyed_city_count
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_experience_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_experience_count
+				value = 10
+			}
+			round_variable = gts_bruh_get_experience_count
+		}
+	}
+	option = {
+		name = OK
+		hidden_effect = {
+			event_target:gts_eyjafjalla = {
+				remove_gts_leader_size_trait = yes
+			}
+		}
+		event_target:gts_eyjafjalla = {
+			add_trait = {
+				trait = leader_trait_Ultra
+				show_message = no
+			}
+			gts_ui_leader_init = yes
+			# 顯示數值變化
+			change_variable = {
+				which = gts_vore_kills_logs
+				value = event_target:gts_eyjafjalla_planet.gts_bruh_get_planet_killed_pop_count
+			}
+			change_variable = {
+				which = gts_city_kills_logs
+				value = event_target:gts_eyjafjalla_planet.gts_bruh_get_planet_destroyed_city_count
+			}
+			change_variable = {
+				which = gts_planet_kills_logs
+				value = 1
+			}
+			hidden_effect = {
+				change_variable = {
+					which = gts_bruh_get_experience_count
+					value = event_target:gts_eyjafjalla_planet.gts_bruh_get_experience_count
+				}
+				add_experience = gts_bruh_get_experience_count
+			}
+		}
+		event_target:gts_eyjafjalla_planet = {
+			change_pc = pc_broken
+			destroy_colony = yes
+			hidden_effect = {
+				add_deposit = d_gts_eyjafjalla_stomach
+				remove_modifier = gts_star_volcano
+			}
+		}
+	}
+}
+
+country_event = {
+	#腋窝
+	id = gts_eyjafjalla.228
+	title = gts_eyjafjalla.228.name
+	desc = gts_eyjafjalla.228.desc
+	is_triggered_only = yes
+	trigger = {
+		exists = event_target:gts_eyjafjalla
+		exists = event_target:gts_eyjafjalla_planet
+	}
+	picture = GFX_gts_eyjafjalla_armpit_1
+	show_sound = event_structural_collapse
+	location = event_target:gts_eyjafjalla_planet
+	option = {
+		name = OK
+		country_event = {
+			id = gts_eyjafjalla.229
+		}
+	}
+}
+
+country_event = {
+	#腋窝
+	id = gts_eyjafjalla.229
+	title = gts_eyjafjalla.228.name
+	desc = gts_eyjafjalla.229.desc
+	is_triggered_only = yes
+	trigger = {
+		exists = event_target:gts_eyjafjalla
+		exists = event_target:gts_eyjafjalla_planet
+	}
+	picture = GFX_gts_eyjafjalla_armpit_2
+	show_sound = event_structural_collapse
+	location = event_target:gts_eyjafjalla_planet
+	immediate = {
+		event_target:gts_eyjafjalla_planet = {
+
+			# 清乾淨原本的東西
+			gts_bruh_clear_planet_effect = yes
+
+			# 計算經驗獲取
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_experience_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_experience_count
+				value = 10
+			}
+			round_variable = gts_bruh_get_experience_count
+		}
+	}
+	option = {
+		name = OK
+		hidden_effect = {
+			event_target:gts_eyjafjalla = {
+				remove_gts_leader_size_trait = yes
+			}
+		}
+		event_target:gts_eyjafjalla = {
+			add_trait = {
+				trait = leader_trait_Ultra
+				show_message = no
+			}
+			gts_ui_leader_init = yes
+			hidden_effect = {
+				change_variable = {
+					which = gts_bruh_get_experience_count
+					value = event_target:gts_eyjafjalla_planet.gts_bruh_get_experience_count
+				}
+				add_experience = gts_bruh_get_experience_count
+			}
+		}
+		event_target:gts_eyjafjalla_planet = {
+			change_pc = pc_broken
+			destroy_colony = yes
+			hidden_effect = {
+				add_deposit = d_gts_eyjafjalla_armpit
+				remove_modifier = gts_star_volcano
+			}
+		}
+	}
+}
+
+country_event = {
+	#双乳
+	id = gts_eyjafjalla.230
+	title = gts_eyjafjalla.230.name
+	desc = gts_eyjafjalla.230.desc
+	is_triggered_only = yes
+	trigger = {
+		exists = event_target:gts_eyjafjalla
+		exists = event_target:gts_eyjafjalla_planet
+	}
+	picture = GFX_load_97
+	show_sound = event_super_explosion
+	location = event_target:gts_eyjafjalla_planet
+	immediate = {
+		event_target:gts_eyjafjalla_planet = {
+
+			# 清乾淨原本的東西
+			gts_bruh_clear_planet_effect = yes
+
+			# 計算經驗獲取
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_experience_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_experience_count
+				value = 10
+			}
+			round_variable = gts_bruh_get_experience_count
+		}
+	}
+	option = {
+		name = OK
+		hidden_effect = {
+			event_target:gts_eyjafjalla = {
+				remove_gts_leader_size_trait = yes
+			}
+		}
+		event_target:gts_eyjafjalla = {
+			add_trait = {
+				trait = leader_trait_Ultra
+				show_message = no
+			}
+			gts_ui_leader_init = yes
+			hidden_effect = {
+				change_variable = {
+					which = gts_bruh_get_experience_count
+					value = event_target:gts_eyjafjalla_planet.gts_bruh_get_experience_count
+				}
+				add_experience = gts_bruh_get_experience_count
+			}
+		}
+		event_target:gts_eyjafjalla_planet = {
+			add_deposit = d_gts_eyjafjalla_breast
+			change_pc = pc_gts_milk
+			destroy_colony = yes
+			hidden_effect = {
+				pc_gts_milk_change = yes
+				remove_modifier = gts_star_volcano
+			}
+		}
+	}
+}
+
+country_event = {
+	#圣水
+	id = gts_eyjafjalla.231
+	title = gts_eyjafjalla.231.name
+	desc = gts_eyjafjalla.231.desc
+	is_triggered_only = yes
+	trigger = {
+		exists = event_target:gts_eyjafjalla
+		exists = event_target:gts_eyjafjalla_planet
+	}
+	picture = GFX_gts_eyjafjalla_pee_2
+	show_sound = event_conversation
+	location = event_target:gts_eyjafjalla_planet
+	immediate = {
+		event_target:gts_eyjafjalla_planet = {
+
+			# 清乾淨原本的東西
+			gts_bruh_clear_planet_effect = yes
+
+			# 計算經驗獲取
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_experience_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_experience_count
+				value = 10
+			}
+			round_variable = gts_bruh_get_experience_count
+		}
+	}
+	option = {
+		name = OK
+		hidden_effect = {
+			event_target:gts_eyjafjalla = {
+				remove_gts_leader_size_trait = yes
+			}
+		}
+		event_target:gts_eyjafjalla = {
+			add_trait = {
+				trait = leader_trait_Ultra
+				show_message = no
+			}
+			gts_ui_leader_init = yes
+			hidden_effect = {
+				change_variable = {
+					which = gts_bruh_get_experience_count
+					value = event_target:gts_eyjafjalla_planet.gts_bruh_get_experience_count
+				}
+				add_experience = gts_bruh_get_experience_count
+			}
+		}
+		event_target:gts_eyjafjalla_planet = {
+			add_deposit = d_gts_eyjafjalla_urine
+			change_pc = pc_gts_urine
+			destroy_colony = yes
+			hidden_effect = {
+				pc_gts_urine_change = yes
+				remove_modifier = gts_star_volcano
+			}
+		}
+	}
+}
+
+country_event = {
+	#0721
+	id = gts_eyjafjalla.232
+	is_triggered_only = yes
+	title = gts_eyjafjalla.231.name
+	desc = gts_eyjafjalla.232.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_xiaoyang2_room
+	}
+	show_sound = event_air_raid_siren
+	option = {
+		name = OK
+		country_event = {
+			id = gts_eyjafjalla.233
+		}
+	}
+}
+
+country_event = {
+	#0721
+	id = gts_eyjafjalla.233
+	is_triggered_only = yes
+	title = gts_eyjafjalla.231.name
+	desc = gts_eyjafjalla.233.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_xiaoyang3_room
+	}
+	show_sound = event_super_explosion
+	immediate = {
+		event_target:gts_eyjafjalla_planet = {
+
+			# 清乾淨原本的東西
+			gts_bruh_clear_planet_effect = yes
+
+			# 計算人口數量
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_planet_killed_pop_count
+			}
+			# 計算城市數量
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_planet_destroyed_city_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_planet_destroyed_city_count
+				value = 100
+			}
+			round_variable = gts_bruh_get_planet_destroyed_city_count
+			# 計算經驗獲取
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_experience_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_experience_count
+				value = 10
+			}
+			round_variable = gts_bruh_get_experience_count
+		}
+	}
+	option = {
+		name = OK
+		hidden_effect = {
+			event_target:gts_eyjafjalla = {
+				remove_gts_leader_size_trait = yes
+			}
+		}
+		event_target:gts_eyjafjalla = {
+			add_trait = {
+				trait = leader_trait_Ultra
+				show_message = no
+			}
+			gts_ui_leader_init = yes
+			change_variable = {
+				which = gts_ub_kills_logs
+				value = event_target:gts_eyjafjalla_planet.gts_bruh_get_planet_killed_pop_count
+			}
+			change_variable = {
+				which = gts_city_kills_logs
+				value = event_target:gts_eyjafjalla_planet.gts_bruh_get_planet_destroyed_city_count
+			}
+			change_variable = {
+				which = gts_planet_kills_logs
+				value = 1
+			}
+			hidden_effect = {
+				change_variable = {
+					which = gts_bruh_get_experience_count
+					value = event_target:gts_eyjafjalla_planet.gts_bruh_get_experience_count
+				}
+				add_experience = gts_bruh_get_experience_count
+			}
+		}
+		event_target:gts_eyjafjalla_planet = {
+			add_deposit = d_gts_eyjafjalla_virgin
+			destroy_colony = yes
+			change_pc = pc_gts_juice
+			hidden_effect = {
+				pc_gts_juice_change = yes
+				remove_modifier = gts_star_volcano
+				while = {
+					count = 3
+					remove_deposit = d_juice_ruin2
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	#裸足
+	id = gts_eyjafjalla.234
+	is_triggered_only = yes
+	title = gts_eyjafjalla.231.name
+	desc = gts_eyjafjalla.234.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_xiaoyang1_room
+	}
+	show_sound = event_super_explosion
+	immediate = {
+		event_target:gts_eyjafjalla_planet = {
+
+			# 清乾淨原本的東西
+			gts_bruh_clear_planet_effect = yes
+
+			# 計算人口數量
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_planet_killed_pop_count
+			}
+			# 計算城市數量
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_planet_destroyed_city_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_planet_destroyed_city_count
+				value = 100
+			}
+			round_variable = gts_bruh_get_planet_destroyed_city_count
+			# 計算經驗獲取
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_experience_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_experience_count
+				value = 10
+			}
+			round_variable = gts_bruh_get_experience_count
+		}
+	}
+	option = {
+		name = OK
+		hidden_effect = {
+			event_target:gts_eyjafjalla = {
+				remove_gts_leader_size_trait = yes
+			}
+		}
+		event_target:gts_eyjafjalla = {
+			add_trait = {
+				trait = leader_trait_Ultra
+				show_message = no
+			}
+			gts_ui_leader_init = yes
+			change_variable = {
+				which = gts_feet_kills_logs
+				value = event_target:gts_eyjafjalla_planet.gts_bruh_get_planet_killed_pop_count
+			}
+			change_variable = {
+				which = gts_city_kills_logs
+				value = event_target:gts_eyjafjalla_planet.gts_bruh_get_planet_destroyed_city_count
+			}
+			change_variable = {
+				which = gts_planet_kills_logs
+				value = 1
+			}
+			hidden_effect = {
+				change_variable = {
+					which = gts_bruh_get_experience_count
+					value = event_target:gts_eyjafjalla_planet.gts_bruh_get_experience_count
+				}
+				add_experience = gts_bruh_get_experience_count
+			}
+		}
+		event_target:gts_eyjafjalla_planet = {
+			destroy_colony = yes
+			# 這行是顯示用的(可以知道發生什麼事)
+			change_pc = pc_gts_dirt0
+			hidden_effect = {
+				pc_gts_dirt_change = yes
+				remove_modifier = gts_star_volcano
+				while = {
+					count = 3
+					remove_deposit = d_dirt_ruin2
+				}
+			}
+			add_deposit = d_gts_eyjafjalla_feet
+		}
+	}
+}
+
+country_event = {
+	#靴袜
+	id = gts_eyjafjalla.235
+	is_triggered_only = yes
+	title = gts_eyjafjalla.231.name
+	desc = gts_eyjafjalla.235.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_xiaoyang4_room
+	}
+	show_sound = event_planetary_riot
+	immediate = {
+		event_target:gts_eyjafjalla_planet = {
+
+			# 清乾淨原本的東西
+			gts_bruh_clear_planet_effect = yes
+
+			# 計算人口數量
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_planet_killed_pop_count
+			}
+			# 計算城市數量
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_planet_destroyed_city_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_planet_destroyed_city_count
+				value = 100
+			}
+			round_variable = gts_bruh_get_planet_destroyed_city_count
+			# 計算經驗獲取
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_experience_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_experience_count
+				value = 10
+			}
+			round_variable = gts_bruh_get_experience_count
+		}
+	}
+	option = {
+		name = OK
+		hidden_effect = {
+			event_target:gts_eyjafjalla = {
+				remove_gts_leader_size_trait = yes
+			}
+		}
+		event_target:gts_eyjafjalla = {
+			add_trait = {
+				trait = leader_trait_Ultra
+				show_message = no
+			}
+			gts_ui_leader_init = yes
+			change_variable = {
+				which = gts_feet_kills_logs
+				value = event_target:gts_eyjafjalla_planet.gts_bruh_get_planet_killed_pop_count
+			}
+			change_variable = {
+				which = gts_city_kills_logs
+				value = event_target:gts_eyjafjalla_planet.gts_bruh_get_planet_destroyed_city_count
+			}
+			change_variable = {
+				which = gts_planet_kills_logs
+				value = 1
+			}
+			hidden_effect = {
+				change_variable = {
+					which = gts_bruh_get_experience_count
+					value = event_target:gts_eyjafjalla_planet.gts_bruh_get_experience_count
+				}
+				add_experience = gts_bruh_get_experience_count
+			}
+		}
+		event_target:gts_eyjafjalla_planet = {
+			destroy_colony = yes
+			# 這行是顯示用的(可以知道發生什麼事)
+			change_pc = pc_gts_dirt0
+			hidden_effect = {
+				pc_gts_dirt_change = yes
+				remove_modifier = gts_star_volcano
+				while = {
+					count = 3
+					remove_deposit = d_dirt_ruin2
+				}
+			}
+			add_deposit = d_gts_eyjafjalla_stocking
+		}
+	}
+}
+
+country_event = {
+	#av
+	id = gts_eyjafjalla.236
+	title = gts_eyjafjalla.236.name
+	desc = gts_eyjafjalla.236.desc
+	is_triggered_only = yes
+	trigger = {
+		exists = event_target:gts_eyjafjalla
+		exists = event_target:gts_eyjafjalla_planet
+	}
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_xiaoyang3_room
+	}
+	show_sound = event_structural_collapse
+	location = event_target:gts_eyjafjalla_planet
+	option = {
+		name = OK
+		country_event = {
+			id = gts_eyjafjalla.237
+		}
+	}
+}
+
+country_event = {
+	id = gts_eyjafjalla.237
+	title = gts_eyjafjalla.236.name
+	desc = gts_eyjafjalla.237.desc
+	is_triggered_only = yes
+	trigger = {
+		exists = event_target:gts_eyjafjalla
+		exists = event_target:gts_eyjafjalla_planet
+	}
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_xiaoyang5_room
+	}
+	show_sound = event_super_explosion
+	location = event_target:gts_eyjafjalla_planet
+	immediate = {
+		event_target:gts_eyjafjalla_planet = {
+
+			# 清乾淨原本的東西
+			gts_bruh_clear_planet_effect = yes
+
+			# 計算經驗獲取
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_experience_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_experience_count
+				value = 10
+			}
+			round_variable = gts_bruh_get_experience_count
+		}
+	}
+	option = {
+		name = OK
+		hidden_effect = {
+			event_target:gts_eyjafjalla = {
+				remove_gts_leader_size_trait = yes
+			}
+		}
+		event_target:gts_eyjafjalla = {
+			add_trait = {
+				trait = leader_trait_Ultra
+				show_message = no
+			}
+			gts_ui_leader_init = yes
+			hidden_effect = {
+				change_variable = {
+					which = gts_bruh_get_experience_count
+					value = event_target:gts_eyjafjalla_planet.gts_bruh_get_experience_count
+				}
+				add_experience = gts_bruh_get_experience_count
+			}
+		}
+		event_target:gts_eyjafjalla_planet = {
+			destroy_colony = yes
+			# 這行是顯示用的(可以知道發生什麼事)
+			change_pc = pc_gts_shit
+			hidden_effect = {
+				pc_gts_shit_change = yes
+				remove_modifier = gts_star_volcano
+			}
+			add_deposit = d_gts_eyjafjalla_anal
+		}
+	}
+}
+
+country_event = {
+	#小羊睡觉
+	id = gts_eyjafjalla.240
+	is_triggered_only = yes
+	title = gts_eyjafjalla.240.name
+	desc = gts_eyjafjalla.240.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_xiaoyang4_room
+	}
+	fire_only_once = yes
+	show_sound = event_air_raid_siren
+	option = {
+		name = OK
+		add_resource = {
+			unity = 60000
+			influence = 50
+		}
+	}
+}
+
+# 艾雅法拉足部探险局势 第一次
+country_event = {
+	id = gts_eyjafjalla.250
+	title = gts_eyjafjalla.250.name
+	desc = gts_eyjafjalla.250.desc
+	is_triggered_only = yes
+	picture = GFX_gts_eyjafjalla_19
+	trigger = {
+		any_owned_leader = {
+			has_leader_flag = gts_eyjafjalla
+			has_trait = leader_trait_Ultra
+		}
+	}
+	show_sound = event_default
+	option = {
+		name = gts_eyjafjalla.250.option
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.251
+			}
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.250.option.2
+	}
+}
+
+country_event = {
+	id = gts_eyjafjalla.251
+	title = gts_eyjafjalla.251.name
+	desc = gts_eyjafjalla.251.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_xiaoyang6_room
+	}
+	trigger = {
+		any_owned_leader = {
+			has_leader_flag = gts_eyjafjalla
+			has_trait = leader_trait_Ultra
+		}
+	}
+	show_sound = event_default
+	option = {
+		name = gts_eyjafjalla.251.option
+		start_situation = {
+			type = gts_situation_eyjafjalla_foot1
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.252
+				days = 151
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_eyjafjalla.252
+	title = gts_eyjafjalla.252.name
+	desc = gts_eyjafjalla.252.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_xiaoyang7_room
+	}
+	show_sound = event_default
+	trigger = {
+		not = {
+			has_country_flag = gts_eyjafjalla_foot_fail
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.252.option
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.253
+				days = 150
+			}
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.252.option.2
+		hidden_effect = {
+			random_list = {
+				1 = {
+					country_event = {
+						id = gts_eyjafjalla.253
+						days = 90
+					}
+				}
+				1 = {
+					country_event = {
+						id = gts_eyjafjalla.253
+						days = 210
+					}
+				}
+			}
+		}
+		give_specimen = {
+			origin = EYJAFJALLA_PROJECT
+			key = eyjafjalla_hair
+		}
+	}
+}
+
+country_event = {
+	id = gts_eyjafjalla.253
+	title = gts_eyjafjalla.253.name
+	desc = gts_eyjafjalla.253.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_xiaoyang8_room
+	}
+	show_sound = event_default
+	trigger = {
+		not = {
+			has_country_flag = gts_eyjafjalla_foot_fail
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.253.option
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.254
+				days = 150
+			}
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.253.option.2
+		hidden_effect = {
+			random_list = {
+				1 = {
+					country_event = {
+						id = gts_eyjafjalla.254
+						days = 90
+					}
+				}
+				1 = {
+					country_event = {
+						id = gts_eyjafjalla.254
+						days = 210
+					}
+				}
+			}
+		}
+		give_specimen = {
+			origin = EYJAFJALLA_PROJECT
+			key = landcarrier_wreck
+		}
+	}
+}
+
+country_event = {
+	id = gts_eyjafjalla.254
+	title = gts_eyjafjalla.254.name
+	desc = gts_eyjafjalla.254.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_xiaoyang9_room
+	}
+	show_sound = event_default
+	trigger = {
+		not = {
+			has_country_flag = gts_eyjafjalla_foot_fail
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.254.option
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.255
+				days = 150
+			}
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.254.option.2
+		hidden_effect = {
+			random_list = {
+				1 = {
+					country_event = {
+						id = gts_eyjafjalla.255
+						days = 90
+					}
+				}
+				1 = {
+					country_event = {
+						id = gts_eyjafjalla.255
+						days = 210
+					}
+				}
+			}
+		}
+		give_specimen = {
+			origin = EYJAFJALLA_PROJECT
+			key = startower_wreck
+		}
+	}
+}
+
+country_event = {
+	id = gts_eyjafjalla.255
+	title = gts_eyjafjalla.255.name
+	desc = gts_eyjafjalla.255.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_xiaoyang10_room
+	}
+	show_sound = event_celebration
+	trigger = {
+		not = {
+			has_country_flag = gts_eyjafjalla_foot_fail
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.255.option
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.257
+				days = 360
+			}
+			destroy_situation = event_target:situation_eyjafjalla_foot
+			clear_global_event_target = situation_eyjafjalla_foot
+		}
+		give_specimen = {
+			origin = EYJAFJALLA_PROJECT
+			key = eyjafjalla_footmap1
+		}
+	}
+}
+
+situation_event = {
+	id = gts_eyjafjalla.256
+	title = gts_eyjafjalla.256.name
+	desc = gts_eyjafjalla.256.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_xiaoyang11_room
+	}
+	show_sound = event_default
+	option = {
+		name = gts_eyjafjalla.256.option
+		destroy_situation = event_target:situation_eyjafjalla_foot
+		clear_global_event_target = situation_eyjafjalla_foot
+		owner = {
+			add_resource = {
+				unity = 200
+			}
+		}
+	}
+}
+
+# 艾雅法拉足部探险局势 第二次
+country_event = {
+	id = gts_eyjafjalla.257
+	title = gts_eyjafjalla.257.name
+	desc = gts_eyjafjalla.257.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_xiaoyang16_room
+	}
+	trigger = {
+		any_owned_leader = {
+			has_leader_flag = gts_eyjafjalla
+			has_trait = leader_trait_Ultra
+		}
+	}
+	show_sound = event_default
+	option = {
+		name = gts_eyjafjalla.257.option
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.258
+			}
+			remove_country_flag = gts_eyjafjalla_foot1_success
+		}
+	}
+}
+
+country_event = {
+	id = gts_eyjafjalla.258
+	title = gts_eyjafjalla.258.name
+	desc = gts_eyjafjalla.258.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_xiaoyang18_room
+	}
+	trigger = {
+		any_owned_leader = {
+			has_leader_flag = gts_eyjafjalla
+			has_trait = leader_trait_Ultra
+		}
+	}
+	show_sound = event_default
+	option = {
+		name = gts_eyjafjalla.258.option
+		start_situation = {
+			type = gts_situation_eyjafjalla_foot2
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.259
+				days = 151
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_eyjafjalla.259
+	title = gts_eyjafjalla.259.name
+	desc = gts_eyjafjalla.259.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_xiaoyang12_room
+	}
+	show_sound = event_default
+	trigger = {
+		not = {
+			has_country_flag = gts_eyjafjalla_foot_fail
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.259.option
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.260
+				days = 150
+			}
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.259.option.2
+		hidden_effect = {
+			random_list = {
+				1 = {
+					country_event = {
+						id = gts_eyjafjalla.260
+						days = 90
+					}
+				}
+				1 = {
+					country_event = {
+						id = gts_eyjafjalla.260
+						days = 210
+					}
+				}
+			}
+		}
+		give_specimen = {
+			origin = EYJAFJALLA_PROJECT
+			key = eyjafjalla_silt
+		}
+	}
+}
+
+country_event = {
+	id = gts_eyjafjalla.260
+	title = gts_eyjafjalla.260.name
+	desc = gts_eyjafjalla.260.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_xiaoyang13_room
+	}
+	show_sound = event_default
+	trigger = {
+		not = {
+			has_country_flag = gts_eyjafjalla_foot_fail
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.260.option
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.261
+				days = 150
+			}
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.260.option.2
+		hidden_effect = {
+			random_list = {
+				1 = {
+					country_event = {
+						id = gts_eyjafjalla.261
+						days = 90
+					}
+				}
+				1 = {
+					country_event = {
+						id = gts_eyjafjalla.261
+						days = 210
+					}
+				}
+			}
+		}
+		give_specimen = {
+			origin = EYJAFJALLA_PROJECT
+			key = eyjafjalla_water
+		}
+	}
+}
+
+country_event = {
+	id = gts_eyjafjalla.261
+	title = gts_eyjafjalla.261.name
+	desc = gts_eyjafjalla.261.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_xiaoyang14_room
+	}
+	show_sound = event_default
+	trigger = {
+		not = {
+			has_country_flag = gts_eyjafjalla_foot_fail
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.261.option
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.262
+				days = 150
+			}
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.261.option.2
+		hidden_effect = {
+			random_list = {
+				1 = {
+					country_event = {
+						id = gts_eyjafjalla.262
+						days = 90
+					}
+				}
+				1 = {
+					country_event = {
+						id = gts_eyjafjalla.262
+						days = 210
+					}
+				}
+			}
+		}
+		give_specimen = {
+			origin = EYJAFJALLA_PROJECT
+			key = eyjafjalla_vaccine
+		}
+	}
+}
+
+country_event = {
+	id = gts_eyjafjalla.262
+	title = gts_eyjafjalla.262.name
+	desc = gts_eyjafjalla.262.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_xiaoyang15_room
+	}
+	show_sound = event_celebration
+	trigger = {
+		not = {
+			has_country_flag = gts_eyjafjalla_foot_fail
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.262.option
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.264
+				days = 360
+			}
+			destroy_situation = event_target:situation_eyjafjalla_foot
+			clear_global_event_target = situation_eyjafjalla_foot
+			remove_specimen = eyjafjalla_footmap1
+		}
+		give_specimen = {
+			origin = EYJAFJALLA_PROJECT
+			key = eyjafjalla_footmap2
+		}
+	}
+}
+
+situation_event = {
+	id = gts_eyjafjalla.263
+	title = gts_eyjafjalla.263.name
+	desc = gts_eyjafjalla.263.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_xiaoyang17_room
+	}
+	show_sound = event_default
+	option = {
+		name = gts_eyjafjalla.263.option
+		destroy_situation = event_target:situation_eyjafjalla_foot
+		clear_global_event_target = situation_eyjafjalla_foot
+		hidden_effect = {
+			owner = {
+				set_country_flag = gts_eyjafjalla_foot_fail
+				add_resource = {
+					unity = 200
+				}
+			}
+		}
+		owner = {
+			add_resource = {
+				unity = 200
+			}
+		}
+	}
+}
+
+# 艾雅法拉足部探险局势 第三次
+country_event = {
+	id = gts_eyjafjalla.264
+	title = gts_eyjafjalla.264.name
+	desc = gts_eyjafjalla.264.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_xiaoyang18_room
+	}
+	trigger = {
+		any_owned_leader = {
+			has_leader_flag = gts_eyjafjalla
+			has_trait = leader_trait_Ultra
+		}
+	}
+	show_sound = event_default
+	option = {
+		name = gts_eyjafjalla.264.option
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.265
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_eyjafjalla.265
+	title = gts_eyjafjalla.265.name
+	desc = gts_eyjafjalla.265.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_xiaoyang19_room
+	}
+	trigger = {
+		any_owned_leader = {
+			has_leader_flag = gts_eyjafjalla
+			has_trait = leader_trait_Ultra
+		}
+	}
+	show_sound = event_default
+	option = {
+		name = gts_eyjafjalla.265.option
+		start_situation = {
+			type = gts_situation_eyjafjalla_foot3
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.266
+				days = 151
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_eyjafjalla.266
+	title = gts_eyjafjalla.266.name
+	desc = gts_eyjafjalla.266.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_xiaoyang20_room
+	}
+	show_sound = event_default
+	trigger = {
+		not = {
+			has_country_flag = gts_eyjafjalla_foot_fail
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.266.option
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.267
+				days = 150
+			}
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.266.option.2
+		hidden_effect = {
+			random_list = {
+				1 = {
+					country_event = {
+						id = gts_eyjafjalla.267
+						days = 90
+					}
+				}
+				1 = {
+					country_event = {
+						id = gts_eyjafjalla.267
+						days = 210
+					}
+				}
+			}
+		}
+		give_specimen = {
+			origin = EYJAFJALLA_PROJECT
+			key = siesta_flagstone
+		}
+	}
+}
+
+country_event = {
+	id = gts_eyjafjalla.267
+	title = gts_eyjafjalla.267.name
+	desc = gts_eyjafjalla.267.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_xiaoyang21_room
+	}
+	show_sound = event_default
+	trigger = {
+		not = {
+			has_country_flag = gts_eyjafjalla_foot_fail
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.267.option
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.268
+				days = 150
+			}
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.267.option.2
+		hidden_effect = {
+			random_list = {
+				1 = {
+					country_event = {
+						id = gts_eyjafjalla.268
+						days = 90
+					}
+				}
+				1 = {
+					country_event = {
+						id = gts_eyjafjalla.268
+						days = 210
+					}
+				}
+			}
+		}
+		give_specimen = {
+			origin = EYJAFJALLA_PROJECT
+			key = eyjafjalla_diamond
+		}
+	}
+}
+
+country_event = {
+	id = gts_eyjafjalla.268
+	title = gts_eyjafjalla.268.name
+	desc = gts_eyjafjalla.268.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_xiaoyang22_room
+	}
+	show_sound = event_default
+	trigger = {
+		not = {
+			has_country_flag = gts_eyjafjalla_foot_fail
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.268.option
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.269
+				days = 150
+			}
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.268.option.2
+		hidden_effect = {
+			random_list = {
+				1 = {
+					country_event = {
+						id = gts_eyjafjalla.269
+						days = 90
+					}
+				}
+				1 = {
+					country_event = {
+						id = gts_eyjafjalla.269
+						days = 210
+					}
+				}
+			}
+		}
+		give_specimen = {
+			origin = EYJAFJALLA_PROJECT
+			key = foottip_keratin
+		}
+	}
+}
+
+country_event = {
+	id = gts_eyjafjalla.269
+	title = gts_eyjafjalla.269.name
+	desc = gts_eyjafjalla.269.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_xiaoyang23_room
+	}
+	show_sound = event_celebration
+	trigger = {
+		not = {
+			has_country_flag = gts_eyjafjalla_foot_fail
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.269.option
+		hidden_effect = {
+			destroy_situation = event_target:situation_eyjafjalla_foot
+			clear_global_event_target = situation_eyjafjalla_foot
+			remove_specimen = eyjafjalla_footmap2
+		}
+		give_specimen = {
+			origin = EYJAFJALLA_PROJECT
+			key = eyjafjalla_footmap3
+		}
+	}
+}
+
+situation_event = {
+	id = gts_eyjafjalla.270
+	title = gts_eyjafjalla.270.name
+	desc = gts_eyjafjalla.270.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_xiaoyang23_room
+	}
+	show_sound = event_default
+	option = {
+		name = gts_eyjafjalla.270.option
+		destroy_situation = event_target:situation_eyjafjalla_foot
+		clear_global_event_target = situation_eyjafjalla_foot
+		hidden_effect = {
+			owner = {
+				set_country_flag = gts_eyjafjalla_foot_fail
+			}
+		}
+		owner = {
+			add_resource = {
+				unity = 200
+			}
+		}
+	}
+}
+
+# 艾普露换装
+country_event = {
+	id = gts_eyjafjalla.1000
+	title = gts_eyjafjalla.1000.name
+	desc = gts_eyjafjalla.1000.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		#room =
+		portrait = event_target:gts_eyjafjalla
+	}
+	option = {
+		name = gts_eyjafjalla.1000.1
+		is_dialog_only = yes
+		response_text = gts_eyjafjalla.1000.1a
+		hidden_effect = {
+			event_target:gts_eyjafjalla = {
+				change_leader_portrait = gts_portrait_eyjafjalla
+			}
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.1000.2
+		is_dialog_only = yes
+		response_text = gts_eyjafjalla.1000.2a
+		hidden_effect = {
+			event_target:gts_eyjafjalla = {
+				change_leader_portrait = gts_portrait_eyjafjalla_2
+			}
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.1000.3
+		is_dialog_only = yes
+		response_text = gts_eyjafjalla.1000.3a
+		hidden_effect = {
+			event_target:gts_eyjafjalla = {
+				change_leader_portrait = gts_portrait_eyjafjalla_3
+			}
+		}
+	}
+
+	option = {
+		name = gts_leave
+		default_hide_option = yes
+	}
+}

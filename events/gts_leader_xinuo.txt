@@ -1,0 +1,1074 @@
+namespace = gts_xinuo
+
+country_event = {
+    id = gts_xinuo.0
+    hide_window = yes
+    is_triggered_only = yes
+
+    trigger = {
+        NOR = {
+            has_global_flag = gts_xinuo_started
+            has_country_flag = xinu_intro
+        }
+        is_ai = no
+    }
+
+    immediate = {
+        random_system = {
+            limit = {
+                distance = {
+                    source = root.capital_scope.solar_system
+                    use_bypasses = yes
+                    min_jumps = 1
+                    max_jumps = 6
+                }
+            }
+            spawn_system = {
+                min_distance >= 10
+                max_distance <= 30
+                max_jumps = 0
+                initializer = gts_xinuo_system
+                effect = {
+                    save_event_target_as = gts_bruh_get_xinuo_system_location
+                }
+            }
+        }
+    }
+}
+
+#检测巨娘开还是小人开给考古
+ship_event = {
+    id = gts_xinuo.1
+    title = gts_xinuo.1.name
+    desc = {
+        trigger = { root.owner = { gts_is_giantess_empire = yes } }
+        text = gts_xinuo.1.desc.gts
+    }
+    desc = {
+        trigger = { root.owner = { gts_is_tiny_empire = yes } }
+        text = gts_xinuo.1.desc.tiny
+    }
+    diplomatic = yes
+
+    picture_event_data = {
+        room = no_video_feed_room
+    }
+    show_sound = event_finding_loot
+    location = FROM
+
+    is_triggered_only = yes
+
+    immediate = {
+        from = {
+            save_global_event_target_as = xinuo_archaeology_planet
+        }
+    }
+
+    option = {
+        name = gts_xinuo.1.a
+        ship_event = {
+            id = gts_xinuo.2
+            days = 30
+        }
+    }
+}
+ship_event = {
+    id = gts_xinuo.2
+    title = "gts_xinuo.2.name"
+    desc = {
+        trigger = { root.owner = { gts_is_giantess_empire = yes } }
+        text = gts_xinuo.2.desc.gts
+    }
+    desc = {
+        trigger = { root.owner = { gts_is_tiny_empire = yes } }
+        text = gts_xinuo.2.desc.tiny
+    }
+    diplomatic = yes
+
+    picture_event_data = {
+        room = gts_xinuo1_room
+    }
+    show_sound = event_finding_loot
+    location = event_target:xinuo_archaeology_planet
+
+    is_triggered_only = yes
+
+    immediate = {
+    }
+
+    option = {
+        name = gts_xinuo.2.a
+        trigger = { owner = { gts_is_tiny_empire = yes } }
+        fromfrom = {
+            create_archaeological_site = site_gts_xinuo
+        }
+    }
+    option = {
+        name = gts_xinuo.2.b
+        trigger = { owner = { gts_is_giantess_empire = yes } }
+        fromfrom = {
+            create_archaeological_site = site_gts_xinuo2
+        }
+    }
+}
+#考古事件
+#小人侧
+fleet_event = {
+    id = gts_xinuo.101
+    title = gts_xinuo.101.name
+    desc = gts_xinuo.101.desc
+    picture = GFX_gts_event_62
+    show_sound = event_administrative_work
+    archaeology = yes
+    is_triggered_only = yes
+    immediate = {
+        from = { set_site_progress_locked = yes }
+    }
+    after = {
+        from = { set_site_progress_locked = no }
+    }
+    option = {
+        name = gts_xinuo.101.a
+        small_artifact_reward = yes
+    }
+}
+fleet_event = {
+    id = gts_xinuo.102
+    title = gts_xinuo.102.name
+    desc = gts_xinuo.102.desc
+    picture = GFX_evt_hidden_door
+    show_sound = event_administrative_work
+    archaeology = yes
+    is_triggered_only = yes
+    immediate = {
+        from = { set_site_progress_locked = yes }
+    }
+    after = {
+        from = { set_site_progress_locked = no }
+    }
+    option = {
+        name = gts_xinuo.102.a
+        small_artifact_reward = yes
+    }
+}
+fleet_event = {
+    id = gts_xinuo.103
+    title = gts_xinuo.103.name
+    desc = gts_xinuo.103.desc
+    picture = GFX_gts_xinuo_4
+    show_sound = event_administrative_work
+    archaeology = yes
+    is_triggered_only = yes
+    immediate = {
+        from = { set_site_progress_locked = yes }
+    }
+    after = {
+        from = { set_site_progress_locked = no }
+    }
+    option = {
+        name = gts_xinuo.103.a
+        small_artifact_reward = yes
+    }
+}
+fleet_event = {
+    id = gts_xinuo.104
+    title = gts_xinuo.104.name
+    desc = gts_xinuo.104.desc
+    picture = GFX_evt_unidentified_voidworms
+    show_sound = event_administrative_work
+    archaeology = yes
+    is_triggered_only = yes
+    immediate = {
+        from = { set_site_progress_locked = yes }
+    }
+    after = {
+        from = { set_site_progress_locked = no }
+    }
+    option = {
+        name = gts_xinuo.104.a
+        medium_artifact_reward = yes
+    }
+}
+fleet_event = {
+    id = gts_xinuo.105
+    title = gts_xinuo.105.name
+    desc = gts_xinuo.105.desc
+    picture = GFX_gts_xinuo_3
+    show_sound = event_administrative_work
+    archaeology = yes
+    is_triggered_only = yes
+    immediate = {
+        from = { set_site_progress_locked = yes }
+    }
+    after = {
+        from = { set_site_progress_locked = no }
+    }
+    option = {
+        name = gts_xinuo.105.a
+        large_artifact_reward = yes
+        owner = {
+            country_event = {
+                id = gts_xinuo.106
+            }
+        }
+    }
+}
+#巨娘侧
+fleet_event = {
+    id = gts_xinuo.201
+    title = gts_xinuo.201.name
+    desc = gts_xinuo.201.desc
+    picture = GFX_gts_event_62
+    show_sound = event_administrative_work
+    archaeology = yes
+    is_triggered_only = yes
+    immediate = {
+        from = { set_site_progress_locked = yes }
+    }
+    after = {
+        from = { set_site_progress_locked = no }
+    }
+    option = {
+        name = gts_xinuo.201.a
+        small_artifact_reward = yes
+    }
+}
+fleet_event = {
+    id = gts_xinuo.202
+    title = gts_xinuo.202.name
+    desc = gts_xinuo.202.desc
+    picture = GFX_evt_hidden_door
+    show_sound = event_administrative_work
+    archaeology = yes
+    is_triggered_only = yes
+    immediate = {
+        from = { set_site_progress_locked = yes }
+    }
+    after = {
+        from = { set_site_progress_locked = no }
+    }
+    option = {
+        name = gts_xinuo.102.a
+        small_artifact_reward = yes
+    }
+}
+fleet_event = {
+    id = gts_xinuo.203
+    title = gts_xinuo.203.name
+    desc = gts_xinuo.203.desc
+    picture = GFX_gts_xinuo_4
+    show_sound = event_administrative_work
+    archaeology = yes
+    is_triggered_only = yes
+    immediate = {
+        from = { set_site_progress_locked = yes }
+    }
+    after = {
+        from = { set_site_progress_locked = no }
+    }
+    option = {
+        name = gts_xinuo.203.a
+        small_artifact_reward = yes
+    }
+}
+fleet_event = {
+    id = gts_xinuo.204
+    title = gts_xinuo.204.name
+    desc = gts_xinuo.204.desc
+    picture = GFX_evt_unidentified_voidworms
+    show_sound = event_administrative_work
+    archaeology = yes
+    is_triggered_only = yes
+    immediate = {
+        from = { set_site_progress_locked = yes }
+    }
+    after = {
+        from = { set_site_progress_locked = no }
+    }
+    option = {
+        name = gts_xinuo.204.a
+        medium_artifact_reward = yes
+    }
+}
+fleet_event = {
+    id = gts_xinuo.205
+    title = gts_xinuo.205.name
+    desc = gts_xinuo.205.desc
+    picture = GFX_gts_xinuo_3
+    show_sound = event_administrative_work
+    archaeology = yes
+    is_triggered_only = yes
+    immediate = {
+        from = { set_site_progress_locked = yes }
+    }
+    after = {
+        from = { set_site_progress_locked = no }
+    }
+    option = {
+        name = gts_xinuo.205.a
+        large_artifact_reward = yes
+        owner = {
+            country_event = {
+                id = gts_xinuo.106
+            }
+        }
+    }
+}
+#招募希诺事件
+country_event = { # spiritualist 1
+    id = gts_xinuo.106
+    title = "gts_xinuo.106.name"
+    desc = {
+        trigger = { root.owner = { gts_is_giantess_empire = yes } }
+        text = gts_xinuo.106.desc.gts
+    }
+    desc = {
+        trigger = { root.owner = { gts_is_tiny_empire = yes } }
+        text = gts_xinuo.106.desc.tiny
+    }
+    show_sound = event_mystic_reveal
+    is_triggered_only = yes
+
+    picture = GFX_leader_recruitment_bg_legendary_skrand
+    auto_opens = yes
+    event_window_type = leader_recruit
+    notification_event_icon = "message_leader_recruitment_xinuo"
+
+    immediate = {
+        give_specimen = {
+            key = gts_specimens_xeno_cat
+            origin = gts_specimens_xeno_cat
+        }
+        gts_leader_xinuo_hired = yes
+
+    }
+    picture_event_data = {
+        portrait = event_target:gts_leader
+        room = "crisis_room"
+    }
+    option = {
+        name = gts_xinuo.106.a.gts
+        trigger = { gts_is_giantess_empire = yes }
+        response_text = gts_xinuo.106.a.response.gts
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_xinuo.106.b.gts
+        trigger = { gts_is_giantess_empire = yes }
+        response_text = gts_xinuo.106.b.response.gts
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_xinuo.106.c.gts
+        trigger = { gts_is_giantess_empire = yes }
+        response_text = gts_xinuo.106.c.response.gts
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_xinuo.106.a.tiny
+        trigger = { gts_is_tiny_empire = yes }
+        response_text = gts_xinuo.106.a.response.tiny
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_xinuo.106.b.tiny
+        trigger = { gts_is_tiny_empire = yes }
+        response_text = gts_xinuo.106.b.response.tiny
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_xinuo.106.c.tiny
+        trigger = { gts_is_tiny_empire = yes }
+        response_text = gts_xinuo.106.c.response.tiny
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_xinuo.106.d
+        tag = hire_leader
+        hidden_effect = {
+            gts_leader_hire_effect = { TYPE = legendary }        }
+    }
+    option = {
+        name = DISMISS
+        tag = dismiss_leader
+        hidden_effect = {
+            country_event = {
+                id = gts_xinuo.106
+            }
+        }
+    }
+    after = {
+        country_event = {
+            id = gts_xinuo.301
+            days = 1
+        }
+    }
+}
+
+#陆军登陆事件
+country_event = {
+    id = gts_xinuo.15
+    title = gts_xinuo.15.name
+    desc = gts_xinuo.15.desc
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    show_sound = event_ground_battle
+    is_triggered_only = yes
+    location = event_target:gts_attackers_win_planet
+
+    picture_event_data = {
+        room = gts_xinuo3_room
+    }
+
+    option = {
+        name = gts_xinuo.15.a
+        country_event = {
+            id = gts_xinuo.16
+        }
+    }
+    option = {
+        name = gts_xinuo.15.b
+        add_resource = {
+            influence = 75
+        }
+    }
+}
+
+country_event = {
+    id = gts_xinuo.16
+    title = gts_xinuo.16.name
+    desc = gts_xinuo.16.desc
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    show_sound = event_gts_scream
+    is_triggered_only = yes
+    location = event_target:gts_attackers_win_planet
+
+    picture_event_data = {
+        room = gts_xinuo2_room
+    }
+
+    immediate = {
+        random_owned_leader = {
+            limit = {
+                has_leader_flag = gts_xinuo
+            }
+            save_event_target_as = gts_bruh_xinuo_kill_count
+        }
+        event_target:gts_attackers_win_planet = {
+            # 計算人口數量
+            export_trigger_value_to_variable = {
+                trigger = pop_amount
+                variable = gts_bruh_get_planet_killed_pop_count
+            }
+            round_variable = gts_bruh_get_planet_killed_pop_count
+
+            # 計算城市數量
+            export_trigger_value_to_variable = {
+                trigger = pop_amount
+                variable = gts_bruh_get_planet_destroyed_city_count
+            }
+            divide_variable = {
+                which = gts_bruh_get_planet_destroyed_city_count
+                value = 100
+            }
+
+            round_variable = gts_bruh_get_planet_destroyed_city_count
+
+            # 計算經驗獲取
+            export_trigger_value_to_variable = {
+                trigger = pop_amount
+                variable = gts_bruh_get_experience_count
+            }
+            divide_variable = {
+                which = gts_bruh_get_experience_count
+                value = 10
+            }
+            round_variable = gts_bruh_get_experience_count
+        }
+    }
+
+    option = {
+        name = gts_xinuo.15.a
+        event_target:gts_bruh_xinuo_kill_count = {
+            add_experience = event_target:gts_attackers_win_planet.gts_bruh_get_experience_count
+            change_variable = {
+                which = gts_feet_kills_logs
+                value = event_target:gts_attackers_win_planet.gts_bruh_get_planet_killed_pop_count
+            }
+            change_variable = {
+                which = gts_city_kills_logs
+                value = event_target:gts_attackers_win_planet.gts_bruh_get_planet_destroyed_city_count
+            }
+            change_variable = {
+                which = gts_planet_kills_logs
+                value = 1
+            }
+        }
+        event_target:gts_attackers_win_planet = {
+            destroy_colony = yes
+            if = {
+                # 移除居住站
+                limit = {
+                    is_planet_class = pc_habitat
+                }
+                hidden_effect = {
+                    remove_planet = yes
+                }
+            }
+            else = {
+                while = {
+                    count = 2
+                    add_deposit = d_bomb_crater
+                    add_deposit = d_noxious_swamp
+                    add_deposit = d_city_ruins
+                }
+            }
+        }
+        add_monthly_resource_mult = {
+            resource = unity
+            value = 6
+        }
+    }
+    option = {
+        name = gts_xinuo.15.b
+        event_target:gts_bruh_xinuo_kill_count = {
+            add_experience = event_target:gts_attackers_win_planet.gts_bruh_get_experience_count
+            change_variable = {
+                which = gts_feet_kills_logs
+                value = event_target:gts_attackers_win_planet.gts_bruh_get_planet_killed_pop_count
+            }
+            change_variable = {
+                which = gts_city_kills_logs
+                value = event_target:gts_attackers_win_planet.gts_bruh_get_planet_destroyed_city_count
+            }
+            change_variable = {
+                which = gts_planet_kills_logs
+                value = 1
+            }
+        }
+        event_target:gts_attackers_win_planet = {
+            every_owned_pop_group = {
+                kill_pop_group = {
+                    pop_group = this
+                    percentage = 0.99
+                }
+            }
+            if = {
+                limit = {
+                    NOT = { is_planet_class = pc_habitat }
+                }
+                while = {
+                    count = 2
+                    add_deposit = d_bomb_crater
+                    add_deposit = d_noxious_swamp
+                    add_deposit = d_city_ruins
+                }
+            }
+        }
+    }
+}
+
+#巨像事件
+planet_event = {
+    id = gts_xinuo.17
+    hide_window = yes
+
+    is_triggered_only = yes
+
+    immediate = {
+
+        # 自己的球
+
+        if = {
+            limit = {
+                exists = owner
+                owner = { is_same_value = from.owner }
+            }
+
+            from.owner = {
+                save_event_target_as = gts_leader_country
+                gts_set_count_kill_pop_effect = yes
+            }
+
+            root = {
+                # 人口消除
+
+                while = {
+                    count = 10
+                    random_owned_pop_group = {
+                        if = {
+                            limit = { gts_is_tiny = yes  }
+                            event_target:gts_leader_country = {
+                                change_variable = {
+                                    which = gts_event_kills_logs
+                                    value = 2
+                                }
+                                random_list = {
+                                    1 = {
+                                        change_variable = {
+                                            which = gts_event_city_kills_logs
+                                            value = 40
+                                        }
+                                    }
+                                    1 = {
+                                        change_variable = {
+                                            which = gts_event_city_kills_logs
+                                            value = 120
+                                        }
+                                    }
+                                    1 = {
+                                        change_variable = {
+                                            which = gts_event_city_kills_logs
+                                            value = 200
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else_if = {
+                            limit = { gts_is_giantess = yes }
+                            event_target:gts_leader_country = {
+                                change_variable = {
+                                    which = gts_event_kills_logs
+                                    value = 5
+                                }
+                                random_list = {
+                                    1 = {
+                                        change_variable = {
+                                            which = gts_event_city_kills_logs
+                                            value = 100
+                                        }
+                                    }
+                                    1 = {
+                                        change_variable = {
+                                            which = gts_event_city_kills_logs
+                                            value = 300
+                                        }
+                                    }
+                                    1 = {
+                                        change_variable = {
+                                            which = gts_event_city_kills_logs
+                                            value = 500
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        kill_single_pop = yes
+                    }
+                }
+
+                #加一个地貌
+                add_deposit = d_xinuo_spit
+
+                event_target:gts_xinuo = {
+                    add_trait = {
+                        trait = xinuo_leader_trait_full
+                        show_message = no
+                    }
+                    change_variable = {
+                        which = gts_vore_kills_logs
+                        value = from.owner.gts_event_kills_logs
+                    }
+                    change_variable = {
+                        which = gts_city_kills_logs
+                        value = from.owner.gts_event_city_kills_logs
+                    }
+                    change_variable = {
+                        which = gts_planet_kills_logs
+                        value = 0
+                    }
+                }
+            }
+
+            from.owner = {
+                country_event = { id = gts_xinuo.19 }
+            }
+        }
+
+        # 添加冷卻時間，两年后消除特质
+
+        from.owner = {
+            set_timed_country_flag = {
+                flag = gts_xinuo_colossus_destroy_planet_effect_cool_down
+                years = 2
+            }
+            country_event = {
+                id = gts_xinuo.18
+                years = 2
+            }
+        }
+    }
+
+    after = {
+
+    }
+}
+#特质解除事件
+country_event = {
+    id = gts_xinuo.18
+    is_triggered_only = yes
+    hide_window = yes
+    immediate = {
+        event_target:gts_xinuo = {
+            remove_trait = xinuo_leader_trait_full
+        }
+    }
+}
+#巨像事件——对自己球
+country_event = {
+    id = gts_xinuo.19
+    title = gts_xinuo.19.name
+    desc = gts_xinuo.19.desc
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    show_sound = event_gts_vore
+    is_triggered_only = yes
+    location = from
+
+    picture_event_data = {
+        room = gts_xinuo5_room
+    }
+
+    option = {
+        name = gts_xinuo.19.a
+    }
+}
+
+#事件链
+country_event = {
+    id = gts_xinuo.301
+    title = gts_xinuo.301.name
+    desc = gts_xinuo.301.desc
+    picture = GFX_evt_astral_rift_riftworld
+    show_sound = event_administrative_work
+    is_triggered_only = yes
+    trigger = {
+        any_owned_leader = { has_leader_flag = gts_xinuo }
+    }
+    immediate = {
+
+    }
+    option = {
+        name = gts_xinuo.301.a
+        custom_tooltip = gts_xinuo.301.a.tooltip
+        allow = {
+            resource_stockpile_compare = {
+                resource = unity
+                value >= 2000
+            }
+        }
+        add_resource = { unity = -2000 }
+        hidden_effect = {
+            random_list = {
+                3 = {
+                    country_event = {
+                        id = gts_xinuo.302
+                        days = 1800
+                    }
+                }
+                7 = {
+                    country_event = {
+                        id = gts_xinuo.303
+                        days = 1800
+                    }
+                }
+            }
+        }
+    }
+    option = {
+        name = gts_xinuo.301.b
+        custom_tooltip = gts_xinuo.301.b.tooltip
+        allow = {
+            resource_stockpile_compare = {
+                resource = food
+                value >= 3000
+            }
+        }
+        add_resource = { food = -3000 }
+        hidden_effect = {
+            random_list = {
+                1 = {
+                    country_event = {
+                        id = gts_xinuo.302
+                        days = 1080
+                    }
+                }
+                1 = {
+                    country_event = {
+                        id = gts_xinuo.303
+                        days = 1080
+                    }
+                }
+            }
+        }
+    }
+    option = {
+        name = gts_xinuo.301.c
+        custom_tooltip = gts_xinuo.301.c.tooltip
+        allow = {
+            resource_stockpile_compare = {
+                resource = alloys
+                value >= 3000
+            }
+        }
+        add_resource = { alloys = -3000 }
+        hidden_effect = {
+            random_list = {
+                7 = {
+                    country_event = {
+                        id = gts_xinuo.302
+                        days = 1
+                    }
+                }
+                3 = {
+                    country_event = {
+                        id = gts_xinuo.303
+                        days = 720
+                    }
+                }
+            }
+        }
+    }
+    option = {
+        name = gts_xinuo.301.d
+        default_hide_option = yes
+        hidden_effect = {
+            country_event = {
+                id = gts_xinuo.303
+                days = 2500
+            }
+        }
+    }
+}
+#实验成功
+country_event = {
+    id = gts_xinuo.302
+    title = gts_xinuo.302.name
+    desc = gts_xinuo.302.desc
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+        room = gts_xinuo4_room
+    }
+    show_sound = event_red_alert
+    is_triggered_only = yes
+    trigger = {
+        any_owned_leader = { has_leader_flag = gts_xinuo }
+    }
+    immediate = {
+        set_country_flag = xinuo_experience_success
+    }
+    option = {
+        name = gts_xinuo.302.a
+        custom_tooltip = xinuo_experience_success.tip
+        create_xinuo_fleet = yes
+    }
+    option = {
+        name = gts_xinuo.302.b
+        custom_tooltip = xinuo_experience_success.tip
+        delete_xinuo_fleet = yes
+    }
+    after = {
+        country_event = {
+            id = gts_rawls.1
+            days = 10
+        }
+    }
+}
+#实验失败
+country_event = {
+    id = gts_xinuo.303
+    title = gts_xinuo.303.name
+    desc = gts_xinuo.303.desc
+    picture = GFX_gts_xinuo_5
+    show_sound = event_administrative_work
+    is_triggered_only = yes
+    trigger = {
+        any_owned_leader = { has_leader_flag = gts_xinuo }
+    }
+    immediate = {
+
+    }
+    option = {
+        name = gts_xinuo.303.a
+        hidden_effect = {
+            country_event = {
+                id = gts_xinuo.302
+                days = 1080
+            }
+        }
+    }
+}
+
+#法令事件
+country_event = {
+    id = gts_xinuo.401
+    title = gts_xinuo.401.name
+    desc = gts_xinuo.401.desc
+    picture = GFX_gts_xinuo_7
+    show_sound = event_default
+    is_triggered_only = yes
+    trigger = {
+        any_owned_leader = { has_leader_flag = gts_xinuo }
+        has_country_flag = xinuo_experience_success
+        exists = event_target:gts_xinuo
+        event_target:gts_xinuo = {
+            has_trait = leader_trait_Ultra
+            has_trait = xinuo_leader_trait_greedy
+        }
+    }
+    immediate = {
+        delete_xinuo_fleet = yes
+    }
+    option = {
+        name = gts_ok
+    }
+}
+country_event = {
+    id = gts_xinuo.402
+    title = gts_xinuo.402.name
+    desc = gts_xinuo.402.desc
+    picture = GFX_gts_xinuo_6
+    show_sound = event_default
+    is_triggered_only = yes
+    trigger = {
+        any_owned_leader = { has_leader_flag = gts_xinuo }
+        has_country_flag = xinuo_experience_success
+        exists = event_target:gts_xinuo
+        event_target:gts_xinuo = {
+            has_trait = leader_trait_Normal
+            has_trait = xinuo_leader_trait_feather
+        }
+    }
+    immediate = {
+        create_xinuo_fleet = yes
+    }
+    option = {
+        name = gts_ok
+    }
+}
+
+#贪欲之龙特质拆船拿资源
+country_event = {
+    id = gts_xinuo.500
+    hide_window = yes
+    is_triggered_only = yes
+
+    immediate = {
+        FROMFROM = { # Winning ship.
+            if = {
+                limit = { exists = fleet.leader }
+                fleet.leader = {
+
+                    if = {
+                        limit = {
+                            has_trait = xinuo_leader_trait_greedy
+                            ROOT.FROM = { # Owner of losing ship.
+                                is_default_or_fallen = yes
+                            }
+                        }
+                        ROOT = { # Owner of winning ship.
+                            add_resource = {
+                                energy = 20
+                                minerals = 20
+                                food = 20
+                                unity = 20
+                                alloys = 5
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+#对话框
+country_event = {
+    id = gts_xinuo.1000
+    title = gts_xinuo.1000.title
+    desc = gts_xinuo.1000.desc
+
+    diplomatic = yes
+
+    picture = GFX_evt_fleet_neutral
+    picture_event_data = {
+        portrait = event_target:gts_xinuo
+        room = cosmic_storm_room
+    }
+
+    is_triggered_only = yes
+
+    trigger = {
+        NOT = { has_country_flag = xinuo_diplomacy_engaged }
+        exists = event_target:gts_xinuo
+    }
+
+    immediate = {
+        set_country_flag = xinuo_diplomacy_engaged
+    }
+
+    after = {
+        hidden_effect = { remove_country_flag = xinuo_diplomacy_engaged }
+    }
+
+    option = {
+        name = gts_xinuo.1000.a
+        response_text = gts_xinuo.1000.a.response
+        is_dialog_only = yes
+    }
+
+    option = {
+        name = gts_xinuo.1000.b
+        #response_text = gts_xinuo.1000.b.response
+        trigger = {
+            event_target:gts_xinuo = {
+                has_trait = xinuo_leader_trait_feather
+            }
+        }
+        hidden_effect = {
+            country_event = {
+                id = gts_xinuo.402
+                days = 7
+            }
+        }
+    }
+    option = { # Army
+        name = gts_xinuo.1000.c
+        #response_text = gts_xinuo.1000.c.response
+        trigger = {
+            event_target:gts_xinuo = {
+                has_trait = xinuo_leader_trait_greedy
+            }
+        }
+        allow = {
+            hidden_trigger = { # To prevent exploit
+                event_target:gts_xinuo_ship = { num_ships > 0 }
+            }
+            custom_tooltip = {
+                fail_text = gts_xinuo.1000.allow.a
+                event_target:gts_xinuo_ship = { is_in_combat = no }
+            }
+            custom_tooltip = {
+                fail_text = gts_xinuo.1000.allow.b
+                event_target:gts_xinuo_ship = { NOT = { has_hp_percentage < 1.0 } }
+            }
+        }
+        hidden_effect = {
+            country_event = {
+                id = gts_xinuo.401
+                days = 7
+            }
+        }
+    }
+    option = {
+        name = gts_xinuo.1000.d
+        default_hide_option = yes
+    }
+}

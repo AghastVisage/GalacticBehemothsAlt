@@ -1,0 +1,1307 @@
+@gts_love_level2 = 25
+@gts_love_level3 = 50
+@gts_love_level4 = 75
+@gts_love_level5 = 100
+
+# 好感度特质
+trait_leader_gts_love_logs_normal = {
+    #好感度特质
+    cost = 0
+    inline_script = {
+        script = gts_leaders_love
+    }
+    #official
+    triggered_sector_modifier = {
+        # lv2
+        potential = {
+            leader_class = official
+            check_variable = { which = gts_love_logs value >= @gts_love_level2 }
+            check_variable = { which = gts_love_logs value < @gts_love_level3 }
+        }
+        planet_building_build_speed_mult = 0.05
+        planet_stability_mult = 0.05
+        planet_clear_blocker_time_mult = -0.05
+    }
+    triggered_planet_modifier = {
+        # lv3
+        potential = {
+            leader_class = official
+            check_variable = { which = gts_love_logs value >= @gts_love_level3 }
+            check_variable = { which = gts_love_logs value < @gts_love_level4}
+        }
+        planet_building_build_speed_mult = 0.2
+        planet_stability_mult = 0.2
+        planet_clear_blocker_time_mult = -0.2
+    }
+    triggered_planet_modifier = {
+
+        potential = {
+            leader_class = official
+            check_variable = { which = gts_love_logs value >= @gts_love_level4 }
+            check_variable = { which = gts_love_logs value < @gts_love_level5 }
+        }
+        planet_building_build_speed_mult = 0.35
+        planet_stability_mult = 0.35
+        deposit_blockers_cost_mult = -0.25
+        planet_clear_blocker_time_mult = -0.35
+        planet_jobs_produces_mult = 0.1
+    }
+    triggered_planet_modifier = {
+
+        potential = {
+            leader_class = official
+            check_variable = { which = gts_love_logs value >= @gts_love_level5  }
+            not = { has_leader_flag= gts_married }
+        }
+        planet_building_build_speed_mult = 0.5
+        planet_stability_mult = 0.5
+        deposit_blockers_cost_mult = -0.5
+        planet_clear_blocker_time_mult = -0.5
+        planet_jobs_produces_mult = 0.25
+        planet_building_capacity_add = 1
+    }
+    triggered_planet_modifier = {
+        # marry
+        potential = {
+            leader_class = official
+            check_variable = { which = gts_love_logs value >= @gts_love_level5  }
+            has_leader_flag= gts_married
+        }
+        planet_building_build_speed_mult = 0.75
+        planet_stability_mult = 0.75
+        deposit_blockers_cost_mult = -1
+        planet_clear_blocker_time_mult = -1
+        planet_jobs_produces_mult = 0.5
+        planet_building_capacity_add = 1
+        planet_structures_upkeep_mult = -0.5
+    }
+
+    #scientist
+    triggered_modifier = {
+        # lv2
+        potential = {
+            leader_class = scientist
+            check_variable = { which = gts_love_logs value >= @gts_love_level2  }
+            check_variable = { which = gts_love_logs value < @gts_love_level3 }
+        }
+        science_ship_survey_speed = 0.1
+        ship_anomaly_research_speed_mult = 0.1
+    }
+    triggered_modifier = {
+        # lv3
+        potential = {
+            leader_class = scientist
+            check_variable = { which = gts_love_logs value >= @gts_love_level3 }
+            check_variable = { which = gts_love_logs value < @gts_love_level4 }
+        }
+        science_ship_survey_speed = 0.2
+        ship_anomaly_research_speed_mult = 0.2
+        ship_archaeological_site_clues_add = 1
+    }
+    triggered_modifier = {
+
+        potential = {
+            leader_class = scientist
+            check_variable = { which = gts_love_logs value >= @gts_love_level4 }
+            check_variable = { which = gts_love_logs value < @gts_love_level5  }
+        }
+        science_ship_survey_speed = 0.35
+        ship_anomaly_research_speed_mult = 0.35
+        ship_archaeological_site_clues_add = 1
+        ship_astral_rift_clues_add = 1
+    }
+    triggered_modifier = {
+
+        potential = {
+            leader_class = scientist
+            check_variable = { which = gts_love_logs value >= @gts_love_level5  }
+            not = { has_leader_flag = gts_married }
+        }
+        science_ship_survey_speed = 0.5
+        ship_anomaly_research_speed_mult = 0.5
+        ship_archaeological_site_clues_add = 1
+        ship_astral_rift_clues_add = 1
+        ship_anomaly_generation_chance_mult = 0.25
+        find_arc_site_on_survey_chance_mult = 0.25
+    }
+    triggered_modifier = {
+        # married
+        potential = {
+            leader_class = scientist
+            check_variable = { which = gts_love_logs value >= @gts_love_level5  }
+            has_leader_flag = gts_married
+        }
+        science_ship_survey_speed = 0.75
+        ship_anomaly_research_speed_mult = 0.75
+        ship_archaeological_site_clues_add = 2
+        ship_astral_rift_clues_add = 2
+        ship_anomaly_generation_chance_mult = 0.5
+        find_arc_site_on_survey_chance_mult = 0.5
+    }
+    triggered_planet_modifier = {
+        # lv3
+        potential = {
+            leader_class = scientist
+            check_variable = { which = gts_love_logs value >= @gts_love_level3 }
+            check_variable = { which = gts_love_logs value < @gts_love_level4 }
+        }
+        planet_jobs_physics_research_produces_mult = 0.05
+        planet_jobs_society_research_produces_mult = 0.05
+        planet_jobs_engineering_research_produces_mult = 0.05
+    }
+    triggered_planet_modifier = {
+
+        potential = {
+            leader_class = scientist
+            check_variable = { which = gts_love_logs value >= @gts_love_level4 }
+            check_variable = { which = gts_love_logs value < @gts_love_level5  }
+        }
+        planet_jobs_physics_research_produces_mult = 0.15
+        planet_jobs_society_research_produces_mult = 0.15
+        planet_jobs_engineering_research_produces_mult = 0.15
+    }
+    triggered_planet_modifier = {
+
+        potential = {
+            leader_class = scientist
+            check_variable = { which = gts_love_logs value >= @gts_love_level5  }
+            not = { has_leader_flag = gts_married }
+        }
+        planet_jobs_physics_research_produces_mult = 0.25
+        planet_jobs_society_research_produces_mult = 0.25
+        planet_jobs_engineering_research_produces_mult = 0.25
+    }
+    triggered_planet_modifier = {
+        # married
+        potential = {
+            leader_class = scientist
+            check_variable = { which = gts_love_logs value >= @gts_love_level5  }
+            has_leader_flag = gts_married
+        }
+        planet_jobs_physics_research_produces_mult = 0.5
+        planet_jobs_society_research_produces_mult = 0.5
+        planet_jobs_engineering_research_produces_mult = 0.5
+    }
+    #commander
+    triggered_fleet_modifier = {
+        # lv2
+        potential = {
+            leader_class = commander
+            check_variable = { which = gts_love_logs value >= @gts_love_level2  }
+            check_variable = { which = gts_love_logs value < @gts_love_level3 }
+        }
+        ship_weapon_damage = 0.25
+        ship_hull_mult = 0.25
+    }
+    triggered_fleet_modifier = {
+        # lv3
+        potential = {
+            leader_class = commander
+            check_variable = { which = gts_love_logs value >= @gts_love_level3 }
+            check_variable = { which = gts_love_logs value < @gts_love_level4 }
+        }
+        ship_weapon_damage = 0.75
+        ship_hull_mult = 0.75
+        ship_hull_regen_add_perc = 0.1
+        ship_armor_regen_add_perc = 0.1
+    }
+    triggered_fleet_modifier = {
+
+        potential = {
+            leader_class = commander
+            check_variable = { which = gts_love_logs value >= @gts_love_level4 }
+            check_variable = { which = gts_love_logs value < @gts_love_level5  }
+        }
+        ship_weapon_damage = 1
+        ship_hull_mult = 1
+        ship_hull_regen_add_perc = 0.25
+        ship_armor_regen_add_perc = 0.25
+        ships_upkeep_mult = -0.25
+    }
+    triggered_fleet_modifier = {
+
+        potential = {
+            leader_class = commander
+            check_variable = { which = gts_love_logs value >= @gts_love_level5  }
+            not = {has_leader_flag = gts_married}
+        }
+        ship_weapon_damage = 2
+        ship_hull_mult = 2
+        ship_hull_regen_add_perc = 0.5
+        ship_armor_regen_add_perc = 0.5
+        ships_upkeep_mult = -0.5
+    }
+    triggered_fleet_modifier = {
+        # married
+        potential = {
+            leader_class = commander
+            check_variable = { which = gts_love_logs value >= @gts_love_level5  }
+            has_leader_flag = gts_married
+        }
+        ship_weapon_damage = 5
+        ship_hull_mult = 5
+        ship_hull_regen_add_perc = 1
+        ship_armor_regen_add_perc = 1
+        ships_upkeep_mult = -1
+    }
+    # commander
+    triggered_army_modifier = {
+        # lv2
+        potential = {
+            leader_class = commander
+            check_variable = { which = gts_love_logs value >= @gts_love_level2 }
+            check_variable = { which = gts_love_logs value < @gts_love_level3 }
+        }
+        army_morale = 0.25
+        army_health = 0.25
+        army_damage_mult = 0.25
+    }
+    triggered_army_modifier = {
+        # lv3
+        potential = {
+            leader_class = commander
+            check_variable = { which = gts_love_logs value >= @gts_love_level3 }
+            check_variable = { which = gts_love_logs value < @gts_love_level4 }
+        }
+        army_morale = 0.5
+        army_health = 0.5
+        army_damage_mult = 0.5
+        army_collateral_damage_mult = -0.5
+    }
+    triggered_army_modifier = {
+
+        potential = {
+            leader_class = commander
+            check_variable = { which = gts_love_logs value >= @gts_love_level4 }
+            check_variable = { which = gts_love_logs value < @gts_love_level5  }
+        }
+        army_morale = 0.75
+        army_health = 0.8
+        army_damage_mult = 0.8
+        army_collateral_damage_mult = -0.75
+    }
+    triggered_army_modifier = {
+
+        potential = {
+            leader_class = commander
+            check_variable = { which = gts_love_logs value >= @gts_love_level5  }
+            not = { has_leader_flag = gts_married }
+
+        }
+        army_morale = 1
+        army_health = 1
+        army_damage_mult = 1
+        army_collateral_damage_mult = -1
+        army_damage_taken_mult = -0.5
+    }
+    triggered_army_modifier = {
+        # married
+        potential = {
+            leader_class = commander
+            check_variable = { which = gts_love_logs value >= @gts_love_level5  }
+            has_leader_flag = gts_married
+        }
+        army_damage_mult = 3
+        army_collateral_damage_mult = -1
+        army_damage_taken_mult = -1
+
+    }
+    leader_class = { official scientist commander }
+    initial = no
+    randomized = no
+    notify_on_gained = no
+}
+
+trait_leader_gts_skill = {
+    #总的加成特质
+    cost = 0
+    icon = "gfx/interface/icons/traits/traits/Lingneng_robot.dds"
+    #scientist
+    triggered_modifier = {
+        potential = {
+            leader_class = scientist
+            has_leader_flag = gts_skill_scientist_level_one_1
+        }
+        ship_sensor_range_add = 1
+        ship_speed_mult = 0.1
+        ship_disengage_chance_mult = 0.2
+        ship_anomaly_generation_chance_mult = 0.1
+        science_ship_survey_speed = 0.1			#调查速度
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = scientist
+            has_leader_flag = gts_skill_scientist_level_one_01
+        }
+        ship_sensor_range_add = 2
+        ship_hyperlane_range_add = 2
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = scientist
+            has_leader_flag = gts_skill_scientist_level_one_02
+        }
+        science_ship_survey_speed = 0.1			#调查速度
+        ship_anomaly_research_speed_mult = 0.1		#异常现象研究速度
+    }
+    triggered_modifier = {
+        potential = {
+            leader_class = scientist
+            has_leader_flag = gts_skill_scientist_level_two_1
+        }
+        ship_sensor_range_add = 1
+        ship_hyperlane_range_add = 1
+        ship_speed_mult = 0.2
+        science_ship_survey_speed = 0.2			#调查速度
+    }
+    triggered_modifier = {
+        #探索完星系给资源  后面去写个事件
+        potential = {
+            text = gts_skill_official_level_two_2_effect
+            leader_class = scientist
+            has_leader_flag = gts_skill_scientist_level_two_2
+        }
+    }
+    triggered_modifier = {
+        potential = {
+            leader_class = scientist
+            has_leader_flag = gts_skill_scientist_level_two_3
+        }
+        ship_cloaking_strength_add = 5
+        ship_cloaking_detection_add = 5
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = scientist
+            has_leader_flag = gts_skill_scientist_level_two_01
+        }
+        science_ship_survey_speed = 0.2			#调查速度
+    }
+    triggered_modifier = {
+        potential = {
+            leader_class = scientist
+            has_leader_flag = gts_skill_scientist_level_two_01
+        }
+        science_ship_survey_speed = 0.2			#调查速度
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = scientist
+            has_leader_flag = gts_skill_scientist_level_two_02
+        }
+        fleet_mia_time_mult = -0.2
+    }
+    triggered_modifier = {
+        potential = {
+            leader_class = scientist
+            has_leader_flag = gts_skill_scientist_level_two_02
+        }
+        fleet_mia_time_mult = -1.0
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = scientist
+            has_leader_flag = gts_skill_scientist_level_two_03
+        }
+        ship_jumpdrive_cooldown_mult = -0.5	#跃迁引擎冷却，增益效果应为负数
+        ship_ftl_jumpdrive_range_mult = 0.5
+    }
+    triggered_modifier = {
+        potential = {
+            leader_class = scientist
+            has_leader_flag = gts_skill_scientist_level_two_03
+        }
+        ship_jumpdrive_cooldown_mult = -0.2	#跃迁引擎冷却，增益效果应为负数
+        ship_ftl_jumpdrive_range_mult = 0.2
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = scientist
+            has_leader_flag = gts_skill_scientist_level_two_04
+        }
+        ship_anomaly_generation_chance_mult = 0.1
+    }
+    triggered_modifier = {
+        potential = {
+            leader_class = scientist
+            has_leader_flag = gts_skill_scientist_level_three_1
+        }
+        science_ship_survey_speed = 0.1			#调查速度
+        ship_sensor_range_add = 1
+        ship_hyperlane_range_add = 1
+        ship_speed_mult = 0.2
+        ship_disengage_chance_mult = 0.2
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = scientist
+            has_leader_flag = gts_skill_scientist_level_three_01
+        }
+        leader_trait_selection_options_add = 1
+        science_ship_survey_speed = 0.1			#调查速度
+        ship_speed_mult = 0.1
+        ship_disengage_chance_mult = 0.2
+    }
+    triggered_modifier = {
+        potential = {
+            leader_class = scientist
+            has_leader_flag = gts_skill_scientist_level_one_2
+        }
+        ship_archaeological_site_excavation_speed_mult = 0.2
+        ship_archaeological_site_clues_add = 1
+        ship_anomaly_research_speed_mult = 0.2		#异常现象研究速度
+        ship_anomaly_generation_chance_mult = 0.1
+        ship_astral_rift_speed_mult = 0.1
+        ship_astral_rift_clues_add = 1
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = scientist
+            has_leader_flag = gts_skill_scientist_level_one_03
+        }
+        ship_archaeological_site_excavation_speed_mult = 0.2
+        ship_archaeological_site_clues_add = 1
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = scientist
+            has_leader_flag = gts_skill_scientist_level_one_04
+        }
+        ship_anomaly_research_speed_mult = 0.2		#异常现象研究速度：+75%
+        ship_anomaly_generation_chance_mult = 0.1
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = scientist
+            has_leader_flag = gts_skill_scientist_level_one_05
+        }
+        ship_astral_rift_speed_mult = 0.2
+        ship_astral_rift_clues_add = 2
+    }
+    triggered_modifier = {
+        #完成异常获得资源  后面去写个事件
+        potential = {
+            text = gts_skill_scientist_level_two_4_effect
+            leader_class = scientist
+            has_leader_flag = gts_skill_scientist_level_two_4
+        }
+    }
+    triggered_modifier = {
+        #完成坟获得资源  后面去写个事件
+        potential = {
+            text = gts_skill_scientist_level_two_5_effect
+            leader_class = scientist
+            has_leader_flag = gts_skill_scientist_level_two_5
+        }
+    }
+    triggered_councilor_modifier = {
+        #图中捞舰船改为增加异常概率
+        potential = {
+            leader_class = scientist
+            has_leader_flag = gts_skill_scientist_level_two_05
+        }
+        ship_anomaly_generation_chance_mult = 0.25
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = scientist
+            has_leader_flag = gts_skill_scientist_level_two_06
+        }
+        planet_researchers_upkeep_mult = -0.25
+    }
+    triggered_councilor_modifier = {
+        #打捞给舰船   后面去抄paragon_2.1110
+        potential = {
+            text = gts_skill_scientist_level_two_07_effect
+            leader_class = scientist
+            has_leader_flag = gts_skill_scientist_level_two_07
+        }
+    }
+    triggered_modifier = {
+        inline_script = {
+            script = paragon/leader_resource_produces
+            RESOURCE = minor_artifacts
+            AMOUNT = 30
+        }
+        potential = {
+            leader_class = scientist
+            has_leader_flag = gts_skill_scientist_level_three_2
+        }
+        ship_archaeological_site_excavation_speed_mult = 0.2
+        ship_archaeological_site_clues_add = 1
+        ship_anomaly_research_speed_mult = 0.2
+        ship_anomaly_generation_chance_mult = 0.1
+        ship_astral_rift_speed_mult = 0.1
+        ship_astral_rift_clues_add = 1
+    }
+    triggered_self_modifier = {
+        #挖坟的时候给资源  上游戏测试记得
+        potential = {
+            has_ancrel = yes
+            is_currently_excavating_site = yes
+            text = gts_skill_scientist_level_three_02_effect
+            leader_class = scientist
+            has_leader_flag = gts_skill_scientist_level_three_02
+        }
+        leader_scientists_society_research_produces_add = @trait_collective_wisdom_soc_amt
+        leader_scientists_minor_artifacts_produces_add = @trait_collective_wisdom_ma_amt
+    }
+    triggered_self_modifier = {
+        potential = {
+            leader_class = scientist
+            has_leader_flag = gts_skill_scientist_level_one_3
+        }
+        leader_scientists_physics_research_produces_add = 300 	#每月物理学研究+300
+        leader_scientists_society_research_produces_add = 300 	#每月社会学研究+300
+        leader_scientists_engineering_research_produces_add = 300 	#每月工程学研究+300
+    }
+    triggered_planet_modifier = {
+        potential = {
+            leader_class = scientist
+            has_leader_flag = gts_skill_scientist_level_one_3
+        }
+        planet_jobs_physics_research_produces_mult = 0.10
+        planet_jobs_society_research_produces_mult = 0.10
+        planet_jobs_engineering_research_produces_mult = 0.1
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = scientist
+            has_leader_flag = gts_skill_scientist_level_one_06
+        }
+        all_technology_research_speed = 0.1			#所有研究速度
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = scientist
+            has_leader_flag = gts_skill_scientist_level_one_07
+        }
+        num_tech_alternatives_add = 1				#备选科技
+    }
+    triggered_self_modifier = {
+        potential = {
+            leader_class = scientist
+            has_leader_flag = gts_skill_scientist_level_two_6
+        }
+        leader_scientists_physics_research_produces_add = 300 	#每月物理学研究+300
+        leader_scientists_society_research_produces_add = 300 	#每月社会学研究+300
+        leader_scientists_engineering_research_produces_add = 300 	#每月工程学研究+300
+
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = scientist
+            has_leader_flag = gts_skill_scientist_level_two_6
+        }
+        species_leader_exp_gain = 0.25
+    }
+    triggered_planet_modifier = {
+        potential = {
+            leader_class = scientist
+            has_leader_flag = gts_skill_scientist_level_two_7
+        }
+        job_physicist_add = 500
+        job_biologist_add = 500
+        job_engineer_add = 500
+    }
+    triggered_planet_modifier = {
+        potential = {
+            leader_class = scientist
+            has_leader_flag = gts_skill_scientist_level_two_08
+        }
+        job_physicist_add = 500
+        job_biologist_add = 500
+        job_engineer_add = 500
+    }
+    triggered_councilor_modifier = {
+        #领袖维护费减免
+        potential = {
+            leader_class = scientist
+            has_leader_flag = gts_skill_scientist_level_two_09
+        }
+        leaders_upkeep_mult = -0.5
+    }
+    triggered_councilor_modifier = {
+        #领袖经验增加
+        potential = {
+            leader_class = scientist
+            has_leader_flag = gts_skill_scientist_level_two_10
+        }
+        species_leader_exp_gain = 0.5
+    }
+    triggered_planet_modifier = {
+        potential = {
+            leader_class = scientist
+            has_leader_flag = gts_skill_scientist_level_two_11
+        }
+        planet_physicists_physics_research_produces_add = 2
+        planet_biologists_society_research_produces_add = 2
+        planet_engineers_engineering_research_produces_add = 2
+    }
+    triggered_planet_modifier = {
+        potential = {
+            leader_class = scientist
+            has_leader_flag = gts_skill_scientist_level_three_3
+            owner = {
+                gts_is_giantess_empire = yes
+            }
+        }
+        job_micro_researcher_add = 1000
+    }
+    triggered_planet_modifier = {
+        potential = {
+            leader_class = scientist
+            has_leader_flag = gts_skill_scientist_level_three_3
+            owner = {
+                gts_is_tiny_empire = yes
+            }
+        }
+        job_gts_head_assimilator_researcher_add = 1000
+    }
+    triggered_self_modifier = {
+        potential = {
+            leader_class = scientist
+            has_leader_flag = gts_skill_scientist_level_three_03
+        }
+        leader_scientists_physics_research_produces_add = 500
+        leader_scientists_society_research_produces_add = 500
+        leader_scientists_engineering_research_produces_add = 500
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = scientist
+            has_leader_flag = gts_skill_scientist_level_three_03
+        }
+        num_tech_alternatives_add = 1
+    }
+
+
+
+
+    #official
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_one_1
+        }
+        council_agenda_progress_speed = 0.1			#内阁议程速度
+        council_agenda_finishing_effect_duration_mult = 0.1		#内阁议程生效时长
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_one_01
+        }
+        council_agenda_progress_speed = 0.15			#内阁议程速度
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_one_02
+        }
+        council_agenda_finishing_effect_duration_mult = 0.15		#内阁议程生效时长
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_two_1
+        }
+        pop_government_ethic_attraction = 1
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_two_2
+        }
+        country_edict_fund_add = 150
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_two_3
+        }
+        envoys_add = 2   #特使
+    }
+
+    triggered_councilor_modifier = {
+        #图中迁入吸引力改为幸福度
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_two_01
+        }
+        pop_happiness = 0.15	#幸福度
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_two_02
+        }
+        diplo_weight_mult = 0.2
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_two_03
+        }
+        country_subject_acceptance_add = 100
+        DIPLO_ACTION_ACCEPTANCE_ADD = 50
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_two_04
+        }
+        divided_patrongage_max_subjects = 2
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_three_1
+        }
+        empire_size_penalty_mult = -0.2
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_three_01
+        }
+        empire_size_mult = -0.1
+    }
+    triggered_planet_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_one_2
+        }
+        planet_jobs_produces_mult = 0.15
+    }
+    triggered_sector_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_one_2
+        }
+        planet_jobs_produces_mult = 0.1
+    }
+    triggered_planet_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_one_03
+        }
+        planet_jobs_energy_produces_mult = 0.2			#岗位生产的能量币
+        planet_jobs_minerals_produces_mult = 0.2		#岗位生产的矿物
+        planet_jobs_food_produces_mult = 0.2			#岗位生产的食物
+    }
+    triggered_sector_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_one_03
+        }
+        planet_jobs_energy_produces_mult = 0.1			#岗位生产的能量币
+        planet_jobs_minerals_produces_mult = 0.1		#岗位生产的矿物
+        planet_jobs_food_produces_mult = 0.1		#岗位生产的食物
+    }
+    triggered_planet_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_one_04
+        }
+        planet_jobs_alloys_produces_mult = 0.25			#岗位生产的合金
+        planet_jobs_consumer_goods_produces_mult = 0.25		#岗位生产的消费品
+    }
+    triggered_sector_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_one_04
+        }
+        planet_jobs_alloys_produces_mult = 0.1			#岗位生产的合金
+        planet_jobs_consumer_goods_produces_mult = 0.1		#岗位生产的消费品
+    }
+    triggered_planet_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_one_05
+        }
+        planet_jobs_unity_produces_mult = 0.2
+        planet_jobs_upkeep_mult = -0.5
+    }
+    triggered_sector_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_one_05
+        }
+        planet_jobs_unity_produces_mult = 0.1
+        planet_jobs_upkeep_mult = -0.2
+    }
+    triggered_self_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_two_4
+        }
+        inline_script = {
+            script = paragon/leader_resource_produces
+            RESOURCE = volatile_motes
+            AMOUNT = 30
+            RESOURCE = exotic_gases
+            AMOUNT = 30
+            RESOURCE = rare_crystals
+            AMOUNT = 30
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_two_5
+        }
+        planet_structures_upkeep_mult = -0.25
+    }
+    triggered_sector_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_two_5
+        }
+        planet_structures_upkeep_mult = -0.15
+    }
+    triggered_self_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_two_05
+        }
+        inline_script = {
+            script = paragon/leader_resource_produces
+            RESOURCE = sr_zro
+            AMOUNT = 10
+            RESOURCE = sr_living_metal
+            AMOUNT = 10
+            RESOURCE = sr_dark_matter
+            AMOUNT = 10
+            RESOURCE = nanites
+            AMOUNT = 10
+        }
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_two_06
+        }
+        planet_clear_blocker_time_mult = -0.25
+        deposit_blockers_cost_mult = -0.25
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_two_07
+        }
+        planet_building_build_speed_mult = 0.15
+    }
+    triggered_planet_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_three_2
+        }
+        pop_bonus_workforce_mult = 0.2
+    }
+    triggered_sector_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_three_2
+        }
+        pop_bonus_workforce_mult = 0.1
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_three_02
+        }
+        pop_environment_tolerance = 0.25
+    }
+    triggered_planet_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_one_3
+        }
+        logistic_growth_mult = 0.15
+        bonus_pop_growth_mult = 0.15
+    }
+    triggered_sector_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_one_3
+        }
+        logistic_growth_mult = 0.1
+        bonus_pop_growth_mult = 0.1
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_one_06
+        }
+        logistic_growth_mult = 0.1
+        bonus_pop_growth_mult = 0.1
+    }
+    triggered_planet_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_one_07
+        }
+        pop_housing_usage_mult = -0.15
+    }
+    triggered_sector_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_one_07
+        }
+        pop_housing_usage_mult = -0.1
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_two_6
+        }
+        planet_pops_upkeep_mult = -0.3
+    }
+    triggered_sector_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_two_6
+        }
+        planet_pops_upkeep_mult = -0.15
+
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_two_7
+        }
+        shipsize_colonizer_build_speed_mult = 0.2
+        ship_colonizer_cost_mult = -0.2
+    }
+
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_two_08
+        }
+        founder_species_growth_mult = 0.1
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_two_09
+        }
+        pop_housing_usage_mult = -0.15
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_two_10
+        }
+        empire_size_pops_mult = -0.1
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_two_11
+        }
+        pop_citizen_happiness = 0.25
+        planet_stability_add = 25
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_three_3
+        }
+        planet_jobs_produces_mult = 0.15
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_three_03
+        }
+        PLANET_BUILDING_CAPACITY_ADD = 1
+    }
+    triggered_planet_modifier = {
+        potential = {
+            leader_class = official
+            has_leader_flag = gts_skill_official_level_three_03
+        }
+        PLANET_BUILDING_CAPACITY_ADD = 1
+    }
+
+
+
+    #commander
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = commander
+            has_leader_flag = gts_skill_commander_level_one_1
+        }
+        starbase_shipyard_build_speed_mult = 0.1
+        starbase_shipyard_build_cost_mult = -0.1
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = commander
+            has_leader_flag = gts_skill_commander_level_one_01
+        }
+        starbase_shipyard_build_speed_mult = 0.1
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = commander
+            has_leader_flag = gts_skill_commander_level_one_02
+        }
+        starbase_shipyard_build_cost_mult = -0.1
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = commander
+            has_leader_flag = gts_skill_commander_level_two_1
+        }
+        command_limit_add = 50
+
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = commander
+            has_leader_flag = gts_skill_commander_level_two_2
+        }
+        starbase_modules_cost_mult = -0.2
+        starbase_buildings_cost_mult = -0.2
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = commander
+            has_leader_flag = gts_skill_commander_level_two_3
+        }
+        country_naval_cap_add = 250
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = commander
+            has_leader_flag = gts_skill_commander_level_two_01
+        }
+        command_limit_mult = 0.2
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = commander
+            has_leader_flag = gts_skill_commander_level_two_02
+        }
+        STARBASE_UPGRADE_COST_MULT = -0.2
+        STARBASE_UPGRADE_TIME_MULT = -0.2
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = commander
+            has_leader_flag = gts_skill_commander_level_two_03
+        }
+        country_naval_cap_mult = 0.2
+    }
+    triggered_self_modifier = {
+        potential = {
+            leader_class = commander
+            has_leader_flag = gts_skill_commander_level_two_04
+        }
+        inline_script = {
+            script = paragon/leader_resource_produces
+            RESOURCE = influence
+            AMOUNT = 2
+        }
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = commander
+            has_leader_flag = gts_skill_commander_level_three_1
+        }
+        starbase_shipyard_build_speed_mult = 0.15
+        starbase_shipyard_build_cost_mult = -0.15
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = commander
+            has_leader_flag = gts_skill_commander_level_three_01
+        }
+        ships_energy_upkeep_mult = -0.25
+        ship_orbit_upkeep_mult = -1
+    }
+    triggered_fleet_modifier = {
+        potential = {
+            leader_class = commander
+            has_leader_flag = gts_skill_commander_level_one_2
+        }
+        ship_weapon_damage = 0.1
+        ship_hull_mult = 0.1
+    }
+    triggered_self_modifier = {
+        potential = {
+            leader_class = commander
+            has_leader_flag = gts_skill_commander_level_one_2
+        }
+        species_leader_exp_gain = 0.25
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = commander
+            has_leader_flag = gts_skill_commander_level_one_03
+        }
+        ship_weapon_damage = 0.1
+        ship_fire_rate_mult = 0.1
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = commander
+            has_leader_flag = gts_skill_commander_level_one_04
+        }
+        ship_hull_regen_add_perc = 0.2		#每日船体再生+20%
+        ship_armor_regen_add_perc = 0.2	#每日装甲再生+20%
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = commander
+            has_leader_flag = gts_skill_commander_level_one_05
+        }
+        ship_starting_experience_add = 100
+    }
+    triggered_fleet_modifier = {
+        potential = {
+            leader_class = commander
+            has_leader_flag = gts_skill_commander_level_two_4
+        }
+        ship_starting_experience_add = 500
+    }
+    triggered_modifier = {
+        #拆船给奖励  抄原版的去 paragon_2.1005
+        potential = {
+            text = gts_skill_commander_level_two_5_effect
+            leader_class = commander
+            has_leader_flag = gts_skill_commander_level_two_5
+        }
+
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = commander
+            has_leader_flag = gts_skill_commander_level_two_05
+        }
+        SHIP_EXPERIENCE_GAIN_MULT = 0.2
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = commander
+            has_leader_flag = gts_skill_commander_level_two_06
+        }
+        SHIP_ORBITAL_BOMBARDMENT_ARMY_DAMAGE_MULT = 1
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = commander
+            has_leader_flag = gts_skill_commander_level_two_07
+        }
+        ship_base_speed_mult = 0.2		#基础舰船速度
+        ship_evasion_mult = 0.1
+    }
+    triggered_fleet_modifier = {
+        potential = {
+            leader_class = commander
+            has_leader_flag = gts_skill_commander_level_three_2
+        }
+        ship_weapon_damage = 0.3
+        ship_fire_rate_mult = 0.15
+        ship_shield_damage_mult = 0.15
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = commander
+            has_leader_flag = gts_skill_commander_level_three_02
+        }
+        ship_evasion_mult = 0.3
+    }
+    triggered_army_modifier = {
+        potential = {
+            leader_class = commander
+            has_leader_flag = gts_skill_commander_level_one_3
+        }
+        army_damage_mult = 10			#陆军伤害+1000%
+    }
+    triggered_army_modifier = {
+        potential = {
+            leader_class = commander
+            has_leader_flag = gts_skill_commander_level_one_06
+        }
+        army_morale = 2
+    }
+    triggered_army_modifier = {
+        potential = {
+            leader_class = commander
+            has_leader_flag = gts_skill_commander_level_one_07
+        }
+        ARMY_STARTING_EXPERIENCE_ADD = 500
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = commander
+            has_leader_flag = gts_skill_commander_level_two_6
+        }
+        ARMY_DAMAGE_EMPIRE_SPRAWL_PENALTY_MULT = -1
+    }
+    triggered_army_modifier = {
+        potential = {
+            leader_class = commander
+            has_leader_flag = gts_skill_commander_level_two_7
+        }
+        ARMY_COLLATERAL_DAMAGE_MULT = -1
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = commander
+            has_leader_flag = gts_skill_commander_level_two_08
+        }
+        planet_army_build_speed_mult = 0.5
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = commander
+            has_leader_flag = gts_skill_commander_level_two_09
+        }
+        ARMY_MORALE_DAMAGE_MULT = 3
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = commander
+            has_leader_flag = gts_skill_commander_level_two_10
+        }
+        planet_combat_width_add = 5
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = commander
+            has_leader_flag = gts_skill_commander_level_two_11
+        }
+        ARMY_DEFENSE_MORALE_MULT = 3
+        ARMY_DEFENSE_DAMAGE_MULT = 3
+    }
+    triggered_army_modifier = {
+        potential = {
+            leader_class = commander
+            has_leader_flag = gts_skill_commander_level_three_3
+        }
+        ARMY_HEALTH = 1
+        ARMY_DAMAGE_MULT = 1
+        ARMY_STARTING_EXPERIENCE_ADD = 500
+    }
+    triggered_councilor_modifier = {
+        potential = {
+            leader_class = commander
+            has_leader_flag = gts_skill_commander_level_three_03
+        }
+        ARMY_HEALTH = 0.2
+        ARMY_DAMAGE_MULT = 0.2
+        ARMY_STARTING_EXPERIENCE_ADD = 100
+    }
+
+
+    leader_class = { official scientist commander }
+    initial = no
+    randomized = no
+    notify_on_gained = no
+}

@@ -1,0 +1,184 @@
+counter_gts_pop = {
+	# 計算巨娘人口(有上限版)
+	complex_trigger_modifier = {
+		trigger = count_owned_pop_amount
+		parameters = {
+			limit = {
+				gts_is_giantess = yes
+				pop_has_happiness = yes
+			}
+		}
+		mode = add
+		mult = 0.01
+	}
+	max = 100
+}
+
+counter_tiny_pop = {
+	# 計算小人人口(有上限版)
+	complex_trigger_modifier = {
+		trigger = count_owned_pop_amount
+		parameters = {
+			limit = {
+				gts_is_tiny = yes
+				pop_has_happiness = yes
+			}
+		}
+		mode = add
+		mult = 0.01
+	}
+	max = 100
+}
+
+gts_count_buildings = {
+	# 計算建築數量及升級所需資源
+	complex_trigger_modifier = {
+		trigger = num_buildings
+		parameters = {
+			type = any
+			disabled = no
+		}
+		mode = add
+	}
+}
+
+gts_count_districts = {
+	# 計算區劃數量及升級所需資源
+	complex_trigger_modifier = {
+		trigger = num_districts
+		parameters = {
+			type = any
+		}
+		mode = add
+	}
+}
+
+gts_num_planet_districts = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = num_districts
+		trigger_scope = planet
+		parameters = {
+			type = $DISTRICT$
+		}
+		mode = add
+	}
+}
+
+gts_count_ships = {
+	# 計算艦隊數量及升級所需資源
+	base = 0
+	complex_trigger_modifier = {
+		trigger = count_owned_ship
+		parameters = {
+			limit = {
+				OR = {
+					is_ship_size = corvette
+					is_ship_size = frigate
+				}
+			}
+		}
+		mult = 200
+		mode = add
+	}
+	complex_trigger_modifier = {
+		trigger = count_owned_ship
+		parameters = {
+			limit = {
+				is_ship_size = destroyer
+			}
+		}
+		mult = 400
+		mode = add
+	}
+	complex_trigger_modifier = {
+		trigger = count_owned_ship
+		parameters = {
+			limit = {
+				is_ship_size = cruiser
+			}
+		}
+		mult = 800
+		mode = add
+	}
+	complex_trigger_modifier = {
+		trigger = count_owned_ship
+		parameters = {
+			limit = {
+				is_ship_size = battleship
+			}
+		}
+		mult = 1600
+		mode = add
+	}
+	complex_trigger_modifier = {
+		trigger = count_owned_ship
+		parameters = {
+			limit = {
+				is_ship_size = titan
+			}
+		}
+		mult = 3200
+		mode = add
+	}
+	complex_trigger_modifier = {
+		trigger = count_owned_ship
+		parameters = {
+			limit = {
+				is_ship_size = military_station_small
+			}
+		}
+		mult = 500
+		mode = add
+	}
+	complex_trigger_modifier = {
+		trigger = count_owned_ship
+		parameters = {
+			limit = {
+				is_ship_size = ion_cannon
+			}
+		}
+		mult = 1500
+		mode = add
+	}
+}
+
+gts_count_bio_hips = {
+	# 計算太空生物艦隊數量及升級所需資源
+	base = 0
+	complex_trigger_modifier = {
+		trigger = count_owned_ship
+		parameters = {
+			limit = {
+				ship_is_bioship = yes
+			}
+		}
+		mult = 5000
+		mode = add
+	}
+	complex_trigger_modifier = {
+		trigger = count_owned_ship
+		parameters = {
+			limit = {
+				OR = {
+					is_ship_category = space_amoeba
+					is_ship_category = tiyanki
+					is_ship_category = crystalline_entity
+					is_ship_category = voidworm
+					is_ship_category = cutholoid
+				}
+			}
+		}
+		mult = 5000
+		mode = add
+	}
+}
+
+count_gts_leader_cost_mult = {
+	add = Root.gts_leader_cost_mult
+	modifier = {
+		Root = { has_valid_civic = civic_gts_worship }
+		mult = 0.75
+	}
+	max = 10
+}

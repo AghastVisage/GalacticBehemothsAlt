@@ -1,0 +1,32 @@
+#通讯频道
+relic_gts_communication = {
+	activation_duration = 0
+	portrait = "GFX_relic_omnicodex"
+	sound = "relic_activation_the_surveyor"
+	resources = {
+		category = relics
+		# Activation cost
+		cost = {
+			influence = 0
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+	score = 0
+	active_effect = {
+		hidden_effect = {
+			country_event = {
+				id = gts_ui.5
+			}
+		}
+	}
+	possible = {
+		custom_tooltip = relic_gts_communication.tooltip
+		hidden_trigger = {
+			NOT = {
+				has_country_flag = gts_intel_panel_opened
+			}
+		}
+	}
+}

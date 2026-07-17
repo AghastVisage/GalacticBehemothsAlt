@@ -1,0 +1,440 @@
+namespace = gts_guide_qhai
+# 初次通讯
+country_event = {
+    id = gts_guide_qhai.0
+    is_triggered_only = yes    diplomatic = yes
+    title = gts_guide_qhai.0.name
+    diplomatic_title = gts_guide_qhai.0.name
+
+    desc = gts_guide_qhai.0.desc
+    trigger = {
+        NOR = { has_country_flag = gts_qhai_country_communicate
+                has_country_flag = gts_qhai_first_communicate}
+    }
+    picture_event_data = {
+        portrait = gts_portrait_qhai4
+        room = gts_qhai0_room
+    }
+    immediate = {
+        set_country_flag = gts_qhai_country_communicate
+        set_country_flag = gts_qhai_first_communicate
+    }
+    option = {
+        name = gts_guide_qhai.0.option
+        hidden_effect = {
+            remove_country_flag = gts_qhai_country_communicate
+            country_event = {
+                id = gts_guide_qhai.1
+            }
+        }
+    }
+    after = {
+        remove_country_flag = gts_qhai_country_communicate
+    }
+}
+# 通讯主界面
+country_event = {
+    id = gts_guide_qhai.1
+    is_triggered_only = yes    diplomatic = yes
+    title = gts_guide_qhai.1.name
+    diplomatic_title = gts_guide_qhai.1.name
+
+    # 起始默认
+    desc = gts_guide_qhai.1.desc
+    trigger = {
+        NOT = { has_country_flag = gts_qhai_country_communicate }
+    }
+    picture_event_data = {
+        portrait = gts_portrait_qhai4
+        room = gts_qhai0_room
+    }
+    # 起始默认
+    desc = gts_guide_qhai.1.desc
+    trigger = {
+        NOT = { has_country_flag = gts_qhai_country_communicate }
+    }
+    immediate = {
+        set_country_flag = gts_qhai_country_communicate
+    }
+    option = {
+        name = gts_guide_qhai.1.option.1
+        hidden_effect = {
+            country_event = {
+                id = gts_ui.5
+            }
+        }
+        custom_tooltip = gts_guide_qhai.1.option.1.tooltips
+    }
+    option = {
+        trigger = {
+            always = no
+            has_country_flag = gts_qhai_remind_off
+        }
+        name = gts_guide_qhai.1.option.2
+        set_country_flag = gts_qhai_remind_off
+        custom_tooltip = gts_guide_qhai.1.option.2.tooltips
+    }
+    option = {
+        trigger = {
+            always = no
+            NOT = {has_country_flag = gts_qhai_remind_off}
+        }
+        name = gts_guide_qhai.1.option.3
+        remove_country_flag = gts_qhai_remind_off
+        custom_tooltip = gts_guide_qhai.1.option.3.tooltips
+    }
+    option = {
+        allow = {
+            always = no
+            custom_tooltip = gts_guide_qhai.1.option.false.tooltips
+        }
+        name = gts_guide_qhai.1.option.4
+        hidden_effect = {
+            country_event = {
+                id = gts_guide_qhai.3
+            }
+        }
+        custom_tooltip = gts_guide_qhai.1.option.4.tooltips
+    }
+    option = {
+        name = gts_guide_qhai.1.option.5
+        hidden_effect = {
+            country_event = {
+                id = gts_guide_qhai.2
+            }
+        }
+        custom_tooltip = gts_guide_qhai.1.option.5.tooltips
+    }
+    option = {
+        name = gts_guide_qhai.1.option.6
+        trigger = {
+            or = {
+                has_country_flag = gts_leader_qhai_p1_finish
+                any_owned_leader = { has_leader_flag = gts_qhai}
+            }
+        }
+        hidden_effect = {
+            country_event = {
+                id = gts_leader_qhai.20
+            }
+            country_event = {
+                id = gts_leader_qhai.35
+            }
+        }
+        custom_tooltip = gtsra_contact_qhai.tooltip
+    }
+    option = {
+        trigger = {
+            always = no
+        }
+        name = gts_guide_qhai.1.option.7
+        is_dialog_only = yes
+    }
+    option = {
+        trigger = {
+            always = no
+        }
+        name = gts_guide_qhai.1.option.8
+        is_dialog_only = yes
+    }
+    option = { #退出
+        name = gts_guide_qhai.1.option.quit
+        hidden_effect = {
+            remove_country_flag = gts_qhai_country_communicate
+        }
+        default_hide_option = yes
+    }
+    after = {
+        remove_country_flag = gts_qhai_country_communicate
+    }
+}
+# 通讯转接界面
+country_event = {
+    id = gts_guide_qhai.2
+    is_triggered_only = yes    diplomatic = yes
+    title = gts_guide_qhai.2.name
+    diplomatic_title = gts_guide_qhai.2.name
+
+    desc = gts_guide_qhai.2.desc.2
+    picture_event_data = {
+        portrait = gts_portrait_qhai4
+        room = gts_qhai0_room
+    }
+    immediate = {
+        set_country_flag = gts_qhai_country_communicate
+    }
+    # 劳尔斯
+    option = {
+        name = gts_guide_qhai.2.option.1
+        allow = {
+            has_country_flag = get_rawls
+        }
+        hidden_effect = {
+            country_event = {
+                id = gts_rawls.10
+            }
+
+        }
+        custom_tooltip = gts_guide_qhai.2.option.1.tooltips
+    }
+    # 犽戎
+    option = {
+        name = gts_guide_qhai.2.option.2
+        trigger= {
+            any_owned_leader = {
+                has_leader_flag = gts_yarong
+            }
+        }
+        hidden_effect = {
+            country_event = {
+                id = gts_bfbf.300
+            }
+        }
+        custom_tooltip = gts_guide_qhai.2.option.2.tooltips
+    }
+    # 林凤
+    option = {
+        name = gts_guide_qhai.2.option.3
+        trigger = {
+            any_owned_leader = {
+                has_leader_flag = gts_linfeng
+            }
+        }
+        hidden_effect = {
+            country_event = {
+                id = gts_linfeng.1000
+            }
+        }
+        custom_tooltip = gts_guide_qhai.2.option.3.tooltips
+    }
+    # 洛蒂
+    option = {
+        name =  gts_guide_qhai.2.option.4
+        trigger = {
+            any_owned_leader = {
+                has_leader_flag = gts_luodi
+            }
+        }
+        hidden_effect = {
+            country_event = {
+                id = gts_rawls.100
+            }
+        }
+        custom_tooltip = gts_guide_qhai.2.option.4.tooltips
+
+    }
+    # 无声铃鹿
+    option = {
+        name = gts_guide_qhai.2.option.5
+        trigger = {
+            any_owned_leader = {
+                has_leader_flag = gts_linglu
+            }
+        }
+        hidden_effect = {
+            country_event = {
+                id = gts_linglu.1001
+            }
+
+        }
+        custom_tooltip = gts_guide_qhai.2.option.5.tooltips
+
+    }
+    # 小死神
+    option = {
+        name = gts_guide_qhai.2.option.6
+        trigger = {
+            any_owned_leader = {
+                has_leader_flag = gts_tlipoca
+            }
+        }
+        hidden_effect = {
+            country_event = {
+                id = gts_tlipoca.10
+            }
+
+        }
+        custom_tooltip = gts_guide_qhai.2.option.6.tooltips
+
+    }
+    # 花田
+    option = {
+        name = gts_guide_qhai.2.option.7
+        trigger = {
+            any_owned_leader = {
+                has_leader_flag = gts_huatian
+            }
+        }
+        hidden_effect = {
+            country_event = {
+                id = gts_huatian.1064
+            }
+
+        }
+        custom_tooltip = gts_guide_qhai.2.option.7.tooltips
+    }
+    # 希诺
+    option = {
+        name = gts_guide_qhai.2.option.8
+        trigger = {
+            has_country_flag = xinuo_experience_success
+            any_owned_leader = {
+                has_leader_flag = gts_xinuo
+            }
+        }
+        hidden_effect = {
+            country_event = {
+                id = gts_xinuo.1000
+            }
+
+        }
+
+    }
+    option = { #返回
+        name = gts_guide_qhai.2.option.back
+        hidden_effect = {
+            country_event = {
+                id = gts_guide_qhai.1
+            }
+        }
+
+    }
+    option = { #退出
+        name = gts_guide_qhai.2.option.quit
+        hidden_effect = {
+            remove_country_flag = gts_qhai_country_communicate
+        }
+        default_hide_option = yes
+    }
+    after = {
+        remove_country_flag = gts_qhai_country_communicate
+    }
+}
+# 千海聊天界面
+country_event = {
+    id = gts_guide_qhai.3
+    is_triggered_only = yes    diplomatic = yes
+    title = gts_guide_qhai.3.name
+    diplomatic_title = gts_guide_qhai.3.name
+    desc = gts_guide_qhai.3.desc.1
+    desc = gts_guide_qhai.3.desc.2
+    desc = gts_guide_qhai.3.desc.3
+    picture_event_data = {
+        portrait = gts_portrait_qhai4
+        room = gts_qhai0_room
+    }
+    immediate = {
+        set_country_flag = gts_qhai_country_communicate
+    }
+    option = {
+        trigger = {
+            NOT = { has_country_flag = gts_guide_qhai_chat_1 }
+        }
+        name = gts_guide_qhai.3.option.1
+        hidden_effect = {
+            country_event = {
+                id = gts_guide_qhai.4
+            }
+        }
+    }
+    option = {
+        name = gts_guide_qhai.3.option.2
+        is_dialog_only = yes
+    }
+    option = {
+        name = gts_guide_qhai.3.option.3
+        is_dialog_only = yes
+    }
+    option = { #返回
+        name = gts_guide_qhai.2.option.back
+        hidden_effect = {
+            country_event = {
+                id = gts_guide_qhai.1
+            }
+        }
+    }
+    option = { #退出
+        name = gts_guide_qhai.2.option.quit
+        hidden_effect = {
+            remove_country_flag = gts_qhai_country_communicate
+        }
+        default_hide_option = yes
+    }
+    after = {
+        hidden_effect = {
+            remove_country_flag = gts_qhai_country_communicate
+        }
+    }
+}
+
+country_event = {
+    id = gts_guide_qhai.4
+    title = gts_guide_qhai.4.name
+    desc = gts_guide_qhai.4.desc
+    is_triggered_only = yes
+    trigger = {
+        NOT = {
+            has_country_flag =  gts_guide_qhai_chat_1
+        }
+    }
+}
+# 创建千海通讯国家
+country_event = {
+    id = gts_guide_qhai.1000
+    is_triggered_only = yes
+    hide_window = yes
+    trigger = {
+        is_ai = no
+
+    }
+    immediate = {
+        create_country = {
+            name = NAME_qhai_communicate
+            type = gts_qhai_commnunicate
+            flag = {
+                icon={
+                    category="gts_country_flag"
+                    file="flag_gts_qhai_B1.dds"
+                }
+                background={
+                    category="backgrounds"
+                    file="pattern_01.dds"
+                }
+                colors={
+                    "dark_blue"
+                    "black"
+                    "null"
+                    "null"
+                }
+            }
+        }
+        last_created_country = {
+            set_country_flag = protected_from_queen_storm
+            establish_communications_no_message = root
+            save_global_event_target_as = gts_qhai_country_target
+        }
+    }
+}
+# 用于外交中触发点击事件
+country_event = {
+    id =  gts_guide_qhai.5001
+    is_triggered_only = yes
+    hide_window = yes
+
+    trigger = {
+        from = {
+            is_country_type = gts_qhai_commnunicate
+        }
+    }
+
+    immediate = {
+        hidden_effect = {
+            country_event = {
+                id = gts_guide_qhai.0
+            }
+            country_event = {
+                id = gts_guide_qhai.1
+            }
+        }
+    }
+}

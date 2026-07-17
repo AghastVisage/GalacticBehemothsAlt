@@ -1,0 +1,2158 @@
+situation_tinys_out_crsis = {
+	picture = GFX_evt_deficit
+	category = negative
+	fail_icon = GFX_situation_outcome_meh
+	fail_icon_frame = GFX_situation_outcome_frame_green
+	complete_icon = GFX_situation_outcome_bankrupcy
+	complete_icon_frame = GFX_situation_outcome_frame_red
+	on_start = {
+		#局势开始时
+		set_situation_flag = deficit_situation		#?
+	}
+	on_abort = {
+		#局势废止时
+		owner = {
+			add_resource = {
+				volatile_motes = @bailout_strategic_base_amount
+				mult = value:bailout_scaling_factor
+			}
+		}
+	}
+	initial_progress = 50	#开始时进度
+	stages = {
+		gts_deficit_first = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_red
+			end = 20
+			modifier = {
+				planet_jobs_produces_mult = -0.2
+				pop_government_ethic_attraction = -0.4
+				faction_approval = -0.35
+			}
+			on_first_enter = {
+				situation_event = {
+					id = gts_evt_deficit.1
+				}				#局势极好
+			}
+		}
+		gts_deficit_second = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_red
+			end = 40
+			modifier = {
+				planet_jobs_produces_mult = -0.1
+				pop_government_ethic_attraction = -0.2
+			}
+			on_first_enter = {
+				situation_event = {
+					id = gts_evt_deficit.2
+				}				#局势良好
+			}
+		}
+		gts_deficit_third = {
+			icon = GFX_situation_stage_3			#中立
+			icon_background = GFX_situation_stage_frame_red
+			end = 60
+			modifier = {
+				planet_jobs_produces_mult = -0.05
+				pop_happiness = -0.05
+			}
+		}
+		gts_deficit_fourth = {
+			icon = GFX_situation_stage_4
+			icon_background = GFX_situation_stage_frame_red
+			end = 80
+			modifier = {
+				planet_stability_add = -10
+				pop_happiness = -0.15
+			}
+			on_first_enter = {
+				situation_event = {
+					id = gts_evt_deficit.3
+				}				#局势不好
+			}
+		}
+		gts_deficit_fifth = {
+			icon = GFX_situation_stage_5
+			icon_background = GFX_situation_stage_frame_red
+			end = 100
+			modifier = {
+				planet_pops_upkeep_mult = 0.2
+				planet_stability_add = -30
+				pop_happiness = -0.25
+			}
+			on_first_enter = {
+				situation_event = {
+					id = gts_evt_deficit.4
+				}				#局势极差
+			}
+		}
+	}
+	on_progress_complete = {
+		#进度完成
+		situation_event = {
+			id = gts_evt_deficit.6
+		}		#净化运动
+	}
+	on_fail = {
+		#进度失败
+		situation_event = {
+			id = gts_evt_deficit.5
+		}		#和平谈判
+	}
+	monthly_progress = {
+		#进度条
+		base = 3
+		modifier = {
+			add = 2
+			desc = situation_gts_bad_tt			#应当与决策办法一致
+			current_situation_approach = deficit_approach_gts_bad			#解决手段
+		}
+		modifier = {
+			add = -8
+			desc = situation_gts_good_tt			#应当与决策办法一致
+			current_situation_approach = deficit_approach_gts_good			#解决手段
+		}
+	}
+	approach = {
+		#处理办法温和
+		name = deficit_approach_gts_good
+		icon = GFX_situation_approach_shrug
+		icon_background = GFX_situation_approach_bg_green
+		resources = {
+			category = situations
+			upkeep = {
+				society_research = 20
+			}
+		}
+		modifier = {
+			pop_happiness = 0.2
+			planet_jobs_upkeep_mult = -0.75
+		}
+		ai_weight = {
+			base = 3
+		}
+	}
+	approach = {
+		#处理办法激进
+		name = deficit_approach_gts_bad
+		icon = GFX_situation_approach_this_is_fine
+		icon_background = GFX_situation_approach_bg_red
+		resources = {
+			category = situations
+			upkeep = {
+				energy = 30
+			}
+		}
+		modifier = {
+			edicts_upkeep_mult = -0.2			#法令维护费-20% 
+			country_edict_fund_add = 100			#法令经费+100
+		}
+		ai_weight = {
+			base = 3
+		}
+	}
+}
+
+situation_chenghui_anger = {
+	picture = GFX_evt_clocks
+	category = negative
+	fail_icon = GFX_situation_outcome_meh
+	fail_icon_frame = GFX_situation_outcome_frame_green
+	complete_icon = GFX_situation_outcome_bankrupcy
+	complete_icon_frame = GFX_situation_outcome_frame_red
+	initial_progress = 20	#开始时进度
+	stages = {
+		gts_chenghui_anger_deficit_first = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_green
+			end = 50
+		}
+		gts_chenghui_anger_deficit_second = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_green
+			on_first_enter = {
+				random_list = {
+					1 = {
+						situation_event = {
+							id = gts_chenghui.2000
+						}
+					}
+					1 = {
+						situation_event = {
+							id = gts_chenghui.2002
+						}
+					}
+				}
+			}
+			end = 100
+		}
+	}
+	on_progress_complete = {
+		#进度完成
+		situation_event = {
+			id = gts_chenghui.2004
+		}		#饿了
+	}
+	on_fail = {
+		#进度失败
+		situation_event = {
+			id = gts_chenghui.2005
+		}		#吃饱了
+	}
+	monthly_progress = {
+		#进度条
+		base = 0
+		modifier = {
+			add = 1
+			desc = situation_gts_chenghui_anger_1_tt
+			owner = {
+				has_monthly_income = {
+					resource = food
+					value < 0
+				}
+				#产出为负
+			}
+		}
+		modifier = {
+			add = 1
+			desc = situation_gts_chenghui_anger_2_tt
+			owner = {
+				has_resource = {
+					type = food
+					amount < 1
+				}
+				#储备为负
+			}
+		}
+		modifier = {
+			add = -5
+			desc = situation_gts_chenghui_anger_3_tt
+			owner = {
+				has_monthly_income = {
+					resource = food
+					value > 0
+				}
+				#产出为正
+			}
+		}
+		modifier = {
+			add = -5
+			desc = situation_gts_chenghui_anger_4_tt
+			owner = {
+				has_resource = {
+					type = food
+					amount > 0
+				}
+				#储备为正
+			}
+		}
+		modifier = {
+			add = -1
+			desc = situation_gts_chenghui_anger_8_tt
+			owner = {
+				has_country_flag = resolution_chenghuianger_human				#采取喂人手段
+			}
+		}
+		modifier = {
+			add = -1
+			desc = situation_gts_chenghui_anger_9_tt
+			owner = {
+				has_country_flag = resolution_chenghuianger_robot				#采取智械手段
+			}
+		}
+		modifier = {
+			add = -2
+			desc = situation_gts_chenghui_anger_5_tt			#应当与决策办法一致
+			current_situation_approach = deficit_approach_gts_chenghui_anger_positive			#解决手段
+		}
+		modifier = {
+			add = -1
+			desc = situation_gts_chenghui_anger_6_tt			#应当与决策办法一致
+			current_situation_approach = deficit_approach_gts_chenghui_anger_normal			#解决手段
+		}
+		modifier = {
+			add = 1
+			desc = situation_gts_chenghui_anger_7_tt			#应当与决策办法一致
+			current_situation_approach = deficit_approach_gts_chenghui_anger_negative			#解决手段
+		}
+	}
+	approach = {
+		#积极解决
+		name = deficit_approach_gts_chenghui_anger_positive
+		icon = GFX_situation_approach_balance_sheet
+		icon_background = GFX_situation_approach_bg_green
+		modifier = {
+			country_food_produces_mult = 1
+			country_minerals_produces_mult = -0.5
+			country_energy_produces_mult = -0.5
+			country_alloys_produces_mult = -0.5
+		}
+	}
+	approach = {
+		#稍微支持
+		name = deficit_approach_gts_chenghui_anger_normal
+		icon = GFX_situation_approach_balance_sheet
+		icon_background = GFX_situation_approach_bg_yellow
+		default = yes
+		modifier = {
+			country_food_produces_mult = 0.5
+			country_minerals_produces_mult = -0.25
+			country_energy_produces_mult = -0.25
+		}
+	}
+	approach = {
+		#不变
+		name = deficit_approach_gts_chenghui_anger_negative
+		icon = GFX_situation_approach_balance_sheet
+		icon_background = GFX_situation_approach_bg_red
+		modifier = {
+		}
+	}
+}
+
+situation_aya_tinys_change = {
+	picture = GFX_evt_clocks
+	complete_icon = GFX_situation_outcome_meh
+	complete_icon_frame = GFX_situation_outcome_frame_green
+	on_progress_complete = {
+		#进度完成
+		situation_event = {
+			id = gts_aya.1
+		}		#净化运动
+	}
+	stages = {
+		gts_aya_deficit_first = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_green
+			end = 100
+		}
+	}
+	monthly_progress = {
+		#进度条
+		base = 0.1
+		modifier = {
+			add = 0.1
+			desc = situation_gts_aya_1_tt			#应当与决策办法一致
+			owner = {
+				has_technology = tech_genome_mapping				#基因图谱
+			}
+		}
+		modifier = {
+			add = 0.1
+			desc = situation_gts_aya_1_tt			#应当与决策办法一致
+			owner = {
+				has_technology = tech_alien_life_studies				#异星生物学
+			}
+		}
+		modifier = {
+			add = 0.1
+			desc = situation_gts_aya_1_tt			#应当与决策办法一致
+			owner = {
+				has_technology = tech_frontier_health				#基因治疗
+			}
+		}
+		modifier = {
+			add = 0.1
+			desc = situation_gts_aya_1_tt			#应当与决策办法一致
+			owner = {
+				has_technology = tech_frontier_hospital				#基因诊所
+			}
+		}
+		modifier = {
+			add = 0.1
+			desc = situation_gts_aya_1_tt			#应当与决策办法一致
+			owner = {
+				has_technology = tech_vitality_boosters				#活性增强剂
+			}
+		}
+		modifier = {
+			add = 0.1
+			desc = situation_gts_aya_1_tt			#应当与决策办法一致
+			owner = {
+				has_technology = tech_epigenetic_triggers				#表观遗传学触发器
+			}
+		}
+		modifier = {
+			add = 0.1
+			desc = situation_gts_aya_1_tt			#应当与决策办法一致
+			owner = {
+				has_technology = tech_cloning				#克隆
+			}
+		}
+		modifier = {
+			add = 0.1
+			desc = situation_gts_aya_1_tt			#应当与决策办法一致
+			owner = {
+				has_technology = tech_gene_banks				#基因库
+			}
+		}
+		modifier = {
+			add = 0.1
+			desc = situation_gts_aya_1_tt			#应当与决策办法一致
+			owner = {
+				has_technology = tech_morphogenetic_field_mastery				#形态发生学精通
+			}
+		}
+		modifier = {
+			add = 0.1
+			desc = situation_gts_aya_1_tt			#应当与决策办法一致
+			owner = {
+				has_technology = tech_glandular_acclimation				#腺体适应
+			}
+		}
+		modifier = {
+			add = 0.1
+			desc = situation_gts_aya_1_tt			#应当与决策办法一致
+			owner = {
+				has_technology = tech_selected_lineages				#领袖强化一
+			}
+		}
+		modifier = {
+			add = 0.1
+			desc = situation_gts_aya_1_tt			#应当与决策办法一致
+			owner = {
+				has_technology = tech_capacity_boosters				#领袖强化二
+			}
+		}
+		modifier = {
+			add = 0.1
+			desc = situation_gts_aya_1_tt			#应当与决策办法一致
+			owner = {
+				has_technology = tech_regenerative_hull_tissue				#再生舰体
+			}
+		}
+		modifier = {
+			add = 0.1
+			desc = situation_gts_aya_1_tt			#应当与决策办法一致
+			owner = {
+				has_technology = tech_subdermal_stimulation				#皮下刺激
+			}
+		}
+		modifier = {
+			add = 0.1
+			desc = situation_gts_aya_1_tt			#应当与决策办法一致
+			owner = {
+				has_technology = tech_genome_mapping
+			}
+		}
+		modifier = {
+			add = 0.1
+			desc = situation_gts_aya_1_tt			#应当与决策办法一致
+			owner = {
+				has_technology = tech_gene_tailoring		#二级社会学
+			}
+		}
+		modifier = {
+			add = 0.1
+			desc = situation_gts_aya_1_tt			#应当与决策办法一致
+			owner = {
+				has_technology = tech_gene_expressions			#三级社会学
+			}
+		}
+		modifier = {
+			add = 0.5
+			desc = situation_gts_aya_2_tt			#应当与决策办法一致
+			owner = {
+				has_technology = tech_gene_tailoring				#基因裁剪
+			}
+		}
+		modifier = {
+			add = 0.5
+			desc = situation_gts_aya_2_tt			#应当与决策办法一致
+			owner = {
+				has_technology = tech_gene_expressions				#基因定向表达
+			}
+		}
+		modifier = {
+			add = 0.5
+			desc = situation_gts_aya_2_tt			#应当与决策办法一致
+			owner = {
+				has_technology = tech_gene_seed_purification				#基因种子纯化
+			}
+		}
+		modifier = {
+			add = 2
+			desc = situation_gts_aya_3_tt			#应当与决策办法一致
+			owner = {
+				has_ascension_perk = ap_engineered_evolution				#基因飞升
+			}
+		}
+		modifier = {
+			add = 0.1
+			desc = situation_gts_aya_4_tt			#应当与决策办法一致
+			current_situation_approach = deficit_approach_gts_aya_positive			#解决手段
+		}
+		modifier = {
+			add = 0
+			desc = situation_gts_aya_5_tt			#应当与决策办法一致
+			current_situation_approach = deficit_approach_gts_aya_normal			#解决手段
+		}
+		modifier = {
+			add = -0.1
+			desc = situation_gts_aya_6_tt			#应当与决策办法一致
+			current_situation_approach = deficit_approach_gts_aya_negative			#解决手段
+		}
+	}
+	approach = {
+		#积极赞助
+		name = deficit_approach_gts_aya_positive
+		icon = GFX_situation_approach_shrug
+		icon_background = GFX_situation_approach_bg_green
+		modifier = {
+			planet_jobs_physics_research_produces_mult = -0.1
+			planet_jobs_society_research_produces_mult = 0.2
+			planet_jobs_engineering_research_produces_mult = -0.1
+			country_society_tech_research_speed = 0.1
+			country_energy_produces_mult = -0.1
+		}
+	}
+	approach = {
+		#维持现状
+		name = deficit_approach_gts_aya_normal
+		icon = GFX_situation_approach_balance_sheet
+		icon_background = GFX_situation_approach_bg_yellow
+		default = yes
+		modifier = {
+			planet_jobs_physics_research_produces_mult = -0.05
+			planet_jobs_society_research_produces_mult = 0.1
+			planet_jobs_engineering_research_produces_mult = -0.05
+		}
+	}
+	approach = {
+		name = deficit_approach_gts_aya_negative
+		icon = GFX_situation_approach_balance_sheet
+		icon_background = GFX_situation_approach_bg_red
+		modifier = {
+			planet_jobs_physics_research_produces_mult = -0.05
+			planet_jobs_society_research_produces_mult = -0.05
+			planet_jobs_engineering_research_produces_mult = -0.05
+			country_society_tech_research_speed = -0.1
+			country_energy_produces_mult = 0.1
+		}
+	}
+}
+
+situation_victoria_balance = {
+	#稳定度
+	picture = GFX_evt_clocks
+	complete_icon = GFX_situation_outcome_meh
+	complete_icon_frame = GFX_situation_outcome_frame_green
+	on_progress_complete = {
+		#进度完成
+		#	    situation_event = { id = gts_aya.1 } #净化运动
+	}
+	stages = {
+		gts_vic_deficit_first = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_green
+			end = 100
+		}
+	}
+	monthly_progress = {
+		#进度条
+		base = 0.2
+	}
+	approach = {
+		#维持现状
+		name = deficit_approach_gts_aya_normal
+		icon = GFX_situation_approach_balance_sheet
+		icon_background = GFX_situation_approach_bg_yellow
+		default = yes
+		modifier = {
+		}
+	}
+}
+
+situation_make_lottie_shoes = {
+	picture = GFX_lottie_site5
+	category = positive
+	complete_icon = GFX_situation_outcome_positive
+	complete_icon_frame = GFX_situation_outcome_frame_green
+	on_progress_complete = {
+		custom_tooltip = situation_lottie_shoes_gain
+		situation_event = {
+			id = gts_lottie.105
+		}
+	}
+	monthly_progress = {
+		#进度条
+		base = 2
+		modifier = {
+			add = 1
+			desc = situation_make_lottie_shoes_slow		#应当与决策办法一致
+			current_situation_approach = make_lottie_shoes_slow			#解决手段
+		}
+		modifier = {
+			add = 3
+			desc = situation_make_lottie_shoes_fast		#应当与决策办法一致
+			current_situation_approach = make_lottie_shoes_fast			#解决手段
+		}
+	}
+	stages = {
+		lottie_make_shoe1 = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_green
+			end = 25
+			modifier = {
+				country_unity_produces_mult = 0.02
+			}
+			on_first_enter = {
+				situation_event = {
+					id = gts_lottie.101
+				}				#鞋底构筑
+			}
+		}
+		lottie_make_shoe2 = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_green
+			end = 50
+			modifier = {
+				country_unity_produces_mult = 0.04
+			}
+			on_first_enter = {
+				situation_event = {
+					id = gts_lottie.102
+				}				#鞋面构筑
+			}
+		}
+		lottie_make_shoe3 = {
+			icon = GFX_situation_stage_3
+			icon_background = GFX_situation_stage_frame_green
+			end = 75
+			modifier = {
+				country_unity_produces_mult = 0.07
+			}
+			on_first_enter = {
+				situation_event = {
+					id = gts_lottie.103
+				}				#装饰构筑
+			}
+		}
+		lottie_make_shoe4 = {
+			icon = GFX_situation_stage_4
+			icon_background = GFX_situation_stage_frame_green
+			end = 100
+			modifier = {
+				country_unity_produces_mult = 0.1
+			}
+			on_first_enter = {
+				situation_event = {
+					id = gts_lottie.104
+				}				#鞋垫构筑
+			}
+		}
+	}
+	approach = {
+		name = make_lottie_shoes_slow
+		icon = GFX_situation_approach_unity
+		icon_background = GFX_situation_approach_bg_yellow
+		default = yes
+		resources = {
+			category = situations
+			upkeep = {
+				food = 20
+				minerals = 20
+				energy = 20
+				alloys = 20
+				consumer_goods = 20
+			}
+		}
+		on_select = {
+			custom_tooltip = make_lottie_shoes_slow_tooltip
+		}
+	}
+	approach = {
+		name = make_lottie_shoes_fast
+		icon = GFX_situation_approach_unity
+		icon_background = GFX_situation_approach_bg_green
+		resources = {
+			category = situations
+			upkeep = {
+				food = 60
+				minerals = 60
+				energy = 60
+				alloys = 60
+				consumer_goods = 60
+			}
+		}
+		on_select = {
+			custom_tooltip = make_lottie_shoes_fast_tooltip
+		}
+	}
+}
+
+### loli星球局势
+gtsra_situation_giga_loli = {
+	complete_icon_frame = GFX_situation_outcome_frame_blue
+	complete_icon = GFX_situation_outcome_unknown
+	fail_icon_frame = GFX_situation_outcome_frame_blue
+	fail_icon = GFX_situation_outcome_unknown
+	picture = GFX_gtsra_sleep_loli
+	stages = {
+		stage_1 = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_blue
+			custom_tooltip = stage_gtsra_giga_loli_1_tooltip
+			on_first_enter = {
+				random_list = {
+					2 = {
+						situation_event = {
+							id = gts_aurora.1022
+						}
+					}
+					1 = {
+					}
+				}
+			}
+			end = 20
+		}
+		stage_2 = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_blue
+			custom_tooltip = stage_gtsra_giga_loli_2_tooltip
+			end = 55
+		}
+		stage_3 = {
+			icon = GFX_situation_stage_3
+			icon_background = GFX_situation_stage_frame_blue
+			custom_tooltip = stage_gtsra_giga_loli_3_tooltip
+			on_first_enter = {
+				random_list = {
+					1 = {
+						situation_event = {
+							id = gts_aurora.1020
+						}
+					}
+					1 = {
+						situation_event = {
+							id = gts_aurora.1021
+						}
+					}
+					1 = {
+					}
+				}
+			}
+			end = 75
+		}
+	}
+	initial_progress = 37
+	progress_direction = bidirectional
+	complete_category = positive
+	fail_category = positive
+	on_progress_complete = {
+		# 温柔线
+		custom_tooltip = gtsra_giga_loli_completed
+		hidden_effect = {
+			situation_event = {
+				id = gts_aurora.1030
+			}
+		}
+	}
+	on_fail = {
+		# 残忍线
+		custom_tooltip = gtsra_giga_loli_fail
+		hidden_effect = {
+			situation_event = {
+				id = gts_aurora.1039
+			}
+		}
+	}
+	approach = {
+		#准备消灭
+		name = gtsra_giga_loli_neutralize
+		icon = GFX_situation_approach_fist
+		icon_background = GFX_situation_approach_bg_red
+		on_select = {
+			custom_tooltip = gtsra_giga_loli_neutralize_effect
+		}
+		ai_weight = {
+			base = 10
+		}
+	}
+	approach = {
+		#有限观察
+		name = gtsra_giga_loli_observe
+		default = yes
+		on_select = {
+			custom_tooltip = gtsra_giga_loli_observe_effect
+		}
+		icon = GFX_situation_approach_balance_sheet
+		icon_background = GFX_situation_approach_bg_green
+		ai_weight = {
+			base = 0
+		}
+		resources = {
+			category = situations
+			upkeep = {
+				energy = 25
+			}
+		}
+	}
+	approach = {
+		#进行研究
+		name = gtsra_giga_loli_research
+		on_select = {
+			custom_tooltip = gtsra_giga_loli_research_effect
+		}
+		icon = GFX_situation_approach_research
+		icon_background = GFX_situation_approach_bg_green
+		ai_weight = {
+			base = 0
+		}
+		resources = {
+			category = situations
+			upkeep = {
+				energy = 100
+			}
+		}
+	}
+	monthly_progress = {
+		base = 0
+		modifier = {
+			add = 5
+			desc = string_current_approach
+			current_situation_approach = gtsra_giga_loli_research
+		}
+		modifier = {
+			add = 2.5
+			desc = string_current_approach
+			current_situation_approach = gtsra_giga_loli_observe
+		}
+		modifier = {
+			add = -2.5
+			desc = string_current_approach
+			current_situation_approach = gtsra_giga_loli_neutralize
+		}
+	}
+	on_monthly = {
+		random_events = {
+		}
+	}
+}
+
+### 奴隶挣脱局势
+gtsra_situation_giga_slave = {
+	complete_icon_frame = GFX_situation_outcome_frame_green
+	complete_icon = GFX_situation_outcome_positive
+	fail_icon_frame = GFX_situation_outcome_frame_red
+	fail_icon = GFX_situation_outcome_negative
+	picture = GFX_gtsra_aurora_3
+	stages = {
+		stage_1 = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_red
+			custom_tooltip = stage_gtsra_giga_slave_1_tooltip
+			on_first_enter = {
+				situation_event = {
+					id = gts_aurora.1053
+				}
+			}
+			end = 20
+		}
+		stage_2 = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_blue
+			custom_tooltip = stage_gtsra_giga_slave_2_tooltip
+			end = 55
+		}
+		stage_3 = {
+			icon = GFX_situation_stage_3
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = stage_gtsra_giga_slave_3_tooltip
+			on_first_enter = {
+				situation_event = {
+					id = gts_aurora.1051
+				}
+			}
+			end = 75
+		}
+	}
+	initial_progress = 37
+	progress_direction = bidirectional
+	complete_category = positive
+	fail_category = negative
+	on_progress_complete = {
+		custom_tooltip = gtsra_giga_slave_completed
+		hidden_effect = {
+			situation_event = {
+				id = gts_aurora.1052
+			}
+		}
+	}
+	on_fail = {
+		custom_tooltip = gtsra_giga_slave_fail
+		hidden_effect = {
+			situation_event = {
+				id = gts_aurora.1054
+			}
+		}
+	}
+	approach = {
+		#无动于衷
+		name = gtsra_giga_slave_negative
+		on_select = {
+			custom_tooltip = gtsra_giga_slave_negative_effect
+		}
+		icon = GFX_situation_approach_balance_sheet
+		icon_background = GFX_situation_approach_bg_red
+		ai_weight = {
+			base = 0
+		}
+	}
+	approach = {
+		#尽全力压制
+		name = gtsra_giga_slave_positive
+		default = yes
+		on_select = {
+			custom_tooltip = gtsra_giga_slave_positive_effect
+		}
+		icon = GFX_situation_approach_fist
+		icon_background = GFX_situation_approach_bg_green
+		ai_weight = {
+			base = 0
+		}
+		resources = {
+			category = situations
+			upkeep = {
+				energy = 500
+			}
+		}
+	}
+	monthly_progress = {
+		base = 0
+		modifier = {
+			add = 1
+			desc = string_current_approach
+			current_situation_approach = gtsra_giga_slave_positive
+		}
+		modifier = {
+			add = -1
+			desc = string_current_approach
+			current_situation_approach = gtsra_giga_slave_negative
+		}
+	}
+	on_monthly = {
+		random_events = {
+		}
+	}
+}
+
+#合欢派局势
+situation_hehuanpai = {
+	complete_icon_frame = GFX_situation_outcome_frame_green
+	complete_icon = GFX_situation_outcome_positive
+	fail_icon_frame = GFX_situation_outcome_frame_red
+	fail_icon = GFX_situation_outcome_meh
+	picture = GFX_load_46
+	progress_direction = bidirectional
+	complete_category = positive
+	fail_category = negative
+
+	stages = {
+		hehuanpai_process = {
+			icon = GFX_situation_stage_pre_ftl
+			icon_background = GFX_situation_stage_frame_green
+			end = 100
+		}
+	}
+	on_progress_complete = {
+		custom_tooltip = hehuanpai_flourish_tooltip
+		hidden_effect = {
+			situation_event = {
+				id = gts_hehuanpai.2000
+			}
+		}
+	}
+	on_fail = {
+		custom_tooltip = hehuanpai_destoryed_tooltip
+		hidden_effect = {
+			situation_event = {
+				id = gts_hehuanpai.1000
+			}
+		}
+	}
+	approach = {
+		name = situation_hehuanpai_positive
+		icon = GFX_situation_approach_amenities
+		icon_background = GFX_situation_approach_bg_green
+		default = yes
+		on_select = {
+			custom_tooltip = situation_hehuanpai_positive_effect
+		}
+		modifier = {
+			planet_pops_upkeep_mult = 0.1
+		}
+	}
+	approach = {
+		name = situation_hehuanpai_negative
+		icon = GFX_situation_approach_this_is_fine
+		icon_background = GFX_situation_approach_bg_red
+		on_select = {
+			custom_tooltip = situation_hehuanpai_negative_effect
+		}
+		modifier = {
+			pop_happiness = -0.1
+		}
+	}
+	initial_progress = 50
+	monthly_progress = {
+		base = 0
+		modifier = {
+			add = 1
+			desc = string_current_approach
+			current_situation_approach = situation_hehuanpai_positive
+		}
+		 modifier = {
+			add = -1
+			desc = string_current_approach
+			current_situation_approach = situation_hehuanpai_negative
+		}
+		modifier = {
+			add = 1
+			desc = hehuanpai_approve_desc
+			owner = {
+				has_country_flag = hehuanpai_approve
+			}
+		}
+		modifier = {
+			add = -1
+			desc = hehuanpai_approve_desc
+			owner = {
+				NOR = { has_country_flag = hehuanpai_approve }
+			}
+		}
+		modifier = {
+			add = 1
+			desc = gts_assimilator_desc
+			owner = {
+				has_civic = civic_gts_assimilator
+			}
+		}
+		modifier = {
+			add = 1
+			desc = gts_hcomic_desc
+			owner = {
+				has_civic = civic_gts_hcomic
+			}
+		}
+		modifier = {
+			add = 1
+			desc = distinguished_gts_desc
+			owner = {
+				has_civic = civic_distinguished_gts
+			}
+		}
+	}
+
+	on_monthly = {
+		random_events = {
+			7 = 0
+			1 = gts_hehuanpai.3001
+			1 = gts_hehuanpai.3002
+			1 = gts_hehuanpai.3003
+		}
+	}
+}
+
+#女儿开犽戎好感度
+situation_yarong_good = {
+	complete_icon_frame = GFX_situation_outcome_frame_green
+	complete_icon = GFX_situation_outcome_meh
+	fail_icon_frame = GFX_situation_outcome_frame_red
+	fail_icon = GFX_situation_exploding_planet
+	picture = GFX_gts_event_72
+	progress_direction = bidirectional
+	complete_category = positive
+	fail_category = negative
+
+	stages = {
+		stage_1 = { #好感0
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_red
+			end = 50
+		}
+		stage_2 = { #好感20
+			end = 60
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_blue
+		}
+		stage_3 = { #好感40
+			end = 70
+			icon = GFX_situation_stage_3
+			icon_background = GFX_situation_stage_frame_blue
+			on_first_enter = {
+				hidden_effect = {
+					owner = {
+						set_country_flag = gts_yarong_favor40
+					}
+				}
+			}
+		}
+		stage_4 = { #好感60
+			end = 80
+			icon = GFX_situation_stage_4
+			icon_background = GFX_situation_stage_frame_green
+		}
+		stage_5 = { #好感80
+			end = 90
+			icon = GFX_situation_stage_5
+			icon_background = GFX_situation_stage_frame_green
+		}
+		stage_6 = { #好感100
+			end = 100
+			icon = GFX_situation_stage_6
+			icon_background = GFX_situation_stage_frame_green
+		}
+	}
+	on_progress_complete = {
+		custom_tooltip = situation_yarong_good_complete_tooltip
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = gts_god_keeper.4000
+				}
+			}
+			destroy_situation = this
+		}
+	}
+	on_fail = { 
+		custom_tooltip = situation_yarong_good_fail_tooltip
+		hidden_effect = {
+
+		}
+	}
+	approach = { #悉心教导
+		name = situation_yarong_good_positive
+		icon = GFX_situation_approach_amenities
+		icon_background = GFX_situation_approach_bg_green
+		resources = {
+			category = situations
+			upkeep = {
+				energy = 50
+				food = 50
+			}
+		}
+		modifier = {
+			planet_jobs_gts_giantess_fluid_produces_mult = 0.1
+			planet_jobs_gts_giantess_underwear_produces_mult = 0.1
+			planet_jobs_gts_giantess_human_produces_mult = 0.1
+		}
+	}
+	approach = { #平常对待
+		name = situation_yarong_good_neutral
+		icon = GFX_situation_approach_pop
+		icon_background = GFX_situation_approach_bg_yellow
+		default = yes
+		modifier = {
+			planet_jobs_produces_mult = 0.05
+			planet_jobs_gts_giantess_fluid_produces_mult = 0.1
+			planet_jobs_gts_giantess_underwear_produces_mult = 0.1
+			planet_jobs_gts_giantess_human_produces_mult = 0.1
+		}
+	}
+	approach = { #给我干活
+		name = situation_yarong_good_negative
+		icon = GFX_situation_approach_whip
+		icon_background = GFX_situation_approach_bg_red
+		modifier = {
+			planet_jobs_produces_mult = 0.15
+			planet_jobs_gts_giantess_fluid_produces_mult = 0.2
+			planet_jobs_gts_giantess_underwear_produces_mult = 0.2
+			planet_jobs_gts_giantess_human_produces_mult = 0.2
+		}
+	}
+	initial_progress = 50
+	monthly_progress = {
+		base = 0
+		modifier = {
+			add = 0.1
+			desc = string_current_approach
+			current_situation_approach = situation_yarong_good_positive
+		}
+		 modifier = {
+			add = -0.2
+			desc = string_current_approach
+			current_situation_approach = situation_yarong_good_negative
+		}
+	}
+	on_monthly = {
+
+	}
+}
+
+#星际行动局势
+situation_leader_interact = {
+	picture = GFX_load_125
+	category = positive
+	complete_icon_frame = GFX_situation_outcome_frame_green
+	complete_icon = GFX_situation_outcome_ascension
+	on_progress_complete = {
+		hidden_effect = {
+			owner = {
+				set_country_flag = gts_gateway_situation_done
+				country_event = {
+					id = gts_leader_interact.108
+				}
+			}
+			destroy_situation = this
+		}
+		custom_tooltip = situation_leader_interact_complete
+	}
+	stages = {
+		stage_1 = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_blue
+			end = 100
+			on_first_enter = {
+				owner = {
+					country_event = { id = gts_leader_interact.101 }
+				}
+			}
+			custom_tooltip = stage_leader_interact_1_tt
+		}
+		stage_2 = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_blue
+			end = 200
+			on_first_enter = {
+				owner = {
+					country_event = { id = gts_leader_interact.102 }
+				}
+			}
+			custom_tooltip = stage_leader_interact_2_tt
+		}
+		stage_3 = {
+			icon = GFX_situation_stage_3
+			icon_background = GFX_situation_stage_frame_blue
+			end = 300
+			on_first_enter = {
+				owner = {
+					country_event = { id = gts_leader_interact.103 }
+				}
+			}
+			custom_tooltip = stage_leader_interact_3_tt
+		}
+		stage_4 = {
+			icon = GFX_situation_stage_4
+			icon_background = GFX_situation_stage_frame_blue
+			end = 400
+			on_first_enter = {
+
+			}
+			custom_tooltip = stage_leader_interact_4_tt
+		}
+		stage_5 = {
+			icon = GFX_situation_stage_5
+			icon_background = GFX_situation_stage_frame_blue
+			end = 600
+			on_first_enter = {
+				owner = {
+					if = {
+						limit = { gts_is_giantess_empire = yes }
+						country_event = { id = gts_leader_interact.106 }
+					}
+					else = { country_event = { id = gts_leader_interact.107 } }
+				}
+			}
+			custom_tooltip = stage_leader_interact_5_tt
+		}
+	}
+	approach = {
+		name = situation_leader_interact_stop
+		icon = GFX_situation_approach_shrug
+		icon_background = GFX_situation_approach_bg_yellow
+		potential = {
+			always = yes
+		}
+		default = yes
+		on_select = {
+
+		}
+		ai_weight = {
+			base = 0
+		}
+	}
+	approach = {
+		name = situation_leader_interact_advance
+		icon = GFX_situation_approach_scales
+		icon_background = GFX_situation_approach_bg_green
+		potential = {
+			NOT = {
+				current_stage = stage_3
+				current_stage = stage_4
+			}
+		}
+		allow = {
+			always = yes
+		}
+		on_select = {
+
+		}
+		ai_weight = {
+			base = 10
+		}
+		triggered_modifier = {
+			potential = {
+				current_stage = stage_1
+			}
+			country_physics_tech_research_speed = -0.2
+		}
+		triggered_modifier = {
+			potential = {
+				current_stage = stage_2
+			}
+			country_unity_produces_mult = -0.2
+		}
+		triggered_modifier = {
+			potential = {
+				current_stage = stage_5
+			}
+			country_energy_produces_mult = -0.2
+		}
+	}
+	on_monthly = {
+	}
+	monthly_progress = {
+		base = 0
+		modifier = {
+			add = 1
+			desc = string_current_approach
+			current_situation_approach = situation_leader_interact_advance
+		}
+	}
+	triggered_blocked_desc = { #需要建造巨构提示
+		trigger = {
+			situation_progress >= 200
+			owner = {
+				NOR = {
+					has_megastructure = gts_gateway_final
+				}
+			}
+		}
+		text = "situation_gts_gateway_needed_desc"
+	}
+	abort_trigger = {
+		OR = {
+			NOT = { exists = target.owner }
+			target.owner = { NOT = { is_same_value = root.owner } }
+		}
+	}
+}
+
+#水晶兰局势
+situation_cys = {
+	picture = GFX_load_126
+	category = positive
+	complete_icon_frame = GFX_situation_outcome_frame_green
+	complete_icon = GFX_situation_outcome_ascension
+	on_progress_complete = {
+		custom_tooltip = situation_cys_complete
+		hidden_effect = {
+			destroy_situation = this
+		}
+	}
+	stages = {
+		stage_1 = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_blue
+			end = 100
+			on_first_enter = {
+
+			}
+			custom_tooltip = stage_cys_tt
+		}
+		stage_2 = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_blue
+			end = 200
+			on_first_enter = {
+				situation_event = { id = gts_cys.100 }
+			}
+			custom_tooltip = stage_cys_tt
+		}
+		stage_3 = {
+			icon = GFX_situation_stage_3
+			icon_background = GFX_situation_stage_frame_blue
+			end = 300
+			on_first_enter = {
+				situation_event = { id = gts_cys.101 }
+			}
+			custom_tooltip = stage_cys_tt
+		}
+		stage_4 = {
+			icon = GFX_situation_stage_4
+			icon_background = GFX_situation_stage_frame_blue
+			end = 400
+			on_first_enter = {
+				situation_event = { id = gts_cys.102 }
+			}
+			custom_tooltip = stage_cys_tt
+		}
+		stage_5 = {
+			icon = GFX_situation_stage_5
+			icon_background = GFX_situation_stage_frame_blue
+			end = 500
+			on_first_enter = {
+				situation_event = { id = gts_cys.104 }
+			}
+			custom_tooltip = stage_cys_tt
+		}
+		stage_6 = {
+			icon = GFX_situation_stage_6
+			icon_background = GFX_situation_stage_frame_blue
+			end = 600
+			on_first_enter = {
+				situation_event = { id = gts_cys.108 }
+			}
+			custom_tooltip = stage_cys_tt
+		}
+		stage_7 = {
+			icon = GFX_situation_stage_7
+			icon_background = GFX_situation_stage_frame_blue
+			end = 700
+			on_first_enter = {
+				situation_event = { id = gts_cys.109 }
+			}
+			custom_tooltip = stage_cys_tt
+		}
+		stage_8 = {
+			icon = GFX_situation_stage_8
+			icon_background = GFX_situation_stage_frame_blue
+			end = 800
+			on_first_enter = {
+				situation_event = { id = gts_cys.111 }
+			}
+			custom_tooltip = stage_cys_tt
+		}
+	}
+	approach = {
+		name = situation_cys_approach_1
+		icon = GFX_situation_approach_shrug
+		icon_background = GFX_situation_approach_bg_yellow
+		potential = {
+			always = yes
+		}
+		default = yes
+		ai_weight = {
+			base = 10
+		}
+	}
+	approach = {
+		name = situation_cys_approach_2
+		icon = GFX_situation_approach_astral
+		icon_background = GFX_situation_approach_bg_green
+		potential = {
+			always = yes
+		}
+		modifier = {
+
+		}
+		resources = {
+			category = situations
+			upkeep = {
+				energy = 50
+			}
+		}
+		ai_weight = {
+			base = 10
+		}
+	}
+	approach = {
+		name = situation_cys_approach_3
+		icon = GFX_situation_approach_fleet
+		icon_background = GFX_situation_approach_bg_green
+		potential = {
+			always = yes
+		}
+		modifier = {
+
+		}
+		resources = {
+			category = situations
+			upkeep = {
+				physics_research = 25
+			}
+		}
+		ai_weight = {
+			base = 10
+		}
+	}
+	on_monthly = {
+	}
+	monthly_progress = {
+		base = 10
+		modifier = {
+			mult = 2
+			desc = string_current_approach
+			current_situation_approach = situation_cys_approach_2
+		}
+		modifier = {
+			mult = 10 #记得改回去
+			desc = string_current_approach
+			current_situation_approach = situation_cys_approach_3
+		}
+	}
+	abort_trigger = {
+		OR = {
+			NOT = { exists = target.owner }
+			target.owner = { NOT = { is_same_value = root.owner } }
+		}
+	}
+}
+
+#替换
+situation_energy_deficit = {
+	picture = GFX_evt_deficit
+	category = negative
+	fail_icon = GFX_situation_outcome_meh
+	fail_icon_frame = GFX_situation_outcome_frame_green
+	complete_icon = GFX_situation_outcome_bankrupcy
+	complete_icon_frame = GFX_situation_outcome_frame_red
+	on_start = {
+		set_situation_flag = deficit_situation
+	}
+	on_abort = {
+		owner = {
+			add_resource = {
+				energy = @bailout_basic_base_amount
+				mult = value:bailout_scaling_factor
+			}
+		}
+	}
+	initial_progress = 15
+	stages = {
+		deficit_first = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_red
+			end = 25
+			modifier = {
+				#		planet_crime_per_pop = 0.1 #todo: doesn't exist
+				planet_researchers_produces_mult = -0.1
+				diplo_weight_economy_mult = -0.1
+				planet_pop_assembly_reduction = 0.1
+				ship_disengage_chance_mult = -0.1
+				ship_weapon_damage = -0.2
+				ship_speed_mult = -0.2
+			}
+		}
+		deficit_second = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_red
+			end = 50
+			on_first_enter = {
+				situation_event = {
+					id = gts_evt_deficit.7
+				}				####################################
+			}
+			modifier = {
+				#		planet_crime_per_pop = 0.2 #todo: doesn't exist
+				planet_researchers_produces_mult = -0.2
+				diplo_weight_economy_mult = -0.2
+				planet_pop_assembly_reduction = 0.2
+				ship_disengage_chance_mult = -0.25
+				ship_weapon_damage = -0.4
+				ship_speed_mult = -0.4
+			}
+		}
+		deficit_third = {
+			icon = GFX_situation_stage_3
+			icon_background = GFX_situation_stage_frame_red
+			end = 75
+			modifier = {
+				#		planet_crime_per_pop = 0.3 #todo: doesn't exist
+				planet_researchers_produces_mult = -0.33
+				diplo_weight_economy_mult = -0.33
+				planet_pop_assembly_reduction = 0.33
+				ship_disengage_chance_mult = -0.5
+				ship_weapon_damage = -0.6
+				ship_speed_mult = -0.6
+			}
+		}
+		deficit_fourth = {
+			icon = GFX_situation_stage_4
+			icon_background = GFX_situation_stage_frame_red
+			end = 100
+			on_first_enter = {
+				situation_event = {
+					id = deficit.100
+				}
+			}
+			modifier = {
+				#		planet_crime_per_pop = 0.5 #todo: doesn't exist
+				planet_researchers_produces_mult = -0.5
+				diplo_weight_economy_mult = -0.5
+				planet_pop_assembly_reduction = 0.5
+				ship_disengage_chance_mult = -0.75
+				planet_jobs_produces_mult = -0.1
+				ship_weapon_damage = -0.8
+				ship_speed_mult = -0.8
+			}
+		}
+	}
+	on_progress_complete = {
+		country_defaulted_in_situation_tooltip = yes
+		hidden_effect = {
+			situation_event = {
+				id = deficit.110
+			}
+		}
+	}
+	on_fail = {
+		custom_tooltip = deficit_situation_finish_tooltip
+		hidden_effect = {
+			destroy_situation = this
+		}
+	}
+	monthly_progress = {
+		base = 0
+		modifier = {
+			add = value:deficit_situation_progress_value|RESOURCE|energy|
+			desc = string_expenditures_greater_than_income_energy
+			owner = {
+				has_actual_deficit = {
+					RESOURCE = energy
+				}
+			}
+		}
+		modifier = {
+			subtract = 5
+			desc = string_not_in_deficit_energy
+			owner = {
+				resource_income_compare = {
+					resource = energy
+					value >= 0
+				}
+			}
+		}
+		modifier = {
+			subtract = 1
+			desc = string_resource_reserves_energy
+			owner = {
+				has_negative_income_with_stockpile = {
+					RESOURCE = energy
+				}
+			}
+		}
+	}
+	approach = {
+		name = deficit_approach_do_nothing
+		icon = GFX_situation_approach_this_is_fine
+		icon_background = GFX_situation_approach_bg_yellow
+		default = yes
+		on_select = {
+			custom_tooltip = deficit_approach_do_nothing_tooltip
+		}
+		ai_weight = {
+			base = 1
+		}
+	}
+	approach = {
+		name = deficit_approach_cut_science_investment
+		icon = GFX_situation_approach_research
+		icon_background = GFX_situation_approach_bg_red
+		modifier = {
+			planet_researchers_produces_mult = -0.5
+			planet_buildings_energy_upkeep_mult = -0.2
+		}
+		ai_weight = {
+			base = 0
+			modifier = {
+				add = 2
+				current_stage = deficit_third
+			}
+			modifier = {
+				add = 2
+				current_stage = deficit_fourth
+			}
+		}
+	}
+}
+
+# 希儿局势
+situation_seele = {
+	on_start = {
+		set_situation_flag = seele }
+	complete_icon_frame = GFX_situation_outcome_frame_green
+	complete_icon = GFX_situation_outcome_meh
+	fail_icon_frame = GFX_situation_outcome_frame_red
+	fail_icon = GFX_situation_outcome_negative
+	picture = GFX_gts_seele_10
+	progress_direction = bidirectional
+	complete_category = positive
+	fail_category = negative
+	stages = {
+		stage_1 = {
+			modifier = {
+				planet_jobs_energy_produces_mult = 0.05			#岗位生产的能量币
+			}
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_red
+			end = 10
+			on_first_enter = {
+				situation_event = {
+					id = gts_seele.21 }
+			}
+		}
+		stage_2 = {
+			modifier = {
+				planet_jobs_energy_produces_mult = 0.05			#岗位生产的能量币
+			}
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_red
+			end = 50
+		}
+		stage_3 = {
+			end = 65
+			modifier = {
+				planet_jobs_physics_research_produces_mult = 0.1		#岗位生产的物理学研究
+			}
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_blue
+
+		}
+		stage_4 = {
+			end = 80
+			modifier = {
+				planet_jobs_physics_research_produces_mult = 0.1		#岗位生产的物理学研究
+			}
+			icon = GFX_situation_stage_3
+			icon_background = GFX_situation_stage_frame_blue
+			on_first_enter = {
+				situation_event = {
+					id = gts_seele.2 }
+			}
+		}
+		stage_5 = {
+			end = 100
+			modifier = {
+				planet_jobs_physics_research_produces_mult = 0.15		#岗位生产的物理学研究
+			}
+			icon = GFX_situation_stage_3
+			icon_background = GFX_situation_stage_frame_blue
+			on_first_enter = {
+				situation_event = {
+					id = gts_seele.3 }
+			}
+		}
+
+	}
+	on_progress_complete = {
+		custom_tooltip = situation_seele_complete_tooltip
+		destroy_situation = this
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = gts_seele.9
+				}
+			}
+		}
+	}
+	on_fail = {
+		custom_tooltip = situation_seele_fail_tooltip
+		destroy_situation = this
+		hidden_effect = {
+			situation_event = {
+				id = gts_seele.26
+			}
+		}
+	}
+	approach = { #
+		name = situation_seele_positive
+		icon = GFX_situation_approach_research
+		icon_background = GFX_situation_approach_bg_green
+		modifier = {
+			planet_jobs_physics_research_produces_mult = 0.2
+		}
+		resources = {
+			produces = {
+				energy = -30
+			}
+		}
+	}
+	approach = { #
+		name = situation_seele_neutral
+		icon = GFX_situation_approach_shrug
+		icon_background = GFX_situation_approach_bg_yellow
+		modifier = {
+			planet_jobs_unity_produces_mult = 0.1
+		}
+		default = yes
+	}
+	approach = { #
+		name = situation_seele_negative
+		icon = GFX_situation_approach_energy_credits
+		icon_background = GFX_situation_approach_bg_red
+		allow = {
+			owner = {
+				not = {
+					any_owned_leader = {
+						has_leader_flag = gts_seele
+					}
+				}
+			}
+		}
+		resources = {
+			category = situations
+			produces = {
+				minerals = 300
+			}
+			produces = {
+				sr_zro = 50
+			}
+			produces = {
+				energy = 300
+			}
+			produces = {
+				sr_dark_matter = 30
+			}
+			produces = {
+				astral_threads = 30
+			}
+		}
+	}
+	initial_progress = 50
+	monthly_progress = {
+		base = 0.1
+		modifier = {
+			add = 0.15
+			desc = string_current_approach
+			current_situation_approach = situation_seele_positive
+		}
+		modifier = {
+			add = -0.3
+			desc = string_current_approach
+			current_situation_approach = situation_seele_negative
+		}
+	}
+}
+
+# 虫惑魔局势
+situation_traptrix_ascription = {
+	complete_icon_frame = GFX_situation_outcome_frame_green
+	complete_icon = GFX_situation_outcome_meh
+	fail_icon_frame = GFX_situation_outcome_frame_red
+	fail_icon = GFX_situation_exploding_planet
+	picture = GFX_gts_traptrix_8
+	progress_direction = bidirectional
+	complete_category = positive
+	fail_category = negative
+	on_start = {
+		owner = {
+			country_event = {
+				id = gts_traptrix.2203
+				days = 900
+			}
+		}
+	}
+	stages = {
+		stage_1 = {
+			end = 0
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_red
+		}
+		stage_2 = {
+			end = 200
+			icon = GFX_situation_stage_3
+			icon_background = GFX_situation_stage_frame_blue
+			on_first_enter = {
+			}
+		}
+	}
+	on_progress_complete = {
+		custom_tooltip = situation_traptrix_ascription_complete_tooltip
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = gts_traptrix.2206
+				}
+			}
+			destroy_situation = this
+		}
+	}
+	on_fail = {
+		custom_tooltip = situation_traptrix_ascription_fail_tooltip
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = gts_traptrix.2204
+				}
+			}
+			destroy_situation = this
+		}
+	}
+	approach = { #尽量满足
+		name = situation_traptrix_ascription_positive
+		icon = GFX_situation_approach_amenities
+		icon_background = GFX_situation_approach_bg_green
+		resources = {
+			category = situations
+			upkeep = {
+				gts_micro_city = 100
+				gts_micro = 200
+				food = 200
+			}
+		}
+		on_select = {
+			custom_tooltip = situation_traptrix_ascription_positive_effect
+		}
+		modifier = {
+			planet_jobs_upkeep_mult = 0.1
+		}
+	}
+	approach = { #一般满足
+		name = situation_traptrix_ascription_negative
+		icon = GFX_situation_approach_pop
+		icon_background = GFX_situation_approach_bg_yellow
+		default = yes
+		resources = {
+			category = situations
+			upkeep = {
+				gts_micro = 100
+				food = 100
+			}
+		}
+		on_select = {
+			custom_tooltip = situation_traptrix_ascription_negative_effect
+		}
+		modifier = {
+			planet_jobs_upkeep_mult = 0.05
+		}
+	}
+	approach = { #停止投入
+		name = situation_traptrix_ascription_stop
+		icon = GFX_situation_approach_whip
+		icon_background = GFX_situation_approach_bg_red
+		on_select = {
+			custom_tooltip = situation_traptrix_ascription_stop_effect
+		}
+	}
+	initial_progress = 100
+	monthly_progress = {
+		base = 0
+		modifier = {
+			add = -1
+			desc = string_current_approach
+			current_situation_approach = situation_traptrix_ascription_stop
+		}
+		modifier = {
+			add = 1
+			desc = string_current_approach
+			current_situation_approach = situation_traptrix_ascription_negative
+		}
+		modifier = {
+			add = 2
+			desc = string_current_approach
+			current_situation_approach = situation_traptrix_ascription_positive
+		}
+
+
+	}
+
+	on_monthly = {
+
+	}
+}
+#花田局势
+
+gts_situation_huatian_fleet = {
+	picture =GFX_gts_huatian_13
+	category = positive
+	complete_icon = GFX_situation_outcome_positive
+	complete_icon_frame = GFX_situation_outcome_frame_green
+	initial_progress = 0
+	on_progress_complete = {
+		destroy_situation = this
+		custom_tooltip = gts_situation_huatian_fleet_tooltip
+		owner = {
+			country_event = {
+				id = gts_huatian.1085
+			}
+		}
+	}
+	monthly_progress = {
+		base = 0
+		modifier = {
+			add = 0
+			desc = situation_huatian_neutral_approach
+			current_situation_approach = situation_huatian_neutral
+		}
+		modifier = {
+			add = 5
+			desc = situation_huatian_positive_approach
+			current_situation_approach = situation_huatian_positive
+		}
+		modifier = {
+			add = 15
+			desc = situation_huatian_positive_2_approach
+			current_situation_approach = situation_huatian_positive_2
+		}
+	}
+	stages = {
+		gts_situation_huatian_fleet1 = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_green
+			end = 25
+		}
+		gts_situation_huatian_fleet2 = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_green
+			end = 50
+			on_first_enter = {
+				situation_event = {
+					id = gts_huatian.1082
+				}
+			}
+		}
+		gts_situation_huatian_fleet3 = {
+			icon = GFX_situation_stage_3
+			icon_background = GFX_situation_stage_frame_green
+			end = 75
+			on_first_enter = {
+				situation_event = {
+					id = gts_huatian.1083
+				}
+			}
+		}
+		gts_situation_huatian_fleet4 = {
+			icon = GFX_situation_stage_4
+			icon_background = GFX_situation_stage_frame_green
+			end = 100
+			on_first_enter = {
+				situation_event = {
+					id = gts_huatian.1084
+				}
+			}
+		}
+	}
+	approach = {
+		name = situation_huatian_neutral
+		icon = GFX_situation_approach_unity
+		icon_background = GFX_situation_approach_bg_red
+		on_select = {
+			custom_tooltip = situation_huatian_neutral_approach
+		}
+	}
+	approach = {
+		name = situation_huatian_positive
+		icon = GFX_situation_approach_unity
+		icon_background = GFX_situation_approach_bg_yellow
+		default = yes
+		resources = {
+			category = situations
+			upkeep = {
+				alloys = 50
+				food = 20
+				energy = 20
+			}
+		}
+		on_select = {
+			custom_tooltip = situation_huatian_positive_approach
+		}
+	}
+	approach = {
+		name = situation_huatian_positive_2
+		icon = GFX_situation_approach_unity
+		icon_background = GFX_situation_approach_bg_green
+		resources = {
+			category = situations
+			upkeep = {
+				alloys = 100
+				food = 50
+				energy = 50
+			}
+		}
+		on_select = {
+			custom_tooltip = situation_huatian_positive_2_approach
+		}
+	}
+}
+
+gts_situation_qinwen_fleet = {
+	picture = GFX_gts_qinwen_situation
+	category = positive
+	complete_icon = GFX_situation_outcome_positive
+	complete_icon_frame = GFX_situation_outcome_frame_green
+	initial_progress = 0
+	on_progress_complete = {
+		destroy_situation = this
+		owner = {
+			country_event = {
+				id = gts_qinwen.108
+			}
+		}
+	}
+	monthly_progress = {
+		base = 0
+		modifier = {
+			add = 0
+			desc = situation_qinwen_neutral_approach
+			current_situation_approach = situation_qinwen_neutral
+		}
+		modifier = {
+			add = 5
+			desc = situation_qinwen_positive_approach
+			current_situation_approach = situation_qinwen_positive
+		}
+	}
+	stages = {
+		gts_situation_qinwen_fleet1 = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_green
+			end = 25
+		}
+		gts_situation_qinwen_fleet2 = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_green
+			end = 50
+			# on_first_enter = {
+			# 	situation_event = {
+			# 	}
+			# }
+		}
+		gts_situation_qinwen_fleet3 = {
+			icon = GFX_situation_stage_3
+			icon_background = GFX_situation_stage_frame_green
+			end = 75
+			on_first_enter = {
+				situation_event = {
+					id = gts_qinwen.106
+				}
+			}
+		}
+		gts_situation_qinwen_fleet4 = {
+			icon = GFX_situation_stage_4
+			icon_background = GFX_situation_stage_frame_green
+			end = 100
+			on_first_enter = {
+				situation_event = {
+					id = gts_qinwen.107
+				}
+			}
+		}
+	}
+	approach = {
+		default = yes
+		name = situation_qinwen_neutral
+		icon = GFX_situation_approach_unity
+		icon_background = GFX_situation_approach_bg_yellow
+		on_select = {
+			custom_tooltip = situation_qinwen_neutral_approach
+		}
+	}
+	approach = {
+		name = situation_qinwen_positive
+		icon = GFX_situation_approach_unity
+		icon_background = GFX_situation_approach_bg_green
+		resources = {
+			category = situations
+			upkeep = {
+				alloys = 50
+				energy = 100
+			}
+		}
+		on_select = {
+			custom_tooltip = situation_qinwen_positive_approach
+		}
+	}
+}

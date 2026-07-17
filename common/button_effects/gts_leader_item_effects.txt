@@ -1,0 +1,1008 @@
+@last_page_index = 10
+gts_leader_item_back_effect = {
+	# 向后翻页
+	potential = {
+		always = yes
+	}
+	allow = {
+		hidden_trigger = {
+			from = {
+				check_variable = {
+					which = gts_ui_leader_item_page
+					value > 1
+				}
+			}
+		}
+	}
+	effect = {
+		custom_tooltip = gts_ui_back.tooltip
+		from = {
+			hidden_effect = {
+				subtract_variable = {
+					which = gts_ui_leader_item_page
+					value = 1
+				}
+			}
+		}
+	}
+}
+gts_leader_item_next_effect = {
+	# 向前翻页
+	potential = {
+		always = yes
+	}
+	allow = {
+		hidden_trigger = {
+			from = {
+				check_variable = {
+					which = gts_ui_leader_item_page
+					value < @last_page_index
+				}
+			}
+		}
+	}
+	effect = {
+		custom_tooltip = gts_ui_next.tooltip
+		from = {
+			hidden_effect = {
+				change_variable = {
+					which = gts_ui_leader_item_page
+					value = 1
+				}
+			}
+		}
+	}
+}
+gts_leader_item_page_1_effect = {
+	# 第一页
+	potential = {
+		from = {
+			check_variable = {
+				which = gts_ui_leader_item_page
+				value = 1
+			}
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {}
+}
+gts_leader_item_page_2_effect = {
+	potential = {
+		from = {
+			check_variable = {
+				which = gts_ui_leader_item_page
+				value = 2
+			}
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {}
+}
+gts_leader_item_page_3_effect = {
+	potential = {
+		from = {
+			check_variable = {
+				which = gts_ui_leader_item_page
+				value = 3
+			}
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {}
+}
+gts_leader_item_page_4_effect = {
+	potential = {
+		from = {
+			check_variable = {
+				which = gts_ui_leader_item_page
+				value = 4
+			}
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {}
+}
+gts_leader_item_page_5_effect = {
+	potential = {
+		from = {
+			check_variable = {
+				which = gts_ui_leader_item_page
+				value = 5
+			}
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {}
+}
+gts_leader_item_page_6_effect = {
+	potential = {
+		from = {
+			check_variable = {
+				which = gts_ui_leader_item_page
+				value = 6
+			}
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {}
+}
+gts_leader_item_page_7_effect = {
+	potential = {
+		from = {
+			check_variable = {
+				which = gts_ui_leader_item_page
+				value = 7
+			}
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {}
+}
+gts_leader_item_page_8_effect = {
+	potential = {
+		from = {
+			check_variable = {
+				which = gts_ui_leader_item_page
+				value = 8
+			}
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {}
+}
+gts_leader_item_page_9_effect = {
+	potential = {
+		from = {
+			check_variable = {
+				which = gts_ui_leader_item_page
+				value = 9
+			}
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {}
+}
+gts_leader_item_page_10_effect = {
+	potential = {
+		from = {
+			check_variable = {
+				which = gts_ui_leader_item_page
+				value = 10
+			}
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {}
+}
+### 道具效果 ###
+### CLASS = 1 宠物
+### CLASS = 2 道具
+### PAGE 12个换下一页
+gts_leader_item_i_none_effect = {
+	potential = {
+		gts_ui_item_display = { PAGE = 1 CLASS = 2 }
+	}
+	allow = {
+		always = yes
+	}
+	effect = {
+		custom_tooltip = gts_leader_item_i_none.tooltip
+		gts_ui_slot_change_item = { ITEM = 0 }
+	}
+}
+gts_leader_item_i_assembly_effect = {
+	potential = {
+		gts_ui_item_display = { PAGE = 1 CLASS = 2 }
+	}
+	allow = {
+		gts_ui_item_lock = { ITEM = @gts_leader_item_i_assembly }
+		has_technology = tech_interstellar_assembly
+		resource_stockpile_compare = { resource = unity value >= 6000 }
+		resource_stockpile_compare = { resource = alloys value >= 20000 }
+	}
+	effect = {
+		custom_tooltip = gts_leader_item_i_assembly.tooltip
+		add_resource = {
+			unity = -6000
+		}
+		add_resource = {
+			alloys = -20000
+		}
+		gts_ui_slot_change_item = { TRAIT = gts_leader_item_i_assembly ITEM = @gts_leader_item_i_assembly MODIFIER = assembly }
+	}
+}
+gts_leader_item_i_decompressor_effect = {
+	potential = {
+		gts_ui_item_display = { PAGE = 1 CLASS = 2 }
+	}
+	allow = {
+		gts_ui_item_lock = { ITEM = @gts_leader_item_i_decompressor }
+		has_technology = tech_matter_decompressor
+		resource_stockpile_compare = { resource = unity value >= 5000 }
+		resource_stockpile_compare = { resource = alloys value >= 25000 }
+	}
+	effect = {
+		custom_tooltip = gts_leader_item_i_decompressor.tooltip
+		add_resource = {
+			unity = -5000
+		}
+		add_resource = {
+			alloys = -25000
+		}
+		gts_ui_slot_change_item = { TRAIT = gts_leader_item_i_decompressor ITEM = @gts_leader_item_i_decompressor MODIFIER = decompressor }
+	}
+}
+gts_leader_item_i_gateway_effect = {
+	potential = {
+		gts_ui_item_display = { PAGE = 1 CLASS = 2 }
+	}
+	allow = {
+		gts_ui_item_lock = { ITEM = @gts_leader_item_i_gateway }
+		has_technology = tech_gateway_construction
+		resource_stockpile_compare = { resource = unity value >= 3000 }
+		resource_stockpile_compare = { resource = energy value >= 6000 }
+		resource_stockpile_compare = { resource = alloys value >= 2500 }
+	}
+	effect = {
+		custom_tooltip = gts_leader_item_i_gateway.tooltip
+		add_resource = {
+			unity = -3000
+		}
+		add_resource = {
+			energy = -6000
+		}
+		add_resource = {
+			alloys = -2500
+		}
+		gts_ui_slot_change_item = { TRAIT = gts_leader_item_i_gateway ITEM = @gts_leader_item_i_gateway MODIFIER = gateway }
+	}
+}
+gts_leader_item_i_habitat_effect = {
+	potential = {
+		gts_ui_item_display = { PAGE = 1 CLASS = 2 }
+	}
+	allow = {
+		gts_ui_item_lock = { ITEM = @gts_leader_item_i_habitat }
+		has_technology = tech_habitat_1
+		resource_stockpile_compare = { resource = food value >= 3000 }
+		resource_stockpile_compare = { resource = alloys value >= 1000 }
+		resource_stockpile_compare = { resource = gts_micro value >= 3000 }
+	}
+	effect = {
+		custom_tooltip = gts_leader_item_i_habitat.tooltip
+		add_resource = {
+			food = -3000
+		}
+		add_resource = {
+			alloys = -1000
+		}
+		add_resource = {
+			gts_micro = -3000
+		}
+		gts_ui_slot_change_item = { TRAIT = gts_leader_item_i_habitat ITEM = @gts_leader_item_i_habitat MODIFIER = habitat }
+	}
+}
+gts_leader_item_i_hyper_effect = {
+	potential = {
+		gts_ui_item_display = { PAGE = 1 CLASS = 2 }
+	}
+	allow = {
+		gts_ui_item_lock = { ITEM = @gts_leader_item_i_hyper }
+		has_technology = tech_hyper_relays
+		resource_stockpile_compare = { resource = unity value >= 3000 }
+		resource_stockpile_compare = { resource = rare_crystals value >= 100 }
+		resource_stockpile_compare = { resource = alloys value >= 2000 }
+	}
+	effect = {
+		custom_tooltip = gts_leader_item_i_hyper.tooltip
+		add_resource = {
+			unity = -3000
+			rare_crystals = -100
+			alloys = -2000
+		}
+		gts_ui_slot_change_item = { TRAIT = gts_leader_item_i_hyper ITEM = @gts_leader_item_i_hyper MODIFIER = hyper }
+	}
+}
+gts_leader_item_i_ringworld_effect = {
+	potential = {
+		gts_ui_item_display = { PAGE = 1 CLASS = 2 }
+	}
+	allow = {
+		gts_ui_item_lock = { ITEM = @gts_leader_item_i_ringworld }
+		has_technology = tech_ring_world
+		resource_stockpile_compare = { resource = unity value >= 50000 }
+		resource_stockpile_compare = { resource = alloys value >= 40000 }
+	}
+	effect = {
+		custom_tooltip = gts_leader_item_i_ringworld.tooltip
+		add_resource = {
+			unity = -50000
+			alloys = -40000
+		}
+		gts_ui_slot_change_item = { TRAIT = gts_leader_item_i_ringworld ITEM = @gts_leader_item_i_ringworld MODIFIER = ringworld }
+	}
+}
+gts_leader_item_i_shipyard_effect = {
+	potential = {
+		gts_ui_item_display = { PAGE = 1 CLASS = 2 }
+	}
+	allow = {
+		gts_ui_item_lock = { ITEM = @gts_leader_item_i_shipyard }
+		has_technology = tech_mega_shipyard
+		resource_stockpile_compare = { resource = unity value >= 5000 }
+		resource_stockpile_compare = { resource = alloys value >= 15000 }
+	}
+	effect = {
+		custom_tooltip = gts_leader_item_i_shipyard.tooltip
+		add_resource = {
+			unity = -5000
+		}
+		add_resource = {
+			alloys = -15000
+		}
+		gts_ui_slot_change_item = { TRAIT = gts_leader_item_i_shipyard ITEM = @gts_leader_item_i_shipyard MODIFIER = shipyard }
+	}
+}
+gts_leader_item_i_sphere_effect = {
+	potential = {
+		gts_ui_item_display = { PAGE = 1 CLASS = 2 }
+	}
+	allow = {
+		gts_ui_item_lock = { ITEM = @gts_leader_item_i_sphere }
+		has_technology = tech_dyson_sphere
+		resource_stockpile_compare = { resource = unity value >= 15000 }
+		resource_stockpile_compare = { resource = alloys value >= 25000 }
+		resource_stockpile_compare = { resource = rare_crystals value >= 1250 }
+	}
+	effect = {
+		custom_tooltip = gts_leader_item_i_sphere.tooltip
+		add_resource = {
+			unity = -15000
+			alloys = -25000
+			rare_crystals = -1250
+		}
+		gts_ui_slot_change_item = { TRAIT = gts_leader_item_i_sphere ITEM = @gts_leader_item_i_sphere MODIFIER = sphere }
+	}
+}
+gts_leader_item_i_spyorb_effect = {
+	potential = {
+		gts_ui_item_display = { PAGE = 1 CLASS = 2 }
+	}
+	allow = {
+		gts_ui_item_lock = { ITEM = @gts_leader_item_i_spyorb }
+		has_technology = tech_sentry_array
+		resource_stockpile_compare = { resource = unity value >= 5000 }
+		resource_stockpile_compare = { resource = alloys value >= 20000 }
+	}
+	effect = {
+		custom_tooltip = gts_leader_item_i_spyorb.tooltip
+		add_resource = {
+			unity = -6000
+		}
+		gts_ui_slot_change_item = { TRAIT = gts_leader_item_i_spyorb ITEM = @gts_leader_item_i_spyorb MODIFIER = spyorb }
+	}
+}
+gts_leader_item_i_star_effect = {
+	potential = {
+		gts_ui_item_display = { PAGE = 1 CLASS = 2 }
+	}
+	allow = {
+		gts_ui_item_lock = { ITEM = @gts_leader_item_i_star }
+		has_technology = tech_mega_engineering
+		resource_stockpile_compare = { resource = energy value >= 100000 }
+		resource_stockpile_compare = { resource = gts_micro_planet value >= 1 }
+	}
+	effect = {
+		custom_tooltip = gts_leader_item_i_star.tooltip
+		add_resource = {
+			energy = -100000
+			gts_micro_planet = -1
+		}
+		gts_ui_slot_change_item = { TRAIT = gts_leader_item_i_star ITEM = @gts_leader_item_i_star MODIFIER = star }
+	}
+}
+gts_leader_item_i_strategic_effect = {
+	potential = {
+		gts_ui_item_display = { PAGE = 1 CLASS = 2 }
+	}
+	allow = {
+		gts_ui_item_lock = { ITEM = @gts_leader_item_i_strategic }
+		has_technology = tech_strategic_coordination
+		resource_stockpile_compare = { resource = unity value >= 5000 }
+		resource_stockpile_compare = { resource = alloys value >= 30000 }
+	}
+	effect = {
+		custom_tooltip = gts_leader_item_i_strategic.tooltip
+		add_resource = {
+			unity = -5000
+		}
+		add_resource = {
+			alloys = -30000
+		}
+		gts_ui_slot_change_item = { TRAIT = gts_leader_item_i_strategic ITEM = @gts_leader_item_i_strategic MODIFIER = strategic }
+	}
+}
+gts_leader_item_i_tech_effect = {
+	potential = {
+		gts_ui_item_display = { PAGE = 2 CLASS = 2 }
+	}
+	allow = {
+		gts_ui_item_lock = { ITEM = @gts_leader_item_i_tech }
+		has_technology = tech_science_nexus
+		resource_stockpile_compare = { resource = unity value >= 10000 }
+		resource_stockpile_compare = { resource = alloys value >= 15000 }
+	}
+	effect = {
+		custom_tooltip = gts_leader_item_i_tech.tooltip
+		add_resource = {
+			unity = -10000
+		}
+		add_resource = {
+			alloys = -15000
+		}
+		gts_ui_slot_change_item = { TRAIT = gts_leader_item_i_tech ITEM = @gts_leader_item_i_tech MODIFIER = tech }
+	}
+}
+gts_leader_item_i_art_effect = {
+	potential = {
+		gts_ui_item_display = { PAGE = 2 CLASS = 2 }
+	}
+	allow = {
+		gts_ui_item_lock = { ITEM = @gts_leader_item_i_art }
+		has_technology = tech_mega_art
+		resource_stockpile_compare = { resource = unity value >= 10000 }
+		resource_stockpile_compare = { resource = alloys value >= 10000 }
+		resource_stockpile_compare = { resource = minor_artifacts value >= 750 }
+	}
+	effect = {
+		custom_tooltip = gts_leader_item_i_art.tooltip
+		add_resource = {
+			unity = -3000
+		}
+		add_resource = {
+			alloys = -12000
+		}
+		add_resource = {
+			minor_artifacts = -750
+		}
+		gts_ui_slot_change_item = { TRAIT = gts_leader_item_i_art ITEM = @gts_leader_item_i_art MODIFIER = art }
+	}
+}
+gts_leader_item_i_catapult_effect = {
+	potential = {
+		gts_ui_item_display = { PAGE = 2 CLASS = 2 }
+	}
+	allow = {
+		gts_ui_item_lock = { ITEM = @gts_leader_item_i_catapult }
+		has_technology = tech_quantum_catapult
+		resource_stockpile_compare = { resource = sr_dark_matter value >= 50 }
+		resource_stockpile_compare = { resource = alloys value >= 30000 }
+	}
+	effect = {
+		custom_tooltip = gts_leader_item_i_catapult.tooltip
+		add_resource = {
+			sr_dark_matter = -50
+			alloys = -30000
+		}
+		gts_ui_slot_change_item = { TRAIT = gts_leader_item_i_catapult ITEM = @gts_leader_item_i_catapult MODIFIER = catapult }
+	}
+}
+gts_leader_item_i_archive_effect = {
+	potential = {
+		gts_ui_item_display = { PAGE = 2 CLASS = 2 }
+	}
+	allow = {
+		gts_ui_item_lock = { ITEM = @gts_leader_item_i_archive }
+		has_technology = tech_galactic_archivism
+		resource_stockpile_compare = { resource = unity value >= 15000 }
+		resource_stockpile_compare = { resource = alloys value >= 10000 }
+		resource_stockpile_compare = { resource = minor_artifacts value >= 750 }
+	}
+	effect = {
+		custom_tooltip = gts_leader_item_i_archive.tooltip
+		add_resource = {
+			unity = -15000
+			alloys = 10000
+			minor_artifacts = -750
+		}
+		gts_ui_slot_change_item = { TRAIT = gts_leader_item_i_archive ITEM = @gts_leader_item_i_archive MODIFIER = archive }
+	}
+}
+gts_leader_item_i_Furnace_effect = {
+	potential = {
+		gts_ui_item_display = { PAGE = 2 CLASS = 2 }
+	}
+	allow = {
+		gts_ui_item_lock = { ITEM = @gts_leader_item_i_Furnace }
+		has_technology = tech_orbital_arc_furnace
+		resource_stockpile_compare = { resource = energy value >= 20000 }
+		resource_stockpile_compare = { resource = unity value >= 12000 }
+		resource_stockpile_compare = { resource = alloys value >= 10000 }
+	}
+	effect = {
+		custom_tooltip = gts_leader_item_i_Furnace.tooltip
+		add_resource = {
+			energy = -20000
+			unity = -12000
+			alloys = -10000
+		}
+		gts_ui_slot_change_item = { TRAIT = gts_leader_item_i_Furnace ITEM = @gts_leader_item_i_Furnace MODIFIER = Furnace }
+	}
+}
+gts_leader_item_i_Swarm_effect = {
+	potential = {
+		gts_ui_item_display = { PAGE = 2 CLASS = 2 }
+	}
+	allow = {
+		gts_ui_item_lock = { ITEM = @gts_leader_item_i_Swarm }
+		has_technology = tech_dyson_swarm
+		resource_stockpile_compare = { resource = unity value >= 6000 }
+		resource_stockpile_compare = { resource = alloys value >= 10000 }
+		resource_stockpile_compare = { resource = rare_crystals value >= 500 }
+	}
+	effect = {
+		custom_tooltip = gts_leader_item_i_Swarm.tooltip
+		add_resource = {
+			unity = -6000
+			alloys = -10000
+			rare_crystals = -500
+		}
+		gts_ui_slot_change_item = { TRAIT = gts_leader_item_i_Swarm ITEM = @gts_leader_item_i_Swarm  MODIFIER = Swarm }
+	}
+}
+# xxx_effect = {
+# 	potential = {
+# 		gts_ui_item_display = { PAGE =  CLASS = 2 }
+# 	}
+# 	allow = {
+# 		gts_ui_item_lock = { ITEM = @xxx }
+# 	}
+# 	effect = {
+# 		custom_tooltip = xxx.tooltip
+# 		gts_ui_slot_change_item = { TRAIT = xxx ITEM = @xxx }
+# 	}
+# }
+### 宠物 ###
+### 宠物 ###
+gts_leader_item_p_none_effect = {
+	potential = {
+		gts_ui_item_display = { PAGE = 1 CLASS = 1 }
+	}
+	allow = {
+		always = yes
+	}
+	effect = {
+		custom_tooltip = gts_leader_item_p_none.tooltip
+		gts_ui_slot_change_item = { ITEM = 0 }
+	}
+}
+gts_leader_item_p_dragon_effect = {
+	potential = {
+		gts_ui_item_display = { PAGE = 1 CLASS = 1 }
+	}
+	allow = {
+		gts_ui_item_lock = { ITEM = @gts_leader_item_p_dragon }
+		resource_stockpile_compare = { resource = food value >= 25000 }
+	}
+	effect = {
+		custom_tooltip = gts_leader_item_p_dragon.tooltip
+		add_resource = {
+			food = -25000
+		}
+		gts_ui_slot_change_item = { TRAIT = gts_leader_item_p_dragon ITEM = @gts_leader_item_p_dragon }
+	}
+}
+gts_leader_item_p_fortress_effect = {
+	potential = {
+		gts_ui_item_display = { PAGE = 1 CLASS = 1 }
+	}
+	allow = {
+		gts_ui_item_lock = { ITEM = @gts_leader_item_p_fortress }
+		resource_stockpile_compare = { resource = alloys value >= 25000 }
+	}
+	effect = {
+		custom_tooltip = gts_leader_item_p_fortress.tooltip
+		add_resource = {
+			alloys = -25000
+		}
+		gts_ui_slot_change_item = { TRAIT = gts_leader_item_p_fortress ITEM = @gts_leader_item_p_fortress }
+	}
+}
+gts_leader_item_p_horror_effect = {
+	potential = {
+		gts_ui_item_display = { PAGE = 1 CLASS = 1 }
+	}
+	allow = {
+		gts_ui_item_lock = { ITEM = @gts_leader_item_p_horror }
+		resource_stockpile_compare = { resource = sr_dark_matter value >= 5000 }
+	}
+	effect = {
+		custom_tooltip = gts_leader_item_p_horror.tooltip
+		add_resource = {
+			sr_dark_matter = -5000
+		}
+		gts_ui_slot_change_item = { TRAIT = gts_leader_item_p_horror ITEM = @gts_leader_item_p_horror }
+	}
+}
+gts_leader_item_p_shielded_effect = {
+	potential = {
+		gts_ui_item_display = { PAGE = 1 CLASS = 1 }
+	}
+	allow = {
+		gts_ui_item_lock = { ITEM = @gts_leader_item_p_shielded }
+		resource_stockpile_compare = { resource = minerals value >= 25000 }
+	}
+	effect = {
+		custom_tooltip = gts_leader_item_p_shielded.tooltip
+		add_resource = {
+			minerals = -25000
+		}
+		gts_ui_slot_change_item = { TRAIT = gts_leader_item_p_shielded ITEM = @gts_leader_item_p_shielded }
+	}
+}
+gts_leader_item_p_sphere_effect = {
+	potential = {
+		gts_ui_item_display = { PAGE = 1 CLASS = 1 }
+	}
+	allow = {
+		gts_ui_item_lock = { ITEM = @gts_leader_item_p_sphere }
+		resource_stockpile_compare = { resource = alloys value >= 25000 }
+	}
+	effect = {
+		custom_tooltip = gts_leader_item_p_sphere.tooltip
+		add_resource = {
+			alloys = -25000
+		}
+		gts_ui_slot_change_item = { TRAIT = gts_leader_item_p_sphere ITEM = @gts_leader_item_p_sphere }
+	}
+}
+gts_leader_item_p_stellarites_effect = {
+	potential = {
+		gts_ui_item_display = { PAGE = 1 CLASS = 1 }
+	}
+	allow = {
+		gts_ui_item_lock = { ITEM = @gts_leader_item_p_stellarites }
+		resource_stockpile_compare = { resource = energy value >= 25000 }
+	}
+	effect = {
+		custom_tooltip = gts_leader_item_p_stellarites.tooltip
+		add_resource = {
+			energy = -25000
+		}
+		gts_ui_slot_change_item = { TRAIT = gts_leader_item_p_stellarites ITEM = @gts_leader_item_p_stellarites }
+	}
+}
+gts_leader_item_p_aplog_effect = {
+	potential = {
+		gts_ui_item_display = { PAGE = 1 CLASS = 1 }
+	}
+	allow = {
+		gts_ui_item_lock = { ITEM = @gts_leader_item_p_aplog }
+		hidden_trigger = {
+			# 全局限定一个
+			NOT = {
+				has_country_flag = gts_pet_aplog
+			}
+			# 获得该领袖
+			any_owned_leader = {
+				has_leader_flag = gts_aplog
+			}
+			# 不能自己奴役自己
+			event_target:current_gts_leader = {
+				NOT = {
+					has_leader_flag = gts_aplog
+				}
+			}
+		}
+	}
+	effect = {
+		custom_tooltip = gts_leader_item_p_aplog.tooltip
+		# 记得在gts_remove_leader_item中移除该标记
+		set_country_flag = gts_pet_aplog
+		gts_ui_slot_change_item = { TRAIT = gts_leader_item_p_aplog ITEM = @gts_leader_item_p_aplog }
+	}
+}
+gts_leader_item_p_cache_effect = {
+	potential = {
+		gts_ui_item_display = { PAGE = 1 CLASS = 1 }
+	}
+	allow = {
+		gts_ui_item_lock = { ITEM = @gts_leader_item_p_cache }
+		resource_stockpile_compare = { resource = alloys value >= 25000 }
+	}
+	effect = {
+		custom_tooltip = gts_leader_item_p_cache.tooltip
+		add_resource = {
+			alloys = -25000
+		}
+		gts_ui_slot_change_item = { TRAIT = gts_leader_item_p_cache ITEM = @gts_leader_item_p_cache }
+	}
+}
+gts_leader_item_p_115_effect = {
+	potential = {
+		gts_ui_item_display = { PAGE = 1 CLASS = 1 }
+	}
+	allow = {
+		gts_ui_item_lock = { ITEM = @gts_leader_item_p_115 }
+		hidden_trigger = {
+			NOT = {
+				# 全局限定一个
+				has_country_flag = gts_pet_115
+			}
+		}
+	}
+	effect = {
+		custom_tooltip = gts_leader_item_p_115.tooltip
+		# 记得在gts_remove_leader_item中移除该标记
+		set_country_flag = gts_pet_115
+		gts_ui_slot_change_item = { TRAIT = gts_leader_item_p_115 ITEM = @gts_leader_item_p_115 }
+	}
+}
+gts_leader_item_p_koharu_effect = {
+	potential = {
+		gts_ui_item_display = { PAGE = 1 CLASS = 1 }
+	}
+	allow = {
+		gts_ui_item_lock = { ITEM = @gts_leader_item_p_koharu }
+		hidden_trigger = {
+			# 全局限定一个
+			NOT = {
+				has_country_flag = gts_pet_koharu
+			}
+			# 获得该领袖
+			any_owned_leader = {
+				has_leader_flag = gts_Koharu
+			}
+			# 不能自己奴役自己
+			event_target:current_gts_leader = {
+				NOT = {
+					has_leader_flag = gts_Koharu
+				}
+			}
+		}
+	}
+	effect = {
+		custom_tooltip = gts_leader_item_p_koharu.tooltip
+		# 记得在gts_remove_leader_item中移除该标记
+		set_country_flag = gts_pet_koharu
+		gts_ui_slot_change_item = { TRAIT = gts_leader_item_p_koharu ITEM = @gts_leader_item_p_koharu }
+	}
+}
+gts_leader_item_p_yiyan_effect = {
+	potential = {
+		gts_ui_item_display = { PAGE = 2 CLASS = 1 }
+	}
+	allow = {
+		gts_ui_item_lock = { ITEM = @gts_leader_item_p_yiyan }
+		hidden_trigger = {
+			# 全局限定一个
+			NOT = {
+				has_country_flag = gts_pet_yiyan
+			}
+			# 获得该领袖
+			any_owned_leader = {
+				has_leader_flag = gts_yiyan
+			}
+			# 不能自己奴役自己（亿盐除外）
+		}
+	}
+	effect = {
+		custom_tooltip = gts_leader_item_p_yiyan.tooltip
+		# 记得在gts_remove_leader_item中移除该标记
+		set_country_flag = gts_pet_yiyan
+		gts_ui_slot_change_item = { TRAIT = gts_leader_item_p_yiyan ITEM = @gts_leader_item_p_yiyan }
+	}
+}
+gts_leader_item_p_huatian_effect = {
+	potential = {
+		gts_ui_item_display = { PAGE = 1 CLASS = 1 }
+	}
+	allow = {
+		gts_ui_item_lock = { ITEM = @gts_leader_item_p_huatian }
+		hidden_trigger = {
+			# 全局限定一个
+			NOT = {
+				has_country_flag = gts_pet_huatian
+			}
+		}
+		# 获得该领袖
+		any_owned_leader = {
+			has_leader_flag = gts_huatian
+		}
+		# 不能自己奴役自己
+		event_target:current_gts_leader = {
+			NOT = {
+				has_leader_flag = gts_huatian
+			}
+		}
+	}
+	effect = {
+		custom_tooltip = gts_leader_item_p_huatian.tooltip
+		# 记得在gts_remove_leader_item中移除该标记
+		set_country_flag = gts_pet_huatian
+		gts_ui_slot_change_item = { TRAIT = gts_leader_item_p_huatian ITEM = @gts_leader_item_p_huatian }
+	}
+}
+gts_leader_item_p_xiaoyu_effect = {
+	potential = {
+		gts_ui_item_display = { PAGE = 2 CLASS = 1 }
+	}
+	allow = {
+		gts_ui_item_lock = { ITEM = @gts_leader_item_p_xiaoyu }
+		hidden_trigger = {
+			# 全局限定一个
+			NOT = {
+				has_country_flag = gts_pet_suzhuiyu
+			}
+		}
+	}
+	effect = {
+		custom_tooltip = gts_leader_item_p_xiaoyu.tooltip
+		# 记得在gts_remove_leader_item中移除该标记
+		set_country_flag = gts_pet_suzhuiyu
+		gts_ui_slot_change_item = { TRAIT = gts_leader_item_p_xiaoyu ITEM = @gts_leader_item_p_xiaoyu }
+	}
+}
+gts_leader_item_p_graygoo_effect = {
+	potential = {
+		gts_ui_item_display = { PAGE = 2 CLASS = 1 }
+	}
+	allow = {
+		gts_ui_item_lock = { ITEM = @gts_leader_item_p_graygoo }
+		is_same_value = event_target:gray_owner
+		hidden_trigger = {
+			# 全局限定一个
+			NOT = {
+				has_country_flag = gts_pet_graygoo
+			}
+		}
+	}
+	effect = {
+		custom_tooltip = gts_leader_item_p_graygoo.tooltip
+		# 记得在gts_remove_leader_item中移除该标记
+		set_country_flag = gts_pet_graygoo
+		gts_ui_slot_change_item = { TRAIT = gts_leader_item_p_graygoo ITEM = @gts_leader_item_p_graygoo }
+	}
+}
+gts_leader_item_p_tensi_effect = {
+	potential = {
+		gts_ui_item_display = { PAGE = 2 CLASS = 1 }
+	}
+	allow = {
+		gts_ui_item_lock = { ITEM = @gts_leader_item_p_tensi }
+		# is_same_value = event_target:tensi_owner
+		hidden_trigger = {
+			# 全局限定一个
+			has_country_flag = gts_leader_qhai_event3_fin
+			NOT = {
+				has_country_flag = gts_pet_tensi
+			}
+			# 获得该领袖
+			any_owned_leader = {
+				has_leader_flag = gts_qhai
+			}
+			# 不能自己奴役自己
+			event_target:current_gts_leader = {
+				NOT = {
+					has_leader_flag = gts_tensi
+				}
+				has_leader_flag = gts_qhai
+			}
+		}
+	}
+	effect = {
+		custom_tooltip = gts_leader_item_p_tensi.tooltip
+		# 记得在gts_remove_leader_item中移除该标记
+		set_country_flag = gts_pet_tensi
+		gts_ui_slot_change_item = { TRAIT = gts_leader_item_p_tensi ITEM = @gts_leader_item_p_tensi }
+		if = {
+			limit = {
+				not = { has_country_flag = gts_leader_tensi_p_triggerd }
+			}
+			country_event = {
+				id = gts_leader_qhai.2000
+				days = 3600
+			}
+			set_country_flag = gts_leader_tensi_p_triggerd
+		}
+	}
+}
+gts_leader_item_p_transform_effect = {
+	potential = {
+		gts_ui_item_display = { PAGE = 2 CLASS = 1 }
+	}
+	allow = {
+		gts_ui_item_lock = { ITEM = @gts_leader_item_p_transform }
+		is_same_value = event_target:firefly_owner
+		hidden_trigger = {
+			# 全局限定一个
+			NOT = {
+				has_country_flag = gts_pet_transform
+			}
+			# 获得该领袖
+			any_owned_leader = {
+				has_leader_flag = gts_firefly
+			}
+		}
+		#只能流萤使用
+		event_target:current_gts_leader = {
+			has_leader_flag = firefly_transform_active
+		}
+		resource_stockpile_compare = { resource = minerals value >= 1000
+			resource = alloys value >= 500
+		}
+	}
+	effect = {
+		custom_tooltip = gts_leader_item_p_transform.tooltip
+		add_resource = {
+			minerals = -1000
+			alloys = -500
+		}
+		# 记得在gts_remove_leader_item中移除该标记
+		set_country_flag = gts_pet_transform
+		gts_ui_slot_change_item = { TRAIT = gts_leader_item_p_transform ITEM = @gts_leader_item_p_transform }
+	}
+}
+gts_leader_item_p_linfeng_effect = {
+	potential = {
+		gts_ui_item_display = { PAGE = 2 CLASS = 1 }
+	}
+	allow = {
+		gts_ui_item_lock = { ITEM = @gts_leader_item_p_linfeng }
+		
+		hidden_trigger = {
+			# 全局限定一个
+			NOT = {
+				has_country_flag = gts_pet_linfeng
+			}
+			# 获得该领袖
+			any_owned_leader = {
+				has_leader_flag = gts_linfeng
+			}
+			# 不能自己奴役自己
+			event_target:current_gts_leader = {
+				NOT = {
+					has_leader_flag = gts_linfeng
+				}
+			}
+		}
+	}
+	effect = {
+		custom_tooltip = gts_leader_item_p_linfeng.tooltip
+		# 记得在gts_remove_leader_item中移除该标记
+		set_country_flag = gts_pet_linfeng
+		gts_ui_slot_change_item = { TRAIT = gts_leader_item_p_linfeng ITEM = @gts_leader_item_p_linfeng }
+	}
+}
+# xxx_effect = {
+# 	potential = {
+# 		gts_ui_item_display = { PAGE =  CLASS = 1 }
+# 	}
+# 	allow = {
+# 		gts_ui_item_lock = { ITEM = @xxx }
+# 	}
+# 	effect = {
+# 		custom_tooltip = xxx.tooltip
+# 		gts_ui_slot_change_item = { TRAIT = xxx ITEM = @xxx }
+# 	}
+# }

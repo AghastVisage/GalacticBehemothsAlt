@@ -1,0 +1,746 @@
+#特殊岗位
+event_stocking_crushed_purge = {
+	category = purge
+	is_capped_by_modifier = no
+	ignores_sapience = yes
+	purge = purge_stocking_crushed
+	swappable_data = {
+		default = {
+			
+		}
+	}
+	tags = { }
+	demotion = {
+		time = 0
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = purge
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+	possible = {
+		exists = owner
+		has_pop_group_flag = event_stocking_crushed_purge
+	}
+	resources = {
+		category = planet_jobs
+		produces = {
+			unity = 10
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		planet_amenities_add = 1000
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+	weight = {
+		weight = 1000
+	}
+}
+
+job_godness_power_worker = {
+    category = job_godness_power_worker_slave
+    purge = purge_godness_power
+    is_capped_by_modifier = no
+ 
+	swappable_data = {
+		default = {
+			building_icon = building_gts_115tiny_lathe_capital
+			icon = job_godness_power_worker
+		}
+	}
+	tags = { }
+	demotion = {
+		time = 0
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = purge
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+    possible_pre_triggers = {
+        has_owner = yes
+        has_planet = yes
+        is_sapient = yes
+    }
+    possible = {
+        owner = { has_ascension_perk = ap_gts_115tiny_crisis }
+        planet = { has_designation = col_godness_power_world }
+        has_virtual_species_trait = no
+        is_gts= yes#判定是不是巨娘
+        not = { has_trait = trait_godness_power_finish }
+    }
+
+    resources = {
+        category = planet_godness_power_worker
+        produces = {
+            gts_giantess_fluid = 1
+            gts_giantess_underwear = 0.1
+            gts_giantess_human = 0.05
+            gts_focus = 0.025
+            mult = value:num_godness_power_worker_slave
+        }
+        upkeep = {
+            energy = 8
+            mult = value:num_godness_power_worker_slave_halved
+        }
+    }
+
+    weight = {
+        weight = 99999
+    }
+
+    inline_script = "jobs/automodding_priority_research"
+}
+
+
+gts_civilian_unlimited_seele = {
+	category = civilian
+	is_capped_by_modifier = yes
+	count_as_available_for_ai = yes
+	tags = { trade amenities }
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible = {
+		hidden_trigger = { exists = owner }
+		owner = {
+			is_gestalt = no
+		}
+		NOT = {
+			has_citizenship_type = {
+				type = citizenship_cruise_passenger
+				country = owner
+			}
+		}
+		OR = {
+			NOT = {
+				owner = {
+					has_active_tradition = tr_virtuality_finish
+				}
+			}
+			has_virtual_species_trait = no
+		}
+		planet = {
+			is_planet_class = pc_gts_seele
+		}
+		colony? = { NOT = { is_planet_class = pc_cosmogenesis_world } }
+	}
+
+	resources = {
+		category = planet_civilians
+		produces = {
+			trade = 1
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				has_modifier = resort_colony
+			}
+			trade = 1
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					gts_is_giantess = yes
+				}
+			}
+			gts_micro = 0.20
+			gts_micro_city = 0.10
+			gts_micro_planet = 0.05
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					gts_is_tiny = yes
+				}
+			}
+			gts_giantess_fluid = 0.20
+			gts_giantess_underwear = 0.10
+			gts_giantess_human = 0.05
+		}
+		produces = {
+			trigger = {
+				planet = {
+					num_districts = { type = district_bfbf_seele_1 value > 0 }
+				}
+			}
+			influence = 0.01
+			trade = 1
+			mult = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_1|
+		}
+		produces = {
+			trigger = {
+				planet = {
+					num_districts = { type = district_bfbf_seele_2 value > 0 }
+				}
+			}
+			minerals = 1
+			mult = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_2|
+		}
+		produces = {
+			trigger = {
+				planet = {
+					num_districts = { type = district_bfbf_seele_3 value > 0 }
+				}
+			}
+			energy = 1
+			mult = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_3|
+		}
+		produces = {
+			trigger = {
+				planet = {
+					num_districts = { type = district_bfbf_seele_4 value > 0 }
+				}
+			}
+			exotic_gases = 0.10
+			volatile_motes = 0.10
+			rare_crystals = 0.10
+			sr_zro = 0.02
+			sr_living_metal = 0.02
+			nanites = 0.02
+			sr_dark_matter = 0.02
+			astral_threads = 0.02
+			minor_artifacts = 0.02
+			mult = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_4|
+		}
+		produces = {
+			trigger = {
+				planet = {
+					num_districts = { type = district_bfbf_seele_5 value > 0 }
+				}
+			}
+			unity = 1
+			mult = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_5|
+		}
+		produces = {
+			trigger = {
+				planet = {
+					num_districts = { type = district_bfbf_seele_6 value > 0 }
+				}
+			}
+			alloys = 0.50
+			consumer_goods = 0.50
+			mult = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_6|
+		}
+		produces = {
+			trigger = {
+				planet = {
+					num_districts = { type = district_bfbf_seele_7 value > 0 }
+				}
+			}
+			food = 1
+			mult = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_7|
+		}
+		produces = {
+			trigger = {
+				planet = {
+					num_districts = { type = district_bfbf_seele_8 value > 0 }
+				}
+			}
+			physics_research = 0.50
+			society_research = 0.50
+			engineering_research = 0.50
+			mult = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_8|
+		}
+		inline_script = "jobs/ethic_job_resources"
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner? = {
+				is_pleasure_seeker_empire = no
+				NOT = {
+					has_valid_civic = civic_dystopian_society
+				}
+			}
+		}
+		planet_amenities_add = 50
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+
+	
+	triggered_planet_modifier = {
+		potential = {
+			num_districts = { type = district_bfbf_seele_9 value > 0 }
+		}
+		army_defense_health_mult = 0.01
+		army_defense_damage_mult = 0.01
+		army_defense_morale_mult = 0.01
+		planet_stability_add = 0.01
+		planet_crime_add = -0.01
+		planet_crime_no_happiness_add = -0.01 # 反常度 | 星球犯罪（无幸福度）增加
+		mult = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_9|
+	}
+	triggered_planet_modifier = {
+		potential = {
+			num_districts = { type = district_bfbf_seele_10 value > 0 }
+		}
+		planet_pops_upkeep_mult = -0.01  # 人口维护费
+		planet_jobs_upkeep_mult = -0.01#岗位所需的维护费 | 星球岗位维护费倍率
+		mult = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_10|
+	}
+	triggered_planet_modifier = {
+		potential = {
+			num_districts = { type = district_bfbf_seele_0 value > 0 }
+		}
+		planet_building_build_speed_mult = 0.01	#建造速度
+		mult = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_0|
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			owner? = { has_modifier = paragon_origin_strengthened_government_iii }
+		}
+		country_edict_fund_add = 1
+	}
+
+	inline_script = "jobs/ethic_job_modifiers"
+
+	weight = {
+		weight = 0.1
+	}
+}
+
+gts_civilian_unlimited_seele_li = {
+	category = civilian
+	is_capped_by_modifier = yes
+	count_as_available_for_ai = yes
+	tags = { trade amenities }
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible = {
+		hidden_trigger = { exists = owner }
+		owner = {
+			is_gestalt = no
+		}
+		NOT = {
+			has_citizenship_type = {
+				type = citizenship_cruise_passenger
+				country = owner
+			}
+		}
+		OR = {
+			NOT = {
+				owner = {
+					has_active_tradition = tr_virtuality_finish
+				}
+			}
+			has_virtual_species_trait = no
+		}
+		planet = {
+			is_planet_class = pc_gts_seele_li
+		}
+		colony? = { NOT = { is_planet_class = pc_cosmogenesis_world } }
+	}
+
+	resources = {
+		category = planet_civilians
+		produces = {
+			trade = 1
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				has_modifier = resort_colony
+			}
+			trade = 1
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					gts_is_giantess = yes
+				}
+			}
+			gts_micro = 0.20
+			gts_micro_city = 0.10
+			gts_micro_planet = 0.05
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					gts_is_tiny = yes
+				}
+			}
+			gts_giantess_fluid = 0.20
+			gts_giantess_underwear = 0.10
+			gts_giantess_human = 0.05
+		}
+		produces = {
+			trigger = {
+				planet = {
+					num_districts = { type = district_bfbf_seele_li_1 value > 0 }
+				}
+			}
+			influence = 0.01
+			trade = 1
+			mult = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_li_1|
+		}
+		produces = {
+			trigger = {
+				planet = {
+					num_districts = { type = district_bfbf_seele_li_2 value > 0 }
+				}
+			}
+			minerals = 1
+			mult = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_li_2|
+		}
+		produces = {
+			trigger = {
+				planet = {
+					num_districts = { type = district_bfbf_seele_li_3 value > 0 }
+				}
+			}
+			energy = 1
+			mult = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_li_3|
+		}
+		produces = {
+			trigger = {
+				planet = {
+					num_districts = { type = district_bfbf_seele_li_4 value > 0 }
+				}
+			}
+			exotic_gases = 0.10
+			volatile_motes = 0.10
+			rare_crystals = 0.10
+			sr_zro = 0.02
+			sr_living_metal = 0.02
+			nanites = 0.02
+			sr_dark_matter = 0.02
+			astral_threads = 0.02
+			minor_artifacts = 0.02
+			mult = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_li_4|
+		}
+		produces = {
+			trigger = {
+				planet = {
+					num_districts = { type = district_bfbf_seele_li_5 value > 0 }
+				}
+			}
+			unity = 1
+			mult = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_li_5|
+		}
+		produces = {
+			trigger = {
+				planet = {
+					num_districts = { type = district_bfbf_seele_li_6 value > 0 }
+				}
+			}
+			alloys = 0.50
+			consumer_goods = 0.50
+			mult = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_li_6|
+		}
+		produces = {
+			trigger = {
+				planet = {
+					num_districts = { type = district_bfbf_seele_li_7 value > 0 }
+				}
+			}
+			food = 1
+			mult = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_li_7|
+		}
+		produces = {
+			trigger = {
+				planet = {
+					num_districts = { type = district_bfbf_seele_li_8 value > 0 }
+				}
+			}
+			physics_research = 0.50
+			society_research = 0.50
+			engineering_research = 0.50
+			mult = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_li_8|
+		}
+		inline_script = "jobs/ethic_job_resources"
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner? = {
+				is_pleasure_seeker_empire = no
+				NOT = {
+					has_valid_civic = civic_dystopian_society
+				}
+			}
+		}
+		planet_amenities_add = 50
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+
+	
+	triggered_planet_modifier = {
+		potential = {
+			num_districts = { type = district_bfbf_seele_li_9 value > 0 }
+		}
+		army_defense_health_mult = 0.01
+		army_defense_damage_mult = 0.01
+		army_defense_morale_mult = 0.01
+		planet_stability_add = 0.01
+		planet_crime_add = -0.01
+		planet_crime_no_happiness_add = -0.01 # 反常度 | 星球犯罪（无幸福度）增加
+		mult = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_li_9|
+	}
+	triggered_planet_modifier = {
+		potential = {
+			num_districts = { type = district_bfbf_seele_li_10 value > 0 }
+		}
+		planet_pops_upkeep_mult = -0.01  # 人口维护费
+		planet_jobs_upkeep_mult = -0.01#岗位所需的维护费 | 星球岗位维护费倍率
+		mult = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_li_10|
+	}
+	triggered_planet_modifier = {
+		potential = {
+			num_districts = { type = district_bfbf_seele_li_0 value > 0 }
+		}
+		planet_building_build_speed_mult = 0.01	#建造速度
+		mult = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_li_0|
+	}
+	triggered_country_modifier = {
+		potential = {
+			owner? = { has_modifier = paragon_origin_strengthened_government_iii }
+		}
+		country_edict_fund_add = 1
+	}
+
+	inline_script = "jobs/ethic_job_modifiers"
+
+	weight = {
+		weight = 0.1
+	}
+}
+
+gts_civilian_unlimited_bronya = {
+	category = civilian
+	is_capped_by_modifier = yes
+	count_as_available_for_ai = yes
+	tags = { trade amenities }
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible = {
+		hidden_trigger = { exists = owner }
+		owner = {
+			is_gestalt = no
+		}
+		NOT = {
+			has_citizenship_type = {
+				type = citizenship_cruise_passenger
+				country = owner
+			}
+		}
+		OR = {
+			NOT = {
+				owner = {
+					has_active_tradition = tr_virtuality_finish
+				}
+			}
+			has_virtual_species_trait = no
+		}
+		planet = {
+			is_planet_class = pc_gts_bronya
+		}
+		colony? = { NOT = { is_planet_class = pc_cosmogenesis_world } }
+	}
+
+	resources = {
+		category = planet_civilians
+		produces = {
+			trade = 1
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				has_modifier = resort_colony
+			}
+			trade = 1
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					gts_is_giantess = yes
+				}
+			}
+			gts_micro = 0.20
+			gts_micro_city = 0.10
+			gts_micro_planet = 0.05
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					gts_is_tiny = yes
+				}
+			}
+			gts_giantess_fluid = 0.20
+			gts_giantess_underwear = 0.10
+			gts_giantess_human = 0.05
+		}
+		produces = {
+			trigger = {
+				planet = {
+					num_districts = { type = district_bfbf_bronya_1 value > 0 }
+				}
+			}
+			influence = 0.01
+			trade = 1
+			mult = value:gts_num_planet_districts|DISTRICT|district_bfbf_bronya_1|
+		}
+		produces = {
+			trigger = {
+				planet = {
+					num_districts = { type = district_bfbf_bronya_2 value > 0 }
+				}
+			}
+			minerals = 1
+			mult = value:gts_num_planet_districts|DISTRICT|district_bfbf_bronya_2|
+		}
+		produces = {
+			trigger = {
+				planet = {
+					num_districts = { type = district_bfbf_bronya_3 value > 0 }
+				}
+			}
+			energy = 1
+			mult = value:gts_num_planet_districts|DISTRICT|district_bfbf_bronya_3|
+		}
+		produces = {
+			trigger = {
+				planet = {
+					num_districts = { type = district_bfbf_bronya_4 value > 0 }
+				}
+			}
+			exotic_gases = 0.10
+			volatile_motes = 0.10
+			rare_crystals = 0.10
+			sr_zro = 0.02
+			sr_living_metal = 0.02
+			nanites = 0.02
+			sr_dark_matter = 0.02
+			astral_threads = 0.02
+			minor_artifacts = 0.02
+			mult = value:gts_num_planet_districts|DISTRICT|district_bfbf_bronya_4|
+		}
+		produces = {
+			trigger = {
+				planet = {
+					num_districts = { type = district_bfbf_bronya_5 value > 0 }
+				}
+			}
+			unity = 1
+			mult = value:gts_num_planet_districts|DISTRICT|district_bfbf_bronya_5|
+		}
+		produces = {
+			trigger = {
+				planet = {
+					num_districts = { type = district_bfbf_bronya_6 value > 0 }
+				}
+			}
+			alloys = 0.50
+			consumer_goods = 0.50
+			mult = value:gts_num_planet_districts|DISTRICT|district_bfbf_bronya_6|
+		}
+		produces = {
+			trigger = {
+				planet = {
+					num_districts = { type = district_bfbf_bronya_7 value > 0 }
+				}
+			}
+			food = 1
+			mult = value:gts_num_planet_districts|DISTRICT|district_bfbf_bronya_7|
+		}
+		produces = {
+			trigger = {
+				planet = {
+					num_districts = { type = district_bfbf_bronya_8 value > 0 }
+				}
+			}
+			physics_research = 0.50
+			society_research = 0.50
+			engineering_research = 0.50
+			mult = value:gts_num_planet_districts|DISTRICT|district_bfbf_bronya_8|
+		}
+		inline_script = "jobs/ethic_job_resources"
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner? = {
+				is_pleasure_seeker_empire = no
+				NOT = {
+					has_valid_civic = civic_dystopian_society
+				}
+			}
+		}
+		planet_amenities_add = 50
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+
+	
+	triggered_planet_modifier = {
+		potential = {
+			num_districts = { type = district_bfbf_bronya_9 value > 0 }
+		}
+		army_defense_health_mult = 0.01
+		army_defense_damage_mult = 0.01
+		army_defense_morale_mult = 0.01
+		planet_stability_add = 0.01
+		planet_crime_add = -0.01
+		planet_crime_no_happiness_add = -0.01 # 反常度 | 星球犯罪（无幸福度）增加
+		mult = value:gts_num_planet_districts|DISTRICT|district_bfbf_bronya_9|
+	}
+	triggered_planet_modifier = {
+		potential = {
+			num_districts = { type = district_bfbf_bronya_10 value > 0 }
+		}
+		planet_pops_upkeep_mult = -0.01  # 人口维护费
+		planet_jobs_upkeep_mult = -0.01#岗位所需的维护费 | 星球岗位维护费倍率
+		mult = value:gts_num_planet_districts|DISTRICT|district_bfbf_bronya_10|
+	}
+	triggered_planet_modifier = {
+		potential = {
+			num_districts = { type = district_bfbf_bronya_0 value > 0 }
+		}
+		planet_building_build_speed_mult = 0.01	#建造速度
+		mult = value:gts_num_planet_districts|DISTRICT|district_bfbf_bronya_0|
+	}
+	triggered_country_modifier = {
+		potential = {
+			owner? = { has_modifier = paragon_origin_strengthened_government_iii }
+		}
+		country_edict_fund_add = 1
+	}
+
+	inline_script = "jobs/ethic_job_modifiers"
+
+	weight = {
+		weight = 0.1
+	}
+}

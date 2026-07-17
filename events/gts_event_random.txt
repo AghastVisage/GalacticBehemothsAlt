@@ -1,0 +1,7684 @@
+namespace = gts_evt_random
+
+#namespace = gts_evt_random_a
+#01xxxz:随机星球事件
+#02xxxz:随机战斗事件
+#03xxxz:随机领袖事件
+#04xxxz:随机帝国事件
+#05xxxz:随机土著事件
+#06xxxz:随机异常事件
+#07xxxz:随机舰船事件
+#08xxxz:随机考古事件
+#01xxxz:随机星球事件
+# planet_event = {#科学家的丝袜（土著球）
+# 	id = gts_evt_random.010010
+# 	title = gts_evt_random.010010.name
+# 	desc =gts_evt_random.010010.desc
+# 	picture = GFX_gtsra_aurora
+# 	show_sound = event_default
+# 	is_triggered_only = yes
+# 	fire_only_once = yes
+# 	trigger = {
+# 		is_ai = no
+# 	}
+# 	option = {
+# 		name = gts_evt_random.010010.a
+# 		hidden_effect = {
+# 		}
+# 	}
+# 	option = {
+# 		name = gts_evt_random.010010.b
+# 		hidden_effect = {
+# 		}
+# 	}
+# 	option = {
+# 		name = gts_evt_random.010010.c
+# 		hidden_effect = {
+# 		}
+# 	}
+# }
+
+country_event = {
+
+	# 冒失的士兵(隱藏)
+
+	id = gts_evt_random.010020
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		is_ai = no
+		any_owned_planet = {
+			count_owned_pop_amount = {
+				count > 500
+			}
+			OR = {
+				has_designation = col_fortress
+				has_designation = col_habitat_fortress
+			}
+			any_owned_pop_group = {
+				gts_is_giantess = yes
+			}
+			any_owned_pop_group = {
+				gts_is_tiny = yes
+			}
+		}
+	}
+
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				count_owned_pop_amount = {
+					count > 500
+				}
+				OR = {
+					has_designation = col_fortress
+					has_designation = col_habitat_fortress
+				}
+				any_owned_pop_group = {
+					gts_is_giantess = yes
+				}
+				any_owned_pop_group = {
+					gts_is_tiny = yes
+				}
+			}
+			planet_event = {
+				id = gts_evt_random.010021
+			}
+		}
+	}
+}
+
+planet_event = {
+
+	# 冒失的士兵
+
+	id = gts_evt_random.010021
+	title = gts_evt_random.010021.name
+	desc = gts_evt_random.010021.desc
+	picture = GFX_gtsra_city_crash_8
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	location = root
+
+	immediate = {
+		while = {
+			count = 5
+			random_owned_pop_group = {
+				kill_single_pop = yes
+			}
+		}
+	}
+
+	option = {
+		name = gts_evt_random.010021.a
+		custom_tooltip = gts_bruh_casualties_500.tooltip
+		add_planet_devastation = 10
+		add_deposit = d_city_ruins
+		add_deposit = d_decrepit_dwellings
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = 6
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.010021.b
+		custom_tooltip = gts_bruh_casualties_500.tooltip
+		add_planet_devastation = 10
+		add_deposit = d_city_ruins
+		add_deposit = d_decrepit_dwellings
+		owner = {
+			add_resource = {
+				gts_micro = 100
+				influence = 75
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.010021.c
+		custom_tooltip = gts_bruh_casualties_500.tooltip
+		add_planet_devastation = 10
+		add_deposit = d_city_ruins
+		add_deposit = d_decrepit_dwellings
+		owner = {
+			add_resource = {
+				gts_micro_city = 50
+			}
+		}
+	}
+}
+
+country_event = {
+
+	# 小人的遊行(隱藏)
+
+	id = gts_evt_random.010030
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		is_ai = no
+		any_owned_planet = {
+			planet_crime > 20
+			count_owned_pop_amount = {
+				count > 1000
+			}
+			any_owned_pop_group = {
+				gts_is_giantess = yes
+			}
+			any_owned_pop_group = {
+				gts_is_tiny = yes
+			}
+		}
+	}
+
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				planet_crime > 20
+				count_owned_pop_amount = {
+					count > 1000
+				}
+				any_owned_pop_group = {
+					gts_is_giantess = yes
+				}
+				any_owned_pop_group = {
+					gts_is_tiny = yes
+				}
+			}
+			planet_event = {
+				id = gts_evt_random.010031
+			}
+		}
+	}
+}
+
+planet_event = {
+
+	# 小人的遊行
+
+	id = gts_evt_random.010031
+	title = gts_evt_random.010031.name
+	desc = gts_evt_random.010031.desc
+	picture = GFX_evt_civil_action
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	location = root
+
+	option = {
+		name = gts_evt_random.010031.a
+		custom_tooltip = gts_bruh_casualties_1000.tooltip
+		trigger = {
+			owner = {
+				OR = {
+					has_ethic = ethic_authoritarian
+					has_ethic = ethic_fanatic_authoritarian
+					has_ethic = ethic_xenophobe
+					has_ethic = ethic_fanatic_xenophobe
+				}
+			}
+		}
+		owner = {
+			give_specimen = {
+				origin = gts_random_report_a
+				key = gts_random_report_a
+			}
+		}
+		add_modifier = {
+			modifier = gtsra_random_brutal_rule
+			years = 10
+		}
+		owner = {
+			add_resource = {
+				influence = 100
+			}
+		}
+		hidden_effect = {
+			while = {
+				count = 10
+				random_owned_pop_group = {
+					limit = {
+						gts_is_tiny = yes
+					}
+					kill_single_pop = yes
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.010031.b
+		trigger = {
+			owner = {
+				OR = {
+					has_ethic = ethic_xenophile
+					has_ethic = ethic_fanatic_xenophile
+					has_ethic = ethic_pacifist
+					has_ethic = ethic_fanatic_pacifist
+				}
+			}
+		}
+		add_modifier = {
+			modifier = gtsra_random_moderate_rule
+			years = 10
+		}
+		owner = {
+			add_resource = {
+				influence = -100
+			}
+		}
+		owner = {
+			give_specimen = {
+				origin = gts_random_report_b
+				key = gts_random_report_b
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.010031.c
+		custom_tooltip = gts_bruh_casualties_1000.tooltip
+		trigger = {
+			owner = {
+				OR = {
+					has_ethic = ethic_militarist
+					has_ethic = ethic_fanatic_militarist
+				}
+			}
+		}
+		owner = {
+			give_specimen = {
+				origin = gts_random_report_a
+				key = gts_random_report_a
+			}
+		}
+		add_modifier = {
+			modifier = gtsra_random_brutal_rule
+			years = 5
+		}
+		hidden_effect = {
+			while = {
+				count = 10
+				random_owned_pop_group = {
+					limit = {
+						gts_is_tiny = yes
+					}
+					kill_single_pop = yes
+				}
+			}
+		}
+		while = {
+			count = 10
+			create_army = {
+				name = "NAME_tiny_slave"
+				owner = root.owner
+				type = "tiny_slave_army"
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.010031.d
+		allow = {
+			owner = {
+				resource_stockpile_compare = {
+					resource = trade
+					value >= 1000
+				}
+			}
+		}
+		owner = {
+			give_specimen = {
+				origin = gts_random_report_b
+				key = gts_random_report_b
+			}
+		}
+		add_modifier = {
+			modifier = gtsra_random_moderate_rule
+			years = 5
+		}
+		owner = {
+			add_resource = {
+				trade = -1000
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.010031.e
+		random_list = {
+			1 = {
+				owner = {
+					give_specimen = {
+						origin = gts_random_report_a
+						key = gts_random_report_a
+					}
+				}
+				add_modifier = {
+					modifier = gtsra_random_brutal_rule
+					years = 5
+				}
+			}
+			1 = {
+				owner = {
+					give_specimen = {
+						origin = gts_random_report_b
+						key = gts_random_report_b
+					}
+				}
+				add_modifier = {
+					modifier = gtsra_random_moderate_rule
+					years = 5
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+
+	# 小人殺手(隱藏)
+
+	id = gts_evt_random.010040
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		is_ai = no
+		any_owned_planet = {
+			count_owned_pop_amount = {
+				count > 1000
+			}
+			any_owned_pop_group = {
+				gts_is_giantess = yes
+			}
+			any_owned_pop_group = {
+				gts_is_tiny = yes
+			}
+		}
+	}
+
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				count_owned_pop_amount = {
+					count > 1000
+				}
+				any_owned_pop_group = {
+					gts_is_giantess = yes
+				}
+				any_owned_pop_group = {
+					gts_is_tiny = yes
+				}
+			}
+			planet_event = {
+				id = gts_evt_random.010041
+			}
+		}
+	}
+}
+
+planet_event = {
+
+	# 小人殺手
+
+	id = gts_evt_random.010041
+	title = gts_evt_random.010041.name
+	desc = gts_evt_random.010041.desc
+	picture = GFX_gtsra_city_crash_7
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = gts_evt_random.010041.a
+		custom_tooltip = gts_bruh_casualties_1000.tooltip
+		allow = {
+			owner = {
+				OR = {
+					has_ethic = ethic_authoritarian
+					has_ethic = ethic_fanatic_authoritarian
+					has_ethic = ethic_xenophobe
+					has_ethic = ethic_fanatic_xenophobe
+				}
+			}
+		}
+		owner = {
+			give_specimen = {
+				origin = gts_random_record
+				key = gts_random_record
+			}
+		}
+		hidden_effect = {
+			while = {
+				count = 10
+				random_owned_pop_group = {
+					limit = {
+						gts_is_tiny = yes
+					}
+					kill_single_pop = yes
+				}
+			}
+		}
+		add_modifier = {
+			modifier = gtsra_random_cruel_treatment
+			years = 10
+		}
+		owner = {
+			add_resource = {
+				influence = 125
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.010041.b
+		custom_tooltip = gts_bruh_casualties_1000.tooltip
+		allow = {
+			owner = {
+				gts_is_giantess_empire = yes
+			}
+		}
+		owner = {
+			give_specimen = {
+				origin = gts_random_record
+				key = gts_random_record
+			}
+		}
+		hidden_effect = {
+			while = {
+				count = 10
+				random_owned_pop_group = {
+					limit = {
+						gts_is_tiny = yes
+					}
+					kill_single_pop = yes
+				}
+			}
+		}
+		add_modifier = {
+			modifier = gtsra_random_cruel_treatment
+			years = 10
+		}
+		owner = {
+			add_resource = {
+				influence = 100
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.010041.c
+		custom_tooltip = gts_bruh_casualties_300.tooltip
+		allow = {
+			owner = {
+				NOR = {
+					has_ethic = ethic_xenophobe
+					has_ethic = ethic_fanatic_xenophobe
+				}
+			}
+		}
+		owner = {
+			give_specimen = {
+				origin = gts_random_record
+				key = gts_random_record
+			}
+		}
+		hidden_effect = {
+			while = {
+				count = 3
+				random_owned_pop_group = {
+					limit = {
+						gts_is_tiny = yes
+					}
+					kill_single_pop = yes
+				}
+			}
+		}
+		add_modifier = {
+			modifier = gtsra_random_moderate_rule
+			years = 10
+		}
+		owner = {
+			add_resource = {
+				energy = -2000
+				gts_micro = 1
+				influence = 30
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.010041.d
+		custom_tooltip = gts_bruh_casualties_500.tooltip
+		allow = {
+			owner = {
+				OR = {
+					has_ethic = ethic_authoritarian
+					has_ethic = ethic_fanatic_authoritarian
+					has_ethic = ethic_xenophobe
+					has_ethic = ethic_fanatic_xenophobe
+				}
+			}
+		}
+		owner = {
+			give_specimen = {
+				origin = gts_random_record
+				key = gts_random_record
+			}
+		}
+		owner = {
+			add_resource = {
+				influence = 50
+			}
+		}
+		hidden_effect = {
+			while = {
+				count = 5
+				random_owned_pop_group = {
+					limit = {
+						gts_is_tiny = yes
+					}
+					kill_single_pop = yes
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.010041.e
+		custom_tooltip = gts_bruh_casualties_500.tooltip
+		owner = {
+			add_resource = {
+				influence = -50
+			}
+		}
+		owner = {
+			give_specimen = {
+				origin = gts_random_record
+				key = gts_random_record
+			}
+		}
+		hidden_effect = {
+			while = {
+				count = 5
+				random_owned_pop_group = {
+					limit = {
+						gts_is_tiny = yes
+					}
+					kill_single_pop = yes
+				}
+			}
+		}
+	}
+}
+
+#巨娘竞技场事件链
+country_event = {
+	#巨娘竞技场
+	id = gts_evt_random.010050
+	title = gts_evt_random.010050.name
+	desc = gts_evt_random.010050.desc
+	picture = GFX_gtsra_load_10
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		is_ai = no
+		any_owned_leader = {
+			gts_is_bigger_than_giant = yes
+		}
+		any_owned_planet = {
+			pop_amount > 2000
+		}
+	}
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				pop_amount > 2000
+			}
+			save_event_target_as = GPEX_planet
+		}
+	}
+	option = {
+		name = gts_evt_random.010050.a
+		event_target:GPEX_planet = {
+			add_modifier = {
+				modifier = gtsra_random_GPEX_construct
+				#days = 30
+				days = 720
+			}
+		}
+		hidden_effect = {
+			event_target:GPEX_planet = {
+				planet_event = {
+					id = gts_evt_random.010051
+					#days = 30
+					days = 721
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.010050.b
+		add_resource = {
+			energy = 1000
+		}
+	}
+	option = {
+		name = gts_evt_random.010050.c
+		add_resource = {
+			unity = 500
+		}
+	}
+	option = {
+		name = gts_evt_random.010050.d
+		add_resource = {
+			influence = 25
+		}
+	}
+}
+
+planet_event = {
+	#巨娘竞技场完成
+	id = gts_evt_random.010051
+	title = gts_evt_random.010051.name
+	desc = gts_evt_random.010051.desc
+	picture = GFX_gtsra_load_10
+	show_sound = event_celebration
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		event_target:GPEX_planet = {
+			add_modifier = {
+				modifier = gtsra_random_GPEX
+				days = -1
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.010051.a
+		hidden_effect = {
+			event_target:GPEX_planet = {
+				planet_event = {
+					id = gts_evt_random.010052
+					days = 7
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.010051.b
+		owner = {
+			add_resource = {
+				unity = 4000
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.010051.c
+		owner = {
+			add_resource = {
+				influence = 50
+			}
+		}
+	}
+}
+
+planet_event = {
+	#国家元首前往竞技场
+	id = gts_evt_random.010052
+	title = gts_evt_random.010052.name
+	desc = gts_evt_random.010052.desc
+	picture = GFX_gtsra_load_15
+	show_sound = event_red_alert
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = gts_evt_random.010052.a
+		hidden_effect = {
+			planet_event = {
+				id = gts_evt_random.010053
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.010052.b
+		hidden_effect = {
+			planet_event = {
+				id = gts_evt_random.010053
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.010052.c
+		hidden_effect = {
+			planet_event = {
+				id = gts_evt_random.010053
+			}
+		}
+	}
+}
+
+planet_event = {
+	#国家元首参加竞技-1
+	id = gts_evt_random.010053
+	title = gts_evt_random.010053.name
+	desc = gts_evt_random.010053.desc
+	picture = GFX_gtsra_city_crash_10
+	show_sound = event_ground_battle
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = gts_evt_random.010053.a
+		hidden_effect = {
+			planet_event = {
+				id = gts_evt_random.010054
+			}
+		}
+	}
+}
+
+planet_event = {
+	#国家元首参加竞技-2
+	id = gts_evt_random.010054
+	title = gts_evt_random.010054.name
+	desc = gts_evt_random.010054.desc
+	picture = GFX_gtsra_city_crash_9
+	show_sound = event_space_battle
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = gts_evt_random.010054.a
+		hidden_effect = {
+			planet_event = {
+				id = gts_evt_random.010055
+			}
+		}
+	}
+}
+
+planet_event = {
+	#国家元首参加竞技-3
+	id = gts_evt_random.010055
+	title = gts_evt_random.010055.name
+	desc = gts_evt_random.010055.desc
+	picture = GFX_gtsra_city_crash_11
+	show_sound = event_ground_battle
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = gts_evt_random.010055.a
+		owner = {
+			add_resource = {
+				unity = 50000
+			}
+			give_specimen = {
+				origin = gts_random_medal
+				key = gts_random_medal
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.010055.b
+		owner = {
+			add_resource = {
+				energy = 50000
+			}
+			give_specimen = {
+				origin = gts_random_medal
+				key = gts_random_medal
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.010055.c
+		owner = {
+			add_resource = {
+				influence = 500
+			}
+			give_specimen = {
+				origin = gts_random_medal
+				key = gts_random_medal
+			}
+		}
+	}
+}
+
+country_event = {
+	#足印旅游（by CV）
+	id = gts_evt_random.010060
+	title = "gts_evt_random.010060.name"
+	desc = "gts_evt_random.010060.desc"
+	show_sound = event_default
+	picture = GFX_gts_footprint
+	fire_only_once = yes
+	is_triggered_only = yes
+	location = event_target:footprint_planet
+	trigger = {
+		gts_is_tiny_empire = yes
+		is_galactic_community_member = yes
+		NOR = {
+			has_origin = origin_Hexie
+			has_ethic = ethic_fanatic_xenophobe
+		}
+		any_galcom_member = {
+			NOT = {
+				is_same_value = ROOT
+			}
+			gts_is_giantess_empire = yes
+			their_opinion = {
+				who = ROOT
+				value > -150
+			}
+		}
+	}
+	immediate = {
+		random_owned_planet = {
+			save_event_target_as = footprint_planet
+		}
+	}
+	option = {
+		name = INTERESTING
+		event_target:footprint_planet = {
+			add_deposit = d_footprint_resort
+		}
+	}
+}
+
+# 010070曾经是萝莉虫娘的事件，现在独立出来了
+#舰娘喷乳事件链
+country_event = {
+	#喷乳
+	id = gts_evt_random.010080
+	title = gts_evt_random.010080.name
+	desc = gts_evt_random.010080.desc
+	picture = GFX_gts_eyjafjalla_03
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		is_ai = no
+		has_ascension_perk = ap_space_gts
+	}
+	immediate = {
+		random_owned_planet = {
+			save_event_target_as = shipgirl_milk_planet
+			add_planet_devastation = 15
+			add_deposit = d_gts_milk_sea
+		}
+	}
+	option = {
+		name = gts_evt_random.010080.a
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.010081
+				days = 30
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.010080.b
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.010082
+				days = 30
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.010080.c
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.010083
+				days = 30
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.010080.d
+		add_resource = {
+			food = 500
+		}
+		give_specimen = {
+			origin = gts_random_milk
+			key = gts_random_milk
+		}
+	}
+}
+
+country_event = {
+	#巨娘的欢呼
+	id = gts_evt_random.010081
+	title = gts_evt_random.010081.name
+	desc = gts_evt_random.010081.desc
+	picture = GFX_gts_event_4
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_random.010081.a
+		add_modifier = {
+			modifier = gtsra_milk_attack
+			days = -1
+		}
+	}
+	option = {
+		name = gts_evt_random.010081.b
+		add_modifier = {
+			modifier = gtsra_milk_attack
+			days = -1
+		}
+	}
+}
+
+country_event = {
+	#舰娘的额外妙用
+	id = gts_evt_random.010082
+	title = gts_evt_random.010082.name
+	desc = gts_evt_random.010082.desc
+	picture = GFX_gts_eyjafjalla_04
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_random.010082.a
+		add_modifier = {
+			modifier = gtsra_milk_recircle
+			days = -1
+		}
+	}
+}
+
+country_event = {
+	#失控的巨娘
+	id = gts_evt_random.010083
+	title = gts_evt_random.010083.name
+	desc = gts_evt_random.010083.desc
+	picture = GFX_gts_eyjafjalla_09
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_random.010083.a
+		random_owned_planet = {
+			add_planet_devastation = 15
+			add_deposit = d_gts_milk_sea
+		}
+	}
+	option = {
+		name = gts_evt_random.010083.b
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.010081
+				days = 30
+			}
+		}
+	}
+}
+
+#决斗事件链
+country_event = {
+	#决斗
+	id = gts_evt_random.010090
+	title = gts_evt_random.010090.name
+	desc = gts_evt_random.010090.desc
+	picture = GFX_load_51
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		is_ai = no
+		gts_is_giantess_empire = yes
+	}
+	immediate = {
+		random_owned_planet = {
+			save_event_target_as = gts_vs_tiny_planet
+		}
+	}
+	option = {
+		name = gts_evt_random.010090.a
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.010091
+				days = 7
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.010090.b
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.010094
+				days = 7
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.010090.c
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.010094
+				days = 7
+			}
+		}
+	}
+}
+
+country_event = {
+	#紧急停止
+	id = gts_evt_random.010091
+	title = gts_evt_random.010091.name
+	desc = gts_evt_random.010091.desc
+	picture = GFX_gtsra_load_29
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_random.010091.a
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.010092
+				days = 7
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.010091.b
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.010093
+				days = 7
+			}
+		}
+	}
+}
+
+country_event = {
+	#和解
+	id = gts_evt_random.010092
+	title = gts_evt_random.010092.name
+	desc = gts_evt_random.010092.desc
+	picture = GFX_gtsra_gentle
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_random.010092.a
+		add_resource = {
+			unity = 2000
+		}
+	}
+}
+
+country_event = {
+	#嘲弄
+	id = gts_evt_random.010093
+	title = gts_evt_random.010093.name
+	desc = gts_evt_random.010093.desc
+	picture = GFX_evt_gts_footSilk
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_random.010093.a
+		add_resource = {
+			energy = 2000
+		}
+	}
+}
+
+country_event = {
+	#快开始吧！
+	id = gts_evt_random.010094
+	title = gts_evt_random.010094.name
+	desc = gts_evt_random.010094.desc
+	picture = GFX_evt_announcement
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_random.010094.a
+		country_event = {
+			id = gts_evt_random.010095
+		}
+	}
+}
+
+country_event = {
+	#决斗之日
+	id = gts_evt_random.010095
+	title = gts_evt_random.010095.name
+	desc = gts_evt_random.010095.desc
+	picture = GFX_gts_event_5
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_random.010095.a
+		add_resource = {
+			influence = 75
+		}
+	}
+}
+
+planet_event = {
+	#小人食品加工厂-热销新品
+	id = gts_evt_random.010100
+	title = gts_evt_random.010100.name
+	desc = gts_evt_random.010100.desc
+	picture = GFX_gts_event_10
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = gts_evt_random.010100.a
+		owner = {
+			add_resource = {
+				influence = 25
+			}
+		}
+	}
+}
+
+planet_event = {
+	#微型城市装配厂-659号培养皿城市记录 
+	id = gts_evt_random.010110
+	title = gts_evt_random.010110.name
+	desc = gts_evt_random.010110.desc
+	picture = GFX_gtsra_load_25
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = gts_evt_random.010110.a
+		owner = {
+			add_resource = {
+				influence = 25
+			}
+		}
+	}
+}
+
+planet_event = {
+	#小人专卖店-清洁用海嗣群
+	id = gts_evt_random.010120
+	title = gts_evt_random.010120.name
+	desc = gts_evt_random.010120.desc
+	picture = skadi_dogfight
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = gts_evt_random.010120.a
+		owner = {
+			add_resource = {
+				influence = 25
+			}
+		}
+	}
+	after = {
+		hidden_effect = {
+			random_list = {
+				2 = {
+				}
+				1 = {
+					planet_event = {
+						id = gts_evt_random.010130
+					}
+				}
+			}
+		}
+	}
+}
+
+planet_event = {
+	#清洁用海嗣群——迷你博士款 
+	id = gts_evt_random.010130
+	title = gts_evt_random.010130.name
+	desc = gts_evt_random.010130.desc
+	picture = skadi_dogfight
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_random.010130.a
+		owner = {
+			add_resource = {
+				influence = 25
+			}
+		}
+	}
+}
+
+planet_event = {
+	# 首次建造：缩小人生产厂
+	id = gts_evt_random.010140
+	title = gts_evt_random.010140.name
+	desc = gts_evt_random.010140.desc
+	picture = GFX_gtsra_load_7
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = gts_evt_random.010140.a
+		owner = {
+			add_resource = {
+				influence = 25
+			}
+		}
+	}
+}
+
+planet_event = {
+	#首次建造：微缩城市装配厂
+	id = gts_evt_random.010150
+	title = gts_evt_random.010150.name
+	desc = gts_evt_random.010150.desc
+	picture = GFX_gtsra_city_crash_1
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = gts_evt_random.010150.a
+		owner = {
+			add_resource = {
+				influence = 25
+			}
+		}
+	}
+}
+
+planet_event = {
+	#首次建造：小型宜居星改造器
+	id = gts_evt_random.010160
+	title = gts_evt_random.010160.name
+	desc = gts_evt_random.010160.desc
+	picture = GFX_gts_event_48
+	show_sound = event_default
+	fire_only_once = yes
+	is_triggered_only = yes
+	immediate = {
+		owner = {
+			random_owned_leader = {
+				limit = {
+					leader_class = scientist
+					gts_is_giantess = yes
+				}
+				save_event_target_as = gtsra_random_event_leader
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.010160.a
+		owner = {
+			add_resource = {
+				influence = 25
+			}
+		}
+	}
+}
+
+planet_event = {
+	#首次建造：巨娘体液精炼厂
+	id = gts_evt_random.010170
+	title = gts_evt_random.010170.name
+	desc = gts_evt_random.010170.desc
+	picture = GFX_gts_eyjafjalla_04
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = gts_evt_random.010170.a
+		owner = {
+			add_resource = {
+				influence = 25
+			}
+		}
+	}
+}
+
+planet_event = {
+	#首次建造：巨娘内衣回收站
+	id = gts_evt_random.010180
+	title = gts_evt_random.010180.name
+	desc = gts_evt_random.010180.desc
+	picture = GFX_gtsra_aplog_site4
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = gts_evt_random.010180.a
+		owner = {
+			add_resource = {
+				influence = 25
+			}
+		}
+	}
+}
+
+planet_event = {
+	#首次建造：与巨娘外交对策处
+	id = gts_evt_random.010190
+	title = gts_evt_random.010190.name
+	desc = gts_evt_random.010190.desc
+	picture = GFX_gts_event_64
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = gts_evt_random.010190.a
+		owner = {
+			add_resource = {
+				influence = 25
+			}
+		}
+	}
+}
+
+planet_event = {
+	#首次建造：小人专卖店
+	id = gts_evt_random.010200
+	title = gts_evt_random.010200.name
+	desc = gts_evt_random.010200.desc
+	picture = GFX_evt_hostile_infiltration
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = gts_evt_random.010200.a
+		owner = {
+			add_resource = {
+				influence = 25
+			}
+		}
+	}
+}
+
+planet_event = {
+	#首次建造：小人保护区
+	id = gts_evt_random.010210
+	title = gts_evt_random.010210.name
+	desc = gts_evt_random.010210.desc
+	picture = GFX_gts_event_55
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = gts_evt_random.010210.a
+		owner = {
+			add_resource = {
+				influence = 25
+			}
+		}
+	}
+}
+
+planet_event = {
+	#首次建造：小人研究所
+	id = gts_evt_random.010220
+	title = gts_evt_random.010220.name
+	desc = gts_evt_random.010220.desc
+	picture = GFX_gtsra_load_7
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = gts_evt_random.010220.a
+		owner = {
+			add_resource = {
+				influence = 25
+			}
+		}
+	}
+}
+
+planet_event = {
+	#首次建造：小人红灯区
+	id = gts_evt_random.010230
+	title = gts_evt_random.010230.name
+	desc = gts_evt_random.010230.desc
+	picture = GFX_gts_event_65
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = gts_evt_random.010230.a
+		owner = {
+			add_resource = {
+				influence = 25
+			}
+		}
+	}
+}
+
+country_event = {
+	# 守夜人
+	id = gts_evt_random.010240
+	title = gts_evt_random.010240.name
+	desc = gts_evt_random.010240.desc
+	picture = GFX_gts_event_72
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	location = event_target:gtsra_random_event_planet
+	immediate = {
+		random_owned_planet = {
+			save_event_target_as = gtsra_random_event_planet
+		}
+	}
+	option = {
+		name = gts_evt_random.010240.a
+		owner = {
+			add_resource = {
+				influence = 25
+			}
+		}
+	}
+}
+
+country_event = {
+
+	# 特快專遞
+
+	id = gts_evt_random.010250
+	title = gts_evt_random.010250.name
+	desc = gts_evt_random.010250.desc
+	picture = GFX_gtsra_aplog_site4
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	location = event_target:gtsra_random_event_planet
+
+	trigger = {
+		is_galactic_community_member = yes
+		any_owned_planet = {
+			count_owned_pop_amount = {
+				count > 300
+			}
+		}
+	}
+
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				count_owned_pop_amount = {
+					count > 300
+				}
+			}
+			save_event_target_as = gtsra_random_event_planet
+		}
+	}
+
+	option = {
+		name = gts_evt_random.010250.a
+		give_specimen = {
+			origin = gts_random_pants
+			key = gts_random_pants
+		}
+		event_target:gtsra_random_event_planet = {
+			custom_tooltip = gts_bruh_casualties_300.tooltip
+			add_planet_devastation = 10
+			add_deposit = d_veiny_cliffs
+			hidden_effect = {
+				while = {
+					count = 3
+					random_owned_pop_group = {
+						kill_single_pop = yes
+					}
+				}
+			}
+		}
+	}
+}
+
+planet_event = {
+	# 足够大？
+	id = gts_evt_random.010260
+	title = gts_evt_random.010260.name
+	desc = gts_evt_random.010260.desc
+	picture = GFX_gtsra_6
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	location = event_target:gtsra_random_event_planet
+
+	trigger = {
+		owner = {
+			is_ai = no
+			gts_is_giantess_empire = yes
+			NOT = {
+				has_origin = origin_Ultra_company
+			}
+		}
+	}
+
+	immediate = {
+		save_event_target_as = gtsra_random_event_planet
+	}
+
+	option = {
+		name = gts_evt_random.010260.a
+		custom_tooltip = gts_evt_random.010260.a.tooltip
+		hidden_effect = {
+			planet_event = {
+				id = gts_evt_random.010261
+			}
+		}
+	}
+}
+
+planet_event = {
+	# Big Enough
+	id = gts_evt_random.010261
+	title = gts_evt_random.010261.name
+	desc = gts_evt_random.010261.desc
+	picture = GFX_gts_random_1
+	show_sound = event_red_alert
+	is_triggered_only = yes
+	location = event_target:gtsra_random_event_planet
+
+
+	option = {
+		name = gts_evt_random.010261.a
+		owner = {
+			give_specimen = {
+				origin = gts_random_audio_tape
+				key = gts_random_audio_tape
+			}
+		}
+		owner = {
+			add_resource = {
+				influence = 75
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.010261.b
+		owner = {
+			give_specimen = {
+				origin = gts_random_lg
+				key = gts_random_lg
+			}
+		}
+		owner = {
+			add_resource = {
+				influence = 75
+			}
+		}
+	}
+}
+
+#02xxxz:随机陆战事件
+planet_event = {
+	id = gts_evt_random.020009
+	is_triggered_only = yes
+	hide_window = yes
+	fire_only_once = yes
+
+	trigger = {
+		FromFrom = {
+			is_ai = no
+			OR = {
+				gts_is_giantess_empire = yes
+				has_country_flag = gray_army_active
+				any_owned_leader = {
+					gts_is_giantess = yes
+				}
+			}
+			NOR = {
+				has_country_flag = gts_triggered_020010
+			}
+		}
+		Root = {
+			is_eatable_planet = yes
+		}
+	}
+
+	immediate = {
+		Root = {
+			save_event_target_as = gtsra_random_planet_resist
+			add_modifier = {
+				modifier = gtsra_random_resist
+				days = 60
+			}
+		}
+		fromfrom = {
+			country_event = {
+				id = gts_evt_random.020010
+			}
+		}
+	}
+}
+
+country_event = {
+
+	# 仍在抵抗的星球
+
+	id = gts_evt_random.020010
+	title = gts_evt_random.020010.name
+	desc = gts_evt_random.020010.desc
+	picture = GFX_evt_ground_combat
+	show_sound = event_default
+	is_triggered_only = yes
+	location = from
+
+	option = {
+		name = gts_evt_random.020010.a
+	}
+	option = {
+		name = gts_evt_random.020010.b
+		hidden_effect = {
+			Root = {
+				country_event = {
+					id = gts_evt_random.020011
+				}
+			}
+			from.owner = {
+				if = {
+					limit = {
+						#isn't the case when the crisis bombards planets, for instance
+						is_at_war_with = root
+					}
+					add_static_war_exhaustion = {
+						attacker = root
+						location = from
+						value_for_planet_destruction = 1
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.020010.c
+		trigger = {
+			Root = {
+				OR = {
+					has_ethic = ethic_spiritualist
+					has_ethic = ethic_fanatic_spiritualist
+				}
+			}
+		}
+		hidden_effect = {
+			Root = {
+				country_event = {
+					id = gts_evt_random.020013
+					days = 7
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.020010.d
+		trigger = {
+			Root = {
+				OR = {
+					has_ethic = ethic_pacifist
+					has_ethic = ethic_fanatic_pacifist
+					has_ethic = ethic_egalitarian
+					has_ethic = ethic_fanatic_egalitarian
+				}
+			}
+		}
+		hidden_effect = {
+			Root = {
+				country_event = {
+					id = gts_evt_random.020014
+					days = 60
+				}
+			}
+			from.owner = {
+				if = {
+					limit = {
+						#isn't the case when the crisis bombards planets, for instance
+						is_at_war_with = root
+					}
+					add_static_war_exhaustion = {
+						attacker = root
+						location = from
+						value_for_planet_destruction = 1
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.020010.e
+		trigger = {
+			Root = {
+				OR = {
+					has_ethic = ethic_xenophobe
+					has_ethic = ethic_fanatic_xenophobe
+					has_ethic = ethic_militarist
+					has_ethic = ethic_fanatic_militarist
+				}
+			}
+		}
+		hidden_effect = {
+			Root = {
+				country_event = {
+					id = gts_evt_random.020011
+				}
+			}
+		}
+	}
+
+	after = {
+		set_country_flag = gts_triggered_020010
+	}
+}
+
+country_event = {
+
+	# 殺雞儆猴
+
+	id = gts_evt_random.020011
+	title = gts_evt_random.020011.name
+	desc = gts_evt_random.020011.desc
+	picture = GFX_gtsra_planet_destroy_1
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	location = fromfrom
+
+	option = {
+		name = gts_evt_random.020011.a
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.020012
+				days = 7
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.020011.b
+		trigger = {
+			OR = {
+				has_ethic = ethic_militarist
+				has_ethic = ethic_fanatic_militarist
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.020012
+				days = 7
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.020011.c
+		trigger = {
+			OR = {
+				has_ethic = ethic_pacifist
+				has_ethic = ethic_fanatic_pacifist
+				has_ethic = ethic_egalitarian
+				has_ethic = ethic_fanatic_egalitarian
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.020014
+				days = 60
+			}
+		}
+	}
+}
+
+country_event = {
+
+	# 大都會的毀滅
+
+	id = gts_evt_random.020012
+	title = gts_evt_random.020012.name
+	desc = gts_evt_random.020012.desc
+	picture = GFX_gtsra_city_crash_5
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	location = fromfromfrom
+
+	immediate = {
+		event_target:gtsra_random_planet_resist = {
+			every_owned_pop_group = {
+				kill_pop_group = {
+					pop_group = this
+					percentage = 0.5
+				}
+			}
+		}
+	}
+
+	option = {
+		name = gts_evt_random.020012.a
+		custom_tooltip = gts_bruh_casualties_50_50.tooltip
+		trigger = {
+			OR = {
+				has_ethic = ethic_militarist
+				has_ethic = ethic_fanatic_militarist
+			}
+		}
+		event_target:gtsra_random_planet_resist = {
+			add_planet_devastation = 50
+		}
+	}
+	option = {
+		name = gts_evt_random.020012.b
+		custom_tooltip = gts_bruh_casualties_50_50.tooltip
+		trigger = {
+			OR = {
+				has_ethic = ethic_xenophobe
+				has_ethic = ethic_fanatic_xenophobe
+			}
+		}
+		event_target:gtsra_random_planet_resist = {
+			add_planet_devastation = 50
+		}
+	}
+	option = {
+		name = gts_evt_random.020012.c
+		custom_tooltip = gts_bruh_casualties_50_50.tooltip
+		event_target:gtsra_random_planet_resist = {
+			add_planet_devastation = 50
+		}
+	}
+
+	after = {
+		#custom_tooltip = gts_evt_random.020012.tooltip
+		hidden_effect = {
+			random_list = {
+				1 = {
+					country_event = {
+						id = gts_evt_random.020015
+						days = 3
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+
+	# 修女們的行動
+
+	id = gts_evt_random.020013
+	title = gts_evt_random.020013.name
+	desc = gts_evt_random.020013.desc
+	picture = GFX_gtsra_city_crash_6
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	location = event_target:gtsra_random_planet_resist
+
+	option = {
+		give_specimen = {
+			origin = gts_random_high_heels
+			key = gts_random_high_heels
+		}
+		name = gts_evt_random.020013.a
+		event_target:gtsra_random_planet_resist = {
+			add_modifier = {
+				modifier = gtsra_random_resist_spiritualist
+				days = -1
+			}
+		}
+	}
+}
+
+country_event = {
+
+	# 戰後重建
+
+	id = gts_evt_random.020014
+	title = gts_evt_random.020014.name
+	desc = gts_evt_random.020014.desc
+	picture = GFX_gtsra_gentle
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	location = event_target:gtsra_random_planet_resist
+
+	option = {
+		name = gts_evt_random.020014.a
+		event_target:gtsra_random_planet_resist = {
+			add_modifier = {
+				modifier = gtsra_random_resist_pacifist
+				days = -1
+			}
+		}
+	}
+}
+
+country_event = {
+
+	# 失控了
+
+	id = gts_evt_random.020015
+	title = gts_evt_random.020015.name
+	desc = gts_evt_random.020015.desc
+	picture = GFX_gtsra_city_crash_4
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	location = fromfromfromfrom
+
+	immediate = {
+		event_target:gtsra_random_planet_resist = {
+			every_owned_pop_group = {
+				kill_pop_group = {
+					pop_group = this
+					percentage = 0.5
+				}
+			}
+		}
+	}
+
+	option = {
+		name = gts_evt_random.020015.a
+		custom_tooltip = gts_bruh_casualties_75_50.tooltip
+		event_target:gtsra_random_planet_resist = {
+			add_planet_devastation = 50
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.020016
+				days = 7
+			}
+		}
+	}
+}
+
+country_event = {
+
+	# 慘劇的結束
+
+	id = gts_evt_random.020016
+	title = gts_evt_random.020016.name
+	desc = gts_evt_random.020016.desc
+	picture = GFX_gtsra_city_crash_2
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	location = event_target:gtsra_random_planet_resist
+
+	immediate = {
+		event_target:gtsra_random_planet_resist = {
+			every_owned_pop_group = {
+				kill_pop_group = {
+					pop_group = this
+					percentage = 0.99
+				}
+			}
+		}
+	}
+
+	option = {
+		name = gts_evt_random.020016.a
+		custom_tooltip = gts_evt_random.020016.tooltip
+		event_target:gtsra_random_planet_resist = {
+			add_planet_devastation = 50
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.020017
+				days = 30
+			}
+		}
+	}
+}
+
+country_event = {
+
+	# 巨娘的審判
+
+	id = gts_evt_random.020017
+	title = gts_evt_random.020017.name
+	desc = gts_evt_random.020017.desc
+	picture = GFX_gtsra_execute
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = gts_evt_random.020017.a
+	}
+	option = {
+		name = gts_evt_random.020017.b
+		add_resource = {
+			gts_micro = 1
+		}
+	}
+}
+
+planet_event = {
+	id = gts_evt_random.020019
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		FromFrom = {
+			is_ai = no
+			has_country_flag = gts_triggered_020010
+			OR = {
+				has_country_flag = gray_army_active
+				any_owned_leader = {
+					is_ruler = no
+					OR = {
+						gts_is_bigger_than_tall = yes
+						has_leader_flag = gts_aplog
+					}
+				}
+			}
+		}
+		Root = {
+			is_eatable_planet = yes
+		}
+	}
+
+	immediate = {
+		Root = {
+			save_event_target_as = gts_attackers_win_planet
+		}
+		fromfrom = {
+			country_event = {
+				id = gts_evt_random.020020
+			}
+		}
+	}
+}
+
+country_event = {
+
+	# 星球的命運(佔領星球後可以選擇毀滅星球)
+
+	id = gts_evt_random.020020
+	title = gts_evt_random.020020.name
+	desc = gts_evt_random.020020.desc
+	picture = GFX_load_48
+	show_sound = event_default
+	is_triggered_only = yes
+	location = from
+
+	option = {
+		name = gts_evt_random.020020.a
+	}
+	option = {
+		name = gts_evt_random.020020.b
+		hidden_effect = {
+			Root = {
+				random_list = {
+					1 = {
+						modifier = {
+							factor = 0
+							NOT = {
+								any_owned_leader = {
+									gts_is_bigger_than_tall = yes
+								}
+							}
+						}
+						country_event = {
+							id = gts_evt_random.020021
+							days = 7
+						}
+					}
+					1 = {
+						modifier = {
+							factor = 0
+							NOT = {
+								any_owned_leader = {
+									gts_is_bigger_than_tall = yes
+								}
+							}
+						}
+						country_event = {
+							id = gts_evt_random.020022
+							days = 7
+						}
+					}
+					1 = {
+						modifier = {
+							factor = 0
+							NOT = {
+								any_owned_leader = {
+									gts_is_bigger_than_tall = yes
+								}
+							}
+						}
+						country_event = {
+							id = gts_evt_random.020023
+							days = 7
+						}
+					}
+					1 = {
+						modifier = {
+							factor = 0
+							NOT = {
+								any_owned_leader = {
+									gts_is_bigger_than_tall = yes
+								}
+							}
+						}
+						country_event = {
+							id = gts_evt_random.020024
+							days = 7
+						}
+					}
+					1 = {
+						modifier = {
+							factor = 0
+							NOT = {
+								any_owned_leader = {
+									gts_is_bigger_than_tall = yes
+								}
+							}
+						}
+						country_event = {
+							id = gts_evt_random.020025
+							days = 7
+						}
+					}
+					1 = {
+						modifier = {
+							factor = 0
+							NOT = {
+								any_owned_leader = {
+									gts_is_bigger_than_tall = yes
+								}
+							}
+						}
+						modifier = {
+							factor = 0
+							NOT = {
+								has_country_flag = can_trigger_futa_content
+							}
+						}
+						modifier = {
+							factor = 0
+							NOT = {
+								any_owned_leader = {
+									has_trait = leader_trait_gts_futa
+								}
+							}
+						}
+						country_event = {
+							id = gts_evt_random.020026
+							days = 7
+						}
+					}
+					1 = {
+						modifier = {
+							factor = 0
+							NOT = {
+								any_owned_leader = {
+									gts_is_bigger_than_tall = yes
+								}
+							}
+						}
+						country_event = {
+							id = gts_evt_random.020027
+							days = 7
+						}
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.020020.c
+		trigger = {
+			any_owned_leader = {
+				has_leader_flag = gts_xinuo
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_xinuo.15
+				days = 7
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.020020.d
+		trigger = {
+			any_owned_leader = {
+				has_leader_flag = gts_bronya
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.36
+				days = 7
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.020020.e
+		trigger = {
+			has_country_flag = seele_fenkai
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.35
+				days = 7
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.020020.f
+		trigger = {
+			has_country_flag = seele_yiqi
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.34
+				days = 7
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.020020.g
+		trigger = {
+			any_owned_leader = {
+				has_leader_flag = gts_allomerus
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_traptrix.2100
+				days = 7
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.020020.h
+		trigger = {
+			has_country_flag = gray_army_active
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_graygoo.40
+				days = 7
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.020020.i
+		trigger = {
+			any_owned_leader = {
+				has_leader_flag = gts_guya_gen
+			}
+		}
+		hidden_effect = {
+			random_list = {
+				1 = {
+					country_event = {
+						id = gts_guya.30
+						days = 7
+					}
+				}
+				1 = {
+					country_event = {
+						id = gts_guya.31
+						days = 7
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.020020.g
+		trigger = {
+			any_owned_leader = {
+				has_leader_flag = gts_aplog
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_aplog.15
+				days = 7
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.020020.k
+		trigger = {
+			any_owned_leader = {
+				has_leader_flag = gts_erika
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_erika.1030
+				days = 7
+			}
+			random_list = {
+				4 = {}
+				1 = {
+					country_event = {
+						id = gts_erika.1031
+						days = 7
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.020020.l
+		trigger = {
+			any_owned_leader = {
+				has_leader_flag = gts_suxiaobai
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_suxiaobai.100
+				days = 7
+			}
+		}
+	}
+	# option = {
+	# 	name = gts_evt_random.020020.m
+	# 	trigger = {
+
+	# 	}
+	# 	hidden_effect = {
+			
+	# 	}
+	# }
+}
+
+country_event = {
+
+	# 殖民地毀滅
+
+	id = gts_evt_random.020021
+	title = gts_evt_random.020021.name
+	desc = gts_evt_random.020021.desc
+	picture = GFX_load_62
+	show_sound = event_default
+	is_triggered_only = yes
+	location = event_target:gts_attackers_win_planet
+
+	immediate = {
+		event_target:gts_attackers_win_planet = {
+			# 計算經驗獲取
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_experience_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_experience_count
+				value = 10
+			}
+			round_variable = gts_bruh_get_experience_count
+		}
+
+		if = {
+			limit = {
+				any_owned_leader = {
+					is_ruler = no
+					# 盡量不選滿10級的
+					has_total_skill < 10
+					gts_is_bigger_than_tall = yes
+				}
+			}
+			random_owned_leader = {
+				limit = {
+					is_ruler = no
+					# 盡量不選滿10級的
+					has_total_skill < 10
+					gts_is_bigger_than_tall = yes
+				}
+				save_event_target_as = gts_bruh_get_destroy_planet_leader
+			}
+		}
+		else = {
+			# 如果沒有就隨機一個
+			random_owned_leader = {
+				limit = {
+					is_ruler = no
+					gts_is_bigger_than_tall = yes
+				}
+				save_event_target_as = gts_bruh_get_destroy_planet_leader
+			}
+		}
+	}
+
+	option = {
+		name = gts_evt_random.020021.a
+		event_target:gts_bruh_get_destroy_planet_leader = {
+			add_experience = event_target:gts_attackers_win_planet.gts_bruh_get_experience_count
+		}
+		event_target:gts_attackers_win_planet = {
+			destroy_colony = yes
+			if = {
+				# 移除居住站
+				limit = {
+					is_planet_class = pc_habitat
+				}
+				hidden_effect = {
+					remove_planet = yes
+				}
+			}
+			else = {
+				# 摧毀殖民地
+				destroy_colony = yes
+				change_pc = pc_nuked
+				while = {
+					count = 2
+					add_deposit = d_crater
+					add_deposit = d_bomb_crater
+					add_deposit = d_city_ruins
+				}
+				hidden_effect = {
+					gts_change_nuked = yes
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+
+	# 用足碾碎
+
+	id = gts_evt_random.020022
+	title = gts_evt_random.020022.name
+	desc = gts_evt_random.020022.desc
+	picture = GFX_load_55
+	show_sound = event_default
+	is_triggered_only = yes
+	location = event_target:gts_attackers_win_planet
+
+	immediate = {
+		event_target:gts_attackers_win_planet = {
+			# 計算經驗獲取
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_experience_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_experience_count
+				value = 10
+			}
+			round_variable = gts_bruh_get_experience_count
+		}
+
+		if = {
+			limit = {
+				any_owned_leader = {
+					is_ruler = no
+					# 盡量不選滿10級的
+					has_total_skill < 10
+					gts_is_bigger_than_tall = yes
+				}
+			}
+			random_owned_leader = {
+				limit = {
+					is_ruler = no
+					# 盡量不選滿10級的
+					has_total_skill < 10
+					gts_is_bigger_than_tall = yes
+				}
+				save_event_target_as = gts_bruh_get_destroy_planet_leader
+			}
+		}
+		else = {
+			# 如果沒有就隨機一個
+			random_owned_leader = {
+				limit = {
+					is_ruler = no
+					gts_is_bigger_than_tall = yes
+				}
+				save_event_target_as = gts_bruh_get_destroy_planet_leader
+			}
+		}
+	}
+
+	option = {
+		name = gts_evt_random.020022.a
+		event_target:gts_bruh_get_destroy_planet_leader = {
+			add_experience = event_target:gts_attackers_win_planet.gts_bruh_get_experience_count
+		}
+		event_target:gts_attackers_win_planet = {
+			destroy_colony = yes
+			if = {
+				limit = {
+					is_planet_class = pc_habitat
+				}
+				hidden_effect = {
+					remove_planet = yes
+				}
+			}
+			else = {
+				change_pc = pc_broken
+			}
+		}
+	}
+}
+
+country_event = {
+
+	# 小人棒
+
+	id = gts_evt_random.020023
+	title = gts_evt_random.020023.name
+	desc = gts_evt_random.020023.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	show_sound = event_default
+	is_triggered_only = yes
+	location = event_target:gts_attackers_win_planet
+
+	picture_event_data = {
+		room = gts_evt_random_020023_room
+	}
+	#picture = GFX_gts_event_2
+
+	immediate = {
+		event_target:gts_attackers_win_planet = {
+			# 計算經驗獲取
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_experience_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_experience_count
+				value = 10
+			}
+			round_variable = gts_bruh_get_experience_count
+		}
+
+		if = {
+			limit = {
+				any_owned_leader = {
+					is_ruler = no
+					# 盡量不選滿10級的
+					has_total_skill < 10
+					gts_is_bigger_than_tall = yes
+				}
+			}
+			random_owned_leader = {
+				limit = {
+					is_ruler = no
+					# 盡量不選滿10級的
+					has_total_skill < 10
+					gts_is_bigger_than_tall = yes
+				}
+				save_event_target_as = gts_bruh_get_destroy_planet_leader
+			}
+		}
+		else = {
+			# 如果沒有就隨機一個
+			random_owned_leader = {
+				limit = {
+					is_ruler = no
+					gts_is_bigger_than_tall = yes
+				}
+				save_event_target_as = gts_bruh_get_destroy_planet_leader
+			}
+		}
+	}
+
+	option = {
+		name = gts_evt_random.020023.a
+		event_target:gts_bruh_get_destroy_planet_leader = {
+			add_experience = event_target:gts_attackers_win_planet.gts_bruh_get_experience_count
+		}
+		event_target:gts_attackers_win_planet = {
+			destroy_colony = yes
+			if = {
+				# 移除居住站
+				limit = {
+					is_planet_class = pc_habitat
+				}
+				hidden_effect = {
+					remove_planet = yes
+				}
+			}
+			else = {
+				while = {
+					count = 2
+					add_deposit = d_noxious_swamp
+					add_deposit = d_radioactive_wasteland
+					add_deposit = d_city_ruins
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+
+	# "散步"
+
+	id = gts_evt_random.020024
+	title = gts_evt_random.020024.name
+	desc = gts_evt_random.020024.desc
+	picture = GFX_gts_event_1
+	show_sound = event_default
+	is_triggered_only = yes
+	location = event_target:gts_attackers_win_planet
+
+	immediate = {
+		event_target:gts_attackers_win_planet = {
+			# 計算經驗獲取
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_experience_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_experience_count
+				value = 10
+			}
+			round_variable = gts_bruh_get_experience_count
+		}
+
+		if = {
+			limit = {
+				any_owned_leader = {
+					is_ruler = no
+					# 盡量不選滿10級的
+					has_total_skill < 10
+					gts_is_bigger_than_tall = yes
+				}
+			}
+			random_owned_leader = {
+				limit = {
+					is_ruler = no
+					# 盡量不選滿10級的
+					has_total_skill < 10
+					gts_is_bigger_than_tall = yes
+				}
+				save_event_target_as = gts_bruh_get_destroy_planet_leader
+			}
+		}
+		else = {
+			# 如果沒有就隨機一個
+			random_owned_leader = {
+				limit = {
+					is_ruler = no
+					gts_is_bigger_than_tall = yes
+				}
+				save_event_target_as = gts_bruh_get_destroy_planet_leader
+			}
+		}
+	}
+
+	option = {
+		name = gts_evt_random.020024.a
+		event_target:gts_bruh_get_destroy_planet_leader = {
+			add_experience = event_target:gts_attackers_win_planet.gts_bruh_get_experience_count
+		}
+		event_target:gts_attackers_win_planet = {
+			destroy_colony = yes
+			if = {
+				# 移除居住站
+				limit = {
+					is_planet_class = pc_habitat
+				}
+				hidden_effect = {
+					remove_planet = yes
+				}
+			}
+			else = {
+				change_pc = pc_nuked
+				while = {
+					count = 2
+					add_deposit = d_crater
+					add_deposit = d_bomb_crater
+					add_deposit = d_city_ruins
+				}
+				hidden_effect = {
+					gts_change_nuked = yes
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+
+	# 聖女們的茶會日常
+
+	id = gts_evt_random.020025
+	title = gts_evt_random.020025.name
+	desc = gts_evt_random.020025.desc
+	picture = GFX_lottie_site1
+	show_sound = event_default
+	is_triggered_only = yes
+	location = event_target:gts_attackers_win_planet
+
+	immediate = {
+		# 測試用
+		#random_owned_planet  = {
+		#	save_event_target_as = gts_attackers_win_planet
+		#}
+		event_target:gts_attackers_win_planet = {
+			# 計算經驗獲取
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_experience_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_experience_count
+				value = 10
+			}
+			round_variable = gts_bruh_get_experience_count
+		}
+
+		if = {
+			limit = {
+				any_owned_leader = {
+					is_ruler = no
+					# 盡量不選滿10級的
+					has_total_skill < 10
+					gts_is_bigger_than_tall = yes
+				}
+			}
+			random_owned_leader = {
+				limit = {
+					is_ruler = no
+					# 盡量不選滿10級的
+					has_total_skill < 10
+					gts_is_bigger_than_tall = yes
+				}
+				save_event_target_as = gts_bruh_get_destroy_planet_leader
+			}
+		}
+		else = {
+			# 如果沒有就隨機一個
+			random_owned_leader = {
+				limit = {
+					is_ruler = no
+					gts_is_bigger_than_tall = yes
+				}
+				save_event_target_as = gts_bruh_get_destroy_planet_leader
+			}
+		}
+	}
+
+	option = {
+		name = gts_evt_random.020025.a
+		event_target:gts_bruh_get_destroy_planet_leader = {
+			add_experience = event_target:gts_attackers_win_planet.gts_bruh_get_experience_count
+		}
+		event_target:gts_attackers_win_planet = {
+			destroy_colony = yes
+			if = {
+				# 移除居住站
+				limit = {
+					is_planet_class = pc_habitat
+				}
+				hidden_effect = {
+					remove_planet = yes
+				}
+			}
+			else = {
+				change_pc = pc_nuked
+				while = {
+					count = 2
+					add_deposit = d_crater
+					add_deposit = d_bomb_crater
+					add_deposit = d_city_ruins
+				}
+				hidden_effect = {
+					gts_change_nuked = yes
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+
+	# 中出
+
+	id = gts_evt_random.020026
+	title = gts_evt_random.020026.name
+	desc = gts_evt_random.020026.desc
+	picture = GFX_gts_event_6
+	show_sound = event_default
+	is_triggered_only = yes
+	location = event_target:gts_attackers_win_planet
+
+	immediate = {
+		event_target:gts_attackers_win_planet = {
+			# 計算經驗獲取
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_experience_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_experience_count
+				value = 10
+			}
+			round_variable = gts_bruh_get_experience_count
+		}
+
+		if = {
+			limit = {
+				any_owned_leader = {
+					is_ruler = no
+					# 盡量不選滿10級的
+					has_total_skill < 10
+					has_trait = leader_trait_gts_futa
+					gts_is_bigger_than_tall = yes
+				}
+			}
+			random_owned_leader = {
+				limit = {
+					is_ruler = no
+					# 盡量不選滿10級的
+					has_total_skill < 10
+					has_trait = leader_trait_gts_futa
+					gts_is_bigger_than_tall = yes
+				}
+				save_event_target_as = gts_bruh_get_destroy_planet_leader
+			}
+		}
+		else = {
+			# 如果沒有就隨機一個
+			random_owned_leader = {
+				limit = {
+					is_ruler = no
+					has_trait = leader_trait_gts_futa
+					gts_is_bigger_than_tall = yes
+				}
+				save_event_target_as = gts_bruh_get_destroy_planet_leader
+			}
+		}
+	}
+
+	option = {
+		name = gts_evt_random.020026.a
+		event_target:gts_bruh_get_destroy_planet_leader = {
+			add_experience = event_target:gts_attackers_win_planet.gts_bruh_get_experience_count
+		}
+		event_target:gts_attackers_win_planet = {
+			destroy_colony = yes
+			if = {
+				# 移除居住站
+				limit = {
+					is_planet_class = pc_habitat
+				}
+				hidden_effect = {
+					remove_planet = yes
+				}
+			}
+			else = {
+				# 目前沒有精液星球的特徵所以清掉了
+				gts_bruh_clear_planet_effect = yes
+				pc_gts_semen_change = yes
+			}
+		}
+	}
+
+	after = {
+		event_target:gts_attackers_win_planet = {
+			if = {
+				limit = {
+					NOT = { is_planet_class = pc_habitat }
+				}
+				add_modifier = {
+					modifier = gtsra_semen_core
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+
+	# 吞食
+
+	id = gts_evt_random.020027
+	title = gts_evt_random.020027.name
+	desc = gts_evt_random.020027.desc
+	picture = GFX_load_57
+	show_sound = event_default
+	is_triggered_only = yes
+	location = event_target:gts_attackers_win_planet
+
+	immediate = {
+		event_target:gts_attackers_win_planet = {
+			# 計算經驗獲取
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_experience_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_experience_count
+				value = 10
+			}
+			round_variable = gts_bruh_get_experience_count
+		}
+
+		if = {
+			limit = {
+				any_owned_leader = {
+					is_ruler = no
+					# 盡量不選滿10級的
+					has_total_skill < 10
+					gts_is_bigger_than_tall = yes
+				}
+			}
+			random_owned_leader = {
+				limit = {
+					is_ruler = no
+					# 盡量不選滿10級的
+					has_total_skill < 10
+					gts_is_bigger_than_tall = yes
+				}
+				save_event_target_as = gts_bruh_get_destroy_planet_leader
+			}
+		}
+		else = {
+			# 如果沒有就隨機一個
+			random_owned_leader = {
+				limit = {
+					is_ruler = no
+					gts_is_bigger_than_tall = yes
+				}
+				save_event_target_as = gts_bruh_get_destroy_planet_leader
+			}
+		}
+	}
+
+	option = {
+		name = gts_evt_random.020027.a
+		event_target:gts_bruh_get_destroy_planet_leader = {
+			add_experience = event_target:gts_attackers_win_planet.gts_bruh_get_experience_count
+		}
+		event_target:gts_attackers_win_planet = {
+			destroy_colony = yes
+			if = {
+				# 移除居住站
+				limit = {
+					is_planet_class = pc_habitat
+				}
+				hidden_effect = {
+					remove_planet = yes
+				}
+			}
+			else = {
+				while = {
+					count = 2
+					add_deposit = d_crater
+					add_deposit = d_bomb_crater
+					add_deposit = d_city_ruins
+				}
+			}
+		}
+	}
+}
+
+#03xxxz:随机领袖事件
+country_event = {
+	#领袖的小爱好
+	id = gts_evt_random.030010
+	title = gts_evt_random.030010.name
+	desc = gts_evt_random.030010.desc
+	picture = GFX_gtsra_feet_1
+	show_sound = event_default
+	is_triggered_only = yes
+	trigger = {
+		is_ai = no
+		any_owned_leader = {
+			gts_is_giantess = yes
+		}
+	}
+	immediate = {
+		random_owned_leader = {
+			limit = {
+				gts_is_giantess = yes
+			}
+			save_event_target_as = gtsra_random_event_leader
+		}
+	}
+	option = {
+		name = gts_evt_random.030010.a
+		add_resource = {
+			gts_micro = 52
+		}
+	}
+	option = {
+		name = gts_evt_random.030010.b
+		custom_tooltip = gts_evt_random.030010.b.tooltip
+		hidden_effect = {
+			event_target:gtsra_random_event_leader = {
+				remove_trait = leader_trait_Ultra
+				remove_trait = leader_trait_Titan
+				remove_trait = leader_trait_Giant
+				remove_trait = leader_trait_Tall
+				random_list = {
+					1 = {
+						add_trait = {
+							trait = leader_trait_Small
+							show_message = no
+						}
+					}
+					1 = {
+						add_trait = {
+							trait = leader_trait_Tiny
+							show_message = no
+						}
+					}
+					1 = {
+						add_trait = {
+							trait = leader_trait_Micro
+							show_message = no
+						}
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.030010.c
+		add_resource = {
+			influence = 25
+		}
+	}
+}
+
+country_event = {
+	#边境星球的税收问题
+	id = gts_evt_random.030020
+	title = gts_evt_random.030020.name
+	desc = gts_evt_random.030020.desc
+	picture = GFX_gtsra_load_16
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		is_ai = no
+		any_owned_leader = {
+			gts_is_giantess = yes
+		}
+	}
+	option = {
+		name = gts_evt_random.030020.a
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.030021
+				days = 30
+				random = 60
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.030020.b
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.030022
+				days = 30
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.030020.c
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.030023
+				days = 30
+			}
+		}
+	}
+}
+
+country_event = {
+	#边境星球的税收问题-A
+	id = gts_evt_random.030021
+	title = gts_evt_random.030021.name
+	desc = gts_evt_random.030021.desc
+	picture = GFX_gtsra_execute
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_random.030021.a
+		add_resource = {
+			energy = 4000
+		}
+	}
+	option = {
+		name = gts_evt_random.030021.b
+		add_resource = {
+			influence = 75
+		}
+	}
+}
+
+country_event = {
+	#边境星球的税收问题-B
+	id = gts_evt_random.030022
+	title = gts_evt_random.030022.name
+	desc = gts_evt_random.030022.desc
+	picture = GFX_gtsra_execute
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_random.030022.a
+		add_resource = {
+			unity = 1500
+		}
+	}
+	option = {
+		name = gts_evt_random.030022.b
+		add_resource = {
+			influence = 50
+		}
+	}
+	after = {
+		add_resource = {
+			energy = 2000
+		}
+	}
+}
+
+country_event = {
+	#边境星球的税收问题-C1
+	id = gts_evt_random.030023
+	title = gts_evt_random.030023.name
+	desc = gts_evt_random.030023.desc
+	picture = GFX_gtsra_load_9
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_random.030023.a
+		country_event = {
+			id = gts_evt_random.030024
+		}
+	}
+}
+
+country_event = {
+	#边境星球的税收问题-C2
+	id = gts_evt_random.030024
+	title = gts_evt_random.030024.name
+	desc = gts_evt_random.030024.desc
+	picture = GFX_gtsra_execute
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_random.030024.a
+		add_resource = {
+			gts_micro = 1
+		}
+	}
+	option = {
+		name = gts_evt_random.030024.b
+		add_resource = {
+			influence = 50
+		}
+	}
+	after = {
+		add_resource = {
+			energy = 2000
+		}
+	}
+}
+
+country_event = {
+	#科学家体内的失落帝国
+	id = gts_evt_random.030030
+	title = gts_evt_random.030030.name
+	desc = gts_evt_random.030030.desc
+	picture = GFX_evt_gts_inside_body_1
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		is_ai = no
+		any_owned_leader = {
+			leader_class = scientist
+			gts_is_giantess = yes
+		}
+	}
+	immediate = {
+		random_owned_leader = {
+			limit = {
+				leader_class = scientist
+				gts_is_giantess = yes
+			}
+			save_event_target_as = gtsra_random_event_leader
+		}
+	}
+	option = {
+		name = gts_evt_random.030030.a
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.030031
+				days = 30
+				random = 60
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.030030.b
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.030032
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.030030.c
+	}
+}
+
+country_event = {
+	#科学家体内的失落帝国-有趣，继续调查
+	id = gts_evt_random.030031
+	title = gts_evt_random.030031.name
+	desc = gts_evt_random.030031.desc
+	picture = GFX_evt_gts_inside_body_2
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_random.030031.a
+		add_resource = {
+			gts_micro_city = 42
+		}
+	}
+	option = {
+		name = gts_evt_random.030031.b
+		give_specimen = {
+			origin = gts_random_mini_lostempire
+			key = gts_random_mini_lostempire
+		}
+		event_target:gtsra_random_event_leader = {
+			add_trait = {
+				trait = leader_trait_resilient
+				show_message = no
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.030031.c
+	}
+}
+
+country_event = {
+	#科学家体内的失落帝国-立刻扑杀他们
+	id = gts_evt_random.030032
+	title = gts_evt_random.030032.name
+	desc = gts_evt_random.030032.desc
+	picture = GFX_evt_gts_inside_body_2
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_random.030032.a
+		add_resource = {
+			unity = 1500
+		}
+	}
+}
+
+country_event = {
+	#领袖的吞食-1
+	id = gts_evt_random.030040
+	title = gts_evt_random.030040.name
+	desc = gts_evt_random.030040.desc
+	picture = GFX_gts_event_10
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		is_ai = no
+		any_owned_leader = {
+			gts_is_giantess = yes
+		}
+	}
+	immediate = {
+		random_owned_leader = {
+			limit = {
+				leader_class = scientist
+				gts_is_giantess = yes
+			}
+			save_event_target_as = gtsra_random_event_leader
+		}
+	}
+	option = {
+		name = gts_continue
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.030041
+			}
+		}
+	}
+}
+
+country_event = {
+	#领袖的吞食-2
+	id = gts_evt_random.030041
+	title = gts_evt_random.030041.name
+	desc = gts_evt_random.030041.desc
+	picture = GFX_gts_event_14
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_continue
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.030042
+			}
+		}
+	}
+}
+
+country_event = {
+	#领袖的吞食-3
+	id = gts_evt_random.030042
+	title = gts_evt_random.030042.name
+	desc = gts_evt_random.030042.desc
+	picture = GFX_gts_event_15
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_perfect
+		add_resource = {
+			unity = 1600
+		}
+	}
+	option = {
+		name = gts_terror
+		add_resource = {
+			influence = 75
+		}
+	}
+}
+
+country_event = {
+
+	# 計劃外的演習
+
+	id = gts_evt_random.030050
+	title = gts_evt_random.030050.name
+	desc = gts_evt_random.030050.desc
+	picture = GFX_load_60
+	show_sound = event_red_alert
+	is_triggered_only = yes
+	fire_only_once = yes
+	location = event_target:gtsra_random_event_planet
+
+	trigger = {
+		is_ai = no
+		years_passed >= 50
+		any_owned_leader = {
+			OR = {
+				has_trait = leader_trait_Titan
+				has_trait = leader_trait_Giant
+			}
+		}
+		any_owned_planet = {
+			count_owned_pop_amount = {
+				count > 3000
+			}
+			is_eatable_planet = yes
+		}
+	}
+
+	immediate = {
+		random_owned_leader = {
+			limit = {
+				OR = {
+					has_trait = leader_trait_Titan
+					has_trait = leader_trait_Giant
+				}
+			}
+			save_event_target_as = gtsra_random_event_leader
+		}
+		random_owned_planet = {
+			limit = {
+				count_owned_pop_amount = {
+					count > 3000
+				}
+				is_eatable_planet = yes
+			}
+			save_event_target_as = gtsra_random_event_planet
+		}
+	}
+
+	option = {
+		name = gts_evt_random.030050.a
+		event_target:gtsra_random_event_planet = {
+			custom_tooltip = gts_bruh_casualties_1000.tooltip
+			add_planet_devastation = 10
+			add_deposit = d_city_ruins
+			add_deposit = d_active_volcano
+			add_deposit = d_dense_jungle
+
+			add_deposit = d_frozen_gas_lake
+			add_deposit = d_submerged_ore_veins
+			add_deposit = d_fertile_lands
+			hidden_effect = {
+				while = {
+					count = 10
+					random_owned_pop_group = {
+						kill_single_pop = yes
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.030050.b
+		event_target:gtsra_random_event_planet = {
+			custom_tooltip = gts_bruh_casualties_3000.tooltip
+			add_planet_devastation = 50
+			add_deposit = d_city_ruins
+			add_deposit = d_active_volcano
+			add_deposit = d_dense_jungle
+			hidden_effect = {
+				while = {
+					count = 30
+					random_owned_pop_group = {
+						kill_single_pop = yes
+					}
+				}
+			}
+		}
+		add_modifier = {
+			modifier = gtsra_out_of_plan_manoeuvre
+		}
+	}
+	option = {
+		name = gts_evt_random.030050.c
+		allow = {
+			root = {
+				has_technology = tech_gts_size_affecting_device
+			}
+		}
+		event_target:gtsra_random_event_planet = {
+			custom_tooltip = gts_bruh_casualties_1000.tooltip
+			add_planet_devastation = 25
+			add_deposit = d_city_ruins
+			add_deposit = d_active_volcano
+			add_deposit = d_dense_jungle
+			hidden_effect = {
+				while = {
+					count = 10
+					random_owned_pop_group = {
+						kill_single_pop = yes
+					}
+				}
+			}
+		}
+		add_resource = {
+			influence = 100
+		}
+		event_target:gtsra_random_event_leader = {
+			hidden_effect = {
+				remove_trait = leader_trait_Titan
+				remove_trait = leader_trait_Giant
+			}
+			set_leader_flag = gts_bruh_intentional_size_leader_flag
+			add_trait = {
+				trait = leader_trait_Micro
+				show_message = no
+			}
+		}
+	}
+}
+
+#领袖生病
+country_event = {
+	id = gts_evt_random.030060
+	title = gts_evt_random.030060.name
+	desc = gts_evt_random.030060.desc
+	picture = GFX_gts_huatian_4
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		any_owned_leader = {
+			gts_is_giantess = yes
+		}
+	}
+	immediate = {
+		random_owned_leader = {
+			limit = {
+				gts_is_giantess = yes
+			}
+			save_event_target_as = gtsra_random_event_leader
+		}
+	}
+	option = {
+		name = gts_evt_random.030060.a
+		add_resource = {
+			gts_micro_city = -3
+		}
+	}
+	option = {
+		name = gts_evt_random.030060.b
+		add_resource = {
+			gts_micro_planet = -1
+		}
+	}
+	option = {
+		name = gts_evt_random.030060.c
+		add_resource = {
+			gts_micro = -6
+		}
+	}
+	after = {
+		give_specimen = {
+			origin = gts_random_medicine
+			key = gts_random_medicine
+		}
+	}
+}
+
+#大富翁
+country_event = {
+	id = gts_evt_random.030070
+	title = gts_evt_random.030070.name
+	desc = gts_evt_random.030070.desc
+	picture = GFX_gtsra_load_18
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		any_owned_leader = {
+			gts_is_giantess = yes
+		}
+	}
+	immediate = {
+		random_owned_leader = {
+			limit = {
+				gts_is_giantess = yes
+			}
+			save_event_target_as = gtsra_random_event_leader
+		}
+	}
+	option = {
+		name = gts_evt_random.030070.a
+		give_specimen = {
+			origin = gts_random_monopoly
+			key = gts_random_monopoly
+		}
+		add_resource = {
+			influence = 25
+		}
+	}
+}
+
+#性欲下降
+country_event = {
+	id = gts_evt_random.030080
+	title = gts_evt_random.030080.name
+	desc = gts_evt_random.030080.desc
+	picture = GFX_gts_event_69
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		any_owned_leader = {
+			gts_is_giantess = yes
+		}
+		resource_stockpile_compare = {
+			resource = gts_micro
+			value >= 200
+		}
+	}
+	immediate = {
+		random_owned_leader = {
+			limit = {
+				gts_is_giantess = yes
+			}
+			save_event_target_as = gtsra_random_event_leader
+		}
+	}
+	option = {
+		name = gts_evt_random.030080.a
+		add_resource = {
+			gts_micro = -200
+		}
+	}
+}
+
+#鞋垫内的小人
+country_event = {
+	id = gts_evt_random.030090
+	title = gts_evt_random.030090.name
+	desc = gts_evt_random.030090.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_event_41_room
+	}
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		any_owned_leader = {
+			gts_is_giantess = yes
+		}
+	}
+	immediate = {
+		random_owned_leader = {
+			limit = {
+				gts_is_giantess = yes
+			}
+			save_event_target_as = gtsra_random_event_leader
+		}
+	}
+	option = {
+		name = gts_evt_random.030090.a
+		add_resource = {
+			unity = 2000
+		}
+	}
+}
+
+#扶她天体级领袖事件
+country_event = {
+	id = gts_evt_random.030100
+	title = gts_evt_random.030100.name
+	desc = gts_evt_random.030100.desc
+	picture = GFX_load_161
+	show_sound = event_yellow_alert
+	is_triggered_only = yes
+	location = event_target:gtsra_random_futa_event_planet
+	trigger = {
+		has_country_flag = can_trigger_futa_content
+		any_owned_leader = {
+			has_trait = trait_gts_Futa
+			gts_is_equal_to_ultra = yes
+		}
+		any_owned_planet = {
+			colonizable_planet = yes
+			is_colony = yes
+			NOR = {
+				has_modifier = atmospheric_aphrodisiac
+			}
+		}
+		NOR = { has_country_flag = gts_evt_random.030100.ban }
+	}
+	immediate = {
+		random_owned_leader = {
+			limit = {
+				has_trait = trait_gts_Futa
+				gts_is_equal_to_ultra = yes
+			}
+			save_event_target_as = gtsra_random_futa_event_leader
+		}
+		random_owned_planet = {
+			limit = {
+				colonizable_planet = yes
+				is_colony = yes
+				NOR = {
+					has_modifier = atmospheric_aphrodisiac
+				}
+			}
+			save_event_target_as = gtsra_random_futa_event_planet
+		}
+	}
+	option = {
+		name = gts_evt_random.030100.a
+		allow = {
+			resource_expenses_compare = {
+				resource = energy
+				value >= 200
+			}
+		}
+		add_resource = {
+			energy = -200
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.030101
+				days = 7
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.030100.b
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.030102
+				days = 7
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.030100.c
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.030103
+				days = 7
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_random.030101
+	title = gts_evt_random.030101.name
+	desc = gts_evt_random.030101.desc
+	picture = GFX_load_161
+	show_sound = event_space_battle
+	is_triggered_only = yes
+	location = event_target:gtsra_random_futa_event_planet
+	trigger = {
+		has_country_flag = can_trigger_futa_content
+	}
+	option = {
+		name = gts_evt_random.030101.a
+		set_country_flag = gts_evt_random.030100.ban
+		add_resource = {
+			unity = 10000
+		}
+	}
+	option = {
+		name = gts_evt_random.030101.b
+		add_resource = {
+			unity = 10000
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_random.030102
+	title = gts_evt_random.030102.name
+	desc = gts_evt_random.030102.desc
+	picture = GFX_load_162
+	show_sound = event_supermassive_giant
+	is_triggered_only = yes
+	location = event_target:gtsra_random_futa_event_planet
+	trigger = {
+		has_country_flag = can_trigger_futa_content
+	}
+	option = {
+		name = gts_evt_random.030102.a
+		add_resource = {
+			unity = 10000
+		}
+		event_target:gtsra_random_futa_event_planet = {
+			add_planet_devastation = 10
+			add_modifier = {
+				modifier = atmospheric_aphrodisiac
+			}
+			random_owned_pop_group = {
+				kill_single_pop = yes
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.030102.b
+		add_resource = {
+			unity = 10000
+		}
+		set_country_flag = gts_evt_random.030100.ban
+		event_target:gtsra_random_futa_event_planet = {
+			add_planet_devastation = 10
+			add_modifier = {
+				modifier = atmospheric_aphrodisiac
+			}
+			random_owned_pop_group = {
+				kill_single_pop = yes
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.030102.c
+		add_resource = {
+			unity = 10000
+		}
+		event_target:gtsra_random_futa_event_planet = {
+			add_planet_devastation = 10
+			add_modifier = {
+				modifier = atmospheric_aphrodisiac
+			}
+			random_owned_pop_group = {
+				kill_single_pop = yes
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_random.030103
+	title = gts_evt_random.030103.name
+	desc = gts_evt_random.030103.desc
+	picture = GFX_load_162
+	show_sound = event_missing_mass
+	is_triggered_only = yes
+	location = event_target:gtsra_random_futa_event_planet
+	trigger = {
+		has_country_flag = can_trigger_futa_content
+	}
+	option = {
+		name = gts_evt_random.030103.a
+		add_resource = {
+			unity = 10000
+			alloys = 10000
+		}
+		set_country_flag = gts_evt_random.030100.ban
+		event_target:gtsra_random_futa_event_planet = {
+			add_planet_devastation = 10
+			add_modifier = {
+				modifier = atmospheric_aphrodisiac
+			}
+			random_owned_pop_group = {
+				kill_single_pop = yes
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.030103.b
+		add_resource = {
+			unity = 10000
+		}
+		event_target:gtsra_random_futa_event_planet = {
+			add_planet_devastation = 10
+			add_modifier = {
+				modifier = atmospheric_aphrodisiac
+			}
+			random_owned_pop_group = {
+				kill_single_pop = yes
+			}
+		}
+	}
+}
+
+#04xxxz:随机帝国事件
+country_event = {
+	#小人之家
+	id = gts_evt_random.040010
+	title = gts_evt_random.040010.name
+	desc = gts_evt_random.040010.desc
+	picture = GFX_gtsra_tiny_city_1
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		is_ai = no
+		OR = {
+			has_ethic = ethic_spiritualist
+			has_ethic = ethic_fanatic_spiritualist
+		}
+		any_owned_pop_group = {
+			gts_is_giantess = yes
+		}
+		any_owned_pop_group = {
+			gts_is_tiny = yes
+		}
+	}
+	option = {
+		name = gts_evt_random.040010.a
+		add_modifier = {
+			modifier = gtsra_tiny_home
+			days = -1
+		}
+		add_resource = {
+			minerals = -500
+		}
+	}
+	option = {
+		name = gts_evt_random.040010.b
+		add_resource = {
+			influence = 25
+		}
+	}
+	option = {
+		name = gts_evt_random.040010.c
+		add_resource = {
+			influence = 25
+		}
+	}
+	option = {
+		name = gts_evt_random.040010.d
+		add_modifier = {
+			modifier = gtsra_tiny_army
+			days = -1
+		}
+		add_resource = {
+			minerals = -500
+		}
+	}
+	option = {
+		name = gts_evt_random.040010.e
+		add_resource = {
+			gts_micro = 28
+		}
+	}
+}
+
+country_event = {
+	#不知名的巨娘商贩
+	id = gts_evt_random.040020
+	title = gts_evt_random.040020.name
+	desc = gts_evt_random.040020.desc
+	picture = GFX_evt_ship_in_orbit
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		is_ai = no
+	}
+
+	option = {
+		name = gts_evt_random.040020.a
+		add_resource = {
+			energy = 1000
+		}
+	}
+	option = {
+		name = gts_evt_random.040020.b
+		add_resource = {
+			gts_micro = 100
+		}
+	}
+	option = {
+		name = gts_evt_random.040020.c
+		add_resource = {
+			influence = 75
+		}
+	}
+}
+
+country_event = {
+	#售卖巨娘用奇异商品的船队
+	id = gts_evt_random.040030
+	title = gts_evt_random.040030.name
+	desc = gts_evt_random.040030.desc
+	picture = GFX_evt_ship_in_orbit_3
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		is_ai = no
+	}
+	option = {
+		name = gts_evt_random.040030.a
+		add_resource = {
+			energy = 200
+			consumer_goods = 200
+		}
+	}
+	option = {
+		name = gts_evt_random.040030.b
+		add_modifier = {
+			modifier = gtsra_strange_goods
+			years = 5
+		}
+	}
+	option = {
+		name = gts_evt_random.040030.c
+		add_resource = {
+			gts_micro = 150
+		}
+	}
+}
+
+country_event = {
+	#来自遥远星系的消息-编号24662
+	id = gts_evt_random.040040
+	title = gts_evt_random.040040.name
+	desc = gts_evt_random.040040.desc
+	picture = GFX_evt_gts_vivisection
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		is_ai = no
+	}
+	option = {
+		name = gts_evt_random.040040.a
+	}
+}
+
+country_event = {
+	#舰娘被偷窥
+	id = gts_evt_random.040050
+	title = gts_evt_random.040050.name
+	desc = gts_evt_random.040050.desc
+	picture = GFX_gts_event_3
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		is_ai = no
+		gts_is_giantess_empire = yes
+		has_ascension_perk = ap_space_gts
+	}
+	option = {
+		name = gts_evt_random.040050.a
+		custom_tooltip = "gts_evt_random.040050.a.tooltip"
+		add_resource = {
+			influence = 50
+			energy = -1000
+		}
+	}
+	option = {
+		name = gts_evt_random.040050.b
+		custom_tooltip = "gts_evt_random.040050.b.tooltip"
+		add_resource = {
+			influence = 25
+			energy = -500
+		}
+	}
+	option = {
+		name = gts_evt_random.040050.c
+		custom_tooltip = "gts_evt_random.040050.c.tooltip"
+		add_resource = {
+			influence = -25
+			energy = 500
+		}
+	}
+	option = {
+		name = gts_evt_random.040050.d
+		custom_tooltip = "gts_evt_random.040050.d.tooltip"
+		add_resource = {
+			influence = -50
+			energy = 1000
+		}
+	}
+}
+
+country_event = {
+	#战胜堕落帝国
+	id = gts_evt_random.040060
+	title = gts_evt_random.040060.name
+	desc = gts_evt_random.040060.desc
+	picture = GFX_load_61
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		is_ai = no
+		From = {
+			OR = {
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.040060.a
+		add_resource = {
+			gts_micro = 1200
+			gts_micro_planet = 1
+		}
+	}
+	option = {
+		name = gts_evt_random.040060.b
+		add_resource = {
+			gts_micro = 1200
+			gts_micro_planet = 1
+		}
+	}
+}
+
+country_event = {
+	#来自遥远星系的消息-编号61053
+	id = gts_evt_random.040070
+	title = gts_evt_random.040070.name
+	desc = gts_evt_random.040070.desc
+	picture = GFX_load_35
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		is_ai = no
+	}
+	option = {
+		name = gts_continue
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.040071
+			}
+		}
+	}
+}
+
+country_event = {
+	#来自遥远星系的消息-编号61053
+	id = gts_evt_random.040071
+	title = gts_evt_random.040071.name
+	desc = gts_evt_random.040071.desc
+	picture = GFX_evt_gts_footBare
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_perfect
+		add_resource = {
+			unity = 1600
+		}
+	}
+	option = {
+		name = gts_terror
+		add_resource = {
+			influence = 75
+		}
+	}
+}
+
+country_event = {
+	#来自遥远星系的消息-编号12653
+	id = gts_evt_random.040080
+	title = gts_evt_random.040080.name
+	desc = gts_evt_random.040080.desc
+	picture = GFX_gts_deer_1
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		is_ai = no
+	}
+	option = {
+		name = gts_continue
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.040081
+			}
+		}
+	}
+}
+
+country_event = {
+	#来自遥远星系的消息-编号12653
+	id = gts_evt_random.040081
+	title = gts_evt_random.040081.name
+	desc = gts_evt_random.040081.desc
+	picture = GFX_evt_archaeologists_escaping
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_continue
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.040082
+			}
+		}
+	}
+}
+
+country_event = {
+	#来自遥远星系的消息-编号12653
+	id = gts_evt_random.040082
+	title = gts_evt_random.040082.name
+	desc = gts_evt_random.040082.desc
+	picture = GFX_gts_deer_2
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_continue
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.040083
+			}
+		}
+	}
+}
+
+country_event = {
+	#来自遥远星系的消息-编号12653
+	id = gts_evt_random.040083
+	title = gts_evt_random.040083.name
+	desc = gts_evt_random.040083.desc
+	picture = GFX_gts_event_22
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_perfect
+		add_resource = {
+			unity = 1600
+		}
+	}
+	option = {
+		name = gts_terror
+		add_resource = {
+			influence = 75
+		}
+	}
+}
+
+country_event = {
+	#来自遥远星系的消息-编号42663
+	id = gts_evt_random.040090
+	title = gts_evt_random.040090.name
+	desc = gts_evt_random.040090.desc
+	picture = GFX_evt_gts_pussy_contact
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		is_ai = no
+	}
+	option = {
+		name = gts_continue
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.040091
+			}
+		}
+	}
+}
+
+country_event = {
+	#来自遥远星系的消息-编号42663
+	id = gts_evt_random.040091
+	title = gts_evt_random.040091.name
+	desc = gts_evt_random.040091.desc
+	picture = GFX_gtsra_load_15
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_continue
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.040092
+			}
+		}
+	}
+}
+
+country_event = {
+	#来自遥远星系的消息-编号42663
+	id = gts_evt_random.040092
+	title = gts_evt_random.040092.name
+	desc = gts_evt_random.040092.desc
+	picture = GFX_gtsra_load_14
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_perfect
+		add_resource = {
+			unity = 1600
+		}
+	}
+	option = {
+		name = gts_terror
+		add_resource = {
+			influence = 75
+		}
+	}
+}
+
+country_event = {
+	# 机械/义体事件
+	id = gts_evt_random.040100
+	title = gts_evt_random.040100.name
+	desc = gts_evt_random.040100.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_event_5_room
+	}
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		is_ai = no
+		or = {
+			has_ascension_perk = ap_the_flesh_is_weak
+			has_ascension_perk = ap_synthetic_evolution
+		}
+	}
+	option = {
+		name = gts_terror
+		add_resource = {
+			unity = 3200
+		}
+	}
+}
+
+country_event = {
+	# 来自星辰的女神
+	id = gts_evt_random.040110
+	title = gts_evt_random.040110.name
+	desc = gts_evt_random.040110.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_event_6_room
+	}
+	show_sound = event_default
+	location = event_target:gts_destroy_planet
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		is_ai = no
+		any_country = {
+			is_primitive = yes
+			any_owned_planet = {
+				gts_can_destory_planet = yes
+			}
+		}
+	}
+	immediate = {
+		random_country = {
+			limit = {
+				is_primitive = yes
+				any_owned_planet = {
+					gts_can_destory_planet = yes
+				}
+			}
+			random_owned_planet = {
+				save_event_target_as = gts_destroy_planet
+				gts_destroy_planet = yes
+			}
+		}
+	}
+	option = {
+		name = gts_perfect
+		add_resource = {
+			influence = 75
+		}
+	}
+	option = {
+		name = gts_terror
+		add_resource = {
+			unity = 3200
+		}
+	}
+}
+
+country_event = {
+	# 丰饶之地
+	id = gts_evt_random.040120
+	title = gts_evt_random.040120.name
+	desc = gts_evt_random.040120.desc
+	picture = GFX_gts_event_26
+	show_sound = event_default
+	location = event_target:gts_fluid_farm_planet
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		is_ai = no
+		any_owned_planet = {
+			gts_can_destory_planet = yes
+		}
+	}
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				gts_can_destory_planet = yes
+			}
+			save_event_target_as = gts_fluid_farm_planet
+		}
+	}
+	option = {
+		name = gts_evt_random.040120.a
+		event_target:gts_fluid_farm_planet = {
+			add_modifier = {
+				modifier = gts_fluid_farm_planet
+			}
+		}
+	}
+}
+
+country_event = {
+	# 缩小激素完成
+	id = gts_evt_random.040130
+	title = gts_evt_random.040130.name
+	desc = gts_evt_random.040130.desc
+	picture = GFX_gts_event_27
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		is_ai = no
+		gts_is_giantess_empire = yes
+	}
+	option = {
+		name = gts_evt_random.040130.a
+	}
+}
+
+country_event = {
+	# 擦拭足汗的舰娘
+	id = gts_evt_random.040140
+	title = gts_evt_random.040140.name
+	desc = gts_evt_random.040140.desc
+	picture = GFX_gts_event_31
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		is_ai = no
+		gts_is_giantess_empire = yes
+		has_ascension_perk = ap_space_gts
+		FromFrom = {
+			is_star = yes
+		}
+	}
+	option = {
+		name = gts_evt_random.040140.a
+		trigger = {
+			num_owned_planets > 1
+			any_owned_planet = {
+				NOR = {
+					is_planet_class = pc_shattered_ring_habitable
+					is_planet_class = pc_ringworld_habitable
+					is_planet_class = pc_habitat
+				}
+			}
+		}
+		hidden_effect = {
+			random_owned_planet = {
+				limit = {
+					NOR = {
+						is_planet_class = pc_shattered_ring_habitable
+						is_planet_class = pc_ringworld_habitable
+						is_planet_class = pc_habitat
+					}
+				}
+				save_event_target_as = gts_feet_sweat_planet
+			}
+			country_event = {
+				id = gts_evt_random.040141
+				days = 7
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.040140.b
+		trigger = {
+			any_planet_within_border = {
+				is_moon = yes
+				gts_can_destory_planet = yes
+			}
+		}
+		hidden_effect = {
+			random_planet_within_border = {
+				limit = {
+					is_moon = yes
+					gts_can_destory_planet = yes
+				}
+				save_event_target_as = gts_feet_sweat_planet
+			}
+			country_event = {
+				id = gts_evt_random.040142
+				days = 7
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.040140.c
+		hidden_effect = {
+			random_owned_planet = {
+				limit = {
+					is_capital = yes
+				}
+				save_event_target_as = gts_feet_sweat_planet
+			}
+			country_event = {
+				id = gts_evt_random.040143
+				days = 7
+			}
+		}
+	}
+}
+
+country_event = {
+	# 蒸笼
+	id = gts_evt_random.040141
+	title = gts_evt_random.040141.name
+	desc = gts_evt_random.040141.desc
+	picture = GFX_gts_event_32
+	show_sound = event_default
+	location = event_target:gts_feet_sweat_planet
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_random.040141.a
+		event_target:gts_feet_sweat_planet = {
+			add_planet_devastation = 25
+			add_modifier = {
+				modifier = gts_feet_sweat_crisis
+				days = 365
+			}
+			add_modifier = {
+				modifier = ultra_rich
+			}
+		}
+	}
+}
+
+country_event = {
+	# 足汗星球
+	id = gts_evt_random.040142
+	title = gts_evt_random.040142.name
+	desc = gts_evt_random.040142.desc
+	picture = GFX_gtsra_load_15
+	show_sound = event_default
+	location = event_target:gts_feet_sweat_planet
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_random.040142.a
+		event_target:gts_feet_sweat_planet = {
+			change_pc = pc_ocean
+			add_modifier = {
+				modifier = gts_feet_sweat_crisis
+				days = 720
+			}
+			add_modifier = {
+				modifier = ultra_rich
+			}
+		}
+	}
+}
+
+country_event = {
+	# 巨像
+	id = gts_evt_random.040143
+	title = gts_evt_random.040143.name
+	desc = gts_evt_random.040143.desc
+	picture = GFX_gtsra_6
+	show_sound = event_default
+	location = event_target:gts_feet_sweat_planet
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_random.040143.a
+	}
+	option = {
+		name = gts_evt_random.040143.b
+	}
+}
+
+### 大杂居法令事件
+country_event = {
+	id = gts_evt_random.040150
+	title = gts_evt_random.040150.name
+	desc = gts_evt_random.040150.desc
+	picture = GFX_gtsra_load_29
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_random.040150.a
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.040151
+				days = 365
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_random.040151
+	title = gts_evt_random.040151.name
+	desc = gts_evt_random.040151.desc
+	picture = GFX_load_42
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_random.040151.a
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.040152
+				days = 365
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_random.040152
+	title = gts_evt_random.040152.name
+	desc = gts_evt_random.040152.desc
+	picture = GFX_evt_infiltration_failure
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_random.040152.a
+		add_resource = {
+			energy = 1
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.040153
+				days = 365
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.040152.b
+		add_resource = {
+			gts_micro = 1
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_random.040153
+	title = gts_evt_random.040153.name
+	desc = gts_evt_random.040153.desc
+	picture = GFX_gtsra_load_21
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_random.040153.a
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.040154
+				days = 365
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_random.040154
+	title = gts_evt_random.040154.name
+	desc = gts_evt_random.040154.desc
+	picture = GFX_evt_hand_shake
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_random.040154.a
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.040155
+				days = 365
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.040154.b
+		add_resource = {
+			energy = -1
+			influence = 5
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.040155
+				days = 365
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_random.040155
+	title = gts_evt_random.040155.name
+	desc = gts_evt_random.040155.desc
+	picture = GFX_evt_friendly_infiltration
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_random.040155.a
+		add_resource = {
+			unity = 500
+		}
+	}
+	option = {
+		name = gts_evt_random.040155.b
+		add_resource = {
+			society_research = 1000
+		}
+	}
+}
+
+# 舰娘抽奖
+country_event = {
+	id = gts_evt_random.040160
+	title = gts_evt_random.040160.name
+	desc = gts_evt_random.040160.desc
+	picture = GFX_gts_event_59
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_random.040160.a
+		allow = {
+			resource_stockpile_compare = {
+				resource = energy
+				value >= 4000
+			}
+			resource_stockpile_compare = {
+				resource = food
+				value >= 1000
+			}
+		}
+		add_resource = {
+			energy = -2000
+			food = -500
+		}
+		hidden_effect = {
+			random_list = {
+				98 = {
+					country_event = {
+						id = gts_evt_random.040162
+						days = 90
+					}
+				}
+				2 = {
+					country_event = {
+						id = gts_evt_random.040163
+						days = 90
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.040160.b
+		allow = {
+			resource_stockpile_compare = {
+				resource = energy
+				value >= 8500
+			}
+			resource_stockpile_compare = {
+				resource = food
+				value >= 2000
+			}
+		}
+		add_resource = {
+			energy = -8500
+			food = -2000
+		}
+		hidden_effect = {
+			random_list = {
+				98 = {
+					country_event = {
+						id = gts_evt_random.040161
+						days = 90
+					}
+				}
+				2 = {
+					country_event = {
+						id = gts_evt_random.040163
+						days = 90
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.040160.c
+	}
+}
+
+country_event = {
+	id = gts_evt_random.040161
+	title = gts_evt_random.040161.name
+	desc = gts_evt_random.040161.desc
+	picture = GFX_load_70
+	show_sound = event_default
+	location = root.capital_scope
+	is_triggered_only = yes
+	immediate = {
+		random_list = {
+			1 = {
+				gts_create_ship = {
+					name = NAME_gts_Shimakaze
+					design = NAME_gts_shipgirl_destroyer_antiair
+				}
+			}
+			1 = {
+				gts_create_ship = {
+					name = NAME_gts_Laffey
+					design = NAME_gts_shipgirl_destroyer_antiair
+				}
+			}
+			1 = {
+				gts_create_ship = {
+					name = NAME_gts_Yudachi
+					design = NAME_gts_shipgirl_destroyer_antiair
+				}
+			}
+			1 = {
+				gts_create_ship = {
+					name = NAME_gts_Yukikaze
+					design = NAME_gts_shipgirl_destroyer_antiair
+				}
+			}
+			1 = {
+				gts_create_ship = {
+					name = NAME_gts_Kawakaze
+					design = NAME_gts_shipgirl_destroyer_antiair
+				}
+			}
+			1 = {
+				gts_create_ship = {
+					name = NAME_gts_Le_Malin
+					design = NAME_gts_shipgirl_destroyer_artillery
+				}
+			}
+			1 = {
+				gts_create_ship = {
+					name = NAME_gts_Tashkent
+					design = NAME_gts_shipgirl_destroyer_artillery
+				}
+			}
+			1 = {
+				gts_create_ship = {
+					name = NAME_gts_Ayanami
+					design = NAME_gts_shipgirl_destroyer_artillery
+				}
+			}
+			1 = {
+				gts_create_ship = {
+					name = NAME_gts_Javelin
+					design = NAME_gts_shipgirl_destroyer_artillery
+				}
+			}
+			1 = {
+				gts_create_ship = {
+					name = NAME_gts_Z23
+					design = NAME_gts_shipgirl_destroyer_artillery
+				}
+			}
+			1 = {
+				gts_create_ship = {
+					name = NAME_gts_An_Shan
+					design = NAME_gts_shipgirl_destroyer_artillery
+				}
+			}
+			1 = {
+				gts_create_ship = {
+					name = NAME_gts_New_Jersey
+					design = NAME_gts_shipgirl_battleship_artillery
+				}
+			}
+			1 = {
+				gts_create_ship = {
+					name = NAME_gts_Musashi
+					design = NAME_gts_shipgirl_battleship_artillery
+				}
+			}
+			1 = {
+				gts_create_ship = {
+					name = NAME_gts_Bismarck
+					design = NAME_gts_shipgirl_battleship_artillery
+				}
+			}
+			1 = {
+				gts_create_ship = {
+					name = NAME_gts_Vittorio_Veneto
+					design = NAME_gts_shipgirl_battleship_artillery
+				}
+			}
+			1 = {
+				gts_create_ship = {
+					name = NAME_gts_Jean_Bart
+					design = NAME_gts_shipgirl_battleship_artillery
+				}
+			}
+			1 = {
+				gts_create_ship = {
+					name = NAME_gts_Warspite
+					design = NAME_gts_shipgirl_battleship_artillery
+				}
+			}
+			1 = {
+				gts_create_ship = {
+					name = NAME_gts_Shinano
+					design = NAME_gts_shipgirl_battleship_aircraft
+				}
+			}
+			1 = {
+				gts_create_ship = {
+					name = NAME_gts_Taiho
+					design = NAME_gts_shipgirl_battleship_aircraft
+				}
+			}
+			1 = {
+				gts_create_ship = {
+					name = NAME_gts_Enterprise
+					design = NAME_gts_shipgirl_battleship_aircraft
+				}
+			}
+			1 = {
+				gts_create_ship = {
+					name = NAME_gts_Lexington
+					design = NAME_gts_shipgirl_battleship_aircraft
+				}
+			}
+			1 = {
+				gts_create_ship = {
+					name = NAME_gts_Formidable
+					design = NAME_gts_shipgirl_battleship_aircraft
+				}
+			}
+			1 = {
+				gts_create_ship = {
+					name = NAME_gts_Illustrious
+					design = NAME_gts_shipgirl_battleship_aircraft
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.040161.a
+	}
+}
+
+country_event = {
+	id = gts_evt_random.040162
+	title = gts_evt_random.040162.name
+	desc = gts_evt_random.040162.desc
+	picture = GFX_gts_event_58
+	show_sound = event_default
+	location = root.capital_scope
+	is_triggered_only = yes
+	immediate = {
+		create_fleet = {
+			name = "gts_army"
+			effect = {
+				set_owner = root.owner
+				while = {
+					count = 12
+					create_army_transport = {
+						ship_name = "gts_army"
+						army_name = "gts_army"
+						army_type = "gts_army"
+						species = root.owner
+					}
+				}
+				set_location = {
+					target = root.capital_scope
+					distance = 10
+					angle = 90
+					direction = in_system
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.040162.a
+	}
+}
+
+country_event = {
+	id = gts_evt_random.040163
+	title = gts_evt_random.040163.name
+	desc = gts_evt_random.040163.desc
+	picture = GFX_gts_event_25
+	show_sound = event_default
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_random.040163.a
+	}
+}
+
+country_event = {
+	#来自遥远星系的消息-编号52543
+	id = gts_evt_random.040170
+	title = gts_evt_random.040170.name
+	desc = gts_evt_random.040170.desc
+	picture = GFX_gts_event_67
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		is_ai = no
+	}
+	option = {
+		name = gts_good
+		add_resource = {
+			unity = 4000
+		}
+	}
+}
+
+country_event = {
+	#来自遥远星系的消息-编号757223
+	id = gts_evt_random.040180
+	title = gts_evt_random.040180.name
+	desc = gts_evt_random.040180.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_event_1_room
+	}
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		is_ai = no
+	}
+	option = {
+		name = gts_good
+		add_resource = {
+			unity = 4000
+		}
+	}
+}
+
+country_event = {
+	#小人朋友相处守则
+	id = gts_evt_random.040190
+	title = gts_evt_random.040190.name
+	desc = gts_evt_random.040190.desc
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_event_37_room
+	}
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		is_ai = no
+		OR = {
+			has_policy_flag = gts_less_apartheid
+			has_policy_flag = gts_no_apartheid
+		}
+	}
+	option = {
+		name = gts_evt_random.040190.a
+		add_resource = {
+			unity = 4000
+		}
+	}
+	option = {
+		name = gts_evt_random.040190.b
+		add_resource = {
+			unity = 4000
+		}
+	}
+}
+
+country_event = {
+	#意外来客
+	id = gts_evt_random.040200
+	title = gts_evt_random.040200.name
+	desc = gts_evt_random.040200.desc
+	picture = GFX_load_40
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		is_ai = no
+		any_owned_leader = {
+			gts_is_giantess = yes
+		}
+	}
+	immediate = {
+		random_owned_leader = {
+			limit = {
+				gts_is_giantess = yes
+			}
+			save_event_target_as = gtsra_random_event_leader
+		}
+	}
+	option = {
+		name = gts_evt_random.040200.a
+		add_resource = {
+			energy = 400
+		}
+	}
+	option = {
+		name = gts_evt_random.040200.b
+		add_resource = {
+			gts_micro = 3
+		}
+	}
+	option = {
+		name = gts_evt_random.040200.c
+		add_resource = {
+			food = 3
+		}
+	}
+}
+
+country_event = {
+	#意外来客
+	id = gts_evt_random.040210
+	title = gts_evt_random.040210.name
+	desc = gts_evt_random.040210.desc
+	picture = GFX_gts_event_66
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		is_ai = no
+		has_country_flag = privateers_found
+		has_country_flag = can_trigger_futa_content
+		has_country_flag = can_trigger_scat_content
+	}
+	option = {
+		name = gts_terror
+		add_resource = {
+			energy = 400
+		}
+	}
+	option = {
+		name = gts_good
+		add_resource = {
+			energy = 400
+		}
+	}
+}
+
+country_event = {
+	#来自遥远星系的消息-编号379123
+	id = gts_evt_random.040220
+	title = gts_evt_random.040220.name
+	desc = gts_evt_random.040220.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_event_6_room
+	}
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		is_ai = no
+		has_country_flag = can_trigger_scat_content
+	}
+	option = {
+		name = gts_terror
+		add_resource = {
+			unity = 4000
+		}
+	}
+}
+
+country_event = {
+	#来自遥远星系的消息-编号87618
+	id = gts_evt_random.040230
+	title = gts_evt_random.040230.name
+	desc = gts_evt_random.040230.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_event_29_room
+	}
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		is_ai = no
+	}
+	option = {
+		name = gts_terror
+		add_resource = {
+			unity = 4000
+		}
+	}
+}
+
+#夏活事件
+country_event = {
+	#来自遥远星系的消息-编号1266202
+	id = gts_evt_random.040240
+	title = gts_evt_random.040240.name
+	desc = gts_evt_random.040240.desc
+	#diplomatic = yes
+	#custom_gui = "gts_horizontal_event_window"
+	#custom_gui_option = "gts_horizontal_event_button"
+	picture = GFX_load_163
+	show_sound = event_first_contact_humanoid
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		years_passed >= 20
+		AND = {
+			any_owned_leader = { has_leader_flag = gts_qinwen }
+			any_owned_leader = { has_leader_flag = gts_hitomi }
+			any_owned_leader = { has_leader_flag = gts_ora }
+			any_owned_leader = { has_leader_flag = gts_suxiaobai }
+			any_owned_leader = { has_leader_flag = gts_linfeng }
+		}
+	}
+	option = {
+		name = gts_evt_random.040240.a
+		custom_tooltip = gts_evt_random.040240.a.tooltip
+		add_resource = { unity = 10721 }
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.040241
+				days = 360
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_evt_random.040241
+	title = gts_evt_random.040241.name
+	desc = gts_evt_random.040241.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_xiahuo_1_room
+	}
+	show_sound = event_supermassive_giant
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_random.040241.a
+		custom_tooltip = gts_evt_random.040241.a.tooltip
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 6
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.040242
+				days = 720
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_random.040242
+	title = gts_evt_random.040242.name
+	desc = gts_evt_random.040242.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_xiahuo_2_room
+	}
+	show_sound = event_wind_ruins
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_random.040242.a
+		custom_tooltip = gts_evt_random.040242.a.tooltip
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 6
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.040243
+				days = 720
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_evt_random.040243
+	title = gts_evt_random.040243.name
+	desc = gts_evt_random.040243.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_xiahuo_3_room
+	}
+	show_sound = event_ship_thrusters
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_random.040243.a
+		custom_tooltip = gts_evt_random.040243.a.tooltip
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 6
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.040244
+				days = 720
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_evt_random.040244
+	title = gts_evt_random.040244.name
+	desc = gts_evt_random.040244.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_xiahuo_4_room
+	}
+	show_sound = event_red_alert
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_random.040244.a
+		custom_tooltip = gts_evt_random.040244.a.tooltip
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 6
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.040245
+				days = 720
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_evt_random.040245
+	title = gts_evt_random.040245.name
+	desc = gts_evt_random.040245.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_xiahuo_5_room
+	}
+	show_sound = event_gts_vore
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_random.040242.a
+		custom_tooltip = gts_evt_random.040242.a.tooltip
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 6
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.040246
+				days = 720
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_evt_random.040246
+	title = gts_evt_random.040246.name
+	desc = gts_evt_random.040246.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_xiahuo_6_room
+	}
+	show_sound = event_plasma_volcanoes
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_random.040246.a
+		custom_tooltip = gts_evt_random.040246.a.tooltip
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 6
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.040247
+				days = 720
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_evt_random.040247
+	title = gts_evt_random.040247.name
+	desc = gts_evt_random.040247.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_xiahuo_7_room
+	}
+	show_sound = event_wind_ruins
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_random.040247.a
+		custom_tooltip = gts_evt_random.040247.a.tooltip
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 6
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.040248
+				days = 720
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_evt_random.040248
+	title = gts_evt_random.040248.name
+	desc = gts_evt_random.040248.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_xiahuo_8_room
+	}
+	show_sound = event_super_explosion
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_random.040248.a
+		custom_tooltip = gts_evt_random.040248.a.tooltip
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 6
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_random.040249
+				days = 720
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_evt_random.040249
+	title = gts_evt_random.040249.name
+	desc = gts_evt_random.040249.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_xiahuo_9_room
+	}
+	show_sound = event_wind_ruins
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_random.040249.a
+		custom_tooltip = gts_evt_random.040249.a.tooltip
+		add_resource = { unity = 10721 }
+	}
+}
+
+#05xxxz:随机土著事件
+# is_pre_renaissance 石器，铜器，铁器，中世纪
+# is_pre_industrial 石器，铜器，铁器，中世纪，文艺复兴，蒸汽
+# pre_ftl_ancient_era 石器，铜器，铁器(英白多拉螺马)
+# pre_ftl_medieval_era 中世纪，文艺复兴(终世纪之王)
+# pre_ftl_victorian_era 蒸汽，前工业(叶赫那拉)
+# pre_ftl_modern_era 后工业，原子，早太空(天寄线)
+# 科学家的丝袜（隐藏）
+situation_event = {
+	id = gts_evt_random.050010
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		owner = {
+			NOT = {
+				has_country_flag = gtsra_random_050010_fired
+			}
+			is_regular_pre_ftl = yes
+			is_pre_industrial = yes
+			capital_scope = {
+				has_observation_outpost = yes
+				observation_outpost = {
+					has_mission = passive_observation
+				}
+				observation_outpost_owner = {
+					is_ai = no
+					is_gestalt = no
+				}
+			}
+		}
+	}
+	immediate = {
+		owner = {
+			set_country_flag = gtsra_random_050010_fired
+			save_event_target_as = pre_ftl_country
+			capital_scope = {
+				save_event_target_as = pre_ftl_planet
+				observation_outpost_owner = {
+					country_event = {
+						id = gts_evt_random.050011
+					}
+				}
+			}
+		}
+		set_situation_flag = has_ongoing_observation_event_chain
+		# Setting this flag for the duration of the entire event chain
+		# to prevent other observation events from interfering.
+	}
+}
+
+# 科学家的丝袜
+country_event = {
+	id = gts_evt_random.050011
+	title = gts_evt_random.050011.name
+	desc = gts_evt_random.050011.desc
+	picture = GFX_gtsra_black_stockings
+	show_sound = event_ship_thrusters
+	location = event_target:pre_ftl_planet
+	is_triggered_only = yes
+	immediate = {
+		random_owned_leader = {
+			limit = {
+				leader_class = scientist
+			}
+			save_event_target_as = scientist
+		}
+		event_target:pre_ftl_planet = {
+			add_deposit = d_hot_springs
+		}
+		event_target:pre_ftl_planet.observation_outpost = {
+			set_event_locked = yes
+		}
+		event_target:pre_ftl_country = {
+			set_variable = {
+				which = TechProgressPercentage
+				value = 50
+			}
+		}
+	}
+	option = {
+		name = "gts_evt_random.050011.a"
+		add_resource = {
+			society_research = 2000
+		}
+		# event_target:pre_ftl_planet = {
+		# 	observation_outpost = {
+		# 		add_modifier = {
+		# 			modifier = plushie_tariff
+		# 			days = -1
+		# 		}
+		# 	}
+		# }
+	}
+	option = {
+		name = "gts_evt_random.050011.b"
+		custom_tooltip = "tech_progress_gain_tt"
+		hidden_effect = {
+			event_target:pre_ftl_country = {
+				random_situation = {
+					limit = {
+						is_situation_type = pre_ftl_tech_progress_situation
+					}
+					add_situation_progress = value:pre_ftl_gain_tech_progress|BONUS|960|
+				}
+			}
+		}
+	}
+	option = {
+		name = "gts_evt_random.050011.c"
+		custom_tooltip = "gts_evt_random.050011.c.tooltip"
+		hidden_effect = {
+			event_target:pre_ftl_country = {
+				add_awareness = 100
+			}
+		}
+	}
+	after = {
+		hidden_effect = {
+			event_target:pre_ftl_planet.observation_outpost = {
+				set_event_locked = no
+			}
+			event_target:pre_ftl_country = {
+				random_situation = {
+					limit = {
+						is_situation_type = pre_ftl_tech_progress_situation
+					}
+					remove_situation_flag = has_ongoing_observation_event_chain
+				}
+			}
+		}
+	}
+}
+
+# 小人土著观察报告（隐藏）
+situation_event = {
+	id = gts_evt_random.050020
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		owner = {
+			NOT = {
+				has_country_flag = gtsra_random_050020_fired
+			}
+			is_regular_pre_ftl = yes
+			pre_ftl_modern_era = yes
+			capital_scope = {
+				has_observation_outpost = yes
+				observation_outpost = {
+					has_mission = passive_observation
+				}
+				observation_outpost_owner = {
+					is_ai = no
+					is_gestalt = no
+				}
+			}
+		}
+	}
+	immediate = {
+		owner = {
+			set_country_flag = gtsra_random_050020_fired
+			save_event_target_as = pre_ftl_country
+			capital_scope = {
+				save_event_target_as = pre_ftl_planet
+				observation_outpost_owner = {
+					country_event = {
+						id = gts_evt_random.050021
+					}
+				}
+			}
+		}
+		set_situation_flag = has_ongoing_observation_event_chain
+		# Setting this flag for the duration of the entire event chain
+		# to prevent other observation events from interfering.
+	}
+}
+
+# 小人土著观察报告
+country_event = {
+	id = gts_evt_random.050021
+	title = gts_evt_random.050021.name
+	desc = gts_evt_random.050021.desc
+	picture = GFX_gts_event_55
+	show_sound = event_ship_thrusters
+	location = event_target:pre_ftl_planet
+	is_triggered_only = yes
+	immediate = {
+		event_target:pre_ftl_planet.observation_outpost = {
+			set_event_locked = yes
+		}
+	}
+	option = {
+		name = "gts_evt_random.050021.a"
+		add_resource = {
+			society_research = 4000
+			unity = 2000
+		}
+	}
+	after = {
+		hidden_effect = {
+			event_target:pre_ftl_planet.observation_outpost = {
+				set_event_locked = no
+			}
+			event_target:pre_ftl_country = {
+				random_situation = {
+					limit = {
+						is_situation_type = pre_ftl_tech_progress_situation
+					}
+					remove_situation_flag = has_ongoing_observation_event_chain
+				}
+			}
+		}
+	}
+}
+
+#06xxxz:随机异常事件
+#神秘易拉罐
+ship_event = {
+	id = gts_evt_random.060000
+	title = gts_evt_random.060000.name
+	desc = gts_evt_random.060000.desc
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_event_15_room
+	}
+	show_sound = event_mystic_reveal_light
+	is_triggered_only = yes
+	option = {
+		name = gts_evt_random.060000.a
+		owner = {
+			add_resource = {
+				energy = 15000
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.060000.b
+		hidden_effect = {
+			owner = {
+				every_owned_pop_group = {
+					limit = {
+						gts_is_tiny = yes
+					}
+					modify_species = {
+						species = this
+						add_trait = trait_tiny_ub
+					}
+				}
+				every_owned_pop_group = {
+					limit = {
+						gts_is_giantess = yes
+					}
+					modify_species = {
+						species = this
+						add_trait = trait_gts_ub
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.060000.c
+		owner = {
+			every_owned_leader = {
+				add_skill_without_trait_selection = 1
+			}
+		}
+	}
+}
+
+#07xxxz:随机舰船事件
+#判定能触发回收事件
+country_event = {
+	id = gts_evt_random.070000
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = {
+		NOR = {
+			has_country_flag = triggered_gtsra_fleet_event
+		}
+		fromfrom.leader = {
+			gts_is_bigger_than_giant = yes
+		}
+	}
+	immediate = {
+		set_timed_country_flag = {
+			flag = triggered_gtsra_fleet_event
+			days = 1800
+		}
+		fromfrom.leader = {
+			save_event_target_as = gtsra_fleet_leader
+		}
+		random_list = {
+			1 = {
+				country_event = {
+					#足底
+					id = gts_evt_random.070010
+				}
+			}
+			1 = {
+				country_event = {
+					#胸口
+					id = gts_evt_random.070020
+				}
+			}
+			1 = {
+				country_event = {
+					#小穴
+					id = gts_evt_random.070030
+				}
+			}
+			1 = {
+				modifier = {
+					factor = 0
+					OR = {
+						fromfrom.leader = {
+							NOT = {
+								has_trait = leader_trait_gts_futa
+							}
+						}
+						NOT = {
+							has_country_flag = can_trigger_futa_content
+						}
+					}
+				}
+				country_event = {
+					#肉棒
+					id = gts_evt_random.070040
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+
+	# 殘骸回收:足底
+
+	id = gts_evt_random.070010
+	title = gts_evt_random.070010.name
+	desc = gts_evt_random.070010.desc
+	is_triggered_only = yes
+	show_sound = event_scanner
+	picture = GFX_load_83
+	location = event_target:gts_bruh_random_fleet
+
+	immediate = {
+		random_controlled_fleet = {
+			limit = {
+				exists = leader
+				leader = {
+					is_same_value = event_target:gtsra_fleet_leader
+				}
+			}
+			set_event_locked = yes
+			save_event_target_as = gts_bruh_random_fleet
+		}
+	}
+
+	option = {
+		name = gts_evt_random.070010.a
+		random_list = {
+			1 = {
+				country_event = {
+					id = gts_evt_random.070011
+				}
+			}
+			1 = {
+				country_event = {
+					id = gts_evt_random.070012
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.070010.b
+		country_event = {
+			id = gts_evt_random.070013
+		}
+	}
+	option = {
+		name = gts_evt_random.070010.c
+		allow = {
+			any_system_within_border = {
+				system_star = {
+					is_star = yes
+					is_binary_star = no
+					is_trinary_star = no
+				}
+				NOT = {
+					any_system_planet = {
+						is_capital = yes
+						is_colony = yes
+					}
+				}
+			}
+		}
+		country_event = {
+			id = gts_evt_random.070014
+		}
+	}
+}
+
+country_event = {
+
+	# 殘骸回收:足底 - 失敗
+
+	id = gts_evt_random.070011
+	title = gts_evt_random.070010.name
+	desc = gts_evt_random.070011.desc
+	is_triggered_only = yes
+	show_sound = event_space_battle
+	picture = GFX_load_81
+	location = event_target:gts_bruh_random_fleet
+
+	immediate = {
+		event_target:gts_bruh_random_fleet = {
+			gts_bruh_ship_count_failure_scripted_effects = yes
+		}
+	}
+
+	option = {
+		name = gts_evt_random.070011.a
+		event_target:gtsra_fleet_leader = {
+			add_experience = root.capital_scope.gts_bruh_get_experience_count
+		}
+	}
+
+	after = {
+		event_target:gts_bruh_random_fleet = {
+			hidden_effect = {
+				set_event_locked = no
+			}
+		}
+		hidden_effect = {
+			root.capital_scope = {
+				clear_variable = gts_bruh_get_experience_count
+			}
+		}
+	}
+}
+
+country_event = {
+
+	# 殘骸回收:足底 - 成功
+
+	id = gts_evt_random.070012
+	title = gts_evt_random.070010.name
+	desc = gts_evt_random.070012.desc
+	is_triggered_only = yes
+	show_sound = event_ship_bridge
+	picture = GFX_load_84
+	location = event_target:gts_bruh_random_fleet
+
+	immediate = {
+		event_target:gts_bruh_random_fleet = {
+			gts_bruh_ship_count_success_scripted_effect = yes
+		}
+	}
+
+	option = {
+		name = gts_evt_random.070012.a
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 12
+		}
+		event_target:gtsra_fleet_leader = {
+			add_experience = root.capital_scope.gts_bruh_get_experience_count
+		}
+	}
+
+	after = {
+		event_target:gts_bruh_random_fleet = {
+			hidden_effect = {
+				set_event_locked = no
+			}
+		}
+		hidden_effect = {
+			root.capital_scope = {
+				clear_variable = gts_bruh_get_experience_count
+			}
+		}
+	}
+
+}
+
+country_event = {
+
+	# 殘骸回收:足底 - 折中
+
+	id = gts_evt_random.070013
+	title = gts_evt_random.070010.name
+	desc = gts_evt_random.070013.desc
+	is_triggered_only = yes
+	show_sound = event_ship_bridge
+	picture = GFX_load_62
+	location = event_target:gts_bruh_random_fleet
+
+	immediate = {
+		event_target:gts_bruh_random_fleet = {
+			gts_bruh_ship_count_regular_scripted_effect = yes
+		}
+	}
+
+	option = {
+		name = gts_evt_random.070013.a
+		event_target:gtsra_fleet_leader = {
+			add_experience = root.capital_scope.gts_bruh_get_experience_count
+		}
+	}
+
+	after = {
+		event_target:gts_bruh_random_fleet = {
+			hidden_effect = {
+				set_event_locked = no
+			}
+		}
+		hidden_effect = {
+			root.capital_scope = {
+				clear_variable = gts_bruh_get_experience_count
+			}
+		}
+	}
+}
+
+country_event = {
+	#领袖
+	id = gts_evt_random.070014
+	title = gts_evt_random.070010.name
+	desc = gts_evt_random.070014.desc
+	is_triggered_only = yes
+	show_sound = event_ship_explosion
+	picture = GFX_load_77
+	location = event_target:gts_bruh_random_towel_star
+
+	immediate = {
+		# 找尋隨機恆星
+		random_system_within_border = {
+			limit = {
+				system_star = {
+					is_star = yes
+					is_binary_star = no
+					is_trinary_star = no
+				}
+				NOT = {
+					any_system_planet = {
+						is_capital = yes
+						is_colony = yes
+					}
+				}
+			}
+			save_event_target_as = gts_bruh_random_towel_star
+		}
+		# 計算星球大小
+		event_target:gts_bruh_random_towel_star = {
+			set_variable_to_random_value = {
+				which = gts_bruh_get_planet_size_count
+				min = 20
+				max = 35
+			}
+			multiply_variable = {
+				which = gts_bruh_get_planet_size_count
+				value = 10
+			}
+		}
+	}
+
+	option = {
+		name = gts_evt_random.070014.a
+		event_target:gtsra_fleet_leader = {
+			add_experience = event_target:gts_bruh_random_towel_star.gts_bruh_get_planet_size_count
+		}
+		event_target:gts_bruh_random_towel_star = {
+			change_pc = pc_black_hole
+			hidden_effect = {
+				solar_system = {
+					set_star_class = sc_black_hole
+				}
+			}
+			if = {
+				# 拆除開採站
+				limit = {
+					has_mining_station = yes
+				}
+				mining_station = {
+					dismantle = yes
+				}
+			}
+			else_if = {
+				# 拆除研究站
+				limit = {
+					has_research_station = yes
+				}
+				research_station = {
+					dismantle = yes
+				}
+			}
+		}
+	}
+
+	after = {
+		event_target:gts_bruh_random_fleet = {
+			hidden_effect = {
+				set_event_locked = no
+			}
+		}
+		hidden_effect = {
+			event_target:gts_bruh_random_towel_star = {
+				clear_variable = gts_bruh_get_planet_size_count
+			}
+		}
+	}
+}
+
+country_event = {
+
+	# 殘骸回收:胸口
+
+	id = gts_evt_random.070020
+	title = gts_evt_random.070020.name
+	desc = gts_evt_random.070020.desc
+	is_triggered_only = yes
+	show_sound = event_scanner
+	picture = GFX_gtsra_city_crash_9
+	location = event_target:gts_bruh_random_fleet
+
+	immediate = {
+		# 測試用
+		# random_owned_leader = {
+		# 	save_event_target_as = gtsra_fleet_leader
+		# }
+		random_controlled_fleet = {
+			limit = {
+				exists = leader
+				leader = {
+					is_same_value = event_target:gtsra_fleet_leader
+				}
+			}
+			set_event_locked = yes
+			save_event_target_as = gts_bruh_random_fleet
+		}
+	}
+
+	option = {
+		name = gts_evt_random.070020.a
+		country_event = {
+			id = gts_evt_random.070021
+		}
+	}
+	option = {
+		name = gts_evt_random.070020.b
+		random_list = {
+			4 = {
+				country_event = {
+					id = gts_evt_random.070022
+				}
+			}
+			1 = {
+				set_country_flag = gts_bruh_trigger_event_flag_1
+				country_event = {
+					id = gts_evt_random.070023
+				}
+			}
+			1 = {
+				set_country_flag = gts_bruh_trigger_event_flag_2
+				country_event = {
+					id = gts_evt_random.070023
+				}
+			}
+			1 = {
+				set_country_flag = gts_bruh_trigger_event_flag_3
+				country_event = {
+					id = gts_evt_random.070023
+				}
+			}
+			1 = {
+				set_country_flag = gts_bruh_trigger_event_flag_4
+				country_event = {
+					id = gts_evt_random.070023
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.070020.c
+		country_event = {
+			id = gts_evt_random.070024
+		}
+	}
+	option = {
+		name = gts_evt_random.070020.d
+		allow = {
+			solar_system = {
+				is_same_value = event_target:gtsra_fleet_leader
+				any_system_planet = {
+					is_planet_class = pc_gas_giant
+				}
+			}
+		}
+		country_event = {
+			id = gts_evt_random.070025
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_random.070021
+	title = gts_evt_random.070021.name
+	desc = gts_evt_random.070021.desc
+	is_triggered_only = yes
+	show_sound = event_space_battle
+	picture = GFX_gts_event_16
+	location = event_target:gts_bruh_random_fleet
+
+	immediate = {
+		event_target:gts_bruh_random_fleet = {
+			gts_bruh_ship_count_regular_scripted_effect = yes
+		}
+	}
+
+	option = {
+		name = gts_evt_random.070021.a
+		event_target:gtsra_fleet_leader = {
+			add_experience = root.capital_scope.gts_bruh_get_experience_count
+		}
+	}
+
+	after = {
+		event_target:gts_bruh_random_fleet = {
+			hidden_effect = {
+				set_event_locked = no
+			}
+		}
+		hidden_effect = {
+			root.capital_scope = {
+				clear_variable = gts_bruh_get_experience_count
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_random.070022
+	title = gts_evt_random.070022.name
+	desc = gts_evt_random.070022.desc
+	is_triggered_only = yes
+	show_sound = event_yellow_alert
+	picture = GFX_load_97
+	location = event_target:gts_bruh_random_fleet
+
+	immediate = {
+		event_target:gts_bruh_random_fleet = {
+			gts_bruh_ship_count_success_scripted_effect = yes
+		}
+	}
+
+	option = {
+		name = gts_evt_random.070022.a
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 12
+		}
+		event_target:gtsra_fleet_leader = {
+			add_experience = root.capital_scope.gts_bruh_get_experience_count
+		}
+	}
+
+	after = {
+		event_target:gts_bruh_random_fleet = {
+			hidden_effect = {
+				set_event_locked = no
+			}
+		}
+		hidden_effect = {
+			root.capital_scope = {
+				clear_variable = gts_bruh_get_experience_count
+			}
+			remove_country_flag = gts_bruh_trigger_event_flag_1
+			remove_country_flag = gts_bruh_trigger_event_flag_2
+			remove_country_flag = gts_bruh_trigger_event_flag_3
+			remove_country_flag = gts_bruh_trigger_event_flag_4
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_random.070023
+	title = gts_evt_random.070023.name
+	is_triggered_only = yes
+	show_sound = event_yellow_alert
+	location = event_target:gts_bruh_random_fleet
+
+	picture = {
+		trigger = {
+			has_country_flag = gts_bruh_trigger_event_flag_1
+		}
+		picture = GFX_gts_event_4
+	}
+	picture = {
+		trigger = {
+			has_country_flag = gts_bruh_trigger_event_flag_2
+		}
+		picture = GFX_load_85
+	}
+	picture = {
+		trigger = {
+			has_country_flag = gts_bruh_trigger_event_flag_3
+		}
+		picture = GFX_evt_hstar_vena_breasts
+	}
+	picture = {
+		trigger = {
+			has_country_flag = gts_bruh_trigger_event_flag_4
+		}
+		picture = GFX_load_97
+	}
+
+	desc = {
+		text = gts_evt_random.070023.a.desc
+		trigger = {
+			has_country_flag = gts_bruh_trigger_event_flag_1
+		}
+	}
+	desc = {
+		text = gts_evt_random.070023.b.desc
+		trigger = {
+			has_country_flag = gts_bruh_trigger_event_flag_2
+		}
+	}
+	desc = {
+		text = gts_evt_random.070023.c.desc
+		trigger = {
+			has_country_flag = gts_bruh_trigger_event_flag_3
+		}
+	}
+	desc = {
+		text = gts_evt_random.070023.d.desc
+		trigger = {
+			has_country_flag = gts_bruh_trigger_event_flag_4
+		}
+	}
+
+	immediate = {
+		event_target:gts_bruh_random_fleet = {
+			gts_bruh_ship_count_failure_scripted_effects = yes
+		}
+	}
+
+	option = {
+		name = {
+			text = gts_evt_random.070023.a
+			trigger = {
+				has_country_flag = gts_bruh_trigger_event_flag_1
+			}
+		}
+		name = {
+			text = gts_evt_random.070023.b
+			trigger = {
+				has_country_flag = gts_bruh_trigger_event_flag_2
+			}
+		}
+		name = {
+			text = gts_evt_random.070023.c
+			trigger = {
+				has_country_flag = gts_bruh_trigger_event_flag_3
+			}
+		}
+		name = {
+			text = gts_evt_random.070023.d
+			trigger = {
+				has_country_flag = gts_bruh_trigger_event_flag_4
+			}
+		}
+		event_target:gtsra_fleet_leader = {
+			add_experience = root.capital_scope.gts_bruh_get_experience_count
+		}
+	}
+
+	after = {
+		event_target:gts_bruh_random_fleet = {
+			hidden_effect = {
+				set_event_locked = no
+			}
+		}
+		hidden_effect = {
+			root.capital_scope = {
+				clear_variable = gts_bruh_get_experience_count
+			}
+			remove_country_flag = gts_bruh_trigger_event_flag_1
+			remove_country_flag = gts_bruh_trigger_event_flag_2
+			remove_country_flag = gts_bruh_trigger_event_flag_3
+			remove_country_flag = gts_bruh_trigger_event_flag_4
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_random.070024
+	title = gts_evt_random.070024.name
+	desc = gts_evt_random.070024.desc
+	is_triggered_only = yes
+	show_sound = event_cityscape
+	picture = GFX_load_97
+	location = event_target:gts_bruh_random_fleet
+
+	immediate = {
+		event_target:gts_bruh_random_fleet = {
+			gts_bruh_ship_count_regular_scripted_effect = yes
+		}
+	}
+
+	option = {
+		name = gts_evt_random.070024.a
+		event_target:gtsra_fleet_leader = {
+			add_experience = root.capital_scope.gts_bruh_get_experience_count
+		}
+	}
+
+	after = {
+		event_target:gts_bruh_random_fleet = {
+			hidden_effect = {
+				set_event_locked = no
+			}
+		}
+		hidden_effect = {
+			root.capital_scope = {
+				clear_variable = gts_bruh_get_experience_count
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_random.070025
+	title = gts_evt_random.070025.name
+	desc = gts_evt_random.070025.desc
+	is_triggered_only = yes
+	show_sound = event_collapsing_ruins
+	picture = GFX_load_91
+	location = event_target:gts_bruh_random_towel_gas_giant
+
+	immediate = {
+		# 測試用
+		#random_owned_leader = {
+		#	save_event_target_as = gtsra_fleet_leader
+		#}
+		random_planet_within_border = {
+			limit = {
+				is_planet_class = pc_gas_giant
+			}
+			save_event_target_as = gts_bruh_random_towel_gas_giant
+		}
+		# 計算星球大小
+		event_target:gts_bruh_random_towel_gas_giant = {
+			export_trigger_value_to_variable = {
+				trigger = planet_size
+				variable = gts_bruh_get_planet_size_count
+			}
+			multiply_variable = {
+				which = gts_bruh_get_planet_size_count
+				value = 10
+			}
+		}
+	}
+
+	option = {
+		name = gts_evt_random.070025.a
+		event_target:gtsra_fleet_leader = {
+			add_experience = event_target:gts_bruh_random_towel_gas_giant.gts_bruh_get_planet_size_count
+		}
+		event_target:gts_bruh_random_towel_gas_giant = {
+			remove_planet = yes
+			if = {
+				# 拆除開採站
+				limit = {
+					has_mining_station = yes
+				}
+				mining_station = {
+					dismantle = yes
+				}
+			}
+			else_if = {
+				# 拆除研究站
+				limit = {
+					has_research_station = yes
+				}
+				research_station = {
+					dismantle = yes
+				}
+			}
+		}
+	}
+
+	after = {
+		event_target:gts_bruh_random_fleet = {
+			hidden_effect = {
+				set_event_locked = no
+			}
+		}
+		hidden_effect = {
+			event_target:gts_bruh_random_towel_gas_giant = {
+				clear_variable = gts_bruh_get_planet_size_count
+			}
+		}
+	}
+}
+
+country_event = {
+
+	# 殘骸回收:小穴
+
+	id = gts_evt_random.070030
+	title = gts_evt_random.070030.name
+	desc = gts_evt_random.070030.desc
+	is_triggered_only = yes
+	show_sound = event_scanner
+	picture = GFX_load_94
+	location = event_target:gts_bruh_random_fleet
+
+	immediate = {
+		random_controlled_fleet = {
+			limit = {
+				exists = leader
+				leader = {
+					is_same_value = event_target:gtsra_fleet_leader
+				}
+			}
+			set_event_locked = yes
+			save_event_target_as = gts_bruh_random_fleet
+		}
+	}
+
+	option = {
+		name = gts_evt_random.070030.a
+		country_event = {
+			id = gts_evt_random.070031
+		}
+	}
+	option = {
+		name = gts_evt_random.070030.b
+		random_list = {
+			1 = {
+				set_country_flag = gts_bruh_trigger_event_flag_1
+				country_event = {
+					id = gts_evt_random.070032
+				}
+			}
+			1 = {
+				set_country_flag = gts_bruh_trigger_event_flag_2
+				country_event = {
+					id = gts_evt_random.070032
+				}
+			}
+			1 = {
+				set_country_flag = gts_bruh_trigger_event_flag_3
+				country_event = {
+					id = gts_evt_random.070032
+				}
+			}
+			1 = {
+				set_country_flag = gts_bruh_trigger_event_flag_4
+				country_event = {
+					id = gts_evt_random.070033
+				}
+			}
+			1 = {
+				set_country_flag = gts_bruh_trigger_event_flag_5
+				country_event = {
+					id = gts_evt_random.070033
+				}
+			}
+			1 = {
+				set_country_flag = gts_bruh_trigger_event_flag_6
+				country_event = {
+					id = gts_evt_random.070033
+				}
+			}
+			1 = {
+				set_country_flag = gts_bruh_trigger_event_flag_7
+				country_event = {
+					id = gts_evt_random.070033
+				}
+			}
+			1 = {
+				set_country_flag = gts_bruh_trigger_event_flag_8
+				country_event = {
+					id = gts_evt_random.070033
+				}
+			}
+			1 = {
+				set_country_flag = gts_bruh_trigger_event_flag_9
+				country_event = {
+					id = gts_evt_random.070033
+				}
+			}
+			1 = {
+				set_country_flag = gts_bruh_trigger_event_flag_10
+				country_event = {
+					id = gts_evt_random.070033
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+
+	# 殘骸回收:小穴 - 回收愛液
+
+	id = gts_evt_random.070031
+	title = gts_evt_random.070031.name
+	desc = gts_evt_random.070031.desc
+	is_triggered_only = yes
+	show_sound = event_ship_bridge
+	picture = GFX_load_93
+	location = event_target:gts_bruh_random_fleet
+
+	immediate = {
+		event_target:gts_bruh_random_fleet = {
+			gts_bruh_ship_count_regular_scripted_effect = yes
+		}
+	}
+
+	option = {
+		name = gts_evt_random.070031.a
+		event_target:gtsra_fleet_leader = {
+			add_experience = root.capital_scope.gts_bruh_get_experience_count
+		}
+	}
+
+	after = {
+		event_target:gts_bruh_random_fleet = {
+			hidden_effect = {
+				set_event_locked = no
+			}
+		}
+		hidden_effect = {
+			root.capital_scope = {
+				clear_variable = gts_bruh_get_experience_count
+			}
+		}
+	}
+}
+
+country_event = {
+
+	# 殘骸回收:小穴 - 成功
+
+	id = gts_evt_random.070032
+	title = gts_evt_random.070032.name
+	is_triggered_only = yes
+	show_sound = event_ship_bridge
+	picture = GFX_load_96
+	location = event_target:gts_bruh_random_fleet
+
+	picture = {
+		trigger = {
+			has_country_flag = gts_bruh_trigger_event_flag_1
+		}
+		picture = GFX_load_95
+	}
+	picture = {
+		trigger = {
+			has_country_flag = gts_bruh_trigger_event_flag_2
+		}
+		picture = GFX_load_96
+	}
+	picture = {
+		trigger = {
+			has_country_flag = gts_bruh_trigger_event_flag_3
+		}
+		picture = GFX_load_94
+	}
+
+	desc = {
+		text = gts_evt_random.070032.a.desc
+		trigger = {
+			has_country_flag = gts_bruh_trigger_event_flag_1
+		}
+	}
+	desc = {
+		text = gts_evt_random.070032.b.desc
+		trigger = {
+			has_country_flag = gts_bruh_trigger_event_flag_2
+		}
+	}
+	desc = {
+		text = gts_evt_random.070032.c.desc
+		trigger = {
+			has_country_flag = gts_bruh_trigger_event_flag_3
+		}
+	}
+
+	immediate = {
+		event_target:gts_bruh_random_fleet = {
+			gts_bruh_ship_count_success_scripted_effect = yes
+		}
+	}
+
+	option = {
+		name = {
+			text = gts_evt_random.070032.a
+			trigger = {
+				has_country_flag = gts_bruh_trigger_event_flag_1
+			}
+		}
+		name = {
+			text = gts_evt_random.070032.b
+			trigger = {
+				has_country_flag = gts_bruh_trigger_event_flag_2
+			}
+		}
+		name = {
+			text = gts_evt_random.070032.c
+			trigger = {
+				has_country_flag = gts_bruh_trigger_event_flag_3
+			}
+		}
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 12
+		}
+		event_target:gtsra_fleet_leader = {
+			add_experience = root.capital_scope.gts_bruh_get_experience_count
+		}
+	}
+
+	after = {
+		event_target:gts_bruh_random_fleet = {
+			hidden_effect = {
+				set_event_locked = no
+			}
+		}
+		hidden_effect = {
+			root.capital_scope = {
+				clear_variable = gts_bruh_get_experience_count
+			}
+			remove_country_flag = gts_bruh_trigger_event_flag_1
+			remove_country_flag = gts_bruh_trigger_event_flag_2
+			remove_country_flag = gts_bruh_trigger_event_flag_3
+			remove_country_flag = gts_bruh_trigger_event_flag_4
+			remove_country_flag = gts_bruh_trigger_event_flag_5
+			remove_country_flag = gts_bruh_trigger_event_flag_6
+			remove_country_flag = gts_bruh_trigger_event_flag_7
+			remove_country_flag = gts_bruh_trigger_event_flag_8
+			remove_country_flag = gts_bruh_trigger_event_flag_9
+			remove_country_flag = gts_bruh_trigger_event_flag_10
+		}
+	}
+}
+
+country_event = {
+
+	# 殘骸回收:小穴 - 失敗
+
+	id = gts_evt_random.070033
+	title = gts_evt_random.070033.name
+	is_triggered_only = yes
+	show_sound = event_space_battle
+	picture = GFX_load_95
+	location = event_target:gts_bruh_random_fleet
+
+	picture = {
+		trigger = {
+			has_country_flag = gts_bruh_trigger_event_flag_4
+		}
+		picture = GFX_load_95
+	}
+	picture = {
+		trigger = {
+			has_country_flag = gts_bruh_trigger_event_flag_5
+		}
+		picture = GFX_evt_haiyunpuss_2
+	}
+	picture = {
+		trigger = {
+			has_country_flag = gts_bruh_trigger_event_flag_6
+		}
+		picture = GFX_evt_haiyunpuss
+	}
+	picture = {
+		trigger = {
+			has_country_flag = gts_bruh_trigger_event_flag_7
+		}
+		picture = GFX_load_94
+	}
+	picture = {
+		trigger = {
+			has_country_flag = gts_bruh_trigger_event_flag_8
+		}
+		picture = GFX_evt_hstar_7
+	}
+	picture = {
+		trigger = {
+			has_country_flag = gts_bruh_trigger_event_flag_9
+		}
+		picture = GFX_gts_event_17
+	}
+	picture = {
+		trigger = {
+			has_country_flag = gts_bruh_trigger_event_flag_10
+		}
+		picture = GFX_evt_haiyunpuss
+	}
+
+	desc = {
+		text = gts_evt_random.070033.a.desc
+		trigger = {
+			has_country_flag = gts_bruh_trigger_event_flag_4
+		}
+	}
+	desc = {
+		text = gts_evt_random.070033.b.desc
+		trigger = {
+			has_country_flag = gts_bruh_trigger_event_flag_5
+		}
+	}
+	desc = {
+		text = gts_evt_random.070033.c.desc
+		trigger = {
+			has_country_flag = gts_bruh_trigger_event_flag_6
+		}
+	}
+	desc = {
+		text = gts_evt_random.070033.d.desc
+		trigger = {
+			has_country_flag = gts_bruh_trigger_event_flag_7
+		}
+	}
+	desc = {
+		text = gts_evt_random.070033.e.desc
+		trigger = {
+			has_country_flag = gts_bruh_trigger_event_flag_8
+		}
+	}
+	desc = {
+		text = gts_evt_random.070033.f.desc
+		trigger = {
+			has_country_flag = gts_bruh_trigger_event_flag_9
+		}
+	}
+	desc = {
+		text = gts_evt_random.070033.g.desc
+		trigger = {
+			has_country_flag = gts_bruh_trigger_event_flag_10
+		}
+	}
+
+	immediate = {
+		event_target:gts_bruh_random_fleet = {
+			gts_bruh_ship_count_failure_scripted_effects = yes
+		}
+	}
+
+	option = {
+		name = {
+			text = gts_evt_random.070033.a
+			trigger = {
+				has_country_flag = gts_bruh_trigger_event_flag_4
+			}
+		}
+		name = {
+			text = gts_evt_random.070033.b
+			trigger = {
+				has_country_flag = gts_bruh_trigger_event_flag_5
+			}
+		}
+		name = {
+			text = gts_evt_random.070033.c
+			trigger = {
+				has_country_flag = gts_bruh_trigger_event_flag_6
+			}
+		}
+		name = {
+			text = gts_evt_random.070033.d
+			trigger = {
+				has_country_flag = gts_bruh_trigger_event_flag_7
+			}
+		}
+		name = {
+			text = gts_evt_random.070033.e
+			trigger = {
+				has_country_flag = gts_bruh_trigger_event_flag_8
+			}
+		}
+		name = {
+			text = gts_evt_random.070033.f
+			trigger = {
+				has_country_flag = gts_bruh_trigger_event_flag_9
+			}
+		}
+		name = {
+			text = gts_evt_random.070033.g
+			trigger = {
+				has_country_flag = gts_bruh_trigger_event_flag_10
+			}
+		}
+		event_target:gtsra_fleet_leader = {
+			add_experience = root.capital_scope.gts_bruh_get_experience_count
+		}
+	}
+
+	after = {
+		event_target:gts_bruh_random_fleet = {
+			hidden_effect = {
+				set_event_locked = no
+			}
+		}
+		hidden_effect = {
+			root.capital_scope = {
+				clear_variable = gts_bruh_get_experience_count
+			}
+			remove_country_flag = gts_bruh_trigger_event_flag_1
+			remove_country_flag = gts_bruh_trigger_event_flag_2
+			remove_country_flag = gts_bruh_trigger_event_flag_3
+			remove_country_flag = gts_bruh_trigger_event_flag_4
+			remove_country_flag = gts_bruh_trigger_event_flag_5
+			remove_country_flag = gts_bruh_trigger_event_flag_6
+			remove_country_flag = gts_bruh_trigger_event_flag_7
+			remove_country_flag = gts_bruh_trigger_event_flag_8
+			remove_country_flag = gts_bruh_trigger_event_flag_9
+			remove_country_flag = gts_bruh_trigger_event_flag_10
+		}
+	}
+}
+
+country_event = {
+
+	# 殘骸回收:肉棒
+
+	id = gts_evt_random.070040
+	title = gts_evt_random.070040.name
+	desc = gts_evt_random.070040.desc
+	is_triggered_only = yes
+	show_sound = event_scanner
+	picture = GFX_load_98
+	location = event_target:gts_bruh_random_fleet
+
+	immediate = {
+		random_controlled_fleet = {
+			limit = {
+				exists = leader
+				leader = {
+					is_same_value = event_target:gtsra_fleet_leader
+				}
+			}
+			set_event_locked = yes
+			save_event_target_as = gts_bruh_random_fleet
+		}
+	}
+
+	option = {
+		name = gts_evt_random.070040.a
+
+		country_event = {
+			id = gts_evt_random.070041
+		}
+	}
+	option = {
+		name = gts_evt_random.070040.b
+
+		random_list = {
+			1 = {
+				country_event = {
+					id = gts_evt_random.070042
+				}
+			}
+			1 = {
+				country_event = {
+					id = gts_evt_random.070043
+				}
+			}
+			1 = {
+				country_event = {
+					id = gts_evt_random.070044
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+
+	# 殘骸回收:肉棒 - 清理龜頭
+
+	id = gts_evt_random.070041
+	title = gts_evt_random.070041.name
+	desc = gts_evt_random.070041.desc
+	is_triggered_only = yes
+	show_sound = event_ship_thrusters
+	picture = GFX_load_100
+	location = event_target:gts_bruh_random_fleet
+
+	immediate = {
+		event_target:gts_bruh_random_fleet = {
+			gts_bruh_ship_count_regular_scripted_effect = yes
+		}
+	}
+
+	option = {
+		name = gts_evt_random.070041.a
+		event_target:gtsra_fleet_leader = {
+			add_experience = root.capital_scope.gts_bruh_get_experience_count
+		}
+	}
+
+	after = {
+		event_target:gts_bruh_random_fleet = {
+			hidden_effect = {
+				set_event_locked = no
+			}
+		}
+		hidden_effect = {
+			root.capital_scope = {
+				clear_variable = gts_bruh_get_experience_count
+			}
+		}
+	}
+}
+
+country_event = {
+
+	# 殘骸回收:肉棒 - 成功
+
+	id = gts_evt_random.070042
+	title = gts_evt_random.070042.name
+	desc = gts_evt_random.070042.desc
+	is_triggered_only = yes
+	show_sound = event_red_alert
+	picture = GFX_load_99
+	location = event_target:gts_bruh_random_fleet
+
+	immediate = {
+		event_target:gts_bruh_random_fleet = {
+			gts_bruh_ship_count_success_scripted_effect = yes
+		}
+	}
+
+	option = {
+		name = gts_evt_random.070042.a
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 12
+		}
+		event_target:gtsra_fleet_leader = {
+			add_experience = root.capital_scope.gts_bruh_get_experience_count
+		}
+	}
+
+	after = {
+		event_target:gts_bruh_random_fleet = {
+			hidden_effect = {
+				set_event_locked = no
+			}
+		}
+		hidden_effect = {
+			root.capital_scope = {
+				clear_variable = gts_bruh_get_experience_count
+			}
+		}
+	}
+}
+
+country_event = {
+
+	# 殘骸回收:肉棒 - 失敗
+
+	id = gts_evt_random.070043
+	title = gts_evt_random.070043.name
+	desc = gts_evt_random.070043.desc
+	is_triggered_only = yes
+	show_sound = event_red_alert
+	picture = GFX_load_99
+	location = event_target:gts_bruh_random_fleet
+
+	immediate = {
+		event_target:gts_bruh_random_fleet = {
+			gts_bruh_ship_count_failure_scripted_effects = yes
+		}
+	}
+
+	option = {
+		name = gts_evt_random.070043.a
+		event_target:gtsra_fleet_leader = {
+			add_experience = root.capital_scope.gts_bruh_get_experience_count
+		}
+	}
+
+	after = {
+		event_target:gts_bruh_random_fleet = {
+			hidden_effect = {
+				set_event_locked = no
+			}
+		}
+		hidden_effect = {
+			root.capital_scope = {
+				clear_variable = gts_bruh_get_experience_count
+			}
+		}
+	}
+}
+
+country_event = {
+
+	# 殘骸回收:肉棒 - 失敗
+
+	id = gts_evt_random.070044
+	title = gts_evt_random.070044.name
+	desc = gts_evt_random.070044.desc
+	is_triggered_only = yes
+	show_sound = event_red_alert
+	picture = GFX_load_99
+	location = event_target:gts_bruh_random_fleet
+
+	immediate = {
+		event_target:gts_bruh_random_fleet = {
+			gts_bruh_ship_count_failure_scripted_effects = yes
+		}
+	}
+
+	option = {
+		name = gts_evt_random.070043.a
+		event_target:gtsra_fleet_leader = {
+			add_experience = root.capital_scope.gts_bruh_get_experience_count
+		}
+	}
+
+	after = {
+		event_target:gts_bruh_random_fleet = {
+			hidden_effect = {
+				set_event_locked = no
+			}
+		}
+		hidden_effect = {
+			root.capital_scope = {
+				clear_variable = gts_bruh_get_experience_count
+			}
+		}
+	}
+}
+
+country_event = {
+	#小灰互动
+	id = gts_evt_random.070050
+	title = gts_evt_random.070050.name
+	desc = gts_evt_random.070050.desc
+	is_triggered_only = yes
+	fire_only_once = yes
+	show_sound = event_scanner
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_event_38_room
+	}
+	trigger = {
+		is_ai = no
+		This = {
+			is_at_war_with = FROM
+		}
+		fromfrom = {
+			is_same_value = event_target:gray_warship
+		}
+	}
+	option = {
+		name = gts_evt_random.070050.a
+		add_resource = {
+			unity = 4000
+		}
+	}
+}
+
+#08xxxz:随机考古事件
+### 成长的巨娘考古
+fleet_event = {
+	id = gts_evt_random.080001
+	title = gts_evt_random.080001.name
+	desc = gts_evt_random.080001.desc
+	picture = GFX_gts_event_64
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_continue
+		owner = {
+			add_resource = {
+				minor_artifacts = 5
+			}
+		}
+	}
+}
+
+fleet_event = {
+	id = gts_evt_random.080002
+	title = gts_evt_random.080002.name
+	desc = gts_evt_random.080002.desc
+	picture = GFX_gtsra_10
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_continue
+		owner = {
+			add_resource = {
+				minor_artifacts = 5
+			}
+		}
+	}
+}
+
+fleet_event = {
+	id = gts_evt_random.080003
+	title = gts_evt_random.080003.name
+	desc = gts_evt_random.080003.desc
+	picture = GFX_load_39
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_continue
+		owner = {
+			add_resource = {
+				minor_artifacts = 5
+			}
+		}
+	}
+}
+
+fleet_event = {
+	id = gts_evt_random.080004
+	title = gts_evt_random.080004.name
+	desc = gts_evt_random.080004.desc
+	picture = GFX_gtsra_4
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_continue
+		owner = {
+			add_resource = {
+				minor_artifacts = 10
+			}
+		}
+	}
+}
+
+fleet_event = {
+	id = gts_evt_random.080005
+	title = gts_evt_random.080005.name
+	desc = gts_evt_random.080005.desc
+	picture = GFX_load_57
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_continue
+		owner = {
+			add_resource = {
+				minor_artifacts = 15
+			}
+		}
+	}
+}
+
+fleet_event = {
+	id = gts_evt_random.080006
+	title = gts_evt_random.080006.name
+	desc = gts_evt_random.080006.desc
+	picture = GFX_load_67
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_terror
+		owner = {
+			add_resource = {
+				minor_artifacts = 25
+			}
+		}
+	}
+}
+
+### 始于足下考古
+fleet_event = {
+	id = gts_evt_random.080011
+	title = gts_evt_random.080011.name
+	desc = gts_evt_random.080011.desc
+	picture = GFX_gts_event_62
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_continue
+		owner = {
+			add_resource = {
+				minor_artifacts = 5
+			}
+		}
+	}
+}
+
+fleet_event = {
+	id = gts_evt_random.080012
+	title = gts_evt_random.080012.name
+	desc = gts_evt_random.080012.desc
+	picture = GFX_evt_gts_face_off_in_space
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_continue
+		owner = {
+			add_resource = {
+				minor_artifacts = 5
+			}
+		}
+	}
+}
+
+fleet_event = {
+	id = gts_evt_random.080013
+	title = gts_evt_random.080013.name
+	desc = gts_evt_random.080013.desc
+	picture = GFX_evt_ship_in_orbit_3
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_continue
+		owner = {
+			add_resource = {
+				minor_artifacts = 5
+			}
+		}
+	}
+}
+
+fleet_event = {
+	id = gts_evt_random.080014
+	title = gts_evt_random.080014.name
+	desc = gts_evt_random.080014.desc
+	picture = GFX_load_91
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_continue
+		owner = {
+			add_resource = {
+				minor_artifacts = 10
+			}
+		}
+	}
+}
+
+fleet_event = {
+	id = gts_evt_random.080015
+	title = gts_evt_random.080015.name
+	desc = gts_evt_random.080015.desc
+	picture = GFX_load_85
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_continue
+		owner = {
+			add_resource = {
+				minor_artifacts = 15
+			}
+		}
+	}
+}
+
+fleet_event = {
+	id = gts_evt_random.080016
+	title = gts_evt_random.080016.name
+	desc = gts_evt_random.080016.desc
+	picture = GFX_load_49
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_continue
+		owner = {
+			add_resource = {
+				minor_artifacts = 15
+			}
+		}
+	}
+}
+
+fleet_event = {
+	id = gts_evt_random.080017
+	title = gts_evt_random.080017.name
+	desc = gts_evt_random.080017.desc
+	picture = GFX_gts_event_33
+	show_sound = event_mystic_reveal_light
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_perfect
+		owner = {
+			add_resource = {
+				minor_artifacts = 25
+			}
+		}
+	}
+}
+
+namespace = gts_ra_daily
+#整合劳尔斯的事件，以后应该会统一起来
+event = {
+	id = gts_ra_daily.1
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		every_playable_country = {
+			country_event = {
+				id = gts_ra_daily.2
+				days = 360
+			}
+		}
+	}
+}
+
+#巨娘-女王出游事件线总线（详细事件见gts_ra_game_start）
+country_event = {
+	id = gts_ra_daily.2
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		gts_is_tiny_empire = yes
+		root.ruler = {
+			gts_is_bigger_than_tall = yes
+		}
+	}
+	immediate = {
+		country_event = {
+			#出发
+			id = gts_ra_daily.3
+			days = 20
+			random = 5
+		}
+		country_event = {
+			#首都游
+			id = gts_ra_daily.4
+			days = 200
+			random = 50
+		}
+		# country_event = {
+		# 	id = gts_ra_daily.5
+		# 	days = 600
+		# 	random = 50
+		# }
+		#country_event = { id = gts_ra_daily.2 days = 4000 }
+	}
+}
+
+#女王出游-1出发
+country_event = {
+	id = gts_ra_daily.3
+	title = gts_ra_daily.3.name
+	desc = gts_ra_daily.3.desc
+	picture = GFX_evt_gts_ra_daily3
+	show_sound = evn_fc_slaver_empire
+	is_triggered_only = yes
+	trigger = {
+		NOT = {
+			has_country_flag = gts_ra_stop_daily1
+		}
+	}
+	option = {
+		#继续
+		name = gts_ra_daily.3.a
+		custom_tooltip = gts_ra_daily.3.a.tooltip
+	}
+	option = {
+		#停止
+		name = gts_ra_daily.3.b
+		custom_tooltip = gts_ra_daily.3.b.tooltip
+		set_country_flag = gts_ra_stop_daily1
+	}
+}
+
+#女王出游-2首都游
+country_event = {
+	id = gts_ra_daily.4
+	title = gts_ra_daily.4.name
+	desc = gts_ra_daily.4.desc
+	picture = GFX_evt_gts_ra_daily4
+	show_sound = event_celebration
+	location = event_target:gts_ra_daily4
+	is_triggered_only = yes
+	trigger = {
+		NOT = {
+			has_country_flag = gts_ra_stop_daily1
+		}
+	}
+	immediate = {
+		capital_scope = {
+			save_event_target_as = gts_ra_daily4
+		}
+	}
+	option = {
+		name = gts_ra_daily.4.a
+		country_event = {
+			id = gts_ra_daily.4001
+		}
+	}
+}
+
+country_event = {
+	id = gts_ra_daily.4001
+	title = gts_ra_daily.4001.name
+	desc = gts_ra_daily.4001.desc
+	picture = GFX_evt_gts_ra_daily4001
+	show_sound = event_structural_collapse
+	location = event_target:gts_ra_daily4
+	is_triggered_only = yes
+	option = {
+		name = gts_ra_daily.4001.a
+		country_event = {
+			id = gts_ra_daily.4002
+		}
+	}
+}
+
+country_event = {
+	id = gts_ra_daily.4002
+	title = gts_ra_daily.4002.name
+	desc = gts_ra_daily.4002.desc
+	picture = GFX_evt_gts_ra_daily4002
+	show_sound = event_wind_ruins
+	location = event_target:gts_ra_daily4
+	is_triggered_only = yes
+	immediate = {
+		capital_scope = {
+			add_planet_devastation = 15
+			add_deposit = d_active_volcano
+		}
+	}
+	option = {
+		#继续
+		name = gts_ra_daily.4002.a
+		custom_tooltip = gts_ra_daily.4002.a.tooltip
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = 6
+				min = 1000
+			}
+			add_resource = {
+				influence = 50
+			}
+			add_resource = {
+				energy = 1000
+			}
+			give_technology = {
+				tech = tech_volcano
+				message = yes
+			}
+		}
+	}
+	option = {
+		#停止
+		name = gts_ra_daily.4002.b
+		custom_tooltip = gts_ra_daily.3.b.tooltip
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = 12
+				min = 2000
+			}
+			add_resource = {
+				influence = 100
+			}
+			add_resource = {
+				energy = 1000
+			}
+			give_technology = {
+				tech = tech_volcano
+				message = yes
+			}
+		}
+		set_country_flag = gts_ra_stop_daily1
+	}
+}

@@ -1,0 +1,371 @@
+@attack_range = 10
+@engagement_range = 125
+@launch_time = 2
+@speed1 = 550
+@speed2 = 600
+@speed3 = 650
+@speed4 = 700
+@count = 8
+@regen = 0.5
+
+@power1 = -20
+@power2 = -34
+@power3 = -45
+@power4 = -59
+@titan_cost_6 = 592
+
+utility_component_template = { #灵魂反应堆
+	key = "TITAN_SOUL_REACTOR"
+	size = small
+	icon = "GFX_ship_part_psi_power_core"
+	icon_frame = 1
+	power = 115200
+	modifier = {
+		ships_upkeep_mult = -1
+	}
+	component_set = "power_core"
+	size_restriction = { tlipoca_titan }
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @titan_cost_6
+			sr_dark_matter = 2500
+		}
+		upkeep = {
+			sr_dark_matter = 2000
+		}
+	}
+	hidden = yes
+}
+
+utility_component_template = { #灵能跃迁引擎-改
+	key = "PSI_JUMP_DRIVE_TLI"
+	size = small
+	icon = "GFX_ship_part_psi_jump_drive_1"
+	icon_frame = 1
+	power = @power4
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 1125
+		}
+	}
+	ftl = yes
+	jumpdrive = yes
+	ship_modifier = {
+		ship_disengage_opportunities_add = 5
+		ship_windup_mult = -1.0
+		ship_ftl_jumpdrive_range_mult = 5.0
+		ship_jumpdrive_cooldown_mult = -1.0
+	}
+
+	size_restriction = { tlipoca_titan }
+	component_set = "ftl_components"
+	ai_weight = { weight = 0 }
+	hidden = yes
+}
+
+utility_component_template = { #预知接口（巨像）
+	key = "COMBAT_COMPUTER_COLOSSUS_PRECOG"
+	size = small
+	icon = "GFX_ship_part_computer_pregoc"
+	icon_frame = 1
+	power = @power3
+	modifier = {
+		ship_evasion_mult = 0.5
+		ship_evasion_add = 50
+		ship_weapon_damage = 0.3
+		ship_fire_rate_mult = 0.5
+		ship_accuracy_add = 20
+		ship_tracking_add = 20
+	}
+	ship_behavior = "colossus"
+
+	size_restriction = { tlipoca_titan }
+	component_set = "combat_computers"
+	
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 1125
+		}
+	}
+	ai_weight = { weight = 0 }
+	hidden = yes
+}
+
+utility_component_template = { #大型非实在装甲
+	key = "LARGE_TLIPOCA_ARMOR"
+	size = large
+	icon = "GFX_ship_part_enigmatic_disruption_field"
+	icon_frame = 1
+	power = 0
+	modifier = {
+		ship_armor_add = 2880
+		ship_armor_mult = 0.05
+		ship_armor_regen_add_static = 12.5
+	}
+
+	component_set = "TLIPOCA_ARMOR"
+	resources = {
+		category = ship_components
+		cost = {
+			sr_zro = 3.9
+		}
+		upkeep = {
+			energy = @l_t6_upkeep_energy
+			alloys = @l_t6_upkeep_alloys
+		}
+	}
+
+	ai_weight = { weight = 0 }
+	hidden = yes
+}
+
+utility_component_template = { #中型非实在装甲
+	key = "MEDIUM_TLIPOCA_ARMOR"
+	size = medium
+	icon = "GFX_ship_part_enigmatic_disruption_field"
+	icon_frame = 1
+	power = 0
+	modifier = {
+		ship_armor_add = 1200
+		ship_armor_mult = 0.05
+		ship_armor_regen_add_static = 5.0
+	}
+
+	component_set = "TLIPOCA_ARMOR"
+	resources = {
+		category = ship_components
+		cost = {
+			sr_zro = 2.6
+		}
+		upkeep = {
+			energy = @m_t6_upkeep_energy
+			alloys = @m_t6_upkeep_alloys
+		}
+	}
+
+	ai_weight = { weight = 0 }
+	hidden = yes
+}
+
+weapon_component_template = { #信息解压模块
+	key = "TLIPOCA_INFO_UNZIP"
+	size = titanic
+	type = instant
+
+	icon = "GFX_ship_part_deluge"
+	icon_frame = 1
+	power = -400
+
+	firing_arc = 25.0
+	use_ship_main_target = no
+
+	damage = { min = 16000.0 max = 20000.0 }
+
+	windup = { min = 20.0 max = 30.0 }
+
+	total_fire_time = 120
+
+	accuracy = 0.90
+	tracking = 0.80
+
+	min_range = 20
+
+	range = 250
+
+	shield_damage = 1.75
+	armor_damage = 0.75
+
+	component_set = "TLIPOCA_INFO_UNZIP"
+	projectile_gfx = "beholder_arc_emitter" #"perdition_beam"
+	tags = { weapon_type_energy weapon_role_artillery t_slot }
+	size_restriction = { tlipoca_titan }
+
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @titanic_t6_cost
+			sr_dark_matter = 20
+			sr_zro = 2.75
+		}
+		upkeep = {
+			energy = @titanic_t6_upkeep_energy
+			alloys = @titanic_t6_upkeep_alloys
+		}
+	}
+	ai_weight = { weight = 0 }
+	hidden = yes
+}
+
+weapon_component_template = { #极夜光矛
+
+	key = "TLIPOCA_LANCE"
+	size = large
+	entity = "invisible_turret_entity"
+	type = instant
+	prio_projectile = yes
+	icon = "GFX_ship_part_energy_lance_tli"
+	icon_frame = 1
+	power = -80
+
+    damage = {    #伤害浮动
+		min = 200
+		max = 800
+	}
+	windup = {    #开火准备时间
+		min = 7.5
+		max = 12.5
+	}
+	total_fire_time = 50
+	range = 125  #射程
+	accuracy = 0.85 #命中100%
+	tracking = 0.75 #追踪100%
+	hull_damage = 1.0 #破船 1=正常
+	shield_damage = 2.0 #破盾
+	shield_penetration = 0.25 #穿盾
+	armor_damage = 0.5 #破甲
+	armor_penetration = 1.5 #穿甲
+
+	component_set = "TLIPOCA_TITAN_LASER"
+	projectile_gfx = "dark_matter_laser_l" # "titan_laser"
+	tags = { weapon_type_energy weapon_role_artillery }
+	size_restriction = { tlipoca_titan }
+	
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @l_t6_cost
+			sr_dark_matter = 0.3
+		}
+		upkeep = {
+			energy = @l_t6_upkeep_energy
+			alloys = @l_t6_upkeep_alloys
+		}
+	}
+	ai_weight = { weight = 0 }
+	hidden = yes
+}
+
+weapon_component_template = { #湮灭负相射线
+	key = "TLIPOCA_LASER_EX"
+	size = extra_large
+	type = instant
+	prio_projectile = yes
+
+	icon = "GFX_ship_part_energy_lance_2"
+	icon_frame = 1
+	#color = { 0.1 1.0 0.1 1 }
+	power = -260
+
+    damage = {    #伤害浮动
+		min = 500
+		max = 5000
+	}
+	windup = {    #开火准备时间
+		min = 25
+		max = 100
+	}
+	total_fire_time = 150
+	range = 250  #射程
+	min_range = 30
+	accuracy = 0.85 #命中100%
+	tracking = 0.0 #追踪100%
+	shield_damage = 0.75 #破盾
+	armor_penetration = 1.0 #穿甲
+
+	component_set = "TLIPOCA_LASER_EX"
+	projectile_gfx = "dimensional_titan_laser"
+	tags = { weapon_type_energy weapon_role_anti_armor }
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @titan_cost_6
+			rare_crystals = @titanic_t6_rare
+		}
+		upkeep = {
+			energy = @titanic_t6_upkeep_energy
+			alloys = @titanic_t6_upkeep_alloys
+		}
+	}
+	ai_weight = { weight = 0 }
+	hidden = yes
+}
+
+weapon_component_template = { #大型负相射线
+
+	key = "LARGE_TLIPOCA_LASER"
+	size = large
+	type = instant
+
+	entity = "invisible_turret_entity"
+	icon = "GFX_ship_part_laser_tli"
+	icon_frame = 1
+	power = -100
+
+	damage = { min = 250.0 max = 300.0 }
+
+	windup = { min = 10.0 max = 20.0 }
+
+	total_fire_time = 40
+
+	accuracy = 0.80
+	tracking = 0.75
+
+	range = 100
+
+	shield_damage = 0.5
+	armor_damage = 1.5
+	hull_damage = 1.25
+
+	component_set = "TLIPOCA_LASER"
+	projectile_gfx = "dimensional_horror_spike_weapon"
+	tags = { weapon_type_energy weapon_role_anti_armor }
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @l_t6_cost
+			rare_crystals = @l_t6_rare
+		}
+		upkeep = {
+			energy = @l_t6_upkeep_energy
+			alloys = @l_t6_upkeep_alloys
+		}
+	}
+	ai_weight = { weight = 0 }
+	hidden = yes
+}
+
+utility_component_template = {
+	key = "psychic_beacon_modules"
+	size = aux
+	icon = "GFX_ship_part_space_whale_weapon_1"
+	icon_frame = 1
+	power = @power_S1
+
+	potential = {
+		always = no
+	}
+
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 15
+		}
+	}
+
+	ship_modifier = {
+		ship_steal_defeated_ship_chance = 1
+	}
+
+	custom_tooltip = "psychic_beacon_tooltip"
+
+	class_restriction = { shipclass_military }
+	prerequisites = { tech_corvettes }
+	component_set = "gts_psychic_beacon"
+
+	ai_weight = { weight = 0 }
+	hidden = yes
+}
+

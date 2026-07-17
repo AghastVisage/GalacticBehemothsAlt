@@ -1,0 +1,494 @@
+namespace = gts_linglu
+ship_event  = {
+	id = gts_linglu.1
+	title = gts_linglu.1.title
+	desc = gts_linglu.1.desc
+	picture = GFX_evt_animal_wildlife
+	is_triggered_only = yes
+	option = {
+		name = gts_linglu.1a
+		owner = {
+			hidden_effect = {
+				country_event = {
+					id = gts_linglu.2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_linglu.2
+	title = gts_linglu.1.title
+	desc = gts_linglu.2.desc
+	is_triggered_only = yes
+	event_window_type = leader_recruit
+	show_sound = event_mystic_reveal
+	picture = GFX_leader_recruitment_bg_legendary_skrand
+	auto_opens = yes
+    immediate = {
+		gts_leader_linglu_hired = yes
+	}
+	picture_event_data = {
+		portrait = event_target:gts_linglu
+		room = "crisis_room"
+	}
+	option = {
+		name = DISMISS
+		tag = dismiss_leader
+	}
+	option = {
+		name = gts_linglu.2a
+		is_dialog_only = yes
+		response_text = gts_linglu.2a.respond
+	}
+	option = {
+		name = gts_linglu.2b
+		is_dialog_only = yes
+		response_text = gts_linglu.2b.respond
+	}
+	option = {
+		name = gts_linglu.2c
+		is_dialog_only = yes
+		response_text = gts_linglu.2c.respond
+	}
+	option = {
+		name = gts_linglu.2d
+		is_dialog_only = yes
+		response_text = gts_linglu.2d.respond
+	}
+	option = {
+		name = gts_linglu.2e
+		is_dialog_only = yes
+		response_text = gts_linglu.2e.respond
+	}
+	option = {
+		name = gts_linglu.2f
+		is_dialog_only = yes
+		response_text = gts_linglu.2f.respond
+	}
+	option = {
+		name = gts_linglu.2g
+		is_dialog_only = yes
+		response_text = gts_linglu.2g.respond
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = legendary }
+			country_event = {
+				id = gts_linglu.1000
+				days = 1800
+			}
+			country_event = {
+				id = gts_rawls.1
+				days = 10
+			}
+		}
+	}
+}
+country_event = { #绝不调
+	id = gts_linglu.1000
+	title = gts_linglu.1000.name
+	desc = gts_linglu.1000.desc
+	is_triggered_only = yes
+	picture = GFX_load_35
+	show_sound = event_default
+	trigger = {
+		exists = event_target:gts_linglu
+		exists = event_target:linglu_planet
+	}
+	immediate = {
+		set_country_flag = linglu_1year
+	}
+	option = {
+		name = gts_linglu.1000.a
+		custom_tooltip = gts_linglu.1000.a.tooltip
+	}
+}
+country_event = {  #铃鹿的通讯界面
+	id = gts_linglu.1001
+	title = "TRANSMISSION"	#信号传入接入画面
+	show_sound = event_default
+	desc = gts_linglu.1001.a.desc
+	desc = gts_linglu.1001.b.desc
+	desc = gts_linglu.1001.c.desc
+	desc = {
+		trigger = {
+			has_country_flag = gts_linglu_1st
+		}
+		text = gts_linglu.1001.d.desc
+	}
+	desc = {
+		trigger = {
+			has_country_flag = gts_linglu_1st
+		}
+		text = gts_linglu.1001.e.desc
+	}
+	desc = {
+		trigger = {
+			has_country_flag = gts_linglu_1st
+		}
+		text = gts_linglu.1001.f.desc
+	}
+	desc = {
+		trigger = {
+			has_country_flag = gts_linglu_2nd
+		}
+		text = gts_linglu.1001.g.desc
+	}
+	desc = {
+		trigger = {
+			has_country_flag = gts_linglu_2nd
+		}
+		text = gts_linglu.1001.h.desc
+	}
+	desc = {
+		trigger = {
+			has_country_flag = gts_linglu_2nd
+		}
+		text = gts_linglu.1001.i.desc
+	}
+	event_window_type = leader_recruit
+	picture = GFX_leader_recruitment_bg_legendary_skrand
+	is_triggered_only = yes
+	picture_event_data = {
+		portrait = event_target:gts_linglu
+		room = "crisis_room"
+	}
+	option = {
+		tag = dismiss_leader
+		name = DISMISS
+	}
+	option = {
+		tag = hire_leader
+		name = gts_linglu.1001.a
+		default_hide_option = yes
+	}
+	option = {
+		name = gts_linglu.1001.b
+		trigger = {
+			NOR = {
+				has_country_flag = linglu_project1_begin
+			}
+			event_target:linglu_planet = {
+				is_colony = yes
+			}
+		}
+		country_event = {
+			id = gts_linglu.2000
+		}
+	}
+	option = {
+		name = gts_linglu.1001.c
+		trigger = {
+			has_country_flag = gts_linglu_1st
+			NOR = {
+				has_country_flag = linglu_project2_begin
+			}
+		}
+		country_event = {
+			id = gts_linglu.2005
+		}
+	}
+	option = {
+		name = gts_linglu.1001.d
+		trigger = {
+			has_country_flag = gts_linglu_2nd
+			NOR = {
+				has_country_flag = linglu_gift_accepted
+			}
+		}
+		country_event = {
+			id = gts_linglu.2009
+		}
+	}
+}
+country_event = {  
+	id = gts_linglu.2000
+	base = gts_linglu.1001
+	event_window_type = leader_recruit
+	desc_clear = yes
+	option_clear = yes
+	desc = gts_linglu.2000.desc
+	is_triggered_only = yes
+	option = {
+		tag = dismiss_leader
+		name = gts_linglu.2000.a
+	}
+	option = {
+		tag = hire_leader
+		name = gts_linglu.2000.b
+		event_target:linglu_planet = {
+			add_modifier = {
+				modifier = linglu_governor_planet
+			}
+		}
+		hidden_effect = {
+			set_country_flag = linglu_project1_begin
+			country_event = {
+				id = gts_linglu.2001
+			}
+			country_event = {
+				id = gts_linglu.2002
+				days = 360
+			}
+		}
+	}
+}
+country_event = {  
+	id = gts_linglu.2001
+	base = gts_linglu.1001
+	event_window_type = leader_recruit
+	desc_clear = yes
+	option_clear = yes
+	desc = gts_linglu.2001.desc
+	is_triggered_only = yes
+	option = {
+		tag = dismiss_leader
+		name = DISMISS
+	}
+	option = {
+		tag = hire_leader
+		name = gts_linglu.2001.a
+	}
+}
+country_event = { #一期工程启动
+	id = gts_linglu.2002
+	title = gts_linglu.2002.name
+	desc = gts_linglu.2002.desc
+	is_triggered_only = yes
+	picture = GFX_gtsra_load_5
+	show_sound = event_structural_collapse
+	trigger = {
+		exists = event_target:linglu_planet
+	}
+	option = {
+		name = gts_linglu.2002.a
+		event_target:linglu_planet = {
+			add_deposit = d_linglu_project1
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_linglu.2003
+				days = 360
+			}
+		}
+		if = {
+			limit = {
+				NOR = {
+					has_technology = tech_climate_restoration
+				}
+			}
+			add_tech_progress = {
+				tech = tech_climate_restoration
+				progress = 0.25
+			}
+		}
+	}
+}
+country_event = { #一期工程竣工
+	id = gts_linglu.2003
+	title = gts_linglu.2003.name
+	desc = gts_linglu.2003.desc
+	is_triggered_only = yes
+	picture = GFX_gtsra_load_5
+	show_sound = event_structural_collapse
+	trigger = {
+		exists = event_target:linglu_planet
+	}
+	option = {
+		name = gts_linglu.2003.a
+		event_target:linglu_planet = {
+			remove_deposit = d_linglu_project1
+			add_deposit = d_linglu_center1
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_linglu.2004
+				days = 7
+			}
+		}
+	}
+}
+country_event = { #一期大赛
+	id = gts_linglu.2004
+	title = gts_linglu.2004.name
+	desc = gts_linglu.2004.desc
+	is_triggered_only = yes
+	trigger = {
+		exists = event_target:linglu_planet
+	}
+	immediate = {
+		set_country_flag = gts_linglu_1st
+	}
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_linglu2_room
+	}
+	show_sound = event_ship_thrusters
+	option = {
+		name = gts_linglu.2004.a
+		custom_tooltip = gts_linglu.2004.a.tooltip
+	}
+}
+country_event = {  #二期问询
+	id = gts_linglu.2005
+	base = gts_linglu.1001
+	event_window_type = leader_recruit
+	desc_clear = yes
+	option_clear = yes
+	desc = gts_linglu.2005.desc
+	is_triggered_only = yes
+	option = {
+		tag = dismiss_leader
+		name = gts_linglu.2005.a
+	}
+	option = {
+		tag = hire_leader
+		name = gts_linglu.2005.b
+		event_target:linglu_planet = {
+			add_deposit = d_linglu_project2
+		}
+		allow = {
+			resource_stockpile_compare = {
+				resource = minerals
+				value >= 5000
+			}
+			resource_stockpile_compare = {
+				resource = gts_micro
+				value >= 1000
+			}
+			resource_stockpile_compare = {
+				resource = gts_micro_city
+				value >= 500
+			}
+			resource_stockpile_compare = {
+				resource = gts_micro_planet
+				value >= 50
+			}
+		}
+		add_resource = {
+			minerals = -5000
+			gts_micro = -1000
+			gts_micro_city = -500
+			gts_micro_planet = -50
+		}
+		hidden_effect = {
+			set_country_flag = linglu_project2_begin
+			country_event = {
+				id = gts_linglu.2006
+			}
+			country_event = {
+				id = gts_linglu.2007
+				days = 360
+			}
+		}
+	}
+}
+country_event = {  
+	id = gts_linglu.2006
+	base = gts_linglu.1001
+	event_window_type = leader_recruit
+	desc_clear = yes
+	option_clear = yes
+	desc = gts_linglu.2006.desc
+	is_triggered_only = yes
+	option = {
+		tag = dismiss_leader
+		name = DISMISS
+	}
+	option = {
+		tag = hire_leader
+		name = gts_linglu.2006.a
+	}
+}
+country_event = { #二期工程竣工
+	id = gts_linglu.2007
+	title = gts_linglu.2007.name
+	desc = gts_linglu.2007.desc
+	is_triggered_only = yes
+	picture = GFX_gtsra_10
+	show_sound = event_structural_collapse
+	trigger = {
+		exists = event_target:linglu_planet
+	}
+	option = {
+		name = gts_linglu.2007.a
+		event_target:linglu_planet = {
+			remove_deposit = d_linglu_project2
+			add_deposit = d_linglu_center2
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_linglu.2008
+				days = 7
+			}
+		}
+	}
+}
+country_event = { #房间
+	id = gts_linglu.2008
+	title = gts_linglu.2008.name
+	desc = gts_linglu.2008.desc
+	is_triggered_only = yes
+	trigger = {
+		exists = event_target:linglu_planet
+	}
+	immediate = {
+		set_country_flag = gts_linglu_2nd
+	}
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_linglu1_room
+	}
+	show_sound = event_planetary_riot
+	option = {
+		name = gts_linglu.2008.a
+	}
+}
+country_event = {  #每十年领一次奖品
+	id = gts_linglu.2009
+	base = gts_linglu.1001
+	event_window_type = leader_recruit
+	desc_clear = yes
+	option_clear = yes
+	desc = gts_linglu.2009.desc
+	is_triggered_only = yes
+	option = {
+		tag = dismiss_leader
+		name = DISMISS
+	}
+	option = {
+		tag = hire_leader
+		name = gts_linglu.2009.b
+		add_monthly_resource_mult = {
+			resource = gts_micro
+			value = 12
+			min = 500
+		}
+		add_monthly_resource_mult = {
+			resource = gts_micro_city
+			value = 12
+			min = 100
+		}
+		add_monthly_resource_mult = {
+			resource = gts_micro_planet
+			value = 12
+			min = 1
+		}
+		hidden_effect = {
+			set_timed_country_flag = {
+				flag = linglu_gift_accepted
+				days = 3600
+			}
+			country_event = {
+				id = gts_linglu.1001
+				days = 3600
+			}
+		}
+	}
+}

@@ -1,0 +1,807 @@
+################################################################################
+#################                特殊星球專家崗位                #################
+################################################################################
+
+
+
+################################################################################
+#################                愛液星球專家崗位                #################
+################################################################################
+
+
+
+gts_juice_worker = {
+
+	# 性愛機器
+
+	category = specialist
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_amusement_megaplex
+			icon = servant
+		}
+	}
+
+	tags = { energy trade amenities pop_growth pop_assembly }
+
+	inline_script = "jobs/automodding_priority_charisma"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+
+	resources = {
+		category = planet_entertainers
+		produces = {
+			# 15
+			energy = 5
+			trade = 10
+		}
+		upkeep = {
+			# 10
+			food = 4
+			consumer_goods = 3
+		}
+	}
+
+	planet_modifier = {
+		logistic_growth_mult = 0.05
+		bonus_pop_growth_mult = 0.05
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		planet_amenities_add = 625
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+	}
+}
+
+gts_juice_merchant = {
+
+	# 愛液商販
+
+	category = specialist
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_commercial_megaplex
+			icon = merchant
+		}
+	}
+
+	tags = { trade }
+
+	inline_script = "jobs/automodding_priority_trade"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+
+	resources = {
+		category = planet_traders
+		produces = {
+			# 15
+			trade = 15
+		}
+		upkeep = {
+			# 10
+			consumer_goods = 2
+			gts_giantess_fluid = 3
+		}
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+	}
+}
+
+
+
+################################################################################
+#################                排泄星球專家崗位                #################
+################################################################################
+
+
+
+gts_bfbf_shit1 = {
+
+	# 并非并非
+
+	# 巨娘糞便考古者
+
+	category = specialist	#类型：
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_primitive_mine
+			icon = researcher
+		}
+	}
+
+	tags = { research minor_artifacts }
+
+	inline_script = "jobs/automodding_priority_research"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+
+	resources = {
+		category = planet_researchers
+		produces = {
+			# 15
+			physics_research = 4
+			engineering_research = 4
+			society_research = 4
+			minor_artifacts = 1.5
+		}
+		upkeep = {
+			# 10
+			energy = 10
+			consumer_goods = 2.5
+		}
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+	}
+}
+
+
+
+################################################################################
+##################                足垢星球專家崗位                ##################
+################################################################################
+
+
+
+gts_bfbf_foot1 = {
+
+	# 聖足崇拜信徒
+
+	category = specialist	#类型：
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_gts_holy_bare_temple
+			icon = high_priest
+		}
+	}
+
+	tags = { research unity }
+
+	inline_script = "jobs/automodding_priority_unity"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+
+	possible = {
+
+	}
+
+	resources = {
+		category = planet_bureaucrats
+		produces = {
+			# 15
+			physics_research = 1
+			engineering_research = 1
+			society_research = 1
+			unity = 6
+		}
+		upkeep = {
+			# 10
+			consumer_goods = 5
+		}
+	}
+}
+
+
+
+################################################################################
+################                足垢農業星球專家崗位                ################
+################################################################################
+
+
+
+gts_dirt9 = {
+
+	# 高階足蟲農夫
+
+	category = specialist
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_gts_food_factory
+			icon = micro_food_worker
+		}
+	}
+
+	tags = { food }
+
+	inline_script = "jobs/automodding_priority_food"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+	}
+
+	possible_precalc = can_fill_specialist_job
+
+	resources = {
+		category = planet_farmers
+		produces = {
+			# 15
+			food = 15
+		}
+		upkeep = {
+			# 10
+			energy = 10
+		}
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+	}
+}
+
+
+
+################################################################################
+################                足垢堡壘星球專家崗位                ################
+################################################################################
+
+
+
+gts_dirt5 = {
+
+	# 足蟲冶煉師
+
+	category = specialist
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_foundry_1
+			icon = shoe_foundry
+		}
+	}
+
+	tags = { alloys }
+
+	inline_script = "jobs/automodding_priority_alloys"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+	}
+
+	possible_precalc = can_fill_specialist_job
+
+	resources = {
+		category = planet_metallurgists
+		produces = {
+			# 15
+			alloys = 7.5
+		}
+		upkeep = {
+			# 10
+			energy = 5
+			minerals = 5
+		}
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+	}
+}
+
+gts_dirt6 = {
+
+	# 足蟲教官
+
+	category = specialist
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_stronghold
+			icon = soldier
+		}
+	}
+
+	tags = { soldier }
+
+	inline_script = "output/soldier_triggered_modifiers"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	country_modifier = {
+		country_naval_cap_add = 5
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+		}
+		pop_gts_dirt4_bonus_workforce_mult = 0.02
+	}
+
+	resources = {
+		category = planet_soldiers
+		inline_script = "output/soldier_output"
+		produces = {
+			# 15
+			unity = 7.5
+		}
+		upkeep = {
+			# 10
+			energy = 4
+			consumer_goods = 3
+		}
+	}
+
+	possible = {
+		soldier_job_check_trigger = yes
+		owner = { is_gestalt = no }
+	}
+
+	weight = {
+		weight = @soldier_job_weight
+		modifier = {
+			factor = 10
+			exists = planet
+			planet = {
+				exists = leader
+				leader = {
+					leader_class = commander
+				}
+			}
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_resilient
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_very_strong
+		}
+		modifier = {
+			factor = 1.5
+			has_trait = trait_strong
+		}
+		modifier = {
+			factor = 0.5
+			has_trait = trait_weak
+		}
+		modifier = {
+			factor = 0.1
+			is_enslaved = yes
+			NOT = { has_slavery_type = { type = slavery_military } }
+		}
+		modifier = {
+			factor = 10
+			is_enslaved = yes
+			has_slavery_type = { type = slavery_military }
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 1.1
+			has_trait = trait_cybernetic
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_presapient_earthbound
+		}
+		modifier = {
+			factor = 1.1
+			has_trait = trait_limited_regeneration
+		}
+		modifier = {
+			factor = 0
+			species = { can_be_soldier = no }
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_lithoid
+		}
+	}
+}
+
+
+
+################################################################################
+################                足垢礦業星球專家崗位                ################
+################################################################################
+
+
+
+gts_dirt7 = {
+
+	# 高階足蟲礦工
+
+	category = specialist
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_gts_mineral_factory
+			icon = micro_miner
+		}
+	}
+
+	tags = { minerals }
+
+	inline_script = "jobs/automodding_priority_minerals"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+	}
+
+	possible_precalc = can_fill_specialist_job
+
+	resources = {
+		category = planet_miners
+		produces = {
+			# 15
+			minerals = 10
+			alloys = 2.5
+		}
+		upkeep = {
+			# 10
+			energy = 5
+			consumer_goods = 2.5
+		}
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+	}
+}
+
+gts_dirt8 = {
+
+	# 足蟲精煉師
+
+	category = specialist
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_micro_refinery
+			icon = shoe_foundry
+		}
+	}
+
+	tags = { strategic_resource }
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+	}
+
+	possible_precalc = can_fill_specialist_job
+
+	resources = {
+		category = planet_jobs_specialist
+		produces = {
+			# 15
+			rare_crystals = 2.5
+			exotic_gases = 2.5
+			volatile_motes = 2.5
+		}
+		upkeep = {
+			# 10
+			energy = 5
+			minerals = 5
+		}
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+	}
+}
+
+
+
+################################################################################
+#################                通用星球專家崗位                #################
+################################################################################
+
+
+
+gts_bfbf_planet_1 = {
+
+	# 巨娘體液收集者
+
+	category = specialist
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_genomic_facility
+			icon = maintenance_drone
+		}
+	}
+
+	tags = { strategic_resource }
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+	}
+
+	possible_precalc = can_fill_specialist_job
+
+	resources = {
+		category = planet_jobs_specialist
+		produces = {
+			# 15
+			gts_giantess_fluid = 7.5
+		}
+		upkeep = {
+			# 10
+			energy = 5
+			consumer_goods = 2.5
+		}
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+	}
+}
+
+gts_bfbf_juice1 = {
+
+	# 歡愉工廠技工
+
+	category = specialist
+
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_factory_1
+			icon = artisan
+		}
+	}
+
+	tags = { consumer_goods }
+
+	inline_script = "jobs/automodding_priority_consumer_goods"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+	}
+
+	possible_precalc = can_fill_specialist_job
+
+	resources = {
+		category = planet_artisans
+		produces = {
+			# 15
+			consumer_goods = 7.5
+		}
+		upkeep = {
+			# 10
+			energy = 5
+			minerals = 5
+		}
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+	}
+}
+
+gts_bfbf_juice2 = {
+
+	# 縱慾都會居民
+
+	category = specialist
+
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_holo_theatres
+			icon = culture_worker
+		}
+	}
+
+	tags = { trade unity }
+
+	inline_script = "jobs/automodding_priority_unity"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+	}
+
+	possible_precalc = can_fill_specialist_job
+
+	resources = {
+		category = planet_traders
+		produces = {
+			# 15
+			trade = 5
+			unity = 5
+		}
+		upkeep = {
+			# 10
+			consumer_goods = 5
+		}
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+	}
+}
+

@@ -1,0 +1,98 @@
+#############################
+#                           #
+#      小人侧区域槽位          #
+#                           #
+#############################
+slot_habitat_energy = {
+    included_zone_sets = {
+        energy
+        gts_energy
+        habitat_energy
+    }
+    unlock = { # planet scope
+        custom_tooltip = {
+            fail_text = zone_unavailable_tech_power_hub_1
+            OR = {
+                AND = {
+                    is_capital = yes
+                    exists = owner
+                    owner = {
+                        is_void_dweller_empire = yes
+                    }
+                }
+                AND = {
+                    exists = owner
+                    owner = {
+                        has_tech_or_functional_civic = {
+                            TECH = tech_power_hub_1
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+slot_habitat_minerals = {
+    included_zone_sets = {
+        minerals
+        gts_minerals
+        habitat_minerals
+    }
+    unlock = { # planet scope
+        custom_tooltip = {
+            fail_text = zone_unavailable_tech_mineral_purification_1
+            OR = {
+                AND = {
+                    is_capital = yes
+                    exists = owner
+                    owner = {
+                        is_void_dweller_empire = yes
+                    }
+                }
+                AND = {
+                    exists = owner
+                    owner = {
+                        has_tech_or_functional_civic = {
+                            TECH = tech_mineral_purification_1
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+slot_habitat_research = {
+    included_zone_sets = {
+        gts_urban
+        rurban
+        habitat_urban
+        gts_research
+        research
+        habitat_research
+    }
+    unlock = { # planet scope
+        custom_tooltip = {
+            fail_text = zone_unavailable_tech_space_science_1
+            OR = {
+                AND = {
+                    is_capital = yes
+                    exists = owner
+                    owner = {
+                        is_void_dweller_empire = yes
+                    }
+                }
+                has_deposit = d_payback_habitat_research
+                AND = {
+                    exists = owner
+                    owner = {
+                        has_tech_or_functional_civic = {
+                            TECH = tech_space_science_1
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

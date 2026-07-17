@@ -1,0 +1,624 @@
+
+
+# Habitat Administration
+building_gts_115tiny_lathe_capital = {
+    capital = yes
+    can_build = no
+    can_demolish = no
+    can_be_ruined = no
+    can_be_disabled = no
+    position_priority = 0
+    building_sets = {
+        government
+        urban
+    }
+
+    category = government
+
+    potential = {
+        uses_district_set = godness_power_world
+        exists = owner
+    }
+
+    resources = {
+        category = planet_buildings
+        upkeep = {
+            energy = @b3_upkeep
+            alloys = 10
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 160
+        planet_amenities_add = 200
+        planet_stability_add = 20
+
+    }
+
+    triggered_planet_modifier = {
+        job_gts_godness_power_keeper_per_pop = 1
+        job_gts_godness_power_keeper_add = 1000
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { has_technology = tech_capital_productivity_1 }
+        }
+        modifier = {
+            planet_jobs_productive_upkeep_mult = 0.1
+            planet_jobs_productive_produces_mult = 0.1
+        }
+
+    }
+
+    upgrades = {
+        "building_gts_115tiny_lathe_major_capital"
+    }
+}
+# Habitat Central Complex
+building_gts_115tiny_lathe_major_capital = {
+    base_buildtime = @b2_time
+    capital = yes
+    can_build = no
+    can_demolish = no
+    can_be_ruined = no
+    can_be_disabled = no
+    position_priority = 0
+    building_sets = {
+        government
+        urban
+    }
+    category = government
+
+    potential = {
+        uses_district_set = godness_power_world
+        exists = owner
+        owner = {
+            has_ascension_perk = ap_gts_115tiny_crisis
+        }
+    }
+
+    resources = {
+        category = planet_buildings
+        cost = {
+            alloys = @b4_minerals
+        }
+        upkeep = {
+            energy = @b3_upkeep
+            alloys = 10
+        }
+    }
+
+    planet_modifier = {
+        planet_max_districts_add = 5
+        planet_housing_add = 320
+        planet_amenities_add = 350
+        planet_stability_add = 30
+    }
+    triggered_planet_modifier = {
+        job_gts_godness_power_keeper_per_pop = 100
+        job_gts_godness_power_keeper_add = 2000
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { has_technology = tech_capital_productivity_1 }
+        }
+        modifier = {
+            planet_jobs_productive_upkeep_mult = 0.1
+            planet_jobs_productive_produces_mult = 0.1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { has_technology = tech_capital_productivity_2 }
+        }
+        modifier = {
+            planet_jobs_productive_upkeep_mult = 0.1
+            planet_jobs_productive_produces_mult = 0.1
+        }
+    }
+
+    upgrades = {
+        "building_gts_115tiny_lathe_super_capital"
+    }
+
+    on_built = {
+        planet = {
+            set_planet_entity = {
+                entity = "neural_calculator_phase_2_entity"
+            }
+        }
+    }
+}
+# Habitat Central Complex
+building_gts_115tiny_lathe_super_capital = {
+    base_buildtime = @b3_time
+    capital = yes
+    can_build = no
+    can_demolish = no
+    can_be_ruined = no
+    can_be_disabled = no
+    position_priority = 0
+    building_sets = {
+        government
+        urban
+    }
+
+    category = government
+
+    potential = {
+        uses_district_set = godness_power_world
+        exists = owner
+        owner = {
+            has_ascension_perk = ap_gts_115tiny_crisis
+        }
+    }
+
+    resources = {
+        category = planet_buildings
+        cost = {
+            alloys = @b4_minerals
+        }
+        upkeep = {
+            energy = @b3_upkeep
+            alloys = 15
+        }
+    }
+
+    planet_modifier = {
+        planet_max_districts_add = 10
+        planet_housing_add = 800
+        planet_amenities_add = 500
+        planet_stability_add = 40
+    }
+    triggered_planet_modifier = {
+        job_gts_godness_power_keeper_per_pop = 100
+        job_gts_godness_power_keeper_add = 3000
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { has_technology = tech_capital_productivity_1 }
+        }
+        modifier = {
+            planet_jobs_productive_upkeep_mult = 0.1
+            planet_jobs_productive_produces_mult = 0.1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { has_technology = tech_capital_productivity_2 }
+        }
+        modifier = {
+            planet_jobs_productive_upkeep_mult = 0.1
+            planet_jobs_productive_produces_mult = 0.1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { has_technology = tech_capital_productivity_3 }
+        }
+        modifier = {
+            planet_jobs_productive_upkeep_mult = 0.1
+            planet_jobs_productive_produces_mult = 0.1
+        }
+    }
+
+    on_built = {
+        planet = {
+            set_planet_entity = {
+                entity = "neural_calculator_phase_3_entity"
+            }
+        }
+    }
+
+    ai_estimate_without_unemployment = yes
+    additional_ai_weight = 200
+    ai_weight_coefficient = 1.2
+}
+
+building_gts_115tiny_lathe_resonator = {
+    base_buildtime = @b2_time
+    base_cap_amount = 8
+    building_sets = {
+        government
+        urban
+    }
+
+    potential = {
+        is_planet_class = pc_godness_power_world
+    }
+
+    category = resource
+
+    resources = {
+        category = planet_buildings
+        cost = {
+            alloys = @b3_minerals
+            rare_crystals = @fe_sr_cost_1
+            gts_giantess_human = 20
+        }
+        upkeep = {
+            energy = @b2_upkeep
+            rare_crystals = @b2_rare_upkeep
+        }
+    }
+
+    triggered_planet_modifier = {
+        planet_jobs_upkeep_mult = 1
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            always = yes
+        }
+        planet_jobs_produces_mult = 0.02
+        mult = value:num_godness_power_worker_raw
+    }
+
+    prerequisites = {
+        tech_gts_115tiny_lathe_resonator
+    }
+
+    triggered_desc = {
+        text = gts_115tiny_lathe_resonator_tt
+    }
+
+    ai_estimate_without_unemployment = yes
+    additional_ai_weight = 200
+    ai_weight_coefficient = 1.2
+}
+
+building_gts_115tiny_lathe_stabilisator = {
+    base_buildtime = @b2_time
+    base_cap_amount = 8
+    building_sets = {
+        government
+        urban
+    }
+
+    potential = {
+        is_planet_class = pc_godness_power_world
+        exists = owner
+        owner = {
+            has_ascension_perk = ap_gts_115tiny_crisis
+        }
+    }
+
+    category = government
+
+    resources = {
+        category = planet_buildings
+        cost = {
+            alloys = @b3_minerals
+            exotic_gases = @fe_sr_cost_1
+            gts_giantess_human = 20
+        }
+        upkeep = {
+            energy = @b2_upkeep
+            exotic_gases = @b2_rare_upkeep
+        }
+    }
+
+    triggered_planet_modifier = {
+        planet_stability_add = 30
+    }
+
+    ai_estimate_without_unemployment = yes
+    additional_ai_weight = 200
+    ai_weight_coefficient = 1.2
+}
+
+building_gts_115tiny_lathe_overclocker = {
+    base_buildtime = @b2_time
+    base_cap_amount = 8
+    building_sets = {
+        government
+        urban
+    }
+
+    potential = {
+        is_planet_class = pc_godness_power_world
+        exists = owner
+        owner = {
+            has_ascension_perk = ap_gts_115tiny_crisis
+        }
+    }
+
+    category = resource
+
+    resources = {
+        category = planet_buildings
+        cost = {
+            alloys = @b3_minerals
+            volatile_motes = @fe_sr_cost_1
+            gts_giantess_human = 20
+        }
+        upkeep = {
+            energy = @b2_upkeep
+            volatile_motes = @b2_rare_upkeep
+        }
+    }
+
+    triggered_planet_modifier = {
+        modifier = {
+            pop_purge_speed = -0.1
+            planet_godness_power_worker_gts_giantess_fluid_produces_add = 1
+            planet_godness_power_worker_gts_giantess_underwear_produces_add = 0.01
+            planet_godness_power_worker_gts_giantess_human_produces_add = 0.001
+            planet_godness_power_worker_food_produces_add = 1
+            planet_godness_power_worker_minerals_produces_add = 1
+            planet_godness_power_worker_energy_produces_add =1
+            planet_godness_power_worker_consumer_goods_produces_add = 0.7
+            planet_godness_power_worker_alloys_produces_add = 0.7
+            planet_godness_power_worker_gts_focus_produces_add = 0.1
+            planet_godness_power_worker_unity_produces_add = 1
+        }
+    }
+
+    #triggered_desc = {
+    #	text = lathe_overclocker_tt
+    #}
+
+    prerequisites = {
+        tech_gts_115tiny_lathe_overclocker
+    }
+
+    ai_estimate_without_unemployment = yes
+    additional_ai_weight = 200
+    ai_weight_coefficient = 1.2
+}
+
+building_gts_115tiny_lathe_preserver = {
+    base_buildtime = @b2_time
+    base_cap_amount = 8
+    building_sets = {
+        government
+        urban
+    }
+
+    potential = {
+        is_planet_class = pc_godness_power_world
+        exists = owner
+        owner = {
+            has_ascension_perk = ap_gts_115tiny_crisis
+        }
+    }
+
+    category = amenity
+
+    resources = {
+        category = planet_buildings
+        cost = {
+            alloys = @b3_minerals
+            exotic_gases = @fe_sr_cost_1
+            gts_giantess_human = 20
+        }
+        upkeep = {
+            energy = @b2_upkeep
+            exotic_gases = @b2_rare_upkeep
+        }
+    }
+
+    planet_modifier = {
+        pop_purge_speed = 0.5
+        planet_godness_power_worker_gts_focus_produces_add = 0.2
+    }
+
+    prerequisites = {
+        tech_gts_115tiny_lathe_preserver
+    }
+
+    ai_estimate_without_unemployment = yes
+    additional_ai_weight = 200
+    ai_weight_coefficient = 1.2
+}
+
+building_gts_115tiny_lathe_reactor = {
+    base_buildtime = @b2_time
+    base_cap_amount = 8
+    building_sets = {
+        government
+        urban
+    }
+
+    potential = {
+        is_planet_class = pc_godness_power_world
+        exists = owner
+        owner = {
+            has_ascension_perk = ap_gts_115tiny_crisis
+        }
+    }
+
+    category = resource
+
+    resources = {
+        category = planet_buildings
+        cost = {
+            alloys = @b3_minerals
+            exotic_gases = @fe_sr_cost_1
+            gts_giantess_human = 20
+        }
+        upkeep = {
+            exotic_gases = @b4_rare_upkeep
+        }
+    }
+
+    planet_modifier = {
+        planet_jobs_upkeep_mult = -0.2
+        planet_buildings_upkeep_mult = -0.2
+        planet_districts_energy_upkeep_mult = -0.2
+    }
+
+    ai_estimate_without_unemployment = yes
+    additional_ai_weight = 200
+    ai_weight_coefficient = 1.2
+}
+
+building_gts_115tiny_lathe_life_support = {
+    base_buildtime = @b2_time
+    base_cap_amount = 8
+    building_sets = {
+        government
+        urban
+    }
+
+    potential = {
+        is_planet_class = pc_godness_power_world
+        exists = owner
+        owner = {
+            has_ascension_perk = ap_gts_115tiny_crisis
+        }
+    }
+
+    category = amenity
+
+    resources = {
+        category = planet_buildings
+        cost = {
+            alloys = @b3_minerals
+            rare_crystals = @fe_sr_cost_1
+            gts_giantess_human = 20
+        }
+        upkeep = {
+            energy = @b2_upkeep
+            rare_crystals = @b2_rare_upkeep
+        }
+    }
+
+    planet_modifier = {
+        planet_housing_add = 400
+        planet_amenities_add = 1000
+    }
+
+    prerequisites = {
+        tech_gts_115tiny_lathe_life_support
+    }
+
+    ai_estimate_without_unemployment = yes
+    additional_ai_weight = 200
+    ai_weight_coefficient = 1.2
+}
+
+building_gts_115tiny_lathe_cogitator = {
+    base_buildtime = @b2_time
+    base_cap_amount = 8
+    building_sets = {
+        government
+        urban
+    }
+    potential = {
+        is_planet_class = pc_godness_power_world
+        exists = owner
+        owner = {
+            has_ascension_perk = ap_gts_115tiny_crisis
+        }
+    }
+
+    category = army
+
+    resources = {
+        category = planet_buildings
+        cost = {
+            alloys = @b3_minerals
+            volatile_motes = @fe_sr_cost_1
+            gts_giantess_human = 20
+        }
+        upkeep = {
+            energy = @b3_upkeep
+            volatile_motes = @b3_rare_upkeep
+        }
+    }
+
+    planet_modifier = {
+        planet_amenities_add = 200
+    }
+
+    triggered_country_modifier = {
+        potential = {
+            always = yes
+        }
+        country_naval_cap_mult = 0.02
+        ship_experience_gain_mult = 0.04
+        mult = value:num_godness_power_worker_raw
+    }
+
+    triggered_desc = {
+        text = building_gts_115tiny_lathe_cogitator_tt
+    }
+
+    prerequisites = {
+        tech_gts_115tiny_lathe_cogitator
+    }
+
+    ai_estimate_without_unemployment = yes
+    additional_ai_weight = 200
+    ai_weight_coefficient = 1.2
+}
+
+building_gts_115tiny_lathe_validator = {
+    base_buildtime = @b2_time
+    base_cap_amount = 8
+    building_sets = {
+        government
+        urban
+    }
+
+    potential = {
+        is_planet_class = pc_godness_power_world
+        exists = owner
+        owner = {
+            has_ascension_perk = ap_gts_115tiny_crisis
+        }
+    }
+
+    category = research
+
+    resources = {
+        category = planet_buildings
+        cost = {
+            alloys = @b3_minerals
+            rare_crystals = @fe_sr_cost_1
+            gts_giantess_human = 20
+        }
+        upkeep = {
+            energy = @b3_upkeep
+            rare_crystals = @b3_rare_upkeep
+        }
+    }
+
+    planet_modifier = {
+        planet_stability_add = -5
+        planet_resettlement_unemployed_mult = 0.5
+    }
+
+    triggered_country_modifier = {
+        potential = {
+            always = yes
+        }
+        logistic_growth_mult = 0.02
+        bonus_pop_growth_mult = 0.02
+        pop_amenities_usage_mult = 0.005
+        mult = value:num_godness_power_worker_raw
+    }
+
+    triggered_desc = {
+        text = building_gts_115tiny_lathe_validator_tt
+    }
+
+    prerequisites = {
+        tech_gts_115tiny_lathe_validator
+    }
+
+    ai_estimate_without_unemployment = yes
+    additional_ai_weight = 200
+    ai_weight_coefficient = 1.2
+}
+

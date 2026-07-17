@@ -1,0 +1,76 @@
+tr_gts_fallout_gentle_adopt = {
+	possible = { 
+		has_origin = origin_gts_fallout
+		NOT = {has_tradition = tr_gts_fallout_gentle_adopt} 
+	}				# AND trigger, scope: country
+	custom_tooltip = tr_gts_fallout_gentle_adopt_desc
+	ai_weight = {
+		factor = 0
+	}									# scope: country
+}
+
+tr_gts_fallout_gentle_finish = {	
+	custom_tooltip = tr_gts_fallout_gentle_finish_desc	
+	modifier = {
+		ascension_perks_add = 1
+	}
+	ai_weight = {
+		factor = 0
+	}									# scope: country
+}
+
+tr_gts_fallout_gentle_genebuff = {
+	possible = {
+		has_technology = tech_gene_tailoring
+	}
+	custom_tooltip = tr_gts_fallout_gentle_genebuff_desc
+	on_enabled = {
+		hidden_effect = {
+			country_event = { id = gts_fallout.601 }
+		}
+	}
+	ai_weight = {
+		factor = 0
+	}									# scope: country
+}
+
+tr_gts_fallout_gentle_pop_growth = {
+	possible = { 
+		has_tradition = tr_gts_fallout_gentle_genebuff}				# AND trigger, scope: country
+	modifier = {
+		logistic_growth_mult = 0.3
+	    bonus_pop_growth_mult = 0.3
+	}									# applied to country
+	ai_weight = {
+		factor = 0
+	}	
+}
+
+tr_gts_fallout_gentle_diplomacy = {
+	# custom_tooltip = tr_gts_fallout_gentle_diplomacy_desc
+	modifier = {
+		envoys_add = 3
+		country_trust_cap_add = 50
+		country_trust_growth = 0.25
+	}									# applied to country
+	ai_weight = {
+		factor = 0
+	}	
+}
+
+tr_gts_fallout_gentle_pop = {
+	possible = { has_tradition = tr_gts_fallout_gentle_diplomacy}				# AND trigger, scope: country
+	modifier = {empire_size_pops_mult = -0.40}									# applied to country
+	ai_weight = {
+		factor = 0
+	}	
+}
+
+tr_gts_fallout_gentle_nuked_house = {
+	possible = { has_tradition = tr_gts_fallout_gentle_pop}				# AND trigger, scope: country
+	custom_tooltip = tr_gts_fallout_gentle_nuked_house_desc
+	ai_weight = {
+		factor = 0
+	}	
+}
+

@@ -1,0 +1,301 @@
+namespace = gts_civ_feudalism
+planet_event = {
+	id = gts_civ_feudalism.1	#提督
+	title = gts_civ_feudalism.1.name
+	desc = gts_civ_feudalism.1.desc
+	picture = GFX_load_67
+	show_sound = event_mystic_reveal
+	location = root
+	is_triggered_only = yes
+	trigger = {
+		owner = {
+			has_civic = civic_gts_feudalism
+		}
+		has_modifier = planet_gts_safari_fiefdom
+	}
+	option = {
+		name = gts_civ_feudalism.1.a
+		custom_tooltip = "gts_safari_fiefdom"
+		remove_deposit = d_gts_fiefdom
+		hidden_effect = {
+			owner = {
+				create_leader = {
+					class = official
+					species = owner_main_species
+					name = random
+					gender = female
+					skill = 5
+					traits = {
+						trait = leader_trait_aggressive
+						trait = leader_trait_engineer
+						trait = leader_trait_gts_fiefdom_noble
+						trait = leader_trait_Giant
+					}
+				}
+				every_owned_leader = {
+					limit = {
+						has_trait = leader_trait_gts_fiefdom_noble
+					}
+					gts_leader_size_change_to = {
+						SIZE_TRAIT = leader_trait_Giant
+					}
+				}
+				last_created_leader = {
+					save_global_event_target_as = gts_fiefdom
+				}
+				event_target:gts_fiefdom@root = {
+					remove_trait = leader_trait_Tall
+					remove_trait = leader_trait_Normal
+					remove_trait = leader_trait_Small
+					remove_trait = leader_trait_Tiny
+					remove_trait = leader_trait_Micro
+				}
+				#			last_created_leader = { save_event_target_as = officer }
+			}
+			remove_modifier = planet_gts_safari_fiefdom
+			remove_modifier = gts_anxious_fiefdom
+			remove_planet_flag = gts_have_set_fiefdom
+		}
+	}
+	option = {
+		name = gts_civ_feudalism.1.b
+		owner = {
+			add_resource = {
+				unity = 1000
+			}
+		}
+		add_modifier = {
+			modifier = planet_gts_fiefdom_admire
+			days = 900
+		}
+	}
+}
+
+planet_event = {
+	id = gts_civ_feudalism.2	#科学家
+	title = gts_civ_feudalism.2.name
+	desc = gts_civ_feudalism.2.desc
+	picture = GFX_gts_footprint
+	show_sound = event_mystic_reveal
+	location = root
+	is_triggered_only = yes
+	trigger = {
+		owner = {
+			has_civic = civic_gts_feudalism
+		}
+		has_modifier = planet_gts_garden_fiefdom
+	}
+	option = {
+		name = gts_civ_feudalism.2.a
+		custom_tooltip = "gts_garden_fiefdom"
+		remove_deposit = d_gts_fiefdom
+		hidden_effect = {
+			owner = {
+				create_leader = {
+					class = scientist
+					species = owner_main_species
+					name = random
+					gender = female
+					skill = 5
+					traits = {
+						trait = leader_trait_spark_of_genius
+						trait = leader_trait_meticulous
+						trait = leader_trait_gts_fiefdom_noble
+						trait = leader_trait_Giant
+					}
+				}
+				every_owned_leader = {
+					limit = {
+						has_trait = leader_trait_gts_fiefdom_noble
+					}
+					gts_leader_size_change_to = {
+						SIZE_TRAIT = leader_trait_Giant
+					}
+				}
+				last_created_leader = {
+					save_global_event_target_as = gts_fiefdom
+				}
+				event_target:gts_fiefdom@root = {
+					remove_trait = leader_trait_Tall
+					remove_trait = leader_trait_Normal
+					remove_trait = leader_trait_Small
+					remove_trait = leader_trait_Tiny
+					remove_trait = leader_trait_Micro
+				}
+				#			last_created_leader = { save_event_target_as = officer }
+			}
+			remove_modifier = planet_gts_garden_fiefdom
+			remove_modifier = gts_anxious_fiefdom
+			remove_planet_flag = gts_have_set_fiefdom
+		}
+	}
+	option = {
+		name = gts_civ_feudalism.2.b
+		owner = {
+			add_resource = {
+				unity = 1000
+			}
+		}
+		add_modifier = {
+			modifier = planet_gts_fiefdom_admire
+			days = 900
+		}
+	}
+}
+
+planet_event = {
+	id = gts_civ_feudalism.3	#总督
+	title = gts_civ_feudalism.3.name
+	desc = gts_civ_feudalism.3.desc
+	picture = GFX_load_37
+	show_sound = event_mystic_reveal
+	location = root
+	is_triggered_only = yes
+	trigger = {
+		root.owner = {
+			has_civic = civic_gts_feudalism
+		}
+		has_modifier = planet_gts_party_fiefdom
+	}
+	option = {
+		name = gts_civ_feudalism.3.a
+		custom_tooltip = "gts_party_fiefdom"
+		remove_deposit = d_gts_fiefdom
+		hidden_effect = {
+			owner = {
+				create_leader = {
+					class = official
+					species = owner_main_species
+					name = random
+					skill = 5
+					traits = {
+						trait = leader_trait_bureaucrat
+						trait = leader_trait_architectural_interest
+						trait = leader_trait_gts_fiefdom_noble
+						trait = leader_trait_Giant
+					}
+				}
+				every_owned_leader = {
+					limit = {
+						has_trait = leader_trait_gts_fiefdom_noble
+					}
+					gts_leader_size_change_to = {
+						SIZE_TRAIT = leader_trait_Giant
+					}
+				}
+				last_created_leader = {
+					save_global_event_target_as = gts_fiefdom
+				}
+				event_target:gts_fiefdom@root = {
+					remove_trait = leader_trait_Tall
+					remove_trait = leader_trait_Normal
+					remove_trait = leader_trait_Small
+					remove_trait = leader_trait_Tiny
+					remove_trait = leader_trait_Micro
+				}
+				#			last_created_leader = { save_event_target_as = officer }
+			}
+			remove_modifier = planet_gts_party_fiefdom
+			remove_modifier = gts_anxious_fiefdom
+			remove_planet_flag = gts_have_set_fiefdom
+		}
+	}
+	option = {
+		name = gts_civ_feudalism.3.b
+		owner = {
+			add_resource = {
+				unity = 1000
+			}
+		}
+		add_modifier = {
+			modifier = planet_gts_fiefdom_admire
+			days = 300
+		}
+	}
+}
+
+planet_event = {
+	id = gts_civ_feudalism.4	#暴行
+	title = gts_civ_feudalism.4.name
+	desc = gts_civ_feudalism.4.desc
+	picture = GFX_gtsra_load_28
+	show_sound = event_mystic_reveal
+	location = root
+	is_triggered_only = yes
+	trigger = {
+		owner = {
+			has_civic = civic_gts_feudalism
+		}
+		OR = {
+			has_modifier = planet_gts_garden_fiefdom
+			has_modifier = planet_gts_safari_fiefdom
+			has_modifier = planet_gts_party_fiefdom
+		}
+	}
+	option = {
+		name = gts_civ_feudalism.4.a
+		add_planet_devastation = 10
+		custom_tooltip = "gts_remove_fiefdom"
+		hidden_effect = {
+			remove_deposit = d_gts_fiefdom
+			remove_modifier = planet_gts_garden_fiefdom
+			remove_modifier = planet_gts_safari_fiefdom
+			remove_modifier = planet_gts_party_fiefdom
+			remove_modifier = gts_anxious_fiefdom
+			remove_modifier = planet_gts_fiefdom_admire
+			remove_modifier = planet_gts_fiefdom_unrest
+			remove_planet_flag = gts_have_set_fiefdom
+		}
+	}
+	option = {
+		name = gts_civ_feudalism.4.b
+		add_planet_devastation = 10
+		owner = {
+			add_resource = {
+				unity = -500
+			}
+		}
+		add_modifier = {
+			modifier = planet_gts_fiefdom_unrest
+			days = 300
+		}
+	}
+}
+
+planet_event = {
+	id = gts_civ_feudalism.5	#瑕光
+	title = gts_civ_feudalism.5.name
+	desc = gts_civ_feudalism.5.desc
+	picture = GFX_gts_blemishine
+	show_sound = event_mystic_reveal
+	location = root
+	fire_only_once = yes
+	is_triggered_only = yes
+	trigger = {
+		owner = {
+			is_ai = no
+			has_civic = civic_gts_feudalism
+		}
+		has_modifier = planet_gts_safari_fiefdom
+	}
+	option = {
+		name = gts_civ_feudalism.5.a
+		custom_tooltip = "gts_Blemishine_admiral"
+		hidden_effect = {
+			owner = {
+				gts_leader_blemishine_hired = yes
+				gts_leader_archetto_hired = yes
+			}
+		}
+	}
+	option = {
+		name = gts_civ_feudalism.5.b
+		custom_tooltip = "gts_Blemishine_general"
+		hidden_effect = {
+			owner = {
+				gts_leader_blemishine_hired = yes
+				gts_leader_archetto_hired = yes
+			}
+		}
+	}
+}

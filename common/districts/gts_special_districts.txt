@@ -1,0 +1,454 @@
+############################################################################################################################################
+################################################                特殊星球區劃                ################################################
+############################################################################################################################################
+@lathe_alloy_cost = 1000
+@lathe_logic_cost = 500
+@lathe_upkeep = 50
+@hab_cost = 500
+@hab_maintenance = 2
+@low_hab_maintenance = 0.2
+@base_cost = 300
+@city_cost = 500
+
+district_bfbf_juice_1 = {
+	
+	# 歡愉工廠區(貿易、消費品)
+	
+	base_buildtime = 240
+	exempt_from_ai_planet_specialization = yes
+	
+	zone_slots = {
+		slot_gts_bruh_industrial
+	}
+	
+	show_on_uncolonized = {
+		OR = {
+			uses_district_set = milk
+			uses_district_set = juice
+			uses_district_set = juice2
+			uses_district_set = juice3
+			uses_district_set = oscillator
+			uses_district_set = semen
+		}
+	}
+	
+	potential = {
+		OR = {
+			uses_district_set = milk
+			uses_district_set = juice
+			uses_district_set = juice2
+			uses_district_set = juice3
+			uses_district_set = oscillator
+			uses_district_set = semen
+		}
+		exists = owner
+	}
+	
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = @base_cost
+		}
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = no }
+		}
+		modifier = {
+			job_gts_bfbf_juice1_add = 100
+		}
+	}
+}
+
+district_bfbf_juice_2 = {
+	
+	# 縱慾都市區(貿易、凝聚力)
+	
+	base_buildtime = 240
+	exempt_from_ai_planet_specialization = yes
+	
+	zone_slots = {
+		slot_gts_bruh_unity
+	}
+	
+	show_on_uncolonized = {
+		OR = {
+			uses_district_set = milk
+			uses_district_set = juice
+			uses_district_set = juice2
+			uses_district_set = juice3
+			uses_district_set = oscillator
+			uses_district_set = semen
+		}
+	}
+	
+	potential = {
+		OR = {
+			uses_district_set = milk
+			uses_district_set = juice
+			uses_district_set = juice2
+			uses_district_set = juice3
+			uses_district_set = oscillator
+			uses_district_set = semen
+		}
+		exists = owner
+	}
+	
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = @base_cost
+		}
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = no }
+		}
+		modifier = {
+			job_gts_bfbf_juice2_add = 100
+		}
+	}
+}
+
+district_gts_special_planet_1 = {
+	
+	# 巨娘體液提煉區(巨娘體液)
+	
+	base_buildtime = 240
+	exempt_from_ai_planet_specialization = yes
+	
+	zone_slots = {
+		slot_gts_bruh_resource
+	}
+	
+	show_on_uncolonized = {
+		OR = {
+			uses_district_set = milk
+			uses_district_set = juice
+			uses_district_set = juice2
+			uses_district_set = juice3
+			uses_district_set = oscillator
+			uses_district_set = semen
+		}
+	}
+	
+	potential = {
+		OR = {
+			uses_district_set = milk
+			uses_district_set = juice
+			uses_district_set = juice2
+			uses_district_set = juice3
+			uses_district_set = oscillator
+			uses_district_set = semen
+		}
+		exists = owner
+	}
+
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = @base_cost
+		}
+		upkeep = {
+			energy = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = no }
+		}
+		modifier = {
+			job_gts_bfbf_planet_1_add = 100
+		}
+	}
+}
+
+# 女神之力
+district_godness_power_world_goverment = {
+	icon = district_city
+	overlay_icon = GFX_district_government
+	base_cap_amount = 1
+
+	exempt_from_ai_planet_specialization = yes
+
+	zone_slots = {
+		slot_godness_power_government
+	}
+
+	show_on_uncolonized = {
+		uses_district_set = godness_power_world
+	}
+
+	potential = {
+		uses_district_set = godness_power_world
+		exists = owner
+		owner = { has_ascension_perk = ap_gts_115tiny_crisis }
+	}
+}
+
+district_godness_power_world_resource = {
+	# is_capped_by_modifier = no
+
+	base_buildtime = 250
+
+	show_on_uncolonized = {
+		uses_district_set = godness_power_world
+	}
+
+	# TODO_CD: change to real slots
+	zone_slots = {
+		slot_godness_power_empty
+	}
+
+	resources = {
+		category = planet_districts
+		cost = {
+			alloys = @lathe_alloy_cost
+			gts_giantess_human = 10
+		}
+		upkeep = {
+			energy = @lathe_upkeep
+		}
+	}
+
+	potential = {
+		uses_district_set = godness_power_world
+		exists = owner
+		owner = { has_ascension_perk = ap_gts_115tiny_crisis }
+	}
+	planet_modifier = {
+		planet_housing_add = 12000
+		pc_godness_power_world_max_buildings_add = 1
+
+	}
+	triggered_planet_modifier = {
+		potential = {
+			NOT = { owner = { has_deficit = energy } }
+		}
+		planet_godness_power_worker_gts_giantess_fluid_produces_add = 5
+		planet_godness_power_worker_gts_giantess_underwear_produces_add = 0.5
+		planet_godness_power_worker_gts_giantess_human_produces_add = 0.05
+	}
+	#triggered_desc = {
+	#	text = chip_science_output_increased_tt
+	#}
+
+	ai_estimate_without_unemployment = yes
+	additional_ai_weight = 200
+	ai_weight_coefficient = 1.2
+}
+
+district_godness_power_world_resource_2 = {
+	# is_capped_by_modifier = no
+
+	base_buildtime = 250
+
+	show_on_uncolonized = {
+		uses_district_set = godness_power_world
+	}
+
+	# TODO_CD: change to real slots
+	zone_slots = {
+		slot_godness_power_empty
+	}
+	resources = {
+		category = planet_districts
+		cost = {
+			alloys = @lathe_alloy_cost
+			gts_giantess_human = 10
+		}
+		upkeep = {
+			energy = @lathe_upkeep
+		}
+	}
+
+	potential = {
+		uses_district_set = godness_power_world
+		exists = owner
+		owner = { has_ascension_perk = ap_gts_115tiny_crisis }
+	}
+	planet_modifier = {
+		planet_housing_add = 12000
+		pc_godness_power_world_max_buildings_add = 1
+
+	}
+	triggered_planet_modifier = {
+		potential = {
+			NOT = { owner = { has_deficit = energy } }
+		}
+		planet_godness_power_worker_food_produces_add = 5
+		planet_godness_power_worker_minerals_produces_add = 5
+		planet_godness_power_worker_energy_produces_add = 5
+	}
+	#triggered_desc = {
+	#	text = chip_science_output_increased_tt
+	#}
+
+	ai_estimate_without_unemployment = yes
+	additional_ai_weight = 200
+	ai_weight_coefficient = 1.2
+}
+
+district_godness_power_world_resource_3 = {
+	# is_capped_by_modifier = no
+
+	base_buildtime = 250
+
+	show_on_uncolonized = {
+		uses_district_set = godness_power_world
+	}
+	# TODO_CD: change to real slots
+	zone_slots = {
+		slot_godness_power_empty
+	}
+
+	resources = {
+		category = planet_districts
+		cost = {
+			alloys = @lathe_alloy_cost
+			gts_giantess_human = 10
+		}
+		upkeep = {
+			energy = @lathe_upkeep
+		}
+	}
+
+	potential = {
+		uses_district_set = godness_power_world
+		exists = owner
+		owner = { has_ascension_perk = ap_gts_115tiny_crisis }
+	}
+	planet_modifier = {
+		planet_housing_add = 12000
+		pc_godness_power_world_max_buildings_add = 1
+
+	}
+	triggered_planet_modifier = {
+		potential = {
+			NOT = { owner = { has_deficit = energy } }
+		}
+		planet_godness_power_worker_consumer_goods_produces_add = 2.5
+		planet_godness_power_worker_alloys_produces_add = 2.5
+	}
+
+	#triggered_desc = {
+	#	text = chip_science_output_increased_tt
+	#}
+
+	ai_estimate_without_unemployment = yes
+	additional_ai_weight = 200
+	ai_weight_coefficient = 1.2
+}
+
+district_godness_power_world_resource_4 = {
+	# is_capped_by_modifier = no
+
+	base_buildtime = 250
+
+	show_on_uncolonized = {
+		uses_district_set = godness_power_world
+	}
+	# TODO_CD: change to real slots
+	zone_slots = {
+		slot_godness_power_empty
+	}
+
+	resources = {
+		category = planet_districts
+		cost = {
+			alloys = @lathe_alloy_cost
+			gts_giantess_human = 10
+		}
+		upkeep = {
+			energy = @lathe_upkeep
+		}
+	}
+
+	potential = {
+		uses_district_set = godness_power_world
+		exists = owner
+		owner = { has_ascension_perk = ap_gts_115tiny_crisis }
+	}
+	planet_modifier = {
+		planet_housing_add = 12000
+		pc_godness_power_world_max_buildings_add = 1
+
+	}
+	triggered_planet_modifier = {
+		potential = {
+			NOT = { owner = { has_deficit = energy } }
+		}
+		planet_godness_power_worker_physics_research_produces_add = 5
+		planet_godness_power_worker_society_research_produces_add = 5
+		planet_godness_power_worker_engineering_research_produces_add = 5
+	}
+	#triggered_desc = {
+	#	text = chip_science_output_increased_tt
+	#}
+
+	ai_estimate_without_unemployment = yes
+	additional_ai_weight = 200
+	ai_weight_coefficient = 1.2
+}
+
+district_godness_power_world_pain = {
+	# is_capped_by_modifier = no
+
+	base_buildtime = 250
+
+	show_on_uncolonized = {
+		uses_district_set = godness_power_world
+	}
+
+	# TODO_CD: change to real slots
+	zone_slots = {
+		slot_godness_power_empty
+	}
+
+	resources = {
+		category = planet_districts
+		cost = {
+			alloys = @lathe_alloy_cost
+			gts_giantess_human = 10
+		}
+		upkeep = {
+			energy = @lathe_upkeep
+		}
+	}
+
+	potential = {
+		uses_district_set = godness_power_world
+		exists = owner
+		owner = { has_ascension_perk = ap_gts_115tiny_crisis }
+	}
+	planet_modifier = {
+		planet_housing_add = 12000
+		pc_godness_power_world_max_buildings_add = 1
+	}
+	triggered_planet_modifier = {
+		potential = {
+			NOT = { owner = { has_deficit = energy } }
+		}
+		planet_godness_power_worker_gts_focus_produces_add = 0.25
+		planet_godness_power_worker_unity_produces_add = 7.5
+	}
+	#triggered_desc = {
+	#	text = chip_logic_output_increased_tt
+	#}
+
+	ai_estimate_without_unemployment = yes
+	additional_ai_weight = 200
+	ai_weight_coefficient = 1.2
+}

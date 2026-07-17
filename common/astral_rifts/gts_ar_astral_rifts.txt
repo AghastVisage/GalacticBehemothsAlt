@@ -1,0 +1,51 @@
+#spawn_astral_rift
+
+gts_genesis = {
+    name = gts_astral_rift_genesis
+    event_weight = {
+        weight = 1
+        modifier = {
+            #乘子归零概率，防止境内无可殖民星球时刷这个裂隙
+            factor = 0
+            count_owned_planet = {
+                limit = {
+                    habitable_planet = yes
+                    OR = {
+                        is_colony = yes
+                        is_capital = yes
+                    }
+                }
+                count = 0
+            }
+        }
+    }
+    flags = { gts_genesis_rift }
+    event = gts_astral_rift.2300
+    on_roll_failed = {
+        standard_astral_rift_on_roll_failed = yes
+    }
+}
+
+gts_fluid = {
+    name = gts_astral_rift_fluid
+    event_weight = {
+        weight = 1
+    }
+    #flags = { can_reward_relic r_plasmic_core }
+    event = gts_astral_rift.1300
+    on_roll_failed = {
+        standard_astral_rift_on_roll_failed = yes
+    }
+}
+
+gts_windswept_planet = {
+    name = gts_astral_rift_windswept_planet
+    event_weight = {
+        weight = 1
+    }
+    event = gts_astral_rift.2700
+    on_roll_failed = {
+        standard_astral_rift_on_roll_failed = yes
+    }
+}
+

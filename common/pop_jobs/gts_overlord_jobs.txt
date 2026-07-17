@@ -1,0 +1,348 @@
+################################################################################
+###################                地產建築崗位                ###################
+################################################################################
+
+
+
+################################################################################
+##################              聖嘉百璃教堂崗位                ###################
+################################################################################
+
+
+
+gts_overlord_nun = {
+
+	# 修女(地產)
+
+	category = specialist
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_holotemple
+			icon = gts_nun
+		}
+	}
+
+	tags = { unity }
+
+	inline_script = "jobs/automodding_priority_unity"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+
+	possible = {
+		gts_is_giantess = yes
+	}
+
+	resources = {
+		category = planet_aid_workers
+		upkeep = {
+			# 10
+			energy = 5
+			unity = 2.5
+		}
+	}
+
+	overlord_resources = {
+		category = planet_aid_workers
+		produces = {
+			# 15
+			unity = 7.5
+		}
+	}
+
+	weight = {
+		weight = @overlord_job_weight
+	}
+}
+
+
+
+################################################################################
+###################              小人監護站崗位                ###################
+################################################################################
+
+
+
+overlord_tinypropagandist = {
+
+	# 小人保護國宣傳家
+
+	category = specialist
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = holding_gts_servitor_office
+			icon = overlord_propagandist
+		}
+	}
+
+	tags = { unity }
+
+	inline_script = "jobs/automodding_priority_unity"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+
+	possible = {
+		gts_is_tiny = yes
+	}
+
+	resources = {
+		category = planet_overlord_propagandists
+		upkeep = {
+			# 10
+			consumer_goods = 4
+			unity = 1
+		}
+	}
+
+	overlord_resources = {
+		category = planet_overlord_propagandists
+		produces = {
+			# 15
+			influence = 0.5
+			gts_micro = 3.5
+		}
+	}
+
+	weight = {
+		weight = @overlord_job_weight
+	}
+}
+
+
+overlord_tinypropagandist_drone = {
+
+	# 小人保護國宣傳家-格式塔
+
+	category = complex_drone
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = holding_gts_servitor_office
+			icon = overlord_propagandist
+		}
+	}
+
+	tags = { unity }
+
+	inline_script = "jobs/automodding_priority_unity"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_drone_job
+
+	possible = {
+		can_think = yes
+		gts_is_tiny = yes
+	}
+
+	resources = {
+		category = planet_overlord_propagandists
+		upkeep = {
+			# 10
+			consumer_goods = 4
+			unity = 1
+		}
+	}
+
+	overlord_resources = {
+		category = planet_overlord_propagandists
+		produces = {
+			# 15
+			influence = 0.5
+			gts_micro = 3.5
+		}
+	}
+
+	weight = {
+		weight = @overlord_job_weight
+	}
+}
+
+overlord_gts_servitor = {
+
+	# 巨娘監護員
+
+	category = ruler
+
+	swappable_data = {
+		default = {
+			condition_string = RULER_JOB_TRIGGER
+			building_icon = holding_gts_servitor_office
+			icon = servant
+		}
+	}
+
+	tags = { unity }
+
+	inline_script = "jobs/automodding_priority_unity"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = ruler
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_ruler_job
+
+	possible = {
+		gts_is_giantess = yes
+	}
+
+	resources = {
+		category = planet_overlord_propagandists
+		upkeep = {
+			# 10
+			consumer_goods = 4
+			unity = 1
+		}
+	}
+
+	overlord_resources = {
+		category = planet_overlord_propagandists
+		produces = {
+			# 15
+			influence = 0.5
+			gts_micro_city = 1.75
+		}
+	}
+
+	weight = {
+		weight = @overlord_job_weight
+	}
+}
+
+overlord_gts_servitor_drone = {
+
+	# 巨娘監護員-格式塔
+
+	category = complex_drone
+
+	can_set_priority = no
+	is_capped_by_modifier = yes
+
+	swappable_data = {
+		default = {
+			building_icon = holding_propaganda_office
+			icon = servant
+		}
+	}
+
+	tags = { unity }
+
+	inline_script = "jobs/automodding_priority_unity"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = complex_drone
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_drone_job
+
+	possible = {
+		can_think = yes
+		gts_is_giantess = yes
+	}
+
+	resources = {
+		category = planet_overlord_propagandists
+		upkeep = {
+			# 10
+			consumer_goods = 4
+			unity = 1
+		}
+	}
+
+	overlord_resources = {
+		category = planet_overlord_propagandists
+		produces = {
+			# 15
+			influence = 0.5
+			gts_micro_city = 1.75
+		}
+	}
+
+	weight = {
+		weight = @overlord_job_weight
+	}
+}
+

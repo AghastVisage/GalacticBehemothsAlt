@@ -1,0 +1,497 @@
+gts_count_army_killed_pop_effect = {
+	every_planet_army = {
+		limit = {
+			exists = species
+		}
+		if = {
+			limit = { species = { gts_is_tiny = yes  } }
+			event_target:gts_leader_country = {
+				change_variable = {
+					which = gts_event_kills_logs
+					value = 0.02
+				}
+				random_list = {
+					1 = { 
+						change_variable = {
+							which = gts_event_city_kills_logs
+							value = 0.4
+						}
+					}
+					1 = { 
+						change_variable = {
+							which = gts_event_city_kills_logs
+							value = 1.2
+						}
+					}
+					1 = { 
+						change_variable = {
+							which = gts_event_city_kills_logs
+							value = 2
+						}
+					}
+				}
+			}		
+		}
+		else_if = {
+			limit = { species = { gts_is_giantess = yes  } }
+			event_target:gts_leader_country = {
+				change_variable = {
+					which = gts_event_kills_logs
+					value = 0.05
+				}
+				random_list = {
+					1 = { 
+						change_variable = {
+							which = gts_event_city_kills_logs
+							value = 1
+						}
+					}
+					1 = { 
+						change_variable = {
+							which = gts_event_city_kills_logs
+							value = 3
+						}
+					}
+					1 = { 
+						change_variable = {
+							which = gts_event_city_kills_logs
+							value = 5
+						}
+					}
+				}
+			}	
+		}
+	}
+}
+gts_count_planet_killed_pop_effect = {
+	every_owned_pop_group = {
+		if = {
+			limit = { gts_is_tiny = yes  }
+			event_target:gts_leader_country = {
+				change_variable = {
+					which = gts_event_kills_logs
+					value = 2
+				}
+				random_list = {
+					1 = { 
+						change_variable = {
+							which = gts_event_city_kills_logs
+							value = 40
+						}
+					}
+					1 = { 
+						change_variable = {
+							which = gts_event_city_kills_logs
+							value = 120
+						}
+					}
+					1 = { 
+						change_variable = {
+							which = gts_event_city_kills_logs
+							value = 200
+						}
+					}
+				}
+			}		
+		}
+		else_if = {
+			limit = { gts_is_giantess = yes }
+			event_target:gts_leader_country = {
+				change_variable = {
+					which = gts_event_kills_logs
+					value = 5
+				}
+				random_list = {
+					1 = { 
+						change_variable = {
+							which = gts_event_city_kills_logs
+							value = 100
+						}
+					}
+					1 = { 
+						change_variable = {
+							which = gts_event_city_kills_logs
+							value = 300
+						}
+					}
+					1 = { 
+						change_variable = {
+							which = gts_event_city_kills_logs
+							value = 500
+						}
+					}
+				}
+			}	
+		}
+		kill_all_pop = yes
+	}
+	every_planet_army = {
+		limit = {
+			exists = species
+		}
+		if = {
+			limit = { species = { gts_is_tiny = yes  } }
+			event_target:gts_leader_country = {
+				change_variable = {
+					which = gts_event_kills_logs
+					value = 2
+				}
+				random_list = {
+					1 = { 
+						change_variable = {
+							which = gts_event_city_kills_logs
+							value = 40
+						}
+					}
+					1 = { 
+						change_variable = {
+							which = gts_event_city_kills_logs
+							value = 120
+						}
+					}
+					1 = { 
+						change_variable = {
+							which = gts_event_city_kills_logs
+							value = 200
+						}
+					}
+				}
+			}		
+		}
+		else_if = {
+			limit = { species = { gts_is_giantess = yes  } }
+			event_target:gts_leader_country = {
+				change_variable = {
+					which = gts_event_kills_logs
+					value = 5
+				}
+				random_list = {
+					1 = { 
+						change_variable = {
+							which = gts_event_city_kills_logs
+							value = 100
+						}
+					}
+					1 = { 
+						change_variable = {
+							which = gts_event_city_kills_logs
+							value = 300
+						}
+					}
+					1 = { 
+						change_variable = {
+							which = gts_event_city_kills_logs
+							value = 500
+						}
+					}
+				}
+			}	
+		}
+		remove_army = yes
+	}
+}
+gts_count_system_killed_pop_effect = {
+	every_system_planet = {
+		limit = { is_colony = yes }
+		event_target:gts_leader_country = {
+			change_variable = {
+				which = gts_event_planet_kills_logs
+				value = 1
+			}
+		}
+		gts_count_planet_killed_pop_effect = yes
+	}
+}
+gts_set_count_kill_pop_effect = {
+	set_variable = {
+		which = gts_event_kills_logs
+		value = 0
+	}
+	set_variable = {
+		which = gts_event_city_kills_logs
+		value = 0
+	}
+	set_variable = {
+		which = gts_event_planet_kills_logs
+		value = 0
+	}
+}
+create_gts_space_storm_object_effect = { #创建闪电风暴
+	set_star_flag = gts_leader_interact_star
+	star = {
+		create_ambient_object = {
+			type = "space_storm_1"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_ambient_object_flag = gts_space_storm_object
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+	}
+	system_event = {
+		id = gts_leader_interact.1
+		days = 30
+	}		
+}
+gts_bruh_skadi_planet_killed_pop_count_effect = {
+
+	#---------------------------------------------------------------------------------------------------- 目標必須是星球 ------------------------------------------------------------------------------------------
+	#---------------------------------------------------------------------------------------------------- (事實證明人兩天不睡覺) ----------------------------------------------------------------------------------
+	#---------------------------------------------------------------------------------------------------- (是不會有清晰的思路寫代碼的) ----------------------------------------------------------------------------
+
+	every_owned_pop_group = {
+
+		#---------------------------------------------------------------------------------------------------- 巨娘 ----------------------------------------------------------------------------------------------------
+
+		#---------------------------------------------------------------------------------------------------- 天體級 --------------------------------------------------------------------------------------------------
+		#---------------------------------------------------------------------------------------------------- 只計算比這個領袖小的人口 --------------------------------------------------------------------------------
+
+		#---------------------------------------------------------------------------------------------------- 最多能顯示到10^-5 ---------------------------------------------------------------------------------------
+		#---------------------------------------------------------------------------------------------------- 最少需要一次滅了10人口 ----------------------------------------------------------------------------------
+		#---------------------------------------------------------------------------------------------------- 泰坦級才顯示的出來 --------------------------------------------------------------------------------------
+
+		if = {
+			limit = {
+				gts_is_equal_to_titan = yes
+			}
+			event_target:gts_bruh_get_skadi_juice_planet = {
+				change_variable = {
+					which = gts_event_kills_logs
+					value = 0.000001
+				}
+				random_list = {
+					1 = {
+						change_variable = {
+							which = gts_event_city_kills_logs
+							value = 1
+						}
+					}
+					1 = {
+						change_variable = {
+							which = gts_event_city_kills_logs
+							value = 2
+						}
+					}
+					1 = {
+						change_variable = {
+							which = gts_event_city_kills_logs
+							value = 3
+						}
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				gts_is_equal_to_giant = yes
+			}
+			event_target:gts_bruh_get_skadi_juice_planet = {
+				change_variable = {
+					which = gts_event_kills_logs
+					value = 0.0001
+				}
+				random_list = {
+					1 = {
+						change_variable = {
+							which = gts_event_city_kills_logs
+							value = 10
+						}
+					}
+					1 = {
+						change_variable = {
+							which = gts_event_city_kills_logs
+							value = 20
+						}
+					}
+					1 = {
+						change_variable = {
+							which = gts_event_city_kills_logs
+							value = 30
+						}
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				gts_is_equal_to_tall = yes
+			}
+			event_target:gts_bruh_get_skadi_juice_planet = {
+				change_variable = {
+					which = gts_event_kills_logs
+					value = 0.01
+				}
+				random_list = {
+					1 = {
+						change_variable = {
+							which = gts_event_city_kills_logs
+							value = 100
+						}
+					}
+					1 = {
+						change_variable = {
+							which = gts_event_city_kills_logs
+							value = 200
+						}
+					}
+					1 = {
+						change_variable = {
+							which = gts_event_city_kills_logs
+							value = 300
+						}
+					}
+				}
+			}
+		}
+
+		#---------------------------------------------------------------------------------------------------- 小人 ----------------------------------------------------------------------------------------------------
+
+		if = {
+			limit = {
+				gts_is_equal_to_normal = yes
+			}
+			event_target:gts_bruh_get_skadi_juice_planet = {
+				change_variable = {
+					which = gts_event_kills_logs
+					value = 5
+				}
+				random_list = {
+					1 = {
+						change_variable = {
+							which = gts_event_city_kills_logs
+							value = 100
+						}
+					}
+					1 = {
+						change_variable = {
+							which = gts_event_city_kills_logs
+							value = 300
+						}
+					}
+					1 = {
+						change_variable = {
+							which = gts_event_city_kills_logs
+							value = 500
+						}
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				gts_is_equal_to_small = yes
+			}
+			event_target:gts_bruh_get_skadi_juice_planet = {
+				change_variable = {
+					which = gts_event_kills_logs
+					value = 100
+				}
+				random_list = {
+					1 = {
+						change_variable = {
+							which = gts_event_city_kills_logs
+							value = 100
+						}
+					}
+					1 = {
+						change_variable = {
+							which = gts_event_city_kills_logs
+							value = 300
+						}
+					}
+					1 = {
+						change_variable = {
+							which = gts_event_city_kills_logs
+							value = 500
+						}
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				gts_is_equal_to_tiny = yes
+			}
+			event_target:gts_bruh_get_skadi_juice_planet = {
+				change_variable = {
+					which = gts_event_kills_logs
+					value = 10000
+				}
+				random_list = {
+					1 = {
+						change_variable = {
+							which = gts_event_city_kills_logs
+							value = 1000
+						}
+					}
+					1 = {
+						change_variable = {
+							which = gts_event_city_kills_logs
+							value = 3000
+						}
+					}
+					1 = {
+						change_variable = {
+							which = gts_event_city_kills_logs
+							value = 5000
+						}
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				gts_is_equal_to_micro = yes
+			}
+			event_target:gts_bruh_get_skadi_juice_planet = {
+				change_variable = {
+					which = gts_event_kills_logs
+
+					#---------------------------------------------------------------------------------------------------- 原本要用10*17次方的 -------------------------------------------------------------------------------------
+					#---------------------------------------------------------------------------------------------------- 但太高會變負值 ------------------------------------------------------------------------------------------
+
+					#value = 1000000000
+					value = 100000
+				}
+				random_list = {
+					1 = {
+						change_variable = {
+							which = gts_event_city_kills_logs
+							value = 10000
+						}
+					}
+					1 = {
+						change_variable = {
+							which = gts_event_city_kills_logs
+							value = 30000
+						}
+					}
+					1 = {
+						change_variable = {
+							which = gts_event_city_kills_logs
+							value = 50000
+						}
+					}
+				}
+			}
+		}
+		kill_all_pop = yes
+	}
+}
+#使用星际行动的冷却与弹出后续
+gts_leader_interact_cooldown_effect = {
+	hidden_effect = {
+		set_timed_country_flag = {
+			flag = gts_leader_interact_cooldown
+			days = $DAYS$
+		}
+		country_event = {
+			id = gts_leader_interact.3
+			days = $DAYS$
+		}
+	}
+}

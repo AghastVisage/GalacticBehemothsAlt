@@ -1,0 +1,517 @@
+namespace = gts_doctor
+
+#博士
+country_event = {
+	#创建博士星系
+	id = gts_doctor.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		random_system = {
+			limit = {
+				distance = {
+					source = root.capital_scope.solar_system
+					use_bypasses = yes
+					min_jumps = 1
+					max_jumps = 6
+				}
+			}
+			spawn_system = {
+				min_distance >= 10
+				max_distance <= 30
+				max_jumps = 1
+				initializer = gts_doctor_system
+				effect = {
+					save_event_target_as = gts_bruh_get_doctor_system_location
+				}
+			}
+		}
+	}
+}
+
+ship_event = {
+	# 毁灭
+	id = gts_doctor.2
+	title = "gts_doctor.2.name"
+	desc = gts_doctor.2.desc
+	picture = GFX_gts_doctor_1
+	show_sound = event_dig_site
+	is_triggered_only = yes
+	location = from
+
+	immediate = {
+		from = {
+			destroy_colony = yes
+			gts_bruh_clear_planet_effect = yes
+			pc_gts_semen_change = yes
+		}
+	}
+
+	option = {
+		name = gts_doctor.2.a
+		owner = {
+			country_event = {
+				id = gts_doctor.3
+			}
+		}
+	}
+}
+
+country_event = {
+	# 威胁
+	id = gts_doctor.3
+	title = gts_doctor.3.name
+	desc = gts_doctor.3.desc
+	picture = GFX_evt_gts_foot_contact
+	show_sound = event_default
+	is_triggered_only = yes
+	immediate = {
+		
+	}
+	option = {
+		name = gts_doctor.3.a
+		country_event = {
+			id = gts_doctor.4
+		}
+	}
+}
+country_event = {
+	# 接触
+	id = gts_doctor.4
+	title = gts_doctor.4.name
+	desc = gts_doctor.4.desc
+	picture = GFX_gts_doctor_2
+	show_sound = event_default
+	is_triggered_only = yes
+	immediate = {
+		
+	}
+	option = {
+		name = gts_doctor.4.a
+		country_event = {
+			id = gts_doctor.5
+		}
+	}
+}
+country_event = {
+	# 博士招募
+	id = gts_doctor.5
+	title = "gts_doctor.5.name"
+	desc = gts_doctor.5.desc
+	show_sound = event_celebration
+	is_triggered_only = yes
+	picture = GFX_leader_recruitment_bg_renowned
+	auto_opens = yes
+	event_window_type = leader_recruit
+	notification_event_icon = "GFX_message_leader_gts_doctor_1"
+	immediate = {
+		gts_leader_doctor_hired = yes
+	}
+	picture_event_data = {
+		portrait = event_target:gts_leader
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = gts_doctor.5.a
+		response_text = gts_doctor.5.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_doctor.5.b
+		response_text = gts_doctor.5.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_doctor.5.c
+		response_text = gts_doctor.5.c.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_doctor.5.d
+		response_text = gts_doctor.5.d.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_doctor.5.e
+		response_text = gts_doctor.5.e.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		custom_tooltip = gts_doctor.5.hire_custom_tooltip
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = legendary }
+			country_event = { #原石
+				id = gts_doctor.10
+				days = 1800
+				random = 360
+			}
+			country_event = { #飞机杯
+				id = gts_doctor.20
+				days = 3600
+				random = 720
+			}
+		}
+	}
+	option = {
+		name = DISMISS
+		tag = dismiss_leader
+		hidden_effect = {
+			country_event = {
+				id = gts_doctor.5
+			}
+		}
+	}
+
+}
+
+#原石事件
+country_event = {
+	id = gts_doctor.10
+	title = gts_doctor.10.name
+	desc = gts_doctor.10.desc
+	picture = GFX_evt_board_meeting
+	is_triggered_only = yes
+	show_sound = event_default
+
+	trigger = {
+		any_owned_leader = { has_leader_flag = gts_doctor }
+	}
+
+	event_window_type = leader_story
+	event_picture_background = GFX_leader_recruitment_bg_legendary_skrand
+
+	picture_event_data = {
+		portrait = event_target:gts_doctor
+	}
+	immediate = {
+
+	}
+	option = {
+		name = gts_doctor.10.a
+		country_event = {
+			id = gts_doctor.11
+		}
+	}
+}
+country_event = {
+	id = gts_doctor.11
+	title = gts_doctor.10.name
+	desc = gts_doctor.11.desc
+	picture = GFX_evt_board_meeting
+	is_triggered_only = yes
+	show_sound = event_announcement
+
+	trigger = {
+		any_owned_leader = { has_leader_flag = gts_doctor }
+	}
+
+	event_window_type = leader_story
+	event_picture_background = GFX_leader_recruitment_bg_legendary_skrand
+
+	picture_event_data = {
+		portrait = event_target:gts_doctor
+	}
+	immediate = {
+		event_target:gts_doctor = {
+			change_leader_portrait = gts_portrait_doctor_2
+		}
+	}
+	option = {
+		name = gts_doctor.11.a
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 6
+			min = 1000
+		}
+		add_monthly_resource_mult = {
+			resource = influence
+			value = 6
+			min = 50
+		}
+	}
+	option = {
+		name = gts_doctor.11.b
+		add_modifier = {
+			modifier = modifier_doctor_originium
+			days = 3600
+		}
+	}
+}
+
+# 飛機杯事件
+
+country_event = {
+	id = gts_doctor.20
+	title = gts_doctor.20.name
+	desc = gts_doctor.20.desc
+	picture = GFX_load_157
+	event_window_type = leader_story
+	event_picture_background = GFX_leader_recruitment_bg_legendary_skrand
+	show_sound = event_default
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = event_target:gts_doctor
+	}
+
+	trigger = {
+		any_owned_leader = { has_leader_flag = gts_doctor }
+	}
+
+	immediate = {
+		set_country_flag = gts_doctor_starving
+		country_event = {
+			id = gts_doctor.21
+			years = 5
+		}
+	}
+
+	option = {
+		name = gts_doctor.20.a
+		custom_tooltip = gts_doctor.20.a.tooltip
+	}
+	option = {
+		name = gts_doctor.20.b
+		custom_tooltip = gts_doctor.20.b.tooltip
+		set_country_flag = doctor_can_build_fjb
+	}
+}
+
+# 太久沒造
+
+country_event = {
+	id = gts_doctor.21
+	title = gts_doctor.21.name
+	desc = gts_doctor.21.desc
+	event_window_type = leader_story
+	event_picture_background = GFX_leader_recruitment_bg_legendary_skrand
+	picture = GFX_load_160
+	show_sound = event_default
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = event_target:gts_doctor
+	}
+
+	trigger = {
+		any_owned_leader = { has_leader_flag = gts_doctor }
+		has_country_flag = gts_doctor_starving
+	}
+
+	immediate = {
+		country_event = {
+			id = gts_doctor.22
+			years = 10
+		}
+	}
+
+	option = {
+		name = gts_doctor.21.a
+		custom_tooltip = gts_doctor.20.a.tooltip
+	}
+	option = {
+		name = gts_doctor.21.b
+		trigger = { NOR = { any_owned_megastructure = { has_megastructure_flag = gts_fjb } } }
+		custom_tooltip = gts_doctor.20.b.tooltip
+		set_country_flag = doctor_can_build_fjb
+	}
+	option = {
+		name = gts_doctor.21.c
+		trigger =  { any_owned_megastructure = { has_megastructure_flag = gts_fjb } }
+		custom_tooltip = gts_doctor.21.c.tooltip
+		set_country_flag = doctor_can_build_fjb_mk2
+	}
+}
+
+# 結局
+
+country_event = {
+	id = gts_doctor.22
+	title = gts_doctor.22.name
+	desc = gts_doctor.22.desc
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	show_sound = event_red_alert
+	diplomatic = yes
+	is_triggered_only = yes
+
+	picture_event_data = {
+		room = gts_futa1_room
+	}
+
+	trigger = {
+		any_owned_leader = { has_leader_flag = gts_doctor }
+		has_country_flag = gts_doctor_starving
+	}
+
+	immediate = {
+		every_galaxy_planet = {
+			change_pc = pc_gts_semen
+		}
+		every_galaxy_fleet = { destroy_fleet = this }
+		country_event = {
+			id = gts_doctor.23
+		}
+		every_country = { destroy_country = yes }
+	}
+
+	option = {
+		name = gts_doctor.22.a
+	}
+}
+
+country_event = {
+	id = gts_doctor.23
+	title = gts_doctor.23.name
+	desc = gts_doctor.23.desc
+	picture = GFX_load_141
+	show_sound = event_coronation
+	is_triggered_only = yes
+	immediate = { }
+	option = {
+		name = gts_doctor.23.a
+	}
+}
+
+# 造完飛機杯事件
+
+country_event = {
+	id = gts_doctor.30
+	title = gts_doctor.30.name
+	desc = gts_doctor.30.desc
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	show_sound = event_gts_masturbate
+	diplomatic = yes
+	is_triggered_only = yes
+	location = fromfromfrom
+
+	picture_event_data = {
+		room = gts_futa3_room
+	}
+
+	trigger = {
+		any_owned_leader = { has_leader_flag = gts_doctor }
+		any_owned_megastructure = { has_megastructure_flag = gts_fjb }
+	}
+
+	immediate = {
+		remove_country_flag = gts_doctor_starving
+		country_event = {
+			id = gts_doctor.31
+			days = 3600
+		}
+	}
+
+	option = {
+		name = gts_doctor.30.a
+		custom_tooltip = gts_doctor.30.tooltip
+	}
+}
+
+# 十年後毀壞
+
+country_event = { #轨道强袭：图完陆军外加5人口直接获得星球控制
+	id = gts_doctor.31
+	title = gts_doctor.31.name
+	desc = gts_doctor.31.desc
+	picture = GFX_load_156
+	show_sound = event_super_explosion
+	is_triggered_only = yes
+	location = fromfromfromfrom
+
+	trigger = {
+		any_owned_leader = { has_leader_flag = gts_doctor }
+		any_owned_megastructure = { has_megastructure_flag = gts_fjb }
+	}
+
+	immediate = {
+		set_country_flag = gts_doctor_starving
+		country_event = {
+			id = gts_doctor.21
+			years = 5
+		}
+	}
+
+	option = {
+		name = gts_doctor.31.a
+	}
+	option = {
+		name = gts_doctor.21.b
+		custom_tooltip = gts_doctor.21.c.tooltip
+		set_country_flag = doctor_can_build_fjb_mk2
+	}
+}
+
+# 飛機杯事件結束
+
+country_event = {
+	id = gts_doctor.32
+	title = gts_doctor.32.name
+	desc = gts_doctor.32.desc
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	show_sound = event_gts_futa_masturbate
+	diplomatic = yes
+	is_triggered_only = yes
+
+	picture_event_data = {
+		room = gts_futa2_room
+	}
+
+	trigger = {
+		any_owned_leader = {
+			has_leader_flag = gts_doctor
+		}
+	}
+
+	immediate = {
+		remove_country_flag = gts_doctor_starving
+	}
+
+	option = {
+		name = gts_doctor.32.a
+	}
+}
+
+# 用于判定星球改造的触发
+planet_event = {
+	id = gts_doctor.1000
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		switch = {
+			trigger = is_planet_class
+			pc_tropical = {
+				planet_event = { id = gts_ap_planet.3002 }
+			}
+			pc_continental = {
+				planet_event = { id = gts_ap_planet.3002 }
+			}
+			pc_ocean = {
+				planet_event = { id = gts_ap_planet.3002 }
+			}
+			pc_tundra = {
+				planet_event = { id = gts_ap_planet.3003 }
+			}
+			pc_arctic = {
+				planet_event = { id = gts_ap_planet.3003 }
+			}
+			pc_alpine = {
+				planet_event = { id = gts_ap_planet.3003 }
+			}
+			pc_desert= {
+				planet_event = { id = gts_ap_planet.3004 }
+			}
+			pc_arid= {
+				planet_event = { id = gts_ap_planet.3004 }
+			}
+			pc_savannah= {
+				planet_event = { id = gts_ap_planet.3004 }
+			}
+		}
+	}
+}

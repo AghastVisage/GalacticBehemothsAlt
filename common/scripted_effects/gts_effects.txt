@@ -1,0 +1,1146 @@
+gts_ra_set_country_flag = {
+	#這玩意沒這麼複雜到要用這個
+	#optimize_memory
+	# 為小人保護者添加國家標記
+	if = {
+		limit = {
+			has_valid_civic = civic_gts_servitor
+		}
+		set_country_flag = gts_servitor_flag
+	}
+	# 為小人清除者新增國家標記
+	else_if = {
+		limit = {
+			has_valid_civic = civic_gts_terminator
+		}
+		set_country_flag = gts_terminator_flag
+	}
+	# 為小人觀測者加上國家標記
+	else_if = {
+		limit = {
+			has_valid_civic = civic_gts_assimilator
+		}
+		set_country_flag = gts_assimilator_flag
+	}
+	# 為巨娘\墮落添加國家標記
+	if = {
+		limit = {
+			OR = {
+				has_valid_civic = civic_gts_servitor
+				has_valid_civic = civic_gts_terminator
+				has_valid_civic = civic_gts_assimilator
+				owner_main_species = {
+					OR = {
+						gts_is_giantess = yes
+						has_trait = trait_gts_begin
+					}
+				}
+			}
+		}
+		set_country_flag = gts_flag
+	}
+	# 為小人添加國家標記
+	else = {
+		set_country_flag = tiny_flag
+	}
+}
+
+add_leader_trait_gts = {
+	# 將新生成的領袖設定為與來源種族相同的大小特質
+	if = {
+		limit = {
+			species = {
+				has_trait = trait_Ultra
+			}
+		}
+		gts_leader_size_change_to = {
+			SIZE_TRAIT = leader_trait_Ultra
+		}
+	}
+	else_if = {
+		limit = {
+			species = {
+				has_trait = trait_Titan
+			}
+		}
+		gts_leader_size_change_to = {
+			SIZE_TRAIT = leader_trait_Titan
+		}
+	}
+	else_if = {
+		limit = {
+			species = {
+				has_trait = trait_Giant
+			}
+		}
+		gts_leader_size_change_to = {
+			SIZE_TRAIT = leader_trait_Giant
+		}
+	}
+	else_if = {
+		limit = {
+			species = {
+				has_trait = trait_Tall
+			}
+		}
+		gts_leader_size_change_to = {
+			SIZE_TRAIT = leader_trait_Tall
+		}
+	}
+	else_if = {
+		limit = {
+			species = {
+				has_trait = trait_Normal
+			}
+		}
+		gts_leader_size_change_to = {
+			SIZE_TRAIT = leader_trait_Normal
+		}
+	}
+	else_if = {
+		limit = {
+			species = {
+				has_trait = trait_Small
+			}
+		}
+		gts_leader_size_change_to = {
+			SIZE_TRAIT = leader_trait_Small
+		}
+	}
+	else_if = {
+		limit = {
+			species = {
+				has_trait = trait_Tiny
+			}
+		}
+		gts_leader_size_change_to = {
+			SIZE_TRAIT = leader_trait_Tiny
+		}
+	}
+	else_if = {
+		limit = {
+			species = {
+				has_trait = trait_Micro
+			}
+		}
+		gts_leader_size_change_to = {
+			SIZE_TRAIT = leader_trait_Micro
+		}
+	}
+	else_if = {
+		limit = {
+			species = {
+				has_trait = trait_Nano
+			}
+		}
+		gts_leader_size_change_to = {
+			SIZE_TRAIT = leader_trait_Nano
+		}
+	}
+}
+
+gts_assimilation_pop_effect = {
+	# Research demands sacrifice (kills 1 pop in capital if possible)
+	if = {
+		limit = {
+			owner = {
+				has_valid_civic = civic_gts_assimilator
+			}
+		}
+		while = {
+			count = 1
+			random_owned_pop_group = {
+				limit = {
+					OR = {
+						has_trait = trait_Titan
+						has_trait = trait_Giant
+					}
+				}
+				modify_species = {
+					species = this
+					add_trait = trait_gts_inside_world
+					add_traits_at_start_of_list = yes
+				}
+			}
+		}
+	}
+}
+
+gts_assimilation_pop_effect_A = {
+	if = {
+		limit = {
+			owner = {
+				has_valid_civic = civic_gts_assimilator
+			}
+		}
+		while = {
+			count = 10
+			random_owned_pop_group = {
+				limit = {
+					has_trait = trait_Micro
+				}
+				kill_all_pop = yes
+			}
+		}
+	}
+}
+
+gts_destroy_planet = {
+	clear_deposits = yes
+	clear_planet_modifiers = yes
+	change_pc = pc_shattered
+}
+
+gts_save_priority_destroy_planet_target = {
+	if = {
+		limit = {
+			any_owned_planet = {
+				is_colony = yes
+				OR = {
+					has_carrier_flag = gts_priority_destroy_target
+					has_modifier = gts_priority_destroy_target_modifier
+				}
+			}
+		}
+		random_owned_planet = {
+			limit = {
+				is_colony = yes
+				OR = {
+					has_carrier_flag = gts_priority_destroy_target
+					has_modifier = gts_priority_destroy_target_modifier
+				}
+			}
+			set_carrier_flag = gts_priority_destroy_target
+			save_event_target_as = gts_priority_destroy_planet_target
+		}
+	}
+	else = {
+		random_owned_planet = {
+			limit = {
+				is_colony = yes
+			}
+			save_event_target_as = gts_priority_destroy_planet_target
+		}
+	}
+}
+
+gts_destroy_priority_or_random_planet = {
+	gts_save_priority_destroy_planet_target = yes
+	if = {
+		limit = {
+			exists = event_target:gts_priority_destroy_planet_target
+		}
+		event_target:gts_priority_destroy_planet_target = {
+			remove_carrier_flag = gts_priority_destroy_target
+			remove_modifier = gts_priority_destroy_target_modifier
+			gts_destroy_planet = yes
+		}
+	}
+}
+
+gts_change_nuked = {
+	clear_deposits = yes
+	clear_planet_modifiers = yes
+	change_pc = pc_nuked
+	reroll_deposits = yes
+}
+
+gts_destroy_colony = {
+	destroy_colony = yes
+	add_planet_devastation = 75
+	# add_deposit = d_bomb_crater
+}
+
+# 取消卡萨贸易协定(蠢驴就是这么写的)
+remove_kasa_trades = {
+	if = {
+		limit = {
+			has_modifier = gts_kasa_trade_micro_1
+		}
+		remove_modifier = gts_kasa_trade_micro_1
+	}
+	if = {
+		limit = {
+			has_modifier = gts_kasa_trade_micro_2
+		}
+		remove_modifier = gts_kasa_trade_micro_2
+	}
+	if = {
+		limit = {
+			has_modifier = gts_kasa_trade_micro_3
+		}
+		remove_modifier = gts_kasa_trade_micro_3
+	}
+	if = {
+		limit = {
+			has_modifier = gts_kasa_trade_micro_4
+		}
+		remove_modifier = gts_kasa_trade_micro_4
+	}
+	if = {
+		limit = {
+			has_modifier = gts_kasa_trade_micro_5
+		}
+		remove_modifier = gts_kasa_trade_micro_5
+	}
+	if = {
+		limit = {
+			has_modifier = gts_kasa_trade_micro_city_1
+		}
+		remove_modifier = gts_kasa_trade_micro_city_1
+	}
+	if = {
+		limit = {
+			has_modifier = gts_kasa_trade_micro_city_2
+		}
+		remove_modifier = gts_kasa_trade_micro_city_2
+	}
+	if = {
+		limit = {
+			has_modifier = gts_kasa_trade_micro_city_3
+		}
+		remove_modifier = gts_kasa_trade_micro_city_3
+	}
+	if = {
+		limit = {
+			has_modifier = gts_kasa_trade_micro_city_4
+		}
+		remove_modifier = gts_kasa_trade_micro_city_4
+	}
+	if = {
+		limit = {
+			has_modifier = gts_kasa_trade_micro_city_5
+		}
+		remove_modifier = gts_kasa_trade_micro_city_5
+	}
+	if = {
+		limit = {
+			has_modifier = gts_kasa_trade_micro_planet_1
+		}
+		remove_modifier = gts_kasa_trade_micro_planet_1
+	}
+	if = {
+		limit = {
+			has_modifier = gts_kasa_trade_micro_planet_2
+		}
+		remove_modifier = gts_kasa_trade_micro_planet_2
+	}
+	if = {
+		limit = {
+			has_modifier = gts_kasa_trade_micro_planet_3
+		}
+		remove_modifier = gts_kasa_trade_micro_planet_3
+	}
+	if = {
+		limit = {
+			has_modifier = gts_kasa_trade_micro_planet_4
+		}
+		remove_modifier = gts_kasa_trade_micro_planet_4
+	}
+	if = {
+		limit = {
+			has_modifier = gts_kasa_trade_micro_planet_5
+		}
+		remove_modifier = gts_kasa_trade_micro_planet_5
+	}
+	if = {
+		limit = {
+			has_modifier = gts_kasa_trade_giantess_fluid_1
+		}
+		remove_modifier = gts_kasa_trade_giantess_fluid_1
+	}
+	if = {
+		limit = {
+			has_modifier = gts_kasa_trade_giantess_fluid_2
+		}
+		remove_modifier = gts_kasa_trade_giantess_fluid_2
+	}
+	if = {
+		limit = {
+			has_modifier = gts_kasa_trade_giantess_fluid_3
+		}
+		remove_modifier = gts_kasa_trade_giantess_fluid_3
+	}
+	if = {
+		limit = {
+			has_modifier = gts_kasa_trade_giantess_fluid_4
+		}
+		remove_modifier = gts_kasa_trade_giantess_fluid_4
+	}
+	if = {
+		limit = {
+			has_modifier = gts_kasa_trade_giantess_fluid_5
+		}
+		remove_modifier = gts_kasa_trade_giantess_fluid_5
+	}
+	if = {
+		limit = {
+			has_modifier = gts_kasa_trade_giantess_underwear_1
+		}
+		remove_modifier = gts_kasa_trade_giantess_underwear_1
+	}
+	if = {
+		limit = {
+			has_modifier = gts_kasa_trade_giantess_underwear_2
+		}
+		remove_modifier = gts_kasa_trade_giantess_underwear_2
+	}
+	if = {
+		limit = {
+			has_modifier = gts_kasa_trade_giantess_underwear_3
+		}
+		remove_modifier = gts_kasa_trade_giantess_underwear_3
+	}
+	if = {
+		limit = {
+			has_modifier = gts_kasa_trade_giantess_underwear_4
+		}
+		remove_modifier = gts_kasa_trade_giantess_underwear_4
+	}
+	if = {
+		limit = {
+			has_modifier = gts_kasa_trade_giantess_underwear_5
+		}
+		remove_modifier = gts_kasa_trade_giantess_underwear_5
+	}
+	if = {
+		limit = {
+			has_modifier = gts_kasa_trade_giantess_human_1
+		}
+		remove_modifier = gts_kasa_trade_giantess_human_1
+	}
+	if = {
+		limit = {
+			has_modifier = gts_kasa_trade_giantess_human_2
+		}
+		remove_modifier = gts_kasa_trade_giantess_human_2
+	}
+	if = {
+		limit = {
+			has_modifier = gts_kasa_trade_giantess_human_3
+		}
+		remove_modifier = gts_kasa_trade_giantess_human_3
+	}
+	if = {
+		limit = {
+			has_modifier = gts_kasa_trade_giantess_human_4
+		}
+		remove_modifier = gts_kasa_trade_giantess_human_4
+	}
+	if = {
+		limit = {
+			has_modifier = gts_kasa_trade_giantess_human_5
+		}
+		remove_modifier = gts_kasa_trade_giantess_human_5
+	}
+}
+
+gts_create_ship = {
+	#创建舰娘
+	create_fleet = {
+		name = $name$
+		effect = {
+			set_owner = root
+			create_ship = {
+				name = $name$
+				design = $design$
+				effect = {
+					set_ship_flag = gts_body_ship
+				}
+			}
+			set_location = {
+				target = root.capital_scope
+				distance = 10
+				angle = 90
+				direction = in_system
+			}
+			# set_fleet_stance = passive
+			# set_aggro_range_measure_from = self
+			# set_aggro_range = 350
+		}
+	}
+}
+
+give_allow_play_effect = {
+	if = {
+		limit = {
+			NOT = {
+				has_technology = tech_exotic_gases
+			}
+		}
+		add_tech_progress = {
+			tech = tech_exotic_gases
+			progress = 1
+		}
+	}
+	if = {
+		limit = {
+			NOT = {
+				has_technology = tech_rare_crystals
+			}
+		}
+		add_tech_progress = {
+			tech = tech_rare_crystals
+			progress = 1
+		}
+	}
+	if = {
+		limit = {
+			NOT = {
+				has_technology = tech_volatile_motes
+			}
+		}
+		add_tech_progress = {
+			tech = tech_volatile_motes
+			progress = 1
+		}
+	}
+	if = {
+		limit = {
+			NOT = {
+				has_technology = tech_mine_rare_crystals
+			}
+		}
+		add_tech_progress = {
+			tech = tech_mine_rare_crystals
+			progress = 1
+		}
+	}
+	if = {
+		limit = {
+			NOT = {
+				has_technology = tech_mine_exotic_gases
+			}
+		}
+		add_tech_progress = {
+			tech = tech_mine_exotic_gases
+			progress = 1
+		}
+	}
+	if = {
+		limit = {
+			NOT = {
+				has_technology = tech_mine_volatile_motes
+			}
+		}
+		add_tech_progress = {
+			tech = tech_mine_volatile_motes
+			progress = 1
+		}
+	}
+}
+
+# 主人的享乐体
+origin_annihilator_gts_leftfoot_effect = {
+	#左足
+	change_pc = pc_gaia
+}
+
+origin_annihilator_gts_rightfoot_effect = {
+	#右足
+	change_pc = pc_gaia
+}
+
+origin_annihilator_gts_tummy_effect = {
+	#胃
+	change_pc = pc_gaia
+}
+
+origin_annihilator_gts_anal_effect = {
+	#菊
+	change_pc = pc_gaia
+}
+
+origin_annihilator_gts_pussy_effect = {
+	#阴
+	change_pc = pc_gaia
+}
+
+origin_annihilator_gts_leftarm_effect = {
+	#左足
+	change_pc = pc_gaia
+}
+
+origin_annihilator_gts_rightarm_effect = {
+	#左足
+	change_pc = pc_gaia
+}
+
+origin_annihilator_gts_head_effect = {
+	#头
+	change_pc = pc_gaia
+}
+
+create_master_ship = {
+	create_fleet = {
+		name = "MASTER_body"
+		settings = {
+			can_upgrade = yes
+			can_change_composition = no
+			can_change_leader = no
+			uses_naval_capacity = no
+			spawn_debris = no
+		}
+		effect = {
+			set_owner = root
+			save_global_event_target_as = master_warship
+			create_ship = {
+				name = "master"
+				design = "MASTER_body"
+				prefix = no
+				upgradable = yes
+			}
+		}
+	}
+}
+
+create_elf_empire_starting_navy = {
+	create_elf_empire_fleet = yes
+	create_elf_empire_fleet = yes
+	random = {
+		chance = 33
+		create_elf_empire_fleet = yes
+	}
+	create_fleet = {
+		effect = {
+			set_owner = prev.owner
+			create_fallen_empire_construction_ship = yes
+			set_location = {
+				target = prev
+				distance = 60
+				angle = random
+			}
+		}
+	}
+	create_fleet = {
+		effect = {
+			set_owner = prev.owner
+			create_fallen_empire_construction_ship = yes
+			set_location = {
+				target = prev
+				distance = 80
+				angle = random
+			}
+		}
+	}
+	create_fleet = {
+		effect = {
+			set_owner = prev.owner
+			create_fallen_empire_construction_ship = yes
+			set_location = {
+				target = prev
+				distance = 100
+				angle = random
+			}
+		}
+	}
+}
+
+create_elf_empire_fleet = {
+	owner = {
+		create_leader = {
+			class = commander
+			species = owner_main_species
+			name = random
+			skill = 10
+			leader_age_min = 25
+			leader_age_max = 45
+		}
+	}
+	create_fleet = {
+		effect = {
+			set_owner = prev.owner
+			while = {
+				count = 8
+				create_elf_empire_large_ship = yes
+			}
+			while = {
+				count = 18
+				create_elf_empire_small_ship = yes
+			}
+			random_list = {
+				25 = {
+					set_location = {
+						target = prev
+						distance = 30
+						angle = random
+					}
+				}
+				25 = {
+					set_location = {
+						target = prev
+						distance = 45
+						angle = random
+					}
+				}
+				25 = {
+					set_location = {
+						target = prev
+						distance = 60
+						angle = random
+					}
+				}
+				25 = {
+					set_location = {
+						target = prev
+						distance = 75
+						angle = random
+					}
+				}
+			}
+		}
+	}
+	last_created_fleet = {
+		assign_leader = last_created_leader
+	}
+}
+
+create_elf_empire_large_ship = {
+	create_ship = {
+		name = random
+		design = "NAME_Supremacy"
+	}
+}
+
+create_elf_empire_small_ship = {
+	create_ship = {
+		name = random
+		design = "NAME_Glory"
+	}
+}
+
+can_build_gts_115tiny_crisis_star_eater = {
+	set_country_flag = can_build_crisis_star_eater
+	create_ship_design = {
+		design = "NAME_gts_115tiny_Crisis_Star_Eater"
+	}
+	add_ship_design = last_created_design
+}
+
+gts_set_empire_type = {
+	# 根据主体物种体型设置帝国类型
+	if = {
+		limit = {
+			owner_main_species = {
+				gts_is_equal_to_ultra = yes
+			}
+		}
+		set_policy = {
+			policy = gts_empire_type
+			option = gts_empire_type_ultra
+			cooldown = no
+		}
+	}
+	if = {
+		limit = {
+			owner_main_species = {
+				gts_is_equal_to_titan = yes
+			}
+		}
+		set_policy = {
+			policy = gts_empire_type
+			option = gts_empire_type_titan
+			cooldown = no
+		}
+	}
+	if = {
+		limit = {
+			owner_main_species = {
+				gts_is_equal_to_giant = yes
+			}
+		}
+		set_policy = {
+			policy = gts_empire_type
+			option = gts_empire_type_giant
+			cooldown = no
+		}
+	}
+	if = {
+		limit = {
+			owner_main_species = {
+				gts_is_equal_to_tall = yes
+			}
+		}
+		set_policy = {
+			policy = gts_empire_type
+			option = gts_empire_type_tall
+			cooldown = no
+		}
+	}
+	if = {
+		limit = {
+			owner_main_species = {
+				gts_is_equal_to_normal = yes
+			}
+		}
+		set_policy = {
+			policy = gts_empire_type
+			option = gts_empire_type_normal
+			cooldown = no
+		}
+	}
+	if = {
+		limit = {
+			owner_main_species = {
+				gts_is_equal_to_small = yes
+			}
+		}
+		set_policy = {
+			policy = gts_empire_type
+			option = gts_empire_type_small
+			cooldown = no
+		}
+	}
+	if = {
+		limit = {
+			owner_main_species = {
+				gts_is_equal_to_tiny = yes
+			}
+		}
+		set_policy = {
+			policy = gts_empire_type
+			option = gts_empire_type_tiny
+			cooldown = no
+		}
+	}
+	if = {
+		limit = {
+			owner_main_species = {
+				gts_is_equal_to_micro = yes
+			}
+		}
+		set_policy = {
+			policy = gts_empire_type
+			option = gts_empire_type_micro
+			cooldown = no
+		}
+	}
+	if = {
+		limit = {
+			owner_main_species = {
+				gts_is_equal_to_nano = yes
+			}
+		}
+		set_policy = {
+			policy = gts_empire_type
+			option = gts_empire_type_nano
+			cooldown = no
+		}
+	}
+}
+
+seele_random_event = {
+	random_list = {
+		1 = {
+			country_event = {
+				id = gts_seele.74
+			}
+		}
+		1 = {
+			country_event = {
+				id = gts_seele.75
+			}
+		}
+		1 = {
+			country_event = {
+				id = gts_seele.76
+			}
+		}
+		1= {
+			country_event = {
+				id = gts_seele.77
+			}
+		}
+		1= {
+			country_event = {
+				id = gts_seele.92
+			}
+		}
+		1= {
+			random_list = {
+				1 = {
+					if = {
+						limit = {
+							has_country_flag = seele_fenkai
+						}
+					}
+					country_event = {
+						id =gts_seele.95
+					}
+				}
+				# 0 = {
+				# 	country_event = {
+				# 		id = gts_seele.93#没有
+				# 	}
+				# }
+				1 = {
+					if = {
+						limit = {
+							has_country_flag = hire_bronya
+						}
+					}
+					country_event = {
+						id =gts_seele.96
+					}
+				}
+			}
+		}
+
+	}
+}
+# 仅用于千海事件链中
+# this = country
+remove_gts_qhai_conflag = {
+	remove_country_flag = gts_leader_qhai_con
+	remove_country_flag = gts_leader_qhai_con2
+	remove_country_flag = gts_leader_qhai_con3
+	remove_country_flag = gts_leader_qhai_con4
+	remove_country_flag = gts_leader_qhai_con5
+}
+
+gts_qhai_find_daughter = {
+	random_owned_leader = {
+		limit = {
+			has_trait = leader_trait_Ultra
+			leader_class = scientist
+		}
+		set_leader_flag = gts_qhai_daughter_flag
+		save_global_event_target_as = gts_qhai_daughter
+		remove_all_negative_traits = yes
+		add_trait = {
+			trait = gts_trait_qhai1_give
+		}
+		add_trait = {
+			trait = gts_trait_qhai2_give
+		}
+	}
+}
+
+gts_planet_job_add = {
+}
+
+create_firefly_warship = {
+	create_ship = {
+		name = "NAME_firefly_Warship"
+		design = "NAME_firefly_Warship"
+		prefix = no
+		upgradable = no
+	}
+}
+
+create_firefly_army = {
+	create_army_transport = {
+		ship_name = "NAME_firefly_army"
+		army_name = "gts_firefly_army"
+		army_type = "gts_firefly_army"
+	}
+}
+
+gts_yarong_rebirth_effect = {
+	while = {
+		count = 10
+		random_owned_pop_group = {
+			kill_all_pop = yes
+		}
+	}
+}
+
+# 计算指定月数的能量币
+gts_qhai_energy_count = {
+	add_monthly_resource_mult = {
+		resource = energy
+		value = $COUNT|1$
+	}
+}
+
+gts_qhai_unity_count = {
+	add_monthly_resource_mult = {
+		resource = unity
+		value = $COUNT|1$
+	}
+}
+
+skadi_hire_leader = {
+	event_target:ethic_leader = {
+		set_owner = root
+		set_leader_flag = gts_skadi
+		#set_leader_flag = legendary_leader #renowed为名声在外
+		#set_leader_flag = hired_admiral_merc_leader领袖不计入上限
+		set_leader_flag = should_not_have_upkeep		#没有维护费
+		add_skill_without_trait_selection = 10
+		save_global_event_target_as = gts_skadi		#全球事件都能用
+		gts_ui_leader_init = yes
+	}
+	create_message = {
+		#弹信息
+		type = MESSAGE_RECRUITED_LEADER
+		localization = MESSAGE_RECRUITED_LEADER_DESC
+		days = @toast_message_days
+		target = event_target:gts_skadi
+		variable = {
+			type = name
+			localization = LEADER
+			scope = event_target:gts_skadi
+		}
+		variable = {
+			key = "border"
+			value = "GFX_border_legendary"
+		}
+	}
+}
+
+#拒绝伊莎玛拉随便弹个事件
+isharmla_dislike_event = {
+	event_target:skadi_country = {
+		random_list = {
+			20 = {
+				country_event = {
+					id = gts_skadi_shroud.0002
+				}
+			}
+			20 = {
+				country_event = {
+					id = gts_skadi_shroud.0003
+				}
+			}
+			10 = {
+				country_event = {
+					id = gts_skadi_shroud.0004
+				}
+			}
+			20 = {
+				country_event = {
+					id = gts_skadi_shroud.0005
+				}
+			}
+			20 = {
+				country_event = {
+					id = gts_skadi_shroud.0006
+				}
+			}
+		}
+	}
+}
+
+#斯卡蒂给灵能的时候弹消息
+create_skadi_give_massage = {
+	create_message = {
+		type = MESSAGE_skadi_give_psionic
+		localization = $localization$
+		days = 30
+		target = this
+		variable = {
+			type = name
+			localization = LEADER
+			scope = this
+		}
+		variable = {
+			type = name
+			localization = LEADER_TRAITS
+			scope = this
+		}
+	}
+}
+
+#卡池抽干了随机一个事件
+skadi_traits_random_event = {
+	random_list = {
+		1 = {
+			country_event = {
+				id = gts_skadi_traits.00
+			}
+		}
+		1 = {
+			country_event = {
+				id = gts_skadi_traits.99
+			}
+		}
+	}
+}
+
+# 犽戎根据条件上特质
+gts_yarong_add_trait = {
+	event_target:gts_yarong = {
+		if = {
+			limit = {
+				root = {
+					has_country_flag = gts_god_keeper.10.admit
+				}
+			}
+			add_trait = {
+				trait = yarong_leader_trait2
+			}
+		}
+		if = {
+			limit = {
+				root = {
+					check_variable = { which = gts_yarong_twelve value >= 1 }
+				}
+			}
+			add_trait = {
+				trait = yarong_leader_trait6
+			}
+		}
+	}
+}
+
+# 犽戎根据修改舰船设计
+gts_yarong_change_design = {
+	if = {
+		limit = {
+			has_country_flag = gts_yarong_adult_ceremony
+		}
+		event_target:gts_yarong_fleet = {
+			set_ship_design = {
+				design = "NAME_gts_yarong_ship_3"
+			}
+		}
+	}
+	if = {
+		limit = {
+			check_variable = { which = gts_yarong_twelve value = 12 }
+		}
+		event_target:gts_yarong_fleet = {
+			set_ship_design = {
+				design = "NAME_gts_yarong_ship"
+			}
+		}
+	}
+	if = {
+		limit = {
+			has_country_flag = gts_special_project_yarong_1_complete
+		}
+		event_target:gts_yarong_fleet = {
+			set_ship_design = {
+				design = "NAME_gts_yarong_ship_1"
+			}
+		}
+	}
+}
+
+remove_gts_religious_planet_modifier = {
+	hidden_effect = {
+		remove_planet_flag = gts_religious_icons_set
+		remove_modifier = religious_icons_black1
+		remove_modifier = religious_icons_black2
+		remove_modifier = religious_icons_black3
+		remove_modifier = religious_icons_black4
+		remove_modifier = religious_icons_black5
+		remove_modifier = religious_icons_white1
+		remove_modifier = religious_icons_white2
+		remove_modifier = religious_icons_white3
+		remove_modifier = religious_icons_white4
+		remove_modifier = religious_icons_white5
+		remove_modifier = religious_icons_stocking1
+		remove_modifier = religious_icons_stocking2
+		remove_modifier = religious_icons_stocking3
+		remove_modifier = religious_icons_stocking4
+		remove_modifier = religious_icons_stocking5
+		remove_modifier = religious_icons_bare1
+		remove_modifier = religious_icons_bare2
+		remove_modifier = religious_icons_bare3
+		remove_modifier = religious_icons_bare4
+		remove_modifier = religious_icons_bare5
+	}
+}
+

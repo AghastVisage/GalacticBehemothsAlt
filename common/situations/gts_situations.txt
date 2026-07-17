@@ -1,0 +1,1762 @@
+### 艾普露篡权局势
+gtsra_situation_gts_aplog = {
+	complete_icon_frame = GFX_situation_outcome_frame_green
+	complete_icon = GFX_situation_outcome_positive
+	fail_icon_frame = GFX_situation_outcome_frame_red
+	fail_icon = GFX_situation_outcome_negative
+	picture = GFX_gts_event_33
+	stages = {
+		stage_1 = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_red
+			custom_tooltip = stage_gts_aplog_1_tooltip
+			on_first_enter = {
+				situation_event = {
+					id = gts_aplog.101
+				}
+			}
+			end = 20
+		}
+		stage_2 = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_blue
+			custom_tooltip = stage_gts_aplog_2_tooltip
+			end = 55
+		}
+		stage_3 = {
+			icon = GFX_situation_stage_3
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = stage_gts_aplog_3_tooltip
+			on_first_enter = {
+				situation_event = {
+					id = gts_aplog.100
+				}
+			}
+			end = 75
+		}
+	}
+	initial_progress = 37
+	progress_direction = bidirectional
+	complete_category = positive
+	fail_category = negative
+	on_progress_complete = {
+		custom_tooltip = gts_aplog_completed
+		hidden_effect = {
+			situation_event = {
+				id = gts_aplog.102
+			}
+		}
+	}
+	on_fail = {
+		custom_tooltip = gts_aplog_fail
+		hidden_effect = {
+			situation_event = {
+				id = gts_aplog.103
+			}
+		}
+	}
+	approach = {
+		#无动于衷
+		name = gts_aplog_negative
+		on_select = {
+			custom_tooltip = gts_aplog_negative_effect
+		}
+		icon = GFX_situation_approach_balance_sheet
+		icon_background = GFX_situation_approach_bg_red
+		ai_weight = {
+			base = 0
+		}
+	}
+	approach = {
+		#尽全力压制
+		name = gts_aplog_positive
+		default = yes
+		on_select = {
+			custom_tooltip = gts_aplog_positive_effect
+		}
+		icon = GFX_situation_approach_fist
+		icon_background = GFX_situation_approach_bg_green
+		ai_weight = {
+			base = 0
+		}
+		resources = {
+			category = situations
+			upkeep = {
+				energy = 100
+			}
+		}
+	}
+	monthly_progress = {
+		base = 0
+		modifier = {
+			add = 5
+			desc = string_current_approach
+			current_situation_approach = gts_aplog_positive
+		}
+		modifier = {
+			add = -5
+			desc = string_current_approach
+			current_situation_approach = gts_aplog_negative
+		}
+	}
+	on_monthly = {
+		random_events = {
+		}
+	}
+}
+### 咕丫养成局势
+gts_situation_guya = {
+	complete_icon_frame = GFX_situation_outcome_frame_green
+	complete_icon = GFX_situation_outcome_positive
+	fail_icon_frame = GFX_situation_outcome_frame_red
+	fail_icon = GFX_situation_outcome_negative
+	picture = GFX_gts_loli_bug_3
+	stages = {
+		stage_1 = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_red
+			custom_tooltip = stage_gts_guya_1_tooltip
+			end = 25
+		}
+		stage_2 = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_blue
+			custom_tooltip = stage_gts_guya_2_tooltip
+			on_first_enter = {
+				situation_event = {
+					id = gts_guya.20
+				}
+			}
+			end = 50
+		}
+		stage_3 = {
+			icon = GFX_situation_stage_3
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = stage_gts_guya_3_tooltip
+			on_first_enter = {
+				situation_event = {
+					id = gts_guya.21
+				}
+			}
+			end = 75
+		}
+		stage_4 = {
+			icon = GFX_situation_stage_4
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = stage_gts_guya_4_tooltip
+			on_first_enter = {
+				situation_event = {
+					id = gts_guya.22
+				}
+			}
+			end = 100
+		}
+	}
+	initial_progress = 0
+	progress_direction = monodirectional
+	on_progress_complete = {
+		custom_tooltip = gts_guya_completed
+		hidden_effect = {
+			situation_event = {
+				id = gts_guya.23
+			}
+		}
+	}
+	# on_fail = {
+	# 	custom_tooltip = gts_guya_fail
+	# 	hidden_effect = {
+			
+	# 	}
+	# }
+	approach = {
+		name = gts_guya_plusplus
+		on_select = {
+			custom_tooltip = gts_guya_plusplus_effect
+		}
+		icon = GFX_situation_approach_balance_sheet
+		icon_background = GFX_situation_approach_bg_green
+		ai_weight = {
+			base = 0
+		}
+		resources = {
+			category = situations
+			upkeep = {
+				food = 300
+				society_research = 150
+			}
+		}
+	}
+	approach = {
+		name = gts_guya_plus
+		on_select = {
+			custom_tooltip = gts_guya_plus_effect
+		}
+		icon = GFX_situation_approach_balance_sheet
+		icon_background = GFX_situation_approach_bg_green
+		ai_weight = {
+			base = 0
+		}
+		resources = {
+			category = situations
+			upkeep = {
+				food = 150
+			}
+		}
+	}
+	approach = {
+		name = gts_guya_stop
+		default = yes
+		on_select = {
+			custom_tooltip = gts_guya_stop_effect
+		}
+		icon = GFX_situation_approach_fist
+		icon_background = GFX_situation_approach_bg_red
+		ai_weight = {
+			base = 0
+		}
+	}
+	monthly_progress = {
+		base = 0
+		modifier = {
+			add = 6
+			desc = string_current_approach
+			current_situation_approach = gts_guya_plusplus
+		}
+		modifier = {
+			add = 3
+			desc = string_current_approach
+			current_situation_approach = gts_guya_plus
+		}
+		modifier = {
+			add = 0
+			desc = string_current_approach
+			current_situation_approach = gts_guya_stop
+		}
+	}
+	on_monthly = {
+		random_events = {
+		}
+	}
+}
+situation_master_anger = {
+	picture = GFX_evt_deficit
+	category = negative
+	fail_icon = GFX_situation_outcome_meh
+	fail_icon_frame = GFX_situation_outcome_frame_green
+	complete_icon = GFX_situation_outcome_revolt
+	complete_icon_frame = GFX_situation_outcome_frame_red
+	on_start = {
+		#局势开始时
+		set_situation_flag = deficit_situation		#?
+	}
+	on_abort = {
+		#局势废止时
+		owner = {
+			add_resource = {
+				volatile_motes = @bailout_strategic_base_amount
+				mult = value:bailout_scaling_factor
+			}
+		}
+	}
+	initial_progress = 50	#开始时进度
+	stages = {
+		master_deficit_first = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_red
+			end = 10
+			modifier = {
+			}
+			on_first_enter = {
+				situation_event = {
+					id = gts_evt_deficit.1
+				}				#局势极好
+			}
+		}
+		master_deficit_second = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_red
+			end = 20
+			modifier = {
+			}
+			on_first_enter = {
+				situation_event = {
+					id = gts_evt_deficit.2
+				}				#局势良好
+			}
+		}
+		master_deficit_third = {
+			icon = GFX_situation_stage_3			#中立
+			icon_background = GFX_situation_stage_frame_red
+			end = 40
+			modifier = {
+			}
+			on_first_enter = {
+				situation_event = {
+					id = gts_evt_deficit.3
+				}				#局势不好
+			}
+		}
+		master_deficit_fourth = {
+			icon = GFX_situation_stage_4
+			icon_background = GFX_situation_stage_frame_red
+			end = 50
+			modifier = {
+			}
+		}
+		master_deficit_fifth = {
+			icon = GFX_situation_stage_5
+			icon_background = GFX_situation_stage_frame_red
+			end = 60
+			modifier = {
+			}
+			on_first_enter = {
+				situation_event = {
+					id = gts_evt_deficit.4
+				}				#局势极差
+			}
+		}
+		master_deficit_sixth = {
+			icon = GFX_situation_stage_6
+			icon_background = GFX_situation_stage_frame_red
+			end = 80
+			modifier = {
+			}
+			on_first_enter = {
+				situation_event = {
+					id = gts_evt_deficit.4
+				}				#局势极差
+			}
+		}
+		master_deficit_seventh = {
+			icon = GFX_situation_stage_7
+			icon_background = GFX_situation_stage_frame_red
+			end = 90
+			modifier = {
+			}
+			on_first_enter = {
+				situation_event = {
+					id = gts_evt_deficit.4
+				}				#局势极差
+			}
+		}
+	}
+	on_progress_complete = {
+		#进度完成
+		situation_event = {
+			id = gts_evt_deficit.6
+		}		#净化运动
+	}
+	on_fail = {
+		#进度失败
+		situation_event = {
+			id = gts_evt_deficit.5
+		}		#和平谈判
+	}
+	monthly_progress = {
+		#进度条
+		base = 1
+		modifier = {
+			add = 2
+			desc = situation_gts_bad_tt			#应当与决策办法一致
+			current_situation_approach = deficit_approach_gts_extend_good			#解决手段
+		}
+		modifier = {
+			add = -4
+			desc = situation_gts_good_tt			#应当与决策办法一致
+			current_situation_approach = deficit_approach_gts_extend_bad			#解决手段
+		}
+		modifier = {
+			add = -1
+			desc = situation_gts_extend_hold
+			current_situation_approach = deficit_approach_gts_extend_hold
+		}
+		modifier = {
+			add = 100
+			desc = master_is_not_worried
+			owner = {
+				has_country_flag = master_is_full
+			}
+		}
+		modifier = {
+			add = -100
+			desc = master_lose_temper
+			owner = {
+				has_country_flag = master_has_no_patience
+			}
+		}
+	}
+	approach = {
+		#处理办法温和
+		name = deficit_approach_gts_extend_good
+		icon = GFX_situation_approach_shrug
+		icon_background = GFX_situation_approach_bg_green
+		resources = {
+			category = situations
+			upkeep = {
+				alloys = 2000
+				consumer_goods = 500
+				food = 500
+			}
+		}
+		modifier = {
+			pop_happiness = 0.2
+			planet_jobs_upkeep_mult = -0.75
+		}
+		ai_weight = {
+			base = 3
+		}
+	}
+	approach = {
+		#处理办法激进
+		name = deficit_approach_gts_extend_bad
+		icon = GFX_situation_approach_fleet
+		icon_background = GFX_situation_approach_bg_red
+		resources = {
+			category = situations
+			upkeep = {
+				energy = 3000
+				minerals = 1000
+			}
+		}
+		modifier = {
+			edicts_upkeep_mult = -0.2			#法令维护费-20% 
+			country_edict_fund_add = 100			#法令经费+100
+		}
+		ai_weight = {
+			base = 3
+		}
+	}
+	approach = {
+		#处理办法激进
+		name = deficit_approach_gts_extend_hold
+		icon = GFX_situation_approach_this_is_fine
+		icon_background = GFX_situation_approach_bg_yellow
+		resources = {
+			category = situations
+			upkeep = {
+				energy = 1000
+				food = 1000
+				consumer_goods = 1000
+			}
+		}
+		modifier = {
+			edicts_upkeep_mult = -0.2			#法令维护费-20% 
+			country_edict_fund_add = 100			#法令经费+100
+		}
+		ai_weight = {
+			base = 3
+		}
+	}
+}
+
+situation_investigation = {
+	picture = GFX_evt_deficit
+	complete_icon = GFX_situation_outcome_meh
+	complete_icon_frame = GFX_situation_outcome_frame_green
+	initial_progress = 0	#开始时进度
+	on_start = {
+		save_event_target_as = situation_investigation
+	}
+	stages = {
+		investigation_1 = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_green
+			end = 10
+			modifier = {
+			}
+			on_first_enter = {
+				situation_event = {
+					id = gts_evt_xiankeyan.20
+				}
+			}
+		}
+		investigation_2 = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_green
+			end = 20
+			modifier = {
+			}
+			on_first_enter = {
+				situation_event = {
+					id = gts_evt_xiankeyan.20
+				}
+			}
+		}
+		investigation_3 = {
+			icon = GFX_situation_stage_3			#中立
+			icon_background = GFX_situation_stage_frame_green
+			end = 40
+			modifier = {
+			}
+			on_first_enter = {
+				situation_event = {
+					id = gts_evt_xiankeyan.20
+				}
+			}
+		}
+		investigation_4 = {
+			icon = GFX_situation_stage_4
+			icon_background = GFX_situation_stage_frame_green
+			end = 50
+			modifier = {
+			}
+			on_first_enter = {
+				situation_event = {
+					id = gts_evt_xiankeyan.20
+				}
+			}
+		}
+		investigation_5 = {
+			icon = GFX_situation_stage_5
+			icon_background = GFX_situation_stage_frame_green
+			end = 60
+			modifier = {
+			}
+			on_first_enter = {
+				situation_event = {
+					id = gts_evt_xiankeyan.20
+				}
+			}
+		}
+		investigation_6 = {
+			icon = GFX_situation_stage_6
+			icon_background = GFX_situation_stage_frame_green
+			end = 80
+			modifier = {
+			}
+			on_first_enter = {
+				situation_event = {
+					id = gts_evt_xiankeyan.20
+				}
+			}
+		}
+		investigation_7 = {
+			icon = GFX_situation_stage_7
+			icon_background = GFX_situation_stage_frame_green
+			end = 90
+			modifier = {
+			}
+			on_first_enter = {
+				situation_event = {
+					id = gts_evt_xiankeyan.20
+				}
+			}
+		}
+		investigation_8 = {
+			icon = GFX_situation_stage_8
+			icon_background = GFX_situation_stage_frame_green
+			end = 100
+			modifier = {
+			}
+			on_first_enter = {
+				situation_event = {
+					id = gts_evt_xiankeyan.20
+				}
+			}
+		}
+	}
+	monthly_progress = {
+		#进度条
+		base = 0.25
+		modifier = {
+			add = -0.5
+			desc = situation_investigation_stop
+			current_situation_approach = deficit_approach_stop			#解决手段
+		}
+		modifier = {
+			add = 0
+			desc = situation_investigation_keep
+			current_situation_approach = deficit_approach_keep			#解决手段
+		}
+		modifier = {
+			add = 0.25
+			desc = situation_investigation_press
+			current_situation_approach = deficit_approach_press
+		}
+	}
+	on_progress_complete = {
+		destroy_situation = this
+	}
+	approach = {
+		#暂停研究
+		name = deficit_approach_stop
+		icon = GFX_situation_approach_pop
+		icon_background = GFX_situation_approach_bg_green
+		resources = {
+			category = situations
+			upkeep = {
+				energy = 0
+			}
+		}
+		on_select = {
+			owner = {
+				country_event = {
+					id = gts_evt_xiankeyan.5
+				}
+			}
+		}
+		modifier = {
+			all_technology_research_speed = 0.2
+			country_physics_research_produces_mult = 0.1
+			country_engineering_research_produces_mult = 0.1
+			country_society_research_produces_mult = 0.1
+		}
+	}
+	approach = {
+		#稳步推进
+		name = deficit_approach_keep
+		icon = GFX_situation_approach_fleet
+		icon_background = GFX_situation_approach_bg_green
+		resources = {
+			category = situations
+			upkeep = {
+				energy = 30
+				consumer_goods = 30
+			}
+		}
+		on_select = {
+			owner = {
+				country_event = {
+					id = gts_evt_xiankeyan.6
+				}
+			}
+		}
+		modifier = {
+			country_physics_research_produces_mult = 0.05
+			country_engineering_research_produces_mult = 0.05
+			country_society_research_produces_mult = 0.05
+		}
+		ai_weight = {
+			base = 3
+		}
+	}
+	approach = {
+		#快速推进
+		name = deficit_approach_press
+		icon = GFX_situation_approach_this_is_fine
+		icon_background = GFX_situation_approach_bg_green
+		resources = {
+			category = situations
+			upkeep = {
+				energy = 50
+				consumer_goods = 50
+			}
+		}
+		modifier = {
+			all_technology_research_speed = -0.1
+		}
+		on_select = {
+			owner = {
+				country_event = {
+					id = gts_evt_xiankeyan.7
+				}
+			}
+		}
+		ai_weight = {
+			base = 3
+		}
+	}
+	abort_trigger = {
+		owner = {
+			has_country_flag = gts_investigation_completed
+		}
+	}
+}
+### 花田身体探索局势
+gts_situation_huatian = {
+	complete_icon_frame = GFX_situation_outcome_frame_green
+	complete_icon = GFX_situation_outcome_positive
+	# fail_icon_frame = GFX_situation_outcome_frame_red
+	# fail_icon = GFX_situation_outcome_negative
+	picture = GFX_gts_huatian_4
+	stages = {
+		stage_1 = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = stage_gts_huatian_1_tooltip
+			end = 25
+		}
+		stage_2 = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = stage_gts_huatian_2_tooltip
+			on_first_enter = {
+				situation_event = {
+					id = gts_huatian.1040
+				}
+			}
+			end = 50
+		}
+		stage_3 = {
+			icon = GFX_situation_stage_3
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = stage_gts_huatian_3_tooltip
+			on_first_enter = {
+				situation_event = {
+					id = gts_huatian.1041
+				}
+			}
+			end = 75
+		}
+		stage_4 = {
+			icon = GFX_situation_stage_4
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = stage_gts_huatian_4_tooltip
+			on_first_enter = {
+				situation_event = {
+					id = gts_huatian.1042
+				}
+			}
+			end = 100
+		}
+	}
+	initial_progress = 0
+	progress_direction = monodirectional
+	on_progress_complete = {
+		custom_tooltip = gts_huatian_completed
+		hidden_effect = {
+			situation_event = {
+				id = gts_huatian.1043
+			}
+		}
+	}
+	approach = {
+		name = gts_huatian_push
+		on_select = {
+			custom_tooltip = gts_huatian_push_effect
+		}
+		icon = GFX_situation_approach_balance_sheet
+		icon_background = GFX_situation_approach_bg_green
+		ai_weight = {
+			base = 0
+		}
+		resources = {
+			category = situations
+			upkeep = {
+				food = 25
+				energy = 25
+			}
+		}
+	}
+	approach = {
+		name = gts_huatian_normal
+		on_select = {
+			custom_tooltip = gts_huatian_normal_effect
+		}
+		icon = GFX_situation_approach_balance_sheet
+		icon_background = GFX_situation_approach_bg_green
+		ai_weight = {
+			base = 0
+		}
+		resources = {
+			category = situations
+			upkeep = {
+				food = 5
+				energy = 5
+			}
+		}
+	}
+	approach = {
+		name = gts_huatian_stop
+		default = yes
+		on_select = {
+			custom_tooltip = gts_huatian_stop_effect
+		}
+		icon = GFX_situation_approach_fist
+		icon_background = GFX_situation_approach_bg_red
+		ai_weight = {
+			base = 0
+		}
+	}
+	monthly_progress = {
+		base = 0
+		modifier = {
+			add = 15
+			desc = string_current_approach
+			current_situation_approach = gts_huatian_push
+		}
+		modifier = {
+			add = 5
+			desc = string_current_approach
+			current_situation_approach = gts_huatian_normal
+		}
+		modifier = {
+			add = 0
+			desc = string_current_approach
+			current_situation_approach = gts_huatian_stop
+		}
+	}
+	on_monthly = {
+		random_events = {
+		}
+	}
+}
+### 成神之路-残忍系1
+gts_situation_ultra_road_cruel_1 = {
+	complete_icon_frame = GFX_situation_outcome_frame_green
+	complete_icon = GFX_situation_outcome_positive
+	fail_icon_frame = GFX_situation_outcome_frame_red
+	fail_icon = GFX_situation_outcome_negative
+	picture = GFX_gts_event_33
+	stages = {
+		stage_1 = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_red
+			custom_tooltip = stage_ultra_road_cruel_1_1_tooltip
+			end = 50
+		}
+		stage_2 = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_blue
+			custom_tooltip = stage_ultra_road_cruel_1_2_tooltip
+			end = 60
+		}
+		stage_3 = {
+			icon = GFX_situation_stage_3
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = stage_ultra_road_cruel_1_3_tooltip
+			end = 80
+		}
+		stage_4 = {
+			icon = GFX_situation_stage_4
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = stage_ultra_road_cruel_1_4_tooltip
+			on_first_enter = {
+				situation_event = {
+					id = gts_ultra_road.200
+				}
+			}
+			end = 90
+		}
+		stage_5 = {
+			icon = GFX_situation_stage_5
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = stage_ultra_road_cruel_1_5_tooltip
+			end = 95
+		}
+		stage_6 = {
+			icon = GFX_situation_stage_6
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = stage_ultra_road_cruel_1_6_tooltip
+			end = 100
+		}
+	}
+	initial_progress = 0
+	progress_direction = monodirectional
+	on_progress_complete = {
+		custom_tooltip = gts_ultra_road_cruel_1_completed
+		hidden_effect = {
+			situation_event = {
+				id = gts_ultra_road.300
+			}
+		}
+	}
+	# on_fail = {
+	# 	custom_tooltip = gts_guya_fail
+	# 	hidden_effect = {
+			
+	# 	}
+	# }
+	approach = {
+		name = gts_ultra_road_cruel_1_positive
+		on_select = {
+			custom_tooltip = gts_ultra_road_cruel_1_positive_effect
+		}
+		icon = GFX_situation_approach_balance_sheet
+		icon_background = GFX_situation_approach_bg_green
+		ai_weight = {
+			base = 1
+		}
+	}
+	approach = {
+		name = gts_ultra_road_cruel_1_neutral
+		on_select = {
+			custom_tooltip = gts_ultra_road_cruel_1_neutral_effect
+		}
+		icon = GFX_situation_approach_balance_sheet
+		icon_background = GFX_situation_approach_bg_yellow
+		ai_weight = {
+			base = 0
+		}
+	}
+	approach = {
+		name = gts_ultra_road_cruel_1_negative
+		default = yes
+		on_select = {
+			custom_tooltip = gts_ultra_road_cruel_1_negative_effect
+		}
+		icon = GFX_situation_approach_fist
+		icon_background = GFX_situation_approach_bg_red
+		ai_weight = {
+			base = 0
+		}
+	}
+	monthly_progress = {
+		base = 0
+		modifier = {
+			add = 0.1
+			desc = string_current_approach
+			current_situation_approach = gts_ultra_road_cruel_1_positive
+		}
+		modifier = {
+			add = 0
+			desc = string_current_approach
+			current_situation_approach = gts_ultra_road_cruel_1_neutral
+		}
+		modifier = {
+			add = -0.1
+			desc = string_current_approach
+			current_situation_approach = gts_ultra_road_cruel_1_negative
+		}
+	}
+	on_monthly = {
+		random_events = {
+		}
+	}
+}
+gts_situation_ultra_road_cruel_2 = {
+	complete_icon_frame = GFX_situation_outcome_frame_green
+	complete_icon = GFX_situation_outcome_positive
+	fail_icon_frame = GFX_situation_outcome_frame_red
+	fail_icon = GFX_situation_outcome_negative
+	picture = GFX_gts_event_33
+	stages = {
+		stage_1 = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_red
+			custom_tooltip = stage_gts_ultra_road_cruel_2_1_tooltip
+			on_first_enter = {
+				if = {
+					limit = {
+						owner = {
+							has_country_flag = gts_situation_ultra_road_cruel_2_order
+						}
+					}
+					situation_event = {
+						id = gts_ultra_road.322
+					}
+				}
+				else = {
+					situation_event = {
+						id = gts_ultra_road.324
+					}
+				}
+			}
+			end = 5
+		}
+		stage_2 = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_blue
+			custom_tooltip = stage_gts_ultra_road_cruel_2_2_tooltip
+			on_first_enter = {
+				if = {
+					limit = {
+						owner = {
+							has_country_flag = gts_situation_ultra_road_cruel_2_order
+						}
+					}
+					situation_event = {
+						id = gts_ultra_road.321
+					}
+				}
+			}
+			end = 15
+		}
+		stage_3 = {
+			icon = GFX_situation_stage_3
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = stage_gts_ultra_road_cruel_2_3_tooltip
+			on_first_enter = {
+				situation_event = {
+					id = gts_ultra_road.320
+				}
+			}
+			end = 30
+		}
+		stage_4 = {
+			icon = GFX_situation_stage_4
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = stage_gts_ultra_road_cruel_2_3_tooltip
+			on_first_enter = {
+
+			}
+			end = 70
+		}
+		stage_5 = {
+			icon = GFX_situation_stage_5
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = stage_gts_ultra_road_cruel_2_3_tooltip
+			on_first_enter = {
+				situation_event = {
+					id = gts_ultra_road.310
+				}
+			}
+			end = 80
+		}
+		stage_6 = {
+			icon = GFX_situation_stage_6
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = stage_gts_ultra_road_cruel_2_3_tooltip
+			on_first_enter = {
+				situation_event = {
+					id = gts_ultra_road.311
+				}
+			}
+			end = 90
+		}
+		stage_7 = {
+			icon = GFX_situation_stage_7
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = stage_gts_ultra_road_cruel_2_3_tooltip
+			on_first_enter = {
+				situation_event = {
+					id = gts_ultra_road.312
+				}
+			}
+			end = 95
+		}
+		stage_8 = {
+			icon = GFX_situation_stage_8
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = stage_gts_ultra_road_cruel_2_3_tooltip
+			on_first_enter = {
+				if = {
+					limit = {
+						owner = {
+							has_country_flag = gts_situation_ultra_road_cruel_2_buy
+						}
+					}
+					situation_event = {
+						id = gts_ultra_road.313
+					}
+				}
+				else = {
+					situation_event = {
+						id = gts_ultra_road.314
+					}
+				}
+			}
+			end = 100
+		}
+	}
+	initial_progress = 50
+	progress_direction = bidirectional
+	complete_category = positive
+	fail_category = positive
+	on_progress_complete = {
+		custom_tooltip = gts_ultra_road_cruel_2_completed
+		hidden_effect = {
+			if = {
+				limit = {
+					owner = {
+						has_country_flag = gts_situation_ultra_road_cruel_2_buy
+					}
+				}
+				situation_event = {
+					id = gts_ultra_road.315
+				}
+			}
+			else = {
+				situation_event = {
+					id = gts_ultra_road.316
+				}
+			}
+		}
+	}
+	on_fail = {
+		custom_tooltip = gts_ultra_road_cruel_2_fail
+		hidden_effect = {
+			if = {
+				limit = {
+					owner = {
+						has_country_flag = gts_situation_ultra_road_cruel_2_order
+					}
+				}
+				situation_event = {
+					id = gts_ultra_road.323
+				}
+			}
+			else = {
+				situation_event = {
+					id = gts_ultra_road.325
+				}
+			}
+		}
+	}
+	approach = {
+		name = gts_ultra_road_cruel_2_absolute
+		on_select = {
+			custom_tooltip = gts_ultra_road_cruel_2_absolute_effect
+		}
+		icon = GFX_situation_approach_fist
+		icon_background = GFX_situation_approach_bg_red
+		ai_weight = {
+			base = 0
+		}
+	}
+	approach = {
+		name = gts_ultra_road_cruel_2_order
+		default = yes
+		on_select = {
+			custom_tooltip = gts_ultra_road_cruel_2_order_effect
+		}
+		icon = GFX_situation_approach_balance_sheet
+		icon_background = GFX_situation_approach_bg_green
+		ai_weight = {
+			base = 0
+		}
+		resources = {
+			category = situations
+			upkeep = {
+				energy = 100
+			}
+		}
+	}
+	monthly_progress = {
+		base = 0
+		modifier = {
+			add = 5
+			desc = string_current_approach
+			current_situation_approach = gts_ultra_road_cruel_2_absolute
+		}
+		modifier = {
+			add = -5
+			desc = string_current_approach
+			current_situation_approach = gts_ultra_road_cruel_2_order
+		}
+	}
+	on_monthly = {
+		random_events = {
+		}
+	}
+}
+### 小死神局势
+gts_situation_tlipoca = {
+	complete_icon_frame = GFX_situation_outcome_frame_green
+	complete_icon = GFX_situation_outcome_positive
+	# fail_icon_frame = GFX_situation_outcome_frame_red
+	# fail_icon = GFX_situation_outcome_negative
+	picture = GFX_gts_tlipoca_2
+	stages = {
+		stage_1 = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = stage_gts_tlipoca_1_tooltip
+			end = 50
+		}
+		stage_2 = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = stage_gts_tlipoca_2_tooltip
+			on_first_enter = {
+				situation_event = {
+					id =  gts_tlipoca.3
+				}
+			}
+			end = 100
+		}
+	}
+	initial_progress = 0
+	progress_direction = monodirectional
+	on_progress_complete = {
+		custom_tooltip = gts_tlipoca_completed
+		hidden_effect = {
+			situation_event = {
+				id = gts_tlipoca.4
+			}
+		}
+	}
+	approach = {
+		name = gts_tlipoca_go
+		on_select = {
+			custom_tooltip = gts_tlipoca_go_effect
+		}
+		icon = GFX_situation_approach_balance_sheet
+		icon_background = GFX_situation_approach_bg_green
+		ai_weight = {
+			base = 0
+		}
+		resources = {
+			category = situations
+			upkeep = {
+				energy = 5
+			}
+		}
+	}
+	approach = {
+		name = gts_tlipoca_stop
+		default = yes
+		on_select = {
+			custom_tooltip = gts_tlipoca_stop_effect
+		}
+		icon = GFX_situation_approach_fist
+		icon_background = GFX_situation_approach_bg_red
+		ai_weight = {
+			base = 0
+		}
+	}
+	monthly_progress = {
+		base = 0
+		modifier = {
+			add = 5
+			desc = string_current_approach
+			current_situation_approach = gts_tlipoca_go
+		}
+		modifier = {
+			add = 0
+			desc = string_current_approach
+			current_situation_approach = gts_tlipoca_stop
+		}
+	}
+	on_monthly = {
+		random_events = {
+		}
+	}
+}
+### 犽戎-十二作福音构赦免苦弱
+gts_situation_yarong_twelve = {
+	complete_icon_frame = GFX_situation_outcome_frame_green
+	complete_icon = GFX_situation_outcome_positive
+	# fail_icon_frame = GFX_situation_outcome_frame_red
+	# fail_icon = GFX_situation_outcome_negative
+	picture = GFX_gts_yarong_1
+	on_start = {
+		owner = {
+			set_country_flag = gts_yarong_twelve_level
+		}
+	}
+	stages = {
+		stage_1 = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = stage_gts_yarong_twelve1_tooltip
+			end = 48
+		}
+		stage_2 = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = stage_gts_yarong_twelve2_tooltip
+			on_first_enter = {
+				situation_event = {
+					id = gts_god_keeper.5001
+				}
+			}
+			end = 96
+		}
+		stage_3 = {
+			icon = GFX_situation_stage_3
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = stage_gts_yarong_twelve3_tooltip
+			on_first_enter = {
+				situation_event = {
+					id = gts_god_keeper.5002
+				}
+			}
+			end = 144
+		}
+		stage_4 = {
+			icon = GFX_situation_stage_4
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = stage_gts_yarong_twelve4_tooltip
+			on_first_enter = {
+				situation_event = {
+					id = gts_god_keeper.5003
+				}
+			}
+			end = 192
+		}
+		stage_5 = {
+			icon = GFX_situation_stage_5
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = stage_gts_yarong_twelve5_tooltip
+			on_first_enter = {
+				situation_event = {
+					id =gts_god_keeper.5004
+				}
+			}
+			end = 240
+		}
+		stage_6 = {
+			icon = GFX_situation_stage_6
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = stage_gts_yarong_twelve6_tooltip
+			on_first_enter = {
+				situation_event = {
+					id = gts_god_keeper.5005
+				}
+			}
+			end = 288
+		}
+		stage_7 = {
+			icon = GFX_situation_stage_7
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = stage_gts_yarong_twelve7_tooltip
+			on_first_enter = {
+				situation_event = {
+					id = gts_god_keeper.5006
+				}
+			}
+			end = 336
+		}
+		stage_8 = {
+			icon = GFX_situation_stage_8
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = stage_gts_yarong_twelve8_tooltip
+			on_first_enter = {
+				situation_event = {
+					id = gts_god_keeper.5007
+				}
+			}
+			end = 384
+		}
+		stage_9 = {
+			icon = GFX_situation_stage_9
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = stage_gts_yarong_twelve9_tooltip
+			on_first_enter = {
+				situation_event = {
+					id = gts_god_keeper.5008
+				}
+			}
+			end = 432
+		}
+		stage_10 = {
+			icon = GFX_situation_stage_10
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = stage_gts_yarong_twelve10_tooltip
+			on_first_enter = {
+				situation_event = {
+					id = gts_god_keeper.5009
+				}
+			}
+			end = 480
+		}
+		stage_11 = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_blue
+			custom_tooltip = stage_gts_yarong_twelve11_tooltip
+			on_first_enter = {
+				situation_event = {
+					id = gts_god_keeper.5010
+				}
+			}
+			end = 528
+		}
+		stage_12 = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_blue
+			custom_tooltip = stage_gts_yarong_twelve12_tooltip
+			on_first_enter = {
+				situation_event = {
+					id = gts_god_keeper.5011
+				}
+			}
+			end = 576
+		}
+	}
+	initial_progress = 0
+	progress_direction = monodirectional
+	on_progress_complete = {
+		custom_tooltip = situation_yarong_twelve_complete_tooltip
+		hidden_effect = {
+			situation_event = {
+				id = gts_god_keeper.5012
+			}
+		}
+	}
+
+	approach = {
+		name = situation_yarong_twelve_negative
+		default = yes
+		on_select = {
+			custom_tooltip = situation_yarong_twelve_negative_effect
+		}
+		icon = GFX_situation_approach_fist
+		icon_background = GFX_situation_approach_bg_red
+		ai_weight = {
+			base = 0
+		}
+		resources = {
+			category = situations
+			upkeep = {
+				energy = 60
+			}
+		}
+	}
+	approach = {
+		name = situation_yarong_twelve_neutral
+		on_select = {
+			custom_tooltip = situation_yarong_twelve_neutral_effect
+		}
+		icon = GFX_situation_approach_balance_sheet
+		icon_background = GFX_situation_approach_bg_green
+		ai_weight = {
+			base = 0
+		}
+		resources = {
+			category = situations
+			upkeep = {
+				energy = 120
+			}
+		}
+	}
+	approach = {
+		name = situation_yarong_twelve_positive
+		on_select = {
+			custom_tooltip = situation_yarong_twelve_positive_effect
+		}
+		icon = GFX_situation_approach_balance_sheet
+		icon_background = GFX_situation_approach_bg_green
+		ai_weight = {
+			base = 0
+		}
+		resources = {
+			category = situations
+			upkeep = {
+				energy = 180
+			}
+		}
+	}
+
+	monthly_progress = {
+		base = 0
+		modifier = {
+			add = 4
+			desc = string_current_approach
+			current_situation_approach = situation_yarong_twelve_positive
+		}
+		modifier = {
+			add = 2.5
+			desc = string_current_approach
+			current_situation_approach = situation_yarong_twelve_neutral
+		}
+		modifier = {
+			add = 1
+			desc = string_current_approach
+			current_situation_approach = situation_yarong_twelve_negative
+		}
+	}
+	on_monthly = {
+		random_events = {
+		}
+	}
+}
+### 千海局势
+gts_situation_qhai_ub = {
+	complete_icon_frame = GFX_situation_outcome_frame_green
+	complete_icon = GFX_situation_outcome_positive
+	# fail_icon_frame = GFX_situation_outcome_frame_red
+	# fail_icon = GFX_situation_outcome_negative
+	picture = GFX_gts_qhai_situation
+	on_start = {
+		owner = {
+			set_country_flag = gts_leader_qhai_ub
+		}
+	}
+	stages = {
+		stage_1 = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_green
+			end = 180
+		}
+		stage_2 = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_green
+			on_first_enter = {
+				situation_event = {
+					id = gts_leader_qhai.4
+				}
+			}
+			end = 240
+		}
+		stage_3 = {
+			icon = GFX_situation_stage_3
+			icon_background = GFX_situation_stage_frame_green
+			on_first_enter = {
+				situation_event = {
+					id = gts_leader_qhai.5
+				}
+			}
+			end = 260
+		}
+	}
+	initial_progress = 100
+	progress_direction = monodirectional
+
+	on_progress_complete = {
+		custom_tooltip = situation_qhai_ub_complete_tooltip
+		hidden_effect = {
+			situation_event = {
+				id = gts_leader_qhai.6
+			}
+		}
+	}
+
+	approach = {
+		name = situation_qhai_ub_negative
+		default = yes
+		on_select = {
+			custom_tooltip = situation_qhai_ub_negative_effect
+		}
+		icon = GFX_situation_approach_fist
+		icon_background = GFX_situation_approach_bg_red
+		ai_weight = {
+			base = 0
+		}
+		resources = {
+			category = situations
+			upkeep = {
+				food = 0
+			}
+		}
+	}
+	approach = {
+		name = situation_qhai_ub_neutral
+		on_select = {
+			custom_tooltip = situation_qhai_ub_neutral_effect
+		}
+		icon = GFX_situation_approach_balance_sheet
+		icon_background = GFX_situation_approach_bg_green
+		ai_weight = {
+			base = 0
+		}
+		resources = {
+			category = situations
+			upkeep = {
+				food = 75
+			}
+		}
+	}
+	approach = {
+		name = situation_qhai_ub_positive
+		on_select = {
+			custom_tooltip = situation_qhai_ub_positive_effect
+		}
+		icon = GFX_situation_approach_balance_sheet
+		icon_background = GFX_situation_approach_bg_green
+		ai_weight = {
+			base = 0
+		}
+		resources = {
+			category = situations
+			upkeep = {
+				food = 150
+			}
+		}
+	}
+
+	monthly_progress = {
+		base = 0
+		modifier = {
+			add = 10
+			desc = string_current_approach
+			current_situation_approach = situation_qhai_ub_positive
+		}
+		modifier = {
+			add = 5
+			desc = string_current_approach
+			current_situation_approach = situation_qhai_ub_neutral
+		}
+		modifier = {
+			add = 1
+			desc = string_current_approach
+			current_situation_approach = situation_qhai_ub_negative
+		}
+	}
+	on_monthly = {
+		random_events = {
+		}
+	}
+}
+### 小羊足底探索局势
+gts_situation_eyjafjalla_foot1 = {
+	complete_icon_frame = GFX_situation_outcome_frame_green
+	complete_icon = GFX_situation_outcome_positive
+	# fail_icon_frame = GFX_situation_outcome_frame_red
+	# fail_icon = GFX_situation_outcome_negative
+	picture = GFX_gts_eyjafjalla_20
+	on_start = {
+		save_global_event_target_as = situation_eyjafjalla_foot
+	}
+	stages = {
+		stage_1 = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_green
+			end = 100
+		}
+
+	}
+	initial_progress = 0
+	progress_direction = monodirectional
+
+	on_progress_complete = {
+		custom_tooltip = situation_eyjafjalla_foot_negative_effect
+		hidden_effect = {
+			owner = {
+				set_country_flag = gts_eyjafjalla_foot_fail
+			}
+			situation_event = {
+				id = gts_eyjafjalla.256
+			}
+		}
+	}
+	approach = {
+		name = situation_eyjafjalla_foot_negative
+		default = yes
+		on_select = {
+			custom_tooltip = situation_eyjafjalla_foot_negative_effect
+		}
+		icon = GFX_situation_approach_fist
+		icon_background = GFX_situation_approach_bg_red
+		ai_weight = {
+			base = 0
+		}
+		resources = {
+			category = situations
+			upkeep = {
+				food = 0
+			}
+		}
+	}
+
+	monthly_progress = {
+		base = 0
+		modifier = {
+			add = 4.7
+			desc = string_current_approach
+			current_situation_approach = situation_eyjafjalla_foot_negative
+		}
+	}
+	on_monthly = {
+		random_events = {
+		}
+	}
+}
+
+gts_situation_eyjafjalla_foot2 = {
+	complete_icon_frame = GFX_situation_outcome_frame_green
+	complete_icon = GFX_situation_outcome_positive
+	# fail_icon_frame = GFX_situation_outcome_frame_red
+	# fail_icon = GFX_situation_outcome_negative
+	picture = GFX_gts_eyjafjalla_21
+	on_start = {
+		save_global_event_target_as = situation_eyjafjalla_foot
+	}
+	stages = {
+		stage_1 = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_green
+			end = 100
+		}
+
+	}
+	initial_progress = 0
+	progress_direction = monodirectional
+
+	on_progress_complete = {
+		custom_tooltip = situation_eyjafjalla_foot_negative_effect
+		hidden_effect = {
+			owner = {
+				set_country_flag = gts_eyjafjalla_foot_fail
+			}
+			situation_event = {
+				id =gts_eyjafjalla.263
+			}
+		}
+	}
+	approach = {
+		name = situation_eyjafjalla_foot_negative
+		default = yes
+		on_select = {
+			custom_tooltip = situation_eyjafjalla_foot_negative_effect
+		}
+		icon = GFX_situation_approach_fist
+		icon_background = GFX_situation_approach_bg_red
+		ai_weight = {
+			base = 0
+		}
+		resources = {
+			category = situations
+			upkeep = {
+				food = 0
+			}
+		}
+	}
+
+	monthly_progress = {
+		base = 0
+		modifier = {
+			add = 4.7
+			desc = string_current_approach
+			current_situation_approach = situation_eyjafjalla_foot_negative
+		}
+	}
+	on_monthly = {
+		random_events = {
+		}
+	}
+}
+
+gts_situation_eyjafjalla_foot3 = {
+	complete_icon_frame = GFX_situation_outcome_frame_green
+	complete_icon = GFX_situation_outcome_positive
+	# fail_icon_frame = GFX_situation_outcome_frame_red
+	# fail_icon = GFX_situation_outcome_negative
+	picture = GFX_gts_eyjafjalla_22
+	on_start = {
+		save_global_event_target_as = situation_eyjafjalla_foot
+	}
+	stages = {
+		stage_1 = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_green
+			end = 100
+		}
+
+	}
+	initial_progress = 0
+	progress_direction = monodirectional
+
+	on_progress_complete = {
+		custom_tooltip = situation_eyjafjalla_foot_negative_effect
+		hidden_effect = {
+			owner = {
+				set_country_flag = gts_eyjafjalla_foot_fail
+			}
+			situation_event = {
+				id = gts_eyjafjalla.270
+			}
+		}
+	}
+	approach = {
+		name = situation_eyjafjalla_foot_negative
+		default = yes
+		on_select = {
+			custom_tooltip = situation_eyjafjalla_foot_negative_effect
+		}
+		icon = GFX_situation_approach_fist
+		icon_background = GFX_situation_approach_bg_red
+		ai_weight = {
+			base = 0
+		}
+		resources = {
+			category = situations
+			upkeep = {
+				food = 0
+			}
+		}
+	}
+
+	monthly_progress = {
+		base = 0
+		modifier = {
+			add = 4.7
+			desc = string_current_approach
+			current_situation_approach = situation_eyjafjalla_foot_negative
+		}
+	}
+	on_monthly = {
+		random_events = {
+		}
+	}
+}

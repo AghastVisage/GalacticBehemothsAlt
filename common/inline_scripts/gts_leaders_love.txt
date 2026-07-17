@@ -1,0 +1,103 @@
+icon = {
+    layer = {
+        icon = "gfx/interface/icons/traits/traits/trait_leader_gts_love1.dds"
+        visible = {
+            OR = {
+                NOT = { is_variable_set = gts_love_logs }
+                check_variable = { which = gts_love_logs value < 25 }
+            }
+        }
+    }
+    layer = {
+        icon = "gfx/interface/icons/traits/traits/trait_leader_gts_love2.dds"
+        visible = {
+            check_variable = { which = gts_love_logs value >= 25 }
+            check_variable = { which = gts_love_logs value < 50 }
+        }
+    }
+    layer = {
+        icon = "gfx/interface/icons/traits/traits/trait_leader_gts_love3.dds"
+        visible = {
+            check_variable = { which = gts_love_logs value >= 50 }
+            check_variable = { which = gts_love_logs value < 75 }
+        }
+    }
+    layer = {
+        icon = "gfx/interface/icons/traits/traits/trait_leader_gts_love4.dds"
+        visible = {
+            check_variable = { which = gts_love_logs value >= 75 }
+            check_variable = { which = gts_love_logs value < 100 }
+        }
+    }
+    layer = {
+        icon = "gfx/interface/icons/traits/traits/trait_leader_gts_love5.dds"
+        visible = {
+            if = {
+                limit = {
+                    not = {
+                        has_leader_flag = gts_married
+                    }
+                }
+                check_variable = { which = gts_love_logs value >= 100 }
+            }
+        }
+    }
+    layer = {
+        icon = "gfx/interface/icons/traits/traits/trait_leader_gts_love6.dds"
+        visible = {
+            check_variable = { which = gts_love_logs value >= 100 }
+            has_leader_flag = gts_married
+        }
+    }
+}
+#custom_subtitle = "好感度特质\n[This.GetClassTexticon][This.GetClass]"
+triggered_desc = {
+    trigger = { and = {
+        NOT = { is_variable_set = gts_love_logs }
+        check_variable = { which = gts_love_logs value < 0 }
+    }}
+    text = trait_leader_gts_love_lv0_desc
+}
+triggered_desc = {
+    trigger = { and = {
+        NOT = { is_variable_set = gts_love_logs }
+        check_variable = { which = gts_love_logs value >= 0 }
+        check_variable = { which = gts_love_logs value < 25 }
+    }}
+    text = trait_leader_gts_love_lv1_desc
+}
+triggered_desc = {
+    trigger = {
+        check_variable = { which = gts_love_logs value >= 25 }
+        check_variable = { which = gts_love_logs value < 50 }
+    }
+    text = trait_leader_gts_love_lv2_desc
+}
+triggered_desc = {
+    trigger = {
+        check_variable = { which = gts_love_logs value >= 50 }
+        check_variable = { which = gts_love_logs value < 75 }
+    }
+    text = trait_leader_gts_love_lv3_desc
+}
+triggered_desc = {
+    trigger = {
+        check_variable = { which = gts_love_logs value >= 75 }
+        check_variable = { which = gts_love_logs value < 100 }
+    }
+    text = trait_leader_gts_love_lv4_desc
+}
+triggered_desc = {
+    trigger = {
+        check_variable = { which = gts_love_logs value >= 100 }
+        NOT = { has_leader_flag = gts_married }
+    }
+    text = trait_leader_gts_love_lv5_desc
+}
+triggered_desc = {
+    trigger = {
+        check_variable = { which = gts_love_logs value >= 100 }
+        has_leader_flag = gts_married
+    }
+    text = trait_leader_gts_love_lv6_desc
+}

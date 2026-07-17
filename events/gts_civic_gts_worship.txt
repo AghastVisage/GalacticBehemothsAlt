@@ -1,0 +1,309 @@
+namespace = gts_civ_gts_worship
+
+#每个星球按照地貌数加岗位
+planet_event = {
+    id = gts_civ_gts_worship.1000
+    is_triggered_only = yes
+    trigger = {
+        exists = owner
+        owner = {
+            has_valid_civic = civic_gts_worship
+        }
+        NOR = { has_planet_flag = gts_civ_gts_worship.1000.finish }
+    }
+    hide_window = yes
+    immediate = {
+        every_deposit = {
+            limit = { is_deposit_type = d_gts_deposit_explorer }
+            remove_deposit = yes
+        }
+        every_deposit = {
+            limit = {
+                is_blocker = no
+                NOR = { is_deposit_type = d_gts_deposit_explorer }
+            }
+            root = {
+                add_deposit = d_gts_deposit_explorer
+            }
+        }
+        set_planet_flag = gts_civ_gts_worship.1000.finish
+    }
+}
+
+#第一次接触完成，检测对方是敌对友好态度
+first_contact_event = {
+    id = gts_civ_gts_worship.2000
+    hide_window = yes
+
+    is_triggered_only = yes
+
+    trigger = {
+        OR = {
+            AND = {
+                owner = {
+                    gts_is_giantess_empire = yes
+                    is_country_type = default
+                }
+                from = {
+                    has_valid_civic = civic_gts_worship
+                }
+            }
+            AND = {
+                owner = {
+                    gts_is_giantess_empire = yes
+                    is_country_type = default
+                }
+                from = {
+                    has_valid_civic = civic_gts_worship
+                }
+            }
+        }
+    }
+
+    immediate = {
+        #小人破译成功
+        if = {
+            limit = {
+                reverse_first_contact = {
+                #has_first_contact_flag = hostile_first_contact_attempted
+                }
+                from = {
+                    gts_is_giantess_empire = yes
+                }
+            }
+            owner = {
+                random_owned_planet = {
+                    limit = {
+                        NOR = {
+                            has_deposit = d_gts_cruel_envoy
+                            has_modifier = modifier_gts_worship_gender_shoe
+                            has_deposit = d_gts_gender_envoy
+                        }
+                    }
+                    random_list = {
+                        1 = {
+                            planet_event = {
+                                id = gts_civ_gts_worship.2003
+                                days = 30
+                            }
+                        }
+                        1 = {
+                            planet_event = {
+                                id = gts_civ_gts_worship.2001
+                                days = 30
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        #巨娘破译成功
+        if = {
+            limit = {
+                has_first_contact_flag = hostile_first_contact_attempted
+                owner = {
+                    gts_is_giantess_empire = yes
+                }
+            }
+            from = {
+                random_owned_planet = {
+                    limit = {
+                        NOR = {
+                            has_deposit = d_gts_cruel_envoy
+                            has_modifier = modifier_gts_worship_gender_shoe
+                            has_deposit = d_gts_gender_envoy
+                        }
+                    }
+                    random_list = {
+                        1 = {
+                            planet_event = {
+                                id = gts_civ_gts_worship.2003
+                                days = 30
+                            }
+                        }
+                        1 = {
+                            planet_event = {
+                                id = gts_civ_gts_worship.2001
+                                days = 30
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+#温柔系
+planet_event = {
+    id = gts_civ_gts_worship.2001
+    title = gts_civ_gts_worship.2001.name
+    desc = gts_civ_gts_worship.2001.desc
+    picture = GFX_gtsra_city_crash_4
+    is_triggered_only = yes
+    show_sound = event_ground_battle
+    location = root
+    trigger = {
+        owner = {
+            has_valid_civic = civic_gts_worship
+        }
+    }
+    after = {
+        hidden_effect = {
+            planet_event = {
+                id = gts_civ_gts_worship.2002
+                days = 720
+            }
+        }
+    }
+    option = {
+        name = gts_civ_gts_worship.2001.a
+        add_deposit = d_underwater_vent
+        add_modifier = {
+            modifier = modifier_gts_worship_gender_shoe
+            days = 60
+        }
+    }
+    option = {
+        name = gts_civ_gts_worship.2001.b
+        add_deposit = d_underwater_vent
+        owner = {
+            add_resource = {
+                energy = 1000
+                minerals = 1000
+                food = 1000
+                gts_giantess_fluid = 100
+            }
+        }
+    }
+}
+planet_event = {
+    id = gts_civ_gts_worship.2002
+    title = gts_civ_gts_worship.2002.name
+    desc = gts_civ_gts_worship.2002.desc
+    picture = GFX_load_130
+    is_triggered_only = yes
+    location = root
+    show_sound = event_announcement
+    trigger = {
+        owner = {
+            has_valid_civic = civic_gts_worship
+        }
+    }
+    option = {
+        name = gts_civ_gts_worship.2002.a
+        add_deposit = d_gts_gender_envoy
+        owner = {
+            add_resource = {
+                influence = 25
+                unity = 648
+            }
+            hidden_effect = {
+                country_event = {
+                    id = gts_civ_gts_worship.2005
+                    days = 180
+                }
+            }
+        }
+    }
+}
+#残忍系
+planet_event = {
+    id = gts_civ_gts_worship.2003
+    title = gts_civ_gts_worship.2003.name
+    desc = gts_civ_gts_worship.2003.desc
+    picture = GFX_load_122
+    is_triggered_only = yes
+    location = root
+    show_sound = event_ground_battle
+    trigger = {
+        owner = {
+            has_valid_civic = civic_gts_worship
+        }
+    }
+    after = {
+        hidden_effect = {
+            planet_event = {
+                id = gts_civ_gts_worship.2004
+                days = 720
+            }
+        }
+    }
+    option = {
+        name = gts_civ_gts_worship.2003.a
+        add_deposit = d_prosperous_mesa
+        add_deposit = d_rich_mountain
+        add_deposit = d_black_soil
+        add_planet_devastation = 5
+        random_owned_pop_group = { kill_all_pop = yes }
+        owner = {
+            add_resource = {
+                gts_giantess_fluid = 200
+            }
+        }
+    }
+    option = {
+        name = gts_civ_gts_worship.2003.b
+        add_deposit = d_prosperous_mesa
+        add_deposit = d_rich_mountain
+        add_deposit = d_black_soil
+        add_planet_devastation = 5
+        random_owned_pop_group = { kill_all_pop = yes }
+        owner = {
+            add_resource = { unity = 648 }
+        }
+    }
+}
+planet_event = {
+    id = gts_civ_gts_worship.2004
+    title = gts_civ_gts_worship.2004.name
+    desc = gts_civ_gts_worship.2004.desc
+    picture = GFX_gtsra_city_crash_6
+    is_triggered_only = yes
+    location = root
+    show_sound = event_announcement
+    trigger = {
+        owner = {
+            has_valid_civic = civic_gts_worship
+        }
+    }
+    option = {
+        name = gts_civ_gts_worship.2004.a
+        add_deposit = d_gts_cruel_envoy
+        owner = {
+            add_resource = {
+                influence = 25
+                unity = 648
+            }
+            hidden_effect = {
+                country_event = {
+                    id = gts_civ_gts_worship.2005
+                    days = 180
+                }
+            }
+        }
+    }
+}
+country_event = {
+    id = gts_civ_gts_worship.2005
+    title = gts_civ_gts_worship.2005.name
+    desc = gts_civ_gts_worship.2005.desc
+    picture = GFX_load_125
+    is_triggered_only = yes
+    fire_only_once = yes
+    show_sound = event_construction
+    trigger = {
+        has_valid_civic = civic_gts_worship
+        NOR = {
+            has_technology = tech_mega_engineering
+            can_research_technology = tech_mega_engineering
+            is_researching_technology = tech_mega_engineering
+        }
+    }
+    option = {
+        name = gts_civ_gts_worship.2001.a
+        add_resource = {
+            unity = 1000
+        }
+        add_research_option = tech_mega_engineering
+    }
+}

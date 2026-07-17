@@ -1,0 +1,320 @@
+#帝国骑士
+panlon_knights = {
+	category = specialist
+	swappable_data = {
+		default = {
+			condition_string =  SPECIALIST_JOB_TRIGGER
+	        building_icon = building_knights_Castle
+		}
+	}
+	tags = { unity research }
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+	country_modifier = {
+		country_naval_cap_add = 20
+	}
+	
+	resources = {
+		category = planet_panlon_knights
+		produces = {
+			unity = 36
+			physics_research = 12
+			engineering_research = 12
+			society_research = 12
+		}
+		upkeep = {
+			alloys = 2
+			consumer_goods = 2
+		}
+	}
+		
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		#is_enslaved = no
+		is_being_assimilated = no
+	}
+
+	possible_precalc = can_fill_specialist_job
+	
+	weight = {
+		weight = 1000	
+	}
+}
+
+#法师
+panlon_wizard = {
+	category = specialist
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_Wizards_Tower
+		}
+	}
+	tags = { research }
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+	resources = {
+		category = planet_researchers
+		produces = {
+			physics_research = 20
+			engineering_research = 20
+			society_research = 20
+		}
+		upkeep = {
+			consumer_goods = 4
+		}
+	}
+
+	possible_precalc = can_fill_specialist_job
+
+	weight = {
+		weight = 1200
+	}
+}
+#温泉疗养师
+aom_magictherapist = {
+	category = specialist
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_aom_magichotspring_sanatorium
+		}
+	}
+	possible_pre_triggers = {
+		has_owner = yes
+		#is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+	}
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_precalc = can_fill_specialist_job
+
+	planet_modifier = {
+		planet_amenities_add = 1200
+	}
+	
+	resources = {
+		category = planet_doctors
+		produces = {
+			gts_aom_magicstones = 8
+			trade = 12
+		}
+
+		upkeep = {
+			consumer_goods = 4
+		}
+	}
+
+	weight = {
+		weight = 1000
+	}
+}
+#图书管理员
+aom_librarian = {
+	category = specialist
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_aom_bottled_restaurant
+		}
+	}
+	tags = { research }
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+	resources = {
+		category = planet_researchers
+		produces = {
+			physics_research = 10
+			engineering_research = 10
+			society_research = 10
+		}
+		upkeep = {
+			consumer_goods = 1
+		}
+	}
+
+	possible_precalc = can_fill_specialist_job
+
+	weight = {
+		weight = 1200
+	}
+}
+
+aom_foundry = {
+
+	category = worker
+
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_aom_pencil_box_foundry
+			icon = foundry
+		}
+	}
+
+	tags = { alloys }
+
+	inline_script = "jobs/automodding_priority_alloys"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = worker
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+
+	possible = {
+
+	}
+
+	resources = {
+		category = planet_metallurgists
+		produces = {
+			alloys = 10
+		}
+		upkeep = {
+			# 10
+			energy = 5
+			minerals = 20
+		}
+	}
+
+	weight = {
+		weight = 10
+	}
+}
+#小人摄影师
+aom_photographer = {
+	category = specialist
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_aom_pencil_box_foundry
+		}
+	}
+
+	tags = { unity trade consumer_goods }
+
+	inline_script = "jobs/automodding_priority_consumer_goods"
+
+	resources = {
+		category = planet_entertainers
+		produces = {
+			unity = 24
+			trade = 12
+			consumer_goods = 6
+		}
+		upkeep = {
+			energy = 4
+			minerals = 12
+		}
+	}
+	planet_modifier = {
+		planet_amenities_add = 800
+	}
+	weight = {
+		weight = 1000
+	}
+}
+#圣职牧师
+aom_holy_priest = {
+	category = specialist
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER	#条件字符串
+			building_icon = building_temple_of_light
+		}
+	}
+
+	tags = { unity research }
+
+	inline_script = "jobs/automodding_priority_research"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	planet_modifier = {
+		pop_happiness = 0.01
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+
+	resources = {
+		category = planet_bureaucrats
+		produces = {
+			physics_research = 12
+			society_research = 12
+			engineering_research = 12
+			unity = 36
+		}
+		upkeep = {
+			consumer_goods = 6
+			gts_aom_magicstones = 1
+		}
+	}
+
+	weight = {
+		weight = 1000
+	}
+}

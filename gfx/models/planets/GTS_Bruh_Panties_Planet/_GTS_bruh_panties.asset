@@ -1,0 +1,48 @@
+entity = {
+	name = "gts_bruh_panties_01_entity"
+	pdxmesh = "gts_bruh_panties_planet_01_mesh"
+	scale = 1
+
+	default_state = "idle"
+
+	# Will be used initially instead of default_state if set
+	state = { name = "class_change" animation = "class_change" looping = no next_state = "idle" animation_speed = 1.0 }
+
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class_02" } }
+	}
+
+	meshsettings = {
+		name = "planet_geosphereShape"
+		texture_diffuse = "ocean_02_diffuse.dds"
+		texture_normal = "ocean_02_normal.dds"
+		texture_specular = "ocean_02_spec.dds"
+	}
+
+	##cloud texture override
+	meshsettings = {
+		name = "clouds_geosphereShape"
+		texture_diffuse = "clouds_thin_diffuse.dds"
+		texture_normal = "clouds_thin_normal.dds"
+		texture_specular = "clouds_thin_specular.dds"
+	}
+
+	##cloud shadow texture override
+	meshsettings = {
+		name = "clouds_shadow_geosphereShape"
+		texture_diffuse = "clouds_thin_shadow_diffuse.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+	}
+}
+
+animation = {
+	name = "gts_bruh_panties_idle_animation"
+	file = "GTS_Bruh_Panties_Planet_idle.anim"
+}
+
+animation = {
+	name = "gts_bruh_panties_class_change_animation"
+	file = "gts_bruh_panties_planet_class_change.anim"
+}

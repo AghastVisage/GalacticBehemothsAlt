@@ -1,0 +1,2859 @@
+namespace = gts_ultra_company
+
+# 開局
+country_event = {
+
+    id = gts_ultra_company.0
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = { has_origin = origin_Ultra_company }
+
+    immediate = {
+
+        # 避免初期領袖太多
+        every_owned_leader = {
+            limit = {
+                is_ruler = no
+            }
+            kill_leader = {
+                show_notification = no
+            }
+        }
+
+        # 設置初期權利
+        owner_main_species = {
+            set_colonization_controls = {
+                type = colonization_control_yes
+            }
+        }
+
+        # 設置初期政策
+        set_policy = {
+            policy = gts_bruh_insurance_rate
+            option = gts_bruh_insurance_rate_4
+        }
+
+        capital_scope = {
+
+            # 設置星球特徵
+            set_planet_size = 30
+            clear_blockers = yes
+
+            # 設置初期人口
+            create_pop_group = {
+                species = owner_main_species
+                category = criminal
+                size = 100
+                effect = {
+                    set_pop_group_flag = gts_bruh_ultra_company_begin_pop_group_flag
+                }
+            }
+            every_owned_pop_group = {
+                limit = {
+                    NOT = {
+                        has_pop_group_flag = gts_bruh_ultra_company_begin_pop_group_flag
+                    }
+                }
+                kill_all_pop = yes
+            }
+            create_pop_group = {
+                species = owner_main_species
+                category = civilian
+                size = 0
+                effect = {
+                    save_event_target_as = gts_bruh_ultra_company_civilian_pop_group
+                }
+            }
+            every_owned_pop_group = {
+                limit = {
+                    has_pop_group_flag = gts_bruh_ultra_company_begin_pop_group_flag
+                }
+                remove_pop_group_flag = gts_bruh_ultra_company_begin_pop_group_flag
+                transfer_pop_amount = {
+                    source = This
+                    target = event_target:gts_bruh_ultra_company_civilian_pop_group
+                    percentage = 1
+                }
+            }
+        }
+    }
+
+    after = {
+        capital_scope = {
+
+            # 設置初期陸軍
+            create_fleet = {
+                effect = {
+                    set_owner = root
+                    create_army_transport = {
+                        ship_name = "NAME_Grand_Herald"
+                        army_name = "NAME_Demon_Refugees"
+                        army_type = "gts_big_army"
+                        species = root.owner_main_species
+                    }
+                    set_location = {
+                        target = prev
+                    }
+                }
+            }
+
+            # 設置初期建築與區劃
+            remove_all_buildings = yes
+            remove_all_districts = yes
+            #remove_zone = {
+            #    district = district_city
+            #    zone = zone_research_unity
+            #}
+            #add_zone = {
+            #    district = district_city
+            #    zone = zone_unity
+            #}
+            add_building = building_colony_shelter
+            add_building = building_shrink_pop_factory
+            add_building = building_shrink_city_factory
+            add_building = building_shrink_planet_factory
+            add_building = building_transmutation_workshop
+            add_building = building_commercial_zone
+            add_building = {
+                zone = zone_research_unity
+                building = building_gts_bruh_administrative_tower
+            }
+            add_building = {
+                zone = zone_research_unity
+                building = building_research_lab_1
+            }
+            add_building = {
+                zone = zone_industrial
+                building = building_foundry_1
+            }
+            while = {
+                count = 2
+                add_deposit = d_frozen_gas_lake
+                add_deposit = d_geothermal_vent
+                add_deposit = d_prosperous_mesa
+                add_deposit = d_rich_mountain
+                add_deposit = d_lush_jungle
+                add_deposit = d_black_soil
+            }
+            while = {
+                count = 2
+                add_building = {
+                    zone = zone_industrial
+                    building = building_factory_1
+                }
+            }
+            while = {
+                count = 5
+                add_district = district_city
+            }
+            while = {
+                count = 7
+                add_district = district_generator
+                add_district = district_farming
+            }
+            while = {
+                count = 10
+                add_district = district_mining
+            }
+        }
+    }
+}
+
+# 每月將摸魚縮小
+
+# 沒用到
+
+#country_event = {
+#
+#    id = gts_ultra_company.1
+#    hide_window = yes
+#    is_triggered_only = yes
+#
+#    trigger = { has_origin = origin_Ultra_company }
+#
+#    immediate = {
+#        every_owned_pop_group = {
+#
+#            limit = {
+#                has_trait = trait_Ultra
+#                NOR = { has_job_type = gts_ultra_sale }
+#            }
+#
+#            modify_species = {
+#                remove_trait = trait_Ultra
+#                remove_trait = trait_great_species
+#            }
+#            if = {
+#                limit = { owner = { has_policy_flag = ultracompany_shrink_into_Titan } }
+#                modify_species = {
+#                    add_trait = trait_Titan
+#                }
+#            }
+#            else_if = {
+#                limit = { owner = { has_policy_flag = ultracompany_shrink_into_Giant } }
+#                modify_species = {
+#                    add_trait = trait_Giant
+#                }
+#            }
+#            else_if = {
+#                limit = { owner = { has_policy_flag = ultracompany_shrink_into_Tall } }
+#                modify_species = {
+#                    add_trait = trait_Tall
+#                }
+#            }
+#            else_if = {
+#                limit = { owner = { has_policy_flag = ultracompany_shrink_into_Normal } }
+#                modify_species = {
+#                    add_trait = trait_Normal
+#                }
+#            }
+#            else_if = {
+#                limit = { owner = { has_policy_flag = ultracompany_shrink_into_Small } }
+#                modify_species = {
+#                    add_trait = trait_Small
+#                }
+#            }
+#            else_if = {
+#                limit = { owner = { has_policy_flag = ultracompany_shrink_into_Tiny } }
+#                modify_species = {
+#                    add_trait = trait_Tiny
+#                }
+#            }
+#            else_if = {
+#                limit = { owner = { has_policy_flag = ultracompany_shrink_into_Micro } }
+#                modify_species = {
+#                    add_trait = trait_Micro
+#                }
+#            }
+#        }
+#    }
+#}
+
+# 每選擇一個飛升解鎖一種保險
+
+country_event = {
+    id = gts_ultra_company.100
+    title = gts_ultra_company.100_name
+    desc = gts_ultra_company.100.desc
+    show_sound = event_mystic_reveal
+    picture = GFX_load_134
+    is_triggered_only = yes
+
+    trigger = {
+        has_origin = origin_Ultra_company
+        num_ascension_perks <= 8
+    }
+
+    option = {
+        name = gts_ultra_company.100.a
+        custom_tooltip = gts_ultra_company.100.tooltip
+        set_country_flag = gts_ultra_insurance_tongue
+        trigger = { NOR = { has_country_flag = gts_ultra_insurance_tongue } }
+    }
+    option = {
+        name = gts_ultra_company.100.b
+        custom_tooltip = gts_ultra_company.100.tooltip
+        set_country_flag = gts_ultra_insurance_foot
+        trigger = { NOR = { has_country_flag = gts_ultra_insurance_foot } }
+    }
+    option = {
+        name = gts_ultra_company.100.c
+        custom_tooltip = gts_ultra_company.100.tooltip
+        set_country_flag = gts_ultra_insurance_breast
+        trigger = { NOR = { has_country_flag = gts_ultra_insurance_breast } }
+    }
+    option = {
+        name = gts_ultra_company.100.d
+        custom_tooltip = gts_ultra_company.100.tooltip
+        set_country_flag = gts_ultra_insurance_virgin
+        trigger = { NOR = { has_country_flag = gts_ultra_insurance_virgin } }
+    }
+    option = {
+        name = gts_ultra_company.100.e
+        custom_tooltip = gts_ultra_company.100.tooltip
+        set_country_flag = gts_ultra_insurance_toy
+        trigger = { NOR = { has_country_flag = gts_ultra_insurance_toy } }
+    }
+    option = {
+        name = gts_ultra_company.100.f
+        custom_tooltip = gts_ultra_company.100.tooltip2
+        set_country_flag = gts_ultra_insurance_flood
+        trigger = { NOR = { has_country_flag = gts_ultra_insurance_flood } }
+    }
+    option = {
+        name = gts_ultra_company.100.g
+        custom_tooltip = gts_ultra_company.100.tooltip2
+        set_country_flag = gts_ultra_insurance_toxic
+        trigger = { NOR = { has_country_flag = gts_ultra_insurance_toxic } }
+    }
+    option = {
+        name = gts_ultra_company.100.h
+        custom_tooltip = gts_ultra_company.100.tooltip2
+        set_country_flag = gts_ultra_insurance_scat
+        trigger = { NOR = { has_country_flag = gts_ultra_insurance_scat } }
+    }
+    option = {
+        name = gts_ultra_company.100.i
+        custom_tooltip = gts_ultra_company.100.tooltip
+        set_country_flag = gts_ultra_insurance_exhale
+        trigger = { NOR = { has_country_flag = gts_ultra_insurance_exhale } }
+    }
+    option = {
+        name = gts_ultra_company.100.j
+        custom_tooltip = gts_ultra_company.100.tooltip2
+        set_country_flag = gts_ultra_insurance_futa
+        trigger = { NOR = { has_country_flag = gts_ultra_insurance_futa } }
+    }
+}
+
+# 保險簽訂的事件(雙方都有)
+
+# 舌
+
+country_event = {
+    id = gts_ultra_company.1001
+    title = gts_ultra_company.1001.name
+    desc = gts_ultra_company.1001.desc
+    is_triggered_only = yes
+    picture = GFX_load_142
+    show_sound = event_structural_collapse
+    location = from
+
+    option = {
+        name = gts_ultra_company.1001.a
+    }
+}
+
+planet_event = {
+    id = gts_ultra_company.1002
+    title = gts_ultra_company.1002.name
+    desc = gts_ultra_company.1002.desc
+    is_triggered_only = yes
+    show_sound = event_air_raid_siren
+    picture = GFX_load_142
+    location = root
+
+    option = {
+        name = gts_ultra_company.1002.a
+        add_deposit = d_bomb_crater
+		add_deposit = d_city_ruins
+		add_deposit = d_deep_sinkhole
+    }
+}
+
+# 足
+
+country_event = {
+    id = gts_ultra_company.1003
+    title = gts_ultra_company.1001.name
+    desc = gts_ultra_company.1003.desc
+    is_triggered_only = yes
+    picture = GFX_load_89
+    show_sound = event_structural_collapse
+    location = from
+
+    option = {
+        name = gts_ultra_company.1001.a
+    }
+}
+
+planet_event = {
+    id = gts_ultra_company.1004
+    title = gts_ultra_company.1002.name
+    desc = gts_ultra_company.1004.desc
+    is_triggered_only = yes
+    show_sound = event_air_raid_siren
+    picture = GFX_load_89
+    location = root
+
+    option = {
+        name = gts_ultra_company.1002.a
+        add_deposit = d_crater
+		add_deposit = d_active_volcano
+		add_deposit = d_mountain_range
+    }
+}
+
+# 胸
+
+country_event = {
+    id = gts_ultra_company.1005
+    title = gts_ultra_company.1001.name
+    desc = gts_ultra_company.1005.desc
+    is_triggered_only = yes
+    picture = GFX_load_145
+    show_sound = event_structural_collapse
+    location = from
+
+    option = {
+        name = gts_ultra_company.1001.a
+    }
+}
+
+planet_event = {
+    id = gts_ultra_company.1006
+    title = gts_ultra_company.1002.name
+    desc = gts_ultra_company.1006.desc
+    is_triggered_only = yes
+    show_sound = event_air_raid_siren
+    picture = GFX_load_145
+    location = root
+
+    option = {
+        name = gts_ultra_company.1002.a
+        add_deposit = d_deep_sinkhole
+		add_deposit = d_city_ruins
+		add_deposit = d_noxious_swamp
+    }
+}
+
+# 陰
+
+country_event = {
+    id = gts_ultra_company.1007
+    title = gts_ultra_company.1001.name
+    desc = gts_ultra_company.1007.desc
+    is_triggered_only = yes
+    picture = GFX_load_96
+    show_sound = event_structural_collapse
+    location = from
+
+    option = {
+        name = gts_ultra_company.1001.a
+    }
+}
+
+planet_event = {
+    id = gts_ultra_company.1008
+    title = gts_ultra_company.1002.name
+    desc = gts_ultra_company.1008.desc
+    is_triggered_only = yes
+    show_sound = event_air_raid_siren
+    picture = GFX_load_96
+    location = root
+
+    option = {
+        name = gts_ultra_company.1002.a
+        add_deposit = d_radioactive_wasteland
+		add_deposit = d_noxious_swamp
+		add_deposit = d_crater
+    }
+}
+
+# 玩具
+
+country_event = {
+    id = gts_ultra_company.1009
+    title = gts_ultra_company.1001.name
+    desc = gts_ultra_company.1009.desc
+    is_triggered_only = yes
+    picture = GFX_load_144
+    show_sound = event_structural_collapse
+    location = from
+
+    option = {
+        name = gts_ultra_company.1001.a
+    }
+}
+
+planet_event = {
+    id = gts_ultra_company.1010
+    title = gts_ultra_company.1002.name
+    desc = gts_ultra_company.1010.desc
+    is_triggered_only = yes
+    show_sound = event_air_raid_siren
+    picture = GFX_load_144
+    location = root
+
+    option = {
+        name = gts_ultra_company.1002.a
+        add_deposit = d_bomb_crater
+		add_deposit = d_massive_glacier		
+		add_deposit = d_noxious_swamp
+    }
+}
+
+# 尿
+
+country_event = {
+    id = gts_ultra_company.1011
+    title = gts_ultra_company.1001.name
+    desc = gts_ultra_company.1011.desc
+    is_triggered_only = yes
+    picture = GFX_load_148
+    show_sound = event_structural_collapse
+    location = from
+
+    option = {
+        name = gts_ultra_company.1001.a
+    }
+}
+
+planet_event = {
+    id = gts_ultra_company.1012
+    title = gts_ultra_company.1002.name
+    desc = gts_ultra_company.1012.desc
+    is_triggered_only = yes
+    show_sound = event_air_raid_siren
+    picture = GFX_load_148
+    location = root
+    option = {
+        name = gts_ultra_company.1002.a
+        add_deposit = d_bomb_crater
+		add_deposit = d_deep_sinkhole	
+		add_deposit = d_noxious_swamp
+    }
+}
+
+# 屁
+
+country_event = {
+    id = gts_ultra_company.1013
+    title = gts_ultra_company.1001.name
+    desc = gts_ultra_company.1013.desc
+    is_triggered_only = yes
+    picture = GFX_load_143
+    show_sound = event_structural_collapse
+    location = from
+
+    option = {
+        name = gts_ultra_company.1001.a
+    }
+}
+
+planet_event = {
+    id = gts_ultra_company.1014
+    title = gts_ultra_company.1002.name
+    desc = gts_ultra_company.1014.desc
+    is_triggered_only = yes
+    show_sound = event_air_raid_siren
+    picture = GFX_load_143
+    location = root
+    option = {
+        name = gts_ultra_company.1002.a
+        add_deposit = d_bomb_crater
+		add_deposit = d_massive_glacier		
+		add_deposit = d_city_ruins
+    }
+}
+
+# 雪
+
+country_event = {
+    id = gts_ultra_company.1015
+    title = gts_ultra_company.1001.name
+    desc = gts_ultra_company.1015.desc
+    is_triggered_only = yes
+    picture = GFX_load_147
+    show_sound = event_structural_collapse
+    location = from
+
+    option = {
+        name = gts_ultra_company.1001.a
+    }
+}
+
+planet_event = {
+    id = gts_ultra_company.1016
+    title = gts_ultra_company.1002.name
+    desc = gts_ultra_company.1016.desc
+    is_triggered_only = yes
+    show_sound = event_air_raid_siren
+    picture = GFX_load_147
+    location = root
+
+    option = {
+        name = gts_ultra_company.1002.a
+        add_deposit = d_bomb_crater
+		add_deposit = d_massive_glacier		
+		add_deposit = d_city_ruins
+    }
+}
+
+# 舌-2
+country_event = {
+    id = gts_ultra_company.1017
+    title = gts_ultra_company.1001.name
+    desc = gts_ultra_company.1017.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+        room = gts_tongue1_room
+    }
+    show_sound = event_structural_collapse
+    location = from
+
+    option = {
+        name = gts_ultra_company.1001.a
+        country_event = { id = gts_ultra_company.1018 }
+    }
+}
+
+country_event = {
+    id = gts_ultra_company.1018
+    title = gts_ultra_company.1018.name
+    desc = gts_ultra_company.1018.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+        room = gts_tongue2_room
+    }
+    show_sound = event_structural_collapse
+    location = FromFrom
+
+    option = {
+        name = gts_ultra_company.1001.a
+    }
+}
+
+planet_event = {
+    id = gts_ultra_company.1019
+    title = gts_ultra_company.1002.name
+    desc = gts_ultra_company.1017.desc
+    is_triggered_only = yes
+    show_sound = event_air_raid_siren
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+        room = gts_tongue1_room
+    }
+    location = root
+    option = {
+        name = gts_ultra_company.1002.a
+        planet_event = { id = gts_ultra_company.1020 }
+    }
+}
+
+planet_event = {
+    id = gts_ultra_company.1020
+    title = gts_ultra_company.1002.name
+    desc = gts_ultra_company.1018.desc
+    is_triggered_only = yes
+    show_sound = event_air_raid_siren
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+        room = gts_tongue2_room
+    }
+    location = root
+    option = {
+        name = gts_ultra_company.1002.a
+        add_deposit = d_bomb_crater
+        add_deposit = d_city_ruins
+        add_deposit = d_deep_sinkhole
+    }
+}
+
+# 吐息
+
+country_event = {
+    id = gts_ultra_company.1021
+    title = gts_ultra_company.1001.name
+    desc = gts_ultra_company.1021.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+        room = gts_exhale3_room
+    }
+    show_sound = event_structural_collapse
+    location = from
+
+    option = {
+        name = gts_ultra_company.1001.a
+        country_event = { id = gts_ultra_company.1022 }
+    }
+}
+
+country_event = {
+    id = gts_ultra_company.1022
+    title = gts_ultra_company.1001.name
+    desc = gts_ultra_company.1022.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+        room = gts_exhale4_room
+    }
+    show_sound = event_structural_collapse
+    location = from
+
+    option = {
+        name = gts_ultra_company.1001.a
+    }
+}
+
+planet_event = {
+    id = gts_ultra_company.1023
+    title = gts_ultra_company.1002.name
+    desc = gts_ultra_company.1023.desc
+    is_triggered_only = yes
+    show_sound = event_air_raid_siren
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+        room = gts_exhale3_room
+    }
+    location = root
+
+    option = {
+        name = gts_ultra_company.1002.a
+        planet_event = { id = gts_ultra_company.1024 }
+    }
+}
+
+planet_event = {
+    id = gts_ultra_company.1024
+    title = gts_ultra_company.1002.name
+    desc = gts_ultra_company.1024.desc
+    is_triggered_only = yes
+    show_sound = event_air_raid_siren
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+        room = gts_exhale4_room
+    }
+    location = root
+    option = {
+        name = gts_ultra_company.1002.a
+        add_deposit = d_bomb_crater
+        add_deposit = d_city_ruins
+        add_deposit = d_deep_sinkhole
+    }
+}
+
+# 扶她
+
+country_event = {
+    id = gts_ultra_company.1025
+    title = gts_ultra_company.1001.name
+    desc = gts_ultra_company.1025.desc
+    is_triggered_only = yes
+    picture = GFX_load_100
+    show_sound = event_structural_collapse
+    location = from
+
+    option = {
+        name = gts_ultra_company.1001.a
+    }
+}
+
+planet_event = {
+    id = gts_ultra_company.1026
+    title = gts_ultra_company.1002.name
+    desc = gts_ultra_company.1026.desc
+    is_triggered_only = yes
+    show_sound = event_air_raid_siren
+    picture = GFX_load_100
+    location = root
+
+    option = {
+        name = gts_ultra_company.1002.a
+        add_deposit = d_crater
+		add_deposit = d_active_volcano		
+		add_deposit = d_noxious_swamp
+    }
+}
+
+# 抗保事件(單方面)
+
+# 陰
+
+country_event = {
+    id = gts_ultra_company.2001
+    title = gts_ultra_company.2001.name
+    desc = gts_ultra_company.2001.desc
+    is_triggered_only = yes
+    picture = GFX_gts_event_56
+    show_sound = event_yellow_alert
+    location = from
+
+    immediate = {
+        from = {
+            save_event_target_as = gts_ultra_company_target
+        }
+    }
+
+    option = {
+        name = gts_ultra_company.2001.a
+        from = {
+            remove_building = building_gts_ultra_insurance_virgin
+            remove_modifier = gts_bruh_ultra_company_insurance_04
+        }
+        add_resource = {
+            influence = 100
+        }
+    }
+    option = {
+        name = gts_ultra_company.2001.b
+        hidden_effect = {
+            country_event = {
+                id = gts_ultra_company.2002
+            }
+            from = {
+                planet_event = { id = gts_ultra_company.2003 }
+            }
+        }
+    }
+    option = {
+        name = gts_ultra_company.2001.c
+        trigger = {
+            any_owned_leader = { has_leader_flag = gts_skadi }
+        }
+        hidden_effect = { country_event = { id = gts_ultra_company.2004 } }
+    }
+}
+
+country_event = {
+    id = gts_ultra_company.2002
+    title = gts_ultra_company.2002.name
+    desc = gts_ultra_company.2002.desc
+    is_triggered_only = yes
+    picture = GFX_load_95
+    show_sound = event_ground_battle
+    location = fromfrom
+
+    immediate = {
+        fromfrom = {
+            set_planet_flag = has_insurance_virgin2
+        }
+    }
+
+    option = {
+        name = gts_ultra_company.2002.a
+        custom_tooltip = gts_ultra_company.2002.tooltip
+    }
+}
+
+planet_event = {
+    id = gts_ultra_company.2003
+    title = gts_ultra_company.2003.name
+    desc = gts_ultra_company.2003.desc
+    is_triggered_only = yes
+    picture = GFX_load_95
+    show_sound = event_air_raid_siren
+    location = root
+    option = {
+        name = gts_ultra_company.2003.a
+        if = {
+            limit = {
+                pop_amount <= 300
+            }
+            add_planet_devastation = 25
+        }
+        else = {
+            add_planet_devastation = 10
+            while = {
+                count = 3
+                random_owned_pop_group = {
+                    kill_single_pop = yes
+                }
+            }
+        }
+        add_deposit = d_radioactive_wasteland
+        add_deposit = d_noxious_swamp
+        add_deposit = d_crater
+    }
+}
+
+country_event = {
+    id = gts_ultra_company.2004
+    title = gts_ultra_company.2004.name
+    desc = gts_ultra_company.2004.desc
+    is_triggered_only = yes
+    picture = skadi_revival
+    show_sound = event_scanner
+    location = event_target:gts_ultra_company_target
+    option = {
+        name = OK
+        country_event = { id = gts_ultra_company.2005 }
+    }
+}
+
+country_event = {
+    id = gts_ultra_company.2005
+    title = gts_ultra_company.2004.name
+    desc = gts_ultra_company.2005.desc
+    is_triggered_only = yes
+    picture = skadi_foot
+    show_sound = event_ship_thrusters
+    location = event_target:gts_ultra_company_target
+    option = {
+        name = OK
+        country_event = { id = gts_ultra_company.2006 }
+    }
+}
+
+country_event = {
+    id = gts_ultra_company.2006
+    title = gts_ultra_company.2004.name
+    desc = gts_ultra_company.2006.desc
+    is_triggered_only = yes
+    picture = skadi_ubplanet2
+    show_sound = event_gts_masturbate
+    location = event_target:gts_ultra_company_target
+
+    immediate = {
+        every_owned_leader = {
+            limit = {
+                has_leader_flag = gts_skadi
+            }
+            save_event_target_as = gts_bruh_skadi_kill_count
+        }
+
+        event_target:gts_ultra_company_target = {
+
+            # 清乾淨原本的東西
+            gts_bruh_clear_planet_effect = yes
+
+            # 轉化星球
+            pc_gts_juice_change = yes
+            change_pc = pc_gts_juice2
+            remove_deposit = d_juice_ruin3
+            add_deposit = d_juice_ruin7
+            add_planet_devastation = 100
+
+            # 計算人口數量
+            export_trigger_value_to_variable = {
+                trigger = pop_amount
+                variable = gts_bruh_get_planet_killed_pop_count
+            }
+            round_variable = gts_bruh_get_planet_killed_pop_count
+
+            # 計算城市數量
+            export_trigger_value_to_variable = {
+                trigger = pop_amount
+                variable = gts_bruh_get_planet_destroyed_city_count
+            }
+            divide_variable = {
+                which = gts_bruh_get_planet_destroyed_city_count
+                value = 100
+            }
+            round_variable = gts_bruh_get_planet_destroyed_city_count
+
+            # 計算經驗獲取
+            export_trigger_value_to_variable = {
+                trigger = pop_amount
+                variable = gts_bruh_get_experience_count
+            }
+            divide_variable = {
+                which = gts_bruh_get_experience_count
+                value = 100
+            }
+            round_variable = gts_bruh_get_experience_count
+        }
+    }
+
+    option = {
+        name = OK
+
+        event_target:gts_ultra_company_target = {
+            destroy_colony = yes
+        }
+
+        event_target:gts_bruh_skadi_kill_count = {
+            change_variable = {
+                which = gts_ub_kills_logs
+                value = event_target:gts_ultra_company_target.gts_bruh_get_planet_killed_pop_count
+            }
+            change_variable = {
+                which = gts_city_kills_logs
+                value = event_target:gts_ultra_company_target.gts_bruh_get_planet_destroyed_city_count
+            }
+            change_variable = {
+                which = gts_planet_kills_logs
+                value = 1
+            }
+            add_experience = event_target:gts_ultra_company_target.gts_bruh_get_experience_count
+        }
+    }
+}
+
+# 肉棒
+
+country_event = {
+    id = gts_ultra_company.2007
+    title = gts_ultra_company.2001.name
+    desc = gts_ultra_company.2007.desc
+    is_triggered_only = yes
+    picture = GFX_gts_event_56
+    show_sound = event_yellow_alert
+    location = from
+    immediate = {
+        from = {
+            save_event_target_as = gts_ultra_company_target
+        }
+    }
+    option = {
+        name = gts_ultra_company.2007.a
+        from = {
+            remove_building = building_gts_ultra_insurance_futa
+            remove_modifier = gts_bruh_ultra_company_insurance_10
+        }
+        add_resource = {
+            influence = 100
+        }
+    }
+    option = {
+        name = gts_ultra_company.2007.b
+        hidden_effect = {
+            country_event = {
+                id = gts_ultra_company.2008
+            }
+            from = {
+                planet_event = { id = gts_ultra_company.2010 }
+            }
+        }
+    }
+    option = {
+        name = gts_ultra_company.2007.c
+        trigger = {
+            any_owned_leader = { has_leader_flag = gts_yiyan }
+        }
+        hidden_effect = { country_event = { id = gts_ultra_company.2011 } }
+    }
+}
+
+country_event = {
+    id = gts_ultra_company.2008
+    title = gts_ultra_company.2002.name
+    desc = gts_ultra_company.2008.desc
+    is_triggered_only = yes
+    picture = GFX_load_152
+    show_sound = event_burning_city
+    location = event_target:gts_ultra_company_target
+
+    immediate = {
+        event_target:gts_ultra_company_target = {
+            set_planet_flag = has_insurance_futa2
+        }
+    }
+
+    option = {
+        name = gts_ultra_company.2008.a
+        hidden_effect = {
+            country_event = {
+                id = gts_ultra_company.2009
+            }
+        }
+    }
+}
+
+country_event = {
+    id = gts_ultra_company.2009
+    title = gts_ultra_company.2002.name
+    desc = gts_ultra_company.2009.desc
+    is_triggered_only = yes
+    picture = GFX_load_153
+    show_sound = event_gts_futa_masturbate
+    location = event_target:gts_ultra_company_target
+    immediate = {
+
+    }
+    option = {
+        name = gts_ultra_company.2002.a
+        custom_tooltip = gts_ultra_company.2009.tooltip
+    }
+}
+
+planet_event = {
+    id = gts_ultra_company.2010
+    title = gts_ultra_company.2003.name
+    desc = gts_ultra_company.2010.desc
+    is_triggered_only = yes
+    picture = GFX_load_153
+    show_sound = event_air_raid_siren
+    location = root
+
+    option = {
+        name = gts_ultra_company.2003.a
+        if = {
+            limit = {
+                pop_amount <= 300
+            }
+            add_planet_devastation = 25
+        }
+        else = {
+            add_planet_devastation = 10
+            while = {
+                count = 3
+                random_owned_pop_group = {
+                    kill_single_pop = yes
+                }
+            }
+        }
+        add_deposit = d_crater
+        add_deposit = d_active_volcano
+        add_deposit = d_noxious_swamp
+    }
+}
+
+country_event = {
+    id = gts_ultra_company.2011
+    title = gts_ultra_company.2011.name
+    desc = gts_ultra_company.2011.desc
+    is_triggered_only = yes
+    picture = GFX_gts_yiyanfuta_1
+    show_sound = event_air_raid_siren
+    location = event_target:gts_ultra_company_target
+    option = {
+        name = OK
+        country_event = { id = gts_ultra_company.2012 }
+    }
+}
+
+country_event = {
+    id = gts_ultra_company.2012
+    title = gts_ultra_company.2011.name
+    desc = gts_ultra_company.2012.desc
+    is_triggered_only = yes
+    picture = GFX_gts_yiyanfuta_2
+    show_sound = event_gts_masturbate
+    location = event_target:gts_ultra_company_target
+
+    immediate = {
+        every_owned_leader = {
+            limit = {
+                has_leader_flag = gts_yiyan
+            }
+            save_event_target_as = gts_bruh_yiyan_kill_count
+        }
+
+        event_target:gts_ultra_company_target = {
+
+            # 清乾淨原本的東西
+            gts_bruh_clear_planet_effect = yes
+
+            # 轉化星球
+            pc_gts_semen_change = yes
+            add_planet_devastation = 100
+
+            # 計算人口數量
+            export_trigger_value_to_variable = {
+                trigger = pop_amount
+                variable = gts_bruh_get_planet_killed_pop_count
+            }
+            round_variable = gts_bruh_get_planet_killed_pop_count
+
+            # 計算城市數量
+            export_trigger_value_to_variable = {
+                trigger = pop_amount
+                variable = gts_bruh_get_planet_destroyed_city_count
+            }
+            divide_variable = {
+                which = gts_bruh_get_planet_destroyed_city_count
+                value = 100
+            }
+            round_variable = gts_bruh_get_planet_destroyed_city_count
+
+            # 計算經驗獲取
+            export_trigger_value_to_variable = {
+                trigger = pop_amount
+                variable = gts_bruh_get_experience_count
+            }
+            divide_variable = {
+                which = gts_bruh_get_experience_count
+                value = 100
+            }
+            round_variable = gts_bruh_get_experience_count
+        }
+    }
+
+    option = {
+        name = gts_ultra_company.2012.a
+
+        event_target:gts_ultra_company_target = {
+            destroy_colony = yes
+        }
+
+        event_target:gts_bruh_yiyan_kill_count = {
+            change_variable = {
+                which = gts_city_kills_logs
+                value = event_target:gts_ultra_company_target.gts_bruh_get_planet_destroyed_city_count
+            }
+            change_variable = {
+                which = gts_planet_kills_logs
+                value = 1
+            }
+            add_experience = event_target:gts_ultra_company_target.gts_bruh_get_experience_count
+        }
+    }
+}
+
+# 足
+
+country_event = {
+    id = gts_ultra_company.2013
+    title = gts_ultra_company.2001.name
+    desc = gts_ultra_company.2013.desc
+    is_triggered_only = yes
+    picture = GFX_gts_event_56
+    show_sound = event_yellow_alert
+    location = from
+
+    immediate = {
+        from = {
+            save_event_target_as = gts_ultra_company_target
+        }
+    }
+
+    option = {
+        name = gts_ultra_company.2013.a
+        from = {
+            remove_building = building_gts_ultra_insurance_foot
+            remove_modifier = gts_bruh_ultra_company_insurance_02
+        }
+        add_resource = {
+            influence = 100
+        }
+    }
+
+    option = {
+        name = gts_ultra_company.2013.b
+        hidden_effect = {
+            country_event = {
+                id = gts_ultra_company.2014
+            }
+            from = {
+                planet_event = { id = gts_ultra_company.2015 }
+            }
+        }
+    }
+    option = {
+        name = gts_ultra_company.2013.c
+        trigger = {
+            any_owned_leader = { has_leader_flag = gts_qhai }
+        }
+        hidden_effect = { country_event = { id = gts_ultra_company.2016 } }
+    }
+}
+
+country_event = {
+    id = gts_ultra_company.2014
+    title = gts_ultra_company.2002.name
+    desc = gts_ultra_company.2014.desc
+    is_triggered_only = yes
+    picture = GFX_load_154
+    show_sound = event_ground_battle
+    location = fromfrom
+
+    option = {
+        name = gts_ultra_company.2014.a
+    }
+}
+
+planet_event = {
+    id = gts_ultra_company.2015
+    title = gts_ultra_company.2003.name
+    desc = gts_ultra_company.2015.desc
+    is_triggered_only = yes
+    picture = GFX_load_154
+    show_sound = event_air_raid_siren
+    location = root
+
+    option = {
+        name = gts_ultra_company.2015.a
+        if = {
+            limit = {
+                pop_amount <= 300
+            }
+            add_planet_devastation = 25
+        }
+        else = {
+            add_planet_devastation = 10
+            while = {
+                count = 3
+                random_owned_pop_group = {
+                    kill_single_pop = yes
+                }
+            }
+        }
+        add_deposit = d_crater
+        add_deposit = d_active_volcano
+        add_deposit = d_mountain_range
+    }
+}
+
+country_event = {
+    id = gts_ultra_company.2016
+    title = gts_ultra_company.2016.name
+    desc = gts_ultra_company.2016.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+        room = gts_event_45_room
+    }
+    show_sound = event_ship_explosion
+    location = event_target:gts_ultra_company_target
+
+    option = {
+        name = gts_continue
+        country_event = {
+            id = gts_ultra_company.2017
+        }
+    }
+}
+
+country_event = {
+    id = gts_ultra_company.2017
+    title = gts_ultra_company.2016.name
+    desc = gts_ultra_company.2017.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+        room = gts_event_46_room
+    }
+    show_sound = event_screams
+    location = event_target:gts_ultra_company_target
+
+    immediate = {
+        every_owned_leader = {
+            limit = {
+                has_leader_flag = gts_qhai
+            }
+            save_event_target_as = gts_bruh_qhai_kill_count
+        }
+
+        event_target:gts_ultra_company_target = {
+
+            # 清乾淨原本的東西
+            gts_bruh_clear_planet_effect = yes
+
+            # 計算人口數量
+            export_trigger_value_to_variable = {
+                trigger = pop_amount
+                variable = gts_bruh_get_planet_killed_pop_count
+            }
+            round_variable = gts_bruh_get_planet_killed_pop_count
+
+            # 計算城市數量
+            export_trigger_value_to_variable = {
+                trigger = pop_amount
+                variable = gts_bruh_get_planet_destroyed_city_count
+            }
+            divide_variable = {
+                which = gts_bruh_get_planet_destroyed_city_count
+                value = 100
+            }
+            round_variable = gts_bruh_get_planet_destroyed_city_count
+
+            # 計算經驗獲取
+            export_trigger_value_to_variable = {
+                trigger = pop_amount
+                variable = gts_bruh_get_experience_count
+            }
+            divide_variable = {
+                which = gts_bruh_get_experience_count
+                value = 100
+            }
+            round_variable = gts_bruh_get_experience_count
+        }
+    }
+
+
+    option = {
+        name = gts_ultra_company.2017.a
+
+        event_target:gts_ultra_company_target = {
+            destroy_colony = yes
+            change_pc = pc_broken
+            add_deposit = d_gts_giantess_fluid_100
+        }
+
+        event_target:gts_bruh_qhai_kill_count = {
+            change_variable = {
+                which = gts_ub_kills_logs
+                value = event_target:gts_ultra_company_target.gts_bruh_get_planet_killed_pop_count
+            }
+            change_variable = {
+                which = gts_city_kills_logs
+                value = event_target:gts_ultra_company_target.gts_bruh_get_planet_destroyed_city_count
+            }
+            change_variable = {
+                which = gts_planet_kills_logs
+                value = 1
+            }
+            add_experience = event_target:gts_ultra_company_target.gts_bruh_get_experience_count
+        }
+    }
+}
+
+# 乳
+
+country_event = {
+    id = gts_ultra_company.2018
+    title = gts_ultra_company.2001.name
+    desc = gts_ultra_company.2018.desc
+    is_triggered_only = yes
+    picture = GFX_gts_event_56
+    show_sound = event_yellow_alert
+    location = from
+
+    immediate = {
+        from = {
+            save_event_target_as = gts_ultra_company_target
+        }
+    }
+
+    option = {
+        name = gts_ultra_company.2018.a
+        from = {
+            remove_building = building_gts_ultra_insurance_breast
+            remove_modifier = gts_bruh_ultra_company_insurance_03
+        }
+        add_resource = {
+            influence = 100
+        }
+    }
+    option = {
+        name = gts_ultra_company.2018.b
+        hidden_effect = {
+            country_event = {
+                id = gts_ultra_company.2019
+            }
+            from = {
+                #planet_event = { id = gts_ultra_company.2020 }
+            }
+        }
+    }
+    option = {
+        name = gts_ultra_company.2018.c
+        trigger = {
+            any_owned_leader = { has_leader_flag = gts_aplog }
+        }
+        hidden_effect = { country_event = { id = gts_ultra_company.2021 } }
+    }
+}
+
+country_event = {
+    id = gts_ultra_company.2019
+    title = gts_ultra_company.2002.name
+    desc = gts_ultra_company.2019.desc
+    is_triggered_only = yes
+    picture = GFX_gts_eyjafjalla_03
+    show_sound = event_ground_battle
+    location = event_target:gts_ultra_company_target
+
+    option = {
+        name = gts_continue
+        country_event = {
+            id = gts_ultra_company.2020
+        }
+    }
+}
+
+country_event = {
+    id = gts_ultra_company.2020
+    title = gts_ultra_company.2002.name
+    desc = gts_ultra_company.2020.desc
+    is_triggered_only = yes
+    picture = GFX_load_155
+    show_sound = event_ship_explosion
+    location = event_target:gts_ultra_company_target
+
+    immediate = {
+        event_target:gts_ultra_company_target = {
+            set_planet_flag = has_insurance_breast2
+            hidden_effect = {
+                if = {
+                    limit = {
+                        pop_amount <= 300
+                    }
+                    add_planet_devastation = 25
+                }
+                else = {
+                    add_planet_devastation = 10
+                    while = {
+                        count = 3
+                        random_owned_pop_group = {
+                            kill_single_pop = yes
+                        }
+                    }
+                }
+                add_deposit = d_deep_sinkhole
+                add_deposit = d_city_ruins
+                add_deposit = d_noxious_swamp
+            }
+        }
+    }
+
+    option = {
+        name = gts_ultra_company.2020.a
+        custom_tooltip = gts_ultra_company.2020.tooltip
+    }
+}
+
+country_event = {
+    id = gts_ultra_company.2021
+    title = gts_ultra_company.2021.name
+    desc = gts_ultra_company.2021.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window"
+    custom_gui_option = "gts_horizontal_event_button"
+    picture_event_data = {
+        room = gtsra_aplog_4_room
+    }
+    show_sound = event_space_battle
+    location = event_target:gts_ultra_company_target
+
+    option = {
+        name = gts_continue
+        country_event = {
+            id = gts_ultra_company.2022
+        }
+    }
+}
+
+country_event = {
+    id = gts_ultra_company.2022
+    title = gts_ultra_company.2021.name
+    desc = gts_ultra_company.2022.desc
+    is_triggered_only = yes
+    picture = GFX_load_115
+    show_sound = event_gts_water_drop
+    location = event_target:gts_ultra_company_target
+
+    immediate = {
+        every_owned_leader = {
+            limit = {
+                has_leader_flag = gts_aplog
+            }
+            save_event_target_as = gts_bruh_aplog_kill_count
+        }
+
+        event_target:gts_ultra_company_target = {
+
+            # 清乾淨原本的東西
+            gts_bruh_clear_planet_effect = yes
+
+            # 轉化星球
+            pc_gts_milk_change = yes
+            add_planet_devastation = 100
+
+            # 計算人口數量
+            export_trigger_value_to_variable = {
+                trigger = pop_amount
+                variable = gts_bruh_get_planet_killed_pop_count
+            }
+            round_variable = gts_bruh_get_planet_killed_pop_count
+
+            # 計算城市數量
+            export_trigger_value_to_variable = {
+                trigger = pop_amount
+                variable = gts_bruh_get_planet_destroyed_city_count
+            }
+            divide_variable = {
+                which = gts_bruh_get_planet_destroyed_city_count
+                value = 100
+            }
+            round_variable = gts_bruh_get_planet_destroyed_city_count
+
+            # 計算經驗獲取
+            export_trigger_value_to_variable = {
+                trigger = pop_amount
+                variable = gts_bruh_get_experience_count
+            }
+            divide_variable = {
+                which = gts_bruh_get_experience_count
+                value = 100
+            }
+            round_variable = gts_bruh_get_experience_count
+        }
+    }
+
+    option = {
+        name = gts_ultra_company.2022.a
+
+        event_target:gts_ultra_company_target = {
+            destroy_colony = yes
+        }
+
+        event_target:gts_bruh_aplog_kill_count = {
+            change_variable = {
+                which = gts_ub_kills_logs
+                value = event_target:gts_ultra_company_target.gts_bruh_get_planet_killed_pop_count
+            }
+            change_variable = {
+                which = gts_city_kills_logs
+                value = event_target:gts_ultra_company_target.gts_bruh_get_planet_destroyed_city_count
+            }
+            change_variable = {
+                which = gts_planet_kills_logs
+                value = 1
+            }
+            add_experience = event_target:gts_ultra_company_target.gts_bruh_get_experience_count
+        }
+    }
+}
+
+# 土著事件
+
+espionage_operation_event = {
+    id = gts_ultra_company.3001
+    title = gts_ultra_company.3001.name
+    desc = gts_ultra_company.3001.desc
+    picture = GFX_gtsra_city_crash_3
+    show_sound = event_ship_explosion
+    is_triggered_only = yes
+    espionage_operation = yes
+
+    immediate = {
+        set_espionage_operation_progress_locked = yes
+    }
+
+    option = {
+        name = gts_ultra_company.3001.a
+    }
+
+    after = {
+        set_espionage_operation_progress_locked = no
+    }
+}
+
+espionage_operation_event = {
+    id = gts_ultra_company.3002
+    title = gts_ultra_company.3002.name
+    desc = gts_ultra_company.3002.desc
+    picture = GFX_gts_tiantiao_2
+    show_sound = event_solar_fusion
+    is_triggered_only = yes
+    espionage_operation = yes
+
+    immediate = {
+        set_espionage_operation_progress_locked = yes
+    }
+
+    option = {
+        name = gts_ultra_company.3002.a
+    }
+
+    after = {
+        set_espionage_operation_progress_locked = no
+    }
+}
+
+espionage_operation_event = {
+    id = gts_ultra_company.3003
+    title = gts_ultra_company.3003.name
+    desc = gts_ultra_company.3003.desc
+    picture = GFX_gtsra_load_13
+    show_sound = event_espionage_concluded
+    is_triggered_only = yes
+    espionage_operation = yes
+
+    immediate = {
+        set_espionage_operation_progress_locked = yes
+    }
+
+    option = {
+        name = gts_ultra_company.3003.a
+        target.capital_scope = {
+            every_owned_pop_group = {
+                limit = {
+                    prev = { pop_amount > 10000 }
+                }
+                kill_all_pop = yes
+            }
+            add_planet_devastation = 99
+            add_deposit = d_foot_sweat_ringworld
+            add_modifier = {
+                modifier = gts_bruh_ultra_company_insurance_05
+            }
+        }
+    }
+
+    after = {
+        set_espionage_operation_progress_locked = no
+    }
+}
+
+# 寰海極宇從分部獲得人口的事件
+
+country_event = {
+
+    id = gts_ultra_company.4000
+    hide_window = yes
+    is_triggered_only = yes
+
+    trigger = {
+        has_origin = origin_Ultra_company
+        OR = {
+            has_policy_flag = gts_bruh_insurance_rate_policy_flag_1
+            has_policy_flag = gts_bruh_insurance_rate_policy_flag_2
+            has_policy_flag = gts_bruh_insurance_rate_policy_flag_3
+            has_policy_flag = gts_bruh_insurance_rate_policy_flag_4
+        }
+        any_galaxy_planet = {
+            has_branch_office = root
+            count_owned_pop_amount = {
+                count > 5000
+            }
+            OR = {
+                has_modifier = gts_bruh_ultra_company_insurance_01
+                has_modifier = gts_bruh_ultra_company_insurance_02
+                has_modifier = gts_bruh_ultra_company_insurance_03
+                has_modifier = gts_bruh_ultra_company_insurance_04
+                has_modifier = gts_bruh_ultra_company_insurance_05
+                has_modifier = gts_bruh_ultra_company_insurance_06
+                has_modifier = gts_bruh_ultra_company_insurance_07
+                has_modifier = gts_bruh_ultra_company_insurance_08
+                has_modifier = gts_bruh_ultra_company_insurance_09
+                has_modifier = gts_bruh_ultra_company_insurance_10
+            }
+            owner = {
+                NOT = {
+                    has_country_flag = gts_bruh_insurance_timed_country_flag
+                }
+            }
+        }
+    }
+
+    immediate = {
+        every_galaxy_planet = {
+            limit = {
+                has_branch_office = root
+                count_owned_pop_amount = {
+                    count > 5000
+                }
+                OR = {
+                    has_modifier = gts_bruh_ultra_company_insurance_01
+                    has_modifier = gts_bruh_ultra_company_insurance_02
+                    has_modifier = gts_bruh_ultra_company_insurance_03
+                    has_modifier = gts_bruh_ultra_company_insurance_04
+                    has_modifier = gts_bruh_ultra_company_insurance_05
+                    has_modifier = gts_bruh_ultra_company_insurance_06
+                    has_modifier = gts_bruh_ultra_company_insurance_07
+                    has_modifier = gts_bruh_ultra_company_insurance_08
+                    has_modifier = gts_bruh_ultra_company_insurance_09
+                    has_modifier = gts_bruh_ultra_company_insurance_10
+                }
+                owner = {
+                    NOT = {
+                        has_country_flag = gts_bruh_insurance_timed_country_flag
+                    }
+                }
+            }
+            save_event_target_as = gts_bruh_get_insurance_planet
+
+            owner = {
+                set_timed_country_flag = {
+                    flag = gts_bruh_insurance_timed_country_flag
+                    years = 10
+                }
+                save_event_target_as = gts_bruh_get_insurance_country
+            }
+            export_trigger_value_to_variable = {
+                trigger = pop_amount
+                variable = gts_bruh_get_planet_transfer_count_pop_amount
+            }
+            export_trigger_value_to_variable = {
+                trigger = pop_amount
+                variable = gts_bruh_get_planet_killed_pop_count_pop_amount
+            }
+
+            # 保險費率/外交態度
+            if = {
+                limit = {
+                    Root = {
+                        has_policy_flag = gts_bruh_insurance_rate_policy_flag_1
+                    }
+                }
+                divide_variable = {
+                    which = gts_bruh_get_planet_transfer_count_pop_amount
+                    value = 20
+                }
+                event_target:gts_bruh_get_insurance_country = {
+                    add_opinion_modifier = {
+                        who = Root
+                        modifier = gts_bruh_insurance_rate_policy_flag_1_opinion_modifiers
+                    }
+                    remove_opinion_modifier = {
+                        who = Root
+                        modifier = gts_bruh_insurance_rate_policy_flag_2_opinion_modifiers
+                    }
+                    remove_opinion_modifier = {
+                        who = Root
+                        modifier = gts_bruh_insurance_rate_policy_flag_3_opinion_modifiers
+                    }
+                    remove_opinion_modifier = {
+                        who = Root
+                        modifier = gts_bruh_insurance_rate_policy_flag_4_opinion_modifiers
+                    }
+                    remove_opinion_modifier = {
+                        who = Root
+                        modifier = gts_bruh_insurance_rate_policy_flag_5_opinion_modifiers
+                    }
+                }
+            }
+            else_if = {
+                limit = {
+                    Root = {
+                        has_policy_flag = gts_bruh_insurance_rate_policy_flag_2
+                    }
+                }
+                divide_variable = {
+                    which = gts_bruh_get_planet_transfer_count_pop_amount
+                    value = 25
+                }
+                event_target:gts_bruh_get_insurance_country = {
+                    add_opinion_modifier = {
+                        who = Root
+                        modifier = gts_bruh_insurance_rate_policy_flag_2_opinion_modifiers
+                    }
+                    remove_opinion_modifier = {
+                        who = Root
+                        modifier = gts_bruh_insurance_rate_policy_flag_1_opinion_modifiers
+                    }
+                    remove_opinion_modifier = {
+                        who = Root
+                        modifier = gts_bruh_insurance_rate_policy_flag_3_opinion_modifiers
+                    }
+                    remove_opinion_modifier = {
+                        who = Root
+                        modifier = gts_bruh_insurance_rate_policy_flag_4_opinion_modifiers
+                    }
+                    remove_opinion_modifier = {
+                        who = Root
+                        modifier = gts_bruh_insurance_rate_policy_flag_5_opinion_modifiers
+                    }
+                }
+            }
+            else_if = {
+                limit = {
+                    Root = {
+                        has_policy_flag = gts_bruh_insurance_rate_policy_flag_3
+                    }
+                }
+                divide_variable = {
+                    which = gts_bruh_get_planet_transfer_count_pop_amount
+                    value = 50
+                }
+                event_target:gts_bruh_get_insurance_country = {
+                    add_opinion_modifier = {
+                        who = Root
+                        modifier = gts_bruh_insurance_rate_policy_flag_3_opinion_modifiers
+                    }
+                    remove_opinion_modifier = {
+                        who = Root
+                        modifier = gts_bruh_insurance_rate_policy_flag_1_opinion_modifiers
+                    }
+                    remove_opinion_modifier = {
+                        who = Root
+                        modifier = gts_bruh_insurance_rate_policy_flag_2_opinion_modifiers
+                    }
+                    remove_opinion_modifier = {
+                        who = Root
+                        modifier = gts_bruh_insurance_rate_policy_flag_4_opinion_modifiers
+                    }
+                    remove_opinion_modifier = {
+                        who = Root
+                        modifier = gts_bruh_insurance_rate_policy_flag_5_opinion_modifiers
+                    }
+                }
+            }
+            else_if = {
+                limit = {
+                    Root = {
+                        has_policy_flag = gts_bruh_insurance_rate_policy_flag_4
+                    }
+                }
+                divide_variable = {
+                    which = gts_bruh_get_planet_transfer_count_pop_amount
+                    value = 100
+                }
+                event_target:gts_bruh_get_insurance_country = {
+                    add_opinion_modifier = {
+                        who = Root
+                        modifier = gts_bruh_insurance_rate_policy_flag_4_opinion_modifiers
+                    }
+                    remove_opinion_modifier = {
+                        who = Root
+                        modifier = gts_bruh_insurance_rate_policy_flag_1_opinion_modifiers
+                    }
+                    remove_opinion_modifier = {
+                        who = Root
+                        modifier = gts_bruh_insurance_rate_policy_flag_2_opinion_modifiers
+                    }
+                    remove_opinion_modifier = {
+                        who = Root
+                        modifier = gts_bruh_insurance_rate_policy_flag_3_opinion_modifiers
+                    }
+                    remove_opinion_modifier = {
+                        who = Root
+                        modifier = gts_bruh_insurance_rate_policy_flag_5_opinion_modifiers
+                    }
+                }
+            }
+            else_if = {
+                limit = {
+                    Root = {
+                        has_policy_flag = gts_bruh_insurance_rate_policy_flag_5
+                    }
+                }
+                event_target:gts_bruh_get_insurance_country = {
+                    add_opinion_modifier = {
+                        who = Root
+                        modifier = gts_bruh_insurance_rate_policy_flag_5_opinion_modifiers
+                    }
+                    remove_opinion_modifier = {
+                        who = Root
+                        modifier = gts_bruh_insurance_rate_policy_flag_1_opinion_modifiers
+                    }
+                    remove_opinion_modifier = {
+                        who = Root
+                        modifier = gts_bruh_insurance_rate_policy_flag_2_opinion_modifiers
+                    }
+                    remove_opinion_modifier = {
+                        who = Root
+                        modifier = gts_bruh_insurance_rate_policy_flag_3_opinion_modifiers
+                    }
+                    remove_opinion_modifier = {
+                        who = Root
+                        modifier = gts_bruh_insurance_rate_policy_flag_4_opinion_modifiers
+                    }
+                }
+            }
+            round_variable = gts_bruh_get_planet_transfer_count_pop_amount
+
+            # 觸發事件種類
+            random_list = {
+                1 = {
+                    modifier = {
+                        factor = 0
+                        NOT = {
+                            This = {
+                                has_modifier = gts_bruh_ultra_company_insurance_01
+                            }
+                        }
+                    }
+                    Root = {
+                        country_event = { id = gts_ultra_company.4001 }
+                    }
+                }
+                1 = {
+                    modifier = {
+                        factor = 0
+                        NOT = {
+                            This = {
+                                has_modifier = gts_bruh_ultra_company_insurance_02
+                            }
+                        }
+                    }
+                    Root = {
+                        country_event = { id = gts_ultra_company.4002 }
+                    }
+                }
+                1 = {
+                    modifier = {
+                        factor = 0
+                        NOT = {
+                            This = {
+                                has_modifier = gts_bruh_ultra_company_insurance_03
+                            }
+                        }
+                    }
+                    Root = {
+                        country_event = { id = gts_ultra_company.4003 }
+                    }
+                }
+                1 = {
+                    modifier = {
+                        factor = 0
+                        NOT = {
+                            This = {
+                                has_modifier = gts_bruh_ultra_company_insurance_04
+                            }
+                        }
+                    }
+                    Root = {
+                        country_event = { id = gts_ultra_company.4004 }
+                    }
+                }
+                1 = {
+                    modifier = {
+                        factor = 0
+                        NOT = {
+                            This = {
+                                has_modifier = gts_bruh_ultra_company_insurance_05
+                            }
+                        }
+                    }
+                    Root = {
+                        country_event = { id = gts_ultra_company.4005 }
+                    }
+                }
+                1 = {
+                    modifier = {
+                        factor = 0
+                        NOT = {
+                            This = {
+                                has_modifier = gts_bruh_ultra_company_insurance_06
+                            }
+                        }
+                    }
+                    Root = {
+                        country_event = { id = gts_ultra_company.4006 }
+                    }
+                }
+                1 = {
+                    modifier = {
+                        factor = 0
+                        NOT = {
+                            This = {
+                                has_modifier = gts_bruh_ultra_company_insurance_07
+                            }
+                        }
+                    }
+                    Root = {
+                        country_event = { id = gts_ultra_company.4007 }
+                    }
+                }
+                1 = {
+                    modifier = {
+                        factor = 0
+                        NOT = {
+                            This = {
+                                has_modifier = gts_bruh_ultra_company_insurance_08
+                            }
+                        }
+                    }
+                    Root = {
+                        country_event = { id = gts_ultra_company.4008 }
+                    }
+                }
+                1 = {
+                    modifier = {
+                        factor = 0
+                        NOT = {
+                            This = {
+                                has_modifier = gts_bruh_ultra_company_insurance_09
+                            }
+                        }
+                    }
+                    Root = {
+                        country_event = { id = gts_ultra_company.4009 }
+                    }
+                }
+                1 = {
+                    modifier = {
+                        factor = 0
+                        NOT = {
+                            This = {
+                                has_modifier = gts_bruh_ultra_company_insurance_10
+                            }
+                        }
+                    }
+                    Root = {
+                        country_event = { id = gts_ultra_company.4010 }
+                    }
+                }
+            }
+        }
+    }
+}
+
+country_event = {
+
+    id = gts_ultra_company.4001
+    title = gts_ultra_company.4001.name
+    desc = gts_ultra_company.4001.desc
+    picture = GFX_gts_bruh_event_1
+    show_sound = event_red_alert
+    location = event_target:gts_bruh_get_insurance_planet
+
+    is_triggered_only = yes
+
+    immediate = {
+        # 轉移人口
+        while = {
+            count = event_target:gts_bruh_get_insurance_planet.gts_bruh_get_planet_transfer_count_pop_amount
+            event_target:gts_bruh_get_insurance_planet = {
+                random_owned_pop_group = {
+                    species = {
+                        save_event_target_as = gts_bruh_get_insurance_event_species
+                    }
+                }
+            }
+            capital_scope = {
+                create_pop_group = {
+                    size = 1
+                    species = event_target:gts_bruh_get_insurance_event_species
+                    effect = {
+                        save_event_target_as = gts_bruh_get_insurance_event_target_pop_group
+                    }
+                }
+            }
+            event_target:gts_bruh_get_insurance_planet = {
+                random_owned_pop_group = {
+                    transfer_pop_amount = {
+                        source = This
+                        target = event_target:gts_bruh_get_insurance_event_target_pop_group
+                        amount = 1
+                    }
+                }
+            }
+        }
+
+        # 死亡人口
+        event_target:gts_bruh_get_insurance_planet = {
+            set_variable_to_random_value = {
+                which = gts_bruh_get_planet_killed_pop_count_pop_amount
+                min = 100
+                max = gts_bruh_get_planet_transfer_count_pop_amount
+            }
+            round_variable = gts_bruh_get_planet_killed_pop_count_pop_amount
+            add_planet_devastation = 10
+        }
+        while = {
+            count = event_target:gts_bruh_get_insurance_planet.gts_bruh_get_planet_killed_pop_count_pop_amount
+            event_target:gts_bruh_get_insurance_planet = {
+                random_owned_pop_group = {
+                    kill_pop_group = {
+                        pop_group = This
+                        amount = 1
+                    }
+                }
+            }
+        }
+    }
+
+    option = {
+        name = gts_ultra_company.4001.a
+    }
+
+    after = {
+        hidden_effect = {
+            event_target:gts_bruh_get_insurance_planet = {
+                clear_variable = gts_bruh_get_planet_transfer_count_pop_amount
+                clear_variable = gts_bruh_get_planet_killed_pop_count_pop_amount
+            }
+        }
+    }
+}
+
+country_event = {
+
+    id = gts_ultra_company.4002
+    title = gts_ultra_company.4002.name
+    desc = gts_ultra_company.4002.desc
+    picture = GFX_gts_bruh_event_1
+    show_sound = event_red_alert
+    location = event_target:gts_bruh_get_insurance_planet
+
+    is_triggered_only = yes
+
+    immediate = {
+        # 轉移人口
+        while = {
+            count = event_target:gts_bruh_get_insurance_planet.gts_bruh_get_planet_transfer_count_pop_amount
+            event_target:gts_bruh_get_insurance_planet = {
+                random_owned_pop_group = {
+                    species = {
+                        save_event_target_as = gts_bruh_get_insurance_event_species
+                    }
+                }
+            }
+            capital_scope = {
+                create_pop_group = {
+                    size = 1
+                    species = event_target:gts_bruh_get_insurance_event_species
+                    effect = {
+                        save_event_target_as = gts_bruh_get_insurance_event_target_pop_group
+                    }
+                }
+            }
+            event_target:gts_bruh_get_insurance_planet = {
+                random_owned_pop_group = {
+                    transfer_pop_amount = {
+                        source = This
+                        target = event_target:gts_bruh_get_insurance_event_target_pop_group
+                        amount = 1
+                    }
+                }
+            }
+        }
+
+        # 死亡人口
+        event_target:gts_bruh_get_insurance_planet = {
+            set_variable_to_random_value = {
+                which = gts_bruh_get_planet_killed_pop_count_pop_amount
+                min = 100
+                max = gts_bruh_get_planet_transfer_count_pop_amount
+            }
+            round_variable = gts_bruh_get_planet_killed_pop_count_pop_amount
+            add_planet_devastation = 10
+        }
+        while = {
+            count = event_target:gts_bruh_get_insurance_planet.gts_bruh_get_planet_killed_pop_count_pop_amount
+            event_target:gts_bruh_get_insurance_planet = {
+                random_owned_pop_group = {
+                    kill_pop_group = {
+                        pop_group = This
+                        amount = 1
+                    }
+                }
+            }
+        }
+    }
+
+    option = {
+        name = gts_ultra_company.4002.a
+    }
+
+    after = {
+        hidden_effect = {
+            event_target:gts_bruh_get_insurance_planet = {
+                clear_variable = gts_bruh_get_planet_transfer_count_pop_amount
+                clear_variable = gts_bruh_get_planet_killed_pop_count_pop_amount
+            }
+        }
+    }
+}
+
+country_event = {
+
+    id = gts_ultra_company.4003
+    title = gts_ultra_company.4003.name
+    desc = gts_ultra_company.4003.desc
+    picture = GFX_gts_bruh_event_1
+    show_sound = event_red_alert
+    location = event_target:gts_bruh_get_insurance_planet
+
+    is_triggered_only = yes
+
+    immediate = {
+        # 轉移人口
+        while = {
+            count = event_target:gts_bruh_get_insurance_planet.gts_bruh_get_planet_transfer_count_pop_amount
+            event_target:gts_bruh_get_insurance_planet = {
+                random_owned_pop_group = {
+                    species = {
+                        save_event_target_as = gts_bruh_get_insurance_event_species
+                    }
+                }
+            }
+            capital_scope = {
+                create_pop_group = {
+                    size = 1
+                    species = event_target:gts_bruh_get_insurance_event_species
+                    effect = {
+                        save_event_target_as = gts_bruh_get_insurance_event_target_pop_group
+                    }
+                }
+            }
+            event_target:gts_bruh_get_insurance_planet = {
+                random_owned_pop_group = {
+                    transfer_pop_amount = {
+                        source = This
+                        target = event_target:gts_bruh_get_insurance_event_target_pop_group
+                        amount = 1
+                    }
+                }
+            }
+        }
+
+        # 死亡人口
+        event_target:gts_bruh_get_insurance_planet = {
+            set_variable_to_random_value = {
+                which = gts_bruh_get_planet_killed_pop_count_pop_amount
+                min = 100
+                max = gts_bruh_get_planet_transfer_count_pop_amount
+            }
+            round_variable = gts_bruh_get_planet_killed_pop_count_pop_amount
+            add_planet_devastation = 10
+        }
+        while = {
+            count = event_target:gts_bruh_get_insurance_planet.gts_bruh_get_planet_killed_pop_count_pop_amount
+            event_target:gts_bruh_get_insurance_planet = {
+                random_owned_pop_group = {
+                    kill_pop_group = {
+                        pop_group = This
+                        amount = 1
+                    }
+                }
+            }
+        }
+    }
+
+    option = {
+        name = gts_ultra_company.4003.a
+    }
+
+    after = {
+        hidden_effect = {
+            event_target:gts_bruh_get_insurance_planet = {
+                clear_variable = gts_bruh_get_planet_transfer_count_pop_amount
+                clear_variable = gts_bruh_get_planet_killed_pop_count_pop_amount
+            }
+        }
+    }
+}
+
+country_event = {
+
+    id = gts_ultra_company.4004
+    title = gts_ultra_company.4004.name
+    desc = gts_ultra_company.4004.desc
+    picture = GFX_gts_bruh_event_1
+    show_sound = event_red_alert
+    location = event_target:gts_bruh_get_insurance_planet
+
+    is_triggered_only = yes
+
+    immediate = {
+        # 轉移人口
+        while = {
+            count = event_target:gts_bruh_get_insurance_planet.gts_bruh_get_planet_transfer_count_pop_amount
+            event_target:gts_bruh_get_insurance_planet = {
+                random_owned_pop_group = {
+                    species = {
+                        save_event_target_as = gts_bruh_get_insurance_event_species
+                    }
+                }
+            }
+            capital_scope = {
+                create_pop_group = {
+                    size = 1
+                    species = event_target:gts_bruh_get_insurance_event_species
+                    effect = {
+                        save_event_target_as = gts_bruh_get_insurance_event_target_pop_group
+                    }
+                }
+            }
+            event_target:gts_bruh_get_insurance_planet = {
+                random_owned_pop_group = {
+                    transfer_pop_amount = {
+                        source = This
+                        target = event_target:gts_bruh_get_insurance_event_target_pop_group
+                        amount = 1
+                    }
+                }
+            }
+        }
+
+        # 死亡人口
+        event_target:gts_bruh_get_insurance_planet = {
+            set_variable_to_random_value = {
+                which = gts_bruh_get_planet_killed_pop_count_pop_amount
+                min = 100
+                max = gts_bruh_get_planet_transfer_count_pop_amount
+            }
+            round_variable = gts_bruh_get_planet_killed_pop_count_pop_amount
+            add_planet_devastation = 10
+        }
+        while = {
+            count = event_target:gts_bruh_get_insurance_planet.gts_bruh_get_planet_killed_pop_count_pop_amount
+            event_target:gts_bruh_get_insurance_planet = {
+                random_owned_pop_group = {
+                    kill_pop_group = {
+                        pop_group = This
+                        amount = 1
+                    }
+                }
+            }
+        }
+    }
+
+    option = {
+        name = gts_ultra_company.4004.a
+    }
+
+    after = {
+        hidden_effect = {
+            event_target:gts_bruh_get_insurance_planet = {
+                clear_variable = gts_bruh_get_planet_transfer_count_pop_amount
+                clear_variable = gts_bruh_get_planet_killed_pop_count_pop_amount
+            }
+        }
+    }
+}
+
+country_event = {
+
+    id = gts_ultra_company.4005
+    title = gts_ultra_company.4005.name
+    desc = gts_ultra_company.4005.desc
+    picture = GFX_gts_bruh_event_1
+    show_sound = event_red_alert
+    location = event_target:gts_bruh_get_insurance_planet
+
+    is_triggered_only = yes
+
+    immediate = {
+        # 轉移人口
+        while = {
+            count = event_target:gts_bruh_get_insurance_planet.gts_bruh_get_planet_transfer_count_pop_amount
+            event_target:gts_bruh_get_insurance_planet = {
+                random_owned_pop_group = {
+                    species = {
+                        save_event_target_as = gts_bruh_get_insurance_event_species
+                    }
+                }
+            }
+            capital_scope = {
+                create_pop_group = {
+                    size = 1
+                    species = event_target:gts_bruh_get_insurance_event_species
+                    effect = {
+                        save_event_target_as = gts_bruh_get_insurance_event_target_pop_group
+                    }
+                }
+            }
+            event_target:gts_bruh_get_insurance_planet = {
+                random_owned_pop_group = {
+                    transfer_pop_amount = {
+                        source = This
+                        target = event_target:gts_bruh_get_insurance_event_target_pop_group
+                        amount = 1
+                    }
+                }
+            }
+        }
+
+        # 死亡人口
+        event_target:gts_bruh_get_insurance_planet = {
+            set_variable_to_random_value = {
+                which = gts_bruh_get_planet_killed_pop_count_pop_amount
+                min = 100
+                max = gts_bruh_get_planet_transfer_count_pop_amount
+            }
+            round_variable = gts_bruh_get_planet_killed_pop_count_pop_amount
+            add_planet_devastation = 10
+        }
+        while = {
+            count = event_target:gts_bruh_get_insurance_planet.gts_bruh_get_planet_killed_pop_count_pop_amount
+            event_target:gts_bruh_get_insurance_planet = {
+                random_owned_pop_group = {
+                    kill_pop_group = {
+                        pop_group = This
+                        amount = 1
+                    }
+                }
+            }
+        }
+    }
+
+    option = {
+        name = gts_ultra_company.4005.a
+    }
+
+    after = {
+        hidden_effect = {
+            event_target:gts_bruh_get_insurance_planet = {
+                clear_variable = gts_bruh_get_planet_transfer_count_pop_amount
+                clear_variable = gts_bruh_get_planet_killed_pop_count_pop_amount
+            }
+        }
+    }
+}
+
+country_event = {
+
+    id = gts_ultra_company.4006
+    title = gts_ultra_company.4006.name
+    desc = gts_ultra_company.4006.desc
+    picture = GFX_gts_bruh_event_1
+    show_sound = event_red_alert
+    location = event_target:gts_bruh_get_insurance_planet
+
+    is_triggered_only = yes
+
+    immediate = {
+        # 轉移人口
+        while = {
+            count = event_target:gts_bruh_get_insurance_planet.gts_bruh_get_planet_transfer_count_pop_amount
+            event_target:gts_bruh_get_insurance_planet = {
+                random_owned_pop_group = {
+                    species = {
+                        save_event_target_as = gts_bruh_get_insurance_event_species
+                    }
+                }
+            }
+            capital_scope = {
+                create_pop_group = {
+                    size = 1
+                    species = event_target:gts_bruh_get_insurance_event_species
+                    effect = {
+                        save_event_target_as = gts_bruh_get_insurance_event_target_pop_group
+                    }
+                }
+            }
+            event_target:gts_bruh_get_insurance_planet = {
+                random_owned_pop_group = {
+                    transfer_pop_amount = {
+                        source = This
+                        target = event_target:gts_bruh_get_insurance_event_target_pop_group
+                        amount = 1
+                    }
+                }
+            }
+        }
+
+        # 死亡人口
+        event_target:gts_bruh_get_insurance_planet = {
+            set_variable_to_random_value = {
+                which = gts_bruh_get_planet_killed_pop_count_pop_amount
+                min = 100
+                max = gts_bruh_get_planet_transfer_count_pop_amount
+            }
+            round_variable = gts_bruh_get_planet_killed_pop_count_pop_amount
+            add_planet_devastation = 10
+        }
+        while = {
+            count = event_target:gts_bruh_get_insurance_planet.gts_bruh_get_planet_killed_pop_count_pop_amount
+            event_target:gts_bruh_get_insurance_planet = {
+                random_owned_pop_group = {
+                    kill_pop_group = {
+                        pop_group = This
+                        amount = 1
+                    }
+                }
+            }
+        }
+    }
+
+    option = {
+        name = gts_ultra_company.4006.a
+    }
+
+    after = {
+        hidden_effect = {
+            event_target:gts_bruh_get_insurance_planet = {
+                clear_variable = gts_bruh_get_planet_transfer_count_pop_amount
+                clear_variable = gts_bruh_get_planet_killed_pop_count_pop_amount
+            }
+        }
+    }
+}
+
+country_event = {
+
+    id = gts_ultra_company.4007
+    title = gts_ultra_company.4007.name
+    desc = gts_ultra_company.4007.desc
+    picture = GFX_gts_bruh_event_1
+    show_sound = event_red_alert
+    location = event_target:gts_bruh_get_insurance_planet
+
+    is_triggered_only = yes
+
+    immediate = {
+        # 轉移人口
+        while = {
+            count = event_target:gts_bruh_get_insurance_planet.gts_bruh_get_planet_transfer_count_pop_amount
+            event_target:gts_bruh_get_insurance_planet = {
+                random_owned_pop_group = {
+                    species = {
+                        save_event_target_as = gts_bruh_get_insurance_event_species
+                    }
+                }
+            }
+            capital_scope = {
+                create_pop_group = {
+                    size = 1
+                    species = event_target:gts_bruh_get_insurance_event_species
+                    effect = {
+                        save_event_target_as = gts_bruh_get_insurance_event_target_pop_group
+                    }
+                }
+            }
+            event_target:gts_bruh_get_insurance_planet = {
+                random_owned_pop_group = {
+                    transfer_pop_amount = {
+                        source = This
+                        target = event_target:gts_bruh_get_insurance_event_target_pop_group
+                        amount = 1
+                    }
+                }
+            }
+        }
+
+        # 死亡人口
+        event_target:gts_bruh_get_insurance_planet = {
+            set_variable_to_random_value = {
+                which = gts_bruh_get_planet_killed_pop_count_pop_amount
+                min = 100
+                max = gts_bruh_get_planet_transfer_count_pop_amount
+            }
+            round_variable = gts_bruh_get_planet_killed_pop_count_pop_amount
+            add_planet_devastation = 10
+        }
+        while = {
+            count = event_target:gts_bruh_get_insurance_planet.gts_bruh_get_planet_killed_pop_count_pop_amount
+            event_target:gts_bruh_get_insurance_planet = {
+                random_owned_pop_group = {
+                    kill_pop_group = {
+                        pop_group = This
+                        amount = 1
+                    }
+                }
+            }
+        }
+    }
+
+    option = {
+        name = gts_ultra_company.4007.a
+    }
+
+    after = {
+        hidden_effect = {
+            event_target:gts_bruh_get_insurance_planet = {
+                clear_variable = gts_bruh_get_planet_transfer_count_pop_amount
+                clear_variable = gts_bruh_get_planet_killed_pop_count_pop_amount
+            }
+        }
+    }
+}
+
+country_event = {
+
+    id = gts_ultra_company.4008
+    title = gts_ultra_company.4008.name
+    desc = gts_ultra_company.4008.desc
+    picture = GFX_gts_bruh_event_1
+    show_sound = event_red_alert
+    location = event_target:gts_bruh_get_insurance_planet
+
+    is_triggered_only = yes
+
+    immediate = {
+        # 轉移人口
+        while = {
+            count = event_target:gts_bruh_get_insurance_planet.gts_bruh_get_planet_transfer_count_pop_amount
+            event_target:gts_bruh_get_insurance_planet = {
+                random_owned_pop_group = {
+                    species = {
+                        save_event_target_as = gts_bruh_get_insurance_event_species
+                    }
+                }
+            }
+            capital_scope = {
+                create_pop_group = {
+                    size = 1
+                    species = event_target:gts_bruh_get_insurance_event_species
+                    effect = {
+                        save_event_target_as = gts_bruh_get_insurance_event_target_pop_group
+                    }
+                }
+            }
+            event_target:gts_bruh_get_insurance_planet = {
+                random_owned_pop_group = {
+                    transfer_pop_amount = {
+                        source = This
+                        target = event_target:gts_bruh_get_insurance_event_target_pop_group
+                        amount = 1
+                    }
+                }
+            }
+        }
+
+        # 死亡人口
+        event_target:gts_bruh_get_insurance_planet = {
+            set_variable_to_random_value = {
+                which = gts_bruh_get_planet_killed_pop_count_pop_amount
+                min = 100
+                max = gts_bruh_get_planet_transfer_count_pop_amount
+            }
+            round_variable = gts_bruh_get_planet_killed_pop_count_pop_amount
+            add_planet_devastation = 10
+        }
+        while = {
+            count = event_target:gts_bruh_get_insurance_planet.gts_bruh_get_planet_killed_pop_count_pop_amount
+            event_target:gts_bruh_get_insurance_planet = {
+                random_owned_pop_group = {
+                    kill_pop_group = {
+                        pop_group = This
+                        amount = 1
+                    }
+                }
+            }
+        }
+    }
+
+    option = {
+        name = gts_ultra_company.4008.a
+    }
+
+    after = {
+        hidden_effect = {
+            event_target:gts_bruh_get_insurance_planet = {
+                clear_variable = gts_bruh_get_planet_transfer_count_pop_amount
+                clear_variable = gts_bruh_get_planet_killed_pop_count_pop_amount
+            }
+        }
+    }
+}
+
+country_event = {
+
+    id = gts_ultra_company.4009
+    title = gts_ultra_company.4009.name
+    desc = gts_ultra_company.4009.desc
+    picture = GFX_gts_bruh_event_1
+    show_sound = event_red_alert
+    location = event_target:gts_bruh_get_insurance_planet
+
+    is_triggered_only = yes
+
+    immediate = {
+        # 轉移人口
+        while = {
+            count = event_target:gts_bruh_get_insurance_planet.gts_bruh_get_planet_transfer_count_pop_amount
+            event_target:gts_bruh_get_insurance_planet = {
+                random_owned_pop_group = {
+                    species = {
+                        save_event_target_as = gts_bruh_get_insurance_event_species
+                    }
+                }
+            }
+            capital_scope = {
+                create_pop_group = {
+                    size = 1
+                    species = event_target:gts_bruh_get_insurance_event_species
+                    effect = {
+                        save_event_target_as = gts_bruh_get_insurance_event_target_pop_group
+                    }
+                }
+            }
+            event_target:gts_bruh_get_insurance_planet = {
+                random_owned_pop_group = {
+                    transfer_pop_amount = {
+                        source = This
+                        target = event_target:gts_bruh_get_insurance_event_target_pop_group
+                        amount = 1
+                    }
+                }
+            }
+        }
+
+        # 死亡人口
+        event_target:gts_bruh_get_insurance_planet = {
+            set_variable_to_random_value = {
+                which = gts_bruh_get_planet_killed_pop_count_pop_amount
+                min = 100
+                max = gts_bruh_get_planet_transfer_count_pop_amount
+            }
+            round_variable = gts_bruh_get_planet_killed_pop_count_pop_amount
+            add_planet_devastation = 10
+        }
+        while = {
+            count = event_target:gts_bruh_get_insurance_planet.gts_bruh_get_planet_killed_pop_count_pop_amount
+            event_target:gts_bruh_get_insurance_planet = {
+                random_owned_pop_group = {
+                    kill_pop_group = {
+                        pop_group = This
+                        amount = 1
+                    }
+                }
+            }
+        }
+    }
+
+    option = {
+        name = gts_ultra_company.4009.a
+    }
+
+    after = {
+        hidden_effect = {
+            event_target:gts_bruh_get_insurance_planet = {
+                clear_variable = gts_bruh_get_planet_transfer_count_pop_amount
+                clear_variable = gts_bruh_get_planet_killed_pop_count_pop_amount
+            }
+        }
+    }
+}
+
+country_event = {
+
+    id = gts_ultra_company.4010
+    title = gts_ultra_company.4010.name
+    desc = gts_ultra_company.4010.desc
+    picture = GFX_gts_bruh_event_1
+    show_sound = event_red_alert
+    location = event_target:gts_bruh_get_insurance_planet
+
+    is_triggered_only = yes
+
+    immediate = {
+        # 轉移人口
+        while = {
+            count = event_target:gts_bruh_get_insurance_planet.gts_bruh_get_planet_transfer_count_pop_amount
+            event_target:gts_bruh_get_insurance_planet = {
+                random_owned_pop_group = {
+                    species = {
+                        save_event_target_as = gts_bruh_get_insurance_event_species
+                    }
+                }
+            }
+            capital_scope = {
+                create_pop_group = {
+                    size = 1
+                    species = event_target:gts_bruh_get_insurance_event_species
+                    effect = {
+                        save_event_target_as = gts_bruh_get_insurance_event_target_pop_group
+                    }
+                }
+            }
+            event_target:gts_bruh_get_insurance_planet = {
+                random_owned_pop_group = {
+                    transfer_pop_amount = {
+                        source = This
+                        target = event_target:gts_bruh_get_insurance_event_target_pop_group
+                        amount = 1
+                    }
+                }
+            }
+        }
+
+        # 死亡人口
+        event_target:gts_bruh_get_insurance_planet = {
+            set_variable_to_random_value = {
+                which = gts_bruh_get_planet_killed_pop_count_pop_amount
+                min = 100
+                max = gts_bruh_get_planet_transfer_count_pop_amount
+            }
+            round_variable = gts_bruh_get_planet_killed_pop_count_pop_amount
+            add_planet_devastation = 10
+        }
+        while = {
+            count = event_target:gts_bruh_get_insurance_planet.gts_bruh_get_planet_killed_pop_count_pop_amount
+            event_target:gts_bruh_get_insurance_planet = {
+                random_owned_pop_group = {
+                    kill_pop_group = {
+                        pop_group = This
+                        amount = 1
+                    }
+                }
+            }
+        }
+    }
+
+    option = {
+        name = gts_ultra_company.4010.a
+    }
+
+    after = {
+        hidden_effect = {
+            event_target:gts_bruh_get_insurance_planet = {
+                clear_variable = gts_bruh_get_planet_transfer_count_pop_amount
+                clear_variable = gts_bruh_get_planet_killed_pop_count_pop_amount
+            }
+        }
+    }
+}
+

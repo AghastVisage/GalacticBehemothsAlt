@@ -1,0 +1,2640 @@
+@buildings_t1 = 1
+@buildings_t2 = 2
+@buildings_t3 = 3
+@buildings_t4 = 4
+
+@tier_2_capital_defense_armies = 4
+@tier_3_capital_defense_armies = 8
+@tier_4_capital_defense_armies = 16
+
+
+
+################################################################################
+###################                愛液星球首都                ###################
+################################################################################
+
+
+
+building_gts_bruh_juice_colony_shelter = {
+
+	# 愛液艦船改裝庇護所
+
+	capital = yes
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	position_priority = 0
+
+	icon = building_colony_shelter
+
+	category = government
+
+	potential = {
+		exists = owner
+		OR = {
+			is_planet_class = pc_gts_juice
+			is_planet_class = pc_gts_juice2
+			is_planet_class = pc_gts_juice3
+		}
+	}
+
+	building_sets = {
+		government
+	}
+
+	convert_to = {
+		building_colony_shelter
+		building_hive_capital
+		building_deployment_post
+		building_colony_shelter_wilderness
+	}
+
+	planet_modifier = {
+		job_gts_juice_worker_add = 50
+		job_gts_giantess_fluid_worker_add = 50
+		planet_housing_add = 300
+		planet_amenities_add = 300
+		job_colonist_add = 200
+	}
+
+	inline_script = {
+		script = buildings/on_all_capital_buildings
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_valid_civic = civic_dystopian_society }
+		}
+		job_enforcer_add = 100
+		job_colonist_add = -100
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_synthetics_prefabricated_components }
+		}
+		job_roboticist_add = 100
+		job_colonist_add = -100
+	}
+
+	resources = {
+		category = planet_buildings
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	upgrades = { building_gts_bruh_juice_capital }
+}
+
+building_gts_bruh_juice_capital = {
+
+	# 愛液收集站
+
+	base_buildtime = @b2_time
+	capital = yes
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	position_priority = 0
+
+	icon = building_machine_capital
+
+	category = government
+
+	potential = {
+		exists = owner
+		OR = {
+			is_planet_class = pc_gts_juice
+			is_planet_class = pc_gts_juice2
+			is_planet_class = pc_gts_juice3
+		}
+	}
+
+	building_sets = {
+		government
+	}
+
+	allow = {
+		sapient_pop_amount >= 1000
+	}
+
+	convert_to = {
+		building_capital
+		building_hive_capital
+		building_machine_capital
+		building_resort_capital
+		building_slave_capital
+		building_ancient_control_center
+		building_ancient_palace
+		building_capital_wilderness
+	}
+
+	planet_modifier = {
+		job_enforcer_add = 100
+		job_gts_juice_worker_add = 100
+		job_gts_giantess_fluid_worker_add = 100
+		planet_housing_add = 1000
+		planet_amenities_add = 1000
+		planet_max_branch_office_buildings_add = 1
+		planet_defense_armies_add = @tier_2_capital_defense_armies
+	}
+
+	inline_script = {
+		script = buildings/on_all_capital_buildings
+	}
+	inline_script = {
+		script = buildings/regular_empire_capital_jobs
+		AMOUNT = 200
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+		}
+		planet_jobs_gts_giantess_fluid_produces_mult = 0.10
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_domination_imperious_architecture
+			}
+		}
+		modifier = {
+			planet_housing_add = 100
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_1 }
+		}
+		modifier = {
+			pop_bonus_workforce_mult = 0.1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+		}
+		upkeep = {
+			energy = @b2_upkeep
+		}
+	}
+
+	#triggered_desc = {
+	#	text = job_gts_juice_worker_effect_desc
+	#}
+
+	upgrades = { building_gts_bruh_juice_major_capital }
+}
+
+building_gts_bruh_juice_major_capital = {
+
+	# 愛液工業複合體
+
+	base_buildtime = @b3_time
+	capital = yes
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	position_priority = 0
+
+	icon = building_machine_major_capital
+
+	category = government
+
+	potential = {
+		exists = owner
+		OR = {
+			is_planet_class = pc_gts_juice
+			is_planet_class = pc_gts_juice2
+			is_planet_class = pc_gts_juice3
+		}
+	}
+
+	building_sets = {
+		government
+	}
+
+	allow = {
+		sapient_pop_amount >= 2500
+	}
+
+	convert_to = {
+		building_major_capital
+		building_hive_major_capital
+		building_machine_major_capital
+		building_resort_major_capital
+		building_slave_major_capital
+		building_ancient_control_center
+		building_ancient_palace
+		building_major_capital_wilderness
+	}
+
+	prerequisites = {
+		"tech_colonial_centralization"
+	}
+
+	planet_modifier = {
+		job_enforcer_add = 200
+		job_gts_juice_worker_add = 200
+		job_gts_giantess_fluid_worker_add = 200
+		planet_housing_add = 1500
+		planet_amenities_add = 1500
+		planet_max_branch_office_buildings_add = 2
+		planet_defense_armies_add = @tier_3_capital_defense_armies
+	}
+
+	inline_script = {
+		script = buildings/on_all_capital_buildings
+	}
+	inline_script = {
+		script = buildings/regular_empire_capital_jobs
+		AMOUNT = 300
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+		}
+		planet_jobs_gts_giantess_fluid_produces_mult = 0.20
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_domination_imperious_architecture
+			}
+		}
+		modifier = {
+			planet_housing_add = 100
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_1 }
+		}
+		modifier = {
+			pop_bonus_workforce_mult = 0.1
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_2 }
+		}
+		modifier = {
+			pop_bonus_workforce_mult = 0.1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b3_minerals
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+	}
+
+	#triggered_desc = {
+	#	text = job_gts_juice_worker_effect_desc
+	#}
+
+	upgrades = { building_gts_bruh_juice_system_capital }
+}
+
+building_gts_bruh_juice_system_capital = {
+
+	# 愛液工業都市
+
+	base_buildtime = @b4_time
+	capital = yes
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	position_priority = 0
+
+	icon = building_machine_system_capital
+
+	category = government
+
+	potential = {
+		exists = owner
+		OR = {
+			is_planet_class = pc_gts_juice
+			is_planet_class = pc_gts_juice2
+			is_planet_class = pc_gts_juice3
+		}
+	}
+
+	building_sets = {
+		government
+	}
+
+	allow = {
+		sapient_pop_amount >= 5000
+	}
+
+	convert_to = {
+		building_major_capital
+		building_hive_major_capital
+		building_machine_major_capital
+		building_resort_major_capital
+		building_slave_major_capital
+		building_ancient_control_center
+		building_ancient_palace
+		building_major_capital_wilderness
+	}
+
+	prerequisites = {
+		"tech_galactic_administration"
+	}
+
+	planet_modifier = {
+		job_enforcer_add = 300
+		job_gts_juice_worker_add = 400
+		job_gts_giantess_fluid_worker_add = 400
+		planet_housing_add = 2000
+		planet_amenities_add = 2000
+		planet_max_branch_office_buildings_add = 4
+		planet_defense_armies_add = @tier_4_capital_defense_armies
+	}
+
+	inline_script = {
+		script = buildings/on_all_capital_buildings
+	}
+	inline_script = {
+		script = buildings/regular_empire_capital_jobs
+		AMOUNT = 400
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+		}
+		planet_jobs_gts_giantess_fluid_produces_mult = 0.30
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_domination_imperious_architecture
+			}
+		}
+		modifier = {
+			planet_housing_add = 100
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_domination_imperious_architecture
+			}
+		}
+		modifier = {
+			planet_housing_add = 100
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_1 }
+		}
+		modifier = {
+			pop_bonus_workforce_mult = 0.1
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_2 }
+		}
+		modifier = {
+			pop_bonus_workforce_mult = 0.1
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_3 }
+		}
+		modifier = {
+			pop_bonus_workforce_mult = 0.1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b4_minerals
+		}
+		upkeep = {
+			energy = @b4_upkeep
+		}
+	}
+
+	#triggered_desc = {
+	#	text = job_gts_juice_worker_effect_desc
+	#}
+}
+
+
+
+################################################################################
+###################                乳汁星球首都                ###################
+################################################################################
+
+
+
+building_gts_bruh_milk_colony_shelter = {
+
+	# 乳汁艦船改裝庇護所
+
+	capital = yes
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	position_priority = 0
+
+	icon = building_colony_shelter
+
+	category = government
+
+	potential = {
+		exists = owner
+		is_planet_class = pc_gts_milk
+	}
+
+	building_sets = {
+		government
+	}
+
+	convert_to = {
+		building_colony_shelter
+		building_hive_capital
+		building_deployment_post
+		building_colony_shelter_wilderness
+	}
+
+	planet_modifier = {
+		job_gts_milk_worker_add = 50
+		job_gts_giantess_fluid_worker_add = 50
+		planet_housing_add = 300
+		planet_amenities_add = 300
+		job_colonist_add = 200
+	}
+
+	inline_script = {
+		script = buildings/on_all_capital_buildings
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_valid_civic = civic_dystopian_society }
+		}
+		job_enforcer_add = 100
+		job_colonist_add = -100
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_synthetics_prefabricated_components }
+		}
+		job_roboticist_add = 100
+		job_colonist_add = -100
+	}
+
+	resources = {
+		category = planet_buildings
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	upgrades = { building_gts_bruh_milk_capital }
+}
+
+building_gts_bruh_milk_capital = {
+
+	# 乳汁農場
+
+	base_buildtime = @b2_time
+	capital = yes
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	position_priority = 0
+
+	icon = building_machine_capital
+
+	category = government
+
+	potential = {
+		exists = owner
+		is_planet_class = pc_gts_milk
+	}
+
+	building_sets = {
+		government
+	}
+
+	allow = {
+		sapient_pop_amount >= 1000
+	}
+
+	convert_to = {
+		building_capital
+		building_hive_capital
+		building_machine_capital
+		building_resort_capital
+		building_slave_capital
+		building_ancient_control_center
+		building_ancient_palace
+		building_capital_wilderness
+	}
+
+	planet_modifier = {
+		job_enforcer_add = 100
+		job_gts_milk_worker_add = 100
+		job_gts_giantess_fluid_worker_add = 100
+		planet_housing_add = 1000
+		planet_amenities_add = 1000
+		planet_max_branch_office_buildings_add = 1
+		planet_defense_armies_add = @tier_2_capital_defense_armies
+	}
+
+	inline_script = {
+		script = buildings/on_all_capital_buildings
+	}
+	inline_script = {
+		script = buildings/regular_empire_capital_jobs
+		AMOUNT = 200
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+		}
+		planet_jobs_gts_giantess_fluid_produces_mult = 0.05
+		planet_jobs_food_produces_mult = 0.05
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_domination_imperious_architecture
+			}
+		}
+		modifier = {
+			planet_housing_add = 100
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_1 }
+		}
+		modifier = {
+			pop_bonus_workforce_mult = 0.1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+		}
+		upkeep = {
+			energy = @b2_upkeep
+		}
+	}
+
+	upgrades = { building_gts_bruh_milk_major_capital }
+}
+
+building_gts_bruh_milk_major_capital = {
+
+	# 乳汁灌溉樞紐
+
+	base_buildtime = @b3_time
+	capital = yes
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	position_priority = 0
+
+	icon = building_machine_major_capital
+
+	category = government
+
+	potential = {
+		exists = owner
+		is_planet_class = pc_gts_milk
+	}
+
+	building_sets = {
+		government
+	}
+
+	allow = {
+		sapient_pop_amount >= 2500
+	}
+
+	convert_to = {
+		building_major_capital
+		building_hive_major_capital
+		building_machine_major_capital
+		building_resort_major_capital
+		building_slave_major_capital
+		building_ancient_control_center
+		building_ancient_palace
+		building_major_capital_wilderness
+	}
+
+	prerequisites = {
+		"tech_colonial_centralization"
+	}
+
+	planet_modifier = {
+		job_enforcer_add = 200
+		job_gts_milk_worker_add = 200
+		job_gts_giantess_fluid_worker_add = 200
+		planet_housing_add = 1500
+		planet_amenities_add = 1500
+		planet_max_branch_office_buildings_add = 2
+		planet_defense_armies_add = @tier_3_capital_defense_armies
+	}
+
+	inline_script = {
+		script = buildings/on_all_capital_buildings
+	}
+	inline_script = {
+		script = buildings/regular_empire_capital_jobs
+		AMOUNT = 300
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+		}
+		planet_jobs_gts_giantess_fluid_produces_mult = 0.10
+		planet_jobs_food_produces_mult = 0.10
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_domination_imperious_architecture
+			}
+		}
+		modifier = {
+			planet_housing_add = 100
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_1 }
+		}
+		modifier = {
+			pop_bonus_workforce_mult = 0.1
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_2 }
+		}
+		modifier = {
+			pop_bonus_workforce_mult = 0.1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b3_minerals
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+	}
+
+	#triggered_desc = {
+	#	text = job_gts_milk_worker_effect_desc
+	#}
+
+	upgrades = { building_gts_bruh_milk_system_capital }
+}
+
+building_gts_bruh_milk_system_capital = {
+
+	# 乳汁生態都市
+
+	base_buildtime = @b4_time
+	capital = yes
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	position_priority = 0
+
+	icon = building_machine_system_capital
+
+	category = government
+
+	potential = {
+		exists = owner
+		is_planet_class = pc_gts_milk
+	}
+
+	building_sets = {
+		government
+	}
+
+	allow = {
+		sapient_pop_amount >= 5000
+	}
+
+	convert_to = {
+		building_major_capital
+		building_hive_major_capital
+		building_machine_major_capital
+		building_resort_major_capital
+		building_slave_major_capital
+		building_ancient_control_center
+		building_ancient_palace
+		building_major_capital_wilderness
+	}
+
+	prerequisites = {
+		"tech_galactic_administration"
+	}
+
+	planet_modifier = {
+		job_enforcer_add = 300
+		job_gts_milk_worker_add = 400
+		job_gts_giantess_fluid_worker_add = 400
+		planet_housing_add = 2000
+		planet_amenities_add = 2000
+		planet_max_branch_office_buildings_add = 4
+		planet_defense_armies_add = @tier_4_capital_defense_armies
+	}
+
+	inline_script = {
+		script = buildings/on_all_capital_buildings
+	}
+	inline_script = {
+		script = buildings/regular_empire_capital_jobs
+		AMOUNT = 400
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+		}
+		planet_jobs_gts_giantess_fluid_produces_mult = 0.15
+		planet_jobs_food_produces_mult = 0.15
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_domination_imperious_architecture
+			}
+		}
+		modifier = {
+			planet_housing_add = 100
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_domination_imperious_architecture
+			}
+		}
+		modifier = {
+			planet_housing_add = 100
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_1 }
+		}
+		modifier = {
+			pop_bonus_workforce_mult = 0.1
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_2 }
+		}
+		modifier = {
+			pop_bonus_workforce_mult = 0.1
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_3 }
+		}
+		modifier = {
+			pop_bonus_workforce_mult = 0.1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b4_minerals
+		}
+		upkeep = {
+			energy = @b4_upkeep
+		}
+	}
+}
+
+
+
+################################################################################
+###################                精液星球首都                ###################
+################################################################################
+
+
+
+
+building_gts_bruh_semen_colony_shelter = {
+
+	# 精液艦船改裝庇護所
+
+	capital = yes
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	position_priority = 0
+
+	icon = building_colony_shelter
+
+	category = government
+
+	potential = {
+		exists = owner
+		is_planet_class = pc_gts_semen
+	}
+
+	building_sets = {
+		government
+	}
+
+	convert_to = {
+		building_colony_shelter
+		building_hive_capital
+		building_deployment_post
+		building_colony_shelter_wilderness
+	}
+
+	planet_modifier = {
+		job_gts_semen_worker_add = 50
+		job_gts_giantess_fluid_worker_add = 50
+		planet_housing_add = 300
+		planet_amenities_add = 300
+		job_colonist_add = 200
+	}
+
+	inline_script = {
+		script = buildings/on_all_capital_buildings
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_valid_civic = civic_dystopian_society }
+		}
+		job_enforcer_add = 100
+		job_colonist_add = -100
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_synthetics_prefabricated_components }
+		}
+		job_roboticist_add = 100
+		job_colonist_add = -100
+	}
+
+	resources = {
+		category = planet_buildings
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	upgrades = {
+		building_gts_bruh_semen_capital
+	}
+}
+
+building_gts_bruh_semen_capital = {
+
+	# 精液養殖潟湖
+
+	base_buildtime = @b2_time
+	capital = yes
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	position_priority = 0
+
+	icon = building_machine_capital
+
+	category = government
+
+	potential = {
+		exists = owner
+		is_planet_class = pc_gts_semen
+	}
+
+	building_sets = {
+		government
+	}
+
+	allow = {
+		sapient_pop_amount >= 1000
+	}
+
+	convert_to = {
+		building_capital
+		building_hive_capital
+		building_machine_capital
+		building_resort_capital
+		building_slave_capital
+		building_ancient_control_center
+		building_ancient_palace
+		building_capital_wilderness
+	}
+
+	planet_modifier = {
+		job_enforcer_add = 100
+		job_gts_semen_worker_add = 100
+		job_gts_giantess_fluid_worker_add = 100
+		planet_housing_add = 1000
+		planet_amenities_add = 1000
+		planet_max_branch_office_buildings_add = 1
+		planet_defense_armies_add = @tier_2_capital_defense_armies
+	}
+
+	inline_script = {
+		script = buildings/on_all_capital_buildings
+	}
+	inline_script = {
+		script = buildings/regular_empire_capital_jobs
+		AMOUNT = 200
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+		}
+		planet_jobs_gts_giantess_fluid_produces_mult = 0.10
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_domination_imperious_architecture
+			}
+		}
+		modifier = {
+			planet_housing_add = 100
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_1 }
+		}
+		modifier = {
+			pop_bonus_workforce_mult = 0.1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+		}
+		upkeep = {
+			energy = @b2_upkeep
+		}
+	}
+
+	upgrades = { building_gts_bruh_semen_major_capital }
+}
+
+building_gts_bruh_semen_major_capital = {
+
+	# 精液蓄養設施
+
+	base_buildtime = @b3_time
+	capital = yes
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	position_priority = 0
+
+	icon = building_machine_major_capital
+
+	category = government
+
+	potential = {
+		exists = owner
+		is_planet_class = pc_gts_semen
+	}
+
+	building_sets = {
+		government
+	}
+
+	allow = {
+		sapient_pop_amount >= 2500
+	}
+
+	convert_to = {
+		building_major_capital
+		building_hive_major_capital
+		building_machine_major_capital
+		building_resort_major_capital
+		building_slave_major_capital
+		building_ancient_control_center
+		building_ancient_palace
+		building_major_capital_wilderness
+	}
+
+	prerequisites = {
+		"tech_colonial_centralization"
+	}
+
+	planet_modifier = {
+		job_enforcer_add = 200
+		job_gts_semen_worker_add = 200
+		job_gts_giantess_fluid_worker_add = 200
+		planet_housing_add = 1500
+		planet_amenities_add = 1500
+		planet_max_branch_office_buildings_add = 2
+		planet_defense_armies_add = @tier_3_capital_defense_armies
+	}
+
+	inline_script = {
+		script = buildings/on_all_capital_buildings
+	}
+	inline_script = {
+		script = buildings/regular_empire_capital_jobs
+		AMOUNT = 300
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+		}
+		planet_jobs_gts_giantess_fluid_produces_mult = 0.20
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_domination_imperious_architecture
+			}
+		}
+		modifier = {
+			planet_housing_add = 100
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_1 }
+		}
+		modifier = {
+			pop_bonus_workforce_mult = 0.1
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_2 }
+		}
+		modifier = {
+			pop_bonus_workforce_mult = 0.1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b3_minerals
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+	}
+
+	#triggered_desc = {
+	#	text = job_gts_semen_worker_effect_desc
+	#}
+
+	upgrades = { building_gts_bruh_semen_system_capital }
+}
+
+building_gts_bruh_semen_system_capital = {
+
+	# 精液巨型港口
+
+	base_buildtime = @b4_time
+	capital = yes
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	position_priority = 0
+
+	icon = building_machine_system_capital
+
+	category = government
+
+	potential = {
+		exists = owner
+		is_planet_class = pc_gts_semen
+	}
+
+	building_sets = {
+		government
+	}
+
+	allow = {
+		sapient_pop_amount >= 5000
+	}
+
+	convert_to = {
+		building_major_capital
+		building_hive_major_capital
+		building_machine_major_capital
+		building_resort_major_capital
+		building_slave_major_capital
+		building_ancient_control_center
+		building_ancient_palace
+		building_major_capital_wilderness
+	}
+
+	prerequisites = {
+		"tech_galactic_administration"
+	}
+
+	planet_modifier = {
+		job_enforcer_add = 300
+		job_gts_semen_worker_add = 400
+		job_gts_giantess_fluid_worker_add = 400
+		planet_housing_add = 2000
+		planet_amenities_add = 2000
+		planet_max_branch_office_buildings_add = 4
+		planet_defense_armies_add = @tier_4_capital_defense_armies
+	}
+
+	inline_script = {
+		script = buildings/on_all_capital_buildings
+	}
+	inline_script = {
+		script = buildings/regular_empire_capital_jobs
+		AMOUNT = 400
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+		}
+		planet_jobs_gts_giantess_fluid_produces_mult = 0.30
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_domination_imperious_architecture
+			}
+		}
+		modifier = {
+			planet_housing_add = 100
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_domination_imperious_architecture
+			}
+		}
+		modifier = {
+			planet_housing_add = 100
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_1 }
+		}
+		modifier = {
+			pop_bonus_workforce_mult = 0.1
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_2 }
+		}
+		modifier = {
+			pop_bonus_workforce_mult = 0.1
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_3 }
+		}
+		modifier = {
+			pop_bonus_workforce_mult = 0.1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b4_minerals
+		}
+		upkeep = {
+			energy = @b4_upkeep
+		}
+	}
+}
+
+
+
+################################################################################
+###################                足垢星球首都                ###################
+################################################################################
+
+
+
+building_gts_bruh_dirt_colony_shelter = {
+
+	# 足垢艦船改裝庇護所
+
+	capital = yes
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	position_priority = 0
+
+	icon = building_colony_shelter
+
+	category = government
+
+	potential = {
+		exists = owner
+		OR = {
+			is_planet_class = pc_gts_dirt0
+			is_planet_class = pc_gts_dirt1
+			is_planet_class = pc_gts_dirt2
+			is_planet_class = pc_gts_dirt3
+			is_planet_class = pc_gts_dirt4
+		}
+	}
+
+	building_sets = {
+		government
+	}
+
+	convert_to = {
+		building_colony_shelter
+		building_hive_capital
+		building_deployment_post
+		building_colony_shelter_wilderness
+	}
+
+	planet_modifier = {
+		job_gts_dirt1_add = 200
+		planet_housing_add = 300
+		planet_amenities_add = 300
+		job_colonist_add = 200
+	}
+
+	inline_script = {
+		script = buildings/on_all_capital_buildings
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_valid_civic = civic_dystopian_society }
+		}
+		job_enforcer_add = 100
+		job_colonist_add = -100
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_synthetics_prefabricated_components }
+		}
+		job_roboticist_add = 100
+		job_colonist_add = -100
+	}
+
+	resources = {
+		category = planet_buildings
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	upgrades = { building_gts_bruh_dirt_capital }
+}
+
+building_gts_bruh_dirt_capital = {
+
+	# 足垢行星首府
+
+	base_buildtime = @b2_time
+	capital = yes
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	position_priority = 0
+
+	icon = building_machine_capital
+
+	category = government
+
+	potential = {
+		exists = owner
+		OR = {
+			is_planet_class = pc_gts_dirt0
+			is_planet_class = pc_gts_dirt1
+			is_planet_class = pc_gts_dirt2
+			is_planet_class = pc_gts_dirt3
+			is_planet_class = pc_gts_dirt4
+		}
+	}
+
+	building_sets = {
+		government
+	}
+
+	allow = {
+		sapient_pop_amount >= 1000
+	}
+
+	convert_to = {
+		building_capital
+		building_hive_capital
+		building_machine_capital
+		building_resort_capital
+		building_slave_capital
+		building_ancient_control_center
+		building_ancient_palace
+		building_capital_wilderness
+	}
+
+	planet_modifier = {
+		job_enforcer_add = 100
+		job_gts_dirt1_add = 400
+		planet_housing_add = 1000
+		planet_amenities_add = 1000
+		planet_max_branch_office_buildings_add = 1
+		planet_defense_armies_add = @tier_2_capital_defense_armies
+	}
+
+	inline_script = {
+		script = buildings/on_all_capital_buildings
+	}
+	inline_script = {
+		script = buildings/regular_empire_capital_jobs
+		AMOUNT = 200
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			OR = {
+				is_planet_class = pc_gts_dirt0
+				is_planet_class = pc_gts_dirt3
+			}
+		}
+		planet_jobs_minerals_produces_mult = 0.10
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			OR = {
+				is_planet_class = pc_gts_dirt1
+				is_planet_class = pc_gts_dirt4
+			}
+		}
+		planet_jobs_food_produces_mult = 0.10
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			is_planet_class = pc_gts_dirt2
+		}
+		planet_army_build_speed_mult = 0.10
+		army_starting_experience_add = 100
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_domination_imperious_architecture
+			}
+		}
+		modifier = {
+			planet_housing_add = 100
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_1 }
+		}
+		modifier = {
+			pop_bonus_workforce_mult = 0.1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+		}
+		upkeep = {
+			energy = @b2_upkeep
+		}
+	}
+
+	upgrades = { building_gts_bruh_dirt_major_capital }
+}
+
+building_gts_bruh_dirt_major_capital = {
+
+	# 足垢挖掘點
+
+	base_buildtime = @b3_time
+	capital = yes
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	position_priority = 0
+
+	icon = building_machine_major_capital
+
+	category = government
+
+	potential = {
+		exists = owner
+		OR = {
+			is_planet_class = pc_gts_dirt0
+			is_planet_class = pc_gts_dirt1
+			is_planet_class = pc_gts_dirt2
+			is_planet_class = pc_gts_dirt3
+			is_planet_class = pc_gts_dirt4
+		}
+	}
+
+	building_sets = {
+		government
+	}
+
+	allow = {
+		sapient_pop_amount >= 2500
+	}
+
+	convert_to = {
+		building_major_capital
+		building_hive_major_capital
+		building_machine_major_capital
+		building_resort_major_capital
+		building_slave_major_capital
+		building_ancient_control_center
+		building_ancient_palace
+		building_major_capital_wilderness
+	}
+
+	prerequisites = {
+		"tech_colonial_centralization"
+	}
+
+	planet_modifier = {
+		job_enforcer_add = 200
+		job_gts_dirt1_add = 800
+		planet_housing_add = 1500
+		planet_amenities_add = 1500
+		planet_max_branch_office_buildings_add = 2
+		planet_defense_armies_add = @tier_3_capital_defense_armies
+	}
+
+	inline_script = {
+		script = buildings/on_all_capital_buildings
+	}
+	inline_script = {
+		script = buildings/regular_empire_capital_jobs
+		AMOUNT = 300
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			OR = {
+				is_planet_class = pc_gts_dirt0
+				is_planet_class = pc_gts_dirt3
+			}
+		}
+		planet_jobs_minerals_produces_mult = 0.20
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			OR = {
+				is_planet_class = pc_gts_dirt1
+				is_planet_class = pc_gts_dirt4
+			}
+		}
+		planet_jobs_food_produces_mult = 0.20
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			is_planet_class = pc_gts_dirt2
+		}
+		planet_army_build_speed_mult = 0.20
+		army_starting_experience_add = 200
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_domination_imperious_architecture
+			}
+		}
+		modifier = {
+			planet_housing_add = 100
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_1 }
+		}
+		modifier = {
+			pop_bonus_workforce_mult = 0.1
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_2 }
+		}
+		modifier = {
+			pop_bonus_workforce_mult = 0.1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b3_minerals
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+	}
+
+	upgrades = { building_gts_bruh_dirt_system_capital }
+}
+
+building_gts_bruh_dirt_system_capital = {
+
+	# 足垢礦場樞紐
+
+	base_buildtime = @b4_time
+	capital = yes
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	position_priority = 0
+
+	icon = building_machine_system_capital
+
+	category = government
+
+	potential = {
+		exists = owner
+		OR = {
+			is_planet_class = pc_gts_dirt0
+			is_planet_class = pc_gts_dirt1
+			is_planet_class = pc_gts_dirt2
+			is_planet_class = pc_gts_dirt3
+			is_planet_class = pc_gts_dirt4
+		}
+	}
+
+	building_sets = {
+		government
+	}
+
+	allow = {
+		sapient_pop_amount >= 5000
+	}
+
+	convert_to = {
+		building_major_capital
+		building_hive_major_capital
+		building_machine_major_capital
+		building_resort_major_capital
+		building_slave_major_capital
+		building_ancient_control_center
+		building_ancient_palace
+		building_major_capital_wilderness
+	}
+
+	prerequisites = {
+		"tech_galactic_administration"
+	}
+
+	planet_modifier = {
+		job_enforcer_add = 300
+		job_gts_dirt1_add = 1600
+		planet_housing_add = 2000
+		planet_amenities_add = 2000
+		planet_max_branch_office_buildings_add = 4
+		planet_defense_armies_add = @tier_4_capital_defense_armies
+	}
+
+	inline_script = {
+		script = buildings/on_all_capital_buildings
+	}
+	inline_script = {
+		script = buildings/regular_empire_capital_jobs
+		AMOUNT = 400
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			OR = {
+				is_planet_class = pc_gts_dirt0
+				is_planet_class = pc_gts_dirt3
+			}
+		}
+		planet_jobs_minerals_produces_mult = 0.30
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			OR = {
+				is_planet_class = pc_gts_dirt1
+				is_planet_class = pc_gts_dirt4
+			}
+		}
+		planet_jobs_food_produces_mult = 0.30
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+				is_planet_class = pc_gts_dirt2
+		}
+		planet_army_build_speed_mult = 0.30
+		army_starting_experience_add = 400
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_domination_imperious_architecture
+			}
+		}
+		modifier = {
+			planet_housing_add = 100
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_domination_imperious_architecture
+			}
+		}
+		modifier = {
+			planet_housing_add = 100
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_1 }
+		}
+		modifier = {
+			pop_bonus_workforce_mult = 0.1
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_2 }
+		}
+		modifier = {
+			pop_bonus_workforce_mult = 0.1
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_3 }
+		}
+		modifier = {
+			pop_bonus_workforce_mult = 0.1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b4_minerals
+		}
+		upkeep = {
+			energy = @b4_upkeep
+		}
+	}
+}
+
+
+
+################################################################################
+###################                排泄星球首都                ###################
+################################################################################
+
+
+
+building_gts_bruh_shit_colony_shelter = {
+
+	# 排泄艦船改裝庇護所
+
+	capital = yes
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	position_priority = 0
+
+	icon = building_colony_shelter
+
+	category = government
+
+	potential = {
+		exists = owner
+		is_planet_class = pc_gts_shit
+	}
+
+	building_sets = {
+		government
+	}
+
+	convert_to = {
+		building_colony_shelter
+		building_hive_capital
+		building_deployment_post
+		building_colony_shelter_wilderness
+	}
+
+	planet_modifier = {
+		job_gts_shit_worker_add = 200
+		planet_housing_add = 300
+		planet_amenities_add = 300
+		job_colonist_add = 200
+	}
+
+	inline_script = {
+		script = buildings/on_all_capital_buildings
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_valid_civic = civic_dystopian_society }
+		}
+		job_enforcer_add = 100
+		job_colonist_add = -100
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_synthetics_prefabricated_components }
+		}
+		job_roboticist_add = 100
+		job_colonist_add = -100
+	}
+
+	resources = {
+		category = planet_buildings
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	upgrades = { building_gts_bruh_shit_capital }
+}
+
+building_gts_bruh_shit_capital = {
+
+	# 排泄行星首府
+
+	base_buildtime = @b2_time
+	capital = yes
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	position_priority = 0
+
+	icon = building_machine_capital
+
+	category = government
+
+	potential = {
+		exists = owner
+		is_planet_class = pc_gts_shit
+	}
+
+	building_sets = {
+		government
+	}
+
+	allow = {
+		sapient_pop_amount >= 1000
+	}
+
+	convert_to = {
+		building_capital
+		building_hive_capital
+		building_machine_capital
+		building_resort_capital
+		building_slave_capital
+		building_ancient_control_center
+		building_ancient_palace
+		building_capital_wilderness
+	}
+
+	planet_modifier = {
+		job_enforcer_add = 100
+		job_gts_shit_worker_add = 400
+		planet_housing_add = 1000
+		planet_amenities_add = 1000
+		planet_max_branch_office_buildings_add = 1
+		planet_defense_armies_add = @tier_2_capital_defense_armies
+	}
+
+	inline_script = {
+		script = buildings/on_all_capital_buildings
+	}
+	inline_script = {
+		script = buildings/regular_empire_capital_jobs
+		AMOUNT = 200
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+		}
+		planet_jobs_food_produces_mult = 0.05
+		planet_jobs_minerals_produces_mult = 0.05
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_domination_imperious_architecture
+			}
+		}
+		modifier = {
+			planet_housing_add = 100
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_1 }
+		}
+		modifier = {
+			pop_bonus_workforce_mult = 0.1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+		}
+		upkeep = {
+			energy = @b2_upkeep
+		}
+	}
+
+	upgrades = { building_gts_bruh_shit_major_capital }
+}
+
+building_gts_bruh_shit_major_capital = {
+
+	# 病村
+
+	base_buildtime = @b3_time
+	capital = yes
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	position_priority = 0
+
+	icon = building_machine_major_capital
+
+	category = government
+
+	potential = {
+		exists = owner
+		is_planet_class = pc_gts_shit
+	}
+
+	building_sets = {
+		government
+	}
+
+	allow = {
+		sapient_pop_amount >= 2500
+	}
+
+	convert_to = {
+		building_major_capital
+		building_hive_major_capital
+		building_machine_major_capital
+		building_resort_major_capital
+		building_slave_major_capital
+		building_ancient_control_center
+		building_ancient_palace
+		building_major_capital_wilderness
+	}
+
+	prerequisites = {
+		"tech_colonial_centralization"
+	}
+
+	planet_modifier = {
+		job_enforcer_add = 200
+		job_gts_shit_worker_add = 800
+		planet_housing_add = 1500
+		planet_amenities_add = 1500
+		planet_max_branch_office_buildings_add = 2
+		planet_defense_armies_add = @tier_3_capital_defense_armies
+	}
+
+	inline_script = {
+		script = buildings/on_all_capital_buildings
+	}
+	inline_script = {
+		script = buildings/regular_empire_capital_jobs
+		AMOUNT = 300
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+		}
+		planet_jobs_food_produces_mult = 0.10
+		planet_jobs_minerals_produces_mult = 0.10
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_domination_imperious_architecture
+			}
+		}
+		modifier = {
+			planet_housing_add = 100
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_1 }
+		}
+		modifier = {
+			pop_bonus_workforce_mult = 0.1
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_2 }
+		}
+		modifier = {
+			pop_bonus_workforce_mult = 0.1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b3_minerals
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+	}
+
+	upgrades = { building_gts_bruh_shit_system_capital }
+}
+
+building_gts_bruh_shit_system_capital = {
+
+	# 深淵
+
+	base_buildtime = @b4_time
+	capital = yes
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	position_priority = 0
+
+	icon = building_machine_system_capital
+
+	category = government
+
+	potential = {
+		exists = owner
+		is_planet_class = pc_gts_shit
+	}
+
+	building_sets = {
+		government
+	}
+
+	allow = {
+		sapient_pop_amount >= 5000
+	}
+
+	convert_to = {
+		building_major_capital
+		building_hive_major_capital
+		building_machine_major_capital
+		building_resort_major_capital
+		building_slave_major_capital
+		building_ancient_control_center
+		building_ancient_palace
+		building_major_capital_wilderness
+	}
+
+	prerequisites = {
+		"tech_galactic_administration"
+	}
+
+	planet_modifier = {
+		job_enforcer_add = 300
+		job_gts_shit_worker_add = 1600
+		planet_housing_add = 2000
+		planet_amenities_add = 2000
+		planet_max_branch_office_buildings_add = 4
+		planet_defense_armies_add = @tier_4_capital_defense_armies
+	}
+
+	inline_script = {
+		script = buildings/on_all_capital_buildings
+	}
+	inline_script = {
+		script = buildings/regular_empire_capital_jobs
+		AMOUNT = 400
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+		}
+		planet_jobs_food_produces_mult = 0.15
+		planet_jobs_minerals_produces_mult = 0.15
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_domination_imperious_architecture
+			}
+		}
+		modifier = {
+			planet_housing_add = 100
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_domination_imperious_architecture
+			}
+		}
+		modifier = {
+			planet_housing_add = 100
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_1 }
+		}
+		modifier = {
+			pop_bonus_workforce_mult = 0.1
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_2 }
+		}
+		modifier = {
+			pop_bonus_workforce_mult = 0.1
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_3 }
+		}
+		modifier = {
+			pop_bonus_workforce_mult = 0.1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b4_minerals
+		}
+		upkeep = {
+			energy = @b4_upkeep
+		}
+	}
+}
+
+
+
+################################################################################
+###################                尿液星球首都                ###################
+################################################################################
+
+
+
+building_gts_bruh_urine_colony_shelter = {
+
+	# 尿液艦船改裝庇護所
+
+	capital = yes
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	position_priority = 0
+
+	icon = building_colony_shelter
+
+	category = government
+
+	potential = {
+		exists = owner
+		OR = {
+			is_planet_class = pc_gts_urine
+			is_planet_class = pc_gts_urine2
+		}
+	}
+
+	building_sets = {
+		government
+	}
+
+	convert_to = {
+		building_colony_shelter
+		building_hive_capital
+		building_deployment_post
+		building_colony_shelter_wilderness
+	}
+
+	planet_modifier = {
+		job_gts_urine_worker_add = 200
+		planet_housing_add = 300
+		planet_amenities_add = 300
+		job_colonist_add = 200
+	}
+
+	inline_script = {
+		script = buildings/on_all_capital_buildings
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_valid_civic = civic_dystopian_society }
+		}
+		job_enforcer_add = 100
+		job_colonist_add = -100
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_synthetics_prefabricated_components }
+		}
+		job_roboticist_add = 100
+		job_colonist_add = -100
+	}
+
+	resources = {
+		category = planet_buildings
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	upgrades = { building_gts_bruh_shit_capital }
+}
+
+building_gts_bruh_urine_capital = {
+
+	# 尿液行星首府
+
+	base_buildtime = @b2_time
+	capital = yes
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	position_priority = 0
+
+	icon = building_machine_capital
+
+	category = government
+
+	potential = {
+		exists = owner
+		OR = {
+			is_planet_class = pc_gts_urine
+			is_planet_class = pc_gts_urine2
+		}
+	}
+
+	building_sets = {
+		government
+	}
+
+	allow = {
+		sapient_pop_amount >= 1000
+	}
+
+	convert_to = {
+		building_capital
+		building_hive_capital
+		building_machine_capital
+		building_resort_capital
+		building_slave_capital
+		building_ancient_control_center
+		building_ancient_palace
+		building_capital_wilderness
+	}
+
+	planet_modifier = {
+		job_enforcer_add = 100
+		job_gts_urine_worker_add = 400
+		planet_housing_add = 1000
+		planet_amenities_add = 1000
+		planet_max_branch_office_buildings_add = 1
+		planet_defense_armies_add = @tier_2_capital_defense_armies
+	}
+
+	inline_script = {
+		script = buildings/on_all_capital_buildings
+	}
+	inline_script = {
+		script = buildings/regular_empire_capital_jobs
+		AMOUNT = 200
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+		}
+		planet_jobs_gts_giantess_fluid_produces_mult = 0.10
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_domination_imperious_architecture
+			}
+		}
+		modifier = {
+			planet_housing_add = 100
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_1 }
+		}
+		modifier = {
+			pop_bonus_workforce_mult = 0.1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+		}
+		upkeep = {
+			energy = @b2_upkeep
+		}
+	}
+
+	upgrades = { building_gts_bruh_shit_major_capital }
+}
+
+building_gts_bruh_urine_major_capital = {
+
+	# 尿液研究站
+
+	base_buildtime = @b3_time
+	capital = yes
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	position_priority = 0
+
+	icon = building_machine_major_capital
+
+	category = government
+
+	potential = {
+		exists = owner
+		OR = {
+			is_planet_class = pc_gts_urine
+			is_planet_class = pc_gts_urine2
+		}
+	}
+
+	building_sets = {
+		government
+	}
+
+	allow = {
+		sapient_pop_amount >= 2500
+	}
+
+	convert_to = {
+		building_major_capital
+		building_hive_major_capital
+		building_machine_major_capital
+		building_resort_major_capital
+		building_slave_major_capital
+		building_ancient_control_center
+		building_ancient_palace
+		building_major_capital_wilderness
+	}
+
+	prerequisites = {
+		"tech_colonial_centralization"
+	}
+
+	planet_modifier = {
+		job_enforcer_add = 200
+		job_gts_urine_worker_add = 800
+		planet_housing_add = 1500
+		planet_amenities_add = 1500
+		planet_max_branch_office_buildings_add = 2
+		planet_defense_armies_add = @tier_3_capital_defense_armies
+	}
+
+	inline_script = {
+		script = buildings/on_all_capital_buildings
+	}
+	inline_script = {
+		script = buildings/regular_empire_capital_jobs
+		AMOUNT = 300
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+		}
+		planet_jobs_gts_giantess_fluid_produces_mult = 0.20
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_domination_imperious_architecture
+			}
+		}
+		modifier = {
+			planet_housing_add = 100
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_1 }
+		}
+		modifier = {
+			pop_bonus_workforce_mult = 0.1
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_2 }
+		}
+		modifier = {
+			pop_bonus_workforce_mult = 0.1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b3_minerals
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+	}
+
+	upgrades = { building_gts_bruh_urine_system_capital }
+}
+
+building_gts_bruh_urine_system_capital = {
+
+	# 尿液多功能處理研究中心
+
+	base_buildtime = @b4_time
+	capital = yes
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	position_priority = 0
+
+	icon = building_machine_system_capital
+
+	category = government
+
+	potential = {
+		exists = owner
+		OR = {
+			is_planet_class = pc_gts_urine
+			is_planet_class = pc_gts_urine2
+		}
+	}
+
+	building_sets = {
+		government
+	}
+
+	allow = {
+		sapient_pop_amount >= 5000
+	}
+
+	convert_to = {
+		building_major_capital
+		building_hive_major_capital
+		building_machine_major_capital
+		building_resort_major_capital
+		building_slave_major_capital
+		building_ancient_control_center
+		building_ancient_palace
+		building_major_capital_wilderness
+	}
+
+	prerequisites = {
+		"tech_galactic_administration"
+	}
+
+	planet_modifier = {
+		job_enforcer_add = 300
+		job_gts_urine_worker_add = 1600
+		planet_housing_add = 2000
+		planet_amenities_add = 2000
+		planet_max_branch_office_buildings_add = 4
+		planet_defense_armies_add = @tier_4_capital_defense_armies
+	}
+
+	inline_script = {
+		script = buildings/on_all_capital_buildings
+	}
+	inline_script = {
+		script = buildings/regular_empire_capital_jobs
+		AMOUNT = 400
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+		}
+		planet_jobs_gts_giantess_fluid_produces_mult = 0.30
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_domination_imperious_architecture
+			}
+		}
+		modifier = {
+			planet_housing_add = 100
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_domination_imperious_architecture
+			}
+		}
+		modifier = {
+			planet_housing_add = 100
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_1 }
+		}
+		modifier = {
+			pop_bonus_workforce_mult = 0.1
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_2 }
+		}
+		modifier = {
+			pop_bonus_workforce_mult = 0.1
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_3 }
+		}
+		modifier = {
+			pop_bonus_workforce_mult = 0.1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b4_minerals
+		}
+		upkeep = {
+			energy = @b4_upkeep
+		}
+	}
+}
+

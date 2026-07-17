@@ -1,0 +1,148 @@
+weapon_component_template = {
+	key = "GIANTESS_PSIONIC_THUNDER"
+	hidden = yes
+
+	size = medium
+	entity = "large_space_cloud_weapon_entity"
+	type = instant
+	icon = "GFX_ship_part_space_cloud_weapon_1"
+	icon_frame = 1
+	projectile_gfx = "arc_emitter"
+	tags = { weapon_type_energy m_slot }
+	ai_tags = { weapon_role_anti_armor }
+	size_restriction = { giantess_goddess_twin }
+
+	component_set = "GIANTESS_PSIONIC_THUNDER"
+	power = 10 #花费能源
+    damage = {    #伤害浮动
+		min = 2000
+		max = 4000
+	}
+	windup = {    #开火准备时间
+		min = 0.5
+		max = 1
+	}
+	total_fire_time = 30
+	range = 1500  #射程
+	accuracy = 2 #命中
+	tracking = 2 #追踪
+	hull_damage = 0.8 #破船 1=正常
+	shield_damage = 0.2 #破盾
+	armor_damage = 2 #破甲
+	shield_penetration = 0 #穿甲 1=+100%
+	armor_penetration = 2
+}
+
+weapon_component_template = {
+	key = "GIANTESS_GODDESS_HANDS"
+	hidden = yes
+
+	size = large
+	entity = "large_space_cloud_weapon_entity"
+	type = instant
+	icon = "GFX_ship_part_space_cloud_weapon_1"
+	icon_frame = 1
+	projectile_gfx = "arc_emitter"
+	tags = { weapon_type_kinetic l_slot }
+	ai_tags = { weapon_role_anti_armor weapon_role_anti_shield weapon_role_anti_hull }
+	size_restriction = { giantess_goddess_twin }
+
+	component_set = "GIANTESS_GODDESS_HANDS"
+
+	power = 10 #花费能源
+    damage = {    #伤害浮动
+		min = 60000
+		max = 100000
+	}
+	windup = {    #开火准备时间
+		min = 0.1
+		max = 0.3
+	}
+
+	total_fire_time = 30
+	range = 500  #射程
+	accuracy = 4 #命中
+	tracking = 2 #追踪
+	hull_damage = 2 #破船 1=正常
+	shield_damage = 2 #破盾
+	armor_damage = 2 #破甲
+	shield_penetration = 2 #穿甲 1=+100%
+	armor_penetration = 2
+	
+}
+
+weapon_component_template = {
+	key = "GIANTESS_GODDESS_FEET"
+	hidden = yes
+
+	size = large
+	entity = "large_space_cloud_weapon_entity"
+	type = instant
+	icon = "GFX_ship_part_space_cloud_weapon_1"
+	icon_frame = 1
+	projectile_gfx = "arc_emitter"
+	tags = { weapon_type_kinetic l_slot }
+	ai_tags = { weapon_role_anti_armor weapon_role_anti_shield weapon_role_anti_hull }
+	size_restriction = { giantess_goddess_twin }
+
+	component_set = "GIANTESS_GODDESS_FEET"
+
+	power = 10 #花费能源
+    damage = {    #伤害浮动
+		min = 80000
+		max = 120000
+	}
+	windup = {    #开火准备时间
+		min = 0.3
+		max = 0.5
+	}
+
+	total_fire_time = 25
+	range = 800  #射程
+	accuracy = 4 #命中
+	tracking = 2 #追踪
+	hull_damage = 2 #破船 1=正常
+	shield_damage = 2 #破盾
+	armor_damage = 2 #破甲
+	shield_penetration = 2 #穿甲 1=+100%
+	armor_penetration = 2
+}
+
+weapon_component_template = {
+	key = "GIANTESS_TINY_DEFENDER"
+	hidden = yes
+
+	size = point_defence
+	entity = "small_space_cloud_weapon_entity"
+	type = point_defence
+	icon = "GFX_ship_part_space_cloud_weapon_1"
+	icon_frame = 1
+	projectile_gfx = "red_laser_pd"
+	tags = { weapon_type_point_defense weapon_type_kinetic }
+	ai_tags = { weapon_role_point_defense screen }
+	size_restriction = { giantess_goddess_twin }
+
+	point_defence_targets = { "missile" "strike_craft" }
+
+	power = 10 #花费能源
+    damage = {    #伤害浮动
+		min = 60
+		max = 100
+	}
+	windup = {    #开火准备时间
+		min = 0.1
+		max = 0.3
+	}
+	total_fire_time = 30
+	range = 150  #射程
+	accuracy = 1 #命中
+	tracking = 0.70 #追踪
+	hull_damage = 1 #破船 1=正常
+	shield_damage = 1 #破盾
+	armor_damage = 0.25 #破甲
+	shield_penetration = 0 #穿甲 1=+100%
+	armor_penetration = 0.25
+
+
+	component_set = "GIANTESS_TINY_DEFENDER"
+}

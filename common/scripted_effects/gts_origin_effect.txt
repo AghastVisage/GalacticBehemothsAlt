@@ -1,0 +1,911 @@
+luanzi_origin_effect = {
+	add_modifier = {
+		modifier = luanzi_home_planet_modifiers
+	}
+	#添加卵子母星buff
+	remove_deposit = d_decrepit_dwellings	#移除地块：贫民区
+	add_deposit = d_gts_egg_dig_a
+	add_deposit = d_damaged_farming_ruins	#添加地块：废墟
+	add_deposit = d_damaged_farming_ruins
+	add_deposit = d_damaged_farming_ruins
+	add_deposit = d_damaged_mining_ruins
+	add_deposit = d_damaged_mining_ruins
+	add_deposit = d_damaged_mining_ruins
+	add_deposit = d_damaged_generator_ruins
+	add_deposit = d_damaged_generator_ruins
+	add_deposit = d_damaged_generator_ruins
+}
+
+Aya_origin_effect = {
+	add_modifier = {
+		modifier = aya_end_of_golden_age
+		days = 7200
+	}
+	#添加母星buff:后黄金时代的混乱
+	add_modifier = {
+		modifier = aya_protect_us
+	}
+	#添加母星buff:彩彩会保护大家的
+	add_deposit = d_Aya_palace	#添加地块:领袖行宫 
+	add_deposit = d_Aya_footprint	#添加地块:脚印
+	add_deposit = d_Aya_flat
+}
+
+parasitic_robot_origin_effect = {
+	add_modifier = {
+		modifier = center_of_gts
+	}
+	add_deposit = d_chenghui_district_added
+	add_deposit = d_Chenghui_mouth
+	add_deposit = d_Chenghui_sweat
+	add_deposit = d_Chenghui_sweat
+	add_deposit = d_Chenghui_chest
+	add_deposit = d_Chenghui_chest
+	add_deposit = d_Chenghui_home
+	add_deposit = d_Chenghui_button
+}
+
+create_chenghui_governor = {
+	if = {
+		limit = {
+			has_country_flag = chenghui_warship_active
+		}
+		remove_country_flag = chenghui_warship_active
+		event_target:chenghui_warship = {
+			delete_fleet = this
+		}
+	}
+	if = {
+		limit = {
+			has_country_flag = chenghui_army_active
+		}
+		remove_country_flag = chenghui_army_active
+		every_owned_army = {
+			limit = {
+				army_type = chenghui_army
+			}
+			remove_army = yes
+		}
+	}
+	set_country_flag = chenghui_governor_active
+	create_leader = {
+		class = official
+		species = event_target:Chenghui
+		name = NAME_Chenghui
+		event_leader = yes
+		skill = 10
+		gender = female
+		set_age = 17
+		traits = {
+			trait = leader_trait_governor_chenghui
+		}
+	}
+	last_created_leader = {
+		save_global_event_target_as = chenghui_governor
+		set_leader_flag = gts_chenghui
+		set_leader_flag = has_gained_level_trait
+		gts_ui_leader_init = yes
+		change_leader_portrait = gts_Chenghui_governer
+	}
+}
+
+create_chenghui_warship = {
+	if = {
+		limit = {
+			has_country_flag = chenghui_governor_active
+		}
+		remove_country_flag = chenghui_governor_active
+		event_target:chenghui_governor = {
+			kill_leader = {
+				show_notification = no
+			}
+		}
+	}
+	if = {
+		limit = {
+			has_country_flag = chenghui_army_active
+		}
+		remove_country_flag = chenghui_army_active
+		every_owned_army = {
+			limit = {
+				army_type = chenghui_army
+			}
+			remove_army = yes
+		}
+	}
+	else = {
+		capital_scope = {
+			save_event_target_as = chenghui_warship_location
+		}
+	}
+	set_country_flag = chenghui_warship_active
+	create_fleet = {
+		name = "NAME_Chenghui"
+		settings = {
+			can_upgrade = no
+			can_change_composition = no
+			can_change_leader = no
+			uses_naval_capacity = no
+			spawn_debris = no
+		}
+		effect = {
+			set_owner = root
+			create_ship = {
+				name = "NAME_Chenghui"
+				design = "NAME_Chenghui_Warship"
+				prefix = no
+				upgradable = no
+				effect = {
+					set_ship_flag = gts_body_ship
+					set_ship_flag = gts_chenghui_ship
+				}
+			}
+			save_global_event_target_as = chenghui_warship
+			set_location = event_target:chenghui_warship_location
+			add_modifier = {
+				modifier = "gray_warship"				##########################
+				days = -1
+			}
+		}
+	}
+	if = {
+		#改动过 上边的括号原本在下面
+		limit = {
+			has_country_flag = chenghui_army_active
+		}
+		remove_country_flag = chenghui_army_active
+		every_owned_army = {
+			limit = {
+				army_type = chenghui_army
+			}
+			remove_army = yes
+		}
+	}
+}
+
+create_chenghui_army = {
+	if = {
+		limit = {
+			has_country_flag = chenghui_governor_active
+		}
+		remove_country_flag = chenghui_governor_active
+		event_target:chenghui_governor = {
+			kill_leader = {
+				show_notification = no
+			}
+		}
+	}
+	if = {
+		limit = {
+			has_country_flag = chenghui_warship_active
+		}
+		remove_country_flag = chenghui_warship_active
+		event_target:chenghui_warship = {
+			delete_fleet = this
+		}
+	}
+	else = {
+		capital_scope = {
+			save_event_target_as = chenghui_transport_location
+		}
+	}
+	set_country_flag = chenghui_army_active
+	create_fleet = {
+		name = "NAME_Chenghui"
+		effect = {
+			set_owner = root
+			create_army_transport = {
+				ship_name = "NAME_Chenghui"
+				#graphical_culture = "root"
+				army_name = "NAME_Chenghui"
+				army_type = "chenghui_army"
+			}
+			set_location = {
+				target = event_target:chenghui_transport_location
+				distance = 0
+				angle = random
+			}
+		}
+	}
+	if = {
+		limit = {
+			has_country_flag = chenghui_warship_active
+		}
+		remove_country_flag = chenghui_warship_active
+		event_target:chenghui_warship = {
+			delete_fleet = this
+		}
+	}
+}
+
+origin_robot_gts_Leftfoot_effect = {
+	#左足
+	change_pc = pc_gaia
+}
+
+origin_robot_gts_Rightfoot_effect = {
+	#右足
+	change_pc = pc_gaia
+}
+
+origin_robot_gts_Stomach_effect = {
+	#胃
+	change_pc = pc_gaia
+}
+
+origin_robot_gts_Anal_effect = {
+	#菊
+	change_pc = pc_gaia
+}
+
+origin_robot_gts_Puss_effect = {
+	#阴
+	change_pc = pc_gaia
+}
+
+annihilator_origin_effect = {
+	add_modifier = {
+		modifier = belly_of_gts
+	}
+	add_modifier = {
+		modifier = back_of_gts
+	}
+	add_deposit = d_giantess_belly_plain_dirty
+	add_deposit = d_giantess_belly_plain_sweaty
+	add_deposit = d_giantess_belly_plain_dirty
+	add_deposit = d_giantess_belly_plain
+	add_deposit = d_giantess_back_plain_sweaty
+	add_deposit = d_giantess_back_plain_sweaty
+	add_deposit = d_giantess_back_plain_dirty
+	add_deposit = d_giantess_back_plain
+	add_deposit = d_giantess_strange_noise
+	add_deposit = d_giantess_warm_ground
+}
+
+generate_home_planet_final_pass = {
+	optimize_memory
+	# Adjust life-seeded colonies
+	if = {
+		##### 修改原代码
+		limit = {
+			owner = {
+				has_origin = origin_Hexie
+			}
+		}
+		owner = {
+			capital_scope = {
+				add_modifier = {
+					modifier = gts_hexie
+					days = 7200
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			owner = {
+				has_origin = origin_life_seeded
+			}
+		}
+		owner = {
+			# Nuke other colonies gained from advanced empire, etc
+			every_owned_planet = {
+				limit = {
+					is_capital = no
+				}
+				remove_all_buildings = yes
+				destroy_colony = yes
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_valid_civic = civic_permanent_employment
+					}
+				}
+				change_dominant_species = {
+					species = last_created_species
+					change_all = yes
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			owner = {
+				OR = {
+					has_origin = origin_shattered_ring
+					has_origin = origin_machine
+				}
+			}
+		}
+		owner = {
+			capital_scope = {
+				system_star = {
+					set_deposit = d_energy_10
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			owner = {
+				has_origin = origin_tree_of_life
+			}
+		}
+		owner = {
+			capital_scope = {
+				add_deposit = d_tree_of_life_home
+			}
+		}
+	}
+	if = {
+		limit = {
+			owner = {
+				has_origin = origin_lithoid
+			}
+		}
+		owner = {
+			capital_scope = {
+				add_deposit = d_lithoid_crater
+				add_deposit = d_buried_lithoids
+				add_deposit = d_buried_lithoids
+				add_deposit = d_buried_lithoids
+				add_deposit = d_buried_lithoids
+			}
+		}
+	}
+	if = {
+		limit = {
+			owner = {
+				has_origin = origin_lost_colony
+				is_gestalt = no
+			}
+		}
+		owner = {
+			capital_scope = {
+				add_modifier = {
+					modifier = colonial_spirit_mod
+				}
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			owner = {
+				has_origin = origin_lost_colony
+				is_gestalt = yes
+			}
+		}
+		owner = {
+			capital_scope = {
+				add_modifier = {
+					modifier = colonial_spirit_gestalt_mod
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			owner = {
+				has_origin = origin_broken_shackles
+			}
+		}
+		owner = {
+			capital_scope = {
+				add_modifier = {
+					modifier = free_at_last_broken_shackles
+					days = 7200
+				}
+				add_modifier = {
+					modifier = culture_shock_broken_shackles
+					days = 3600
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			owner = {
+				has_origin = origin_progenitor_hive
+			}
+		}
+		owner = {
+			capital_scope = {
+				add_deposit = d_progenitor
+			}
+		}
+	}
+	if = {
+		limit = {
+			owner = {
+				has_origin = origin_default
+			}
+		}
+		owner = {
+			if = {
+				limit = {
+					is_gestalt = no
+				}
+				capital_scope = {
+					add_modifier = {
+						modifier = prosp_uni_mod
+						days = 7200
+					}
+				}
+			}
+			else = {
+				capital_scope = {
+					add_modifier = {
+						modifier = prosp_uni_mod_gestalt
+						days = 7200
+					}
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			owner = {
+				has_origin = origin_machine
+			}
+		}
+		owner = {
+			capital_scope = {
+				add_deposit = d_machine_minerals
+				solar_system = {
+					every_system_planet = {
+						limit = {
+							colonizable_planet = no
+							is_star = no
+						}
+						clear_deposits = yes
+					}
+					every_system_planet = {
+						limit = {
+							is_asteroid = yes
+						}
+						remove_planet = yes
+					}
+					every_system_planet = {
+						limit = {
+							colonizable_planet = no
+							is_star = no
+							is_asteroid = no
+							NOT = {
+								is_planet_class = pc_gas_giant
+							}
+						}
+						change_pc = pc_broken
+					}
+					every_system_planet = {
+						limit = {
+							colonizable_planet = no
+							is_star = no
+							is_planet_class = pc_gas_giant
+						}
+						change_pc = pc_molten
+						add_modifier = {
+							modifier = chthonian_planet
+						}
+						every_moon = {
+							limit = {
+								colonizable_planet = no
+							}
+							remove_planet = yes
+						}
+						while = {
+							limit = {
+								planet_size >= 20
+							}
+							change_planet_size = -6
+						}
+					}
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			owner = {
+				any_owned_pop_group = {
+					has_trait = trait_exotic_metabolism
+				}
+			}
+		}
+		add_deposit = d_exotic_mountain
+	}
+}
+
+# H星人
+hstar_origin_effect = {
+	add_deposit = d_hstar_develop
+	add_building = building_hstar_lingruzhe_factory
+}
+
+create_hstar_custom_effect = {
+	if = {
+		limit = {
+			host_has_dlc = "Plantoids Species Pack"
+		}
+		create_species = {
+			name = "NAME_hstar_custom"
+			plural = "NAME_hstar_customs"
+			class = HUM
+			portrait = "human"
+			namelist = "HUM2"
+			extra_trait_points = 2
+			traits = {
+				trait = "trait_plantoid_radiotrophic"
+				trait = "trait_quick_learners"
+				trait = "trait_Normal"
+			}
+			homeworld = event_target:hstar_custom_joint_planet
+			effect = {
+				save_global_event_target_as = hstar_custom_species
+			}
+		}
+	}
+	else = {
+		create_species = {
+			name = "NAME_hstar_custom"
+			plural = "NAME_hstar_customs"
+			class = HUM
+			portrait = "human"
+			namelist = "HUM2"
+			traits = {
+				trait = "trait_quick_learners"
+				trait = "trait_Normal"
+			}
+			homeworld = event_target:hstar_custom_joint_planet
+			effect = {
+				save_global_event_target_as = hstar_custom_species
+			}
+		}
+	}
+}
+
+giantess_crisis_vanguanrd = {
+	random_list = {
+		10 = {
+			create_leader = {
+				class = commander
+				species = event_target:giantess_crisis_species
+				name = random
+				skill = 3
+				set_age = 34
+				traits = {
+					trait = leader_trait_crisis_assult
+				}
+			}
+		}
+		10 = {
+			create_leader = {
+				class = commander
+				species = event_target:giantess_crisis_species
+				name = random
+				skill = 3
+				set_age = 29
+				traits = {
+					trait = leader_trait_crisis_assult
+				}
+			}
+		}
+		10 = {
+			create_leader = {
+				class = commander
+				species = event_target:giantess_crisis_species
+				name = random
+				skill = 3
+				set_age = 41
+				traits = {
+					trait = leader_trait_crisis_assult
+				}
+			}
+		}
+		10 = {
+			create_leader = {
+				class = commander
+				species = event_target:giantess_crisis_species
+				name = random
+				skill = 3
+				set_age = 14
+				traits = {
+					trait = leader_trait_crisis_assult
+				}
+			}
+		}
+		10 = {
+			create_leader = {
+				class = commander
+				species = event_target:giantess_crisis_species
+				name = random
+				skill = 3
+				set_age = 10
+				traits = {
+					trait = leader_trait_crisis_assult
+				}
+			}
+		}
+		10 = {
+			create_leader = {
+				class = commander
+				species = event_target:giantess_crisis_species
+				name = random
+				skill = 3
+				set_age = 25
+				traits = {
+					trait = leader_trait_crisis_assult
+				}
+			}
+		}
+		10 = {
+			create_leader = {
+				class = commander
+				species = event_target:giantess_crisis_species
+				name = random
+				skill = 3
+				set_age = 48
+				traits = {
+					trait = leader_trait_crisis_assult
+				}
+			}
+		}
+		10 = {
+			create_leader = {
+				class = commander
+				species = event_target:giantess_crisis_species
+				name = random
+				skill = 3
+				set_age = 33
+				traits = {
+					trait = leader_trait_crisis_assult
+				}
+			}
+		}
+		10 = {
+			create_leader = {
+				class = commander
+				species = event_target:giantess_crisis_species
+				name = random
+				skill = 3
+				set_age = 18
+				traits = {
+					trait = leader_trait_crisis_assult
+				}
+			}
+		}
+		10 = {
+			create_leader = {
+				class = commander
+				species = event_target:giantess_crisis_species
+				name = random
+				skill = 3
+				set_age = 45
+				traits = {
+					trait = leader_trait_crisis_assult
+				}
+			}
+		}
+	}
+	create_fleet = {
+		name = "NAME_Giantess_crisis_Vanguard"
+		effect = {
+			set_owner = PREV
+			create_ship = {
+				name = random
+				design = "NAME_giantess_crisis_Small"
+				graphical_culture = root.owner
+			}
+			assign_leader = last_created_leader
+			while = {
+				count = 30
+				create_ship = {
+					name = random
+					design = "NAME_giantess_crisis_Small"
+					graphical_culture = root.owner
+				}
+			}
+			set_location = {
+				target = PREVPREV
+				distance = 35
+				angle = random
+			}
+			set_fleet_stance = aggressive
+			set_aggro_range = 500
+			set_aggro_range_measure_from = self
+			set_fleet_bombardment_stance = armageddon
+		}
+	}
+}
+
+giantess_crisis_brood = {
+	random_list = {
+		75 = {
+			create_leader = {
+				class = commander
+				species = event_target:giantess_crisis_species
+				name = random
+				skill = 3
+				set_age = 11
+			}
+		}
+		25 = {
+			create_leader = {
+				class = commander
+				species = event_target:giantess_crisis_species
+				name = random
+				skill = 3
+				set_age = 11
+				traits = {
+					trait = leader_trait_crisis_hive_affinity
+				}
+			}
+		}
+	}
+	create_fleet = {
+		name = "NAME_giantess_crisis_Star_Brood"
+		effect = {
+			set_owner = event_target:giantess_crisis
+			create_ship = {
+				name = random
+				design = "NAME_giantess_crisis_Queen"
+			}
+			assign_leader = last_created_leader
+			while = {
+				count = 10
+				create_ship = {
+					name = random
+					design = "NAME_giantess_crisis_Large"
+					graphical_culture = root.owner
+				}
+			}
+			while = {
+				count = 8
+				create_ship = {
+					name = random
+					design = "NAME_giantess_crisis_Carrier"
+					graphical_culture = root.owner
+				}
+			}
+			while = {
+				count = 35
+				create_ship = {
+					name = random
+					design = "NAME_giantess_crisis_Small"
+					graphical_culture = root.owner
+				}
+			}
+			set_location = event_target:spawn_location
+			set_fleet_stance = aggressive
+			set_aggro_range = 500
+			set_aggro_range_measure_from = self
+			set_fleet_bombardment_stance = armageddon
+		}
+	}
+}
+
+giantess_crisis_armies = {
+	create_fleet = {
+		name = "NAME_giantess_crisis_Armies"
+		effect = {
+			set_owner = event_target:giantess_crisis
+			while = {
+				count = 20
+				create_army_transport = {
+					ship_name = "NAME_giantess_crisis_Transport"
+					army_name = "NAME_giantess_crisis_Invaders"
+					army_type = "swarm_army"
+					species = event_target:giantess_crisis_species
+				}
+			}
+			set_location = {
+				target = PREVPREV
+				distance = 20
+				angle = random
+			}
+		}
+	}
+}
+
+##########################
+# Feral Prethoryn Fleets #
+##########################
+# Garrisons
+feral_giantess_crisis_garrison_1 = {
+	create_fleet = {
+		name = "NAME_feral_giantess_crisis"
+		effect = {
+			set_owner = event_target:feral_giantess_crisis
+			while = {
+				count = 56
+				create_ship = {
+					name = random
+					design = "NAME_giantess_crisis_Small"
+					graphical_culture = root.owner
+				}
+			}
+			set_location = {
+				target = prev
+				distance = 35
+				angle = random
+			}
+			set_fleet_stance = aggressive
+			set_aggro_range = 500
+			set_aggro_range_measure_from = self
+		}
+		settings = {
+			garrison = yes
+		}
+	}
+}
+
+feral_giantess_crisis_garrison_2 = {
+	create_fleet = {
+		name = "NAME_feral_giantess_crisis"
+		effect = {
+			set_owner = event_target:feral_giantess_crisis
+			while = {
+				count = 10
+				create_ship = {
+					name = random
+					design = "NAME_giantess_crisis_Large"
+					graphical_culture = root.owner
+				}
+			}
+			while = {
+				count = 8
+				create_ship = {
+					name = random
+					design = "NAME_giantess_crisis_Carrier"
+					graphical_culture = root.owner
+				}
+			}
+			while = {
+				count = 35
+				create_ship = {
+					name = random
+					design = "NAME_giantess_crisis_Small"
+					graphical_culture = root.owner
+				}
+			}
+			set_location = {
+				target = prev
+				distance = 35
+				angle = random
+			}
+			set_fleet_stance = aggressive
+			set_aggro_range = 500
+			set_aggro_range_measure_from = self
+		}
+		settings = {
+			garrison = yes
+		}
+	}
+}
+
+# Roaming
+feral_giantess_crisis_roaming_1 = {
+	create_fleet = {
+		name = "NAME_feral_giantess_crisis"
+		effect = {
+			set_owner = event_target:feral_giantess_crisis
+			while = {
+				count = 30
+				create_ship = {
+					name = random
+					design = "NAME_giantess_crisis_Small"
+					graphical_culture = root.owner
+				}
+			}
+			set_location = {
+				target = prev
+				distance = 35
+				angle = random
+			}
+			set_fleet_flag = roaming_giantess_crisis_fleet
+			set_fleet_stance = aggressive
+			set_aggro_range = 500
+			set_aggro_range_measure_from = self
+		}
+	}
+}

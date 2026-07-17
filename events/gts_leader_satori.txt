@@ -1,0 +1,387 @@
+namespace = gts_satori
+
+ship_event  = {
+	id = gts_satori.1
+	title = gts_satori.1.name
+	desc = gts_satori.1.desc
+	picture = GFX_gtsra_load_5
+	is_triggered_only = yes
+	show_sound = event_scanner
+	option = {
+		name = gts_satori.1.a
+		hidden_effect = {
+			ship_event = {
+				id = gts_satori.2
+			}
+		}
+	}
+	option = {
+		name = gts_satori.1.b
+		trigger = {
+			owner = {
+				OR = {
+					has_ethic = ethic_pacifist
+					has_ethic = ethic_fanatic_pacifist
+				}
+			}
+		}
+		hidden_effect = {
+			ship_event = {
+				id = gts_satori.2
+			}
+		}
+	}
+}
+ship_event  = {
+	id = gts_satori.2
+	title = gts_satori.2.name
+	desc = gts_satori.2.desc
+	picture = GFX_gts_event_64
+	is_triggered_only = yes
+	show_sound = event_yellow_alert
+	option = {
+		name = gts_satori.2.a
+		hidden_effect = {
+			ship_event = {
+				id = gts_satori.3
+			}
+		}
+	}
+	option = {
+		name = gts_satori.2.b
+		hidden_effect = {
+			ship_event = {
+				id = gts_satori.4
+			}
+		}
+	}
+}
+ship_event  = {
+	id = gts_satori.3
+	title = gts_satori.3.name
+	desc = gts_satori.3.desc
+	picture = GFX_load_109
+	is_triggered_only = yes
+	show_sound = event_mystic_reveal
+	option = {
+		name = gts_satori.3.a
+		hidden_effect = {
+			fleet = {
+				set_mia = mia_return_home
+			}
+			ship_event = {
+				id = gts_satori.5
+				days = 90
+			}
+		}
+	}
+}
+ship_event  = {
+	id = gts_satori.4
+	title = gts_satori.4.name
+	desc = gts_satori.4.desc
+	picture = GFX_load_109
+	is_triggered_only = yes
+	show_sound = event_mystic_reveal
+	option = {
+		name = gts_satori.4.a
+		hidden_effect = {
+			fleet = {
+				set_mia = mia_return_home
+			}
+			ship_event = {
+				id = gts_satori.5
+				days = 90
+			}
+		}
+	}
+}
+ship_event  = { #给项目
+	id = gts_satori.5
+	title = gts_satori.5.name
+	desc = gts_satori.5.desc
+	picture = GFX_evt_gts_face_off_in_space
+	is_triggered_only = yes
+	show_sound = event_administrative_work
+	option = {
+		name = gts_satori.5.a
+		owner = {
+			enable_special_project = {
+				name = satori.project
+			}
+		}
+	}
+}
+country_event = { #项目完成
+	id = gts_satori.6
+	title = gts_satori.6.name
+	desc = gts_satori.6.desc
+	picture = GFX_evt_gts_face_off_in_space
+	is_triggered_only = yes
+	show_sound = event_administrative_work
+	option = {
+		name = gts_satori.6.a
+		country_event = {
+			id = gts_satori.7
+		}
+	}
+}
+country_event  = {
+	id = gts_satori.7
+	title = gts_satori.6.name
+	desc = gts_satori.7.desc
+	diplomatic = yes
+	picture_event_data = {
+		room = gts_satori1_room
+	}
+	is_triggered_only = yes
+	show_sound = event_administrative_work
+	option = {
+		name = gts_satori.7.a
+		hidden_effect = {
+			country_event = {
+				id = gts_satori.8
+			}
+		}
+	}
+}
+country_event  = {
+	id = gts_satori.8
+	title = gts_satori.6.name
+	desc = gts_satori.8.desc
+	diplomatic = yes
+	picture_event_data = {
+		room = gts_satori2_room
+	}
+	is_triggered_only = yes
+	show_sound = event_structural_collapse
+	option = {
+		name = gts_satori.8.a
+		hidden_effect = {
+			country_event = {
+				id = gts_satori.9
+			}
+		}
+	}
+}
+country_event  = {
+	id = gts_satori.9
+	title = gts_satori.6.name
+	desc = gts_satori.9.desc
+	diplomatic = yes
+	picture_event_data = {
+		room = gts_satori4_room
+	}
+	is_triggered_only = yes
+	show_sound = event_structural_collapse
+	option = {
+		name = gts_satori.9.a
+		enable_special_project = {
+			name = satori.project2
+		}
+	}
+}
+country_event  = { #项目完成
+	id = gts_satori.10
+	title = gts_satori.10.name
+	desc = gts_satori.10.desc
+	picture = GFX_load_68
+	is_triggered_only = yes
+	show_sound = event_scanner
+	option = {
+		name = gts_satori.10.a #研究重力波
+		hidden_effect = {
+			country_event = {
+				id = gts_satori.11
+			}
+		}
+	}
+	option = {
+		name = gts_satori.10.b #直接莽
+		hidden_effect = { 
+			country_event = {
+				id = gts_satori.12
+			}
+		}
+	}
+}
+country_event  = {
+	id = gts_satori.11
+	title = gts_satori.11.name
+	desc = gts_satori.11.desc
+	picture = GFX_load_68
+	is_triggered_only = yes
+	show_sound = event_radio_chatter
+	option = {
+		name = gts_satori.11.a
+		hidden_effect = {
+			country_event = {
+				id = gts_satori.15
+			}
+		}
+	}
+}
+country_event  = {
+	id = gts_satori.12
+	title = gts_satori.12.name
+	desc = gts_satori.12.desc
+	picture = GFX_load_68
+	is_triggered_only = yes
+	show_sound = event_radio_chatter
+	option = {
+		name = gts_satori.12.a
+		hidden_effect = {
+			country_event = {
+				id = gts_satori.13
+			}
+		}
+	}
+}
+country_event  = {
+	id = gts_satori.13
+	title = gts_satori.13.name
+	desc = gts_satori.13.desc
+	picture = GFX_load_69
+	is_triggered_only = yes
+	show_sound = event_planetary_riot
+	option = {
+		name = gts_satori.13.a
+		hidden_effect = {
+			country_event = {
+				id = gts_satori.14
+			}
+		}
+	}
+}
+country_event  = {
+	id = gts_satori.14
+	title = gts_satori.14.name
+	desc = gts_satori.14.desc
+	picture = GFX_load_69
+	is_triggered_only = yes
+	show_sound = event_burning_city
+	option = {
+		name = gts_satori.14.a
+		hidden_effect = {
+			country_event = {
+				id = gts_satori.15
+			}
+		}
+	}
+}
+country_event  = { #到首都
+	id = gts_satori.15
+	title = gts_satori.14.name
+	desc = gts_satori.15.desc
+	diplomatic = yes
+	picture_event_data = {
+		room = gts_satori5_room
+	}
+	is_triggered_only = yes
+	show_sound = event_air_raid_siren
+	option = {
+		name = gts_satori.15.a
+		hidden_effect = {
+			country_event = {
+				id = gts_satori.99
+			}
+		}
+	}
+	option = {
+		name = gts_satori.15.b
+		trigger = {
+			owner = {
+				OR = {
+					has_ethic = ethic_pacifist
+					has_ethic = ethic_fanatic_pacifist
+				}
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_satori.99
+			}
+		}
+	}
+}
+
+#觉觉招募事件
+country_event = {
+	id = gts_satori.99
+	title = gts_satori.99.name
+	desc = {
+		trigger = {
+			has_ethic = ethic_gestalt_consciousness
+		}
+		text = gts_satori.99.desc.1
+	}
+	desc = {
+		trigger = {
+			NOR = { has_ethic = ethic_gestalt_consciousness }
+		}
+		text = gts_satori.99.desc.2
+	}
+	show_sound = event_mysterious_signal
+	is_triggered_only = yes
+	picture = GFX_leader_recruitment_bg_legendary_beholder
+	event_window_type = leader_recruit
+	immediate = {
+		gts_leader_satori_hired = yes
+	}
+	picture_event_data = {
+		portrait = event_target:gts_satori
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = DISMISS
+		tag = dismiss_leader
+		hidden_effect = {
+			country_event = {
+				id = gts_satori.99
+			}
+		}
+	}
+	option = {
+		name = gts_satori.99.a
+		response_text = gts_satori.99.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_satori.99.b
+		response_text = gts_satori.99.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_satori.99.c
+		response_text = gts_satori.99.c.response
+		is_dialog_only = yes
+		allow = {
+			is_gestalt = no
+		}
+		hide_option_if_not_allowed = yes
+	}
+	option = {
+		name = gts_satori.99.d
+		response_text = gts_satori.99.c.response
+		is_dialog_only = yes
+		allow = {
+			is_gestalt = yes
+		}
+		hide_option_if_not_allowed = yes
+	}
+	option = {
+		name = gts_satori.99.e
+		tag = hire_leader
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = legendary }
+		}
+		if = {
+			limit = { NOR = { has_technology = tech_mine_zro } }
+			add_tech_progress = {
+				tech = tech_mine_zro
+				progress = 1
+			}
+		}
+	}
+}
+

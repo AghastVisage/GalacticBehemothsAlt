@@ -1,0 +1,434 @@
+namespace = gts_ap_shrink
+planet_event = {
+	id = gts_ap_shrink.1
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		if = {
+			#如果不是机械星球，在第一次开炮后触发这个说明性事件
+			limit = {
+				NOT = {
+					is_planet_class = pc_ai
+				}
+			}
+			from.owner = {
+				country_event = {
+					id = gts_ap_shrink.10
+				}
+			}
+		}
+		if = { #第一次向敌对国家开火时弹的文本
+			limit = {
+				exists = owner
+				owner = {
+					NOT = {
+						is_same_value = from.owner
+					}
+					is_at_war_with = from.owner
+				}
+			}
+			from.owner = {
+				country_event = {
+					id = gts_ap_shrink.12
+				}
+			}
+		}
+		#Dismantle observation post
+		if = {
+			#如果是观测原始星球，在第一次开炮后触发这个说明性事件
+			limit = {
+				has_observation_outpost = yes
+			}
+			observation_outpost_owner = {
+				country_event = {
+					id = gts_ap_shrink.11
+					days = 1
+				}
+			}
+		}
+		if = {
+			#如果是肃正星球，在第一次开炮后触发这个事件
+			limit = {
+				is_planet_class = pc_ai
+				NOT = {
+					has_planet_flag = machine_lair
+				}
+			}
+			#set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_drenched
+			planet_event = {
+				id = crisis.2040
+			}
+			create_ambient_object = {
+				location = this
+				type = habitat_cracker_object
+				duration = 5
+				use_3d_location = yes
+				base_angle_towards = star
+				entity_face_object = star
+				entity_offset = {
+					min = 0
+					max = 0
+				}
+				entity_scale_to_size = yes
+				scale = 0.5
+			}
+		}
+		# Contingency Final Machine World
+		if = {
+			limit = {
+				is_planet_class = pc_ai
+				has_planet_flag = machine_lair
+			}
+			#set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_drenched
+			from.owner = {
+				save_event_target_as = final_machine_world_destroyer
+			}
+			stop_crisis_sound = yes
+			planet_event = {
+				id = crisis.2046
+			}
+			create_ambient_object = {
+				location = this
+				type = habitat_cracker_object
+				duration = 5
+				use_3d_location = yes
+				base_angle_towards = star
+				entity_face_object = star
+				entity_offset = {
+					min = 0
+					max = 0
+				}
+				entity_scale_to_size = yes
+				scale = 0.5
+			}
+		}
+		# Swarm Situation Log counter
+		if = {
+			limit = {
+				exists = owner
+				owner = {
+					is_country_type = swarm
+				}
+			}
+			every_country = {
+				limit = {
+					has_event_chain = "prethoryn_scourge_chain"
+				}
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds"
+					amount = -1
+				}
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds_cleansed"
+					amount = 1
+				}
+			}
+			destroy_colony = yes
+		}
+		if = {
+			limit = {
+				exists = owner
+				owner = {
+					NOT = {
+						is_same_value = from.owner
+					}
+				}
+				OR = {
+					is_active_resolution = "resolution_rulesofwar_independent_tribunals"
+					is_active_resolution = "resolution_rulesofwar_last_resort_doctrine"
+					is_active_resolution = "resolution_rulesofwar_demobilization_initiative"
+				}
+			}
+			from.owner = {
+				set_timed_country_flag = {
+					flag = resolution_breached_fired_deluge
+					days = 3600
+				}
+			}
+		}
+		if = {
+			limit = {
+				exists = owner
+				owner = {
+					NOT = {
+						is_same_value = from.owner
+					}
+					OR = {
+						is_country_type = default
+						is_country_type = fallen_empire
+						is_country_type = awakened_fallen_empire
+					}
+				}
+			}
+			# Generate threat
+			add_threat = {
+				who = from.owner
+				amount = 3
+			}
+			# modifier for allies + those upset by robots
+			every_country = {
+				limit = {
+					NOR = {
+						is_same_value = from.owner
+						is_same_value = root.owner
+						AND = {
+							has_federation = yes
+							is_in_federation_with = from.owner
+						}
+					}
+					OR = {
+						has_communications = from.owner
+						has_communications = root.owner
+					}
+				}
+				add_opinion_modifier = {
+					modifier = opinion_drenched_a_world
+					who = from.owner
+				}
+			}
+			# modifiers for victim
+			owner = {
+				add_opinion_modifier = {
+					modifier = opinion_drenched_my_world
+					who = from.owner
+				}
+				if = {
+					limit = {
+						NOT = {
+							has_ethic = ethic_gestalt_consciousness
+						}
+					}
+					add_modifier = {
+						modifier = colossus_victim
+						days = 10800						# 30 years
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				exists = owner
+				owner = {
+					is_country_type = primitive
+				}
+			}
+			# modifier for allies + those upset by genocide
+			every_country = {
+				limit = {
+					NOR = {
+						is_same_value = from.owner
+					}
+					OR = {
+						has_communications = from.owner
+						has_communications = root.owner
+					}
+					is_country_type = default
+					NOR = {
+						is_xenophobe = yes
+						is_homicidal = yes
+						is_xenophile = yes
+					}
+				}
+				add_opinion_modifier = {
+					modifier = opinion_drenched_a_primitive_world
+					who = from.owner
+				}
+			}
+			every_country = {
+				limit = {
+					NOR = {
+						is_same_value = from.owner
+					}
+					OR = {
+						has_communications = from.owner
+						has_communications = root.owner
+					}
+					OR = {
+						has_ai_personality = awakened_fallen_empire_xenophile
+						AND = {
+							is_country_type = default
+							is_xenophile = yes
+						}
+					}
+				}
+				add_opinion_modifier = {
+					modifier = opinion_drenched_a_primitive_world_phile
+					who = from.owner
+				}
+			}
+		}
+		# Add war exhaustion to planet owner
+		if = {
+			limit = {
+				exists = owner
+				owner = {
+					NOT = {
+						is_same_value = from.owner
+					}
+				}
+			}
+			owner = {
+				if = {
+					limit = {
+						#isn't the case when the crisis bombards planets, for instance
+						is_at_war_with = from.owner
+					}
+					add_static_war_exhaustion = {
+						attacker = from.owner
+						location = root
+						value_for_planet_destruction = 1
+					}
+				}
+			}
+		}
+		every_owned_pop_group = {
+			#如果不是极小人口，改为小人
+			limit = {
+				NOT = {
+					has_trait = trait_Micro
+					has_trait = trait_great_species
+				}
+			}
+			modify_species = {
+				species = this
+				remove_trait = trait_Titan
+				remove_trait = trait_Giant
+				remove_trait = trait_Tall
+				remove_trait = trait_Normal
+				remove_trait = trait_Small
+				remove_trait = trait_Tiny
+				add_trait = trait_Micro
+				add_traits_at_start_of_list = yes
+				change_scoped_species = yes
+			}
+		}
+		every_planet_army = {
+			remove_army = yes
+		}
+		if = {
+			#如果不是粉碎星球，改变星球大小
+			limit = {
+				NOT = {
+					is_planet_class = pc_broken
+				}
+			}
+			set_planet_size = 1
+			add_modifier = {
+				modifier = gts_shrink_ruined
+				days = -1
+			}
+		}
+		remove_all_armies = yes
+	}
+}
+
+country_event = {
+	id = gts_ap_shrink.10
+	title = gts_ap_shrink.10.name
+	desc = gts_ap_shrink.10.desc
+	picture = GFX_evt_death_from_above
+	show_sound = event_mystic_reveal
+	location = from
+	is_triggered_only = yes
+	trigger = {
+		NOT = {
+			has_country_flag = gts_fired_deluge
+		}
+	}
+	immediate = {
+		set_country_flag = gts_fired_deluge
+	}
+	option = {
+		name = EXCELLENT
+		from = {
+			custom_tooltip = gts_ap_shrink.10.tooltip
+		}
+	}
+}
+
+country_event = {
+	id = gts_ap_shrink.11
+	title = gts_ap_shrink.10.name
+	desc = gts_ap_shrink.11.desc
+	picture = GFX_evt_death_from_above
+	show_sound = event_mystic_reveal
+	location = from
+	is_triggered_only = yes
+	trigger = {
+		NOT = {
+			has_country_flag = gts_fired_deluge_ob
+		}
+	}
+	immediate = {
+		set_country_flag = gts_fired_deluge_ob
+	}
+	option = {
+		name = EXCELLENT
+		from = {
+			custom_tooltip = gts_ap_shrink.10.tooltip
+		}
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier1researchreward
+				min = @tier1researchmin
+				max = @tier1researchmax
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_ap_shrink.12
+	title = gts_ap_shrink.12.name
+	desc = gts_ap_shrink.12.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_event_26_room
+	}
+	show_sound = event_red_alert
+	location = from
+	is_triggered_only = yes
+	trigger = {
+		NOT = {
+			has_country_flag = gts_fired_first
+		}
+	}
+	immediate = {
+		set_country_flag = gts_fired_first
+	}
+	option = {
+		name = gts_ap_shrink.12.a
+		from = {
+			custom_tooltip = gts_ap_shrink.10.tooltip
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_ap_shrink.13
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_ap_shrink.13
+	title = gts_ap_shrink.13.name
+	desc = gts_ap_shrink.13.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_event_25_room
+	}
+	show_sound = event_super_explosion
+	is_triggered_only = yes
+	option = {
+		name = gts_ap_shrink.13.a
+	}
+}

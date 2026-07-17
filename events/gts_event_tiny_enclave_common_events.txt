@@ -1,0 +1,95 @@
+namespace = tiny_enclave_common
+
+country_event = {
+    id = tiny_enclave_common.1000
+    is_triggered_only = yes
+    hide_window = yes
+    trigger = {
+        from = {
+            OR = {
+                is_country_type = tiny_enclave
+            }
+        }
+    }
+
+    immediate = {
+        establish_communications_no_message = from
+    }
+
+}
+
+country_event = {
+    id = tiny_enclave_common.2000
+    is_triggered_only = yes
+    title = tiny_enclave_common.2000.title
+    picture = GFX_evt_communication_event
+    desc = {
+        trigger = { root = { gts_is_giantess_empire = yes } }
+        text = tiny_enclave_common.2000.desc.GTS
+    }
+    desc = {
+        trigger = { root = { gts_is_tiny_empire = yes } }
+        text = tiny_enclave_common.2000.desc.TINY
+    }
+
+    trigger = {
+        is_country_type = default
+        from = {
+            OR = {
+                is_country_type = tiny_enclave
+            }
+            OR = {
+                AND = {
+                    is_same_value = event_target:tiny_enclave_country
+                    root = { NOT = { has_country_flag = has_comm_with_tiny_enclave } }
+                }
+            }
+        }
+    }
+
+    option = {
+        trigger = { is_homicidal = no }
+        name = INTERESTING
+    }
+
+    option = {
+        trigger = { is_homicidal = no }
+        name = ONSCREEN
+    }
+
+    option = {
+        trigger = { has_valid_civic = civic_fanatic_purifiers }
+        name = SCUM
+    }
+
+    option = {
+        trigger = { has_valid_civic = civic_hive_devouring_swarm }
+        name = TASTY
+    }
+
+    option = {
+        trigger = {has_valid_civic = civic_machine_terminator }
+        name = EXTERMINATE
+    }
+
+    # 小人清除者
+    option = {
+        trigger = {has_valid_civic = civic_gts_terminator }
+        name = triggered_terminators_opinion_of_littles
+    }
+
+    after = {
+        from = {
+            switch = {
+                trigger = is_same_value
+                event_target:tiny_enclave_country = {
+                    root = {
+                        set_country_flag = has_comm_with_tiny_enclave
+                        country_event = { id = tiny_enclave_event.21 }
+                    }
+                }
+            }
+        }
+    }
+
+}

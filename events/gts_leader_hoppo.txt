@@ -1,0 +1,327 @@
+namespace = gts_hoppo
+
+country_event = {
+	id = gts_hoppo.1
+	title = gts_hoppo.1.name
+	desc = gts_hoppo.1.desc
+	is_triggered_only = yes
+	trigger = { #有缩小激素才可以触发
+		has_technology = tech_gts_shrink_man_hormone_1
+		is_ai = no
+	}
+	fire_only_once = yes
+	immediate = {
+		set_country_flag = gts_hoppo_start
+	}
+	picture = GFX_evt_space_debris
+	show_sound = event_mystic_reveal
+	option = {
+		name = gts_hoppo.1.a
+		country_event = {
+			id = gts_hoppo.2
+		}
+	}
+}
+country_event = {
+	id = gts_hoppo.2
+	title = "TRANSMISSION"
+	desc = gts_hoppo.2.desc
+	is_triggered_only = yes
+	picture_event_data = {
+		room = no_video_feed_room
+	}
+	diplomatic = yes
+	show_sound = event_worrying_signal
+	option = {
+		name = gts_hoppo.2.a
+		hidden_effect = {
+			country_event = {
+				id = gts_hoppo.3
+				days = 30
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_hoppo.3
+	title = TRANSMISSION
+	desc = gts_hoppo.3.desc
+	is_triggered_only = yes
+	picture = GFX_gts_hoppo_1
+	show_sound = event_yellow_alert
+	immediate = {
+		if = {
+			limit = {
+				any_owned_planet = { is_planet_class = pc_desert }
+			}
+			random_owned_planet = {
+				limit = { is_planet_class = pc_desert }
+				save_event_target_as = gts_hoppo_target_desert_planet
+			}
+		}
+	}
+	option = {
+		name = gts_hoppo.3.a
+		custom_tooltip = gts_hoppo.3.a.tooltip
+		country_event = {
+			id = gts_hoppo.4
+		}
+	}
+	option = {
+		name = gts_hoppo.3.b
+		trigger = { exists = event_target:gts_hoppo_target_desert_planet }
+		country_event = {
+			id = gts_hoppo.5
+		}
+	}
+}
+country_event = { #同意来首都
+	id = gts_hoppo.4
+	title = gts_hoppo.4.name
+	desc = gts_hoppo.4.desc
+	is_triggered_only = yes
+	picture = GFX_gts_hoppo_1
+	show_sound = event_ship_explosion
+	option = {
+		name = gts_hoppo.4.a
+		hidden_effect = {
+			country_event = {
+				id = gts_hoppo.6
+			}
+		}
+	}
+}
+country_event = { #不同意来首都
+	id = gts_hoppo.5
+	title = gts_hoppo.5.name
+	desc = gts_hoppo.5.desc
+	is_triggered_only = yes
+	picture = GFX_gts_hoppo_1
+	show_sound = event_ship_explosion
+	option = {
+		name = gts_hoppo.5.a
+	}
+}
+country_event = {
+	id = gts_hoppo.6
+	title = gts_hoppo.6.name
+	desc = gts_hoppo.6.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = {
+		room = gts_hoppo1_room
+	}
+	custom_gui = "gts_vertical_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	show_sound = event_ship_bridge
+	immediate = { #小北方出现在首都以外一点点的地方
+		create_country = {
+			name = "NAME_Pirates"
+			type = pirate
+			species = last_created_species
+			name_list = "PRT1"
+			flag = {
+				background = {
+					category = "backgrounds"
+					file = "00_solid.dds"
+				}
+				colors ={
+					"black"
+					"black"
+					"null"
+					"null"
+				}
+			}
+			effect = {
+				save_event_target_as = hoppo_country
+			}
+		}
+		event_target:hoppo_country = {
+			set_name = random
+			randomize_flag_symbol = "pirate"
+			set_country_flag = hoppo_country
+			every_country = {
+				establish_communications_no_message = prev
+			}
+			set_faction_hostility = {
+				target = root
+				set_hostile = no
+				set_neutral = yes
+				set_friendly = no
+			}
+			gts_create_hoppo_fleet = yes
+		}
+	}
+	option = {
+		name = gts_hoppo.6.a
+		hidden_effect = {
+			country_event = {
+				id = gts_hoppo.7
+			}
+		}
+	}
+	option = {
+		name = gts_hoppo.6.b
+		hidden_effect = {
+			country_event = {
+				id = gts_hoppo.9
+			}
+		}
+	}
+}
+country_event = { #开始交战
+	id = gts_hoppo.7
+	title = gts_hoppo.6.name
+	desc = gts_hoppo.7.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = {
+		room = gts_hoppo1_room
+	}
+	custom_gui = "gts_vertical_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	show_sound = event_power_down
+	option = {
+		name = gts_hoppo.7.a
+		event_target:hoppo_country = {
+			set_faction_hostility = {
+				target = root
+				set_hostile = yes
+				set_neutral = no
+				set_friendly = no
+			}
+		}
+	}
+}
+country_event = { #战败触发
+	id = gts_hoppo.8
+	title = gts_hoppo.8.name
+	desc = gts_hoppo.8.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = {
+		room = gts_hoppo3_room
+	}
+	custom_gui = "gts_vertical_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	show_sound = event_space_battle
+	trigger = {
+		has_country_flag = gts_hoppo_start
+		from = {
+			has_country_flag = gts_hoppo_country
+		}
+	}
+	option = {
+		name = gts_hoppo.8.a #移除hoppo舰队
+		hidden_effect = {
+			country_event = {
+				id = gts_hoppo.9
+			}
+		}
+	}
+}
+country_event = { #硬着陆
+	id = gts_hoppo.9
+	title = gts_hoppo.9.name
+	desc = gts_hoppo.9.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = {
+		room = gts_hoppo2_room
+	}
+	custom_gui = "gts_vertical_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	show_sound = event_air_raid_siren
+	option = {
+		name = gts_hoppo.9.a
+		capital_scope = {
+			while = {
+				count = 20
+				random_owned_pop_group = {
+					kill_single_pop = yes
+				}
+			}
+			add_planet_devastation = 25
+		}
+	}
+}
+country_event = { #一段大故事，需要用ui
+	id = gts_hoppo.10
+	title = gts_hoppo.10.name
+	desc = gts_hoppo.10.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = {
+		room = gts_hoppo2_room
+	}
+	custom_gui = "gts_vertical_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	show_sound = event_super_explosion
+	option = {
+		name = gts_hoppo.10.a
+		custom_tooltip = gts_hoppo.10.tooltip
+		capital_scope = {
+			while = {
+				count = 20
+				random_owned_pop_group = {
+					kill_single_pop = yes
+				}
+			}
+			add_planet_devastation = 25
+		}
+	}
+	option = {
+		name = gts_hoppo.10.b
+		custom_tooltip = gts_hoppo.10.tooltip
+		capital_scope = {
+			while = {
+				count = 20
+				random_owned_pop_group = {
+					kill_single_pop = yes
+				}
+			}
+			add_planet_devastation = 25
+		}
+	}
+}
+country_event = { #还是一段大故事，需要用ui
+	id = gts_hoppo.11
+	title = gts_hoppo.11.name
+	desc = gts_hoppo.11.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_hoppo2_room
+	}
+	show_sound = event_structural_collapse
+	option = {
+		name = gts_hoppo.11.a
+	}
+	option = {
+		name = gts_hoppo.11.b
+	}
+}
+country_event = {
+	id = gts_hoppo.12
+	title = gts_hoppo.12.name
+	desc = gts_hoppo.12.desc
+	is_triggered_only = yes
+	picture = GFX_gts_hoppo_3
+	show_sound = event_gts_scream
+	option = {
+		name = gts_hoppo.12.a
+	}
+}
+country_event = {
+	id = gts_hoppo.13
+	title = gts_hoppo.13.name
+	desc = gts_hoppo.13.desc
+	is_triggered_only = yes
+	picture = GFX_gts_hoppo_4
+	show_sound = event_faceoff_in_space
+	option = {
+		name = gts_hoppo.13.a
+	}
+}

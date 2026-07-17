@@ -1,0 +1,40 @@
+# 情报交流区UI结构，分为五个页面
+# ——情报页面（gts_intel_panel）：可以兑换领袖，或者打开已有领袖的界面
+# ————确认界面（gts_pop_up）:当未获得领袖的时候点击头像弹出，确认兑换
+# ————领袖界面（gts_leader_panel）：当获得领袖的时候点击头像弹出，可以在这里看到领袖的相关数据
+# ——————道具界面（gts_leader_item_panel）：修改道具种类
+# ——————身体界面（gts_leader_body_panel）：观察身体殖民地
+# ——————星际互动（gts_leader_colossus_panel）：与星系或者星体目标互动
+
+# 如何增加新领袖：
+# 1.在common/scripted_variables/gts_ui_variables.txt里添加领袖对应的编号
+# 2.需要准备领袖的头像76x76（放进gfx/interface/gts_intel_panel并在对应的gfx文件里注册）
+# ————在interface/gts_intel_panel.gui里按照原有格式添加（一个领袖头像，一个招募标记），position决定了领袖头像所在的栏位
+# 3.在common/button_effects/gts_intel_effects.txt里按照原有格式编写你刚才添加的effect(一个领袖头像，一个招募标记)
+# 4.如果是需要招募的领袖则需要在event/gts_common_ui.txt中的gts_ui.6里按照原有格式增加事件(一个desc，一个else_if)
+# 5.在localisation/simp_chinese/gts_common_ui_I_simp_chinese.yml里按照原有格式写好本地化
+# 6.为领袖增添复活事件寻找event：gts_utility.302
+# 7.添加抱枕图
+# ————放进gfx/interface/gts_leader_panel并在对应的gfx文件里注册
+# ————在gts_leader_panel.gui里按照原有格式添加
+# ————在common/button_effects/gts_leader_effects.txt按照格式添加
+# 8.确保领袖在生成时使用gts_leader_hire_effect进行初始化
+# 9.为领袖添加简介gts_setting.4
+
+# 如何增加新道具：
+# 1.确定道具的类型属于-I:道具，P:宠物（如果要新加类型的话还有4个空位可以使用）
+# 2.在common/scripted_variables/gts_ui_variables.txt里添加道具对应的编号
+# 3.需要准备道具ICON76x76（放进gfx/interface/gts_leader_item_panel并在对应的gfx文件里注册）
+# 4.需要准备领袖特质的ICON（放进gfx/interface/icons/traits/leader_trait_icons，图片大小格式参考A_default.dds，无需注册）
+# 5.在interface/gts_leader_item_panel.gui里按照原有格式添加，position决定了道具所在的栏位（道具窗口里的道具显示）
+# 6.在interface/gts_leader_panel.gui里按照原有格式添加（领袖旁边的道具显示）
+# 7.在common/scripted_effects/gts_ui_effects.txt中的gts_remove_leader_item按照原格式增加else_if（否则无法移除道具！）
+# 8.在common/button_effects/gts_leader_item_effects.txt里按照原有格式编写你刚才添加的effect（此effect决定获取条件）
+# 9.在common/button_effects/gts_leader_effects.txt里按照原有格式编写你刚才添加的effect
+# 10.在common/traits/gts_advanced_leader_traits.txt里添加道具对应的特质
+# 11.在localisation/simp_chinese/gts_ui_I_simp_chinese.yml里按照原有格式写好本地化
+
+# 如何为领袖换衣服：
+# 1.写好换衣服事件，参考gts_lifeng.1000
+# 2.在领袖创建的时候加入ALTER_CLOTH = yes
+# 3.在gts_ui.11按照格式添加事件判断与触发

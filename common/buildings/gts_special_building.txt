@@ -1,0 +1,1596 @@
+################################################################################
+#####################                特殊建築                #####################
+################################################################################
+
+
+
+building_advanced_technology_research_institute = {
+
+	# 先端科學研究院
+
+	base_buildtime = @b3_time
+	category = research
+	base_cap_amount = 1
+	icon = building_military_academy
+
+	potential = {
+		planet = { is_capital = yes }
+	}
+
+	prerequisites = {
+		"tech_gts_advanced_technology_research_institute"
+	}
+
+	building_sets = {
+		government
+		urban
+		research
+	}
+
+	destroy_trigger = {
+		exists = owner
+		owner = {
+			NOT = { has_technology = tech_gts_advanced_technology_research_institute}
+		}
+	}
+
+	planet_modifier = {
+		job_advanced_technology_researcher_leader_add = 1
+		job_advanced_technology_researcher_master_add = 50
+		job_advanced_technology_researcher_add = 500
+	}
+
+	country_modifier = {
+		all_technology_research_speed = 0.10
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b4_minerals
+		}
+		upkeep = {
+			energy = @b4_upkeep
+		}
+	}
+
+	on_built = {
+		owner = {
+			set_country_flag = advanced_technology_research_institude
+			country_event = {
+				id = gts_evt_xiankeyan.0 days = 365
+			}
+		}
+	}
+}
+
+building_giantess_jail_placing = {
+
+	# 巨娘監獄(犯罪率、穩定度)
+
+	base_buildtime = @b3_time
+	category = government
+	base_cap_amount = 1
+	icon = building_chamber_of_elevation_2
+
+	potential = {
+		exists = owner
+		owner = { has_technology = tech_gts_autorization_for_jail }
+	}
+
+	building_sets = {
+		government
+		urban
+	}
+
+	destroy_trigger = {
+		exists = owner
+		owner = {
+			NOT = { has_technology = tech_gts_autorization_for_jail}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b4_minerals
+		}
+		upkeep = {
+			energy = @b4_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_gts_jailor_add = 200
+	}
+
+	triggered_desc = {
+		text = job_gts_jailor_effect_desc
+	}
+}
+
+building_giantess_cleanhouse = {
+
+	# 巨娘清潔公司
+
+	base_buildtime = @b1_time
+	category = trade
+	base_cap_amount = 1
+	icon = building_waste_reprocessing_center
+
+	potential = {
+		exists = owner
+		owner = { has_technology = tech_gts_mass_cleaning_service }
+	}
+
+	building_sets = {
+		government
+		urban
+		trade
+	}
+
+	destroy_trigger = {
+		exists = owner
+		owner = {
+			NOT = { has_technology = tech_gts_mass_cleaning_service}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b4_minerals
+		}
+		upkeep = {
+			energy = @b4_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_gts_cleaner_add = 200
+	}
+
+	triggered_desc = {
+		text = job_gts_cleaner_effect_desc
+	}
+}
+
+building_micro_civilization_greenhouse = {
+
+	# 微文明培育室
+
+	base_buildtime = @b3_time
+	category = pop_assembly
+	base_cap_amount = 1
+	icon = building_clone_vats
+
+	potential = {
+		exists = owner
+		owner = {
+			has_civic = civic_origin_from_micro
+		}
+	}
+
+	building_sets = {
+		gts_tier2
+		government
+		urban
+	}
+
+	destroy_trigger = {
+		exists = owner
+		owner = {
+			NOT = { has_civic = civic_origin_from_micro}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b4_minerals
+		}
+		upkeep = {
+			gts_micro_city = @b3_upkeep
+		}
+	}
+
+	triggered_planet_pop_group_modifier_for_all = {
+		potential = {
+			owner = {
+				has_cloning_tradition = no
+			}
+		}
+		bonus_pop_growth = 4.5
+	}
+	triggered_planet_pop_group_modifier_for_all = {
+		potential = {
+			owner = {
+				has_cloning_tradition = yes
+				NOT = {
+					has_tradition = tr_genetics_efficient_cloning
+				}
+			}
+		}
+		bonus_pop_growth = 9
+	}
+	triggered_planet_pop_group_modifier_for_all = {
+		potential = {
+			owner = {
+				has_cloning_tradition = yes
+				has_tradition = tr_genetics_efficient_cloning
+			}
+		}
+		bonus_pop_growth = 13.5
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_cloning_tradition = no
+			}
+		}
+		fake_pop_growth_mod = 4.5
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_cloning_tradition = yes
+				NOT = {
+					has_tradition = tr_genetics_efficient_cloning
+				}
+			}
+		}
+		fake_pop_growth_mod = 9
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_cloning_tradition = yes
+				has_tradition = tr_genetics_efficient_cloning
+			}
+		}
+		fake_pop_growth_mod = 13.5
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_cloning_authority = yes
+				is_megacorp = yes
+			}
+		}
+		planet_jobs_trade_produces_mult = @replicatory_association_trade_mult
+		planet_amenities_add = @replicatory_association_amenities_add
+	}
+
+	triggered_desc = {
+		trigger = {
+			OR = {
+				has_building = building_robot_assembly_plant
+				AND = {
+					exists = assembling_species
+					assembling_species = {
+						is_robotic_species = yes
+					}
+				}
+			}
+		}
+		text = tooltip_organic_and_artificial_assembly_warning
+	}
+
+	prerequisites = {
+		"tech_gts_shrink_city_hormone"
+	}
+}
+
+
+building_isharmla_sanctum = {
+
+	# 深海聖所
+
+	base_buildtime = @b3_time
+	category = unity
+	empire_limit = 1
+
+	potential = {
+		owner = { has_country_flag = isharmla_sanctum_building }
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+		}
+	}
+
+	building_sets = {
+		government
+		urban
+		unity
+	}
+
+	allow = {
+		has_major_upgraded_capital = yes
+	}
+
+	destroy_trigger = {
+		exists = owner
+		NOT = {
+			owner = { has_country_flag = isharmla_sanctum_building }
+		}
+	}
+
+	planet_modifier = {
+		job_isharmla_slaves_add = 300
+	}
+
+	triggered_desc = {
+		trigger = {
+			has_first_contact_dlc = yes
+		}
+		text = covenant_detection_first_contact_effect
+	}
+
+	on_built = {
+		if = {
+			limit = {
+				has_first_contact_dlc = yes
+			}
+			planet = {
+				solar_system = {
+					starbase = {
+						fleet = {
+							add_modifier = {
+								modifier = covenant_detection_first_contact
+								days = -1
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	on_destroy = {
+		if = {
+			limit = {
+				has_first_contact_dlc = yes
+			}
+			planet = {
+				solar_system = {
+					starbase = {
+						fleet = {
+							remove_modifier = covenant_detection_first_contact
+						}
+					}
+				}
+			}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b4_minerals
+		}
+		upkeep = {
+			energy = @b4_upkeep
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				has_country_flag = isharmla_comfirmed
+			}
+		}
+		text = job_isharmlaslaves_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				has_country_flag = skadi_comfirmed
+			}
+		}
+		text = job_skadislaves_effect_desc
+	}
+}
+
+building_planet_jiansheshu_1 = {
+
+	# 行星建設規劃署
+
+	base_buildtime = @b3_time
+	category = government
+	base_cap_amount = 1
+	icon = building_augmentation_center
+
+	can_demolish = no
+	can_be_ruined = yes
+
+	potential = {
+		exists = planet
+		is_capital = yes
+		is_planet_class = pc_gts_luanzi
+		owner = { has_origin = origin_Luanzi }
+	}
+
+	building_sets = {
+		government
+		urban
+		industrial
+		unity
+	}
+
+	destroy_trigger = {
+		exists = owner
+		owner = {
+			NOT = { has_origin = origin_Luanzi}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b3_minerals
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+	}
+
+	planet_modifier = {
+		planet_buildings_upkeep_mult = 0.05
+		job_diaoduyuan_add = 200
+	}
+
+	upgrades = { building_planet_jiansheshu_2 }
+
+	triggered_desc = {
+		text = job_diaoduyuan_desc
+	}
+}
+
+building_planet_jiansheshu_2 = {
+
+	# 行星建設規劃署
+
+	base_buildtime = @b3_time
+	category = government
+	base_cap_amount = 1
+	icon = building_augmentation_center
+
+	can_demolish = no
+	can_be_ruined = yes
+
+	potential = {
+		exists = planet
+		is_capital = yes
+		is_planet_class = pc_gts_luanzi
+		owner = { has_origin = origin_Luanzi }
+	}
+
+	building_sets = {
+		government
+		urban
+		industrial
+		unity
+	}
+
+	destroy_trigger = {
+		exists = owner
+		owner = {
+			NOT = { has_origin = origin_Luanzi}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b4_minerals
+		}
+		upkeep = {
+			energy = @b4_upkeep
+		}
+	}
+
+	planet_modifier = {
+		planet_buildings_upkeep_mult = 0.10
+		job_diaoduyuan_add = 400
+	}
+
+	triggered_desc = {
+		text = job_diaoduyuan_desc
+	}
+}
+
+building_active_weihuxitong_1 = {
+
+	# 活性維護系統
+
+	base_buildtime = @b3_time
+	category = government
+	base_cap_amount = 1
+	icon = building_identity_repository
+
+	can_demolish = no
+	can_be_ruined = yes
+
+	potential = {
+		exists = planet
+		is_capital = yes
+		is_planet_class = pc_gts_luanzi
+		owner = { has_origin = origin_Luanzi }
+	}
+
+	building_sets = {
+		government
+		urban
+		industrial
+		unity
+	}
+
+	destroy_trigger = {
+		exists = owner
+		owner = {
+			NOT = { has_origin = origin_Luanzi}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b3_minerals
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+	}
+
+	planet_modifier = {
+		planet_districts_upkeep_mult = 0.05
+		job_weihuyuan_add = 200
+	}
+
+	upgrades = { building_active_weihuxitong_2 }
+
+	triggered_desc = {
+		text = job_weihuyuan_desc
+	}
+}
+
+building_active_weihuxitong_2 = {
+
+	# 活性維護系統
+
+	base_buildtime = @b3_time
+	category = government
+	base_cap_amount = 1
+	icon = building_identity_repository
+
+	can_demolish = no
+	can_be_ruined = yes
+
+	potential = {
+		exists = planet
+		is_capital = yes
+		is_planet_class = pc_gts_luanzi
+		owner = { has_origin = origin_Luanzi }
+	}
+
+	building_sets = {
+		government
+		urban
+		industrial
+		unity
+	}
+
+	destroy_trigger = {
+		exists = owner
+		owner = {
+			NOT = { has_origin = origin_Luanzi}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b4_minerals
+		}
+		upkeep = {
+			energy = @b4_upkeep
+		}
+	}
+
+	planet_modifier = {
+		planet_districts_upkeep_mult = 0.10
+		job_weihuyuan_add = 400
+	}
+
+	triggered_desc = {
+		text = job_weihuyuan_desc
+	}
+}
+
+building_gts_gw = {
+
+	# GW同好社團
+
+	base_buildtime = @b2_time
+	category = unity
+	base_cap_amount = 1
+	icon = building_nanolab_1
+
+	upgrades = {
+		building_gts_gw_2
+	}
+
+	potential = {
+		exists = owner
+		owner = {
+			has_civic = civic_gts_hcomic
+		}
+	}
+
+	building_sets = {
+		government
+		urban
+		trade
+		unity
+	}
+
+	destroy_trigger = {
+		exists = owner
+		owner = {
+			NOT = { has_civic = civic_gts_hcomic}
+		}
+	}
+
+	planet_modifier = {
+		planet_jobs_unity_produces_mult = 0.10
+		job_gts_drawer_add = 100
+		job_gts_writer_add = 100
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b3_minerals
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+	}
+}
+
+building_gts_gw_2 = {
+
+	# GW創作中心
+
+	base_buildtime = @b3_time
+	category = unity
+	icon = building_nanolab_2
+
+	can_build = no
+
+	potential = {
+		exists = owner
+		owner = {
+			has_civic = civic_gts_hcomic
+		}
+	}
+
+	building_sets = {
+		government
+		urban
+		trade
+		unity
+	}
+
+	allow = {
+		has_major_upgraded_capital = yes
+	}
+
+	destroy_trigger = {
+		exists = owner
+		owner = {
+			NOT = { has_civic = civic_gts_hcomic}
+		}
+	}
+
+	planet_modifier = {
+		planet_jobs_unity_produces_mult = 0.20
+		job_gts_drawer_add = 200
+		job_gts_writer_add = 200
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b4_minerals
+		}
+		upkeep = {
+			energy = @b4_upkeep
+		}
+	}
+}
+
+building_gts_chapel = {
+
+	# 大禮拜堂
+
+	base_buildtime = @b2_time
+	category = unity
+	empire_limit = 1
+	icon = building_empyrean_shrine
+
+	potential = {
+		exists = owner
+		owner = {
+			has_origin = origin_Qianxin
+		}
+	}
+
+	building_sets = {
+		government
+		urban
+		unity
+	}
+
+	allow = {
+		planet = { is_capital = yes }
+		has_major_upgraded_capital = yes
+	}
+
+	destroy_trigger = {
+		exists = owner
+		owner = {
+			NOT = { has_origin = origin_Qianxin}
+		}
+	}
+
+	planet_modifier = {
+		job_gts_saintess_add = 100
+		job_gts_nun_add = 300
+		planet_jobs_unity_produces_mult = 0.25
+		planet_civilians_unity_produces_add = 0.25
+		planet_civilians_consumer_goods_upkeep_add = 0.50
+	}
+
+	country_modifier = {
+		pop_ethic_spiritualist_attraction_mult = 0.50
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b3_minerals
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+	}
+}
+
+building_gts_organic_sanctuary = {
+
+	# 小人庇護所
+
+	base_buildtime = @b2_time
+	category = unity
+	planet_limit = 1
+	icon = building_organic_sanctuary
+
+	potential = {
+		exists = owner
+		owner = {
+			has_valid_civic = civic_gts_servitor
+		}
+	}
+
+	building_sets = {
+		bio_trophy
+		government
+		urban
+		unity
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = {
+				NOT = { has_valid_civic = civic_gts_servitor}
+			}
+			AND = {
+				owner = { is_ai = yes }
+				count_owned_pop_amount = {
+					limit = {
+						has_citizenship_type = {
+							type = citizenship_organic_trophy
+							country = owner
+						}
+					}
+					count <= 2000
+				}
+				num_buildings = { type = building_gts_organic_sanctuary value > 3 }
+			}
+		}
+	}
+
+	planet_modifier = {
+		#job_gts_bio_trophy_add = 5000
+		job_gts_head_nurse_add = 100
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b3_minerals
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+	}
+}
+
+building_god_keeper_1 = {
+
+	# 理想城廢墟
+
+	can_build = yes
+	can_be_disabled = no
+	can_be_ruined = no
+	can_demolish = no
+
+	base_buildtime = @b2_time
+	category = unity
+	empire_limit = 1
+	icon = building_ruined
+
+	upgrades = {
+		building_god_keeper_2
+	}
+
+	potential = {
+		exists = owner
+		owner = { has_origin = origin_god_keeper }
+		is_capital = yes
+	}
+
+	building_sets = {
+		government
+		urban
+		unity
+	}
+
+	destroy_trigger = {
+		always = no
+	}
+
+	planet_modifier = {
+		planet_jobs_unity_produces_mult = 0.1
+	}
+}
+
+building_god_keeper_2 = {
+
+	# 神主雕像
+
+	can_build = no
+	can_be_disabled = no
+	can_be_ruined = no
+	can_demolish = no
+
+	base_buildtime = @b3_time
+	category = unity
+	#empire_limit = 1
+
+	potential = {
+		exists = owner
+		owner = {
+			has_origin = origin_god_keeper
+			has_country_flag = building_god_keeper_2_allow
+		}
+	}
+
+	building_sets = {
+		government
+		urban
+		unity
+	}
+
+	allow = {
+		owner = {
+			has_origin = origin_god_keeper
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		NOT = {
+			owner = {
+				has_origin = origin_god_keeper
+			}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b4_minerals
+		}
+		upkeep = {
+			energy = @b4_upkeep
+		}
+	}
+
+	planet_modifier = {
+		planet_jobs_unity_produces_mult = 0.2
+	}
+
+	on_built = { #触发事件
+		owner = {
+			country_event = {
+				id = gts_god_keeper.8
+			}
+		}
+	}
+}
+
+################################################################################
+####################                靴底人建築                ####################
+################################################################################
+
+
+
+building_gts_holy_foot_temple = {
+
+	# 襪足聖殿
+
+	base_buildtime = @b1_time
+	category = unity
+	base_cap_amount = 1
+
+	potential = {
+		exists = owner
+		owner = {
+			has_origin = origin_gts_subterranean
+		}
+	}
+
+	building_sets = {
+		government
+		urban
+		unity
+	}
+
+	destroy_trigger = {
+		exists = owner
+		owner = {
+			NOT = {
+				has_origin = origin_gts_subterranean
+			}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+		}
+		upkeep = {
+			energy = @b2_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_gts_foot_prist_add = 100
+	}
+
+	upgrades = {
+		building_gts_holy_black_temple
+		building_gts_holy_white_temple
+		building_gts_holy_stocking_temple
+		building_gts_holy_bare_temple
+	}
+}
+
+building_gts_holy_black_temple = {
+
+	# 黑絲主教區
+
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+
+	base_buildtime = @b2_time
+	category = unity
+	base_cap_amount = 1
+
+	potential = {
+		exists = owner
+		owner = {
+			has_origin = origin_gts_subterranean
+		}
+	}
+
+	building_sets = {
+		government
+		urban
+		unity
+	}
+
+	destroy_trigger = {
+		exists = owner
+		owner = {
+			NOT = {
+				has_origin = origin_gts_subterranean
+			}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b3_minerals
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_gts_foot_prist_add = 200
+		pop_government_ethic_attraction = 0.25
+		planet_stability_add = 10
+	}
+
+	triggered_desc = {
+		text = building_gts_holy_black_temple_effect
+	}
+}
+
+building_gts_holy_white_temple = {
+
+	# 白絲主教區
+
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+
+	base_buildtime = @b2_time
+	category = unity
+	base_cap_amount = 1
+
+	potential = {
+		exists = owner
+		owner = {
+			has_origin = origin_gts_subterranean
+		}
+	}
+
+	building_sets = {
+		government
+		urban
+		unity
+	}
+
+	destroy_trigger = {
+		exists = owner
+		owner = {
+			NOT = {
+				has_origin = origin_gts_subterranean
+			}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b3_minerals
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_gts_foot_prist_add = 200
+		pop_government_ethic_attraction = 0.25
+		planet_stability_add = 10
+	}
+
+	triggered_desc = {
+		text = building_gts_holy_white_temple_effect
+	}
+}
+
+building_gts_holy_stocking_temple = {
+
+	# 棉襪主教區
+
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+
+	base_buildtime = @b2_time
+	category = unity
+	base_cap_amount = 1
+
+	potential = {
+		exists = owner
+		owner = {
+			has_origin = origin_gts_subterranean
+		}
+	}
+
+	building_sets = {
+		government
+		urban
+		unity
+	}
+
+	destroy_trigger = {
+		exists = owner
+		owner = {
+			NOT = {
+				has_origin = origin_gts_subterranean
+			}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b3_minerals
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_gts_foot_prist_add = 200
+		pop_government_ethic_attraction = 0.25
+		planet_stability_add = 10
+	}
+
+	triggered_desc = {
+		text = building_gts_holy_stocking_temple_effect
+	}
+}
+
+building_gts_holy_bare_temple = {
+
+	# 裸足主教區
+
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+
+	base_buildtime = @b2_time
+	category = unity
+	base_cap_amount = 1
+
+	potential = {
+		exists = owner
+		owner = {
+			has_origin = origin_gts_subterranean
+		}
+	}
+
+	building_sets = {
+		government
+		urban
+		unity
+	}
+
+	destroy_trigger = {
+		exists = owner
+		owner = {
+			NOT = {
+				has_origin = origin_gts_subterranean
+			}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b3_minerals
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_gts_foot_prist_add = 200
+		pop_government_ethic_attraction = 0.25
+		planet_stability_add = 10
+	}
+
+	triggered_desc = {
+		text = building_gts_holy_bare_temple_effect
+	}
+}
+
+################################################################################
+####################                国策建築                ####################
+################################################################################
+
+building_shrink_factory_cor_1 = {
+
+	base_buildtime = @b2_time
+	owner_type = corporate
+	icon = building_shrink_pop_factory
+	planet_limit = 1
+
+	category = resource
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			is_criminal_syndicate = no
+		}
+		NOR = {
+			is_planet_class = pc_hive
+			is_planet_class = pc_machine
+		}
+	}
+
+	planet_modifier = {
+		planet_crime_add = -10
+		branch_office_value_mult = 0.20
+		job_shrink_pop_worker_add = 200
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			influence = 25
+			minerals = @b3_minerals
+		}
+		cost = {
+			trigger = {
+				owner = {
+					has_authority = auth_corporate
+				}
+			}
+			influence = 25
+		}
+		produces = {
+			gts_micro = 0.01
+			mult = value:gts_bruh_counter_is_pop
+		}
+		upkeep = {
+			# 10
+			consumer_goods = @b2_upkeep
+		}
+	}
+
+	ai_weight = {
+		factor = 50
+	}
+}
+
+building_shrink_factory_cor_2 = {
+
+	# 地下縮小工廠
+
+	base_buildtime = @b2_time
+	owner_type = corporate
+	icon = building_shrink_pop_factory
+	planet_limit = 1
+
+	category = resource
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			OR = {
+				is_criminal_syndicate = yes
+				has_civic = civic_delta_trade
+			}
+		}
+		NOR = {
+			is_planet_class = pc_hive
+			is_planet_class = pc_machine
+		}
+	}
+
+	planet_modifier = {
+		branch_office_value_mult = 0.25
+		pop_government_ethic_attraction = -0.25
+		logistic_growth_mult = -0.25
+		bonus_pop_growth_mult = -0.25
+	}
+
+	triggered_planet_modifier = {
+		planet_crime_add = 25
+		mult = branch_office_owner.value:scripted_modifier_mult|MODIFIER|branch_office_holding_crime_mult|
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			influence = 25
+			minerals = @b3_minerals
+		}
+		cost = {
+			trigger = {
+				owner = {
+					has_authority = auth_corporate
+				}
+			}
+			influence = 25
+		}
+		produces = {
+			gts_micro = 0.02
+			mult = value:gts_bruh_counter_is_pop
+		}
+		upkeep = {
+			# 10
+			consumer_goods = @b2_upkeep
+		}
+	}
+
+	ai_weight = {
+		factor = 50
+	}
+}
+
+building_candy_house = {
+
+	base_buildtime = @b2_time
+	owner_type = corporate
+	planet_limit = 1
+
+	category = amenity
+
+	potential = {
+		has_branch_office = yes
+		NOR = {
+			is_planet_class = pc_hive
+			is_planet_class = pc_machine
+		}
+	}
+
+	# 普通巨企
+	triggered_planet_modifier = {
+		potential = {
+			branch_office_owner = {
+				NOR = {
+					is_criminal_syndicate = yes
+					has_civic = civic_delta_trade
+				}
+			}
+		}
+		branch_office_value_mult = 0.10
+	}
+
+	# 罪企
+	triggered_planet_modifier = {
+		potential = {
+			branch_office_owner = {
+				OR = {
+					is_criminal_syndicate = yes
+					has_civic = civic_delta_trade
+				}
+			}
+		}
+		branch_office_value_mult = 0.15
+		pop_happiness = -0.10
+	}
+	triggered_planet_modifier = {
+		planet_crime_add = 25
+		potential = {
+			branch_office_owner = {
+				OR = {
+					is_criminal_syndicate = yes
+					has_civic = civic_delta_trade
+				}
+			}
+		}
+		mult = branch_office_owner.value:scripted_modifier_mult|MODIFIER|branch_office_holding_crime_mult|
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			influence = 25
+			minerals = @b3_minerals
+		}
+		cost = {
+			trigger = {
+				owner = {
+					has_authority = auth_corporate
+				}
+			}
+			influence = 25
+		}
+		produces = {
+			# 15
+			trade = 15
+			mult = value:branch_office_value_for_buildings
+		}
+		upkeep = {
+			# 10
+			consumer_goods = @b2_upkeep
+		}
+	}
+
+	triggered_desc = {
+		text = has_two_side_corporation
+	}
+
+	ai_weight = {
+		factor = 100
+	}
+}
+
+building_gts_maid_cafe = {
+
+	# 女僕咖啡廳
+
+	base_buildtime = @b2_time
+	owner_type = corporate
+	icon = building_offspring_nest
+	planet_limit = 1
+
+	category = amenity
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			is_criminal_syndicate = no
+			has_civic = civic_gts_maid
+		}
+		NOR = {
+			is_planet_class = pc_hive
+			is_planet_class = pc_machine
+		}
+	}
+
+	planet_modifier = {
+		branch_office_value_mult = 0.20
+		pop_ethic_xenophile_attraction_mult = 0.50
+	}
+
+	triggered_planet_modifier = {
+		modifier = {
+			job_gts_maid_add = 200
+		}
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			influence = 25
+			minerals = @b3_minerals
+		}
+		cost = {
+			trigger = {
+				owner = {
+					has_authority = auth_corporate
+				}
+			}
+			influence = 25
+		}
+		upkeep = {
+			# 10
+			consumer_goods = @b2_upkeep
+		}
+	}
+
+	ai_weight = {
+		factor = 120
+	}
+}
+
+building_gts_gw_c96 = {
+	#GW同人展会
+	category = amenity
+	base_buildtime = @b1_time
+	base_cap_amount = 1
+	owner_type = corporate
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			is_criminal_syndicate = no
+			has_civic = civic_gts_hcomic
+		}
+		NOR = {
+			is_planet_class = pc_hive
+			is_planet_class = pc_machine
+		}
+	}
+	planet_modifier = {
+		branch_office_value_mult = 0.25
+		planet_amenities_add = 1200
+	}
+	country_modifier = {
+		diplo_action_acceptance_add = 20
+		country_trust_growth = 0.2
+	}
+	triggered_planet_modifier = {
+		modifier = {
+			job_gts_drawer_add = 100
+			job_gts_writer_add = 100
+		}
+	}
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = 300
+		}
+		produces = {
+			energy = 40
+		}
+		upkeep = {
+			energy = 1
+			consumer_goods = 1
+		}
+	}
+	ai_weight = {
+		factor = 1
+	}
+	#AI has many other sources for this resource
+}
+
+building_gts_foot_clean_mineral = {
+	#足部按摩
+	category = amenity
+	base_buildtime = @b1_time
+	base_cap_amount = 1
+	owner_type = corporate
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			is_criminal_syndicate = no
+			has_origin = origin_gts_subterranean
+		}
+		NOR = {
+			is_planet_class = pc_hive
+			is_planet_class = pc_machine
+		}
+	}
+	planet_modifier = {
+		branch_office_value_mult = 0.25
+		planet_amenities_add = 1200
+	}
+	country_modifier = {
+		country_trust_growth = 0.2
+	}
+	triggered_planet_modifier = {
+		modifier = {
+			job_gts_footminer_add = 200
+		}
+	}
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = 300
+		}
+		produces = {
+			energy = 20
+			minerals = 20
+			alloys = 10
+		}
+		upkeep = {
+			energy = 1
+			minerals = 1
+		}
+	}
+	ai_weight = {
+		factor = 1
+	}
+	#AI has many other sources for this resource
+}

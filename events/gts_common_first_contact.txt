@@ -1,0 +1,4810 @@
+################################
+#
+# First Contact Events
+#
+# Written by Rawls Lee
+#
+################################
+
+#这部分是具体事件的界面
+
+namespace = first_contacttiny
+
+##第一阶段-开始
+#小人版
+first_contact_event = {
+	id = first_contacttiny.1
+	title = first_contacttiny.1.name
+	desc = first_contacttiny.1.desc
+	picture = GFX_evt_gts_star_chart
+	is_triggered_only = yes
+	first_contact = yes
+	location = solar_system
+	show_sound = event_mysterious_signal
+	abort_trigger = {
+		OR = {
+			NOT = { exists = owner }
+			NOT = { exists = contact_country }
+			contact_country = { is_country_type = primitive }
+			owner = { has_communications = root.contact_country }
+		}
+	}
+	immediate = {
+		tiny_set_first_contact_starting_stage = yes
+		hidden_effect = {
+			fire_on_action = {
+				on_action = on_first_contact_started
+			}
+		}
+	}
+	#something here?
+	option = {
+		name = INTERESTING
+
+	}
+}
+###第一阶段-开始
+namespace = first_contactgts
+#巨娘版
+first_contact_event = {
+	id = first_contactgts.1
+	title = first_contactgts.1.name
+	desc = {
+		#普通巨娘描述
+		trigger = {
+			owner = {
+				has_country_flag = gts_flag
+				NOR = {
+					has_country_flag = gts_servitor_flag
+					has_country_flag = gts_terminator_flag
+					has_country_flag = gts_assimilator_flag
+				}
+			}
+		}
+		text = first_contactgts.1.desc.gts
+	}
+	desc = {
+		#小人保护者描述
+		trigger = {
+			owner = {
+				has_country_flag = gts_servitor_flag
+			}
+		}
+		text = first_contactgts.1.desc.gtss
+	}
+	desc = {
+		#小人清除者描述
+		trigger = {
+			owner = {
+				has_country_flag = gts_terminator_flag
+			}
+		}
+		text = first_contactgts.1.desc.gtst
+	}
+	desc = {
+		#小人观测者描述
+		trigger = {
+			owner = {
+				has_country_flag = civic_gts_assimilator
+			}
+		}
+		text = first_contactgts.1.desc.gtsa
+	}
+	picture = GFX_evt_gts_star_chart
+	is_triggered_only = yes
+	first_contact = yes
+	location = solar_system
+	show_sound = event_mysterious_signal
+	abort_trigger = {
+		OR = {
+			NOT = { exists = owner }
+			NOT = { exists = contact_country }
+			contact_country = { is_country_type = primitive }
+			owner = { has_communications = root.contact_country }
+		}
+	}
+	immediate = {
+		gts_set_first_contact_starting_stage = yes
+		hidden_effect = {
+			fire_on_action = {
+				on_action = on_first_contact_started
+			}
+		}
+	}
+	#something here?
+	option = {
+		name = INTERESTING
+	}
+}
+
+
+
+###第二阶段-接触
+#巨娘版
+#只能看见船
+first_contact_event = {
+	id = first_contactgts.11
+	title = first_contactgts.11.name
+	picture = GFX_evt_gts_unknown_ships
+	is_triggered_only = yes
+	first_contact = yes
+	inline_script = first_contact_event_sounds
+	desc = {
+		#小人保护者
+		trigger = {
+			owner = {
+				has_country_flag = gts_servitor_flag
+			}
+		}
+		text = first_contactgts.11.desc.gtss
+	}
+	desc = {
+		#小人清除者
+		trigger = {
+			owner = {
+				has_country_flag = gts_terminator_flag
+			}
+		}
+		text = first_contactgts.11.desc.gtst
+	}
+	desc = {
+		#小人观测者
+		trigger = {
+			owner = {
+				has_country_flag = gts_assimilator_flag
+			}
+		}
+		text = first_contactgts.11.desc.gtsa
+	}
+	desc = {
+		#普通巨娘
+		trigger = {
+			owner = {
+				NOR = {
+					has_country_flag = gts_servitor_flag
+					has_country_flag = gts_assimilator_flag
+					has_country_flag = gts_terminator_flag
+				}	
+			}
+		}
+		text = first_contactgts.11.desc.gts
+	}
+	immediate = {
+		set_site_progress_locked = yes
+	}
+	after = {
+		set_site_progress_locked = no
+	}
+	#巨大娘抓船
+	option = {
+		name = first_contactgts.11.A
+		custom_tooltip = first_contactgts.11.A.Tooltip
+		icon = {
+			icon = GFX_option_icon_hostile
+			text = hostile_first_contact_tt
+		}
+		allow = {
+			custom_tooltip = {
+				text = any_civilian_ship_in_sensor_range
+				first_contact_can_capture_ship = yes
+			}
+		}
+		set_first_contact_stage = default_hostile_ship_stage_gts
+		set_first_contact_flag = hostile_first_contact_attempted
+		ai_chance = {
+			factor = 100
+		}
+	}
+	option = {
+		name = first_contactgts.11.B
+		custom_tooltip = first_contactgts.11.B.Tooltip
+		icon = {
+			icon = GFX_option_icon_hostile
+			text = hostile_first_contact_tt
+		}
+		hidden_effect = {
+			contact_country = {
+				random_owned_planet = {
+					save_event_target_as = known_planet
+					solar_system = {
+						set_star_flag = first_contact_known_system@root.owner
+					}
+					if = {
+						limit = {
+							is_moon = yes
+						}
+						orbit = {
+							generate_number_planet_in_system_flags = yes
+						}
+					}
+					else = {
+						generate_number_planet_in_system_flags = yes
+					}
+				}
+			}
+			set_first_contact_stage = default_hostile_systems_stage_gts
+			set_first_contact_flag = hostile_first_contact_attempted
+		}
+		ai_chance = {
+			factor = 50
+		}
+	}
+	option = {
+		name = first_contactgts.11.C
+		set_first_contact_stage = default_stagegts_2
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+#只能看见船，对面在扫描我们
+first_contact_event = {
+	id = first_contactgts.12
+	title = first_contactgts_12.name
+	picture = GFX_evt_gts_unknown_ships
+	is_triggered_only = yes
+	first_contact = yes
+	inline_script = first_contact_event_sounds
+	desc = {
+		#小人保护者
+		trigger = {
+			owner = {
+				has_country_flag = gts_servitor_flag
+			}
+		}
+		text = first_contactgts.12.desc.gtss
+	}
+	desc = {
+		#小人清除者
+		trigger = {
+			owner = {
+				has_country_flag = gts_terminator_flag
+			}
+		}
+		text = first_contactgts.12.desc.gtst
+	}
+	desc = {
+		#小人观测者
+		trigger = {
+			owner = {
+				has_country_flag = gts_assimilator_flag
+			}
+		}
+		text = first_contactgts.12.desc.gtsa
+	}
+	desc = {
+		#普通巨娘
+		trigger = {
+			owner = {
+				NOR = {
+					has_country_flag = gts_servitor_flag
+					has_country_flag = gts_assimilator_flag
+					has_country_flag = gts_terminator_flag
+				}	
+			}
+		}
+		text = first_contactgts.12.desc.gts
+	}
+	immediate = {
+		set_site_progress_locked = yes
+	}
+	after = {
+		set_site_progress_locked = no
+	}
+	#巨大娘抓船
+	option = {
+		name = first_contactgts.11.A
+		custom_tooltip = first_contactgts.11.A.Tooltip
+		icon = {
+			icon = GFX_option_icon_hostile
+			text = hostile_first_contact_tt
+		}
+		allow = {
+			custom_tooltip = {
+				text = any_civilian_ship_in_sensor_range
+				first_contact_can_capture_ship = yes
+			}
+		}
+		set_first_contact_stage = default_hostile_ship_stage_gts
+		set_first_contact_flag = hostile_first_contact_attempted
+		ai_chance = {
+			factor = 100
+		}
+	}
+	option = {
+		name = first_contactgts.11.B
+		custom_tooltip = first_contactgts.11.B.Tooltip
+		icon = {
+			icon = GFX_option_icon_hostile
+			text = hostile_first_contact_tt
+		}
+		hidden_effect = {
+			contact_country = {
+				random_owned_planet = {
+					save_event_target_as = known_planet
+					solar_system = {
+						set_star_flag = first_contact_known_system@root.owner
+					}
+					if = {
+						limit = {
+							is_moon = yes
+						}
+						orbit = {
+							generate_number_planet_in_system_flags = yes
+						}
+					}
+					else = {
+						generate_number_planet_in_system_flags = yes
+					}
+				}
+			}
+			set_first_contact_stage = default_hostile_systems_stage_gts
+			set_first_contact_flag = hostile_first_contact_attempted
+		}
+		ai_chance = {
+			factor = 50
+		}
+	}
+	option = {
+		name = first_contactgts.11.C
+		set_first_contact_stage = default_stagegts_2
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+#能看见星球
+first_contact_event = {
+	id = first_contactgts.13
+	title = first_contactgts.13.name
+	inline_script = first_contact_event_sounds
+	picture = GFX_evt_gts_inhabited_solar_system
+	is_triggered_only = yes
+	first_contact = yes
+	desc = {
+		#小人保护者-星球
+		trigger = {
+			owner = {
+				has_country_flag = gts_servitor_flag
+			}
+			exists = event_target:known_planet
+		}
+		text = first_contactgts.13.desc.gtss.planet
+	}
+	desc = {
+		#小人保护者-无星球
+		trigger = {
+			owner = {
+				has_country_flag = gts_servitor_flag
+			}
+			NOT = {
+				exists = event_target:known_planet
+			}
+		}
+		text = first_contactgts.13.desc.gtss.no_planet
+	}
+	desc = {
+		#小人清除者-星球
+		trigger = {
+			owner = {
+					has_country_flag = gts_terminator_flag
+			}
+			exists = event_target:known_planet
+		}
+		text = first_contactgts.13.desc.gtst.planet
+	}
+	desc = {
+		#小人清除者-无星球
+		trigger = {
+			owner = {
+					has_country_flag = gts_terminator_fla
+		}
+			NOT = {
+				exists = event_target:known_planet
+			}
+		}
+		text = first_contactgts.13.desc.gtst.no_planet
+	}
+	desc = {
+		#小人观测者-星球
+		trigger = {
+			owner = {
+				has_country_flag = gts_assimilator_flag
+			}
+			exists = event_target:known_planet
+		}
+		text = first_contactgts.13.desc.gtsa.planet
+	}
+	desc = {
+		#小人观测者-无星球
+		trigger = {
+			owner = {
+				has_country_flag = gts_assimilator_flag
+			}
+			NOT = {
+				exists = event_target:known_planet
+			}
+		}
+		text = first_contactgts.13.desc.gtsa.no_planet
+	}
+	desc = {
+		#普通巨娘-星球
+		trigger = {
+			owner = {
+				NOR = {
+					has_country_flag = gts_servitor_flag
+					has_country_flag = gts_assimilator_flag
+					has_country_flag = gts_terminator_flag
+				}
+				exists = event_target:known_planet	
+			}
+		}
+		text = first_contactgts.13.desc.gts.planet
+	}
+	desc = {
+		#普通巨娘-无星球
+		trigger = {
+			owner = {
+				NOR = {
+					has_country_flag = gts_servitor_flag
+					has_country_flag = gts_assimilator_flag
+					has_country_flag = gts_terminator_flag
+				}
+				NOT = {
+					exists = event_target:known_planet
+				}	
+			}
+		}
+		text = first_contactgts.13.desc.gts.no_planet
+	}
+	immediate = {
+		set_site_progress_locked = yes
+		contact_country = {
+			random_owned_planet = {
+				limit = {
+					root.owner = {
+						intel_level = {
+							level > low
+							system = prev.solar_system
+						}
+					}
+				}
+				save_event_target_as = known_planet
+				solar_system = {
+					set_star_flag = first_contact_known_system@root.owner
+				}
+				if = {
+					limit = {
+						is_moon = yes
+					}
+					orbit = {
+						generate_number_planet_in_system_flags = yes
+					}
+				}
+				else = {
+					generate_number_planet_in_system_flags = yes
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = event_target:known_planet
+					}
+				}
+				random_owned_planet = {
+					save_event_target_as = known_planet
+					solar_system = {
+						set_star_flag = first_contact_known_system@root.owner
+					}
+					if = {
+						limit = {
+							is_moon = yes
+						}
+						orbit = {
+							generate_number_planet_in_system_flags = yes
+						}
+					}
+					else = {
+						generate_number_planet_in_system_flags = yes
+					}
+				}
+			}
+		}
+	}
+	after = {
+		set_site_progress_locked = no
+	}
+	#巨娘抓人选项
+	option = {
+		name = first_contactgts.13.A
+		custom_tooltip = first_contactgts.13.A.Tooltip
+		icon = {
+			icon = GFX_option_icon_hostile
+			text = hostile_first_contact_tt
+		}
+		set_first_contact_stage = default_hostile_systems_stage_gts
+		set_first_contact_flag = hostile_first_contact_attempted
+		ai_chance = {
+			factor = 100
+		}
+	}
+	option = {
+		name = first_contactgts.13.B
+		
+		ai_chance = {
+			factor = 0
+		}
+		set_first_contact_stage = default_stagegts_2
+	}
+}
+
+###第三阶段-特殊事件###
+## 巨娘抓船 ##
+#船和人都在（嘴部
+first_contact_event = {
+	id = first_contactgts.100
+	title = first_contactgts.100.name
+	desc = first_contactgts.100.desc
+	picture = GFX_evt_gts_vore_contact
+	show_sound = event_faceoff_in_space
+	is_triggered_only = yes
+	first_contact = yes
+	immediate = {
+		set_site_progress_locked = yes
+		first_contact_get_ship_to_capture = yes		#generates event_target:fleet_to_seize
+		set_first_contact_flag = succeeded_capture_attempt
+		set_first_contact_flag = seen_aliens
+		reverse_first_contact = {
+			set_first_contact_flag = seen_aliens
+		}
+		owner = {
+			set_timed_relation_flag = {
+				who = root.contact_country
+				flag = vivisectors
+				years = 25
+			}
+		}
+	}
+	after = {
+		set_site_progress_locked = no
+	}
+	option = {
+		#审问
+		name = first_contactgts.100.A
+		hidden_effect = {
+			event_target:fleet_to_seize = {
+				leader = {
+					exile_leader_as = missing_scientist_fc
+					save_global_event_target_as = missing_scientist_fc
+				}
+				destroy_fleet = this
+			}
+			contact_country = {
+				add_opinion_modifier = {
+					who = root.owner
+					modifier = opinion_hostile_first_contactgts_interrogation
+				}
+				first_contact_send_fleets_mia = yes
+				country_event = {
+					id = first_contactgts.101
+				}
+			}
+		}
+		if = {
+			limit = {
+				contact_country = {
+					is_gestalt = yes
+				}
+			}
+			set_first_contact_stage = default_end_stage_hostile_with_crew_hard_gts
+		}
+		else_if = {
+			limit = {
+				contact_country = {
+					OR = {
+						has_trait = trait_weak
+						has_trait = trait_docile
+					}
+				}
+			}
+			hidden_effect = {
+				set_first_contact_flag = weak_interrogees
+			}
+			set_first_contact_stage = default_end_stage_hostile_with_crew_easy_gts
+		}
+		else_if = {
+			limit = {
+				contact_country = {
+					OR = {
+						has_trait = trait_strong
+						has_trait = trait_very_strong
+					}
+				}
+			}
+			hidden_effect = {
+				set_first_contact_flag = strong_interrogees
+			}
+			set_first_contact_stage = default_end_stage_hostile_with_crew_hard_gts
+		}
+		else = {
+			set_first_contact_stage = default_end_stage_hostile_with_crew_gts
+		}
+		ai_chance = {
+			factor = 1
+					}
+	}
+	option = {
+		#解剖
+		name = first_contactgts.100.B
+					trigger = {
+			owner = {
+				first_contact_gts_desc = yes
+				first_contact_gts_servitor_desc = no
+			}
+		}
+		hidden_effect = {
+			event_target:fleet_to_seize = {
+		leader = {
+					exile_leader_as = missing_scientist_fc
+					save_global_event_target_as = missing_scientist_fc
+				}
+				destroy_fleet = this
+			}
+			contact_country = {
+				add_opinion_modifier = {
+					who = root.owner
+					modifier = opinion_hostile_first_contactgts_vivisection
+				}
+				first_contact_send_fleets_mia = yes
+				country_event = {
+					id = first_contactgts.102
+				}
+			}
+		}
+		custom_tooltip = first_contactgts.100.B.tooltip
+		set_first_contact_stage = default_end_stage_hostile_with_vivisection_gts
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 3
+				owner = {
+					first_contact_gts_assimilator_desc = yes
+				}
+			}
+		}
+	}
+	option = {
+		#吃掉
+		name = first_contactgts.100.C.devourers
+		trigger = {
+			owner = {
+				first_contact_gts_desc = yes
+				first_contact_gts_servitor_desc = no
+			}
+		}
+		if = {
+			limit = {
+				contact_country = {
+					is_synthetic_empire = yes
+				}
+			}
+			owner = {
+				add_resource = {
+					influence = 50
+				}
+				add_monthly_resource_mult = {
+					resource = alloys
+					value = @tier1materialreward
+					min = @tier1materialmin
+				}
+				add_monthly_resource_mult = {
+					resource = unity
+					value = @tier2unityreward
+					min = @tier2unitymin
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				contact_country = {
+					is_lithoid = yes
+				}
+			}
+			owner = {
+				add_resource = {
+					influence = 50
+				}
+				add_monthly_resource_mult = {
+					resource = minerals
+					value = @tier1materialreward
+					min = @tier1materialmin
+				}
+				add_monthly_resource_mult = {
+					resource = unity
+					value = @tier2unityreward
+					min = @tier2unitymin
+				}
+			}
+		}
+		else = {
+			owner = {
+				add_resource = {
+					influence = 50
+				}
+				add_monthly_resource_mult = {
+					resource = food
+					value = @tier1materialreward
+					min = @tier1materialmin
+				}
+				add_monthly_resource_mult = {
+					resource = unity
+					value = @tier2unityreward
+					min = @tier2unitymin
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fleet_to_seize = {
+			leader = {
+					exile_leader_as = missing_scientist_fc
+					save_global_event_target_as = missing_scientist_fc
+				}
+				destroy_fleet = this
+			}
+			contact_country = {
+				add_opinion_modifier = {
+					who = root.owner
+					modifier = opinion_hostile_first_contactgts_death
+				}
+				first_contact_send_fleets_mia = yes
+				country_event = {
+					id = first_contactgts.103
+				}
+			}
+		}
+		custom_tooltip = first_contactgts.100.C.homicidal_tooltip
+		set_first_contact_stage = default_end_stage_hostile_no_crew_gts
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 3
+				owner = {
+					first_contact_gts_terminator_desc = yes
+				}
+			}
+		}
+	}
+	option = {
+		#放走
+		name = first_contactgts.100.D
+		trigger = {
+			first_contact_gts_terminator_desc = no
+		}
+		hidden_effect = {
+			event_target:fleet_to_seize = {
+			leader = {
+					exile_leader_as = missing_scientist_fc
+					save_global_event_target_as = missing_scientist_fc
+				}
+				destroy_fleet = this
+			}
+			contact_country = {
+				add_opinion_modifier = {
+					who = root.owner
+					modifier = opinion_hostile_first_contactgts_sendback
+				}
+				first_contact_send_fleets_mia = yes
+				country_event = {
+					id = first_contactgts.104
+				}
+			}
+		}
+		set_first_contact_stage = default_end_stage_hostile_no_crew_gts
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 2
+				owner = {
+					first_contact_gts_servitor_desc = yes
+				}
+			}
+		}
+	}
+}
+#对方事件-审问
+country_event = {
+	id = first_contactgts.101
+	title = first_contactgts.101.name
+	desc = {
+		trigger = {
+			from.owner = {
+				has_valid_civic = civic_gts_servitor
+			}
+		}
+		text = first_contactgts.101s.desc
+	}
+	desc = {
+		trigger = {
+			from.owner = {
+				NOT = { has_valid_civic = civic_gts_servitor }
+			}
+		}
+		text = first_contactgts.101.desc
+	}
+	picture = GFX_evt_gts_interrogation
+	show_sound = event_faceoff_in_space
+	is_triggered_only = yes
+	immediate = {
+		set_hostile = from.owner
+	}
+	option = {
+		name = first_contactgts.101.A
+		if = {
+			limit = {
+				from = {
+					has_first_contact_flag = fleets_sent_mia
+				}
+			}
+			custom_tooltip = first_contact_fleets_mia_tooltip
+		}
+		hidden_effect = {
+			country_event = {
+				id = first_contactgts.105
+				days = 10
+			}
+		}
+	}
+}
+country_event = {
+	id = first_contactgts.105
+	title = first_contactgts.105.name
+	desc = {
+		trigger = {
+			from.owner = {
+				has_valid_civic = civic_gts_servitor
+			}
+		}
+		text = first_contactgts.105.desc
+	}
+	desc = {
+		trigger = {
+			from.owner = {
+				NOT = { has_valid_civic = civic_gts_servitor }
+			}
+		}
+		text = first_contactgts.105.desc
+	}
+	picture = GFX_gtsra_load_29
+	show_sound = event_faceoff_in_space
+	is_triggered_only = yes
+	immediate = {
+		event_target:missing_scientist_fc = {
+			set_owner = root
+			leader_gts_abused = yes
+		}
+	}
+	option = {
+		name = first_contactgts.105.A
+		#custom_tooltip = first_contact.105.A.Tooltip
+
+	}
+}
+#对方事件-解剖
+country_event = {
+	id = first_contactgts.102
+	title = first_contactgts.102.name
+	desc = first_contactgts.102.desc
+	picture = GFX_evt_gts_vivisection
+	show_sound = event_vivisection
+	is_triggered_only = yes
+	immediate = {
+		set_hostile = from.owner
+	}
+	option = {
+		name = first_contactgts.102.A
+		if = {
+			limit = {
+				from = {
+					has_first_contact_flag = fleets_sent_mia
+				}
+			}
+			custom_tooltip = first_contact_fleets_mia_tooltip
+		}
+		hidden_effect = {
+			country_event = {
+				id = first_contactgts.106
+				days = 10
+			}
+		}
+	}
+}
+country_event = {
+	id = first_contactgts.106
+	title = first_contactgts.106.name
+	desc = first_contactgts.106.desc
+	picture = GFX_lottie_site8
+	show_sound = event_faceoff_in_space
+	is_triggered_only = yes
+	immediate = {
+		event_target:missing_scientist_fc = {
+			set_owner = root
+			leader_gts_abused2 = yes
+		}
+	}
+	option = {
+		name = first_contactgts.106.A
+	}
+}
+#对方事件-吃掉
+country_event = {
+	id = first_contactgts.103
+	title = first_contactgts.103.name
+	desc = first_contactgts.103.desc
+	picture = GFX_evt_gts_vore_contact
+	show_sound = event_vivisection
+	is_triggered_only = yes
+	immediate = {
+		set_hostile = from.owner
+	}
+	option = {
+		name = first_contactgts.103.A
+		if = {
+			limit = {
+				from = {
+					has_first_contact_flag = fleets_sent_mia
+				}
+			}
+			custom_tooltip = first_contact_fleets_mia_tooltip
+		}
+	hidden_effect = {
+			country_event = {
+				id = first_contactgts.107
+				days = 10
+			}
+		}
+	}
+}
+country_event = {
+	id = first_contactgts.107
+	title = first_contactgts.107.name
+	desc = first_contactgts.107.desc
+	picture = GFX_evt_gts_inside_body_1
+	show_sound = event_faceoff_in_space
+	is_triggered_only = yes
+	immediate = {
+		event_target:missing_scientist_fc = {
+			set_owner = root
+			leader_gts_abused2 = yes
+		}
+	}
+	option = {
+		name = first_contactgts.107.A
+	}
+}
+#对方事件-送达
+country_event = {
+	id = first_contactgts.104
+	title = first_contactgts.104.name
+	desc = first_contactgts.104.desc
+	picture = GFX_evt_friendly_infiltration
+	show_sound = event_faceoff_in_space
+	is_triggered_only = yes
+	option = {
+		name = first_contactgts.104.A
+		if = {
+			limit = {
+				from = {
+					has_first_contact_flag = fleets_sent_mia
+				}
+			}
+			custom_tooltip = first_contact_fleets_mia_tooltip
+		}
+		hidden_effect = {
+			country_event = {
+				id = first_contactgts.108
+				days = 10
+			}
+		}
+	}
+}
+country_event = {
+	id = first_contactgts.108
+	title = first_contactgts.108.name
+	desc = first_contactgts.108.desc
+	picture = GFX_evt_gts_face_off_in_space
+	show_sound = event_faceoff_in_space
+	is_triggered_only = yes
+	immediate = {
+		event_target:missing_scientist_fc = {
+			set_owner = root
+		}
+			}
+			option = {
+		name = first_contactgts.108.A
+		add_monthly_resource_mult = {
+			resource = food
+			value = @tier1materialreward
+			min = @tier1materialmin
+		}
+		add_monthly_resource_mult = {
+			resource = engineering_research
+			value = @tier1materialreward
+			min = @tier1materialmin
+		}
+	}
+}
+
+#船在人不在（脚部
+first_contact_event = {
+	id = first_contactgts.260
+	title = first_contactgts.260.name
+	desc = first_contactgts.260.desc
+	picture = GFX_evt_gts_foot_contact
+	show_sound = event_faceoff_in_space
+	is_triggered_only = yes
+	first_contact = yes
+	immediate = {
+		set_site_progress_locked = yes
+		first_contact_get_ship_to_capture = yes		#generates event_target:fleet_to_seize
+		set_first_contact_flag = succeeded_capture_attempt
+		set_first_contact_flag = seen_aliens
+		reverse_first_contact = {
+			set_first_contact_flag = seen_aliens
+		}
+		event_target:fleet_to_seize = {
+		unassign_leader = this
+			destroy_fleet = this
+		}
+		contact_country = {
+			add_opinion_modifier = {
+				who = root.owner
+				modifier = opinion_hostile_first_contactgts_vivisection
+			}
+			first_contact_send_fleets_mia = yes
+		}
+		contact_country = {
+			country_event = {
+				id = first_contactgts.110
+			}
+		}
+	}
+	after = {
+		set_site_progress_locked = no
+	}
+	option = {
+		name = first_contactgts.260.A
+		set_first_contact_stage = default_end_stage_hostile_no_crew_gts
+	}
+}
+#对方事件
+country_event = {
+	id = first_contactgts.110
+	title = first_contactgts.110.name
+	desc = first_contactgts.110.desc
+	picture = GFX_evt_gts_foot_contact
+	show_sound = event_faceoff_in_space
+	is_triggered_only = yes
+	immediate = {
+		set_hostile = from.owner
+	}
+	option = {
+		name = first_contactgts.110.A
+		if = {
+			limit = {
+				from = {
+					has_first_contact_flag = fleets_sent_mia
+				}
+			}
+			custom_tooltip = first_contact_fleets_mia_tooltip
+		}
+	hidden_effect = {
+			country_event = {
+				id = first_contactgts.111
+				days = 10
+			}
+		}
+	}
+}
+country_event = {
+	id = first_contactgts.111
+	title = first_contactgts.111.name
+	desc = first_contactgts.111.desc
+	picture = GFX_evt_gts_foot_contact
+	show_sound = event_faceoff_in_space
+	is_triggered_only = yes
+	immediate = {
+		event_target:missing_scientist_fc = {
+			set_owner = root
+			leader_gts_abused = yes
+		}
+	}
+	option = {
+		name = first_contactgts.111.A
+	}
+}
+
+#船和人都寄（阴部
+first_contact_event = {
+	id = first_contactgts.270
+	title = first_contactgts.270.name
+	desc = first_contactgts.270.desc
+	picture = GFX_evt_gts_pussy_contact
+	show_sound = event_ship_explosion
+	is_triggered_only = yes
+	first_contact = yes
+	immediate = {
+		set_site_progress_locked = yes
+		first_contact_get_ship_to_capture = yes		#generates event_target:fleet_to_seize
+		set_first_contact_flag = failed_capture_attempt
+		contact_country = {
+			add_opinion_modifier = {
+				who = root.owner
+				modifier = opinion_hostile_first_contactgts_death
+			}
+		}
+	}
+	after = {
+		set_site_progress_locked = no
+		event_target:fleet_to_seize = {
+		unassign_leader = this
+			destroy_and_spawn_debris_for = root.owner
+		}
+		hidden_effect = {
+			contact_country = {
+				every_controlled_fleet = {
+					limit = {
+						NOT = {
+							is_same_value = event_target:fleet_to_seize
+						}
+						is_within_borders_of = root.owner
+						if = {
+							limit = {
+								prev = {
+									is_hostile = root.owner
+								}
+							}
+							is_civilian = yes
+						}
+					}
+					set_mia = mia_return_home
+					root = {
+						set_first_contact_flag = fleets_sent_mia
+					}
+				}
+			}
+			contact_country = {
+				country_event = {
+					id = first_contactgts.112
+				}
+			}
+		}
+	}
+	option = {
+		name = first_contactgts.270.A
+		set_first_contact_stage = default_end_stage_cautious
+	}
+	#you can see their system, so start alternative hostile chain (with a malus if you were caught before)
+	option = {
+		name = first_contactgts.270.B
+		custom_tooltip = first_contact.270.B.tooltip
+		trigger = {
+			first_contact_can_see_their_system = yes
+		}
+		hidden_effect = {
+			contact_country = {
+				random_system_within_border = {
+					limit = {
+						root.owner = {
+							intel_level = {
+								level > low
+								system = prev
+							}
+						}
+					}
+					set_star_flag = first_contact_known_system@root.owner
+				}
+			}
+		}
+		set_first_contact_stage = default_hostile_systems_stage_gts
+	}
+}
+#对方事件
+country_event = {
+	id = first_contactgts.112
+	title = first_contactgts.112.name
+	desc = first_contactgts.112.desc
+	picture = GFX_evt_gts_pussy_contact
+	show_sound = event_ship_explosion
+	is_triggered_only = yes
+	immediate = {
+		set_hostile = from.owner
+	}
+	option = {
+		name = first_contactgts.112.B
+		if = {
+			limit = {
+				from = {
+					has_first_contact_flag = fleets_sent_mia
+				}
+			}
+			custom_tooltip = first_contact_fleets_mia_tooltip
+		}
+		hidden_effect = {
+			country_event = {
+				id = first_contactgts.113
+				days = 10
+			}
+		}
+	}
+}
+country_event = {
+	id = first_contactgts.113
+	title = first_contactgts.113.name
+	desc = first_contactgts.113.desc
+	picture = GFX_evt_gts_pussy_contact
+	show_sound = event_faceoff_in_space
+	is_triggered_only = yes
+	immediate = {
+		event_target:missing_scientist_fc = {
+			set_owner = root
+			leader_gts_abused = yes
+		}
+	}
+	option = {
+		name = first_contactgts.113.A
+	}
+}
+
+#失败，对方逃跑
+first_contact_event = {
+	id = first_contactgts.280
+	title = first_contactgts.280.name
+	desc = {
+		trigger = {
+			NOT = {
+				exists = event_target:fleet_to_seize
+			}
+		}
+		text = first_contactgts.280.desc.just_left
+	}
+	desc = {
+		trigger = {
+			exists = event_target:fleet_to_seize
+		}
+		text = first_contactgts.280.desc.failed
+	}
+	picture = {
+		trigger = {
+			NOT = {
+				exists = event_target:fleet_to_seize
+			}
+		}
+		picture = GFX_evt_wormhole
+	}
+	picture = {
+		trigger = {
+			exists = event_target:fleet_to_seize
+		}
+		picture = GFX_evt_gts_unknown_ships
+	}
+	show_sound = event_mysterious_signal
+	is_triggered_only = yes
+	first_contact = yes
+	immediate = {
+		set_site_progress_locked = yes
+		if = {
+			limit = {
+				first_contact_can_capture_ship = yes
+			}
+			first_contact_get_ship_to_capture = yes			#generates event_target:fleet_to_seize
+			set_first_contact_flag = failed_capture_attempt
+			event_target:fleet_to_seize = {
+				set_mia = mia_return_home
+			}
+			contact_country = {
+				add_opinion_modifier = {
+					who = root.owner
+					modifier = opinion_hostile_first_contactgts_sendback
+				}
+				every_controlled_fleet = {
+					limit = {
+						NOT = {
+							is_same_value = event_target:fleet_to_seize
+						}
+						is_within_borders_of = root.owner
+						if = {
+							limit = {
+								prev = {
+									is_hostile = root.owner
+								}
+							}
+							is_civilian = yes
+						}
+					}
+					set_mia = mia_return_home
+					root = {
+						set_first_contact_flag = fleets_sent_mia
+					}
+				}
+				country_event = {
+					id = first_contactgts.282
+				}
+			}
+		}
+	}
+	after = {
+		set_site_progress_locked = no
+	}
+	option = {
+		name = first_contactgts.280.A
+		if = {
+			limit = {
+				has_first_contact_flag = failed_capture_attempt
+			}
+			set_first_contact_stage = default_end_stage_cautious
+		}
+		else_if = {
+			limit = {
+				contact_country = {
+					has_policy_flag = first_contact_proactive
+				}
+			}
+			set_first_contact_stage = default_end_stage_proactive
+		}
+		else = {
+			set_first_contact_stage = default_end_stage_cautious
+		}
+	}
+	#you can see their system, so start alternative hostile chain (with a malus if you were caught before)
+	option = {
+		name = first_contactgts.280.B
+		icon = {
+			icon = GFX_option_icon_hostile
+			text = hostile_first_contact_tt
+		}
+		if = {
+			limit = {
+				has_first_contact_flag = failed_capture_attempt
+			}
+			custom_tooltip = first_contact.270.B.tooltip
+		}
+		else = {
+			custom_tooltip = first_contact.280.B.tooltip
+		}
+		trigger = {
+			first_contact_can_see_their_system = yes
+		}
+		hidden_effect = {
+			contact_country = {
+				random_system_within_border = {
+					limit = {
+						root.owner = {
+							intel_level = {
+								level > low
+								system = prev
+							}
+						}
+					}
+					set_star_flag = first_contact_known_system@root.owner
+				}
+			}
+		}
+		set_first_contact_stage = default_hostile_systems_stage_gts
+	}
+}
+#对方事件
+country_event = {
+	id = first_contactgts.282
+	title = first_contactgts.282.name
+	desc = first_contactgts.282.desc
+	picture = GFX_evt_gts_unknown_ships
+	show_sound = event_faceoff_in_space
+	is_triggered_only = yes
+	immediate = {
+		set_hostile = from.owner
+	}
+	option = {
+		name = first_contactgts.282.A
+		if = {
+			limit = {
+				from = {
+					has_first_contact_flag = fleets_sent_mia
+				}
+			}
+			custom_tooltip = first_contact_fleets_mia_tooltip
+		}
+	}
+}
+
+#审讯-结束
+first_contact_event = {
+	id = first_contactgts.285
+	title = first_contactgts.285.name
+	desc = {
+		trigger = {
+			first_contact_gts_servitor_desc = yes
+			NOR = {
+				has_first_contact_flag = weak_interrogees
+				has_first_contact_flag = strong_interrogees
+			}
+		}
+		text = first_contactgts.285.sdesc
+	}
+	desc = {
+		trigger = {
+			first_contact_gts_servitor_desc = yes
+			has_first_contact_flag = weak_interrogees
+		}
+		text = first_contactgts.285.sdesc.weak
+	}
+	desc = {
+		trigger = {
+			first_contact_gts_servitor_desc = yes
+			has_first_contact_flag = strong_interrogees
+		}
+		text = first_contactgts.285.sdesc.strong
+	}
+	desc = {
+		trigger = {
+			first_contact_gts_servitor_desc = no
+			contact_country = {
+				is_gestalt = no
+			}
+			NOR = {
+				has_first_contact_flag = weak_interrogees
+				has_first_contact_flag = strong_interrogees
+			}
+		}
+		text = first_contactgts.285.desc
+	}
+	desc = {
+		trigger = {
+			first_contact_gts_servitor_desc = no
+			contact_country = {
+				is_gestalt = no
+			}
+			has_first_contact_flag = weak_interrogees
+		}
+		text = first_contactgts.285.desc.weak
+	}
+	desc = {
+		trigger = {
+			first_contact_gts_servitor_desc = no
+			contact_country = {
+				is_gestalt = no
+			}
+			has_first_contact_flag = strong_interrogees
+		}
+		text = first_contactgts.285.desc.strong
+	}
+	desc = {
+		trigger = {
+			first_contact_gts_servitor_desc = no
+			contact_country = {
+				is_machine_empire = yes
+			}
+		}
+		text = first_contactgts.285.desc.weak
+	}
+	desc = {
+		trigger = {
+			first_contact_gts_servitor_desc = no
+			contact_country = {
+				is_hive_empire = yes
+			}
+		}
+		text = first_contactgts.285.desc.weak
+	}
+	picture = GFX_evt_gts_interrogation
+	show_sound = event_vivisection
+	is_triggered_only = yes
+	first_contact = yes
+	immediate = {
+		set_site_progress_locked = yes
+	}
+	after = {
+		set_site_progress_locked = no
+	}
+	option = {
+		name = EXCELLENT
+		trigger = {
+			contact_country = {
+				is_gestalt = no
+			}
+		}
+		finish_first_contact_effect = yes
+		owner = {
+			if = {
+				limit = {
+					root = {
+						has_first_contact_flag = weak_interrogees
+					}
+				}
+				first_contact_add_intel = {
+					INTEL = 15
+				}
+				first_contact_grant_random_tech_option = {
+					PROGRESS = 0.3
+				}
+			}
+			else_if = {
+				limit = {
+					root = {
+						has_first_contact_flag = strong_interrogees
+					}
+				}
+				first_contact_add_intel = {
+					INTEL = 5
+				}
+				first_contact_grant_random_tech_option = {
+					PROGRESS = 0.1
+				}
+			}
+			else = {
+				first_contact_add_intel = {
+					INTEL = 10
+				}
+				first_contact_grant_random_tech_option = {
+					PROGRESS = 0.2
+				}
+			}
+		}
+	}
+	option = {
+		name = EXCELLENT
+		trigger = {
+			contact_country = {
+				is_gestalt = yes
+			}
+		}
+		finish_first_contact_effect = yes
+		owner = {
+			first_contact_add_intel = {
+				INTEL = 5
+			}
+			first_contact_grant_random_tech_option = {
+				PROGRESS = 0.2
+			}
+		}
+	}
+}
+#解剖-结束
+first_contact_event = {
+	id = first_contactgts.290
+	title = first_contactgts.290.name
+	desc = first_contactgts.290.desc
+	picture = GFX_evt_gts_vivisection
+	show_sound = event_vivisection
+	is_triggered_only = yes
+	first_contact = yes
+	immediate = {
+		set_site_progress_locked = yes
+	}
+	after = {
+		set_site_progress_locked = no
+	}
+	option = {
+		name = first_contactgts.290.A
+		finish_first_contact_effect = yes
+		owner = {
+			hidden_effect = {
+				set_country_flag = they_come_in_pieces_achievement
+			}
+			if = {
+				limit = {
+					root.contact_country = {
+						is_machine_empire = yes
+					}
+				}
+				if = {
+					limit = {
+						can_copy_random_tech_from = {
+							who = root.contact_country
+							category = computing
+						}
+					}
+					copy_random_tech_from = {
+						who = root.contact_country
+						category = computing
+						progress = 0.5
+					}
+				}
+				else = {
+					add_monthly_resource_mult = {
+						resource = engineering_research
+						value = @tier3researchreward
+						min = @tier3researchmin
+					}
+				}
+			}
+			else = {
+				if = {
+					limit = {
+						can_copy_random_tech_from = {
+							who = root.contact_country
+							category = biology
+						}
+					}
+					copy_random_tech_from = {
+						who = root.contact_country
+						category = biology
+						progress = 0.5
+					}
+				}
+				else = {
+					add_monthly_resource_mult = {
+						resource = society_research
+						value = @tier3researchreward
+						min = @tier3researchmin
+					}
+				}
+				if = {
+					limit = {
+						has_nemesis = yes
+					}
+					custom_tooltip = gain_asset_internal_organs
+					hidden_effect = {
+						random_spynetwork = {
+							limit = {
+								target = {
+									is_same_value = root.contact_country
+								}
+							}
+							create_espionage_asset = {
+								type = asset_internal_organs
+							}
+						}
+					}
+				}
+			}
+			first_contact_add_intel = {
+				INTEL = 15
+			}
+		}
+	}
+}
+#船在人不在-结束
+first_contact_event = {
+	id = first_contactgts.295
+	title = first_contactgts.295.name
+	desc = {
+		text = first_contactgts.295.desc
+		trigger = {
+			NOT = {
+				has_first_contact_flag = no_vessel
+			}
+		}
+	}
+	desc = {
+		text = first_contactgts.295.desc
+		trigger = {
+			has_first_contact_flag = no_vessel
+		}
+	}
+	picture = GFX_evt_gts_nocrewend
+	show_sound = event_spymaster
+	is_triggered_only = yes
+	first_contact = yes
+	immediate = {
+		set_site_progress_locked = yes
+	}
+	after = {
+		set_site_progress_locked = no
+	}
+	option = {
+		name = EXCELLENT
+		finish_first_contact_effect = yes
+		owner = {
+			first_contact_add_intel = {
+				INTEL = 5
+			}
+			first_contact_grant_random_tech_option = {
+				PROGRESS = 0.1
+			}
+		}
+	}
+}
+
+
+## 行星绑架事件线 ##
+#失败
+first_contact_event = {
+	id = first_contactgts.330
+	title = first_contactgts.330.name
+	desc = {
+		text = first_contactgts.330.desc.gts
+		trigger = {
+			owner = {
+				NOT = {
+					has_country_flag = gts_servitor_flag
+				}	
+			}
+		}
+	}
+	desc = {
+		text = first_contactgts.330.desc.gtss
+		trigger = {
+			owner = {
+				has_country_flag = gts_servitor_flag
+			}
+		}
+	}
+	picture = GFX_evt_infiltration_neutral
+	show_sound = event_alien_abduction
+	is_triggered_only = yes
+	first_contact = yes
+	immediate = {
+		set_site_progress_locked = yes
+	}
+	after = {
+		set_site_progress_locked = no
+	}
+	option = {
+		name = first_contactgts.330.A
+		custom_tooltip = first_contactgts.330.A.tooltip
+		hidden_effect = {
+			owner = {
+				every_controlled_fleet = {
+					limit = {
+						is_within_borders_of = root.contact_country
+						if = {
+							limit = {
+								prev = {
+									is_hostile = root.contact_country
+								}
+							}
+							is_civilian = yes
+						}
+					}
+					set_mia = mia_return_home
+				}
+			}
+		}
+		set_first_contact_stage = default_end_stage_cautious
+	}
+}
+#胜利结算
+first_contact_event = {
+	id = first_contactgts.331
+	title = first_contactgts.331.name
+	desc = {
+		text = first_contactgts.331.desc.gts
+		trigger = {
+			contact_country = {
+				NOT = {
+					has_country_flag = gts_servitor_flag
+				}	
+			}
+		}
+	}
+	desc = {
+		text = first_contactgts.331.desc.gtss
+		trigger = {
+			contact_country = {
+				has_country_flag = gts_servitor_flag
+			}
+		}
+	}
+	picture = GFX_evt_hostile_infiltration
+	show_sound = event_faceoff_in_space
+	is_triggered_only = yes
+	first_contact = yes
+	immediate = {
+		set_site_progress_locked = yes
+		set_first_contact_flag = succeeded_capture_attempt
+		set_first_contact_flag = seen_aliens
+		reverse_first_contact = {
+			set_first_contact_flag = seen_aliens
+		}
+	}
+	after = {
+		set_site_progress_locked = no
+	}
+	#审问
+	option = {	
+		name = first_contactgts.100.A
+		if = {
+			limit = {
+				contact_country = {
+					OR = {
+						has_trait = trait_weak
+						has_trait = trait_docile
+					}
+				}
+			}
+			hidden_effect = {
+				set_first_contact_flag = weak_interrogees
+			}
+			set_first_contact_stage = default_end_stage_hostile_with_crew_easy_gts
+		}
+		else_if = {
+			limit = {
+				contact_country = {
+					OR = {
+						has_trait = trait_strong
+						has_trait = trait_very_strong
+					}
+				}
+			}
+			hidden_effect = {
+				set_first_contact_flag = strong_interrogees
+			}
+			set_first_contact_stage = default_end_stage_hostile_with_crew_hard_gts
+		}
+		else = {
+			set_first_contact_stage = default_end_stage_hostile_with_crew_gts
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+	#解剖
+	option = {
+		trigger = {
+			owner = {
+				first_contact_gts_desc = yes
+				first_contact_gts_servitor_desc = no
+			}
+		}
+		name = first_contactgts.100.B
+		custom_tooltip = first_contactgts.100.B.tooltip
+		set_first_contact_stage = default_end_stage_hostile_with_vivisection_gts
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 3
+				owner = {
+					first_contact_gts_assimilator_desc = yes
+				}
+			}
+		}
+	}
+	#吃掉
+	option = {
+		name = first_contactgts.100.C.devourers
+		trigger = {
+			owner = {
+				first_contact_gts_desc = yes
+				first_contact_gts_servitor_desc = no
+			}
+		}
+		if = {
+			limit = {
+				contact_country = {
+					is_synthetic_empire = yes
+				}
+			}
+			owner = {
+				add_resource = {
+					influence = 50
+				}
+				add_monthly_resource_mult = {
+					resource = alloys
+					value = @tier1materialreward
+					min = @tier1materialmin
+				}
+				add_monthly_resource_mult = {
+					resource = unity
+					value = @tier2unityreward
+					min = @tier2unitymin
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				contact_country = {
+					is_lithoid = yes
+				}
+			}
+			owner = {
+				add_resource = {
+					influence = 50
+				}
+				add_monthly_resource_mult = {
+					resource = minerals
+					value = @tier1materialreward
+					min = @tier1materialmin
+				}
+				add_monthly_resource_mult = {
+					resource = unity
+					value = @tier2unityreward
+					min = @tier2unitymin
+				}
+			}
+		}
+		else = {
+			owner = {
+				add_resource = {
+					influence = 50
+				}
+				add_monthly_resource_mult = {
+					resource = food
+					value = @tier1materialreward
+					min = @tier1materialmin
+				}
+				add_monthly_resource_mult = {
+					resource = unity
+					value = @tier2unityreward
+					min = @tier2unitymin
+				}
+			}
+		}
+		custom_tooltip = first_contactgts.100.C.homicidal_tooltip
+		set_first_contact_stage = default_end_stage_hostile_no_crew_gts
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 3
+				owner = {
+					first_contact_gts_terminator_desc = yes
+				}
+			}
+		}
+	}
+	#放走
+	option = {
+		name = first_contactgts.100.D
+		trigger = {
+			first_contact_gts_terminator_desc = no
+		}
+		owner = {
+			add_resource = {
+				influence = 50
+				unity = 2000
+			}
+		}
+		set_first_contact_stage = default_end_stage_hostile_no_crew_gts
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 3
+				owner = {
+					first_contact_gts_servitor_desc = yes
+				}
+			}
+		}
+	}
+}
+##事件1-城市散步
+#第一阶段
+first_contact_event = {
+	id = first_contactgts.320
+	title = first_contactgts.320.name
+	desc = {
+		text = first_contactgts.320.desc.gts
+		trigger = {
+			owner = {
+				NOT = {
+					has_country_flag = gts_servitor_flag
+				}	
+			}
+		}
+	}
+	desc = {
+		text = first_contactgts.320.desc.gtss
+		trigger = {
+			owner = {
+				has_country_flag = gts_servitor_flag
+			}
+		}
+	}
+	picture = GFX_gtsra_1
+	show_sound = event_alien_abduction
+	is_triggered_only = yes
+	first_contact = yes
+	immediate = {
+		set_site_progress_locked = yes
+		set_first_contact_flag = seen_aliens
+		reverse_first_contact = {
+			set_first_contact_flag = seen_aliens
+		}
+		contact_country = {
+			random_owned_planet = {
+				limit = {
+					root.owner = {
+						intel_level = {
+							level > low
+							system = prev.solar_system
+						}
+					}
+				}
+				save_event_target_as = abduction_planet
+				root = {
+					set_first_contact_flag = no_vessel
+				}
+				solar_system = {
+					set_star_flag = first_contact_abduction_system@root.owner
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = event_target:abduction_planet
+					}
+				}
+				random_owned_planet = {
+					save_event_target_as = abduction_planet
+					solar_system = {
+						set_star_flag = first_contact_abduction_system@root.owner
+					}
+					root = {
+						set_first_contact_flag = no_vessel
+					}
+				}
+			}
+		}
+	}
+	after = {
+		set_site_progress_locked = no
+		hidden_effect = {
+			contact_country = {
+				country_event = {
+					id = first_contactgts.325
+				}
+			}
+			owner = {
+				every_controlled_fleet = {
+					limit = {
+						is_within_borders_of = root.contact_country
+						if = {
+							limit = {
+								prev = {
+									is_hostile = root.contact_country
+								}
+							}
+							is_civilian = yes
+						}
+					}
+					set_mia = mia_return_home
+				}
+			}
+		}
+		
+	}
+	#继续
+	option = {
+		name = {
+			text = first_contactgts.320.A.gts
+			trigger = {
+				owner = {
+					NOT = {
+						has_country_flag = gts_servitor_flag
+					}
+				}
+			}
+		}
+		name = {
+			text = first_contactgts.320.A.gtss
+			trigger = {
+				owner = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+		}
+		custom_tooltip = first_contactgts.320.A.tooltip
+		hidden_effect = {
+			random_list = {
+				9 = {
+					first_contact_event = {
+						id = first_contactgts.321 
+					}
+				}
+				1 = {
+					first_contact_event = {
+						id = first_contactgts.330 
+					}
+					contact_country = {
+						add_opinion_modifier = {
+							who = root.owner
+							modifier = opinion_hostile_first_contactgts_planet2
+						}
+					}
+				}
+			}
+		}
+		ai_chance = {
+			factor = 1000
+		}
+	}
+	#撤退
+	option = {
+		name = {
+			text = first_contactgts.320.B.gts
+			trigger = {
+				owner = {
+					NOT = {
+						has_country_flag = gts_servitor_flag
+					}
+
+				}
+			}
+		}
+		name = {
+			text = first_contactgts.320.B.gtss
+			trigger = {
+				owner = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+		}
+
+		custom_tooltip = first_contactgts.320.B.tooltip
+		set_first_contact_stage = default_end_stage_cautious
+		owner = {
+			first_contact_add_intel = {
+				INTEL = 2
+			}
+			add_resource = {
+				unity = 1000
+			}
+			every_controlled_fleet = {
+				limit = {
+					is_within_borders_of = root.contact_country
+					if = {
+						limit = {
+							prev = {
+								is_hostile = root.contact_country
+							}
+						}
+						is_civilian = yes
+					}
+				}
+				set_mia = mia_return_home
+			}
+		}
+		hidden_effect = {
+			contact_country = {
+				add_opinion_modifier = {
+					who = root.owner
+					modifier = opinion_hostile_first_contactgts_planet1
+				}
+			}
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+#第二阶段
+first_contact_event = {
+	id = first_contactgts.321
+	title = first_contactgts.321.name
+	desc = {
+		text = first_contactgts.321.desc.gts
+		trigger = {
+			owner = {
+				NOT = {
+					has_country_flag = gts_servitor_flag
+				}	
+			}
+		}
+	}
+	desc = {
+		text = first_contactgts.321.desc.gtss
+		trigger = {
+			owner = {
+				has_country_flag = gts_servitor_flag
+			}
+		}
+	}
+	picture = GFX_gtsra_2
+	show_sound = event_alien_abduction
+	is_triggered_only = yes
+	first_contact = yes
+	immediate = {
+		set_site_progress_locked = yes
+	}
+	after = {
+		set_site_progress_locked = no
+	}
+	#继续
+	option = {
+		name = {
+			text = first_contactgts.321.A.gts
+			trigger = {
+				owner = {
+					NOT = {
+						has_country_flag = gts_servitor_flag
+					}
+				}
+			}
+		}
+		name = {
+			text = first_contactgts.321.A.gtss
+			trigger = {
+				owner = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+		}
+		custom_tooltip = first_contactgts.320.A.tooltip
+		hidden_effect = {
+			random_list = {
+				9 = {
+					first_contact_event = {
+						id = first_contactgts.322 
+					}
+				}
+				1 = {
+					first_contact_event = {
+						id = first_contactgts.330 
+					}
+					contact_country = {
+						add_opinion_modifier = {
+							who = root.owner
+							modifier = opinion_hostile_first_contactgts_planet2
+						}
+					}
+				}
+			}
+		}
+		ai_chance = {
+			factor = 1000
+		}
+	}
+	#撤退
+	option = {
+		name = {
+			text = first_contactgts.321.B.gts
+			trigger = {
+				owner = {
+					NOT = {
+						has_country_flag = gts_servitor_flag
+					}
+
+				}
+			}
+		}
+		name = {
+			text = first_contactgts.321.B.gtss
+			trigger = {
+				owner = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+		}
+
+		custom_tooltip = first_contactgts.320.B.tooltip
+		set_first_contact_stage = default_end_stage_cautious
+		owner = {
+			first_contact_add_intel = {
+				INTEL = 3
+			}
+			add_resource = {
+				unity = 1500
+			}
+		}
+		hidden_effect = {
+			contact_country = {
+				add_opinion_modifier = {
+					who = root.owner
+					modifier = opinion_hostile_first_contactgts_planet2
+				}
+			}
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+#第三阶段
+first_contact_event = {
+	id = first_contactgts.322
+	title = first_contactgts.322.name
+	desc = {
+		text = first_contactgts.322.desc.gts
+		trigger = {
+			owner = {
+				NOT = {
+					has_country_flag = gts_servitor_flag
+				}	
+			}
+		}
+	}
+	desc = {
+		text = first_contactgts.322.desc.gtss
+		trigger = {
+			owner = {
+				has_country_flag = gts_servitor_flag
+			}
+		}
+	}
+	picture = GFX_gtsra_3
+	show_sound = event_alien_abduction
+	is_triggered_only = yes
+	first_contact = yes
+	immediate = {
+		set_site_progress_locked = yes
+	}
+	after = {
+		set_site_progress_locked = no
+	}
+	#继续
+	option = {
+		name = {
+			text = first_contactgts.322.A.gts
+			trigger = {
+				owner = {
+					NOT = {
+						has_country_flag = gts_servitor_flag
+					}
+				}
+			}
+		}
+		name = {
+			text = first_contactgts.322.A.gtss
+			trigger = {
+				owner = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+		}
+		custom_tooltip = first_contactgts.320.A.tooltip
+		hidden_effect = {
+			random_list = {
+				9 = {
+					first_contact_event = {
+						id = first_contactgts.323 
+					}
+				}
+				1 = {
+					first_contact_event = {
+						id = first_contactgts.330 
+					}
+					contact_country = {
+						add_opinion_modifier = {
+							who = root.owner
+							modifier = opinion_hostile_first_contactgts_planet3
+						}
+					}
+				}
+			}
+		}
+		ai_chance = {
+			factor = 1000
+		}
+	}
+	#撤退
+	option = {
+		name = {
+			text = first_contactgts.322.B.gts
+			trigger = {
+				owner = {
+					NOT = {
+						has_country_flag = gts_servitor_flag
+					}
+
+				}
+			}
+		}
+		name = {
+			text = first_contactgts.322.B.gtss
+			trigger = {
+				owner = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+		}
+
+		custom_tooltip = first_contactgts.320.B.tooltip
+		set_first_contact_stage = default_end_stage_cautious
+		owner = {
+			first_contact_add_intel = {
+				INTEL = 4
+			}
+			add_resource = {
+				unity = 1500
+			}
+		}
+		hidden_effect = {
+			first_contact_event = {
+				id = first_contactgts.331
+			}
+			contact_country = {
+				add_opinion_modifier = {
+					who = root.owner
+					modifier = opinion_hostile_first_contactgts_planet3
+				}
+			}
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+#第四阶段
+first_contact_event = {
+	id = first_contactgts.323
+	title = first_contactgts.323.name
+	desc = {
+		text = first_contactgts.323.desc.gts
+		trigger = {
+			owner = {
+				NOT = {
+					has_country_flag = gts_servitor_flag
+				}	
+			}
+		}
+	}
+	desc = {
+		text = first_contactgts.323.desc.gtss
+		trigger = {
+			owner = {
+				has_country_flag = gts_servitor_flag
+			}
+		}
+	}
+	picture = GFX_gtsra_4
+	show_sound = event_alien_abduction
+	is_triggered_only = yes
+	first_contact = yes
+	immediate = {
+		set_site_progress_locked = yes
+	}
+	after = {
+		set_site_progress_locked = no
+	}
+	#继续
+	option = {
+		name = {
+			text = first_contactgts.323.A.gts
+			trigger = {
+				owner = {
+					NOT = {
+						has_country_flag = gts_servitor_flag
+					}
+				}
+			}
+		}
+		name = {
+			text = first_contactgts.323.A.gtss
+			trigger = {
+				owner = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+		}
+		owner = {
+			first_contact_add_intel = {
+				INTEL = 5
+			}
+			add_resource = {
+				unity = 5000
+			}
+		}
+		hidden_effect = {
+				first_contact_event = {
+					id = first_contactgts.331
+			}
+		}
+		ai_chance = {
+			factor = 1000
+		}
+	}
+}
+#对方事件
+#第一阶段
+country_event = {
+	id = first_contactgts.325
+	title = first_contactgts.325.name
+	desc = {
+		text = first_contactgts.325.desc.gts
+		trigger = {
+			from.owner = {
+				NOT = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+		}
+	}
+	desc = {
+		text = first_contactgts.325.desc.gtss
+			trigger = {
+				from.owner = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+	}
+	picture = GFX_gtsra_1
+	show_sound = event_alien_abduction
+	immediate = {
+		set_hostile = from.owner
+	}
+	is_triggered_only = yes
+	option = {
+		name = first_contactgts.325.A
+		random_list = {
+			1 = {
+				country_event = {
+					id = first_contactgts.329
+				}
+			}
+			9 = {
+				country_event = {
+					id = first_contactgts.326
+				}
+			}
+		}
+		event_target:abduction_planet = {
+			add_planet_devastation = 2
+		}
+	}
+	option = {
+		name = first_contactgts.325.B
+		country_event = {
+			id = first_contactgts.326
+		}
+		event_target:abduction_planet = {
+			add_planet_devastation = 2
+		}
+	}
+}
+#第二阶段
+country_event = {
+	id = first_contactgts.326
+	title = first_contactgts.326.name
+	desc = {
+		text = first_contactgts.326.desc.gts
+		trigger = {
+			from.owner = {
+				NOT = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+		}
+	}
+	desc = {
+		text = first_contactgts.326.desc.gtss
+			trigger = {
+				from.owner = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+	}
+	picture = GFX_gtsra_2
+	show_sound = event_alien_abduction
+	immediate = {
+		set_hostile = from.owner
+	}
+	is_triggered_only = yes
+	option = {
+		name = first_contactgts.326.A
+		random_list = {
+			2 = {
+				country_event = {
+					id = first_contactgts.329
+				}
+			}
+			8 = {
+				country_event = {
+					id = first_contactgts.327
+				}
+			}
+		}
+		event_target:abduction_planet = {
+			add_planet_devastation = 3
+			random_list = {
+				1 = { add_deposit = d_nutritious_mudland }
+				1 = { add_deposit = d_failing_infrastructure }
+			}
+		}
+	}
+	option = {
+		name = first_contactgts.326.B
+		country_event = {
+			id = first_contactgts.327
+		}
+		event_target:abduction_planet = {
+			add_planet_devastation = 3
+			random_list = {
+				1 = { add_deposit = d_nutritious_mudland }
+				1 = { add_deposit = d_failing_infrastructure }
+			}
+		}
+	}
+}
+#第三阶段
+country_event = {
+	id = first_contactgts.327
+	title = first_contactgts.327.name
+	desc = {
+		text = first_contactgts.327.desc.gts
+		trigger = {
+			from.owner = {
+				NOT = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+		}
+	}
+	desc = {
+		text = first_contactgts.327.desc.gtss
+			trigger = {
+				from.owner = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+	}
+	picture = GFX_gtsra_3
+	show_sound = event_alien_abduction
+	immediate = {
+		set_hostile = from.owner
+	}
+	is_triggered_only = yes
+	option = {
+		name = first_contactgts.327.A
+		random_list = {
+			4 = {
+				country_event = {
+					id = first_contactgts.329
+				}
+			}
+			6 = {
+				country_event = {
+					id = first_contactgts.328
+				}
+			}
+		}
+		event_target:abduction_planet = {
+			add_planet_devastation = 3
+			random_list = {
+				1 = { add_deposit = d_city_ruins }
+				1 = { add_deposit = d_black_soil }
+			}
+		}
+	}
+	option = {
+		name = first_contactgts.327.B
+		country_event = {
+			id = first_contactgts.328
+		}
+		event_target:abduction_planet = {
+			add_planet_devastation = 3
+			random_list = {
+				1 = { add_deposit = d_city_ruins }
+				1 = { add_deposit = d_black_soil }
+			}
+		}
+	}
+}
+#第四阶段
+country_event = {
+	id = first_contactgts.328
+	title = first_contactgts.328.name
+	desc = {
+		text = first_contactgts.328.desc.gts
+		trigger = {
+			from.owner = {
+				NOT = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+		}
+	}
+	desc = {
+		text = first_contactgts.328.desc.gtss
+			trigger = {
+				from.owner = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+	}
+	picture = GFX_gtsra_4
+	show_sound = event_alien_abduction
+	immediate = {
+		set_hostile = from.owner
+	}
+	is_triggered_only = yes
+	option = {
+		name = first_contactgts.328.A
+				country_event = {
+					id = first_contactgts.329
+				}
+				event_target:abduction_planet = {
+					add_planet_devastation = 5
+					random_list = {
+						1 = { add_deposit = d_city_ruins }
+						1 = { add_deposit = d_forgiving_tundra }
+					}
+				}
+		}
+}
+#击退
+country_event = {
+	id = first_contactgts.329
+	title = first_contactgts.329.name
+	desc = first_contactgts.329.desc
+	picture = GFX_evt_infiltration_neutral
+	show_sound = event_alien_abduction
+	is_triggered_only = yes
+	option = {
+		name = first_contactgts.329.A
+		random_active_first_contact = {
+			limit = {
+				contact_country = {
+					is_same_value = from.owner
+				}
+			}
+			add_stage_clues = 2
+		}
+	}
+}
+##事件2-万倍毁灭
+#第一阶段
+first_contact_event = {
+	id = first_contactgts.340
+	title = first_contactgts.340.name
+	desc = {
+		text = first_contactgts.340.desc.gts
+		trigger = {
+			owner = {
+				NOT = {
+					has_country_flag = gts_servitor_flag
+				}	
+			}
+		}
+	}
+	desc = {
+		text = first_contactgts.340.desc.gtss
+		trigger = {
+			owner = {
+				has_country_flag = gts_servitor_flag
+			}
+		}
+	}
+	picture = GFX_gtsra_5
+	show_sound = event_alien_abduction
+	is_triggered_only = yes
+	first_contact = yes
+	immediate = {
+		set_site_progress_locked = yes
+		set_first_contact_flag = seen_aliens
+		reverse_first_contact = {
+			set_first_contact_flag = seen_aliens
+		}
+		contact_country = {
+			random_owned_planet = {
+				limit = {
+					root.owner = {
+						intel_level = {
+							level > low
+							system = prev.solar_system
+						}
+					}
+				}
+				save_event_target_as = abduction_planet
+				root = {
+					set_first_contact_flag = no_vessel
+				}
+				solar_system = {
+					set_star_flag = first_contact_abduction_system@root.owner
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = event_target:abduction_planet
+					}
+				}
+				random_owned_planet = {
+					save_event_target_as = abduction_planet
+					solar_system = {
+						set_star_flag = first_contact_abduction_system@root.owner
+					}
+					root = {
+						set_first_contact_flag = no_vessel
+					}
+				}
+			}
+		}
+	}
+	after = {
+		set_site_progress_locked = no
+		hidden_effect = {
+			contact_country = {
+				country_event = {
+					id = first_contactgts.345
+				}
+			}
+		}
+	}
+	#继续
+	option = {
+		name = {
+			text = first_contactgts.340.A.gts
+			trigger = {
+				owner = {
+					NOT = {
+						has_country_flag = gts_servitor_flag
+					}
+				}
+			}
+		}
+		name = {
+			text = first_contactgts.340.A.gtss
+			trigger = {
+				owner = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+		}
+		custom_tooltip = first_contactgts.320.A.tooltip
+		hidden_effect = {
+			random_list = {
+				9 = {
+					first_contact_event = {
+						id = first_contactgts.341 
+					}
+				}
+				1 = {
+					first_contact_event = {
+						id = first_contactgts.330 
+					}
+					contact_country = {
+						add_opinion_modifier = {
+							who = root.owner
+							modifier = opinion_hostile_first_contactgts_planet2
+						}
+					}
+				}
+			}
+		}
+		ai_chance = {
+			factor = 1000
+		}
+	}
+	#撤退
+	option = {
+		name = {
+			text = first_contactgts.340.B.gts
+			trigger = {
+				owner = {
+					NOT = {
+						has_country_flag = gts_servitor_flag
+					}
+
+				}
+			}
+		}
+		name = {
+			text = first_contactgts.340.B.gtss
+			trigger = {
+				owner = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+		}
+
+		custom_tooltip = first_contactgts.320.B.tooltip
+		set_first_contact_stage = default_end_stage_cautious
+		owner = {
+			first_contact_add_intel = {
+				INTEL = 2
+			}
+			add_resource = {
+				unity = 1000
+			}
+		}
+		hidden_effect = {
+			contact_country = {
+				add_opinion_modifier = {
+					who = root.owner
+					modifier = opinion_hostile_first_contactgts_planet2
+				}
+			}
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+#第二阶段
+first_contact_event = {
+	id = first_contactgts.341
+	title = first_contactgts.341.name
+	desc = {
+		text = first_contactgts.341.desc.gts
+		trigger = {
+			owner = {
+				NOT = {
+					has_country_flag = gts_servitor_flag
+				}	
+			}
+		}
+	}
+	desc = {
+		text = first_contactgts.341.desc.gtss
+		trigger = {
+			owner = {
+				has_country_flag = gts_servitor_flag
+			}
+		}
+	}
+	picture = GFX_gtsra_6
+	show_sound = event_alien_abduction
+	is_triggered_only = yes
+	first_contact = yes
+	immediate = {
+		set_site_progress_locked = yes
+	}
+	after = {
+		set_site_progress_locked = no
+	}
+	#继续
+	option = {
+		name = {
+			text = first_contactgts.341.A.gts
+			trigger = {
+				owner = {
+					NOT = {
+						has_country_flag = gts_servitor_flag
+					}
+				}
+			}
+		}
+		name = {
+			text = first_contactgts.341.A.gtss
+			trigger = {
+				owner = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+		}
+		custom_tooltip = first_contactgts.320.A.tooltip
+		hidden_effect = {
+			random_list = {
+				9 = {
+					first_contact_event = {
+						id = first_contactgts.342 
+					}
+				}
+				1 = {
+					first_contact_event = {
+						id = first_contactgts.330 
+					}
+					contact_country = {
+						add_opinion_modifier = {
+							who = root.owner
+							modifier = opinion_hostile_first_contactgts_planet3
+						}
+					}
+				}
+			}
+		}
+		ai_chance = {
+			factor = 1000
+		}
+	}
+	#撤退
+	option = {
+		name = {
+			text = first_contactgts.341.B.gts
+			trigger = {
+				owner = {
+					NOT = {
+						has_country_flag = gts_servitor_flag
+					}
+
+				}
+			}
+		}
+		name = {
+			text = first_contactgts.341.B.gtss
+			trigger = {
+				owner = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+		}
+
+		custom_tooltip = first_contactgts.320.B.tooltip
+		set_first_contact_stage = default_end_stage_cautious
+		owner = {
+			first_contact_add_intel = {
+				INTEL = 3
+			}
+			add_resource = {
+				unity = 1500
+			}
+		}
+		hidden_effect = {
+			contact_country = {
+				add_opinion_modifier = {
+					who = root.owner
+					modifier = opinion_hostile_first_contactgts_planet3
+				}
+			}
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+#第三阶段
+first_contact_event = {
+	id = first_contactgts.342
+	title = first_contactgts.342.name
+	desc = {
+		text = first_contactgts.342.desc.gts
+		trigger = {
+			owner = {
+				NOT = {
+					has_country_flag = gts_servitor_flag
+				}	
+			}
+		}
+	}
+	desc = {
+		text = first_contactgts.342.desc.gtss
+		trigger = {
+			owner = {
+				has_country_flag = gts_servitor_flag
+			}
+		}
+	}
+	picture = GFX_gtsra_7
+	show_sound = event_alien_abduction
+	is_triggered_only = yes
+	first_contact = yes
+	immediate = {
+		set_site_progress_locked = yes
+	}
+	after = {
+		set_site_progress_locked = no
+	}
+	#继续
+	option = {
+		name = {
+			text = first_contactgts.342.A.gts
+			trigger = {
+				owner = {
+					NOT = {
+						has_country_flag = gts_servitor_flag
+					}
+				}
+			}
+		}
+		name = {
+			text = first_contactgts.342.A.gtss
+			trigger = {
+				owner = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+		}
+		custom_tooltip = first_contactgts.320.A.tooltip
+		hidden_effect = {
+			random_list = {
+				9 = {
+					first_contact_event = {
+						id = first_contactgts.343 
+					}
+				}
+				1 = {
+					first_contact_event = {
+						id = first_contactgts.330 
+					}
+					contact_country = {
+						add_opinion_modifier = {
+							who = root.owner
+							modifier = opinion_hostile_first_contactgts_planet4
+						}
+					}
+				}
+			}
+		}
+		ai_chance = {
+			factor = 1000
+		}
+	}
+	#撤退
+	option = {
+		name = {
+			text = first_contactgts.342.B.gts
+			trigger = {
+				owner = {
+					NOT = {
+						has_country_flag = gts_servitor_flag
+					}
+
+				}
+			}
+		}
+		name = {
+			text = first_contactgts.342.B.gtss
+			trigger = {
+				owner = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+		}
+
+		custom_tooltip = first_contactgts.320.B.tooltip
+		set_first_contact_stage = default_end_stage_cautious
+		owner = {
+			first_contact_add_intel = {
+				INTEL = 4
+			}
+			add_resource = {
+				unity = 1500
+			}
+		}
+		hidden_effect = {
+			first_contact_event = {
+				id = first_contactgts.331
+			}
+			contact_country = {
+				add_opinion_modifier = {
+					who = root.owner
+					modifier = opinion_hostile_first_contactgts_planet3
+				}
+			}
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+#第四阶段
+first_contact_event = {
+	id = first_contactgts.343
+	title = first_contactgts.343.name
+	desc = {
+		text = first_contactgts.343.desc.gts
+		trigger = {
+			owner = {
+				NOT = {
+					has_country_flag = gts_servitor_flag
+				}	
+			}
+		}
+	}
+	desc = {
+		text = first_contactgts.343.desc.gtss
+		trigger = {
+			owner = {
+				has_country_flag = gts_servitor_flag
+			}
+		}
+	}
+	picture = GFX_gtsra_8
+	show_sound = event_alien_abduction
+	is_triggered_only = yes
+	first_contact = yes
+	immediate = {
+		set_site_progress_locked = yes
+	}
+	after = {
+		set_site_progress_locked = no
+	}
+	#继续
+	option = {
+		name = {
+			text = first_contactgts.343.A.gts
+			trigger = {
+				owner = {
+					NOT = {
+						has_country_flag = gts_servitor_flag
+					}
+				}
+			}
+		}
+		name = {
+			text = first_contactgts.343.A.gtss
+			trigger = {
+				owner = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+		}
+		owner = {
+			first_contact_add_intel = {
+				INTEL = 5
+			}
+			add_resource = {
+				unity = 5000
+			}
+			every_controlled_fleet = {
+				limit = {
+					is_within_borders_of = root.contact_country
+					if = {
+						limit = {
+							prev = {
+								is_hostile = root.contact_country
+							}
+						}
+						is_civilian = yes
+					}
+				}
+				set_mia = mia_return_home
+			}
+		}
+		hidden_effect = {
+				first_contact_event = {
+					id = first_contactgts.331
+				}
+		}
+		ai_chance = {
+			factor = 1000
+		}
+	}
+}
+#对方事件
+#第一阶段
+country_event = {
+	id = first_contactgts.345
+	title = first_contactgts.345.name
+	desc = {
+		text = first_contactgts.345.desc.gts
+		trigger = {
+			from.owner = {
+				NOT = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+		}
+	}
+	desc = {
+		text = first_contactgts.345.desc.gtss
+			trigger = {
+				from.owner = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+	}
+	picture = GFX_gtsra_5
+	show_sound = event_alien_abduction
+	immediate = {
+		set_hostile = from.owner
+
+	}
+	is_triggered_only = yes
+	option = {
+		name = first_contactgts.345.A
+		random_list = {
+			1 = {
+				country_event = {
+					id = first_contactgts.329
+				}
+			}
+			9 = {
+				country_event = {
+					id = first_contactgts.346
+				}
+			}
+		}
+		event_target:abduction_planet = {
+			add_planet_devastation = 5
+			random_list = {
+				1 = { add_deposit = d_crater }
+				1 = { add_deposit = d_prosperous_mesa }
+			}
+		}
+	}
+	option = {
+		name = first_contactgts.345.B
+		country_event = {
+			id = first_contactgts.346
+		}
+		event_target:abduction_planet = {
+			add_planet_devastation = 5
+			random_list = {
+				1 = { add_deposit = d_crater }
+				1 = { add_deposit = d_prosperous_mesa }
+			}
+		}
+	}
+}
+#第二阶段
+country_event = {
+	id = first_contactgts.346
+	title = first_contactgts.346.name
+	desc = {
+		text = first_contactgts.346.desc.gts
+		trigger = {
+			from.owner = {
+				NOT = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+		}
+	}
+	desc = {
+		text = first_contactgts.346.desc.gtss
+			trigger = {
+				from.owner = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+	}
+	picture = GFX_gtsra_6
+	show_sound = event_alien_abduction
+	immediate = {
+		set_hostile = from.owner
+	}
+	is_triggered_only = yes
+	option = {
+		name = first_contactgts.346.A
+		random_list = {
+			2 = {
+				country_event = {
+					id = first_contactgts.329
+				}
+			}
+			8 = {
+				country_event = {
+					id = first_contactgts.347
+				}
+			}
+		}
+		event_target:abduction_planet = {
+			add_planet_devastation = 5
+			random_list = {
+				1 = { add_deposit = d_bomb_crater }
+				1 = { add_deposit = d_metal_boneyard }
+			}
+		}
+	}
+	option = {
+		name = first_contactgts.346.B
+		country_event = {
+			id = first_contactgts.347
+		}
+		event_target:abduction_planet = {
+			add_planet_devastation = 5
+			random_list = {
+				1 = { add_deposit = d_bomb_crater }
+				1 = { add_deposit = d_metal_boneyard }
+			}
+		}
+	}
+}
+#第三阶段
+country_event = {
+	id = first_contactgts.347
+	title = first_contactgts.347.name
+	desc = {
+		text = first_contactgts.347.desc.gts
+		trigger = {
+			from.owner = {
+				NOT = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+		}
+	}
+	desc = {
+		text = first_contactgts.347.desc.gtss
+			trigger = {
+				from.owner = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+	}
+	picture = GFX_gtsra_7
+	show_sound = event_alien_abduction
+	immediate = {
+		set_hostile = from.owner
+	}
+	is_triggered_only = yes
+	option = {
+		name = first_contactgts.347.A
+		random_list = {
+			4 = {
+				country_event = {
+					id = first_contactgts.329
+				}
+			}
+			6 = {
+				country_event = {
+					id = first_contactgts.348
+				}
+			}
+		}
+		event_target:abduction_planet = {
+			add_planet_devastation = 5
+			random_list = {
+				1 = { add_deposit = d_deep_sinkhole }
+				1 = { add_deposit = d_dust_caverns }
+			}
+		}
+	}
+	option = {
+		name = first_contactgts.347.B
+		country_event = {
+			id = first_contactgts.348
+		}
+		event_target:abduction_planet = {
+			add_planet_devastation = 5
+			random_list = {
+				1 = { add_deposit = d_deep_sinkhole }
+				1 = { add_deposit = d_dust_caverns }
+			}
+		}
+	}
+}
+#第四阶段
+country_event = {
+	id = first_contactgts.348
+	title = first_contactgts.348.name
+	desc = {
+		text = first_contactgts.348.desc.gts
+		trigger = {
+			from.owner = {
+				NOT = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+		}
+	}
+	desc = {
+		text = first_contactgts.348.desc.gtss
+			trigger = {
+				from.owner = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+	}
+	picture = GFX_gtsra_8
+	show_sound = event_alien_abduction
+	immediate = {
+		set_hostile = from.owner
+	}
+	is_triggered_only = yes
+	option = {
+		name = first_contactgts.348.A
+				country_event = {
+					id = first_contactgts.329
+				}
+				event_target:abduction_planet = {
+					add_planet_devastation = 5
+					random_list = {
+						1 = { add_deposit = d_rich_mountain }
+						1 = { add_deposit = d_city_ruins }
+					}
+				}
+		}
+}
+##事件3-捕捉小队
+#第一阶段
+first_contact_event = {
+	id = first_contactgts.350
+	title = first_contactgts.350.name
+	desc = {
+		text = first_contactgts.350.desc.gts
+		trigger = {
+			owner = {
+				NOT = {
+					has_country_flag = gts_servitor_flag
+				}	
+			}
+		}
+	}
+	desc = {
+		text = first_contactgts.350.desc.gtss
+		trigger = {
+			owner = {
+				has_country_flag = gts_servitor_flag
+			}
+		}
+	}
+	picture = GFX_gtsra_9
+	show_sound = event_alien_abduction
+	is_triggered_only = yes
+	first_contact = yes
+	immediate = {
+		set_site_progress_locked = yes
+		set_first_contact_flag = seen_aliens
+		reverse_first_contact = {
+			set_first_contact_flag = seen_aliens
+		}
+		contact_country = {
+			random_owned_planet = {
+				limit = {
+					root.owner = {
+						intel_level = {
+							level > low
+							system = prev.solar_system
+						}
+					}
+				}
+				save_event_target_as = abduction_planet
+				root = {
+					set_first_contact_flag = no_vessel
+				}
+				solar_system = {
+					set_star_flag = first_contact_abduction_system@root.owner
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = event_target:abduction_planet
+					}
+				}
+				random_owned_planet = {
+					save_event_target_as = abduction_planet
+					solar_system = {
+						set_star_flag = first_contact_abduction_system@root.owner
+					}
+					root = {
+						set_first_contact_flag = no_vessel
+					}
+				}
+			}
+		}
+	}
+	after = {
+		set_site_progress_locked = no
+		hidden_effect = {
+			contact_country = {
+				country_event = {
+					id = first_contactgts.355
+				}
+			}
+		}
+	}
+	#继续
+	option = {
+		name = {
+			text = first_contactgts.350.A.gts
+			trigger = {
+				owner = {
+					NOT = {
+						has_country_flag = gts_servitor_flag
+					}
+				}
+			}
+		}
+		name = {
+			text = first_contactgts.350.A.gtss
+			trigger = {
+				owner = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+		}
+		custom_tooltip = first_contactgts.320.A.tooltip
+		hidden_effect = {
+			random_list = {
+				9 = {
+					first_contact_event = {
+						id = first_contactgts.351 
+					}
+				}
+				1 = {
+					first_contact_event = {
+						id = first_contactgts.330 
+					}
+					contact_country = {
+						add_opinion_modifier = {
+							who = root.owner
+							modifier = opinion_hostile_first_contactgts_planet1
+						}
+					}
+				}
+			}
+		}
+		ai_chance = {
+			factor = 1000
+		}
+	}
+	#撤退
+	option = {
+		name = {
+			text = first_contactgts.350.B.gts
+			trigger = {
+				owner = {
+					NOT = {
+						has_country_flag = gts_servitor_flag
+					}
+
+				}
+			}
+		}
+		name = {
+			text = first_contactgts.350.B.gtss
+			trigger = {
+				owner = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+		}
+
+		custom_tooltip = first_contactgts.320.B.tooltip
+		set_first_contact_stage = default_end_stage_cautious
+		owner = {
+			first_contact_add_intel = {
+				INTEL = 2
+			}
+			add_resource = {
+				unity = 1000
+			}
+
+		}
+		hidden_effect = {
+			first_contact_event = {
+				id = first_contactgts.331
+			}
+			contact_country = {
+				add_opinion_modifier = {
+					who = root.owner
+					modifier = opinion_hostile_first_contactgts_planet1
+				}
+			}
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+#第二阶段
+first_contact_event = {
+	id = first_contactgts.351
+	title = first_contactgts.351.name
+	desc = {
+		text = first_contactgts.351.desc.gts
+		trigger = {
+			owner = {
+				NOT = {
+					has_country_flag = gts_servitor_flag
+				}	
+			}
+		}
+	}
+	desc = {
+		text = first_contactgts.351.desc.gtss
+		trigger = {
+			owner = {
+				has_country_flag = gts_servitor_flag
+			}
+		}
+	}
+	picture = GFX_gtsra_10
+	show_sound = event_alien_abduction
+	is_triggered_only = yes
+	first_contact = yes
+	immediate = {
+		set_site_progress_locked = yes
+	}
+	after = {
+		set_site_progress_locked = no
+	}
+	#继续
+	option = {
+		name = {
+			text = first_contactgts.351.A.gts
+			trigger = {
+				owner = {
+					NOT = {
+						has_country_flag = gts_servitor_flag
+					}
+				}
+			}
+		}
+		name = {
+			text = first_contactgts.351.A.gtss
+			trigger = {
+				owner = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+		}
+		custom_tooltip = first_contactgts.320.A.tooltip
+		hidden_effect = {
+			random_list = {
+				9 = {
+					first_contact_event = {
+						id = first_contactgts.352 
+					}
+				}
+				1 = {
+					first_contact_event = {
+						id = first_contactgts.330 
+					}
+					contact_country = {
+						add_opinion_modifier = {
+							who = root.owner
+							modifier = opinion_hostile_first_contactgts_planet2
+						}
+					}
+				}
+			}
+		}
+		ai_chance = {
+			factor = 1000
+		}
+	}
+	#撤退
+	option = {
+		name = {
+			text = first_contactgts.351.B.gts
+			trigger = {
+				owner = {
+					NOT = {
+						has_country_flag = gts_servitor_flag
+					}
+
+				}
+			}
+		}
+		name = {
+			text = first_contactgts.351.B.gtss
+			trigger = {
+				owner = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+		}
+
+		custom_tooltip = first_contactgts.320.B.tooltip
+		set_first_contact_stage = default_end_stage_cautious
+		owner = {
+			first_contact_add_intel = {
+				INTEL = 3
+			}
+			add_resource = {
+				unity = 1500
+			}
+		}
+		hidden_effect = {
+			first_contact_event = {
+				id = first_contactgts.331
+			}
+			contact_country = {
+				add_opinion_modifier = {
+					who = root.owner
+					modifier = opinion_hostile_first_contactgts_planet2
+				}
+			}
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+#第三阶段
+first_contact_event = {
+	id = first_contactgts.352
+	title = first_contactgts.352.name
+	desc = {
+		text = first_contactgts.352.desc.gts
+		trigger = {
+			owner = {
+				NOT = {
+					has_country_flag = gts_servitor_flag
+				}	
+			}
+		}
+	}
+	desc = {
+		text = first_contactgts.352.desc.gtss
+		trigger = {
+			owner = {
+				has_country_flag = gts_servitor_flag
+			}
+		}
+	}
+	picture = GFX_gtsra_11
+	show_sound = event_alien_abduction
+	is_triggered_only = yes
+	first_contact = yes
+	immediate = {
+		set_site_progress_locked = yes
+	}
+	after = {
+		set_site_progress_locked = no
+	}
+	#继续
+	option = {
+		name = {
+			text = first_contactgts.352.A.gts
+			trigger = {
+				owner = {
+					NOT = {
+						has_country_flag = gts_servitor_flag
+					}
+				}
+			}
+		}
+		name = {
+			text = first_contactgts.352.A.gtss
+			trigger = {
+				owner = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+		}
+		custom_tooltip = first_contactgts.320.A.tooltip
+		hidden_effect = {
+			random_list = {
+				9 = {
+					first_contact_event = {
+						id = first_contactgts.353 
+					}
+				}
+				1 = {
+					first_contact_event = {
+						id = first_contactgts.330 
+					}
+					contact_country = {
+						add_opinion_modifier = {
+							who = root.owner
+							modifier = opinion_hostile_first_contactgts_planet3
+						}
+					}
+				}
+			}
+		}
+		ai_chance = {
+			factor = 1000
+		}
+	}
+	#撤退
+	option = {
+		name = {
+			text = first_contactgts.352.B.gts
+			trigger = {
+				owner = {
+					NOT = {
+						has_country_flag = gts_servitor_flag
+					}
+
+				}
+			}
+		}
+		name = {
+			text = first_contactgts.352.B.gtss
+			trigger = {
+				owner = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+		}
+
+		custom_tooltip = first_contactgts.320.B.tooltip
+		set_first_contact_stage = default_end_stage_cautious
+		owner = {
+			first_contact_add_intel = {
+				INTEL = 4
+			}
+			add_resource = {
+				unity = 1500
+			}
+		}
+		hidden_effect = {
+			first_contact_event = {
+				id = first_contactgts.331
+			}
+			contact_country = {
+				add_opinion_modifier = {
+					who = root.owner
+					modifier = opinion_hostile_first_contactgts_planet3
+				}
+			}
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+#第四阶段
+first_contact_event = {
+	id = first_contactgts.353
+	title = first_contactgts.353.name
+	desc = {
+		text = first_contactgts.353.desc.gts
+		trigger = {
+			owner = {
+				NOT = {
+					has_country_flag = gts_servitor_flag
+				}	
+			}
+		}
+	}
+	desc = {
+		text = first_contactgts.353.desc.gtss
+		trigger = {
+			owner = {
+				has_country_flag = gts_servitor_flag
+			}
+		}
+	}
+	picture = GFX_gtsra_12
+	show_sound = event_alien_abduction
+	is_triggered_only = yes
+	first_contact = yes
+	immediate = {
+		set_site_progress_locked = yes
+	}
+	after = {
+		set_site_progress_locked = no
+	}
+	#继续
+	option = {
+		name = {
+			text = first_contactgts.353.A.gts
+			trigger = {
+				owner = {
+					NOT = {
+						has_country_flag = gts_servitor_flag
+					}
+				}
+			}
+		}
+		name = {
+			text = first_contactgts.353.A.gtss
+			trigger = {
+				owner = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+		}
+		owner = {
+			first_contact_add_intel = {
+				INTEL = 5
+			}
+			add_resource = {
+				unity = 5000
+			}
+			every_controlled_fleet = {
+				limit = {
+					is_within_borders_of = root.contact_country
+					if = {
+						limit = {
+							prev = {
+								is_hostile = root.contact_country
+							}
+						}
+						is_civilian = yes
+					}
+				}
+				set_mia = mia_return_home
+			}
+		}
+		hidden_effect = {
+				first_contact_event = {
+					id = first_contactgts.331
+				}
+		}
+		ai_chance = {
+			factor = 1000
+		}
+	}
+}
+#对方事件
+#第一阶段
+country_event = {
+	id = first_contactgts.355
+	title = first_contactgts.355.name
+	desc = {
+		text = first_contactgts.355.desc.gts
+		trigger = {
+			from.owner = {
+				NOT = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+		}
+	}
+	desc = {
+		text = first_contactgts.355.desc.gtss
+			trigger = {
+				from.owner = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+	}
+	picture = GFX_gtsra_9
+	show_sound = event_alien_abduction
+	immediate = {
+		set_hostile = from.owner
+	}
+	is_triggered_only = yes
+	option = {
+		name = first_contactgts.355.A
+		random_list = {
+			1 = {
+				country_event = {
+					id = first_contactgts.329
+				}
+			}
+			9 = {
+				country_event = {
+					id = first_contactgts.356
+				}
+			}
+		}
+		event_target:abduction_planet = {
+			add_planet_devastation = 2
+		}
+	}
+	option = {
+		name = first_contactgts.355.B
+		country_event = {
+			id = first_contactgts.356
+		}
+		event_target:abduction_planet = {
+			add_planet_devastation = 2
+		}
+	}
+}
+#第二阶段
+country_event = {
+	id = first_contactgts.356
+	title = first_contactgts.356.name
+	desc = {
+		text = first_contactgts.356.desc.gts
+		trigger = {
+			from.owner = {
+				NOT = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+		}
+	}
+	desc = {
+		text = first_contactgts.356.desc.gtss
+			trigger = {
+				from.owner = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+	}
+	picture = GFX_gtsra_10
+	show_sound = event_alien_abduction
+	immediate = {
+		set_hostile = from.owner
+	}
+	is_triggered_only = yes
+	option = {
+		name = first_contactgts.356.A
+		random_list = {
+			2 = {
+				country_event = {
+					id = first_contactgts.329
+				}
+			}
+			8 = {
+				country_event = {
+					id = first_contactgts.357
+				}
+			}
+		}
+		event_target:abduction_planet = {
+			add_planet_devastation = 3
+			random_list = {
+				1 = { add_deposit = d_city_ruins }
+				1 = { add_deposit = d_arid_highlands }
+			}
+		}
+	}
+	option = {
+		name = first_contactgts.356.B
+		country_event = {
+			id = first_contactgts.357
+		}
+		event_target:abduction_planet = {
+			add_planet_devastation = 3
+			random_list = {
+				1 = { add_deposit = d_city_ruins }
+				1 = { add_deposit = d_arid_highlands }
+			}
+		}
+	}
+}
+#第三阶段
+country_event = {
+	id = first_contactgts.357
+	title = first_contactgts.357.name
+	desc = {
+		text = first_contactgts.357.desc.gts
+		trigger = {
+			from.owner = {
+				NOT = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+		}
+	}
+	desc = {
+		text = first_contactgts.357.desc.gtss
+			trigger = {
+				from.owner = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+	}
+	picture = GFX_gtsra_11
+	show_sound = event_alien_abduction
+	immediate = {
+		set_hostile = from.owner
+	}
+	is_triggered_only = yes
+	option = {
+		name = first_contactgts.357.A
+		random_list = {
+			4 = {
+				country_event = {
+					id = first_contactgts.329
+				}
+			}
+			6 = {
+				country_event = {
+					id = first_contactgts.358
+				}
+			}
+		}
+		event_target:abduction_planet = {
+			add_planet_devastation = 5
+			random_list = {
+				1 = { add_deposit = d_geothermal_vent }
+				1 = { add_deposit = d_mountain_range }
+			}
+		}
+	}
+	option = {
+		name = first_contactgts.357.B
+		country_event = {
+			id = first_contactgts.358
+		}
+		event_target:abduction_planet = {
+			add_planet_devastation = 5
+			random_list = {
+				1 = { add_deposit = d_geothermal_vent }
+				1 = { add_deposit = d_mountain_range }
+			}
+		}
+	}
+}
+#第四阶段
+country_event = {
+	id = first_contactgts.358
+	title = first_contactgts.358.name
+	desc = {
+		text = first_contactgts.358.desc.gts
+		trigger = {
+			from.owner = {
+				NOT = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+		}
+	}
+	desc = {
+		text = first_contactgts.358.desc.gtss
+			trigger = {
+				from.owner = {
+					has_country_flag = gts_servitor_flag
+				}
+			}
+	}
+	picture = GFX_gtsra_12
+	show_sound = event_alien_abduction
+	immediate = {
+		set_hostile = from.owner
+	}
+	is_triggered_only = yes
+	option = {
+		name = first_contactgts.358.A
+				country_event = {
+					id = first_contactgts.329
+				}
+				event_target:abduction_planet = {
+					add_planet_devastation = 5
+					random_list = {
+						1 = { add_deposit = d_bomb_crater }
+						1 = { add_deposit = d_nutritious_mudland }
+					}
+				}
+		}
+}
+
+###袜足还是裸足事件
+first_contact_event = {
+	id = first_contactgts.1010
+	title = first_contactgts.1010.name
+	desc = first_contactgts.1010.desc
+	picture = GFX_evt_gts_foot_contact
+	inline_script = first_contact_event_sounds
+	is_triggered_only = yes
+	first_contact = yes
+	immediate = {
+		set_site_progress_locked = yes
+		owner = {
+			set_country_flag = first_contactgts_foot1_chain
+		}
+	}
+	after = {
+		set_site_progress_locked = no
+	}
+	option = {
+		name = first_contactgts.1010.A
+		set_first_contact_stage = default_end_stagegts_foot1
+	}
+}
+first_contact_event = {
+	id = first_contactgts.1011
+	title = first_contactgts.1011.name
+	desc = first_contactgts.1011.desc
+	picture = GFX_evt_gts_foot1
+	inline_script = first_contact_event_sounds
+	is_triggered_only = yes
+	first_contact = yes
+	immediate = {
+		set_site_progress_locked = yes
+	}
+	option = {
+		name = first_contactgts.1011.A
+		contact_country = {
+			add_opinion_modifier = {
+				who = root.owner
+				modifier = opinion_hostile_first_contactgts_vivisection
+			}
+		}
+		finish_first_contact_effect = yes
+		first_contact_inform_intel = yes
+		set_site_progress_locked = no
+	}
+	option = {
+		name = first_contactgts.1011.B
+		hidden_effect = {
+			first_contact_event = {
+				id = first_contactgts.1012
+			}
+		}
+	}
+}
+first_contact_event = {
+	id = first_contactgts.1012
+	title = first_contactgts.1012.name
+	desc = first_contactgts.1012.desc
+	picture = GFX_evt_gts_foot2
+	show_sound = event_default
+	is_triggered_only = yes
+	first_contact = yes
+	immediate = {
+		contact_country = {
+			create_leader = {
+				name = random
+				class = scientist
+				species = this
+				effect = {
+					save_event_target_as = riddles_leader_1
+					exile_leader_as = riddles_leader_1
+				}
+			}
+			create_leader = {
+				name = random
+				class = scientist
+				species = this
+				effect = {
+					save_event_target_as = riddles_leader_2
+					exile_leader_as = riddles_leader_2
+				}
+			}
+		}
+		random_list = {
+			1 = {
+				set_first_contact_flag = option_A_correct
+			}
+			1 = {
+				set_first_contact_flag = option_B_correct
+			}
+			1 = {
+				set_first_contact_flag = option_C_correct
+			}
+		}
+	}
+	option = {
+		#丝袜
+		name = first_contactgts.1012.A
+		custom_tooltip = first_contactgts.1012.Tooltip
+		hidden_effect = {
+			if = {
+				limit = {
+					has_first_contact_flag = option_A_correct
+				}
+				first_contact_event = {
+					id = first_contactgts.1013
+				}
+			}
+			else = {
+				first_contact_event = {
+					id = first_contactgts.1014
+				}
+			}
+		}
+	}
+	option = {
+		#棉袜
+		name = first_contactgts.1012.B
+		custom_tooltip = first_contactgts.1012.Tooltip
+		hidden_effect = {
+			if = {
+				limit = {
+					has_first_contact_flag = option_B_correct
+				}
+				first_contact_event = {
+					id = first_contactgts.1015
+				}
+			}
+			else = {
+				first_contact_event = {
+					id = first_contactgts.1016
+				}
+			}
+		}
+	}
+	option = {
+		#裸足
+		name = first_contactgts.1012.C
+		custom_tooltip = first_contactgts.1012.Tooltip
+		hidden_effect = {
+			if = {
+				limit = {
+					has_first_contact_flag = option_C_correct
+				}
+				first_contact_event = {
+					id = first_contactgts.1017
+				}
+			}
+			else = {
+				first_contact_event = {
+					id = first_contactgts.1018
+				}
+			}
+		}
+	}
+	option = {
+		#踩死
+		name = first_contactgts.1012.D
+		contact_country = {
+			add_opinion_modifier = {
+				who = root.owner
+				modifier = opinion_hostile_first_contactgts_vivisection
+			}
+		}
+		finish_first_contact_effect = yes
+		first_contact_inform_intel = yes
+		set_site_progress_locked = no
+	}
+}
+first_contact_event = {
+	#丝袜正确
+	id = first_contactgts.1013
+	title = first_contactgts.1013.name
+	desc = first_contactgts.1013.desc
+	picture = GFX_evt_gts_footSilk
+	show_sound = event_hand_shake
+	is_triggered_only = yes
+	first_contact = yes
+	option = {
+		name = first_contactgts.1013.A
+		custom_tooltip = first_contact.357.C.tooltip
+		contact_country = {
+			add_opinion_modifier = {
+				who = root.owner
+				modifier = opinion_first_contactgts_xpRight
+			}
+		}
+		owner = {
+			add_modifier = {
+				modifier = first_contact_speak_like_us_country
+				years = 25
+			}
+		}
+		hidden_effect = {
+			owner = {
+				random_spynetwork = {
+					limit = {
+						target = {
+							is_same_value = root.contact_country
+						}
+					}
+					add_modifier = {
+						modifier = first_contact_speak_like_us_spynetwork
+						years = 25
+					}
+				}
+			}
+		}
+		finish_first_contact_effect = yes
+		first_contact_inform_intel = yes
+		set_site_progress_locked = no
+	}
+	option = {
+		#棉袜
+		name = first_contactgts.1013.B
+		custom_tooltip = first_contactgts.1012.Tooltip
+		hidden_effect = {
+			if = {
+				limit = {
+					has_first_contact_flag = option_B_correct
+				}
+				first_contact_event = {
+					id = first_contactgts.1015
+				}
+			}
+			else = {
+				first_contact_event = {
+					id = first_contactgts.1016
+				}
+			}
+		}
+	}
+	option = {
+		#裸足
+		name = first_contactgts.1013.C
+		custom_tooltip = first_contactgts.1012.Tooltip
+		hidden_effect = {
+			if = {
+				limit = {
+					has_first_contact_flag = option_C_correct
+				}
+				first_contact_event = {
+					id = first_contactgts.1017
+				}
+			}
+			else = {
+				first_contact_event = {
+					id = first_contactgts.1018
+				}
+			}
+		}
+	}
+}
+first_contact_event = {
+	#丝袜错误
+	id = first_contactgts.1014
+	title = first_contactgts.1014.name
+	desc = first_contactgts.1014.desc
+	picture = GFX_evt_gts_footSilk
+	show_sound = event_worrying_signal
+	is_triggered_only = yes
+	first_contact = yes
+	option = {
+		name = first_contactgts.1014.A
+		contact_country = {
+			add_opinion_modifier = {
+				who = root.owner
+				modifier = opinion_first_contactgts_xpWrong
+			}
+		}
+		finish_first_contact_effect = yes
+		first_contact_inform_intel = yes
+		set_site_progress_locked = no
+	}
+	option = {
+		#棉袜
+		name = first_contactgts.1014.B
+		custom_tooltip = first_contactgts.1012.Tooltip
+		hidden_effect = {
+			if = {
+				limit = {
+					has_first_contact_flag = option_B_correct
+				}
+				first_contact_event = {
+					id = first_contactgts.1015
+				}
+			}
+			else = {
+				first_contact_event = {
+					id = first_contactgts.1016
+				}
+			}
+		}
+	}
+	option = {
+		#裸足
+		name = first_contactgts.1014.C
+		custom_tooltip = first_contactgts.1012.Tooltip
+		hidden_effect = {
+			if = {
+				limit = {
+					has_first_contact_flag = option_C_correct
+				}
+				first_contact_event = {
+					id = first_contactgts.1017
+				}
+			}
+			else = {
+				first_contact_event = {
+					id = first_contactgts.1018
+				}
+			}
+		}
+	}
+}
+first_contact_event = {
+	#棉袜正确
+	id = first_contactgts.1015
+	title = first_contactgts.1015.name
+	desc = first_contactgts.1015.desc
+	picture = GFX_evt_gts_footCotton
+	show_sound = event_hand_shake
+	is_triggered_only = yes
+	first_contact = yes
+	option = {
+		name = first_contactgts.1015.A
+		custom_tooltip = first_contact.357.C.tooltip
+		contact_country = {
+			add_opinion_modifier = {
+				who = root.owner
+				modifier = opinion_first_contactgts_xpRight
+			}
+		}
+		owner = {
+			add_modifier = {
+				modifier = first_contact_speak_like_us_country
+				years = 25
+			}
+		}
+		hidden_effect = {
+			owner = {
+				random_spynetwork = {
+					limit = {
+						target = {
+							is_same_value = root.contact_country
+						}
+					}
+					add_modifier = {
+						modifier = first_contact_speak_like_us_spynetwork
+						years = 25
+					}
+				}
+			}
+		}
+		finish_first_contact_effect = yes
+		first_contact_inform_intel = yes
+		set_site_progress_locked = no
+	}
+	option = {
+		#丝袜
+		name = first_contactgts.1015.B
+		custom_tooltip = first_contactgts.1012.Tooltip
+		hidden_effect = {
+			if = {
+				limit = {
+					has_first_contact_flag = option_A_correct
+				}
+				first_contact_event = {
+					id = first_contactgts.1013
+				}
+			}
+			else = {
+				first_contact_event = {
+					id = first_contactgts.1014
+				}
+			}
+		}
+	}
+	option = {
+		#裸足
+		name = first_contactgts.1015.C
+		custom_tooltip = first_contactgts.1012.Tooltip
+		hidden_effect = {
+			if = {
+				limit = {
+					has_first_contact_flag = option_C_correct
+				}
+				first_contact_event = {
+					id = first_contactgts.1017
+				}
+			}
+			else = {
+				first_contact_event = {
+					id = first_contactgts.1018
+				}
+			}
+		}
+	}
+}
+first_contact_event = {
+	#棉袜错误
+	id = first_contactgts.1016
+	title = first_contactgts.1016.name
+	desc = first_contactgts.1016.desc
+	picture = GFX_evt_gts_footCotton
+	show_sound = event_worrying_signal
+	is_triggered_only = yes
+	first_contact = yes
+	option = {
+		name = first_contactgts.1016.A
+		contact_country = {
+			add_opinion_modifier = {
+				who = root.owner
+				modifier = opinion_first_contactgts_xpWrong
+			}
+		}
+		finish_first_contact_effect = yes
+		first_contact_inform_intel = yes
+		set_site_progress_locked = no
+	}
+	option = {
+		#丝袜
+		name = first_contactgts.1016.B
+		custom_tooltip = first_contactgts.1012.Tooltip
+		hidden_effect = {
+			if = {
+				limit = {
+					has_first_contact_flag = option_A_correct
+				}
+				first_contact_event = {
+					id = first_contactgts.1013
+				}
+			}
+			else = {
+				first_contact_event = {
+					id = first_contactgts.1014
+				}
+			}
+		}
+	}
+	option = {
+		#裸足
+		name = first_contactgts.1016.C
+		custom_tooltip = first_contactgts.1012.Tooltip
+		hidden_effect = {
+			if = {
+				limit = {
+					has_first_contact_flag = option_C_correct
+				}
+				first_contact_event = {
+					id = first_contactgts.1017
+				}
+			}
+			else = {
+				first_contact_event = {
+					id = first_contactgts.1018
+				}
+			}
+		}
+	}
+}
+first_contact_event = {
+	#裸足正确
+	id = first_contactgts.1017
+	title = first_contactgts.1017.name
+	desc = first_contactgts.1017.desc
+	picture = GFX_evt_gts_footBare
+	show_sound = event_hand_shake
+	is_triggered_only = yes
+	first_contact = yes
+	option = {
+		name = first_contactgts.1017.A
+		custom_tooltip = first_contact.357.C.tooltip
+		contact_country = {
+			add_opinion_modifier = {
+				who = root.owner
+				modifier = opinion_first_contactgts_xpRight
+			}
+		}
+		owner = {
+			add_modifier = {
+				modifier = first_contact_speak_like_us_country
+				years = 25
+			}
+		}
+		hidden_effect = {
+			owner = {
+				random_spynetwork = {
+					limit = {
+						target = {
+							is_same_value = root.contact_country
+						}
+					}
+					add_modifier = {
+						modifier = first_contact_speak_like_us_spynetwork
+						years = 25
+					}
+				}
+			}
+		}
+		finish_first_contact_effect = yes
+		first_contact_inform_intel = yes
+		set_site_progress_locked = no
+	}
+	option = {
+		#丝袜
+		name = first_contactgts.1017.B
+		custom_tooltip = first_contactgts.1012.Tooltip
+		hidden_effect = {
+			if = {
+				limit = {
+					has_first_contact_flag = option_A_correct
+				}
+				first_contact_event = {
+					id = first_contactgts.1013
+				}
+			}
+			else = {
+				first_contact_event = {
+					id = first_contactgts.1014
+				}
+			}
+		}
+	}
+	option = {
+		#棉袜
+		name = first_contactgts.1017.C
+		custom_tooltip = first_contactgts.1012.Tooltip
+		hidden_effect = {
+			if = {
+				limit = {
+					has_first_contact_flag = option_B_correct
+				}
+				first_contact_event = {
+					id = first_contactgts.1015
+				}
+			}
+			else = {
+				first_contact_event = {
+					id = first_contactgts.1016
+				}
+			}
+		}
+	}
+}
+first_contact_event = {
+	#裸足错误
+	id = first_contactgts.1018
+	title = first_contactgts.1018.name
+	desc = first_contactgts.1018.desc
+	picture = GFX_evt_gts_footBare
+	show_sound = event_worrying_signal
+	is_triggered_only = yes
+	first_contact = yes
+	option = {
+		name = first_contactgts.1018.A
+		contact_country = {
+			add_opinion_modifier = {
+				who = root.owner
+				modifier = opinion_first_contactgts_xpWrong
+			}
+		}
+		finish_first_contact_effect = yes
+		first_contact_inform_intel = yes
+		set_site_progress_locked = no
+	}
+	option = {
+		#丝袜
+		name = first_contactgts.1018.B
+		custom_tooltip = first_contactgts.1012.Tooltip
+		hidden_effect = {
+			if = {
+				limit = {
+					has_first_contact_flag = option_A_correct
+				}
+				first_contact_event = {
+					id = first_contactgts.1013
+				}
+			}
+			else = {
+				first_contact_event = {
+					id = first_contactgts.1014
+				}
+			}
+		}
+	}
+	option = {
+		#棉袜
+		name = first_contactgts.1018.C
+		custom_tooltip = first_contactgts.1012.Tooltip
+		hidden_effect = {
+			if = {
+				limit = {
+					has_first_contact_flag = option_B_correct
+				}
+				first_contact_event = {
+					id = first_contactgts.1015
+				}
+			}
+			else = {
+				first_contact_event = {
+					id = first_contactgts.1016
+				}
+			}
+		}
+	}
+}

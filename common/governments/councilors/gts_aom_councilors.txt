@@ -1,0 +1,43 @@
+councilor_ruler_kanlon= {
+	leader_class = { official scientist commander }
+	possible = { always = no }
+	is_leader_possible = { always = yes }
+	modifier = {
+		country_unity_produces_mult = 0.05
+	}
+	icon = "GFX_icon_councilor_ruler"
+}
+
+#首席法师
+councilor_panlon_Wizard = {
+	leader_class = { scientist }
+	is_leader_possible = {
+		OR = {
+			leader_class = scientist
+		}
+	}
+
+	civic = civic_panlon_Wizard
+	modifier = {
+		ship_anomaly_generation_chance_mult = 0.03
+		ship_anomaly_research_speed_mult = 0.03
+		science_ship_survey_speed = 0.03
+	}
+	icon = "GFX_icon_councilor_research"
+}
+
+#骑士大团长
+councilor_kancolle_knights  = {
+	leader_class = { commander  }
+	is_leader_possible = {
+		leader_class = commander
+	}
+
+	civic = civic_panlon_knights
+	modifier = {
+		ship_starting_experience_add = 100
+		army_starting_experience_add = 100
+		commander_exp_gain = 0.10
+	}
+	icon = "GFX_icon_councilor_defense"
+}

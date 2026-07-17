@@ -1,0 +1,600 @@
+namespace = gts_evolution_catalyst_event #国民理念：进化触媒
+
+country_event = { #开局获得科研选项：表观遗传学触发器
+    id = gts_evolution_catalyst_event.0
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = {
+        has_civic = civic_evolution_catalyst
+    }
+    immediate = {
+        add_research_option = tech_epigenetic_triggers
+    }
+}
+
+planet_event = {
+    id = gts_evolution_catalyst_event.1
+    title = gts_evolution_catalyst_event.1.name
+    desc = gts_evolution_catalyst_event.1.desc
+    #picture =
+    show_sound = event_alien_nature
+    #location = ROOT #这个是什么？
+    trackable = yes
+    is_triggered_only = yes
+    trigger = {
+        owner = {
+            is_guided_sapience_empire = yes
+            has_civic = civic_evolution_catalyst
+        }
+        has_planet_flag = gts_presapients_created
+        NOT = { has_planet_flag = pre_sapient_planet }
+        is_artificial = no
+    }
+
+    option = {
+        name = gts_evolution_catalyst_event.1.a
+        owner = {
+            add_resource = {
+                unity = 500
+                influence = 25
+                #mult = value:presapients_guided_mult
+            }
+            if = {
+                limit = {
+                    NOT = { has_technology = tech_epigenetic_triggers }
+                }
+                add_tech_progress = {
+                    tech = tech_epigenetic_triggers
+                    progress = 0.1
+                }
+            }
+        }
+        if = {
+            limit = {
+                owner = {
+                    any_owned_pop_group = {
+                        has_trait = trait_gts_force_evolution
+                        NOT = {
+                            has_trait = trait_gts_UMA_MUSUME
+                            has_trait = trait_uplifted
+                        }
+                    }
+                }
+            }
+            create_species = {
+                name = gts_kemono_species
+                #class = GTS_KEMONO
+                class = random_non_machine
+                portrait = random
+                homeworld = this
+                traits = {
+                    trait = trait_gts_force_evolution
+                    trait = trait_Giant#陆地
+                    trait = trait_uplifted
+                }
+            }
+        }
+        while = {
+            count = 2
+            create_pop_group = {
+                species = gts_kemono_species
+            }
+            random_owned_pop_group = {
+                limit = {
+                    has_trait = trait_gts_force_evolution
+                    NOT = {
+                        has_trait = trait_gts_UMA_MUSUME
+                        has_trait = trait_uplifted
+                    }
+                }
+                kill_all_pop = yes
+            }
+        }
+        hidden_effect = {
+            owner = {
+                change_variable = {
+                    which = presapients_guided
+                    value = 1
+                }
+            }
+        }
+    }
+    after = {
+        hidden_effect = {
+            remove_planet_flag = gts_presapients_created
+        }
+    }
+}
+
+# 完成殖民時，殖民地獲得行星修正“鬧事的動物”，獲得2個未開化，擁有強制進化+巨大特質的有機體人口
+
+planet_event = {
+
+    id = gts_evolution_catalyst_event.2
+    hide_window = yes
+    is_triggered_only = yes
+
+    trigger = {
+        owner = {
+            has_civic = civic_evolution_catalyst
+        }
+    }
+
+    immediate = {
+        set_planet_flag = gts_presapients_created
+        if = {
+            limit = {
+                owner = {
+                    any_owned_pop_group = {
+                        has_trait = trait_gts_force_evolution
+                        NOT = {
+                            has_trait = trait_gts_UMA_MUSUME
+                            has_trait = trait_uplifted
+                        }
+                    }
+                }
+            }
+            save_event_target_as = gts_troublesome_species
+            while = {
+                count = 2
+                create_pop_group = {
+                    species = gts_troublesome_species
+                }
+            }
+        }
+        else = {
+            create_species = {
+                name = dangerous_wildlife
+                #class = GTS_PRE_TROUBLESOME
+                class = random_non_machine
+                portrait = random
+                homeworld = this
+                sapient = no
+                traits = {
+                    trait = trait_gts_force_evolution
+                    trait = trait_Giant
+                }
+            }
+            while = {
+                count = 2
+                create_pop_group = {
+                    species = last_created_species
+                }
+            }
+        }
+    }
+    after = {
+        hidden_effect = {
+            random_list = {
+                1 = {
+                    planet_event = {
+                        id = gts_evolution_catalyst_event.3
+                        days = 30
+                        random = 5
+                    }
+                }
+                1 = {
+                    planet_event = {
+                        id = gts_evolution_catalyst_event.4
+                        days = 30
+                        random = 5
+                    }
+                }
+            }
+            random_list = {
+                1 = {
+                    planet_event = {
+                        id = gts_evolution_catalyst_event.11
+                        days = 300
+                        random = 5
+                    }
+                }
+                1 = {
+                }
+            }
+        }
+    }
+}
+
+planet_event = {
+
+    id = gts_evolution_catalyst_event.3
+    title = gts_evolution_catalyst_event.3.name
+    desc = gts_evolution_catalyst_event.3.desc
+    show_sound = event_alien_nature
+    location = root
+    is_triggered_only = yes
+    picture = GFX_gtsra_load_28
+    option = {
+        name = gts_evolution_catalyst_event.3.a
+        add_planet_devastation = 10
+        owner = {
+            add_resource = {
+                food = -200
+                energy = -100
+                influence = 50
+                unity = 500
+            }
+        }
+    }
+    option = {
+        name = gts_evolution_catalyst_event.3.b
+        add_planet_devastation = 10
+        owner = {
+            add_resource = {
+                food = -200
+                energy = -100
+                influence = 50
+                unity = 500
+            }
+        }
+    }
+}
+
+planet_event = {
+    id = gts_evolution_catalyst_event.4
+    title = gts_evolution_catalyst_event.4.name
+    desc = gts_evolution_catalyst_event.4.desc
+    show_sound = event_alien_nature
+    picture = GFX_load_51
+    location = root
+    is_triggered_only = yes
+    option = {
+        name = gts_evolution_catalyst_event.4.a		#还有这事？
+        add_planet_devastation = 10
+        owner = {
+            add_resource = {
+                food = -400
+                influence = 50
+                unity = 500
+            }
+        }
+    }
+    option = {
+        name = gts_evolution_catalyst_event.4.b
+        add_planet_devastation = 10
+        owner = {
+            add_resource = {
+                food = -400
+                influence = 50
+                unity = 500
+            }
+        }
+    }
+}
+
+#闹事的动物后续事件
+planet_event = {
+
+    id = gts_evolution_catalyst_event.11
+    title = gts_evolution_catalyst_event.11.name
+    desc = gts_evolution_catalyst_event.11.desc
+    show_sound = event_alien_nature
+    location = root
+    is_triggered_only = yes
+    fire_only_once = yes
+    picture = GFX_load_42
+    trigger = {
+        exists = owner
+        owner = {
+            has_civic = civic_evolution_catalyst
+        }
+        is_colony = yes
+    }
+    option = {
+        name = gts_evolution_catalyst_event.11.a
+        add_deposit = d_gts_pristine_reserve
+        hidden_effect = {
+            planet_event = {
+                id = gts_evolution_catalyst_event.12
+                days = 720
+                random = 360
+            }
+        }
+    }
+    option = {
+        name = gts_evolution_catalyst_event.11.b
+        add_deposit = d_gts_safeguard_reserve
+        hidden_effect = {
+            planet_event = {
+                id = gts_evolution_catalyst_event.13
+                days = 720
+                random = 360
+            }
+        }
+    }
+    option = {
+        name = gts_evolution_catalyst_event.11.c
+        add_deposit = d_gts_tame_reserve
+        hidden_effect = {
+            planet_event = {
+                id = gts_evolution_catalyst_event.14
+                days = 720
+                random = 360
+            }
+        }
+    }
+}
+planet_event = {
+
+    id = gts_evolution_catalyst_event.12
+    title = gts_evolution_catalyst_event.12.name
+    desc = gts_evolution_catalyst_event.12.desc
+    show_sound = event_alien_nature
+    location = root
+    is_triggered_only = yes
+    picture = GFX_load_133
+    trigger = {
+        exists = owner
+        owner = {
+            has_civic = civic_evolution_catalyst
+        }
+        is_colony = yes
+    }
+    option = {
+        name = gts_evolution_catalyst_event.12.a
+        add_deposit = d_gts_normal_reserve
+    }
+    option = {
+        name = gts_evolution_catalyst_event.12.b
+        add_deposit = d_gts_planetary_reserve
+    }
+    option = {
+        name = gts_evolution_catalyst_event.12.c
+        add_deposit = d_gts_scp_reserve
+        allow = {
+            owner = {
+                has_civic = civic_gts_scp
+            }
+        }
+    }
+}
+planet_event = {
+
+    id = gts_evolution_catalyst_event.13
+    title = gts_evolution_catalyst_event.13.name
+    desc = gts_evolution_catalyst_event.13.desc
+    show_sound = event_alien_nature
+    location = root
+    is_triggered_only = yes
+    picture = GFX_load_128
+    trigger = {
+        exists = owner
+        owner = {
+            has_civic = civic_evolution_catalyst
+        }
+        is_colony = yes
+    }
+    option = {
+        name = gts_evolution_catalyst_event.13.a
+        add_deposit = d_gts_flourish_munitions
+    }
+    option = {
+        name = gts_evolution_catalyst_event.13.b
+        add_deposit = d_gts_excess_munitions
+    }
+    option = {
+        name = gts_evolution_catalyst_event.13.c
+        add_deposit = d_gts_yarong_munitions
+        trigger = {
+            owner = {
+                any_owned_leader = { has_leader_flag = gts_yarong }
+            }
+        }
+        allow = {
+            owner = { has_origin = origin_god_keeper }
+        }
+    }
+}
+planet_event = {
+
+    id = gts_evolution_catalyst_event.14
+    title = gts_evolution_catalyst_event.14.name
+    desc = gts_evolution_catalyst_event.14.desc
+    show_sound = event_alien_nature
+    location = root
+    is_triggered_only = yes
+    picture = GFX_load_39
+    trigger = {
+        exists = owner
+        owner = {
+            has_civic = civic_evolution_catalyst
+        }
+        is_colony = yes
+    }
+    option = {
+        name = gts_evolution_catalyst_event.14.a
+        add_deposit = d_gts_assist_construction
+    }
+    option = {
+        name = gts_evolution_catalyst_event.14.b
+        add_deposit = d_gts_strengthen_integration
+    }
+}
+# #给强制进化的人口加体型巨大特质
+# planet_event = {
+#     id = gts_evolution_catalyst_event.100
+#     hide_window = yes
+#     is_triggered_only = yes
+#
+#     immediate = {
+#         every_galaxy_pop = {
+#             limit = {
+#                 has_trait = trait_gts_force_evolution
+#             }
+#             modify_species = {
+#                 species = this
+#                 add_trait = trait_Giant
+#             }
+#         }
+#     }
+# }
+
+#特殊政策，给开化兽娘加buff(文明开化)
+
+country_event = {
+    id = gts_evolution_catalyst_event.200
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = {
+        has_civic = civic_evolution_catalyst
+    }
+    immediate = {
+        every_owned_pop_group = {
+            limit = {
+                has_trait = trait_gts_force_evolution
+                owner = {
+                    has_policy_flag = gts_evolution_catalyst_civilization_enlightenment
+                }
+            }
+            remove_modifier = gts_evolution_catalyst_public_RBQ
+            remove_modifier = gts_evolution_catalyst_army_vanguard
+            remove_modifier = gts_evolution_catalyst_gentle_rewilding
+            add_modifier = {
+                modifier = gts_evolution_catalyst_civilization_enlightenment
+                days = -1
+            }
+        }
+    }
+}
+#特殊政策，给开化兽娘加buff(公共星怒)
+country_event = {
+    id = gts_evolution_catalyst_event.201
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = {
+        has_civic = civic_evolution_catalyst
+    }
+    immediate = {
+        every_owned_pop_group = {
+            limit = {
+                has_trait = trait_gts_force_evolution
+                owner = {
+                    has_policy_flag = gts_evolution_catalyst_public_RBQ
+                }
+            }
+            remove_modifier = gts_evolution_catalyst_civilization_enlightenment
+            remove_modifier = gts_evolution_catalyst_army_vanguard
+            remove_modifier = gts_evolution_catalyst_gentle_rewilding
+            add_modifier = {
+                modifier = gts_evolution_catalyst_public_RBQ
+                days = -1
+            }
+        }
+    }
+}
+#特殊政策，给开化兽娘加buff(陆军先锋)
+country_event = {
+    id = gts_evolution_catalyst_event.202
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = {
+        has_civic = civic_evolution_catalyst
+    }
+    immediate = {
+        every_owned_pop_group = {
+            limit = {
+                has_trait = trait_gts_force_evolution
+                owner = {
+                    has_policy_flag = gts_evolution_catalyst_army_vanguard
+                }
+            }
+            remove_modifier = gts_evolution_catalyst_civilization_enlightenment
+            remove_modifier = gts_evolution_catalyst_public_RBQ
+            remove_modifier = gts_evolution_catalyst_gentle_rewilding
+            add_modifier = {
+                modifier = gts_evolution_catalyst_army_vanguard
+                days = -1
+            }
+        }
+    }
+}
+#特殊政策，给开化兽娘加buff(温和野化)
+country_event = {
+    id = gts_evolution_catalyst_event.203
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = {
+        has_civic = civic_evolution_catalyst
+    }
+    immediate = {
+        every_owned_pop_group = {
+            limit = {
+                has_trait = trait_gts_force_evolution
+                owner = {
+                    has_policy_flag = gts_evolution_catalyst_gentle_rewilding
+                }
+            }
+            remove_modifier = gts_evolution_catalyst_civilization_enlightenment
+            remove_modifier = gts_evolution_catalyst_public_RBQ
+            remove_modifier = gts_evolution_catalyst_army_vanguard
+            add_modifier = {
+                modifier = gts_evolution_catalyst_gentle_rewilding
+                days = -1
+            }
+        }
+    }
+}
+
+planet_event = {
+    id = gts_evolution_catalyst_event.300
+    title = gts_evolution_catalyst_event.300.name
+    desc = gts_evolution_catalyst_event.300.desc
+    picture = GFX_load_43
+    show_sound = event_alien_nature
+    trackable = yes
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = {
+        owner = {
+            is_ai = no
+        }
+        is_planet_class = pc_savannah
+    }
+    option = {
+        name = gts_evolution_catalyst_event.300.a		#还有这事？
+        create_species = {
+            name = gts_umamusume_species
+            #class = GTS_UMA_MUSUME
+            class = random_non_machine
+            portrait = random
+            homeworld = this
+            traits = {
+                trait = trait_gts_UMA_MUSUME
+                trait = trait_Titan
+                trait = trait_gts_force_evolution
+                trait = trait_pc_savannah_preference
+            }
+        }
+        while = {
+            count = 4
+            create_pop_group = {
+                species = last_created_species
+            }
+        }
+        add_modifier = {
+            modifier = gts_Umamusume_school
+            days = -1
+        }
+
+    }
+}
+# #给赛马娘加泰坦/强制进化特质
+# planet_event = {
+#     id = gts_evolution_catalyst_event.400
+#     hide_window = yes
+#     is_triggered_only = yes
+#
+#     immediate = {
+#         every_owned_pop_group = {
+#             limit = {
+#                 has_trait = trait_gts_UMA_MUSUME
+#             }
+#             modify_species = {
+#                 species = this
+#                 add_trait = trait_Titan
+#                 add_trait = trait_gts_force_evolution
+#             }
+#         }
+#     }
+# }

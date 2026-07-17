@@ -1,0 +1,74 @@
+@EdictPerpetual = -1
+@campaignDuration = -1
+
+gts_bruh_edict_1 = {
+
+	# 轉化人口-開
+
+	length = 1
+	icon = "GFX_edict_type_policy"
+
+	potential = {
+		NOT = {
+			has_country_flag = gts_bruh_convert_pop_effect_cool_down
+			has_country_flag = gts_bruh_convert_pop_effect_on
+		}
+	}
+
+	effect = {
+		remove_country_flag = gts_bruh_convert_pop_effect_off
+		set_country_flag = gts_bruh_convert_pop_effect_on
+		set_timed_country_flag = {
+			flag = gts_bruh_convert_pop_effect_cool_down
+			months = 1
+		}
+	}
+
+	resources = {
+		category = edicts
+		upkeep = {
+			energy = 0
+		}
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+gts_bruh_edict_2 = {
+
+	# 轉化人口-關
+
+	length = 1
+	icon = "GFX_edict_type_policy"
+
+	potential = {
+		has_country_flag = gts_bruh_convert_pop_effect_on
+		NOT = {
+			has_country_flag = gts_bruh_convert_pop_effect_cool_down
+			has_country_flag = gts_bruh_convert_pop_effect_off
+		}
+	}
+
+	effect = {
+		remove_country_flag = gts_bruh_convert_pop_effect_on
+		set_country_flag = gts_bruh_convert_pop_effect_off
+		set_timed_country_flag = {
+			flag = gts_bruh_convert_pop_effect_cool_down
+			months = 1
+		}
+	}
+
+	resources = {
+		category = edicts
+		upkeep = {
+			energy = 0
+		}
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+

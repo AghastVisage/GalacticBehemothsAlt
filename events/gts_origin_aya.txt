@@ -1,0 +1,243 @@
+namespace = gts_aya
+
+situation_event = {
+	id = gts_aya.1
+	title = "aya_returns.1.name"
+	desc = "aya_returns.1.desc"
+	picture = GFX_evt_news_room
+	show_sound = event_mystic_reveal
+	is_triggered_only = yes
+	option = {
+		name = gts_aya.2.a		#引起事件链和特殊计划
+		custom_tooltip = gts_aya.1.tooltip
+		hidden_effect = {
+			destroy_situation = this
+			owner = {
+				country_event = {
+					id = gts_aya.2
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_aya.2.b		#结束
+		hidden_effect = {
+			destroy_situation = this
+		}
+		owner = {
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = 30
+				min = 2000
+			}
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = 30
+				min = 2000
+			}
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = 30
+				min = 2000
+			}
+		}
+	}
+}
+
+country_event = {
+	#引起辩论事件
+	id = gts_aya.2
+	#	title = "aya_returns.1.name"
+	#	desc = "aya_returns.1.desc"
+	#	picture = GFX_evt_news_room
+	#	show_sound = event_mystic_reveal
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		owner = {
+			begin_event_chain = {
+				event_chain = "aya_returns_chain"
+				target = this
+			}
+			capital_scope = {
+				enable_special_project = {
+					name = "GET_SMALLER"
+					location = this
+					owner = root.owner
+				}
+				enable_special_project = {
+					name = "GET_BIGGER"
+					location = this
+					owner = root.owner
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	#变小
+	id = gts_aya.3
+	title = aya_returns.2.name
+	desc = aya_returns.2.desc
+	picture = GFX_evt_news_room
+	is_triggered_only = yes
+	option = {
+		name = gts_aya.3.a
+		owner = {
+			add_modifier = {
+				modifier = aya_dawn_of_new_world
+			}
+			add_modifier = {
+				modifier = aya_slowly_order_restoration
+				days = 1800
+			}
+		}
+		add_resource = {
+			energy = 20000
+			minerals = 20000
+			food = 20000
+			alloys = 10000
+			consumer_goods = 10000
+			volatile_motes = 500
+			exotic_gases = 500
+			rare_crystals = 500
+		}
+		hidden_effect = {
+			modify_species = {
+				remove_trait = trait_Small
+				add_trait = trait_Tiny
+				add_traits_at_start_of_list = yes
+			}
+		}
+	}
+}
+
+country_event = {
+	#变大
+	id = gts_aya.4
+	title = aya_returns.3.name
+	desc = aya_returns.3.desc
+	picture = GFX_evt_clones
+	is_triggered_only = yes
+	option = {
+		name = gts_aya.4.a
+		add_modifier = {
+			modifier = aya_reborn_of_golden_age
+		}
+		add_modifier = {
+			modifier = aya_recovery_and_restart
+			days = 1800
+		}
+		hidden_effect = {
+			modify_species = {
+				remove_trait = trait_Small
+				add_trait = trait_Normal
+				add_traits_at_start_of_list = yes
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_aya.10	#ID
+	hide_window = yes	#隐藏界面
+	is_triggered_only = yes	#只能触发
+	trigger = {
+		#触发器：有起源
+		has_origin = origin_Aya
+	}
+	immediate = {
+		#很快啊
+		random_owned_planet = {
+			#随机拥有的星球
+			limit = {
+				has_planet_flag = Aya_home_planet
+			}			#限制：需为母星
+			Aya_origin_effect = yes			#提供起源buff
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = origin_Aya
+				}
+			}
+			owner = {
+				capital_scope = {
+					remove_all_districts = yes
+					while = {
+						count = 2
+						add_district = district_arcology_housing
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_aya.11
+	title = "gts_aya.11.name"
+	desc = "gts_aya.11.desc"
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = maruyama_aya_room
+	}
+	fire_only_once = yes
+	is_triggered_only = yes
+	trigger = {
+		has_origin = origin_Aya
+	}
+	option = {
+		name = gts_aya.11.a
+		start_situation = {
+			type = situation_aya_tinys_change
+		}
+		hidden_effect = {
+			gts_leader_aya_hired = yes
+			last_created_leader = {
+				save_global_event_target_as = aya_governor
+				set_leader_flag = has_gained_level_trait
+			}
+			set_leader = event_target:gts_aya
+		}
+	}
+}
+
+country_event = {
+	id = gts_aya.12	#ID
+	hide_window = yes	#隐藏界面
+	is_triggered_only = yes	#只能触发
+	trigger = {
+		#触发器：有起源
+		has_origin = origin_Aya
+	}
+	immediate = {
+		#很快啊
+		add_resource = {
+			minerals = 2500
+		}
+		add_resource = {
+			energy = 2500
+		}
+		add_resource = {
+			food = 2500
+		}
+		add_resource = {
+			consumer_goods = 2500
+		}
+		add_resource = {
+			alloys = 2500
+		}
+		add_resource = {
+			volatile_motes = 400
+		}
+		add_resource = {
+			exotic_gases = 300
+		}
+		add_resource = {
+			rare_crystals = 300
+		}
+	}
+}

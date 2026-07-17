@@ -1,0 +1,466 @@
+namespace = gts_evt_breast
+
+planet_event = {
+	id = gts_evt_breast.1	#殖民后发现异常
+	title = "gts_evt_breast.1.name"
+	desc = "gts_evt_breast.1.desc"
+	picture = GFX_evt_asteroid_approaching_planet
+	is_triggered_only = yes
+	trigger = {
+		owner = {is_ai = no}
+		OR = {
+			has_modifier = gts_wet_season
+			has_modifier = gts_dry_season
+		}
+	}
+	option = {
+		name = gts_evt_breast.1.a
+		enable_special_project = {
+			name = "GTS_BREAST_PROJECT"
+			location = root
+			owner = root.owner
+		}
+	}
+}
+
+
+ship_event = {
+	id = gts_evt_breast.2	#发现乳海
+	title = "gts_evt_breast.2.name"
+	desc = "gts_evt_breast.2.desc"
+	picture = GFX_evt_ocean
+	show_sound = event_mystic_reveal_light
+	location = event_target:gts_breast_planet
+	is_triggered_only = yes
+	immediate = {
+		owner = {
+			set_country_flag = surveyed_gts_breast			#设置标记：星球已被调查
+		}
+	}
+	option = {
+		name = INCREDIBLE
+		owner = {
+			add_monthly_resource_mult = {
+				#添加月度物理学点数
+				resource = physics_research
+				value = @tier3researchreward
+				min = @tier3researchmin
+				max = @tier3researchmax
+			}
+		}
+	}
+}
+
+#.17废弃
+ship_event = {
+	#建立通讯
+	id = gts_evt_breast.10
+	title = "gts_evt_breast.10.name"
+	desc = "gts_evt_breast.10.desc"
+	picture = GFX_evt_shrouded_planet
+	show_sound = event_mystic_reveal_light
+	location = event_target:gts_breast_planet
+	is_triggered_only = yes
+	option = {
+		name = INCREDIBLE
+		owner = {
+			country_event = {
+				id = gts_evt_breast.11
+			}
+		}
+	}
+}
+
+country_event = {
+	#与腺宇宙建立外交
+	id = gts_evt_breast.11
+	title = "TRANSMISSION"
+	desc = "gts_evt_breast.11.desc"
+	diplomatic = yes
+	is_triggered_only = yes
+	picture_event_data = {
+		portrait = root.species
+		room = "ethic_spaceship_room"
+	}
+	option = {
+		name = gts_evt_breast.11.a
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_breast.12
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_breast.12
+	title = "TRANSMISSION"
+	desc = "gts_evt_breast.12.desc"
+	diplomatic = yes
+	is_triggered_only = yes
+	picture_event_data = {
+		portrait = root.species
+		room = "ethic_spaceship_room"
+	}
+	option = {
+		name = gts_evt_breast.12.a
+		response_text = gts_evt_breast.12.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_evt_breast.12.b
+		response_text = gts_evt_breast.12.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_evt_breast.12.c
+		hidden_effect = {
+			country_event = {
+				id = gts_evt_breast.13
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_evt_breast.13
+	title = "TRANSMISSION"
+	desc = "gts_evt_breast.13.desc"
+	diplomatic = yes
+	is_triggered_only = yes
+	picture_event_data = {
+		portrait = root.species
+		room = "ethic_spaceship_room"
+	}
+	option = {
+		name = gts_evt_breast.13.a
+		response_text = gts_evt_breast.13.a.response
+		add_modifier = {
+			modifier = gts_trade_with_breast_pop_normal
+		}
+		#		set_country_flag = { #有改动
+		#           gts_trade_with_breast
+		#		}
+	}
+}
+
+country_event = {
+	#Mirror portal followup events
+	id = gts_evt_breast.20
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = {
+		has_country_flag = gts_trade_with_breast
+		any_owned_planet = {
+			has_planet_flag = gts_breast_active
+		}
+		#		NOT = { has_country_flag = dportal_empire_crisis_flag }
+	}
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				has_planet_flag = gts_breast_active
+			}
+			save_event_target_as = gts_breast_active_planet
+		}
+		event_target:gts_breast_active_planet = {
+			if = {
+				limit = {
+					has_modifier = gts_trade_with_breast_pop_normal
+				}
+				random_list = {
+					60 = {
+					}					#no effect
+					10 = {
+						planet_event = {
+							id = gts_evt_breast.21
+						}
+					}					#trade goes up
+					10 = {
+						planet_event = {
+							id = gts_evt_breast.22
+						}
+					}					#trade goes down
+				}
+			}
+			else_if = {
+				limit = {
+					has_modifier = gts_trade_with_breast_pop_low
+				}
+				random_list = {
+					20 = {
+					}					#no effect
+					20 = {
+						planet_event = {
+							id = gts_evt_breast.21
+						}
+					}					#trade goes up
+					10 = {
+						planet_event = {
+							id = gts_evt_breast.22
+						}
+					}					#trade goes down
+				}
+			}
+			else_if = {
+				limit = {
+					has_modifier = gts_trade_with_breast_pop_high
+				}
+				random_list = {
+					30 = {
+					}					#no effect
+					10 = {
+						planet_event = {
+							id = gts_evt_breast.21
+						}
+					}					#trade goes up
+					20 = {
+						planet_event = {
+							id = gts_evt_breast.22
+						}
+					}					#trade goes down
+				}
+			}
+		}
+	}
+}
+
+planet_event = {
+	#trade up
+	id = gts_evt_breast.21
+	title = "gts_evt_breast.21.name"
+	desc = "gts_evt_breast.21.desc"
+	picture = GFX_evt_wormhole
+	location = ROOT
+	is_triggered_only = yes
+	option = {
+		name = EXCELLENT
+		if = {
+			#有低贸易-替换为中贸易
+			limit = {
+				has_modifier = gts_trade_with_breast_pop_low
+			}
+			hidden_effect = {
+				remove_modifier = gts_trade_with_breast_pop_low
+				add_modifier = {
+					modifier = "gts_trade_with_breast_pop_normal"
+					days = -1
+				}
+			}
+		}
+		else_if = {
+			#有中贸易-替换为高贸易
+			limit = {
+				has_modifier = gts_trade_with_breast_pop_normal
+			}
+			hidden_effect = {
+				remove_modifier = gts_trade_with_breast_pop_normal
+				add_modifier = {
+					modifier = "gts_trade_with_breast_pop_high"
+					days = -1
+				}
+			}
+		}
+		else_if = {
+			#有高贸易-奖励资源
+			limit = {
+				has_modifier = gts_trade_with_breast_pop_high
+			}
+			owner = {
+				add_monthly_resource_mult = {
+					resource = consumer_goods
+					value = 6
+					min = 100
+				}
+				add_monthly_resource_mult = {
+					resource = volatile_motes
+					value = 3
+					min = 50
+				}
+				add_monthly_resource_mult = {
+					resource = exotic_gases
+					value = 3
+					min = 50
+				}
+				add_monthly_resource_mult = {
+					resource = rare_crystals
+					value = 3
+					min = 50
+				}
+			}
+		}
+	}
+}
+
+planet_event = {
+	#trade down
+	id = gts_evt_breast.22
+	title = "gts_evt_breast.22.name"
+	desc = "gts_evt_breast.22.desc"
+	picture = GFX_evt_wormhole
+	location = ROOT
+	is_triggered_only = yes
+	option = {
+		name = colony.3032.a
+		if = {
+			limit = {
+				has_modifier = gts_trade_with_breast_pop_high
+			}
+			hidden_effect = {
+				remove_modifier = gts_trade_with_breast_pop_high
+				add_modifier = {
+					modifier = "gts_trade_with_breast_pop_normal"
+					days = -1
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				has_modifier = gts_trade_with_breast_pop_normal
+			}
+			hidden_effect = {
+				remove_modifier = gts_trade_with_breast_pop_normal
+				add_modifier = {
+					modifier = "gts_trade_with_breast_pop_low"
+					days = -1
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				has_modifier = gts_trade_with_breast_pop_low
+			}
+			owner = {
+				add_monthly_resource_mult = {
+					resource = energy
+					value = 6
+					min = -500
+				}
+			}
+		}
+	}
+}
+
+event = {
+	id = gts_evt_breast.30
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		exists = event_target:gts_breast_planet
+		event_target:gts_breast_planet = {
+			has_planet_flag = gts_breast_active
+		}
+	}
+	immediate = {
+		event_target:gts_breast_planet = {
+			planet_event = {
+				id = gts_evt_breast.31
+			}
+		}
+	}
+}
+
+planet_event = {
+	#周期转化星球
+	id = gts_evt_breast.31
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		#有星球flag\"转化活跃\"
+		has_planet_flag = gts_breast_active
+	}
+	immediate = {
+		IF = {
+			#如果是大陆，转化为海洋
+			limit = {
+				is_planet_class = pc_continental
+			}
+			change_pc = pc_ocean
+			clear_deposits = yes			#添加地块：无边乳汁海*6
+			add_deposit = d_gts_breast_sea
+			add_deposit = d_gts_breast_sea
+			add_deposit = d_gts_breast_sea
+			add_deposit = d_gts_breast_sea
+			add_deposit = d_gts_breast_sea
+			add_deposit = d_gts_breast_sea
+			add_deposit = d_gts_breast_sea
+			add_deposit = d_gts_breast_sea
+			remove_modifier = gts_dry_season
+			IF = {
+				limit = {
+					NOT = {
+						has_modifier = gts_wet_season
+					}					#记得改
+				}
+				add_modifier = {
+					modifier = gts_wet_season
+					days = -1
+				}
+			}
+		}
+		ELSE_IF = {
+			#如果是海洋，转化为大陆
+			limit = {
+				is_planet_class = pc_ocean
+			}
+			change_pc = pc_continental
+			clear_deposits = yes
+			add_deposit = d_portal_research_zone
+			add_deposit = d_active_volcano
+			add_deposit = d_tempestous_mountain
+			add_deposit = d_underwater_vent
+			add_deposit = d_submerged_ore_veins
+			add_deposit = d_submerged_ore_veins			#矿+3
+			add_deposit = d_lush_jungle
+			add_deposit = d_natural_farmland
+			add_deposit = d_teeming_reef
+			add_deposit = d_gts_breast_sea
+			add_deposit = d_gts_breast_sea
+			remove_modifier = gts_wet_season
+			IF = {
+				limit = {
+					NOT = {
+						has_modifier = gts_dry_season
+					}					#记得改
+				}
+				add_modifier = {
+					modifier = gts_dry_season
+					days = -1
+				}
+			}
+		}
+		ELSE_IF = {
+			limit = {
+				is_planet_class = pc_broken
+			}
+			remove_planet_flag = gts_breast_active
+		}
+		ELSE = {
+			change_pc = pc_ocean
+			clear_deposits = yes			#添加地块：无边乳汁海*6
+			add_deposit = d_gts_breast_sea
+			add_deposit = d_gts_breast_sea
+			add_deposit = d_gts_breast_sea
+			add_deposit = d_gts_breast_sea
+			add_deposit = d_gts_breast_sea
+			add_deposit = d_gts_breast_sea
+			add_deposit = d_gts_breast_sea
+			add_deposit = d_gts_breast_sea
+			IF = {
+				limit = {
+					NOT = {
+						has_modifier = gts_wet_season
+					}					#记得改
+				}
+				add_modifier = {
+					modifier = gts_wet_season
+					days = -1
+				}
+			}
+		}
+		planet_event = {
+			id = gts_evt_breast.31
+			days = 360
+		}
+	}
+}

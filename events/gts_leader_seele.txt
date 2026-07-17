@@ -1,0 +1,7728 @@
+namespace = gts_seele
+country_event = {
+	#开局势
+	#180-360天触发观测事件，50%270-360天触发呼唤事件，50%90-180触发灵能观测事件
+	id = gts_seele.1
+	title = "gts_seele.1.name"
+	desc = gts_seele.1.desc
+	picture = GFX_gts_seele_1
+	is_triggered_only = yes
+	auto_opens = yes
+	immediate = {
+		country_event = {
+			id = gts_azure_waters.1
+		}
+		country_event = {
+			id = gts_seele.10
+			days = 180
+			random = 180
+		}
+		random_list = {
+			1 = {
+				country_event = {
+					id = gts_seele.11
+					days = 270
+					random = 90
+				}
+			}
+			1 = {
+			}
+		}
+	}
+	option = {
+		name = gts_seele.1.a
+		hidden_effect = {
+			start_situation = {
+				type = situation_seele
+			}
+			random_list = {
+				1 = {
+					country_event = {
+						id = gts_seele.44
+						days = 90
+						random = 90
+					}
+				}
+				1 = {
+				}
+			}
+		}
+	}
+	after = {
+		set_country_flag = seele
+	}
+}
+
+situation_event = {
+	#局势二阶段完成，招募希儿
+	id = gts_seele.2
+	title = "gts_seele.2.name"
+	desc = gts_seele.2.desc
+	picture = GFX_gts_seele_2
+	is_triggered_only = yes
+	option = {
+		name = gts_seele.hire
+		hidden_effect = {
+			every_playable_country = {
+				limit = {
+					has_country_flag = seele
+				}
+				country_event = {
+					id = gts_seele.114
+				}
+			}
+		}
+	}
+}
+
+situation_event = {
+	#局势三阶段完成，创建特殊事件，完成后希儿变成彼岸希
+	id = gts_seele.3
+	title = "gts_seele.4.name"
+	desc = gts_seele.4.desc
+	picture = GFX_gts_seele_3
+	is_triggered_only = yes
+	immediate = {
+		set_situation_locked = yes
+	}
+	option = {
+		name = gts_seele.4.a
+		hidden_effect = {
+			every_playable_country = {
+				limit = {
+					has_country_flag = seele
+				}
+				enable_special_project = {
+					name = "GTS_SEELE.STABLE"
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	#希儿招募  90-120天触发黑希的殖民地事件  180-360触发希儿的殖民地事件
+	id = gts_seele.114
+	title = "gts_seele.2.name"
+	desc = gts_seele.2.desc
+	is_triggered_only = yes
+	picture = GFX_leader_recruitment_bg_renowned
+	auto_opens = yes
+	event_window_type = leader_recruit
+	notification_event_icon = "GFX_message_leader_gts_seele_1"
+	immediate = {
+		give_specimen = {
+			origin = seele_universe
+			key = seele_universe
+		}
+		country_event = {
+			id = gts_seele.12
+			days = 90
+			random = 30
+		}
+		country_event = {
+			id = gts_seele.13
+			days = 180
+			random = 180
+		}
+		gts_leader_seele_hired = yes
+		last_created_leader = {
+			set_leader_flag = gts_seele_pillow_Swallowtail_Phantasm
+		}
+	}
+	picture_event_data = {
+		portrait = event_target:gts_leader
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = gts_seele.3.a.name
+		response_text = gts_seele.3.a.desc
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_seele.3.b.name
+		response_text = gts_seele.3.b.desc
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_seele.3.c.name
+		response_text = gts_seele.3.c.desc
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_seele.3.d.name
+		response_text = gts_seele.3.d.desc
+		is_dialog_only = yes
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		custom_tooltip = gts_seele.hire_custom_tooltip
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = legendary }
+			set_country_flag = seele_huanhai
+		}
+	}
+}
+
+country_event = {
+	#特殊事件完成，变双生，选择是否分离      360-540天触发布洛妮娅的异常现象，完成后可招募板鸭
+	id = gts_seele.6
+	title = "gts_seele.6.name"
+	desc = gts_seele.6.desc
+	picture = GFX_gts_seele_5
+	is_triggered_only = yes
+	auto_opens = yes
+	trigger = {
+		any_owned_leader = {
+			AND = {
+				has_leader_flag = gts_seele
+			}
+		}
+	}
+	immediate = {
+		remove_country_flag = seele_huanhai
+		country_event = {
+			id = gts_seele.14
+			days = 360
+			random = 180
+		}
+		every_owned_leader = {
+			hidden_effect = {
+				if = {
+					limit = {
+						has_leader_flag = gts_seele
+					}
+					change_leader_portrait = gts_portrait_seele_2
+				}
+			}
+		}
+		every_situation = {
+			limit = {
+				has_situation_flag = seele
+			}
+			set_situation_locked = no
+		}
+	}
+	option = {
+		give_specimen = {
+			key = seele_balance_white
+			origin = seele_balance_white
+		}
+		name = gts_seele.6.a		#一体
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.7
+			}
+		}
+	}
+	option = {
+		give_specimen = {
+			key = seele_balance_red
+			origin = seele_balance_red
+		}
+		name = gts_seele.6.b		#分开
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.8
+			}
+		}
+		allow = {
+			hidden_trigger = {
+				not = {
+					any_owned_leader = {
+						has_leader_flag = gts_seele_li
+					}
+				}
+			}
+			resource_stockpile_compare = {
+				resource = energy
+				value >= 7500
+			}
+		}
+		add_resource = {
+			energy = -7500
+		}
+	}
+}
+
+country_event = {
+	#不分开，这里不能获得黑希黑希   180天后触发相应事件
+	id = gts_seele.7
+	title = gts_seele.7.name
+	desc = gts_seele.7.desc
+	is_triggered_only = yes
+	picture = GFX_gts_seele_7
+	location = event_target:gts_seele
+	immediate = {
+		country_event = {
+			id = gts_seele.43
+			days = 180
+		}
+	}
+	option = {
+		name = gts_seele.7.a
+		hidden_effect = {
+			event_target:gts_seele = {
+				remove_trait = gts_trait_leader_seele_a
+				remove_trait = gts_trait_leader_seele_d
+				remove_trait = gts_trait_leader_seele_b
+				add_trait = {
+					trait = gts_trait_leader_seele_one_a
+					show_message = no
+				}
+				add_trait = {
+					trait = gts_trait_leader_seele_h
+					show_message = no
+				}
+			}
+		}
+	}
+	after = {
+		set_country_flag = seele_yiqi
+		set_country_flag = seele_shuangsheng_bufenkai
+	}
+}
+
+country_event = {
+	#分开，可以招募黑希    180天后触发相应事件
+	id = gts_seele.8
+	title = gts_seele.8.name
+	desc = gts_seele.8.desc
+	is_triggered_only = yes
+	location = event_target:gts_seele
+	auto_opens = yes
+	notification_event_icon = "GFX_message_leader_gts_seele_2"
+	event_window_type = leader_recruit
+	immediate = {
+		country_event = {
+			id = gts_seele.27
+			days = 180
+		}
+		event_target:gts_seele = {
+			remove_trait = gts_trait_leader_seele_a
+			remove_trait = gts_trait_leader_seele_d
+			remove_trait = gts_trait_leader_seele_b
+			add_trait = {
+				trait = gts_trait_leader_seele_one_a
+			}
+			add_trait = {
+				trait = gts_trait_leader_seele_h
+			}
+		}
+		gts_leader_seele_li_hired = yes
+		last_created_leader = {
+			set_leader_flag = gts_seele_li_pillow_Starchasm_Nyx
+		}
+	}
+	picture_event_data = {
+		portrait = event_target:gts_leader
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = gts_seele.8.a.name
+		response_text = gts_seele.8.a.desc
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_seele.8.b.name
+		response_text = gts_seele.8.b.desc
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_seele.8.c.name
+		response_text = gts_seele.8.c.desc
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_seele.8.d.name
+		response_text = gts_seele.8.d.desc
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_seele.8.e
+		tag = hire_leader
+		custom_tooltip = gts_seele.8.f
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = legendary }
+		}
+	}
+	after = {
+		set_country_flag = seele_shuangsheng_fenkai
+		set_country_flag = seele_fenkai
+	}
+}
+
+country_event = {
+	#正向局势完成，希儿变死生
+	id = gts_seele.9
+	title = gts_seele.9.name
+	desc = gts_seele.9.desc
+	is_triggered_only = yes
+	picture = GFX_gts_seele_8
+	location = event_target:gts_seele
+	trigger = {
+		any_owned_leader = {
+			AND = {
+				has_leader_flag = gts_seele
+			}
+		}
+	}
+	immediate = {
+		remove_country_flag = seele_shuangsheng_bufenkai
+		remove_country_flag = seele_shuangsheng_fenkai
+		every_owned_leader = {
+			hidden_effect = {
+				if = {
+					limit = {
+						has_leader_flag = gts_seele
+					}
+					set_leader_flag =gts_seele_pillow_Herrscher_of_Rebirth
+					remove_leader_flag = gts_seele_pillow_Swallowtail_Phantasm
+					remove_leader_flag = gts_seele_pillow_Mirrored_Flourishes
+					change_leader_portrait = gts_portrait_seele_3
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_seele.9.a		#死生在一起
+		hidden_effect = {
+			event_target:gts_seele = {
+				remove_trait = gts_trait_leader_seele_h
+				add_trait = {
+					trait = gts_trait_leader_seele_i
+				}
+				# add_trait = {
+				# 	trait = gts_trait_leader_seele_j
+				# }
+			}
+		}
+	}
+	option = {
+		name = gts_seele.9.b		#死生分开
+		trigger = {
+			Root = {
+				OR = {
+					has_country_flag = seele_yiqi
+				}
+			}
+		}
+		hide_option_if_not_allowed = yes
+		remove_country_flag = seele_yiqi
+		country_event = {
+			id = gts_seele.37
+		}
+		hidden_effect = {
+			event_target:gts_seele = {
+				remove_trait = gts_trait_leader_seele_h
+				# remove_trait = gts_trait_leader_seele_f
+				# add_trait = {
+				# 	trait = gts_trait_leader_seele_g
+				# }
+				add_trait = {
+					trait = gts_trait_leader_seele_i
+				}
+				# add_trait = {
+				# 	trait = gts_trait_leader_seele_j
+				# }
+			}
+		}
+	}
+	after = {
+		set_country_flag = seele_fenkai
+		set_country_flag = seele_sisheng
+	}
+}
+
+country_event = {
+	#兑换希儿随机触发的事件
+	id = gts_seele.10
+	title = "gts_seele.10.name"
+	desc = gts_seele.10.desc
+	picture = GFX_gts_seele_9
+	is_triggered_only = yes
+	option = {
+		add_resource = {
+			physics_research = 1000
+			energy = -500
+		}
+		every_situation = {
+			limit = {
+				has_situation_flag = seele
+			}
+			add_situation_progress = 5
+		}
+		name = gts_seele.10.a
+	}
+	option = {
+		add_resource = {
+			energy = 3000
+		}
+		every_situation = {
+			limit = {
+				has_situation_flag = seele
+			}
+			add_situation_progress = -5
+		}
+		name = gts_seele.10.b
+	}
+}
+
+country_event = {
+	#希儿呼唤  由兑换触发
+	id = gts_seele.11
+	title = "gts_seele.11.name"
+	desc = gts_seele.11.desc
+	picture = GFX_gts_seele_10
+	is_triggered_only = yes
+	option = {
+		add_resource = {
+			unity = 3000
+		}
+		every_situation = {
+			limit = {
+				has_situation_flag = seele
+			}
+			add_situation_progress = 5
+		}
+		name = gts_seele.11.a
+	}
+	option = {
+		add_resource = {
+			influence = 50
+		}
+		add_resource = {
+			energy = 5000
+		}
+		add_resource = {
+			physics_research = 3
+		}
+		every_situation = {
+			limit = {
+				has_situation_flag = seele
+			}
+			add_situation_progress = -5
+		}
+		name = gts_seele.11.b
+	}
+}
+
+country_event = {
+	#黑希对殖民地动手动脚   黑希殖民地事件
+	id = gts_seele.12
+	title = "gts_seele.12.name"
+	desc = gts_seele.12.desc
+	picture = GFX_gts_seele_11
+	is_triggered_only = yes
+	immediate = {
+		random_owned_planet = {
+			save_event_target_as = seele_12
+			add_planet_devastation = 30
+			add_deposit = d_dirt_ruin1
+			add_deposit = d_dirt_ruin1
+		}
+	}
+	option = {
+		add_resource = {
+			unity = 5000
+		}
+		add_resource = {
+			influence = 50
+		}
+		every_situation = {
+			limit = {
+				has_situation_flag = seele
+			}
+			add_situation_progress = 5
+		}
+		name = gts_seele.12.a
+	}
+	option = {
+		add_resource = {
+			influence = 100
+		}
+		every_situation = {
+			limit = {
+				has_situation_flag = seele
+			}
+			add_situation_progress = -5
+		}
+		name = gts_seele.12.b
+	}
+}
+
+country_event = {
+	#希儿殖民地事件
+	id = gts_seele.13
+	title = "gts_seele.13.name"
+	desc = gts_seele.13.desc
+	picture = GFX_gts_seele_12
+	is_triggered_only = yes
+	immediate = {
+		random_owned_planet = {
+			add_planet_devastation = 10
+			add_modifier = {
+				modifier = "strong_magnetic_field"
+			}
+			save_event_target_as = seele_13
+		}
+	}
+	option = {
+		add_resource = {
+			unity = 5000
+		}
+		every_situation = {
+			limit = {
+				has_situation_flag = seele
+			}
+			add_situation_progress = 5
+		}
+		name = gts_seele.13.a
+	}
+	option = {
+		add_resource = {
+			energy = 7500
+		}
+		every_situation = {
+			limit = {
+				has_situation_flag = seele
+			}
+			add_situation_progress = -5
+		}
+		name = gts_seele.13.b
+	}
+}
+
+country_event = {
+	#板鸭异常触发   由双生的事件触发，完成后招募板鸭
+	id = gts_seele.14
+	title = "gts_seele.14.name"
+	desc = gts_seele.14.desc
+	picture = GFX_gts_seele_13
+	is_triggered_only = yes
+	option = {
+		name = gts_seele.14.a.name
+		hidden_effect = {
+			random_planet_within_border = {
+				limit = {
+					is_preventing_anomaly = no
+					has_anomaly = no
+				}
+				add_anomaly = {
+					category = gts_bronya_add
+				}
+			}
+		}
+	}
+}
+
+ship_event = {
+	#招募板鸭
+	id = gts_seele.16
+	title = "gts_seele.15.name"
+	desc = gts_seele.15.desc
+	picture = GFX_gts_seele_15
+	is_triggered_only = yes
+	option = {
+		name = gts_seele.15.a
+		hidden_effect = {
+			root.owner = {
+				country_event = {
+					id = gts_seele.17
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	#招募板鸭   360-720天触发板鸭变成真理鸭的事件（创造特殊事件）
+	id = gts_seele.17
+	title = gts_seele.17.name
+	desc = gts_seele.17.desc
+	is_triggered_only = yes
+	event_window_type = leader_recruit
+	immediate = {
+		country_event = {
+			id = gts_seele.18
+			days = 360
+			random = 360
+		}
+		gts_leader_bronya_hired = yes
+		last_created_leader = {
+			# set_leader_flag =
+		}
+	}
+	picture_event_data = {
+		portrait = event_target:gts_bronya
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = DISMISS
+		tag = dismiss_leader
+	}
+	option = {
+		name = gts_seele.17.a
+		response_text = gts_seele.17.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_seele.17.b
+		response_text = gts_seele.17.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_seele.17.c
+		response_text = gts_seele.17.c.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_seele.17.d
+		response_text = gts_seele.17.d.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_seele.17.e
+		tag = hire_leader
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = legendary }
+		}
+		give_specimen = {
+			key = bronya_edem_star
+			origin = bronya_edem_star
+		}
+	}
+	after = {
+		set_country_flag = can_explore_gts_azure_waters_astral_rift_2
+		#新的
+		set_country_flag = hire_bronya
+		set_country_flag = bronya_lilv
+	}
+}
+
+country_event = {
+	#出特殊事件
+	id = gts_seele.18
+	title = gts_seele.18.name
+	desc = gts_seele.18.desc
+	is_triggered_only = yes
+	picture = GFX_gts_seele_16
+	option = {
+		name = gts_seele.18.a
+		hidden_effect = {
+			enable_special_project = {
+				name = "gts_seele_special_project"
+				location = capital_star
+			}
+		}
+	}
+}
+
+country_event = {
+	#完成特殊事件后变成真鸭    30-210后触发小兔事件，根据不同选择给加成     3600天后触发游戏发售事件
+	id = gts_seele.19
+	title = gts_seele.19.name
+	desc = gts_seele.19.desc
+	is_triggered_only = yes
+	picture = GFX_gts_seele_18
+	location = event_target:gts_bronya
+	immediate = {
+		remove_country_flag = bronya_lilv
+		country_event = {
+			id = gts_seele.20
+			days = 30
+			random = 180
+		}
+		country_event = {
+			id = gts_seele.39
+			days = 3600
+		}
+		every_owned_leader = {
+			hidden_effect = {
+				if = {
+					limit = {
+						has_leader_flag = gts_bronya
+					}
+					change_leader_portrait = gts_portrait_bronya_2
+					remove_trait = gts_trait_leader_seele_p
+					add_trait = gts_trait_leader_seele_t
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_seele.19.a
+		give_specimen = {
+			key = bronya_edem_star_own
+			origin = bronya_edem_star_own
+		}
+		remove_specimen = bronya_edem_star
+		hidden_effect = {
+			event_target:gts_bronya = {
+				# if = {
+				# 	limit = {
+				# 		event_target:gts_bronya = {
+				# 			leader_class = scientist
+				# 		}
+				# 	}
+				# 	# remove_trait = gts_trait_leader_seele_ad
+				# 	# remove_trait = gts_trait_leader_seele_ae
+				# 	# remove_trait = gts_trait_leader_seele_af
+				# 	# add_trait = {
+				# 	# 	trait = gts_trait_leader_seele_ag
+				# 	# }
+				# 	# add_trait = {
+				# 	# 	trait = gts_trait_leader_bronya_one_a
+				# 	# }
+				# 	# add_trait = {
+				# 	# 	trait = gts_trait_leader_seele_ai
+				# 	# }
+				# }
+				# if = {
+				# 	limit = {
+				# 		event_target:gts_bronya = {
+				# 			leader_class = commander
+				# 		}
+				# 	}
+				# 	remove_trait = gts_trait_leader_seele_s
+				# 	remove_trait = gts_trait_leader_seele_r
+				# 	remove_trait = gts_trait_leader_seele_q
+				# 	add_trait = {
+				# 		trait = gts_trait_leader_seele_aj
+				# 	}
+				# 	add_trait = {
+				# 		trait = gts_trait_leader_seele_v
+				# 	}
+				# 	add_trait = {
+				# 		trait = gts_trait_leader_seele_u
+				# 	}
+				# }
+				# if = {
+				# 	limit = {
+				# 		event_target:gts_bronya = {
+				# 			leader_class = official
+				# 		}
+				# 	}
+				# 	remove_trait = gts_trait_leader_seele_ak
+				# 	remove_trait = gts_trait_leader_seele_al
+				# 	remove_trait = gts_trait_leader_seele_am
+				# 	add_trait = {
+				# 		trait = gts_trait_leader_seele_an
+				# 	}
+				# 	add_trait = {
+				# 		trait = gts_trait_leader_seele_ao
+				# 	}
+				# 	add_trait = {
+				# 		trait = gts_trait_leader_seele_ap
+				# 	}
+				# }
+			}
+		}
+	}
+	after = {
+		set_country_flag = bronya_zhenli
+	}
+}
+
+country_event = {
+	#小兔事件  如前
+	id = gts_seele.20
+	title = gts_seele.20.name
+	desc = gts_seele.20.desc
+	is_triggered_only = yes
+	picture = GFX_gts_seele_19
+	option = {
+		name = gts_seele.20.a.name
+		add_modifier = {
+			modifier = gts_xiaotu_zhiguo
+		}
+		event_target:gts_bronya = {
+			remove_trait = gts_trait_leader_seele_w
+		}
+	}
+	option = {
+		name = gts_seele.20.b.name
+		add_modifier = {
+			modifier = gts_xiaotu_keyan
+		}
+		event_target:gts_bronya = {
+			remove_trait = gts_trait_leader_seele_w
+		}
+	}
+	option = {
+		name = gts_seele.20.c.name
+		add_modifier = {
+			modifier = gts_xiaotu_junshi
+		}
+		event_target:gts_bronya = {
+			remove_trait = gts_trait_leader_seele_w
+		}
+	}
+	option = {
+		name = gts_seele.20.d.name
+		custom_tooltip = "gts_seele.20.d.tip"
+		hidden_effect = {
+			set_country_flag = bronya.1
+		}
+	}
+}
+
+situation_event = {
+	# 负局势过程中板鸭事件   30-60天后触发接触事件
+	id = gts_seele.21
+	title = gts_seele.21.name
+	desc = gts_seele.21.desc
+	picture = GFX_gts_seele_21
+	is_triggered_only = yes
+	option = {
+		name = gts_seele.21.a
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = gts_seele.22
+					days = 30
+					random = 30
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	#接触 创建板鸭
+	id = gts_seele.22
+	title = gts_seele.22.name
+	desc = gts_seele.22.desc
+	picture = GFX_gts_seele_21
+	is_triggered_only = yes
+	location = root.capital_scope
+	immediate = {
+		create_country = {
+			name = "NAME_gts_bronya_name"
+			type = guardian
+			flag = {
+				icon = {
+					category = "spherical"
+					file = "flag_spherical_6.dds"
+				}
+				background = {
+					category = "backgrounds"
+					file = "00_solid.dds"
+				}
+				colors = {
+					"dark_blue"
+					"dark_blue"
+					"null"
+					"null"
+				}
+			}
+			effect = {
+				set_faction_hostility = {
+					target = root
+					set_hostile = no
+					set_neutral = yes
+					set_friendly = no
+				}
+				save_global_event_target_as = gts_seele_fail_country
+				set_country_flag = gts_seele_fail_country
+				every_playable_country = {
+					establish_communications_no_message = event_target:gts_seele_fail_country
+				}
+				create_leader = {
+					name = NAME_gts_bronya_name
+					gender = female
+					class = official
+					skill = 1
+					set_age = 1
+				}
+				last_created_leader = {
+					save_global_event_target_as = gts_seele_fail_leader
+					change_leader_portrait = gts_portrait_bronya_1
+				}
+				gts_create_bronya_enemy = yes
+			}
+		}
+	}
+	option = {
+		name = gts_aurora.1040.a
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = gts_seele.23
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	#开战
+	id = gts_seele.23
+	title = gts_seele.23.name
+	desc = gts_seele.23.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		portrait = gts_portrait_bronya_1
+		room = shroud_room
+	}
+	option = {
+		name = gts_seele.23.a
+		hidden_effect = {
+			event_target:gts_seele_fail_country = {
+				set_faction_hostility = {
+					target = root
+					set_hostile = yes
+					set_neutral = no
+					set_friendly = no
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	#板鸭4了  90-120天后触发小兔事件，给debuff，通过特殊事件消除      创建考古用于获得遗珍
+	id = gts_seele.24
+	title = gts_seele.24.name
+	desc = gts_seele.24.desc
+	is_triggered_only = yes
+	trigger = {
+		from = {
+			has_country_flag = gts_seele_fail_country
+		}
+	}
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		portrait = gts_portrait_bronya_1
+		room = shroud_room
+	}
+	immediate = {
+		country_event = {
+			id = gts_seele.28
+			days = 90
+			random = 30
+		}
+	}
+	option = {
+		name = gts_seele.24.a
+	}
+	after = {
+		set_country_flag = bronya.killed
+		capital_scope.solar_system = {
+			if = {
+				limit = {
+					root.capital_scope = {
+						is_ringworld = no
+					}
+				}
+				spawn_planet = {
+					class = pc_gtsra_bronya_slave
+					location = root.capital_scope
+					orbit_angle_offset = 90
+					size = 25
+					init_effect = {
+						set_planet_flag = bronya_body
+						prevent_anomaly = yes
+						set_name = "NAME_gts_bronya_body"
+						add_modifier = {
+							modifier = gts_bronya_planet_1
+						}
+						add_modifier = {
+							modifier = gts_bronya_planet_2
+						}
+						add_deposit = d_gts_bronya_brain
+						add_deposit = d_gts_bronya_chest
+						add_deposit = d_gts_bronya_chest
+						add_deposit = d_gts_bronya_armpit
+						add_deposit = d_gts_bronya_armpit
+						add_deposit = d_gts_bronya_abdomen
+						add_deposit = d_gts_bronya_foot
+						add_deposit = d_gts_bronya_foot
+						set_planet_flag = gts_bronya_planet
+						create_archaeological_site = gts_bronya_digsite
+					}
+				}
+			}
+			else = {
+				spawn_planet = {
+					class = pc_gtsra_bronya_slave
+					location = root.capital_scope
+					orbit_angle_offset = 180
+					orbit_distance_offset = 12
+					size = 25
+					init_effect = {
+						set_planet_flag = bronya_body
+						prevent_anomaly = yes
+						set_name = "NAME_gts_bronya_body"
+						add_modifier = {
+							modifier = gts_bronya_planet_1
+						}
+						add_modifier = {
+							modifier = gts_bronya_planet_2
+						}
+						add_deposit = d_gts_bronya_brain
+						add_deposit = d_gts_bronya_chest
+						add_deposit = d_gts_bronya_chest
+						add_deposit = d_gts_bronya_armpit
+						add_deposit = d_gts_bronya_armpit
+						add_deposit = d_gts_bronya_abdomen
+						add_deposit = d_gts_bronya_foot
+						add_deposit = d_gts_bronya_foot
+						set_planet_flag = gts_bronya_planet
+						create_archaeological_site = gts_bronya_digsite
+					}
+				}
+			}
+		}
+	}
+}
+
+fleet_event = {
+	id = gts_seele.2501
+	title = gts_seele.2501.name
+	desc = gts_seele.2501.desc
+	picture = GFX_gts_seele_25
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_continue
+		owner = {
+			add_resource = {
+				minor_artifacts = 15
+			}
+		}
+	}
+}
+
+fleet_event = {
+	id = gts_seele.2502
+	title = gts_seele.2502.name
+	desc = gts_seele.2502.desc
+	picture = GFX_gts_seele_25
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_continue
+		owner = {
+			add_resource = {
+				minor_artifacts = 5
+			}
+		}
+	}
+}
+
+fleet_event = {
+	id = gts_seele.2503
+	title = gts_seele.2503.name
+	desc = gts_seele.2503.desc
+	picture = GFX_gts_seele_25
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_continue
+		owner = {
+			add_resource = {
+				minor_artifacts = 15
+			}
+		}
+	}
+}
+
+fleet_event = {
+	id = gts_seele.2504
+	title = gts_seele.2504.name
+	desc = gts_seele.2504.desc
+	picture = GFX_gts_seele_25
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_continue
+		owner = {
+			add_resource = {
+				minor_artifacts = 25
+			}
+		}
+	}
+}
+
+fleet_event = {
+	id = gts_seele.2505
+	title = gts_seele.2505.name
+	desc = gts_seele.2505.desc
+	picture = GFX_gts_seele_25
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_continue
+		owner = {
+			add_resource = {
+				minor_artifacts = 25
+			}
+		}
+	}
+}
+
+fleet_event = {
+	id = gts_seele.2506
+	title = gts_seele.2506.name
+	desc = gts_seele.2506.desc
+	picture = GFX_gts_seele_25_6
+	show_sound = event_dig_site
+	archaeology = yes
+	is_triggered_only = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_seele.2506.a
+		owner = {
+			add_relic = r_gtsra_bronya_core
+		}
+		owner = {
+			add_resource = {
+				minor_artifacts = 30
+			}
+		}
+	}
+}
+
+situation_event = {
+	#局势负面结束   获得希儿遗珍
+	id = gts_seele.26
+	title = "gts_seele.26.name"
+	desc = gts_seele.26.desc
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_seele_26_room
+	}
+	is_triggered_only = yes
+	option = {
+		name = gts_seele.14.a.name
+		every_playable_country = {
+			limit = {
+				has_country_flag = seele
+			}
+			add_relic = r_gtsra_seele_core
+		}
+	}
+}
+
+country_event = {
+	#希儿不分开事件
+	id = gts_seele.43
+	title = gts_seele.43.name
+	desc = gts_seele.43.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_seele_27_room
+	}
+	option = {
+		name = gts_seele.43.a
+		add_resource = {
+			unity = 5000
+		}
+	}
+	option = {
+		name = gts_seele.43.b
+		add_resource = {
+			influence = 50
+		}
+	}
+}
+
+country_event = {
+	#希儿分开事件
+	id = gts_seele.27
+	title = gts_seele.27.name
+	desc = gts_seele.27.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_seele_27_room
+	}
+	option = {
+		name = gts_seele.27.a
+		add_resource = {
+			unity = 5000
+		}
+	}
+	option = {
+		name = gts_seele.27.b
+		add_resource = {
+			influence = 50
+		}
+	}
+}
+
+country_event = {
+	#小兔debuff创建   负局势下击败板鸭后一段时间创建
+	id = gts_seele.28
+	title = gts_seele.28.name
+	desc = gts_seele.28.desc
+	is_triggered_only = yes
+	picture = GFX_gts_seele_19
+	immediate = {
+		add_modifier = {
+			modifier = gts_xiaotu_fankang
+		}
+	}
+	option = {
+		name = gts_seele.28.a
+		hidden_effect = {
+			random_planet_within_border = {
+				limit = {
+					is_preventing_anomaly = no
+					has_anomaly = no
+				}
+				add_anomaly = {
+					category = gts_bronya_add
+				}
+			}
+		}
+	}
+}
+
+ship_event = {
+	#消除小兔debuff
+	id = gts_seele.29
+	title = gts_seele.29.name
+	desc = gts_seele.29.desc
+	is_triggered_only = yes
+	picture = GFX_gts_seele_19
+	immediate = {
+		remove_modifier = gts_xiaotu_fankang
+	}
+	option = {
+		name = gts_seele.29.a
+		hidden_effect = {
+			add_modifier = {
+				modifier = gts_xiaotu_over
+			}
+		}
+	}
+}
+
+country_event = {
+	#希儿送人回去  随机事件
+	id = gts_seele.30
+	title = gts_seele.30.name
+	desc = gts_seele.30.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_seele_30_room
+	}
+	fire_only_once = yes
+	trigger = {
+		has_country_flag = seele_fenkai
+	}
+	option = {
+		name = gts_seele.30.a
+		add_resource = {
+			unity = 5000
+		}
+	}
+	option = {
+		name = gts_seele.30.b
+		trigger = {
+			Root = {
+				OR = {
+					has_ethic = ethic_militarist
+					has_ethic = ethic_fanatic_militarist
+				}
+			}
+		}
+		add_resource = {
+			unity = 5000
+		}
+	}
+	option = {
+		name = gts_seele.30.c
+		trigger = {
+			Root = {
+				OR = {
+					has_ethic = ethic_pacifist
+					has_ethic = ethic_fanatic_pacifist
+				}
+			}
+		}
+		add_resource = {
+			unity = 5000
+		}
+	}
+}
+
+planet_event = {
+	#星球改造
+	id = gts_seele.31
+	title = gts_seele.31.name
+	desc = gts_seele.31.desc
+	fire_only_once = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_seele_31_room
+	}
+	location = root
+	fire_only_once = yes
+	is_triggered_only = yes
+	immediate = {
+		owner = {
+			random_owned_leader = {
+				limit = {
+					has_leader_flag = gts_seele
+				}
+				save_event_target_as = gts_planet_leader
+			}
+			set_country_flag = triggered_seele_planet
+		}
+	}
+	option = {
+		name = gts_seele.31.a
+	}
+}
+
+country_event = {
+	#黑希舰队
+	id = gts_seele.32
+	title = gts_seele.32.name
+	desc = gts_seele.32.desc
+	is_triggered_only = yes
+	fire_only_once = yes
+	picture = "GFX_gts_seele_32"
+	trigger = {
+		any_owned_leader = {
+			has_leader_flag = gts_seele_li
+		}
+	}
+	option = {
+		name = gts_seele.32.a
+		add_resource = {
+			unity = 4000
+		}
+	}
+}
+
+country_event = {
+	#板鸭舰队
+	id = gts_seele.33
+	title = gts_seele.33.name
+	desc = gts_seele.33.desc
+	is_triggered_only = yes
+	fire_only_once = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_seele_33_room
+	}
+	trigger = {
+		any_owned_leader = {
+			has_leader_flag = gts_bronya
+		}
+	}
+	immediate = {
+		set_country_flag = bronya.3
+	}
+	option = {
+		name = gts_seele.33.a
+		add_resource = {
+			unity = 4000
+		}
+	}
+}
+
+country_event = {
+	#黑希陆军，不分离
+	id = gts_seele.34
+	title = gts_seele.34.name
+	desc = gts_seele.34.desc
+	picture = GFX_gts_seele_34
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = gts_seele.34.a
+	}
+}
+
+country_event = {
+	#黑希陆军，分离
+	id = gts_seele.35
+	title = gts_seele.35.name
+	desc = gts_seele.35.desc
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_seele_35_room
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		event_target:gts_attackers_win_planet = {
+			gts_destroy_colony = yes
+			add_modifier = {
+				modifier = gtsra_semen_core
+			}
+		}
+	}
+	option = {
+		name = gts_seele.35.a
+	}
+}
+
+country_event = {
+	#板鸭陆军
+	id = gts_seele.36
+	title = gts_seele.36.name
+	desc = gts_seele.36.desc
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_seele_36_room
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		set_country_flag = bronya.4
+	}
+	option = {
+		name = gts_seele.36.a
+		custom_tooltip = gts_seele.36.a1
+		add_resource = {
+			gts_micro = 1
+			unity = 5000
+		}
+	}
+}
+
+country_event = {
+	#死生后分开   正向局势完成后用于获得黑希（必须在双生时未获得）
+	id = gts_seele.37
+	title = gts_seele.37.name
+	desc = gts_seele.37.desc
+	is_triggered_only = yes
+	location = event_target:gts_seele
+	auto_opens = yes
+	notification_event_icon = "GFX_message_leader_gts_seele_2"
+	event_window_type = leader_recruit
+	immediate = {
+		event_target:gts_seele = {
+			# remove_trait = gts_trait_leader_seele_f
+			# add_trait = {
+			# 	trait = gts_trait_leader_seele_g
+			# }
+		}
+		gts_leader_creator = {
+			SIZE = GTS
+			TYPE = legendary
+			LEADER_PORTRAIT = gts_portrait_seele_li_1
+			CLASS = commander
+			NAME = NAME_gts_seele_li
+			LEVEL = 1
+			AGE = 14
+			GENDER = female
+			ETHIC = materialist
+			DESC = DESC_gts_seele_li
+			CATCH_PHRASE = gts_seele_li_catch_phrase
+			RANDOMIZE_TRAITS = no
+			TARGET = gts_seele_li
+		}
+		last_created_leader = {
+			gts_love_normal_system_launch = yes
+			add_trait = {
+				trait = trait_leader_gts_love_logs_normal
+				show_message = no
+			}
+			add_trait = {
+				trait = leader_trait_Ultra
+				show_message = no
+			}
+			add_trait = {
+				trait = gts_trait_leader_seele_k
+			}
+			add_trait = {
+				trait = gts_trait_leader_seele_li_one_a
+			}
+			add_trait = {
+				trait = gts_trait_leader_seele_ar
+			}
+			set_leader_flag = gts_seele_li_pillow_Starchasm_Nyx
+			# add_trait = {
+			# 	trait = gts_trait_leader_seele_o
+			# }
+		}
+	}
+	picture_event_data = {
+		portrait = event_target:gts_leader
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = gts_seele.8.a.name
+		response_text = gts_seele.8.a.desc
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_seele.8.b.name
+		response_text = gts_seele.8.b.desc
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_seele.8.e
+		tag = hire_leader
+		custom_tooltip = gts_seele.8.f
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = legendary }
+		}
+	}
+	after = {
+		set_country_flag = seele_fenkai
+	}
+}
+
+country_event = {
+	#板鸭每年的随机
+	id = gts_seele.38
+	title = gts_seele.38.name
+	desc = gts_seele.38.desc
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_seele_36_room
+	}
+	is_triggered_only = yes
+	trigger = {
+		has_country_flag = hire_bronya
+	}
+	fire_only_once = yes
+	option = {
+		name = gts_seele.38.a
+		add_resource = {
+			unity = 4000
+		}
+	}
+	option = {
+		name = gts_seele.38.b
+		add_resource = {
+			energy = -500
+		}
+		hidden_effect = {
+			set_country_flag = bronya.2
+		}
+	}
+}
+
+country_event = {
+	#板鸭阿拉哈托发售  根据中途的选择产生相应影响
+	id = gts_seele.39
+	title = "gts_seele.39.name"
+	desc = gts_seele.39.desc
+	picture = GFX_gts_seele_39
+	is_triggered_only = yes
+	immediate = {
+		if = {
+			limit = {
+				has_country_flag = bronya.1
+				has_country_flag = bronya.2
+				has_country_flag = bronya.3
+				has_country_flag = bronya.4
+			}
+			set_country_flag = gts_bronya_game_success
+			country_event = {
+				id = gts_seele.40
+				days = 30
+			}
+		}
+		if = {
+			limit = {
+				not = {
+					has_country_flag = bronya.1
+					has_country_flag = bronya.2
+					has_country_flag = bronya.3
+					has_country_flag = bronya.4
+				}
+			}
+			set_country_flag = gts_bronya_game_fail
+			country_event = {
+				id = gts_seele.41
+				days = 30
+			}
+		}
+	}
+	option = {
+		name = gts_seele.39.a
+		if = {
+			limit = {
+				not = {
+					has_country_flag = gts_bronya_game_fail
+					has_country_flag = gts_bronya_game_success
+				}
+			}
+			country_event = {
+				id = gts_seele.42
+				days = 30
+			}
+		}
+	}
+}
+
+country_event = {
+	#成功   需要触发过布洛妮娅舰队，陆军事件，并且选择给赞助，将小兔留给板鸭
+	id = gts_seele.40
+	title = "gts_seele.40.name"
+	desc = gts_seele.40.desc
+	picture = GFX_gts_seele_39
+	is_triggered_only = yes
+	immediate = {
+		add_resource = {
+			influence = 50
+		}
+	}
+	option = {
+		add_resource = {
+			unity = 3000
+		}
+		add_modifier = {
+			modifier = gts_bronya_game_success
+		}
+		name = gts_seele.40.a
+	}
+}
+
+country_event = {
+	#失败   如上，但一样没干过
+	id = gts_seele.41
+	title = "gts_seele.41.name"
+	desc = gts_seele.41.desc
+	picture = GFX_gts_seele_42
+	is_triggered_only = yes
+	immediate = {
+		country_event = {
+			id = gts_seele.45
+			days = 30
+		}
+		add_resource = {
+			influence = 50
+		}
+	}
+	option = {
+		add_resource = {
+			unity = 3000
+		}
+		add_modifier = {
+			modifier = gts_bronya_game_fail
+		}
+		name = gts_seele.41.a
+	}
+}
+
+country_event = {
+	#一般   干过其中至少一项，但没有全部完成
+	id = gts_seele.42
+	title = "gts_seele.42.name"
+	desc = gts_seele.42.desc
+	picture = GFX_gts_seele_41
+	is_triggered_only = yes
+	immediate = {
+		add_resource = {
+			influence = 50
+		}
+	}
+	option = {
+		add_resource = {
+			unity = 3000
+		}
+		add_modifier = {
+			modifier = gts_bronya_game_normal
+		}
+		name = gts_seele.42.a
+	}
+}
+
+country_event = {
+	#希儿 灵能观测   兑换希儿后随机触发的事件
+	id = gts_seele.44
+	title = "gts_seele.44.name"
+	desc = gts_seele.44.desc
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_seele_44_room
+	}
+	is_triggered_only = yes
+	immediate = {
+		add_resource = {
+			influence = 50
+		}
+	}
+	option = {
+		add_resource = {
+			unity = 3000
+		}
+		add_tech_progress = {
+			tech = tech_psionic_theory
+			progress = 0.1
+		}
+		every_situation = {
+			limit = {
+				has_situation_flag = seele
+			}
+			add_situation_progress = 5
+		}
+		name = gts_seele.44.a
+	}
+	option = {
+		trigger = {
+			has_ethic = ethic_materialist
+			has_ethic = ethic_fanatic_materialist
+		}
+		add_resource = {
+			unity = 7500
+		}
+		add_resource = {
+			physics_research = 5000
+		}
+		every_situation = {
+			limit = {
+				has_situation_flag = seele
+			}
+			add_situation_progress = -5
+		}
+		name = gts_seele.44.b
+	}
+}
+
+country_event = {
+	#布洛妮娅打工中   游戏褒姒之后板鸭去打工还钱   换衣服
+	#如果选择进化媒触  企业，会分别在60   180天后触发对应事件
+	id = gts_seele.45
+	title = "gts_seele.45.name"
+	desc = gts_seele.45.desc
+	picture = GFX_gts_seele_45
+	is_triggered_only = yes
+	option = {
+		hide_option_if_not_allowed = yes
+		trigger = {
+			Root = {
+				OR = {
+					has_civic = civic_gts_maid
+				}
+			}
+		}
+		every_owned_leader = {
+			hidden_effect = {
+				if = {
+					limit = {
+						has_leader_flag = gts_bronya
+					}
+					change_leader_portrait = gts_portrait_bronya_3
+				}
+			}
+		}
+		add_resource = {
+			unity = 3000
+		}
+		name = gts_seele.45.a
+	}
+	option = {
+		hide_option_if_not_allowed = yes
+		trigger = {
+			Root = {
+				OR = {
+					has_civic = civic_gts_hcomic
+				}
+			}
+		}
+		every_owned_leader = {
+			hidden_effect = {
+				if = {
+					limit = {
+						has_leader_flag = gts_bronya
+					}
+					change_leader_portrait = gts_portrait_bronya_4
+				}
+			}
+		}
+		add_resource = {
+			unity = 3000
+		}
+		name = gts_seele.45.b
+	}
+	option = {
+		country_event = {
+			id = gts_seele.46
+			days = 60
+		}
+		hide_option_if_not_allowed = yes
+		trigger = {
+			Root = {
+				OR = {
+					has_civic = civic_evolution_catalyst
+				}
+			}
+		}
+		add_resource = {
+			unity = 3000
+		}
+		name = gts_seele.45.c
+	}
+	option = {
+		country_event = {
+			id = gts_seele.55
+			days = 180
+		}
+		hide_option_if_not_allowed = yes
+		trigger = {
+			Root = {
+				OR = {
+					has_authority = auth_corporate
+				}
+			}
+		}
+		add_resource = {
+			unity = 3000
+		}
+		name = gts_seele.45.d
+	}
+	option = {
+		name = gts_seele.45.e
+	}
+}
+
+country_event = {
+	#板鸭猫耳    拥有进化媒触并且让布洛妮娅从事相关工作  60天后触发该事件
+	id = gts_seele.46
+	title = "gts_seele.46.name"
+	desc = gts_seele.46.desc
+	picture = GFX_gts_seele_46
+	is_triggered_only = yes
+	immediate = {
+		every_owned_leader = {
+			hidden_effect = {
+				if = {
+					limit = {
+						has_leader_flag = gts_bronya
+					}
+					change_leader_portrait = gts_portrait_bronya_5
+				}
+			}
+		}
+	}
+	option = {
+		add_resource = {
+			unity = 3000
+		}
+		name = gts_seele.46.a
+	}
+}
+
+
+country_event = {
+	#板鸭 收购   由游戏失败后打工事件的选项触发
+	id = gts_seele.55
+	title = gts_seele.55.name
+	desc = gts_seele.55.desc
+	picture = GFX_gts_seele_55
+	is_triggered_only = yes
+	immediate = {
+		every_owned_leader = {
+			hidden_effect = {
+				if = {
+					limit = {
+						has_leader_flag = gts_bronya
+					}
+					change_leader_portrait = gts_portrait_bronya_1
+				}
+			}
+		}
+	}
+	option = {
+		set_leader = event_target:gts_bronya
+		event_target:gts_bronya = {
+		}
+		name = gts_seele.55.a
+	}
+	option = {
+		name = gts_seele.55.b
+	}
+}
+
+country_event = {
+	#负局势板鸭遗珍激活效果，用于招募板鸭
+	id = gts_seele.56
+	title = gts_seele.56.name
+	desc = gts_seele.56.desc
+	picture = GFX_gts_seele_25_6
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		has_country_flag = bronya.killed
+	}
+	option = {
+		name = gts_seele.56.a
+		custom_tooltip = gts_seele.56.a1
+		remove_country_flag = bronya.killed
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.57
+				days = 90
+			}
+		}
+	}
+	option = {
+		name = gts_seele.56.b
+		custom_tooltip = gts_seele.56.b1
+		remove_country_flag = bronya.killed
+	}
+}
+
+country_event = {
+	#通过遗珍招募的板鸭   如果保留殖民地板鸭会是泰坦级（后续可以调）
+	id = gts_seele.57
+	title = gts_seele.57.name
+	desc = gts_seele.57.desc
+	is_triggered_only = yes
+	event_window_type = leader_recruit
+	immediate = {
+		country_event = {
+			id = gts_seele.18
+			days = 360
+			random = 360
+		}
+		gts_leader_creator = {
+			SIZE = GTS
+			TYPE = legendary
+			LEADER_PORTRAIT = gts_portrait_bronya_1
+			CLASS = scientist
+			NAME = NAME_gts_bronya
+			LEVEL = 5
+			AGE = 14
+			EVENT_LEADER = yes
+			IMMORTAL = yes
+			GENDER = female
+			ETHIC = xenophile
+			DESC = gts_bronya_desc
+			CATCH_PHRASE = gts_bronya_catch_phrase
+			RANDOMIZE_TRAITS = no
+			TARGET = gts_bronya
+		}
+		last_created_leader = {
+			gts_love_normal_system_launch = yes
+			add_trait = {
+				trait = trait_leader_gts_love_logs_normal
+				show_message = no
+			}
+			add_trait = {
+				trait = leader_trait_Titan
+				show_message = no
+			}
+			add_trait = {
+				trait = gts_trait_leader_seele_p
+			}
+			add_trait = {
+				trait = gts_trait_leader_seele_ag
+			}
+			add_trait = {
+				trait = gts_trait_leader_bronya_one_a
+			}
+			add_trait = {
+				trait = gts_trait_leader_seele_w
+			}
+			add_trait = {
+				trait = gts_trait_leader_seele_e
+			}
+			# set_leader_flag =
+			save_global_event_target_as = gts_bronya
+		}
+	}
+	picture_event_data = {
+		portrait = event_target:gts_bronya
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = DISMISS
+		tag = dismiss_leader
+	}
+	option = {
+		name = gts_seele.57.a
+		response_text = gts_seele.57.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_seele.57.b
+		response_text = gts_seele.57.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_seele.57.c
+		response_text = gts_seele.57.c.response
+		is_dialog_only = yes
+		hidden_effect = {
+			set_country_flag = bronya_57_1
+		}
+	}
+	option = {
+		name = gts_seele.57.d
+		response_text = gts_seele.57.d.response
+		is_dialog_only = yes
+		trigger = {
+			has_country_flag = bronya_57_1
+		}
+		hidden_effect = {
+			event_target:gts_bronya = {
+				remove_trait = leader_trait_Titan
+				add_trait = {
+					trait = leader_trait_Ultra
+					show_message = no
+				}
+			}
+			random_planet_within_border = {
+				limit = {
+					has_planet_flag = bronya_body
+				}
+				destroy_colony = yes
+			}
+		}
+	}
+	option = {
+		name = gts_seele.57.e
+		response_text = gts_seele.57.e.response
+		is_dialog_only = yes
+		trigger = {
+			has_country_flag = bronya_57_1
+		}
+		hidden_effect = {
+			random_planet_within_border = {
+				limit = {
+					has_planet_flag = bronya_body
+				}
+				add_modifier = {
+					modifier = r_giga_loli_conquer
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_seele.17.e
+		tag = hire_leader
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = legendary }
+		}
+	}
+	after = {
+		set_country_flag = hire_bronya
+		set_country_flag = bronya_lilv
+	}
+}
+
+country_event = {
+	#负局势希儿遗珍   用于招募希儿
+	id = gts_seele.58
+	title = gts_seele.58.name
+	desc = gts_seele.58.desc
+	picture = GFX_gts_seele_8
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		has_relic = r_gtsra_seele_core
+	}
+	option = {
+		name = gts_seele.58.a
+		custom_tooltip = gts_seele.58.a1
+		remove_relic = r_gtsra_seele_core
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.59
+				days = 90
+			}
+		}
+	}
+	option = {
+		name = gts_seele.58.b
+		custom_tooltip = gts_seele.58.b1
+	}
+}
+
+country_event = {
+	#通过遗珍招募希儿（直接为死生且不分离）
+	id = gts_seele.59
+	title = gts_seele.59.name
+	desc = gts_seele.59.desc
+	event_picture_background = "GFX_leader_recruitment_bg_renowned"
+	picture_event_data = {
+		portrait = root
+	}
+	is_triggered_only = yes
+	picture = GFX_leader_recruitment_bg_renowned
+	auto_opens = yes
+	event_window_type = leader_recruit
+	notification_event_icon = "GFX_message_leader_gts_seele_7"
+	immediate = {
+		#set_country_flag =
+		gts_leader_creator = {
+			SIZE = GTS
+			TYPE = legendary
+			LEADER_PORTRAIT = gts_portrait_seele_3
+			CLASS = official
+			NAME = NAME_gts_seele
+			LEVEL = 10
+			AGE = 14
+			GENDER = female
+			EVENT_LEADER = no
+			ETHIC = materialist
+			DESC = DESC_gts_seele
+			CATCH_PHRASE = gts_seele_catch_phrase
+			RANDOMIZE_TRAITS = no
+			TARGET = gts_seele
+		}
+		last_created_leader = {
+			gts_love_normal_system_launch = yes
+			add_trait = {
+				trait = trait_leader_gts_love_logs_normal
+				show_message = no
+			}
+			add_trait = {
+				trait = leader_trait_Ultra
+				show_message = no
+			}
+			add_trait = {
+				trait = gts_trait_leader_seele_one_a
+			}
+			add_trait = {
+				trait = gts_trait_leader_seele_e
+			}
+			# add_trait = {
+			# 	trait = gts_trait_leader_seele_f
+			# }
+			add_trait = {
+				trait = gts_trait_leader_seele_i
+			}
+			# add_trait = {
+			# 	trait = gts_trait_leader_seele_j
+			# }
+			set_leader_flag = gts_seele_pillow_Herrscher_of_Rebirth
+		}
+	}
+	picture_event_data = {
+		portrait = event_target:gts_leader
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = gts_seele.59.a
+		response_text = gts_seele.59.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_seele.59.b
+		response_text = gts_seele.59.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = HIRE
+		tag = hire_leader
+		hidden_effect = {
+			gts_leader_hire_effect = { TYPE = legendary }
+		}
+	}
+}
+
+country_event = {
+	id = gts_seele.1018
+	title = gts_seele.1018.name
+	desc = gts_seele.1018.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	fire_only_once = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		room = call_seele_room
+	}
+	trigger = {
+		event_target:gts_seele = {
+			leader_age = 15
+		}
+	}
+	option = {
+		name = gts_seele.1018.1
+		hidden_effect = {
+			add_relic = r_gtsra_seele_book
+		}
+	}
+}
+country_event = {
+	#
+	id = gts_seele.1019
+	title = gts_seele.1019.name
+	desc = gts_seele.1019.desc
+	picture = GFX_gts_event_bfbf_delay
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		event_target:gts_seele = {
+			leader_age = 24
+		}
+	}
+	after = {
+
+	}
+	option = {
+		name = gts_seele.1019.1
+		hidden_effect = {
+			event_target:gts_seele = {
+				add_trait = {
+					trait = gts_trait_leader_seele_wings_of_panacea
+				}
+				change_leader_portrait = gts_portrait_seele_wings_of_panacea
+			}
+		}
+	}
+}
+country_event = {
+	#
+	id = gts_seele.1020
+	title = gts_seele.1020.name
+	desc = gts_seele.1020.desc
+	picture = GFX_gts_event_bfbf_delay
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		event_target:gts_bronya = {
+			leader_age = 24
+		}
+	}
+	after = {
+	}
+	option = {
+		name = gts_seele.1020.1
+		hidden_effect = {
+			event_target:gts_bronya = {
+				add_trait = {
+					trait = gts_trait_leader_bronya_silverwing
+				}
+				change_leader_portrait = gts_portrait_bronya_silverwing
+			}
+		}
+	}
+}
+#这下面不是了
+country_event = {
+	id = gts_seele.60
+	title = gts_seele.60.name
+	desc = gts_seele.60.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		room = seele_tree_room
+	}
+	option = {
+		name = gts_seele.60.1
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.61
+			}
+		}
+	}
+	option = {
+		trigger = {
+			owner = {
+				any_owned_leader = {
+					has_leader_flag = gts_seele_li
+				}
+			}
+		}
+		name = gts_seele.60.2
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.62
+			}
+		}
+	}
+	option = {
+		name = gts_seele.60.3
+		trigger = {
+			owner = {
+				any_owned_leader = {
+					has_leader_flag = gts_bronya
+				}
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.63
+			}
+		}
+	}
+	option = {
+		hide_option_if_not_allowed = yes
+		trigger = {
+			hidden_trigger = {
+				not = {
+					has_specimen = seele_balance_level
+				}
+			}
+			custom_tooltip =  gts_seele.61.balance_custom
+			event_target:gts_seele = {
+				has_total_skill > 9
+			}
+			event_target:gts_seele_li = {
+				has_total_skill > 9
+			}
+		}
+		name = gts_seele.61.balance
+		is_dialog_only = yes
+		response_text = gts_seele.61.balance_text
+		hidden_effect = {
+			remove_specimen = seele_balance_white
+			remove_specimen = seele_balance_red
+			give_specimen = {
+				key = seele_balance_level
+				origin = seele_balance_level
+			}
+		}
+	}
+	# option = {
+	#    name = gts_seele.61.4
+	#    is_dialog_only = yes
+	#    response_text = gts_seele.61.4
+	#    hidden_effect = {
+	# country_event = {
+	#    id = gts_seele.73
+	# }
+	#    }
+	# }
+	option = {
+		name = gts_seele.60.5
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.124
+			}
+		}
+	}
+	option = {
+		name = gts_seele.60.6
+		hidden_effect = {
+			if = {
+				limit = {
+					event_target:gts_seele_arkship = {
+						is_ship_size = gts_seele_1_swallowtail_phantasm
+					}
+				}
+				set_ship_design = {
+					design = NAME_gts_seele_1_swallowtail_phantasm
+				}
+			}
+			if = {
+				limit = {
+					event_target:gts_seele_arkship = {
+						is_ship_size = gts_seele_2_stygian_nymph
+					}
+				}
+				set_ship_design = {
+					design = NAME_gts_seele_2_stygian_nymph
+				}
+			}
+			if = {
+				limit = {
+					event_target:gts_seele_arkship = {
+						is_ship_size = gts_seele_3_herrscher_of_rebirth
+					}
+				}
+				set_ship_design = {
+					design = NAME_gts_seele_3_herrscher_of_rebirth
+				}
+			}
+			if = {
+				limit = {
+					event_target:gts_seele_arkship = {
+						is_ship_size = gts_seele_4_wings_of_panacea
+					}
+				}
+				set_ship_design = {
+					design = NAME_gts_seele_4_wings_of_panacea
+				}
+			}
+			if = {
+				limit = {
+					event_target:gts_seele_li_arkship = {
+						is_ship_size = gts_seele_li_1_stygian_nymph
+					}
+				}
+				set_ship_design = {
+					design = NAME_gts_seele_li_1_stygian_nymph
+				}
+			}
+			if = {
+				limit = {
+					event_target:gts_seele_li_arkship = {
+						is_ship_size = gts_seele_li_2_starchasm_nyx
+					}
+				}
+				set_ship_design = {
+					design = NAME_gts_seele_li_2_starchasm_nyx
+				}
+			}
+			if = {
+				limit = {
+					event_target:gts_bronya_arkship = {
+						is_ship_size = gts_bronya_1_herrscher_of_reason
+					}
+				}
+				set_ship_design = {
+					design = NAME_gts_bronya_1_herrscher_of_reason
+				}
+			}
+			if = {
+				limit = {
+					event_target:gts_bronya_arkship = {
+						is_ship_size = gts_bronya_2_herrscher_of_truth
+					}
+				}
+				set_ship_design = {
+					design = NAME_gts_bronya_2_herrscher_of_truth
+				}
+			}
+			if = {
+				limit = {
+					event_target:gts_bronya_arkship = {
+						is_ship_size = gts_bronya_3_silverwing_n_ex
+					}
+				}
+				set_ship_design = {
+					design = NAME_gts_bronya_3_silverwing_n_ex
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_seele.60.4
+		default_hide_option = yes
+	}
+}
+
+country_event = {
+	id = gts_seele.61
+	title = gts_seele.61.name
+	desc = {
+		text = gts_seele.61.1desc
+	}
+	desc = {
+		text = gts_seele.61.2desc
+	}
+	desc = {
+		text = gts_seele.61.3desc
+		trigger = {
+			event_target:gts_seele = {
+				check_variable = {
+					which = gts_love_logs
+					value < 50
+					value >= 25
+				}
+			}
+		}
+	}
+	desc = {
+		text = gts_seele.61.4desc
+		trigger = {
+			owner = {
+				any_owned_leader = {
+					has_leader_flag = gts_bronya
+				}
+			}
+		}
+	}
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		room = call_seele_room
+	}
+	option = {
+		name = gts_seele.61.1
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.64
+			}
+		}
+	}
+	option = {
+		name = gts_seele.61.2
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.67
+			}
+		}
+	}
+	option = {
+		name = gts_seele.61.3
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.70
+			}
+		}
+	}
+	option = {
+		name = gts_seele.94.again
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.97
+			}
+		}
+		trigger = {
+			has_country_flag = gts_seele_cruel_refuse
+		}
+		hide_option_if_not_allowed = yes
+	}
+	option = {
+		name = gts_seele.61.recruit
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.8
+			}
+		}
+		hide_option_if_not_allowed = yes
+		trigger = {
+			hidden_trigger = {
+				not = {
+					any_owned_leader = {
+						has_leader_flag = gts_seele_li
+					}
+				}
+			}
+			resource_stockpile_compare = {
+				resource = energy
+				value >= 7500
+			}
+		}
+		add_resource = {
+			energy = -7500
+		}
+	}
+	option = {
+		name = gts_seele.61.love
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.203
+			}
+		}
+	}
+	option = {
+		name = gts_seele.61.6
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.60
+			}
+		}
+	}
+	option = {
+		name = gts_seele.61.7
+	}
+}
+
+country_event = {
+	id = gts_seele.62
+	title = gts_seele.62.name
+	desc = gts_seele.62.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		room = call_seele_li_room
+	}
+	option = {
+		name = gts_seele.61.1
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.65
+			}
+		}
+	}
+	option = {
+		name = gts_seele.61.2
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.68
+			}
+		}
+	}
+	option = {
+		name = gts_seele.61.3
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.71
+			}
+		}
+	}
+	option = {
+		name = gts_seele.61.love
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.216
+			}
+		}
+	}
+	option = {
+		name = gts_seele.61.6
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.60
+			}
+		}
+	}
+	option = {
+		name = gts_seele.61.7
+	}
+}
+
+country_event = {
+	id = gts_seele.63
+	title = gts_seele.63.name
+	desc = gts_seele.63.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		room = call_bronya_room
+	}
+	option = {
+		name = gts_seele.61.1
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.66
+			}
+		}
+	}
+	option = {
+		name = gts_seele.61.2
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.69
+			}
+		}
+	}
+	option = {
+		name = gts_seele.61.3
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.72
+			}
+		}
+	}
+	option = {
+		name = gts_seele.61.love
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.220
+			}
+		}
+	}
+	option = {
+		allow = {
+			event_target:gts_bronya = {
+				check_variable = {
+					which = gts_love_logs
+					value > 25
+				}
+			}
+		}
+		name = gts_seele.61.specimens
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.222
+			}
+		}
+	}
+	option = {
+		name = gts_seele.61.6
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.60
+			}
+		}
+	}
+	option = {
+		name = gts_seele.61.7
+	}
+}
+
+country_event = {
+	id = gts_seele.64
+	title = gts_seele.64.name
+	desc = {
+		text = gts_seele.64.desc1
+		trigger = {
+			event_target:gts_seele = {
+				has_trait = leader_trait_Ultra
+			}
+		}
+	}
+	desc = {
+		text = gts_seele.64.desc2
+		trigger = {
+			event_target:gts_seele = {
+				has_trait = leader_trait_Titan
+			}
+		}
+	}
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		room = shroud_room
+	}
+	option = {
+		name = gts_seele.64.1
+		trigger = {
+			event_target:gts_seele = {
+				not = {
+					has_trait = leader_trait_Ultra
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:gts_seele = {
+				gts_leader_size_change_to = {
+					SIZE_TRAIT = leader_trait_Ultra
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_seele.64.2
+		trigger = {
+			event_target:gts_seele = {
+				not = {
+					has_trait = leader_trait_Titan
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:gts_seele = {
+				gts_leader_size_change_to = {
+					SIZE_TRAIT = leader_trait_Titan
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_seele.64.3
+		trigger = {
+			event_target:gts_seele = {
+				not = {
+					has_trait = leader_trait_Giant
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:gts_seele = {
+				gts_leader_size_change_to = {
+					SIZE_TRAIT = leader_trait_Giant
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_seele.64.4
+		trigger = {
+			event_target:gts_seele = {
+				not = {
+					has_trait = leader_trait_Tall
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:gts_seele = {
+				gts_leader_size_change_to = {
+					SIZE_TRAIT = leader_trait_Tall
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_seele.64.5
+		trigger = {
+			event_target:gts_seele = {
+				not = {
+					has_trait = leader_trait_Normal
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:gts_seele = {
+				gts_leader_size_change_to = {
+					SIZE_TRAIT = leader_trait_Normal
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_seele.64.6
+		trigger = {
+			event_target:gts_seele = {
+				not = {
+					has_trait = leader_trait_Small
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:gts_seele = {
+				gts_leader_size_change_to = {
+					SIZE_TRAIT = leader_trait_Small
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_seele.64.7
+		trigger = {
+			event_target:gts_seele = {
+				not = {
+					has_trait = leader_trait_Micro
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:gts_seele = {
+				gts_leader_size_change_to = {
+					SIZE_TRAIT = leader_trait_Micro
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_seele.64.8
+		trigger = {
+			event_target:gts_seele = {
+				not = {
+					has_trait = leader_trait_Nano
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:gts_seele = {
+				gts_leader_size_change_to = {
+					SIZE_TRAIT = leader_trait_Nano
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_seele.64.9
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.61
+			}
+		}
+	}
+	option = {
+		name = gts_seele.64.0
+	}
+}
+
+country_event = {
+	id = gts_seele.65
+	title = gts_seele.65.name
+	desc = gts_seele.65.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		room = shroud_room
+	}
+	option = {
+		name = gts_seele.64.1
+		trigger = {
+			event_target:gts_seele_li = {
+				not = {
+					has_trait = leader_trait_Ultra
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:gts_seele_li = {
+				gts_leader_size_change_to = {
+					SIZE_TRAIT = leader_trait_Ultra
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_seele.64.2
+		trigger = {
+			event_target:gts_seele_li = {
+				not = {
+					has_trait = leader_trait_Titan
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:gts_seele_li = {
+				gts_leader_size_change_to = {
+					SIZE_TRAIT = leader_trait_Titan
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_seele.64.3
+		trigger = {
+			event_target:gts_seele_li = {
+				not = {
+					has_trait = leader_trait_Giant
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:gts_seele_li = {
+				gts_leader_size_change_to = {
+					SIZE_TRAIT = leader_trait_Giant
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_seele.64.4
+		trigger = {
+			event_target:gts_seele_li = {
+				not = {
+					has_trait = leader_trait_Tall
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:gts_seele_li = {
+				gts_leader_size_change_to = {
+					SIZE_TRAIT = leader_trait_Tall
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_seele.64.5
+		trigger = {
+			event_target:gts_seele_li = {
+				not = {
+					has_trait = leader_trait_Normal
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:gts_seele_li = {
+				gts_leader_size_change_to = {
+					SIZE_TRAIT = leader_trait_Normal
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_seele.64.6
+		trigger = {
+			event_target:gts_seele_li = {
+				not = {
+					has_trait = leader_trait_Small
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:gts_seele_li = {
+				gts_leader_size_change_to = {
+					SIZE_TRAIT = leader_trait_Small
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_seele.64.7
+		trigger = {
+			event_target:gts_seele_li = {
+				not = {
+					has_trait = leader_trait_Micro
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:gts_seele_li = {
+				gts_leader_size_change_to = {
+					SIZE_TRAIT = leader_trait_Micro
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_seele.64.8
+		trigger = {
+			event_target:gts_seele_li = {
+				not = {
+					has_trait = leader_trait_Nano
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:gts_seele_li = {
+				gts_leader_size_change_to = {
+					SIZE_TRAIT = leader_trait_Nano
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_seele.64.9
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.62
+			}
+		}
+	}
+	option = {
+		name = gts_seele.64.0
+	}
+}
+
+country_event = {
+	id = gts_seele.66
+	title = gts_seele.66.name
+	desc = gts_seele.66.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		room = shroud_room
+	}
+	option = {
+		name = gts_seele.64.1
+		trigger = {
+			event_target:gts_bronya = {
+				not = {
+					has_trait = leader_trait_Ultra
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:gts_bronya = {
+				gts_leader_size_change_to = {
+					SIZE_TRAIT = leader_trait_Ultra
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_seele.64.2
+		trigger = {
+			event_target:gts_bronya = {
+				not = {
+					has_trait = leader_trait_Titan
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:gts_bronya = {
+				gts_leader_size_change_to = {
+					SIZE_TRAIT = leader_trait_Titan
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_seele.64.3
+		trigger = {
+			event_target:gts_bronya = {
+				not = {
+					has_trait = leader_trait_Giant
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:gts_bronya = {
+				gts_leader_size_change_to = {
+					SIZE_TRAIT = leader_trait_Giant
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_seele.64.4
+		trigger = {
+			event_target:gts_bronya = {
+				not = {
+					has_trait = leader_trait_Tall
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:gts_bronya = {
+				gts_leader_size_change_to = {
+					SIZE_TRAIT = leader_trait_Tall
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_seele.64.5
+		trigger = {
+			event_target:gts_bronya = {
+				not = {
+					has_trait = leader_trait_Normal
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:gts_bronya = {
+				gts_leader_size_change_to = {
+					SIZE_TRAIT = leader_trait_Normal
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_seele.64.6
+		trigger = {
+			event_target:gts_bronya = {
+				not = {
+					has_trait = leader_trait_Small
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:gts_bronya = {
+				gts_leader_size_change_to = {
+					SIZE_TRAIT = leader_trait_Small
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_seele.64.7
+		trigger = {
+			event_target:gts_bronya = {
+				not = {
+					has_trait = leader_trait_Micro
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:gts_bronya = {
+				gts_leader_size_change_to = {
+					SIZE_TRAIT = leader_trait_Micro
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_seele.64.8
+		trigger = {
+			event_target:gts_bronya = {
+				not = {
+					has_trait = leader_trait_Nano
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:gts_bronya = {
+				gts_leader_size_change_to = {
+					SIZE_TRAIT = leader_trait_Nano
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_seele.64.9
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.63
+			}
+		}
+	}
+	option = {
+		name = gts_seele.64.0
+	}
+}
+
+country_event = {
+	id = gts_seele.67
+	title = gts_seele.67.name
+	desc = gts_seele.67.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		room = seele_duty_room
+	}
+	option = {
+		name = gts_seele.67.1
+		hidden_effect = {
+			event_target:gts_seele = {
+				change_leader_class = scientist
+				# remove_trait = gts_trait_leader_seele_x
+				# remove_trait = gts_trait_leader_seele_y
+				# remove_trait = gts_trait_leader_seele_z
+				# remove_trait = gts_trait_leader_seele_c
+				# remove_trait = gts_trait_leader_seele_f
+				# remove_trait = gts_trait_leader_seele_g
+				# remove_trait = gts_trait_leader_seele_i
+				# add_trait = {
+				# 	trait = gts_trait_leader_seele_aa
+				# }
+				# add_trait = {
+				# 	trait = gts_trait_leader_seele_ab
+				# }
+				# add_trait = {
+				# 	trait = gts_trait_leader_seele_ac
+				# }
+			}
+		}
+	}
+	option = {
+		name = gts_seele.67.2
+		hidden_effect = {
+			event_target:gts_seele = {
+				change_leader_class = official
+				# remove_trait = gts_trait_leader_seele_x
+				# remove_trait = gts_trait_leader_seele_y
+				# remove_trait = gts_trait_leader_seele_z
+				# remove_trait = gts_trait_leader_seele_aa
+				# remove_trait = gts_trait_leader_seele_ab
+				# remove_trait = gts_trait_leader_seele_ac
+				# if = {
+				# 	limit = {
+				# 		not = {
+				# 			root = {
+				# 				has_country_flag = seele_fenkai
+				# 			}
+				# 			event_target:gts_seele = {
+				# 				has_trait = gts_trait_leader_seele_g
+				# 			}
+				# 		}
+				# 	}
+				# 	add_trait = {
+				# 		trait = gts_trait_leader_seele_g
+				# 	}
+				# }
+				# if = {
+				# 	limit = {
+				# 		not = {
+				# 			root = {
+				# 				has_country_flag = seele_yiqi
+				# 			}
+				# 			event_target:gts_seele = {
+				# 				has_trait = gts_trait_leader_seele_f
+				# 			}
+				# 		}
+				# 	}
+				# 	add_trait = {
+				# 		trait = gts_trait_leader_seele_f
+				# 	}
+				# }
+				# if = {
+				# 	limit = {
+				# 		not = {
+				# 			event_target:gts_seele = {
+				# 				has_trait = gts_trait_leader_seele_f
+				# 			}
+				# 		}
+				# 	}
+				# 	add_trait = {
+				# 		trait = gts_trait_leader_seele_f
+				# 	}
+				# }
+				# if = {
+				# 	limit = {
+				# 		not = {
+				# 			event_target:gts_seele = {
+				# 				has_trait = gts_trait_leader_seele_i
+				# 			}
+				# 		}
+				# 	}
+				# 	add_trait = {
+				# 		trait = gts_trait_leader_seele_i
+				# 	}
+				# }
+				# if = {
+				# 	limit = {
+				# 		not = {
+				# 			event_target:gts_seele = {
+				# 				has_trait = gts_trait_leader_seele_c
+				# 			}
+				# 		}
+				# 	}
+				# 	add_trait = {
+				# 		trait = gts_trait_leader_seele_c
+				# 	}
+				# }
+			}
+		}
+	}
+	option = {
+		name = gts_seele.67.3
+		hidden_effect = {
+			event_target:gts_seele = {
+				change_leader_class = commander
+				# remove_trait = gts_trait_leader_seele_c
+				# remove_trait = gts_trait_leader_seele_f
+				# remove_trait = gts_trait_leader_seele_g
+				# remove_trait = gts_trait_leader_seele_i
+				# remove_trait = gts_trait_leader_seele_aa
+				# remove_trait = gts_trait_leader_seele_ab
+				# remove_trait = gts_trait_leader_seele_ac
+				# if = {
+				# 	limit = {
+				# 		root = {
+				# 			has_country_flag = gts_seele_cruel_succeed
+				# 		}
+				# 	}
+				# 	add_trait = {
+				# 		trait = gts_trait_leader_seele_x
+				# 	}
+				# 	add_trait = {
+				# 		trait = gts_trait_leader_seele_y
+				# 	}
+				# 	add_trait = {
+				# 		trait = gts_trait_leader_seele_z
+				# 	}
+				# }
+			}
+		}
+	}
+	option = {
+		name = gts_seele.64.9
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.61
+			}
+		}
+	}
+	option = {
+		name = gts_seele.64.0
+	}
+}
+
+country_event = {
+	id = gts_seele.68
+	title = gts_seele.68.name
+	desc = gts_seele.68.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		room = seele_li_duty_room
+	}
+	option = {
+		name = gts_seele.67.1
+		hidden_effect = {
+			event_target:gts_seele_li = {
+				change_leader_class = scientist
+				# remove_trait = gts_trait_leader_seele_o
+				# remove_trait = gts_trait_leader_seele_aq
+				# remove_trait = gts_trait_leader_seele_ar
+				# remove_trait = gts_trait_leader_seele_av
+				# remove_trait = gts_trait_leader_seele_aw
+				# remove_trait = gts_trait_leader_seele_ax
+				# remove_trait = gts_trait_leader_seele_ay
+				# remove_trait = gts_trait_leader_seele_az
+				# add_trait = {
+				# 	trait = gts_trait_leader_seele_as
+				# }
+				# add_trait = {
+				# 	trait = gts_trait_leader_seele_at
+				# }
+				# add_trait = {
+				# 	trait = gts_trait_leader_seele_au
+				# }
+			}
+		}
+	}
+	option = {
+		name = gts_seele.67.2
+		hidden_effect = {
+			event_target:gts_seele_li = {
+				change_leader_class = official
+				# add_trait = {
+				# 	trait = gts_trait_leader_seele_aw
+				# }
+				# remove_trait = gts_trait_leader_seele_as
+				# remove_trait = gts_trait_leader_seele_at
+				# remove_trait = gts_trait_leader_seele_au
+				# remove_trait = gts_trait_leader_seele_o
+				# remove_trait = gts_trait_leader_seele_aq
+				# remove_trait = gts_trait_leader_seele_ar
+				# if = {
+				# 	limit = {
+				# 		root = {
+				# 			has_country_flag = seele_li_gentle_fail_a
+				# 		}
+				# 	}
+				# 	add_trait = {
+				# 		trait = gts_trait_leader_seele_ay
+				# 	}
+				# }
+				# if = {
+				# 	limit = {
+				# 		root = {
+				# 			has_country_flag = seele_li_gentle_one
+				# 		}
+				# 		not = {
+				# 			root = {
+				# 				has_country_flag = seele_li_gentle_fail_a
+				# 			}
+				# 		}
+				# 	}
+				# 	add_trait = {
+				# 		trait = gts_trait_leader_seele_av
+				# 	}
+				# }
+				# if = {
+				# 	limit = {
+				# 		root = {
+				# 			has_country_flag = seele_li_gentle_fail_b
+				# 		}
+				# 	}
+				# 	add_trait = {
+				# 		trait = gts_trait_leader_seele_az
+				# 	}
+				# }
+				# if = {
+				# 	limit = {
+				# 		root = {
+				# 			has_country_flag = seele_li_gentle_fail_b
+				# 		}
+				# 		not = {
+				# 			root = {
+				# 				has_country_flag = seele_li_gentle_fail_b
+				# 			}
+				# 		}
+				# 	}
+				# 	add_trait = {
+				# 		trait = gts_trait_leader_seele_ax
+				# 	}
+				# }
+			}
+		}
+	}
+	option = {
+		name = gts_seele.67.3
+		hidden_effect = {
+			event_target:gts_seele_li = {
+				change_leader_class = commander
+				# remove_trait = gts_trait_leader_seele_av
+				# remove_trait = gts_trait_leader_seele_aw
+				# remove_trait = gts_trait_leader_seele_ax
+				# remove_trait = gts_trait_leader_seele_ay
+				# remove_trait = gts_trait_leader_seele_az
+				# remove_trait = gts_trait_leader_seele_as
+				# remove_trait = gts_trait_leader_seele_at
+				# remove_trait = gts_trait_leader_seele_au
+				# add_trait = {
+				# 	trait = gts_trait_leader_seele_o
+				# }
+				# add_trait = {
+				# 	trait = gts_trait_leader_seele_aq
+				# }
+				# add_trait = {
+				# 	trait = gts_trait_leader_seele_ar
+				# }
+			}
+		}
+	}
+	option = {
+		name = gts_seele.64.9
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.62
+			}
+		}
+	}
+	option = {
+		name = gts_seele.64.0
+	}
+}
+
+country_event = {
+	id = gts_seele.69
+	title = gts_seele.69.name
+	desc = gts_seele.69.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		room = bronya_duty_room
+	}
+	option = {
+		name = gts_seele.67.1
+		hidden_effect = {
+			event_target:gts_bronya = {
+				change_leader_class = scientist
+				# if = {
+				# 	limit = {
+				# 		has_trait = gts_trait_leader_seele_p
+				# 	}
+				# 	remove_trait = gts_trait_leader_seele_s
+				# 	remove_trait = gts_trait_leader_seele_r
+				# 	remove_trait = gts_trait_leader_seele_q
+				# 	remove_trait = gts_trait_leader_seele_ak
+				# 	remove_trait = gts_trait_leader_seele_al
+				# 	remove_trait = gts_trait_leader_seele_am
+				# 	add_trait = {
+				# 		trait = gts_trait_leader_seele_ad
+				# 	}
+				# 	add_trait = {
+				# 		trait = gts_trait_leader_seele_ae
+				# 	}
+				# 	add_trait = {
+				# 		trait = gts_trait_leader_seele_af
+				# 	}
+				# }
+				# if = {
+				# 	limit = {
+				# 		has_trait = gts_trait_leader_seele_t
+				# 	}
+				# 	remove_trait = gts_trait_leader_seele_aj
+				# 	remove_trait = gts_trait_leader_seele_v
+				# 	remove_trait = gts_trait_leader_seele_u
+				# 	remove_trait = gts_trait_leader_seele_an
+				# 	remove_trait = gts_trait_leader_seele_ao
+				# 	remove_trait = gts_trait_leader_seele_ap
+				# 	add_trait = {
+				# 		trait = gts_trait_leader_seele_ag
+				# 	}
+				# 	add_trait = {
+				# 		trait = gts_trait_leader_seele_ah
+				# 	}
+				# 	add_trait = {
+				# 		trait = gts_trait_leader_seele_ai
+				# 	}
+				# }
+			}
+		}
+	}
+	option = {
+		name = gts_seele.67.2
+		hidden_effect = {
+			event_target:gts_bronya = {
+				change_leader_class = official
+				# if = {
+				# 	limit = {
+				# 		has_trait = gts_trait_leader_seele_p
+				# 	}
+				# 	remove_trait = gts_trait_leader_seele_s
+				# 	remove_trait = gts_trait_leader_seele_r
+				# 	remove_trait = gts_trait_leader_seele_q
+				# 	remove_trait = gts_trait_leader_seele_ad
+				# 	remove_trait = gts_trait_leader_seele_ae
+				# 	remove_trait = gts_trait_leader_seele_af
+				# 	add_trait = {
+				# 		trait = gts_trait_leader_seele_ak
+				# 	}
+				# 	add_trait = {
+				# 		trait = gts_trait_leader_seele_al
+				# 	}
+				# 	add_trait = {
+				# 		trait = gts_trait_leader_seele_am
+				# 	}
+				# }
+				# if = {
+				# 	limit = {
+				# 		has_trait = gts_trait_leader_seele_t
+				# 	}
+				# 	remove_trait = gts_trait_leader_seele_aj
+				# 	remove_trait = gts_trait_leader_seele_v
+				# 	remove_trait = gts_trait_leader_seele_u
+				# 	remove_trait = gts_trait_leader_seele_ag
+				# 	remove_trait = gts_trait_leader_seele_ah
+				# 	remove_trait = gts_trait_leader_seele_ai
+				# 	add_trait = {
+				# 		trait = gts_trait_leader_seele_an
+				# 	}
+				# 	add_trait = {
+				# 		trait = gts_trait_leader_seele_ao
+				# 	}
+				# 	add_trait = {
+				# 		trait = gts_trait_leader_seele_ap
+				# 	}
+				# }
+			}
+		}
+	}
+	option = {
+		name = gts_seele.67.3
+		hidden_effect = {
+			event_target:gts_bronya = {
+				change_leader_class = commander
+				# if = {
+				# 	limit = {
+				# 		has_trait = gts_trait_leader_seele_p
+				# 	}
+				# 	remove_trait = gts_trait_leader_seele_ad
+				# 	remove_trait = gts_trait_leader_seele_ae
+				# 	remove_trait = gts_trait_leader_seele_af
+				# 	remove_trait = gts_trait_leader_seele_ak
+				# 	remove_trait = gts_trait_leader_seele_al
+				# 	remove_trait = gts_trait_leader_seele_am
+				# 	add_trait = {
+				# 		trait = gts_trait_leader_seele_s
+				# 	}
+				# 	add_trait = {
+				# 		trait = gts_trait_leader_seele_r
+				# 	}
+				# 	add_trait = {
+				# 		trait = gts_trait_leader_seele_q
+				# 	}
+				# }
+				# if = {
+				# 	limit = {
+				# 		has_trait = gts_trait_leader_seele_t
+				# 	}
+				# 	remove_trait = gts_trait_leader_seele_ag
+				# 	remove_trait = gts_trait_leader_seele_ah
+				# 	remove_trait = gts_trait_leader_seele_ai
+				# 	remove_trait = gts_trait_leader_seele_an
+				# 	remove_trait = gts_trait_leader_seele_ao
+				# 	remove_trait = gts_trait_leader_seele_ap
+				# 	add_trait = {
+				# 		trait = gts_trait_leader_seele_aj
+				# 	}
+				# 	add_trait = {
+				# 		trait = gts_trait_leader_seele_v
+				# 	}
+				# 	add_trait = {
+				# 		trait = gts_trait_leader_seele_u
+				# 	}
+				# }
+			}
+		}
+	}
+	option = {
+		name = gts_seele.64.9
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.63
+			}
+		}
+	}
+	option = {
+		name = gts_seele.64.0
+	}
+}
+
+country_event = {
+	id = gts_seele.70
+	title = gts_seele.70.name
+	desc = gts_seele.70.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		room = seele_clothes_room
+	}
+	option = {
+		name = gts_seele.70.1
+		is_dialog_only = yes
+		response_text = gts_seele.70.1
+		hidden_effect = {
+			event_target:gts_seele = {
+				change_leader_portrait = gts_portrait_seele_1
+			}
+		}
+	}
+	option = {
+		name = gts_seele.70.2
+		is_dialog_only = yes
+		response_text = gts_seele.70.2
+		hidden_effect = {
+			event_target:gts_seele = {
+				change_leader_portrait = gts_portrait_seele_2
+			}
+		}
+	}
+	option = {
+		name = gts_seele.70.3
+		is_dialog_only = yes
+		response_text = gts_seele.70.3
+		hidden_effect = {
+			event_target:gts_seele = {
+				change_leader_portrait = gts_portrait_seele_3
+			}
+		}
+	}
+	option = {
+		name = gts_seele.70.4
+		is_dialog_only = yes
+		response_text = gts_seele.70.4
+		hidden_effect = {
+			event_target:gts_seele = {
+				change_leader_portrait = gts_portrait_seele_4
+			}
+		}
+	}
+	option = {
+		name = gts_seele.70.5
+		is_dialog_only = yes
+		response_text = gts_seele.70.5
+		hidden_effect = {
+			event_target:gts_seele = {
+				change_leader_portrait = gts_portrait_seele_5
+			}
+		}
+	}
+	option = {
+		trigger = {
+			root = {
+				has_civic = civic_evolution_catalyst
+			}
+		}
+		name = gts_seele.70.6
+		is_dialog_only = yes
+		response_text = gts_seele.70.6
+		hidden_effect = {
+			event_target:gts_seele = {
+				change_leader_portrait = gts_portrait_seele_6
+			}
+		}
+	}
+	option = {
+		trigger = {
+			root = {
+				has_country_flag = seele_yiqi
+			}
+		}
+		name = gts_seele.70.7
+		is_dialog_only = yes
+		response_text = gts_seele.70.7
+		hidden_effect = {
+			event_target:gts_seele = {
+				change_leader_portrait = gts_portrait_seele_7
+			}
+		}
+	}
+	option = {
+		name = gts_seele.70.8
+		is_dialog_only = yes
+		response_text = gts_seele.70.8
+		hidden_effect = {
+			event_target:gts_seele = {
+				change_leader_portrait = gts_portrait_seele_8
+			}
+		}
+	}
+	option = {
+		name = gts_seele.70.9
+		is_dialog_only = yes
+		response_text = gts_seele.70.9
+		hidden_effect = {
+			event_target:gts_seele = {
+				change_leader_portrait = gts_portrait_seele_9
+			}
+		}
+	}
+	option = {
+		trigger = {
+			root = {
+				has_country_flag = seele_yiqi
+			}
+		}
+		name = gts_seele.70.10
+		is_dialog_only = yes
+		response_text = gts_seele.70.10
+		hidden_effect = {
+			event_target:gts_seele = {
+				change_leader_portrait = gts_portrait_seele_10
+			}
+		}
+	}
+	option = {
+		name = gts_seele.64.9
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.61
+			}
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = gts_seele.64.0
+	}
+}
+
+country_event = {
+	id = gts_seele.71
+	title = gts_seele.71.name
+	desc = gts_seele.71.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		room = seele_li_clothes_room
+	}
+	option = {
+		name = gts_seele.71.1
+		is_dialog_only = yes
+		response_text = gts_seele.71.1
+		hidden_effect = {
+			event_target:gts_seele_li = {
+				change_leader_portrait = gts_portrait_seele_li_1
+			}
+		}
+	}
+	option = {
+		name = gts_seele.71.2
+		is_dialog_only = yes
+		response_text = gts_seele.71.2
+		hidden_effect = {
+			event_target:gts_seele_li = {
+				change_leader_portrait = gts_portrait_seele_li_2
+			}
+		}
+	}
+	option = {
+		name = gts_seele.71.3
+		is_dialog_only = yes
+		response_text = gts_seele.71.3
+		hidden_effect = {
+			event_target:gts_seele_li = {
+				change_leader_portrait = gts_portrait_seele_li_3
+			}
+		}
+	}
+	option = {
+		name = gts_seele.64.9
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.62
+			}
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = gts_seele.64.0
+	}
+}
+
+country_event = {
+	id = gts_seele.72
+	title = gts_seele.72.name
+	desc = gts_seele.72.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		room = bronya_clothes_room
+	}
+	option = {
+		name = gts_seele.72.1
+		is_dialog_only = yes
+		response_text = gts_seele.72.1
+		hidden_effect = {
+			event_target:gts_bronya = {
+				change_leader_portrait = gts_portrait_bronya_1
+			}
+		}
+	}
+	option = {
+		name = gts_seele.72.2
+		is_dialog_only = yes
+		response_text = gts_seele.72.2
+		hidden_effect = {
+			event_target:gts_bronya = {
+				change_leader_portrait = gts_portrait_bronya_2
+			}
+		}
+	}
+	option = {
+		name = gts_seele.72.3
+		is_dialog_only = yes
+		response_text = gts_seele.72.3
+		hidden_effect = {
+			event_target:gts_bronya = {
+				change_leader_portrait = gts_portrait_bronya_3
+			}
+		}
+	}
+	option = {
+		name = gts_seele.72.4
+		is_dialog_only = yes
+		response_text = gts_seele.72.4
+		hidden_effect = {
+			event_target:gts_bronya = {
+				change_leader_portrait = gts_portrait_bronya_4
+			}
+		}
+	}
+	option = {
+		name = gts_seele.72.5
+		is_dialog_only = yes
+		response_text = gts_seele.72.5
+		hidden_effect = {
+			event_target:gts_bronya = {
+				change_leader_portrait = gts_portrait_bronya_5
+			}
+		}
+	}
+	option = {
+		name = gts_seele.72.6
+		is_dialog_only = yes
+		response_text = gts_seele.72.6
+		hidden_effect = {
+			event_target:gts_bronya = {
+				change_leader_portrait = gts_portrait_bronya_6
+			}
+		}
+	}
+	option = {
+		name = gts_seele.72.7
+		is_dialog_only = yes
+		response_text = gts_seele.72.7
+		hidden_effect = {
+			event_target:gts_bronya = {
+				change_leader_portrait = gts_portrait_bronya_7
+			}
+		}
+	}
+	option = {
+		name = gts_seele.72.8
+		is_dialog_only = yes
+		response_text = gts_seele.72.8
+		hidden_effect = {
+			event_target:gts_bronya = {
+				change_leader_portrait = gts_portrait_bronya_8
+			}
+		}
+	}
+	option = {
+		name = gts_seele.64.9
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.63
+			}
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = gts_seele.64.0
+	}
+}
+
+country_event = {
+	#roll事件的内容，但还没有写完所以不加
+	id = gts_seele.73
+	title = gts_seele.73.name
+	desc = gts_seele.73.desc
+	is_triggered_only = yes
+	auto_opens = yes
+	diplomatic = yes
+	notification_event_icon = "gts_seele_73_icon"
+	picture_event_data = {
+		room = seele_bronya_room
+	}
+	option = {
+		name = gts_seele.73.1
+		hidden_effect = {
+			random_list = {
+				10 = {
+					if = {
+						limit = {
+						}
+						country_event = {
+							id = gts_seele.78
+						}
+					}
+					else = {
+						seele_random_event = yes
+					}
+				}
+				10 = {
+					if = {
+						limit = {
+							event_target:gts_seele = {
+								OR = {
+									has_trait = gts_leader_trait_micro_master
+									has_trait = gts_leader_trait_micro_master_2
+									has_trait = leader_trait_gtsfoster
+									has_trait = leader_trait_gtsfoster_2
+									has_trait = leader_trait_gtsfoster_3
+								}
+							}
+						}
+						country_event = {
+							id = gts_seele.116
+						}
+					}
+					else = {
+						seele_random_event = yes
+					}
+				}
+				10 = {
+					if = {
+						limit = {
+							root = {
+								or = {
+									has_technology = tech_gts_shrink_planet_hormone
+									has_tradition = tr_gts_survive_adopt
+								}
+								any_owned_planet = {
+									is_planet_class = pc_ocean
+								}
+							}
+						}
+						random_owned_planet = {
+							limit = {
+								is_planet_class = pc_ocean
+							}
+							save_event_target_as = seele_roll_80
+						}
+						country_event = {
+							id = gts_seele.80
+						}
+					}
+					else = {
+						seele_random_event = yes
+					}
+				}
+				10 = {
+					if = {
+						limit = {
+							any_owned_planet = {
+								is_planet_class = pc_continental
+								or = {
+									is_planet_class = pc_alpine
+								}
+								or = {
+									is_planet_class = pc_savannah
+								}
+							}
+						}
+						country_event = {
+							id = gts_seele.81
+						}
+					}
+					else = {
+						seele_random_event = yes
+					}
+				}
+				10 = {
+					if = {
+						limit = {
+							has_modifier = gts_bronya_game_fail
+							any_owned_planet = {
+								has_building = building_commercial_zone
+							}
+						}
+						country_event = {
+							id = gts_seele.82
+						}
+					}
+					if = {
+						limit = {
+							not = {
+								has_modifier = gts_bronya_game_fail
+							}
+							any_owned_planet = {
+								has_building = building_commercial_zone
+							}
+						}
+						country_event = {
+							id = gts_seele.88
+						}
+					}
+					else = {
+						seele_random_event = yes
+					}
+				}
+				10 = {
+					if = {
+						limit = {
+							root = {
+								has_trait = trait_gts_ub
+								or = {
+									has_trait = trait_tiny_ub
+								}
+							}
+						}
+						country_event = {
+							id = gts_seele.83
+						}
+					}
+					else = {
+						seele_random_event = yes
+					}
+				}
+				10 = {
+					if = {
+						limit = {
+							any_owned_planet = {
+								is_planet_class = pc_arctic
+							}
+						}
+						random_owned_planet = {
+							limit = {
+								is_planet_class = pc_arctic
+							}
+							save_event_target_as = seele_roll_84
+						}
+						country_event = {
+							id = gts_seele.84
+						}
+					}
+					else = {
+						seele_random_event = yes
+					}
+				}
+				10 = {
+					if = {
+						limit = {
+							any_owned_planet = {
+								is_planet_class = pc_arctic
+								or = {
+									is_planet_class = pc_tundra
+								}
+							}
+						}
+						country_event = {
+							id = gts_seele.85
+						}
+					}
+					else = {
+						seele_random_event = yes
+					}
+				}
+				10 = {
+					if = {
+						limit = {
+							root = {
+								has_civic = civic_gts_maid
+							}
+						}
+						country_event = {
+							id = gts_seele.87
+						}
+					}
+					else = {
+						seele_random_event = yes
+					}
+				}
+				10 = {
+					if = {
+						limit = {
+							root = {
+								has_civic = civic_gts_bare
+							}
+						}
+						country_event = {
+							id = gts_seele.89
+						}
+					}
+					else = {
+						seele_random_event = yes
+					}
+				}
+				10 = {
+					if = {
+						limit = {
+							root = {
+								has_civic = civic_distinguished_gts
+							}
+						}
+						country_event = {
+							id = gts_seele.90
+						}
+					}
+					else = {
+						seele_random_event = yes
+					}
+				}
+				10 = {
+					if = {
+						limit = {
+							root = {
+								has_civic = civic_evolution_catalyst
+							}
+						}
+						country_event = {
+							id = gts_seele.91
+						}
+					}
+					else = {
+						seele_random_event = yes
+					}
+				}
+				10 = {
+					if = {
+						limit = {
+							event_target:gts_seele = {
+								leader_class = commander
+							}
+						}
+						country_event = {
+							id = gts_seele.94
+						}
+					}
+					else = {
+						seele_random_event = yes
+					}
+				}
+				10 = {
+					if = {
+						limit = {
+							root = {
+								has_country_flag = seele_fenkai
+							}
+						}
+						country_event = {
+							id = gts_seele.103
+						}
+					}
+					else = {
+						seele_random_event = yes
+					}
+				}
+				10 = {
+					if = {
+						limit = {
+							any_owned_leader = {
+								has_trait = gts_trait_leader_seele_t
+							}
+						}
+						country_event = {
+							id = gts_seele.104
+						}
+					}
+					else = {
+						seele_random_event = yes
+					}
+				}
+				10 = {
+					if = {
+						limit = {
+							root = {
+								has_country_flag = seele_fenkai
+							}
+						}
+						country_event = {
+							id = gts_seele.105
+						}
+					}
+					else = {
+						seele_random_event = yes
+					}
+				}
+				10 = {
+					if = {
+						limit = {
+							event_target:gts_seele_li = {
+								leader_class = official
+							}
+						}
+						country_event = {
+							id = gts_seele.110
+						}
+					}
+					else = {
+						seele_random_event = yes
+					}
+				}
+				10 = {
+					if = {
+						limit = {
+							event_target:gts_seele = {
+								has_trait = gts_leader_item_p_aplog
+							}
+						}
+						country_event = {
+							id = gts_seele.120
+						}
+					}
+					else = {
+						seele_random_event = yes
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_seele.73.2
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.60
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_seele.74
+	title = "gts_seele.74.name"
+	desc = gts_seele.74.desc
+	#picture = GFX_gts_seele_5
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_seele.74.1
+		add_monthly_resource_mult = {
+			resource = minerals			#矿
+			value = 2
+			min = 250
+			max = 1000000
+		}
+		add_monthly_resource_mult = {
+			resource = alloys			#合金
+			value = 6
+			min = 500
+			max = 1000000
+		}
+	}
+	option = {
+		name = gts_seele.74.2
+		add_resource = {
+			volatile_motes = 100			#微粒
+			exotic_gases = 100			#天然气
+			rare_crystals = 100			#水晶
+		}
+	}
+}
+
+country_event = {
+	id = gts_seele.75
+	title = "gts_seele.75.name"
+	desc = gts_seele.75.desc
+	#picture = GFX_gts_seele_5
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_seele.75.1
+		add_monthly_resource_mult = {
+			resource = minerals			#矿
+			value = 3
+			min = 500
+			max = 1000000
+		}
+		add_monthly_resource_mult = {
+			resource = alloys			#合金
+			value = 3
+			min = 500
+			max = 1000000
+		}
+		add_resource = {
+			energy = 15000			#能量
+			minor_artifacts = 500
+		}
+	}
+	option = {
+		name = gts_seele.75.2
+		add_resource = {
+			sr_dark_matter = 100			#暗物质
+			sr_zro = 100			#泽洛
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					root = {
+						not = {
+							has_country_flag = can_trigger_futa_content
+						}
+					}
+				}
+				country_event = {
+					id = gts_seele.121					#赶海后续
+				}
+			}
+			if = {
+				limit = {
+					root = {
+						has_country_flag = can_trigger_futa_content
+					}
+				}
+				country_event = {
+					id = gts_seele.122					#赶海后续 futa
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_seele.76
+	title = "gts_seele.76.name"
+	desc = gts_seele.76.desc
+	#picture = GFX_gts_seele_5
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_seele.76.1
+		add_monthly_resource_mult = {
+			resource = unity			#凝聚力
+			value = 3
+			min = 1000
+			max = 1000000
+		}
+	}
+	after = {
+		random_owned_planet = {
+			add_planet_devastation = 10
+		}
+	}
+}
+
+country_event = {
+	#查查希儿穴里
+	id = gts_seele.77
+	title = "gts_seele.77.name"
+	desc = gts_seele.77.desc
+	#picture = GFX_gts_seele_5
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_seele.77.1
+		add_monthly_resource_mult = {
+			resource = physics_research			#物理学
+			value = 6
+			min = 1000
+			max = 1000000
+		}
+		add_monthly_resource_mult = {
+			resource = society_research			#社会学
+			value = 3
+			min = 1000
+			max = 1000000
+		}
+		add_monthly_resource_mult = {
+			resource = engineering_research			#工程学
+			value = 3
+			min = 1000
+			max = 1000000
+		}
+	}
+}
+
+country_event = {
+	id = gts_seele.78
+	title = "gts_seele.78.name"
+	desc = gts_seele.78.desc
+	#picture = GFX_gts_seele_5
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_seele.78.1
+		add_monthly_resource_mult = {
+			resource = food			#吃的
+			value = 6
+			min = 3000
+			max = 1000000
+		}
+	}
+	after = {
+		give_specimen = {
+			origin = seele_liquid
+			key = seele_liquid
+		}
+		set_country_flag = seele.78_finish
+		if = {
+			limit = {
+				not = {
+					root = {
+						has_country_flag = seele_78_finish
+					}
+				}
+				root = {
+					has_country_flag = can_trigger_humiliate_content
+				}
+			}
+			random_system_within_border = {
+				limit = {
+					system_star = {
+						NOR = {
+							is_star_class = sc_black_hole
+							is_star_class = sc_neutron_star
+							is_star_class = sc_pulsar
+						}
+					}
+				}
+				system_star = {
+					change_pc = pc_black_hole
+				}
+				solar_system = {
+					set_star_class = sc_black_hole
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_seele.116
+	title = "gts_seele.116.name"
+	desc = gts_seele.116.desc
+	#picture = GFX_gts_seele_5
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_seele.116.1
+		add_resource = {
+			energy = -3000
+		}
+		add_monthly_resource_mult = {
+			resource = unity			#凝聚力
+			value = 3
+			min = 2500
+			max = 1000000
+		}
+	}
+	option = {
+		name = gts_seele.116.2
+		add_monthly_resource_mult = {
+			resource = unity			#凝聚力
+			value = 1
+			min = 1000
+			max = 1000000
+		}
+	}
+	after = {
+		random_list = {
+			10 = {
+				country_event = {
+					id = gts_seele.117
+					days = 30
+				}
+			}
+			10 = {
+				country_event = {
+					id = gts_seele.118
+					days = 30
+				}
+			}
+			10 = {
+				country_event = {
+					id = gts_seele.119
+					days = 30
+				}
+			}
+			10 = {
+				if = {
+					limit = {
+						root = {
+							has_country_flag = can_trigger_futa_content
+						}
+					}
+					country_event = {
+						id = gts_seele.123
+						days = 30
+					}
+				}
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = gts_seele.79
+	title = "gts_seele.79.name"
+	desc = gts_seele.79.desc
+	#picture = GFX_gts_seele_5
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_seele.79.1
+	}
+}
+
+country_event = {
+	id = gts_seele.80
+	title = "gts_seele.80.name"
+	desc = gts_seele.80.desc
+	#picture = GFX_gts_seele_5
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_seele.80.1
+	}
+	after = {
+		event_target:seele_roll_80 = {
+			add_deposit = d_gts_giantess_fluid_6
+			add_deposit = d_gts_giantess_underwear_2
+		}
+	}
+}
+
+country_event = {
+	id = gts_seele.81
+	title = "gts_seele.81.name"
+	desc = gts_seele.81.desc
+	#picture = GFX_gts_seele_5
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_seele.81.1
+	}
+	after = {
+		random_owned_planet = {
+			add_deposit = d_gts_seele_roll_1
+			add_deposit = d_gts_seele_roll_2
+		}
+	}
+}
+
+country_event = {
+	id = gts_seele.117
+	title = "gts_seele.117.name"
+	desc = gts_seele.117.desc
+	#picture = GFX_gts_seele_5
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_seele.117.1
+		add_resource = {
+			gts_micro = 100
+		}
+	}
+	option = {
+		name = gts_seele.117.2
+		trigger = {
+			root = {
+				has_country_flag = gts_seele_cruel_succeed
+			}
+		}
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 3
+			min = 1000
+			max = 100000
+		}
+	}
+}
+
+country_event = {
+	id = gts_seele.118
+	title = "gts_seele.118.name"
+	desc = gts_seele.118.desc
+	#picture = GFX_gts_seele_5
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_seele.118.1
+		add_resource = {
+			gts_micro = 100
+		}
+	}
+	option = {
+		name = gts_seele.118.2
+		trigger = {
+			root = {
+				has_country_flag = gts_seele_cruel_succeed
+			}
+		}
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 3
+			min = 1000
+			max = 100000
+		}
+	}
+}
+
+country_event = {
+	id = gts_seele.119
+	title = "gts_seele.119.name"
+	desc = gts_seele.119.desc
+	#picture = GFX_gts_seele_5
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_seele.119.1
+		add_resource = {
+			gts_micro = 100
+		}
+	}
+	option = {
+		name = gts_seele.119.2
+		add_monthly_resource_mult = {
+			resource = minerals
+			value = 3
+			min = 1000
+			max = 100000
+		}
+	}
+	option = {
+		name = gts_seele.119.3
+		trigger = {
+			root = {
+				has_country_flag = gts_seele_cruel_succeed
+			}
+		}
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 3
+			min = 1000
+			max = 100000
+		}
+	}
+}
+
+country_event = {
+	id = gts_seele.123
+	title = "gts_seele.123.name"
+	desc = gts_seele.123.desc
+	#picture = GFX_gts_seele_5
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_seele.123.1
+		add_resource = {
+			gts_micro = 100
+		}
+	}
+	option = {
+		name = gts_seele.123.2
+		trigger = {
+			root = {
+				has_country_flag = gts_seele_cruel_succeed
+			}
+		}
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 3
+			min = 1000
+			max = 100000
+		}
+	}
+}
+
+country_event = {
+	id = gts_seele.82
+	title = "gts_seele.82.name"
+	desc = gts_seele.82.desc
+	#picture = GFX_gts_seele_5
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_seele.82.1
+		add_resource = {
+			energy = -5000			#能量
+		}
+	}
+	option = {
+		name = gts_seele.82.2
+	}
+}
+
+country_event = {
+	id = gts_seele.83
+	title = "gts_seele.83.name"
+	desc = gts_seele.83.desc
+	#picture = GFX_gts_seele_5
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_seele.83.1
+		add_monthly_resource_mult = {
+			resource = unity			#凝聚力
+			value = 3
+			min = 1000
+			max = 1000000
+		}
+	}
+}
+
+country_event = {
+	id = gts_seele.84
+	title = "gts_seele.84.name"
+	desc = gts_seele.84.desc
+	#picture = GFX_gts_seele_5
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_seele.84.1
+		add_monthly_resource_mult = {
+			resource = unity			#凝聚力
+			value = 3
+			min = 1000
+			max = 1000000
+		}
+	}
+	after = {
+		give_specimen = {
+			origin = seele_ice_cream
+			key = seele_ice_cream
+		}
+	}
+}
+
+planet_event = {
+	id = gts_seele.85
+	title = "gts_seele.85.name"
+	desc = gts_seele.85.desc
+	#picture = GFX_gts_seele_5
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_seele.85.1
+	}
+}
+
+country_event = {
+	#空置
+	id = gts_seele.86
+	title = "gts_seele.86.name"
+	desc = gts_seele.86.desc
+	#picture = GFX_gts_seele_5
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_seele.86.1
+		add_resource = {
+			energy = 8600			#能量
+		}
+	}
+}
+
+country_event = {
+	id = gts_seele.87
+	title = "gts_seele.87.name"
+	desc = gts_seele.87.desc
+	#picture = GFX_gts_seele_5
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_seele.87.1
+		add_resource = {
+			energy = 8700			#能量
+		}
+	}
+}
+
+country_event = {
+	id = gts_seele.88
+	title = "gts_seele.88.name"
+	desc = gts_seele.88.desc
+	#picture = GFX_gts_seele_5
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_seele.88.1
+		add_resource = {
+			energy = 8800			#能量
+		}
+	}
+}
+
+country_event = {
+	id = gts_seele.89
+	title = "gts_seele.89.name"
+	desc = gts_seele.89.desc
+	#picture = GFX_gts_seele_5
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_seele.89.1
+		add_resource = {
+			energy = 8900			#能量
+		}
+	}
+}
+
+country_event = {
+	id = gts_seele.90
+	title = "gts_seele.90.name"
+	desc = gts_seele.90.desc
+	#picture = GFX_gts_seele_5
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_seele.90.1
+		add_resource = {
+			energy = 9000			#能量
+		}
+	}
+}
+
+country_event = {
+	id = gts_seele.91
+	title = "gts_seele.91.name"
+	desc = gts_seele.91.desc
+	#picture = GFX_gts_seele_5
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_seele.91.1
+		if = {
+			limit = {
+				not = {
+					has_country_flag = gts_seele_li_cat
+				}
+			}
+			country_event = {
+				id = gts_seele.105
+				#把黑希拖下水
+				days = 90
+				random = 30
+			}
+		}
+		add_resource = {
+			energy = 9100			#能量
+		}
+	}
+}
+
+country_event = {
+	id = gts_seele.92
+	title = "gts_seele.92.name"
+	desc = gts_seele.92.desc
+	#picture = GFX_gts_seele_5
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_seele.92.1
+		add_resource = {
+			energy = 9200			#能量
+		}
+	}
+}
+
+country_event = {
+	id = gts_seele.105
+	title = "gts_seele.105.name"
+	desc = gts_seele.105.desc
+	#picture = GFX_gts_seele_5
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_seele.105.1
+		add_resource = {
+			energy = 10500			#能量
+		}
+	}
+	after = {
+		set_country_flag = gts_seele_li_cat
+	}
+}
+
+country_event = {
+	id = gts_seele.95
+	title = "gts_seele.95.name"
+	desc = gts_seele.95.desc
+	#picture = GFX_gts_seele_5
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_seele.95.1
+		add_resource = {
+			energy = 9500			#能量
+		}
+	}
+	option = {
+		name = gts_seele.95.2
+		custom_tooltip = gts_seele.95.2a
+		give_specimen = {
+			origin = seele_silk
+			key = seele_silk
+		}
+	}
+}
+
+country_event = {
+	id = gts_seele.96
+	title = "gts_seele.96.name"
+	desc = gts_seele.96.desc
+	#picture = GFX_gts_seele_5
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_seele.96.1
+		add_resource = {
+			energy = 9600			#能量
+		}
+	}
+	option = {
+		name = gts_seele.96.2
+	}
+}
+
+country_event = {
+	id = gts_seele.94
+	title = "gts_seele.94.name"
+	desc = gts_seele.94.desc
+	#picture = GFX_gts_seele_5
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_seele.94.1
+		custom_tooltip = gts_seele.94.1.a
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.97
+				days = 30
+			}
+		}
+	}
+	option = {
+		hide_option_if_not_allowed = yes
+		trigger = {
+			root = {
+				has_country_flag = can_trigger_futa_content
+			}
+		}
+		name = gts_seele.94.3
+		custom_tooltip = gts_seele.94.3.a
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.106
+				days = 30
+			}
+		}
+	}
+	option = {
+		name = gts_seele.94.2
+		custom_tooltip = gts_seele.94.2.a
+		hidden_effect = {
+			set_country_flag = gts_seele_cruel_refuse
+		}
+	}
+}
+
+country_event = {
+	#希儿残忍堕1  小人
+	id = gts_seele.97
+	title = "gts_seele.97.name"
+	desc = gts_seele.97.desc
+	#picture = GFX_gts_seele_5
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_seele.97.1
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.98
+				days = 50
+			}
+		}
+	}
+	option = {
+		name = gts_seele.97.2
+		trigger = {
+			has_country_flag = seele_fenkai
+		}
+		hide_option_if_not_allowed = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.9801
+				days = 50
+			}
+		}
+	}
+	after = {
+		hidden_effect = {
+			event_target:gts_seele = {
+				add_trait = {
+					trait = gts_trait_leader_seele_x
+				}
+			}
+			if = {
+				limit = {
+					root = {
+						has_country_flag = can_trigger_humiliate_content
+					}
+				}
+			}
+			random_owned_planet = {
+				random_owned_pop_group = {
+					kill_all_pop = yes
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	#希儿残忍堕2  城市
+	id = gts_seele.98
+	title = "gts_seele.98.name"
+	desc = gts_seele.98.desc
+	#picture = GFX_gts_seele_5
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_seele.98.1
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.99
+			}
+		}
+	}
+	option = {
+		name = gts_seele.98.2
+		trigger = {
+			has_country_flag = seele_fenkai
+		}
+		hide_option_if_not_allowed = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.9901
+				days = 50
+			}
+		}
+	}
+	after = {
+		hidden_effect = {
+			event_target:gts_seele = {
+				add_trait = {
+					trait = gts_trait_leader_seele_y
+				}
+			}
+			if = {
+				limit = {
+					root = {
+						has_country_flag = can_trigger_humiliate_content
+					}
+				}
+			}
+			random_owned_planet = {
+				add_planet_devastation = 10
+			}
+		}
+	}
+}
+
+country_event = {
+	#希儿残忍堕2  城市
+	id = gts_seele.9801
+	title = "gts_seele.9801.name"
+	desc = gts_seele.9801.desc
+	#picture = GFX_gts_seele_5
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_seele.9801.1
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.99
+				days = 50
+			}
+		}
+	}
+	option = {
+		name = gts_seele.9801.2
+		trigger = {
+			has_country_flag = seele_fenkai
+		}
+		hide_option_if_not_allowed = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.9901
+				days = 50
+			}
+		}
+	}
+	after = {
+		hidden_effect = {
+			event_target:gts_seele = {
+				add_trait = {
+					trait = gts_trait_leader_seele_y
+				}
+			}
+			if = {
+				limit = {
+					root = {
+						has_country_flag = can_trigger_humiliate_content
+					}
+				}
+			}
+			random_owned_planet = {
+				add_planet_devastation = 10
+			}
+		}
+	}
+}
+
+country_event = {
+	#希儿残忍堕3    星球
+	id = gts_seele.99
+	title = "gts_seele.99.name"
+	desc = gts_seele.99.desc
+	#picture = GFX_gts_seele_5
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_seele.99.1
+	}
+	after = {
+		hidden_effect = {
+			event_target:gts_seele = {
+				add_trait = {
+					trait = gts_trait_leader_seele_z
+				}
+			}
+			set_country_flag = gts_seele_cruel_succeed
+			if = {
+				limit = {
+					root = {
+						has_country_flag = can_trigger_humiliate_content
+					}
+				}
+				random_owned_planet = {
+					destroy_colony = yes
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	#希儿残忍堕3    星球
+	id = gts_seele.9901
+	title = "gts_seele.9901.name"
+	desc = gts_seele.9901.desc
+	#picture = GFX_gts_seele_5
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_seele.9901.1
+	}
+	after = {
+		hidden_effect = {
+			event_target:gts_seele = {
+				add_trait = {
+					trait = gts_trait_leader_seele_z
+				}
+			}
+			set_country_flag = gts_seele_cruel_succeed
+			if = {
+				limit = {
+					root = {
+						has_country_flag = can_trigger_humiliate_content
+					}
+				}
+				random_owned_planet = {
+					destroy_colony = yes
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	#希儿残忍堕1 小人 futa
+	id = gts_seele.106
+	title = "gts_seele.106.name"
+	desc = gts_seele.106.desc
+	#picture = GFX_gts_seele_5
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_seele.106.1
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.107
+				days = 50
+			}
+		}
+	}
+	option = {
+		name = gts_seele.106.2
+		trigger = {
+			has_country_flag = seele_fenkai
+		}
+		hide_option_if_not_allowed = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.10701
+				days = 50
+			}
+		}
+	}
+	after = {
+		hidden_effect = {
+			event_target:gts_seele = {
+				add_trait = {
+					trait = gts_trait_leader_seele_x
+				}
+			}
+			if = {
+				limit = {
+					root = {
+						has_country_flag = can_trigger_humiliate_content
+					}
+				}
+			}
+			random_owned_planet = {
+				random_owned_pop_group = {
+					kill_all_pop = yes
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_seele.107
+	title = "gts_seele.107.name"
+	desc = gts_seele.107.desc
+	#picture = GFX_gts_seele_5
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_seele.107.1
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.108
+				days = 50
+			}
+		}
+	}
+	after = {
+		hidden_effect = {
+			event_target:gts_seele = {
+				add_trait = {
+					trait = gts_trait_leader_seele_y
+				}
+			}
+			if = {
+				limit = {
+					root = {
+						has_country_flag = can_trigger_humiliate_content
+					}
+				}
+			}
+			random_owned_planet = {
+				add_planet_devastation = 10
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_seele.10701
+	title = "gts_seele.10701.name"
+	desc = gts_seele.10701.desc
+	#picture = GFX_gts_seele_5
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_seele.10701.1
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.108
+				days = 50
+			}
+		}
+	}
+	after = {
+		hidden_effect = {
+			event_target:gts_seele = {
+				add_trait = {
+					trait = gts_trait_leader_seele_y
+				}
+			}
+			if = {
+				limit = {
+					root = {
+						has_country_flag = can_trigger_humiliate_content
+					}
+				}
+			}
+			random_owned_planet = {
+				add_planet_devastation = 10
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_seele.108
+	title = "gts_seele.108.name"
+	desc = gts_seele.108.desc
+	#picture = GFX_gts_seele_5
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_seele.108.1
+	}
+	after = {
+		hidden_effect = {
+			event_target:gts_seele = {
+				add_trait = {
+					trait = gts_trait_leader_seele_z
+				}
+			}
+			set_country_flag = gts_seele_cruel_succeed
+			if = {
+				limit = {
+					root = {
+						has_country_flag = can_trigger_humiliate_content
+					}
+				}
+				random_owned_planet = {
+					destroy_colony = yes
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	#希儿残忍堕后陆军   跳房子
+	id = gts_seele.100
+	title = gts_seele.100.name
+	desc = gts_seele.100.desc
+	diplomatic = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = gts_seele.100.1
+		add_resource = {
+			unity = 5000
+		}
+	}
+}
+
+country_event = {
+	#希儿残忍堕后陆军   futa   黑希
+	id = gts_seele.101
+	title = gts_seele.101.name
+	desc = gts_seele.101.desc
+	diplomatic = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = gts_seele.101.1
+		add_resource = {
+			unity = 5000
+		}
+	}
+}
+
+country_event = {
+	#希儿残忍堕后陆军   futa   板鸭
+	id = gts_seele.102
+	title = gts_seele.102.name
+	desc = gts_seele.102.desc
+	diplomatic = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = gts_seele.102.1
+		add_resource = {
+			unity = 5000
+		}
+	}
+}
+
+country_event = {
+	id = gts_seele.103
+	title = "gts_seele.103.name"
+	desc = gts_seele.103.desc
+	#picture = GFX_gts_seele_5
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_seele.103.1
+		event_target:gts_seele_li = {
+			change_leader_portrait = gts_portrait_seele_li_2
+		}
+	}
+}
+
+country_event = {
+	id = gts_seele.104
+	title = "gts_seele.104.name"
+	desc = gts_seele.104.desc
+	#picture = GFX_gts_seele_5
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = gts_seele.104.1
+		add_resource = {
+			energy = 10400			#能量
+		}
+		event_target:gts_bronya = {
+			change_leader_portrait = gts_portrait_bronya_6
+		}
+	}
+}
+
+country_event = {
+	id = gts_seele.105
+	title = "gts_seele.105.name"
+	desc = gts_seele.105.desc
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_seele_105_room
+	}
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		event_target:gts_seele_li = {
+			change_leader_portrait = gts_portrait_bronya_6			#!
+		}
+		name = gts_seele.105.1
+		add_resource = {
+			energy = 10500			#能量
+		}
+	}
+}
+
+first_contact_event = {
+	id = gts_seele.109
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+		owner = {
+			country_event = {
+				id = gts_seele.30
+				days = 90
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_seele.110
+	title = gts_seele.110.name
+	desc = gts_seele.110.desc
+	diplomatic = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = gts_seele.110.1
+		add_resource = {
+			unity = 5000
+		}
+	}
+	option = {
+		name = gts_seele.110.2
+		country_event = {
+			id = gts_seele.111
+			days = 5
+		}
+	}
+}
+
+country_event = {
+	id = gts_seele.111
+	title = gts_seele.111.name
+	desc = gts_seele.111.desc
+	diplomatic = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = gts_seele.111.1
+		add_resource = {
+			unity = 5000
+		}
+	}
+	option = {
+		name = gts_seele.111.2
+	}
+	after = {
+		country_event = {
+			id = gts_seele.112
+			days = 5
+		}
+	}
+}
+
+country_event = {
+	id = gts_seele.112
+	title = gts_seele.112.name
+	desc = gts_seele.112.desc
+	diplomatic = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = gts_seele.112.1
+		add_resource = {
+			unity = 5000
+		}
+	}
+	option = {
+		name = gts_seele.112.2
+		hidden_effect = {
+			event_target:gts_seele_li = {
+				add_trait = {
+					trait = gts_trait_leader_seele_ay
+				}
+			}
+			set_country_flag = seele_li_gentle_fail_a
+		}
+	}
+	after = {
+		country_event = {
+			id = gts_seele.113
+			days = 5
+		}
+		set_country_flag = seele_li_gentle_one
+	}
+}
+
+country_event = {
+	id = gts_seele.113
+	title = gts_seele.113.name
+	desc = gts_seele.113.desc
+	diplomatic = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = gts_seele.113.1
+		add_resource = {
+			unity = 5000
+		}
+	}
+	option = {
+		name = gts_seele.110.2
+		hidden_effect = {
+			event_target:gts_seele_li = {
+				add_trait = {
+					trait = gts_trait_leader_seele_az
+				}
+			}
+			set_country_flag = seele_li_gentle_fail_b
+		}
+	}
+	after = {
+		set_country_flag = seele_li_gentle_seccess
+		set_country_flag = seele_li_gentle_two
+	}
+}
+
+country_event = {
+	id = gts_seele.120
+	title = gts_seele.120.name
+	desc = gts_seele.120.desc
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = gts_seele.120.1
+		add_resource = {
+			unity = 5000
+		}
+	}
+	option = {
+		name = gts_seele.120.2
+	}
+}
+country_event = {
+	id = gts_seele.121
+	title = gts_seele.120.name
+	desc = gts_seele.120.desc
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = gts_seele.120.1
+		add_resource = {
+			unity = 5000
+		}
+		every_owned_planet = {
+			limit = {
+				is_capital = yes
+			}
+			add_building = building_gts_milk_capital
+			change_pc = pc_gts_seele
+		}
+	}
+}
+
+country_event = {
+	id = gts_seele.122
+	title = gts_seele.122.name
+	desc = gts_seele.122.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		room = seele_clothes_room
+	}
+	option = {
+		name = gts_seele.64.9
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.61
+			}
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = gts_seele.64.0
+	}
+}
+country_event = {
+	id = gts_seele.124
+	title = gts_seele.124.name
+	desc = gts_seele.124.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		room = seele_clothes_room
+	}
+	option = {
+		name = gts_seele.64.9
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.60
+			}
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = gts_seele.124.1
+		hidden_effect = {
+			event_target:gts_seele = {
+				set_leader_flag = gts_seele_pillow_Swallowtail_Phantasm
+				remove_leader_flag = gts_seele_pillow_Mirrored_Flourishes
+				remove_leader_flag = gts_seele_pillow_Herrscher_of_Rebirth
+			}
+		}
+	}
+	option = {
+		hide_option_if_not_allowed = yes
+		trigger = {
+			hidden_trigger = {
+				any_owned_leader = {
+					has_leader_flag = gts_seele
+				}
+				any_owned_leader = {
+					has_leader_flag = gts_seele_li
+				}
+			}
+		}
+		name = gts_seele.124.2
+		hidden_effect = {
+			event_target:gts_seele = {
+				set_leader_flag = gts_seele_pillow_Mirrored_Flourishes
+				remove_leader_flag = gts_seele_pillow_Swallowtail_Phantasm
+				remove_leader_flag = gts_seele_pillow_Herrscher_of_Rebirth
+			}
+			event_target:gts_seele_li = {
+				set_leader_flag = gts_seele_pillow_Mirrored_Flourishes
+				remove_leader_flag = gts_seele_li_pillow_Starchasm_Nyx
+			}
+		}
+	}
+	option = {
+		hide_option_if_not_allowed = yes
+		trigger = {
+			hidden_trigger = {
+				any_owned_leader = {
+					has_leader_flag = gts_seele
+					has_trait = gts_trait_leader_seele_i
+				}
+			}
+		}
+		name = gts_seele.124.3
+		hidden_effect = {
+			event_target:gts_seele = {
+				set_leader_flag =gts_seele_pillow_Herrscher_of_Rebirth
+				remove_leader_flag = gts_seele_pillow_Swallowtail_Phantasm
+				remove_leader_flag = gts_seele_pillow_Mirrored_Flourishes
+			}
+		}
+	}
+	option = {
+		hide_option_if_not_allowed = yes
+		trigger = {
+			hidden_trigger = {
+				any_owned_leader = {
+					has_leader_flag = gts_seele_li
+				}
+			}
+		}
+		name = gts_seele.124.4
+		hidden_effect = {
+			event_target:gts_seele_li = {
+				set_leader_flag = gts_seele_li_pillow_Starchasm_Nyx
+				remove_leader_flag = gts_seele_pillow_Mirrored_Flourishes
+			}
+		}
+	}
+	option = {
+		name = gts_seele.64.0
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# country_event = {
+# 	#降低希儿好感的
+# 	id = gts_seele.201
+# 	is_triggered_only = yes
+# 	auto_opens = yes
+# 	hide_window = yes
+# 	immediate = {
+# 		event_target:gts_seele = {
+# 			change_variable = {
+# 				value = -0.5
+# 				which = gts_love_logs
+# 			}
+# 		}
+# 	}
+# 	trigger = {
+# 		owner = {
+# 			has_country_flag = gts_seele_drift
+# 			any_owned_leader = {
+# 				has_leader_flag = gts_seele
+# 			}
+# 		}
+# 	}
+# }
+# country_event = {
+# 	#希儿好感度升高
+# 	id = gts_seele.202
+# 	is_triggered_only = yes
+# 	auto_opens = yes
+# 	hide_window = yes
+# 	immediate = {
+# 		event_target:gts_seele = {
+# 			change_variable = {
+# 				value = 0.5
+# 				which = gts_love_logs
+# 			}
+# 		}
+# 	}
+# 	trigger = {
+# 		owner = {
+# 			has_country_flag = gts_seele_friendly
+# 			any_owned_leader = {
+# 				has_leader_flag = gts_seele
+# 			}
+# 		}
+# 	}
+# }
+country_event = {
+	#好感度相关
+	id = gts_seele.203
+	is_triggered_only = yes
+	auto_opens = yes
+	title = gts_seele.203.name
+	desc = gts_seele.203.desc
+	diplomatic = yes
+	picture_event_data = {
+		portrait = event_target:gts_seele
+		#room =
+	}
+	#下为查询当前好感
+	option = {#-5到0
+		name =  gts_seele.203.1
+		response_text = gts_seele.203.1.a_effect
+		trigger = {
+			event_target:gts_seele = {
+				check_variable = {
+					which = gts_love_logs
+					value > -5
+				}
+			}
+			event_target:gts_seele = {
+				check_variable = {
+					which = gts_love_logs
+					value <= 0
+				}
+			}
+		}
+		hide_option_if_not_allowed = yes
+	}
+	option = {#0到25
+		name =  gts_seele.203.1
+		response_text = gts_seele.203.1.b_effect
+		trigger = {
+			event_target:gts_seele = {
+				check_variable = {
+					which = gts_love_logs
+					value > 0
+				}
+			}
+			event_target:gts_seele = {
+				check_variable = {
+					which = gts_love_logs
+					value <= 25
+				}
+			}
+		}
+		hide_option_if_not_allowed = yes
+	}
+	option = {
+		name =  gts_seele.203.1
+		response_text = gts_seele.203.1.c_effect
+		trigger = {
+			event_target:gts_seele = {
+				check_variable = {
+					which = gts_love_logs
+					value > 25
+				}
+			}
+			event_target:gts_seele = {
+				check_variable = {
+					which = gts_love_logs
+					value <= 50
+				}
+			}
+		}
+		hide_option_if_not_allowed = yes
+	}
+	option = {
+		name =  gts_seele.203.1
+		response_text = gts_seele.203.1.d_effect
+		trigger = {
+			event_target:gts_seele = {
+				check_variable = {
+					which = gts_love_logs
+					value > 50
+				}
+			}
+			event_target:gts_seele = {
+				check_variable = {
+					which = gts_love_logs
+					value <= 75
+				}
+			}
+		}
+		hide_option_if_not_allowed = yes
+	}
+	option = {
+		name =  gts_seele.203.1
+		response_text = gts_seele.203.1.e_effect
+		trigger = {
+			event_target:gts_seele = {
+				check_variable = {
+					which = gts_love_logs
+					value > 75
+				}
+			}
+		}
+		hide_option_if_not_allowed = yes
+	}
+	#下为查询好感度状态
+	option = {
+		name = gts_seele.203.2
+		country_event = {
+			id = gts_seele.204
+		}
+	}
+
+	option = {
+		name =gts_seele.203.3
+		custom_tooltip = gts_seele.203.3a
+		trigger = {
+			and = {
+				event_target:gts_seele = {
+					check_variable = {
+						which = gts_love_logs
+						value >= 0
+					}
+				}
+			}
+		}
+		country_event = {
+			id = gts_seele.205
+		}
+		# hide_option_if_not_allowed = yes
+	}
+	option = {
+		name = gts_seele.61.6
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.61
+			}
+		}
+	}
+	option = {
+		name = gts_seele.203.5
+
+	}
+}
+country_event = {
+	id = gts_seele.204
+	title = gts_seele.204.name
+	diplomatic = yes
+	picture_event_data = {
+		portrait = event_target:gts_seele
+		#room = ethic_spaceship_room
+	}
+	is_triggered_only = yes
+	desc = {
+		text = gts_seele.204.a
+		trigger = {
+			root = {
+				has_country_flag = gts_seele_drift
+			}
+		}
+	}
+	desc = {
+		text = gts_seele.204.b
+		trigger = {
+			root = {
+				has_country_flag =gts_seele_neutrality
+			}
+		}
+	}
+	desc = {
+		text = gts_seele.204.c
+		trigger = {
+			root = {
+				has_country_flag =gts_seele_friendly
+			}
+		}
+	}
+	option = {
+		name = gts_seele.204.d
+		hidden_effect = {
+			remove_country_flag =gts_seele_neutrality
+			remove_country_flag = gts_seele_friendly
+			set_country_flag = gts_seele_drift
+			country_event = {
+				id = gts_seele.203
+			}
+		}
+	}
+	option = {
+		name = gts_seele.204.e
+		hidden_effect = {
+			set_country_flag =gts_seele_neutrality
+			remove_country_flag = gts_seele_friendly
+			remove_country_flag = gts_seele_drift
+			country_event = {
+				id = gts_seele.203
+			}
+		}
+	}
+	option = {
+		name = gts_seele.204.f
+		hidden_effect = {
+			remove_country_flag =gts_seele_neutrality
+			set_country_flag = gts_seele_friendly
+			remove_country_flag = gts_seele_drift
+			country_event = {
+				id = gts_seele.203
+			}
+		}
+	}
+	option = {
+		name = gts_seele.64.9
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.203
+			}
+		}
+	}
+}
+
+country_event = {
+	#降低黑希好感的
+	id = gts_seele.214
+	is_triggered_only = yes
+	auto_opens = yes
+	hide_window = yes
+	immediate = {
+		event_target:gts_seele_li = {
+			change_variable = {
+				value = -0.5
+				which = gts_love_logs
+			}
+		}
+	}
+	trigger = {
+		owner = {
+			has_country_flag = gts_seele_li_drift
+			any_owned_leader = {
+				has_leader_flag = gts_seele_li
+			}
+		}
+	}
+}
+country_event = {
+	#黑希好感度升高
+	id = gts_seele.215
+	is_triggered_only = yes
+	auto_opens = yes
+	hide_window = yes
+	immediate = {
+		event_target:gts_seele_li = {
+			change_variable = {
+				value = 0.5
+				which = gts_love_logs
+			}
+		}
+	}
+	trigger = {
+		owner = {
+			has_country_flag = gts_seele_li_friendly
+			any_owned_leader = {
+				has_leader_flag = gts_seele_li
+			}
+		}
+	}
+}
+country_event = {
+	#黑希好感度相关
+	id = gts_seele.216
+	is_triggered_only = yes
+	auto_opens = yes
+	title = gts_seele.216.name
+	desc = gts_seele.216.desc
+	diplomatic = yes
+	picture_event_data = {
+		portrait = event_target:gts_seele_li
+		#room =
+	}
+	#下为查询当前好感
+	option = {#-5到0
+		name =  gts_seele.216.1
+		response_text = gts_seele.216.1.a_effect
+		trigger = {
+			event_target:gts_seele_li = {
+				check_variable = {
+					which = gts_love_logs
+					value > -5
+				}
+			}
+			event_target:gts_seele_li = {
+				check_variable = {
+					which = gts_love_logs
+					value <= 0
+				}
+			}
+		}
+		hide_option_if_not_allowed = yes
+	}
+	option = {#0到25
+		name =  gts_seele.216.1
+		response_text = gts_seele.216.1.b_effect
+		trigger = {
+			event_target:gts_seele_li = {
+				check_variable = {
+					which = gts_love_logs
+					value > 0
+				}
+			}
+			event_target:gts_seele_li = {
+				check_variable = {
+					which = gts_love_logs
+					value <= 25
+				}
+			}
+		}
+		hide_option_if_not_allowed = yes
+	}
+	option = {
+		name =  gts_seele.216.1
+		response_text = gts_seele.216.1.c_effect
+		trigger = {
+			event_target:gts_seele_li = {
+				check_variable = {
+					which = gts_love_logs
+					value > 25
+				}
+			}
+			event_target:gts_seele_li = {
+				check_variable = {
+					which = gts_love_logs
+					value <= 50
+				}
+			}
+		}
+		hide_option_if_not_allowed = yes
+	}
+	option = {
+		name =  gts_seele.216.1
+		response_text = gts_seele.216.1.d_effect
+		trigger = {
+			event_target:gts_seele_li = {
+				check_variable = {
+					which = gts_love_logs
+					value > 50
+				}
+			}
+			event_target:gts_seele_li = {
+				check_variable = {
+					which = gts_love_logs
+					value <= 75
+				}
+			}
+		}
+		hide_option_if_not_allowed = yes
+	}
+	option = {
+		name =  gts_seele.216.1
+		response_text = gts_seele.216.1.e_effect
+		trigger = {
+			event_target:gts_seele_li = {
+				check_variable = {
+					which = gts_love_logs
+					value > 75
+				}
+			}
+		}
+		hide_option_if_not_allowed = yes
+	}
+	#下为查询好感度状态
+	option = {
+		name = gts_seele.203.2
+		country_event = {
+			id = gts_seele.217
+		}
+	}
+
+	option = {
+		name =gts_seele.216.3
+		custom_tooltip = gts_seele.216.3a
+		allow = {
+			or = {
+				event_target:gts_seele_li = {
+					check_variable = {
+						which = gts_love_logs
+						value >= 25
+					}
+				}
+				event_target:gts_seele = {
+					check_variable = {
+						which = gts_love_logs
+						value >= 25
+					}
+				}
+			}
+		}
+		country_event = {
+			id = gts_seele.210
+		}
+		hide_option_if_not_allowed = no
+	}
+	option = {
+		name = gts_seele.61.6
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.62
+			}
+		}
+	}
+	option = {
+		name = gts_seele.203.5
+
+	}
+}
+country_event = {
+	id = gts_seele.217
+	title = gts_seele.204.name
+	diplomatic = yes
+	picture_event_data = {
+		portrait = event_target:gts_seele_li
+		#room = ethic_spaceship_room
+	}
+	is_triggered_only = yes
+	desc = {
+		text = gts_seele.204.a
+		trigger = {
+			root = {
+				has_country_flag = gts_seele_li_drift
+			}
+		}
+	}
+	desc = {
+		text = gts_seele.204.b
+		trigger = {
+			root = {
+				has_country_flag =gts_seele_li_neutrality
+			}
+		}
+	}
+	desc = {
+		text = gts_seele.204.c
+		trigger = {
+			root = {
+				has_country_flag =gts_seele_li_friendly
+			}
+		}
+	}
+	option = {
+		name = gts_seele.204.d
+		hidden_effect = {
+			remove_country_flag =gts_seele_li_neutrality
+			remove_country_flag = gts_seele_li_friendly
+			set_country_flag = gts_seele_li_drift
+			country_event = {
+				id = gts_seele.216
+			}
+		}
+	}
+	option = {
+		name = gts_seele.204.e
+		hidden_effect = {
+			set_country_flag =gts_seele_li_neutrality
+			remove_country_flag = gts_seele_li_friendly
+			remove_country_flag = gts_seele_li_drift
+			country_event = {
+				id = gts_seele.216
+			}
+		}
+	}
+	option = {
+		name = gts_seele.204.f
+		hidden_effect = {
+			remove_country_flag =gts_seele_li_neutrality
+			set_country_flag = gts_seele_li_friendly
+			remove_country_flag = gts_seele_li_drift
+			country_event = {
+				id = gts_seele.216
+			}
+		}
+	}
+	option = {
+		name = gts_seele.64.9
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.216
+			}
+		}
+	}
+}
+
+country_event = {
+	#降低板鸭好感的
+	id = gts_seele.218
+	is_triggered_only = yes
+	auto_opens = yes
+	hide_window = yes
+	immediate = {
+		event_target:gts_bronya = {
+			change_variable = {
+				value = -0.5
+				which = gts_love_logs
+			}
+		}
+	}
+	trigger = {
+		owner = {
+			has_country_flag = gts_bronya_drift
+			any_owned_leader = {
+				has_leader_flag = gts_bronya
+			}
+		}
+	}
+}
+country_event = {
+	#板鸭好感度升高
+	id = gts_seele.219
+	is_triggered_only = yes
+	auto_opens = yes
+	hide_window = yes
+	immediate = {
+		event_target:gts_bronya = {
+			change_variable = {
+				value = 0.5
+				which = gts_love_logs
+			}
+		}
+	}
+	trigger = {
+		owner = {
+			has_country_flag = gts_bronya_friendly
+			any_owned_leader = {
+				has_leader_flag = gts_bronya
+			}
+		}
+	}
+}
+country_event = {
+	#板鸭好感度相关
+	id = gts_seele.220
+	is_triggered_only = yes
+	auto_opens = yes
+	title = gts_seele.220.name
+	desc = gts_seele.220.desc
+	diplomatic = yes
+	picture_event_data = {
+		portrait = event_target:gts_bronya
+		#room =
+	}
+	#下为查询当前好感
+	option = {#-5到0
+		name =  gts_seele.220.1
+		response_text = gts_seele.220.1.a_effect
+		trigger = {
+			event_target:gts_bronya = {
+				check_variable = {
+					which = gts_love_logs
+					value > -5
+				}
+			}
+			event_target:gts_bronya = {
+				check_variable = {
+					which = gts_love_logs
+					value <= 0
+				}
+			}
+		}
+		hide_option_if_not_allowed = yes
+	}
+	option = {#0到25
+		name =  gts_seele.220.1
+		response_text = gts_seele.220.1.b_effect
+		trigger = {
+			event_target:gts_bronya = {
+				check_variable = {
+					which = gts_love_logs
+					value > 0
+				}
+			}
+			event_target:gts_bronya = {
+				check_variable = {
+					which = gts_love_logs
+					value <= 25
+				}
+			}
+		}
+		hide_option_if_not_allowed = yes
+	}
+	option = {
+		name =  gts_seele.220.1
+		response_text = gts_seele.220.1.c_effect
+		trigger = {
+			event_target:gts_bronya = {
+				check_variable = {
+					which = gts_love_logs
+					value > 25
+				}
+			}
+			event_target:gts_bronya = {
+				check_variable = {
+					which = gts_love_logs
+					value <= 50
+				}
+			}
+		}
+		hide_option_if_not_allowed = yes
+	}
+	option = {
+		name =  gts_seele.220.1
+		response_text = gts_seele.220.1.d_effect
+		trigger = {
+			event_target:gts_bronya = {
+				check_variable = {
+					which = gts_love_logs
+					value > 50
+				}
+			}
+			event_target:gts_bronya = {
+				check_variable = {
+					which = gts_love_logs
+					value <= 75
+				}
+			}
+		}
+		hide_option_if_not_allowed = yes
+	}
+	option = {
+		name =  gts_seele.220.1
+		response_text = gts_seele.220.1.e_effect
+		trigger = {
+			event_target:gts_bronya = {
+				check_variable = {
+					which = gts_love_logs
+					value > 75
+				}
+			}
+		}
+		hide_option_if_not_allowed = yes
+	}
+	#下为查询好感度状态
+	option = {
+		name = gts_seele.203.2
+		country_event = {
+			id = gts_seele.221
+		}
+	}
+
+	option = {
+		name =gts_seele.220.3
+		custom_tooltip = gts_seele.220.3a
+		allow = {
+			and = {
+				event_target:gts_bronya = {
+					check_variable = {
+						which = gts_love_logs
+						value >= 15
+					}
+				}
+				event_target:gts_seele = {
+					check_variable = {
+						which = gts_love_logs
+						value >= 25
+					}
+				}
+			}
+		}
+		country_event = {
+			id = gts_seele.211
+		}
+		hide_option_if_not_allowed = no
+	}
+	option = {
+		name = gts_seele.61.6
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.63
+			}
+		}
+	}
+	option = {
+		name = gts_seele.203.5
+
+	}
+}
+country_event = {
+	id = gts_seele.221
+	title = gts_seele.204.name
+	diplomatic = yes
+	picture_event_data = {
+		portrait = event_target:gts_bronya
+		#room = ethic_spaceship_room
+	}
+	is_triggered_only = yes
+	desc = {
+		text = gts_seele.204.a
+		trigger = {
+			root = {
+				has_country_flag = gts_bronya_drift
+			}
+		}
+	}
+	desc = {
+		text = gts_seele.204.b
+		trigger = {
+			root = {
+				has_country_flag =gts_bronya_neutrality
+			}
+		}
+	}
+	desc = {
+		text = gts_seele.204.c
+		trigger = {
+			root = {
+				has_country_flag =gts_bronya_friendly
+			}
+		}
+	}
+	option = {
+		name = gts_seele.204.d
+		hidden_effect = {
+			remove_country_flag =gts_bronya_neutrality
+			remove_country_flag = gts_bronya_friendly
+			set_country_flag = gts_bronya_drift
+			country_event = {
+				id = gts_seele.220
+			}
+		}
+	}
+	option = {
+		name = gts_seele.204.e
+		hidden_effect = {
+			set_country_flag =gts_bronya_neutrality
+			remove_country_flag = gts_bronya_friendly
+			remove_country_flag = gts_bronya_drift
+			country_event = {
+				id = gts_seele.220
+			}
+		}
+	}
+	option = {
+		name = gts_seele.204.f
+		hidden_effect = {
+			remove_country_flag =gts_bronya_neutrality
+			set_country_flag = gts_bronya_friendly
+			remove_country_flag = gts_bronya_drift
+			country_event = {
+				id = gts_seele.220
+			}
+		}
+	}
+	option = {
+		name = gts_seele.64.9
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.220
+			}
+		}
+	}
+}
+
+
+
+
+
+
+
+country_event = {
+	id = gts_seele.205
+	#title = gts_seele.205.name
+	#desc = gts_seele.205.desc
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		#name = gts_seele.205.a
+		gts_create_seele_arkship_effect = yes
+	}
+}
+country_event = {
+	id = gts_seele.210
+	#title = gts_seele.210.name
+	#desc = gts_seele.210.desc
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		gts_create_seele_li_arkship_effect = yes
+	}
+}
+country_event = {
+	id = gts_seele.211
+	#title = gts_seele.211.name
+	#desc = gts_seele.211.desc
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		gts_create_bronya_arkship_effect = yes
+	}
+}
+
+
+
+
+country_event = {
+	id = gts_seele.222
+	title = gts_seele.222.name
+	desc = gts_seele.222.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		room = shroud_room
+		portrait = event_target:gts_bronya
+	}
+	option = {
+		name = gts_seele.give_specimens
+		give_specimen = {
+			key = bronya_construct
+			origin = bronya_construct
+		}
+		default_hide_option = yes
+		hidden_effect = {
+		}
+	}
+}
+# country_event = {
+# 	#希儿扣扣希儿
+# 	id = gts_seele.222
+# 	title = gts_seele.212.name
+# 	desc = gts_seele.212.desc
+# 	#picture =
+# 	is_triggered_only = yes
+# 	fire_only_once = yes
+# 	option = {
+# 		name = gts_seele.212.a
+# 		hidden_effect = {
+# 			every_owned_planet = {
+# 				limit = {
+# 					has_planet_flag = gts_seele_planet
+# 				}
+# 				add_planet_devastation = 20
+# 			}
+# 		}
+# 	}
+# }
+# country_event = {
+# 	#希儿草板鸭
+# 	id = gts_seele.223
+# 	title = gts_seele.213.name
+# 	desc = gts_seele.213.desc
+# 	#picture =
+# 	is_triggered_only = yes
+# 	fire_only_once = yes
+# 	option = {
+# 		name = gts_seele.213.a
+# 		hidden_effect = {
+# 			every_owned_planet = {
+# 				limit = {
+# 					has_planet_flag = gts_bronya_planet
+# 				}
+# 				add_planet_devastation = 20
+# 			}
+# 		}
+# 	}
+# }
+
+
+
+
+#
+# fleet_event = {
+# 	#希儿舰船技能
+# 	id = gts_seele.225
+# 	is_triggered_only = yes
+# 	hide_window = yes
+# 	immediate = {
+# 		every_system = {
+# 			limit = {
+# 				any_ship_in_system = {
+# 					has_ship_flag = gts_seele_ship
+# 				}
+# 			}
+# 			every_ship_in_system = {
+# 				limit = {
+# 					not = {
+# 						has_ship_flag = gts_seele_ship
+# 					}
+# 				}
+# 				damage_ship = 1000000
+# 			}
+# 			every_ship_in_system = {
+# 				limit = {
+# 					is_owned_by = owner
+# 				}
+# 				add_modifier = {
+# 					days = 90
+# 					modifier = seele_ship_techniques_modifier
+# 				}
+# 			}
+# 		}
+# 	}
+# }
+#
+#
+#
+# fleet_event = {
+# 	#黑希舰船技能
+# 	id = gts_seele.225
+# 	is_triggered_only = yes
+# 	hide_window = yes
+# 	immediate = {
+# 		every_system = {
+# 			limit = {
+# 				any_ship_in_system = {
+# 					has_ship_flag = gts_seele_li_ship
+# 				}
+# 			}
+# 			every_ship_in_system = {
+# 				limit = {
+# 					not = {
+# 						has_ship_flag = gts_seele_li_ship
+# 					}
+# 				}
+# 				damage_ship = 100000000
+# 			}
+# 			every_ship_in_system = {
+# 				limit = {
+# 					is_owned_by = owner
+# 				}
+# 			}
+# 			every_galaxy_planet = {
+# 				limit = {
+# 					is_planet_class = pc_gas_giant
+# 				}
+# 				remove_planet = yes
+# 			}
+# 			every_galaxy_planet = {
+# 				limit = {
+# 					not = {
+# 						is_planet_class = pc_gas_giant
+# 						is_planet_class = pc_ringworld_habitable
+# 					}
+# 				}
+# 				change_pc =pc_egg_cracked
+# 			}
+# 			every_galaxy_planet = {
+# 				limit = {
+# 					is_planet_class = pc_ringworld_habitable
+# 				}
+# 				change_pc =pc_ringworld_habitable_damaged
+# 			}
+# 		}
+# 	}
+# }
+country_event = {
+	id = gts_seele.226
+	title = gts_seele.226.name
+	desc = gts_seele.226.desc
+	is_triggered_only = yes
+	fire_only_once = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_seele_226_room
+	}
+	trigger = {
+		and = {
+			and = {
+				any_owned_leader = {
+					has_leader_flag = gts_seele
+				}
+				any_owned_leader = {
+					has_leader_flag = gts_seele_li
+				}
+			}
+			any_owned_planet = {
+				is_planet_class = pc_continental
+				pop_amount > 300
+			}
+		}
+	}
+	immediate = {
+	}
+	option = {
+		name =  gts_seele.226.a
+		custom_tooltip = gts_seele.226.custom_tooltip
+		random_owned_planet = {
+			limit = {
+				is_planet_class = pc_continental
+			}
+			add_planet_devastation = 15
+			add_modifier = {
+				modifier = ultra_rich
+			}
+		}
+		hidden_effect = {
+			event_target:gts_seele = {
+				change_variable = {
+					value = 1
+					which = gts_love_logs
+				}
+			}
+			event_target:gts_seele_li = {
+				change_variable = {
+					value = 3
+					which = gts_love_logs
+				}
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = gts_seele.227
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		FromFrom = {
+			is_ai = no
+			has_country_flag = gts_triggered_020010
+			and = {
+				any_owned_leader = {
+					has_leader_flag = gts_seele
+				}
+				any_owned_leader = {
+					has_leader_flag = gts_seele_li
+				}
+				any_owned_leader = {
+					has_leader_flag = gts_bronya
+				}
+			}
+		}
+		Root = {
+			is_eatable_planet = yes
+		}
+	}
+
+	immediate = {
+		Root = {
+			save_event_target_as = gts_attackers_win_planet
+		}
+		fromfrom = {
+			country_event = {
+				id = gts_seele.228
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_seele.228
+	title = gts_evt_random.020020.name
+	desc = gts_seele.227.desc
+	picture = GFX_gts_seele_228
+	show_sound = event_default
+	is_triggered_only = yes
+
+	option = {
+		name = gts_evt_random.020020.a
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.229
+			}
+		}
+	}
+	option = {
+		name = gts_evt_random.020020.b
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.230
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_seele.229
+	title = gts_seele.229.name
+	desc = gts_seele.229.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_event_1_room
+	}
+	show_sound = event_default
+	is_triggered_only = yes
+	location = from
+
+	option = {
+		name = gts_seele.229.a
+		event_target:gts_seele = {
+			set_variable_to_random_value = {
+				# 毁灭的城市数量：
+				which = gts_city_kills_logs
+				min = 20
+				max = 120
+				rounded = yes
+			}
+			set_variable_to_random_value = {
+				# 踩死的小人數量：
+				which = gts_feet_kills_logs
+				min = 15
+				max = 30
+				rounded = yes
+			}
+		}
+		event_target:gts_seele_li = {
+			set_variable_to_random_value = {
+				# 毁灭的城市数量：
+				which = gts_city_kills_logs
+				min = 40
+				max = 300
+				rounded = yes
+			}
+			set_variable_to_random_value = {
+				# 踩死的小人數量：
+				which = gts_feet_kills_logs
+				min = 25
+				max = 60
+				rounded = yes
+			}
+		}
+		event_target:gts_bronya = {
+			set_variable_to_random_value = {
+				# 毁灭的城市数量：
+				which = gts_city_kills_logs
+				min = 30
+				max = 200
+				rounded = yes
+			}
+			set_variable_to_random_value = {
+				# 踩死的小人數量：
+				which = gts_feet_kills_logs
+				min = 25
+				max = 50
+				rounded = yes
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_seele.230
+	title = gts_seele.230.name
+	desc = gts_seele.230.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_event_1_room
+	}
+	show_sound = event_default
+	is_triggered_only = yes
+	location = event_target:gts_attackers_win_planet
+
+	immediate = {
+		event_target:gts_attackers_win_planet = {
+			# 計算經驗獲取
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_experience_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_experience_count
+				value = 10
+			}
+			round_variable = gts_bruh_get_experience_count
+		}
+
+		if = {
+			limit = {
+				any_owned_leader = {
+					is_ruler = no
+					# 盡量不選滿10級的
+					has_total_skill < 10
+					gts_is_bigger_than_tall = yes
+				}
+			}
+			random_owned_leader = {
+				limit = {
+					is_ruler = no
+					# 盡量不選滿10級的
+					has_total_skill < 10
+					gts_is_bigger_than_tall = yes
+				}
+				save_event_target_as = gts_bruh_get_destroy_planet_leader
+			}
+		}
+		else = {
+			# 如果沒有就隨機一個
+			random_owned_leader = {
+				limit = {
+					is_ruler = no
+					gts_is_bigger_than_tall = yes
+				}
+				save_event_target_as = gts_bruh_get_destroy_planet_leader
+			}
+		}
+	}
+
+	option = {
+		name = gts_seele.230.a
+		event_target:gts_seele = {
+			set_variable_to_random_value = {
+				# 毁灭的城市数量：
+				which = gts_city_kills_logs
+				min = 20
+				max = 150
+				rounded = yes
+			}
+			set_variable_to_random_value = {
+				# 踩死的小人數量：
+				which = gts_feet_kills_logs
+				min = 20
+				max = 30
+				rounded = yes
+			}
+		}
+		event_target:gts_seele_li = {
+			set_variable_to_random_value = {
+				# 毁灭的城市数量：
+				which = gts_city_kills_logs
+				min = 50
+				max = 300
+				rounded = yes
+			}
+			set_variable_to_random_value = {
+				# 踩死的小人數量：
+				which = gts_feet_kills_logs
+				min = 30
+				max = 60
+				rounded = yes
+			}
+		}
+		event_target:gts_bronya = {
+			set_variable_to_random_value = {
+				# 毁灭的城市数量：
+				which = gts_city_kills_logs
+				min = 30
+				max = 200
+				rounded = yes
+			}
+			set_variable_to_random_value = {
+				# 踩死的小人數量：
+				which = gts_feet_kills_logs
+				min = 25
+				max = 50
+				rounded = yes
+			}
+		}
+		random_list = {
+			1 = {
+				event_target:gts_bronya = {
+					set_variable_to_random_value = {
+						which = gts_planet_kills_logs
+						min = 1
+						max = 1
+						rounded = no
+					}
+				}
+			}
+			1 = {
+				event_target:gts_seele = {
+					set_variable_to_random_value = {
+						which = gts_planet_kills_logs
+						min = 1
+						max = 1
+						rounded = no
+					}
+				}
+			}
+			1 = {
+				event_target:gts_seele_li = {
+					set_variable_to_random_value = {
+						which = gts_planet_kills_logs
+						min = 1
+						max = 1
+						rounded = no
+					}
+				}
+			}
+		}
+		event_target:gts_bruh_get_destroy_planet_leader = {
+			add_experience = event_target:gts_attackers_win_planet.gts_bruh_get_experience_count
+		}
+		event_target:gts_attackers_win_planet = {
+			destroy_colony = yes
+			if = {
+				# 移除居住站
+				limit = {
+					is_planet_class = pc_habitat
+				}
+				hidden_effect = {
+					remove_planet = yes
+				}
+			}
+			else = {
+				# 摧毀殖民地
+				destroy_colony = yes
+				change_pc = pc_nuked
+				while = {
+					count = 2
+					add_deposit = d_crater
+					add_deposit = d_bomb_crater
+					add_deposit = d_city_ruins
+				}
+				hidden_effect = {
+					gts_destroy_planet = yes
+				}
+			}
+		}
+	}
+}
+
+
+
+country_event = {
+	#用于触发对应好感的事件
+	id =  gts_seele.300
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		if = {
+			limit = {
+				event_target:gts_seele = {
+					gts_normal_leader_love_lv2_trigger = yes
+				}
+			}
+			country_event = {
+				id = gts_seele.301
+			}
+		}
+		if = {
+			limit = {
+				and = {
+					event_target:gts_seele = {
+						check_variable = {
+							which = gts_love_logs
+							value >= @gts_love_level3
+						}
+					}
+					has_country_flag = gts_seele_love_25_end
+				}
+			}
+			country_event = {
+				id = gts_seele.302
+			}
+		}
+		if = {
+			limit = {
+				and = {
+					event_target:gts_seele = {
+						check_variable = {
+							which = gts_love_logs
+							value >= @gts_love_level4
+						}
+					}
+					has_country_flag = gts_seele_love_50_end
+				}
+			}
+			country_event = {
+				id = gts_seele.303
+			}
+		}
+		if = {
+			limit = {
+				and = {
+					event_target:gts_seele = {
+						check_variable = {
+							which = gts_love_logs
+							value >= @gts_love_level5
+						}
+					}
+					has_country_flag = gts_seele_love_75_end
+				}
+			}
+			country_event = {
+				id = gts_seele.304
+			}
+		}
+		# if = {
+		#     limit = {
+		#         and = {
+		#             event_target:gts_seele = {
+		#                 check_variable = {
+		#                     which = gts_love_logs
+		#                     value >= 100
+		#                 }
+		#             }
+		#             has_country_flag = gts_seele_love_80_end
+		#         }
+		#     }
+		#     country_event = {
+		#         id = gts_seele.305
+		#     }
+		# }
+		# if = {
+		#     limit = {
+		#         event_target:gts_seele = {
+		#             and = {
+		#                 check_variable = {
+		#                     which = gts_love_logs
+		#                     value >= 100
+		#                 }
+		#                 has_trait = gts_trait_hitomi6
+		#             }
+		#         }
+		#         has_country_flag = gts_seele_love_100_end
+		#     }
+		#     country_event = {
+		#         id = gts_seele.306
+		#     }
+		# }
+	}
+}
+
+
+country_event = {
+	#
+	id = gts_seele.301
+	title = gts_seele.301.name
+	desc = gts_seele.301.desc
+	# picture = GFX_evt_atmospheric_entry
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_seele_event4_room
+	}
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	after = {
+		set_country_flag = gts_seele_love_25_end
+	}
+	option = {
+		name = gts_seele.301.a
+		hidden_effect = {
+		}
+	}
+}
+country_event = {
+	#
+	id = gts_seele.302
+	title = gts_seele.302.name
+	desc = gts_seele.302.desc
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_seele_event5_room
+	}
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	after = {
+		set_country_flag = gts_seele_love_50_end
+	}
+	option = {
+		name = gts_seele.302.a
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.3031
+			}
+		}
+	}
+	option = {
+		name = gts_seele.303.b
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.3032
+			}
+		}
+	}
+}
+country_event = {
+	#
+	id = gts_seele.303
+	title = gts_seele.303.name
+	desc = gts_seele.303.desc
+	picture = GFX_evt_atmospheric_entry
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_seele_event7_room
+	}
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	after = {
+		set_country_flag = gts_seele_love_75_end
+	}
+	option = {
+		name = gts_seele.303.a
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.3041
+			}
+		}
+	}
+}
+country_event = {
+	#
+	id = gts_seele.304
+	title = gts_seele.304.name
+	desc = gts_seele.304.desc
+	picture = GFX_gts_seele_12
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	after = {
+		set_country_flag = gts_seele_love_100_end
+
+	}
+	option = {
+		name = gts_seele.304.a
+		hidden_effect = {
+		}
+	}
+}
+
+country_event = {
+	#
+	id = gts_seele.308
+	title = gts_seele.308.name
+	desc = gts_seele.308.desc
+	# picture = GFX_evt_atmospheric_entry
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_seele_event4_room
+	}
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	after = {
+		set_country_flag = gts_seele_li_love_25_end
+	}
+	option = {
+		name = gts_seele.308.a
+		hidden_effect = {
+		}
+	}
+}
+country_event = {
+	#
+	id = gts_seele.309
+	title = gts_seele.309.name
+	desc = gts_seele.309.desc
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_seele_event5_room
+	}
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	after = {
+		set_country_flag = gts_seele_li_love_50_end
+	}
+	option = {
+		name = gts_seele.309.a
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.3031
+			}
+		}
+	}
+	option = {
+		name = gts_seele.303.b
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.3032
+			}
+		}
+	}
+}
+country_event = {
+	#
+	id = gts_seele.310
+	title = gts_seele.310.name
+	desc = gts_seele.310.desc
+	picture = GFX_evt_atmospheric_entry
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_seele_event7_room
+	}
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	after = {
+		set_country_flag = gts_seele_li_love_75_end
+	}
+	option = {
+		name = gts_seele.310.a
+		hidden_effect = {
+			country_event = {
+				id = gts_seele.3041
+			}
+		}
+	}
+}
+country_event = {
+	#
+	id = gts_seele.311
+	title = gts_seele.311.name
+	desc = gts_seele.311.desc
+	picture = GFX_gts_seele_12
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	after = {
+		set_country_flag = gts_seele_li_love_100_end
+
+	}
+	option = {
+		name = gts_seele.311.a
+		hidden_effect = {
+		}
+	}
+}
+
+
+
+
+fleet_event = {
+	#希儿舰船技能 回血
+	id = gts_seele.400
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		solar_system = {
+			every_ship_in_system = {
+				limit = {
+					controller = {
+						or = {
+							is_friendly_to = root.owner
+							is_same_empire = root.owner
+						}
+					}
+				}
+				add_modifier = {
+					modifier = gts_seele_herrscher_of_rebirth_weapon_1
+					days = 7
+				}
+			}
+		}
+	}
+}
+fleet_event = {
+	#黑希舰船技能 大量伤害
+	id = gts_seele.401
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		solar_system = {
+			every_ship_in_system = {
+				limit = {
+					controller = {
+						is_hostile = root.owner
+					}
+				}
+				damage_ship = 1000000
+			}
+		}
+	}
+}
+fleet_event = {
+	#板鸭舰船技能 1 星球buff
+	id = gts_seele.402
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		event_target:gts_bronya_arkship = {
+			add_modifier = {
+				modifier = gts_bronya_herrscher_of_truth_weapon_1
+				days = 360
+			}
+		}
+	}
+}
+fleet_event = {
+	#板鸭舰船技能 2 舰船buff
+	id = gts_seele.403
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		solar_system = {
+			every_ship_in_system = {
+				limit = {
+					controller = {
+						is_hostile = root.owner
+					}
+				}
+				damage_ship = 1000000000
+			}
+			set_star_class = sc_black_hole
+			every_system_planet = {
+				limit = {
+					is_star = yes
+				}
+				change_pc = pc_black_hole
+			}
+			every_system_planet = {
+				limit = {
+					is_planet_class = pc_gas_giant
+				}
+				remove_planet = yes
+			}
+			every_system_planet = {
+				limit = {
+					not = {
+						is_planet_class = pc_gas_giant
+					}
+				}
+				change_pc = pc_broken
+			}
+		}
+	}
+}
+fleet_event = {
+	#板鸭舰船技能 3 给自己上战斗力buff
+	id = gts_seele.404
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		event_target:gts_bronya_arkship = {
+			add_modifier = {
+				modifier = gts_bronya_herrscher_of_truth_weapon_3
+				days = 360
+			}
+		}
+	}
+}
+fleet_event = {
+	#板鸭舰船技能 4 给国家挂buff
+	id = gts_seele.405
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		owner = {
+			add_modifier = {
+				modifier = gts_bronya_herrscher_of_truth_weapon_4
+				days = 360
+			}
+		}
+	}
+}

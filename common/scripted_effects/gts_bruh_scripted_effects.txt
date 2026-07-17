@@ -1,0 +1,540 @@
+############################################################################################################################################
+#############################################                隨機事件的船隻資源判定                #############################################
+############################################################################################################################################
+
+# 失敗
+gts_bruh_ship_count_failure_scripted_effects = {
+	every_owned_ship = {
+		limit = {
+			OR = {
+				is_ship_size = corvette
+				is_ship_size = frigate
+				is_ship_size = destroyer
+				is_ship_size = cruiser
+				is_ship_size = battleship
+				is_ship_size = titan
+			}
+		}
+		unassign_leader = this
+	}
+	every_owned_ship = {
+		if = {
+			limit = {
+				OR = {
+					is_ship_size = corvette
+					is_ship_size = frigate
+				}
+			}
+			random_list = {
+				1 = {}
+				1 = {
+					set_disabled = yes
+					destroy_ship = this
+					Root = {
+						add_resource = {
+							# 60
+							alloys = 10
+							volatile_motes = 10
+							exotic_gases = 10
+							rare_crystals = 10
+							gts_giantess_fluid = 20
+						}
+					}
+					root.capital_scope = {
+						change_variable = {
+							which = gts_bruh_get_experience_count
+							value = 10
+						}
+					}
+				}
+			}
+		}
+		
+		else_if = {
+			limit = {
+				is_ship_size = destroyer
+			}
+			random_list = {
+				1 = {}
+				1 = {
+					set_disabled = yes
+					destroy_ship = this
+					Root = {
+						add_resource = {
+							alloys = 20
+							volatile_motes = 20
+							exotic_gases = 20
+							rare_crystals = 20
+							gts_giantess_fluid = 40
+						}
+					}
+					root.capital_scope = {
+						change_variable = {
+							which = gts_bruh_get_experience_count
+							value = 20
+						}
+					}
+				}
+			}
+		}
+
+		else_if = {
+			limit = {
+				is_ship_size = cruiser
+			}
+			random_list = {
+				1 = {}
+				1 = {
+					set_disabled = yes
+					destroy_ship = this
+					Root = {
+						add_resource = {
+							alloys = 40
+							volatile_motes = 40
+							exotic_gases = 40
+							rare_crystals = 40
+							gts_giantess_fluid = 80
+						}
+					}
+					root.capital_scope = {
+						change_variable = {
+							which = gts_bruh_get_experience_count
+							value = 40
+						}
+					}
+				}
+			}
+		}
+
+		else_if = {
+			limit = {
+				is_ship_size = battleship
+			}
+			random_list = {
+				1 = {}
+				1 = {
+					set_disabled = yes
+					destroy_ship = this
+					Root = {
+						add_resource = {
+							alloys = 80
+							volatile_motes = 80
+							exotic_gases = 80
+							rare_crystals = 80
+							gts_giantess_fluid = 160
+						}
+					}
+					root.capital_scope = {
+						change_variable = {
+							which = gts_bruh_get_experience_count
+							value = 80
+						}
+					}
+				}
+			}
+		}
+
+		else_if = {
+			limit = {
+				is_ship_size = titan
+			}
+			random_list = {
+				1 = {}
+				1 = {
+					set_disabled = yes
+					destroy_ship = this
+					Root = {
+						add_resource = {
+							alloys = 160
+							volatile_motes = 160
+							exotic_gases = 160
+							rare_crystals = 160
+							gts_giantess_fluid = 320
+						}
+					}
+					root.capital_scope = {
+						change_variable = {
+							which = gts_bruh_get_experience_count
+							value = 160
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+# 成功
+gts_bruh_ship_count_success_scripted_effect = {
+	every_owned_ship = {
+		if = {
+			limit = {
+				OR = {
+					is_ship_size = corvette
+					is_ship_size = frigate
+				}
+			}
+			Root = {
+				add_resource = {
+					# 40
+					alloys = 5
+					volatile_motes = 5
+					exotic_gases = 5
+					rare_crystals = 5
+					gts_giantess_fluid = 20
+				}
+			}
+			root.capital_scope = {
+				change_variable = {
+					which = gts_bruh_get_experience_count
+					value = 5
+				}
+			}
+		}
+
+		else_if = {
+			limit = {
+				is_ship_size = destroyer
+			}
+			Root = {
+				add_resource = {
+					alloys = 10
+					volatile_motes = 10
+					exotic_gases = 10
+					rare_crystals = 10
+					gts_giantess_fluid = 40
+				}
+			}
+			root.capital_scope = {
+				change_variable = {
+					which = gts_bruh_get_experience_count
+					value = 10
+				}
+			}
+		}
+
+		else_if = {
+			limit = {
+				is_ship_size = cruiser
+			}
+			Root = {
+				add_resource = {
+					alloys = 20
+					volatile_motes = 20
+					exotic_gases = 20
+					rare_crystals = 20
+					gts_giantess_fluid = 80
+				}
+			}
+			root.capital_scope = {
+				change_variable = {
+					which = gts_bruh_get_experience_count
+					value = 20
+				}
+			}
+		}
+
+		else_if = {
+			limit = {
+				is_ship_size = battleship
+			}
+			Root = {
+				add_resource = {
+					alloys = 40
+					volatile_motes = 40
+					exotic_gases = 40
+					rare_crystals = 40
+					gts_giantess_fluid = 160
+				}
+			}
+			root.capital_scope = {
+				change_variable = {
+					which = gts_bruh_get_experience_count
+					value = 40
+				}
+			}
+		}
+
+		else_if = {
+			limit = {
+				is_ship_size = titan
+			}
+			Root = {
+				add_resource = {
+					alloys = 80
+					volatile_motes = 80
+					exotic_gases = 80
+					rare_crystals = 80
+					gts_giantess_fluid = 320
+				}
+			}
+			root.capital_scope = {
+				change_variable = {
+					which = gts_bruh_get_experience_count
+					value = 80
+				}
+			}
+		}
+	}
+}
+
+# 普通
+gts_bruh_ship_count_regular_scripted_effect = {
+	every_owned_ship = {
+		if = {
+			limit = {
+				OR = {
+					is_ship_size = corvette
+					is_ship_size = frigate
+				}
+			}
+			Root = {
+				add_resource = {
+					# 20
+					alloys = 2.5
+					volatile_motes = 2.5
+					exotic_gases = 2.5
+					rare_crystals = 2.5
+					gts_giantess_fluid = 10
+				}
+			}
+			root.capital_scope = {
+				change_variable = {
+					which = gts_bruh_get_experience_count
+					value = 1
+				}
+			}
+		}
+
+		else_if = {
+			limit = {
+				is_ship_size = destroyer
+			}
+			Root = {
+				add_resource = {
+					alloys = 5
+					volatile_motes = 5
+					exotic_gases = 5
+					rare_crystals = 5
+					gts_giantess_fluid = 20
+				}
+			}
+			root.capital_scope = {
+				change_variable = {
+					which = gts_bruh_get_experience_count
+					value = 5
+				}
+			}
+		}
+
+		else_if = {
+			limit = {
+				is_ship_size = cruiser
+			}
+			Root = {
+				add_resource = {
+					alloys = 10
+					volatile_motes = 10
+					exotic_gases = 10
+					rare_crystals = 10
+					gts_giantess_fluid = 40
+				}
+			}
+			root.capital_scope = {
+				change_variable = {
+					which = gts_bruh_get_experience_count
+					value = 10
+				}
+			}
+		}
+
+		else_if = {
+			limit = {
+				is_ship_size = battleship
+			}
+			Root = {
+				add_resource = {
+					alloys = 20
+					volatile_motes = 20
+					exotic_gases = 20
+					rare_crystals = 20
+					gts_giantess_fluid = 80
+				}
+			}
+			root.capital_scope = {
+				change_variable = {
+					which = gts_bruh_get_experience_count
+					value = 20
+				}
+			}
+		}
+
+		else_if = {
+			limit = {
+				is_ship_size = titan
+			}
+			Root = {
+				add_resource = {
+					alloys = 40
+					volatile_motes = 40
+					exotic_gases = 40
+					rare_crystals = 40
+					gts_giantess_fluid = 160
+				}
+			}
+			root.capital_scope = {
+				change_variable = {
+					which = gts_bruh_get_experience_count
+					value = 40
+				}
+			}
+		}
+	}
+}
+
+############################################################################################################################################
+###################################################                清空星球                ###################################################
+############################################################################################################################################
+
+gts_bruh_clear_planet_effect = {
+	clear_deposits = yes
+	clear_planet_modifiers = yes
+	if = {
+		limit = {
+			has_building = yes
+		}
+		remove_all_buildings = yes
+	}
+	if = {
+		limit = {
+			has_district = yes
+		}
+		remove_all_districts = yes
+	}
+}
+
+gts_bruh_clear_capital_building_effect = {
+	remove_building = building_colony_shelter
+	remove_building = building_deployment_post
+
+	remove_building = building_capital
+	remove_building = building_hive_capital
+	remove_building = building_machine_capital
+	remove_building = building_resort_capital
+	remove_building = building_slave_capital
+	remove_building = building_ancient_control_center
+	remove_building = building_ancient_palace
+	remove_building = building_capital_wilderness
+
+	remove_building = building_major_capital
+	remove_building = building_hive_major_capital
+	remove_building = building_machine_major_capital
+	remove_building = building_resort_major_capital
+	remove_building = building_slave_major_capital
+	remove_building = building_major_capital_wilderness
+
+	remove_building = building_system_capital
+	remove_building = building_machine_system_capital
+	remove_building = building_system_capital_wilderness
+}
+
+############################################################################################################################################
+###################################################                胖次星球                ###################################################
+############################################################################################################################################
+
+#胖次星球改造
+gts_bruh_panties_planet_change = {
+	set_planet_flag = gts_reformed_planet
+	change_pc = pc_gts_bruh_panties_planet_01
+	set_colony_type = col_gts_bruh_panties
+	validate_planet_buildings_and_districts = yes
+
+	hidden_effect = {
+		export_trigger_value_to_variable = {
+			trigger = planet_size
+			variable = gts_bruh_get_planet_size
+		}
+		set_variable_to_random_value = {
+			which = gts_bruh_random_count
+			min = 9
+			max = gts_bruh_get_planet_size
+		}
+		add_deposit = d_gts_bruh_panties_planet_06_deposits
+		random_list = {
+			1 = { add_deposit = d_gts_bruh_panties_planet_04_deposits }
+			1 = { }
+		}
+		while = {
+			count = gts_bruh_random_count
+			random_list = {
+				1 = {
+					add_deposit = d_gts_bruh_panties_planet_01_deposits
+				}
+				1 = {
+					add_deposit = d_gts_bruh_panties_planet_02_deposits
+				}
+				1 = {
+					add_deposit = d_gts_bruh_panties_planet_03_deposits
+				}
+			}
+			random_list = {
+				3 = { }
+				1 = {
+					add_deposit = d_gts_bruh_panties_planet_05_deposits
+				}
+				1 = {
+					add_deposit = d_gts_bruh_panties_planet_07_deposits
+				}
+			}
+		}
+	}
+}
+
+############################################################################################################################################
+##############################################                愛液星球(不可殖民)                ##############################################
+############################################################################################################################################
+
+#愛液星球(不可殖民)改造
+gts_bruh_juice_uncolonizable_change = {
+	set_planet_flag = gts_reformed_planet
+	change_pc = pc_gts_juice_uncolonizable
+
+	hidden_effect = {
+		export_trigger_value_to_variable = {
+			trigger = planet_size
+			variable = gts_bruh_get_planet_size
+		}
+		divide_variable = {
+			which = gts_bruh_get_planet_size
+			value = 10
+		}
+		round_variable = gts_bruh_get_planet_size
+		set_variable_to_random_value = {
+			which = gts_bruh_random_count
+			min = 1
+			max = gts_bruh_get_planet_size
+		}
+		while = {
+			count = gts_bruh_random_count
+			random_list = {
+				38 = {
+					add_deposit = d_gts_giantess_fluid_3
+				}
+				31 = {
+					add_deposit = d_gts_giantess_fluid_5
+				}
+				25 = {
+					add_deposit = d_gts_giantess_fluid_6
+				}
+				5 = {
+					add_deposit = d_gts_giantess_fluid_10
+				}
+				1 = {
+					add_deposit = d_gts_giantess_fluid_100
+				}
+			}
+		}
+	}
+}
+

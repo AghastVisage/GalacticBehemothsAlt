@@ -1,0 +1,139 @@
+gts_arkship_megastructure = {
+	entity = "military_arkship_01_stage_1_ship_entity"
+	construction_entity = "military_arkship_01_stage_1_ship_entity"
+	portrait = "GFX_megastructure_construction_background"
+	place_entity_on_planet_plane = no
+	build_type = inside_gravity_well
+	show_in_outliner = no
+	use_planet_resource = no
+	construction_blocks_and_blocked_by = self_type
+	build_time = @arkship_build_time_720
+
+	resources = {
+		category = megastructures_arkships
+		cost = {
+			influence = 250
+			energy = 1600
+			food = 4800
+			minerals = 1600
+			alloys = 800
+			consumer_goods = 800
+			volatile_motes = 800
+			rare_crystals = 800
+			exotic_gases = 800
+		}
+		cost = {
+			trigger = {
+				gts_is_tiny_empire = yes
+			}
+			gts_giantess_fluid = 1600
+			gts_giantess_underwear = 600
+			gts_giantess_human = 300
+		}
+		cost = {
+			trigger = {
+				gts_is_giantess_empire = yes
+			}
+			gts_micro = 1600
+			gts_micro_city = 600
+			gts_micro_planet = 300
+		}
+	}
+
+	potential = {
+		is_nomadic = yes
+		has_technology = tech_arkship_construction
+		has_technology = tech_gts_destroyer_ship
+		from = {
+			is_arkship_fleet = yes
+		}
+	}
+
+	possible = {
+		fromfrom = {
+			is_arkship_fleet = yes
+		}
+		custom_tooltip = {
+			fail_text = requires_no_existing_gts_arkship
+			from = {
+				NOT = {
+					any_owned_ship = {
+						or = {
+							is_ship_size = gts_arkship_tier_1
+							is_ship_size = gts_arkship_tier_2
+							is_ship_size = gts_arkship_tier_3
+						}
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = requires_no_gts_arkship_under_construction
+			OR = {
+				from = {
+					NOT = {
+						any_owned_megastructure = {
+							is_megastructure_type = gts_arkship_megastructure
+						}
+					}
+				}
+				any_system_megastructure = {
+					is_megastructure_type = gts_arkship_megastructure
+					owner = {
+						is_same_value = from
+					}
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		factor = 0
+	}
+
+	on_build_start = {
+		from = {
+			set_country_flag = gts_arkship_under_construction
+		}
+	}
+
+	on_build_cancel = {
+		from = {
+			remove_country_flag = gts_arkship_under_construction
+		}
+	}
+
+	on_build_complete = {
+		create_fleet = {
+			name = random
+			effect = {
+				set_owner = from
+				create_ship = {
+					name = random
+					design = NAME_gts_arkship_tier_1
+					graphical_culture = military_arkship
+					effect = {
+						set_ship_flag = gts_body_ship
+						initialize_arkship_starbase_effect = yes
+					}
+				}
+				set_location = fromfrom
+			}
+		}
+		remove_megastructure = fromfrom
+		from = {
+			remove_country_flag = gts_arkship_under_construction
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = arkship_built_gts_arkship
+					}
+				}
+				set_country_flag = arkship_built_gts_arkship
+			}
+			country_event = {
+				id = timeline.100
+			}
+		}
+	}
+}

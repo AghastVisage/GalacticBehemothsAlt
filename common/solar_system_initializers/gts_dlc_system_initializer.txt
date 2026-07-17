@@ -1,0 +1,398 @@
+####### 伊莉雅太阳系 #######
+# Sol System (Pre-FTL Humans)
+primitive_illya_sol = {
+    name = "NAME_Sol"
+    class = "sc_g"
+
+    asteroid_belt = {
+        type = rocky_asteroid_belt
+        radius = 145
+    }
+    asteroid_belt = {
+        type = icy_asteroid_belt
+        radius = 290
+    }
+
+    flags = { primitive_illya_sol  }
+
+    planet = {
+        name = "NAME_Sol"
+        class = "pc_g_star"
+        orbit_distance = 0
+        orbit_angle = 1
+        size = 30
+        has_ring = no
+    }
+
+    planet = {
+        class = "pc_molten"
+        orbit_distance = 40
+        orbit_angle = 15
+        size = 10
+        has_ring = no
+        init_effect = {
+            set_planet_entity = {
+                entity = molten_planet_mercury_entity
+                atmosphere_color = hsv { 0.8 0.1 0.2 }
+                atmosphere_intensity = 0.1
+                atmosphere_width = 1.0
+            }
+        }
+    }
+
+    planet = {
+        class = "pc_toxic"
+        orbit_distance = 25
+        orbit_angle = 125
+        size = 17
+        has_ring = no
+        init_effect = {
+            set_planet_entity = {
+                entity = toxic_planet_venus_entity
+                atmosphere_color = hsv { 0.854 0.072 0.7 }
+                atmosphere_intensity = 0.2
+                atmosphere_width = 1.0
+            }
+        }
+    }
+
+    planet = {
+        class = "pc_continental"
+        orbit_distance = 25
+        orbit_angle = 120
+        size = 18
+        has_ring = no
+        entity = "continental_planet_earth_entity"
+        deposit_blockers = none
+        modifiers = none
+        flags = { planet_earth }
+
+        init_effect = {
+            save_global_event_target_as = illya_sol_system_earth
+            set_planet_flag = illya_planet
+            random_list = {
+                # Medieval
+                25 = {
+                    create_species = {
+                        name = NAME_Human
+                        plural = NAME_Human_plural
+                        class = "HUM"
+                        portrait = "human"
+                        homeworld = THIS
+                        traits = {
+                            trait = "trait_adaptive"
+                            trait = "trait_nomadic"
+                            trait = "trait_wasteful"
+                        }
+                    }
+                    create_country = {
+                        name = random
+                        authority = random
+                        civics = {
+                            civic = civic_landed_nobility
+                            civic = civic_flat_world_theory
+                        }
+                        species = last_created_species
+                        ethos = {
+                            ethic = "ethic_spiritualist"
+                            ethic = "ethic_authoritarian"
+                        }
+                        origin = origin_default_pre_ftl
+                        flag = {
+                            icon = {
+                                category = "ornate"
+                                file = "flag_ornate_11.dds"
+                            }
+                            background = {
+                                category = "backgrounds"
+                                file = "00_solid.dds"
+                            }
+                            colors = {
+                                "dark_blue"
+                                "dark_blue"
+                                "null"
+                                "null"
+                            }
+                        }
+                        day_zero_contact = no
+                        type = primitive
+                    }
+                    last_created_country = {
+                        set_graphical_culture = preindustrial_01
+                        set_country_flag = bronze_age
+                        set_country_flag = humans_bronze_age
+                        set_pre_ftl_age = bronze_age
+                    }
+
+                    set_owner = last_created_country
+
+                    while = {
+                        count = 8
+                        create_pop_group = {
+                            species = last_created_species
+                        }
+                    }
+                    add_building = building_primitive_dwellings
+                    add_building = building_stone_palace
+
+                    while = {
+                        count = 3
+                        create_army = {
+                            name = "NAME_Feudal_Levies"
+                            owner = last_created_country
+                            species = last_created_species
+                            type = "primitive_army"
+                        }
+                    }
+
+                    last_created_country = {
+                        capital_scope = { set_name = "NAME_Sol_III" }
+                    }
+                }
+            }
+        }
+
+        moon = {
+            class = "pc_barren_cold"
+            size = 5
+            orbit_distance = 12
+            orbit_angle = 40
+            has_ring = no
+            entity = "cold_barren_planet_luna_entity"
+        }
+    }
+
+    planet = {
+        class = "pc_barren"
+        orbit_distance = 25
+        orbit_angle = 60
+        size = 13
+        has_ring = no
+        entity = "barren_planet_mars_entity"
+        flags = { planet_mars }
+        init_effect = {
+            add_modifier = {
+                modifier = "terraforming_candidate"
+                days = -1
+            }
+        }
+    }
+
+    planet = {
+        class = "pc_asteroid"
+        orbit_distance = 30
+        orbit_angle = -210
+        size = 5
+        has_ring = no
+    }
+
+    planet = {
+        class = "pc_asteroid"
+        orbit_distance = 0
+        orbit_angle = -95
+        size = 5
+        has_ring = no
+    }
+
+    planet = {
+        class = "pc_asteroid"
+        orbit_distance = 0
+        orbit_angle = 285
+        size = 5
+        has_ring = no
+    }
+
+    planet = {
+        class = "pc_asteroid"
+        orbit_distance = 0
+        orbit_angle = -80
+        size = 5
+        has_ring = no
+    }
+
+    planet = {
+        class = "pc_gas_giant"
+        orbit_distance = 40
+        orbit_angle = -160
+        size = 35
+        has_ring = no
+        entity = "gas_giant_jupiter_entity"
+        change_orbit = 6
+
+        moon = {
+            class = "pc_molten"
+            size = 6
+            orbit_distance = 10
+            orbit_angle = 110
+            has_ring = no
+        }
+        moon = {
+            class = "pc_frozen"
+            size = 6
+            orbit_distance = 2.5
+            orbit_angle = 10
+            has_ring = no
+        }
+        moon = {
+            class = "pc_frozen"
+            size = 9
+            orbit_distance = 2.5
+            orbit_angle = 80
+            has_ring = no
+        }
+        moon = {
+            class = "pc_frozen"
+            size = 7
+            orbit_distance = 2.5
+            orbit_angle = -155
+            has_ring = no
+        }
+    }
+
+    planet = {
+        class = "pc_gas_giant"
+        orbit_distance = 25
+        orbit_angle = 170
+        size = 30
+        has_ring = yes
+        entity = "gas_giant_05_entity"
+        change_orbit = 7
+
+        moon = {
+            class = "pc_frozen"
+            size = 8
+            orbit_distance = 12
+            orbit_angle = 320
+            has_ring = no
+        }
+    }
+
+    planet = {
+        class = "pc_gas_giant"
+        orbit_distance = 25
+        orbit_angle = 125
+        size = 20
+        has_ring = no
+        init_effect = {
+            set_planet_entity = {
+                entity = gas_giant_uranus_entity
+                atmosphere_color = hsv { 0.548 0.519 0.9 }
+                atmosphere_intensity = 0.1
+                atmosphere_width = 1.0
+            }
+        }
+    }
+
+    planet = {
+        class = "pc_gas_giant"
+        orbit_distance = 25
+        orbit_angle = -195
+        size = 20
+        has_ring = no
+        change_orbit = 4
+
+        moon = {
+            class = "pc_frozen"
+            size = 6
+            orbit_distance = 7
+            orbit_angle = 115
+            has_ring = no
+        }
+
+        init_effect = {
+            set_planet_entity = {
+                entity = gas_giant_neptune_entity
+                atmosphere_color = hsv { 0.626 0.782 0.9 }
+                atmosphere_intensity = 0.1
+                atmosphere_width = 1.0
+            }
+        }
+    }
+
+    planet = {
+        class = "pc_asteroid"
+        orbit_distance = 30
+        orbit_angle = -210
+        size = 5
+        has_ring = no
+    }
+
+    planet = {
+        class = "pc_ice_asteroid"
+        orbit_distance = 0
+        orbit_angle = -95
+        size = 5
+        has_ring = no
+    }
+
+    planet = {
+        class = "pc_ice_asteroid"
+        orbit_distance = 0
+        orbit_angle = 285
+        size = 5
+        has_ring = no
+    }
+
+    planet = {
+        class = "pc_ice_asteroid"
+        orbit_distance = 0
+        orbit_angle = -80
+        size = 5
+        has_ring = no
+    }
+}
+
+##珂莱塔星系
+gts_rinascita_system = {
+    class = rl_standard_stars
+    name = rinasctia_system.1
+    max_instances = 1
+    init_effect = {
+        every_system_planet = {
+            prevent_anomaly = yes
+        }
+    }
+    flags = {
+        gts_carlotta_system
+    }
+    asteroid_belt = {
+        type = crystal_asteroid_belt
+        radius = 150
+    }
+    asteroid_belt = {
+        type = crystal_asteroid_belt
+        radius = 300
+    }
+    planet = {
+        class = star
+        orbit_distance = 0
+        orbit_angle = 1
+        size = 50
+        init_effect = {
+            add_deposit = d_energy_5
+        }
+    }
+    planet = {
+        name = rinasctia_system.2
+        class = pc_city
+        orbit_distance = 320
+        orbit_angle = 145
+        size = {
+            min = 15
+            max = 30
+        }
+        has_ring = yes
+        init_effect = {
+            add_anomaly = {
+                category = gts_carlotta_anomaly
+            }
+        }
+    }
+    planet = {
+        class = pc_asteroid
+        orbit_distance = 30
+        orbit_angle = -210
+        size = 5
+        has_ring = no
+    }
+}

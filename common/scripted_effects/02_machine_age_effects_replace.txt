@@ -1,0 +1,124 @@
+# Source: Vanilla 3.13.0
+# Changes: 为合成化物种匹配相同的体型特质
+create_synth_species_effect = {
+    if = {
+        limit = {
+            NOT = {
+                exists = event_target:synthspecies@root.owner
+            }
+        }
+        owner_main_species = {
+            create_species = {
+                is_mod = yes
+                name = this
+                plural = this
+                class = "ROBOT"
+                portrait = "default_robot"
+                traits = {
+                    trait = trait_mechanical
+                }
+                can_be_modified = this
+                homeworld = this
+                namelist = this
+                gender = this
+
+                effect = {
+                    set_synth_origin_traits_effect = yes
+                    set_synth_or_robot_portrait_effect = yes
+                    # 为合成化物种匹配相同的体型特质 dd
+                    set_synth_scale_traits_effect = yes
+                    save_global_event_target_as = synthspecies@root.owner
+                }
+            }
+        }
+        owner = {
+            if = {
+                limit = {
+                    has_policy_flag = robots_outlawed
+                }
+                set_policy = {
+                    policy = robot_pop_policy
+                    option = robot_pops_allowed
+                    cooldown = yes
+                }
+            }
+            if = {
+                limit = {
+                    OR = {
+                        has_policy_flag = ai_servitude
+                        has_policy_flag = ai_outlawed
+                    }
+                }
+                set_policy = {
+                    policy = artificial_intelligence_policy
+                    option = ai_full_rights
+                    cooldown = yes
+                }
+            }
+        }
+    }
+}
+
+set_synth_scale_traits_effect = {
+    prev = {
+        switch = {
+            trigger = has_trait
+            trait_Titan = {
+                prev = {
+                    change_species_characteristics = {
+                        add_trait = trait_Titan
+                    }
+                }
+            }
+            trait_Giant = {
+                prev = {
+                    change_species_characteristics = {
+                        add_trait = trait_Giant
+                    }
+                }
+            }
+            trait_Tall = {
+                prev = {
+                    change_species_characteristics = {
+                        add_trait = trait_Tall
+                    }
+                }
+            }
+            trait_Normal = {
+                prev = {
+                    change_species_characteristics = {
+                        add_trait = trait_Normal
+                    }
+                }
+            }
+            trait_Small = {
+                prev = {
+                    change_species_characteristics = {
+                        add_trait = trait_Small
+                    }
+                }
+            }
+            trait_Tiny = {
+                prev = {
+                    change_species_characteristics = {
+                        add_trait = trait_Tiny
+                    }
+                }
+            }
+            trait_Micro = {
+                prev = {
+                    change_species_characteristics = {
+                        add_trait = trait_Micro
+                    }
+                }
+            }
+            default = {
+                prev = {
+                    change_species_characteristics = {
+                        add_trait = trait_Normal
+                    }
+                }
+            }
+        }
+    }
+}

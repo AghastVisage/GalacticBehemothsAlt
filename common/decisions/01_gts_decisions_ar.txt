@@ -1,0 +1,46 @@
+##########
+# 行星决议 #
+##########
+
+#星界裂隙决议
+gts_decision_incubate_wind_creatures = {
+    owned_planets_only = yes
+    sound = event_administrative_work
+    icon = decision_incubate_wind_creatures
+
+    resources = {
+        category = decisions
+    }
+
+    potential = {
+        owner = {
+            check_variable = {
+                which = num_authorized_gts_wind_creatures
+                value > 0
+            }
+        }
+        NOT = { has_deposit = gts_d_forceful_winds }
+    }
+
+    effect = {
+        hidden_effect = {
+            owner = {
+                change_variable = {
+                    which = num_authorized_wind_creatures
+                    value = -1
+                }
+            }
+        }
+        add_deposit = gts_d_forceful_winds
+
+        # Must be removed after to updade planet modifiers graphics
+        if = {
+            limit = { has_modifier = hazardous_weather }
+            remove_modifier = hazardous_weather
+        }
+    }
+
+    ai_weight = {
+        weight = 5
+    }
+}

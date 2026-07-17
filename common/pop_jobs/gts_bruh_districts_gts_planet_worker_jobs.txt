@@ -1,0 +1,839 @@
+################################################################################
+#################                特殊星球工人崗位                #################
+################################################################################
+
+
+
+################################################################################
+#################                愛液星球工人崗位                #################
+################################################################################
+
+
+
+gts_juice_technician = {
+
+	# 愛液潮汐工程師
+
+	category = worker
+
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_energy_nexus
+			icon = maintenance_drone
+		}
+	}
+
+	tags = { energy }
+
+	inline_script = "jobs/automodding_priority_energy"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = worker
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+
+	resources = {
+		category = planet_technician
+		produces = {
+			# 12.5
+			energy = 12.5
+		}
+		upkeep = {
+			# 10
+			food = 10
+		}
+	}
+
+	weight = {
+		weight = @worker_job_weight
+	}
+}
+
+
+
+################################################################################
+#################                乳汁星球工人崗位                #################
+################################################################################
+
+
+
+gts_milk_worker = {
+
+	# 乳汁農夫
+
+	category = worker
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_gts_food_factory
+			icon = farmer
+		}
+	}
+
+	tags = { food }
+
+	inline_script = "jobs/automodding_priority_food"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = worker
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+
+	resources = {
+		category = planet_farmers
+		produces = {
+			# 12.5
+			food = 12.5
+		}
+		upkeep = {
+			# 10
+			energy = 4
+			gts_giantess_fluid = 3
+		}
+	}
+
+	weight = {
+		weight = @worker_job_weight
+	}
+}
+
+gts_bfbf_milk1 = {
+
+	# 并非并非
+
+	# 乳垢晾曬員
+
+	category = worker
+
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_gts_food_factory
+			icon = farmer
+		}
+	}
+
+	tags = { consumer_goods food }
+
+	inline_script = "jobs/automodding_priority_food"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = worker
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+
+	resources = {
+		category = planet_farmers
+		produces = {
+			# 12.5
+			food = 10
+			consumer_goods = 1.25
+		}
+		upkeep = {
+			# 10
+			energy = 4
+			gts_giantess_fluid = 3
+		}
+	}
+
+	weight = {
+		weight = @worker_job_weight
+	}
+}
+
+gts_bfbf_milk2 = {
+
+	# 并非并非
+
+	# 乳汁發電工作人員
+
+	category = worker
+
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_energy_nexus
+			icon = maintenance_drone
+		}
+	}
+
+	tags = { energy }
+
+	inline_script = "jobs/automodding_priority_energy"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = worker
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+
+	resources = {
+		category = planet_technician
+		produces = {
+			# 12.5
+			energy = 12.5
+		}
+		upkeep = {
+			# 10
+			food = 10
+		}
+	}
+
+	weight = {
+		weight = @worker_job_weight
+	}
+}
+
+gts_bfbf_milk3 = {
+
+	# 并非并非
+
+	# 深海回收人員
+
+	category = worker
+
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_holo_theatres
+			icon = foundry
+		}
+	}
+
+	tags = { alloys }
+
+	inline_script = "jobs/automodding_priority_alloys"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = worker
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+
+	resources = {
+		category = planet_metallurgists
+		produces = {
+			# 12.5
+			minerals = 10
+			alloys = 1.25
+		}
+		upkeep = {
+			# 10
+			energy = 5
+			food = 5
+		}
+	}
+
+	weight = {
+		weight = @worker_job_weight
+	}
+}
+
+
+
+################################################################################
+#################                排泄星球工人崗位                #################
+################################################################################
+
+
+
+gts_bfbf_shit2 = {
+
+	# 并非并非
+
+	# 巨娘糞便分類者
+
+	category = worker
+
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_primitive_dwellings
+			icon = miner
+		}
+	}
+
+	tags = { alloys minerals }
+
+	inline_script = "jobs/automodding_priority_minerals"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = worker
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+
+	resources = {
+		category = planet_metallurgists
+		produces = {
+			# 12.5
+			minerals = 10
+			alloys = 1.25
+		}
+		upkeep = {
+			# 10
+			energy = 5
+			food = 5
+		}
+	}
+
+	weight = {
+		weight = @worker_job_weight
+	}
+}
+
+gts_bfbf_shit3 = {
+
+	# 并非并非
+
+	# 巨娘糞便催化人員
+
+	category = worker
+
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_primitive_farm
+			icon = farmer
+		}
+	}
+
+	tags = { food }
+
+	inline_script = "jobs/automodding_priority_food"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = worker
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+
+	resources = {
+		category = planet_farmers
+		produces = {
+			# 12.5
+			food = 12.5
+		}
+		upkeep = {
+			# 10
+			energy = 5
+			food = 5
+		}
+	}
+
+	weight = {
+		weight = @worker_job_weight
+	}
+}
+
+
+
+################################################################################
+#################                足垢星球工人崗位                #################
+################################################################################
+
+
+
+gts_dirt2 = {
+
+	# 足蟲礦工
+
+	category = worker
+
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_primitive_mine
+			icon = micro_miner
+		}
+	}
+
+	tags = { minerals alloys }
+
+	inline_script = "jobs/automodding_priority_minerals"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = worker
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+
+	resources = {
+		category = planet_miners
+		produces = {
+			# 12.5
+			minerals = 10
+			alloys = 1.25
+		}
+		upkeep = {
+			# 10
+			energy = 5
+			food = 5
+		}
+	}
+
+	weight = {
+		weight = @worker_job_weight
+	}
+}
+
+gts_dirt3 = {
+
+	# 足蟲農夫
+
+	category = worker
+
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_gts_food_factory
+			icon = micro_food_worker
+		}
+	}
+
+	tags = { food }
+
+	inline_script = "jobs/automodding_priority_food"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = worker
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+
+	resources = {
+		category = planet_farmers
+		produces = {
+			# 12.5
+			food = 12.5
+		}
+		upkeep = {
+			# 10
+			energy = 10
+		}
+	}
+
+	weight = {
+		weight = @worker_job_weight
+	}
+}
+
+
+
+################################################################################
+################                足垢堡壘星球勞工崗位                ################
+################################################################################
+
+
+
+gts_dirt4 = {
+
+	# 足蟲勇士
+
+	category = worker
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_stronghold
+			icon = soldier
+		}
+	}
+
+	tags = { soldier }
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = worker
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	country_modifier = {
+		country_naval_cap_add = 3
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+		}
+		planet_defense_armies_add = 1
+		planet_stability_add = 1
+	}
+
+	resources = {
+		category = planet_soldiers
+		upkeep = {
+			# 10
+			energy = 5
+			food = 5
+		}
+	}
+
+	possible = {
+		soldier_job_check_trigger = yes
+		owner = { is_gestalt = no }
+	}
+
+	weight = {
+		weight = @soldier_job_weight
+		modifier = {
+			factor = 10
+			exists = planet
+			planet = {
+				exists = leader
+				leader = {
+					leader_class = commander
+				}
+			}
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_resilient
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_very_strong
+		}
+		modifier = {
+			factor = 1.5
+			has_trait = trait_strong
+		}
+		modifier = {
+			factor = 0.5
+			has_trait = trait_weak
+		}
+		modifier = {
+			factor = 0.1
+			is_enslaved = yes
+			NOT = { has_slavery_type = { type = slavery_military } }
+		}
+		modifier = {
+			factor = 10
+			is_enslaved = yes
+			has_slavery_type = { type = slavery_military }
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 1.1
+			has_trait = trait_cybernetic
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_presapient_earthbound
+		}
+		modifier = {
+			factor = 1.1
+			has_trait = trait_limited_regeneration
+		}
+		modifier = {
+			factor = 0
+			species = { can_be_soldier = no }
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_lithoid
+		}
+	}
+}
+
+
+
+################################################################################
+#################                胖次星球工人崗位                #################
+################################################################################
+
+
+
+gts_bruh_panties_planet_01_worker = {
+	category = worker
+
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_mining_districts_4
+			icon = miner
+		}
+	}
+
+	tags = { energy volatile_motes }
+
+	inline_script = "jobs/automodding_priority_minerals"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = worker
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+
+	resources = {
+		category = planet_miners
+		produces = {
+			# 12.5
+			energy = 10
+			volatile_motes = 1.25
+		}
+		upkeep = {
+			# 10
+			food = 10
+		}
+	}
+
+	weight = {
+		weight = @worker_job_weight
+	}
+}
+
+gts_bruh_panties_planet_02_worker = {
+	category = worker
+
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_mining_districts_4
+			icon = pearl_diver
+		}
+	}
+
+	tags = { alloys strategic_resource }
+
+	inline_script = "jobs/automodding_priority_minerals"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = worker
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+
+	resources = {
+		category = planet_miners
+		produces = {
+			# 12.5
+			alloys = 1.25
+			gts_giantess_fluid = 5
+		}
+		upkeep = {
+			# 10
+			energy = 5
+			food = 10
+		}
+	}
+
+	weight = {
+		weight = @worker_job_weight
+	}
+}
+
+gts_bruh_panties_planet_03_worker = {
+	category = worker
+
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_mining_districts_4
+			icon = gts_giantess_underwear_worker
+		}
+	}
+
+	tags = { strategic_resource }
+
+	inline_script = "jobs/automodding_priority_minerals"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = worker
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+
+	resources = {
+		category = planet_miners
+		produces = {
+			# 12.5
+			gts_giantess_underwear = 3.125
+		}
+		upkeep = {
+			# 10
+			energy = 5
+			food = 5
+		}
+	}
+
+	weight = {
+		weight = @worker_job_weight
+	}
+}
+
