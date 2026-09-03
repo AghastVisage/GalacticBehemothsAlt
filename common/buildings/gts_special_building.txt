@@ -161,8 +161,36 @@ building_micro_civilization_greenhouse = {
 
 	base_buildtime = @b3_time
 	category = pop_assembly
-	base_cap_amount = 1
 	icon = building_clone_vats
+	
+
+	planet_limit = {
+		base = 1
+		modifier = {
+			exists = owner
+			owner = {
+				has_tradition = tr_cloning_finish
+			}
+			has_upgraded_capital = yes
+			add = 1
+		}
+		modifier = {
+			exists = owner
+			owner = {
+				has_tradition = tr_cloning_finish
+			}
+			has_major_upgraded_capital = yes
+			add = 1
+		}
+		modifier = {
+			exists = owner
+			owner = {
+				has_tradition = tr_cloning_finish
+			}
+			has_fully_upgraded_capital = yes
+			add = 1
+		}
+	}
 
 	potential = {
 		exists = owner
@@ -181,6 +209,36 @@ building_micro_civilization_greenhouse = {
 		exists = owner
 		owner = {
 			NOT = { has_civic = civic_origin_from_micro}
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_gene_tailoring
+			}
+			any_owned_pop_group = {
+				has_auto_modding_trait = yes
+			}
+		}
+		modifier = {
+			auto_mod_monthly_add = 600
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				game_start_auto_mod_empire = yes
+			}
+			any_owned_pop_group = {
+				has_auto_modding_trait = yes
+			}
+		}
+		modifier = {
+			auto_mod_monthly_add = 600
 		}
 	}
 

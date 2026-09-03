@@ -137,8 +137,35 @@ gts_fallout_gentle_clone = {
 
 	base_buildtime = @b2_time
 	category = pop_assembly
-	base_cap_amount = 1
 	icon = building_clone_vats
+
+	planet_limit = {
+		base = 1
+		modifier = {
+			exists = owner
+			owner = {
+				has_tradition = tr_cloning_finish
+			}
+			has_upgraded_capital = yes
+			add = 1
+		}
+		modifier = {
+			exists = owner
+			owner = {
+				has_tradition = tr_cloning_finish
+			}
+			has_major_upgraded_capital = yes
+			add = 1
+		}
+		modifier = {
+			exists = owner
+			owner = {
+				has_tradition = tr_cloning_finish
+			}
+			has_fully_upgraded_capital = yes
+			add = 1
+		}
+	}
 
 	potential = {
 		exists = owner
@@ -169,6 +196,36 @@ gts_fallout_gentle_clone = {
 		}
 		upkeep = {
 			gts_micro = @b2_upkeep
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_gene_tailoring
+			}
+			any_owned_pop_group = {
+				has_auto_modding_trait = yes
+			}
+		}
+		modifier = {
+			auto_mod_monthly_add = 400
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				game_start_auto_mod_empire = yes
+			}
+			any_owned_pop_group = {
+				has_auto_modding_trait = yes
+			}
+		}
+		modifier = {
+			auto_mod_monthly_add = 400
 		}
 	}
 
