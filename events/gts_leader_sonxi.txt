@@ -8,15 +8,19 @@ country_event = {
 	fire_only_once = yes
 	trigger = {
 		is_ai = no
-		num_owned_planets > 2
-		any_owned_planet = {
-			NOR = {
-				is_planet_class = pc_shattered_ring_habitable
-				is_planet_class = pc_ringworld_habitable
-				is_planet_class = pc_habitat
-				is_eatable_planet = no
+		OR = {
+			AND = {
+				num_owned_planets > 2
+				any_owned_planet = {
+					NOR = {
+						is_planet_class = pc_shattered_ring_habitable
+						is_planet_class = pc_ringworld_habitable
+						is_planet_class = pc_habitat
+						is_eatable_planet = no
+					}
+				}
 			}
-
+			is_nomadic = yes
 		}
 	}
 	immediate = {
@@ -40,36 +44,75 @@ country_event = {
 		is_ai = no
 	}
 	immediate = {
-		random_system_within_border = {
+		if = {
 			limit = {
-				any_system_planet = {
-					is_colony = yes
-					is_controlled_by = root
-					NOR = {
-						is_planet_class = pc_shattered_ring_habitable
-						is_planet_class = pc_ringworld_habitable
-						is_planet_class = pc_habitat
-						is_eatable_planet = no
+				is_nomadic = yes
+			}
+			random_system = {
+				limit = {
+					any_system_planet = {
+						NOR = {
+							is_planet_class = pc_shattered_ring_habitable
+							is_planet_class = pc_ringworld_habitable
+							is_planet_class = pc_habitat
+							is_eatable_planet = no
+						}
+						distance = {
+							source = root.capital_scope.solar_system
+							use_bypasses = yes
+							min_jumps = 1
+							max_jumps = 6
+						}
 					}
-
+				}
+				set_star_flag = gts_sleepbear_system
+				random_system_planet = {
+					limit = {
+						NOR = {
+							is_planet_class = pc_shattered_ring_habitable
+							is_planet_class = pc_ringworld_habitable
+							is_planet_class = pc_habitat
+							is_eatable_planet = no
+						}
+					}
+					save_global_event_target_as = gts_sleepbear_planet
+					set_planet_flag = gts_sleepbear_planet
+					set_planet_flag = gts_body_planet
 				}
 			}
-			set_star_flag = gts_sleepbear_system
-			random_system_planet = {
+		}
+		else = {
+			random_system_within_border = {
 				limit = {
-					is_colony = yes
-					is_controlled_by = root
-					NOR = {
-						is_planet_class = pc_shattered_ring_habitable
-						is_planet_class = pc_ringworld_habitable
-						is_planet_class = pc_habitat
-						is_eatable_planet = no
-					}
+					any_system_planet = {
+						is_colony = yes
+						is_controlled_by = root
+						NOR = {
+							is_planet_class = pc_shattered_ring_habitable
+							is_planet_class = pc_ringworld_habitable
+							is_planet_class = pc_habitat
+							is_eatable_planet = no
+						}
 
+					}
 				}
-				save_global_event_target_as = gts_sleepbear_planet
-				set_planet_flag = gts_sleepbear_planet
-				set_planet_flag = gts_body_planet
+				set_star_flag = gts_sleepbear_system
+				random_system_planet = {
+					limit = {
+						is_colony = yes
+						is_controlled_by = root
+						NOR = {
+							is_planet_class = pc_shattered_ring_habitable
+							is_planet_class = pc_ringworld_habitable
+							is_planet_class = pc_habitat
+							is_eatable_planet = no
+						}
+
+					}
+					save_global_event_target_as = gts_sleepbear_planet
+					set_planet_flag = gts_sleepbear_planet
+					set_planet_flag = gts_body_planet
+				}
 			}
 		}
 		country_event = {
@@ -178,7 +221,7 @@ country_event = {
 		enable_special_project = {
 			name = "SLEEP_BEAR_PROJECT"
 			location = event_target:gts_sleepbear_planet
-			owner = event_target:gts_sleepbear_planet.owner
+			owner = root
 		}
 	}
 	option = {
