@@ -26,13 +26,86 @@ country_event = {
 	}
 }
 
-planet_event = {
+carrier_event = {
+	id = gts_eyjafjalla.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_carrier_flag = gts_eyjafjalla_planet_flag
+	}
+
+	immediate = {
+        hidden_effect = {
+            random_list = {
+                1 = {
+                    planet_event = {
+                        id = gts_eyjafjalla.2
+                    }
+                }				#入口 20
+                1 = {
+                    planet_event = {
+                        id = gts_eyjafjalla.4
+                    }
+                }				#入菊 20
+                3 = {
+                    planet_event = {
+                        id = gts_eyjafjalla.3
+                    }
+                }				#入乳 60
+            }
+        }
+	}
+}
+
+carrier_event = {
+	id = gts_eyjafjalla.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_carrier_flag = gts_eyjafjalla_triggered }
+		from = {
+			is_wilderness_empire = yes
+		}
+		has_carrier_flag = gts_eyjafjalla_planet_flag
+	}
+
+	immediate = {
+        hidden_effect = {
+            random_list = {
+                1 = {
+                    carrier_event = {
+                        id = gts_eyjafjalla.2
+                    }
+                }				#入口 20
+                1 = {
+                    carrier_event = {
+                        id = gts_eyjafjalla.4
+                    }
+                }				#入菊 20
+                3 = {
+                    carrier_event = {
+                        id = gts_eyjafjalla.3
+                    }
+                }				#入乳 60
+            }
+        }
+	}
+}
+
+carrier_event = {
 	id = gts_eyjafjalla.2	#入口
 	title = "gts_eyjafjalla.2.name"
 	desc = "gts_eyjafjalla.2.desc"
 	picture = GFX_gts_eyjafjalla_01
 	location = ROOT
 	is_triggered_only = yes
+
+	# Set flag individually in these entrypoints, instead of from whatever called them
+	immediate = {
+		set_carrier_flag = gts_eyjafjalla_triggered
+	}
 	option = {
 		name = gts_eyjafjalla.2.a		#结束事件
 		add_deposit = d_gts_eyjafjalla_vore
@@ -52,7 +125,7 @@ planet_event = {
 				energy = -500
 			}
 		}
-		planet_event = {
+		carrier_event = {
 			id = gts_eyjafjalla.3
 			days = 30
 		}
@@ -62,33 +135,46 @@ planet_event = {
 	}
 }
 
-planet_event = {
+carrier_event = {
 	id = gts_eyjafjalla.3	#入乳
 	title = "gts_eyjafjalla.3.name"
 	desc = "gts_eyjafjalla.3.desc"
 	picture = GFX_gts_eyjafjalla_07
 	location = ROOT
 	is_triggered_only = yes
+
+	# Set flag individually in these entrypoints, instead of from whatever called them
+	immediate = {
+		set_carrier_flag = gts_eyjafjalla_triggered
+	}
+
 	option = {
 		name = gts_eyjafjalla.3.a
-		planet_event = {
+		carrier_event = {
 			id = gts_eyjafjalla.5
 			days = 3
 		}
 	}
 }
 
-planet_event = {
+carrier_event = {
 	id = gts_eyjafjalla.4	#入臀
 	title = "gts_eyjafjalla.4.name"
 	desc = "gts_eyjafjalla.4.desc"
 	picture = GFX_gts_eyjafjalla_10
 	location = ROOT
 	is_triggered_only = yes
+	
+
+	# Set flag individually in these entrypoints, instead of from whatever called them
+	immediate = {
+		set_carrier_flag = gts_eyjafjalla_triggered
+	}
+
 	option = {
 		name = gts_eyjafjalla.4.a
 		hidden_effect = {
-			planet_event = {
+			carrier_event = {
 				id = gts_eyjafjalla.6
 				days = 3
 			}
@@ -109,7 +195,7 @@ planet_event = {
 				energy = -500
 			}
 		}
-		planet_event = {
+		carrier_event = {
 			id = gts_eyjafjalla.3
 			days = 30
 		}
@@ -119,8 +205,8 @@ planet_event = {
 	}
 }
 
-# 入乳後續
-planet_event = {
+#入乳后续
+carrier_event = {
 	id = gts_eyjafjalla.5
 	title = "gts_eyjafjalla.5.name"
 	desc = "gts_eyjafjalla.5.desc"
@@ -137,8 +223,8 @@ planet_event = {
 	}
 }
 
-# 入臀後續
-planet_event = {
+#入臀后续
+carrier_event = {
 	id = gts_eyjafjalla.6
 	title = "gts_eyjafjalla.6.name"
 	desc = "gts_eyjafjalla.6.desc"

@@ -196,6 +196,57 @@ planet_event = {
     }
 }
 
+# Wilderness: No actual separate species, just tell the story
+carrier_event = {
+    id = gts_evolution_catalyst_event.21
+    hide_window = yes
+    is_triggered_only = yes
+
+    trigger = {
+        # This makes it trigger whenever terraforming happens on a planet without having triggered this event chain, even when it's e.g. a planet from a conquest
+		NOT = { has_planet_flag = gts_presapients_created }
+		from = {
+			is_wilderness_empire = yes
+            has_civic = civic_evolution_catalyst
+		}
+    }
+
+    immediate = {
+        set_planet_flag = gts_presapients_created
+    }
+    after = {
+        hidden_effect = {
+            random_list = {
+                1 = {
+                    planet_event = {
+                        id = gts_evolution_catalyst_event.3
+                        days = 30
+                        random = 5
+                    }
+                }
+                1 = {
+                    planet_event = {
+                        id = gts_evolution_catalyst_event.4
+                        days = 30
+                        random = 5
+                    }
+                }
+            }
+            random_list = {
+                1 = {
+                    planet_event = {
+                        id = gts_evolution_catalyst_event.11
+                        days = 300
+                        random = 5
+                    }
+                }
+                1 = {
+                }
+            }
+        }
+    }
+}
+
 planet_event = {
 
     id = gts_evolution_catalyst_event.3
