@@ -604,13 +604,35 @@ country_event = {
 	option = {
 		name = gts_seele.14.a.name
 		hidden_effect = {
-			random_planet_within_border = {
+			random_system = {
 				limit = {
-					is_preventing_anomaly = no
-					has_anomaly = no
+					distance = {
+						source = root.capital_scope.solar_system
+						use_bypasses = yes
+						min_jumps = 1
+						max_jumps = 6
+					}
+					any_system_planet = {
+						OR = {
+							uninhabitable_regular_planet = yes
+							habitable_planet_not_urban = yes
+						}
+						is_preventing_anomaly = no
+						has_anomaly = no
+					}
 				}
-				add_anomaly = {
-					category = gts_bronya_add
+				random_system_planet = {
+					limit = {
+						OR = {
+							uninhabitable_regular_planet = yes
+							habitable_planet_not_urban = yes
+						}
+						is_preventing_anomaly = no
+						has_anomaly = no
+					}
+					add_anomaly = {
+						category = gts_bronya_add
+					}
 				}
 			}
 		}
@@ -1344,7 +1366,7 @@ country_event = {
 					has_anomaly = no
 				}
 				add_anomaly = {
-					category = gts_bronya_add
+					category = gts_xiaotu.fankang
 				}
 			}
 		}
@@ -5934,52 +5956,52 @@ country_event = {
 
 
 
-# country_event = {
-# 	#降低希儿好感的
-# 	id = gts_seele.201
-# 	is_triggered_only = yes
-# 	auto_opens = yes
-# 	hide_window = yes
-# 	immediate = {
-# 		event_target:gts_seele = {
-# 			change_variable = {
-# 				value = -0.5
-# 				which = gts_love_logs
-# 			}
-# 		}
-# 	}
-# 	trigger = {
-# 		owner = {
-# 			has_country_flag = gts_seele_drift
-# 			any_owned_leader = {
-# 				has_leader_flag = gts_seele
-# 			}
-# 		}
-# 	}
-# }
-# country_event = {
-# 	#希儿好感度升高
-# 	id = gts_seele.202
-# 	is_triggered_only = yes
-# 	auto_opens = yes
-# 	hide_window = yes
-# 	immediate = {
-# 		event_target:gts_seele = {
-# 			change_variable = {
-# 				value = 0.5
-# 				which = gts_love_logs
-# 			}
-# 		}
-# 	}
-# 	trigger = {
-# 		owner = {
-# 			has_country_flag = gts_seele_friendly
-# 			any_owned_leader = {
-# 				has_leader_flag = gts_seele
-# 			}
-# 		}
-# 	}
-# }
+ country_event = {
+ 	#降低希儿好感的
+ 	id = gts_seele.201
+ 	is_triggered_only = yes
+ 	auto_opens = yes
+ 	hide_window = yes
+ 	immediate = {
+ 		event_target:gts_seele = {
+ 			change_variable = {
+ 				value = -0.5
+ 				which = gts_love_logs
+ 			}
+ 		}
+ 	}
+ 	trigger = {
+ 		owner = {
+ 			has_country_flag = gts_seele_drift
+ 			any_owned_leader = {
+ 				has_leader_flag = gts_seele
+ 			}
+ 		}
+ 	}
+ }
+ country_event = {
+ 	#希儿好感度升高
+ 	id = gts_seele.202
+ 	is_triggered_only = yes
+ 	auto_opens = yes
+ 	hide_window = yes
+ 	immediate = {
+ 		event_target:gts_seele = {
+ 			change_variable = {
+ 				value = 0.5
+ 				which = gts_love_logs
+ 			}
+ 		}
+ 	}
+ 	trigger = {
+ 		owner = {
+ 			has_country_flag = gts_seele_friendly
+ 			any_owned_leader = {
+ 				has_leader_flag = gts_seele
+ 			}
+ 		}
+ 	}
+ }
 country_event = {
 	#好感度相关
 	id = gts_seele.203
