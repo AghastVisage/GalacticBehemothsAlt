@@ -1,0 +1,54 @@
+
+
+num_free_virtual_jobs = {
+	base = 0
+	add = trigger:free_jobs
+	complex_trigger_modifier = {
+		trigger = free_jobs_of_type
+		parameters = {
+			category = bio_trophy
+		}
+		mode = subtract
+	}
+	complex_trigger_modifier = {
+		trigger = free_jobs_of_type
+		parameters = {
+			job= mortal_initiate
+		}
+		mode = subtract
+	}
+
+	# Added virtual-ineligible job types
+	# Civilian unlimited jobs are forbidden for all virtual pops
+	complex_trigger_modifier = {
+		trigger = free_jobs_of_type
+		parameters = {
+			job= gts_civilian_unlimited_seele
+		}
+		mode = subtract
+	}
+	complex_trigger_modifier = {
+		trigger = free_jobs_of_type
+		parameters = {
+			job= gts_civilian_unlimited_seele_li
+		}
+		mode = subtract
+	}
+	complex_trigger_modifier = {
+		trigger = free_jobs_of_type
+		parameters = {
+			job= gts_civilian_unlimited_bronya
+		}
+		mode = subtract
+	}
+
+	# Tiny Crisis is still broken, with each virtual pop infinitely generating more jobs
+	complex_trigger_modifier = {
+		trigger = free_jobs_of_type
+		parameters = {
+			job= job_godness_power_worker
+		}
+		mode = subtract
+	}
+	# TODO: Handle tiny-ineligible and gts-ineligible jobs
+}
