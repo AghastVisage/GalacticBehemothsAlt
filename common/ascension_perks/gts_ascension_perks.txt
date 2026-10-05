@@ -118,9 +118,13 @@ ap_gts_115tiny_crisis = {
 			is_player_crisis = yes
 			has_ascension_perk = ap_become_the_crisis
 			has_ascension_perk = ap_gts_115tiny_crisis
-			has_ascension_perk = ap_behemoths
 			has_ascension_perk = ap_cosmogenesis
-			gts_is_giantess_empire = yes
+			has_ascension_perk = ap_defender_of_the_galaxy
+			has_ascension_perk = ap_defender_of_the_galaxy_nomads
+			has_ascension_perk = ap_behemoths
+			has_origin = origin_slavers
+			has_origin = origin_endbringers # No additional crisis for Endbringers
+			gts_is_giantess_empire = yes 
 		}
 	}
 
@@ -184,7 +188,7 @@ ap_gts_115tiny_crisis = {
 	}
 
 	ai_weight = {
-		factor = 7.5
+		factor = 15
 		modifier = {
 			factor = 10
 			has_civic = civic_titan_hunter
@@ -198,12 +202,8 @@ ap_gts_115tiny_crisis = {
 			has_tradition = tr_supremacy_finish
 		}
 		modifier = {
-			factor = 0
-			galaxy_percentage < 0.1
-		}
-		modifier = {
 			factor = 2
-			galaxy_percentage > 0.2
+			galaxy_percentage > 0.03
 		}
 		modifier = {
 			factor = 0
@@ -233,7 +233,9 @@ ap_cosmogenesis = {
 			has_ascension_perk = ap_cosmogenesis
 			has_ascension_perk = ap_gts_115tiny_crisis
 			has_ascension_perk = ap_defender_of_the_galaxy
+			has_ascension_perk = ap_defender_of_the_galaxy_nomads
 			has_origin = origin_slavers # No crisis for MSI
+			has_origin = origin_endbringers # No additional crisis for Endbringers
 		}
 	}
 
@@ -267,7 +269,7 @@ ap_cosmogenesis = {
 	}
 
 	ai_weight = {
-		factor = 7.5
+		factor = 15
 		modifier = {
 			factor = 0
 			OR = {
@@ -301,12 +303,8 @@ ap_cosmogenesis = {
 			has_country_flag = whisperers_covenant_confirmed
 		}
 		modifier = {
-			factor = 0
-			galaxy_percentage < 0.1
-		}
-		modifier = {
 			factor = 2
-			galaxy_percentage > 0.2
+			galaxy_percentage > 0.03
 		}
 	}
 }
@@ -323,7 +321,9 @@ ap_become_the_crisis = {
 			has_ascension_perk = ap_gts_115tiny_crisis
 			has_ascension_perk = ap_cosmogenesis
 			has_ascension_perk = ap_defender_of_the_galaxy
+			has_ascension_perk = ap_defender_of_the_galaxy_nomads
 			has_origin = origin_slavers
+			has_origin = origin_endbringers # No additional crisis for Endbringers
 		}
 	}
 
@@ -361,7 +361,7 @@ ap_become_the_crisis = {
 	}
 
 	ai_weight = {
-		factor = 7.5
+		factor = 15
 		modifier = {
 			factor = 0
 			NOR = {
@@ -379,12 +379,8 @@ ap_become_the_crisis = {
 			has_tradition = tr_supremacy_finish
 		}
 		modifier = {
-			factor = 0
-			galaxy_percentage < 0.1
-		}
-		modifier = {
 			factor = 2
-			galaxy_percentage > 0.2
+			galaxy_percentage > 0.03
 		}
 		modifier = {
 			factor = 0
@@ -405,13 +401,12 @@ ap_behemoths = {
 	potential = {
 		has_biogenesis_dlc = yes
 		NOR = {
-			has_ascension_perk = ap_become_the_crisis
-			has_ascension_perk = ap_cosmogenesis
-			has_ascension_perk = ap_behemoths
-			has_ascension_perk = ap_gts_115tiny_crisis
+			is_player_crisis = yes
 			has_ascension_perk = ap_defender_of_the_galaxy
+			has_ascension_perk = ap_defender_of_the_galaxy_nomads
+			has_ascension_perk = ap_gts_115tiny_crisis
 			has_origin = origin_slavers # No crisis for MSI
-			is_wilderness_empire = yes
+			has_origin = origin_endbringers # No additional crisis for Endbringers
 		}
 	}
 
@@ -449,7 +444,7 @@ ap_behemoths = {
 	}
 
 	ai_weight = {
-		factor = 7.5
+		factor = 15
 		modifier = {
 			factor = 0
 			is_xenophile = yes
@@ -488,12 +483,8 @@ ap_behemoths = {
 			has_country_flag = eater_covenant_confirmed
 		}
 		modifier = {
-			factor = 0
-			galaxy_percentage < 0.1
-		}
-		modifier = {
 			factor = 2
-			galaxy_percentage > 0.2
+			galaxy_percentage > 0.03
 		}
 	}
 }
