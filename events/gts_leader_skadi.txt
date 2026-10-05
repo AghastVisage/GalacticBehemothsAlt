@@ -5,6 +5,7 @@ country_event = {#球生成考古
 	picture = GFX_evt_drifting_gateway
 	title = gts_skadi_potral.01.name
 	desc = gts_skadi_potral.01.desc
+	location = event_target:skadi_planet
 	show_sound = event_ghost_town
 	is_triggered_only = yes
 	trigger = {
@@ -20,7 +21,11 @@ country_event = {#球生成考古
 			random_system_planet = {
 				limit = { gts_intel_planet_skadi = { COUNTRY = root } }
 				create_archaeological_site = site_skadi_potral
-				root = { set_country_flag = skadi_intro set_global_flag = skadi_started }
+				root = {
+					set_country_flag = skadi_intro
+					set_global_flag = skadi_started
+				}
+				save_global_event_target_as = skadi_planet
 			}
 		}
 	}
@@ -2846,97 +2851,6 @@ country_event = {
 			}
 			remove_modifier = skadi_satisfy_marked
 		}
-		
-		# eated_pop計算
-		
-		# 每100人 = 1個eated_pop
-		
-		every_galaxy_planet = {
-			
-			# 除了首都外有人的星球
-			
-			limit = {
-				is_colony = yes
-				is_capital = no
-				has_modifier = skadi_shroud_marked
-			}
-			
-			# 計算人口數量
-			
-			export_trigger_value_to_variable = {
-				trigger = pop_amount
-				variable = gts_bruh_get_planet_killed_pop_count
-			}
-			divide_variable = {
-				which = gts_bruh_get_planet_killed_pop_count
-				value = 100
-			}
-			round_variable = gts_bruh_get_planet_killed_pop_count
-			
-			root = {
-				change_variable = {
-					which = eated_pop
-					value = gts_bruh_get_planet_killed_pop_count
-				}
-			}
-		}
-		#每颗星球寄
-		every_galaxy_planet = {
-			limit = {
-				has_modifier = skadi_shroud_marked
-			}
-			remove_modifier = skadi_shroud_marked
-			remove_all_armies = yes
-			#星球变成爱液
-			if = {
-				limit = {
-					is_planet_class = pc_habitat
-				}
-				destroy_colony = yes
-				remove_planet = yes
-			}
-			else_if = {
-				limit = {
-					is_ringworld = yes
-				}
-				gts_bruh_clear_planet_effect = yes
-				change_pc = pc_ringworld_habitable_damaged
-			}
-			else_if = {
-				limit = {
-					is_owned_by = root
-					NOR = {
-						is_planet_class = pc_gts_juice
-						is_planet_class = pc_gts_juice2
-						is_planet_class = pc_gts_juice3
-						is_planet_class = pc_gtsra_loli
-						is_planet_class = pc_gtsra_loli_slave
-						is_planet_class = pc_cheng_hui
-						is_planet_class = pc_gts_oscillator
-						is_planet_class = pc_gts_yarong
-						is_planet_class = pc_gtsra_bronya_slave
-						is_planet_class = pc_gts_luanzi
-					}
-				}
-				gts_bruh_clear_planet_effect = yes
-				destroy_colony = yes
-				
-				hidden_effect = {
-					pc_gts_juice_change = yes
-					
-					# 移除地形
-					
-					while = {
-						count = 3
-						remove_deposit = d_juice_ruin1
-						remove_deposit = d_juice_ruin2
-						remove_deposit = d_juice_ruin3
-						remove_deposit = d_juice_ruin5
-						add_deposit = d_juice_ruin6
-					}
-				}
-			}
-		}
 		#给所有国家加好感
 		every_country = {
 			limit = {
@@ -4577,7 +4491,6 @@ planet_event = { # 转化为爱液星球-拥有斯卡蒂
 	id = gts_skadi_colossus.112
 	title = gts_skadi_colossus.112.name
 	desc = gts_skadi_colossus.112.desc
-	fire_only_once = yes
 	picture = skadi_ubplanet2
 	show_sound = event_mystic_reveal
 	location = root
