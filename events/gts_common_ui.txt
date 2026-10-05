@@ -1411,6 +1411,17 @@ country_event = {
 					min_jumps = 1
 					max_jumps = 6
 				}
+				any_system_planet = {
+					is_capital = no
+					is_ringworld = no
+					is_asteroid = no
+					is_star = no
+					NOT = { is_planet_class = pc_gas_giant }
+					NOT = { has_planet_flag = gts_body_planet }
+					NOT = { exists = archaeological_site }
+					has_anomaly = no
+					is_preventing_anomaly = no
+				}
 			}
 			random_system_planet = {
 				limit = {
@@ -1515,6 +1526,14 @@ country_event = {
 					use_bypasses = yes
 					min_jumps = 1
 					max_jumps = 6
+				}
+				any_system_planet = {
+					OR = {
+						uninhabitable_regular_planet = yes
+						habitable_planet_not_urban = yes
+					}
+					is_preventing_anomaly = no
+					has_anomaly = no
 				}
 			}
 			random_system_planet = {
@@ -1681,16 +1700,31 @@ country_event = {
 	picture = GFX_gts_event_1
 	show_sound = event_default
 	is_triggered_only = yes
+	location = event_target:gts_xiaomiao_system
 	immediate = {
+		random_system = {
+			limit = {
+				distance = {
+					source = root.capital_scope.solar_system
+					use_bypasses = yes
+					min_jumps = 1
+					max_jumps = 6
+				}
+			}
+			spawn_system = {
+				min_distance >= 10
+				max_distance <= 30
+				max_jumps = 0
+				initializer = gts_lab_fault_system
+				effect = {
+					save_event_target_as = gts_xiaomiao_system
+				}
+			}
+		}
 		set_global_flag = gts_has_trigger_xiaomiao
 	}
 	option = {
-		name = gts_perfect
-		hidden_effect = {
-			country_event = {
-				id = gts_xiaomiao.3000
-			}
-		}
+		name = gts_good
 	}
 }
 
@@ -1815,6 +1849,18 @@ country_event = {
 					use_bypasses = yes
 					min_jumps = 1
 					max_jumps = 6
+				}
+				any_system_planet = {
+					is_preventing_anomaly = no
+					has_anomaly = no
+					is_capital = no
+					is_ringworld = no
+					is_star = no
+					is_colony = no
+					is_under_colonization = no
+					NOT = { is_planet_class = pc_gas_giant }
+					NOT = { has_planet_flag = gts_body_planet }
+					NOT = { exists = archaeological_site }
 				}
 			}
 			random_system_planet = {
@@ -2315,9 +2361,19 @@ country_event = {
     option = {
         name = gts_perfect
         hidden_effect = {
-            country_event = {
-                id = gts_suxiaobai.900
-            }
+			if = {
+				limit = {
+					is_nomadic = yes
+				}
+				country_event = {
+					id = gts_suxiaobai.999
+				}
+			}
+			else = {
+				country_event = {
+					id = gts_suxiaobai.900
+				}
+			}
         }
     }
 }
