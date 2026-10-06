@@ -8,10 +8,10 @@ planet_event = {
 	location = root
 	is_triggered_only = yes
 	trigger = {
-		owner = {
+		has_modifier = planet_gts_safari_fiefdom
+		owner? = {
 			has_civic = civic_gts_feudalism
 		}
-		has_modifier = planet_gts_safari_fiefdom
 	}
 	option = {
 		name = gts_civ_feudalism.1.a
@@ -80,10 +80,10 @@ planet_event = {
 	location = root
 	is_triggered_only = yes
 	trigger = {
-		owner = {
+		has_modifier = planet_gts_garden_fiefdom
+		owner? = {
 			has_civic = civic_gts_feudalism
 		}
-		has_modifier = planet_gts_garden_fiefdom
 	}
 	option = {
 		name = gts_civ_feudalism.2.a
@@ -152,10 +152,10 @@ planet_event = {
 	location = root
 	is_triggered_only = yes
 	trigger = {
-		root.owner = {
+		has_modifier = planet_gts_party_fiefdom
+		root.owner? = {
 			has_civic = civic_gts_feudalism
 		}
-		has_modifier = planet_gts_party_fiefdom
 	}
 	option = {
 		name = gts_civ_feudalism.3.a
@@ -223,13 +223,13 @@ planet_event = {
 	location = root
 	is_triggered_only = yes
 	trigger = {
-		owner = {
-			has_civic = civic_gts_feudalism
-		}
 		OR = {
 			has_modifier = planet_gts_garden_fiefdom
 			has_modifier = planet_gts_safari_fiefdom
 			has_modifier = planet_gts_party_fiefdom
+		}
+		owner? = {
+			has_civic = civic_gts_feudalism
 		}
 	}
 	option = {
@@ -283,8 +283,8 @@ planet_event = {
 		custom_tooltip = "gts_Blemishine_admiral"
 		hidden_effect = {
 			owner = {
-				gts_leader_blemishine_hired = yes
-				gts_leader_archetto_hired = yes
+				gts_leader_blemishine_hired =  { CHANGE_OWNER = yes }
+				gts_leader_archetto_hired =  { CHANGE_OWNER = yes }
 			}
 		}
 	}
@@ -293,8 +293,8 @@ planet_event = {
 		custom_tooltip = "gts_Blemishine_general"
 		hidden_effect = {
 			owner = {
-				gts_leader_blemishine_hired = yes
-				gts_leader_archetto_hired = yes
+				gts_leader_blemishine_hired =  { CHANGE_OWNER = yes }
+				gts_leader_archetto_hired =  { CHANGE_OWNER = yes }
 			}
 		}
 	}
