@@ -3405,13 +3405,7 @@ gts_trait_avatar = {
 	leader_class = all
 	immortal_leaders = yes
 	initial = no
-	randomized = no
-	ai_categories = {
-		survey
-		physics
-		society
-		engineering
-	}
+	randomized = noz
 	ai_weight = {
 		weight = 0
 	}
@@ -4523,12 +4517,6 @@ gts_trait_qhai5 = {
 	leader_class = { scientist }
 	initial = no
 	randomized = no
-	ai_categories = {
-		survey
-		physics
-		society
-		engineering
-	}
 	ai_weight = {
 		weight = 0
 	}
@@ -5208,7 +5196,9 @@ gts_trait_leader_seele_li_one_a = {
 		leader_scientists_sr_dark_matter_produces_add = 3
 		ship_speed_mult = 0.25				#亚光速航速+25%
 		ship_windup_mult = -0.25				#超空间跳跃充能时间-25%
-		deposit_increase_on_survey_chance_mult = 0.3   # 完成调查时：有概率提升资源矿藏规模 | 勘探资源增加几率倍率
+		#deposit_increase_on_survey_chance_mult = 0.3   # 完成调查时：有概率提升资源矿藏规模 | 勘探资源增加几率倍率
+		station_gatherers_produces_mult = 0.3 # deposit_increase_on_survey_chance_mult may increase lag
+		station_researchers_produces_mult = 0.3
 		find_arc_site_on_survey_chance_mult = 0.25  # 调查时发现['concept_archaeology_site']的几率 | 勘探发现古代遗址几率倍率
 	}
 	triggered_councilor_modifier  = {
@@ -5218,7 +5208,9 @@ gts_trait_leader_seele_li_one_a = {
 		}
 		ship_speed_mult = 0.15				#亚光速航速
 		ship_windup_mult = -0.15				#超空间跳跃充能时间
-		deposit_increase_on_survey_chance_mult = 0.1   # 完成调查时：有概率提升资源矿藏规模 | 勘探资源增加几率倍率
+		#deposit_increase_on_survey_chance_mult = 0.1   # 完成调查时：有概率提升资源矿藏规模 | 勘探资源增加几率倍率
+		station_gatherers_produces_mult = 0.1 # deposit_increase_on_survey_chance_mult may increase lag
+		station_researchers_produces_mult = 0.1
 		find_arc_site_on_survey_chance_mult = 0.1  # 调查时发现['concept_archaeology_site']的几率 | 勘探发现古代遗址几率倍率
 
 	}
@@ -5410,6 +5402,7 @@ gts_trait_leader_seele_h = {
 		bonus_pop_growth_mult = 0.05
 	}
 	triggered_planet_modifier = {
+		psionic_pop_bonus_workforce_mult = 0.2	
 		logistic_growth_mult = 0.1
 		bonus_pop_growth_mult = 0.1
 	}
@@ -5445,6 +5438,7 @@ gts_trait_leader_seele_i = {
 		bonus_pop_growth_mult = 0.25
 	}
 	triggered_planet_modifier = {
+		psionic_pop_bonus_workforce_mult = 0.5	
 		logistic_growth_mult = 0.5
 		bonus_pop_growth_mult = 0.5
 	}
@@ -5679,7 +5673,9 @@ gts_trait_leader_bronya_silverwing = {
 		MULT = event_target:gts_bronya.trigger:has_total_skill
 		scientist_initial_skill = 2
 		country_astral_rift_fail_mult = -1 # 星界裂隙失败几率 | 星界裂隙失败几率倍率
-		deposit_increase_on_survey_chance_mult = 0.5 # 完成调查时：有概率提升资源矿藏规模 | 勘探资源增加几率倍率
+		# deposit_increase_on_survey_chance_mult = 0.5 # 完成调查时：有概率提升资源矿藏规模 | 勘探资源增加几率倍率
+		station_gatherers_produces_mult = 0.5 # deposit_increase_on_survey_chance_mult may increase lag
+		station_researchers_produces_mult = 0.5
 		ship_anomaly_generation_chance_mult = 0.5
 		find_arc_site_on_survey_chance_mult = 0.5 # 调查时发现['concept_archaeology_site']的几率 | 勘探发现古代遗址几率倍率
 	}
@@ -9078,12 +9074,6 @@ leader_trait_gts_bruh_empty = {
 
 	icon = "gfx/interface/icons/traits/leader_traits/trait_stargazer.dds"
 
-	ai_categories = {
-		survey
-		physics
-		society
-		engineering
-	}
 	ai_weight = {
 		weight = 0
 	}
