@@ -3,6 +3,13 @@
 ################################################################################
 
 
+@primary = 0.80
+@secondary = 0.60
+@tertiary = 0.20
+@machine_primary = 0.75
+@machine_secondary = 0.50
+@machine_tertiary = 0.25
+@ark_primary = 0.50
 
 trait_great_species = {
 
@@ -86,17 +93,15 @@ trait_Ultra = {
 		# 天體級生物
 
 		leader_lifespan_add = 16000
-
-		pop_workforce_mult = 99
 		worker_and_simple_drone_cat_bonus_workforce_mult = 20
 
-		pop_housing_usage_mult = 100
 		pop_resettlement_cost_mult = 100
 		species_empire_size_mult = 100
 		pop_amenities_usage_mult = 100
 
 		planet_pop_assembly_mult = -100
 		logistic_growth_mult = -100
+		pop_decline_speed = -100
 		pop_environment_tolerance = 100
 
 		# 陸軍
@@ -107,6 +112,27 @@ trait_Ultra = {
 		army_damage_mult = 25
 		army_collateral_damage_mult = 25
 	}
+	
+	# 虛擬人口無勞動力加成
+	triggered_pop_group_modifier = {
+		potential = {
+			OR = {
+				NOT = {
+					exists = owner
+				}
+				AND = {
+					exists = owner
+					NOT = {
+						owner = {
+							has_tradition = tr_virtuality_finish
+						}
+					}
+				}
+			}
+		}
+		pop_workforce_mult = 99
+		pop_housing_usage_mult = 100
+	}
 
 	resources = {
 		category = planet_pops
@@ -114,6 +140,7 @@ trait_Ultra = {
 		# 生物
 		upkeep = {
 			trigger = {
+				has_trait = trait_organic
 				NOR = {
 					has_trait = trait_voidling
 					has_trait = trait_lithoid
@@ -128,6 +155,7 @@ trait_Ultra = {
 		}
 		upkeep = {
 			trigger = {
+				has_trait = trait_organic
 				NOR = {
 					has_trait = trait_voidling
 					has_trait = trait_lithoid
@@ -159,6 +187,26 @@ trait_Ultra = {
 				is_being_purged = no
 			}
 			minerals = 50
+		}
+
+		# 好熱
+		upkeep = {
+			trigger = {
+				has_trait = trait_infernal
+				NOT = { has_trait = trait_voidling }
+				is_phototrophic = no
+				is_being_purged = no
+			}
+			alloys = 20
+		}
+		upkeep = {
+			trigger = {
+				has_trait = trait_infernal
+				NOT = { has_trait = trait_voidling }
+				is_phototrophic = yes
+				is_being_purged = no
+			}
+			alloys = 10
 		}
 
 		# 機械
@@ -304,13 +352,10 @@ trait_Titan = {
 		# 泰坦級生物
 
 		leader_lifespan_add = 320
-
-		pop_workforce_mult = 4
 		pop_bonus_workforce_mult = 4
 		worker_and_simple_drone_cat_bonus_workforce_mult = 4
 		planet_pops_upkeep_mult = 4.0
 
-		pop_housing_usage_mult = 4.0
 		pop_resettlement_cost_mult = 4.0
 		species_empire_size_mult = 4.0
 		pop_amenities_usage_mult = 4.0
@@ -329,12 +374,35 @@ trait_Titan = {
 		army_collateral_damage_mult = 9.0
 	}
 
+	# Virtuality pops skip workforce mult, since it is very buggy and pointless
+	triggered_pop_group_modifier = {
+		potential = {
+			OR = {
+				NOT = {
+					exists = owner
+				}
+				AND = {
+					exists = owner
+					NOT = {
+						owner = {
+							has_tradition = tr_virtuality_finish
+						}
+					}
+				}
+			}
+		}
+		pop_workforce_mult = 4
+		pop_housing_usage_mult = 4.0
+		pop_telepath_workforce_mult = -4.0 # Telepaths don't get the workforce mult either
+	}
+
 	resources = {
 		category = planet_pops
 
 		# 生物
 		upkeep = {
 			trigger = {
+				has_trait = trait_organic
 				NOR = {
 					has_trait = trait_voidling
 					has_trait = trait_lithoid
@@ -349,6 +417,7 @@ trait_Titan = {
 		}
 		upkeep = {
 			trigger = {
+				has_trait = trait_organic
 				NOR = {
 					has_trait = trait_voidling
 					has_trait = trait_lithoid
@@ -380,6 +449,26 @@ trait_Titan = {
 				is_being_purged = no
 			}
 			minerals = 2.5
+		}
+
+		# 好熱
+		upkeep = {
+			trigger = {
+				has_trait = trait_infernal
+				NOT = { has_trait = trait_voidling }
+				is_phototrophic = no
+				is_being_purged = no
+			}
+			alloys = 1.25
+		}
+		upkeep = {
+			trigger = {
+				has_trait = trait_infernal
+				NOT = { has_trait = trait_voidling }
+				is_phototrophic = yes
+				is_being_purged = no
+			}
+			alloys = 0.675
 		}
 
 		# 機械
@@ -526,13 +615,11 @@ trait_Giant = {
 
 		leader_lifespan_add = 160
 
-		pop_workforce_mult = 2
 		worker_and_simple_drone_cat_bonus_workforce_mult = 2
 		pop_bonus_workforce_mult = 1
 		# planet_pops_produces_mult = 2
 		planet_pops_upkeep_mult = 2
 
-		pop_housing_usage_mult = 3.0
 		pop_resettlement_cost_mult = 3.0
 		species_empire_size_mult = 3.0
 		pop_amenities_usage_mult = 3.0
@@ -551,12 +638,35 @@ trait_Giant = {
 		army_collateral_damage_mult = 4.0
 	}
 
+	# 虛擬人口無勞動力加成
+	triggered_pop_group_modifier = {
+		potential = {
+			OR = {
+				NOT = {
+					exists = owner
+				}
+				AND = {
+					exists = owner
+					NOT = {
+						owner = {
+							has_tradition = tr_virtuality_finish
+						}
+					}
+				}
+			}
+		}
+		pop_workforce_mult = 2
+		pop_housing_usage_mult = 2.0
+		pop_telepath_workforce_mult = -2.0 # Telepaths don't get the workforce mult either
+	}
+
 	resources = {
 		category = planet_pops
 
 		# 生物
 		upkeep = {
 			trigger = {
+				has_trait = trait_organic
 				NOR = {
 					has_trait = trait_voidling
 					has_trait = trait_lithoid
@@ -571,6 +681,7 @@ trait_Giant = {
 		}
 		upkeep = {
 			trigger = {
+				has_trait = trait_organic
 				NOR = {
 					has_trait = trait_voidling
 					has_trait = trait_lithoid
@@ -602,6 +713,26 @@ trait_Giant = {
 				is_being_purged = no
 			}
 			minerals = 1.75
+		}
+
+		# 好熱
+		upkeep = {
+			trigger = {
+				has_trait = trait_infernal
+				NOT = { has_trait = trait_voidling }
+				is_phototrophic = no
+				is_being_purged = no
+			}
+			alloys = 0.7
+		}
+		upkeep = {
+			trigger = {
+				has_trait = trait_infernal
+				NOT = { has_trait = trait_voidling }
+				is_phototrophic = yes
+				is_being_purged = no
+			}
+			alloys = 0.35
 		}
 
 		# 機械
@@ -748,12 +879,10 @@ trait_Tall = {
 
 		leader_lifespan_add = 80
 
-		pop_workforce_mult = 1
 		worker_and_simple_drone_cat_bonus_workforce_mult = 1
 		pop_bonus_workforce_mult = 0.5
 		planet_pops_upkeep_mult = 1
 
-		pop_housing_usage_mult = 1.0
 		pop_resettlement_cost_mult = 1.0
 		species_empire_size_mult = 1
 		pop_amenities_usage_mult = 1
@@ -772,12 +901,35 @@ trait_Tall = {
 		army_collateral_damage_mult = 1.0
     }
 
+	# 虛擬人口無勞動力加成
+	triggered_pop_group_modifier = {
+		potential = {
+			OR = {
+				NOT = {
+					exists = owner
+				}
+				AND = {
+					exists = owner
+					NOT = {
+						owner = {
+							has_tradition = tr_virtuality_finish
+						}
+					}
+				}
+			}
+		}
+		pop_housing_usage_mult = 1.0
+		pop_telepath_workforce_mult = -1.0 # Telepaths don't get the workforce mult either
+		pop_workforce_mult = 1
+	}
+
 	resources = {
 		category = planet_pops
 
 		# 生物
 		upkeep = {
 			trigger = {
+				has_trait = trait_organic
 				NOR = {
 					has_trait = trait_voidling
 					has_trait = trait_lithoid
@@ -792,6 +944,7 @@ trait_Tall = {
 		}
 		upkeep = {
 			trigger = {
+				has_trait = trait_organic
 				NOR = {
 					has_trait = trait_voidling
 					has_trait = trait_lithoid
@@ -823,6 +976,26 @@ trait_Tall = {
 				is_being_purged = no
 			}
 			minerals = 1
+		}
+
+		# 好熱
+		upkeep = {
+			trigger = {
+				has_trait = trait_infernal
+				NOT = { has_trait = trait_voidling }
+				is_phototrophic = no
+				is_being_purged = no
+			}
+			alloys = 0.5
+		}
+		upkeep = {
+			trigger = {
+				has_trait = trait_infernal
+				NOT = { has_trait = trait_voidling }
+				is_phototrophic = yes
+				is_being_purged = no
+			}
+			alloys = 0.25
 		}
 
 		# 機械
@@ -1107,12 +1280,33 @@ trait_Small = {
 		army_collateral_damage_mult = -0.25
 	}
 
+	# 虛擬人口無勞動力加成
+	triggered_pop_group_modifier = {
+		potential = {
+			OR = {
+				NOT = {
+					exists = owner
+				}
+				AND = {
+					exists = owner
+					NOT = {
+						owner = {
+							has_tradition = tr_virtuality_finish
+						}
+					}
+				}
+			}
+		}
+		#pop_workforce_mult = -0.20
+	}
+
 	resources = {
 		category = planet_pops
 
 		# 生物
 		upkeep = {
 			trigger = {
+				has_trait = trait_organic
 				NOR = {
 					has_trait = trait_voidling
 					has_trait = trait_lithoid
@@ -1127,6 +1321,7 @@ trait_Small = {
 		}
 		upkeep = {
 			trigger = {
+				has_trait = trait_organic
 				NOR = {
 					has_trait = trait_voidling
 					has_trait = trait_lithoid
@@ -1158,6 +1353,26 @@ trait_Small = {
 				is_being_purged = no
 			}
 			minerals = 0.375
+		}
+
+		# 好熱
+		upkeep = {
+			trigger = {
+				has_trait = trait_infernal
+				NOT = { has_trait = trait_voidling }
+				is_phototrophic = no
+				is_being_purged = no
+			}
+			alloys = 0.15
+		}
+		upkeep = {
+			trigger = {
+				has_trait = trait_infernal
+				NOT = { has_trait = trait_voidling }
+				is_phototrophic = yes
+				is_being_purged = no
+			}
+			alloys = 0.075
 		}
 
 		# 機械
@@ -1335,12 +1550,33 @@ trait_Tiny = {
 		army_collateral_damage_mult = -0.50
 	}
 
+	# 虛擬人口無勞動力加成
+	triggered_pop_group_modifier = {
+		potential = {
+			OR = {
+				NOT = {
+					exists = owner
+				}
+				AND = {
+					exists = owner
+					NOT = {
+						owner = {
+							has_tradition = tr_virtuality_finish
+						}
+					}
+				}
+			}
+		}
+		#pop_workforce_mult = -0.40
+	}
+
 	resources = {
 		category = planet_pops
 
 		# 生物
 		upkeep = {
 			trigger = {
+				has_trait = trait_organic
 				NOR = {
 					has_trait = trait_voidling
 					has_trait = trait_lithoid
@@ -1355,6 +1591,7 @@ trait_Tiny = {
 		}
 		upkeep = {
 			trigger = {
+				has_trait = trait_organic
 				NOR = {
 					has_trait = trait_voidling
 					has_trait = trait_lithoid
@@ -1386,6 +1623,26 @@ trait_Tiny = {
 				is_being_purged = no
 			}
 			minerals = 0.25
+		}
+
+		# 好熱
+		upkeep = {
+			trigger = {
+				has_trait = trait_infernal
+				NOT = { has_trait = trait_voidling }
+				is_phototrophic = no
+				is_being_purged = no
+			}
+			alloys = 0.1
+		}
+		upkeep = {
+			trigger = {
+				has_trait = trait_infernal
+				NOT = { has_trait = trait_voidling }
+				is_phototrophic = yes
+				is_being_purged = no
+			}
+			alloys = 0.05
 		}
 
 		# 機械
@@ -1562,12 +1819,33 @@ trait_Micro = {
 		army_collateral_damage_mult = -0.90
 	}
 
+	# 虛擬人口無勞動力加成
+	triggered_pop_group_modifier = {
+		potential = {
+			OR = {
+				NOT = {
+					exists = owner
+				}
+				AND = {
+					exists = owner
+					NOT = {
+						owner = {
+							has_tradition = tr_virtuality_finish
+						}
+					}
+				}
+			}
+		}
+		#pop_workforce_mult = -0.90
+	}
+
 	resources = {
 		category = planet_pops
 
 		# 生物
 		upkeep = {
 			trigger = {
+				has_trait = trait_organic
 				NOR = {
 					has_trait = trait_voidling
 					has_trait = trait_lithoid
@@ -1582,6 +1860,7 @@ trait_Micro = {
 		}
 		upkeep = {
 			trigger = {
+				has_trait = trait_organic
 				NOR = {
 					has_trait = trait_voidling
 					has_trait = trait_lithoid
@@ -1613,6 +1892,26 @@ trait_Micro = {
 				is_being_purged = no
 			}
 			minerals = 0.05
+		}
+
+		# 好熱
+		upkeep = {
+			trigger = {
+				has_trait = trait_infernal
+				NOT = { has_trait = trait_voidling }
+				is_phototrophic = no
+				is_being_purged = no
+			}
+			alloys = 0.02
+		}
+		upkeep = {
+			trigger = {
+				has_trait = trait_infernal
+				NOT = { has_trait = trait_voidling }
+				is_phototrophic = yes
+				is_being_purged = no
+			}
+			alloys = 0.01
 		}
 
 		# 機械
@@ -1696,7 +1995,6 @@ trait_Nano = {
 		leader_lifespan_add = -15
 
 		# 生產相關
-		pop_workforce_mult = -1
 		worker_and_simple_drone_cat_bonus_workforce_mult = -0.5
 		planet_jobs_upkeep_mult = -1
 		specialist_and_complex_drone_cat_bonus_workforce_mult = 1
@@ -1721,6 +2019,26 @@ trait_Nano = {
 		army_health = -0.90
 		army_damage_mult = -0.90
 		army_collateral_damage_mult = -0.90
+	}
+
+	# 虛擬人口無勞動力加成
+	triggered_pop_group_modifier = {
+		potential = {
+			OR = {
+				NOT = {
+					exists = owner
+				}
+				AND = {
+					exists = owner
+					NOT = {
+						owner = {
+							has_tradition = tr_virtuality_finish
+						}
+					}
+				}
+			}
+		}
+		pop_workforce_mult = -1
 	}
 
 	custom_tooltip_with_modifiers = trait_Nano_effect
