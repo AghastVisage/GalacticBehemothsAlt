@@ -3312,9 +3312,6 @@ gts_intel_avatar_seele_effect = {
 		}
 	}
 	effect = {
-		hidden_effect = {
-			set_country_flag = gts_has_trigger_seele
-		}
 		custom_tooltip = gts_intel_avatar_seele.tooltip
 		hidden_effect = {
 			set_variable = {
@@ -3435,9 +3432,6 @@ gts_intel_avatar_bronya_effect = {
 		}
 	}
 	effect = {
-		hidden_effect = {
-			set_country_flag = gts_has_trigger_bronya
-		}
 		custom_tooltip = gts_intel_avatar_bronya.tooltip
 		hidden_effect = {
 			set_variable = {
@@ -3559,9 +3553,6 @@ gts_intel_avatar_seele_li_effect = {
 
 	}
 	effect = {
-		hidden_effect = {
-			set_country_flag = gts_has_trigger_seele_li
-		}
 		custom_tooltip = gts_intel_avatar_seele_li.tooltip
 		hidden_effect = {
 			set_variable = {
@@ -3606,34 +3597,22 @@ gts_intel_avatar_linfeng_effect = {
 						NOT = {
 							has_global_flag = gts_has_trigger_linfeng
 						}
-						any_owned_planet = {
-							pop_amount <= 400
-							has_anomaly = no
-							NOT = {
-								exists = archaeological_site
+						OR = {
+							any_owned_planet = {
+								pop_amount <= 400
+								has_anomaly = no
+								NOT = {
+									exists = archaeological_site
+								}
+								NOR = {
+									is_planet_class = pc_shielded
+									is_planet_class = pc_ringworld_shielded
+									is_planet_class = pc_habitat_shielded
+									is_eatable_planet = no
+								}
 							}
-							NOR = {
-								is_planet_class = pc_shielded
-								is_planet_class = pc_ringworld_shielded
-								is_planet_class = pc_habitat_shielded
-								is_eatable_planet = no
-							}
+							has_country_flag = gts_hitomi_ship_gril_success
 						}
-					}
-				}
-				hidden_trigger = {
-					any_owned_leader = {
-						has_leader_flag = gts_linfeng
-					}
-				}
-			}
-			or = {
-				hidden_trigger = {
-					AND = {
-						NOT = {
-							has_global_flag = gts_has_trigger_linfeng
-						}
-						has_country_flag = gts_hitomi_ship_gril_success
 					}
 				}
 				hidden_trigger = {
@@ -3690,19 +3669,24 @@ gts_intel_avatar_suxiaobai_effect = {
 					NOT = {
 						has_global_flag = gts_has_trigger_suxiaobai
 					}
-					num_owned_planets >= 5
-					any_owned_planet = {
-						pop_amount >= 400
-						has_anomaly = no
-						NOT = {
-							exists = archaeological_site
+					OR = {
+						AND = {
+							num_owned_planets >= 5
+							any_owned_planet = {
+								pop_amount >= 400
+								has_anomaly = no
+								NOT = {
+									exists = archaeological_site
+								}
+								NOR = {
+									is_planet_class = pc_shielded
+									is_planet_class = pc_ringworld_shielded
+									is_planet_class = pc_habitat_shielded
+									is_eatable_planet = no
+								}
+							}
 						}
-						NOR = {
-							is_planet_class = pc_shielded
-							is_planet_class = pc_ringworld_shielded
-							is_planet_class = pc_habitat_shielded
-							is_eatable_planet = no
-						}
+						is_nomadic = yes
 					}
 				}
 			}
