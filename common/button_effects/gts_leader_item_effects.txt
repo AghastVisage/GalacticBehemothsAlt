@@ -283,7 +283,11 @@ gts_leader_item_i_habitat_effect = {
 	}
 	allow = {
 		gts_ui_item_lock = { ITEM = @gts_leader_item_i_habitat }
-		has_technology = tech_habitat_1
+		OR = {
+			has_technology = tech_habitat_1
+			has_technology = tech_arkship_tier_2
+			is_wilderness_empire = yes
+		}
 		resource_stockpile_compare = { resource = food value >= 3000 }
 		resource_stockpile_compare = { resource = alloys value >= 1000 }
 		resource_stockpile_compare = { resource = gts_micro value >= 3000 }
