@@ -41,17 +41,89 @@ gts_deposit_explorer = {
 		}
 		upkeep = {
 			trigger = {
-				is_lithoid = no
+				owner? = {
+					is_lithoid_or_infernal_empire = no
+				}
 			}
 			consumer_goods = 1
 			food = 4
 		}
 		upkeep = {
 			trigger = {
-				is_lithoid = yes
+				owner? = {
+					is_lithoid_or_infernal_empire = yes
+				}
 			}
 			consumer_goods = 1
 			minerals = 4
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					is_machine_empire = yes
+				}
+			}
+			energy = 6
+		}
+	}
+	triggered_planet_modifier = {
+		potential = { always = yes }
+		planet_amenities_add = 50
+	}
+
+	weight = {
+		weight = 10
+	}
+}
+
+#巨娘地貌开拓者
+gts_deposit_drone = {
+	category = simple_drone
+
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_ruined
+			icon = researcher
+		}
+	}
+
+	tags = { unity amenities }
+
+	inline_script = "jobs/automodding_priority_unity"
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+	possible = {
+		gts_is_tiny = yes
+	}
+	possible_precalc = can_fill_drone_job
+	resources = {
+		category = planet_jobs
+		produces = {
+			unity = 4
+			gts_giantess_fluid = 2
+			gts_giantess_underwear = 0.5
+		}
+		upkeep = {
+			trigger = {
+				owner? = {
+					is_lithoid_or_infernal_empire = no
+				}
+			}
+			food = 6
+		}
+		upkeep = {
+			trigger = {
+				owner? = {
+					is_lithoid_or_infernal_empire = yes
+				}
+			}
+			minerals = 6
 		}
 		upkeep = {
 			trigger = {
