@@ -122,3 +122,496 @@ set_synth_scale_traits_effect = {
         }
     }
 }
+
+create_fallen_empire_planet = {
+
+	set_carrier_flag = fallen_empire_world
+
+	if = {
+		limit = {
+			is_artificial = no
+			root = {
+				is_gestalt = no
+			}
+		}
+
+		# First, change to a different planet class to ensure the planet resets properly
+		change_pc = pc_gaia
+		change_pc = pc_city
+	}
+
+	if = {
+		limit = {
+			is_artificial = no
+			root = {
+				is_hive_empire = yes
+			}
+		}
+		change_pc = pc_gaia
+		change_pc = pc_hive
+	}
+
+	if = {
+		limit = {
+			is_artificial = no
+			root = {
+				is_machine_empire = yes
+			}
+		}
+		change_pc = pc_gaia
+		change_pc = pc_machine
+	}
+
+	remove_all_buildings = yes
+
+	if = {
+		limit = {
+			root = { is_machine_empire = yes }
+		}
+		add_building = building_ancient_control_center
+	}
+	if = {
+		limit = {
+			root = { is_hive_empire = yes }
+		}
+		add_building = building_ancient_hive_capital
+	}
+	else = {
+		add_building = building_ancient_palace
+	}
+
+	remove_all_districts = yes
+	if = {
+		limit = {
+			is_planet_class = pc_city
+		}
+		while = {
+			limit = {
+				free_district_slots > 0
+			}
+			random_list = {
+				3 = { add_district = district_arcology_housing }
+				1 = { add_district = district_arcology_urban_1 }
+				1 = { add_district = district_arcology_urban_2 }
+				1 = { add_district = district_arcology_urban_3 }
+			}
+		}
+		add_zone = {
+			district = district_arcology_housing
+			zone = zone_urban
+		}
+		
+		add_zone = {
+			district = district_arcology_housing
+			zone = zone_urban
+		}
+		if = {
+			limit = {
+				num_districts = {
+					type = district_arcology_urban_1
+					value >= 1
+				}
+			}
+			add_zone = {
+				district = district_arcology_urban_1
+				zone = zone_industrial_arcology
+			}
+		}
+		if = {
+			limit = {
+				num_districts = {
+					type = district_arcology_urban_2
+					value >= 1
+				}
+			}
+			if = {
+				limit = {		
+					exists = owner
+					owner = {	
+						is_spiritualist = yes
+					}
+				}
+				add_zone = {
+					district = district_arcology_urban_2
+					zone = zone_unity_spiritualist_arcology
+				}
+			}
+			else = {
+				add_zone = {
+					district = district_arcology_urban_2
+					zone = zone_unity_arcology
+				}
+			}
+		}
+	
+		if = {
+			limit = {
+				num_districts = {
+					type = district_arcology_urban_3
+					value >= 1
+				}
+			}
+			add_zone = {
+				district = district_arcology_urban_3
+				zone = zone_trade_arcology
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			is_planet_class = pc_ringworld_habitable
+		}
+		while = {
+			limit = {
+				free_district_slots > 0
+			}
+			random_list = {
+				3 = { add_district = district_rw_city }
+				1 = { add_district = district_rw_urban_1 }
+				1 = { add_district = district_rw_urban_2 }
+				1 = { add_district = district_rw_urban_3 }
+			}
+		}
+		add_zone = {
+			district = district_arcology_housing
+			zone = zone_urban
+		}
+		
+		add_zone = {
+			district = district_arcology_housing
+			zone = zone_urban
+		}
+		if = {
+			limit = {
+				num_districts = {
+					type = district_rw_urban_1
+					value >= 1
+				}
+			}
+			add_zone = {
+				district = district_rw_urban_1
+				zone = zone_food_ring_world
+			}
+		}
+		if = {
+			limit = {
+				num_districts = {
+					type = district_rw_urban_2
+					value >= 1
+				}
+			}
+			add_zone = {
+				district = district_rw_urban_2
+				zone = zone_energy_ring_world
+			}
+		}
+		if = {
+			limit = {
+				num_districts = {
+					type = district_rw_urban_3
+					value >= 1
+				}
+			}
+			add_zone = {
+				district = district_rw_urban_3
+				zone = zone_trade_ring_world
+			}
+		}
+	}
+
+	else_if = {
+		limit = {
+			is_planet_class = pc_habitat
+		}
+		while = {
+			limit = {
+				free_district_slots > 0
+			}
+			add_district = district_hab_housing
+		}
+	}
+
+	else_if = {
+		limit = {
+			is_planet_class = pc_hive
+		}
+		while = {
+			limit = {
+				free_district_slots > 0
+			}
+			random_list = {
+				3 = { add_district = district_hive }
+				1 = { add_district = district_hive_1 }
+				1 = { add_district = district_hive_2 }
+				1 = { add_district = district_hive_3 }
+			}
+		}
+		add_zone = {
+			district = district_hive
+			zone = zone_urban
+		}
+
+		add_zone = {
+			district = district_hive
+			zone = zone_urban
+		}
+		if = {
+			limit = {
+				num_districts = {
+					type = district_hive_1
+					value >= 1
+				}
+			}
+			add_zone = {
+				district = district_hive_1
+				zone = zone_energy_hive
+			}
+		}
+		if = {
+			limit = {
+				num_districts = {
+					type = district_hive_2
+					value >= 1
+				}
+			}
+			add_zone = {
+				district = district_hive_2
+				zone = zone_minerals_hive
+			}
+		}
+		if = {
+			limit = {
+				num_districts = {
+					type = district_hive_3
+					value >= 1
+				}
+			}
+			add_zone = {
+				district = district_hive_3
+				zone = zone_food_hive
+			}
+		}
+	}
+
+	else_if = {
+		limit = {
+			is_planet_class = pc_machine
+		}
+		while = {
+			limit = {
+				free_district_slots > 0
+			}
+			random_list = {
+				3 = { add_district = district_nexus }
+				1 = { add_district = district_nexus_1 }
+				1 = { add_district = district_nexus_2 }
+				1 = { add_district = district_nexus_3 }
+			}
+		}
+		add_zone = {
+			district = district_hive
+			zone = zone_urban
+		}
+		add_zone = {
+			district = district_nexus
+			zone = zone_urban
+		}
+		if = {
+			limit = {
+				num_districts = {
+					type = district_nexus_1
+					value >= 1
+				}
+			}
+			add_zone = {
+				district = district_nexus_1
+				zone = zone_energy_nexus
+			}
+		}
+		if = {
+			limit = {
+				num_districts = {
+					type = district_nexus_2
+					value >= 1
+				}
+			}
+			add_zone = {
+				district = district_nexus_2
+				zone = zone_minerals_nexus
+			}
+		}
+		if = {
+			limit = {
+				num_districts = {
+					type = district_nexus_3
+					value >= 1
+				}
+			}
+			add_zone = {
+				district = district_nexus_3
+				zone = zone_trade_nexus
+			}
+		}
+	}
+
+	add_building = building_fe_stronghold
+	if = {
+		limit = {
+			root = {
+				OR = {
+					is_gestalt = no
+					has_valid_civic = civic_machine_servitor
+				}
+			}
+		}
+		add_building = building_affluence_center
+		add_building = building_affluence_center
+	}
+	else = {
+		add_building = building_class_4_singularity
+		add_building = building_fe_security_2
+	}
+	add_building = building_nourishment_center
+	add_building = building_class_4_singularity
+	add_building = building_dimensional_fabricator
+	add_building = building_fe_mine_2
+	add_building = building_nano_forge
+	add_building = building_nano_forge
+	add_building = building_fe_dome
+
+    if = {
+        limit = {		
+            exists = owner
+            owner = {	
+                is_spiritualist = yes
+            }
+        }
+        add_building = building_fe_temple_2
+    }
+    else_if = {
+        limit = {
+            exists = owner
+            owner = {
+                is_hive_empire = yes
+            }
+        }
+	    add_building = building_fe_administration_hive_2
+    }
+    else_if = {
+        limit = {
+            exists = owner
+            owner = {
+                is_machine_empire = yes
+            }
+        }
+	    add_building = building_fe_administration_machine_2
+    }
+    else = {
+	    add_building = building_fe_administration_2
+    }
+
+	while = {
+		count = 85
+		random_list = {
+			1 = {
+				modifier = {
+					add = 8
+					is_planet_class = pc_habitat
+				}
+				modifier = {
+					add = 4
+					is_planet_class = pc_hive
+				}
+				modifier = {
+					add = 4
+					is_planet_class = pc_machine
+				}
+			}
+			9 = {
+				create_pop_group = {
+					species = root.species
+				}
+			}
+		}
+	}
+
+	while = {
+		count = 20
+		random_list = {
+			1 = {
+				modifier = {
+					factor = 0
+					exists = owner
+					owner = {
+						is_machine_empire = no
+					}
+				}
+				create_army = {
+					name = random
+					owner = root
+					species = root
+					type = "machine_assault_2"
+				}
+			}
+			1 = {
+				modifier = {
+					factor = 0
+					exists = owner
+					owner = {
+						has_finished_psionic_tradition = no
+					}
+				}
+				create_army = {
+					name = random
+					owner = root
+					species = root
+					type = "psionic_army"
+				}
+			}
+
+			1 = {
+				modifier = {
+					factor = 0
+					exists = owner
+					owner = {
+						NOR = {
+							has_tradition = tr_cloning_finish
+							has_tradition = tr_purity_finish
+							has_tradition = tr_mutation_finish
+							has_tradition = tr_genetics_finish
+						}
+					}
+				}
+				create_army = {
+					name = random
+					owner = root
+					species = root
+					type = "gene_warrior_army"
+				}
+			}
+
+			1 = {
+				modifier = {
+					factor = 0
+					exists = owner
+					owner = {
+						OR = {
+							has_tradition = tr_genetics_finish
+							has_tradition = tr_cloning_finish
+							has_tradition = tr_purity_finish
+							has_tradition = tr_mutation_finish
+							has_finished_psionic_tradition = yes
+							is_machine_empire = yes
+						}
+					}
+				}
+				create_army = {
+					name = random
+					owner = root
+					species = root
+					type = "xenomorph_army"
+				}
+			}
+		}
+	}
+}
