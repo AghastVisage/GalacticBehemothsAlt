@@ -22,6 +22,16 @@ country_event = {
   save_event_target_as = gts_bruh_get_eyjafjalla_system_location
  }
 }
+		if = {
+			limit = {
+				is_nomadic = yes
+			}
+			issue_contract = {
+				contract = contract_unblock_eyjafjalla
+				location = event_target:gts_eyjafjalla_planet
+				target = this
+			}
+		}
 }
 	}
 }
@@ -237,6 +247,150 @@ carrier_event = {
 		name = gts_eyjafjalla.5.a
 		hidden_effect = {
 			owner = { country_event = { id = gts_eyjafjalla.7 } }
+		}
+	}
+}
+
+# For Nomad
+country_event = {
+	id = gts_eyjafjalla.10002	#入口
+	title = "gts_eyjafjalla.2.name"
+	desc = "gts_eyjafjalla.2.desc"
+	picture = GFX_gts_eyjafjalla_01
+	location = ROOT
+	is_triggered_only = yes
+	option = {
+		name = gts_eyjafjalla.2.a		#结束事件
+		event_target:gts_eyjafjalla_planet = {
+			add_deposit = d_gts_eyjafjalla_vore
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.2.b		#重新挖
+		allow = {
+			owner = {
+				resource_stockpile_compare = {
+					resource = energy
+					value >= 500
+				}
+			}
+		}
+		owner = {
+			add_resource = {
+				energy = -500
+			}
+		}
+		country_event = {
+			id = gts_eyjafjalla.10003
+			days = 30
+		}
+		from = {
+			custom_tooltip = gts_eyjafjalla.2.tooltip
+		}
+	}
+}
+
+country_event = {
+	id = gts_eyjafjalla.10003	#入乳
+	title = "gts_eyjafjalla.3.name"
+	desc = "gts_eyjafjalla.3.desc"
+	picture = GFX_gts_eyjafjalla_07
+	location = ROOT
+	is_triggered_only = yes
+	option = {
+		name = gts_eyjafjalla.3.a
+		country_event = {
+			id = gts_eyjafjalla.10005
+			days = 3
+		}
+	}
+}
+
+country_event = {
+	id = gts_eyjafjalla.10004	#入臀
+	title = "gts_eyjafjalla.4.name"
+	desc = "gts_eyjafjalla.4.desc"
+	picture = GFX_gts_eyjafjalla_10
+	location = ROOT
+	is_triggered_only = yes
+	option = {
+		name = gts_eyjafjalla.4.a
+		hidden_effect = {
+			country_event = {
+				id = gts_eyjafjalla.6
+				days = 3
+			}
+		}
+	}
+	option = {
+		name = gts_eyjafjalla.2.b		#重新挖
+		allow = {
+			owner = {
+				resource_stockpile_compare = {
+					resource = energy
+					value >= 500
+				}
+			}
+		}
+		owner = {
+			add_resource = {
+				energy = -500
+			}
+		}
+		country_event = {
+			id = gts_eyjafjalla.10003
+			days = 30
+		}
+		from = {
+			custom_tooltip = gts_eyjafjalla.2.tooltip
+		}
+	}
+}
+
+country_event = {
+	id = gts_eyjafjalla.10005	#入乳后续
+	title = "gts_eyjafjalla.5.name"
+	desc = "gts_eyjafjalla.5.desc"
+	picture = GFX_gts_eyjafjalla_06
+	location = ROOT
+	is_triggered_only = yes
+	option = {
+		name = gts_eyjafjalla.5.a
+		hidden_effect = {
+			event_target:gts_eyjafjalla_planet = {
+				set_planet_size = 35
+				change_pc = pc_gaia
+			}
+			owner = {
+				country_event = {
+					id = gts_eyjafjalla.7
+				}
+				#领袖招募阶段
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_eyjafjalla.10006	#入臀后续
+	title = "gts_eyjafjalla.6.name"
+	desc = "gts_eyjafjalla.6.desc"
+	picture = GFX_gts_eyjafjalla_11
+	location = ROOT
+	is_triggered_only = yes
+	option = {
+		name = gts_eyjafjalla.5.a
+		hidden_effect = {
+			event_target:gts_eyjafjalla_planet = {
+				set_planet_size = 35
+				change_pc = pc_gaia
+			}
+			owner = {
+				country_event = {
+					id = gts_eyjafjalla.10007
+				}
+				#领袖招募阶段
+			}
 		}
 	}
 }

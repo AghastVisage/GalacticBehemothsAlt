@@ -1,0 +1,197 @@
+
+# Clear Blockers Contract - for Loli Holy Body
+contract_feed_loli = {
+	category = resource_contract
+	desc = "contract_feed_loli_desc"
+	event_chain = contract_feed_loli_chain
+	icon = gfx/interface/icons/situation_log/situation_log_quest.dds
+	picture = GFX_evt_ship_in_orbit_3
+	small_picture = GFX_contract_feed_loli_small
+	location = yes
+	time_to_accept = @contract_time_base
+	cost = 1000
+
+	lore_issued = contract_issued_lore_feed_loli
+	lore_completed = contract_completed_lore_feed_loli
+	lore_failed = contract_failed_lore_feed_loli
+
+	potential_issuer = {
+        always = no
+	}
+
+	possible_issuer = {
+		always = no
+	}
+
+	potential_operator = {
+		always = yes
+	}
+
+	possible_operator = {
+		always = yes
+	}
+
+	issued_abort_trigger = {
+		always = no
+	}
+
+	abort_trigger = {
+		always = no
+	}
+
+	counter = {
+		contract_feed_loli_counter = {
+			max = 1
+		}
+	}
+
+	on_issue = {
+		set_country_flag = feed_loli_contract_active
+	}
+
+	on_accept = {
+		begin_event_chain = {
+			event_chain = contract_feed_loli_chain
+			target = root
+		}
+		enable_special_project = {
+			name = "CONTRACT_FEED_LOLI_PROJECT"
+			location = event_target:gtsra_loli_world
+			owner = root
+		}
+	}
+
+	on_success = {
+		if = {
+			limit = {
+				exists = root
+			}
+			contract_scaling_reward_effect = { TRADE = 1750 RESOURCE = minerals RESOURCE_AMOUNT = 350 }
+			add_resource = { influence = @opinion_contract_small }
+			hidden_effect = {
+				root = {
+					country_event = { id = gts_aurora.11025 days = 1 }
+				}
+			}
+		}
+	}
+
+    # No stop
+	on_stop = {
+		end_event_chain = contract_feed_loli_chain
+        root = {
+            issue_contract = {
+                contract = contract_feed_loli
+                location = event_target:gtsra_loli_world
+				target = this
+            }
+        }
+	}
+}
+
+
+# Clear Blockers Contract - for Eyjafjalla Planet
+contract_unblock_eyjafjalla = {
+	category = resource_contract
+	desc = "contract_unblock_eyjafjalla_desc"
+	event_chain = contract_unblock_eyjafjalla_chain
+	icon = gfx/interface/icons/situation_log/situation_log_quest.dds
+	picture = GFX_evt_ship_in_orbit_3
+	small_picture = GFX_contract_unblock_eyjafjalla_small
+	location = yes
+	time_to_accept = @contract_time_base
+	cost = 1000
+
+	lore_issued = contract_issued_lore_unblock_eyjafjalla
+	lore_completed = contract_completed_lore_unblock_eyjafjalla
+	lore_failed = contract_failed_lore_unblock_eyjafjalla
+
+	potential_issuer = {
+        always = no
+	}
+
+	possible_issuer = {
+		always = no
+	}
+
+	potential_operator = {
+		always = yes
+	}
+
+	possible_operator = {
+		always = yes
+	}
+
+	issued_abort_trigger = {
+		always = no
+	}
+
+	abort_trigger = {
+		always = no
+	}
+
+	counter = {
+		contract_unblock_eyjafjalla_counter = {
+			max = 1
+		}
+	}
+
+	on_issue = {
+		set_country_flag = unblock_eyjafalla_contract_active
+	}
+
+	on_accept = {
+		begin_event_chain = {
+			event_chain = contract_unblock_eyjafjalla_chain
+			target = root
+		}
+		enable_special_project = {
+			name = "CONTRACT_UNBLOCK_EYJAFJALLA_PROJECT"
+			location = event_target:gts_eyjafjalla_planet
+			owner = root
+		}
+	}
+
+	on_success = {
+		if = {
+			limit = {
+				exists = root
+			}
+			contract_scaling_reward_effect = { TRADE = 1750 RESOURCE = minerals RESOURCE_AMOUNT = 350 }
+			add_resource = { influence = @opinion_contract_small }
+			hidden_effect = {
+				root = {
+					random_list = {
+						1 = {
+							country_event = {
+								id = gts_eyjafjalla.10002
+							}
+						}				#入口 20
+						1 = {
+							country_event = {
+								id = gts_eyjafjalla.10004
+							}
+						}				#入菊 20
+						3 = {
+							country_event = {
+								id = gts_eyjafjalla.10003
+							}
+						}				#入乳 60
+					}
+				}
+			}
+		}
+	}
+
+    # No stop
+	on_stop = {
+		end_event_chain = contract_unblock_eyjafjalla_chain
+        root = {
+            issue_contract = {
+                contract = contract_unblock_eyjafjalla
+                location = event_target:gts_eyjafjalla_planet
+				target = this
+            }
+        }
+	}
+}
