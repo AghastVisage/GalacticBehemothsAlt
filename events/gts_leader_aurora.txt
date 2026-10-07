@@ -21,10 +21,7 @@ country_event = {
 	location = event_target:gtsra_loli_world
 
 	immediate = {
-		random_owned_planet = {
-			limit = {
-				has_planet_flag = gtsra_loli_planet
-			}
+		event_target:gtsra_loli_world = {
 			spawn_system = {
 				min_distance >= 10
 				max_distance <= 30
@@ -460,6 +457,54 @@ planet_event = {
 					id = gts_aurora.1027
 					days = 30
 				}
+			}
+		}
+	}
+}
+
+country_event = {
+	#摇篮曲-1-nomad
+	id = gts_aurora.11025
+	title = gts_aurora.1025.name
+	desc = gts_aurora.1025.desc
+	picture = GFX_gtsra_aurora
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	location = event_target:gtsra_loli_world
+	trigger = {
+		has_planet_flag = gtsra_loli_planet
+	}
+	option = {
+		name = gts_aurora.1025.a
+		hidden_effect = {
+			country_event = {
+				id = gts_aurora.11026
+			}
+		}
+	}
+}
+
+country_event = {
+	#摇篮曲-2-nomad
+	id = gts_aurora.11026
+	title = gts_aurora.1026.name
+	desc = gts_aurora.1026.desc
+	picture = GFX_gtsra_aurora_2
+	show_sound = event_default
+	is_triggered_only = yes
+	location = event_target:gtsra_loli_world
+	option = {
+		name = gts_aurora.1026.a
+		event_target:gtsra_loli_world = {
+			add_modifier = {
+				modifier = r_giga_loli_melody
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_aurora.1027
+				days = 30
 			}
 		}
 	}
@@ -939,8 +984,18 @@ country_event = {
 				set_planet_flag = gtsra_loli_planet
 				set_planet_flag = gts_body_planet
 			}
-		}
-	}
+			if = {
+				limit = {
+					is_nomadic = yes
+				}
+				issue_contract = {
+					contract = contract_feed_loli
+					location = event_target:gtsra_loli_world
+					target = this
+				}
+			} # if nomadic
+		} # hidden_effect
+	} # after
 }
 
 situation_event = {

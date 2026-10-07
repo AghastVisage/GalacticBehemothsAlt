@@ -1082,3 +1082,93 @@ special_project = {
 		}
 	}
 }
+
+
+# Feed Aurora
+special_project = {
+	key = "CONTRACT_FEED_LOLI_PROJECT"
+	event_chain = contract_feed_loli_chain
+	days_to_research = 30
+	project_type = project_type_contract
+	picture = GFX_evt_ship_in_orbit_3
+	icon = "gfx/interface/icons/situation_log/situation_log_quest.dds"
+	location = yes
+	remove_when_completed = yes
+
+	event_scope = ship_event
+
+	requirements = {
+		carries_colony = 1
+	}
+
+	on_success = {
+		owner = {
+			add_mission_counter = {
+				mission = contract_feed_loli
+				counter = contract_feed_loli_counter
+				amount = 1
+			}
+		}
+		add_resource = { food = -25000 }
+	}
+
+	on_fail = {
+		owner = { end_event_chain = contract_feed_loli_chain }
+	}
+
+	abort_trigger = {
+		NOT = {
+			owner = {
+				has_event_chain = contract_feed_loli_chain
+			}
+		}
+	}
+
+	on_cancel = {
+		# Do nothing
+	}
+}
+
+# Unblock Eyjafjalla
+special_project = {
+	key = "CONTRACT_UNBLOCK_EYJAFJALLA_PROJECT"
+	event_chain = contract_unblock_eyjafjalla_chain
+	days_to_research = 30
+	project_type = project_type_contract
+	picture = GFX_evt_ship_in_orbit_3
+	icon = "gfx/interface/icons/situation_log/situation_log_quest.dds"
+	location = yes
+	remove_when_completed = yes
+
+	event_scope = ship_event
+
+	requirements = {
+		carries_colony = 1
+	}
+
+	on_success = {
+		owner = {
+			add_mission_counter = {
+				mission = contract_unblock_eyjafjalla
+				counter = contract_unblock_eyjafjalla_counter
+				amount = 1
+			}
+		}
+	}
+
+	on_fail = {
+		owner = { end_event_chain = contract_unblock_eyjafjalla_chain }
+	}
+
+	abort_trigger = {
+		NOT = {
+			owner = {
+				has_event_chain = contract_unblock_eyjafjalla_chain
+			}
+		}
+	}
+
+	on_cancel = {
+		# Do nothing
+	}
+}
