@@ -434,12 +434,11 @@ micro_teacher = {
 	possible_precalc = can_fill_specialist_job
 
 	resources = {
-		category = planet_researchers
+		category = planet_engineers
 		produces = {
 			# 45
-			physics_research = 15
-			engineering_research = 15
-			society_research = 15
+			engineering_research = 45
+			unity = 15
 		}
 		upkeep = {
 			# 30
@@ -584,12 +583,10 @@ micro_researcher = {
 	possible_precalc = can_fill_specialist_job
 
 	resources = {
-		category = planet_researchers
+		category = planet_physicists
 		produces = {
 			# 60
-			physics_research = 20
-			engineering_research = 20
-			society_research = 20
+			physics_research = 60
 		}
 		upkeep = {
 			# 40
@@ -982,12 +979,10 @@ micro_conservation_worker = {
 	possible_precalc = can_fill_specialist_job
 
 	resources = {
-		category = planet_researchers
+		category = planet_biologists
 		produces = {
 			# 60
-			physics_research = 20
-			engineering_research = 20
-			society_research = 20
+			society_research = 60
 		}
 		upkeep = {
 			# 40
@@ -998,7 +993,9 @@ micro_conservation_worker = {
 	}
 
 	planet_modifier = {
-		planet_researchers_produces_mult = 0.05
+		planet_jobs_physics_research_produces_mult = 0.05
+		planet_jobs_society_research_produces_mult = 0.05
+		planet_jobs_engineering_research_produces_mult = 0.05
 	}
 
 	weight = {
@@ -1607,6 +1604,216 @@ gts_research_center_worker = {
 	}
 
 	planet_modifier = {
+		planet_army_build_speed_mult = 0.05
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+		modifier = {
+			factor = 10
+			gts_is_tiny = yes
+		}
+	}
+}
+
+
+gts_research_center_physicist = {
+
+	# 巨娘生理研究員
+
+	category = specialist
+
+	tags = { research }
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_gts_research_center
+		}
+	}
+
+	inline_script = "jobs/automodding_priority_research"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible = {
+		gts_is_tiny = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+
+	resources = {
+		category = planet_physicists
+		produces = {
+			# 60
+			physics_research = 60
+		}
+		upkeep = {
+			# 40
+			consumer_goods = 5
+			gts_giantess_fluid = 5
+			gts_giantess_underwear = 2.5
+			gts_giantess_human = 1.25
+		}
+	}
+
+	planet_modifier = {
+		planet_jobs_physics_research_produces_mult = 0.05
+		planet_army_build_speed_mult = 0.05
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+		modifier = {
+			factor = 10
+			gts_is_tiny = yes
+		}
+	}
+}
+
+
+gts_research_center_biologist = {
+
+	# 巨娘生理研究員
+
+	category = specialist
+
+	tags = { research }
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_gts_research_center
+		}
+	}
+
+	inline_script = "jobs/automodding_priority_research"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible = {
+		gts_is_tiny = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+
+	resources = {
+		category = planet_biologists
+		produces = {
+			# 60
+			society_research = 60
+		}
+		upkeep = {
+			# 40
+			consumer_goods = 5
+			gts_giantess_fluid = 5
+			gts_giantess_underwear = 2.5
+			gts_giantess_human = 1.25
+		}
+	}
+
+	planet_modifier = {
+		planet_jobs_society_research_produces_mult = 0.05
+		planet_army_build_speed_mult = 0.05
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+		modifier = {
+			factor = 10
+			gts_is_tiny = yes
+		}
+	}
+}
+
+
+gts_research_center_engineer = {
+
+	# 巨娘生理研究員
+
+	category = specialist
+
+	tags = { research }
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_gts_research_center
+		}
+	}
+
+	inline_script = "jobs/automodding_priority_research"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible = {
+		gts_is_tiny = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+
+	resources = {
+		category = planet_engineers
+		produces = {
+			# 60
+			engineering_research = 60
+		}
+		upkeep = {
+			# 40
+			consumer_goods = 5
+			gts_giantess_fluid = 5
+			gts_giantess_underwear = 2.5
+			gts_giantess_human = 1.25
+		}
+	}
+
+	planet_modifier = {
+		planet_jobs_engineering_research_produces_mult = 0.05
 		planet_army_build_speed_mult = 0.05
 	}
 
