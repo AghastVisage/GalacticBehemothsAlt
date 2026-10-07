@@ -182,8 +182,8 @@ decision_gts_turn_nuked = {
 
 	potential = {
 		NOT = {
-			has_planet_flag = gts_body_planet
-			has_planet_flag = gts_clothes_planet
+			has_carrier_flag = gts_body_planet
+			has_carrier_flag = gts_clothes_planet
 		}
 		is_artificial = no
 		exists = owner
@@ -232,7 +232,7 @@ decision_gts_civ_seeds = {
 		}
 		custom_tooltip = {
 			NOT = {
-				has_planet_flag = gts_have_seeds_planted
+				has_carrier_flag = gts_have_seeds_planted
 			}
 			fail_text = gts_civ_seeds_planet_planted			#被殖民的星球不能适用
 		}
@@ -278,7 +278,7 @@ decision_gts_garden_fiefdom = {
 	allow = {
 		custom_tooltip = {
 			NOT = {
-				has_planet_flag = gts_have_set_fiefdom
+				has_carrier_flag = gts_have_set_fiefdom
 			}
 			fail_text = gts_have_set_fiefdom			#已经设立封邑的星球不能适用
 		}
@@ -321,7 +321,7 @@ decision_gts_safari_fiefdom = {
 	allow = {
 		custom_tooltip = {
 			NOT = {
-				has_planet_flag = gts_have_set_fiefdom
+				has_carrier_flag = gts_have_set_fiefdom
 			}
 			fail_text = gts_have_set_fiefdom			#已经设立封邑的星球不能适用
 		}
@@ -364,7 +364,7 @@ decision_gts_party_fiefdom = {
 	allow = {
 		custom_tooltip = {
 			NOT = {
-				has_planet_flag = gts_have_set_fiefdom
+				has_carrier_flag = gts_have_set_fiefdom
 			}
 			fail_text = gts_have_set_fiefdom		#已经设立封邑的星球不能适用
 		}
@@ -403,11 +403,11 @@ decision_gts_remove_fiefdom = {
 			has_valid_civic = civic_gts_feudalism
 		}
 		is_homeworld = no
-		has_planet_flag = gts_have_set_fiefdom
+		has_carrier_flag = gts_have_set_fiefdom
 	}
 	allow = {
 		custom_tooltip = {
-			has_planet_flag = gts_have_set_fiefdom
+			has_carrier_flag = gts_have_set_fiefdom
 			fail_text = gts_have_set_fiefdom			#未设立封邑的星球不能适用
 		}
 	}
@@ -429,7 +429,7 @@ decision_gts_remove_fiefdom = {
 			owner = {
 				every_planet_within_border = {
 					limit = {
-						has_planet_flag = gts_have_set_fiefdom
+						has_carrier_flag = gts_have_set_fiefdom
 					}
 					add_modifier = {
 						modifier = gts_anxious_fiefdom
@@ -475,7 +475,7 @@ gtsra_decision_upgrade_lottieshoes = {
 	potential = {
 		is_planet_class = pc_lottie_shoes
 		NOR = {
-			has_planet_flag = advanced_lottie_shoes
+			has_carrier_flag = advanced_lottie_shoes
 			#不能是升级过的鞋子
 		}
 		exists = owner
@@ -534,7 +534,7 @@ gtsra_decision_upgrade_lottieshoes1 = {
 	potential = {
 		is_planet_class = pc_lottie_shoes
 		NOR = {
-			has_planet_flag = advanced_lottie_shoes
+			has_carrier_flag = advanced_lottie_shoes
 			#不能是升级过的鞋子
 		}
 		exists = owner
@@ -590,9 +590,9 @@ gtsra_decision_upgrade_lottieshoes2 = {
 	}
 	potential = {
 		is_planet_class = pc_lottie_shoes
-		has_planet_flag = advanced_lottie_shoes
+		has_carrier_flag = advanced_lottie_shoes
 		NOT = {
-			has_planet_flag = advanced_lottie_shoes2
+			has_carrier_flag = advanced_lottie_shoes2
 		}
 		#是升级过的鞋子
 		exists = owner
@@ -639,7 +639,7 @@ gts_decision_egg_nutrition = {
 		is_eatable_planet = yes
 		owner = {
 			any_owned_planet = {
-				has_planet_flag = Luanzi_home_planet
+				has_carrier_flag = Luanzi_home_planet
 			}
 		}
 	}
@@ -677,7 +677,7 @@ gts_decision_egg_nutrition = {
 			owner = {
 				random_owned_planet = {
 					limit = {
-						has_planet_flag = Luanzi_home_planet
+						has_carrier_flag = Luanzi_home_planet
 					}
 					while = {
 						count = event_target:gts_nutrition_planet.gts_pop_nutrition_amount
@@ -713,7 +713,7 @@ gts_decision_egg_nutrition = {
 	}
 
 	ai_weight = {
-		weight = 2
+		weight = 0
 		modifier = {
 			add = 3
 			owner = {
@@ -746,8 +746,8 @@ gts_decision_loli_nutrition = {
 		owner = {
 			any_owned_planet = {
 				OR = {
-					has_planet_flag = gtsra_loli_planet
-					has_planet_flag = gtsra_slave_planet
+					has_carrier_flag = gtsra_loli_planet
+					has_carrier_flag = gtsra_slave_planet
 				}
 			}
 		}
@@ -808,7 +808,7 @@ gts_decision_loli_nutrition = {
 	}
 
 	ai_weight = {
-		weight = 2
+		weight = 0
 	}
 }
 
@@ -829,9 +829,9 @@ decision_district_use_gts_resource = {
 
 	potential = {
 		NOT = {
-			has_planet_flag = use_gts_resource
+			has_carrier_flag = use_gts_resource
 		}
-		has_planet_flag = gts_body_flag
+		has_carrier_flag = gts_body_flag
 		owner = {
 			gts_is_giantess = yes
 		}
@@ -864,8 +864,8 @@ decision_district_use_gts_resource_cancel = {
 	icon = default
 
 	potential = {
-		has_planet_flag = use_gts_resource
-		has_planet_flag = gts_body_flag
+		has_carrier_flag = use_gts_resource
+		has_carrier_flag = gts_body_flag
 
 		owner = {
 			gts_is_giantess = yes
@@ -898,9 +898,9 @@ decision_district_use_tiny_resource = {
 
 	potential = {
 		NOT = {
-			has_planet_flag = use_tiny_resource
+			has_carrier_flag = use_tiny_resource
 		}
-		has_planet_flag = gts_body_flag
+		has_carrier_flag = gts_body_flag
 		owner = {
 			gts_is_tiny = yes
 		}
@@ -933,8 +933,8 @@ decision_district_use_tiny_resource_cancel = {
 	icon = default
 
 	potential = {
-		has_planet_flag = use_tiny_resource
-		has_planet_flag = gts_body_flag
+		has_carrier_flag = use_tiny_resource
+		has_carrier_flag = gts_body_flag
 		owner = {
 			gts_is_tiny = yes
 		}
@@ -2191,8 +2191,8 @@ decision_gts_godkeeper_bleed_rush = {
 	}
 	potential = {
 		nor = {
-			has_planet_flag = gts_yarong_bleed_planet
-			has_planet_flag = gts_yarong_internal_planet
+			has_carrier_flag = gts_yarong_bleed_planet
+			has_carrier_flag = gts_yarong_internal_planet
 		}
 		from = {
 			has_tradition = tr_gts_godkeeper_3
@@ -2236,8 +2236,8 @@ decision_gts_godkeeper_purify_heresy = {
 	}
 	potential = {
 		nor = {
-			has_planet_flag = gts_yarong_fff_planet
-			has_planet_flag = gts_yarong_internal_planet
+			has_carrier_flag = gts_yarong_fff_planet
+			has_carrier_flag = gts_yarong_internal_planet
 		}
 		from = {
 			has_tradition = tr_gts_godkeeper_3
@@ -2425,7 +2425,7 @@ skadi_add_shroudpop = {
 	potential = {
 		is_colony = yes
 		NOR = {
-			has_planet_flag = shroudpop_cooldown
+			has_carrier_flag = shroudpop_cooldown
 		}
 		from = {
 			check_variable = {
@@ -3517,4 +3517,3 @@ gts_ora_big_breasts_decision = {
 # 		weight = 0
 # 	}
 # }
-
