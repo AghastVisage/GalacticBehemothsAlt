@@ -4,6 +4,17 @@ What can I say, I'm a Determined Separatist. Come what may, I'll not suffer flaw
 
 This is a fork-mod of [Galactic Behemoths](https://steamcommunity.com/sharedfiles/filedetails/?id=3057941504), focused on fixing bugs, restoring half-gone content, filling in localization, plus a bunch of random functional changes that I put in just because I liked it.
 
+To use this mod:
+  1. Click Code -> Download Zip on this page
+  2. Unzip the mod
+  3. Copy 3057941504.mod to <your user directory>/Documents/Paradox Interactive\Stellaris\mod
+  4. Edit 3057941504.mod after it's been copied, so that the line starting with path= contains the path where you extracted the mod
+  5. The mod should appear on the launcher, I think; I don't really use the launcher, so I haven't tested that.
+
+Alternatively, just delete C:\Program Files (x86)\Steam\steamapps\workshop\content\281990\3057941504 and replace its contents with this mod, although when the proper mod is updated, it will overwrite all changes.
+
+I might put this onto Steam Workshop in the future, but I'll navigate that account later.
+
 All credit goes to them.
 
 ## List of changes
