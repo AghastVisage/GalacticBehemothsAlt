@@ -44,3 +44,9 @@ This script actually backs up the original files, simply because it's easier to 
 ### Bonus: make_glossary.py
 
 This script needs to be run from the root of the mod repository, and generates a dirty CSV glossary based on all the NAME_ definitions in all localization files. You'll need to manually go through the glossary to pick out any entries that don't make sense, or are duplicated.
+
+
+
+### The DeepL Key
+
+Yes, there is a DeepL key in this repository. No, it does not work, why would you think it would work? 
