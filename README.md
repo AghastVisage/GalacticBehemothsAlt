@@ -13,6 +13,8 @@ To use this mod:
 
 Alternatively, just delete C:\Program Files (x86)\Steam\steamapps\workshop\content\281990\3057941504 and replace its contents with this mod, although when the proper mod is updated, it will overwrite all changes.
 
+I just put every file from the original mod in here, so you shouldn't load both mods. This is currently based on 4.6.0 version of the mod, whereas the mod has moved onto at least 4.7.1, so things will break if both mods are loaded.
+
 I might put this onto Steam Workshop in the future, but I'll navigate that account later.
 
 All credit goes to them.
