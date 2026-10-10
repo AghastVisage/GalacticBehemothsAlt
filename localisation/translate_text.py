@@ -35,6 +35,7 @@ def translate_text(untranslated_filename, translated_filename, translator, deepl
         dialect = csv.Sniffer().sniff(csv_file.read(1024))
         csv_file.seek(0)
         dialect.escapechar = '\\'
+        dialect.quotechar = '' # No quote
         csv_reader = csv.reader(csv_file, dialect=dialect)
         out_file.write("filepath,key,chinese,english\n")
         header = next(csv_reader)
