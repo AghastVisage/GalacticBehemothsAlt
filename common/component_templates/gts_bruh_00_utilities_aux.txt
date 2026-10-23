@@ -1,0 +1,203 @@
+#############################
+# Regenerative Hull Tissue #
+#############################
+
+utility_component_template = {
+	key = "AUTO_REPAIR"
+	size = aux
+	icon = "GFX_ship_part_auto_repair"
+	icon_frame = 1
+	power = -10
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 20
+		}
+	}
+
+	modifier = {
+		ship_hull_regen_add_perc = 0.05
+		ship_armor_regen_add_perc = 0.1
+	}
+
+	potential = {
+
+		# 模組添加的東西
+
+		#---------- Bruh ----------
+		#---------- 開始 -----------
+
+		NOR = {
+			is_ship_size = gts_destroyer_ship
+			is_ship_size = gts_battleship_ship
+			is_ship_size = gts_titan_ship
+			is_ship_size = gts_bruh_shipgirl_ship_sizes_1
+			is_ship_size = gts_bruh_shipgirl_ship_sizes_2
+			is_ship_size = gts_bruh_shipgirl_ship_sizes_3
+		}
+
+		#---------- Bruh ----------
+		#---------- 結束 -----------
+
+	}
+
+	prerequisites = { tech_regenerative_hull_tissue }
+	component_set = "AUTO_REPAIR"
+
+	ai_weight = {
+		weight = 10
+		modifier = {
+			factor = 2.0
+			is_preferred_weapons = weapon_type_explosive
+		}
+	}
+}
+
+####################
+# Covenant Uniques #
+####################
+
+utility_component_template = {
+	key = "COMPOSER_MARK"
+	size = aux
+	icon = "GFX_ship_part_composer_covenant_aux"
+	icon_frame = 1
+	power = -20
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 20
+			sr_zro = 2
+		}
+	}
+
+	modifier = {
+		ship_hull_regen_add_perc = 0.1
+		ship_armor_regen_add_perc = 0.15
+	}
+
+	potential = {
+
+		# 模組添加的東西
+
+		#---------- Bruh ----------
+		#---------- 開始 -----------
+
+		NOR = {
+			is_ship_size = gts_destroyer_ship
+			is_ship_size = gts_battleship_ship
+			is_ship_size = gts_titan_ship
+			is_ship_size = gts_bruh_shipgirl_ship_sizes_1
+			is_ship_size = gts_bruh_shipgirl_ship_sizes_2
+			is_ship_size = gts_bruh_shipgirl_ship_sizes_3
+		}
+
+		#---------- Bruh ----------
+		#---------- 結束 -----------
+
+	}
+
+	prerequisites = { tech_covenant_composer }
+	component_set = "COMPOSER_MARK"
+
+	ai_weight = {
+		weight = 10
+		modifier = {
+			factor = 0
+			has_country_resource = {
+				type = sr_zro
+				amount < 100
+			}
+		}
+	}
+}
+
+#####################################
+#	Synth Queen Auto-Repair Module	#
+#####################################
+
+utility_component_template = {
+	key = "AUTO_REPAIR_3"
+	size = aux
+	icon = "GFX_ship_part_nanite_repair_system_synth_queen"
+	icon_frame = 1
+	power = -20
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 10
+			nanites = 3
+		}
+	}
+
+	modifier = {
+		ship_hull_regen_add_perc = 0.25
+		ship_armor_regen_add_perc = 0.2
+	}
+
+	potential = {
+
+		# 模組添加的東西
+
+		#---------- Bruh ----------
+		#---------- 開始 -----------
+
+		NOR = {
+			is_ship_size = gts_destroyer_ship
+			is_ship_size = gts_battleship_ship
+			is_ship_size = gts_titan_ship
+			is_ship_size = gts_bruh_shipgirl_ship_sizes_1
+			is_ship_size = gts_bruh_shipgirl_ship_sizes_2
+			is_ship_size = gts_bruh_shipgirl_ship_sizes_3
+		}
+
+		#---------- Bruh ----------
+		#---------- 結束 -----------
+
+	}
+
+	prerequisites = { tech_nanite_repair_system_synth_queen }
+	component_set = "AUTO_REPAIR_3"
+
+	ai_weight = {
+		weight = 15
+		modifier = {
+			factor = 2.0
+			is_preferred_weapons = weapon_type_explosive
+		}
+
+		modifier = {
+			factor = 0.0
+			no_resource_for_component = { RESOURCE = nanites }
+		}
+		modifier = {
+			factor = 0.0
+			is_ai = yes
+		}
+	}
+}
+
+########################
+# Asteroidal Armor
+########################
+
+utility_component_template = {
+	key = "ASTEROIDAL_CARAPACE_ARMOR"
+	size = aux
+	icon = "GFX_ship_part_asteroidal_carapace"
+	icon_frame = 1
+	power = -10
+
+	modifier = {
+		ship_armor_mult = 0.08
+	}
+
+	prerequisites = { "tech_asteroidal_carapace" }
+	component_set = "ASTEROIDAL_CARAPACE_ARMOR"
+	resources = {
+		category = ship_components
+		cost = {
+			minerals = 40
+		}
+	}
+}

@@ -67,33 +67,6 @@ tr_expansion_finish = {
 			factor = 1
 		}
 	}
-
-	tradition_swap = {
-		name = tr_expansion_colonization_fever_gts
-		inherit_effects = yes
-		inherit_icon = yes
-		trigger = {
-			gts_is_giantess_empire = yes
-			is_nomadic = no
-		}
-
-		weight = {
-			factor = 10
-		}
-	}
-	tradition_swap = {
-		name = tr_expansion_colonization_fever_tiny
-		inherit_effects = yes
-		inherit_icon = yes
-		trigger = {
-			gts_is_tiny_empire = yes
-			is_nomadic = no
-		}
-
-		weight = {
-			factor = 10
-		}
-	}
 }
 
 tr_expansion_colonization_fever = {
@@ -127,6 +100,7 @@ tr_expansion_colonization_fever = {
 		inherit_icon = yes
 		trigger = {
 			is_machine_empire = yes
+			is_nomadic = no
 		}
 
 		weight = {
@@ -140,6 +114,8 @@ tr_expansion_colonization_fever = {
 		inherit_icon = yes
 		trigger = {
 			is_hive_empire = yes
+			is_wilderness_empire = no
+			is_nomadic = no
 		}
 
 		weight = {
@@ -159,6 +135,11 @@ tr_expansion_colonization_fever = {
 		# see 'wilderness.500'
 	}
 
+	ai_weight = {
+		factor = 1000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_expansion_colonization_fever_gts
 		inherit_effects = yes
@@ -166,8 +147,16 @@ tr_expansion_colonization_fever = {
 		trigger = {
 			gts_is_giantess_empire = yes
 			is_nomadic = no
+			NOT = {
+				OR = {
+					is_nomadic = yes
+					AND = {
+						is_wilderness_empire = yes
+						is_nomadic = no
+					}
+				}
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -179,15 +168,25 @@ tr_expansion_colonization_fever = {
 		trigger = {
 			gts_is_tiny_empire = yes
 			is_nomadic = no
+			NOT = {
+				AND = {
+					gts_is_giantess_empire = yes
+					is_nomadic = no
+				}
+			}
+			NOT = {
+				OR = {
+					is_nomadic = yes
+					AND = {
+						is_wilderness_empire = yes
+						is_nomadic = no
+					}
+				}
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
-	}
-
-	ai_weight = {
-		factor = 1000
 	}
 }
 
@@ -216,11 +215,24 @@ tr_expansion_a_new_life = {
 	tradition_swap = {
 		name = tr_expansion_a_new_life_machine
 		inherit_icon = yes
+		inherit_effects = yes
 		trigger = {
 			is_machine_empire = yes
+			is_nomadic = no
 		}
-		modifier = {
-			planet_pop_assembly_mult = 0.10
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_expansion_a_new_life_machine_nomad
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			is_machine_empire = yes
+			is_nomadic = yes
 		}
 
 		weight = {
@@ -234,6 +246,7 @@ tr_expansion_a_new_life = {
 		inherit_icon = yes
 		trigger = {
 			is_hive_empire = yes
+			is_nomadic = no
 		}
 
 		weight = {
@@ -241,14 +254,14 @@ tr_expansion_a_new_life = {
 		}
 	}
 
+
 	tradition_swap = {
-		inherit_name = yes
+		name = tr_expansion_a_new_life_hive_nomad
+		inherit_effects = yes
 		inherit_icon = yes
 		trigger = {
-			is_individual_machine = yes
-		}
-		modifier = {
-			planet_pop_assembly_mult = 0.10
+			is_hive_empire = yes
+			is_nomadic = yes
 		}
 
 		weight = {
@@ -270,6 +283,11 @@ tr_expansion_a_new_life = {
 		}
 	}
 
+	ai_weight = {
+		factor = 5000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_expansion_a_new_life_gts
 		inherit_effects = yes
@@ -277,7 +295,6 @@ tr_expansion_a_new_life = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -288,15 +305,13 @@ tr_expansion_a_new_life = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
-	}
-
-	ai_weight = {
-		factor = 5000
 	}
 }
 
@@ -405,14 +420,34 @@ tr_expansion_courier_network = {
 		}
 	}
 
+	ai_weight = {
+		factor = 5000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_expansion_courier_network_gts
 		inherit_effects = yes
 		inherit_icon = yes
 		trigger = {
 			gts_is_giantess_empire = yes
+			NOT = {
+				OR = {
+					AND = {
+						is_gestalt = no
+						is_nomadic = yes
+					}
+					AND = {
+						is_machine_empire = yes
+						is_nomadic = yes
+					}
+					AND = {
+						is_hive_empire = yes
+						is_nomadic = yes
+					}
+				}
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -423,15 +458,29 @@ tr_expansion_courier_network = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
+			NOT = {
+				OR = {
+					AND = {
+						is_gestalt = no
+						is_nomadic = yes
+					}
+					AND = {
+						is_machine_empire = yes
+						is_nomadic = yes
+					}
+					AND = {
+						is_hive_empire = yes
+						is_nomadic = yes
+					}
+				}
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
-	}
-
-	ai_weight = {
-		factor = 5000
 	}
 }
 
@@ -477,6 +526,11 @@ tr_expansion_reach_for_the_stars = {
 		}
 	}
 
+	ai_weight = {
+		factor = 1000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_expansion_reach_for_the_stars_gts
 		inherit_effects = yes
@@ -484,7 +538,6 @@ tr_expansion_reach_for_the_stars = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -495,15 +548,13 @@ tr_expansion_reach_for_the_stars = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
-	}
-
-	ai_weight = {
-		factor = 1000
 	}
 }
 
@@ -565,6 +616,11 @@ tr_expansion_galactic_ambition = {
 		}
 	}
 
+	ai_weight = {
+		factor = 5000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_expansion_galactic_ambition_gts
 		inherit_effects = yes
@@ -572,7 +628,6 @@ tr_expansion_galactic_ambition = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -583,14 +638,12 @@ tr_expansion_galactic_ambition = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
-	}
-
-	ai_weight = {
-		factor = 5000
 	}
 }

@@ -38,7 +38,7 @@ country_event = {
                 id = gts_debug_event.6
             }
         }
-        custom_tooltip = gts_debug_event.1.option.2.tooltips
+        custom_tooltip = gts_debug_event.1.option.3.tooltips
     }
     option = { #退出
         name = gts_guide_qhai.2.option.quit
@@ -537,7 +537,7 @@ country_event = {
         allow = {
             NOT = {
                 any_owned_leader = {
-                    has_leader_flag = gts_mari
+                    has_leader_flag = gts_mizuki
                 }
             }
         }
@@ -668,17 +668,9 @@ country_event = {
     }
     option = {
         name = gts_debug_event.2.43
-        allow = {
-            NOT = {
-                any_owned_leader = {
-                    has_leader_flag = gts_xinuo
-                }
-            }
-        }
-        gts_leader_xinuo_hired = { CHANGE_OWNER = yes }
-        gts_create_xinuo_fleet = yes
-        response_text = gts_debug_event.2.reponse
-        is_dialog_only = yes
+        allow = { NOT = { has_global_flag = gts_has_trigger_rainna_la_grande } }
+        custom_tooltip = gts_debug_event.2.rainna.tooltip
+        hidden_effect = { gts_debug_start_rainna = yes }
     }
     option = {
         name = gts_debug_event.2.44
@@ -742,7 +734,7 @@ country_event = {
         allow = {
             NOT = {
                 any_owned_leader = {
-                    has_leader_flag = gts_linfeng_shipgirl
+                    has_leader_flag = gts_linfeng_shipgril
                 }
             }
         }
@@ -756,7 +748,7 @@ country_event = {
         allow = {
             NOT = {
                 any_owned_leader = {
-                    has_leader_flag = gts_linfeng_shipgirl
+                    has_leader_flag = gts_linfeng_shipgril
                 }
             }
         }
@@ -796,7 +788,7 @@ country_event = {
         allow = {
             NOT = {
                 any_owned_leader = {
-                    has_leader_flag = gts_hitomi
+                    has_leader_flag = gts_hitomi_yuyue
                 }
             }
         }
@@ -818,6 +810,19 @@ country_event = {
         is_dialog_only = yes
     }
     option = {
+        name = gts_debug_event.2.52
+        allow = {
+            NOT = {
+                any_owned_leader = {
+                    has_leader_flag = gts_qinwen
+                }
+            }
+        }
+        gts_leader_qinwen_hired = { CHANGE_OWNER = yes }
+        response_text = gts_debug_event.2.reponse
+        is_dialog_only = yes
+    }
+    option = {
         name = gts_debug_event.1.option.quit
         default_hide_option = yes
     }
@@ -833,49 +838,46 @@ country_event = {
     hide_window = yes
     is_triggered_only = yes
     immediate = {
-        # 招募基础领袖
-        gts_leader_luodi_hired = { CHANGE_OWNER = yes }
-        gts_leader_aurora_hired = { CHANGE_OWNER = yes }
-        gts_leader_jifeng_hired = { CHANGE_OWNER = yes }
-        gts_leader_yiyan_hired = { CHANGE_OWNER = yes }
-        gts_leader_aplog_hired = { CHANGE_OWNER = yes }
-        gts_leader_eyjafjalla_hired = { CHANGE_OWNER = yes }
-        gts_leader_eyjafjalla_recover_hired = { CHANGE_OWNER = yes }
-        gts_leader_skadi_hired = { CHANGE_OWNER = yes }
-        gts_leader_sonxi_hired = { CHANGE_OWNER = yes }
-        gts_leader_linglu_hired = { CHANGE_OWNER = yes }
-        gts_leader_aya_hired = { CHANGE_OWNER = yes }
-        gts_leader_archetto_hired = { CHANGE_OWNER = yes }
-        gts_leader_blemishine_hired = { CHANGE_OWNER = yes }
-        gts_leader_eliza_hired = { CHANGE_OWNER = yes }
-        gts_leader_hanako_hired = { CHANGE_OWNER = yes }
-        gts_leader_koharu_hired = { CHANGE_OWNER = yes }
-        gts_leader_erika_hired = { CHANGE_OWNER = yes }
-        gts_leader_goldenglow_hired = { CHANGE_OWNER = yes }
-        gts_leader_teifuania_hired = { CHANGE_OWNER = yes }
-        gts_leader_qhai_hired = { CHANGE_OWNER = yes }
-        gts_leader_satori_hired = { CHANGE_OWNER = yes }
-        gts_leader_tiantiao_hired = { CHANGE_OWNER = yes }
-        gts_leader_doctor_hired = { CHANGE_OWNER = yes }
-        gts_leader_mari_hired = { CHANGE_OWNER = yes }
-        gts_leader_guya_official_hired = { CHANGE_OWNER = yes }
-        gts_leader_mizuki_hired = { CHANGE_OWNER = yes }
-        gts_leader_sera_hired = { CHANGE_OWNER = yes }
-        gts_leader_allomerus_hired = { CHANGE_OWNER = yes }
-        gts_leader_tlipoca_hired = { CHANGE_OWNER = yes }
-        gts_leader_seele_hired = { CHANGE_OWNER = yes }
-        gts_leader_firefly_hired = { CHANGE_OWNER = yes }
-        gts_leader_illya_hired = { CHANGE_OWNER = yes }
-        gts_leader_linfeng_hired = { CHANGE_OWNER = yes }
-        gts_leader_suxiaobai_hired = { CHANGE_OWNER = yes }
-        gts_leader_xiaomiao_hired = { CHANGE_OWNER = yes }
-        gts_leader_carlotta_hired = { CHANGE_OWNER = yes }
-        gts_leader_fara_hired = { CHANGE_OWNER = yes }
-        gts_leader_hitomi_yuyue_hired= { CHANGE_OWNER = yes }
-        gts_leader_ora_hired = { CHANGE_OWNER = yes }
-        country_event = {
-            id = gts_debug_event.4
-        }
+        gts_debug_recruit_leader = { TARGET = gts_luodi RECRUIT = gts_leader_luodi_hired }
+        gts_debug_recruit_leader = { TARGET = gts_aurora RECRUIT = gts_leader_aurora_hired }
+        gts_debug_recruit_leader = { TARGET = gts_jifeng RECRUIT = gts_leader_jifeng_hired }
+        gts_debug_recruit_leader = { TARGET = gts_yiyan RECRUIT = gts_leader_yiyan_hired }
+        gts_debug_recruit_leader = { TARGET = gts_aplog RECRUIT = gts_leader_aplog_hired }
+        gts_debug_recruit_leader = { TARGET = gts_eyjafjalla RECRUIT = gts_leader_eyjafjalla_hired }
+        gts_debug_recruit_leader = { TARGET = gts_skadi RECRUIT = gts_leader_skadi_hired }
+        gts_debug_recruit_leader = { TARGET = gts_sonxi RECRUIT = gts_leader_sonxi_hired }
+        gts_debug_recruit_leader = { TARGET = gts_linglu RECRUIT = gts_leader_linglu_hired }
+        gts_debug_recruit_leader = { TARGET = gts_aya RECRUIT = gts_leader_aya_hired }
+        gts_debug_recruit_leader = { TARGET = gts_archetto RECRUIT = gts_leader_archetto_hired }
+        gts_debug_recruit_leader = { TARGET = gts_blemishine RECRUIT = gts_leader_blemishine_hired }
+        gts_debug_recruit_leader = { TARGET = gts_eliza RECRUIT = gts_leader_eliza_hired }
+        gts_debug_recruit_leader = { TARGET = gts_Hanako RECRUIT = gts_leader_hanako_hired }
+        gts_debug_recruit_leader = { TARGET = gts_Koharu RECRUIT = gts_leader_koharu_hired }
+        gts_debug_recruit_leader = { TARGET = gts_erika RECRUIT = gts_leader_erika_hired }
+        gts_debug_recruit_leader = { TARGET = gts_goldenglow RECRUIT = gts_leader_goldenglow_hired }
+        gts_debug_recruit_leader = { TARGET = gts_teifuania RECRUIT = gts_leader_teifuania_hired }
+        gts_debug_recruit_leader = { TARGET = gts_qhai RECRUIT = gts_leader_qhai_hired }
+        gts_debug_recruit_leader = { TARGET = gts_satori RECRUIT = gts_leader_satori_hired }
+        gts_debug_recruit_leader = { TARGET = gts_tiantiao RECRUIT = gts_leader_tiantiao_hired }
+        gts_debug_recruit_leader = { TARGET = gts_doctor RECRUIT = gts_leader_doctor_hired }
+        gts_debug_recruit_leader = { TARGET = gts_mari RECRUIT = gts_leader_mari_hired }
+        gts_debug_recruit_leader = { TARGET = gts_guya RECRUIT = gts_leader_guya_official_hired FLEET = gts_create_guya_fleet }
+        gts_debug_recruit_leader = { TARGET = gts_mizuki RECRUIT = gts_leader_mizuki_hired }
+        gts_debug_recruit_leader = { TARGET = gts_sera RECRUIT = gts_leader_sera_hired }
+        gts_debug_recruit_leader = { TARGET = gts_allomerus RECRUIT = gts_leader_allomerus_hired }
+        gts_debug_recruit_leader = { TARGET = gts_tlipoca RECRUIT = gts_leader_tlipoca_hired }
+        gts_debug_recruit_leader = { TARGET = gts_seele RECRUIT = gts_leader_seele_hired }
+        gts_debug_recruit_leader = { TARGET = gts_firefly RECRUIT = gts_leader_firefly_hired }
+        gts_debug_recruit_leader = { TARGET = gts_illyasviel RECRUIT = gts_leader_illya_hired }
+        gts_debug_recruit_leader = { TARGET = gts_linfeng RECRUIT = gts_leader_linfeng_hired }
+        gts_debug_recruit_leader = { TARGET = gts_suxiaobai RECRUIT = gts_leader_suxiaobai_hired }
+        gts_debug_recruit_leader = { TARGET = gts_xiaomiao RECRUIT = gts_leader_xiaomiao_hired }
+        gts_debug_recruit_leader = { TARGET = gts_carlotta RECRUIT = gts_leader_carlotta_hired }
+        gts_debug_recruit_leader = { TARGET = gts_faralda RECRUIT = gts_leader_fara_hired }
+        gts_debug_recruit_leader = { TARGET = gts_hitomi RECRUIT = gts_leader_hitomi_hired FLEET = gts_create_hitomi_fleet }
+        gts_debug_recruit_leader = { TARGET = gts_ora RECRUIT = gts_leader_ora_hired }
+        gts_debug_recruit_leader = { TARGET = gts_qinwen RECRUIT = gts_leader_qinwen_hired }
+        country_event = { id = gts_debug_event.4 }
     }
 }
 # 一次招募所有带船的领袖
@@ -884,32 +886,16 @@ country_event = {
     hide_window = yes
     is_triggered_only = yes
     immediate = {
-        # 带船领袖
-        gts_leader_saratoga_hired = { CHANGE_OWNER = yes }
-        gts_leader_bronya_hired = { CHANGE_OWNER = yes }
-        gts_leader_seele_li_hired = { CHANGE_OWNER = yes }
-        gts_leader_shentun_hired = { CHANGE_OWNER = yes }
-        gts_leader_tensi_hired = { CHANGE_OWNER = yes }
-        gts_leader_huatian_hired = { CHANGE_OWNER = yes }
-        event_target:gts_huatian = {
-            add_trait = {
-                trait = gts_trait_leader_huatian_j
-            }
-        }
-        gts_leader_yarong_hired2 = yes
-        gts_leader_paopao_hired2 = yes
-        gts_leader_xinuo_hired = { CHANGE_OWNER = yes }
-        gts_create_xinuo_fleet = yes
-        # 创建舰队
-        gts_create_huatian_fleet = yes
-        gts_create_tensi_fleet = yes
-        gts_create_seele_li_military_fleet = yes
-        gts_create_bronya_military_fleet = yes
-        gts_create_saratoga_fleet = yes
-        gts_create_shentun_fleet = yes
-        gts_create_hitomi_fleet = yes
-        gts_create_linfeng_fleet = yes
-        gts_create_guya_fleet = yes
+        gts_debug_recruit_leader = { TARGET = gts_saratoga RECRUIT = gts_leader_saratoga_hired FLEET = gts_create_saratoga_fleet }
+        gts_debug_recruit_leader = { TARGET = gts_bronya RECRUIT = gts_leader_bronya_hired FLEET = gts_create_bronya_military_fleet }
+        gts_debug_recruit_leader = { TARGET = gts_seele_li RECRUIT = gts_leader_seele_li_hired FLEET = gts_create_seele_li_military_fleet }
+        gts_debug_recruit_leader = { TARGET = gts_shentun RECRUIT = gts_leader_shentun_hired FLEET = gts_create_shentun_fleet }
+        gts_debug_recruit_leader = { TARGET = gts_tensi RECRUIT = gts_leader_tensi_hired FLEET = gts_create_tensi_fleet }
+        gts_debug_recruit_leader = { TARGET = gts_huatian RECRUIT = gts_leader_huatian_hired TRAIT = gts_trait_leader_huatian_j FLEET = gts_create_huatian_fleet }
+        gts_debug_recruit_leader = { TARGET = gts_yarong RECRUIT = gts_leader_yarong_hired2 }
+        gts_debug_recruit_leader = { TARGET = gts_paopao RECRUIT = gts_leader_paopao_hired2 }
+        gts_debug_recruit_leader = { TARGET = gts_linfeng_shipgril RECRUIT = gts_leader_linfeng_shipgril_hired FLEET = gts_create_linfeng_fleet }
+        gts_debug_start_rainna = yes
     }
 }
 # 领袖好感度控制
@@ -927,10 +913,10 @@ country_event = {
     option = {
         name = gts_debug_event.6.option.1
         hidden_effect = {
-            hidden_effect = {
-                every_owned_leader = {
-                    gts_love_system_increase = { value = 20 }
-                }
+            every_owned_leader = {
+                limit = { is_gts_love_leader = yes }
+                gts_love_system_increase = { value = 20 }
+                gts_love_normal_system_check = yes
             }
         }
         response_text = gts_debug_event.6.option.1.response
@@ -940,7 +926,9 @@ country_event = {
         name = gts_debug_event.6.option.2
         hidden_effect = {
             every_owned_leader = {
+                limit = { is_gts_love_leader = yes }
                 gts_love_system_reduce = { value = 20 }
+                gts_love_normal_system_check = yes
             }
         }
         response_text = gts_debug_event.6.option.1.response

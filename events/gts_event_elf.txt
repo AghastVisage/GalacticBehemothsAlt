@@ -11,23 +11,23 @@ country_event = {
 
 	immediate = {
 		# 創建精靈星系
+		# The original elf system is created at the selected capital / own arkship below.
 		random_system = {
-			limit = {
-				is_neighbor_of = root
-			}
-			save_event_target_as = gts_bruh_get_elf_country_neighbor_system
-		}
-		event_target:gts_bruh_get_elf_country_neighbor_system = {
-			spawn_system = {
-				min_distance >= 20
-				max_distance <= 50
-				max_jumps = 1
-				initializer = basic_init_05
-				effect = {
-					save_event_target_as = gts_bruh_get_elf_country_system
-				}
-			}
-		}
+ limit = { gts_intel_anchor_system = { COUNTRY = root } }
+ save_event_target_as = gts_intel_spawn_anchor
+ save_event_target_as = gts_bruh_get_elf_country_neighbor_system
+ spawn_system = {
+ min_distance = 10
+ max_distance = 30
+ max_jumps = 0
+ hyperlane = no
+ initializer = basic_init_05
+ effect = {
+  add_hyperlane = { from = this to = event_target:gts_intel_spawn_anchor }
+  save_event_target_as = gts_bruh_get_elf_country_system
+ }
+}
+}
 		last_created_system = {
 			random_system_planet = {
 				limit = {
@@ -165,7 +165,7 @@ country_event = {
 				every_system_planet = {
 					set_surveyed = {
 						surveyed = yes
-						surveyor = root.owner
+						surveyor = root
 					}
 				}
 			}

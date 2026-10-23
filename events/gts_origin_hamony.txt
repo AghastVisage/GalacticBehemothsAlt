@@ -1,44 +1,62 @@
 namespace = gts_hamony
+
 country_event = {
 	id = gts_hamony.0
 	hide_window = yes
 	is_triggered_only = yes
+
 	trigger = {
 		has_origin = origin_Hexie
 	}
+
 	immediate = {
-		owner_main_species = {
-			set_species_flag = gts_main_species_flag
-		}
 		random_owned_species = {
 			limit = {
-				NOT = {
-					has_species_flag = gts_main_species_flag
-				}
+				has_trait = trait_Small
 			}
+			save_event_target_as = gts_bruh_hexie_sub_species
+		}
+		event_target:gts_bruh_hexie_sub_species = {
 			set_citizenship_type = {
-				country = root
-				type = citizenship_full
+				country = Root
+				type = citizenship_limited
 			}
-			save_event_target_as = gts_last_created_species
-		}
-		random_owned_planet = {
-			while = {
-				count = 16
-				limit = {
-					pop_amount > 1000
-				}
-				random_owned_pop_group = {
-					kill_all_pop = yes
-				}
+			set_military_service_type = {
+				country = Root
+				type = military_service_limited
 			}
-			while = {
-				count = 16
-				create_pop_group = {
-					species = event_target:gts_last_created_species
-					ethos = random
-				}
+			set_living_standard = {
+				country = Root
+				type = living_standard_stratified
+			}
+			set_migration_controls = {
+				country = Root
+				type = migration_control_yes
+			}
+			set_population_controls = {
+				country = Root
+				type = population_control_no
 			}
 		}
+		capital_scope = {
+			create_pop_group = {
+				species = event_target:gts_bruh_hexie_sub_species
+				category = civilian
+				size = 2600
+			}
+		}
+		set_policy = {
+			policy = gts_apartheid
+			option = gts_tinies_apartheid
+		}
+		set_policy = {
+			policy = gts_houses
+			option = gts_houses_giantess
+		}
+		set_policy_cooldown = gts_apartheid
+		set_policy_cooldown = gts_houses
 	}
+
+	after = { }
 }
+

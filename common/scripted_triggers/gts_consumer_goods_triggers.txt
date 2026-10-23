@@ -1,0 +1,43 @@
+# Country scope. Individualist machines retain the regular consumer-goods economy.
+# AMOUNT and GESTALT_AMOUNT are the regular price and its 2:1 basic-resource price.
+gts_can_pay_consumer_goods_trigger = {
+	if = {
+		limit = { is_gestalt = no }
+		resource_stockpile_compare = { resource = consumer_goods value >= $AMOUNT$ }
+	}
+	else_if = {
+		limit = { is_machine_empire = yes }
+		resource_stockpile_compare = { resource = energy value >= $GESTALT_AMOUNT$ }
+	}
+	else = {
+		resource_stockpile_compare = { resource = minerals value >= $GESTALT_AMOUNT$ }
+	}
+}
+
+# Country scope. Luxury-related happiness follows the resource actually paid.
+gts_has_luxury_resource_deficit = {
+	if = {
+		limit = { is_gestalt = no }
+		has_deficit = consumer_goods
+	}
+	else_if = {
+		limit = { is_machine_empire = yes }
+		has_deficit = energy
+	}
+	else = {
+		has_deficit = minerals
+	}
+}
+
+# This option also costs 1000 energy. Machine empires must afford the combined
+# 1000 + 2 * 200 energy bill, not just each part separately.
+gts_can_pay_cleanup_supplies_trigger = {
+	if = {
+		limit = { is_machine_empire = yes }
+		resource_stockpile_compare = { resource = energy value >= 1400 }
+	}
+	else = {
+		resource_stockpile_compare = { resource = energy value >= 1000 }
+		gts_can_pay_consumer_goods_trigger = { AMOUNT = 200 GESTALT_AMOUNT = 400 }
+	}
+}

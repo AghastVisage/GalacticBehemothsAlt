@@ -282,18 +282,7 @@ country_event = {
 	id = gts_azure_waters.100
 	is_triggered_only = yes
 	hide_window = yes
-	immediate = {
-		random_system_within_border = {
-			limit = {
-				star = {
-					has_planet_flag = gts_azure_waters_astral_rift
-				}
-			}
-			spawn_astral_rift = {
-				id = gts_azure_waters_rifts_2
-			}
-		}
-	}
+	immediate = { gts_intel_restore_azure_rift = yes }
 	after = {
 	}
 }
@@ -344,19 +333,10 @@ astral_rift_event = {
 		}
 	}
 	after = {
-		finish_astral_rift = yes
-		destroy_astral_rift = this
-		explorer = {
-			random_system_within_border = {
-				limit = {
-					star = {
-						has_planet_flag = gts_azure_waters_astral_rift
-					}
-				}
-				spawn_astral_rift = {
-					id = gts_azure_waters_rifts_2
-				}
-			}
-		}
-	}
+ # Preserve the explorer before destroying the rift that supplies that scope.
+ explorer = { save_event_target_as = gts_intel_azure_explorer }
+ finish_astral_rift = yes
+ destroy_astral_rift = this
+ event_target:gts_intel_azure_explorer = { gts_intel_restore_azure_rift = yes }
+}
 }

@@ -33,6 +33,12 @@ tr_adaptability_recycling = {
 		planet_structures_exotic_gases_cost_mult = -0.15
 		planet_structures_rare_crystals_cost_mult = -0.15
 	}
+
+	ai_weight = {
+		factor = 10000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_adaptability_recycling_gts
 		inherit_effects = yes
@@ -40,9 +46,8 @@ tr_adaptability_recycling = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
 	tradition_swap = {
@@ -51,15 +56,13 @@ tr_adaptability_recycling = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
-	}
-
-	ai_weight = {
-		factor = 10000
 	}
 }
 
@@ -74,59 +77,9 @@ tr_adaptability_survival_fittest = {
 	}
 
 	tradition_swap = {
-		name = tr_adaptability_survival_fittest_gts
-		inherit_effects = yes
+		name = tr_adaptability_survival_fittest_nomad
 		inherit_icon = yes
-		trigger = {
-			gts_is_giantess_empire = yes
-			is_nomadic = no
-		}
-
-		weight = {
-			factor = 1
-		}
-	}
-	tradition_swap = {
-		name = tr_adaptability_survival_fittest_tiny
-		inherit_effects = yes
-		inherit_icon = yes
-		trigger = {
-			gts_is_tiny_empire = yes
-			is_nomadic = no
-		}
-
-		weight = {
-			factor = 1
-		}
-	}
-	tradition_swap = {
-		name = tr_adaptability_survival_fittest_gts
-		inherit_icon = yes
-		trigger = {
-			gts_is_giantess_empire = yes
-			is_nomadic = yes
-		}
-		custom_tooltip = tr_adaptability_survival_fittest_nomad_desc
-		modifier = {
-			shipsize_civilian_arkship_tier_1_hull_mult = 0.25
-			shipsize_civilian_arkship_tier_2_hull_mult = 0.25
-			shipsize_civilian_arkship_tier_3_hull_mult = 0.25
-			shipsize_science_arkship_tier_1_hull_mult = 0.25
-			shipsize_science_arkship_tier_2_hull_mult = 0.25
-			shipsize_science_arkship_tier_3_hull_mult = 0.25
-			shipsize_military_arkship_tier_1_hull_mult = 0.25
-			shipsize_military_arkship_tier_2_hull_mult = 0.25
-			shipsize_military_arkship_tier_3_hull_mult = 0.25
-		}
-		weight = { factor = 1 }
-	}
-	tradition_swap = {
-		name = tr_adaptability_survival_fittest_tiny
-		inherit_icon = yes
-		trigger = {
-			gts_is_tiny_empire = yes
-			is_nomadic = yes
-		}
+		trigger = { is_nomadic = yes }
 		custom_tooltip = tr_adaptability_survival_fittest_nomad_desc
 		modifier = {
 			shipsize_civilian_arkship_tier_1_hull_mult = 0.25
@@ -144,6 +97,66 @@ tr_adaptability_survival_fittest = {
 
 	ai_weight = {
 		factor = 5000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
+	tradition_swap = {
+		name = tr_adaptability_survival_fittest_gts
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			OR = {
+				AND = {
+					gts_is_giantess_empire = yes
+					is_nomadic = no
+				}
+				AND = {
+					gts_is_giantess_empire = yes
+					is_nomadic = yes
+				}
+			}
+			NOT = {
+				is_nomadic = yes
+			}
+		}
+		weight = {
+			factor = 10
+		}
+	}
+	tradition_swap = {
+		name = tr_adaptability_survival_fittest_tiny
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			OR = {
+				AND = {
+					gts_is_tiny_empire = yes
+					is_nomadic = no
+				}
+				AND = {
+					gts_is_tiny_empire = yes
+					is_nomadic = yes
+				}
+			}
+			NOT = {
+				OR = {
+					AND = {
+						gts_is_giantess_empire = yes
+						is_nomadic = no
+					}
+					AND = {
+						gts_is_giantess_empire = yes
+						is_nomadic = yes
+					}
+				}
+			}
+			NOT = {
+				is_nomadic = yes
+			}
+		}
+		weight = {
+			factor = 10
+		}
 	}
 }
 
@@ -152,6 +165,11 @@ tr_adaptability_environmental_diversification = {
 		pop_environment_tolerance = 0.10
 	}
 
+	ai_weight = {
+		factor = 5000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_adaptability_environmental_diversification_gts
 		inherit_effects = yes
@@ -159,9 +177,8 @@ tr_adaptability_environmental_diversification = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
 	tradition_swap = {
@@ -170,15 +187,13 @@ tr_adaptability_environmental_diversification = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
-	}
-
-	ai_weight = {
-		factor = 5000
 	}
 }
 
@@ -192,62 +207,18 @@ tr_adaptability_adaptive_ecology = {
 	}
 
 	tradition_swap = {
-		name = tr_adaptability_adaptive_ecology_gts
-		inherit_effects = yes
+		name = tr_adaptability_adaptive_ecology_void
 		inherit_icon = yes
+		inherit_effects = no
 		trigger = {
-			gts_is_giantess_empire = yes
-		}
-
-		weight = {
-			factor = 1
-		}
-	}
-	tradition_swap = {
-		name = tr_adaptability_adaptive_ecology_tiny
-		inherit_effects = yes
-		inherit_icon = yes
-		trigger = {
-			gts_is_tiny_empire = yes
-		}
-
-		weight = {
-			factor = 1
-		}
-	}
-
-	tradition_swap = {
-		name = tr_adaptability_adaptive_ecology_gts
-		inherit_effects = yes
-		inherit_icon = yes
-		trigger = {
-			gts_is_giantess_empire = yes
 			OR = {
 				has_void_dweller_origin = yes
 				is_nomadic = yes
 			}
 		}
-
 		modifier = {
 			planet_artificial_max_districts_add = 1
 		}
-
-		weight = {
-			factor = 1
-		}
-	}
-	tradition_swap = {
-		name = tr_adaptability_adaptive_ecology_tiny
-		inherit_effects = yes
-		inherit_icon = yes
-		trigger = {
-			gts_is_tiny_empire = yes
-		}
-
-		modifier = {
-			planet_artificial_max_districts_add = 1
-		}
-
 		weight = {
 			factor = 1
 		}
@@ -255,6 +226,63 @@ tr_adaptability_adaptive_ecology = {
 
 	ai_weight = {
 		factor = 5000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
+	tradition_swap = {
+		name = tr_adaptability_adaptive_ecology_gts
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			OR = {
+				gts_is_giantess_empire = yes
+				AND = {
+					gts_is_giantess_empire = yes
+					OR = {
+						has_void_dweller_origin = yes
+						is_nomadic = yes
+					}
+				}
+			}
+			NOT = {
+				OR = {
+					has_void_dweller_origin = yes
+					is_nomadic = yes
+				}
+			}
+		}
+		weight = {
+			factor = 10
+		}
+	}
+	tradition_swap = {
+		name = tr_adaptability_adaptive_ecology_tiny
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_tiny_empire = yes
+			NOT = {
+				OR = {
+					gts_is_giantess_empire = yes
+					AND = {
+						gts_is_giantess_empire = yes
+						OR = {
+							has_void_dweller_origin = yes
+							is_nomadic = yes
+						}
+					}
+				}
+			}
+			NOT = {
+				OR = {
+					has_void_dweller_origin = yes
+					is_nomadic = yes
+				}
+			}
+		}
+		weight = {
+			factor = 10
+		}
 	}
 }
 
@@ -269,23 +297,11 @@ tr_adaptability_appropriation = {
 	}
 
 	tradition_swap = {
-		name = tr_adaptability_appropriation_gts
+		name = tr_adaptability_appropriation_egalitarian
 		inherit_effects = yes
 		inherit_icon = yes
 		trigger = {
-			gts_is_giantess_empire = yes
-		}
-
-		weight = {
-			factor = 1
-		}
-	}
-	tradition_swap = {
-		name = tr_adaptability_appropriation_tiny
-		inherit_effects = yes
-		inherit_icon = yes
-		trigger = {
-			gts_is_tiny_empire = yes
+			is_egalitarian = yes
 		}
 
 		weight = {
@@ -315,5 +331,44 @@ tr_adaptability_appropriation = {
 
 	ai_weight = {
 		factor = 1000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
+	tradition_swap = {
+		name = tr_adaptability_appropriation_gts
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_giantess_empire = yes
+			NOT = {
+				OR = {
+					is_wilderness_empire = yes
+					is_nomadic = yes
+				}
+			}
+		}
+		weight = {
+			factor = 10
+		}
+	}
+	tradition_swap = {
+		name = tr_adaptability_appropriation_tiny
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
+			NOT = {
+				OR = {
+					is_wilderness_empire = yes
+					is_nomadic = yes
+				}
+			}
+		}
+		weight = {
+			factor = 10
+		}
 	}
 }

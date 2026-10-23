@@ -1,0 +1,15 @@
+# Country scope. AMOUNT is a positive consumer-goods-equivalent price.
+# Keep affordability checks aligned with gts_can_pay_consumer_goods_trigger.
+gts_pay_consumer_goods_effect = {
+	if = {
+		limit = { is_gestalt = no }
+		add_resource = { consumer_goods = -1 mult = $AMOUNT$ }
+	}
+	else_if = {
+		limit = { is_machine_empire = yes }
+		add_resource = { energy = -2 mult = $AMOUNT$ }
+	}
+	else = {
+		add_resource = { minerals = -2 mult = $AMOUNT$ }
+	}
+}

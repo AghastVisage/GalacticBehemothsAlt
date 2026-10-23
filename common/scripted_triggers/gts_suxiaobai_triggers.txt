@@ -1,0 +1,35 @@
+# Country scope.
+gts_has_suxiaobai = {
+	any_owned_leader = { has_leader_flag = gts_suxiaobai }
+}
+
+# Country scope, ROOT is either primary belligerent. No planet-class restriction on requesting aid.
+# Recheck the original war and capital when accepting a potentially stale popup.
+gts_suxiaobai_can_request_support = {
+	gts_has_suxiaobai = yes
+	custom_tooltip = {
+		fail_text = gts_suxiaobai_support_cooldown
+		NOT = { has_country_flag = gts_suxiaobai_support_cooldown }
+	}
+	exists = event_target:gts_suxiaobai_support_war
+	exists = event_target:gts_suxiaobai_enemy
+	exists = event_target:gts_suxiaobai_strike_planet
+	event_target:gts_suxiaobai_support_war = {
+		OR = {
+			AND = {
+				defender = { is_same_value = root }
+				attacker = { is_same_value = event_target:gts_suxiaobai_enemy }
+			}
+			AND = {
+				attacker = { is_same_value = root }
+				defender = { is_same_value = event_target:gts_suxiaobai_enemy }
+			}
+		}
+	}
+	event_target:gts_suxiaobai_enemy = { is_at_war_with = root }
+	event_target:gts_suxiaobai_strike_planet = {
+		is_colony = yes
+		is_capital = yes
+		is_owned_by = event_target:gts_suxiaobai_enemy
+	}
+}

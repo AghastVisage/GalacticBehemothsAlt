@@ -505,21 +505,182 @@ upkeep_gts_leader_item_archive = {
     mult = value:GTS_LEADER_ITEM_UPKEEP
 }
 
+#宠物国家加成：人数 × 与饰品共享的科技倍率
+num_gts_leader_pet_yukikake = {
+	complex_trigger_modifier = {
+		trigger = count_owned_leader
+		parameters = {
+			limit = {
+				has_trait = gts_leader_item_p_all
+				has_leader_flag = gts_leader_item_p_yukikake
+			}
+		}
+		mode = add
+	}
+	mult = value:GTS_LEADER_ITEM_MULT
+}
+num_gts_leader_pet_aplog = {
+	complex_trigger_modifier = {
+		trigger = count_owned_leader
+		parameters = {
+			limit = {
+				has_trait = gts_leader_item_p_all
+				has_leader_flag = gts_leader_item_p_aplog
+			}
+		}
+		mode = add
+	}
+	mult = value:GTS_LEADER_ITEM_MULT
+}
+num_gts_leader_pet_115 = {
+	complex_trigger_modifier = {
+		trigger = count_owned_leader
+		parameters = {
+			limit = {
+				has_trait = gts_leader_item_p_all
+				has_leader_flag = gts_leader_item_p_115
+			}
+		}
+		mode = add
+	}
+	mult = value:GTS_LEADER_ITEM_MULT
+}
+num_gts_leader_pet_koharu = {
+	complex_trigger_modifier = {
+		trigger = count_owned_leader
+		parameters = {
+			limit = {
+				has_trait = gts_leader_item_p_all
+				has_leader_flag = gts_leader_item_p_koharu
+			}
+		}
+		mode = add
+	}
+	mult = value:GTS_LEADER_ITEM_MULT
+}
+num_gts_leader_pet_yiyan = {
+	complex_trigger_modifier = {
+		trigger = count_owned_leader
+		parameters = {
+			limit = {
+				has_trait = gts_leader_item_p_all
+				has_leader_flag = gts_leader_item_p_yiyan
+			}
+		}
+		mode = add
+	}
+	mult = value:GTS_LEADER_ITEM_MULT
+}
+num_gts_leader_pet_huatian = {
+	complex_trigger_modifier = {
+		trigger = count_owned_leader
+		parameters = {
+			limit = {
+				has_trait = gts_leader_item_p_all
+				has_leader_flag = gts_leader_item_p_huatian
+			}
+		}
+		mode = add
+	}
+	mult = value:GTS_LEADER_ITEM_MULT
+}
+num_gts_leader_pet_xiaomiao = {
+	complex_trigger_modifier = {
+		trigger = count_owned_leader
+		parameters = {
+			limit = {
+				has_trait = gts_leader_item_p_all
+				has_leader_flag = gts_leader_item_p_xiaomiao
+			}
+		}
+		mode = add
+	}
+	mult = value:GTS_LEADER_ITEM_MULT
+}
+num_gts_leader_pet_tensi = {
+	complex_trigger_modifier = {
+		trigger = count_owned_leader
+		parameters = {
+			limit = {
+				has_trait = gts_leader_item_p_all
+				has_leader_flag = gts_leader_item_p_tensi
+			}
+		}
+		mode = add
+	}
+	mult = value:GTS_LEADER_ITEM_MULT
+}
+num_gts_leader_pet_linfeng = {
+	complex_trigger_modifier = {
+		trigger = count_owned_leader
+		parameters = {
+			limit = {
+				has_trait = gts_leader_item_p_all
+				has_leader_flag = gts_leader_item_p_linfeng
+			}
+		}
+		mode = add
+	}
+	mult = value:GTS_LEADER_ITEM_MULT
+}
+
 #饰品产出修正
 GTS_LEADER_ITEM_MULT = {
-    base = 1
-    modifier = {
-        add = 0.05
-        owner = { has_technology = tech_item_phycics_1 }
-    }
-    modifier = {
-        add = 0.05
-        owner = { has_technology = tech_item_phycics_2 }
-    }
-    modifier = {
-        add = 0.05
-        owner = { has_technology = tech_item_phycics_3 }
-    }
+	base = 1
+	modifier = {
+		add = 0.05
+		OR = {
+			AND = {
+				is_scope_type = country
+				has_technology = tech_item_phycics_1
+			}
+			AND = {
+				NOT = {
+					is_scope_type = country
+				}
+				exists = owner
+				owner = {
+					has_technology = tech_item_phycics_1
+				}
+			}
+		}
+	}
+	modifier = {
+		add = 0.05
+		OR = {
+			AND = {
+				is_scope_type = country
+				has_technology = tech_item_phycics_2
+			}
+			AND = {
+				NOT = {
+					is_scope_type = country
+				}
+				exists = owner
+				owner = {
+					has_technology = tech_item_phycics_2
+				}
+			}
+		}
+	}
+	modifier = {
+		add = 0.05
+		OR = {
+			AND = {
+				is_scope_type = country
+				has_technology = tech_item_phycics_3
+			}
+			AND = {
+				NOT = {
+					is_scope_type = country
+				}
+				exists = owner
+				owner = {
+					has_technology = tech_item_phycics_3
+				}
+			}
+		}
+	}
 }
 #饰品维护修正
 GTS_LEADER_ITEM_UPKEEP = {

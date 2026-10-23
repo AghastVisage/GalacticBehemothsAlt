@@ -113,7 +113,6 @@ gts_delete_xinuo_fleet = {
             show_message = yes
         }
     }
-
 }
 # 创建林凤舰队
 gts_create_linfeng_fleet = {
@@ -271,6 +270,152 @@ gts_create_huatian_fleet = {
         class = gts_huatian_fleet
         name = gts_huatian
         upgradable = yes
+    }
+}
+# 创建斯卡蒂舰队
+gts_create_skadi_fleet = {
+    call_gts_fleet = {
+        class = NAME_gts_skadi_military_arkship
+        name = gts_skadi
+        upgradable = yes
+    }
+}
+# 斯卡蒂舰队升级
+gts_upgrade_skadi_fleet_effect = {
+    switch = {
+        trigger = is_ship_size
+
+        gts_skadi_military_arkship = {
+            fleet = {
+                starbase? = {
+                    set_starbase_size = gts_skadi_military_arkship_tier_2
+                }
+            }
+            set_ship_design = {
+                design = NAME_gts_skadi_military_arkship_tier_2
+            }
+        }
+
+        gts_skadi_military_arkship_tier_2 = {
+            fleet = {
+                starbase? = {
+                    set_starbase_size = gts_skadi_military_arkship_tier_3
+                }
+            }
+            set_ship_design = {
+                design = NAME_gts_skadi_military_arkship_tier_3
+            }
+        }
+    }
+}
+# 斯卡蒂舰队降级
+gts_downgrade_skadi_fleet_effect = {
+    switch = {
+        trigger = is_ship_size
+
+        gts_skadi_military_arkship_tier_2 = {
+            fleet = {
+                starbase? = {
+                    set_starbase_size = gts_skadi_military_arkship
+                }
+            }
+            set_ship_design = {
+                design = NAME_gts_skadi_military_arkship
+            }
+        }
+
+        gts_skadi_military_arkship_tier_3 = {
+            fleet = {
+                starbase? = {
+                    set_starbase_size = gts_skadi_military_arkship_tier_2
+                }
+            }
+            set_ship_design = {
+                design = NAME_gts_skadi_military_arkship_tier_2
+            }
+        }
+    }
+}
+# 斯卡蒂舰队方舟舰
+gts_clear_skadi_size_blue_aura_effect = {
+    solar_system = {
+        every_system_ambient_object = {
+            limit = { has_ambient_object_flag = gts_skadi_arkship_size_aura_object }
+            destroy_ambient_object = this
+        }
+    }
+}
+
+gts_spawn_skadi_grow_blue_aura_effect = {
+    gts_clear_skadi_size_blue_aura_effect = yes
+
+    create_ambient_object = {
+        type = gts_skadi_size_blue_aura_level3
+        scale = 1.0
+        entity_scale_to_size = yes
+        duration = 30
+        use_3d_location = yes
+        location = this
+    }
+    last_created_ambient_object = {
+        set_ambient_object_flag = gts_skadi_arkship_size_aura_object
+    }
+
+    solar_system.star = {
+        create_ambient_object = {
+            type = gts_skadi_size_blue_aura_level2
+            scale = 0.55
+            entity_scale_to_size = yes
+            duration = 30
+            use_3d_location = yes
+            location = this
+        }
+        last_created_ambient_object = {
+            set_ambient_object_flag = gts_skadi_arkship_size_aura_object
+        }
+    }
+}
+
+gts_spawn_skadi_shrink_blue_aura_effect = {
+    gts_clear_skadi_size_blue_aura_effect = yes
+
+    create_ambient_object = {
+        type = gts_skadi_size_blue_aura_level1
+        scale = 1.0
+        entity_scale_to_size = yes
+        duration = 30
+        use_3d_location = yes
+        location = this
+    }
+    last_created_ambient_object = {
+        set_ambient_object_flag = gts_skadi_arkship_size_aura_object
+    }
+
+    solar_system.star = {
+        create_ambient_object = {
+            type = gts_skadi_size_blue_aura_level2
+            scale = 0.45
+            entity_scale_to_size = yes
+            duration = 30
+            use_3d_location = yes
+            location = this
+        }
+        last_created_ambient_object = {
+            set_ambient_object_flag = gts_skadi_arkship_size_aura_object
+        }
+    }
+}
+
+gts_create_mora_fleet = {
+    call_gts_fleet = {
+        name = gts_mora
+        class = NAME_gts_mora_ship
+    }
+}
+gts_create_orangez_fleet = {
+    call_gts_fleet = {
+        name = gts_orangez
+        class = NAME_gts_orangez_ship_1
     }
 }
 

@@ -41,7 +41,7 @@ gts_love_normal_system_check = {
     optimize_memory
     if = {
         limit = {
-            has_leader_flag = has_gts_love_trait
+            is_gts_love_leader = yes
         }
         if = {
             limit = {
@@ -62,7 +62,7 @@ gts_love_system_increase = {
     optimize_memory
     if = {
         limit = {
-            has_leader_flag = has_gts_love_trait
+            is_gts_love_leader = yes
         }
         if = {
             limit = {
@@ -83,9 +83,13 @@ gts_love_system_reduce = {
     optimize_memory
     if = {
         limit = {
-            has_leader_flag = has_gts_love_trait
+            is_gts_love_leader = yes
         }
-        change_variable = { which = gts_love_logs value = $value|gts_normal_love_reduce$ }
+        subtract_variable = { which = gts_love_logs value = $value|gts_normal_love_reduce$ }
+        if = {
+            limit = { check_variable = { which = gts_love_logs value < 0 } }
+            set_variable = { which = gts_love_logs value = 0 }
+        }
     }
 }
 
@@ -95,6 +99,8 @@ gts_love_normal_system_end = {
     if = {
         limit = { has_leader_flag = has_gts_love_trait_normal }
         set_variable = { which = gts_love_logs value = 0 }
+        remove_leader_flag = has_gts_love_trait
+        remove_leader_flag = has_gts_love_trait_normal
         remove_trait = trait_leader_gts_love_logs_normal
     }
 }

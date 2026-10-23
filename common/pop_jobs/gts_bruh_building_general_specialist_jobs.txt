@@ -25,16 +25,6 @@ shrink_pop_worker = {
 
 	tags = { strategic_resource }
 
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = specialist
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
-
 	possible_pre_triggers = {
 		has_owner = yes
 		is_being_purged = no
@@ -84,16 +74,6 @@ shrink_city_worker = {
 	}
 
 	tags = { strategic_resource }
-
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = specialist
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
 
 	possible_pre_triggers = {
 		has_owner = yes
@@ -145,16 +125,6 @@ shrink_planet_worker = {
 	}
 
 	tags = { strategic_resource }
-
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = specialist
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
 
 	possible_pre_triggers = {
 		has_owner = yes
@@ -218,16 +188,6 @@ transmutation_worker = {
 
 	inline_script = "jobs/automodding_priority_consumer_goods"
 
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = specialist
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
-
 	possible_pre_triggers = {
 		has_owner = yes
 		is_being_purged = no
@@ -246,6 +206,18 @@ transmutation_worker = {
 		produces = {
 			# 45
 			consumer_goods = 22.5
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					any_owned_leader = {
+						is_councilor = yes
+						has_trait = gts_trait_qhai_virtual_idol
+					}
+				}
+			}
+			consumer_goods = 3
 		}
 		upkeep = {
 			# 30
@@ -281,16 +253,6 @@ microcity_foundry_worker = {
 
 	inline_script = "jobs/automodding_priority_alloys"
 
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = specialist
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
-
 	possible_pre_triggers = {
 		has_owner = yes
 		is_being_purged = no
@@ -311,6 +273,18 @@ microcity_foundry_worker = {
 		produces = {
 			# 45
 			alloys = 22.5
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					any_owned_leader = {
+						is_councilor = yes
+						has_trait = gts_trait_qhai_virtual_idol
+					}
+				}
+			}
+			alloys = 3
 		}
 		upkeep = {
 			# 30
@@ -344,16 +318,6 @@ micro_refinery_worker = {
 	}
 
 	tags = { strategic_resource }
-
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = specialist
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
 
 	possible_pre_triggers = {
 		has_owner = yes
@@ -409,16 +373,6 @@ micro_teacher = {
 	tags = { research }
 
 	inline_script = "jobs/automodding_priority_research"
-
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = specialist
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
 
 	possible_pre_triggers = {
 		has_owner = yes
@@ -480,16 +434,6 @@ gts_bruh_megaclerk = {
 	tags = { unity }
 
 	inline_script = "jobs/automodding_priority_unity"
-
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = specialist
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
 
 	possible_pre_triggers = {
 		has_owner = yes
@@ -560,16 +504,6 @@ micro_researcher = {
 
 	inline_script = "jobs/automodding_priority_research"
 
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = specialist
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
-
 	possible_pre_triggers = {
 		has_owner = yes
 		is_being_purged = no
@@ -625,16 +559,6 @@ micro_shop_keeper = {
 	tags = { trade }
 
 	inline_script = "jobs/automodding_priority_trade"
-
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = specialist
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
 
 	possible_pre_triggers = {
 		has_owner = yes
@@ -692,16 +616,6 @@ sock_prision_worker = {
 
 	tags = { crime enforcer }
 
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = specialist
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
-
 	possible_pre_triggers = {
 		has_owner = yes
 		is_being_purged = no
@@ -757,16 +671,6 @@ micro_commander = {
 	tags = { soldier }
 
 	inline_script = "output/soldier_triggered_modifiers"
-
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = specialist
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
 
 	possible_pre_triggers = {
 		has_owner = yes
@@ -894,16 +798,6 @@ micro_machinist = {
 
 	tags = { strategic_resource }
 
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = specialist
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
-
 	possible_pre_triggers = {
 		has_owner = yes
 		is_being_purged = no
@@ -957,16 +851,6 @@ micro_conservation_worker = {
 	tags = { research }
 
 	inline_script = "jobs/automodding_priority_research"
-
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = specialist
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
 
 	possible_pre_triggers = {
 		has_owner = yes
@@ -1033,16 +917,6 @@ gts_giantess_fluid_worker = {
 
 	tags = { strategic_resource }
 
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = specialist
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
-
 	possible_pre_triggers = {
 		has_owner = yes
 		is_being_purged = no
@@ -1092,16 +966,6 @@ gts_giantess_underwear_worker = {
 	}
 
 	tags = { strategic_resource }
-
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = specialist
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
 
 	possible_pre_triggers = {
 		has_owner = yes
@@ -1153,16 +1017,6 @@ gts_giantess_human_worker = {
 	}
 
 	tags = { strategic_resource }
-
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = specialist
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
 
 	possible_pre_triggers = {
 		has_owner = yes
@@ -1225,16 +1079,6 @@ gts_art_college_worker = {
 
 	inline_script = "jobs/automodding_priority_consumer_goods"
 
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = specialist
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
-
 	possible_pre_triggers = {
 		has_owner = yes
 		is_being_purged = no
@@ -1291,16 +1135,6 @@ gts_transmutation_worker = {
 
 	inline_script = "jobs/automodding_priority_alloys"
 
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = specialist
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
-
 	possible_pre_triggers = {
 		has_owner = yes
 		is_being_purged = no
@@ -1351,16 +1185,6 @@ gts_high_transmutation_worker = {
 	}
 
 	tags = { strategic_resource }
-
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = specialist
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
 
 	possible_pre_triggers = {
 		has_owner = yes
@@ -1416,16 +1240,6 @@ gts_sojourn_worker = {
 	tags = { amenities }
 
 	inline_script = "jobs/automodding_priority_charisma"
-
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = specialist
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
 
 	possible_pre_triggers = {
 		has_owner = yes
@@ -1498,16 +1312,6 @@ gts_exhibition_worker = {
 
 	inline_script = "jobs/automodding_priority_trade"
 
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = specialist
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
-
 	possible_pre_triggers = {
 		has_owner = yes
 		is_being_purged = no
@@ -1565,16 +1369,6 @@ gts_research_center_worker = {
 	}
 
 	inline_script = "jobs/automodding_priority_research"
-
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = specialist
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
 
 	possible_pre_triggers = {
 		has_owner = yes
@@ -1634,16 +1428,6 @@ gts_inside_prison_worker = {
 
 	tags = { crime enforcer }
 
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = specialist
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
-
 	possible_pre_triggers = {
 		has_owner = yes
 		is_being_purged = no
@@ -1700,16 +1484,6 @@ gts_shoe_soldier_worker = {
 	tags = { soldier }
 
 	inline_script = "output/soldier_triggered_modifiers"
-
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = specialist
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
 
 	possible_pre_triggers = {
 		has_owner = yes
@@ -1838,16 +1612,6 @@ gts_inside_rest_worker = {
 	tags = { happiness }
 
 	inline_script = "jobs/automodding_priority_charisma"
-
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = specialist
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
 
 	possible_pre_triggers = {
 		has_owner = yes

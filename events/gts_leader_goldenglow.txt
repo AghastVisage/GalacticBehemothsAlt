@@ -8,24 +8,21 @@ country_event = {
 
 	immediate = {
 		random_system = {
-			limit = {
-				distance = {
-					source = root.capital_scope.solar_system
-					use_bypasses = yes
-					min_jumps = 1
-					max_jumps = 6
-				}
-			}
-			spawn_system = {
-				min_distance >= 10
-				max_distance <= 30
-				max_jumps = 1
-				initializer = gts_goldenglow_system
-				effect = {
-					save_event_target_as = gts_bruh_get_goldenglow_system_location
-				}
-			}
-		}
+ limit = { gts_intel_anchor_system = { COUNTRY = root } }
+ save_event_target_as = gts_intel_spawn_anchor
+ 
+ spawn_system = {
+ min_distance = 10
+ max_distance = 30
+ max_jumps = 0
+ hyperlane = no
+ initializer = gts_goldenglow_system
+ effect = {
+  add_hyperlane = { from = this to = event_target:gts_intel_spawn_anchor }
+  save_event_target_as = gts_bruh_get_goldenglow_system_location
+ }
+}
+}
 	}
 }
 

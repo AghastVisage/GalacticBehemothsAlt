@@ -1,0 +1,33 @@
+# GTSS: retain vanilla background entities/animations; disable particles for transparent placeholders.
+entity = {
+    name = "biogenesis_frontend_root_entity"
+    locator = { name = "loc" position = { 0.0 0.0 0.0 } }
+
+    attach = { loc = "biogenesis_frontend_attached_entity" }
+
+}
+
+entity = {
+    name = "biogenesis_frontend_attached_entity"
+    pdxmesh = "biogenesis_frontend_mesh"
+
+    default_state = "idle"
+    state = { name = "idle"     animation = "idle"
+        #start_event = { node = "corner_swirl" particle = "apocalypse_frontend_corner_swirl_effect" keep_particle = yes trigger_once = yes }
+        #start_event = { node = "stars_locator_01" particle = "apocalypse_frontend_stars_effect" keep_particle = yes trigger_once = yes }
+        #start_event = { node = "stars_locator_02" particle = "apocalypse_frontend_stars_effect" keep_particle = yes trigger_once = yes }
+        #start_event = { node = "ship_light_locator_01" particle = "nemesis_frontend_ship_light_effect" keep_particle = yes trigger_once = yes }
+        #start_event = { node = "ship_light_locator_02" particle = "apocalypse_frontend_ship_light_effect" keep_particle = yes trigger_once = yes }
+        #start_event = { node = "ship_light_locator_03" particle = "nemesis_frontend_station_light_effect" keep_particle = yes trigger_once = yes }
+        #start_event = { node = "ship_light_locator_04" particle = "apocalypse_frontend_ship_light_effect" keep_particle = yes trigger_once = yes }
+        #start_event = { node = "background" particle = "nemesis_frontend_gas_outburst_effect" keep_particle = yes trigger_once = yes }
+    }
+
+    scale = 0.00087
+
+}
+
+animation = {
+    name = "biogenesis_frontend_idle_animation"
+    file = "biogenesis_frontend_idle.anim"
+}

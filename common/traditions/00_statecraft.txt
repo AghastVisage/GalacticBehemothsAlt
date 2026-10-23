@@ -18,6 +18,16 @@ tr_statecraft_constitutional_focus = {
 	}
 	ai_weight = { factor = 1000 }
 
+	inline_script = {
+		script = paragon/tradition_swap_desc_hive
+		tradition = tr_statecraft_constitutional_focus
+	}
+	inline_script = {
+		script = paragon/tradition_swap_desc_machine
+		tradition = tr_statecraft_constitutional_focus
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_statecraft_constitutional_focus_gts
 		inherit_effects = yes
@@ -25,9 +35,8 @@ tr_statecraft_constitutional_focus = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
 	tradition_swap = {
@@ -36,20 +45,13 @@ tr_statecraft_constitutional_focus = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
-	}
-
-	inline_script = {
-		script = paragon/tradition_swap_desc_hive
-		tradition = tr_statecraft_constitutional_focus
-	}
-	inline_script = {
-		script = paragon/tradition_swap_desc_machine
-		tradition = tr_statecraft_constitutional_focus
 	}
 }
 
@@ -59,6 +61,16 @@ tr_statecraft_inspiring_agendas = {
 	modifier = {} # Effect is that Agendas become available.
 	ai_weight = { factor = 1000 }
 
+	inline_script = {
+		script = paragon/tradition_swap_desc_hive
+		tradition = tr_statecraft_inspiring_agendas
+	}
+	inline_script = {
+		script = paragon/tradition_swap_desc_machine
+		tradition = tr_statecraft_inspiring_agendas
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_statecraft_inspiring_agendas_gts
 		inherit_effects = yes
@@ -66,9 +78,8 @@ tr_statecraft_inspiring_agendas = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
 	tradition_swap = {
@@ -77,20 +88,13 @@ tr_statecraft_inspiring_agendas = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
-	}
-
-	inline_script = {
-		script = paragon/tradition_swap_desc_hive
-		tradition = tr_statecraft_inspiring_agendas
-	}
-	inline_script = {
-		script = paragon/tradition_swap_desc_machine
-		tradition = tr_statecraft_inspiring_agendas
 	}
 }
 
@@ -99,7 +103,9 @@ tr_statecraft_immutable_directives = {
 	modifier = {
 		council_agenda_finishing_effect_duration_mult = 0.25
 	}
+	ai_weight = { factor = 1000 }
 
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_statecraft_immutable_directives_gts
 		inherit_effects = yes
@@ -107,9 +113,8 @@ tr_statecraft_immutable_directives = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
 	tradition_swap = {
@@ -118,45 +123,20 @@ tr_statecraft_immutable_directives = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
-
-	ai_weight = { factor = 1000 }
 }
 
 tr_statecraft_amongst_peers = {
 	# Effect is applied on all "on_agenda_finished" via paragon.402
 	custom_tooltip = tr_statecraft_shared_benefits_desc
 	ai_weight = { factor = 1000 }
-
-	tradition_swap = {
-		name = tr_statecraft_amongst_peers_gts
-		inherit_effects = yes
-		inherit_icon = yes
-		trigger = {
-			gts_is_giantess_empire = yes
-		}
-
-		weight = {
-			factor = 1
-		}
-	}
-	tradition_swap = {
-		name = tr_statecraft_amongst_peers_tiny
-		inherit_effects = yes
-		inherit_icon = yes
-		trigger = {
-			gts_is_tiny_empire = yes
-		}
-
-		weight = {
-			factor = 1
-		}
-	}
 
 	inline_script = {
 		script = paragon/tradition_swap_desc_hive
@@ -165,6 +145,33 @@ tr_statecraft_amongst_peers = {
 	inline_script = {
 		script = paragon/tradition_swap_desc_machine
 		tradition = tr_statecraft_amongst_peers
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
+	tradition_swap = {
+		name = tr_statecraft_amongst_peers_gts
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_giantess_empire = yes
+		}
+		weight = {
+			factor = 10
+		}
+	}
+	tradition_swap = {
+		name = tr_statecraft_amongst_peers_tiny
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
+		}
+		weight = {
+			factor = 10
+		}
 	}
 }
 
@@ -175,6 +182,16 @@ tr_statecraft_shared_benefits = {
 	}
 	ai_weight = { factor = 1000 }
 
+	inline_script = {
+		script = paragon/tradition_swap_desc_hive
+		tradition = tr_statecraft_shared_benefits
+	}
+	inline_script = {
+		script = paragon/tradition_swap_desc_machine
+		tradition = tr_statecraft_shared_benefits
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_statecraft_shared_benefits_gts
 		inherit_effects = yes
@@ -182,9 +199,8 @@ tr_statecraft_shared_benefits = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
 	tradition_swap = {
@@ -193,19 +209,12 @@ tr_statecraft_shared_benefits = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
-	}
-
-	inline_script = {
-		script = paragon/tradition_swap_desc_hive
-		tradition = tr_statecraft_shared_benefits
-	}
-	inline_script = {
-		script = paragon/tradition_swap_desc_machine
-		tradition = tr_statecraft_shared_benefits
 	}
 }

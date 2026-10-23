@@ -1,5 +1,4 @@
 tr_aptitude_adopt = {
-#	custom_tooltip = tr_aptitude_adopt_desc
 	unlocks_agenda = agenda_leadership_conditioning
 	modifier = {
 		leader_trait_selection_options_add = 1
@@ -7,11 +6,13 @@ tr_aptitude_adopt = {
 }
 
 tr_aptitude_finish = {
-	custom_tooltip_with_modifiers = tr_aptitude_adopt_desc
 
 	on_enabled = {
 		hidden_effect = {
 			every_owned_leader = {
+				limit = {
+					is_leader_tier = leader_tier_default
+				}
 				add_trait = {
 					trait = random_common
 					show_message = yes
@@ -26,10 +27,8 @@ tr_aptitude_finish = {
 		}
 	}
 
-	triggered_modifier = {
-		potential = {
-			always = yes
-		}
+	modifier = {
+		leader_initial_traits_add = 1
 		ascension_perks_add = 1
 	}
 }
@@ -41,6 +40,16 @@ tr_aptitude_the_empire_needs_you = {
 	}
 	ai_weight = { factor = 1000 }
 
+	inline_script = {
+		script = paragon/tradition_swap_desc_hive
+		tradition = tr_aptitude_the_empire_needs_you
+	}
+	inline_script = {
+		script = paragon/tradition_swap_desc_machine
+		tradition = tr_aptitude_the_empire_needs_you
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_aptitude_the_empire_needs_you_gts
 		inherit_effects = yes
@@ -48,9 +57,8 @@ tr_aptitude_the_empire_needs_you = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
 	tradition_swap = {
@@ -59,20 +67,13 @@ tr_aptitude_the_empire_needs_you = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
-	}
-
-	inline_script = {
-		script = paragon/tradition_swap_desc_hive
-		tradition = tr_aptitude_the_empire_needs_you
-	}
-	inline_script = {
-		script = paragon/tradition_swap_desc_machine
-		tradition = tr_aptitude_the_empire_needs_you
 	}
 }
 
@@ -82,31 +83,6 @@ tr_aptitude_specialist_training = {
 	modifier = {
 	}
 	ai_weight = { factor = 1000 }
-
-	tradition_swap = {
-		name = tr_aptitude_specialist_training_gts
-		inherit_effects = yes
-		inherit_icon = yes
-		trigger = {
-			gts_is_giantess_empire = yes
-		}
-
-		weight = {
-			factor = 1
-		}
-	}
-	tradition_swap = {
-		name = tr_aptitude_specialist_training_tiny
-		inherit_effects = yes
-		inherit_icon = yes
-		trigger = {
-			gts_is_tiny_empire = yes
-		}
-
-		weight = {
-			factor = 1
-		}
-	}
 
 	tradition_swap = {
 		name = tr_aptitude_specialist_training_hive
@@ -123,6 +99,45 @@ tr_aptitude_specialist_training = {
 		trigger = { is_machine_empire = yes }
 		custom_tooltip = tr_aptitude_specialist_training_gestalt_tt
 		modifier = {
+		}
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
+	tradition_swap = {
+		name = tr_aptitude_specialist_training_gts
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_giantess_empire = yes
+			NOT = {
+				OR = {
+					is_hive_empire = yes
+					is_machine_empire = yes
+				}
+			}
+		}
+		weight = {
+			factor = 10
+		}
+	}
+	tradition_swap = {
+		name = tr_aptitude_specialist_training_tiny
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
+			NOT = {
+				OR = {
+					is_hive_empire = yes
+					is_machine_empire = yes
+				}
+			}
+		}
+		weight = {
+			factor = 10
 		}
 	}
 }
@@ -148,6 +163,7 @@ tr_aptitude_psychological_profiling = {
 		tradition = tr_aptitude_psychological_profiling
 	}
 
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_aptitude_psychological_profiling_gts
 		inherit_effects = yes
@@ -155,9 +171,8 @@ tr_aptitude_psychological_profiling = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
 	tradition_swap = {
@@ -166,10 +181,12 @@ tr_aptitude_psychological_profiling = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
 }
@@ -191,6 +208,7 @@ tr_aptitude_healthcare_program = {
 		tradition = tr_aptitude_healthcare_program
 	}
 
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_aptitude_healthcare_program_gts
 		inherit_effects = yes
@@ -198,9 +216,8 @@ tr_aptitude_healthcare_program = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
 	tradition_swap = {
@@ -209,10 +226,12 @@ tr_aptitude_healthcare_program = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
 }
@@ -233,6 +252,7 @@ tr_aptitude_champions_of_the_empire = {
 		tradition = tr_aptitude_champions_of_the_empire
 	}
 
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_aptitude_champions_of_the_empire_gts
 		inherit_effects = yes
@@ -241,7 +261,7 @@ tr_aptitude_champions_of_the_empire = {
 			gts_is_giantess_empire = yes
 		}
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
 	tradition_swap = {
@@ -250,9 +270,12 @@ tr_aptitude_champions_of_the_empire = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
 }

@@ -1,0 +1,82 @@
+namespace = gts_achievement
+
+@gts_achiev_days = 90
+@gts_achiev_page_num = 40
+country_event = {
+    id = gts_achievement.0
+    show_sound = event_default
+    is_triggered_only = yes
+    diplomatic = yes
+    title = gts_achievement_header
+    auto_opens = yes force_open = yes auto_select = no
+    diplomatic = yes custom_gui = gts_achievement_gallery
+    custom_gui_option = gts_achievement_option
+    picture_event_data = {
+        room = gts_achievement_room
+    }
+    trigger = {
+        gts_has_act_qhai_evt = no
+    }
+    option = {
+        name = GTS_EMPTY
+        custom_gui = gts_gui_hidden_option
+        default_hide_option = yes
+        set_country_flag = gts_is_quit_gui
+    }
+    option = { name = gts_achiev_total custom_gui = gts_achievement_option_tab is_dialog_only = yes response_text = GTS_EMPTY trigger = { check_variable = { which = gts_achievement_count value > 0 } } }
+    option = { name = gts_achiev_pageup custom_gui = gts_achievement_option_tab  trigger = { check_variable = { which = gts_achievement_ui_page value > 1 } } hidden_effect = { gts_achievement_ui_page_up = yes } }
+    option = { name = gts_achiev_pagedown custom_gui = gts_achievement_option_tab  trigger = { check_variable = { which = gts_achievement_count value > @gts_achiev_page_num } } hidden_effect = { gts_achievement_ui_page_down = yes} }
+
+    ######## 解锁的成就 ########
+    option = {
+        name = gts_achiev.cheat.name
+        trigger = {
+            gts_achiev_page_check = { page_number = 1}
+            gts_achiev_check = { achiev_name = "cheat" }
+        }
+        gts_achievement_effect = { achiev_name = "cheat" }
+        is_dialog_only = yes response_text = GTS_EMPTY
+    }
+    option = {
+        name = gts_achiev.biggest_girl.name
+        trigger = {
+            gts_achiev_page_check = { page_number = 1}
+            gts_achiev_check = { achiev_name = "biggest_girl" }
+        }
+        gts_achievement_effect = { achiev_name = "biggest_girl" }
+        is_dialog_only = yes response_text = GTS_EMPTY
+    }
+
+    ######## 锁定的成就 ########
+    option = { name = gts_achiev_lock custom_gui = gts_achievement_option_tab is_dialog_only = yes response_text = GTS_EMPTY trigger = { check_variable = { which = gts_achievement_lock_count value > 0 } } }
+    option = {
+        name = gts_achiev.biggest_girl.name
+        trigger = {
+            gts_achiev_page_check = { page_number = 1}
+            NOT = { gts_achiev_check = { achiev_name = "biggest_girl"} }
+        }
+        gts_achievement_effect = { achiev_name = "biggest_girl" }
+        is_dialog_only = yes response_text = GTS_EMPTY
+    }
+
+    option = { name = gts_achiev_hide custom_gui = gts_achievement_option_tab is_dialog_only = yes response_text = GTS_EMPTY trigger = { check_variable = { which = gts_achievement_hide_lock_count value > 0 } } }
+
+    ######## 隐藏的成就 ########
+    option = {
+        name = gts_achiev.hide.name
+        allow = { always = no }
+        is_dialog_only = yes response_text = GTS_EMPTY
+    }
+
+    after = {
+        hidden_effect = {
+            remove_country_flag = gts_achievement_gallery_opened
+            if = {
+                limit = { has_country_flag = gts_is_quit_gui }
+                remove_country_flag = gts_is_quit_gui
+            }
+            else = { country_event = { id = gts_achievement.0 } }
+        }
+    }
+}
+

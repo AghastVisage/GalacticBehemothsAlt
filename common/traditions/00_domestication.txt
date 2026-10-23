@@ -26,24 +26,6 @@ tr_domestication_finish = {
 			country_event = { id = grand_archive.7010 days = 1 }
 		}
 	}
-
-	tradition_swap = {
-		inherit_icon = yes
-		inherit_name = yes
-		trigger = {
-			is_nomadic = yes
-		}
-
-		modifier = {
-			space_fauna_ship_upkeep_mult = -0.1
-			ship_amoeba_physics_research_produces_add = 1
-			ship_voidworm_society_research_produces_add = 1
-			ship_tiyanki_engineering_research_produces_add = 1
-			ship_crystalline_entity_rare_crystals_produces_add = 0.25
-			ship_cutholoid_volatile_motes_produces_add = 0.25
-			ascension_perks_add = 1
-		}
-	}
 }
 
 tr_domestication_containment_protocols = {
@@ -56,6 +38,12 @@ tr_domestication_containment_protocols = {
 		custom_tooltip = tr_domestication_containment_protocols_tt
 		set_country_flag = containment_protocols_unlocked
 	}
+
+	ai_weight = {
+		factor = 1000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_domestication_containment_protocols_gts
 		inherit_effects = yes
@@ -63,9 +51,8 @@ tr_domestication_containment_protocols = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
 	tradition_swap = {
@@ -74,15 +61,13 @@ tr_domestication_containment_protocols = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
-	}
-
-	ai_weight = {
-		factor = 1000
 	}
 }
 
@@ -99,6 +84,7 @@ tr_domestication_bio_repurposing = {
 		custom_tooltip_with_modifiers = tr_domestication_bio_repurposing_reanimator_tt
 		trigger = {
 			is_reanimator = yes
+			is_nomadic = no
 		}
 
 		modifier = {
@@ -123,16 +109,33 @@ tr_domestication_bio_repurposing = {
 		}
 	}
 
+	ai_weight = {
+		factor = 1000
+		modifier = {
+			factor = 10
+			is_at_war = yes
+		}
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_domestication_bio_repurposing_gts
 		inherit_effects = yes
 		inherit_icon = yes
 		trigger = {
 			gts_is_giantess_empire = yes
+			NOT = {
+				OR = {
+					AND = {
+						is_reanimator = yes
+						is_nomadic = no
+					}
+					is_nomadic = yes
+				}
+			}
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
 	tradition_swap = {
@@ -141,18 +144,21 @@ tr_domestication_bio_repurposing = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
+			NOT = {
+				OR = {
+					AND = {
+						is_reanimator = yes
+						is_nomadic = no
+					}
+					is_nomadic = yes
+				}
+			}
 		}
-
 		weight = {
-			factor = 1
-		}
-	}
-
-	ai_weight = {
-		factor = 1000
-		modifier = {
 			factor = 10
-			is_at_war = yes
 		}
 	}
 }
@@ -168,6 +174,11 @@ tr_domestication_astrozoology = {
 	}
 	custom_tooltip_with_modifiers = tr_domestication_astrozoology_tt
 
+	ai_weight = {
+		factor = 5000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_domestication_astrozoology_gts
 		inherit_effects = yes
@@ -175,9 +186,8 @@ tr_domestication_astrozoology = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
 	tradition_swap = {
@@ -186,15 +196,13 @@ tr_domestication_astrozoology = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
-	}
-
-	ai_weight = {
-		factor = 5000
 	}
 }
 
@@ -246,16 +254,30 @@ tr_domestication_metabolic_regulation = {
 			factor = 1
 		}
 	}
+
+	ai_weight = {
+		factor = 5000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_domestication_metabolic_regulation_gts
 		inherit_effects = yes
 		inherit_icon = yes
 		trigger = {
 			gts_is_giantess_empire = yes
+			NOT = {
+				OR = {
+					OR = {
+						is_machine_empire = yes
+						is_individual_machine = yes
+					}
+					is_wilderness_empire = yes
+				}
+			}
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
 	tradition_swap = {
@@ -264,15 +286,22 @@ tr_domestication_metabolic_regulation = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
+			NOT = {
+				OR = {
+					OR = {
+						is_machine_empire = yes
+						is_individual_machine = yes
+					}
+					is_wilderness_empire = yes
+				}
+			}
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
-	}
-
-	ai_weight = {
-		factor = 5000
 	}
 }
 
@@ -299,6 +328,16 @@ tr_domestication_killer_instinct = {
 			factor = 1
 		}
 	}
+
+	ai_weight = {
+		factor = 5000
+		modifier = {
+			factor = 10
+			is_at_war = yes
+		}
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_domestication_killer_instinct_gts
 		inherit_effects = yes
@@ -306,9 +345,8 @@ tr_domestication_killer_instinct = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
 	tradition_swap = {
@@ -317,18 +355,12 @@ tr_domestication_killer_instinct = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
-			factor = 1
-		}
-	}
-
-	ai_weight = {
-		factor = 5000
-		modifier = {
 			factor = 10
-			is_at_war = yes
 		}
 	}
 }

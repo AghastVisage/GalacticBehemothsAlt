@@ -44,6 +44,7 @@ tr_synchronicity_integrated_preservation = {
 		name = tr_synchronicity_instinctive_synchronization
 		custom_tooltip = tr_synchronicity_instinctive_synchronization_desc
 		inherit_icon = yes
+		inherit_effects = yes
 		trigger = {
 			is_hive_empire = yes
 		}
@@ -51,15 +52,25 @@ tr_synchronicity_integrated_preservation = {
 			factor = 1
 		}
 	}
+	custom_tooltip_with_modifiers = tr_synchronicity_instinctive_synchronization_desc
+	modifier = {
+		planet_resettlement_unemployed_mult = 0.3
+	}
+	ai_weight = {
+		factor = 1000
+	}
 
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_synchronicity_integrated_preservation_gts
 		inherit_effects = yes
 		inherit_icon = yes
 		trigger = {
 			gts_is_giantess_empire = yes
+			NOT = {
+				is_hive_empire = yes
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -70,19 +81,16 @@ tr_synchronicity_integrated_preservation = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
+			NOT = {
+				is_hive_empire = yes
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
-	}
-
-	custom_tooltip = tr_synchronicity_integrated_preservation_desc
-	modifier = {
-		planet_resettlement_unemployed_mult = 0.3
-	}
-	ai_weight = {
-		factor = 1000
 	}
 }
 
@@ -99,6 +107,11 @@ tr_synchronicity_kinship_gestalt = {
 		inherit_effects = yes
 	}
 
+	ai_weight = {
+		factor = 1000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_synchronicity_kinship_gestalt_gts
 		inherit_effects = yes
@@ -106,7 +119,6 @@ tr_synchronicity_kinship_gestalt = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -117,15 +129,13 @@ tr_synchronicity_kinship_gestalt = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
-	}
-
-	ai_weight = {
-		factor = 1000
 	}
 }
 
@@ -134,6 +144,16 @@ tr_synchronicity_collective_reasoning = {
 		has_tradition = tr_synchronicity_integrated_preservation
 	}
 
+	modifier = {
+		planet_stability_add = 3
+		planetary_ascension_cost_mult = -0.1
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_synchronicity_collective_reasoning_gts
 		inherit_effects = yes
@@ -141,7 +161,6 @@ tr_synchronicity_collective_reasoning = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -152,20 +171,13 @@ tr_synchronicity_collective_reasoning = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
-	}
-
-	modifier = {
-		planet_stability_add = 3
-		planetary_ascension_cost_mult = -0.1
-	}
-
-	ai_weight = {
-		factor = 5000
 	}
 }
 
@@ -178,31 +190,6 @@ tr_synchronicity_harmonious_directives = {
 	modifier = {
 		country_edict_fund_add = 50
 		restored_node_bonus_skill = 1
-	}
-
-	tradition_swap = {
-		name = tr_synchronicity_harmonious_directives_gts
-		inherit_effects = yes
-		inherit_icon = yes
-		trigger = {
-			gts_is_giantess_empire = yes
-		}
-
-		weight = {
-			factor = 10
-		}
-	}
-	tradition_swap = {
-		name = tr_synchronicity_harmonious_directives_tiny
-		inherit_effects = yes
-		inherit_icon = yes
-		trigger = {
-			gts_is_tiny_empire = yes
-		}
-
-		weight = {
-			factor = 10
-		}
 	}
 
 	tradition_swap = {
@@ -225,6 +212,39 @@ tr_synchronicity_harmonious_directives = {
 
 	ai_weight = {
 		factor = 5000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
+	tradition_swap = {
+		name = tr_synchronicity_harmonious_directives_gts
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_giantess_empire = yes
+			NOT = {
+				is_machine_empire = yes
+			}
+		}
+		weight = {
+			factor = 10
+		}
+	}
+	tradition_swap = {
+		name = tr_synchronicity_harmonious_directives_tiny
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
+			NOT = {
+				is_machine_empire = yes
+			}
+		}
+		weight = {
+			factor = 10
+		}
 	}
 }
 
@@ -257,14 +277,28 @@ tr_synchronicity_cloned_organs = {
 		}
 	}
 
+	ai_weight = {
+		factor = 1000
+		modifier = {
+			factor = 10
+			has_origin = origin_necrophage
+		}
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_synchronicity_cloned_organs_gts
 		inherit_effects = yes
 		inherit_icon = yes
 		trigger = {
 			gts_is_giantess_empire = yes
+			NOT = {
+				OR = {
+					is_machine_empire = yes
+					has_origin = origin_necrophage
+				}
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -275,18 +309,18 @@ tr_synchronicity_cloned_organs = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
+			NOT = {
+				OR = {
+					is_machine_empire = yes
+					has_origin = origin_necrophage
+				}
+			}
 		}
-
 		weight = {
 			factor = 10
-		}
-	}
-
-	ai_weight = {
-		factor = 1000
-		modifier = {
-			factor = 10
-			has_origin = origin_necrophage
 		}
 	}
 }

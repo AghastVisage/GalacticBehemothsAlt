@@ -270,6 +270,9 @@ r_gtsra_bronya_core = {
 	}
 	score = 1018
 	active_effect = {
+		country_event = {
+			id = gts_seele.56
+		}
 		add_modifier = {
 			modifier = "r_bronya_core_active"
 			days = @triumph_duration_short
@@ -315,6 +318,9 @@ r_gtsra_seele_core = {
 	}
 	score = 818
 	active_effect = {
+		country_event = {
+			id = gts_seele.58
+		}
 		add_modifier = {
 			modifier = "r_seele_core_active"
 			days = @triumph_duration_short
@@ -542,31 +548,36 @@ r_gtsra_ora_book = {
 		planet_building_build_speed_mult = 0.05 #建造速度
 	}
 	active_effect = {
-		if = {
-			limit = {
-				not = {
-					has_country_flag = gts_ora_1004_leave
+		hidden_effect = {
+			if = {
+				limit = {
+					OR = {
+						has_country_flag = gts_orangez_hired
+						any_owned_leader = { has_leader_flag = gts_orangez }
+					}
+				}
+				country_event = {
+					id = gts_ora.1006
 				}
 			}
-			country_event = {
-				id = gts_ora.1004
+			else_if = {
+				limit = {
+					not = {
+						has_country_flag = gts_ora_1004_leave
+					}
+				}
+				country_event = {
+					id = gts_ora.1004
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_country_flag = gts_ora_1004_leave
+			else_if = {
+				limit = {
+					has_country_flag = gts_ora_1004_leave
+				}
+				country_event = {
+					id = gts_ora.1006
+				}
 			}
-			country_event = {
-				id = gts_ora.1006
-			}
-		}
-		else_if = {
-			limit = {
-				has_country_flag = gts_ora_1007_active
-			}
-
-		}
-		hidden_effect = {
 		}
 	}
 	# Possible check for activation

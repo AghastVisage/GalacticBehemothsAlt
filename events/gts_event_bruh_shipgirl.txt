@@ -1,6 +1,9 @@
 namespace = gts_event_bruh_shipgirl
 
 # 塞入小穴
+# Root = 目標星球
+# From = 正在對行星攻擊的東西
+# From.fleet.leader = 正在對行星攻擊的東西的艦隊的指揮官
 planet_event = {
 	id = gts_event_bruh_shipgirl.0001
 	is_triggered_only = yes
@@ -13,24 +16,24 @@ planet_event = {
 		if = {
 			limit = {
 				is_planet_class = pc_ai
-				NOT = { has_planet_flag = machine_lair }
+				NOT = { has_carrier_flag = machine_lair }
 			}
-			set_planet_flag = destroyed_by_colossus
-			set_planet_flag = planet_cracked
-			planet_event = { id = crisis.2040 }
+			set_carrier_flag = destroyed_by_colossus
+			set_carrier_flag = planet_cracked
+			carrier_event = { id = crisis.2046 }
 		}
 
 		# Contingency Final Machine World
 		if = {
 			limit = {
 				is_planet_class = pc_ai
-				has_planet_flag = machine_lair
+				has_carrier_flag = machine_lair
 			}
-			set_planet_flag = destroyed_by_colossus
-			set_planet_flag = planet_cracked
+			set_carrier_flag = destroyed_by_colossus
+			set_carrier_flag = planet_cracked
 			From.owner = { save_event_target_as = final_machine_world_destroyer }
 			stop_crisis_sound = yes
-			planet_event = { id = crisis.2046 }
+			carrier_event = { id = crisis.2046 }
 		}
 
 		# Swarm Situation Log counter
@@ -175,18 +178,12 @@ planet_event = {
 				exists = owner
 				owner = { NOT = { is_same_value = From.owner } }
 				owner = { is_primitive = no }
+				is_a_planet = yes
 			}
 			random_list = {
-				1 = {
-					From.owner = {
-						country_event = { id = gts_event_bruh_shipgirl.0002 }
-					}
-				}
-				1 = {
-					From.owner = {
-						country_event = { id = gts_event_bruh_shipgirl.0003 }
-					}
-				}
+				1 = { From.owner = { country_event = { id = gts_event_bruh_shipgirl.0002 } } }
+				1 = { From.owner = { country_event = { id = gts_event_bruh_shipgirl.0003 } } }
+				1 = { From.owner = { country_event = { id = gts_event_bruh_shipgirl.0004 } } }
 			}
 		}
 
@@ -195,17 +192,33 @@ planet_event = {
 			limit = {
 				exists = owner
 				owner = { is_same_value = From.owner }
+				is_a_planet = yes
+				OR = {
+					is_capital = yes
+					is_colony = yes
+				}
 			}
 			random_list = {
 				1 = {
-					From.owner = {
-						country_event = { id = gts_event_bruh_shipgirl.0004 }
+					modifier = {
+						factor = 0
+						is_same_value = From.fleet.leader.home_planet
 					}
+					From.owner = { country_event = { id = gts_event_bruh_shipgirl.0005 } }
 				}
 				1 = {
-					From.owner = {
-						country_event = { id = gts_event_bruh_shipgirl.0005 }
+					modifier = {
+						factor = 0
+						is_same_value = From.fleet.leader.home_planet
 					}
+					From.owner = { country_event = { id = gts_event_bruh_shipgirl.0006 } }
+				}
+				1 = {
+					modifier = {
+						factor = 0
+						NOT = { is_same_value = From.fleet.leader.home_planet }
+					}
+					From.owner = { country_event = { id = gts_event_bruh_shipgirl.0007 } }
 				}
 			}
 		}
@@ -216,20 +229,43 @@ planet_event = {
 				1 = {
 					modifier = {
 						factor = 0
-						exists = owner
-						owner = { is_primitive = no }
+						OR = {
+							exists = owner
+							is_colonizable = no
+							is_planet_class = pc_nuked
+						}
 					}
-					From.owner = {
-						country_event = { id = gts_event_bruh_shipgirl.0006 }
-					}
+					From.owner = { country_event = { id = gts_event_bruh_shipgirl.0008 } }
 				}
 				1 = {
 					modifier = {
-						factor = 1000
-						NOT = { exists = owner }
+						factor = 0
+						OR = {
+							NOT = { exists = owner }
+							owner = { is_primitive = no }
+							is_planet_class = pc_nuked
+						}
+					}
+					From.owner = { country_event = { id = gts_event_bruh_shipgirl.0009 } }
+				}
+				1 = {
+					modifier = {
+						factor = 0
+						NOT = { is_planet_class = pc_nuked }
+					}
+					From.owner = { country_event = { id = gts_event_bruh_shipgirl.0010 } }
+				}
+				1 = {
+					modifier = {
+						factor = 0
+						OR = {
+							exists = owner
+							is_colonizable = yes
+							is_planet_class = pc_nuked
+						}
 					}
 					From.owner = {
-						country_event = { id = gts_event_bruh_shipgirl.0007 }
+						country_event = { id = gts_event_bruh_shipgirl.0011 }
 					}
 				}
 			}
@@ -274,13 +310,23 @@ country_event = {
 	id = gts_event_bruh_shipgirl.0002
 	title = gts_event_bruh_shipgirl.0002.name
 	desc = gts_event_bruh_shipgirl.0002.desc
-	picture = GFX_gts_bruh_shipgirl_event_1
-	show_sound = event_super_explosion
-	location = From
+
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	show_sound = event_gts_masturbate
 
 	is_triggered_only = yes
+	location = From
+
+	picture_event_data = { room = gts_bruh_shipgirl_02_room }
 
 	immediate = {
+		# 敘述用
+		From.solar_system = {
+			save_event_target_as = gts_event_bruh_shipgirl_event_solar_system
+		}
+
 		# 轉變成愛液星球
 		random_list = {
 			1 = {
@@ -309,11 +355,16 @@ country_event = {
 	id = gts_event_bruh_shipgirl.0003
 	title = gts_event_bruh_shipgirl.0003.name
 	desc = gts_event_bruh_shipgirl.0003.desc
-	picture = GFX_gts_bruh_shipgirl_event_1
-	show_sound = event_super_explosion
-	location = From
+
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	show_sound = event_gts_masturbate
 
 	is_triggered_only = yes
+	location = From
+
+	picture_event_data = { room = gts_bruh_shipgirl_11_room }
 
 	immediate = {
 		From = {
@@ -330,11 +381,42 @@ country_event = {
 	id = gts_event_bruh_shipgirl.0004
 	title = gts_event_bruh_shipgirl.0004.name
 	desc = gts_event_bruh_shipgirl.0004.desc
-	picture = GFX_gts_bruh_shipgirl_event_2
-	show_sound = event_super_explosion
-	location = From
+
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	show_sound = event_gts_masturbate
 
 	is_triggered_only = yes
+	location = From
+
+	picture_event_data = { room = gts_bruh_shipgirl_06_room }
+
+	immediate = {
+		From = {
+			remove_planet = yes
+		}
+	}
+
+	option = {
+		name = gts_event_bruh_shipgirl.0004.a
+	}
+}
+
+country_event = {
+	id = gts_event_bruh_shipgirl.0005
+	title = gts_event_bruh_shipgirl.0005.name
+	desc = gts_event_bruh_shipgirl.0005.desc
+
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	show_sound = event_gts_masturbate
+
+	is_triggered_only = yes
+	location = From
+
+	picture_event_data = { room = gts_bruh_shipgirl_09_room }
 
 	immediate = {
 		# 轉變成愛液星球
@@ -362,14 +444,65 @@ country_event = {
 }
 
 country_event = {
-	id = gts_event_bruh_shipgirl.0005
-	title = gts_event_bruh_shipgirl.0005.name
-	desc = gts_event_bruh_shipgirl.0005.desc
-	picture = GFX_gts_bruh_shipgirl_event_2
-	show_sound = event_super_explosion
-	location = From
+	id = gts_event_bruh_shipgirl.0006
+	title = gts_event_bruh_shipgirl.0006.name
+	desc = gts_event_bruh_shipgirl.0006.desc
+
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	show_sound = event_gts_masturbate
 
 	is_triggered_only = yes
+	location = From
+
+	picture_event_data = { room = gts_bruh_shipgirl_10_room }
+
+	immediate = {
+		# 敘述用
+		From.solar_system = {
+			save_event_target_as = gts_event_bruh_shipgirl_event_solar_system
+		}
+
+		# 轉變成愛液星球
+		random_list = {
+			1 = {
+				From = {
+					gts_bruh_clear_planet_effect = yes
+					pc_gts_juice_change = yes
+					destroy_colony = yes
+				}
+			}
+			1 = {
+				From = {
+					gts_bruh_clear_planet_effect = yes
+					gts_bruh_juice_uncolonizable_change = yes
+					destroy_colony = yes
+				}
+			}
+		}
+	}
+
+	option = {
+		name = gts_event_bruh_shipgirl.0004.a
+	}
+}
+
+country_event = {
+	id = gts_event_bruh_shipgirl.0007
+	title = gts_event_bruh_shipgirl.0007.name
+	desc = gts_event_bruh_shipgirl.0007.desc
+
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	show_sound = event_gts_masturbate
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	location = From
+
+	picture_event_data = { room = gts_bruh_shipgirl_04_room }
 
 	immediate = {
 		From = {
@@ -378,54 +511,116 @@ country_event = {
 	}
 
 	option = {
-		name = gts_event_bruh_shipgirl.0005.a
+		name = gts_event_bruh_shipgirl.0004.a
 	}
 }
 
 country_event = {
-	id = gts_event_bruh_shipgirl.0006
-	title = gts_event_bruh_shipgirl.0006.name
-	desc = gts_event_bruh_shipgirl.0006.desc
-	picture = GFX_gts_bruh_shipgirl_event_3
-	show_sound = event_super_explosion
-	location = From
+	id = gts_event_bruh_shipgirl.0008
+	title = gts_event_bruh_shipgirl.0008.name
+	desc = gts_event_bruh_shipgirl.0008.desc
+
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	show_sound = event_gts_masturbate
 
 	is_triggered_only = yes
+	location = From
+
+	picture_event_data = { room = gts_bruh_shipgirl_03_room }
 
 	immediate = {
-		# 轉變成愛液星球
 		From = {
-			gts_bruh_clear_planet_effect = yes
-			pc_gts_juice_change = yes
-			destroy_colony = yes
+			remove_planet = yes
 		}
 	}
 
 	option = {
-		name = gts_event_bruh_shipgirl.0006.a
+		name = gts_event_bruh_shipgirl.0008.a
 	}
 }
 
 country_event = {
-	id = gts_event_bruh_shipgirl.0007
-	title = gts_event_bruh_shipgirl.0007.name
-	desc = gts_event_bruh_shipgirl.0007.desc
-	picture = GFX_gts_bruh_shipgirl_event_3
-	show_sound = event_super_explosion
-	location = From
+	id = gts_event_bruh_shipgirl.0009
+	title = gts_event_bruh_shipgirl.0009.name
+	desc = gts_event_bruh_shipgirl.0009.desc
+
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	show_sound = event_gts_masturbate
 
 	is_triggered_only = yes
+	location = From
+
+	picture_event_data = { room = gts_bruh_shipgirl_05_room }
 
 	immediate = {
-		# 轉變成愛液星球(不可殖民)
 		From = {
-			gts_bruh_clear_planet_effect = yes
-			gts_bruh_juice_uncolonizable_change = yes
+			remove_planet = yes
 		}
 	}
 
 	option = {
-		name = gts_event_bruh_shipgirl.0007.a
+		name = gts_event_bruh_shipgirl.0009.a
+	}
+}
+
+country_event = {
+	id = gts_event_bruh_shipgirl.0010
+	title = gts_event_bruh_shipgirl.0010.name
+	desc = gts_event_bruh_shipgirl.0010.desc
+
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	show_sound = event_gts_masturbate
+
+	is_triggered_only = yes
+	location = From
+
+	picture_event_data = { room = gts_bruh_shipgirl_07_room }
+
+	immediate = {
+		From = {
+			remove_planet = yes
+		}
+	}
+
+	option = {
+		name = gts_event_bruh_shipgirl.0010.a
+	}
+}
+
+country_event = {
+	id = gts_event_bruh_shipgirl.0011
+	title = gts_event_bruh_shipgirl.0011.name
+	desc = gts_event_bruh_shipgirl.0011.desc
+
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	show_sound = event_gts_masturbate
+
+	is_triggered_only = yes
+	location = From
+
+	picture_event_data = { room = gts_bruh_shipgirl_08_room }
+
+	immediate = {
+		# 敘述用
+		From.solar_system = {
+			save_event_target_as = gts_event_bruh_shipgirl_event_solar_system
+		}
+
+		From = {
+			remove_planet = yes
+		}
+	}
+
+	option = {
+		name = gts_event_bruh_shipgirl.0011.a
 	}
 }
 
@@ -436,52 +631,6 @@ planet_event = {
 	hide_window = yes
 
 	immediate = {
-
-		# 天災相關
-		# Contingency Machine World
-		if = {
-			limit = {
-				is_planet_class = pc_ai
-				NOT = { has_planet_flag = machine_lair }
-			}
-			set_planet_flag = destroyed_by_colossus
-			set_planet_flag = planet_cracked
-			planet_event = { id = crisis.2040 }
-		}
-
-		# Contingency Final Machine World
-		if = {
-			limit = {
-				is_planet_class = pc_ai
-				has_planet_flag = machine_lair
-			}
-			set_planet_flag = destroyed_by_colossus
-			set_planet_flag = planet_cracked
-			From.owner = { save_event_target_as = final_machine_world_destroyer }
-			stop_crisis_sound = yes
-			planet_event = { id = crisis.2046 }
-		}
-
-		# Swarm Situation Log counter
-		if = {
-			limit = {
-				exists = owner
-				owner = { is_country_type = swarm }
-			}
-			every_country = {
-				limit = { has_event_chain = "prethoryn_scourge_chain" }
-				add_event_chain_counter = {
-					event_chain = "prethoryn_scourge_chain"
-					counter = "infested_worlds"
-					amount = -1
-				}
-				add_event_chain_counter = {
-					event_chain = "prethoryn_scourge_chain"
-					counter = "infested_worlds_cleansed"
-					amount = 1
-				}
-			}
-		}
 
 		# 產生威脅度
 		if = {
@@ -689,11 +838,11 @@ country_event = {
 	id = gts_event_bruh_shipgirl.0021
 	title = gts_event_bruh_shipgirl.0021.name
 	desc = gts_event_bruh_shipgirl.0021.desc
-	picture = GFX_gts_bruh_shipgirl_event_12
+	picture = GFX_gts_bruh_shipgirl_event_17
 	show_sound = event_super_explosion
-	location = From
 
 	is_triggered_only = yes
+	location = From
 
 	immediate = {
 		# 轉變成胖次星球
@@ -713,11 +862,11 @@ country_event = {
 	id = gts_event_bruh_shipgirl.0022
 	title = gts_event_bruh_shipgirl.0022.name
 	desc = gts_event_bruh_shipgirl.0022.desc
-	picture = GFX_gts_bruh_shipgirl_event_12
+	picture = GFX_gts_bruh_shipgirl_event_18
 	show_sound = event_super_explosion
-	location = From
 
 	is_triggered_only = yes
+	location = From
 
 	immediate = {
 		# 轉變成胖次星球
@@ -737,11 +886,11 @@ country_event = {
 	id = gts_event_bruh_shipgirl.0023
 	title = gts_event_bruh_shipgirl.0023.name
 	desc = gts_event_bruh_shipgirl.0023.desc
-	picture = GFX_gts_bruh_shipgirl_event_11
+	picture = GFX_gts_bruh_shipgirl_event_19
 	show_sound = event_super_explosion
-	location = From
 
 	is_triggered_only = yes
+	location = From
 
 	immediate = {
 		# 轉變成胖次星球
@@ -761,11 +910,11 @@ country_event = {
 	id = gts_event_bruh_shipgirl.0024
 	title = gts_event_bruh_shipgirl.0024.name
 	desc = gts_event_bruh_shipgirl.0024.desc
-	picture = GFX_gts_bruh_shipgirl_event_11
+	picture = GFX_gts_bruh_shipgirl_event_20
 	show_sound = event_super_explosion
-	location = From
 
 	is_triggered_only = yes
+	location = From
 
 	immediate = {
 		# 轉變成胖次星球
@@ -785,11 +934,11 @@ country_event = {
 	id = gts_event_bruh_shipgirl.0025
 	title = gts_event_bruh_shipgirl.0025.name
 	desc = gts_event_bruh_shipgirl.0025.desc
-	picture = GFX_gts_bruh_shipgirl_event_11
+	picture = GFX_gts_bruh_shipgirl_event_20
 	show_sound = event_super_explosion
-	location = From
 
 	is_triggered_only = yes
+	location = From
 
 	immediate = {
 		# 轉變成胖次星球
@@ -875,7 +1024,7 @@ country_event = {
 	id = gts_event_bruh_shipgirl.0101
 	title = gts_event_bruh_shipgirl.0101.name
 	desc = gts_event_bruh_shipgirl.0101.desc
-	picture = GFX_gts_bruh_shipgirl_event_4
+	picture = GFX_gts_bruh_shipgirl_event_11
 	show_sound = event_gts_vore
 	location = event_target:gts_bruh_get_event_target
 
@@ -958,7 +1107,7 @@ country_event = {
 	id = gts_event_bruh_shipgirl.0102
 	title = gts_event_bruh_shipgirl.0102.name
 	desc = gts_event_bruh_shipgirl.0102.desc
-	picture = GFX_gts_bruh_shipgirl_event_5
+	picture = GFX_gts_bruh_shipgirl_event_12
 	show_sound = event_super_explosion
 	location = event_target:gts_bruh_get_event_target
 
@@ -1025,7 +1174,7 @@ country_event = {
 	id = gts_event_bruh_shipgirl.0103
 	title = gts_event_bruh_shipgirl.0103.name
 	desc = gts_event_bruh_shipgirl.0103.desc
-	picture = GFX_gts_bruh_shipgirl_event_6
+	picture = GFX_gts_bruh_shipgirl_event_13
 	show_sound = event_gts_vore
 	location = event_target:gts_bruh_get_event_target
 
@@ -1175,7 +1324,7 @@ country_event = {
 	id = gts_event_bruh_shipgirl.0104
 	title = gts_event_bruh_shipgirl.0104.name
 	desc = gts_event_bruh_shipgirl.0104.desc
-	picture = GFX_gts_bruh_shipgirl_event_7
+	picture = GFX_gts_bruh_shipgirl_event_15
 	show_sound = event_gts_heartbeat
 	location = event_target:gts_bruh_get_event_target
 
@@ -1287,7 +1436,7 @@ country_event = {
 	id = gts_event_bruh_shipgirl.0105
 	title = gts_event_bruh_shipgirl.0105.name
 	desc = gts_event_bruh_shipgirl.0105.desc
-	picture = GFX_gts_bruh_shipgirl_event_8
+	picture = GFX_gts_bruh_shipgirl_event_14
 	show_sound = event_ship_explosion
 	location = event_target:gts_bruh_get_event_shipgirl
 
@@ -1351,7 +1500,7 @@ country_event = {
 	id = gts_event_bruh_shipgirl.0106
 	title = gts_event_bruh_shipgirl.0106.name
 	desc = gts_event_bruh_shipgirl.0106.desc
-	picture = GFX_gts_bruh_shipgirl_event_9
+	picture = GFX_gts_bruh_shipgirl_event_16
 	show_sound = event_gts_enn
 	location = event_target:gts_bruh_get_event_target
 
@@ -1430,7 +1579,7 @@ country_event = {
 		hidden_effect = {
 			event_target:gts_bruh_get_event_target = {
 				every_owned_pop_group = {
-					pop_group_transfer_ethic = {
+					pop_group_transfer_effect = {
 						POP_GROUP = this
 						ETHOS = ethic_spiritualist
 						PERCENTAGE = 0.1
@@ -1551,9 +1700,9 @@ country_event = {
 	custom_gui = "gts_horizontal_event_window"
 	custom_gui_option = "gts_horizontal_event_button"
 	show_sound = event_gts_masturbate
-	location = From
 
 	is_triggered_only = yes
+	location = From
 
 	picture_event_data = {
 		room = gts_bruh_shipgirl_01_room
@@ -1596,9 +1745,9 @@ country_event = {
 	custom_gui = "gts_horizontal_event_window"
 	custom_gui_option = "gts_horizontal_event_button"
 	show_sound = event_gts_masturbate
-	location = From
 
 	is_triggered_only = yes
+	location = From
 
 	picture_event_data = {
 		room = gts_bruh_shipgirl_01_room
@@ -1641,9 +1790,9 @@ country_event = {
 	custom_gui = "gts_horizontal_event_window"
 	custom_gui_option = "gts_horizontal_event_button"
 	show_sound = event_gts_masturbate
-	location = From
 
 	is_triggered_only = yes
+	location = From
 
 	picture_event_data = {
 		room = gts_bruh_shipgirl_01_room
@@ -1686,9 +1835,9 @@ country_event = {
 	custom_gui = "gts_horizontal_event_window"
 	custom_gui_option = "gts_horizontal_event_button"
 	show_sound = event_gts_masturbate
-	location = From
 
 	is_triggered_only = yes
+	location = From
 
 	picture_event_data = {
 		room = gts_bruh_shipgirl_01_room
@@ -1731,9 +1880,9 @@ country_event = {
 	custom_gui = "gts_horizontal_event_window"
 	custom_gui_option = "gts_horizontal_event_button"
 	show_sound = event_gts_masturbate
-	location = From
 
 	is_triggered_only = yes
+	location = From
 
 	picture_event_data = {
 		room = gts_bruh_shipgirl_01_room
@@ -1776,9 +1925,9 @@ country_event = {
 	custom_gui = "gts_horizontal_event_window"
 	custom_gui_option = "gts_horizontal_event_button"
 	show_sound = event_gts_masturbate
-	location = From
 
 	is_triggered_only = yes
+	location = From
 
 	picture_event_data = {
 		room = gts_bruh_shipgirl_01_room
@@ -1821,9 +1970,9 @@ country_event = {
 	custom_gui = "gts_horizontal_event_window"
 	custom_gui_option = "gts_horizontal_event_button"
 	show_sound = event_gts_masturbate
-	location = From
 
 	is_triggered_only = yes
+	location = From
 
 	picture_event_data = {
 		room = gts_bruh_shipgirl_01_room

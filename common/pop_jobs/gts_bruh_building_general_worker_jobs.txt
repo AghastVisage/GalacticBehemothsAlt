@@ -10,6 +10,180 @@
 
 
 
+gts_bruh_micro_worker_1 = {
+	category = worker
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			icon = technician
+			building_icon = building_gts_bruh_micro_1
+		}
+	}
+
+	tags = { energy }
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+	possible = {
+		hidden_trigger = { exists = owner }
+		owner = {
+			is_gestalt = no
+		}
+		gts_is_giantess = yes
+	}
+
+	resources = {
+		category = planet_technician
+		produces = {
+			# 25
+			energy = 25
+		}
+		upkeep = {
+			# 20
+			food = 5
+			gts_micro = 7.5
+		}
+	}
+
+	weight = {
+		weight = @worker_job_weight
+		modifier = {
+			factor = 100
+			gts_is_giantess = yes
+		}
+		modifier = {
+			factor = 10
+			OR = {
+				has_trait = trait_syncretic_proles
+				has_trait = trait_robot_superconductive
+				has_trait = trait_ingenious
+			}
+		}
+	}
+}
+
+gts_bruh_micro_worker_2 = {
+	category = worker
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			icon = miner
+			building_icon = building_gts_bruh_micro_2
+		}
+	}
+
+	tags = { minerals }
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+	possible = {
+		hidden_trigger = { exists = owner }
+		owner = {
+			is_gestalt = no
+		}
+		gts_is_giantess = yes
+	}
+
+	resources = {
+		category = planet_miners
+		produces = {
+			# 25
+			minerals = 25
+		}
+		upkeep = {
+			# 20
+			energy = 5
+			gts_micro = 7.5
+		}
+	}
+
+	weight = {
+		weight = @worker_job_weight
+		modifier = {
+			factor = 100
+			gts_is_giantess = yes
+		}
+		modifier = {
+			factor = 10
+			OR = {
+				has_trait = trait_syncretic_proles
+				has_trait = trait_robot_power_drills
+				has_trait = trait_industrious
+			}
+		}
+	}
+}
+
+gts_bruh_micro_worker_3 = {
+	category = worker
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			icon = farmer
+			building_icon = building_gts_bruh_micro_3
+		}
+	}
+
+	tags = { food }
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+	possible = {
+		hidden_trigger = { exists = owner }
+		owner = {
+			is_gestalt = no
+		}
+		gts_is_giantess = yes
+	}
+
+	resources = {
+		category = planet_farmers
+		produces = {
+			# 25
+			food = 25
+		}
+		upkeep = {
+			# 20
+			minerals = 5
+			gts_micro = 7.5
+		}
+	}
+
+	weight = {
+		weight = @worker_job_weight
+		modifier = {
+			factor = 100
+			gts_is_giantess = yes
+		}
+		modifier = {
+			factor = 10
+			OR = {
+				has_trait = trait_syncretic_proles
+				has_trait = trait_robot_harvesters
+				has_trait = trait_agrarian
+			}
+		}
+	}
+}
+
 redlight_worker = {
 
 	# 紅燈區接待員
@@ -26,16 +200,6 @@ redlight_worker = {
 	tags = { energy trade }
 
 	inline_script = "jobs/automodding_priority_energy"
-
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = worker
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
 
 	possible_pre_triggers = {
 		has_owner = yes
@@ -90,16 +254,6 @@ micro_food_worker = {
 
 	inline_script = "jobs/automodding_priority_food"
 
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = worker
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
-
 	possible_pre_triggers = {
 		has_owner = yes
 		is_being_purged = no
@@ -151,16 +305,6 @@ micro_miner = {
 	tags = { minerals }
 
 	inline_script = "jobs/automodding_priority_minerals"
-
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = worker
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
 
 	possible_pre_triggers = {
 		has_owner = yes
@@ -222,16 +366,6 @@ sock_park_worker = {
 
 	inline_script = "jobs/automodding_priority_unity"
 
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = worker
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
-
 	possible_pre_triggers = {
 		has_owner = yes
 		is_being_purged = no
@@ -289,6 +423,180 @@ sock_park_worker = {
 
 
 
+gts_bruh_giantess_fluid_worker_1 = {
+	category = worker
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			icon = technician
+			building_icon = building_gts_bruh_giantess_fluid_1
+		}
+	}
+
+	tags = { energy }
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+	possible = {
+		hidden_trigger = { exists = owner }
+		owner = {
+			is_gestalt = no
+		}
+		gts_is_tiny = yes
+	}
+
+	resources = {
+		category = planet_technician
+		produces = {
+			# 25
+			energy = 25
+		}
+		upkeep = {
+			# 20
+			food = 5
+			gts_giantess_fluid = 7.5
+		}
+	}
+
+	weight = {
+		weight = @worker_job_weight
+		modifier = {
+			factor = 100
+			gts_is_tiny = yes
+		}
+		modifier = {
+			factor = 10
+			OR = {
+				has_trait = trait_syncretic_proles
+				has_trait = trait_robot_superconductive
+				has_trait = trait_ingenious
+			}
+		}
+	}
+}
+
+gts_bruh_giantess_fluid_worker_2 = {
+	category = worker
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			icon = miner
+			building_icon = building_gts_bruh_giantess_fluid_2
+		}
+	}
+
+	tags = { minerals }
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+	possible = {
+		hidden_trigger = { exists = owner }
+		owner = {
+			is_gestalt = no
+		}
+		gts_is_tiny = yes
+	}
+
+	resources = {
+		category = planet_miners
+		produces = {
+			# 25
+			minerals = 25
+		}
+		upkeep = {
+			# 20
+			energy = 5
+			gts_giantess_fluid = 7.5
+		}
+	}
+
+	weight = {
+		weight = @worker_job_weight
+		modifier = {
+			factor = 100
+			gts_is_tiny = yes
+		}
+		modifier = {
+			factor = 10
+			OR = {
+				has_trait = trait_syncretic_proles
+				has_trait = trait_robot_power_drills
+				has_trait = trait_industrious
+			}
+		}
+	}
+}
+
+gts_bruh_giantess_fluid_worker_3 = {
+	category = worker
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			icon = farmer
+			building_icon = building_gts_bruh_giantess_fluid_3
+		}
+	}
+
+	tags = { food }
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+	possible = {
+		hidden_trigger = { exists = owner }
+		owner = {
+			is_gestalt = no
+		}
+		gts_is_tiny = yes
+	}
+
+	resources = {
+		category = planet_farmers
+		produces = {
+			# 25
+			food = 25
+		}
+		upkeep = {
+			# 20
+			minerals = 5
+			gts_giantess_fluid = 7.5
+		}
+	}
+
+	weight = {
+		weight = @worker_job_weight
+		modifier = {
+			factor = 100
+			gts_is_tiny = yes
+		}
+		modifier = {
+			factor = 10
+			OR = {
+				has_trait = trait_syncretic_proles
+				has_trait = trait_robot_harvesters
+				has_trait = trait_agrarian
+			}
+		}
+	}
+}
+
 gts_bathhouse_worker = {
 
 	# 愛液池維護員
@@ -305,16 +613,6 @@ gts_bathhouse_worker = {
 	tags = { energy trade }
 
 	inline_script = "jobs/automodding_priority_energy"
-
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = worker
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
 
 	possible_pre_triggers = {
 		has_owner = yes
@@ -369,16 +667,6 @@ gts_food_worker = {
 
 	inline_script = "jobs/automodding_priority_food"
 
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = worker
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
-
 	possible_pre_triggers = {
 		has_owner = yes
 		is_being_purged = no
@@ -430,16 +718,6 @@ gts_miner = {
 	tags = { minerals }
 
 	inline_script = "jobs/automodding_priority_minerals"
-
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = worker
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
 
 	possible_pre_triggers = {
 		has_owner = yes
@@ -501,16 +779,6 @@ gts_tiny_beggar = {
 
 	tags = { energy food minerals }
 
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = worker
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
-
 	possible_pre_triggers = {
 		has_owner = yes
 		is_being_purged = no
@@ -560,16 +828,6 @@ gts_extreme_worker = {
 	tags = { amenities unity pop_growth pop_assembly }
 
 	inline_script = "jobs/automodding_priority_unity"
-
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = worker
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
 
 	possible_pre_triggers = {
 		has_owner = yes
@@ -650,16 +908,6 @@ gts_shit_worker = {
 
 	tags = { energy minerals food }
 
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = worker
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
-
 	possible_pre_triggers = {
 		has_owner = yes
 		is_being_purged = no
@@ -708,16 +956,6 @@ gts_dirt1 = {
 	}
 
 	tags = { energy minerals food }
-
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = worker
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
 
 	possible_pre_triggers = {
 		has_owner = yes
@@ -768,16 +1006,6 @@ gts_urine_worker = {
 
 	tags = { energy minerals food }
 
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = worker
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
-
 	possible_pre_triggers = {
 		has_owner = yes
 		is_being_purged = no
@@ -826,16 +1054,6 @@ gts_semen_worker = {
 	}
 
 	tags = { energy minerals food }
-
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = worker
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
 
 	possible_pre_triggers = {
 		has_owner = yes

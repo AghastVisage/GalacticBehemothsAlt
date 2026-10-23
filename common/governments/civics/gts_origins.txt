@@ -1,0 +1,648 @@
+origin_Hexie = {
+	#和谐共处
+	is_origin = yes	#是起源
+	icon = "gfx/interface/icons/origins/origins_one_the_shoulders_of_giant.dds"	#图标
+	playable = {
+		#可用条件
+	}
+	picture = GFX_origin_Hexie	#贴图
+	possible = {
+		#可选条件
+		authority = {
+			#政体不是智械
+			NOR = {
+				value = auth_machine_intelligence
+				value = auth_hive_mind
+			}
+		}
+		civics = {
+			#民政
+			NOT = {
+				value = civic_fanatic_purifiers
+				value = civic_gts_terminator
+				value = civic_gts_assimilator
+				value = civic_gts_servitor
+				value = civic_barbaric_despoilers
+			}
+		}
+	}
+	flags = {
+		Hexie_start_screen
+	}
+	#引起事件
+	random_weight = {
+		#随机权重
+		base = 10
+	}
+	description = "origin_Hexie_effect"
+	advanced_start = yes
+	has_secondary_species = {
+		title = civic_syncretic_evolution_secondary_species
+		traits = {
+			trait = trait_Small
+		}
+	}
+}
+
+origin_Aya = {
+	#丸山彩
+	is_origin = yes	#是起源
+	icon = "gfx/interface/icons/origins/origins_one_the_shoulders_of_giant.dds"	#图标
+	picture = GFX_origin_Aya	#贴图
+	max_once_global = yes	#最多一个
+	initializers = {
+		Aya_sol_system_initializer
+	}
+	#载入aya太阳系
+	possible = {
+		#可选条件
+		ethics = {
+			#权力形式不是格式塔
+			NOT = {
+				value = ethic_gestalt_consciousness
+			}
+		}
+		authority = {
+			value = auth_dictatorial
+		}
+		civics = {
+			#民政（不是田园绽放、野蛮掠夺、种族洁癖）
+			NOT = {
+				value = civic_idyllic_bloom
+				value = civic_fanatic_purifiers
+				value = civic_gts_terminator
+				value = civic_gts_assimilator
+				value = civic_gts_servitor
+				value = civic_barbaric_despoilers
+			}
+		}
+	}
+	starting_colony = pc_city	#起始星球（都市星球）
+	non_colonizable_planet_class_neighbor = yes	#无保底球
+	flags = {
+		Aya_start_screen
+	}
+	#引起事件
+	traits = {
+		trait = trait_tiny_begin
+	}
+	description = "origin_Aya_effect"
+	advanced_start = yes
+}
+
+origin_parasitic_robot = {
+	# 机械寄生
+	is_origin = yes	#是起源
+	icon = "gfx/interface/icons/origins/origins_one_the_shoulders_of_giant.dds"	#图标
+	picture = GFX_origin_parasitic_robot	#贴图
+	max_once_global = yes	#最多一个
+	initializers = {
+		Robot_sol_system_initializer
+	}
+	possible = {
+		#可选条件
+		ethics = {
+			#思潮
+			#value = ethic_gestalt_consciousness
+		}
+		civics = {
+			value = civic_god_servitor
+		}
+	}
+	starting_colony = pc_gaia	#起始星球
+	description = "origin_robot_effect"	#描述
+	flags = {
+		parasitic_robot_start_screen
+	}
+	#引起事件链
+	#traits = {
+	#	trait = trait_Lingneng_robot
+	#}
+	random_weight = {
+		#随机权重
+		base = 0
+	}
+}
+
+origin_Luanzi = {
+	# 卵子世界
+	is_origin = yes
+	advanced_start = yes
+	max_once_global = yes
+	starting_colony = pc_gts_luanzi
+	icon = "gfx/interface/icons/origins/origins_one_the_shoulders_of_giant.dds"
+	picture = GFX_origin_Luanzi
+	initializers = {
+		Luanzi_sol_system_initializer
+	}
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+			}
+		}
+		civics = {
+			NOT = {
+				value = civic_idyllic_bloom
+			}
+		}
+	}
+	description = "origin_Luanzi_effect"
+	flags = {
+		Luanzi_start_screen
+	}
+	random_weight = {
+		base = 5
+	}
+}
+
+origin_Jiju = {
+	# A.E.I.O.U.
+	is_origin = yes
+	max_once_global = yes
+	picture = GFX_origin_Jiju
+	icon = "gfx/interface/icons/origins/origins_one_the_shoulders_of_giant.dds"	#图标
+	possible = {
+		#可选条件
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+			}
+		}
+	}
+	traits = {
+		trait = trait_Jiju
+	}
+	description = "origin_Jiju_effect"
+	flags = {
+		Jiju_start_screen
+	}
+	modifier = {
+		empire_size_mult = -0.2
+	}
+	random_weight = {
+		base = 5
+	}
+}
+
+origin_Qianxin = {
+	# 虔心崇聖
+	is_origin = yes
+	advanced_start = yes
+	max_once_global = yes
+	icon = "gfx/interface/icons/origins/origins_one_the_shoulders_of_giant.dds"
+	picture = GFX_origin_Qianxin
+	possible = {
+		ethics = {
+			value = ethic_fanatic_spiritualist
+		}
+	}
+	modifier = {
+		pop_ethic_spiritualist_attraction_mult = 1
+		planet_researchers_produces_mult = -0.5
+		station_researchers_produces_mult = -0.5
+	}
+	traits = {
+		trait = trait_latent_psionic
+		trait = trait_gts_begin
+	}
+	description = "origin_Qianxin_effect"
+	flags = {
+		Qianxin_start_screen
+	}
+	random_weight = {
+		base = 0
+	}
+}
+
+origin_gts_fallout = {
+	# 異塵餘生
+	is_origin = yes
+	advanced_start = yes
+	max_once_global = yes
+	starting_colony = pc_nuked
+	icon = "gfx/interface/icons/origins/origins_one_the_shoulders_of_giant.dds"
+	picture = GFX_origin_gts_fallout
+	possible = {
+		ethics = {
+			NOR = {
+				value = ethic_spiritualist
+				value = ethic_fanatic_spiritualist
+				value = ethic_gestalt_consciousness
+			}
+		}
+		civics = {
+			NOT = {
+				value = civic_agrarian_idyll
+			}
+			NOR = {
+				text = civic_tooltip_not_anglers
+				value = civic_anglers
+				value = civic_corporate_anglers
+			}
+		}
+	}
+	traits = {
+		trait = trait_pc_nuked_preference
+		trait = trait_survivor
+		trait = trait_gts_fallout
+		trait = trait_gts_begin
+	}
+	description = "origin_gts_fallout_effect"
+	flags = {
+		Fallout_start_screen
+	}
+	random_weight = {
+		base = 0
+	}
+}
+
+origin_gts_subterranean = {
+	# 靴底人
+	is_origin = yes
+	advanced_start = yes
+	icon = "gfx/interface/icons/origins/origins_subterranean.dds"
+	picture = GFX_origin_gts_subterranean
+	possible = {
+		ethics = {
+			NOT = {
+				value = ethic_gestalt_consciousness
+			}
+		}
+	}
+	modifier = {
+		planet_jobs_minerals_produces_mult = 0.1
+		planet_district_mining_build_speed_mult = 0.1
+		mining_district_housing_add = 200
+		planet_orbital_bombardment_damage = -0.75
+		planet_structures_cost_mult = 0.2
+		planet_structures_upkeep_mult = 0.2
+		planet_building_build_speed_mult = -0.2
+		planet_storm_devastation_mult = -0.25
+	}
+	traits = {
+		trait = trait_gts_cave_dweller
+	}
+	description = "origin_tooltip_gts_subterranean_effects"
+	flags = {
+		custom_start_screen
+	}
+	random_weight = {
+		base = 5
+	}
+}
+
+origin_Ultra_company = {
+	# 寰海極宇
+	is_origin = yes
+	max_once_global = yes
+	non_colonizable_planet_class_neighbor = yes
+	icon = "gfx/interface/icons/origins/origins_shroud_touched.dds"
+	picture = GFX_origin_Ultra_company
+	potential = {
+		always = yes
+	}
+	possible = {
+		authority = {
+			value = auth_corporate
+		}
+		ethics = {
+			NOR = {
+				value = ethic_xenophile
+				value = ethic_fanatic_xenophile
+			}
+		}
+		civics = {
+			NOR = {
+				value = civic_tankbound_corporate
+				value = civic_corporate_deep_sleep
+			}
+		}
+	}
+	modifier = {
+		diplomacy_influence_upkeep_mult = -0.5
+		planet_branch_offices_cost_mult = -0.5
+		job_gts_ultra_sale_add = 5
+	}
+	traits = {
+		trait = trait_Ultra
+		trait = trait_great_species
+	}
+	description = "origin_tooltip_Ultra_company_effects"
+	negative_description = "origin_tooltip_Ultra_company_negative_effects"
+	flags = {
+		Ultra_company_start_screen
+	}
+	random_weight = {
+		base = 5
+	}
+}
+
+origin_god_keeper = {
+	# 豢養神明
+	is_origin = yes
+	max_once_global = yes
+	icon = "gfx/interface/icons/origins/origin_here_be_dragons.dds"
+	picture = GFX_origin_god_keeper
+	starting_colony = pc_ocean
+	possible = {
+		authority = {
+			OR = {
+				value = auth_dictatorial
+				value = auth_imperial
+			}
+		}
+	}
+	traits = {
+		trait = trait_perfected_genes
+		trait = trait_tiny_begin
+	}
+	description = origin_tooltip_god_keeper_effects
+	flags = {
+		custom_start_screen
+	}
+	random_weight = {
+		base = 0
+	}
+}
+
+# HStar
+origin_hstar = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_hstar.dds"
+	picture = GFX_origin_hstar
+	max_once_global = yes
+	playable = {
+		NOT = {
+			is_ai = yes
+		}
+	}
+	possible = {
+		species_class = {
+			NOT = {
+				value = ROBOT
+			}
+		}
+		ethics = {
+			OR = {
+				value = ethic_militarist
+				value = ethic_fanatic_militarist
+			}
+		}
+		authority = {
+			value = auth_corporate
+		}
+		civics = {
+			value = civic_hstar
+			NOT = {
+				value = civic_criminal_heritage
+			}
+		}
+	}
+	flags = {
+		custom_start_screen
+	}
+	traits = {
+		trait = trait_hstar
+		trait = trait_Normal
+		trait = trait_very_strong
+	}
+	random_weight = {
+		base = 0
+	}
+	modifier = {
+		ship_disengage_chance_mult = -0.25
+		ship_fire_rate_mult = 0.2
+		army_attack_damage_mult = 1
+	}
+}
+
+origin_hstar_customer = {
+	# AI Only
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_hstar_custom.dds"
+	picture = GFX_origin_hstar_custom
+	playable = {
+		always = no		# Non-player origin
+	}
+	possible = {
+	}
+	traits = {
+	}
+	random_weight = {
+		base = 0
+	}
+}
+
+origin_ultra_road = {
+	# 成神之路
+	is_origin = yes	#是起源
+	icon = "gfx/interface/icons/origins/origins_one_the_shoulders_of_giant.dds"	#图标
+	picture = GFX_origin_ultra_road
+	playable = {
+		always = no
+	}
+	possible = {
+		ethics = {
+		}
+		civics = {
+		}
+	}
+	flags = {
+		gts_ultra_road_start_screen
+	}
+	#引起事件
+	random_weight = {
+		#随机权重
+		base = 0
+	}
+	description = "origin_ultra_road_effect"
+	advanced_start = yes
+	traits = {
+		trait = trait_Ultra
+		trait = trait_great_species
+	}
+}
+
+origin_annihilator = {
+	# 灭世天罚
+	is_origin = yes	#是起源
+	icon = "gfx/interface/icons/origins/origins_annihilator.dds"	#图标
+	picture = GFX_origin_annihilator	#贴图
+	max_once_global = yes
+	starting_colony = pc_gaia	#起始星球（新的 毁灭者星球）                                        #最多一个
+	initializers = {
+		Annihilator_sol_system_initializer
+	}
+	#初始化星系
+	playable = {
+		always = no
+	}
+	possible = {
+		#可选条件                                                         #思潮
+		species_class = {
+			NOR = {
+				value = LITHOID
+				value = ROBOT
+			}
+		}
+		authority = {
+			NOR = {
+				value = auth_ancient_machine_intelligence
+				value = auth_machine_intelligence
+				value = auth_democratic
+				value = auth_corporate
+			}
+		}
+		civics = {
+			NOR = {
+				value = civic_machine_assimilator
+				value = civic_fanatic_purifiers
+				value = civic_hive_devouring_swarm
+				value = civic_machine_servitor
+				value = civic_hive_ascetic
+				value = civic_agrarian_idyll
+			}
+		}
+	}
+	traits = {
+		trait = trait_annihilator
+	}
+	flags = {
+		Annihilator_start_screen
+	}
+	#引起事件
+	random_weight = {
+		#随机权重
+		base = 0
+	}
+	modifier = {
+		country_physics_tech_research_speed = -100000
+		country_engineering_tech_research_speed = -100000
+		country_society_tech_research_speed = -100000
+		planet_pops_consumer_goods_upkeep_mult = -0.1
+		country_government_civic_points_add = 2
+		#ship_military_time_cost_mult = 100000
+	}
+	description = "origin_annihilator_effect"
+	advanced_start = yes
+}
+
+origin_panlon = {
+	#人皇之嗣
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origin_panlon_small.dds"
+	picture = GFX_origin_panlon
+	potential = {
+		always = yes
+	}
+	possible = {
+		authority = {
+			OR = {
+				value = auth_hales_panlon
+			}
+		}
+	}
+	traits = {
+		trait = trait_aom_Belief
+		trait = trait_tiny_begin
+	}
+	modifier = {
+		ship_fire_rate_mult = 0.2
+		country_war_exhaustion_mult = -0.2
+		diplo_weight_naval_mult = 1
+	}
+	flags = {
+		panlon_start_screen
+	}
+	random_weight = {
+		base = 100
+	}
+	description = "civic_tooltip_origin_panlon_effects"
+	advanced_start = yes
+}
+
+# origin_gts_nano = {
+# 	# 微纪元
+# 	is_origin = yes	#是起源
+# 	icon = "gfx/interface/icons/origins/origins_one_the_shoulders_of_giant.dds"	#图标
+# 	playable = {
+# 		hidden_trigger = {
+# 			always = no
+# 		}
+# 		custom_tooltip = gts_origin_soon
+# 	}
+# 	picture = GFX_origin_gts_nano
+# 	possible = {
+# 		ethics = {
+# 		}
+# 		civics = {
+# 		}
+# 	}
+# 	flags = {
+# 		gts_nano_start_screen
+# 	}	#引起事件
+# 	random_weight = {
+# 		#随机权重
+# 		base = 0
+# 	}
+# 	description = "origin_gts_nano_effect"
+# 	advanced_start = yes
+# 	traits = {
+# 		trait = trait_Nano
+# 		trait = trait_great_species
+# 	}
+# }
+# origin_gts_lab_fault = {
+# 	#
+# 	is_origin = yes	#是起源
+# 	icon = "gfx/interface/icons/origins/origins_one_the_shoulders_of_giant.dds"	#图标
+# 	picture = GFX_origin_gts_lab_fault
+# 	possible = {
+# 		ethics = {
+# 		}
+# 		civics = {
+# 		}
+# 	}
+# 	flags = {
+# 		gts_titan_ruler_start_screen
+# 	}	#引起事件
+# 	random_weight = {
+# 		#随机权重
+# 		base = 0
+# 	}
+# 	description = "origin_gts_lab_fault_effect"
+# 	advanced_start = yes
+# 	traits = {
+# 		trait = trait_gts_begin
+# 	}
+# 	has_secondary_species = {
+# 		title = civic_syncretic_evolution_secondary_species
+# 		traits = {
+# 			trait = trait_tiny_begin
+# 		}
+# 	}
+# }
+# origin_tiny_exiled = {
+# 	#
+# 	is_origin = yes	#是起源
+# 	icon = "gfx/interface/icons/origins/origins_one_the_shoulders_of_giant.dds"	#图标
+# 	picture = GFX_origin_tiny_exiled
+# 	possible = {
+# 		ethics = {
+# 		}
+# 		civics = {
+# 		}
+# 	}
+# 	flags = {
+# 		tiny_exiled_start_screen
+# 	}	#引起事件
+# 	random_weight = {
+# 		#随机权重
+# 		base = 0
+# 	}
+# 	description = "origin_tiny_exiled_effect"
+# 	advanced_start = yes
+# 	traits = {
+# 	}
+# }

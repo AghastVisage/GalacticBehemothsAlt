@@ -185,8 +185,18 @@ country_event = {
 				}
 			}
 		}
-		random_owned_planet = {
-			destroy_colony = yes
+		gts_save_priority_destroy_planet_target = yes
+		if = {
+			limit = { event_target:gts_priority_destroy_planet_target = { NOT = { is_scope_type = planet } } }
+			random_owned_planet = {
+				save_event_target_as = gts_priority_destroy_planet_target
+			}
+		}
+		event_target:gts_priority_destroy_planet_target = {
+			if = {
+				limit = { is_scope_type = planet }
+				destroy_colony = yes
+			}
 		}
 	}
 }
@@ -1861,7 +1871,7 @@ planet_event = {
 					}
 				}
 			}
-			pop_group_transfer_ethic = {
+			pop_group_transfer_effect = {
 				POP_GROUP = this
 				ETHOS = ethic_spiritualist
 				PERCENTAGE = 1

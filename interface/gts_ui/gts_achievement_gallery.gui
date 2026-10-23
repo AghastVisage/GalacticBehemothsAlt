@@ -1,0 +1,207 @@
+#界面
+@outliner_h = 900
+@outliner_h_max = 1100
+@outliner_w = 600
+#
+@list_w = 570
+@list_box_h = 650
+@list_h_max = 890
+@list_x = 10
+@list_y = 260
+
+guiTypes = {
+
+    ### FACTION OVERVIEW GUI ###
+
+    containerWindowType = {
+        name = "gts_achievement_gallery"
+        orientation = center
+        origo = center
+        moveable = yes
+        size = { width = @outliner_w height = @outliner_h }
+
+        background = {
+            name = "background"
+            quadTextureSprite = "GFX_window_background"
+        }
+
+        iconType = {
+            name = "hex_bg"
+            spriteType = "GFX_hex_bg"
+            position = { x = -10 y = -14 }
+            alwaysTransparent = yes
+        }
+        iconType = {
+            name = "empire_header_line"
+            quadTextureSprite = "GFX_line_long"
+            position = { x = 6 y = 22 }
+            alwaysTransparent = yes
+
+        }
+        buttonType = {
+            name = "close"
+            quadTextureSprite = "GFX_close"
+            position = { x= -42 y = 12 }
+            orientation = "UPPER_RIGHT"
+            shortcut = "ESCAPE"
+            clicksound = "back_click"
+        }
+
+        # Custom header
+        instantTextBoxType = {
+            name = "gts_achevement_header"
+            font = "malgun_goth_24"
+            position = { x = 20 y = 5 }
+            maxWidth = 543
+            maxHeight = 22
+            fixedSize = yes
+            alwaysTransparent = yes
+        }
+
+        ###_	ALL OF THIS IS HIDDEN OR DISPLACED!	######################################################
+        instantTextBoxType = {
+            name = "alien_message"
+            maxWidth = 0
+            maxHeight = 0
+            position = { x= 9999 y = 3000 }
+            borderSize = { x = 0 y = 2 }
+            format = left
+            scrollbartype = "standardtext_slider"
+            font = "cg_16b"
+            alwaysTransparent = yes
+        }
+        instantTextBoxType = { name = "heading" font = "malgun_goth_24" position = { x = 9999 y = 9999 } } # hidden
+        buttonType = { name = "confirm_button" quadTextureSprite = "GFX_standard_button_142_34_button" } # hidden
+        buttonType = { name = "tts_button" position = { x = 9999 y = 9999 } spriteType = "GFX_button_tts_start" buttonFont = "cg_16b" }
+        containerWindowType = {
+            name = "portrait_background"
+            position = { x = -1117 y = -1117 }
+            size = { width = 0 height = 0 }		# hide portrait window
+            iconType = { name = "event_picture" spriteType = GFX_event_frame } # hidden
+            iconType = { name = "portrait" spriteType = "GFX_portrait_character" } # hidden
+        }
+
+        instantTextBoxType={ name = "empire_name" font = "malgun_goth_24" position = { x = 9999 y = 9999 } } # hidden
+        instantTextBoxType={ name = "empire_government_type" font = "cg_16b" position = { x = 9999 y = 9999 } } # hidden
+        instantTextBoxType={ name = "empire_personality_type" font = "cg_16b" position = { x = 9999 y = 9999 } } # hidden
+        OverlappingElementsBoxType = { name = "empire_ethics_icons" position = { x = 9999 y = 9999 } } # hidden
+        iconType = { name = "empire_info_bg" spriteType = "GFX_diplomacy_dark_fade_bg" position = { x = 9999 y = 9999 } } # hidden
+        containerWindowType = {
+            name = "leader_details"
+            position = { x = -1125 y = -1175 }
+            containerWindowType = { name = "empire_traits_box" } # hidden
+            instantTextBoxType = { name = "empire_traits_label" font = cg_16b } # hidden
+            overlappingElementsBoxType = { name = "leader_traits" } # hidden
+            instantTextBoxType = { name = "leader_name" font = cg_16b } # hidden
+            instantTextBoxType = { name = "leader_species" font = cg_16b } # hidden
+            containerWindowType = { name = "leader_traits_box" }
+            containerWindowType = { name = "leader_traits_label" }
+        }
+        containerWindowType = {
+            name = "opinion_window"
+            position = { x = -1127 y = -11110 }
+            size = { width = 94 height = 30 }
+            iconType = { name = "their_opinion_icon" spriteType = "GFX_diplomacy_opinion" } # hidden
+            instantTextBoxType = { name = "their_opinion" font = "cg_16b" }
+        }
+        #
+        containerWindowType = {
+            name = "portrait"
+            position = { x = 10 y = 40 }
+            @portrait_scale = 0.6
+            size = { width = 0 height = 0 } # hide portrait window
+            iconType = { name = "portrait" spriteType = "GFX_portrait_gamesetup_mask" scale = @portrait_scale position = { x = 2 y = 2 } alwaysTransparent = yes }
+            iconType = { name = "black_frame" spriteType = "GFX_diplomacy_portrait_shadow_frame" scale = @portrait_scale alwaysTransparent = yes }
+            iconType = { name = "stripes_1" spriteType = "GFX_diplomacy_stripes_2" scale = @portrait_scale alwaysTransparent = yes }
+            iconType = { name = "city_frame" spriteType = "GFX_diplomacy_portrait_frame" scale = @portrait_scale alwaysTransparent = yes }
+        }
+        containerWindowType = {
+            name = "EVENT_DIPLO"
+            position = { x = 0 y = 0 }
+            size = { width = @outliner_w height = @outliner_h }
+            #background = { name = "bg" quadTextureSprite = GFX_tile_outliner_bg }
+            iconType = { name = "hex" position = { x = 0 y = -10 } spriteType = GFX_hex_bg alwaysTransparent = yes }
+            iconType = { name = "line" position = { x = 10 y = 30 } spriteType = GFX_line alwaysTransparent = yes }
+            instantTextBoxType = {
+                name = "action_title"
+                font = malgun_goth_24
+                orientation = upper_left
+                position = { x = 20 y = 10 }
+                maxWidth = 450
+                maxHeight = 60
+                alwaysTransparent = yes
+            }
+            instantTextBoxType = {
+                name = "action_desc"
+                font = "cg_16b"
+                orientation = upper_left
+                position = { x = 0 y = 0 }
+                maxWidth = 500
+                maxHeight = 180
+                format = center
+                alwaysTransparent = yes
+                text_color_code = "H"
+            }
+            clipping = no
+            #buttonType = {
+            #    name = "list_bg"
+            #    quadTextureSprite = GFX_dark_area_cut
+            #    position = { x= @list_x y = @list_y }
+            #    size = { x = @list_w y = @list_h }
+            #    if_resolution = { min_height = 1440 size = { width = @outliner_w height = @outliner_h_max } }
+            #    alwaysTransparent = yes
+            #}
+            listboxType = {
+                name = "option_list"
+                position = { x = @list_x y = @list_y }
+                size = { x = @list_w y = @list_box_h } borderSize = { x = 5 y = 5 }
+                scrollbarType = "standardlistbox_slider"
+                background = GFX_dark_area_cut
+                alwaysTransparent = no
+                #if_resolution = { min_height = 1440 size = { width = @list_w height = @list_h_max } }
+            }
+        }
+        buttonType = { name = "empire_flag" position = { x = 310 y = 5 } spriteType = GFX_empire_flag_48 }
+        buttonType = {
+            name = "focus_button" spriteType = "GFX_fleetview_focus"
+            position = { x = -75 y = 10 } Orientation = "UPPER_RIGHT"
+            shortcut = "q"
+        }
+
+    }
+    @gts_achi_w = 560
+    @gts_achi_h= 40
+
+    # 标签
+    containerWindowType = {
+        name = "gts_achievement_option_tab"
+        position = { x = 0 y = 0 } size = { width = @gts_achi_w height = @gts_achi_h }
+        iconType = { name = hex spriteType = GFX_hex_bg position = { x = -23 y = -18 } alwaysTransparent = yes }
+        iconType = { name = line spriteType = GFX_line_medium position = { x = -5 y = 15 } alwaysTransparent = yes }
+        buttonType = {
+            name = "option_button"
+            size = { x = @gts_achi_w y = @gts_achi_h }  position = { x = 0 y = 0 }
+            quadTextureSprite = GFX_tiled_window_transparent
+            font = cg_16b text = "OPTION_TEXT" format = left borderSize = { x = 5 y = 0 }
+            text_offset = { x = 10 y = 0 }
+            no_clicksound = yes
+        }
+        OverlappingElementsBoxType = { name = "trigger_icons" position = { x = 350 y = -1 } size = { x = 30 y = 30 } }
+    }
+    # 成就
+    containerWindowType = {
+        name = "gts_achievement_option"
+        position = { x = 0 y = 0 } size = { width = @gts_achi_w height = @gts_achi_h }
+        #iconType = { name = hex spriteType = GFX_hex_center_bg position = { x = -70 y = -17 } alwaysTransparent = yes }
+
+        buttonType = {
+            name = "option_button"
+            size = { x = @gts_achi_w y = @gts_achi_h }  position = { x = 0 y = 0 }
+            quadTextureSprite = GFX_button_light
+            font = cg_16b text = "OPTION_TEXT" format = left
+            text_offset = { x = 15 y = 0 }
+            no_clicksound = yes
+        }
+        OverlappingElementsBoxType = { name = "trigger_icons" position = { x = 0 y = -1 } size = { x= 40 y= 40 } }
+    }
+}

@@ -1,17 +1,33 @@
-d_hstar_develop = { 
+d_hstar_develop = {
     is_for_colonizable = yes #殖民星球才有
     category = deposit_cat_rare #稀有区
     icon = d_monument #图标
-    planet_modifier = {
-		job_nano_robot_taker_add = 200
-	}
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_gestalt = no
+            }
+        }
+        job_nano_robot_taker_add = 200
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_gestalt = yes
+            }
+        }
+        job_gts_drone_nano_robot_taker_add = 200
+    }
 	resources = {
 		category = planet_deposits
 		produces = {
 			nanites = 2
 		}
 	}
-    drop_weight = { 
-    	weight = 0
+    drop_weight = {
+        weight = 0
     }
 }

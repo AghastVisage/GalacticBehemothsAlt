@@ -1,0 +1,411 @@
+gts_skadi_military_arkship = {
+	graphical_culture = { "military_arkship" }
+	hero_ship = {
+		hero_ship_fleet_background = "GFX_arkship_fleetview_military"
+		custom_class_text_color = B
+	}
+	class = shipclass_starbase
+	carries_colony = pc_ocean
+	display_attack_neutral_fleet_button = no
+	automation_icon = GFX_fleet_order_auto_explore_arkship
+	arkship_picture = "gts_shipgirl_arkship"
+	auto_upgrade = yes
+	can_disable = yes
+	stay_disabled = yes
+	never_lost = yes
+	collects_stockpile_from = {
+		shipclass_starbase
+		shipclass_constructor
+	}
+	collects_stockpile_to_country = yes
+	accepts_all_modifiers = yes
+
+	use_shipnames_from = juggernaut
+
+	potential_construction = { always = no }
+	possible_construction = { always = no }
+
+	on_click_sound = "arkship_military_selection"
+
+	#icon = ship_size_military_arkship_tier_3
+	icon = GFX_planet_type_gts_skadi_type
+	icon_frame = 16
+	ship_class_icon_frame = 64
+	map_icon_override = {
+		normal = GFX_ship_icons_type_arkship
+		mixed = GFX_ship_icons_type_arkship_mixed
+		cloaked = GFX_ship_icons_type_arkship_cloaked
+		encamped = GFX_ship_icons_type_arkship_encamped
+	}
+
+	#entity = "skadi_ship_01_entity"
+	section_slots = {
+		"mid" = { locator = "part1" }
+	}
+
+	formation_priority = 4
+	max_speed = 120
+	acceleration = 0.2
+	rotation_speed = 0.15
+	construction_offset_mult = 4
+	collision_radius = 4
+	max_hitpoints = 5000000
+	modifier = {
+		ship_evasion_add = 10
+		ship_cloaking_strength_add = -10
+		ship_sensor_range_add = 3
+		ship_armor_add = 1500000
+		ship_shield_add = 1500000
+		ship_shield_regen_add_static = 5000
+		ship_hull_regen_add_perc = 0.10
+		ship_armor_regen_add_perc = 0.10
+		planet_max_districts_add = 50
+	}
+	ship_modifier = {
+		ship_starbase_stockpile_collection_rate_add = 1000
+		ship_fire_rate_mult = 0.50
+		ship_weapon_damage = 0.50
+		ship_weapon_range_mult = 0.25
+	}
+	size_multiplier = 120
+	fleet_slot_size = 64
+
+	is_designable = no
+	num_target_locators = 0
+	is_space_station = no
+	can_have_federation_design = no
+	is_civilian = no
+	components_add_to_cost = no
+
+	available_to_everyone = yes
+	enable_default_design = no
+	enable_3dview_in_ship_browser = no
+
+	combat_disengage_chance = 2
+
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "gts_base_shipgirl_ftl_components_set"
+	required_component_set = "thruster_components"
+	required_component_set = "gts_base_shipgirl_sensor_components_set"
+	required_component_set = "combat_computers"
+	required_component_set = "ship_aura_components"
+
+	potential_country = {
+		# is_nomadic = yes
+	}
+
+	base_buildtime = 1800
+	resources = {
+		category = starbase_arkships
+		cost = {
+			alloys = 50000
+			influence = 1000
+		}
+		upkeep = {
+			energy = 5000
+			food = 5000
+			alloys = 2500
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					is_gestalt = no
+				}
+			}
+			minerals = 2500
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					is_gestalt = yes
+					is_machine_empire = no
+				}
+			}
+			minerals = 5000
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					is_machine_empire = yes
+				}
+			}
+			energy = 5000
+		}
+		logistics = {
+			trade = 1000
+		}
+	}
+	min_upgrade_cost = {
+		alloys = 1000
+	}
+
+	ai_ship_data = {}
+}
+
+gts_skadi_military_arkship_tier_2 = {
+	graphical_culture = { "military_arkship" }
+
+	hero_ship = {
+		hero_ship_fleet_background = "GFX_arkship_fleetview_military"
+		custom_class_text_color = B
+	}
+
+	class = shipclass_starbase
+	carries_colony = pc_ocean
+	display_attack_neutral_fleet_button = no
+	automation_icon = GFX_fleet_order_auto_explore_arkship
+	arkship_picture = "gts_shipgirl_arkship"
+	auto_upgrade = yes
+	can_disable = yes
+	stay_disabled = yes
+	never_lost = yes
+	collects_stockpile_from = { shipclass_starbase shipclass_constructor }
+	collects_stockpile_to_country = yes
+	accepts_all_modifiers = yes
+	use_shipnames_from = juggernaut
+	potential_construction = { always = no }
+	possible_construction = { always = no }
+	on_click_sound = "arkship_military_selection"
+	icon = GFX_planet_type_gts_skadi_type
+	icon_frame = 16
+	ship_class_icon_frame = 64
+	map_icon_override = {
+		normal = GFX_ship_icons_type_arkship
+		mixed = GFX_ship_icons_type_arkship_mixed
+		cloaked = GFX_ship_icons_type_arkship_cloaked
+		encamped = GFX_ship_icons_type_arkship_encamped
+	}
+
+	section_slots = { "mid" = { locator = "part1" } }
+	formation_priority = 4
+	max_speed = 90
+	acceleration = 0.12
+	rotation_speed = 0.08
+	construction_offset_mult = 8
+	collision_radius = 40
+	max_hitpoints = 50000000
+
+	modifier = {
+		ship_evasion_add = 5
+		ship_cloaking_strength_add = -10
+		ship_sensor_range_add = 5
+		ship_armor_add = 15000000
+		ship_shield_add = 15000000
+		ship_shield_regen_add_static = 50000
+		ship_hull_regen_add_perc = 0.25
+		ship_armor_regen_add_perc = 0.25
+		ship_shield_regen_add_perc = 0.20
+		planet_max_districts_add = 100
+	}
+
+	ship_modifier = {
+		ship_starbase_stockpile_collection_rate_add = 2500
+		ship_fire_rate_mult = 1.00
+		ship_weapon_damage = 1.00
+		ship_weapon_range_mult = 0.50
+		ship_accuracy_add = 25
+		ship_tracking_add = 25
+	}
+
+	size_multiplier = 120
+	fleet_slot_size = 128
+	is_designable = no
+	num_target_locators = 0
+	is_space_station = no
+	can_have_federation_design = no
+	is_civilian = no
+	components_add_to_cost = no
+	available_to_everyone = yes
+	enable_default_design = no
+	enable_3dview_in_ship_browser = no
+	prerequisites = { "tech_gts_titan_ship" }
+	combat_disengage_chance = 2
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "gts_base_shipgirl_ftl_components_set"
+	required_component_set = "thruster_components"
+	required_component_set = "gts_base_shipgirl_sensor_components_set"
+	required_component_set = "combat_computers"
+	required_component_set = "ship_aura_components"
+	potential_country = { }
+	base_buildtime = 2700
+
+	base_ship_size = "gts_skadi_military_arkship"
+
+	resources = {
+		category = starbase_arkships
+		cost = {
+			alloys = 75000
+			influence = 1500
+		}
+		upkeep = {
+			energy = 7500
+			food = 7500
+			alloys = 3750
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					is_gestalt = no
+				}
+			}
+			minerals = 3750
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					is_gestalt = yes
+					is_machine_empire = no
+				}
+			}
+			minerals = 7500
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					is_machine_empire = yes
+				}
+			}
+			energy = 7500
+		}
+		logistics = { trade = 1500 }
+	}
+
+	min_upgrade_cost = { alloys = 1500 }
+	ai_ship_data = {}
+}
+
+gts_skadi_military_arkship_tier_3 = {
+	graphical_culture = { "military_arkship" }
+
+	hero_ship = {
+		hero_ship_fleet_background = "GFX_arkship_fleetview_military"
+		custom_class_text_color = B
+	}
+
+	class = shipclass_starbase
+	carries_colony = pc_ocean
+	display_attack_neutral_fleet_button = no
+	automation_icon = GFX_fleet_order_auto_explore_arkship
+	arkship_picture = "gts_shipgirl_arkship"
+	auto_upgrade = yes
+	can_disable = yes
+	stay_disabled = yes
+	never_lost = yes
+	collects_stockpile_from = { shipclass_starbase shipclass_constructor }
+	collects_stockpile_to_country = yes
+	accepts_all_modifiers = yes
+	use_shipnames_from = juggernaut
+	potential_construction = { always = no }
+	possible_construction = { always = no }
+	on_click_sound = "arkship_military_selection"
+	icon = GFX_planet_type_gts_skadi_type
+	icon_frame = 16
+	ship_class_icon_frame = 64
+	map_icon_override = {
+		normal = GFX_ship_icons_type_arkship
+		mixed = GFX_ship_icons_type_arkship_mixed
+		cloaked = GFX_ship_icons_type_arkship_cloaked
+		encamped = GFX_ship_icons_type_arkship_encamped
+	}
+
+	section_slots = { "mid" = { locator = "part1" } }
+	formation_priority = 4
+	max_speed = 70
+	acceleration = 0.08
+	rotation_speed = 0.04
+	construction_offset_mult = 12
+	collision_radius = 80
+	max_hitpoints = 500000000
+
+	modifier = {
+		ship_evasion_add = 2
+		ship_cloaking_strength_add = -10
+		ship_sensor_range_add = 8
+		ship_armor_add = 150000000
+		ship_shield_add = 150000000
+		ship_shield_regen_add_static = 500000
+		ship_hull_regen_add_perc = 0.35
+		ship_armor_regen_add_perc = 0.35
+		ship_shield_regen_add_perc = 0.30
+		ship_damage_reduction_mult = 0.25
+		planet_max_districts_add = 200
+	}
+
+	ship_modifier = {
+		ship_starbase_stockpile_collection_rate_add = 5000
+		ship_fire_rate_mult = 2.00
+		ship_weapon_damage = 2.00
+		ship_weapon_range_mult = 1.00
+		ship_accuracy_add = 40
+		ship_tracking_add = 40
+	}
+
+	size_multiplier = 120
+	fleet_slot_size = 256
+	is_designable = no
+	num_target_locators = 0
+	is_space_station = no
+	can_have_federation_design = no
+	is_civilian = no
+	components_add_to_cost = no
+	available_to_everyone = yes
+	enable_default_design = no
+	enable_3dview_in_ship_browser = no
+	prerequisites = { "tech_gts_titan_ship" }
+	combat_disengage_chance = 2
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "gts_base_shipgirl_ftl_components_set"
+	required_component_set = "thruster_components"
+	required_component_set = "gts_base_shipgirl_sensor_components_set"
+	required_component_set = "combat_computers"
+	required_component_set = "ship_aura_components"
+	potential_country = { }
+	base_buildtime = 4050
+
+	base_ship_size = "gts_skadi_military_arkship"
+
+	resources = {
+		category = starbase_arkships
+		cost = {
+			alloys = 112500
+			influence = 2250
+		}
+		upkeep = {
+			energy = 11250
+			food = 11250
+			alloys = 5625
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					is_gestalt = no
+				}
+			}
+			minerals = 5625
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					is_gestalt = yes
+					is_machine_empire = no
+				}
+			}
+			minerals = 11250
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					is_machine_empire = yes
+				}
+			}
+			energy = 11250
+		}
+		logistics = { trade = 2250 }
+	}
+
+	min_upgrade_cost = { alloys = 2250 }
+	ai_ship_data = {}
+}

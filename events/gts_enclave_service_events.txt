@@ -1,0 +1,306 @@
+namespace = gts_enclave_event
+
+# Separate dialogue and service hooks for each size tier.
+
+# below_titan: dialogue menu.
+country_event = {
+    id = gts_enclave_event.310
+    title = gts_enclave_event.310.title
+    desc = gts_enclave_event.310.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    trigger = {
+        exists = event_target:gts_enclave_contacting_country
+        gts_enclave_is_below_titan = yes
+    }
+    picture_event_data = {
+        portrait = event_target:gts_enclave_contacting_country
+        room = enclave_curator_room
+    }
+    option = {
+        name = gts_enclave_event.310.intro
+        is_dialog_only = yes
+        response_text = gts_enclave_event.310.intro.reply
+    }
+    option = {
+        name = gts_enclave_event.310.services
+        trigger = { gts_enclave_is_below_titan = yes }
+        country_event = { id = gts_enclave_event.311 }
+    }
+    option = { name = gts_enclave_event.exit }
+}
+
+# below_titan: service interface. Future effects/modifiers belong in this tier only.
+country_event = {
+    id = gts_enclave_event.311
+    title = gts_enclave_event.311.title
+    desc = gts_enclave_event.311.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    trigger = {
+        exists = event_target:gts_enclave_contacting_country
+        gts_enclave_is_below_titan = yes
+    }
+    picture_event_data = {
+        portrait = event_target:gts_enclave_contacting_country
+        room = enclave_curator_room
+    }
+    option = {
+        name = gts_enclave_event.311.order
+        trigger = { gts_enclave_is_below_titan = yes }
+        response_text = gts_enclave_event.311.order.reply
+        allow = {
+            resource_stockpile_compare = { resource = energy value >= 500 }
+            custom_tooltip = {
+                fail_text = gts_enclave_service.order.inactive
+                NOT = { has_modifier = gts_enclave_below_titan_order }
+            }
+        }
+        custom_tooltip = gts_enclave_event.311.order.tooltip
+        hidden_effect = {
+            add_resource = { energy = -500 }
+            add_modifier = { modifier = gts_enclave_below_titan_order days = 3600 }
+            event_target:gts_enclave_contacting_country = {
+                add_trust = { who = root amount = 10 }
+            }
+            country_event = { id = gts_enclave_event.311 }
+        }
+    }
+    option = {
+        name = gts_enclave_event.311.production
+        trigger = { gts_enclave_is_below_titan = yes }
+        response_text = gts_enclave_event.311.production.reply
+        allow = {
+            resource_stockpile_compare = { resource = energy value >= 1500 }
+            custom_tooltip = {
+                fail_text = gts_enclave_service.production.inactive
+                NOT = { has_modifier = gts_enclave_below_titan_production }
+            }
+            custom_tooltip = {
+                fail_text = gts_enclave_service.requires_50_opinion
+                event_target:gts_enclave_contacting_country = {
+                    trust = { who = root value >= 50 }
+                }
+            }
+        }
+        custom_tooltip = gts_enclave_event.311.production.tooltip
+        hidden_effect = {
+            add_resource = { energy = -1500 }
+            add_modifier = { modifier = gts_enclave_below_titan_production days = 3600 }
+            country_event = { id = gts_enclave_event.311 }
+        }
+    }
+    option = {
+        name = gts_enclave_event.back
+        country_event = { id = gts_enclave_event.300 }
+    }
+    option = { name = gts_enclave_event.exit }
+}
+
+# titan: dialogue menu.
+country_event = {
+    id = gts_enclave_event.320
+    title = gts_enclave_event.320.title
+    desc = gts_enclave_event.320.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    trigger = {
+        exists = event_target:gts_enclave_contacting_country
+        gts_enclave_is_titan = yes
+    }
+    picture_event_data = {
+        portrait = event_target:gts_enclave_contacting_country
+        room = enclave_curator_room
+    }
+    option = {
+        name = gts_enclave_event.320.intro
+        is_dialog_only = yes
+        response_text = gts_enclave_event.320.intro.reply
+    }
+    option = {
+        name = gts_enclave_event.320.services
+        trigger = { gts_enclave_is_titan = yes }
+        country_event = { id = gts_enclave_event.321 }
+    }
+    option = { name = gts_enclave_event.exit }
+}
+
+# titan: service interface. Future effects/modifiers belong in this tier only.
+country_event = {
+    id = gts_enclave_event.321
+    title = gts_enclave_event.321.title
+    desc = gts_enclave_event.321.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    trigger = {
+        exists = event_target:gts_enclave_contacting_country
+        gts_enclave_is_titan = yes
+    }
+    picture_event_data = {
+        portrait = event_target:gts_enclave_contacting_country
+        room = enclave_curator_room
+    }
+    option = {
+        name = gts_enclave_event.321.toys
+        trigger = { gts_enclave_is_titan = yes }
+        response_text = gts_enclave_event.321.toys.reply
+        allow = {
+            resource_stockpile_compare = { resource = gts_micro value >= 500 }
+            custom_tooltip = {
+                fail_text = gts_enclave_service.toys.inactive
+                NOT = { has_modifier = gts_enclave_titan_toys }
+            }
+        }
+        custom_tooltip = gts_enclave_event.321.toys.tooltip
+        hidden_effect = {
+            add_resource = { gts_micro = -500 }
+            add_modifier = { modifier = gts_enclave_titan_toys days = 3600 }
+            event_target:gts_enclave_contacting_country = {
+                add_trust = { who = root amount = 15 }
+            }
+            country_event = { id = gts_enclave_event.321 }
+        }
+    }
+    option = {
+        name = gts_enclave_event.321.methods
+        trigger = { gts_enclave_is_titan = yes }
+        response_text = gts_enclave_event.321.methods.reply
+        allow = {
+            resource_stockpile_compare = { resource = gts_micro_city value >= 500 }
+            custom_tooltip = {
+                fail_text = gts_enclave_service.methods.inactive
+                NOT = { has_modifier = gts_enclave_titan_methods }
+            }
+            custom_tooltip = {
+                fail_text = gts_enclave_service.requires_30_opinion
+                event_target:gts_enclave_contacting_country = {
+                    trust = { who = root value >= 30 }
+                }
+            }
+        }
+        custom_tooltip = gts_enclave_event.321.methods.tooltip
+        hidden_effect = {
+            add_resource = { gts_micro_city = -500 }
+            add_modifier = { modifier = gts_enclave_titan_methods days = 3600 }
+            event_target:gts_enclave_contacting_country = {
+                add_trust = { who = root amount = 20 }
+            }
+            country_event = { id = gts_enclave_event.321 }
+        }
+    }
+    option = {
+        name = gts_enclave_event.321.art
+        trigger = { gts_enclave_is_titan = yes }
+        response_text = gts_enclave_event.321.art.reply
+        allow = {
+            resource_stockpile_compare = { resource = gts_micro_planet value >= 500 }
+            custom_tooltip = {
+                fail_text = gts_enclave_service.art.inactive
+                NOT = { has_modifier = gts_enclave_titan_art }
+            }
+            custom_tooltip = {
+                fail_text = gts_enclave_service.requires_100_opinion
+                event_target:gts_enclave_contacting_country = {
+                    trust = { who = root value >= 100 }
+                }
+            }
+        }
+        custom_tooltip = gts_enclave_event.321.art.tooltip
+        hidden_effect = {
+            add_resource = { gts_micro_planet = -500 }
+            add_modifier = { modifier = gts_enclave_titan_art days = 3600 }
+            country_event = { id = gts_enclave_event.321 }
+        }
+    }
+    option = {
+        name = gts_enclave_event.back
+        country_event = { id = gts_enclave_event.300 }
+    }
+    option = { name = gts_enclave_event.exit }
+}
+
+# ultra: dialogue menu.
+country_event = {
+    id = gts_enclave_event.330
+    title = gts_enclave_event.330.title
+    desc = gts_enclave_event.330.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    trigger = {
+        exists = event_target:gts_enclave_contacting_country
+        gts_enclave_is_ultra = yes
+    }
+    picture_event_data = {
+        portrait = event_target:gts_enclave_contacting_country
+        room = enclave_curator_room
+    }
+    option = {
+        name = gts_enclave_event.330.intro
+        is_dialog_only = yes
+        response_text = gts_enclave_event.330.intro.reply
+    }
+    option = {
+        name = gts_enclave_event.330.services
+        trigger = { gts_enclave_is_ultra = yes }
+        country_event = { id = gts_enclave_event.331 }
+    }
+    option = { name = gts_enclave_event.exit }
+}
+
+# ultra: services reward the player; each contract can be renewed after expiry.
+country_event = {
+    id = gts_enclave_event.331
+    title = gts_enclave_event.331.title
+    desc = gts_enclave_event.331.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    trigger = {
+        exists = event_target:gts_enclave_contacting_country
+        gts_enclave_is_ultra = yes
+    }
+    picture_event_data = {
+        portrait = event_target:gts_enclave_contacting_country
+        room = enclave_curator_room
+    }
+    option = {
+        name = gts_enclave_event.331.cleaning
+        trigger = { gts_enclave_is_ultra = yes }
+        response_text = gts_enclave_event.331.cleaning.reply
+        allow = {
+            custom_tooltip = {
+                fail_text = gts_enclave_service.ultra_cleaning.inactive
+                NOT = { has_modifier = gts_enclave_ultra_cleaning }
+            }
+        }
+        custom_tooltip = gts_enclave_event.331.cleaning.tooltip
+        hidden_effect = {
+            # The enclave pays the player; no stockpile or opinion requirement.
+            add_resource = { energy = 500 }
+            add_modifier = { modifier = gts_enclave_ultra_cleaning days = 3600 }
+            country_event = { id = gts_enclave_event.331 }
+        }
+    }
+    option = {
+        name = gts_enclave_event.331.toys
+        trigger = { gts_enclave_is_ultra = yes }
+        response_text = gts_enclave_event.331.toys.reply
+        allow = {
+            custom_tooltip = {
+                fail_text = gts_enclave_service.ultra_toys.inactive
+                NOT = { has_modifier = gts_enclave_ultra_toys }
+            }
+        }
+        custom_tooltip = gts_enclave_event.331.toys.tooltip
+        hidden_effect = {
+            # The enclave pays the player; no stockpile or opinion requirement.
+            add_resource = { gts_micro = 500 }
+            add_modifier = { modifier = gts_enclave_ultra_toys days = 3600 }
+            country_event = { id = gts_enclave_event.331 }
+        }
+    }
+    option = {
+        name = gts_enclave_event.back
+        country_event = { id = gts_enclave_event.300 }
+    }
+    option = { name = gts_enclave_event.exit }
+}

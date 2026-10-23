@@ -1,0 +1,846 @@
+################################################################################
+#################                基礎艦娘相關科技                #################
+################################################################################
+
+
+
+tech_gts_destroyer_ship = {
+
+	# 驅逐艦艦娘
+
+	cost = @tier3cost3
+	area = engineering
+	tier = 3
+	category = { voidcraft }
+
+	is_reverse_engineerable = no
+	is_rare = yes
+	is_dangerous = yes
+	weight = 0
+	gateway = ship
+
+	weight_modifier = {}
+	ai_weight = {}
+}
+
+tech_gts_battleship_ship = {
+
+	# 戰列艦艦娘
+
+	cost = @tier4cost3
+	area = engineering
+	tier = 4
+	category = { voidcraft }
+
+	is_reverse_engineerable = no
+	is_rare = yes
+	is_dangerous = yes
+	weight = 0
+
+	weight_modifier = {}
+	ai_weight = {}
+}
+
+tech_gts_titan_ship = {
+
+	# 泰坦艦娘
+
+	cost = @tier5cost3
+	area = engineering
+	tier = 5
+	category = { voidcraft }
+
+	is_reverse_engineerable = no
+	is_rare = yes
+	is_dangerous = yes
+	weight = 0
+
+	weight_modifier = {}
+	ai_weight = {}
+}
+
+# 反應堆
+
+tech_gts_reactor = {
+
+	# 艦娘生物反應爐
+
+	cost = @tier3cost3
+	area = society
+	tier = 3
+	category = { biology }
+
+	is_reverse_engineerable = no
+	is_rare = yes
+	is_dangerous = yes
+	weight = @tier3weight1
+	potential = { has_ascension_perk = ap_space_gts }
+
+	weight_modifier = {}
+	ai_weight = {}
+}
+
+tech_gts_reactor_a = {
+
+	# 強化艦娘生物反應爐
+
+	cost = @tier4cost3
+	area = society
+	tier = 4
+	category = { biology }
+
+	is_reverse_engineerable = no
+	is_rare = yes
+	is_dangerous = yes
+	weight = @tier4weight1
+	prerequisites = { tech_gts_reactor }
+
+	weight_modifier = {}
+	ai_weight = {}
+}
+
+# 感測器
+
+tech_gts_scout = {
+
+	# 直感偵查
+
+	cost = @tier3cost3
+	area = physics
+	tier = 3
+	category = { computing }
+
+	is_reverse_engineerable = no
+	is_rare = yes
+	is_dangerous = yes
+	weight = @tier3weight1
+	potential = { has_ascension_perk = ap_space_gts }
+
+	weight_modifier = {}
+	ai_weight = {}
+}
+
+tech_gts_scout_a = {
+
+	#　輔助偵查機組
+
+	cost = @tier4cost3
+	area = physics
+	tier = 4
+	category = { computing }
+
+	is_reverse_engineerable = no
+	is_rare = yes
+	is_dangerous = yes
+	weight = @tier4weight1
+	prerequisites = { tech_gts_scout }
+
+	weight_modifier = {}
+	ai_weight = {}
+}
+
+# 躍遷引擎
+
+tech_gts_ftl_engine = {
+
+	# 肉身超空間引擎
+
+	cost = @tier3cost3
+	area = physics
+	tier = 3
+	category = { particles }
+
+	is_reverse_engineerable = no
+	is_rare = yes
+	is_dangerous = yes
+	weight = @tier3weight1
+	potential = { has_ascension_perk = ap_space_gts }
+
+	weight_modifier = {}
+	ai_weight = {}
+}
+
+tech_gts_ftl_engine_a = {
+
+	# 俺尋思超空間引擎
+
+	cost = @tier4cost3
+	area = physics
+	tier = 4
+	category = { particles }
+
+	is_reverse_engineerable = no
+	is_rare = yes
+	is_dangerous = yes
+	weight = @tier4weight1
+	prerequisites = { "tech_gts_ftl_engine" }
+
+	weight_modifier = {}
+	ai_weight = {}
+}
+
+# 作戰電腦
+
+tech_gts_computer = {
+
+	# 專業化海軍教育
+
+	cost = @tier3cost3
+	area = society
+	tier = 3
+	category = { military_theory }
+
+	is_reverse_engineerable = no
+	is_rare = yes
+	is_dangerous = yes
+	weight = @tier3weight1
+	potential = { has_ascension_perk = ap_space_gts }
+
+	weight_modifier = {}
+	ai_weight = {}
+}
+
+# 推進器
+
+tech_gts_bare_feet = {
+
+	# 足部防護-裸足
+
+	cost = @tier2cost3
+	area = engineering
+	tier = 2
+	category = { propulsion }
+
+	is_reverse_engineerable = no
+	is_rare = yes
+	is_dangerous = yes
+	weight = @tier2weight1
+	potential = { has_ascension_perk = ap_space_gts }
+
+	weight_modifier = {}
+	ai_weight = {}
+}
+
+tech_gts_black_stockings = {
+
+	# 足部防護-黑絲
+
+	cost = @tier3cost3
+	area = engineering
+	tier = 3
+	category = { propulsion }
+
+	is_reverse_engineerable = no
+	is_rare = yes
+	is_dangerous = yes
+	weight = @tier3weight1
+	prerequisites = { tech_gts_bare_feet }
+
+	weight_modifier = {}
+	ai_weight = {}
+}
+
+tech_gts_white_stockings = {
+
+	# 足部防護-白絲
+
+	cost = @tier4cost3
+	area = engineering
+	tier = 4
+	category = { propulsion }
+
+	is_reverse_engineerable = no
+	is_rare = yes
+	is_dangerous = yes
+	weight = @tier4weight1
+	prerequisites = { tech_gts_black_stockings }
+
+	weight_modifier = {}
+	ai_weight = {}
+}
+
+tech_gts_shoes = {
+
+	# 足部防護-艦裝鞋
+
+	cost = @tier5cost3
+	area = engineering
+	tier = 5
+	category = { propulsion }
+
+	is_reverse_engineerable = no
+	is_rare = yes
+	is_dangerous = yes
+	weight = @tier5weight1
+	prerequisites = { tech_gts_white_stockings }
+
+	weight_modifier = {}
+
+	ai_weight = {}
+}
+
+# 部件
+
+tech_gts_energy_blank = {
+
+	#　後備太陽能板
+
+	cost = @tier3cost3
+	area = physics
+	tier = 3
+	category = { field_manipulation }
+
+	is_reverse_engineerable = no
+	weight = 0
+
+	weight_modifier = {}
+
+	ai_weight = {
+		factor = @ai_ship_types_factor
+	}
+}
+
+tech_gts_mind_strengthen = {
+
+	# 艦娘智慧強化
+
+	cost = @tier3cost3
+	area = physics
+	tier = 3
+	category = { computing }
+
+	is_reverse_engineerable = no
+	weight = 0
+
+	weight_modifier = {}
+
+	ai_weight = {
+		factor = @ai_ship_types_factor
+	}
+}
+
+tech_gts_self_repair = {
+
+	# 自恢復艦體
+
+	cost = @tier3cost3
+	area = society
+	tier = 3
+	category = { biology }
+
+	is_reverse_engineerable = no
+	weight = 0
+
+	weight_modifier = {}
+
+	ai_weight = {
+		factor = @ai_ship_types_factor
+	}
+}
+
+tech_gts_body_strengthen = {
+
+	# 艦娘體能強化
+
+	cost = @tier3cost3
+	area = society
+	tier = 3
+	category = { industry }
+
+	is_reverse_engineerable = no
+	weight = 0
+
+	weight_modifier = {}
+
+	ai_weight = {
+		factor = @ai_ship_types_factor
+	}
+}
+
+tech_gts_bombing = {
+
+	# 超高空轟炸策略
+
+	cost = @tier3cost3
+	area = society
+	tier = 3
+	category = { military_theory }
+
+	is_reverse_engineerable = no
+	weight = 0
+
+	weight_modifier = {}
+
+	ai_weight = {
+		factor = @ai_ship_types_factor
+	}
+}
+
+tech_gts_aid_repair = {
+
+	# 體表損管小隊
+
+	cost = @tier3cost3
+	area = engineering
+	tier = 3
+	category = { industry }
+
+	is_reverse_engineerable = no
+	weight = 0
+
+	weight_modifier = {}
+
+	ai_weight = {
+		factor = @ai_ship_types_factor
+	}
+}
+
+tech_gts_beauty = {
+
+	# 艦體美化
+
+	cost = @tier3cost3
+	area = engineering
+	tier = 3
+	category = { materials }
+
+	is_reverse_engineerable = no
+	weight = 0
+
+	weight_modifier = {}
+
+	ai_weight = {
+		factor = @ai_ship_types_factor
+	}
+}
+
+# 裝甲
+
+tech_armor_gts = {
+
+	# 舰娘內衣工藝
+
+	cost = @tier3cost3
+	area = engineering
+	tier = 3
+	category = { materials }
+
+	is_reverse_engineerable = no
+	is_rare = yes
+	is_dangerous = yes
+	weight = @tier3weight1
+	potential = { has_ascension_perk = ap_space_gts }
+
+	weight_modifier = {}
+	ai_weight = {}
+}
+
+tech_armor_gts_2 = {
+
+	# 艦娘內衣工藝 - 安全褲
+
+	cost = @tier4cost3
+	area = engineering
+	tier = 4
+	category = { materials }
+
+	is_reverse_engineerable = no
+	is_rare = yes
+	is_dangerous = yes
+	weight = @tier4weight1
+	prerequisites = { tech_armor_gts }
+
+	weight_modifier = {}
+	ai_weight = {}
+}
+
+tech_armor_gts_3 = {
+
+	# 艦娘內衣工藝 - 蕾絲胖次
+
+	cost = @tier5cost3
+	area = engineering
+	tier = 5
+	category = { materials }
+
+	is_reverse_engineerable = no
+	is_rare = yes
+	is_dangerous = yes
+	weight = @tier5weight1
+	prerequisites = { tech_armor_gts_2 }
+
+	weight_modifier = {}
+	ai_weight = {}
+}
+
+# 護盾
+
+tech_shields_gts_1 = {
+
+	# 艦娘校服工藝
+
+	cost = @tier3cost3
+	area = physics
+	tier = 3
+	category = { field_manipulation }
+
+	is_reverse_engineerable = no
+	is_rare = yes
+	is_dangerous = yes
+	weight = @tier3weight1
+	potential = { has_ascension_perk = ap_space_gts }
+
+	weight_modifier = {}
+	ai_weight = {}
+}
+
+tech_shields_gts_2 = {
+
+	# 艦娘校服工藝
+
+	cost = @tier4cost3
+	area = physics
+	tier = 4
+	category = { field_manipulation }
+
+	is_reverse_engineerable = no
+	is_rare = yes
+	is_dangerous = yes
+	weight = @tier4weight1
+	prerequisites = { tech_shields_gts_1 }
+
+	weight_modifier = {}
+	ai_weight = {}
+}
+
+tech_shields_gts_3 = {
+
+	# 艦娘婚紗工藝
+
+	cost = @tier5cost3
+	area = physics
+	tier = 5
+	category = { field_manipulation }
+
+	is_reverse_engineerable = no
+	is_rare = yes
+	is_dangerous = yes
+	weight = @tier5weight1
+	prerequisites = { tech_shields_gts_2 }
+
+	weight_modifier = {}
+	ai_weight = {}
+}
+
+# 武器
+
+tech_point_defence_gts_1 = {
+
+	# 虔信者點防禦
+
+	cost = @tier3cost3
+	area = physics
+	tier = 3
+	category = { propulsion }
+
+	is_reverse_engineerable = no
+	weight = 0
+
+	weight_modifier = {}
+
+	ai_weight = {
+		factor = @ai_ship_types_factor
+	}
+}
+
+tech_flak_battery_gts_2 = {
+
+	# 重型目力防空炮
+
+	cost = @tier3cost3
+	area = physics
+	tier = 3
+	category = { propulsion }
+
+	is_reverse_engineerable = no
+	weight = 0
+
+	weight_modifier = {}
+
+	ai_weight = {
+		factor = @ai_ship_types_factor
+	}
+}
+
+tech_amoeba_strike_craft_gts_1 = {
+
+	# 北海轟炸機
+
+	cost = @tier3cost3
+	area = physics
+	tier = 3
+	category = { propulsion }
+
+	is_reverse_engineerable = no
+	weight = 0
+
+	weight_modifier = {}
+
+	ai_weight = {
+		factor = @ai_ship_types_factor
+	}
+}
+
+tech_amoeba_strike_craft_gts_2 = {
+
+	# 流星戰鬥機
+
+	cost = @tier3cost3
+	area = physics
+	tier = 3
+	category = { propulsion }
+
+	is_reverse_engineerable = no
+	weight = 0
+
+	weight_modifier = {}
+
+	ai_weight = {
+		factor = @ai_ship_types_factor
+	}
+}
+
+tech_torpedoes_gts = {
+
+	# 反艦刺雷
+
+	cost = @tier3cost3
+	area = physics
+	tier = 3
+	category = { propulsion }
+
+	is_reverse_engineerable = no
+	weight = 0
+
+	weight_modifier = {}
+
+	ai_weight = {
+		factor = @ai_ship_types_factor
+	}
+}
+
+tech_kinetic_artillery_gts_3 = {
+
+	# 艦娘軌道巨炮
+
+	cost = @tier3cost3
+	area = physics
+	tier = 3
+	category = { propulsion }
+
+	is_reverse_engineerable = no
+	weight = 0
+
+	weight_modifier = {}
+
+	ai_weight = {
+		factor = @ai_ship_types_factor
+	}
+}
+
+tech_kinetic_artillery_gts_4 = {
+
+	# 艦娘動能主炮
+
+	cost = @tier3cost3
+	area = physics
+	tier = 3
+	category = { propulsion }
+
+	is_reverse_engineerable = no
+	weight = 0
+
+	weight_modifier = {}
+
+	ai_weight = {
+		factor = @ai_ship_types_factor
+	}
+}
+
+tech_kinetic_artillery_gts_5 = {
+
+	# 艦娘動能副炮
+
+	cost = @tier3cost3
+	area = physics
+	tier = 3
+	category = { propulsion }
+
+	is_reverse_engineerable = no
+	weight = 0
+
+	weight_modifier = {}
+
+	ai_weight = {
+		factor = @ai_ship_types_factor
+	}
+}
+
+tech_plasma_gts = {
+
+	# 能量汲取器
+
+	cost = @tier3cost3
+	area = physics
+	tier = 3
+	category = { particles }
+
+	is_reverse_engineerable = no
+	weight = 0
+
+	weight_modifier = {}
+
+	ai_weight = {
+		factor = @ai_ship_types_factor
+	}
+}
+
+tech_lasers_gts = {
+
+	# 人造雷射發射器
+
+	cost = @tier3cost3
+	area = physics
+	tier = 3
+	category = { particles }
+
+	is_reverse_engineerable = no
+	weight = 0
+
+	weight_modifier = {}
+
+	ai_weight = {
+		factor = @ai_ship_types_factor
+	}
+}
+
+tech_scourge_missile_gts_1 = {
+
+	# 生物腐蝕戰劑
+
+	cost = @tier3cost3
+	area = physics
+	tier = 3
+	category = { particles }
+
+	is_reverse_engineerable = no
+	weight = 0
+
+	weight_modifier = {}
+
+	ai_weight = {
+		factor = @ai_ship_types_factor
+	}
+}
+
+tech_scourge_missile_gts_2 = {
+
+	# 生物電弧發射器
+
+	cost = @tier3cost3
+	area = physics
+	tier = 3
+	category = { particles }
+
+	is_reverse_engineerable = no
+	weight = 0
+
+	weight_modifier = {}
+
+	ai_weight = {
+		factor = @ai_ship_types_factor
+	}
+}
+
+tech_energy_lance_gts_1 = {
+
+	# 快子薙刀
+
+	cost = @tier3cost3
+	area = physics
+	tier = 3
+	category = { particles }
+
+	is_reverse_engineerable = no
+	weight = 0
+
+	weight_modifier = {}
+
+	ai_weight = {
+		factor = @ai_ship_types_factor
+	}
+}
+
+tech_energy_lance_gts_2 = {
+
+	# 中子手榴彈
+
+	cost = @tier3cost3
+	area = physics
+	tier = 3
+	category = { particles }
+
+	is_reverse_engineerable = no
+	weight = 0
+
+	weight_modifier = {}
+
+	ai_weight = {
+		factor = @ai_ship_types_factor
+	}
+}
+
+tech_gts_fist = {
+
+	# 給你一拳！
+
+	cost = @tier3cost3
+	area = physics
+	tier = 3
+	category = { particles }
+
+	is_reverse_engineerable = no
+	weight = 0
+
+	weight_modifier = {}
+
+	ai_weight = {
+		factor = @ai_ship_types_factor
+	}
+}
+
+tech_pk_gts_shrink = {
+
+	# 艦載縮小激素製造器
+
+	cost = @tier5cost3
+	area = society
+	tier = 5
+	category = { biology }
+
+	is_reverse_engineerable = no
+	is_rare = yes
+	is_dangerous = yes
+	weight = @tier5weight1
+	prerequisites = { tech_colossus }
+
+	potential = {
+		host_has_dlc = "Apocalypse"
+		has_country_flag = colossus_project
+		# has_ascension_perk = ap_gts_colossus
+	}
+
+	weight_modifier = {}
+	ai_weight = {}
+}
+

@@ -11,6 +11,7 @@ country_event = {
 	trigger = {
 		is_ai = no
 		has_country_flag = can_trigger_humiliate_content
+		years_passed = 100
 	}
 
 	immediate = {
@@ -516,74 +517,94 @@ country_event = {
 	diplomatic = yes
 	custom_gui = "gts_horizontal_event_window"
 	custom_gui_option = "gts_horizontal_event_button"
-	picture_event_data = {
-		room = gts_event_4_room
-	}
+	picture_event_data = { room = gts_event_4_room }
 	show_sound = event_default
 	is_triggered_only = yes
 	fire_only_once = yes
 
 	trigger = {
-		is_ai = no
-		count_owned_pop_amount = {
-			count > 3000
-		}
+		count_owned_pop_amount = { count > 3000 }
 		any_owned_leader = {
-			gts_is_giantess = yes
+			OR = {
+				has_trait = trait_Titan
+				has_trait = trait_Ultra
+			}
 		}
 	}
 
 	immediate = {
 		random_owned_leader = {
 			limit = {
-				gts_is_giantess = yes
+				OR = {
+					has_trait = trait_Titan
+					has_trait = trait_Ultra
+				}
 			}
-			save_event_target_as = gts_humiliate_targert_leader
+			save_event_target_as = gts_bruh_humiliate_targert_leader
 		}
 		random_owned_planet = {
-			limit = {
-				pop_amount > 3000
-			}
-			save_event_target_as = gts_humiliate_targert_planet
+			limit = { pop_amount > 3000 }
+			save_event_target_as = gts_bruh_humiliate_targert_planet
 		}
 	}
 
 	option = {
 		name = gts_evt_humiliate.1050.a
+		custom_tooltip = gts_bruh_casualties_1000.tooltip
+		allow = {
+			resource_stockpile_compare = {
+				resource = trade
+				value >= 10000
+			}
+		}
 		event_target:gts_humiliate_targert_leader = {
 			add_skill = 1
 		}
 		event_target:gts_humiliate_targert_planet = {
+			# 死亡人口
 			while = {
-				count = 25
+				count = 1000
 				random_owned_pop_group = {
 					limit = {
-						NOR = { has_trait = trait_Ultra }
+						NOR = {
+							has_trait = trait_Titan
+							has_trait = trait_Ultra
+						}
 					}
-					kill_single_pop = yes
+					kill_pop_group = {
+						pop_group = This
+						amount = 1
+					}
 				}
 			}
 		}
 		add_resource = {
-			energy = -10000
-			influence = 50
+			trade = -10000
+			influence = 100
 		}
 	}
 
 	option = {
 		name = gts_evt_humiliate.1050.b
+		custom_tooltip = gts_bruh_casualties_3000.tooltip
 		event_target:gts_humiliate_targert_leader = {
 			add_skill = 1
 		}
 		event_target:gts_humiliate_targert_planet = {
-			add_planet_devastation = 25
+			# 死亡人口
 			while = {
-				count = 30
+				count = 3000
 				random_owned_pop_group = {
 					limit = {
-						NOR = { has_trait = trait_Ultra }
+						NOR = {
+							has_trait = trait_Titan
+							has_trait = trait_Ultra
+						}
 					}
-					kill_single_pop = yes
+					kill_pop_group = {
+						pop_group = This
+						amount = 1
+					}
 				}
 			}
 		}

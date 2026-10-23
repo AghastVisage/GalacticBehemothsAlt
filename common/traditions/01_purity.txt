@@ -1,0 +1,208 @@
+tr_purity_adopt = {
+	possible = {
+		custom_tooltip = {
+			fail_text = REQUIRES_FINISHED_EVOLUTION
+			has_country_flag = purity_tradition_unlocked
+		}
+	}
+	unlocks_agenda = agenda_purity_perfection
+	modifier = {
+		leader_lifespan_mult = 0.2
+	}
+}
+
+tr_purity_finish = {
+	custom_tooltip_with_modifiers = tr_purity_finish_tt
+	modifier = {
+		ascension_perks_add = 1
+	}
+
+	on_enabled = {
+		hidden_effect = {
+			country_event = { id = timeline.80 }
+			if = {
+				limit = {
+					is_hive_empire = no
+				}
+				country_event = {
+					id = bio.170
+				}
+			}
+			else = {
+				country_event = {
+					id = bio.185
+				}
+			}
+			luminary_speech_effect = yes
+		}
+	}
+
+	tradition_swap = {
+		# the wilderness recives no alternate authority
+		trigger = {
+			is_wilderness_empire = yes
+		}
+		custom_tooltip_with_modifiers = tr_purity_finish_wilderness_tt
+		modifier = {
+			ascension_perks_add = 1
+		}
+	}
+}
+
+tr_purity_genotype_regeneration = {
+	modifier = {
+	}
+
+	custom_tooltip_with_modifiers = tr_purity_genotype_regeneration_tt
+
+	tradition_swap = {
+		name = tr_purity_genotype_regeneration_wilderness
+		inherit_icon = yes
+		trigger = {
+			is_wilderness_empire = yes
+		}
+		custom_tooltip_with_modifiers = tr_purity_genotype_regeneration_wilderness_tt
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+tr_purity_exemplary_genetics = {
+	possible = {
+		has_tradition = tr_purity_genotype_regeneration
+	}
+	modifier = {
+		BIOLOGICAL_species_trait_points_add = 6
+		BIOLOGICAL_species_trait_picks_add = 2
+		modify_species_cost_mult = -0.50
+	}
+	custom_tooltip_with_modifiers = tr_purity_exemplary_genetics_tt
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+tr_purity_stage_1_swap = {
+	inline_script = {
+		script = traditions/tr_stage_1_tradition_swaps
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+tr_purity_stage_2_swap = {
+	possible = {
+		has_tradition = tr_purity_stage_1_swap
+	}
+
+	inline_script = {
+		script = traditions/tr_stage_2_tradition_swaps
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+tr_purity_stage_3_swap = {
+	possible = {
+		has_tradition = tr_purity_stage_1_swap
+	}
+
+	inline_script = {
+		script = traditions/tr_stage_3_tradition_swaps
+	}
+
+	ai_weight = {
+		factor = 1000
+	}
+}
+
+# Dummy tradition for tooltip generation
+tr_purity_optimized_neurology = {
+	possible = {
+		# Called via tr_stage_1_tradition_swaps
+		always = no
+	}
+
+	# Effects in the inline script for tooltip generation
+	inline_script = {
+		script = traditions/tr_purity_optimized_neurology
+	}
+
+	ai_weight = {
+		factor = 0
+	}
+}
+
+# Dummy tradition for tooltip generation
+tr_purity_heightened_attributes = {
+	possible = {
+		# Called via tr_stage_2_tradition_swaps
+		always = no
+	}
+
+	# Effects in the inline script for tooltip generation
+	inline_script = {
+		script = traditions/tr_purity_heightened_attributes
+	}
+
+	ai_weight = {
+		factor = 0
+	}
+}
+
+# Dummy tradition for tooltip generation
+tr_purity_imperfection_remediation = {
+	possible = {
+		# Called via tr_stage_3_tradition_swaps
+		always = no
+	}
+
+	# Effects in the inline script for tooltip generation
+	inline_script = {
+		script = traditions/tr_purity_imperfection_remediation
+	}
+
+	tradition_swap = {
+		name = tr_purity_imperfection_remediation_xenophile
+		inherit_name = yes
+		inherit_icon = yes
+		trigger = {
+			OR = {
+				is_xenophile = yes
+			}
+		}
+		# Effects in the inline script for tooltip generation
+		inline_script = {
+			script = traditions/tr_purity_imperfection_remediation_xenophile
+		}
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_purity_imperfection_remediation_wilderness
+		inherit_icon = yes
+		trigger = {
+			is_wilderness_empire = yes
+		}
+		# Effects in the inline script for tooltip generation
+		inline_script = {
+			script = traditions/tr_purity_imperfection_remediation_wilderness
+		}
+		weight = {
+			factor = 1
+		}
+	}
+
+	ai_weight = {
+		factor = 0
+	}
+}

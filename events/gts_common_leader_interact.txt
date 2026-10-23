@@ -333,7 +333,14 @@ country_event = {
 country_event = {
 	id = gts_leader_interact.103
 	title = gts_leader_interact.103.name
-	desc = gts_leader_interact.103.desc
+	desc = {
+		trigger = { is_nomadic = no }
+		text = gts_leader_interact.103.desc
+	}
+	desc = {
+		trigger = { is_nomadic = yes }
+		text = gts_leader_interact.103.desc.nomad
+	}
 	is_triggered_only = yes
 	fire_only_once = yes
 	PICTURE = GFX_load_132
@@ -350,8 +357,23 @@ country_event = {
 country_event = {
 	id = gts_leader_interact.104
 	title = gts_leader_interact.104.name
-	desc = gts_leader_interact.104.desc
+	desc = {
+		trigger = { is_nomadic = no }
+		text = gts_leader_interact.104.desc
+	}
+	desc = {
+		trigger = { is_nomadic = yes }
+		text = gts_leader_interact.104.desc.nomad
+	}
 	is_triggered_only = yes
+	# 方舟基址可被替换，毁舰后也允许重建，但同一国家每阶段只推进一次。
+	trigger = {
+		NOR = {
+			has_country_flag = gts_gateway_foundation_reported
+			has_country_flag = gts_gateway_situation_done
+		}
+	}
+	immediate = { set_country_flag = gts_gateway_foundation_reported }
 	location = root.capital_scope
 	show_sound = event_default
 	PICTURE = GFX_load_125
@@ -372,6 +394,14 @@ country_event = {
 	title = gts_leader_interact.105.name
 	desc = gts_leader_interact.105.desc
 	is_triggered_only = yes
+	# 方舟基址可被替换，毁舰后也允许重建，但同一国家每阶段只推进一次。
+	trigger = {
+		NOR = {
+			has_country_flag = gts_gateway_activation_reported
+			has_country_flag = gts_gateway_situation_done
+		}
+	}
+	immediate = { set_country_flag = gts_gateway_activation_reported }
 	location = root.capital_scope
 	show_sound = event_energy_field
 	picture = GFX_evt_astral_rift_crystal_3
@@ -547,6 +577,15 @@ country_event = {
 				is_megastructure_type = gts_gateway_final
 			}
 			remove_megastructure = this
+		}
+		every_owned_ship = {
+			limit = {
+				exists = starbase
+				starbase = { has_starbase_building = gts_arkship_gateway_final }
+			}
+			starbase = {
+				remove_starbase_building = { building = gts_arkship_gateway_final }
+			}
 		}
 	}
 }
@@ -1069,6 +1108,92 @@ country_event = {
 	}
 }
 
+#白浊的深渊
+country_event = {
+	id = gts_leader_interact.1012
+	title = gts_leader_interact.1012.name
+	desc = gts_leader_interact.1012.desc
+	picture = GFX_load_103
+	is_triggered_only = yes
+	location = event_target:gts_leader_planet
+	show_sound = event_air_raid_siren
+	immediate = {
+		gts_set_count_kill_pop_effect = yes
+		event_target:gts_leader_planet = {
+			owner = {
+				#加厌战度
+				if = {
+					limit = {
+						is_at_war_with = root
+					}
+					add_static_war_exhaustion = {
+						attacker = root
+						location = event_target:gts_leader_planet
+						value_for_planet_destruction = 1
+					}
+				}
+			}
+			gts_count_planet_killed_pop_effect = yes
+		}
+		event_target:current_gts_leader = {
+			change_variable = {
+				which = gts_ub_kills_logs
+				value = root.gts_event_kills_logs
+			}
+			change_variable = {
+				which = gts_city_kills_logs
+				value = root.gts_event_city_kills_logs
+			}
+			change_variable = {
+				which = gts_planet_kills_logs
+				value = 1
+			}
+		}
+		gts_leader_interact_cooldown_effect = {
+			DAYS = 180
+		}
+	}
+	option = {
+		name = gts_leader_interact.1012.a
+	}
+	after = {
+		country_event = {
+			id = gts_leader_interact.1013
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_interact.1013
+	title = gts_leader_interact.1013.name
+	desc = gts_leader_interact.1013.desc
+	picture = GFX_load_156
+	is_triggered_only = yes
+	location = event_target:gts_leader_planet
+	show_sound = event_gts_futa_masturbate
+	immediate = {
+		event_target:gts_leader_planet = {
+			remove_planet = yes
+		}
+	}
+	option = {
+		name = gts_leader_interact.1013.a
+		event_target:current_gts_leader = {
+			if = {
+				limit = {
+					NOR = {
+						has_trait = leader_trait_gts_white_abyss
+					}
+				}
+			}
+			add_trait = {
+				trait = leader_trait_gts_white_abyss
+				show_message = no
+			}
+		}
+	}
+}
+
 #星系级行动
 country_event = {
 	#灭星系
@@ -1224,7 +1349,7 @@ country_event = {
 					limit = {
 						has_modifier = holy_planet
 					}
-					planet_event = {
+					carrier_event = {
 						id = planet_destruction.605
 					}
 				}
@@ -1321,7 +1446,7 @@ country_event = {
 					limit = {
 						has_modifier = holy_planet
 					}
-					planet_event = {
+					carrier_event = {
 						id = planet_destruction.605
 					}
 				}
@@ -1431,7 +1556,7 @@ country_event = {
 					limit = {
 						has_modifier = holy_planet
 					}
-					planet_event = {
+					carrier_event = {
 						id = planet_destruction.605
 					}
 				}
@@ -1643,6 +1768,129 @@ country_event = {
 			}
 			add_trait = {
 				trait = leader_trait_battleship_inshoe
+				show_message = no
+			}
+		}
+	}
+}
+
+#污秽的炼狱
+country_event = {
+	id = gts_leader_interact.2006
+	title = gts_leader_interact.2006.name
+	desc = gts_leader_interact.2006.desc
+	is_triggered_only = yes
+	location = event_target:gts_leader_system
+	show_sound = event_red_alert
+	picture = GFX_load_164
+	immediate = {
+		gts_set_count_kill_pop_effect = yes
+		event_target:gts_leader_system = {
+			gts_count_system_killed_pop_effect = yes
+		}
+		event_target:current_gts_leader = {
+			change_variable = {
+				which = gts_ub_kills_logs
+				value = root.gts_event_kills_logs
+			}
+			change_variable = {
+				which = gts_city_kills_logs
+				value = root.gts_event_city_kills_logs
+			}
+			change_variable = {
+				which = gts_planet_kills_logs
+				value = root.gts_event_planet_kills_logs
+			}
+		}
+		add_threat = {
+			who = root
+			amount = 10
+		}
+		root = {
+			save_event_target_as = crisis_country
+			add_victory_score = {
+				source = destroyed_stars_score
+				score = 10
+			}
+		}
+		event_target:gts_leader_planet = {
+			owner = {
+				#加厌战度
+				if = {
+					limit = {
+						is_at_war_with = root
+					}
+					add_static_war_exhaustion = {
+						attacker = root
+						location = event_target:gts_leader_system
+						value_for_planet_destruction = root.gts_event_planet_kills_logs
+					}
+				}
+			}
+			solar_system = {
+				save_event_target_as = destroyed_system
+			}
+			every_playable_country = {
+				limit = {
+					has_communications = event_target:crisis_country
+					NOT = {
+						has_opinion_modifier = {
+							who = event_target:crisis_country
+							modifier = opinion_destroying_systems
+						}
+					}
+				}
+				add_opinion_modifier = {
+					who = event_target:crisis_country
+					modifier = opinion_destroying_systems
+				}
+			}
+			solar_system = {
+				random_system_planet = {
+					limit = {
+						has_modifier = holy_planet
+					}
+					carrier_event = {
+						id = planet_destruction.605
+					}
+				}
+				destroy_star_system = yes
+			}
+		}
+		gts_leader_interact_cooldown_effect = {
+			DAYS = 360
+		}
+	}
+	option = {
+		name = gts_leader_interact.2006.a
+		country_event = {
+			id = gts_leader_interact.2007
+		}
+	}
+}
+
+country_event = {
+	id = gts_leader_interact.2007
+	title = gts_leader_interact.2007.name
+	desc = gts_leader_interact.2007.desc
+	picture = GFX_load_165
+	is_triggered_only = yes
+	location = event_target:gts_leader_system
+	show_sound = event_collapsing_ruins
+	immediate = {
+	}
+	option = {
+		name = gts_leader_interact.2007.a
+		event_target:current_gts_leader = {
+			if = {
+				limit = {
+					NOR = {
+						has_trait = leader_trait_gts_anus_continent
+					}
+				}
+			}
+			add_trait = {
+				trait = leader_trait_gts_anus_continent
 				show_message = no
 			}
 		}

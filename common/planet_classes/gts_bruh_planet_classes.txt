@@ -1,33 +1,36 @@
+################################################################################
+####################                Bruh星球                ####################
+################################################################################
+
+
+
+#  無法殖民的愛液星球
+#  這樣地圖上才不會到處都是
+#  綠色星球
 pc_gts_juice_uncolonizable = {
-	
-	#  無法殖民的愛液星球
-	#  這樣地圖上才不會到處都是
-	#  綠色星球
-	
     entity = "gts_juice_planet"
     entity_scale = @planet_standard_scale
 	icon = GFX_gts_bruh_planet_type_juice_uncolonizable
 	icon_large = GFX_gts_bruh_planet_type_juice_uncolonizable_big
 
-	atmosphere_color		= hsv { 0.71 0.6 0.7 }
-	atmosphere_intensity	= 0.8
-	atmosphere_width		= 1.4
+	atmosphere_color = hsv { 0.97 0.249 0.976 } #F9BBC6
+	atmosphere_intensity = 1
+	atmosphere_width = 0.5
 
+	min_distance_from_sun = @habitable_min_distance
+	max_distance_from_sun = @habitable_max_distance
 	spawn_odds = 0
+
 	extra_orbit_size = 0
 	extra_planet_count = 0
 
-    show_city = no
-	planet_size = {
-		min = @habitable_planet_min_size
-		max = @habitable_planet_max_size
-	}
-	moon_size = {
-		min = @habitable_moon_min_size
-		max = @habitable_moon_max_size
-	}
+	chance_of_ring = 0
+
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
 
 	colonizable = no
+    show_city = no
 }
 
 pc_gts_bruh_white_hole = {
@@ -39,10 +42,11 @@ pc_gts_bruh_white_hole = {
 	icon = GFX_gts_bruh_planet_type_white_hole
 	icon_large = GFX_gts_bruh_planet_type_white_hole_big
 
-	atmosphere_color		= hsv { 0.075 0.13 1.5 }
-	atmosphere_intensity	= 1.0
-	atmosphere_width		= 1.0
+	atmosphere_color = hsv { 0.111 0.099 0.949 } #F2EADA
+	atmosphere_intensity = 1
+	atmosphere_width = 0.5
 
+	climate = "luminosity_0"
 	star = yes
 
 	min_distance_from_sun = 0
@@ -73,12 +77,11 @@ pc_gts_bruh_panties_planet_01 = {
 	atmosphere_intensity	= 1.0
 	atmosphere_width		= 0.5
 
+	modifier = { }
+
 	min_distance_from_sun = @habitable_min_distance
 	max_distance_from_sun = @habitable_max_distance
 	spawn_odds = 0
-	district_set = panties_planet
-	starting_district = district_gts_bruh_panties_planet_01
-	show_city = no
 
 	extra_orbit_size = 0
 	extra_planet_count = 0
@@ -88,8 +91,13 @@ pc_gts_bruh_panties_planet_01 = {
 	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
 	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
 
-	is_artificial_planet = yes
 	colonizable = yes
+	district_set = panties_planet
+	starting_district = district_gts_bruh_panties_planet_01
 	starting_planet = no
+	show_city = no
+	uses_alternative_skies_for_moons = no
+
+	carry_cap_per_free_district = @carry_cap_normal
 }
 

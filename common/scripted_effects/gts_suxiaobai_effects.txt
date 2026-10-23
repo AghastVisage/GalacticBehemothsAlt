@@ -1,0 +1,67 @@
+# Country scope. Also runs once for leaders recruited in an older save.
+gts_suxiaobai_initialize = {
+	every_owned_leader = {
+		limit = { has_leader_flag = gts_suxiaobai }
+		save_global_event_target_as = gts_suxiaobai
+		gts_love_normal_system_launch = yes
+		if = {
+			limit = { NOT = { has_leader_flag = gts_suxiaobai_remastered } }
+			set_leader_flag = gts_suxiaobai_remastered
+			set_immortal = yes
+			add_trait = { trait = gts_trait_leader_suxiaobai_a show_message = no }
+			add_trait = { trait = gts_trait_leader_suxiaobai_b show_message = no }
+			add_trait = { trait = gts_trait_leader_suxiaobai_c show_message = no }
+		}
+	}
+	if = {
+		limit = { NOT = { has_country_flag = gts_suxiaobai_remastered } }
+		set_country_flag = gts_suxiaobai_remastered
+	}
+}
+
+gts_suxiaobai_gain_affection = {
+	every_owned_leader = {
+		limit = { has_leader_flag = gts_suxiaobai }
+		gts_love_system_increase = { value = 5 }
+	}
+}
+
+# Planet scope. Use a planet event so the existing planet conversion effect has
+# its expected ROOT.owner scope. No population is removed during conversion.
+gts_suxiaobai_transform_planet = {
+	planet_event = { id = gts_suxiaobai.52 }
+}
+
+# Planet scope. Called only after validating the opposing primary belligerent's capital.
+# Type and protected-world checks belong here, not in the request's eligibility.
+gts_suxiaobai_strike_capital = {
+	if = {
+		limit = { is_eatable_planet = { ALLOW_CAPITAL = yes } }
+		pc_gts_dirt_change = yes
+	}
+	# Convert while the owner still exists; both outcomes destroy the colony.
+	destroy_colony = yes
+	add_planet_devastation = 100
+	event_target:gts_suxiaobai_requester = {
+		every_owned_leader = {
+			limit = { has_leader_flag = gts_suxiaobai }
+			change_variable = { which = gts_planet_kills_logs value = 1 }
+			add_experience = 100
+		}
+	}
+}
+
+# Planet scope. Destroy the colony only after the caller has validated its target.
+# The requesting country is carried explicitly, never via a global UI target.
+gts_suxiaobai_destroy_planet = {
+	event_target:gts_suxiaobai_requester = {
+		every_owned_leader = {
+			limit = { has_leader_flag = gts_suxiaobai }
+			change_variable = { which = gts_planet_kills_logs value = 1 }
+			add_experience = 100
+		}
+	}
+	destroy_colony = yes
+	clear_deposits = yes
+	change_pc = pc_shattered
+}

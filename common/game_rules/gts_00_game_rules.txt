@@ -1,0 +1,667 @@
+#Root = country
+#This = planet
+can_terraform_planet = {
+	custom_tooltip = {
+		fail_text = terraform_fail_no_presapient_protection_or_no_presapients
+		NAND = {
+			AND = {
+				exists = root
+				root = {
+					has_policy_flag = pre_sapients_protect
+				}
+			}
+			any_owned_species = {
+				is_sapient = no
+				NOT = { has_trait = trait_nascent_stage }
+			}
+		}
+	}
+	custom_tooltip = {
+		fail_text = "requires_actor_not_devouring_swarm_lithoid"
+		exists = root
+		root = { is_lithoid_devouring_swarm = no }
+	}
+	custom_tooltip = {
+		fail_text = "legendary_leader_planet_no_terraform"
+		exists = root
+		if = {
+			limit = {
+				root = { is_wilderness_empire = no }
+			}
+			this = {
+				NOT = { has_carrier_flag = legendary_leader_planet }
+			}
+		}
+	}
+
+	custom_tooltip = {
+		fail_text = requires_not_relentless_industrialists_situation
+		NOT = {
+			any_targeting_situation = {
+				is_situation_type = relentless_industrialists_situation
+			}
+		}
+	}
+
+	custom_tooltip = {
+		fail_text = terraform_fail_is_metal_planet
+		NOT = {
+			has_modifier = metal_planet
+		}
+	}
+
+	custom_tooltip = {
+		fail_text = COLONIZATION_IMPOSSIBLE_DEFENDED_PLANET
+		NOT = { has_carrier_flag = planet_defended_forbid_colonization }
+	}
+
+	custom_tooltip = {
+		fail_text = "COLONIZATION_IMPOSSIBLE_SMEEGIBB_PLANET"
+		NOT = { has_carrier_flag = cannot_colonize_smeegibb_shelter }
+	}
+
+	custom_tooltip = {
+		fail_text = "COLONIZATION_IMPOSSIBLE_WILDERNESS_TECH"
+		OR = {
+			NAND = {
+				owner? = {
+					is_wilderness_empire = yes
+					NOT = { has_technology = tech_terrestrial_sculpting }
+				}
+				OR = {
+					AND = {
+						root = { has_country_flag = started_wet }
+						is_wet = no
+					}
+					AND = {
+						root = { has_country_flag = started_dry }
+						is_dry = no
+					}
+					AND = {
+						root = { has_country_flag = started_cold }
+						is_cold = no
+					}
+				}
+			}
+			is_planet_class = pc_gaia
+		}
+	}
+
+	# 模組添加的東西
+
+	#---------- Bruh ----------
+	#---------- 開始 -----------
+
+	# 巨娘星球不能改造
+
+	custom_tooltip = {
+		fail_text = "giantess_planet_no_terraform"
+		exists = root
+		this = {
+			NOR = {
+				has_planet_flag = giantess_planet
+			}
+		}
+	}
+
+	#---------- Bruh ----------
+	#---------- 結束 -----------
+
+}
+
+# This = country
+can_build_branch_offices = {
+	custom_tooltip = {
+		fail_text = BRANCH_OFFICE_NOT_MEGACORP
+		OR = {
+			is_megacorp = yes
+			has_civic = civic_galactic_sovereign_megacorp
+			has_origin = origin_Ultra_company
+
+			# 模組添加的東西
+
+			#---------- Bruh ----------
+			#---------- 開始 -----------
+
+			OR = {
+				has_authority = auth_hales_panlon
+				has_tradition = tr_aom_panlon_3
+			}
+
+			#---------- Bruh ----------
+			#---------- 結束 -----------
+
+		}
+	}
+}
+
+# This = target country that would support a branch office
+# Root/From = branch office builder when called from branch office UI
+# This = country
+# New Stellaris versions call this as a target-only branch-office support rule.
+# There is no reliable actor scope here, so keep it permissive and apply target restrictions in can_build_branch_office_on_colony for non-Ultra actors.
+# This = target country
+# Kept permissive because this rule is evaluated from the target side and does not reliably expose the branch-office actor.
+can_support_branch_offices = {
+	always = yes
+}
+
+# This = colony
+# Root = country
+# This = colony
+# Root = branch office builder country
+# This = colony
+# Root = branch office builder country
+# This = colony
+# Root/From = branch office builder country, depending on caller.
+can_build_branch_office_on_colony = {
+	if = {
+		limit = {
+			OR = {
+				root? = { has_origin = origin_Ultra_company }
+				from? = { has_origin = origin_Ultra_company }
+			}
+		}
+		# 寰海极宇专用通道：只禁止在自己的殖民地建立分部；兼容 root/from 两种可能的发起者作用域。
+		custom_tooltip = {
+			fail_text = NO_BRANCH_OFFICE_ON_SELF
+			exists = owner
+			OR = {
+				AND = {
+					root? = { has_origin = origin_Ultra_company }
+					owner = { NOT = { is_same_value = root } }
+				}
+				AND = {
+					from? = { has_origin = origin_Ultra_company }
+					owner = { NOT = { is_same_value = from } }
+				}
+			}
+		}
+	}
+	else = {
+		# 普通国家仍然不能在寰海极宇本土建立分部。
+		custom_tooltip = {
+			fail_text = BRANCH_OFFICE_NOT_ULTRA_COMPANY
+			exists = owner
+			owner = {
+				NOT = { has_origin = origin_Ultra_company }
+			}
+		}
+
+		# 因 can_support_branch_offices 被全局放开，普通国家需要在这里重新执行原版目标国家限制。
+		custom_tooltip = {
+			fail_text = BRANCH_OFFICE_NOT_FALLEN_EMPIRES
+			exists = owner
+			owner = {
+				NOR = {
+					is_country_type = fallen_empire
+					is_country_type = awakened_fallen_empire
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = BRANCH_OFFICE_NOT_REGULAR_EMPIRE
+			exists = owner
+			owner = {
+				is_gestalt = no
+				OR = {
+					is_country_type = default
+					is_country_type = primitive
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = BRANCH_OFFICE_NOT_ADVANCED_PRE_FTL
+			exists = owner
+			if = {
+				limit = {
+					owner = {
+						is_primitive = yes
+						is_gestalt = no
+					}
+				}
+				owner = {
+					OR = {
+						has_pre_ftl_age = atomic_age
+						has_pre_ftl_age = early_space_age
+					}
+				}
+			}
+		}
+
+			custom_tooltip = {
+				fail_text = requires_recipient_not_fanatic_purifiers
+				exists = owner
+				owner = {
+					OR = {
+						is_same_species = root
+						NOT = { has_civic = civic_fanatic_purifiers }
+					}
+				}
+			}
+			custom_tooltip = {
+				fail_text = BRANCH_OFFICE_NO_OBSERVATION_OUTPOST
+				if = {
+					limit = {
+						root = { is_criminal_syndicate = yes }
+						owner = { is_primitive = yes }
+					}
+					has_observation_outpost = yes
+					observation_outpost_owner = {
+						is_same_value = root
+					}
+				}
+			}
+			custom_tooltip = {
+				fail_text = BRANCH_OFFICE_NOT_COMMERCIAL_PACT
+				exists = owner
+				OR = {
+					root? = { has_origin = origin_Ultra_company }
+					from? = { has_origin = origin_Ultra_company }
+					root = { is_criminal_syndicate = yes }
+					owner = { has_commercial_pact = root }
+					owner = { is_in_federation_with = root }
+					AND = {
+						has_observation_outpost = yes
+						observation_outpost = {
+							has_modifier = preftl_action_trade_pact
+						}
+					}
+
+					# allow branch offices in subsidiaries and vice versa (and fellow subjects)
+					root = {
+						is_subject = yes
+						OR = {
+							is_megacorp = yes
+							has_civic = civic_galactic_sovereign_megacorp
+						}
+						overlord = {
+							OR = {
+								is_same_value = prevprev.owner
+								is_same_value = prevprev.owner.overlord
+							}
+						}
+					}
+					owner = {
+						is_subject = yes
+						overlord = {
+							OR = {
+								is_same_value = root
+								is_same_value = root.overlord
+							}
+							OR = {
+								is_megacorp = yes
+								has_civic = civic_galactic_sovereign_megacorp
+							}
+						}
+					}
+					AND = {
+						root = { has_civic = civic_galactic_sovereign_megacorp }
+						owner = { is_galactic_community_member = yes }
+					}
+					AND = {
+						root = { has_modifier = imperial_charter }
+						owner = { is_galactic_community_member = yes }
+					}
+				}
+			}
+			custom_tooltip = {
+				fail_text = BRANCH_OFFICE_MEGACORP_OVERLORD
+				exists = owner
+				# failure message for having a corporate overlord
+
+				if = {
+					limit = {
+						OR = {
+							# Not valid if you aren't a subject.
+							root = {
+								is_subject = no
+							}
+							# Or if your overlord isn't a megacorp.
+							root = {
+								is_subject = yes
+								overlord = {
+									NOR = {
+										is_megacorp = yes
+										has_civic = civic_galactic_sovereign_megacorp
+									}
+								}
+							}
+						}
+					}
+					always = yes
+				}
+				else = {
+					AND = {
+						root = {
+							is_subject = yes
+							overlord = {
+								OR = {
+									is_megacorp = yes
+									has_civic = civic_galactic_sovereign_megacorp
+								}
+							}
+						}
+						owner = {
+							OR = {
+								is_subject = no
+								AND = {
+									is_subject = yes
+									overlord = { NOT = { is_same_value = root.overlord } }
+								}
+							}
+						}
+					}
+				}
+			}
+			custom_tooltip = {
+				fail_text = BRANCH_OFFICE_CRIMINAL_HERITAGE_HAS_TRUCE
+				exists = owner
+				OR = {
+					root = { is_criminal_syndicate = no }
+					owner = {
+						NOR = {
+							has_truce = root
+							is_at_war_with = root
+						}
+					}
+				}
+			}
+			custom_tooltip = {
+				fail_text = BRANCH_OFFICE_CRIMINAL_COOLDOWN
+				exists = owner
+				OR = {
+					root = { is_criminal_syndicate = no }
+					AND = {
+						root = { is_criminal_syndicate = yes }
+						NOT = { has_carrier_flag = criminal_branch_closed_cooldown_planet@root }
+					}
+				}
+			}
+			custom_tooltip = {
+				fail_text = NO_BRANCH_OFFICE_ON_AI_WORLD
+				NOT = { is_planet_class = pc_ai }
+			}
+			custom_tooltip = {
+				fail_text = NO_BRANCH_OFFICE_ON_NANITE_WORLD
+				NOT = { is_planet_class = pc_gray_goo }
+			}
+			custom_tooltip = {
+				fail_text = NO_BRANCH_OFFICE_ON_SYNAPTIC_LATHE
+				NOT = { is_planet_class = pc_cosmogenesis_world }
+			}
+			custom_tooltip = {
+				fail_text = NO_BRANCH_OFFICE_ON_SELF
+				owner = {
+					NOT = { is_same_value = root }
+				}
+			}
+	}
+}
+
+#Root = country
+#This = pop_group
+should_abduct_pop_group = {
+	planet = {
+		exists = owner
+		owner = { is_hostile = root }
+	}
+	has_virtual_species_trait = no
+	NAND = {
+		has_citizenship_type = { type = citizenship_purge country = root }
+		NOR = {
+			has_purge_type = { type = purge_matrix country = root }
+			has_purge_type = { type = purge_processing country = root }
+			has_purge_type = { type = purge_labor_camps country = root }
+			has_purge_type = { type = purge_necrophage country = root }
+			has_purge_type = { type = purge_cosmogenesis_lathe_resettle country = root }
+
+			# 模組添加的東西
+
+			#---------- Bruh ----------
+			#---------- 開始 -----------
+
+			has_purge_type = { type = purge_godness_power_lathe_resettle country = root }
+
+			#---------- Bruh ----------
+			#---------- 結束 -----------
+
+		}
+	}
+}
+
+# This = pop_group
+can_resettle_pop_group = {
+	# Self-modified Pops won't leave
+	custom_tooltip = {
+		fail_text = "self_modified_refuse"
+		NOT = { has_trait = trait_self_modified }
+	}
+	# Pathogenic Pops Can't Resettle
+	custom_tooltip = {
+		fail_text = "pathogenic_genes_warning"
+		NOT = { has_trait = trait_pathogenic_genes }
+	}
+	custom_tooltip = {
+		fail_text = "origin_egalitarian_refuse"
+		NAND = {
+			has_ethic = ethic_egalitarian
+			is_enslaved = no
+			planet = { has_modifier = paragon_origin_reformists }
+		}
+	}
+	custom_tooltip = {
+		fail_text = "no_resettling_apps"
+		if = {
+			limit = {
+				has_virtual_species_trait = yes
+			}
+			exists = owner
+			owner = {
+				is_fallen_empire = no
+				NOT = {
+					has_active_tradition = tr_virtuality_adopt
+				}
+			}
+		}
+	}
+	if = { #Done as an IF/ELSE so the tooltip isn't hideous and unreadable
+		limit = { is_shackled_robot = yes }
+		always = yes
+	}
+	else_if = {
+		limit = {
+			planet = {
+				is_doomsday_planet = yes
+			}
+		}
+		always = yes
+	}
+	else_if = {
+		limit = {
+			planet = {
+				has_modifier = planet_culture_shock
+			}
+		}
+		OR = {
+			is_same_species = planet.owner
+			planet = {
+				NOT = { has_modifier = planet_culture_shock }
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			planet = {
+				is_capital = yes
+				pop_amount < 200
+			}
+			NOT = {
+				owner = {
+					any_owned_colony = {
+						is_capital = no
+						NOT = {
+							planet = {
+								is_planet_class = pc_cosmogenesis_world
+							}
+						}
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "no_abandon_capital_for_unviable_planet"
+			always = no
+		}
+	}
+	else_if = {
+		limit = {
+			planet = {
+				is_planet_class = pc_cosmogenesis_world
+				owner = {
+					has_ascension_perk = ap_cosmogenesis
+				}
+				pop_amount < 200
+			}
+		}
+		custom_tooltip = {
+			fail_text = "no_unfueled_lathe"
+			always = no
+		}
+	}
+	else_if = {
+		limit = {
+			planet = {
+				has_deposit = d_genesis_preserve
+				sapient_pop_amount < 200
+			}
+			owner = {
+				is_guided_sapience_empire = yes
+			}
+		}
+		custom_tooltip = {
+			fail_text = "no_abandon_genesis_preserve"
+			always = no
+		}
+	}
+	else_if = {
+		limit = {
+			owner = {
+				has_ascension_perk = ap_cosmogenesis
+			}
+		}
+		always = yes
+	}
+	else_if = {
+		limit = {
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		always = yes
+	}
+	else = {
+		custom_tooltip = {
+			fail_text = RESETTLEMENT_POLICY_FAIL
+			owner = {
+				has_policy_flag = resettlement_allowed
+			}
+		}
+	}
+
+
+	# 模組添加的東西
+
+	#---------- Bruh ----------
+	#---------- 開始 -----------
+
+	if = {
+		limit = {
+			planet = {
+				is_planet_class = pc_godness_power_world
+				owner = {
+					has_ascension_perk = ap_gts_115tiny_crisis
+				}
+				pop_amount < 200
+			}
+		}
+		custom_tooltip = {
+			fail_text = "no_unfueled_gts_115tiny_lathe"
+			always = no
+		}
+	}
+	else_if = {
+		limit = {
+			planet = {
+				is_capital = yes
+				pop_amount < 200
+			}
+			NOT = {
+				owner = {
+					any_owned_planet = {
+						is_capital = no
+						NOT = {
+							is_planet_class = pc_godness_power_world
+						}
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "no_abandon_capital_for_unviable_gts_115tiny_planet"
+			always = no
+		}
+	}
+
+	#---------- Bruh ----------
+	#---------- 結束 -----------
+
+}
+
+# This = Country
+can_country_resettle = {
+	OR = {
+		has_policy_flag = resettlement_allowed
+		is_gestalt = yes
+		has_ascension_perk = ap_cosmogenesis
+
+		# 模組添加的東西
+
+		#---------- Bruh ----------
+		#---------- 開始 -----------
+
+		has_ascension_perk = ap_gts_115tiny_crisis
+
+		#---------- Bruh ----------
+		#---------- 結束 -----------
+
+		custom_tooltip = {
+			text = owns_non_sapient_robots
+			country_has_shackled_robots = yes
+		}
+		hidden_trigger = { #don't need to show this as tooltip only shown when all game rule fails, and this is a special case
+			any_owned_planet = {
+				is_doomsday_planet = yes
+			}
+		}
+	}
+}
+
+# This = Colony
+can_get_colony_events = {
+	NOT = {
+		is_planet_class = "pc_cosmogenesis_world"
+
+		# 模組添加的東西
+
+		#---------- Bruh ----------
+		#---------- 開始 -----------
+
+		is_planet_class = "pc_godness_power_world"
+
+		#---------- Bruh ----------
+		#---------- 結束 -----------
+
+	}
+}
+

@@ -1,220 +1,137 @@
+################################################################################
+####################                體表的星球                ####################
+################################################################################
+
+
+
+# 卵子星球
 pc_gts_luanzi = {
-	# 卵子星球
 	entity = "gts_luanzi_planet"
 	entity_scale = @planet_standard_scale
 	icon = GFX_planet_type_gts_luanzi
-	atmosphere_color = hsv { 0.58 0.3 0.7 }
+	icon_large = GFX_planet_type_gts_luanzi
+
+	climate = "wet"
+
+	atmosphere_color = hsv { 0.97 0.249 0.976 } #F9BBC6
 	atmosphere_intensity = 1
 	atmosphere_width = 0.5
-	city_color_lut = "gfx/portraits/misc/colorcorrection_tropical.dds"
-	modifier = {
-		planet_jobs_produces_mult = 0.1
-		biological_pop_happiness = 0.1
-		lithoid_pop_happiness = 0.1
-		planet_resettlement_unemployed_destination_mult = 0.5
-	}
-	min_distance_from_sun = 60
-	max_distance_from_sun = 95
+
+	modifier = { }
+
+	min_distance_from_sun = @habitable_min_distance
+	max_distance_from_sun = @habitable_max_distance
 	spawn_odds = 0
+
 	extra_orbit_size = 0
 	extra_planet_count = 0
-	chance_of_ring = 0.2
-	planet_size = {
-		min = @habitable_planet_min_size
-		max = @habitable_planet_max_size
-	}
-	moon_size = {
-		min = @habitable_moon_min_size
-		max = @habitable_moon_max_size
-	}
-	is_artificial_planet = yes #避免都市星球决议
+
+	chance_of_ring = 0
+
+	planet_size = { min = 50 max = 50 }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+
 	colonizable = yes
 	district_set = gts_body
 	starting_district = district_body_1
-	ideal = yes
 	starting_planet = no
+	show_city = no
 	uses_alternative_skies_for_moons = no
-	uses_alternative_skies_if_has_orbital_ring = yes
+
 	carry_cap_per_free_district = @carry_cap_high
 }
 
+# 歐若拉
 pc_gtsra_loli = {
-	# 萝莉星球
 	entity = "loliplanet"
 	entity_scale = @planet_standard_scale
 	icon = GFX_planet_type_gts_loli
-	enable_tilt = no
-	atmosphere_color = hsv { 0.58 0.3 0.7 }
+	icon_large = GFX_planet_type_gts_loli
+
+	climate = "wet"
+
+	atmosphere_color = hsv { 0.963 0.71 0.812 } #CF3C5DFF
 	atmosphere_intensity = 1
 	atmosphere_width = 0.5
-	show_city = no
-	city_color_lut = "gfx/portraits/misc/colorcorrection_tropical.dds"
-	modifier = {
-		pop_environment_tolerance = 1
-		planet_building_build_speed_mult = -0.25
-	}
-	min_distance_from_sun = 60
-	max_distance_from_sun = 95
+
+	modifier = { }
+
+	min_distance_from_sun = @habitable_min_distance
+	max_distance_from_sun = @habitable_max_distance
 	spawn_odds = 0
+
 	extra_orbit_size = 0
 	extra_planet_count = 0
-	chance_of_ring = 0.2
-	is_artificial_planet = yes
-	planet_size = {
-		min = 50
-		max = 50
-	}
-	moon_size = {
-		min = 50
-		max = 50
-	}
+
+	chance_of_ring = 0
+
+	planet_size = { min = 50 max = 50 }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+
 	colonizable = yes
 	district_set = gts_body
 	starting_district = district_body_1
-	ideal = yes
 	starting_planet = no
-	uses_alternative_skies_for_moons = no
-	uses_alternative_skies_if_has_orbital_ring = yes
-	carry_cap_per_free_district = @carry_cap_high
-	single_build_queue = yes
-}
-
-pc_gtsra_shipgirl_body = {
-	# 舰娘身体
-	entity = "loliplanet"
-	entity_scale = @planet_standard_scale
-	icon = GFX_planet_type_gts_shipgirl_body
-	icon_large = GFX_planet_type_gts_shipgirl_body_large
-	enable_tilt = no
-	atmosphere_color = hsv { 0.58 0.3 0.7 }
-	atmosphere_intensity = 1
-	atmosphere_width = 0.5
 	show_city = no
-	city_color_lut = "gfx/portraits/misc/colorcorrection_tropical.dds"
-	modifier = {
-		pop_environment_tolerance = 1
-		planet_building_build_speed_mult = -0.25
-	}
-	min_distance_from_sun = 60
-	max_distance_from_sun = 95
-	spawn_odds = 0
-	extra_orbit_size = 0
-	extra_planet_count = 0
-	chance_of_ring = 0.2
-	is_artificial_planet = yes
-	planet_size = {
-		min = 50
-		max = 50
-	}
-	moon_size = {
-		min = 50
-		max = 50
-	}
-	colonizable = yes
-	district_set = gts_body
-	starting_district = district_body_1
-	ideal = yes
-	starting_planet = no
 	uses_alternative_skies_for_moons = no
-	uses_alternative_skies_if_has_orbital_ring = yes
+
 	carry_cap_per_free_district = @carry_cap_high
-	single_build_queue = yes
 }
 
+# 歐若拉 - 出生線
 pc_gtsra_loli_slave = {
-	#萝莉星球（出生线
 	entity = "lolislaveplanet"
 	entity_scale = @planet_standard_scale
 	icon = GFX_planet_type_gts_loli
-	enable_tilt = no
-	atmosphere_color = hsv { 0.58 0.3 0.7 }
+	icon_large = GFX_planet_type_gts_loli
+
+	climate = "wet"
+
+	atmosphere_color = hsv { 0.963 0.71 0.812 } #CF3C5DFF
 	atmosphere_intensity = 1
 	atmosphere_width = 0.5
-	show_city = no
-	city_color_lut = "gfx/portraits/misc/colorcorrection_tropical.dds"
-	modifier = {
-		pop_environment_tolerance = 1
-		planet_building_build_speed_mult = -0.25
-	}
-	min_distance_from_sun = 60
-	max_distance_from_sun = 95
+
+	modifier = { }
+
+	min_distance_from_sun = @habitable_min_distance
+	max_distance_from_sun = @habitable_max_distance
 	spawn_odds = 0
+
 	extra_orbit_size = 0
 	extra_planet_count = 0
-	chance_of_ring = 0.2
-	planet_size = {
-		min = 50
-		max = 50
-	}
-	moon_size = {
-		min = 50
-		max = 50
-	}
-	is_artificial_planet = yes
+
+	chance_of_ring = 0
+
+	planet_size = { min = 50 max = 50 }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+
 	colonizable = yes
 	district_set = gts_body
 	starting_district = district_body_1
-	ideal = yes
 	starting_planet = no
-	uses_alternative_skies_for_moons = no
-	uses_alternative_skies_if_has_orbital_ring = yes
-	carry_cap_per_free_district = @carry_cap_high
-}
-
-pc_gts_kasa = {
-	# 卡萨
-	entity = "black_hole_entity"
-	entity_scale = @planet_standard_scale
-	icon = GFX_planet_type_black_hole
-	enable_tilt = no
-	atmosphere_color = hsv { 0.58 0.3 0.7 }
-	atmosphere_intensity = 1
-	atmosphere_width = 0.5
 	show_city = no
-	city_color_lut = "gfx/portraits/misc/colorcorrection_tropical.dds"
-	modifier = {
-		pop_environment_tolerance = 1
-		planet_building_build_speed_mult = -0.25
-	}
-	min_distance_from_sun = 60
-	max_distance_from_sun = 95
-	spawn_odds = 0
-	extra_orbit_size = 0
-	extra_planet_count = 0
-	chance_of_ring = 0.2
-	planet_size = {
-		min = 50
-		max = 50
-	}
-	moon_size = {
-		min = 50
-		max = 50
-	}
-	is_artificial_planet = yes
-	colonizable = yes
-	district_set = gts_body
-	starting_district = district_body_1
-	ideal = yes
-	starting_planet = no
 	uses_alternative_skies_for_moons = no
-	uses_alternative_skies_if_has_orbital_ring = yes
+
 	carry_cap_per_free_district = @carry_cap_high
 }
 
+# 大紀久成惠 - 恆星
 pc_cheng_hui = {
 	entity = "cheng_hui_entity"
 	entity_scale = 20.0
-	picture = "pc_f_star"
 	icon = GFX_planet_type_f_g_star
+	icon_large = GFX_planet_type_f_g_star_big
 
-	atmosphere_color		= hsv { 0.6 0.3 0.6 }
-	atmosphere_intensity	= 1.0
-	atmosphere_width		= 0.5
+	atmosphere_color = hsv { 0.111 0.099 0.949 } #F2EADA
+	atmosphere_intensity = 1
+	atmosphere_width = 0.5
 
+	climate = "luminosity_0"
 	star = yes
 
 	min_distance_from_sun = 0
 	max_distance_from_sun = 0
+
 	spawn_odds = 0
 
 	extra_orbit_size = 0
@@ -225,7 +142,6 @@ pc_cheng_hui = {
 	planet_size = { min = 20 max = 35 }
 
 	colonizable = no
-	is_artificial_planet = yes
 }
 
 pc_gts_yarong = {
@@ -541,3 +457,47 @@ pc_gts_test1_planet = {
 	uses_alternative_skies_if_has_orbital_ring = yes
 	carry_cap_per_free_district = @carry_cap_high
 }
+
+
+
+# 已廢棄
+
+#pc_gts_kasa = {
+#	# 卡萨
+#	entity = "black_hole_entity"
+#	entity_scale = @planet_standard_scale
+#	icon = GFX_planet_type_black_hole
+#	enable_tilt = no
+#	atmosphere_color = hsv { 0.58 0.3 0.7 }
+#	atmosphere_intensity = 1
+#	atmosphere_width = 0.5
+#	show_city = no
+#	city_color_lut = "gfx/portraits/misc/colorcorrection_tropical.dds"
+#	modifier = {
+#		pop_environment_tolerance = 1
+#		planet_building_build_speed_mult = -0.25
+#	}
+#	min_distance_from_sun = 60
+#	max_distance_from_sun = 95
+#	spawn_odds = 0
+#	extra_orbit_size = 0
+#	extra_planet_count = 0
+#	chance_of_ring = 0.2
+#	planet_size = {
+#		min = 50
+#		max = 50
+#	}
+#	moon_size = {
+#		min = 50
+#		max = 50
+#	}
+#	is_artificial_planet = yes
+#	colonizable = yes
+#	district_set = gts_body
+#	starting_district = district_body_1
+#	ideal = yes
+#	starting_planet = no
+#	uses_alternative_skies_for_moons = no
+#	uses_alternative_skies_if_has_orbital_ring = yes
+#	carry_cap_per_free_district = @carry_cap_high
+#}

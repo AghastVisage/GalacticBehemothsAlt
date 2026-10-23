@@ -1,481 +1,923 @@
 namespace = gts_suxiaobai
-# 苏小白招募事件
+# Tunable defaults where the design document does not specify an amount.
+@research_gift = 5000
+@basic_gift = 10000
+@alloy_gift = 2500
 country_event = {
+	# Buying the lead creates an unexplored system with a preset anomaly.
 	id = gts_suxiaobai.900
-	title = gts_suxiaobai.900.name
-	desc = gts_suxiaobai.900.desc
-	diplomatic = yes
-	custom_gui = "gts_vertical_event_window"
-	picture_event_data = {
-		room = gts_suxiaobai_1_room
-	}
-	show_sound = event_red_alert
-	location = event_target:gts_suxiaobai_target_planet
 	is_triggered_only = yes
+	hide_window = yes
 	trigger = {
-		any_owned_planet = {
-			pop_amount >= 400
-			has_anomaly = no
-			NOT = {
-				exists = archaeological_site
-			}
-			NOR = {
-				is_planet_class = pc_shielded
-				is_planet_class = pc_ringworld_shielded
-				is_planet_class = pc_habitat_shielded
-				is_eatable_planet = no
-			}
-
+		is_ai = no
+		gts_intel_has_anchor = { COUNTRY = root }
+		NOT = {
+			gts_has_suxiaobai = yes
+		}
+		NOT = {
+			exists = event_target:gts_suxiaobai_ring_system
 		}
 	}
-
 	immediate = {
-		random_owned_planet = {
-			limit = {
-				pop_amount >= 400
-				has_anomaly = no
-				NOT = {
-					exists = archaeological_site
-				}
-				NOR = {
-					is_planet_class = pc_shielded
-					is_planet_class = pc_ringworld_shielded
-					is_planet_class = pc_habitat_shielded
-					is_eatable_planet = no
-				}
+		set_global_flag = gts_has_trigger_suxiaobai
+		random_system = {
+ limit = { gts_intel_anchor_system = { COUNTRY = root } }
+ save_event_target_as = gts_intel_spawn_anchor
+ 
+ spawn_system = {
+ min_distance = 10
+ max_distance = 30
+ max_jumps = 0
+ hyperlane = no
+ is_discovered = no
+initializer = gts_suxiaobai_ring_system
+ effect = {
+  add_hyperlane = { from = this to = event_target:gts_intel_spawn_anchor }
+  
+ }
+}
+}
+	}
+}
 
-			}
-			save_event_target_as = gts_suxiaobai_target_planet
-			while = {
-				count = 4
-				random_owned_pop_group = {
-					kill_single_pop = yes
-				}
-			}
-			pc_gts_juice_change = yes
+ship_event = {
+	# Anomaly success: ROOT = researching ship, FROM = ring section.
+	id = gts_suxiaobai.901
+	is_triggered_only = yes
+	title = gts_suxiaobai.901.name
+	desc = gts_suxiaobai.901.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = { room = gts_suxiaobai_6_room }
+	show_sound = event_default
+	location = from
+	trigger = {
+		from = {
+			has_planet_flag = gts_suxiaobai_ring_research
+			NOT = { exists = archaeological_site }
+		}
+		owner = {
+			is_ai = no
+			NOT = { gts_has_suxiaobai = yes }
+		}
+	}
+	immediate = {
+		from = {
+			prevent_anomaly = yes
+			create_archaeological_site = gts_suxiaobai_ring_site
 		}
 	}
 	option = {
-		name = gts_suxiaobai.900.a
-		hidden_effect = {
-			country_event = {
-				id = gts_suxiaobai.999
+		name = gts_suxiaobai.901.a
+	}
+}
+
+fleet_event = {
+	id = gts_suxiaobai.910
+	is_triggered_only = yes
+	title = gts_suxiaobai.910.name
+	desc = gts_suxiaobai.910.desc
+	picture = GFX_gts_suxiaobai_2
+	show_sound = event_default
+	archaeology = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_suxiaobai.910.a
+	}
+}
+
+fleet_event = {
+	id = gts_suxiaobai.911
+	is_triggered_only = yes
+	title = gts_suxiaobai.911.name
+	desc = gts_suxiaobai.911.desc
+	picture = GFX_gts_suxiaobai_6
+	show_sound = event_default
+	archaeology = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_suxiaobai.911.a
+	}
+}
+
+fleet_event = {
+	id = gts_suxiaobai.912
+	is_triggered_only = yes
+	title = gts_suxiaobai.912.name
+	desc = gts_suxiaobai.912.desc
+	picture = GFX_gts_suxiaobai_3
+	show_sound = event_default
+	archaeology = yes
+	immediate = {
+		from = {
+			set_site_progress_locked = yes
+		}
+	}
+	after = {
+		from = {
+			set_site_progress_locked = no
+		}
+	}
+	option = {
+		name = gts_suxiaobai.912.a
+		owner = {
+			if = {
+				limit = {
+					NOT = {
+						exists = event_target:gts_suxiaobai
+					}
+				}
+				country_event = {
+					id = gts_suxiaobai.999
+				}
+			}
+		}
+		event_target:gts_suxiaobai_ring_system = {
+			if = {
+				limit = { NOT = { has_star_flag = gts_suxiaobai_ring_restored } }
+				set_star_flag = gts_suxiaobai_ring_restored
+				every_system_planet = {
+					limit = {
+						has_planet_flag = gts_suxiaobai_ring_habitable
+					}
+					# Also repairs ring sections created by older versions.
+					if = {
+						limit = { is_planet_class = pc_ringworld_habitable_damaged }
+						change_pc = pc_ringworld_habitable
+					}
+					set_planet_size = 10
+					add_modifier = {
+						modifier = gts_suxiaobai_ring_self_repair
+						days = -1
+					}
+				}
+				star = {
+					add_deposit = d_minerals_10
+					add_deposit = d_energy_10
+				}
 			}
 		}
 	}
 }
 
 country_event = {
-	# 苏小白领袖招募
 	id = gts_suxiaobai.999
-	title = "gts_suxiaobai.999.name"
-	desc = "gts_suxiaobai.999.desc"
-	show_sound = event_celebration
+	title = gts_suxiaobai.999.name
+	desc = gts_suxiaobai.999.desc
 	is_triggered_only = yes
+	trigger = {
+		NOT = {
+			gts_has_suxiaobai = yes
+		}
+		OR = {
+			NOT = { exists = event_target:gts_suxiaobai }
+			event_target:gts_suxiaobai = {
+				NOT = { has_leader_flag = hired_gts_leader }
+			}
+		}
+	}
 	picture = GFX_leader_recruitment_bg_renowned
+	show_sound = event_celebration
 	auto_opens = yes
 	event_window_type = leader_recruit
-	notification_event_icon = "GFX_message_leader_gts_suxiaobai"
+	notification_event_icon = GFX_message_leader_gts_suxiaobai
 	immediate = {
-		gts_leader_suxiaobai_hired = yes
+		if = {
+			limit = { NOT = { exists = event_target:gts_suxiaobai } }
+			gts_leader_suxiaobai_hired = yes
+		}
 	}
 	picture_event_data = {
-		portrait = event_target:gts_leader
+		portrait = event_target:gts_suxiaobai
 		room = ethic_spaceship_room
 	}
 	option = {
 		name = gts_suxiaobai.999.a
-		response_text = gts_suxiaobai.999.a.response
 		is_dialog_only = yes
+		response_text = gts_suxiaobai.999.a.response
 	}
 	option = {
 		name = gts_suxiaobai.999.b
-		response_text = gts_suxiaobai.999.b.response
 		is_dialog_only = yes
+		response_text = gts_suxiaobai.999.b.response
 	}
 	option = {
 		name = gts_suxiaobai.999.c
-		response_text = gts_suxiaobai.999.c.response
 		is_dialog_only = yes
+		response_text = gts_suxiaobai.999.c.response
 	}
 	option = {
 		name = HIRE
 		tag = hire_leader
 		custom_tooltip = gts_suxiaobai.999.hire_custom_tooltip
 		hidden_effect = {
-			gts_leader_hire_effect = { TYPE = legendary }
+			event_target:gts_suxiaobai = {
+				save_event_target_as = gts_leader
+			}
+			gts_leader_hire_effect = {
+				TYPE = legendary
+			}
+			gts_suxiaobai_initialize = yes
 		}
 	}
 	option = {
+		name = gts_suxiaobai.999.later
 		tag = dismiss_leader
-		name = END_TRANSMISSION
 		hidden_effect = {
-			country_event = {
-				id = gts_suxiaobai.999
-			}
-		}
-	}
-}
-country_event = {
-	id = gts_suxiaobai.1000
-	title = gts_suxiaobai.1000.name
-	desc = gts_suxiaobai.1000.desc
-	is_triggered_only = yes
-	diplomatic = yes
-	custom_gui = "enclave_curator_window"
-	picture_event_data = {
-		#room =
-		portrait = event_target:gts_suxiaobai
-	}
-	option = {
-		name = gts_suxiaobai.1000.1
-		is_dialog_only = yes
-		response_text = gts_suxiaobai.1000.1a
-		hidden_effect = {
-			event_target:gts_suxiaobai = {
-				change_leader_portrait = gts_portrait_suxiaobai
-			}
-		}
-	}
-	option = {
-		name = gts_suxiaobai.1000.2
-		is_dialog_only = yes
-		response_text = gts_suxiaobai.1000.2a
-		hidden_effect = {
-			event_target:gts_suxiaobai = {
-				change_leader_portrait = gts_portrait_suxiaobai_2
-			}
-		}
-	}
-
-	option = {
-		name = gts_leave
-		default_hide_option = yes
-	}
-}
-
-#苏小白陆战胜利
-country_event = {
-	id = gts_suxiaobai.100
-	title = gts_suxiaobai.100.name
-	desc = gts_suxiaobai.100.desc
-	picture = GFX_gts_suxiaobai_2
-	show_sound = event_default
-	location = event_target:gts_attackers_win_planet
-	is_triggered_only = yes
-
-	option = {
-		name = gts_suxiaobai.100.a
-		hidden_effect = {
-			country_event = {
-				id = gts_suxiaobai.101
-			}
-		}
-	}
-	option = {
-		name = gts_suxiaobai.100.b
-		hidden_effect = {
-			country_event = {
-				id = gts_suxiaobai.102
-			}
+			country_event = { id = gts_suxiaobai.999 days = 30 }
 		}
 	}
 }
 
 country_event = {
-	id = gts_suxiaobai.101
-	title = gts_suxiaobai.101.name
-	desc = gts_suxiaobai.101.desc
-	diplomatic = yes
-	custom_gui = "gts_vertical_event_window"
-	picture_event_data = {
-		room = gts_suxiaobai_9_room
-	}
-	show_sound = event_super_explosion
-	location = event_target:gts_attackers_win_planet
+    # 苏小白联动事件触发器
+	id = gts_suxiaobai.1
 	is_triggered_only = yes
-
+	hide_window = yes
+	trigger = {
+		gts_has_suxiaobai = yes
+	}
 	immediate = {
+		gts_suxiaobai_initialize = yes
 		every_owned_leader = {
 			limit = {
 				has_leader_flag = gts_suxiaobai
 			}
-			save_event_target_as = gts_bruh_suxiaobai_kill_count
+			gts_suxiaobai_clear_negative_traits = yes
 		}
-		event_target:gts_attackers_win_planet = {
-
-			# 計算人口數量
-			export_trigger_value_to_variable = {
-				trigger = pop_amount
-				variable = gts_bruh_get_planet_killed_pop_count
-			}
-			divide_variable = {
-				which = gts_bruh_get_planet_killed_pop_count
-				value = 3
-			}
-			round_variable = gts_bruh_get_planet_killed_pop_count
-
-			# 計算城市數量
-			export_trigger_value_to_variable = {
-				trigger = pop_amount
-				variable = gts_bruh_get_planet_destroyed_city_count
-			}
-			divide_variable = {
-				which = gts_bruh_get_planet_destroyed_city_count
-				value = 100
-			}
-			round_variable = gts_bruh_get_planet_destroyed_city_count
-
-			# 計算經驗獲取
-			export_trigger_value_to_variable = {
-				trigger = pop_amount
-				variable = gts_bruh_get_experience_count
-			}
-			divide_variable = {
-				which = gts_bruh_get_experience_count
-				value = 10
-			}
-			round_variable = gts_bruh_get_experience_count
-		}
-	}
-
-	option = {
-		name = gts_suxiaobai.101.a
-		event_target:gts_bruh_suxiaobai_kill_count = {
-			change_variable = {
-				which = gts_vore_kills_logs
-				value = event_target:gts_attackers_win_planet.gts_bruh_get_planet_killed_pop_count
-			}
-			change_variable = {
-				which = gts_ub_kills_logs
-				value = event_target:gts_attackers_win_planet.gts_bruh_get_planet_killed_pop_count
-			}
-			change_variable = {
-				which = gts_feet_kills_logs
-				value = event_target:gts_attackers_win_planet.gts_bruh_get_planet_killed_pop_count
-			}
-			change_variable = {
-				which = gts_city_kills_logs
-				value = event_target:gts_attackers_win_planet.gts_bruh_get_planet_destroyed_city_count
-			}
-			change_variable = {
-				which = gts_planet_kills_logs
-				value = 1
-			}
-			hidden_effect = {
-				change_variable = {
-					which = gts_bruh_get_experience_count
-					value = event_target:gts_attackers_win_planet.gts_bruh_get_experience_count
+		if = {
+			limit = {
+				is_ai = no
+				any_owned_leader = {
+					has_leader_flag = gts_skadi
 				}
-				add_experience = gts_bruh_get_experience_count
 			}
-		}
-		event_target:gts_attackers_win_planet = {
-			if = {
-				# 把居住站刪了
-				limit = {
-					is_planet_class = pc_habitat
-				}
-				destroy_colony = yes
-				remove_planet = yes
-			}
-			else = {
-				add_planet_devastation = 50
-				add_deposit = d_gts_suxiaobai_a
+			country_event = {
+				id = gts_suxiaobai.30
 			}
 		}
 	}
 }
+
 country_event = {
-	id = gts_suxiaobai.102
-	title = gts_suxiaobai.102.name
-	desc = gts_suxiaobai.102.desc
+    # 苏小白日常事件触发器
+	id = gts_suxiaobai.10
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = {
+		is_ai = no
+		gts_has_suxiaobai = yes
+	}
+	immediate = {
+		random_list = {
+			1 = {
+				country_event = {
+					id = gts_suxiaobai.11
+					days = 30
+				}
+			}
+			1 = {
+				country_event = {
+					id = gts_suxiaobai.12
+					days = 30
+				}
+			}
+			1 = {
+				country_event = {
+					id = gts_suxiaobai.13
+					days = 30
+				}
+			}
+			1 = {
+				country_event = {
+					id = gts_suxiaobai.20
+					days = 30
+				}
+			}
+			16 = {
+
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_suxiaobai.11
+	is_triggered_only = yes
+	title = gts_suxiaobai.11.name
+	desc = gts_suxiaobai.11.desc
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_suxiaobai_14_room
+	}
+	show_sound = event_default
+	trigger = {
+		gts_has_suxiaobai = yes
+	}
+	option = {
+		name = gts_suxiaobai.11.a
+		add_resource = {
+			physics_research = @research_gift
+			society_research = @research_gift
+			engineering_research = @research_gift
+		}
+		add_modifier = {
+			modifier = gts_suxiaobai_inspiration
+			days = 1800
+		}
+		hidden_effect = {
+			gts_suxiaobai_gain_affection = yes
+		}
+	}
+}
+
+country_event = {
+	id = gts_suxiaobai.12
+	is_triggered_only = yes
+	title = gts_suxiaobai.12.name
+	desc = gts_suxiaobai.12.desc
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_suxiaobai_17_room
+	}
+	show_sound = event_default
+	trigger = {
+		gts_has_suxiaobai = yes
+	}
+	option = {
+		name = gts_suxiaobai.12.a
+		add_resource = {
+			minerals = @basic_gift
+			food = @basic_gift
+			alloys = @alloy_gift
+		}
+		hidden_effect = {
+			gts_suxiaobai_gain_affection = yes
+		}
+	}
+}
+
+country_event = {
+	id = gts_suxiaobai.13
+	is_triggered_only = yes
+	title = gts_suxiaobai.13.name
+	desc = gts_suxiaobai.13.desc
+	picture = GFX_gts_suxiaobai_3
+	show_sound = event_default
+	trigger = {
+		gts_has_suxiaobai = yes
+	}
+	option = {
+		name = gts_suxiaobai.13.a
+		random_list = {
+			1 = {
+				add_resource = {
+					energy = @basic_gift
+				}
+			}
+			1 = {
+				add_resource = {
+					physics_research = @research_gift
+					society_research = @research_gift
+					engineering_research = @research_gift
+				}
+			}
+			1 = {
+				add_resource = {
+					alloys = @alloy_gift
+					minor_artifacts = 100
+				}
+			}
+		}
+		hidden_effect = {
+			gts_suxiaobai_gain_affection = yes
+		}
+	}
+}
+
+country_event = {
+	id = gts_suxiaobai.20
+	is_triggered_only = yes
+	title = gts_suxiaobai.20.name
+	desc = gts_suxiaobai.20.desc
+	picture = GFX_gts_suxiaobai_5
+	show_sound = event_default
+	trigger = {
+		is_ai = no
+		gts_has_suxiaobai = yes
+		any_owned_leader = {
+			is_special_leader = yes
+			NOT = {
+				has_leader_flag = gts_suxiaobai
+			}
+		}
+	}
+	immediate = {
+		random_owned_leader = {
+			limit = {
+				is_special_leader = yes
+				NOT = {
+					has_leader_flag = gts_suxiaobai
+				}
+			}
+			save_event_target_as = gts_suxiaobai_guest
+		}
+	}
+	option = {
+		name = gts_suxiaobai.20.a
+		allow = {
+			exists = event_target:gts_suxiaobai_guest
+			event_target:gts_suxiaobai_guest = {
+				is_owned_by = root
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_suxiaobai.21
+			}
+		}
+	}
+	option = {
+		name = gts_suxiaobai.20.b
+		hidden_effect = {
+			country_event = {
+				id = gts_suxiaobai.22
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_suxiaobai.21
+	is_triggered_only = yes
+	title = gts_suxiaobai.21.name
+	desc = gts_suxiaobai.21.desc
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_suxiaobai_17_room
+	}
+	show_sound = event_default
+	option = {
+		name = gts_suxiaobai.21.a
+		event_target:gts_suxiaobai_guest = {
+			if = {
+				limit = {
+					is_owned_by = root
+				}
+				add_trait = {
+					trait = gts_trait_leader_suxiaobai_d
+					show_message = yes
+				}
+				add_experience = 500
+			}
+		}
+		hidden_effect = {
+			gts_suxiaobai_gain_affection = yes
+		}
+	}
+}
+
+country_event = {
+	id = gts_suxiaobai.22
+	is_triggered_only = yes
+	title = gts_suxiaobai.22.name
+	desc = gts_suxiaobai.22.desc
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_suxiaobai_14_room
+	}
+	show_sound = event_default
+	option = {
+		name = gts_suxiaobai.22.a
+	}
+}
+
+country_event = {
+	id = gts_suxiaobai.30
+	is_triggered_only = yes
+	title = gts_suxiaobai.30.name
+	desc = gts_suxiaobai.30.desc
+	picture = GFX_gts_suxiaobai_8
+	show_sound = event_default
+	trigger = {
+		gts_has_suxiaobai = yes
+		any_owned_leader = {
+			has_leader_flag = gts_skadi
+		}
+	}
+	option = {
+		name = gts_suxiaobai.30.a
+		hidden_effect = {
+			country_event = { id = gts_suxiaobai.31 }
+		}
+	}
+}
+
+country_event = {
+	id = gts_suxiaobai.31
+	is_triggered_only = yes
+	title = gts_suxiaobai.31.name
+	desc = gts_suxiaobai.31.desc
 	diplomatic = yes
 	custom_gui = "gts_horizontal_event_window"
 	custom_gui_option = "gts_horizontal_event_button"
 	picture_event_data = {
 		room = gts_suxiaobai_7_room
 	}
-	show_sound = event_gts_masturbate
-	location = event_target:gts_attackers_win_planet
-	is_triggered_only = yes
-
+	show_sound = event_default
 	option = {
-		name = gts_suxiaobai.102.a
-		hidden_effect = {
-			country_event = {
-				id = gts_suxiaobai.103
+		name = gts_suxiaobai.31.a
+		add_resource = {
+			food = 50000
+		}
+	}
+	option = {
+		name = gts_suxiaobai.31.b
+		random_list = {
+			50 = {
+				add_resource = {
+					energy = 50000
+				}
+			}
+			50 = {
+				add_resource = {
+					alloys = 50000
+				}
 			}
 		}
 	}
 }
+
 country_event = {
-	id = gts_suxiaobai.103
-	title = gts_suxiaobai.103.name
-	desc = gts_suxiaobai.103.desc
+	id = gts_suxiaobai.51
+	is_triggered_only = yes
+	title = gts_suxiaobai.51.name
+	desc = gts_suxiaobai.51.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_suxiaobai_6_room
+	}
+	show_sound = event_default
+	location = event_target:gts_suxiaobai_gift_planet
+	option = {
+		name = gts_suxiaobai.51.a
+		allow = {
+			gts_has_suxiaobai = yes
+			exists = event_target:gts_suxiaobai_gift_planet
+			event_target:gts_suxiaobai_gift_planet = {
+				is_owned_by = root
+				is_occupied_flag = no
+				is_colony = yes
+				is_eatable_planet = yes
+				NOT = {
+					is_planet_class = pc_gts_juice
+				}
+			}
+		}
+		custom_tooltip = gts_suxiaobai_transform_tooltip
+		hidden_effect = {
+			if = {
+				limit = {
+					gts_has_suxiaobai = yes
+					exists = event_target:gts_suxiaobai_gift_planet
+					event_target:gts_suxiaobai_gift_planet = {
+						is_owned_by = root
+						is_occupied_flag = no
+						is_colony = yes
+						is_eatable_planet = yes
+						NOT = {
+							is_planet_class = pc_gts_juice
+						}
+					}
+				}
+				event_target:gts_suxiaobai_gift_planet = {
+					gts_suxiaobai_transform_planet = yes
+				}
+				gts_suxiaobai_gain_affection = yes
+			}
+		}
+	}
+	option = {
+		name = gts_suxiaobai.cancel
+	}
+}
+
+planet_event = {
+	id = gts_suxiaobai.52
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = {
+		is_colony = yes
+		is_eatable_planet = yes
+	}
+	immediate = {
+		pc_gts_juice_change = yes
+		if = {
+			limit = {
+				NOT = {
+					has_modifier = gts_suxiaobai_a
+				}
+			}
+			add_modifier = {
+				modifier = gts_suxiaobai_a
+				days = -1
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_suxiaobai.60
+	is_triggered_only = yes
+	title = gts_suxiaobai.60.name
+	desc = gts_suxiaobai.60.desc
+	picture = GFX_gts_suxiaobai_4
+	show_sound = event_default
+	location = event_target:gts_suxiaobai_strike_planet
+	# on_war_beginning: ROOT = participant, FROM = war.
+	trigger = {
+		gts_has_suxiaobai = yes
+		NOT = { has_country_flag = gts_suxiaobai_support_cooldown }
+		exists = from
+		from = {
+			OR = {
+				AND = {
+					defender = { is_same_value = root }
+					attacker = {
+						exists = capital_scope
+						capital_scope = { is_colony = yes }
+					}
+				}
+				AND = {
+					attacker = { is_same_value = root }
+					defender = {
+						exists = capital_scope
+						capital_scope = { is_colony = yes }
+					}
+				}
+			}
+		}
+	}
+	immediate = {
+		save_event_target_as = gts_suxiaobai_requester
+		from = {
+			save_event_target_as = gts_suxiaobai_support_war
+			if = {
+				limit = { attacker = { is_same_value = root } }
+				defender = { save_event_target_as = gts_suxiaobai_enemy }
+			}
+			else = {
+				attacker = { save_event_target_as = gts_suxiaobai_enemy }
+			}
+		}
+		event_target:gts_suxiaobai_enemy = {
+			capital_scope = { save_event_target_as = gts_suxiaobai_strike_planet }
+		}
+	}
+	option = {
+		name = gts_suxiaobai.60.a
+		allow = { gts_suxiaobai_can_request_support = yes }
+		custom_tooltip = gts_suxiaobai_war_support_tooltip
+		hidden_effect = {
+			if = {
+				limit = { gts_suxiaobai_can_request_support = yes }
+				event_target:gts_suxiaobai_strike_planet = { gts_suxiaobai_strike_capital = yes }
+				set_timed_country_flag = { flag = gts_suxiaobai_support_cooldown days = 3600 }
+				country_event = { id = gts_suxiaobai.61 }
+			}
+		}
+	}
+	option = {
+		name = gts_suxiaobai.cancel
+	}
+}
+
+country_event = {
+	id = gts_suxiaobai.61
+	is_triggered_only = yes
+	title = gts_suxiaobai.61.name
+	desc = gts_suxiaobai.61.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_suxiaobai_16_room
+	}
+	show_sound = event_default
+	location = event_target:gts_suxiaobai_strike_planet
+	option = {
+		name = gts_suxiaobai.61.a
+	}
+}
+
+country_event = {
+	id = gts_suxiaobai.100
+	is_triggered_only = yes
+	title = gts_suxiaobai.100.name
+	desc = gts_suxiaobai.100.desc
+	picture = GFX_gts_suxiaobai_7
+	show_sound = event_default
+	trigger = {
+		gts_has_suxiaobai = yes
+		exists = event_target:gts_attackers_win_planet
+		event_target:gts_attackers_win_planet = {
+			gts_suxiaobai_occupied_planet = yes
+		}
+	}
+	location = event_target:gts_attackers_win_planet
+	immediate = {
+		save_event_target_as = gts_suxiaobai_requester
+		event_target:gts_attackers_win_planet = {
+			save_event_target_as = gts_suxiaobai_conquered_planet
+		}
+	}
+	option = {
+		name = gts_suxiaobai.100.a
+		hidden_effect = {
+			country_event = {
+				id = gts_suxiaobai.104
+			}
+		}
+	}
+	option = {
+		name = gts_suxiaobai.100.b
+		allow = {
+			gts_has_suxiaobai = yes
+			event_target:gts_suxiaobai_conquered_planet = {
+				gts_suxiaobai_occupied_planet = yes
+			}
+		}
+		custom_tooltip = gts_suxiaobai_destroy_tooltip
+		hidden_effect = {
+			event_target:gts_suxiaobai_conquered_planet = {
+				gts_suxiaobai_destroy_planet = yes
+			}
+			gts_suxiaobai_gain_affection = yes
+			country_event = {
+				id = gts_suxiaobai.105
+			}
+		}
+	}
+	option = {
+		name = gts_suxiaobai.100.c
+		allow = {
+			gts_has_suxiaobai = yes
+			event_target:gts_suxiaobai_conquered_planet = {
+				gts_suxiaobai_occupied_planet = yes
+			}
+		}
+		custom_tooltip = gts_suxiaobai_transform_tooltip
+		hidden_effect = {
+			event_target:gts_suxiaobai_conquered_planet = {
+				gts_suxiaobai_transform_planet = yes
+			}
+			gts_suxiaobai_gain_affection = yes
+			country_event = {
+				id = gts_suxiaobai.106
+			}
+		}
+	}
+	option = {
+		name = gts_suxiaobai.100.d
+		allow = {
+			gts_has_suxiaobai = yes
+			event_target:gts_suxiaobai_conquered_planet = {
+				gts_suxiaobai_occupied_planet = yes
+			}
+		}
+		custom_tooltip = gts_suxiaobai_transform_tooltip
+		hidden_effect = {
+			event_target:gts_suxiaobai_conquered_planet = {
+				gts_suxiaobai_transform_planet = yes
+			}
+			gts_suxiaobai_gain_affection = yes
+			country_event = {
+				id = gts_suxiaobai.107
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_suxiaobai.104
+	is_triggered_only = yes
+	title = gts_suxiaobai.104.name
+	desc = gts_suxiaobai.104.desc
 	diplomatic = yes
 	custom_gui = "gts_vertical_event_window"
 	picture_event_data = {
-		room = gts_suxiaobai_8_room
+		room = gts_suxiaobai_13_room
 	}
-	show_sound = event_gts_masturbate
-	location = event_target:gts_attackers_win_planet
-	is_triggered_only = yes
-
-	immediate = {
-		every_owned_leader = {
-			limit = {
-				has_leader_flag = gts_suxiaobai
-			}
-			save_event_target_as = gts_bruh_suxiaobai_kill_count
-		}
-		event_target:gts_attackers_win_planet = {
-
-			# 計算人口數量
-			export_trigger_value_to_variable = {
-				trigger = pop_amount
-				variable = gts_bruh_get_planet_killed_pop_count
-			}
-			divide_variable = {
-				which = gts_bruh_get_planet_killed_pop_count
-				value = 3
-			}
-			round_variable = gts_bruh_get_planet_killed_pop_count
-
-			# 計算城市數量
-			export_trigger_value_to_variable = {
-				trigger = pop_amount
-				variable = gts_bruh_get_planet_destroyed_city_count
-			}
-			divide_variable = {
-				which = gts_bruh_get_planet_destroyed_city_count
-				value = 100
-			}
-			round_variable = gts_bruh_get_planet_destroyed_city_count
-
-			# 計算經驗獲取
-			export_trigger_value_to_variable = {
-				trigger = pop_amount
-				variable = gts_bruh_get_experience_count
-			}
-			divide_variable = {
-				which = gts_bruh_get_experience_count
-				value = 10
-			}
-			round_variable = gts_bruh_get_experience_count
-		}
-	}
-
+	show_sound = event_default
 	option = {
-		name = gts_suxiaobai.103.a
-		event_target:gts_bruh_suxiaobai_kill_count = {
-			change_variable = {
-				which = gts_vore_kills_logs
-				value = event_target:gts_attackers_win_planet.gts_bruh_get_planet_killed_pop_count
-			}
-			change_variable = {
-				which = gts_ub_kills_logs
-				value = event_target:gts_attackers_win_planet.gts_bruh_get_planet_killed_pop_count
-			}
-			change_variable = {
-				which = gts_feet_kills_logs
-				value = event_target:gts_attackers_win_planet.gts_bruh_get_planet_killed_pop_count
-			}
-			change_variable = {
-				which = gts_city_kills_logs
-				value = event_target:gts_attackers_win_planet.gts_bruh_get_planet_destroyed_city_count
-			}
-			change_variable = {
-				which = gts_planet_kills_logs
-				value = 1
-			}
-			hidden_effect = {
-				change_variable = {
-					which = gts_bruh_get_experience_count
-					value = event_target:gts_attackers_win_planet.gts_bruh_get_experience_count
-				}
-				add_experience = gts_bruh_get_experience_count
-			}
-		}
-		event_target:gts_attackers_win_planet = {
-			if = {
-				# 把居住站刪了
-				limit = {
-					is_planet_class = pc_habitat
-				}
-				destroy_colony = yes
-				remove_planet = yes
-			}
-			else = {
-				pc_gts_juice_change = yes
-				add_modifier = {
-					modifier = gts_suxiaobai_a
-				}
-			}
-		}
+		name = gts_suxiaobai.104.a
 	}
 }
 
-#苏小白舰队战胜利
+country_event = {
+	id = gts_suxiaobai.105
+	is_triggered_only = yes
+	title = gts_suxiaobai.105.name
+	desc = gts_suxiaobai.105.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_suxiaobai_16_room
+	}
+	show_sound = event_default
+	option = {
+		name = gts_suxiaobai.105.a
+	}
+}
+
+country_event = {
+	id = gts_suxiaobai.106
+	is_triggered_only = yes
+	title = gts_suxiaobai.106.name
+	desc = gts_suxiaobai.106.desc
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_suxiaobai_17_room
+	}
+	show_sound = event_default
+	option = {
+		name = gts_suxiaobai.106.a
+	}
+}
+
+country_event = {
+	id = gts_suxiaobai.107
+	is_triggered_only = yes
+	title = gts_suxiaobai.107.name
+	desc = gts_suxiaobai.107.desc
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_suxiaobai_14_room
+	}
+	show_sound = event_default
+	option = {
+		name = gts_suxiaobai.107.a
+	}
+}
+
+country_event = {
+	id = gts_suxiaobai.101
+	is_triggered_only = yes
+	hide_window = yes
+}
+
+country_event = {
+	id = gts_suxiaobai.102
+	is_triggered_only = yes
+	hide_window = yes
+}
+
+country_event = {
+	id = gts_suxiaobai.103
+	is_triggered_only = yes
+	hide_window = yes
+}
+
 country_event = {
 	id = gts_suxiaobai.110
-	title = gts_suxiaobai.110.name
-	desc = gts_suxiaobai.110.desc
-	diplomatic = yes
-	custom_gui = "enclave_curator_window"
-	picture_event_data = {
-		#room =
-		portrait = event_target:gts_suxiaobai
-	}
-	fire_only_once = yes
-	show_sound = event_default
 	is_triggered_only = yes
-	trigger = {
-		any_owned_leader = {
-			has_leader_flag = gts_suxiaobai
-		}
-	}
-	option = {
-		name = gts_suxiaobai.110.a
-		custom_tooltip = gts_suxiaobai.110.a.tooltip
-	}
-	option = {
-		name = gts_suxiaobai.110.b
-		custom_tooltip = gts_suxiaobai.110.b.tooltip
-		hidden_effect = {
-			country_event = {
-				id = gts_suxiaobai.111
-			}
-		}
-	}
+	hide_window = yes
 }
+
 country_event = {
 	id = gts_suxiaobai.111
-	title = gts_suxiaobai.111.name
-	desc = gts_suxiaobai.111.desc
-	diplomatic = yes
-	custom_gui = "enclave_curator_window"
-	picture_event_data = {
-		#room =
-		portrait = event_target:gts_suxiaobai
-	}
-	show_sound = event_gts_masturbate
 	is_triggered_only = yes
-
-	option = {
-		name = gts_suxiaobai.111.a
-		random_owned_fleet = {
-			limit = {
-				this.leader = {
-					has_leader_flag = gts_suxiaobai
-				}
-			}
-			set_mia = mia_return_home
-		}
-	}
+	hide_window = yes
 }
 
-# 苏小白林凤联动事件
 country_event = {
 	id = gts_suxiaobai.200
 	title = gts_suxiaobai.200.name
@@ -594,5 +1036,89 @@ country_event = {
 			min = @tier5unitymin
 			max = @tier5unitymax
 		}
+	}
+}
+
+country_event = {
+	id = gts_suxiaobai.1000
+	title = gts_suxiaobai.1000.name
+	desc = gts_suxiaobai.1000.desc
+	is_triggered_only = yes
+	trigger = {
+		gts_has_suxiaobai = yes
+	}
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		portrait = event_target:gts_suxiaobai
+	}
+	option = {
+		name = gts_suxiaobai.999.a
+		response_text = gts_suxiaobai.999.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_suxiaobai.999.b
+		response_text = gts_suxiaobai.999.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_suxiaobai.999.c
+		response_text = gts_suxiaobai.999.c.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = gts_suxiaobai.1000.1
+		is_dialog_only = yes
+		response_text = gts_suxiaobai.1000.1a
+		hidden_effect = {
+			event_target:gts_suxiaobai = {
+				change_leader_portrait = gts_portrait_suxiaobai
+			}
+		}
+	}
+	option = {
+		name = gts_suxiaobai.1000.2
+		is_dialog_only = yes
+		response_text = gts_suxiaobai.1000.2a
+		hidden_effect = {
+			event_target:gts_suxiaobai = {
+				change_leader_portrait = gts_portrait_suxiaobai_2
+			}
+		}
+	}
+	option = {
+		name = gts_suxiaobai.1000.3
+		is_dialog_only = yes
+		response_text = gts_suxiaobai.1000.3a
+		hidden_effect = {
+			event_target:gts_suxiaobai = {
+				change_leader_portrait = gts_portrait_suxiaobai_3
+			}
+		}
+	}
+	option = {
+		name = gts_suxiaobai.1000.4
+		is_dialog_only = yes
+		response_text = gts_suxiaobai.1000.4a
+		hidden_effect = {
+			event_target:gts_suxiaobai = {
+				change_leader_portrait = gts_portrait_suxiaobai_4
+			}
+		}
+	}
+	option = {
+		name = gts_suxiaobai.1000.5
+		is_dialog_only = yes
+		response_text = gts_suxiaobai.1000.5a
+		hidden_effect = {
+			event_target:gts_suxiaobai = {
+				change_leader_portrait = gts_portrait_suxiaobai_5
+			}
+		}
+	}
+	option = {
+		name = gts_leave
+		default_hide_option = yes
 	}
 }

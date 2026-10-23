@@ -11,10 +11,11 @@ event = {
             limit = {
                 OR = {
                     is_ai = no
-                    any_owned_leader = { is_gts_love_leader = yes }
+                    any_owned_leader = { has_leader_flag = has_gts_love_trait_normal }
                 }
             }
             every_owned_leader = {
+                limit = { has_leader_flag = has_gts_love_trait_normal }
                 leader_event = {
                    id = gts_event_love.1
                 }
@@ -35,7 +36,7 @@ leader_event = {
         NOT = {
             has_leader_flag = gts_love_auto_change_no
         }
-        has_leader_flag = has_gts_love_trait
+        is_gts_love_leader = yes
         NAND = {
             NOT = { has_leader_flag = gts_married }
             check_variable = { which = gts_love_logs value >= gts_love_level5 }
@@ -53,7 +54,7 @@ leader_event = {
     is_triggered_only = yes
 
     trigger = {
-        has_leader_flag = has_gts_love_trait
+        is_gts_love_leader = yes
     }
 
     immediate = {
@@ -83,7 +84,7 @@ country_event = {
 
     trigger = {
         ruler = {
-            has_leader_flag = has_gts_love_trait
+            is_gts_love_leader = yes
         }
     }
 
@@ -101,12 +102,12 @@ country_event = {
 
     trigger = {
         from = {
-            has_leader_flag = has_gts_love_trait
+            is_gts_love_leader = yes
         }
     }
 
     immediate = {
-        ruler = {
+        from = {
             gts_love_normal_system_check = yes
         }
     }

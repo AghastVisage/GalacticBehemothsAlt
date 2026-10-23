@@ -38,6 +38,11 @@ tr_modularity_1 = {
 		planet_jobs_worker_produces_mult = 0.1
 		auto_mod_monthly_add = 400
 	}
+	ai_weight = {
+		factor = 1000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_modularity_1_gts
 		inherit_effects = yes
@@ -45,7 +50,6 @@ tr_modularity_1 = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -56,14 +60,13 @@ tr_modularity_1 = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
-	}
-	ai_weight = {
-		factor = 1000
 	}
 }
 
@@ -82,14 +85,25 @@ tr_modularity_2 = {
 		}
 		custom_tooltip_with_modifiers = tr_modularity_2_modifier_gestalt_desc
 	}
+	modifier = {
+		planet_pop_assemblers_sr_living_metal_upkeep_add = 0.15
+	}
+	custom_tooltip_with_modifiers = tr_modularity_2_modifier_desc
+	ai_weight = {
+		factor = 1000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_modularity_2_gts
 		inherit_effects = yes
 		inherit_icon = yes
 		trigger = {
 			gts_is_giantess_empire = yes
+			NOT = {
+				is_gestalt = yes
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -100,18 +114,16 @@ tr_modularity_2 = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
+			NOT = {
+				is_gestalt = yes
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
-	}
-	modifier = {
-		planet_pop_assemblers_sr_living_metal_upkeep_add = 0.15
-	}
-	custom_tooltip_with_modifiers = tr_modularity_2_modifier_desc
-	ai_weight = {
-		factor = 1000
 	}
 }
 
@@ -131,14 +143,27 @@ tr_modularity_3 = {
 		}
 		custom_tooltip_with_modifiers = tr_modularity_3_modifier_gestalt_desc
 	}
+	modifier = {
+		planet_stability_add = 5
+		army_damage_mult = 0.5
+	}
+	custom_tooltip_with_modifiers = tr_modularity_3_modifier_desc
+
+	ai_weight = {
+		factor = 1000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_modularity_3_gts
 		inherit_effects = yes
 		inherit_icon = yes
 		trigger = {
 			gts_is_giantess_empire = yes
+			NOT = {
+				is_gestalt = yes
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -149,20 +174,16 @@ tr_modularity_3 = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
+			NOT = {
+				is_gestalt = yes
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
-	}
-	modifier = {
-		planet_stability_add = 5
-		army_damage_mult = 0.5
-	}
-	custom_tooltip_with_modifiers = tr_modularity_3_modifier_desc
-
-	ai_weight = {
-		factor = 1000
 	}
 }
 
@@ -180,14 +201,22 @@ tr_modularity_4 = {
 			planet_bio_trophies_unity_produces_add = 1
 		}
 	}
+	custom_tooltip_with_modifiers = tr_modularity_4_modifier_desc
+	ai_weight = {
+		factor = 1000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_modularity_4_gts
 		inherit_effects = yes
 		inherit_icon = yes
 		trigger = {
 			gts_is_giantess_empire = yes
+			NOT = {
+				has_valid_civic = civic_machine_servitor
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -198,15 +227,16 @@ tr_modularity_4 = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
+			NOT = {
+				has_valid_civic = civic_machine_servitor
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
-	}
-	custom_tooltip_with_modifiers = tr_modularity_4_modifier_desc
-	ai_weight = {
-		factor = 1000
 	}
 }
 
@@ -214,6 +244,17 @@ tr_modularity_5 = {
 	possible = {
 		has_tradition = tr_modularity_3
 	}
+	modifier = {
+		MACHINE_species_trait_points_add = 4
+		MACHINE_species_trait_picks_add = 4
+		modify_species_cost_mult = -0.5
+	}
+	custom_tooltip_with_modifiers = tr_modularity_5_modifier_desc
+	ai_weight = {
+		factor = 1000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_modularity_5_gts
 		inherit_effects = yes
@@ -221,7 +262,6 @@ tr_modularity_5 = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -232,19 +272,12 @@ tr_modularity_5 = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
-	}
-	modifier = {
-		MACHINE_species_trait_points_add = 4
-		MACHINE_species_trait_picks_add = 4
-		modify_species_cost_mult = -0.5
-	}
-	custom_tooltip_with_modifiers = tr_modularity_5_modifier_desc
-	ai_weight = {
-		factor = 1000
 	}
 }

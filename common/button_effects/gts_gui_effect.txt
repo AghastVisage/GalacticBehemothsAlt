@@ -4,47 +4,489 @@ gts_ora_book_botton_1_effect = {
     allow = {
     }
     potential = {
+        from = {
+            gts_ora_book_detail_open_trigger = no
+        }
     }
     effect = {
-        country_event = {
-            id = gts_ora.1007
+        from = {
+            if = {
+                limit = {
+                    has_tradition = tradition_gts_ora_3
+                    NOT = { has_country_flag = gts_ora_1007_active }
+                }
+                country_event = {
+                    id = gts_ora.1007
+                }
+            }
+            hidden_effect = {
+
+
+            }
+
         }
-        hidden_effect = {
-
-
-        }
-
     }
 }
 #未来
 gts_ora_book_botton_2_effect = {
     allow = {
-        custom_tooltip = gts_ora_book_botton_2_effect_allow
-        always = no
     }
     potential = {
+        from = {
+            gts_ora_book_detail_open_trigger = no
+        }
     }
     effect = {
-        hidden_effect = {
-
-
+        from = {
+            if = {
+                limit = {
+                    has_country_flag = gts_orangez_hired
+                }
+                hidden_effect = {
+                    remove_country_flag = gts_ora_book_botton_2_warning_available
+                    set_country_flag = gts_ora_book_detail_opened
+                }
+            }
+            else = {
+                if = {
+                    limit = {
+                        not = {
+                            has_country_flag = gts_ora_book_botton_after_available
+                        }
+                    }
+                    custom_tooltip = gts_ora_book_botton_after_available
+                }
+                if = {
+                    limit = {
+                        has_country_flag = gts_ora_book_botton_after_available
+                    }
+                    set_country_flag = gts_ora_book_botton_2_warning_available
+                }
+            }
         }
-
     }
 }
+gts_ora_book_botton_2_warning_effect = {
+    allow = {
+    }
+    potential = {
+        from = {
+            gts_ora_book_detail_open_trigger = no
+            NOT = { has_country_flag = gts_orangez_hired }
+            has_country_flag = gts_ora_book_botton_2_warning_available
+        }
+    }
+    effect = {
+        from = {
+            if = {
+                limit = {
+                    has_country_flag = gts_ora_book_botton_2_warning_available
+                    NOT = {
+                        has_country_flag = gts_ora_1024_actived
+                    }
+                }
+                remove_country_flag = gts_ora_book_botton_2_warning_available
+                country_event = {
+                    id = gts_ora.1024
+                }
+            }
+            if = {
+                limit = {
+                    has_country_flag = gts_ora_book_botton_2_warning_available
+                    has_country_flag = gts_ora_1024_actived
+                }
+                remove_country_flag = gts_ora_book_botton_2_warning_available
+            }
+        }
+    }
+}
+
+
+
 #现在
 gts_ora_book_botton_3_effect = {
     allow = {
-        custom_tooltip = gts_ora_book_botton_2_effect_allow
-        always = no
     }
     potential = {
+        from = {
+            gts_ora_book_detail_open_trigger = no
+        }
+    }
+    effect = {
+        from = {
+            if = {
+                limit = {
+                    NOT = {
+                        has_country_flag = gts_ora_book_botton_now_available
+                    }
+                }
+                custom_tooltip = gts_ora_book_botton_now_available
+            }
+            if = {
+                limit = {
+                    has_country_flag = gts_ora_book_botton_now_available
+                    NOT = {
+                        has_country_flag = gts_ora_1116_actived
+                    }
+                }
+                country_event = {
+                    id = gts_ora.1116
+                }
+            }
+        }
+    }
+}
+gts_bfbf_district_width_3 = {
+    potential = {
+        # always = yes
+    }
+    allow = {
+        always = yes
+    }
+    effect = {
+        random_list = {
+            0 = {
+                modifier = {
+                    add = value:gts_num_planet_districts|DISTRICT|district_bfbf_bronya_0|
+                }
+                # district_bfbf_bronya_0 result
+            }
+            0 = {
+                modifier = {
+                    add = value:gts_num_planet_districts|DISTRICT|district_bfbf_bronya_1|
+                }
+                # district_bfbf_bronya_1 result
+            }
+            0 = {
+                modifier = {
+                    add = value:gts_num_planet_districts|DISTRICT|district_bfbf_bronya_2|
+                }
+                # district_bfbf_bronya_2 result
+            }
+            0 = {
+                modifier = {
+                    add = value:gts_num_planet_districts|DISTRICT|district_bfbf_bronya_3|
+                }
+                # district_bfbf_bronya_3 result
+            }
+            0 = {
+                modifier = {
+                    add = value:gts_num_planet_districts|DISTRICT|district_bfbf_bronya_4|
+                }
+                # district_bfbf_bronya_4 result
+            }
+            0 = {
+                modifier = {
+                    add = value:gts_num_planet_districts|DISTRICT|district_bfbf_bronya_5|
+                }
+                # district_bfbf_bronya_5 result
+            }
+            0 = {
+                modifier = {
+                    add = value:gts_num_planet_districts|DISTRICT|district_bfbf_bronya_6|
+                }
+                # district_bfbf_bronya_6 result
+            }
+            0 = {
+                modifier = {
+                    add = value:gts_num_planet_districts|DISTRICT|district_bfbf_bronya_7|
+                }
+                # district_bfbf_bronya_7 result
+            }
+            0 = {
+                modifier = {
+                    add = value:gts_num_planet_districts|DISTRICT|district_bfbf_bronya_8|
+                }
+                # district_bfbf_bronya_8 result
+            }
+            0 = {
+                modifier = {
+                    add = value:gts_num_planet_districts|DISTRICT|district_bfbf_bronya_9|
+                }
+                # district_bfbf_bronya_9 result
+            }
+            0 = {
+                modifier = {
+                    add = value:gts_num_planet_districts|DISTRICT|district_bfbf_bronya_10|
+                }
+                # district_bfbf_bronya_10 result
+            }
+        }
+        random_list = {
+            0 = {
+                modifier = {
+                    add = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_0|
+                }
+                # district_bfbf_seele_0 result
+            }
+            0 = {
+                modifier = {
+                    add = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_1|
+                }
+                # district_bfbf_seele_1 result
+            }
+            0 = {
+                modifier = {
+                    add = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_2|
+                }
+                # district_bfbf_seele_2 result
+            }
+            0 = {
+                modifier = {
+                    add = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_3|
+                }
+                # district_bfbf_seele_3 result
+            }
+            0 = {
+                modifier = {
+                    add = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_4|
+                }
+                # district_bfbf_seele_4 result
+            }
+            0 = {
+                modifier = {
+                    add = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_5|
+                }
+                # district_bfbf_seele_5 result
+            }
+            0 = {
+                modifier = {
+                    add = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_6|
+                }
+                # district_bfbf_seele_6 result
+            }
+            0 = {
+                modifier = {
+                    add = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_7|
+                }
+                # district_bfbf_seele_7 result
+            }
+            0 = {
+                modifier = {
+                    add = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_8|
+                }
+                # district_bfbf_seele_8 result
+            }
+            0 = {
+                modifier = {
+                    add = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_9|
+                }
+                # district_bfbf_seele_9 result
+            }
+            0 = {
+                modifier = {
+                    add = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_10|
+                }
+                # district_bfbf_seele_10 result
+            }
+        }
+        random_list = {
+            0 = {
+                modifier = {
+                    add = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_li_0|
+                }
+                # district_bfbf_seele_li_0 result
+            }
+            0 = {
+                modifier = {
+                    add = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_li_1|
+                }
+                # district_bfbf_seele_li_1 result
+            }
+            0 = {
+                modifier = {
+                    add = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_li_2|
+                }
+                # district_bfbf_seele_li_2 result
+            }
+            0 = {
+                modifier = {
+                    add = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_li_3|
+                }
+                # district_bfbf_seele_li_3 result
+            }
+            0 = {
+                modifier = {
+                    add = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_li_4|
+                }
+                # district_bfbf_seele_li_4 result
+            }
+            0 = {
+                modifier = {
+                    add = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_li_5|
+                }
+                # district_bfbf_seele_li_5 result
+            }
+            0 = {
+                modifier = {
+                    add = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_li_6|
+                }
+                # district_bfbf_seele_li_6 result
+            }
+            0 = {
+                modifier = {
+                    add = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_li_7|
+                }
+                # district_bfbf_seele_li_7 result
+            }
+            0 = {
+                modifier = {
+                    add = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_li_8|
+                }
+                # district_bfbf_seele_li_8 result
+            }
+            0 = {
+                modifier = {
+                    add = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_li_9|
+                }
+                # district_bfbf_seele_li_9 result
+            }
+            0 = {
+                modifier = {
+                    add = value:gts_num_planet_districts|DISTRICT|district_bfbf_seele_li_10|
+                }
+                # district_bfbf_seele_li_10 result
+            }
+        }
+    }
+}
+
+
+
+
+#招募完成
+gts_ora_book_home_effect = {
+    potential = {
+        from = {
+            gts_ora_book_detail_open_trigger = no
+        }
+    }
+    allow = {
+        always = yes
+    }
+    effect = {
+    }
+}
+
+gts_ora_book_ending_effect = {
+    potential = {
+        from = {
+            has_country_flag = gts_orangez_hired
+            gts_ora_book_detail_open_trigger = yes
+        }
+    }
+    allow = {
+        always = yes
+    }
+    effect = {
+    }
+}
+
+gts_ora_book_ending_back_effect = {
+    potential = {
+        from = {
+            has_country_flag = gts_orangez_hired
+            gts_ora_book_detail_open_trigger = yes
+        }
+    }
+    allow = {
+        always = yes
     }
     effect = {
         hidden_effect = {
-
-
+            from = {
+                remove_country_flag = gts_ora_book_detail_opened
+            }
         }
+    }
+}
 
+gts_ora_book_ending_meteor_1_effect = {
+    potential = {
+        from = {
+            has_country_flag = gts_orangez_hired
+            gts_ora_book_detail_open_trigger = yes
+        }
+    }
+    allow = {
+        always = yes
+    }
+    effect = {
+        custom_tooltip = gts_ora_book_ending_meteor_1_tooltip
+    }
+}
+
+gts_ora_book_ending_meteor_2_effect = {
+    potential = {
+        from = {
+            has_country_flag = gts_orangez_hired
+            gts_ora_book_detail_open_trigger = yes
+        }
+    }
+    allow = {
+        always = yes
+    }
+    effect = {
+        custom_tooltip = gts_ora_book_ending_meteor_2_tooltip
+    }
+}
+
+gts_ora_book_ending_meteor_3_effect = {
+    potential = {
+        from = {
+            has_country_flag = gts_orangez_hired
+            gts_ora_book_detail_open_trigger = yes
+        }
+    }
+    allow = {
+        always = yes
+    }
+    effect = {
+        custom_tooltip = gts_ora_book_ending_meteor_3_tooltip
+    }
+}
+
+gts_ora_book_ending_meteor_4_effect = {
+    potential = {
+        from = {
+            has_country_flag = gts_orangez_hired
+            gts_ora_book_detail_open_trigger = yes
+        }
+    }
+    allow = {
+        always = yes
+    }
+    effect = {
+        custom_tooltip = gts_ora_book_ending_meteor_4_tooltip
+    }
+}
+
+gts_ora_book_ending_meteor_5_effect = {
+    potential = {
+        from = {
+            has_country_flag = gts_orangez_hired
+            gts_ora_book_detail_open_trigger = yes
+        }
+    }
+    allow = {
+        always = yes
+    }
+    effect = {
+        custom_tooltip = gts_ora_book_ending_meteor_5_tooltip
+    }
+}
+
+gts_ora_book_ending_meteor_6_effect = {
+    potential = {
+        from = {
+            has_country_flag = gts_orangez_hired
+            gts_ora_book_detail_open_trigger = yes
+        }
+    }
+    allow = {
+        always = yes
+    }
+    effect = {
+        custom_tooltip = gts_ora_book_ending_meteor_6_tooltip
     }
 }

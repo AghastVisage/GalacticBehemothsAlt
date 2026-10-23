@@ -1,0 +1,5074 @@
+rainna_la_grande_destroy_city_districts_effect = {
+    if = {
+        limit = {
+            has_district = district_city
+        }
+        remove_district = district_city
+        # if = {
+        #     limit = {
+        #         any_owned_pop = {
+        #             has_job = clerk
+        #         }
+        #     }
+        #     random_owned_pop = {
+        #         limit = {
+        #             has_job = clerk
+        #         }
+        #         kill_pop = yes
+        #     }
+        # }
+        # else = {
+        #     random_owned_pop = {
+        #         kill_pop = yes
+        #     }
+        # }
+        # random_owned_pop = {
+        #     kill_pop = yes
+        # }
+        # change_variable = {
+        #     which = rainna_la_grande_killed_pop_number
+        #     value = 1
+        # }
+    }
+    # else_if = {
+    #     limit = {
+    #         has_district = district_rw_city
+    #     }
+    #     remove_district = district_rw_city
+    # }
+    else_if = {
+        limit = {
+            has_district = district_hive
+        }
+        remove_district = district_hive
+        # if = {
+        #     limit = {
+        #         any_owned_pop = {
+        #             has_job = maintenance_drone
+        #         }
+        #     }
+        #     random_owned_pop = {
+        #         limit = {
+        #             has_job = maintenance_drone
+        #         }
+        #         kill_pop = yes
+        #     }
+        # }
+        # else = {
+        #     random_owned_pop = {
+        #         kill_pop = yes
+        #     }
+        # }
+        # random_owned_pop = {
+        #     kill_pop = yes
+        # }
+        # change_variable = {
+        #     which = rainna_la_grande_killed_pop_number
+        #     value = 1
+        # }
+    }
+    # else_if = {
+    #     limit = {
+    #         has_district = district_rw_hive
+    #     }
+    #     remove_district = district_rw_hive
+    # }
+    else_if = {
+        limit = {
+            has_district = district_nexus
+        }
+        remove_district = district_nexus
+        # if = {
+        #     limit = {
+        #         any_owned_pop = {
+        #             has_job = maintenance_drone
+        #         }
+        #     }
+        #     random_owned_pop = {
+        #         limit = {
+        #             has_job = maintenance_drone
+        #         }
+        #         kill_pop = yes
+        #     }
+        # }
+        # else = {
+        #     random_owned_pop = {
+        #         kill_pop = yes
+        #     }
+        # }
+        # random_owned_pop = {
+        #     kill_pop = yes
+        # }
+        # change_variable = {
+        #     which = rainna_la_grande_killed_pop_number
+        #     value = 1
+        # }
+    }
+    # else_if = {
+    #     limit = {
+    #         has_district = district_rw_nexus
+    #     }
+    #     remove_district = district_rw_nexus
+    # }
+    # else_if = {
+    #     limit = {
+    #         has_district = district_arcology_housing
+    #     }
+    #     remove_district = district_arcology_housing
+    # }
+    # else_if = {
+    #     limit = {
+    #         has_district = district_arcology_organic_housing
+    #     }
+    #     remove_district = district_arcology_organic_housing
+    # }
+    backup_simple_kill_pop_logic_city = yes
+    add_planet_devastation = 10
+    if = {
+        limit = {
+            num_districts = {
+                type = any
+                value > 4
+            }
+        }
+        random_list = {
+            2 = {
+
+            }
+            1 = {
+                ruin_building = random_no_capital
+            }
+        }
+    }
+    else = {
+        random_list = {
+            8 = {
+
+            }
+            1 = {
+                ruin_building = random_no_capital
+            }
+        }
+    }
+}
+
+# rainna_la_grande_destroy_industrial_districts_effect = {
+#     if = {
+#         limit = {
+#             has_district = district_industrial
+#         }
+#         remove_district = district_industrial
+#         # if = {
+#         #     limit = {
+#         #         any_owned_pop = {
+#         #             OR = {
+#         #                 has_job = artisan
+#         #                 has_job = artisan_drone
+#         #                 has_job = artificer
+#         #                 has_job = foundry
+#         #                 has_job = fabricator
+#         #                 has_job = catalytic_drone
+#         #                 has_job = catalytic_technician
+#         #             }
+#         #         }
+#         #     }
+#         #     random_owned_pop = {
+#         #         limit = {
+#         #             OR = {
+#         #                 has_job = artisan
+#         #                 has_job = artisan_drone
+#         #                 has_job = artificer
+#         #                 has_job = foundry
+#         #                 has_job = fabricator
+#         #                 has_job = catalytic_drone
+#         #                 has_job = catalytic_technician
+#         #             }
+#         #         }
+#         #         kill_pop = yes
+#         #     }
+#         # }
+#         # else = {
+#         #     random_owned_pop = {
+#         #         kill_pop = yes
+#         #     }
+#         # }
+#         # change_variable = {
+#         #     which = rainna_la_grande_killed_pop_number
+#         #     value = 1
+#         # }
+#     }
+#     # else_if = {
+#     #     limit = {
+#     #         has_district = district_hab_industrial
+#     #     }
+#     #     remove_district = district_hab_industrial
+#     # }
+#     else_if = {
+#         # limit = {
+#         #     has_district = district_prison_industrial
+#         # }
+#         # remove_district = district_prison_industrial
+#         # if = {
+#         #     limit = {
+#         #         any_owned_pop = {
+#         #             OR = {
+#         #                 has_job = artisan_prison_worker
+#         #                 has_job = artificer_prison_worker
+#         #                 has_job = foundry_prison_worker
+#         #                 has_job = catalytic_technician_prison_worker
+#         #             }
+#         #         }
+#         #     }
+#         #     random_owned_pop = {
+#         #         limit = {
+#         #             OR = {
+#         #                 has_job = artisan_prison_worker
+#         #                 has_job = artificer_prison_worker
+#         #                 has_job = foundry_prison_worker
+#         #                 has_job = catalytic_technician_prison_worker
+#         #             }
+#         #         }
+#         #         kill_pop = yes
+#         #     }
+#         # }
+#         # else = {
+#         #     random_owned_pop = {
+#         #         kill_pop = yes
+#         #     }
+#         # }
+#         # change_variable = {
+#         #     which = rainna_la_grande_killed_pop_number
+#         #     value = 1
+#         # }
+#     }
+#     # else_if = {
+#     #     limit = {
+#     #         has_district = district_rw_industrial
+#     #     }
+#     #     remove_district = district_rw_industrial
+#     # }
+#     # else_if = {
+#     #     limit = {
+#     #         has_district = district_arcology_civilian_industry
+#     #     }
+#     #     remove_district = district_arcology_civilian_industry
+#     # }
+#     # else_if = {
+#     #     limit = {
+#     #         has_district = district_arcology_arms_industry
+#     #     }
+#     #     remove_district = district_arcology_arms_industry
+#     # }
+#     backup_simple_kill_pop_logic = yes
+#     add_planet_devastation = 4
+# }
+
+rainna_la_grande_destroy_generator_districts_effect = {
+    if = {
+        limit = {
+            has_district = district_generator
+        }
+        remove_district = district_generator
+        # if = {
+        #     limit = {
+        #         any_owned_pop = {
+        #             OR = {
+        #                 has_job = technician
+        #                 has_job = technician_drone
+        #             }
+        #         }
+        #     }
+        #     random_owned_pop = {
+        #         limit = {
+        #             OR = {
+        #                 has_job = technician
+        #                 has_job = technician_drone
+        #             }
+        #         }
+        #         kill_pop = yes
+        #     }
+        # }
+        # else = {
+        #     random_owned_pop = {
+        #         kill_pop = yes
+        #     }
+        # }
+        # change_variable = {
+        #     which = rainna_la_grande_killed_pop_number
+        #     value = 1
+        # }
+    }
+    else_if = {
+        limit = {
+            has_district = district_generator_uncapped
+        }
+        remove_district = district_generator_uncapped
+        # if = {
+        #     limit = {
+        #         any_owned_pop = {
+        #             OR = {
+        #                 has_job = technician
+        #                 has_job = technician_drone
+        #             }
+        #         }
+        #     }
+        #     random_owned_pop = {
+        #         limit = {
+        #             OR = {
+        #                 has_job = technician
+        #                 has_job = technician_drone
+        #             }
+        #         }
+        #         kill_pop = yes
+        #     }
+        # }
+        # else = {
+        #     random_owned_pop = {
+        #         kill_pop = yes
+        #     }
+        # }
+        # change_variable = {
+        #     which = rainna_la_grande_killed_pop_number
+        #     value = 1
+        # }
+    }
+    else_if = {
+        limit = {
+            has_district = district_generator_uncapped
+        }
+        remove_district = district_generator_uncapped
+    }
+    else_if = {
+        limit = {
+            has_district = district_generator_physics
+        }
+        remove_district = district_generator_physics
+    }
+    else_if = {
+        limit = {
+            has_district = district_generator_volatile_motes
+        }
+        remove_district = district_generator_volatile_motes
+    }
+    # else_if = {
+    #     limit = {
+    #         has_district = district_rw_generator
+    #     }
+    #     remove_district = district_rw_generator
+    # }
+    backup_simple_kill_pop_logic = yes
+    add_planet_devastation = 4
+}
+
+rainna_la_grande_destroy_mining_districts_effect = {
+    if = {
+        limit = {
+            has_district = district_mining
+        }
+        remove_district = district_mining
+        # if = {
+        #     limit = {
+        #         any_owned_pop = {
+        #             OR = {
+        #                 has_job = miner
+        #                 has_job = mining_drone
+        #             }
+        #         }
+        #     }
+        #     random_owned_pop = {
+        #         limit = {
+        #             OR = {
+        #                 has_job = miner
+        #                 has_job = mining_drone
+        #             }
+        #         }
+        #         kill_pop = yes
+        #     }
+        # }
+        # else = {
+        #     random_owned_pop = {
+        #         kill_pop = yes
+        #     }
+        # }
+        # change_variable = {
+        #     which = rainna_la_grande_killed_pop_number
+        #     value = 1
+        # }
+    }
+    else_if = {
+        limit = {
+            has_district = district_mining_uncapped
+        }
+        remove_district = district_mining_uncapped
+        # if = {
+        #     limit = {
+        #         any_owned_pop = {
+        #             OR = {
+        #                 has_job = miner
+        #                 has_job = mining_drone
+        #             }
+        #         }
+        #     }
+        #     random_owned_pop = {
+        #         limit = {
+        #             OR = {
+        #                 has_job = miner
+        #                 has_job = mining_drone
+        #             }
+        #         }
+        #         kill_pop = yes
+        #     }
+        # }
+        # else = {
+        #     random_owned_pop = {
+        #         kill_pop = yes
+        #     }
+        # }
+        # change_variable = {
+        #     which = rainna_la_grande_killed_pop_number
+        #     value = 1
+        # }
+    }
+    else_if = {
+        limit = {
+            has_district = district_mining_betharian
+        }
+        remove_district = district_mining_betharian
+    }
+    else_if = {
+        limit = {
+            has_district = district_mining_engineering
+        }
+        remove_district = district_mining_engineering
+    }
+    else_if = {
+        limit = {
+            has_district = district_mining_rare_crystals
+        }
+        remove_district = district_mining_rare_crystals
+    }
+    # else_if = {
+    #     limit = {
+    #         has_district = district_hab_mining
+    #     }
+    #     remove_district = district_hab_mining
+    # }
+    backup_simple_kill_pop_logic = yes
+    add_planet_devastation = 3
+}
+
+rainna_la_grande_destroy_farming_districts_effect = {
+    if = {
+        limit = {
+            has_district = district_farming
+        }
+        remove_district = district_farming
+        # if = {
+        #     limit = {
+        #         any_owned_pop = {
+        #             OR = {
+        #                 has_job = farmer
+        #                 has_job = angler
+        #                 has_job = pearl_diver
+        #             }
+        #         }
+        #     }
+        #     random_owned_pop = {
+        #         limit = {
+        #             OR = {
+        #                 has_job = farmer
+        #                 has_job = angler
+        #                 has_job = pearl_diver
+        #             }
+        #         }
+        #         kill_pop = yes
+        #     }
+        # }
+        # else = {
+        #     random_owned_pop = {
+        #         kill_pop = yes
+        #     }
+        # }
+        # change_variable = {
+        #     which = rainna_la_grande_killed_pop_number
+        #     value = 1
+        # }
+    }
+    else_if = {
+        limit = {
+            has_district = district_farming_uncapped
+        }
+        remove_district = district_farming_uncapped
+        # if = {
+        #     limit = {
+        #         any_owned_pop = {
+        #             OR = {
+        #                 has_job = farmer
+        #                 has_job = angler
+        #                 has_job = pearl_diver
+        #             }
+        #         }
+        #     }
+        #     random_owned_pop = {
+        #         limit = {
+        #             OR = {
+        #                 has_job = farmer
+        #                 has_job = angler
+        #                 has_job = pearl_diver
+        #             }
+        #         }
+        #         kill_pop = yes
+        #     }
+        # }
+        # else = {
+        #     random_owned_pop = {
+        #         kill_pop = yes
+        #     }
+        # }
+        # change_variable = {
+        #     which = rainna_la_grande_killed_pop_number
+        #     value = 1
+        # }
+    }
+    else_if = {
+        limit = {
+            has_district = district_farming_exotic_gases
+        }
+        remove_district = district_farming_exotic_gases
+    }
+    else_if = {
+        limit = {
+            has_district = district_farming_society
+        }
+        remove_district = district_farming_society
+    }
+    # else_if = {
+    #     limit = {
+    #         has_district = district_rw_farming
+    #     }
+    #     remove_district = district_rw_farming
+    # }
+    backup_simple_kill_pop_logic = yes
+    add_planet_devastation = 2
+}
+
+rainna_la_grande_adapt_program_destroy_district_number = {
+    #owner = {
+        subtract_variable = {
+            which = rainna_la_grande_program_destroy_district_number
+            value = 1
+        }
+        change_variable = {
+            which = rainna_la_grande_destroyed_district_number
+            value = 1
+        }
+        if = {
+            limit = {
+                check_variable = {
+                    which = rainna_la_grande_program_destroy_district_number
+                    value < 0
+                }
+            }
+            set_variable = {
+                which = rainna_la_grande_program_destroy_district_number
+                value = 0
+            }
+        }
+    #}
+}
+
+rainna_la_grande_destroy_other_districts = {
+    if = {
+        limit = {
+            rainna_la_grande_has_city_districts = yes
+        }
+        rainna_la_grande_destroy_city_districts_effect = yes
+    }
+    else_if = {
+        limit = {
+            rainna_la_grande_has_industrial_districts = yes
+        }
+        rainna_la_grande_destroy_industrial_districts_effect = yes
+    }
+    else_if = {
+        limit = {
+            rainna_la_grande_has_generator_districts = yes
+        }
+        rainna_la_grande_destroy_generator_districts_effect = yes
+    }
+    else_if = {
+        limit = {
+            rainna_la_grande_has_mining_districts = yes
+        }
+        rainna_la_grande_destroy_mining_districts_effect = yes
+    }
+    else_if = {
+        limit = {
+            rainna_la_grande_has_farming_districts = yes
+        }
+        rainna_la_grande_destroy_farming_districts_effect = yes
+    }
+    else = {
+        remove_all_districts = yes
+        rainna_la_grande_kill_all_pops = yes
+        destroy_colony = yes
+    }
+}
+
+rainna_la_grande_random_killing = {
+    random_list = {
+        7 = {
+        }
+        2 = {
+            # random_owned_pop = {
+            #     kill_pop = yes
+            # }
+            backup_simple_kill_pop_logic = yes
+        }
+        1 = {
+            # random_owned_pop = {
+            #     kill_pop = yes
+            # }
+            # random_owned_pop = {
+            #     kill_pop = yes
+            # }
+            backup_simple_kill_pop_logic = yes
+            backup_simple_kill_pop_logic = yes
+        }
+
+    }
+}
+
+rainna_la_grande_kill_all_pops = {
+    # every_owned_pop = {
+    #     kill_pop = yes
+    # }
+    if = {
+        limit = {
+            NOT = {
+                has_planet_flag = rainna_la_grande_do_not_destroy_planet
+            }
+        }
+        every_owned_pop_group = {
+            kill_all_pop = yes
+        }
+        owner = {
+            change_variable = {
+                which = rainna_la_grande_killed_pop_number
+                value = 100
+            }
+        }
+    }
+}
+
+rainna_la_grande_generate_random_number_of_killing = {
+    #owner = {
+        if = {
+            limit = {
+                check_variable = {
+                    which = rainna_la_grande_killed_pop_number
+                    value < 0
+                }
+            }
+            set_variable = {
+                which = rainna_la_grande_killed_pop_number
+                value = 0
+            }
+        }
+        if = {
+            limit = {
+                owner_main_species = {
+                    OR = {
+                        has_trait = trait_Ultra
+                    }
+                }
+            }
+            if = {
+                limit = {
+                    NOT = {
+                        has_country_flag = rainna_la_grande_killed_number_initialized
+                    }
+                }
+                set_variable = {
+                    which = rainna_la_grande_killed_number
+                    value = 0
+                }
+                set_country_flag = rainna_la_grande_killed_number_initialized
+            }
+            while = {
+                limit = {
+                    check_variable = {
+                        which = rainna_la_grande_killed_pop_number #不知道为什么，泰坦无法让这个数>0，真阴间。
+                        value > 0
+                    }
+                }
+                subtract_variable = {
+                    which = rainna_la_grande_killed_pop_number
+                    value = 1
+                }
+                change_variable = {
+                    which = rainna_la_grande_killed_number
+                    value = 10
+                }
+                if = {
+                    limit = {
+                        check_variable = {
+                            which = rainna_la_grande_killed_number
+                            value >999
+                        }
+                    }
+                    if = {
+                        limit = {
+                            NOT = {
+                                has_country_flag = rainna_la_grande_killed_number_thousand_initialized
+                            }
+                        }
+                        set_variable = {
+                            which = rainna_la_grande_killed_number_thousand
+                            value = 0
+                        }
+                        set_country_flag = rainna_la_grande_killed_number_thousand_initialized
+                    }
+                    change_variable = {
+                        which = rainna_la_grande_killed_number_thousand
+                        value = 1
+                    }
+                    set_variable_to_random_value = {
+                        which = rainna_la_grande_killed_number
+                        min = 100
+                        max = 200
+                        rounded = yes
+                    }
+                }
+            }
+            set_variable_to_random_value = {
+                which = rainna_la_grande_killed_number_addition
+                min = 0
+                max = 9
+                rounded = yes
+            }
+            if = {
+                limit = {
+                    check_variable = {
+                        which = rainna_la_grande_killed_number
+                        value <= 0
+                    }
+                }
+                clear_variable = rainna_la_grande_killed_number
+                remove_country_flag = rainna_la_grande_killed_number_initialized
+            }
+        }
+        else_if = {
+            limit = {
+                owner_main_species = {
+                    has_trait = trait_Titan
+                }
+            }
+            if = {
+                limit = {
+                    NOT = {
+                        has_country_flag = rainna_la_grande_killed_number_initialized
+                    }
+                }
+                set_variable = {
+                    which = rainna_la_grande_killed_number
+                    value = 0
+                }
+                set_country_flag = rainna_la_grande_killed_number_initialized
+            }
+            while = {
+                limit = {
+                    check_variable = {
+                        which = rainna_la_grande_killed_pop_number
+                        value > 0
+                    }
+                }
+                subtract_variable = {
+                    which = rainna_la_grande_killed_pop_number
+                    value = 1
+                }
+                change_variable = {
+                    which = rainna_la_grande_killed_number
+                    value = 216
+                }
+                if = {
+                    limit = {
+                        check_variable = {
+                            which = rainna_la_grande_killed_number
+                            value >999
+                        }
+                    }
+                    if = {
+                        limit = {
+                            NOT = {
+                                has_country_flag = rainna_la_grande_killed_number_thousand_initialized
+                            }
+                        }
+                        set_variable = {
+                            which = rainna_la_grande_killed_number_thousand
+                            value = 0
+                        }
+                        set_country_flag = rainna_la_grande_killed_number_thousand_initialized
+                    }
+                    change_variable = {
+                        which = rainna_la_grande_killed_number_thousand
+                        value = 1
+                    }
+                }
+            }
+            set_variable_to_random_value = {
+                which = rainna_la_grande_killed_number
+                min = 100
+                max = 999
+                rounded = yes
+            }
+            if = {
+                limit = {
+                    check_variable = {
+                        which = rainna_la_grande_killed_number_thousand
+                        value <= 0
+                    }
+                }
+                clear_variable = rainna_la_grande_killed_number_thousand
+                remove_country_flag = rainna_la_grande_killed_number_thousand_initialized
+            }
+        }
+        else_if = {
+            limit = {
+                owner_main_species = {
+                    has_trait = trait_Giant
+                }
+            }
+            if = {
+                limit = {
+                    NOT = {
+                        has_country_flag = rainna_la_grande_killed_number_thousand_initialized
+                    }
+                }
+                set_variable = {
+                    which = rainna_la_grande_killed_number_thousand
+                    value = 0
+                }
+                set_country_flag = rainna_la_grande_killed_number_thousand_initialized
+            }
+            while = {
+                limit = {
+                    check_variable = {
+                        which = rainna_la_grande_killed_pop_number
+                        value > 0
+                    }
+                }
+                subtract_variable = {
+                    which = rainna_la_grande_killed_pop_number
+                    value = 1
+                }
+                change_variable = {
+                    which = rainna_la_grande_killed_number_thousand
+                    value = 330
+                }
+                if = {
+                    limit = {
+                        check_variable = {
+                            which = rainna_la_grande_killed_number_thousand
+                            value >999
+                        }
+                    }
+                    if = {
+                        limit = {
+                            NOT = {
+                                has_country_flag = rainna_la_grande_killed_number_million_initialized
+                            }
+                        }
+                        set_variable = {
+                            which = rainna_la_grande_killed_number_million
+                            value = 0
+                        }
+                        set_country_flag = rainna_la_grande_killed_number_million_initialized
+                    }
+                    change_variable = {
+                        which = rainna_la_grande_killed_number_million
+                        value = 1
+                    }
+                    set_variable_to_random_value = {
+                        which = rainna_la_grande_killed_number_thousand
+                        min = 100
+                        max = 200
+                        rounded = yes
+                    }
+                }
+            }
+            set_variable_to_random_value = {
+                which = rainna_la_grande_killed_number
+                min = 100
+                max = 999
+                rounded = yes
+            }
+            if = {
+                limit = {
+                    check_variable = {
+                        which = rainna_la_grande_killed_number_thousand
+                        value <= 0
+                    }
+                }
+                clear_variable = rainna_la_grande_killed_number_thousand
+                remove_country_flag = rainna_la_grande_killed_number_thousand_initialized
+            }
+        }
+        else_if = {
+            limit = {
+                owner_main_species = {
+                    has_trait = trait_Tall
+                }
+            }
+            if = {
+                limit = {
+                    NOT = {
+                        has_country_flag = rainna_la_grande_killed_number_thousand_initialized
+                    }
+                }
+                set_variable = {
+                    which = rainna_la_grande_killed_number_thousand
+                    value = 0
+                }
+                set_country_flag = rainna_la_grande_killed_number_thousand_initialized
+            }
+            while = {
+                limit = {
+                    check_variable = {
+                        which = rainna_la_grande_killed_pop_number
+                        value > 0
+                    }
+                }
+                subtract_variable = {
+                    which = rainna_la_grande_killed_pop_number
+                    value = 1
+                }
+                change_variable = {
+                    which = rainna_la_grande_killed_number_thousand
+                    value = 516
+                }
+                if = {
+                    limit = {
+                        check_variable = {
+                            which = rainna_la_grande_killed_number_thousand
+                            value >999
+                        }
+                    }
+                    if = {
+                        limit = {
+                            NOT = {
+                                has_country_flag = rainna_la_grande_killed_number_million_initialized
+                            }
+                        }
+                        set_variable = {
+                            which = rainna_la_grande_killed_number_million
+                            value = 0
+                        }
+                        set_country_flag = rainna_la_grande_killed_number_million_initialized
+                    }
+                    change_variable = {
+                        which = rainna_la_grande_killed_number_million
+                        value = 1
+                    }
+                    set_variable_to_random_value = {
+                        which = rainna_la_grande_killed_number_thousand
+                        min = 100
+                        max = 200
+                        rounded = yes
+                    }
+                }
+            }
+            set_variable_to_random_value = {
+                which = rainna_la_grande_killed_number
+                min = 100
+                max = 999
+                rounded = yes
+            }
+            if = {
+                limit = {
+                    check_variable = {
+                        which = rainna_la_grande_killed_number_thousand
+                        value <= 0
+                    }
+                }
+                clear_variable = rainna_la_grande_killed_number_thousand
+                remove_country_flag = rainna_la_grande_killed_number_thousand_initialized
+            }
+        }
+        else_if = {
+            limit = {
+                owner_main_species = {
+                    has_trait = trait_Small
+                }
+            }
+            if = {
+                limit = {
+                    NOT = {
+                        has_country_flag = rainna_la_grande_killed_number_trillion_initialized
+                    }
+                }
+                set_variable = {
+                    which = rainna_la_grande_killed_number_trillion
+                    value = 0
+                }
+                set_country_flag = rainna_la_grande_killed_number_trillion_initialized
+            }
+            while = {
+                limit = {
+                    check_variable = {
+                        which = rainna_la_grande_killed_pop_number
+                        value > 0
+                    }
+                }
+                subtract_variable = {
+                    which = rainna_la_grande_killed_pop_number
+                    value = 1
+                }
+                change_variable = {
+                    which = rainna_la_grande_killed_number_trillion
+                    value = 1
+                }
+                if = {
+                    limit = {
+                        check_variable = {
+                            which = rainna_la_grande_killed_number_trillion
+                            value >999
+                        }
+                    }
+                    if = {
+                        limit = {
+                            NOT = {
+                                has_country_flag = rainna_la_grande_killed_number_quadrillion_initialized
+                            }
+                        }
+                        set_variable = {
+                            which = rainna_la_grande_killed_number_quadrillion
+                            value = 0
+                        }
+                        set_country_flag = rainna_la_grande_killed_number_quadrillion_initialized
+                    }
+                    change_variable = {
+                        which = rainna_la_grande_killed_number_quadrillion
+                        value = 1
+                    }
+                    set_variable_to_random_value = {
+                        which = rainna_la_grande_killed_number_trillion
+                        min = 100
+                        max = 200
+                        rounded = yes
+                    }
+                }
+            }
+            set_variable_to_random_value = {
+                which = rainna_la_grande_killed_number_billion
+                min = 100
+                max = 999
+                rounded = yes
+            }
+            set_variable_to_random_value = {
+                which = rainna_la_grande_killed_number_million
+                min = 100
+                max = 999
+                rounded = yes
+            }
+            set_variable_to_random_value = {
+                which = rainna_la_grande_killed_number_thousand
+                min = 100
+                max = 999
+                rounded = yes
+            }
+            set_variable_to_random_value = {
+                which = rainna_la_grande_killed_number
+                min = 100
+                max = 999
+                rounded = yes
+            }
+            if = {
+                limit = {
+                    check_variable = {
+                        which = rainna_la_grande_killed_number_trillion
+                        value <= 0
+                    }
+                }
+                clear_variable = rainna_la_grande_killed_number_trillion
+                remove_country_flag = rainna_la_grande_killed_number_trillion_initialized
+            }
+        }
+        else_if = {
+            limit = {
+                owner_main_species = {
+                    has_trait = trait_Tiny
+                }
+            }
+            if = {
+                limit = {
+                    NOT = {
+                        has_country_flag = rainna_la_grande_killed_number_trillion_initialized
+                    }
+                }
+                set_variable = {
+                    which = rainna_la_grande_killed_number_trillion
+                    value = 0
+                }
+                set_country_flag = rainna_la_grande_killed_number_trillion_initialized
+            }
+            while = {
+                limit = {
+                    check_variable = {
+                        which = rainna_la_grande_killed_pop_number
+                        value > 0
+                    }
+                }
+                subtract_variable = {
+                    which = rainna_la_grande_killed_pop_number
+                    value = 1
+                }
+                change_variable = {
+                    which = rainna_la_grande_killed_number_trillion
+                    value = 138
+                }
+                if = {
+                    limit = {
+                        check_variable = {
+                            which = rainna_la_grande_killed_number_trillion
+                            value >999
+                        }
+                    }
+                    if = {
+                        limit = {
+                            NOT = {
+                                has_country_flag = rainna_la_grande_killed_number_quadrillion_initialized
+                            }
+                        }
+                        set_variable = {
+                            which = rainna_la_grande_killed_number_quadrillion
+                            value = 0
+                        }
+                        set_country_flag = rainna_la_grande_killed_number_quadrillion_initialized
+                    }
+                    change_variable = {
+                        which = rainna_la_grande_killed_number_quadrillion
+                        value = 1
+                    }
+                    set_variable_to_random_value = {
+                        which = rainna_la_grande_killed_number_trillion
+                        min = 100
+                        max = 200
+                        rounded = yes
+                    }
+                }
+            }
+            set_variable_to_random_value = {
+                which = rainna_la_grande_killed_number_billion
+                min = 100
+                max = 999
+                rounded = yes
+            }
+            set_variable_to_random_value = {
+                which = rainna_la_grande_killed_number_million
+                min = 100
+                max = 999
+                rounded = yes
+            }
+            set_variable_to_random_value = {
+                which = rainna_la_grande_killed_number_thousand
+                min = 100
+                max = 999
+                rounded = yes
+            }
+            set_variable_to_random_value = {
+                which = rainna_la_grande_killed_number
+                min = 100
+                max = 999
+                rounded = yes
+            }
+            if = {
+                limit = {
+                    check_variable = {
+                        which = rainna_la_grande_killed_number_trillion
+                        value <= 0
+                    }
+                }
+                clear_variable = rainna_la_grande_killed_number_trillion
+                remove_country_flag = rainna_la_grande_killed_number_trillion_initialized
+            }
+        }
+        else_if = {
+            limit = {
+                owner_main_species = {
+                    OR = {
+                        has_trait = trait_Micro
+                        has_trait = trait_Nano
+                    }
+                }
+            }
+            if = {
+                limit = {
+                    NOT = {
+                        has_country_flag = rainna_la_grande_killed_number_quadrillion_initialized
+                    }
+                }
+                set_variable = {
+                    which = rainna_la_grande_killed_number_quadrillion
+                    value = 0
+                }
+                set_country_flag = rainna_la_grande_killed_number_quadrillion_initialized
+            }
+            while = {
+                limit = {
+                    check_variable = {
+                        which = rainna_la_grande_killed_pop_number
+                        value > 0
+                    }
+                }
+                subtract_variable = {
+                    which = rainna_la_grande_killed_pop_number
+                    value = 1
+                }
+                change_variable = {
+                    which = rainna_la_grande_killed_number_quadrillion
+                    value = 173
+                }
+            }
+            set_variable_to_random_value = {
+                which = rainna_la_grande_killed_number_quadrillion_addition
+                min = 0
+                max = 99
+                rounded = yes
+            }
+            set_variable_to_random_value = {
+                which = rainna_la_grande_killed_number_trillion
+                min = 100
+                max = 999
+                rounded = yes
+            }
+            set_variable_to_random_value = {
+                which = rainna_la_grande_killed_number_billion
+                min = 100
+                max = 999
+                rounded = yes
+            }
+            set_variable_to_random_value = {
+                which = rainna_la_grande_killed_number_million
+                min = 100
+                max = 999
+                rounded = yes
+            }
+            set_variable_to_random_value = {
+                which = rainna_la_grande_killed_number_thousand
+                min = 100
+                max = 999
+                rounded = yes
+            }
+            set_variable_to_random_value = {
+                which = rainna_la_grande_killed_number
+                min = 100
+                max = 999
+                rounded = yes
+            }
+            if = {
+                limit = {
+                    check_variable = {
+                        which = rainna_la_grande_killed_number_quadrillion
+                        value <= 0
+                    }
+                }
+                clear_variable = rainna_la_grande_killed_number_quadrillion
+                remove_country_flag = rainna_la_grande_killed_number_quadrillion_initialized
+            }
+        }
+        else = {
+            if = {
+                limit = {
+                    NOT = {
+                        has_country_flag = rainna_la_grande_killed_number_billion_initialized
+                    }
+                }
+                set_variable = {
+                    which = rainna_la_grande_killed_number_billion
+                    value = 0
+                }
+                set_country_flag = rainna_la_grande_killed_number_billion_initialized
+            }
+            while = {
+                limit = {
+                    check_variable = {
+                        which = rainna_la_grande_killed_pop_number
+                        value > 0
+                    }
+                }
+                subtract_variable = {
+                    which = rainna_la_grande_killed_pop_number
+                    value = 1
+                }
+                change_variable = {
+                    which = rainna_la_grande_killed_number_billion
+                    value = 86
+                }
+                if = {
+                    limit = {
+                        check_variable = {
+                            which = rainna_la_grande_killed_number_billion
+                            value >999
+                        }
+                    }
+                    if = {
+                        limit = {
+                            NOT = {
+                                has_country_flag = rainna_la_grande_killed_number_trillion_initialized
+                            }
+                        }
+                        set_variable = {
+                            which = rainna_la_grande_killed_number_trillion
+                            value = 0
+                        }
+                        set_country_flag = rainna_la_grande_killed_number_trillion_initialized
+                    }
+                    change_variable = {
+                        which = rainna_la_grande_killed_number_trillion
+                        value = 1
+                    }
+                    set_variable_to_random_value = {
+                        which = rainna_la_grande_killed_number_billion
+                        min = 100
+                        max = 200
+                        rounded = yes
+                    }
+                }
+            }
+            # set_variable_to_random_value = {
+            #     which = rainna_la_grande_killed_number_billion_addition
+            #     min = 0
+            #     max = 9
+            #     rounded = yes
+            # }
+            set_variable_to_random_value = {
+                which = rainna_la_grande_killed_number_million
+                min = 100
+                max = 999
+                rounded = yes
+            }
+            set_variable_to_random_value = {
+                which = rainna_la_grande_killed_number_thousand
+                min = 100
+                max = 999
+                rounded = yes
+            }
+            set_variable_to_random_value = {
+                which = rainna_la_grande_killed_number
+                min = 100
+                max = 999
+                rounded = yes
+            }
+            if = {
+                limit = {
+                    check_variable = {
+                        which = rainna_la_grande_killed_number_million
+                        value <= 0
+                    }
+                }
+                clear_variable = rainna_la_grande_killed_number_million
+                remove_country_flag = rainna_la_grande_killed_number_million_initialized
+            }
+        }
+    if = {
+        limit = {
+            has_country_flag = rainna_la_grande_killed_number_initialized
+        }
+        round_variable = rainna_la_grande_killed_number
+    }
+    if = {
+        limit = {
+            has_country_flag = rainna_la_grande_killed_number_thousand_initialized
+        }
+        round_variable = rainna_la_grande_killed_number_thousand
+    }
+    if = {
+        limit = {
+            has_country_flag = rainna_la_grande_killed_number_million_initialized
+        }
+        round_variable = rainna_la_grande_killed_number_million
+    }
+    if = {
+        limit = {
+            has_country_flag = rainna_la_grande_killed_number_billion_initialized
+        }
+        round_variable = rainna_la_grande_killed_number_billion
+    }
+    if = {
+        limit = {
+            has_country_flag = rainna_la_grande_killed_number_trillion_initialized
+        }
+        round_variable = rainna_la_grande_killed_number_trillion
+    }
+    if = {
+        limit = {
+            has_country_flag = rainna_la_grande_killed_number_quadrillion_initialized
+        }
+        round_variable = rainna_la_grande_killed_number_quadrillion
+    }
+    #}
+}
+
+rainna_la_grande_generate_random_number_of_destruction = {
+    #owner = {
+        if = {
+            limit = {
+                check_variable = {
+                    which = rainna_la_grande_destroyed_district_number
+                    value < 0
+                }
+            }
+            set_variable = {
+                which = rainna_la_grande_destroyed_district_number
+                value = 0
+            }
+        }
+        if = {
+            limit = {
+                owner_main_species = {
+                    OR = {
+                        has_trait = trait_Ultra
+                        has_trait = trait_Titan
+                    }
+                }
+            }
+            if = {
+                limit = {
+                    NOT = {
+                        has_country_flag = rainna_la_grande_city_destroyed_number_initialized
+                    }
+                }
+                set_variable = {
+                    which = rainna_la_grande_city_destroyed_number
+                    value = 0
+                }
+                set_country_flag = rainna_la_grande_city_destroyed_number_initialized
+            }
+            while = {
+                limit = {
+                    check_variable = {
+                        which = rainna_la_grande_destroyed_district_number
+                        value > 0
+                    }
+                }
+                if = {
+                    limit = {
+                        check_variable = {
+                            which = rainna_la_grande_destroyed_district_number
+                            value > 0
+                        }
+                    }
+                    change_variable = {
+                        which = rainna_la_grande_city_destroyed_number
+                        value = 10
+                    }
+                    subtract_variable = {
+                        which = rainna_la_grande_destroyed_district_number
+                        value = 1
+                    }
+                }
+                # #--!--
+                # change_variable = {
+                #     which = rainna_la_grande_city_destroyed_number
+                #     value = 1
+                # }
+                # #--!--
+                subtract_variable = {
+                    which = rainna_la_grande_destroyed_district_number
+                    value = 1
+                }
+                if = {
+                    limit = {
+                        check_variable = {
+                            which = rainna_la_grande_city_destroyed_number
+                            value >999
+                        }
+                    }
+                    if = {
+                        limit = {
+                            NOT = {
+                                has_country_flag = rainna_la_grande_city_destroyed_number_thousand_initialized
+                            }
+                        }
+                        set_variable = {
+                            which = rainna_la_grande_city_destroyed_number_thousand
+                            value = 0
+                        }
+                        set_country_flag = rainna_la_grande_city_destroyed_number_thousand_initialized
+                    }
+                    change_variable = {
+                        which = rainna_la_grande_city_destroyed_number_thousand
+                        value = 1
+                    }
+                    set_variable_to_random_value = {
+                        which = rainna_la_grande_city_destroyed_number
+                        min = 100
+                        max = 200
+                        rounded = yes
+                    }
+                }
+            }
+            if = {
+                limit = {
+                    check_variable = {
+                        which = rainna_la_grande_city_destroyed_number
+                        value <= 0
+                    }
+                }
+                clear_variable = rainna_la_grande_city_destroyed_number
+                remove_country_flag = rainna_la_grande_city_destroyed_number_initialized
+            }
+        }
+        else_if = {
+            limit = {
+                owner_main_species = {
+                    has_trait = trait_Giant
+                }
+            }
+            if = {
+                limit = {
+                    NOT = {
+                        has_country_flag = rainna_la_grande_city_destroyed_number_initialized
+                    }
+                }
+                set_variable = {
+                    which = rainna_la_grande_city_destroyed_number
+                    value = 0
+                }
+                set_country_flag = rainna_la_grande_city_destroyed_number_initialized
+            }
+            while = {
+                limit = {
+                    check_variable = {
+                        which = rainna_la_grande_destroyed_district_number
+                        value > 0
+                    }
+                }
+                subtract_variable = {
+                    which = rainna_la_grande_destroyed_district_number
+                    value = 1
+                }
+                change_variable = {
+                    which = rainna_la_grande_city_destroyed_number
+                    value = 200
+                }
+                if = {
+                    limit = {
+                        check_variable = {
+                            which = rainna_la_grande_city_destroyed_number
+                            value >999
+                        }
+                    }
+                    if = {
+                        limit = {
+                            NOT = {
+                                has_country_flag = rainna_la_grande_city_destroyed_number_thousand_initialized
+                            }
+                        }
+                        set_variable = {
+                            which = rainna_la_grande_city_destroyed_number_thousand
+                            value = 0
+                        }
+                        set_country_flag = rainna_la_grande_city_destroyed_number_thousand_initialized
+                    }
+                    change_variable = {
+                        which = rainna_la_grande_city_destroyed_number_thousand
+                        value = 1
+                    }
+                    set_variable_to_random_value = {
+                        which = rainna_la_grande_city_destroyed_number
+                        min = 100
+                        max = 200
+                        rounded = yes
+                    }
+                }
+            }
+            if = {
+                limit = {
+                    check_variable = {
+                        which = rainna_la_grande_city_destroyed_number
+                        value <= 0
+                    }
+                }
+                clear_variable = rainna_la_grande_city_destroyed_number
+                remove_country_flag = rainna_la_grande_city_destroyed_number_initialized
+            }
+        }
+        else_if = {
+            limit = {
+                owner_main_species = {
+                    has_trait = trait_Tall
+                }
+            }
+            if = {
+                limit = {
+                    NOT = {
+                        has_country_flag = rainna_la_grande_city_destroyed_number_initialized
+                    }
+                }
+                set_variable = {
+                    which = rainna_la_grande_city_destroyed_number
+                    value = 0
+                }
+                set_country_flag = rainna_la_grande_city_destroyed_number_initialized
+            }
+            while = {
+                limit = {
+                    check_variable = {
+                        which = rainna_la_grande_destroyed_district_number
+                        value > 0
+                    }
+                }
+                subtract_variable = {
+                    which = rainna_la_grande_destroyed_district_number
+                    value = 1
+                }
+                change_variable = {
+                    which = rainna_la_grande_city_destroyed_number
+                    value = 100
+                }
+                if = {
+                    limit = {
+                        check_variable = {
+                            which = rainna_la_grande_city_destroyed_number
+                            value >999
+                        }
+                    }
+                    if = {
+                        limit = {
+                            NOT = {
+                                has_country_flag = rainna_la_grande_city_destroyed_number_thousand_initialized
+                            }
+                        }
+                        set_variable = {
+                            which = rainna_la_grande_city_destroyed_number_thousand
+                            value = 0
+                        }
+                        set_country_flag = rainna_la_grande_city_destroyed_number_thousand_initialized
+                    }
+                    change_variable = {
+                        which = rainna_la_grande_city_destroyed_number_thousand
+                        value = 1
+                    }
+                    set_variable_to_random_value = {
+                        which = rainna_la_grande_city_destroyed_number
+                        min = 100
+                        max = 200
+                        rounded = yes
+                    }
+                }
+            }
+            if = {
+                limit = {
+                    check_variable = {
+                        which = rainna_la_grande_city_destroyed_number
+                        value <= 0
+                    }
+                }
+                clear_variable = rainna_la_grande_city_destroyed_number
+                remove_country_flag = rainna_la_grande_city_destroyed_number_initialized
+            }
+        }
+        else_if = {
+            limit = {
+                owner_main_species = {
+                    has_trait = trait_Small
+                }
+            }
+            if = {
+                limit = {
+                    NOT = {
+                        has_country_flag = rainna_la_grande_city_destroyed_number_thousand_initialized
+                    }
+                }
+                set_variable = {
+                    which = rainna_la_grande_city_destroyed_number_thousand
+                    value = 0
+                }
+                set_country_flag = rainna_la_grande_city_destroyed_number_thousand_initialized
+            }
+            while = {
+                limit = {
+                    check_variable = {
+                        which = rainna_la_grande_destroyed_district_number
+                        value > 0
+                    }
+                }
+                subtract_variable = {
+                    which = rainna_la_grande_destroyed_district_number
+                    value = 1
+                }
+                change_variable = {
+                    which = rainna_la_grande_city_destroyed_number_thousand
+                    value = 100
+                }
+                if = {
+                    limit = {
+                        check_variable = {
+                            which = rainna_la_grande_city_destroyed_number_thousand
+                            value >999
+                        }
+                    }
+                    if = {
+                        limit = {
+                            NOT = {
+                                has_country_flag = rainna_la_grande_city_destroyed_number_million_initialized
+                            }
+                        }
+                        set_variable = {
+                            which = rainna_la_grande_city_destroyed_number_million
+                            value = 0
+                        }
+                        set_country_flag = rainna_la_grande_city_destroyed_number_million_initialized
+                    }
+                    change_variable = {
+                        which = rainna_la_grande_city_destroyed_number_million
+                        value = 1
+                    }
+                    set_variable_to_random_value = {
+                        which = rainna_la_grande_city_destroyed_number_thousand
+                        min = 100
+                        max = 200
+                        rounded = yes
+                    }
+                }
+            }
+            set_variable_to_random_value = {
+                which = rainna_la_grande_city_destroyed_number
+                min = 100
+                max = 999
+                rounded = yes
+            }
+            if = {
+                limit = {
+                    check_variable = {
+                        which = rainna_la_grande_city_destroyed_number_thousand
+                        value <= 0
+                    }
+                }
+                clear_variable = rainna_la_grande_city_destroyed_number_thousand
+                remove_country_flag = rainna_la_grande_city_destroyed_number_thousand_initialized
+            }
+        }
+        else_if = {
+            limit = {
+                owner_main_species = {
+                    has_trait = trait_Tiny
+                }
+            }
+            if = {
+                limit = {
+                    NOT = {
+                        has_country_flag = rainna_la_grande_city_destroyed_number_million_initialized
+                    }
+                }
+                set_variable = {
+                    which = rainna_la_grande_city_destroyed_number_million
+                    value = 0
+                }
+                set_country_flag = rainna_la_grande_city_destroyed_number_million_initialized
+            }
+            while = {
+                limit = {
+                    check_variable = {
+                        which = rainna_la_grande_destroyed_district_number
+                        value > 0
+                    }
+                }
+                subtract_variable = {
+                    which = rainna_la_grande_destroyed_district_number
+                    value = 1
+                }
+                change_variable = {
+                    which = rainna_la_grande_city_destroyed_number_million
+                    value = 10
+                }
+                if = {
+                    limit = {
+                        check_variable = {
+                            which = rainna_la_grande_city_destroyed_number_million
+                            value >999
+                        }
+                    }
+                    if = {
+                        limit = {
+                            NOT = {
+                                has_country_flag = rainna_la_grande_city_destroyed_number_billion_initialized
+                            }
+                        }
+                        set_variable = {
+                            which = rainna_la_grande_city_destroyed_number_billion
+                            value = 0
+                        }
+                        set_country_flag = rainna_la_grande_city_destroyed_number_billion_initialized
+                    }
+                    change_variable = {
+                        which = rainna_la_grande_city_destroyed_number_billion
+                        value = 1
+                    }
+                    set_variable_to_random_value = {
+                        which = rainna_la_grande_city_destroyed_number_million
+                        min = 100
+                        max = 200
+                        rounded = yes
+                    }
+                }
+            }
+            set_variable_to_random_value = {
+                which = rainna_la_grande_city_destroyed_number_thousand
+                min = 100
+                max = 999
+                rounded = yes
+            }
+            set_variable_to_random_value = {
+                which = rainna_la_grande_city_destroyed_number
+                min = 100
+                max = 999
+                rounded = yes
+            }
+            if = {
+                limit = {
+                    check_variable = {
+                        which = rainna_la_grande_city_destroyed_number_million
+                        value <= 0
+                    }
+                }
+                clear_variable = rainna_la_grande_city_destroyed_number_million
+                remove_country_flag = rainna_la_grande_city_destroyed_number_million_initialized
+            }
+        }
+        else_if = {
+            limit = {
+                owner_main_species = {
+                    OR = {
+                        has_trait = trait_Micro
+                        has_trait = trait_Nano
+                    }
+                }
+            }
+            if = {
+                limit = {
+                    NOT = {
+                        has_country_flag = rainna_la_grande_city_destroyed_number_billion_initialized
+                    }
+                }
+                set_variable = {
+                    which = rainna_la_grande_city_destroyed_number_billion
+                    value = 0
+                }
+                set_country_flag = rainna_la_grande_city_destroyed_number_billion_initialized
+            }
+            while = {
+                limit = {
+                    check_variable = {
+                        which = rainna_la_grande_destroyed_district_number
+                        value > 0
+                    }
+                }
+                subtract_variable = {
+                    which = rainna_la_grande_destroyed_district_number
+                    value = 1
+                }
+                change_variable = {
+                    which = rainna_la_grande_city_destroyed_number_billion
+                    value = 1
+                }
+                if = {
+                    limit = {
+                        check_variable = {
+                            which = rainna_la_grande_city_destroyed_number_billion
+                            value >999
+                        }
+                    }
+                    if = {
+                        limit = {
+                            NOT = {
+                                has_country_flag = rainna_la_grande_city_destroyed_number_trillion_initialized
+                            }
+                        }
+                        set_variable = {
+                            which = rainna_la_grande_city_destroyed_number_trillion
+                            value = 0
+                        }
+                        set_country_flag = rainna_la_grande_city_destroyed_number_trillion_initialized
+                    }
+                    change_variable = {
+                        which = rainna_la_grande_city_destroyed_number_trillion
+                        value = 1
+                    }
+                    set_variable_to_random_value = {
+                        which = rainna_la_grande_city_destroyed_number_billion
+                        min = 100
+                        max = 200
+                        rounded = yes
+                    }
+                }
+            }
+            set_variable_to_random_value = {
+                which = rainna_la_grande_city_destroyed_number_million
+                min = 100
+                max = 999
+                rounded = yes
+            }
+            set_variable_to_random_value = {
+                which = rainna_la_grande_city_destroyed_number_thousand
+                min = 100
+                max = 999
+                rounded = yes
+            }
+            set_variable_to_random_value = {
+                which = rainna_la_grande_city_destroyed_number
+                min = 100
+                max = 999
+                rounded = yes
+            }
+            if = {
+                limit = {
+                    check_variable = {
+                        which = rainna_la_grande_city_destroyed_number_billion
+                        value <= 0
+                    }
+                }
+                clear_variable = rainna_la_grande_city_destroyed_number_billion
+                remove_country_flag = rainna_la_grande_city_destroyed_number_billion_initialized
+            }
+        }
+        else = {
+            if = {
+                limit = {
+                    NOT = {
+                        has_country_flag = rainna_la_grande_city_destroyed_number_thousand_initialized
+                    }
+                }
+                set_variable = {
+                    which = rainna_la_grande_city_destroyed_number_thousand
+                    value = 0
+                }
+                set_country_flag = rainna_la_grande_city_destroyed_number_thousand_initialized
+            }
+            while = {
+                limit = {
+                    check_variable = {
+                        which = rainna_la_grande_destroyed_district_number
+                        value > 0
+                    }
+                }
+                subtract_variable = {
+                    which = rainna_la_grande_destroyed_district_number
+                    value = 1
+                }
+                change_variable = {
+                    which = rainna_la_grande_city_destroyed_number_thousand
+                    value = 10
+                }
+                if = {
+                    limit = {
+                        check_variable = {
+                            which = rainna_la_grande_city_destroyed_number_thousand
+                            value >999
+                        }
+                    }
+                    if = {
+                        limit = {
+                            NOT = {
+                                has_country_flag = rainna_la_grande_city_destroyed_number_million_initialized
+                            }
+                        }
+                        set_variable = {
+                            which = rainna_la_grande_city_destroyed_number_million
+                            value = 0
+                        }
+                        set_country_flag = rainna_la_grande_city_destroyed_number_million_initialized
+                    }
+                    change_variable = {
+                        which = rainna_la_grande_city_destroyed_number_million
+                        value = 1
+                    }
+                    set_variable_to_random_value = {
+                        which = rainna_la_grande_city_destroyed_number_thousand
+                        min = 100
+                        max = 200
+                        rounded = yes
+                    }
+                }
+            }
+            set_variable_to_random_value = {
+                which = rainna_la_grande_city_destroyed_number
+                min = 100
+                max = 999
+                rounded = yes
+            }
+            if = {
+                limit = {
+                    check_variable = {
+                        which = rainna_la_grande_city_destroyed_number_thousand
+                        value <= 0
+                    }
+                }
+                clear_variable = rainna_la_grande_city_destroyed_number_thousand
+                remove_country_flag = rainna_la_grande_city_destroyed_number_thousand_initialized
+            }
+        }
+    round_variable = rainna_la_grande_city_destroyed_number
+    round_variable = rainna_la_grande_city_destroyed_number_thousand
+    round_variable = rainna_la_grande_city_destroyed_number_million
+    round_variable = rainna_la_grande_city_destroyed_number_billion
+    round_variable = rainna_la_grande_city_destroyed_number_trillion
+    round_variable = rainna_la_grande_city_destroyed_number_quadrillion
+    #}
+}
+
+rainna_la_grande_auto_set_planet_class_nuked = {
+    if = {
+        limit = {
+            num_districts = {
+                type = any
+                # value < 5
+                value < 7
+            }
+            NOR = {
+                has_global_flag =  rainna_la_grande_no_physical_effect
+                is_planet_class = pc_nuked
+            }
+        }
+        change_pc = pc_nuked
+    }
+}
+
+rainna_la_grande_auto_set_planet_class_dirt = {
+    if = {
+        limit = {
+            num_districts = {
+                type = any
+                # value < 5
+                value < 7
+            }
+            NOR = {
+                has_global_flag = rainna_la_grande_no_physical_effect
+            }
+        }
+        random_list = {
+            4 = {
+                change_pc = pc_gts_dirt0
+            }
+            1 = {
+                change_pc = pc_gts_dirt1
+            }
+        }
+    }
+}
+
+# rainna_la_grande_kill_ckerks = {
+#     if = {
+#         limit = {
+#             any_owned_pop = {
+#                 has_job = clerk
+#             }
+#         }
+#         random_owned_pop = {
+#             limit = {
+#                 has_job = clerk
+#             }
+#             kill_pop = yes
+#         }
+#     }
+#     else = {
+#         random_owned_pop = {
+#             kill_pop = yes
+#         }
+#     }
+# }
+rainna_la_grande_kill_one_random_pop = {
+    random_owned_pop = {
+        kill_pop = yes
+    }
+    owner = {
+        change_variable = {
+            which = rainna_la_grande_killed_pop_number
+            value = 1
+        }
+    }
+}
+
+backup_simple_kill_pop_logic_city = { #杀的太多了，乘个0.6
+    if = {
+        limit = {
+            owner_main_species = {
+                has_trait = trait_Ultra
+            }
+        }
+        random_owned_pop_group = {
+            kill_pop_group = {
+                pop_group = this
+                amount = 1
+            }
+        }
+        random_list = {
+            1 = {
+                random_owned_pop_group = {
+                    limit = {
+                        prev = { pop_amount < 1 }
+                    }
+                    kill_all_pop = yes
+                }
+            }
+            9 = {}
+        }
+        owner = {
+            change_variable = {
+                which = rainna_la_grande_killed_pop_number
+                value = 1
+            }
+        }
+    }
+    else_if = {
+        limit = {
+            owner_main_species = {
+                has_trait = trait_Titan
+            }
+        }
+        random_owned_pop_group = {
+            kill_pop_group = {
+                pop_group = this
+                amount = 216
+            }
+        }
+        random_list = {
+            1 = {
+                random_owned_pop_group = {
+                    limit = {
+                        prev = { pop_amount < 108 }
+                    }
+                    kill_all_pop = yes
+                }
+            }
+            9 = {}
+        }
+        owner = {
+            change_variable = {
+                which = rainna_la_grande_killed_pop_number
+                value = 1
+            }
+        }
+    }
+    else_if = {
+        limit = {
+            owner_main_species = {
+                has_trait = trait_Giant
+            }
+        }
+        random_owned_pop_group = {
+            kill_pop_group = {
+                pop_group = this
+                amount = 330
+            }
+        }
+        random_list = {
+            1 = {
+                random_owned_pop_group = {
+                    limit = {
+                        prev = { pop_amount < 165 }
+                    }
+                    kill_all_pop = yes
+                }
+            }
+            9 = {}
+        }
+        owner = {
+            change_variable = {
+                which = rainna_la_grande_killed_pop_number
+                value = 1
+            }
+        }
+    }
+    else_if = {
+        limit = {
+            owner_main_species = {
+                has_trait = trait_Tall
+            }
+        }
+        random_owned_pop_group = {
+            kill_pop_group = {
+                pop_group = this
+                amount = 516
+            }
+        }
+        random_list = {
+            1 = {
+                random_owned_pop_group = {
+                    limit = {
+                        prev = { pop_amount < 258 }
+                    }
+                    kill_all_pop = yes
+                }
+            }
+            9 = {}
+        }
+        owner = {
+            change_variable = {
+                which = rainna_la_grande_killed_pop_number
+                value = 1
+            }
+        }
+    }
+    else_if = {
+        limit = {
+            owner_main_species = {
+                has_trait = trait_Small
+            }
+        }
+        random_owned_pop_group = {
+            kill_pop_group = {
+                pop_group = this
+                amount = 1032
+            }
+        }
+        random_list = {
+            1 = {
+                random_owned_pop_group = {
+                    limit = {
+                        prev = { pop_amount < 516 }
+                    }
+                    kill_all_pop = yes
+                }
+            }
+            9 = {}
+        }
+        owner = {
+            change_variable = {
+                which = rainna_la_grande_killed_pop_number
+                value = 1032
+            }
+        }
+    }
+    else_if = {
+        limit = {
+            owner_main_species = {
+                has_trait = trait_Tiny
+            }
+        }
+        random_owned_pop_group = {
+            kill_pop_group = {
+                pop_group = this
+                amount = 1
+            }
+        }
+        random_list = {
+            1 = {
+                random_owned_pop_group = {
+                    limit = {
+                        prev = { pop_amount < 691 }
+                    }
+                    kill_all_pop = yes
+                }
+            }
+            9 = {}
+        }
+        owner = {
+            change_variable = {
+                which = rainna_la_grande_killed_pop_number
+                value = 1383
+            }
+        }
+    }
+    else_if = {
+        limit = {
+            owner_main_species = {
+                has_trait = trait_Micro
+            }
+        }
+        random_owned_pop_group = {
+            kill_pop_group = {
+                pop_group = this
+                amount = 1734
+            }
+        }
+        random_list = {
+            1 = {
+                random_owned_pop_group = {
+                    limit = {
+                        prev = { pop_amount < 867 }
+                    }
+                    kill_all_pop = yes
+                }
+            }
+            9 = {}
+        }
+        owner = {
+            change_variable = {
+                which = rainna_la_grande_killed_pop_number
+                value = 1
+            }
+        }
+    }
+    else_if = {
+        limit = {
+            owner_main_species = {
+                has_trait = trait_Nano
+            }
+        }
+        random_owned_pop_group = {
+            kill_pop_group = {
+                pop_group = this
+                amount = 2934
+            }
+        }
+        random_list = {
+            1 = {
+                random_owned_pop_group = {
+                    limit = {
+                        prev = { pop_amount < 1467 }
+                    }
+                    kill_all_pop = yes
+                }
+            }
+            9 = {}
+        }
+        owner = {
+            change_variable = {
+                which = rainna_la_grande_killed_pop_number
+                value = 1
+            }
+        }
+    }
+    else = {
+        random_owned_pop_group = {
+            kill_pop_group = {
+                pop_group = this
+                amount = 864
+            }
+        }
+        random_list = {
+            1 = {
+                random_owned_pop_group = {
+                    limit = {
+                        prev = { pop_amount < 432 }
+                    }
+                    kill_all_pop = yes
+                }
+            }
+            9 = {}
+        }
+        owner = {
+            change_variable = {
+                which = rainna_la_grande_killed_pop_number
+                value = 1
+            }
+        }
+    }
+    random_owned_pop_group = {
+        kill_pop_group = {
+            pop_group = this
+            amount = 1
+        }
+    }
+    random_list = {
+        1 = {
+            random_owned_pop_group = {
+                limit = {
+                    prev = { pop_amount < 1 }
+                }
+                kill_all_pop = yes
+            }
+        }
+        9 = {}
+    }
+    owner = {
+        change_variable = {
+            which = rainna_la_grande_killed_pop_number
+            value = 1
+        }
+    }
+}
+
+backup_simple_kill_pop_logic = {
+    if = {
+        limit = {
+            owner_main_species = {
+                has_trait = trait_Ultra
+            }
+        }
+        random_owned_pop_group = {
+            kill_pop_group = {
+                pop_group = this
+                amount = 1
+            }
+        }
+        random_list = {
+            1 = {
+                random_owned_pop_group = {
+                    limit = {
+                        prev = { pop_amount < 1 }
+                    }
+                    kill_all_pop = yes
+                }
+            }
+            9 = {}
+        }
+        owner = {
+            change_variable = {
+                which = rainna_la_grande_killed_pop_number
+                value = 1
+            }
+        }
+    }
+    else_if = {
+        limit = {
+            owner_main_species = {
+                has_trait = trait_Titan
+            }
+        }
+        random_owned_pop_group = {
+            kill_pop_group = {
+                pop_group = this
+                amount = 72
+            }
+        }
+        random_list = {
+            1 = {
+                random_owned_pop_group = {
+                    limit = {
+                        prev = { pop_amount < 36 }
+                    }
+                    kill_all_pop = yes
+                }
+            }
+            9 = {}
+        }
+        owner = {
+            change_variable = {
+                which = rainna_la_grande_killed_pop_number
+                value = 72
+            }
+        }
+    }
+    else_if = {
+        limit = {
+            owner_main_species = {
+                has_trait = trait_Giant
+            }
+        }
+        random_owned_pop_group = {
+            kill_pop_group = {
+                pop_group = this
+                amount = 110
+            }
+        }
+        random_list = {
+            1 = {
+                random_owned_pop_group = {
+                    limit = {
+                        prev = { pop_amount < 55 }
+                    }
+                    kill_all_pop = yes
+                }
+            }
+            9 = {}
+        }
+        owner = {
+            change_variable = {
+                which = rainna_la_grande_killed_pop_number
+                value = 110
+            }
+        }
+    }
+    else_if = {
+        limit = {
+            owner_main_species = {
+                has_trait = trait_Tall
+            }
+        }
+        random_owned_pop_group = {
+            kill_pop_group = {
+                pop_group = this
+                amount = 172
+            }
+        }
+        random_list = {
+            1 = {
+                random_owned_pop_group = {
+                    limit = {
+                        prev = { pop_amount < 86 }
+                    }
+                    kill_all_pop = yes
+                }
+            }
+            9 = {}
+        }
+        owner = {
+            change_variable = {
+                which = rainna_la_grande_killed_pop_number
+                value = 172
+            }
+        }
+    }
+    else_if = {
+        limit = {
+            owner_main_species = {
+                has_trait = trait_Small
+            }
+        }
+        random_owned_pop_group = {
+            kill_pop_group = {
+                pop_group = this
+                amount = 344
+            }
+        }
+        random_list = {
+            1 = {
+                random_owned_pop_group = {
+                    limit = {
+                        prev = { pop_amount < 172 }
+                    }
+                    kill_all_pop = yes
+                }
+            }
+            9 = {}
+        }
+        owner = {
+            change_variable = {
+                which = rainna_la_grande_killed_pop_number
+                value = 344
+            }
+        }
+    }
+    else_if = {
+        limit = {
+            owner_main_species = {
+                has_trait = trait_Tiny
+            }
+        }
+        random_owned_pop_group = {
+            kill_pop_group = {
+                pop_group = this
+                amount = 461
+            }
+        }
+        random_list = {
+            1 = {
+                random_owned_pop_group = {
+                    limit = {
+                        prev = { pop_amount < 230 }
+                    }
+                    kill_all_pop = yes
+                }
+            }
+            9 = {}
+        }
+        owner = {
+            change_variable = {
+                which = rainna_la_grande_killed_pop_number
+                value = 461
+            }
+        }
+    }
+    else_if = {
+        limit = {
+            owner_main_species = {
+                has_trait = trait_Micro
+            }
+        }
+        random_owned_pop_group = {
+            kill_pop_group = {
+                pop_group = this
+                amount = 578
+            }
+        }
+        random_list = {
+            1 = {
+                random_owned_pop_group = {
+                    limit = {
+                        prev = { pop_amount < 239 }
+                    }
+                    kill_all_pop = yes
+                }
+            }
+            9 = {}
+        }
+        owner = {
+            change_variable = {
+                which = rainna_la_grande_killed_pop_number
+                value = 578
+            }
+        }
+    }
+    else_if = {
+        limit = {
+            owner_main_species = {
+                has_trait = trait_Nano
+            }
+        }
+        random_owned_pop_group = {
+            kill_pop_group = {
+                pop_group = this
+                amount = 4890
+            }
+        }
+        random_list = {
+            1 = {
+                random_owned_pop_group = {
+                    limit = {
+                        prev = { pop_amount < 2445 }
+                    }
+                    kill_all_pop = yes
+                }
+            }
+            9 = {}
+        }
+        owner = {
+            change_variable = {
+                which = rainna_la_grande_killed_pop_number
+                value = 4890
+            }
+        }
+    }
+    else = {
+        random_owned_pop_group = {
+            kill_pop_group = {
+                pop_group = this
+                amount = 288
+            }
+        }
+        random_list = {
+            1 = {
+                random_owned_pop_group = {
+                    limit = {
+                        prev = { pop_amount < 144 }
+                    }
+                    kill_all_pop = yes
+                }
+            }
+            9 = {}
+        }
+        owner = {
+            change_variable = {
+                which = rainna_la_grande_killed_pop_number
+                value = 288
+            }
+        }
+    }
+    random_owned_pop_group = {
+        kill_pop_group = {
+            pop_group = this
+            amount = 1
+        }
+    }
+    random_list = {
+        1 = {
+            random_owned_pop_group = {
+                limit = {
+                    prev = { pop_amount < 1 }
+                }
+                kill_all_pop = yes
+            }
+        }
+        9 = {}
+    }
+    owner = {
+        change_variable = {
+            which = rainna_la_grande_killed_pop_number
+            value = 1
+        }
+    }
+}
+
+# kill_most_pop_logic = {
+#     if = {
+#         limit = {
+#             owner_main_species = {
+#                 gts_is_tiny = yes
+#             }
+#         }
+#         set_variable_to_random_value = {
+#             which = rainna_la_grande_remain_pop_number
+#             min = 10
+#             max = 100
+#         }
+#     }
+#     else = {
+#         set_variable_to_random_value = {
+#             which = rainna_la_grande_remain_pop_number
+#             min = 10
+#             max = 25
+#         }
+#     }
+#     while = {
+#         limit = {
+#             num_pops > rainna_la_grande_remain_pop_number
+#         }
+#         kill_pop_group = {
+#
+#         }
+#         subtract_variable = {
+#             which = rainna_la_grande_remain_pop_number
+#             value = 10
+#         }
+#         change_variable = {
+#             which = rainna_la_grande_killed_pop_number
+#             value = 100
+#         }
+#     }
+# }
+
+calculate_rainna_la_grande_payment_value_energy = {
+    if = {
+        limit = {
+            has_global_flag = rainna_la_grande_no_physical_effect
+        }
+        set_variable = {
+            which = rainna_la_grande_payment_value_energy
+            value = 0
+        }
+    }
+    else = {
+        random_list = { #蕾恩娜会随机索要高值或者低值，只不过之前要价太高了，砍一下概率
+            7 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value
+                    min = 0.5
+                    max = 1
+                }
+            }
+            3 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value
+                    min = 1
+                    max = 2
+                }
+            }
+        }
+
+        export_resource_stockpile_to_variable = { #看看玩家有多少
+            resource = energy
+            variable = rainna_la_grande_stock_energy
+        }
+
+        export_resource_income_to_variable = {  #看看玩家能挣多少，这里是结余，算过了
+            resource = energy
+            variable = rainna_la_grande_income_energy
+        }
+        if = {
+            limit = {
+                check_variable = {
+                    which = rainna_la_grande_income_energy
+                    value <= 0
+                }
+            }
+            set_variable = { which = rainna_la_grande_income_energy value = 0 }
+        }
+        multiply_variable = {   #蕾恩娜看着玩家的存储索要
+            which = rainna_la_grande_stock_energy
+            value = rainna_la_grande_random_value
+        }
+        random_list = { #最多追加索要玩家36个月的收入，但是由于要的太多了，所以减小点
+            7 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value
+                    min = 0
+                    max = 6
+                }
+            }
+            2 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value
+                    min = 7
+                    max = 12
+                }
+            }
+            1 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value
+                    min = 13
+                    max = 36
+                }
+            }
+        }
+        multiply_variable = {
+            which = rainna_la_grande_income_energy
+            value = rainna_la_grande_random_value
+        }
+        change_variable = {
+            which = rainna_la_grande_payment_value_energy
+            value = rainna_la_grande_stock_energy
+        }
+        change_variable = {
+            which = rainna_la_grande_payment_value_energy
+            value = rainna_la_grande_income_energy
+        }
+        export_resource_maximum_to_variable = { #如果顶到最大值就收最大值的一部分
+            resource = energy
+            variable = rainna_la_grande_maximum_energy
+        }
+        if = {
+            limit = {
+                check_variable = {
+                    which = rainna_la_grande_payment_value_energy
+                    value >= rainna_la_grande_maximum_energy
+                }
+            }
+            set_variable_to_random_value = {
+                which = rainna_la_grande_random_value
+                min = 0.95
+                max = 1
+            }
+            multiply_variable = {
+                which = rainna_la_grande_maximum_energy
+                value = rainna_la_grande_random_value
+            }
+            set_variable = {
+                which = rainna_la_grande_payment_value_energy
+                value = rainna_la_grande_maximum_energy
+            }
+        }
+        round_variable = rainna_la_grande_payment_value_energy
+    }
+}
+
+calculate_rainna_la_grande_payment_value_alloys = {
+    if = {
+        limit = {
+            has_global_flag = rainna_la_grande_no_physical_effect
+        }
+        set_variable = {
+            which = rainna_la_grande_payment_value_alloys
+            value = 0
+        }
+    }
+    else = {
+        random_list = {
+            #蕾恩娜会随机索要高值或者低值，只不过之前要价太高了，砍一下概率
+            7 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value
+                    min = 0.5
+                    max = 1
+                }
+            }
+            3 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value
+                    min = 1
+                    max = 2
+                }
+            }
+        }
+
+        export_resource_stockpile_to_variable = {
+            #看看玩家有多少
+            resource = alloys
+            variable = rainna_la_grande_stock_alloys
+        }
+
+        export_resource_income_to_variable = {
+            #看看玩家能挣多少，这里是结余，算过了
+            resource = alloys
+            variable = rainna_la_grande_income_alloys
+        }
+        if = {
+            limit = {
+                check_variable = {
+                    which = rainna_la_grande_income_alloys
+                    value <= 0
+                }
+            }
+            set_variable = { which = rainna_la_grande_income_alloys value = 0 }
+        }
+        multiply_variable = {
+            #蕾恩娜看着玩家的存储索要
+            which = rainna_la_grande_stock_alloys
+            value = rainna_la_grande_random_value
+        }
+        random_list = {
+            #最多追加索要玩家36个月的收入，但是由于要的太多了，所以减小点
+            7 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value
+                    min = 0
+                    max = 6
+                }
+            }
+            2 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value
+                    min = 7
+                    max = 12
+                }
+            }
+            1 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value
+                    min = 13
+                    max = 36
+                }
+            }
+        }
+        multiply_variable = {
+            which = rainna_la_grande_income_alloys
+            value = rainna_la_grande_random_value
+        }
+        change_variable = {
+            which = rainna_la_grande_payment_value_alloys
+            value = rainna_la_grande_stock_alloys
+        }
+        change_variable = {
+            which = rainna_la_grande_payment_value_alloys
+            value = rainna_la_grande_income_alloys
+        }
+        export_resource_maximum_to_variable = {
+            #如果顶到最大值就收最大值的一部分
+            resource = alloys
+            variable = rainna_la_grande_maximum_alloys
+        }
+        if = {
+            limit = {
+                check_variable = {
+                    which = rainna_la_grande_payment_value_alloys
+                    value >= rainna_la_grande_maximum_alloys
+                }
+            }
+            set_variable_to_random_value = {
+                which = rainna_la_grande_random_value
+                min = 0.95
+                max = 1
+            }
+            multiply_variable = {
+                which = rainna_la_grande_maximum_alloys
+                value = rainna_la_grande_random_value
+            }
+            set_variable = {
+                which = rainna_la_grande_payment_value_alloys
+                value = rainna_la_grande_maximum_alloys
+            }
+        }
+        round_variable = rainna_la_grande_payment_value_alloys
+    }
+}
+
+calculate_rainna_la_grande_payment_value_consumer_goods = {
+    if = {
+        limit = {
+            has_global_flag = rainna_la_grande_no_physical_effect
+        }
+        set_variable = {
+            which = rainna_la_grande_payment_value_consumer_goods
+            value = 0
+        }
+    }
+    else = {
+        random_list = {
+            #蕾恩娜会随机索要高值或者低值，只不过之前要价太高了，砍一下概率
+            7 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value
+                    min = 0.5
+                    max = 1
+                }
+            }
+            3 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value
+                    min = 1
+                    max = 2
+                }
+            }
+        }
+
+        export_resource_stockpile_to_variable = {
+            #看看玩家有多少
+            resource = consumer_goods
+            variable = rainna_la_grande_stock_consumer_goods
+        }
+
+        export_resource_income_to_variable = {
+            #看看玩家能挣多少，这里是结余，算过了
+            resource = consumer_goods
+            variable = rainna_la_grande_income_consumer_goods
+        }
+        if = {
+            limit = {
+                check_variable = {
+                    which = rainna_la_grande_income_consumer_goods
+                    value <= 0
+                }
+            }
+            set_variable = { which = rainna_la_grande_income_consumer_goods value = 0 }
+        }
+        multiply_variable = {
+            #蕾恩娜看着玩家的存储索要
+            which = rainna_la_grande_stock_consumer_goods
+            value = rainna_la_grande_random_value
+        }
+        random_list = {
+            #最多追加索要玩家36个月的收入，但是由于要的太多了，所以减小点
+            7 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value
+                    min = 0
+                    max = 6
+                }
+            }
+            2 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value
+                    min = 7
+                    max = 12
+                }
+            }
+            1 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value
+                    min = 13
+                    max = 36
+                }
+            }
+        }
+        multiply_variable = {
+            which = rainna_la_grande_income_consumer_goods
+            value = rainna_la_grande_random_value
+        }
+        change_variable = {
+            which = rainna_la_grande_payment_value_consumer_goods
+            value = rainna_la_grande_stock_consumer_goods
+        }
+        change_variable = {
+            which = rainna_la_grande_payment_value_consumer_goods
+            value = rainna_la_grande_income_consumer_goods
+        }
+        export_resource_maximum_to_variable = {
+            #如果顶到最大值就收最大值的一部分
+            resource = consumer_goods
+            variable = rainna_la_grande_maximum_consumer_goods
+        }
+        if = {
+            limit = {
+                check_variable = {
+                    which = rainna_la_grande_payment_value_consumer_goods
+                    value >= rainna_la_grande_maximum_consumer_goods
+                }
+            }
+            set_variable_to_random_value = {
+                which = rainna_la_grande_random_value
+                min = 0.95
+                max = 1
+            }
+            multiply_variable = {
+                which = rainna_la_grande_maximum_consumer_goods
+                value = rainna_la_grande_random_value
+            }
+            set_variable = {
+                which = rainna_la_grande_payment_value_consumer_goods
+                value = rainna_la_grande_maximum_consumer_goods
+            }
+        }
+        round_variable = rainna_la_grande_payment_value_consumer_goods
+    }
+}
+
+calculate_rainna_la_grande_payment_value_minerals = {
+    if = {
+        limit = {
+            has_global_flag = rainna_la_grande_no_physical_effect
+        }
+        set_variable = {
+            which = rainna_la_grande_payment_value_minerals
+            value = 0
+        }
+    }
+    else = {
+        random_list = {
+            #蕾恩娜会随机索要高值或者低值，只不过之前要价太高了，砍一下概率
+            7 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value
+                    min = 0.5
+                    max = 1
+                }
+            }
+            3 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value
+                    min = 1
+                    max = 2
+                }
+            }
+        }
+
+        export_resource_stockpile_to_variable = {
+            #看看玩家有多少
+            resource = minerals
+            variable = rainna_la_grande_stock_minerals
+        }
+
+        export_resource_income_to_variable = {
+            #看看玩家能挣多少，这里是结余，算过了
+            resource = minerals
+            variable = rainna_la_grande_income_minerals
+        }
+        if = {
+            limit = {
+                check_variable = {
+                    which = rainna_la_grande_income_minerals
+                    value <= 0
+                }
+            }
+            set_variable = { which = rainna_la_grande_income_minerals value = 0 }
+        }
+        multiply_variable = {
+            #蕾恩娜看着玩家的存储索要
+            which = rainna_la_grande_stock_minerals
+            value = rainna_la_grande_random_value
+        }
+        random_list = {
+            #最多追加索要玩家36个月的收入，但是由于要的太多了，所以减小点
+            7 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value
+                    min = 0
+                    max = 6
+                }
+            }
+            2 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value
+                    min = 7
+                    max = 12
+                }
+            }
+            1 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value
+                    min = 13
+                    max = 36
+                }
+            }
+        }
+        multiply_variable = {
+            which = rainna_la_grande_income_minerals
+            value = rainna_la_grande_random_value
+        }
+        change_variable = {
+            which = rainna_la_grande_payment_value_minerals
+            value = rainna_la_grande_stock_minerals
+        }
+        change_variable = {
+            which = rainna_la_grande_payment_value_minerals
+            value = rainna_la_grande_income_minerals
+        }
+        export_resource_maximum_to_variable = {
+            #如果顶到最大值就收最大值的一部分
+            resource = minerals
+            variable = rainna_la_grande_maximum_minerals
+        }
+        if = {
+            limit = {
+                check_variable = {
+                    which = rainna_la_grande_payment_value_minerals
+                    value >= rainna_la_grande_maximum_minerals
+                }
+            }
+            set_variable_to_random_value = {
+                which = rainna_la_grande_random_value
+                min = 0.95
+                max = 1
+            }
+            multiply_variable = {
+                which = rainna_la_grande_maximum_minerals
+                value = rainna_la_grande_random_value
+            }
+            set_variable = {
+                which = rainna_la_grande_payment_value_minerals
+                value = rainna_la_grande_maximum_minerals
+            }
+        }
+        round_variable = rainna_la_grande_payment_value_minerals
+    }
+}
+
+calculate_rainna_la_grande_payment_value_food = {
+    if = {
+        limit = {
+            has_global_flag = rainna_la_grande_no_physical_effect
+        }
+        set_variable = {
+            which = rainna_la_grande_payment_value_food
+            value = 0
+        }
+    }
+    else = {
+        random_list = {
+            #蕾恩娜会随机索要高值或者低值，只不过之前要价太高了，砍一下概率
+            7 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value
+                    min = 0.5
+                    max = 1
+                }
+            }
+            3 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value
+                    min = 1
+                    max = 2
+                }
+            }
+        }
+
+        export_resource_stockpile_to_variable = {
+            #看看玩家有多少
+            resource = food
+            variable = rainna_la_grande_stock_food
+        }
+
+        export_resource_income_to_variable = {
+            #看看玩家能挣多少，这里是结余，算过了
+            resource = food
+            variable = rainna_la_grande_income_food
+        }
+        if = {
+            limit = {
+                check_variable = {
+                    which = rainna_la_grande_income_food
+                    value <= 0
+                }
+            }
+            set_variable = { which = rainna_la_grande_income_food value = 0 }
+        }
+        multiply_variable = {
+            #蕾恩娜看着玩家的存储索要
+            which = rainna_la_grande_stock_food
+            value = rainna_la_grande_random_value
+        }
+        random_list = {
+            #最多追加索要玩家36个月的收入，但是由于要的太多了，所以减小点
+            7 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value
+                    min = 0
+                    max = 6
+                }
+            }
+            2 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value
+                    min = 7
+                    max = 12
+                }
+            }
+            1 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value
+                    min = 13
+                    max = 36
+                }
+            }
+        }
+        multiply_variable = {
+            which = rainna_la_grande_income_food
+            value = rainna_la_grande_random_value
+        }
+        change_variable = {
+            which = rainna_la_grande_payment_value_food
+            value = rainna_la_grande_stock_food
+        }
+        change_variable = {
+            which = rainna_la_grande_payment_value_food
+            value = rainna_la_grande_income_food
+        }
+        export_resource_maximum_to_variable = {
+            #如果顶到最大值就收最大值的一部分
+            resource = food
+            variable = rainna_la_grande_maximum_food
+        }
+        if = {
+            limit = {
+                check_variable = {
+                    which = rainna_la_grande_payment_value_food
+                    value >= rainna_la_grande_maximum_food
+                }
+            }
+            set_variable_to_random_value = {
+                which = rainna_la_grande_random_value
+                min = 0.95
+                max = 1
+            }
+            multiply_variable = {
+                which = rainna_la_grande_maximum_food
+                value = rainna_la_grande_random_value
+            }
+            set_variable = {
+                which = rainna_la_grande_payment_value_food
+                value = rainna_la_grande_maximum_food
+            }
+        }
+        round_variable = rainna_la_grande_payment_value_food
+    }
+}
+
+calculate_rainna_la_grande_payment_value_micro = {
+    if = {
+        limit = {
+            has_global_flag = rainna_la_grande_no_physical_effect
+        }
+        set_variable = {
+            which = rainna_la_grande_payment_value_gts_micro
+            value = 0
+        }
+    }
+    else = {
+        random_list = {
+            #蕾恩娜会随机索要高值或者低值，只不过之前要价太高了，砍一下概率
+            7 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value
+                    min = 0.5
+                    max = 1
+                }
+            }
+            3 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value
+                    min = 1
+                    max = 2
+                }
+            }
+        }
+
+        export_resource_stockpile_to_variable = {
+            #看看玩家有多少
+            resource = gts_micro
+            variable = rainna_la_grande_stock_gts_micro
+        }
+
+        change_variable = {
+            which = rainna_la_grande_stock_gts_micro
+            value = 10000
+        }
+
+        export_resource_income_to_variable = {
+            #看看玩家能挣多少，这里是结余，算过了
+            resource = gts_micro
+            variable = rainna_la_grande_income_gts_micro
+        }
+        if = {
+            limit = {
+                check_variable = {
+                    which = rainna_la_grande_income_gts_micro
+                    value <= 0
+                }
+            }
+            set_variable = { which = rainna_la_grande_income_gts_micro value = 0 }
+        }
+        multiply_variable = {
+            #蕾恩娜看着玩家的存储索要
+            which = rainna_la_grande_stock_gts_micro
+            value = rainna_la_grande_random_value
+        }
+        random_list = {
+            #最多追加索要玩家36个月的收入，但是由于要的太多了，所以减小点
+            7 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value
+                    min = 0
+                    max = 6
+                }
+            }
+            2 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value
+                    min = 7
+                    max = 12
+                }
+            }
+            1 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value
+                    min = 13
+                    max = 36
+                }
+            }
+        }
+        multiply_variable = {
+            which = rainna_la_grande_income_gts_micro
+            value = rainna_la_grande_random_value
+        }
+        change_variable = {
+            which = rainna_la_grande_payment_value_gts_micro
+            value = rainna_la_grande_stock_gts_micro
+        }
+        change_variable = {
+            which = rainna_la_grande_payment_value_gts_micro
+            value = rainna_la_grande_income_gts_micro
+        }
+        export_resource_maximum_to_variable = {
+            #如果顶到最大值就收最大值的一部分
+            resource = gts_micro
+            variable = rainna_la_grande_maximum_gts_micro
+        }
+        if = {
+            limit = {
+                check_variable = {
+                    which = rainna_la_grande_payment_value_gts_micro
+                    value >= rainna_la_grande_maximum_gts_micro
+                }
+            }
+            set_variable_to_random_value = {
+                which = rainna_la_grande_random_value
+                min = 0.95
+                max = 1
+            }
+            multiply_variable = {
+                which = rainna_la_grande_maximum_gts_micro
+                value = rainna_la_grande_random_value
+            }
+            set_variable = {
+                which = rainna_la_grande_payment_value_gts_micro
+                value = rainna_la_grande_maximum_gts_micro
+            }
+        }
+        round_variable = rainna_la_grande_payment_value_gts_micro
+    }
+}
+
+calculate_rainna_la_grande_payment_value_micro_city = {
+    if = {
+        limit = {
+            has_global_flag = rainna_la_grande_no_physical_effect
+        }
+        set_variable = {
+            which = rainna_la_grande_payment_value_gts_micro_city
+            value = 0
+        }
+    }
+    else = {
+        random_list = {
+            #蕾恩娜会随机索要高值或者低值，只不过之前要价太高了，砍一下概率
+            7 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value
+                    min = 0.5
+                    max = 1
+                }
+            }
+            3 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value
+                    min = 1
+                    max = 2
+                }
+            }
+        }
+
+        export_resource_stockpile_to_variable = {
+            #看看玩家有多少
+            resource = gts_micro_city
+            variable = rainna_la_grande_stock_gts_micro_city
+        }
+
+        change_variable = {
+            which = rainna_la_grande_stock_gts_micro
+            value = 1000
+        }
+
+        export_resource_income_to_variable = {
+            #看看玩家能挣多少，这里是结余，算过了
+            resource = gts_micro_city
+            variable = rainna_la_grande_income_gts_micro_city
+        }
+        if = {
+            limit = {
+                check_variable = {
+                    which = rainna_la_grande_income_gts_micro_city
+                    value <= 0
+                }
+            }
+            set_variable = { which = rainna_la_grande_income_gts_micro_city value = 0 }
+        }
+        multiply_variable = {
+            #蕾恩娜看着玩家的存储索要
+            which = rainna_la_grande_stock_gts_micro_city
+            value = rainna_la_grande_random_value
+        }
+        random_list = {
+            #最多追加索要玩家36个月的收入，但是由于要的太多了，所以减小点
+            7 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value
+                    min = 0
+                    max = 6
+                }
+            }
+            2 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value
+                    min = 7
+                    max = 12
+                }
+            }
+            1 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value
+                    min = 13
+                    max = 36
+                }
+            }
+        }
+        multiply_variable = {
+            which = rainna_la_grande_income_gts_micro_city
+            value = rainna_la_grande_random_value
+        }
+        change_variable = {
+            which = rainna_la_grande_payment_value_gts_micro_city
+            value = rainna_la_grande_stock_gts_micro_city
+        }
+        change_variable = {
+            which = rainna_la_grande_payment_value_gts_micro_city
+            value = rainna_la_grande_income_gts_micro_city
+        }
+        export_resource_maximum_to_variable = {
+            #如果顶到最大值就收最大值的一部分
+            resource = gts_micro_city
+            variable = rainna_la_grande_maximum_gts_micro_city
+        }
+        if = {
+            limit = {
+                check_variable = {
+                    which = rainna_la_grande_payment_value_gts_micro_city
+                    value >= rainna_la_grande_maximum_gts_micro_city
+                }
+            }
+            set_variable_to_random_value = {
+                which = rainna_la_grande_random_value
+                min = 0.95
+                max = 1
+            }
+            multiply_variable = {
+                which = rainna_la_grande_maximum_gts_micro_city
+                value = rainna_la_grande_random_value
+            }
+            set_variable = {
+                which = rainna_la_grande_payment_value_gts_micro_city
+                value = rainna_la_grande_maximum_gts_micro_city
+            }
+        }
+        round_variable = rainna_la_grande_payment_value_gts_micro_city
+    }
+}
+
+calculate_rainna_la_grande_payment_value_micro_planet = {
+    if = {
+        limit = {
+            has_global_flag = rainna_la_grande_no_physical_effect
+        }
+        set_variable = {
+            which = rainna_la_grande_payment_value_gts_micro_planet
+            value = 0
+        }
+    }
+    else = {
+        random_list = {
+            #蕾恩娜会随机索要高值或者低值，只不过之前要价太高了，砍一下概率
+            7 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value
+                    min = 0.5
+                    max = 1
+                }
+            }
+            3 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value
+                    min = 1
+                    max = 2
+                }
+            }
+        }
+
+        export_resource_stockpile_to_variable = {
+            #看看玩家有多少
+            resource = gts_micro_planet
+            variable = rainna_la_grande_stock_gts_micro_planet
+        }
+
+        change_variable = {
+            which = rainna_la_grande_stock_gts_micro
+            value = 100
+        }
+
+        export_resource_income_to_variable = {
+            #看看玩家能挣多少，这里是结余，算过了
+            resource = gts_micro_planet
+            variable = rainna_la_grande_income_gts_micro_planet
+        }
+        if = {
+            limit = {
+                check_variable = {
+                    which = rainna_la_grande_income_gts_micro_planet
+                    value <= 0
+                }
+            }
+            set_variable = { which = rainna_la_grande_income_gts_micro_planet value = 0 }
+        }
+        multiply_variable = {
+            #蕾恩娜看着玩家的存储索要
+            which = rainna_la_grande_stock_gts_micro_planet
+            value = rainna_la_grande_random_value
+        }
+        random_list = {
+            #最多追加索要玩家36个月的收入，但是由于要的太多了，所以减小点
+            7 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value
+                    min = 0
+                    max = 6
+                }
+            }
+            2 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value
+                    min = 7
+                    max = 12
+                }
+            }
+            1 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value
+                    min = 13
+                    max = 36
+                }
+            }
+        }
+        multiply_variable = {
+            which = rainna_la_grande_income_gts_micro_planet
+            value = rainna_la_grande_random_value
+        }
+        change_variable = {
+            which = rainna_la_grande_payment_value_gts_micro_planet
+            value = rainna_la_grande_stock_gts_micro_planet
+        }
+        change_variable = {
+            which = rainna_la_grande_payment_value_gts_micro_planet
+            value = rainna_la_grande_income_gts_micro_planet
+        }
+        export_resource_maximum_to_variable = {
+            #如果顶到最大值就收最大值的一部分
+            resource = gts_micro_planet
+            variable = rainna_la_grande_maximum_gts_micro_planet
+        }
+        if = {
+            limit = {
+                check_variable = {
+                    which = rainna_la_grande_payment_value_gts_micro_planet
+                    value >= rainna_la_grande_maximum_gts_micro_planet
+                }
+            }
+            set_variable_to_random_value = {
+                which = rainna_la_grande_random_value
+                min = 0.95
+                max = 1
+            }
+            multiply_variable = {
+                which = rainna_la_grande_maximum_gts_micro_planet
+                value = rainna_la_grande_random_value
+            }
+            set_variable = {
+                which = rainna_la_grande_payment_value_gts_micro_planet
+                value = rainna_la_grande_maximum_gts_micro_planet
+            }
+        }
+        round_variable = rainna_la_grande_payment_value_gts_micro_planet
+    }
+}
+
+half_rainna_la_grande_payment_value = {
+    multiply_variable = {
+        which = rainna_la_grande_payment_value_energy
+        value = 0.5
+    }
+    round_variable = rainna_la_grande_payment_value_energy
+    multiply_variable = {
+        which = rainna_la_grande_payment_value_alloys
+        value = 0.5
+    }
+    round_variable = rainna_la_grande_payment_value_alloys
+    multiply_variable = {
+        which = rainna_la_grande_payment_value_consumer_goods
+        value = 0.5
+    }
+    round_variable = rainna_la_grande_payment_value_consumer_goods
+    multiply_variable = {
+        which = rainna_la_grande_payment_value_minerals
+        value = 0.5
+    }
+    round_variable = rainna_la_grande_payment_value_minerals
+    multiply_variable = {
+        which = rainna_la_grande_payment_value_gts_micro
+        value = 0.5
+    }
+    round_variable = rainna_la_grande_payment_value_gts_micro
+    multiply_variable = {
+        which = rainna_la_grande_payment_value_gts_micro_city
+        value = 0.5
+    }
+    round_variable = rainna_la_grande_payment_value_gts_micro_city
+    multiply_variable = {
+        which = rainna_la_grande_payment_value_gts_micro_planet
+        value = 0.5
+    }
+    round_variable = rainna_la_grande_payment_value_gts_micro_planet
+}
+
+rainna_la_grande_fill_debt = {
+    if = {
+        limit = {
+             NOR = {
+                has_country_flag = rainna_la_grande_debt_$SLOT$_available
+                has_country_flag = rainna_la_grande_debt_$SLOT$_valid
+            }
+            check_variable = {
+                which = rainna_la_grande_debt_number
+                value < 4
+            }
+        }
+        # set_country_flag = rainna_la_grande_debt_$SLOT$
+        change_variable = {
+            which = rainna_la_grande_debt_number
+            value = 1
+        }
+        set_variable_to_random_value = {
+            which = rainna_la_grande_debt_$SLOT$_principal_value
+            min = $PRINCIPAL_MIN$
+            max = $PRINCIPAL_MAX$
+            rounded = yes
+        }
+        multiply_variable = {
+            which = rainna_la_grande_debt_$SLOT$_principal_value
+            value = $PRINCIPAL_MULTIPLIER$
+        }
+        set_variable_to_random_value = {
+            which = rainna_la_grande_debt_$SLOT$_principal_payment_value
+            min = $PRINCIPAL_PAYMENT_MIN$
+            max = $PRINCIPAL_PAYMENT_MAX$
+        }
+        multiply_variable = {
+            which = rainna_la_grande_debt_$SLOT$_principal_payment_value
+            value = rainna_la_grande_debt_$SLOT$_principal_value
+        }
+        multiply_variable = { #先换算成能量币
+            which = rainna_la_grande_debt_$SLOT$_principal_payment_value
+            value = $PRICE$
+        }
+        divide_variable = {
+            which = rainna_la_grande_debt_$SLOT$_principal_payment_value
+            value = rainna_la_grande_coin_price_value
+        }
+        multiply_variable = {
+            which = rainna_la_grande_debt_$SLOT$_principal_payment_value
+            value = 100
+        }
+
+        round_variable = rainna_la_grande_debt_$SLOT$_principal_payment_value
+
+        divide_variable = {
+            which = rainna_la_grande_debt_$SLOT$_principal_payment_value
+            value = 100
+        }
+        # divide_variable = { ?这原本想写什么逻辑？
+        #     which = rainna_la_grande_debt_number
+        #     value = 10
+        # }
+        random_list = {
+            15 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_debt_$SLOT$_interest_value
+                    min = $INTEREST_MIN$
+                    max = $INTEREST_LOW$
+                }
+            }
+            4 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_debt_$SLOT$_interest_value
+                    min = $INTEREST_LOW$
+                    max = $INTEREST_HIGH$
+                }
+            }
+            1 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_debt_$SLOT$_interest_value
+                    min = $INTEREST_HIGH$
+                    max = $INTEREST_MAX$
+                }
+            }
+        }
+        multiply_variable = {
+            which = rainna_la_grande_debt_$SLOT$_interest_value
+            value = 10000
+        }
+        round_variable = rainna_la_grande_debt_$SLOT$_interest_value
+        divide_variable = {
+            which = rainna_la_grande_debt_$SLOT$_interest_value
+            value = 100
+        }
+        if = {
+            limit = {
+                check_variable = {
+                    which = rainna_la_grande_debt_$SLOT$_interest_value
+                    value <= 0
+                }
+            }
+            set_variable_to_random_value = {
+                which = rainna_la_grande_debt_$SLOT$_interest_value
+                min = 10
+                max = 50
+                rounded = yes
+            }
+            divide_variable = {
+                which = rainna_la_grande_debt_$SLOT$_interest_value
+                value = 100
+            }
+        }
+        set_variable = {
+            which = rainna_la_grande_debt_$SLOT$_actual_interest_value
+            value = rainna_la_grande_debt_$SLOT$_interest_value
+        }
+        divide_variable = {
+            which = rainna_la_grande_debt_$SLOT$_actual_interest_value
+            value = 100
+        }
+        # round_variable = rainna_la_grande_debt_$SLOT$_actual_interest_value
+        set_variable_to_random_value = {
+            which = rainna_la_grande_debt_$SLOT$_lock_months
+            min = $LOCK_MIN$
+            max = $LOCK_MAX$
+            rounded = yes
+        }
+        set_variable_to_random_value = {
+            which = rainna_la_grande_debt_$SLOT$_due_months
+            min = $DUE_MIN$
+            max = $DUE_MAX$
+            rounded = yes
+        }
+        # 标记这个贷款槽位已经生成
+        set_country_flag = rainna_la_grande_debt_$SLOT$_available
+    }
+}
+
+rainna_la_grande_store_valid_debt = {
+    if = {
+        limit = {
+            NOT = {
+                has_country_flag = rainna_la_grande_valid_debt_slot_1
+            }
+        }
+
+        set_country_flag = rainna_la_grande_valid_debt_slot_1
+        set_country_flag = rainna_la_grande_debt_$SLOT$_valid
+
+        # 当前总欠款；刚贷款时等于本金
+        set_variable = {
+            which = rainna_la_grande_debt_slot_1_principal_payment_value
+            value = rainna_la_grande_debt_$SLOT$_principal_payment_value
+        }
+
+        # 当前剩余本金；刚贷款时等于本金
+        set_variable = {
+            which = rainna_la_grande_debt_slot_1_remaining_principal_value
+            value = rainna_la_grande_debt_$SLOT$_principal_payment_value
+        }
+
+        # 当前累计利息；刚贷款时为0
+        set_variable = {
+            which = rainna_la_grande_debt_slot_1_interest_created_value
+            value = 0
+        }
+
+        # 保存真实利率，例如0.01
+        set_variable = {
+            which = rainna_la_grande_debt_slot_1_actual_interest_value
+            value = rainna_la_grande_debt_$SLOT$_actual_interest_value
+        }
+
+        # round_variable = rainna_la_grande_debt_slot_1_actual_interest_value
+
+        # 转换成复利乘数，例如0.01变成1.01
+        change_variable = {
+            which = rainna_la_grande_debt_slot_1_actual_interest_value
+            value = 1
+        }
+
+        set_variable = {
+            which = rainna_la_grande_debt_slot_1_lock_months
+            value = rainna_la_grande_debt_$SLOT$_lock_months
+        }
+
+        set_variable = {
+            which = rainna_la_grande_debt_slot_1_due_months
+            value = rainna_la_grande_debt_$SLOT$_due_months
+        }
+
+        set_variable = {
+            which = rainna_la_grande_debt_slot_1_overdue_months
+            value = 0
+        }
+    }
+
+    else_if = {
+        limit = {
+            NOT = {
+                has_country_flag = rainna_la_grande_valid_debt_slot_2
+            }
+        }
+
+        set_country_flag = rainna_la_grande_valid_debt_slot_2
+        set_country_flag = rainna_la_grande_debt_$SLOT$_valid
+
+        set_variable = {
+            which = rainna_la_grande_debt_slot_2_principal_payment_value
+            value = rainna_la_grande_debt_$SLOT$_principal_payment_value
+        }
+
+        # round_variable = rainna_la_grande_debt_slot_2_actual_interest_value
+
+        set_variable = {
+            which = rainna_la_grande_debt_slot_2_remaining_principal_value
+            value = rainna_la_grande_debt_$SLOT$_principal_payment_value
+        }
+
+        set_variable = {
+            which = rainna_la_grande_debt_slot_2_interest_created_value
+            value = 0
+        }
+
+        set_variable = {
+            which = rainna_la_grande_debt_slot_2_actual_interest_value
+            value = rainna_la_grande_debt_$SLOT$_actual_interest_value
+        }
+
+        change_variable = {
+            which = rainna_la_grande_debt_slot_2_actual_interest_value
+            value = 1
+        }
+
+        set_variable = {
+            which = rainna_la_grande_debt_slot_2_lock_months
+            value = rainna_la_grande_debt_$SLOT$_lock_months
+        }
+
+        set_variable = {
+            which = rainna_la_grande_debt_slot_2_due_months
+            value = rainna_la_grande_debt_$SLOT$_due_months
+        }
+
+        set_variable = {
+            which = rainna_la_grande_debt_slot_2_overdue_months
+            value = 0
+        }
+    }
+
+    else_if = {
+        limit = {
+            NOT = {
+                has_country_flag = rainna_la_grande_valid_debt_slot_3
+            }
+        }
+
+        set_country_flag = rainna_la_grande_valid_debt_slot_3
+        set_country_flag = rainna_la_grande_debt_$SLOT$_valid
+
+        set_variable = {
+            which = rainna_la_grande_debt_slot_3_principal_payment_value
+            value = rainna_la_grande_debt_$SLOT$_principal_payment_value
+        }
+
+        set_variable = {
+            which = rainna_la_grande_debt_slot_3_remaining_principal_value
+            value = rainna_la_grande_debt_$SLOT$_principal_payment_value
+        }
+
+        set_variable = {
+            which = rainna_la_grande_debt_slot_3_interest_created_value
+            value = 0
+        }
+
+        set_variable = {
+            which = rainna_la_grande_debt_slot_3_actual_interest_value
+            value = rainna_la_grande_debt_$SLOT$_actual_interest_value
+        }
+
+        # round_variable = rainna_la_grande_debt_slot_3_actual_interest_value
+
+        change_variable = {
+            which = rainna_la_grande_debt_slot_3_actual_interest_value
+            value = 1
+        }
+
+        set_variable = {
+            which = rainna_la_grande_debt_slot_3_lock_months
+            value = rainna_la_grande_debt_$SLOT$_lock_months
+        }
+
+        set_variable = {
+            which = rainna_la_grande_debt_slot_3_due_months
+            value = rainna_la_grande_debt_$SLOT$_due_months
+        }
+
+        set_variable = {
+            which = rainna_la_grande_debt_slot_3_overdue_months
+            value = 0
+        }
+    }
+
+    else_if = {
+        limit = {
+            NOT = {
+                has_country_flag = rainna_la_grande_valid_debt_slot_4
+            }
+        }
+
+        set_country_flag = rainna_la_grande_valid_debt_slot_4
+        set_country_flag = rainna_la_grande_debt_$SLOT$_valid
+
+        set_variable = {
+            which = rainna_la_grande_debt_slot_4_principal_payment_value
+            value = rainna_la_grande_debt_$SLOT$_principal_payment_value
+        }
+
+        set_variable = {
+            which = rainna_la_grande_debt_slot_4_remaining_principal_value
+            value = rainna_la_grande_debt_$SLOT$_principal_payment_value
+        }
+
+        set_variable = {
+            which = rainna_la_grande_debt_slot_4_interest_created_value
+            value = 0
+        }
+
+        set_variable = {
+            which = rainna_la_grande_debt_slot_4_actual_interest_value
+            value = rainna_la_grande_debt_$SLOT$_actual_interest_value
+        }
+
+        # round_variable = rainna_la_grande_debt_slot_4_actual_interest_value
+
+        change_variable = {
+            which = rainna_la_grande_debt_slot_4_actual_interest_value
+            value = 1
+        }
+
+        set_variable = {
+            which = rainna_la_grande_debt_slot_4_lock_months
+            value = rainna_la_grande_debt_$SLOT$_lock_months
+        }
+
+        set_variable = {
+            which = rainna_la_grande_debt_slot_4_due_months
+            value = rainna_la_grande_debt_$SLOT$_due_months
+        }
+
+        set_variable = {
+            which = rainna_la_grande_debt_slot_4_overdue_months
+            value = 0
+        }
+    }
+
+    # 每次新增贷款后重新统计总账
+    rainna_la_grande_rebuild_debt_totals = yes
+}
+
+rainna_la_grande_update_debt_slot = {
+    if = {
+        limit = {
+            has_country_flag = rainna_la_grande_valid_debt_slot_$SLOT$
+        }
+
+        # 当前总欠款进行一次月复利
+        multiply_variable = {
+            which = rainna_la_grande_debt_slot_$SLOT$_principal_payment_value
+            value = rainna_la_grande_debt_slot_$SLOT$_actual_interest_value
+        }
+
+        # 当前总欠款保留两位小数
+        multiply_variable = {
+            which = rainna_la_grande_debt_slot_$SLOT$_principal_payment_value
+            value = 100
+        }
+
+        round_variable = rainna_la_grande_debt_slot_$SLOT$_principal_payment_value
+
+        divide_variable = {
+            which = rainna_la_grande_debt_slot_$SLOT$_principal_payment_value
+            value = 100
+        }
+
+        # 当前累计利息 = 当前总欠款 - 当前剩余本金
+        set_variable = {
+            which = rainna_la_grande_debt_slot_$SLOT$_interest_created_value
+            value = rainna_la_grande_debt_slot_$SLOT$_principal_payment_value
+        }
+
+        subtract_variable = {
+            which = rainna_la_grande_debt_slot_$SLOT$_interest_created_value
+            value = rainna_la_grande_debt_slot_$SLOT$_remaining_principal_value
+        }
+
+        # 累计利息也保留两位小数
+        multiply_variable = {
+            which = rainna_la_grande_debt_slot_$SLOT$_interest_created_value
+            value = 100
+        }
+
+        round_variable = rainna_la_grande_debt_slot_$SLOT$_interest_created_value
+
+        divide_variable = {
+            which = rainna_la_grande_debt_slot_$SLOT$_interest_created_value
+            value = 100
+        }
+
+        # 防止浮点误差导致负利息
+        if = {
+            limit = {
+                check_variable = {
+                    which = rainna_la_grande_debt_slot_$SLOT$_interest_created_value
+                    value < 0
+                }
+            }
+
+            set_variable = {
+                which = rainna_la_grande_debt_slot_$SLOT$_interest_created_value
+                value = 0
+            }
+        }
+
+        # 最低贷款时间逐月减少
+        if = {
+            limit = {
+                check_variable = {
+                    which = rainna_la_grande_debt_slot_$SLOT$_lock_months
+                    value > 0
+                }
+            }
+
+            subtract_variable = {
+                which = rainna_la_grande_debt_slot_$SLOT$_lock_months
+                value = 1
+            }
+        }
+
+        if = {
+            limit = {
+                check_variable = {
+                    which = rainna_la_grande_debt_slot_$SLOT$_due_months
+                    value < 0
+                }
+            }
+            set_variable = {
+                which = rainna_la_grande_debt_slot_$SLOT$_due_months
+                value = 0
+            }
+        }
+
+        if = {
+            limit = {
+                check_variable = {
+                    which = rainna_la_grande_debt_slot_$SLOT$_due_months
+                    value > 0
+                }
+            }
+
+            subtract_variable = {
+                which = rainna_la_grande_debt_slot_$SLOT$_due_months
+                value = 1
+            }
+        }
+        else_if = {
+            limit = {
+                check_variable = {
+                    which = rainna_la_grande_debt_slot_$SLOT$_due_months
+                    value <= 0
+                }
+            }
+            if = {
+                limit = {
+                    check_variable = {
+                        which = rainna_la_grande_debt_slot_$SLOT$_due_months
+                        value < 0
+                    }
+                }
+                set_variable = {
+                    which = rainna_la_grande_debt_slot_$SLOT$_due_months
+                    value = 0
+                }
+            }
+            change_variable = {
+                which = rainna_la_grande_debt_slot_$SLOT$_overdue_months
+                value = 1
+            }
+        }
+    }
+}
+
+rainna_la_grande_rebuild_debt_totals = {
+    # 所有贷款剩余本金之和
+    set_variable = {
+        which = rainna_la_grande_coin_debt_value
+        value = 0
+    }
+
+    # 所有贷款累计利息之和
+    set_variable = {
+        which = rainna_la_grande_coin_debt_interest_value
+        value = 0
+    }
+
+    # 所有贷款当前总欠款之和
+    set_variable = {
+        which = rainna_la_grande_coin_debt_payment_required_value
+        value = 0
+    }
+
+    if = {
+        limit = {
+            has_country_flag = rainna_la_grande_valid_debt_slot_1
+        }
+
+        change_variable = {
+            which = rainna_la_grande_coin_debt_value
+            value = rainna_la_grande_debt_slot_1_remaining_principal_value
+        }
+
+        change_variable = {
+            which = rainna_la_grande_coin_debt_interest_value
+            value = rainna_la_grande_debt_slot_1_interest_created_value
+        }
+
+        change_variable = {
+            which = rainna_la_grande_coin_debt_payment_required_value
+            value = rainna_la_grande_debt_slot_1_principal_payment_value
+        }
+    }
+
+    if = {
+        limit = {
+            has_country_flag = rainna_la_grande_valid_debt_slot_2
+        }
+
+        change_variable = {
+            which = rainna_la_grande_coin_debt_value
+            value = rainna_la_grande_debt_slot_2_remaining_principal_value
+        }
+
+        change_variable = {
+            which = rainna_la_grande_coin_debt_interest_value
+            value = rainna_la_grande_debt_slot_2_interest_created_value
+        }
+
+        change_variable = {
+            which = rainna_la_grande_coin_debt_payment_required_value
+            value = rainna_la_grande_debt_slot_2_principal_payment_value
+        }
+    }
+
+    if = {
+        limit = {
+            has_country_flag = rainna_la_grande_valid_debt_slot_3
+        }
+
+        change_variable = {
+            which = rainna_la_grande_coin_debt_value
+            value = rainna_la_grande_debt_slot_3_remaining_principal_value
+        }
+
+        change_variable = {
+            which = rainna_la_grande_coin_debt_interest_value
+            value = rainna_la_grande_debt_slot_3_interest_created_value
+        }
+
+        change_variable = {
+            which = rainna_la_grande_coin_debt_payment_required_value
+            value = rainna_la_grande_debt_slot_3_principal_payment_value
+        }
+    }
+
+    if = {
+        limit = {
+            has_country_flag = rainna_la_grande_valid_debt_slot_4
+        }
+
+        change_variable = {
+            which = rainna_la_grande_coin_debt_value
+            value = rainna_la_grande_debt_slot_4_remaining_principal_value
+        }
+
+        change_variable = {
+            which = rainna_la_grande_coin_debt_interest_value
+            value = rainna_la_grande_debt_slot_4_interest_created_value
+        }
+
+        change_variable = {
+            which = rainna_la_grande_coin_debt_payment_required_value
+            value = rainna_la_grande_debt_slot_4_principal_payment_value
+        }
+    }
+    # 总剩余本金保留两位小数
+    multiply_variable = {
+        which = rainna_la_grande_coin_debt_value
+        value = 100
+    }
+
+    round_variable = rainna_la_grande_coin_debt_value
+
+    divide_variable = {
+        which = rainna_la_grande_coin_debt_value
+        value = 100
+    }
+
+    # 总利息保留两位小数
+    multiply_variable = {
+        which = rainna_la_grande_coin_debt_interest_value
+        value = 100
+    }
+
+    round_variable = rainna_la_grande_coin_debt_interest_value
+
+    divide_variable = {
+        which = rainna_la_grande_coin_debt_interest_value
+        value = 100
+    }
+
+    # 总欠款保留两位小数
+    multiply_variable = {
+        which = rainna_la_grande_coin_debt_payment_required_value
+        value = 100
+    }
+
+    round_variable = rainna_la_grande_coin_debt_payment_required_value
+
+    divide_variable = {
+        which = rainna_la_grande_coin_debt_payment_required_value
+        value = 100
+    }
+}
+
+rainna_la_grande_clear_debt_selection = {
+    remove_country_flag = rainna_la_grande_slot_1_selected
+    remove_country_flag = rainna_la_grande_slot_2_selected
+    remove_country_flag = rainna_la_grande_slot_3_selected
+    remove_country_flag = rainna_la_grande_slot_4_selected
+}
+
+rainna_la_grande_select_debt_slot = {
+    # 防止同时选中两个槽位
+    rainna_la_grande_clear_debt_selection = yes
+
+    set_country_flag = rainna_la_grande_slot_$SLOT$_selected
+
+    # 当前所选贷款的总欠款
+    set_variable = {
+        which = rainna_la_grande_debt_this_slot_principal_payment_value
+        value = rainna_la_grande_debt_slot_$SLOT$_principal_payment_value
+    }
+
+    # 当前所选贷款的剩余本金
+    set_variable = {
+        which = rainna_la_grande_debt_this_slot_remaining_principal_value
+        value = rainna_la_grande_debt_slot_$SLOT$_remaining_principal_value
+    }
+
+    # 当前所选贷款的累计利息
+    set_variable = {
+        which = rainna_la_grande_debt_this_slot_interest_created_value
+        value = rainna_la_grande_debt_slot_$SLOT$_interest_created_value
+    }
+
+    # 贷款剩余锁定月份
+    set_variable = {
+        which = rainna_la_grande_debt_this_slot_lock_months
+        value = rainna_la_grande_debt_slot_$SLOT$_lock_months
+    }
+
+    set_variable = {
+        which = rainna_la_grande_debt_this_slot_due_months
+        value = rainna_la_grande_debt_slot_$SLOT$_due_months
+    }
+
+    set_variable = {
+        which = rainna_la_grande_debt_this_slot_overdue_months
+        value = rainna_la_grande_debt_slot_$SLOT$_overdue_months
+    }
+
+    # 槽位中的利率是复利乘数，例如1.0138
+    # 转换成显示百分比1.38
+    set_variable = {
+        which = rainna_la_grande_debt_this_slot_interest_value
+        value = rainna_la_grande_debt_slot_$SLOT$_actual_interest_value
+    }
+
+    subtract_variable = {
+        which = rainna_la_grande_debt_this_slot_interest_value
+        value = 1
+    }
+
+    multiply_variable = {
+        which = rainna_la_grande_debt_this_slot_interest_value
+        value = 10000
+    }
+
+    round_variable = rainna_la_grande_debt_this_slot_interest_value
+
+    divide_variable = {
+        which = rainna_la_grande_debt_this_slot_interest_value
+        value = 100
+    }
+}
+
+rainna_la_grande_repay_selected_debt = {
+    if = {
+        limit = {
+            has_country_flag = rainna_la_grande_slot_1_selected
+            has_country_flag = rainna_la_grande_valid_debt_slot_1
+        }
+
+        rainna_la_grande_repay_debt_slot = {
+            SLOT = 1
+        }
+    }
+
+    else_if = {
+        limit = {
+            has_country_flag = rainna_la_grande_slot_2_selected
+            has_country_flag = rainna_la_grande_valid_debt_slot_2
+        }
+
+        rainna_la_grande_repay_debt_slot = {
+            SLOT = 2
+        }
+    }
+
+    else_if = {
+        limit = {
+            has_country_flag = rainna_la_grande_slot_3_selected
+            has_country_flag = rainna_la_grande_valid_debt_slot_3
+        }
+
+        rainna_la_grande_repay_debt_slot = {
+            SLOT = 3
+        }
+    }
+
+    else_if = {
+        limit = {
+            has_country_flag = rainna_la_grande_slot_4_selected
+            has_country_flag = rainna_la_grande_valid_debt_slot_4
+        }
+
+        rainna_la_grande_repay_debt_slot = {
+            SLOT = 4
+        }
+    }
+
+    rainna_la_grande_clear_debt_selection = yes
+}
+
+rainna_la_grande_repay_debt_slot = {
+    if = {
+        limit = {
+            has_country_flag = rainna_la_grande_valid_debt_slot_$SLOT$
+
+            check_variable = {
+                which = rainna_la_grande_debt_repayment_value
+                value > 0
+            }
+        }
+
+        # 获取玩家现有的蕾恩娜币
+        export_resource_stockpile_to_variable = {
+            resource = rainna_la_grande_coin
+            variable = rainna_la_grande_coin_stockpile_value
+        }
+
+        # 实际准备偿还的金额
+        set_variable = {
+            which = rainna_la_grande_temp_repayment_value
+            value = rainna_la_grande_debt_repayment_value
+        }
+
+        # 不能偿还超过该笔贷款的总欠款
+        if = {
+            limit = {
+                check_variable = {
+                    which = rainna_la_grande_temp_repayment_value
+                    value > rainna_la_grande_debt_slot_$SLOT$_principal_payment_value
+                }
+            }
+
+            set_variable = {
+                which = rainna_la_grande_temp_repayment_value
+                value = rainna_la_grande_debt_slot_$SLOT$_principal_payment_value
+            }
+        }
+
+        # 不能偿还超过玩家实际持有的蕾恩娜币
+        if = {
+            limit = {
+                check_variable = {
+                    which = rainna_la_grande_temp_repayment_value
+                    value > rainna_la_grande_coin_stockpile_value
+                }
+            }
+
+            set_variable = {
+                which = rainna_la_grande_temp_repayment_value
+                value = rainna_la_grande_coin_stockpile_value
+            }
+        }
+
+        if = {
+            limit = {
+                check_variable = {
+                    which = rainna_la_grande_temp_repayment_value
+                    value > 0
+                }
+            }
+
+            # 扣除蕾恩娜币
+            add_resource = {
+                rainna_la_grande_coin = -1
+                multiplier = rainna_la_grande_temp_repayment_value
+            }
+
+            # 减少该笔贷款总欠款
+            subtract_variable = {
+                which = rainna_la_grande_debt_slot_$SLOT$_principal_payment_value
+                value = rainna_la_grande_temp_repayment_value
+            }
+
+            # 当前总欠款保留两位小数
+            multiply_variable = {
+                which = rainna_la_grande_debt_slot_$SLOT$_principal_payment_value
+                value = 100
+            }
+
+            round_variable = rainna_la_grande_debt_slot_$SLOT$_principal_payment_value
+
+            divide_variable = {
+                which = rainna_la_grande_debt_slot_$SLOT$_principal_payment_value
+                value = 100
+            }
+
+            # 如果总欠款已经低于剩余本金，
+            # 说明利息已经还完，开始偿还本金
+            if = {
+                limit = {
+                    check_variable = {
+                        which = rainna_la_grande_debt_slot_$SLOT$_remaining_principal_value
+                        value > rainna_la_grande_debt_slot_$SLOT$_principal_payment_value
+                    }
+                }
+
+                set_variable = {
+                    which = rainna_la_grande_debt_slot_$SLOT$_remaining_principal_value
+                    value = rainna_la_grande_debt_slot_$SLOT$_principal_payment_value
+                }
+            }
+
+            # 重新计算该笔贷款的累计利息
+            set_variable = {
+                which = rainna_la_grande_debt_slot_$SLOT$_interest_created_value
+                value = rainna_la_grande_debt_slot_$SLOT$_principal_payment_value
+            }
+
+            subtract_variable = {
+                which = rainna_la_grande_debt_slot_$SLOT$_interest_created_value
+                value = rainna_la_grande_debt_slot_$SLOT$_remaining_principal_value
+            }
+
+            multiply_variable = {
+                which = rainna_la_grande_debt_slot_$SLOT$_interest_created_value
+                value = 100
+            }
+
+            round_variable = rainna_la_grande_debt_slot_$SLOT$_interest_created_value
+
+            divide_variable = {
+                which = rainna_la_grande_debt_slot_$SLOT$_interest_created_value
+                value = 100
+            }
+
+            if = {
+                limit = {
+                    check_variable = {
+                        which = rainna_la_grande_debt_slot_$SLOT$_interest_created_value
+                        value < 0
+                    }
+                }
+
+                set_variable = {
+                    which = rainna_la_grande_debt_slot_$SLOT$_interest_created_value
+                    value = 0
+                }
+            }
+
+            # 总欠款为0时清空贷款槽位
+            if = {
+                limit = {
+                    check_variable = {
+                        which = rainna_la_grande_debt_slot_$SLOT$_principal_payment_value
+                        value <= 0
+                    }
+                }
+
+                remove_country_flag = rainna_la_grande_valid_debt_slot_$SLOT$
+
+                set_variable = {
+                    which = rainna_la_grande_debt_slot_$SLOT$_principal_payment_value
+                    value = 0
+                }
+
+                set_variable = {
+                    which = rainna_la_grande_debt_slot_$SLOT$_remaining_principal_value
+                    value = 0
+                }
+
+                set_variable = {
+                    which = rainna_la_grande_debt_slot_$SLOT$_interest_created_value
+                    value = 0
+                }
+
+                set_variable = {
+                    which = rainna_la_grande_debt_slot_$SLOT$_actual_interest_value
+                    value = 0
+                }
+
+                set_variable = {
+                    which = rainna_la_grande_debt_slot_$SLOT$_lock_months
+                    value = 0
+                }
+            }
+
+            rainna_la_grande_rebuild_debt_totals = yes
+        }
+    }
+}
+
+rainna_la_grande_bank_handling_fee = {
+    if = {
+        limit = {
+            OR = {
+                AND = {
+                    check_variable = {
+                        which = rainna_la_grande_debt_slot_1_actual_interest_value
+                        value >= 1.04
+                    }
+                    check_variable = {
+                        which = rainna_la_grande_debt_slot_1_lock_months
+                        value <= 0
+                    }
+                    has_country_flag = rainna_la_grande_valid_debt_slot_1
+                }
+                AND = {
+                    check_variable = {
+                        which = rainna_la_grande_debt_slot_2_actual_interest_value
+                        value >= 1.04
+                    }
+                    check_variable = {
+                        which = rainna_la_grande_debt_slot_2_lock_months
+                        value <= 0
+                    }
+                    has_country_flag = rainna_la_grande_valid_debt_slot_2
+                }
+                AND = {
+                    check_variable = {
+                        which = rainna_la_grande_debt_slot_3_actual_interest_value
+                        value >= 1.04
+                    }
+                    check_variable = {
+                        which = rainna_la_grande_debt_slot_3_lock_months
+                        value <= 0
+                    }
+                    has_country_flag = rainna_la_grande_valid_debt_slot_3
+                }
+                AND = {
+                    check_variable = {
+                        which = rainna_la_grande_debt_slot_4_actual_interest_value
+                        value >= 1.04
+                    }
+                    check_variable = {
+                        which = rainna_la_grande_debt_slot_4_lock_months
+                        value <= 0
+                    }
+                    has_country_flag = rainna_la_grande_valid_debt_slot_4
+                }
+            }
+        }
+        random_list = {
+            2 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_bank_handling_fee
+                    min = 3
+                    max = 12
+                    rounded = yes
+                }
+            }
+            2 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_bank_handling_fee
+                    min = 13
+                    max = 24
+                    rounded = yes
+                }
+            }
+            1 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_bank_handling_fee
+                    min = 25
+                    max = 100
+                    rounded = yes
+                }
+            }
+        }
+    }
+    else_if = {
+        limit = {
+            OR = {
+                AND = {
+                    check_variable = {
+                        which = rainna_la_grande_debt_slot_1_lock_months
+                        value <= 0
+                    }
+                    has_country_flag = rainna_la_grande_valid_debt_slot_1
+                }
+                AND = {
+                    check_variable = {
+                        which = rainna_la_grande_debt_slot_2_lock_months
+                        value <= 0
+                    }
+                    has_country_flag = rainna_la_grande_valid_debt_slot_2
+                }
+                AND = {
+                    check_variable = {
+                        which = rainna_la_grande_debt_slot_3_lock_months
+                        value <= 0
+                    }
+                    has_country_flag = rainna_la_grande_valid_debt_slot_3
+                }
+                AND = {
+                    check_variable = {
+                        which = rainna_la_grande_debt_slot_4_lock_months
+                        value <= 0
+                    }
+                    has_country_flag = rainna_la_grande_valid_debt_slot_4
+                }
+            }
+        }
+
+        random_list = {
+            5 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_bank_handling_fee
+                    min = 0
+                    max = 2
+                    rounded = yes
+                }
+            }
+            2 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_bank_handling_fee
+                    min = 3
+                    max = 12
+                    rounded = yes
+                }
+            }
+            2 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_bank_handling_fee
+                    min = 13
+                    max = 24
+                    rounded = yes
+                }
+            }
+            1 = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_bank_handling_fee
+                    min = 25
+                    max = 100
+                    rounded = yes
+                }
+            }
+        }
+    }
+
+    else = {
+        set_variable_to_random_value = {
+            which = rainna_la_grande_bank_handling_fee
+            min = 0
+            max = 2
+            rounded = yes
+        }
+    }
+
+    # UI显示值，例如23就是23%
+    set_variable = {
+        which = rainna_la_grande_bank_handling_fee_shown
+        value = rainna_la_grande_bank_handling_fee
+    }
+
+    # 计算实际价格倍率
+    # 23% → 23 → 0.23 → 1.23
+    set_variable = {
+        which = rainna_la_grande_bank_handling_fee_multiplier
+        value = rainna_la_grande_bank_handling_fee
+    }
+
+    divide_variable = {
+        which = rainna_la_grande_bank_handling_fee_multiplier
+        value = 100
+    }
+
+    change_variable = {
+        which = rainna_la_grande_bank_handling_fee_multiplier
+        value = 1
+    }
+
+    # 基础价格
+    set_variable = {
+        which = rainna_la_grande_coin_price_value_with_bank_handling_fee
+        value = rainna_la_grande_coin_price_value
+    }
+
+    # 基础价格 × 手续费倍率
+    multiply_variable = {
+        which = rainna_la_grande_coin_price_value_with_bank_handling_fee
+        value = rainna_la_grande_bank_handling_fee_multiplier
+    }
+
+    # 金额保留0.01精度
+    multiply_variable = {
+        which = rainna_la_grande_coin_price_value_with_bank_handling_fee
+        value = 100
+    }
+
+    round_variable = rainna_la_grande_coin_price_value_with_bank_handling_fee
+
+    divide_variable = {
+        which = rainna_la_grande_coin_price_value_with_bank_handling_fee
+        value = 100
+    }
+}
+
+rainna_la_grande_delay_debt_due = {
+    if = {
+        limit = {
+            has_country_flag = rainna_la_grande_valid_debt_slot_1
+            check_variable = {
+                which = rainna_la_grande_debt_slot_1_due_months
+                value < 6
+            }
+        }
+        set_variable = {
+            which = rainna_la_grande_debt_slot_1_due_months
+            value = 6
+        }
+        set_variable = {
+            which = rainna_la_grande_debt_slot_1_overdue_months
+            value = 0
+        }
+    }
+    if = {
+        limit = {
+            has_country_flag = rainna_la_grande_valid_debt_slot_2
+            check_variable = {
+                which = rainna_la_grande_debt_slot_2_due_months
+                value < 6
+            }
+        }
+        set_variable = {
+            which = rainna_la_grande_debt_slot_2_due_months
+            value = 6
+        }
+        set_variable = {
+            which = rainna_la_grande_debt_slot_2_overdue_months
+            value = 0
+        }
+    }
+    if = {
+        limit = {
+            has_country_flag = rainna_la_grande_valid_debt_slot_3
+            check_variable = {
+                which = rainna_la_grande_debt_slot_3_due_months
+                value < 6
+            }
+        }
+        set_variable = {
+            which = rainna_la_grande_debt_slot_3_due_months
+            value = 6
+        }
+        set_variable = {
+            which = rainna_la_grande_debt_slot_3_overdue_months
+            value = 0
+        }
+    }
+    if = {
+        limit = {
+            has_country_flag = rainna_la_grande_valid_debt_slot_4
+            check_variable = {
+                which = rainna_la_grande_debt_slot_4_due_months
+                value < 6
+            }
+        }
+        set_variable = {
+            which = rainna_la_grande_debt_slot_4_due_months
+            value = 6
+        }
+        set_variable = {
+            which = rainna_la_grande_debt_slot_4_overdue_months
+            value = 0
+        }
+    }
+}
+
+# 按百分比直接减免一笔贷款
+# SLOT = 1~4
+# MIN / MAX 使用百分数，例如 MIN = 10 MAX = 25 表示减免10%~25%
+rainna_la_grande_reduce_debt_slot = {
+    if = {
+        limit = {
+            has_country_flag = rainna_la_grande_valid_debt_slot_$SLOT$
+            check_variable = {
+                which = rainna_la_grande_debt_slot_$SLOT$_principal_payment_value
+                value > 0
+            }
+            check_variable = {
+                which = rainna_la_grande_debt_slot_3_overdue_months
+                value > 1
+            }
+        }
+        # 随机生成减免百分比，例如10~25
+        set_variable_to_random_value = {
+            which = rainna_la_grande_temp_debt_reduction_percent
+            min = $MIN$
+            max = $MAX$
+            rounded = yes
+        }
+        # 百分数转换为小数
+        # 例如 25 → 0.25
+        divide_variable = {
+            which = rainna_la_grande_temp_debt_reduction_percent
+            value = 100
+        }
+        # 实际减免额 = 当前总欠款 × 减免比例
+        set_variable = {
+            which = rainna_la_grande_temp_debt_reduction_value
+            value = rainna_la_grande_debt_slot_$SLOT$_principal_payment_value
+        }
+        multiply_variable = {
+            which = rainna_la_grande_temp_debt_reduction_value
+            value = rainna_la_grande_temp_debt_reduction_percent
+        }
+        # 实际减免额保留两位小数
+        multiply_variable = {
+            which = rainna_la_grande_temp_debt_reduction_value
+            value = 100
+        }
+        round_variable = rainna_la_grande_temp_debt_reduction_value
+        divide_variable = {
+            which = rainna_la_grande_temp_debt_reduction_value
+            value = 100
+        }
+        # 直接从当前总欠款中减掉
+        # 注意：这里不扣玩家任何资源
+        subtract_variable = {
+            which = rainna_la_grande_debt_slot_$SLOT$_principal_payment_value
+            value = rainna_la_grande_temp_debt_reduction_value
+        }
+        # 当前总欠款统一保留两位小数
+        multiply_variable = {
+            which = rainna_la_grande_debt_slot_$SLOT$_principal_payment_value
+            value = 100
+        }
+        round_variable = rainna_la_grande_debt_slot_$SLOT$_principal_payment_value
+        divide_variable = {
+            which = rainna_la_grande_debt_slot_$SLOT$_principal_payment_value
+            value = 100
+        }
+        # 和正常还款一样：
+        # 如果总欠款已经低于剩余本金，
+        # 说明利息已经全部被抵掉，开始抵本金
+        if = {
+            limit = {
+                check_variable = {
+                    which = rainna_la_grande_debt_slot_$SLOT$_remaining_principal_value
+                    value > rainna_la_grande_debt_slot_$SLOT$_principal_payment_value
+                }
+            }
+            set_variable = {
+                which = rainna_la_grande_debt_slot_$SLOT$_remaining_principal_value
+                value = rainna_la_grande_debt_slot_$SLOT$_principal_payment_value
+            }
+        }
+        # 重新计算未偿利息
+        # 利息 = 当前总欠款 - 剩余本金
+        set_variable = {
+            which = rainna_la_grande_debt_slot_$SLOT$_interest_created_value
+            value = rainna_la_grande_debt_slot_$SLOT$_principal_payment_value
+        }
+        subtract_variable = {
+            which = rainna_la_grande_debt_slot_$SLOT$_interest_created_value
+            value = rainna_la_grande_debt_slot_$SLOT$_remaining_principal_value
+        }
+        # 利息保留两位小数
+        multiply_variable = {
+            which = rainna_la_grande_debt_slot_$SLOT$_interest_created_value
+            value = 100
+        }
+        round_variable = rainna_la_grande_debt_slot_$SLOT$_interest_created_value
+        divide_variable = {
+            which = rainna_la_grande_debt_slot_$SLOT$_interest_created_value
+            value = 100
+        }
+        # 防止浮点误差出现负利息
+        if = {
+            limit = {
+                check_variable = {
+                    which = rainna_la_grande_debt_slot_$SLOT$_interest_created_value
+                    value < 0
+                }
+            }
+            set_variable = {
+                which = rainna_la_grande_debt_slot_$SLOT$_interest_created_value
+                value = 0
+            }
+        }
+        # 如果被100%减免，直接清空贷款
+        if = {
+            limit = {
+                check_variable = {
+                    which = rainna_la_grande_debt_slot_$SLOT$_principal_payment_value
+                    value <= 0
+                }
+            }
+            remove_country_flag = rainna_la_grande_valid_debt_slot_$SLOT$
+            set_variable = {
+                which = rainna_la_grande_debt_slot_$SLOT$_principal_payment_value
+                value = 0
+            }
+            set_variable = {
+                which = rainna_la_grande_debt_slot_$SLOT$_remaining_principal_value
+                value = 0
+            }
+            set_variable = {
+                which = rainna_la_grande_debt_slot_$SLOT$_interest_created_value
+                value = 0
+            }
+            set_variable = {
+                which = rainna_la_grande_debt_slot_$SLOT$_actual_interest_value
+                value = 0
+            }
+            set_variable = {
+                which = rainna_la_grande_debt_slot_$SLOT$_lock_months
+                value = 0
+            }
+        }
+        # 重新统计银行总账
+        rainna_la_grande_rebuild_debt_totals = yes
+    }
+}

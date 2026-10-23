@@ -13,21 +13,13 @@ trait_great_species = {
 	randomized = no
 	tags = { special }
 	# 添加特質
-	species_potential_add = {
-		always = no
-	}
+	species_potential_add = { always = no }
 	# 移除特質
-	species_possible_remove = {
-		always = no
-	}
+	species_possible_remove = { always = no }
 	# 整合添加
-	species_possible_merge_add = {
-		always = no
-	}
+	species_possible_merge_add = { always = no }
 	# 整合移除
-	species_possible_merge_remove = {
-		always = no
-	}
+	species_possible_merge_remove = { always = no }
 
 	icon = "gfx/interface/icons/traits/traits/trait_multi_size.dds"
 
@@ -63,21 +55,13 @@ trait_Ultra = {
 	tags = { special }
 
 	# 添加特質
-	species_potential_add = {
-		always = no
-	}
+	species_potential_add = { always = no }
 	# 移除特質
-	species_possible_remove = {
-		always = no
-	}
+	species_possible_remove = { always = no }
 	# 整合添加
-	species_possible_merge_add = {
-		always = no
-	}
+	species_possible_merge_add = { always = no }
 	# 整合移除
-	species_possible_merge_remove = {
-		always = no
-	}
+	species_possible_merge_remove = { always = no }
 
 	icon = "gfx/interface/icons/traits/traits/trait_Ultra.dds"
 
@@ -92,11 +76,7 @@ trait_Ultra = {
 		"trait_Nano"
 	}
 
-	archetype_override = {
-		this = {
-			always = yes
-		}
-	}
+	archetype_override = { This = { always = yes } }
 
 	leader_age_min = 16
 	leader_age_max = 16000
@@ -108,7 +88,7 @@ trait_Ultra = {
 		leader_lifespan_add = 16000
 
 		pop_workforce_mult = 99
-		planet_jobs_upkeep_mult = 100
+		worker_and_simple_drone_cat_bonus_workforce_mult = 20
 
 		pop_housing_usage_mult = 100
 		pop_resettlement_cost_mult = 100
@@ -1097,7 +1077,7 @@ trait_Small = {
 		# 體型矮小
 
 		# 生產相關
-		pop_workforce_mult = -0.20
+		# pop_workforce_mult = -0.20
 		worker_and_simple_drone_cat_bonus_workforce_mult = -0.1
 		planet_jobs_upkeep_mult = -0.25
 		specialist_and_complex_drone_cat_bonus_workforce_mult = 0.4
@@ -1325,7 +1305,7 @@ trait_Tiny = {
 		leader_lifespan_add = -5
 
 		# 生產相關
-		pop_workforce_mult = -0.40
+		# pop_workforce_mult = -0.40
 		worker_and_simple_drone_cat_bonus_workforce_mult = -0.2
 		planet_jobs_upkeep_mult = -0.40
 		specialist_and_complex_drone_cat_bonus_workforce_mult = 0.8
@@ -1553,7 +1533,7 @@ trait_Micro = {
 		leader_lifespan_add = -15
 
 		# 生產相關
-		pop_workforce_mult = -0.90
+		# pop_workforce_mult = -0.90
 		worker_and_simple_drone_cat_bonus_workforce_mult = -0.3
 		planet_jobs_upkeep_mult = -0.90
 		specialist_and_complex_drone_cat_bonus_workforce_mult = 1.5
@@ -1683,21 +1663,13 @@ trait_Nano = {
 	tags = { special }
 
 	# 添加特質
-	species_potential_add = {
-		always = no
-	}
+	species_potential_add = { always = no }
 	# 移除特質
-	species_possible_remove = {
-		always = no
-	}
+	species_possible_remove = { always = no }
 	# 整合添加
-	species_possible_merge_add = {
-		always = no
-	}
+	species_possible_merge_add = { always = no }
 	# 整合移除
-	species_possible_merge_remove = {
-		always = no
-	}
+	species_possible_merge_remove = { always = no }
 
 	icon = "gfx/interface/icons/traits/traits/trait_Nano.dds"
 
@@ -1712,11 +1684,7 @@ trait_Nano = {
 		"trait_Micro"
 	}
 
-	archetype_override = {
-		this = {
-			always = yes
-		}
-	}
+	archetype_override = { This = { always = yes } }
 
 	leader_age_min = 16
 	leader_age_max = 40
@@ -1759,7 +1727,7 @@ trait_Nano = {
 }
 
 ################################################################################
-#####################                种族特质                #####################
+###################                種族通用特質                ###################
 ################################################################################
 trait_Anyuxianzhuang = {
 
@@ -1769,19 +1737,21 @@ trait_Anyuxianzhuang = {
 	icon = "gfx/interface/icons/traits/traits/trait_Anyuxianzhuang.dds"
 	initial = yes
 	randomized = yes
+	category = normal
 
 	tags = { organic positive ethic_attraction happiness }
 
+	species_possible_add = { can_add_genetic_traits = yes }
+	species_possible_remove = { can_remove_beneficial_genetic_traits = yes }
+	species_possible_merge_remove = { always = yes }
+
 	opposites = {
+		"trait_Ultra"
 		"trait_Titan"
 		"trait_Giant"
 	}
 
-	archetype_override = {
-		this = {
-			always = yes
-		}
-	}
+	archetype_override = { This = { is_robotic = no } }
 
 	modifier = {
 		pop_happiness = 0.1
@@ -1797,25 +1767,22 @@ trait_gts_beautiful = {
 	icon = "gfx/interface/icons/traits/traits/trait_gts_beautiful.dds"
 	initial = yes
 	randomized = yes
+	category = normal
 
-	tags = { positive trade amenities pop_output }
+	tags = { organic positive pop_output trade amenities }
+
+	species_possible_add = { can_add_genetic_traits = yes }
+	species_possible_remove = { can_remove_beneficial_genetic_traits = yes }
+	species_possible_merge_remove = { always = yes }
 
 	opposites = {
 		trait_repugnant
 	}
 
-	archetype_override = {
-		this = {
-			is_robotic = no
-		}
-	}
+	archetype_override = { This = { is_robotic = no } }
 
 	modifier = {
 		trader_jobs_bonus_workforce_mult = 0.1
-	}
-
-	ai_weight = {
-		factor = 10000
 	}
 }
 
@@ -1827,22 +1794,19 @@ trait_Cuiqing = {
 	icon = "gfx/interface/icons/traits/traits/trait_Cuiqing.dds"
 	initial = yes
 	randomized = yes
+	category = normal
 
 	tags = { organic happiness pop_growth }
 
-	archetype_override = {
-		this = {
-			is_robotic = no
-		}
-	}
+	species_possible_add = { can_add_genetic_traits = yes }
+	species_possible_remove = { can_remove_beneficial_genetic_traits = yes }
+	species_possible_merge_remove = { always = yes }
+
+	archetype_override = { This = { is_robotic = no } }
 
 	modifier = {
 		pop_happiness = 0.05
 		logistic_growth_mult = 0.1
-	}
-
-	ai_weight = {
-		factor = 10000
 	}
 }
 
@@ -1854,21 +1818,18 @@ trait_Maoshi = {
 	icon = "gfx/interface/icons/traits/traits/trait_Maoshi.dds"
 	initial = yes
 	randomized = yes
+	category = normal
 
 	tags = { negative pop_output }
 
-	archetype_override = {
-		this = {
-			is_robotic = no
-		}
-	}
+	archetype_override = { This = { is_robotic = no } }
 
 	modifier = {
 		pop_bonus_workforce_mult = -0.25
 	}
 
 	ai_weight = {
-		factor = 10000
+		weight = 0
 	}
 }
 
@@ -1880,41 +1841,26 @@ trait_gts_Futa = {
 	icon = "gfx/interface/icons/traits/traits/trait_Futa.dds"
 	initial = yes
 	randomized = yes
+	advanced_trait = yes
 
-	# 添加特質
-	species_potential_add = {
-		always = no
-	}
-	# 移除特質
+	species_potential_add = { can_do_advanced_gene_modding = yes }
 	species_possible_remove = {
-		always = no
+		OR = {
+			can_do_advanced_gene_modding = yes
+			can_remove_beneficial_genetic_traits = yes
+		}
 	}
-	# 整合添加
-	species_possible_merge_add = {
-		always = no
-	}
-	# 整合移除
-	species_possible_merge_remove = {
-		always = no
-	}
+	species_possible_merge_remove = { always = yes }
 
 	tags = { organic pop_growth }
 
-	archetype_override = {
-		this = {
-			is_robotic = no
-		}
-	}
+	archetype_override = { This = { is_robotic = no } }
 
 	modifier = {
-		logistic_growth_mult = 0.10
-		bonus_pop_growth = 0.10
-		planet_pops_consumer_goods_upkeep_mult = 0.10
-		leader_lifespan_add = -20
-	}
-
-	ai_weight = {
-		factor = 10000
+		logistic_growth_mult = 0.1
+		bonus_pop_growth = 0.1
+		planet_pops_consumer_goods_upkeep_mult = 0.1
+		leader_lifespan_add = -10
 	}
 }
 
@@ -1926,18 +1872,19 @@ trait_Sese = {
 	icon = "gfx/interface/icons/traits/traits/trait_Sese.dds"
 	initial = yes
 	randomized = yes
+	category = normal
 
-	tags = { organic pop_output amenities }
+	tags = { organic pop_output pop_growth amenities }
+
+	species_possible_add = { can_add_genetic_traits = yes }
+	species_possible_remove = { can_remove_beneficial_genetic_traits = yes }
+	species_possible_merge_remove = { always = yes }
 
 	opposites = {
 		"trait_Nosese"
 	}
 
-	archetype_override = {
-		this = {
-			is_robotic = no
-		}
-	}
+	archetype_override = { This = { is_robotic = no } }
 
 	modifier = {
 		pop_amenities_usage_mult = 0.10
@@ -1945,10 +1892,6 @@ trait_Sese = {
 		logistic_growth_mult = 0.20
 		bonus_pop_growth = 0.10
 		specialist_and_complex_drone_cat_bonus_workforce_mult = -0.10
-	}
-
-	ai_weight = {
-		factor = 10000
 	}
 }
 
@@ -1960,18 +1903,19 @@ trait_Nosese = {
 	icon = "gfx/interface/icons/traits/traits/trait_Nosese.dds"	#记得改
 	initial = yes
 	randomized = yes
+	category = normal
 
 	tags = { organic pop_output amenities }
+
+	species_possible_add = { can_add_genetic_traits = yes }
+	species_possible_remove = { can_remove_beneficial_genetic_traits = yes }
+	species_possible_merge_remove = { always = yes }
 
 	opposites = {
 		"trait_Sese"
 	}
 
-	archetype_override = {
-		this = {
-			is_robotic = no
-		}
-	}
+	archetype_override = { This = { is_robotic = no } }
 
 	modifier = {
 		pop_amenities_usage_mult = -0.10
@@ -1979,10 +1923,6 @@ trait_Nosese = {
 		logistic_growth_mult = -0.20
 		bonus_pop_growth = -0.10
 		specialist_and_complex_drone_cat_bonus_workforce_mult = 0.10
-	}
-
-	ai_weight = {
-		factor = 10000
 	}
 }
 
@@ -1994,57 +1934,51 @@ trait_gts_loli = {
 	icon = "gfx/interface/icons/traits/traits/trait_gts_loli.dds"
 	initial = yes
 	randomized = yes
+	category = normal
 
-	tags = { organic positive pop_growth upkeep }
+	tags = { organic upkeep }
+
+	species_possible_add = { can_add_genetic_traits = yes }
+	species_possible_remove = { can_remove_beneficial_genetic_traits = yes }
+	species_possible_merge_remove = { always = yes }
 
 	opposites = {
 		"trait_gts_Oneesan"
 	}
 
-	archetype_override = {
-		this = {
-			is_robotic = no
-		}
-	}
+	archetype_override = { This = { is_robotic = no } }
 
 	modifier = {
 		logistic_growth_mult = -0.1
 		planet_pops_upkeep_mult = -0.1
 	}
-
-	ai_weight = {
-		factor = 10000
-	}
 }
 
 trait_gts_Oneesan = {
 
-	#御姐
+	# 御姐
 
 	cost = 1
 	icon = "gfx/interface/icons/traits/traits/trait_gts_Oneesan.dds"
 	initial = yes
 	randomized = yes
+	category = normal
 
-	tags = { organic positive pop_growth upkeep }
+	tags = { organic pop_growth }
+
+	species_possible_add = { can_add_genetic_traits = yes }
+	species_possible_remove = { can_remove_beneficial_genetic_traits = yes }
+	species_possible_merge_remove = { always = yes }
 
 	opposites = {
 		"trait_gts_loli"
 	}
 
-	archetype_override = {
-		this = {
-			is_robotic = no
-		}
-	}
+	archetype_override = { This = { is_robotic = no } }
 
 	modifier = {
 		logistic_growth_mult = 0.1
 		planet_pops_upkeep_mult = 0.1
-	}
-
-	ai_weight = {
-		factor = 10000
 	}
 }
 
@@ -2056,8 +1990,13 @@ trait_gts_familiar = {
 	icon = "gfx/interface/icons/traits/traits/familiar.dds"
 	initial = yes
 	randomized = yes
+	category = normal
 
 	tags = { organic positive pop_output }
+
+	species_possible_add = { can_add_genetic_traits = yes }
+	species_possible_remove = { can_remove_beneficial_genetic_traits = yes }
+	species_possible_merge_remove = { always = yes }
 
 	opposites = {
 		"trait_Normal"
@@ -2067,11 +2006,7 @@ trait_gts_familiar = {
 		"trait_Nano"
 	}
 
-	archetype_override = {
-		this = {
-			is_robotic = no
-		}
-	}
+	archetype_override = { This = { is_robotic = no } }
 
 	custom_tooltip_with_modifiers = trait_gts_familiar_tooltip
 
@@ -2084,10 +2019,6 @@ trait_gts_familiar = {
 			gts_micro = 0.01
 		}
 	}
-
-	ai_weight = {
-		factor = 10000
-	}
 }
 
 trait_gts_under_feet_fungus = {
@@ -2098,8 +2029,13 @@ trait_gts_under_feet_fungus = {
 	icon = "gfx/interface/icons/traits/traits/under_feet_fungus.dds"
 	initial = yes
 	randomized = yes
+	category = normal
 
 	tags = { organic positive pop_output }
+
+	species_possible_add = { can_add_genetic_traits = yes }
+	species_possible_remove = { can_remove_beneficial_genetic_traits = yes }
+	species_possible_merge_remove = { always = yes }
 
 	opposites = {
 		"trait_Ultra"
@@ -2112,11 +2048,7 @@ trait_gts_under_feet_fungus = {
 		"trait_gts_milk"
 	}
 
-	archetype_override = {
-		this = {
-			is_robotic = no
-		}
-	}
+	archetype_override = { This = { is_robotic = no } }
 
 	custom_tooltip_with_modifiers = trait_gts_under_feet_fungus_tooltip
 
@@ -2130,10 +2062,6 @@ trait_gts_under_feet_fungus = {
 			#mult = value:lithoid_trait_mult
 		}
 	}
-
-	ai_weight = {
-		factor = 10000
-	}
 }
 
 trait_gts_breed = {
@@ -2144,8 +2072,13 @@ trait_gts_breed = {
 	icon = "gfx/interface/icons/traits/traits/trait_gts_breed.dds"
 	initial = yes
 	randomized = yes
+	category = normal
 
-	tags = { positive pop_output }
+	tags = { organic positive pop_output }
+
+	species_possible_add = { can_add_genetic_traits = yes }
+	species_possible_remove = { can_remove_beneficial_genetic_traits = yes }
+	species_possible_merge_remove = { always = yes }
 
 	opposites = {
 		"trait_Normal"
@@ -2164,11 +2097,7 @@ trait_gts_breed = {
 		"trait_tiny_butt"
 	}
 
-	archetype_override = {
-		this = {
-			always = yes
-		}
-	}
+	archetype_override = { This = { is_robotic = no } }
 
 	custom_tooltip_with_modifiers = trait_gts_breed_tooltip
 
@@ -2181,10 +2110,6 @@ trait_gts_breed = {
 			gts_micro_city = 0.1
 		}
 	}
-
-	ai_weight = {
-		factor = 10000
-	}
 }
 
 trait_tiny_scaven = {
@@ -2195,8 +2120,13 @@ trait_tiny_scaven = {
 	icon = "gfx/interface/icons/traits/traits/trait_tiny_scaven.dds"
 	initial = yes
 	randomized = yes
+	category = normal
 
-	tags = { positive pop_output }
+	tags = { organic positive pop_output }
+
+	species_possible_add = { can_add_genetic_traits = yes }
+	species_possible_remove = { can_remove_beneficial_genetic_traits = yes }
+	species_possible_merge_remove = { always = yes }
 
 	opposites = {
 		"trait_Ultra"
@@ -2209,11 +2139,7 @@ trait_tiny_scaven = {
 		"trait_gts_milk"
 	}
 
-	archetype_override = {
-		this = {
-			always = yes
-		}
-	}
+	archetype_override = { This = { is_robotic = no } }
 
 	custom_tooltip_with_modifiers = trait_gts_scaven_tooltip
 
@@ -2227,10 +2153,6 @@ trait_tiny_scaven = {
 			gts_giantess_underwear = 0.01
 		}
 	}
-
-	ai_weight = {
-		factor = 10000
-	}
 }
 
 trait_gts_ass = {
@@ -2241,8 +2163,13 @@ trait_gts_ass = {
 	icon = "gfx/interface/icons/traits/traits/trait_gts_ass.dds"
 	initial = yes
 	randomized = yes
+	category = normal
 
-	tags = { positive pop_growth }
+	tags = { organic positive pop_growth pop_output amenities }
+
+	species_possible_add = { can_add_genetic_traits = yes }
+	species_possible_remove = { can_remove_beneficial_genetic_traits = yes }
+	species_possible_merge_remove = { always = yes }
 
 	opposites = {
 		"trait_Normal"
@@ -2264,11 +2191,7 @@ trait_gts_ass = {
 		"trait_gts_ub"
 	}
 
-	archetype_override = {
-		this = {
-			is_robotic = no
-		}
-	}
+	archetype_override = { This = { is_robotic = no } }
 
 	custom_tooltip_with_modifiers = trait_gts_ass_tooltip
 
@@ -2277,10 +2200,6 @@ trait_gts_ass = {
 		planet_jobs_exotic_gases_produces_mult = 0.002
 		pop_amenities_usage_mult = -0.002
 		mult = planet.value:counter_tiny_pop
-	}
-
-	ai_weight = {
-		factor = 100000
 	}
 }
 
@@ -2292,8 +2211,13 @@ trait_gts_vore = {
 	icon = "gfx/interface/icons/traits/traits/trait_gts_vore.dds"
 	initial = yes
 	randomized = yes
+	category = normal
 
-	tags = { positive pop_growth }
+	tags = { organic positive pop_growth amenities upkeep }
+
+	species_possible_add = { can_add_genetic_traits = yes }
+	species_possible_remove = { can_remove_beneficial_genetic_traits = yes }
+	species_possible_merge_remove = { always = yes }
 
 	opposites = {
 		"trait_Normal"
@@ -2315,11 +2239,7 @@ trait_gts_vore = {
 		"trait_gts_ub"
 	}
 
-	archetype_override = {
-		this = {
-			is_robotic = no
-		}
-	}
+	archetype_override = { This = { is_robotic = no } }
 
 	custom_tooltip_with_modifiers = trait_gts_vore_tooltip
 
@@ -2328,10 +2248,6 @@ trait_gts_vore = {
 		planet_jobs_food_upkeep_mult = -0.003
 		pop_amenities_usage_mult = -0.003
 		mult = planet.value:counter_tiny_pop
-	}
-
-	ai_weight = {
-		factor = 100000
 	}
 }
 
@@ -2343,8 +2259,13 @@ trait_gts_milk = {
 	icon = "gfx/interface/icons/traits/traits/trait_gts_milk.dds"
 	initial = yes
 	randomized = yes
+	category = normal
 
-	tags = { positive pop_growth }
+	tags = { organic positive pop_growth pop_output amenities }
+
+	species_possible_add = { can_add_genetic_traits = yes }
+	species_possible_remove = { can_remove_beneficial_genetic_traits = yes }
+	species_possible_merge_remove = { always = yes }
 
 	opposites = {
 		"trait_Normal"
@@ -2366,11 +2287,7 @@ trait_gts_milk = {
 		"trait_gts_ub"
 	}
 
-	archetype_override = {
-		this = {
-			is_robotic = no
-		}
-	}
+	archetype_override = { This = { is_robotic = no } }
 
 	custom_tooltip_with_modifiers = trait_gts_milk_tooltip
 
@@ -2379,10 +2296,6 @@ trait_gts_milk = {
 		planet_jobs_food_produces_mult = 0.003
 		pop_amenities_usage_mult = -0.002
 		mult = planet.value:counter_tiny_pop
-	}
-
-	ai_weight = {
-		factor = 100000
 	}
 }
 
@@ -2394,18 +2307,19 @@ trait_gts_ub = {
 	icon = "gfx/interface/icons/traits/traits/trait_gts_ub.dds"
 	initial = yes
 	randomized = yes
+	category = normal
 
-	tags = { positive pop_growth }
+	tags = { organic positive pop_growth amenities }
 
-	# 移除特質
+	species_possible_add = { can_add_genetic_traits = yes }
 	species_possible_remove = {
-		from = {
+		can_remove_beneficial_genetic_traits = yes
+		From = {
 			NOT = {
 				has_civic = civic_ub_ritual
 			}
 		}
 	}
-	# 整合移除
 	species_possible_merge_remove = {
 		from = {
 			NOT = {
@@ -2434,11 +2348,7 @@ trait_gts_ub = {
 		"trait_gts_milk"
 	}
 
-	archetype_override = {
-		this = {
-			is_robotic = no
-		}
-	}
+	archetype_override = { This = { is_robotic = no } }
 
 	custom_tooltip_with_modifiers = trait_gts_ub_tooltip
 
@@ -2446,10 +2356,6 @@ trait_gts_ub = {
 		logistic_growth_mult = 0.015
 		pop_amenities_usage_mult = -0.002
 		mult = planet.value:counter_tiny_pop
-	}
-
-	ai_weight = {
-		factor = 100000
 	}
 }
 
@@ -2461,8 +2367,13 @@ trait_tiny_futa = {
 	icon = "gfx/interface/icons/traits/traits/trait_tiny_futa.dds"
 	initial = yes
 	randomized = yes
+	category = normal
 
-	tags = { positive pop_growth }
+	tags = { organic pop_output habitability happiness }
+
+	species_possible_add = { can_add_genetic_traits = yes }
+	species_possible_remove = { can_remove_beneficial_genetic_traits = yes }
+	species_possible_merge_remove = { always = yes }
 
 	opposites = {
 		"trait_Ultra"
@@ -2483,11 +2394,7 @@ trait_tiny_futa = {
 		"trait_tiny_butt"
 	}
 
-	archetype_override = {
-		this = {
-			always = yes
-		}
-	}
+	archetype_override = { This = { is_robotic = no } }
 
 	custom_tooltip_with_modifiers = trait_tiny_futa_tooltip
 
@@ -2505,10 +2412,6 @@ trait_tiny_futa = {
 		pop_bonus_workforce_mult = 0.003
 		mult = planet.value:counter_gts_pop
 	}
-
-	ai_weight = {
-		factor = 100000
-	}
 }
 
 trait_tiny_milk = {
@@ -2519,8 +2422,13 @@ trait_tiny_milk = {
 	icon = "gfx/interface/icons/traits/traits/trait_tiny_milk.dds"
 	initial = yes
 	randomized = yes
+	category = normal
 
-	tags = { positive pop_growth }
+	tags = { organic pop_output habitability happiness }
+
+	species_possible_add = { can_add_genetic_traits = yes }
+	species_possible_remove = { can_remove_beneficial_genetic_traits = yes }
+	species_possible_merge_remove = { always = yes }
 
 	opposites = {
 		"trait_Ultra"
@@ -2541,11 +2449,7 @@ trait_tiny_milk = {
 		"trait_tiny_butt"
 	}
 
-	archetype_override = {
-		this = {
-			always = yes
-		}
-	}
+	archetype_override = { This = { is_robotic = no } }
 
 	custom_tooltip_with_modifiers = trait_tiny_milk_tooltip
 
@@ -2563,10 +2467,6 @@ trait_tiny_milk = {
 		pop_bonus_workforce_mult = 0.003
 		mult = planet.value:counter_gts_pop
 	}
-
-	ai_weight = {
-		factor = 100000
-	}
 }
 
 trait_tiny_armpit = {
@@ -2577,8 +2477,13 @@ trait_tiny_armpit = {
 	icon = "gfx/interface/icons/traits/traits/trait_tiny_armpit.dds"
 	initial = yes
 	randomized = yes
+	category = normal
 
-	tags = { positive pop_growth }
+	tags = { organic pop_output happiness }
+
+	species_possible_add = { can_add_genetic_traits = yes }
+	species_possible_remove = { can_remove_beneficial_genetic_traits = yes }
+	species_possible_merge_remove = { always = yes }
 
 	opposites = {
 		"trait_Ultra"
@@ -2599,11 +2504,7 @@ trait_tiny_armpit = {
 		"trait_tiny_butt"
 	}
 
-	archetype_override = {
-		this = {
-			always = yes
-		}
-	}
+	archetype_override = { This = { is_robotic = no } }
 
 	custom_tooltip_with_modifiers = trait_tiny_armpit_tooltip
 
@@ -2616,10 +2517,6 @@ trait_tiny_armpit = {
 		pop_bonus_workforce_mult = 0.001
 		mult = planet.value:counter_gts_pop
 	}
-
-	ai_weight = {
-		factor = 100000
-	}
 }
 
 trait_tiny_ub = {
@@ -2630,18 +2527,19 @@ trait_tiny_ub = {
 	icon = "gfx/interface/icons/traits/traits/trait_tiny_ub.dds"
 	initial = yes
 	randomized = yes
+	category = normal
 
-	tags = { positive pop_growth }
+	tags = { organic pop_output habitability happiness }
 
-	# 移除特質
+	species_possible_add = { can_add_genetic_traits = yes }
 	species_possible_remove = {
-		from = {
+		can_remove_beneficial_genetic_traits = yes
+		From = {
 			NOT = {
 				has_civic = civic_ub_ritual
 			}
 		}
 	}
-	# 整合移除
 	species_possible_merge_remove = {
 		from = {
 			NOT = {
@@ -2669,11 +2567,7 @@ trait_tiny_ub = {
 		"trait_tiny_butt"
 	}
 
-	archetype_override = {
-		this = {
-			always = yes
-		}
-	}
+	archetype_override = { This = { is_robotic = no } }
 
 	custom_tooltip_with_modifiers = trait_tiny_ub_tooltip
 
@@ -2693,10 +2587,6 @@ trait_tiny_ub = {
 		pop_bonus_workforce_mult = 0.003
 		mult = planet.value:counter_gts_pop
 	}
-
-	ai_weight = {
-		factor = 100000
-	}
 }
 
 trait_tiny_ass = {
@@ -2707,8 +2597,13 @@ trait_tiny_ass = {
 	icon = "gfx/interface/icons/traits/traits/trait_tiny_ass.dds"
 	initial = yes
 	randomized = yes
+	category = normal
 
-	tags = { positive pop_growth }
+	tags = { organic pop_output habitability happiness }
+
+	species_possible_add = { can_add_genetic_traits = yes }
+	species_possible_remove = { can_remove_beneficial_genetic_traits = yes }
+	species_possible_merge_remove = { always = yes }
 
 	opposites = {
 		"trait_Ultra"
@@ -2729,11 +2624,7 @@ trait_tiny_ass = {
 		"trait_tiny_butt"
 	}
 
-	archetype_override = {
-		this = {
-			always = yes
-		}
-	}
+	archetype_override = { This = { is_robotic = no } }
 
 	custom_tooltip_with_modifiers = trait_tiny_ass_tooltip
 
@@ -2752,10 +2643,6 @@ trait_tiny_ass = {
 		pop_bonus_workforce_mult = 0.003
 		mult = planet.value:counter_gts_pop
 	}
-
-	ai_weight = {
-		factor = 100000
-	}
 }
 
 trait_tiny_vore = {
@@ -2766,8 +2653,13 @@ trait_tiny_vore = {
 	icon = "gfx/interface/icons/traits/traits/trait_tiny_vore.dds"
 	initial = yes
 	randomized = yes
+	category = normal
 
-	tags = { positive pop_growth }
+	tags = { organic pop_output happiness }
+
+	species_possible_add = { can_add_genetic_traits = yes }
+	species_possible_remove = { can_remove_beneficial_genetic_traits = yes }
+	species_possible_merge_remove = { always = yes }
 
 	opposites = {
 		"trait_Ultra"
@@ -2788,11 +2680,7 @@ trait_tiny_vore = {
 		"trait_tiny_butt"
 	}
 
-	archetype_override = {
-		this = {
-			always = yes
-		}
-	}
+	archetype_override = { This = { is_robotic = no } }
 
 	custom_tooltip_with_modifiers = trait_tiny_vore_tooltip
 
@@ -2805,10 +2693,6 @@ trait_tiny_vore = {
 		pop_bonus_workforce_mult = 0.001
 		mult = planet.value:counter_gts_pop
 	}
-
-	ai_weight = {
-		factor = 100000
-	}
 }
 
 trait_tiny_finger = {
@@ -2819,8 +2703,13 @@ trait_tiny_finger = {
 	icon = "gfx/interface/icons/traits/traits/trait_tiny_finger.dds"
 	initial = yes
 	randomized = yes
+	category = normal
 
-	tags = { positive pop_growth }
+	tags = { organic pop_output happiness }
+
+	species_possible_add = { can_add_genetic_traits = yes }
+	species_possible_remove = { can_remove_beneficial_genetic_traits = yes }
+	species_possible_merge_remove = { always = yes }
 
 	opposites = {
 		"trait_Ultra"
@@ -2841,11 +2730,7 @@ trait_tiny_finger = {
 		"trait_tiny_butt"
 	}
 
-	archetype_override = {
-		this = {
-			always = yes
-		}
-	}
+	archetype_override = { This = { is_robotic = no } }
 
 	custom_tooltip_with_modifiers = trait_tiny_finger_tooltip
 
@@ -2858,10 +2743,6 @@ trait_tiny_finger = {
 		pop_bonus_workforce_mult = 0.001
 		mult = planet.value:counter_gts_pop
 	}
-
-	ai_weight = {
-		factor = 100000
-	}
 }
 
 trait_tiny_feet = {
@@ -2872,8 +2753,13 @@ trait_tiny_feet = {
 	icon = "gfx/interface/icons/traits/traits/trait_tiny_feet.dds"
 	initial = yes
 	randomized = yes
+	category = normal
 
-	tags = { positive pop_growth }
+	tags = { organic pop_output habitability happiness }
+
+	species_possible_add = { can_add_genetic_traits = yes }
+	species_possible_remove = { can_remove_beneficial_genetic_traits = yes }
+	species_possible_merge_remove = { always = yes }
 
 	opposites = {
 		"trait_Ultra"
@@ -2894,11 +2780,7 @@ trait_tiny_feet = {
 		"trait_tiny_butt"
 	}
 
-	archetype_override = {
-		this = {
-			always = yes
-		}
-	}
+	archetype_override = { This = { is_robotic = no } }
 
 	custom_tooltip_with_modifiers = trait_tiny_feet_tooltip
 
@@ -2919,10 +2801,6 @@ trait_tiny_feet = {
 		pop_bonus_workforce_mult = 0.003
 		mult = planet.value:counter_gts_pop
 	}
-
-	ai_weight = {
-		factor = 100000
-	}
 }
 
 trait_tiny_butt = {
@@ -2933,7 +2811,13 @@ trait_tiny_butt = {
 	icon = "gfx/interface/icons/traits/traits/trait_tiny_butt.dds"
 	initial = yes
 	randomized = yes
-		tags = { positive pop_growth }
+	category = normal
+
+	tags = { organic pop_output happiness }
+
+	species_possible_add = { can_add_genetic_traits = yes }
+	species_possible_remove = { can_remove_beneficial_genetic_traits = yes }
+	species_possible_merge_remove = { always = yes }
 
 	opposites = {
 		"trait_Ultra"
@@ -2954,11 +2838,7 @@ trait_tiny_butt = {
 		"trait_tiny_feet"
 	}
 
-	archetype_override = {
-		this = {
-			always = yes
-		}
-	}
+	archetype_override = { This = { is_robotic = no } }
 
 	custom_tooltip_with_modifiers = trait_tiny_butt_tooltip
 
@@ -2971,10 +2851,6 @@ trait_tiny_butt = {
 		pop_bonus_workforce_mult = 0.001
 		mult = planet.value:counter_gts_pop
 	}
-
-	ai_weight = {
-		factor = 100000
-	}
 }
 
 trait_fear_gts = {
@@ -2985,8 +2861,13 @@ trait_fear_gts = {
 	icon = "gfx/interface/icons/traits/traits/trait_fear_gts.dds"
 	initial = yes
 	randomized = yes
+	category = normal
 
-	tags = { positive pop_growth }
+	tags = { organic pop_output happiness }
+
+	species_possible_add = { can_add_genetic_traits = yes }
+	species_possible_remove = { can_remove_beneficial_genetic_traits = yes }
+	species_possible_merge_remove = { always = yes }
 
 	opposites = {
 
@@ -3001,11 +2882,7 @@ trait_fear_gts = {
 		"trait_gts_milk"
 	}
 
-	archetype_override = {
-		this = {
-			always = yes
-		}
-	}
+	archetype_override = { This = { is_robotic = no } }
 
 	custom_tooltip_with_modifiers = trait_fear_gts_tooltip
 
@@ -3019,10 +2896,6 @@ trait_fear_gts = {
 		pop_happiness = -0.004
 		mult = planet.value:counter_gts_pop
 	}
-
-	ai_weight = {
-		factor = 100000
-	}
 }
 
 trait_love_gts = {
@@ -3033,8 +2906,13 @@ trait_love_gts = {
 	icon = "gfx/interface/icons/traits/traits/trait_love_gts.dds"
 	initial = yes
 	randomized = yes
+	category = normal
 
-	tags = { positive pop_output }
+	tags = { organic pop_output happiness }
+
+	species_possible_add = { can_add_genetic_traits = yes }
+	species_possible_remove = { can_remove_beneficial_genetic_traits = yes }
+	species_possible_merge_remove = { always = yes }
 
 	opposites = {
 		"trait_Ultra"
@@ -3048,11 +2926,7 @@ trait_love_gts = {
 		"trait_gts_milk"
 	}
 
-	archetype_override = {
-		this = {
-			always = yes
-		}
-	}
+	archetype_override = { This = { is_robotic = no } }
 
 	custom_tooltip_with_modifiers = trait_love_gts_tooltip
 
@@ -3066,10 +2940,6 @@ trait_love_gts = {
 		pop_happiness = 0.004
 		mult = planet.value:counter_gts_pop
 	}
-
-	ai_weight = {
-		factor = 100000
-	}
 }
 
 trait_tiny_reproduce = {
@@ -3081,7 +2951,12 @@ trait_tiny_reproduce = {
 	initial = yes
 	randomized = yes
 
-	tags = { positive pop_growth }
+	tags = { organic positive pop_output habitability blocks_leaders special}
+
+	species_potential_add = { always = no }
+	species_possible_remove = { can_remove_presapient_genetic_traits = yes }
+	species_possible_merge_remove = { always = yes }
+	species_possible_merge_add = { always = no }
 
 	opposites = {
 		"trait_Ultra"
@@ -3094,73 +2969,17 @@ trait_tiny_reproduce = {
 		"trait_gts_milk"
 	}
 
-	archetype_override = {
-		this = {
-			is_robotic = no
-		}
-	}
+	archetype_override = { This = { is_robotic = no } }
 
 	custom_tooltip_with_modifiers = trait_tiny_reproduce_tooltip
 
 	modifier = {
 		habitability_floor_add = 1
-		livestock_jobs_bonus_workforce_mult = 0.5
+		livestock_jobs_bonus_workforce_mult = 0.25
 	}
 	triggered_planet_growth_habitability_modifier = {
-		logistic_growth_mult = 0.03
+		logistic_growth_mult = 0.01
 		mult = planet.value:counter_gts_pop
-	}
-
-	ai_weight = {
-		factor = 10000
-	}
-}
-
-trait_tinyslave = {
-
-	# 奴性
-
-	cost = 2
-	icon = "gfx/interface/icons/traits/traits/trait_tinyslave.dds"
-	initial = yes
-	randomized = yes
-	forced_happiness = yes
-
-	tags = { positive livestock }
-
-	species_possible_remove = {
-		can_remove_beneficial_genetic_traits = yes
-	}
-
-	opposites = {
-		"trait_Ultra"
-		"trait_Titan"
-		"trait_Giant"
-		"trait_Tall"
-		"trait_great_species"
-		"trait_tinyunbending"
-		"trait_gts_ub"
-		"trait_gts_ass"
-		"trait_gts_vore"
-		"trait_gts_milk"
-	}
-
-	archetype_override = {
-		this = {
-			is_robotic = no
-		}
-	}
-
-	modifier = {
-		pop_livestock_bonus_workforce_mult = 0.5
-	}
-
-	slave_cost = {
-		energy = 100
-	}
-
-	ai_weight = {
-		factor = 10000
 	}
 }
 
@@ -3172,12 +2991,13 @@ trait_tinyunbending = {
 	icon = "gfx/interface/icons/traits/traits/trait_tinyunbending.dds"
 	initial = yes
 	randomized = yes
+	category = normal
 
-	tags = { positive army }
+	tags = { organic positive pop_output army }
 
-	species_possible_remove = {
-		can_remove_beneficial_genetic_traits = yes
-	}
+	species_possible_add = { can_add_genetic_traits = yes }
+	species_possible_remove = { can_remove_beneficial_genetic_traits = yes }
+	species_possible_merge_remove = { always = yes }
 
 	opposites = {
 		"trait_Ultra"
@@ -3185,18 +3005,14 @@ trait_tinyunbending = {
 		"trait_Giant"
 		"trait_Tall"
 		"trait_great_species"
-		"trait_tinyslave"
+		"trait_syncretic_proles"
 		"trait_gts_ub"
 		"trait_gts_ass"
 		"trait_gts_vore"
 		"trait_gts_milk"
 	}
 
-	archetype_override = {
-		this = {
-			always = yes
-		}
-	}
+	archetype_override = { This = { is_robotic = no } }
 
 	modifier = {
 		army_attack_damage_mult = 0.25
@@ -3206,1451 +3022,81 @@ trait_tinyunbending = {
 		planet_soldiers_alloys_produces_add = 3
 		pop_livestock_bonus_workforce_mult = -1.0
 	}
-
-	ai_weight = {
-		factor = 10000
-	}
-}
-
-trait_tiny_catalyst = {
-
-	# 觸媒
-
-	cost = 1
-	icon = gfx/interface/icons/traits/trait_clone_soldier_ascendant.dds
-	initial = no
-	randomized = no
-
-	tags = { special }
-
-	# 添加特質
-	species_potential_add = {
-		always = no
-	}
-	# 移除特質
-	species_possible_remove = {
-		always = no
-	}
-	# 整合添加
-	species_possible_merge_add = {
-		always = no
-	}
-	# 整合移除
-	species_possible_merge_remove = {
-		always = no
-	}
-
-	opposites = {
-		"trait_Ultra"
-		"trait_Titan"
-		"trait_Giant"
-		"trait_Tall"
-		"trait_gts_ub"
-		"trait_gts_ass"
-		"trait_gts_vore"
-		"trait_gts_milk"
-	}
-
-	archetype_override = {
-		this = {
-			always = yes
-		}
-	}
-
-	modifier = {
-		habitability_floor_add = 0.2
-	}
-
-	custom_tooltip_with_modifiers = trait_tiny_catalyst_tooltip
-	triggered_pop_group_modifier = {
-		pop_government_ethic_attraction = 0.001
-		pop_happiness = 0.001
-		mult = planet.value:counter_gts_pop
-	}
 }
 
 
-trait_gts_force_evolution = {
 
-	# 強制進化
-
-	cost = 0
-	icon = gfx/interface/icons/traits/trait_clone_soldier_ascendant.dds
-	initial = no
-	randomized = no
-
-	tags = { special }
-
-	# 添加特質
-	species_potential_add = {
-		always = no
-	}
-	# 移除特質
-	species_possible_remove = {
-		always = no
-	}
-	# 整合添加
-	species_possible_merge_add = {
-		always = no
-	}
-	# 整合移除
-	species_possible_merge_remove = {
-		always = no
-	}
-
-	opposites = {
-		"trait_Normal"
-		"trait_Small"
-		"trait_Tiny"
-		"trait_Micro"
-		"trait_Nano"
-	}
-
-	archetype_override = {
-		this = {
-			is_robotic = no
-		}
-	}
-
-	#custom_tooltip_with_modifiers = trait_gts_milk_tooltip
-
-	modifier = {
-		logistic_growth_mult = 0.15
-		pop_amenities_usage_mult = 0.1
-		pop_government_ethic_attraction = -0.1
-	}
-
-	ai_weight = {
-		factor = 0
-	}
-}
-
-trait_gts_begin = {
-
-	# 巨娘開局
-
-	cost = 0
-	icon = "gfx/interface/icons/traits/traits/trait_gts_terminator.dds"
-	initial = no
-	randomized = no
-
-	tags = { special }
-
-	# 添加特質
-	species_potential_add = {
-		always = no
-	}
-	# 移除特質
-	species_possible_remove = {
-		always = no
-	}
-	# 整合添加
-	species_possible_merge_add = {
-		always = no
-	}
-	# 整合移除
-	species_possible_merge_remove = {
-		always = no
-	}
-
-	opposites = {
-		"trait_Normal"
-		"trait_Small"
-		"trait_Tiny"
-		"trait_Micro"
-		"trait_Nano"
-		"trait_tiny_begin"
-	}
-
-	archetype_override = {
-		this = {
-			always = yes
-		}
-	}
-
-	ai_weight = 0
-}
-
-trait_tiny_begin = {
-
-	# 小人開局
-
-	cost = 0
-	icon = "gfx/interface/icons/traits/traits/trait_gts_terminator.dds"
-	initial = no
-	randomized = no
-
-	tags = { special }
-
-	# 添加特質
-	species_potential_add = {
-		always = no
-	}
-	# 移除特質
-	species_possible_remove = {
-		always = no
-	}
-	# 整合添加
-	species_possible_merge_add = {
-		always = no
-	}
-	# 整合移除
-	species_possible_merge_remove = {
-		always = no
-	}
-
-	opposites = {
-		"trait_Ultra"
-		"trait_Titan"
-		"trait_Giant"
-		"trait_Tall"
-		"trait_gts_begin"
-	}
-
-	archetype_override = {
-		this = {
-			always = yes
-		}
-	}
-
-	ai_weight = {
-		factor = 0
-	}
-}
-
-
-trait_AIwenhe = {
-
-	# AI人格 - 溫和
-
-	cost = 1
-	icon = "gfx/interface/icons/traits/traits/Waijiaomokuai.dds"
-	initial = yes
-	randomized = yes
-
-	tags = { machine positive upkeep habitability amenities pop_output }
-
-	opposites = {
-		"trait_AIfangzong"
-	}
-
-	archetype_override = {
-		this = {
-			is_robotic = yes
-		}
-	}
-
-	modifier = {
-		planet_pops_robotics_upkeep_mult = -0.1
-		bureaucrat_jobs_bonus_workforce_mult = 0.2
-		pop_bonus_workforce_mult = -0.1
-	}
-}
-
-trait_AIfangzong = {
-
-	# AI人格 - 放縱
-
-	cost = 1
-	icon = "gfx/interface/icons/traits/traits/Weihumokuai.dds"
-	initial = yes
-	randomized = yes
-
-	tags = { machine positive upkeep habitability amenities pop_output }
-
-	opposites = {
-		"trait_AIwenhe"
-	}
-
-	archetype_override = {
-		this = {
-			is_robotic = yes
-		}
-	}
-
-	modifier = {
-		planet_pops_robotics_upkeep_mult = 0.1
-		bureaucrat_jobs_bonus_workforce_mult = -0.3
-		pop_bonus_workforce_mult = 0.1
-	}
-}
-
-trait_Lingneng_robot = {
-
-	# 靈能罐頭
-
-	cost = 1
-	icon = "gfx/interface/icons/traits/traits/Lingneng_robot.dds"
-	initial = yes
-	randomized = no
-	immortal_leaders = yes
-
-	tags = { machine positive pop_output unity }
-
-	# 添加特質
-	species_potential_add = {
-		always = no
-	}
-	# 移除特質
-	species_possible_remove = {
-		always = no
-	}
-
-	archetype_override = {
-		this = {
-			is_robotic = yes
-		}
-	}
-
-	modifier = {
-		bureaucrat_jobs_bonus_workforce_mult = 0.15
-	}
-
-	assembly_score = {
-		modifier = {
-			add = 1.5
-			from = { has_unity_designation = yes }
-		}
-		modifier = {
-			add = 1.5
-			from = { has_building = building_order_keep }
-		}
-	}
-
-	ai_weight = {
-		factor = 10000
-	}
-}
-
-trait_Weihumokuai = {
-
-	# 維護模組
-
-	cost = 1
-	icon = "gfx/interface/icons/traits/traits/Weihumokuai.dds"
-	initial = yes
-	randomized = yes
-
-	tags = { machine positive habitability  }
-
-	archetype_override = {
-		this = {
-			is_robotic = yes
-		}
-	}
-
-	modifier = {
-		pop_environment_tolerance = 0.25
-		planet_pops_robotics_upkeep_mult = -0.1
-		roboticist_jobs_bonus_workforce_mult = 0.1
-	}
-
-	assembly_score = {
-		modifier = {
-			add = 1.5
-			from = { uses_district_set = habitat }
-		}
-		modifier = {
-			subtract = 1.5
-			from = {
-				NOT = { uses_district_set = habitat }
-			}
-		}
-	}
-
-	ai_weight = {
-		factor = 10000
-	}
-}
-
-trait_Waijiaomokuai = {
-
-	# 外交模組
-
-	cost = 1
-	icon = "gfx/interface/icons/traits/traits/Waijiaomokuai.dds"
-	initial = yes
-	randomized = yes
-
-	tags = { machine positive pop_output trade }
-
-	archetype_override = {
-		this = {
-			is_robotic = yes
-		}
-	}
-
-	modifier = {
-		trader_jobs_bonus_workforce_mult = 0.15
-	}
-
-	assembly_score = {
-		modifier = {
-			add = 1.5
-			from = { has_trade_designation = yes }
-		}
-	}
-
-	ai_weight = {
-		factor = 10000
-	}
-}
-
-trait_Zijianmokuai = {
-
-	# 自檢模組
-
-	cost = 1
-	icon = "gfx/interface/icons/traits/traits/Zijianmokuai.dds"
-	initial = yes
-	randomized = yes
-
-	tags = { machine positive habitability }
-
-	archetype_override = {
-		this = {
-			is_robotic = yes
-		}
-	}
-
-	modifier = {
-		planet_pops_robotics_upkeep_mult = -0.15
-	}
-
-	assembly_score = {
-		modifier = {
-			add = 1.5
-			from = { uses_district_set = habitat }
-		}
-		modifier = {
-			subtract = 1.5
-			from = {
-				NOT = { uses_district_set = habitat }
-			}
-		}
-	}
-
-	ai_weight = {
-		factor = 10000
-	}
-}
-
-trait_Luojimokuai = {
-
-	# 邏輯模組
-
-	cost = 1
-	icon = "gfx/interface/icons/traits/traits/Luojimokuai.dds"
-	initial = yes
-	randomized = yes
-
-	tags = { machine positive leader }
-
-	archetype_override = {
-		this = {
-			is_robotic = yes
-		}
-	}
-
-	modifier = {
-		species_leader_exp_gain = 0.25
-	}
-
-	ai_weight = {
-		factor = 10000
-	}
-}
-
-trait_Luanzi = {
-
-	# 卵生
-
-	# 類似克隆人一樣的隱性特質
-
-	cost = 0
-	icon = "gfx/interface/icons/traits/traits/trait_Luanzi.dds"
-	initial = no
-	randomized = no
-
-	tags = { organic positive production habitability drawbacks special }
-
-	# 添加特質
-	species_potential_add = {
-		always = no
-	}
-	# 整合添加
-	species_possible_merge_add = {
-		always = no
-	}
-
-	opposites = {
-		"trait_extremely_adaptive"
-		"trait_adaptive"
-	}
-
-	archetype_override = {
-		this = {
-			is_robotic = no
-		}
-	}
-
-	modifier = {
-		pop_resettlement_cost_mult = 1.0
-		pop_environment_tolerance = -1.0
-		pc_gts_luanzi_habitability = 2.0
-	}
-}
-
-trait_Beironghe = {
-
-	# 被融合
-
-	cost = 0
-	icon = gfx/interface/icons/traits/trait_clone_soldier_ascendant.dds
-	initial = no
-	randomized = no
-	forced_happiness = yes
-
-	tags = { organic negative special }
-
-	# 添加特質
-	species_potential_add = {
-		always = no
-	}
-	# 整合添加
-	species_possible_merge_add = {
-		always = no
-	}
-
-	archetype_override = {
-		this = {
-			is_robotic = no
-		}
-	}
-
-	modifier = {
-		planet_pops_upkeep_mult = -1.0
-		pop_political_power = -1.0
-		logistic_growth_mult = -1.0
-		planet_pops_gts_giantess_fluid_upkeep_mult = 1.0
-	}
-}
-
-trait_gts_inside_world = {
-
-	# 體內世界
-
-	cost = 0
-	icon = gfx/interface/icons/traits/trait_clone_soldier_ascendant.dds
-	initial = no
-	randomized = no
-
-	tags = { organic positive special }
-
-	# 添加特質
-	species_potential_add = {
-		always = no
-	}
-	# 整合添加
-	species_possible_merge_add = {
-		always = no
-	}
-
-	archetype_override = {
-		this = {
-			is_robotic = no
-		}
-	}
-
-	modifier = {
-		pop_happiness = 0.1
-		planet_pops_upkeep_mult = -0.1
-		pop_bonus_workforce_mult = 0.1
-	}
-}
-
-trait_Jiju = {
-
-	# 微型生命體寄居
-
-	cost = 0
-	icon = "gfx/interface/icons/traits/traits/trait_Jiju.dds"
-	initial = no
-	randomized = no
-
-	tags = { organic positive special }
-
-	# 添加特質
-	species_potential_add = {
-		always = no
-	}
-	# 移除特質
-	species_possible_remove = {
-		always = no
-	}
-	# 整合添加
-	species_possible_merge_add = {
-		always = no
-	}
-	# 整合移除
-	species_possible_merge_remove = {
-		always = no
-	}
-
-	archetype_override = {
-		this = {
-			is_robotic = no
-		}
-	}
-
-	modifier = {
-		pop_bonus_workforce_mult = 0.1
-		species_leader_exp_gain = 0.1
-	}
-}
-
-trait_Jiju_anti = {
-
-	# 微型生命體消逝
-
-	cost = 0
-	icon = "gfx/interface/icons/traits/traits/trait_Jiju_anti.dds"
-	initial = no
-	randomized = no
-
-	tags = { organic negative special }
-
-	# 添加特質
-	species_potential_add = {
-		always = no
-	}
-	# 移除特質
-	species_possible_remove = {
-		always = no
-	}
-	# 整合添加
-	species_possible_merge_add = {
-		always = no
-	}
-	# 整合移除
-	species_possible_merge_remove = {
-		always = no
-	}
-
-	archetype_override = {
-		this = {
-			is_robotic = no
-		}
-	}
-
-	modifier = {
-		logistic_growth_mult = -0.1
-	}
-}
-
-trait_gts_cave_dweller = {
-
-	# 靴居者
-
-	cost = 0
-	icon = "gfx/interface/icons/traits/trait_cave_dweller.dds"
-	initial = no
-	randomized = no
-
-	# 添加特質
-	species_potential_add = {
-		always = no
-	}
-	# 移除特質
-	species_possible_remove = {
-		always = no
-	}
-	# 整合添加
-	species_possible_merge_add = {
-		always = no
-	}
-	# 整合移除
-	species_possible_merge_remove = {
-		always = no
-	}
-
-	tags = { organic positive habitability mineral production interesting special }
-
-	archetype_override = {
-		this = {
-			is_robotic = no
-		}
-	}
-
-	custom_tooltip_with_modifiers = trait_cave_dweller_tooltip
-
-	modifier = {
-		habitability_floor_add = 0.5
-		planet_jobs_minerals_produces_mult = 0.15
-		logistic_growth_mult = -0.2
-	}
-
-	assembly_score = {
-		modifier = {
-			add = 1.5
-			from = {
-				has_mining_designation = yes
-			}
-		}
-		modifier = {
-			add = 0.5
-			from = {
-				has_rural_designation = yes
-			}
-		}
-	}
-
-	ai_weight = {
-		weight = 0
-	}
-}
-
-trait_gts_fallout = {
-
-	# 輻疫庇佑
-
-	cost = 0
-	icon = "gfx/interface/icons/traits/trait_survivor.dds"
-	initial = no
-	randomized = no
-	tags = { special }
-
-	# 添加特質
-	species_potential_add = {
-		always = no
-	}
-	# 移除特質
-	species_possible_remove = {
-		always = no
-	}
-	# 整合添加
-	species_possible_merge_add = {
-		always = no
-	}
-	# 整合移除
-	species_possible_merge_remove = {
-		always = no
-	}
-
-	archetype_override = {
-		this = {
-			always = yes
-		}
-	}
-
-	custom_tooltip_with_modifiers = trait_gts_fallout_tooltip
-
-	triggered_pop_group_modifier = {
-		potential = {
-			exists = planet
-			planet = {
-				is_planet_class = pc_nuked
-			}
-		}
-		planet_pops_upkeep_mult = -0.20
-		pop_amenities_usage_mult = -0.20
-		pop_bonus_workforce_mult = 0.10
-	}
-	triggered_pop_group_modifier = {
-		potential = {
-			exists = planet
-			planet = {
-				NOT = {
-					is_planet_class = pc_nuked
-				}
-			}
-		}
-		planet_pops_upkeep_mult = 0.20
-		pop_amenities_usage_mult = 0.20
-		pop_bonus_workforce_mult = -0.10
-	}
-
-	triggered_planet_growth_habitability_modifier = {
-		potential = {
-			planet = {
-				is_planet_class = pc_nuked
-			}
-			is_ideal = no
-		}
-		pop_environment_tolerance = 1.0
-	}
-	triggered_planet_growth_habitability_modifier = {
-		potential = {
-			NOT = {
-				is_planet_class = pc_nuked
-			}
-			is_ideal = no
-		}
-		pop_environment_tolerance = -1.0
-	}
-}
-
-trait_gts_fallout_buff = {
-
-	# 輻疫庇佑-衰退
-
-	cost = 0
-	icon = "gfx/interface/icons/traits/trait_survivor.dds"
-	initial = no
-	randomized = no
-	tags = { special }
-
-	# 添加特質
-	species_potential_add = {
-		always = no
-	}
-	# 移除特質
-	species_possible_remove = {
-		always = no
-	}
-	# 整合添加
-	species_possible_merge_add = {
-		always = no
-	}
-	# 整合移除
-	species_possible_merge_remove = {
-		always = no
-	}
-
-	archetype_override = {
-		this = {
-			always = yes
-		}
-	}
-
-	custom_tooltip_with_modifiers = trait_gts_fallout_buff_tooltip
-
-	triggered_pop_group_modifier = {
-		potential = {
-			exists = planet
-			planet = {
-				is_planet_class = pc_nuked
-			}
-		}
-		planet_pops_upkeep_mult = -0.10
-		pop_amenities_usage_mult = -0.10
-		pop_bonus_workforce_mult = 0.05
-	}
-	triggered_pop_group_modifier = {
-		potential = {
-			exists = planet
-			planet = {
-				NOT = {
-					is_planet_class = pc_nuked
-				}
-			}
-		}
-		planet_pops_upkeep_mult = 0.10
-		pop_amenities_usage_mult = 0.10
-		pop_bonus_workforce_mult = -0.05
-	}
-
-	triggered_planet_growth_habitability_modifier = {
-		potential = {
-			planet = {
-				is_planet_class = pc_nuked
-			}
-			is_ideal = no
-		}
-		pop_environment_tolerance = 0.25
-	}
-	triggered_planet_growth_habitability_modifier = {
-		potential = {
-			planet = {
-				NOT = {
-					is_planet_class = pc_nuked
-				}
-			}
-			is_ideal = no
-		}
-		pop_environment_tolerance = -0.25
-	}
-}
-
-trait_gts_fallout_enhance = {
-
-	# 輻疫庇佑-強化
-
-	cost = 0
-	icon = "gfx/interface/icons/traits/trait_survivor.dds"
-	initial = no
-	randomized = no
-	tags = { special }
-
-	# 添加特質
-	species_potential_add = {
-		always = no
-	}
-	# 移除特質
-	species_possible_remove = {
-		always = no
-	}
-	# 整合添加
-	species_possible_merge_add = {
-		always = no
-	}
-	# 整合移除
-	species_possible_merge_remove = {
-		always = no
-	}
-
-	archetype_override = {
-		this = {
-			always = yes
-		}
-	}
-
-	custom_tooltip_with_modifiers = trait_gts_fallout_enhance_tooltip
-
-	triggered_pop_group_modifier = {
-		potential = {
-			exists = planet
-			planet = {
-				is_planet_class = pc_nuked
-			}
-		}
-		planet_pops_upkeep_mult = -0.40
-		pop_amenities_usage_mult = -0.40
-		pop_bonus_workforce_mult = 0.20
-	}
-	triggered_pop_group_modifier = {
-		potential = {
-			exists = planet
-			planet = {
-				NOT = {
-					is_planet_class = pc_nuked
-				}
-			}
-		}
-		planet_pops_upkeep_mult = 0.40
-		pop_amenities_usage_mult = 0.40
-		pop_bonus_workforce_mult = -0.20
-	}
-
-	triggered_planet_growth_habitability_modifier = {
-		potential = {
-			planet = {
-				is_planet_class = pc_nuked
-			}
-			is_ideal = no
-		}
-		pop_environment_tolerance = 1.75
-	}
-	triggered_planet_growth_habitability_modifier = {
-		potential = {
-			planet = {
-				NOT = {
-					is_planet_class = pc_nuked
-				}
-			}
-			is_ideal = no
-		}
-		pop_environment_tolerance = -1.75
-	}
-}
-
-trait_gts_UMA_MUSUME = {
-
-	cost = 0
-	initial = no
-	randomized = no
-	tags = { special amenities upkeep positive pop_output pop_growth }
-
-	# 添加特質
-	species_potential_add = {
-		always = no
-	}
-	# 移除特質
-	species_possible_remove = {
-		always = no
-	}
-	# 整合添加
-	species_possible_merge_add = {
-		always = no
-	}
-	# 整合移除
-	species_possible_merge_remove = {
-		always = no
-	}
-
-	icon = gfx/interface/icons/traits/trait_clone_soldier_ascendant.dds
-
-	opposites = {
-		"trait_Normal"
-		"trait_Small"
-		"trait_Tiny"
-		"trait_Micro"
-		"trait_Nano"
-	}
-
-	archetype_override = {
-		this = {
-			always = yes
-		}
-	}
-
-	modifier = {
-		logistic_growth_mult = 0.10
-	    bonus_pop_growth_mult = 0.10
-		planet_pops_upkeep_mult = 0.20
-		worker_and_simple_drone_cat_bonus_workforce_mult = 0.20
-	}
-
-	#custom_tooltip_with_modifiers = trait_gts_UMA_MUSUME_tooltip
-}
-
-trait_godkeeper_1 = {
-	cost = 4
-	icon = "gfx/interface/icons/traits/traits/trait_godkeeper_1.dds"
-	initial = no
-	randomized = no
-	#advanced_trait = yes
-	improves_leaders = yes
-	species_potential_add = {
-		from = {
-			has_tradition = tr_gts_godkeeper_2
-		}
-	}
-
-	allowed_archetypes = {
-		BIOLOGICAL
-
-	}
-	tags = { special army upkeep positive pop_output pop_growth }
-	custom_tooltip_with_modifiers = trait_godkeeper_1_tooltip
-	modifier = {
-		worker_and_simple_drone_cat_bonus_workforce_mult = 0.45
-		planet_pops_upkeep_mult = 0.3
-		logistic_growth_mult = -0.1
-		bonus_pop_growth_mult = -0.1
-		army_damage_mult = 1
-	}
-	ai_weight = {
-		factor = 0
-	}
-}
-
-trait_godkeeper_2 = {
-	cost = 3
-	icon = "gfx/interface/icons/traits/traits/trait_godkeeper_2.dds"
-	initial = no
-	randomized = no
-	#advanced_trait = yes
-	species_potential_add = {
-		from = {
-			has_tradition = tr_gts_godkeeper_2
-		}
-	}
-	improves_leaders = yes
-	allowed_archetypes = {
-		BIOLOGICAL
-
-	}
-	custom_tooltip_with_modifiers = trait_godkeeper_2_tooltip
-	tags = { special amenities happiness positive pop_output }
-	modifier = {
-		pop_bonus_workforce_mult = 0.45
-		planet_amenities_add = 300
-		pop_happiness = 0.4
-	}
-	ai_weight = {
-		factor = 0
-	}
-}
-
-trait_godkeeper_3 = {
-	cost = 4
-	icon = "gfx/interface/icons/traits/traits/trait_godkeeper_3.dds"
-	initial = no
-	randomized = no
-	#advanced_trait = yes
-	species_potential_add = {
-		from = {
-			has_tradition = tr_gts_godkeeper_2
-		}
-	}
-	improves_leaders = yes
-	allowed_archetypes = {
-		BIOLOGICAL
-
-	}
-	custom_tooltip_with_modifiers = trait_godkeeper_3_tooltip
-	tags = { special leader upkeep positive pop_output }
-	modifier = {
-		pop_physicist_bonus_workforce_mult = 0.38
-		pop_biologist_bonus_workforce_mult = 0.38
-		pop_engineer_bonus_workforce_mult = 0.38
-		planet_pops_upkeep_mult = 0.2
-		negative_traits_leader = -3
-	}
-	ai_weight = {
-		factor = 0
-	}
-}
-
-trait_godkeeper_4 = {
-	cost = 3
-	icon = "gfx/interface/icons/traits/traits/trait_godkeeper_4.dds"
-	initial = no
-	randomized = no
-	#advanced_trait = yes
-	immortal_leaders = yes
-	species_potential_add = {
-		from = {
-			has_tradition = tr_gts_godkeeper_2
-		}
-	}
-	improves_leaders = yes
-	allowed_archetypes = {
-		BIOLOGICAL
-
-	}
-	custom_tooltip_with_modifiers = trait_godkeeper_4_tooltip
-	tags = { special leader upkeep positive }
-	modifier = {
-		species_leader_exp_gain = 2
-		leaders_upkeep_mult = 1
-		negative_traits_leader = -3
-	}
-	ai_weight = {
-		factor = 0
-	}
-}
-
-trait_godkeeper_5 = {
-	cost = 3
-	icon = "gfx/interface/icons/traits/traits/trait_godkeeper_5.dds"
-	initial = no
-	randomized = no
-	#advanced_trait = yes
-	species_potential_add = {
-		from = {
-			has_tradition = tr_gts_godkeeper_2
-		}
-	}
-	improves_leaders = yes
-	allowed_archetypes = {
-		BIOLOGICAL
-
-	}
-	custom_tooltip_with_modifiers = trait_godkeeper_5_tooltip
-	tags = { special positive pop_growth }
-	modifier = {
-		logistic_growth_mult = 0.3
-	    bonus_pop_growth_mult = 0.3
-		pop_housing_usage_mult = -0.3
-		#pop_growth_from_immigration = 1
-	}
-	ai_weight = {
-		factor = 0
-	}
-}
-
-trait_godness_power_finish = {
-
-    # 再教育完成
-
-    cost = 0
-    icon = "gfx/interface/icons/traits/traits/trait_love_gts.dds"
-	initial = no
-	randomized = no
-
-	tags = { special }
-
-	# 添加特質
-	species_potential_add = {
-		always = no
-	}
-	# 移除特質
-	species_possible_remove = {
-		always = no
-	}
-	# 整合添加
-	species_possible_merge_add = {
-		always = no
-	}
-	# 整合移除
-	species_possible_merge_remove = {
-		always = no
-	}
-
-    custom_tooltip_with_modifiers = trait_godness_power_finish_tooltip
-
-	modifier = {
-		pop_bonus_workforce_mult = 0.1
-		pop_happiness = 0.1
-	}
-
-    triggered_planet_growth_habitability_modifier = {
-        logistic_growth_mult = 0.05
-	    bonus_pop_growth_mult = 0.05
-        mult = planet.value:counter_tiny_pop
-    }
-    triggered_pop_group_modifier = {
-        pop_bonus_workforce_mult = 0.05
-        pop_happiness = +0.05
-        mult = planet.value:counter_tiny_pop
-    }
-
-    ai_weight = {
-        factor = 10000
-    }
-}
-
-################################################################################
-###################                種族偏好特質                ###################
-################################################################################
-
-
-
-
-trait_pc_gts_shoes_preference = {
-
-	# 鞋內偏好
-
-	initial = no
-	sorting_priority = 30
-	ideal_planet_class = pc_lottie_shoes
-	icon = "gfx/interface/icons/traits/traits/trait_pc_gts_shoes_preference.dds"
-
-	species_potential_add = {
-		always = no
-	}
-	species_possible_merge_add = {
-		always = yes
-	}
-
-	archetype_override = {
-		this = {
-			always = yes
-		}
-	}
-
-	modifier = {
-		pc_lottie_shoes_habitability = @primary
-		pc_gts_uniform_shoes_colonizable_habitability = @primary
-		pc_gts_laceup_heel_habitability = @primary
-		pc_yarong_boots_habitability = @primary
-		pc_wazi_cracked_habitability = @primary
-		#pc_gts_claudia_boots_habitability = @primary
-		#pc_gts_normal_boots_habitability = @primary
-
-		pc_gts_dirt0_habitability = @secondary
-		pc_gts_dirt1_habitability = @secondary
-		pc_gts_dirt2_habitability = @secondary
-		pc_gts_dirt3_habitability = @secondary
-		pc_gts_dirt4_habitability = @secondary
-	}
-
-	triggered_planet_growth_habitability_modifier = {
-		potential = {
-			exists = fromfrom
-			has_modifier = gts_among_shadow
-		}
-		habitability_floor_add = 0.3
-	}
-
-	ai_weight = {
-		weight = 0
-	}
-}
-
-trait_pc_gts_luanzi_preference = {
-
-	# 卵子偏好
-
-	initial = no
-	sorting_priority = 30
-	ideal_planet_class = pc_gts_luanzi
-	icon = "gfx/interface/icons/traits/traits/trait_Luanzi.dds"
-
-	species_potential_add = {
-		always = no
-	}
-	species_possible_merge_add = {
-		always = yes
-	}
-
-	archetype_override = {
-		this = {
-			always = yes
-		}
-	}
-
-	modifier = {
-		pc_gts_luanzi_habitability = @primary
-	}
-
-	triggered_planet_growth_habitability_modifier = {
-		potential = {
-			NOT = {
-				is_planet_class = pc_gts_luanzi
-			}
-		}
-		habitability_ceil_add = -0.7
-	}
-
-	triggered_planet_growth_habitability_modifier = {
-		potential = {
-			is_planet_class = pc_gts_luanzi
-		}
-		logistic_growth_mult = 0.5
-		bonus_pop_growth = 0.5
-	}
-
-	ai_weight = {
-		weight = 0
-	}
-}
-
-
-#替换#
-#trait_latent_psionic = {
+# 已廢棄
+
+#trait_Luanzi = {
+#
+#	# 卵生
+#
+#	# 類似克隆人一樣的隱性特質
+#
 #	cost = 0
-#	potential_crossbreeding_chance = 0.25
-#	icon = "gfx/interface/icons/traits/trait_latent_psionic_species.dds"
-#	opposites = {
-#		"trait_cybernetic"
-#	}
+#	icon = "gfx/interface/icons/traits/traits/trait_Luanzi.dds"
 #	initial = no
 #	randomized = no
-#	species_potential_add = {
-#		always = no
+#
+#	tags = { organic positive production habitability drawbacks special }
+#
+#	# 添加特質
+#	species_potential_add = { always = no }
+#	# 整合添加
+#	species_possible_merge_add = { always = no }
+#
+#	opposites = {
+#		"trait_extremely_adaptive"
+#		"trait_adaptive"
 #	}
-#	species_possible_remove = {
-#		always = no
-#	}
-#	species_possible_merge_add = {
-#		always = no
-#	}
-#	allowed_archetypes = {
-#		BIOLOGICAL
-#		PRESAPIENT
-#		OTHER
-#		LITHOID
-#		STAGEGIRLS
-#		Schale
-#		UMA
-#		KANSEN
-#		SHENHAI
-#		WARSHIPGIRL
-#		UNITED_FLEET
-#		Magical_Bitch
-#		Magical_Girl
-#		YGWW
-#		MWN
-#		TENTACLE
-#		PARASITE
-#		Lust_Girl
-#		Erotic_Creation
-#		GF_ANDROID
-#		NYTO
-#	}
+#
+#	archetype_override = { This = { is_robotic = no } }
+#
 #	modifier = {
-#		planet_jobs_physics_research_produces_mult = 0.1
-#		planet_jobs_society_research_produces_mult = 0.1
-#		planet_jobs_engineering_research_produces_mult = 0.1
-#		planet_jobs_unity_produces_mult = 0.05
-#	}
-#	slave_cost = {
-#		energy = 1500
-#	}
-#	assembly_score = {
-#		modifier = {
-#			add = 0.5
-#			from = {
-#				has_research_designation = yes
-#			}
-#		}
-#		modifier = {
-#			add = 0.5
-#			from = {
-#				has_unity_designation = yes
-#			}
-#		}
-#		modifier = {
-#			add = 0.5
-#			from = {
-#				has_building = building_order_keep
-#			}
-#		}
+#		pop_resettlement_cost_mult = 1.0
+#		pop_environment_tolerance = -1.0
+#		pc_gts_luanzi_habitability = 2.0
 #	}
 #}
 
-#trait_ = {
+#trait_tinyslave = {
 #
-#	cost = 0
-#	icon = "gfx/interface/icons/traits/traits/trait_Futa.dds"
+#	# 奴性
+#
+#	cost = 2
+#	icon = "gfx/interface/icons/traits/traits/trait_tinyslave.dds"
 #	initial = yes
 #	randomized = yes
-#	#	allowed_archetypes = {
-#		BIOLOGICAL
-#		PRESAPIENT
-#		OTHER
-#		LITHOID
-#		STAGEGIRLS
-#		Schale
-#		UMA
-#		KANSEN
-#		SHENHAI
-#		WARSHIPGIRL
-#		UNITED_FLEET
-#		Magical_Bitch
-#		Magical_Girl
-#		YGWW
-#		MWN
-#		TENTACLE
-#		PARASITE
-#		Lust_Girl
-#		Erotic_Creation
-#		GF_ANDROID
+#	forced_happiness = yes
+#
+#	tags = { positive livestock }
+#
+#	species_possible_add = { can_add_genetic_traits = yes }
+#	species_possible_remove = { can_remove_beneficial_genetic_traits = yes }
+#	species_possible_merge_remove = { always = yes }
+#
+#	opposites = {
+#		"trait_Ultra"
+#		"trait_Titan"
+#		"trait_Giant"
+#		"trait_Tall"
+#		"trait_great_species"
+#		"trait_tinyunbending"
+#		"trait_gts_ub"
+#		"trait_gts_ass"
+#		"trait_gts_vore"
+#		"trait_gts_milk"
 #	}
+#
+#	archetype_override = { This = { is_robotic = no } }
+#
 #	modifier = {
+#		pop_livestock_bonus_workforce_mult = 0.5
+#	}
+#
+#	slave_cost = {
+#		trade = 100
 #	}
 #}
 
-
-
-######################## 咕叽的modify ########################
-#基础维护费调整代码，及注释
-#
-#resources = {
-# 		category = planet_pops
-# 		# Mineral Upkeep
-# 		upkeep = {
-# 			trigger = {
-# 				#有光合作用特质？无
-# 				is_phototrophic = no
-# 				#如果 是有机体
-# 				has_trait = trait_organic
-# 				#不是 虚体化
-# 				NOT = { has_trait = trait_voidling }
-# 				#正在被清除？
-# 				is_being_purged = no
-# 				#开智？
-# 				is_sapient = yes
-# 			}
-# 			food = 1
-# 			consumer_goods = 0.25
-# 		}
-# 		}
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#

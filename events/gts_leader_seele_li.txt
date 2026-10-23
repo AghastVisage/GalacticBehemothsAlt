@@ -108,20 +108,8 @@ country_event = {
 		hidden_effect = {
 		}
 	}
-	after = {
-		every_system_within_border = {
-			limit = {
-				star = {
-					has_planet_flag = gts_azure_waters_astral_rift
-				}
-			}
-			star = {
-				add_anomaly = {
-					category = gts_seele_li_anomaly_1
-				}
-			}
-		}
-	}
+	after = { gts_intel_resolve_azure = yes
+event_target:gts_azure_waters_system@root = {  star = { add_anomaly = { category = gts_seele_li_anomaly_1 target = root } } } }
 }
 country_event = {
 	id = gts_seele_li.4
@@ -255,51 +243,8 @@ country_event = {
 	immediate = {
 
 	}
-	option = {
-		name = gts_seele_li.7.a
-		if = {
-			limit = {
-				root = { is_nomadic = no }
-			}
-			every_system_within_border = {
-				limit = {
-					star = {
-						has_planet_flag = gts_azure_waters_astral_rift
-					}
-				}
-				star = {
-					add_anomaly = {
-						category = gts_seele_li_anomaly_2
-					}
-				}
-			}
-		}
-		if = {
-			limit = {
-				root = { is_nomadic = yes }
-			}
-			every_galaxy_planet = {
-				limit = {
-					has_planet_flag = gts_azure_waters_astral_rift
-				}
-				add_anomaly = {
-					category = gts_seele_li_anomaly_2
-				}
-			}
-			every_system = {
-				limit = {
-					star = {
-						has_planet_flag = gts_azure_waters_astral_rift
-					}
-				}
-				set_surveyed = {
-					surveyor = root
-				}
-			}
-		}
-		hidden_effect = {
-		}
-	}
+	option = { name = gts_seele_li.7.a hidden_effect = { gts_intel_resolve_azure = yes
+event_target:gts_azure_waters_system@root = { set_surveyed = { surveyor = root surveyed = yes } star = { add_anomaly = { category = gts_seele_li_anomaly_2 target = root } } } } }
 	after = {
 	}
 }
@@ -408,6 +353,7 @@ country_event = {
 			IMMORTAL = yes
 			HAS_ALTER_CLOTH = yes
 			HAS_COMMUNICATION = yes
+			HAS_LOVE_TRAIT = normal
 			TARGET = gts_seele
 			TRAIT1 = leader_trait_Ultra
 			TRAIT2 = gts_trait_leader_seele_one_a

@@ -189,3 +189,372 @@ gts_bronya_herrscher_of_truth_weapon_4 = {
 
 	# shortcut = "SHIFT+R"
 }
+
+gts_skadi_whaletrap = {
+	user_scope = fleet
+	scope = planet
+
+	on_completed = on_destroy_planet_with_PLANET_KILLER_whaletrap
+
+	tooltip = PLANET_KILLER_whaletrap_DESC
+	context_menu_name = PLANET_KILLER_whaletrap_ACTION
+	icon = GFX_fleet_order_blow_up_planet_action
+	icon_selected = GFX_fleet_order_blow_up_planet_action
+
+	important = yes
+	slot = 5
+
+	possible = {
+		custom_tooltip = {
+			fail_text = is_not_a_habitable_planet_or_megastructure
+			OR = {
+				is_a_habitable_planet_megastructure = yes
+				is_planet_class = pc_ai
+			}
+		}
+		custom_tooltip = {
+			fail_text = is_shielded
+			NOR = {
+				is_planet_class = pc_shielded
+				is_planet_class = pc_ringworld_shielded
+				is_planet_class = pc_habitat_shielded
+			}
+		}
+		custom_tooltip = {
+			fail_text = fotd_cant_collossus
+			NOT = { has_planet_flag = fotd_seperatist_planet@from.owner }
+			exists = from.owner
+			from.owner = {
+				NOT = { has_country_flag = fotd_seperatist_country@from.owner }
+			}
+		}
+		custom_tooltip = {
+			#success_text = "is at war with player"
+			fail_text = is_not_hostile_or_primitive
+			OR = {
+				planet_is_hostile = yes
+				is_planet_class = pc_ai
+				AND = {
+					exists = owner
+					owner = { is_country_type = primitive }
+				}
+				AND = {
+					exists = owner
+					owner = { is_same_value = from.owner }
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = skadi_is_loli_planet
+			NOR = {
+				has_planet_flag = gtsra_loli_planet
+			}
+		}
+		custom_tooltip = {
+			fail_text = skadi_is_used_planet
+			is_gts_reformed_planet = no
+		}
+		#custom_tooltip = {
+		#	fail_text = gts_bruh_colossus_destroy_planet_cool_down
+		#	from.owner = {
+		#		NOT = { has_country_flag = gts_bruh_colossus_destroy_planet_effect_cool_down }
+		#	}
+		#}
+		if = {
+			limit = {
+				exists = owner
+				owner = { is_country_type = primitive }
+			}
+			custom_tooltip = {
+				fail_text = primitives_not_full_interference
+				from.owner = {
+					has_policy_flag = interference_aggressive
+				}
+			}
+		}
+		# target own colony
+		if = {
+			limit = {
+				NOR = {
+					planet_is_hostile = yes
+					AND = {
+						exists = owner
+						owner = { is_country_type = primitive }
+					}
+				}
+				exists = owner
+				owner = {
+					is_same_value = from.owner
+				}
+			}
+			custom_tooltip = {
+				text = not_owned_test_fire
+				exists = owner
+				owner = {
+					is_same_value = from.owner
+				}
+			}
+		}
+	}
+
+	button_visible = {
+		always = yes
+	}
+
+	#activity_key = gts_skadi_whaletrap_activity_key
+	#progress_activity_key = gts_skadi_whaletrap_progress_activity_key
+	required_progress = 1
+	cooldown = 1
+
+	cost = { }
+}
+gts_skadi_arkship_grow = {
+	user_scope = fleet
+	scope = self
+
+	finish_anim_state = "rage"
+
+	possible = { gts_skadi_arkship_can_complete_grow_trigger = yes }
+	button_visible = { always = yes }
+	button_clickable = {
+		custom_tooltip = {
+			fail_text = gts_skadi_arkship_grow_max_size_tt
+			gts_skadi_arkship_has_grow_size_trigger = yes
+		}
+		custom_tooltip = {
+			fail_text = gts_skadi_arkship_not_in_combat_tt
+			is_in_combat = no
+		}
+		custom_tooltip = {
+			fail_text = gts_skadi_arkship_not_disabled_tt
+			NOT = {
+				any_owned_ship = {
+					is_disabled = yes
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = gts_skadi_arkship_need_system_tt
+			exists = solar_system
+		}
+		#custom_tooltip = {
+		#	fail_text = gts_skadi_arkship_love_low_tt
+		#	gts_skadi_arkship_love_ready_trigger = yes
+		#}
+		custom_tooltip = {
+			fail_text = gts_skadi_arkship_busy_tt
+			gts_skadi_arkship_not_busy_trigger = yes
+		}
+		custom_tooltip = {
+			fail_text = gts_skadi_arkship_size_cooldown_tt
+			gts_skadi_arkship_size_cooldown_ready_trigger = yes
+		}
+	}
+
+	on_started = on_gts_skadi_arkship_grow_started
+	on_completed = on_gts_skadi_arkship_grow
+	on_cancelled = on_gts_skadi_arkship_size_cancelled
+	tooltip = gts_skadi_arkship_grow_tooltip
+	context_menu_name = gts_skadi_arkship_grow_context_menu_name
+	icon = GFX_scripted_action_gts_arkship_grow
+	icon_selected = GFX_scripted_action_gts_arkship_grow_selected
+
+	#important = yes
+	slot = 4
+	activity_key = gts_skadi_arkship_grow_activity_key
+	progress_activity_key = gts_skadi_arkship_grow_progress_activity_key
+	required_progress = 8
+	on_click_sound = "ui_kaiju_enrage"
+	# Shared cooldown is handled by gts_skadi_arkship_size_shared_cooldown.
+	cooldown = 360
+
+	cost = { }
+}
+
+gts_skadi_arkship_shrink = {
+	user_scope = fleet
+	scope = self
+
+	finish_anim_state = "rage"
+
+	possible = { gts_skadi_arkship_can_complete_shrink_trigger = yes }
+	button_visible = { always = yes }
+	button_clickable = {
+		custom_tooltip = {
+			fail_text = gts_skadi_arkship_shrink_min_size_tt
+			gts_skadi_arkship_has_shrink_size_trigger = yes
+		}
+		custom_tooltip = {
+			fail_text = gts_skadi_arkship_not_in_combat_tt
+			is_in_combat = no
+		}
+		custom_tooltip = {
+			fail_text = gts_skadi_arkship_not_disabled_tt
+			NOT = {
+				any_owned_ship = {
+					is_disabled = yes
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = gts_skadi_arkship_need_system_tt
+			exists = solar_system
+		}
+		#custom_tooltip = {
+		#	fail_text = gts_skadi_arkship_love_low_tt
+		#	gts_skadi_arkship_love_ready_trigger = yes
+		#}
+		custom_tooltip = {
+			fail_text = gts_skadi_arkship_busy_tt
+			gts_skadi_arkship_not_busy_trigger = yes
+		}
+		custom_tooltip = {
+			fail_text = gts_skadi_arkship_size_cooldown_tt
+			gts_skadi_arkship_size_cooldown_ready_trigger = yes
+		}
+	}
+
+	on_started = on_gts_skadi_arkship_shrink_started
+	on_completed = on_gts_skadi_arkship_shrink
+	on_cancelled = on_gts_skadi_arkship_size_cancelled
+	tooltip = gts_skadi_arkship_shrink_tooltip
+	context_menu_name = gts_skadi_arkship_shrink_context_menu_name
+	icon = GFX_scripted_action_gts_arkship_shrink
+	icon_selected = GFX_scripted_action_gts_arkship_shrink_selected
+
+	#important = yes
+	slot = 5
+	activity_key = gts_skadi_arkship_shrink_activity_key
+	progress_activity_key = gts_skadi_arkship_shrink_progress_activity_key
+	required_progress = 8
+	on_click_sound = "ui_kaiju_enrage"
+	# Shared cooldown is handled by gts_skadi_arkship_size_shared_cooldown.
+	cooldown = 360
+
+	cost = { }
+}
+
+
+gts_ora_weapon_1 = {
+	user_scope = fleet
+	scope = self
+	finish_anim_state = "rage"
+
+	possible = { always = yes }
+	button_clickable = {
+		custom_tooltip = {
+			fail_text = BLANK_STRING
+			always = yes
+		}
+	}
+	on_completed = on_gts_ora_weapon_1
+	tooltip = on_gts_ora_weapon_1_tooltip
+	icon = GFX_scripted_action_gts_ora_weapon_1
+	activity_key = gts_ora_weapon_1_activity_key
+	context_menu_name = gts_ora_weapon_1_context_menu_name
+	progress_activity_key = gts_ora_weapon_1_progress_activity_key
+	required_progress = 1
+	on_click_sound = "ui_kaiju_enrage"
+	cooldown = 30
+}
+
+gts_ora_weapon_2 = {
+	user_scope = fleet
+	scope = planet
+
+	possible = {
+		custom_tooltip = {
+			fail_text = is_not_a_habitable_planet_or_megastructure
+			OR = {
+				is_a_habitable_planet_megastructure = yes
+				is_planet_class = pc_ai
+			}
+		}
+		custom_tooltip = {
+			fail_text = is_shielded
+			NOR = {
+				is_planet_class = pc_shielded
+				is_planet_class = pc_ringworld_shielded
+				is_planet_class = pc_habitat_shielded
+			}
+		}
+
+		custom_tooltip = {
+			fail_text = fotd_cant_collossus
+			exists = owner
+			owner = { NOT = { is_same_value = from.owner } }
+		}
+		custom_tooltip = {
+			fail_text = is_not_hostile_or_primitive
+			OR = {
+				planet_is_hostile = yes
+				is_planet_class = pc_ai
+				AND = {
+					exists = owner
+					owner = { is_country_type = primitive }
+				}
+				AND = {
+					exists = owner
+					owner = { is_same_value = from.owner }
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = hitomi_fail_is_loli_planet
+			NOR = {
+				has_planet_flag = gtsra_loli_planet
+			}
+		}
+		custom_tooltip = {
+			fail_text = hitomi_fail_is_used_planet
+			is_gts_reformed_planet = no
+		}
+		if = {
+			limit = {
+				exists = owner
+				owner = { is_country_type = primitive }
+			}
+			custom_tooltip = {
+				fail_text = primitives_not_full_interference
+				from.owner = {
+					has_policy_flag = interference_aggressive
+				}
+			}
+		}
+		if = {
+			limit = {
+				NOR = {
+					planet_is_hostile = yes
+					AND = {
+						exists = owner
+						owner = { is_country_type = primitive }
+					}
+				}
+				exists = owner
+				owner = {
+					is_same_value = from.owner
+				}
+			}
+			custom_tooltip = {
+				text = not_owned_test_fire
+				exists = owner
+				owner = {
+					is_same_value = from.owner
+				}
+			}
+		}
+	}
+
+	on_completed = on_gts_ora_weapon_2
+	tooltip = on_gts_ora_weapon_2_tooltip
+	icon = GFX_scripted_action_gts_ora_weapon_2
+	icon_selected = GFX_scripted_action_gts_ora_weapon_2
+	activity_key = gts_ora_weapon_2_activity_key
+	context_menu_name = gts_ora_weapon_2_context_menu_name
+	progress_activity_key = gts_ora_weapon_2_progress_activity_key
+	required_progress = 60
+	cooldown = 60
+}
+
+
+

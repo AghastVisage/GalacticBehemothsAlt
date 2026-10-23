@@ -6,19 +6,7 @@ country_event = {
 	hide_window = yes
 	is_triggered_only = yes
 	fire_only_once = yes
-	trigger = {
-		is_ai = no
-		num_owned_planets > 2
-		any_owned_planet = {
-			NOR = {
-				is_planet_class = pc_shattered_ring_habitable
-				is_planet_class = pc_ringworld_habitable
-				is_planet_class = pc_habitat
-				is_eatable_planet = no
-			}
-
-		}
-	}
+	trigger = { is_ai = no num_owned_planets > 2 any_system = { gts_intel_system_sonxi = { COUNTRY = root } } NOT = { any_system = { has_star_flag = gts_sleepbear_system } } }
 	immediate = {
 		country_event = {
 			id = gts_sonxi.1
@@ -40,38 +28,7 @@ country_event = {
 		is_ai = no
 	}
 	immediate = {
-		random_system_within_border = {
-			limit = {
-				any_system_planet = {
-					is_colony = yes
-					is_controlled_by = root
-					NOR = {
-						is_planet_class = pc_shattered_ring_habitable
-						is_planet_class = pc_ringworld_habitable
-						is_planet_class = pc_habitat
-						is_eatable_planet = no
-					}
-
-				}
-			}
-			set_star_flag = gts_sleepbear_system
-			random_system_planet = {
-				limit = {
-					is_colony = yes
-					is_controlled_by = root
-					NOR = {
-						is_planet_class = pc_shattered_ring_habitable
-						is_planet_class = pc_ringworld_habitable
-						is_planet_class = pc_habitat
-						is_eatable_planet = no
-					}
-
-				}
-				save_global_event_target_as = gts_sleepbear_planet
-				set_planet_flag = gts_sleepbear_planet
-				set_planet_flag = gts_body_planet
-			}
-		}
+		random_system = { limit = { gts_intel_system_sonxi = { COUNTRY = root } } set_star_flag = gts_sleepbear_system random_system_planet = { limit = { gts_intel_planet_sonxi = { COUNTRY = root } } save_global_event_target_as = gts_sleepbear_planet set_planet_flag = gts_sleepbear_planet set_planet_flag = gts_body_planet } }
 		country_event = {
 			id = gts_sonxi.2
 		}
@@ -391,12 +348,22 @@ country_event = {
 					is_colony = yes
 				}
 			}
-			random_owned_planet = {
-				limit = {
-					is_colony = yes
+			gts_save_priority_destroy_planet_target = yes
+			if = {
+				limit = { event_target:gts_priority_destroy_planet_target = { NOT = { is_scope_type = planet } } }
+				random_owned_planet = {
+					limit = {
+						is_colony = yes
+					}
+					save_event_target_as = gts_priority_destroy_planet_target
 				}
-				set_planet_flag = gts_sonxi_next_planet_1
-				save_event_target_as = gts_sonxi_next_planet_1
+			}
+			event_target:gts_priority_destroy_planet_target = {
+				if = {
+					limit = { is_scope_type = planet }
+					set_planet_flag = gts_sonxi_next_planet_1
+					save_event_target_as = gts_sonxi_next_planet_1
+				}
 			}
 		}
 		else = {
@@ -418,15 +385,25 @@ country_event = {
 					}
 				}
 			}
-			random_owned_planet = {
-				limit = {
-					is_colony = yes
-					NOT = {
-						has_planet_flag = gts_sonxi_next_planet_1
+			gts_save_priority_destroy_planet_target = { EXCLUDE_FLAG = gts_sonxi_next_planet_1 }
+			if = {
+				limit = { event_target:gts_priority_destroy_planet_target = { NOT = { is_scope_type = planet } } }
+				random_owned_planet = {
+					limit = {
+						is_colony = yes
+						NOT = {
+							has_planet_flag = gts_sonxi_next_planet_1
+						}
 					}
+					save_event_target_as = gts_priority_destroy_planet_target
 				}
-				set_planet_flag = gts_sonxi_next_planet_2
-				save_event_target_as = gts_sonxi_next_planet_2
+			}
+			event_target:gts_priority_destroy_planet_target = {
+				if = {
+					limit = { is_scope_type = planet }
+					set_planet_flag = gts_sonxi_next_planet_2
+					save_event_target_as = gts_sonxi_next_planet_2
+				}
 			}
 		}
 		else = {
@@ -468,7 +445,16 @@ country_event = {
 		event_target:gts_sonxi_next_planet_1 = {
 			if = {
 				limit = {
-					is_eatable_planet = yes
+					OR = {
+						AND = {
+							is_colony = yes
+							OR = {
+								has_carrier_flag = gts_priority_destroy_target
+								has_modifier = gts_priority_destroy_target_modifier
+							}
+						}
+						is_eatable_planet = yes
+					}
 
 				}
 				remove_planet = yes
@@ -477,7 +463,16 @@ country_event = {
 		event_target:gts_sonxi_next_planet_2 = {
 			if = {
 				limit = {
-					is_eatable_planet = yes
+					OR = {
+						AND = {
+							is_colony = yes
+							OR = {
+								has_carrier_flag = gts_priority_destroy_target
+								has_modifier = gts_priority_destroy_target_modifier
+							}
+						}
+						is_eatable_planet = yes
+					}
 				}
 				remove_planet = yes
 			}
@@ -505,11 +500,15 @@ country_event = {
 						is_colony = yes
 					}
 				}
-				random_owned_planet = {
-					limit = {
-						is_colony = yes
+				gts_save_priority_destroy_planet_target = { TARGET = gts_sonxi_next_planet }
+				if = {
+					limit = { event_target:gts_sonxi_next_planet = { NOT = { is_scope_type = planet } } }
+					random_owned_planet = {
+						limit = {
+							is_colony = yes
+						}
+						save_event_target_as = gts_sonxi_next_planet
 					}
-					save_event_target_as = gts_sonxi_next_planet
 				}
 			}
 			else = {
@@ -545,7 +544,16 @@ country_event = {
 		event_target:gts_sonxi_next_planet = {
 			if = {
 				limit = {
-					is_eatable_planet = yes
+					OR = {
+						AND = {
+							is_colony = yes
+							OR = {
+								has_carrier_flag = gts_priority_destroy_target
+								has_modifier = gts_priority_destroy_target_modifier
+							}
+						}
+						is_eatable_planet = yes
+					}
 				}
 				remove_planet = yes
 			}
@@ -576,17 +584,30 @@ country_event = {
 		event_target:gts_attack_sonxi_country = {
 			if = {
 				limit = {
-					any_owned_planet = {
-						is_colony = yes
-						is_eatable_planet = yes
+					OR = {
+						any_owned_planet = {
+							is_colony = yes
+							OR = {
+								has_carrier_flag = gts_priority_destroy_target
+								has_modifier = gts_priority_destroy_target_modifier
+							}
+						}
+						any_owned_planet = {
+							is_colony = yes
+							is_eatable_planet = yes
+						}
 					}
 				}
-				random_owned_planet = {
-					limit = {
-						is_colony = yes
-						is_eatable_planet = yes
+				gts_save_priority_destroy_planet_target = { TARGET = gts_sonxi_next_planet }
+				if = {
+					limit = { event_target:gts_sonxi_next_planet = { NOT = { is_scope_type = planet } } }
+					random_owned_planet = {
+						limit = {
+							is_colony = yes
+							is_eatable_planet = yes
+						}
+						save_event_target_as = gts_sonxi_next_planet
 					}
-					save_event_target_as = gts_sonxi_next_planet
 				}
 			}
 			else = {
@@ -623,7 +644,16 @@ country_event = {
 		event_target:gts_sonxi_next_planet = {
 			if = {
 				limit = {
-					is_eatable_planet = yes
+					OR = {
+						AND = {
+							is_colony = yes
+							OR = {
+								has_carrier_flag = gts_priority_destroy_target
+								has_modifier = gts_priority_destroy_target_modifier
+							}
+						}
+						is_eatable_planet = yes
+					}
 				}
 				remove_planet = yes
 			}

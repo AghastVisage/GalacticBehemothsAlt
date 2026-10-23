@@ -1,0 +1,45 @@
+# Retained for the existing Hoppo event ship.
+weapon_component_template = {
+	type = instant
+
+	key = "MEDIUM_LASER_GTS"
+	size = medium
+
+	icon = "GFX_tech_scourge_missile_gts_2"
+	icon_frame = 1
+
+	power = -3900
+	damage = { min = 2150 max = 5750 }
+	windup = { min = 6 max = 24 }
+	total_fire_time = 35
+	accuracy = 0.90
+	tracking = 0.30
+	range = 225
+	hull_damage = 1.25
+	shield_damage = 0.5
+	armor_damage = 1.5
+
+	prerequisites = { "tech_lasers_gts" }
+	component_set = "LASER_GTS"
+	projectile_gfx = "gamma_laser_m"
+	tags = { weapon_type_energy m_slot }
+	ai_tags = { weapon_role_anti_armor gunship }
+	resources = {
+		category = ship_components
+		cost = {
+			# 125
+			alloys = 25
+			volatile_motes = 12.5
+			exotic_gases = 12.5
+			rare_crystals = 12.5
+		}
+		upkeep = {
+			# 12.5
+			energy = 6.5
+			alloys = 3
+		}
+	}
+
+	size_restriction = { hoppo_ship }
+	hidden = yes
+}

@@ -18,6 +18,10 @@ colonization_control_yes = {
 		if = {
 			limit = {
 				OR = {
+					has_citizenship_type = { country = from type = citizenship_purge }
+					has_citizenship_type = { country = from type = citizenship_purge_machine }
+					has_citizenship_type = { country = from type = citizenship_slavery }
+					has_citizenship_type = { country = from type = citizenship_robot_servitude }
 
 					# 模組添加的東西
 
@@ -29,10 +33,6 @@ colonization_control_yes = {
 					#---------- Bruh ----------
 					#---------- 結束 -----------
 
-					has_citizenship_type = { country = from type = citizenship_purge }
-					has_citizenship_type = { country = from type = citizenship_purge_machine }
-					has_citizenship_type = { country = from type = citizenship_slavery }
-					has_citizenship_type = { country = from type = citizenship_robot_servitude }
 				}
 			}
 			hidden_trigger = { always = yes }
@@ -51,8 +51,7 @@ colonization_control_yes = {
 			factor = 0
 			from = {
 				NOR = {
-					has_ethic = ethic_xenophobe
-					has_ethic = ethic_fanatic_xenophobe
+					is_xenophobe = yes
 					has_ethic = ethic_gestalt_consciousness
 				}
 			}
@@ -99,9 +98,7 @@ colonization_control_no = {
 		#---------- Bruh ----------
 		#---------- 開始 -----------
 
-		NOT = {
-			has_trait = trait_Ultra
-		}
+		NOT = { has_trait = trait_Ultra }
 
 		#---------- Bruh ----------
 		#---------- 結束 -----------
@@ -158,3 +155,4 @@ colonization_control_no = {
 		}
 	}
 }
+

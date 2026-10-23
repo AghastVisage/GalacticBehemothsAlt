@@ -28,16 +28,6 @@ gts_maid = {
 
 	inline_script = "jobs/automodding_priority_unity"
 
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = specialist
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
-
 	possible_pre_triggers = {
 		has_owner = yes
 		is_being_purged = no
@@ -169,16 +159,6 @@ gts_drawer = {
 
 	inline_script = "jobs/automodding_priority_trade"
 
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = specialist
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
-
 	possible_pre_triggers = {
 		has_owner = yes
 		is_being_purged = no
@@ -230,16 +210,6 @@ gts_writer = {
 
 	inline_script = "jobs/automodding_priority_unity"
 
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = specialist
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
-
 	possible_pre_triggers = {
 		has_owner = yes
 		is_being_purged = no
@@ -254,6 +224,17 @@ gts_writer = {
 		produces = {
 			# 15
 			unity = 7.5
+		}
+		produces = {
+			trigger = {
+				has_councilor = {
+					COUNCILOR = councilor_gts_qhai_virtual_streamer
+				}
+			}
+			physics_research = 0.1
+			society_research = 0.1
+			engineering_research = 0.1
+			mult = value:councilor_level|TYPE|councilor_gts_qhai_virtual_streamer|
 		}
 		upkeep = {
 			# 10
@@ -295,16 +276,6 @@ stocking_crushed_purge = {
 		default = {
 			building_icon = building_crude_huts
 			icon = purge
-		}
-	}
-
-	demotion = {
-		time = 0
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = purge
-				AMOUNT = local_pop_amount
-			}
 		}
 	}
 
@@ -377,16 +348,6 @@ gts_bio_trophy = {
 	tags = { unity }
 
 	inline_script = "jobs/automodding_priority_charisma"
-
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = worker
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
 
 	possible_pre_triggers = {
 		is_sapient = yes

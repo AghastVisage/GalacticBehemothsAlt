@@ -8,24 +8,21 @@ country_event = {
 
 	immediate = {
 		random_system = {
-			limit = {
-				distance = {
-					source = root.capital_scope.solar_system
-					use_bypasses = yes
-					min_jumps = 1
-					max_jumps = 6
-				}
-			}
-			spawn_system = {
-				min_distance >= 10
-				max_distance <= 30
-				max_jumps = 1
-				initializer = gts_traptirx_system
-				effect = {
-					save_event_target_as = gts_bruh_get_traptirx_system_location
-				}
-			}
-		}
+ limit = { gts_intel_anchor_system = { COUNTRY = root } }
+ save_event_target_as = gts_intel_spawn_anchor
+ 
+ spawn_system = {
+ min_distance = 10
+ max_distance = 30
+ max_jumps = 0
+ hyperlane = no
+ initializer = gts_traptirx_system
+ effect = {
+  add_hyperlane = { from = this to = event_target:gts_intel_spawn_anchor }
+  save_event_target_as = gts_bruh_get_traptirx_system_location
+ }
+}
+}
 	}
 }
 
@@ -1109,15 +1106,25 @@ country_event = {
 			# 摧毁舰队
 			destroy_fleet = this
 		}
-		random_owned_planet = {
-			# 选择攻击目标
-			limit = {
-				is_colony = yes
-				not = { has_planet_flag = gts_body_planet }
-			}
+		gts_save_priority_destroy_planet_target = yes
+		if = {
+			limit = { event_target:gts_priority_destroy_planet_target = { NOT = { is_scope_type = planet } } }
+			random_owned_planet = {
+				# 选择攻击目标
+				limit = {
+					is_colony = yes
+					not = { has_planet_flag = gts_body_planet }
+				}
 
-			save_event_target_as = gts_traptrix_next_colony
-			set_planet_flag = gts_traptrix_next_colony
+				save_event_target_as = gts_priority_destroy_planet_target
+			}
+		}
+		event_target:gts_priority_destroy_planet_target = {
+			if = {
+				limit = { is_scope_type = planet }
+				save_event_target_as = gts_traptrix_next_colony
+				set_planet_flag = gts_traptrix_next_colony
+			}
 		}
 		create_country = {
 			name = "NAME_traptrix"
@@ -1471,17 +1478,27 @@ country_event = {
 					}
 				}
 			}
-			random_owned_planet = {
-				# 选择下一个攻击目标
-				limit = {
-					is_colony = yes
-					NOT = { has_planet_flag = gts_body_planet }
-					NOT = {
-						has_planet_flag = gts_traptrix_next_colony
+			gts_save_priority_destroy_planet_target = { EXCLUDE_FLAG = gts_traptrix_next_colony }
+			if = {
+				limit = { event_target:gts_priority_destroy_planet_target = { NOT = { is_scope_type = planet } } }
+				random_owned_planet = {
+					# 选择下一个攻击目标
+					limit = {
+						is_colony = yes
+						NOT = { has_planet_flag = gts_body_planet }
+						NOT = {
+							has_planet_flag = gts_traptrix_next_colony
+						}
 					}
+					save_event_target_as = gts_priority_destroy_planet_target
 				}
-				save_global_event_target_as = gts_traptrix_next_colony
-				set_planet_flag = gts_traptrix_next_colony
+			}
+			event_target:gts_priority_destroy_planet_target = {
+				if = {
+					limit = { is_scope_type = planet }
+					save_global_event_target_as = gts_traptrix_next_colony
+					set_planet_flag = gts_traptrix_next_colony
+				}
 			}
 		}
 		fromfrom = {

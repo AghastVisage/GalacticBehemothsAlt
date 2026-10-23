@@ -5500,12 +5500,18 @@ gts_ora_system = {
 		class = "pc_shattered"
 		size = 20
 		has_ring = no
+		init_effect = {
+			set_planet_flag = planet_no_name_land
+			save_global_event_target_as = planet_no_name_land
+		}
 	}
 	planet = {
 		name = "NAME_gts_ora_planet4"
 		class = "pc_barren"
 		has_ring = no
 		init_effect = {
+			set_planet_flag = planet_world_without_memories
+			save_global_event_target_as = planet_world_without_memories
 		}
 	}
 	planet = {
@@ -5517,6 +5523,8 @@ gts_ora_system = {
 		deposit_blockers = none
 		modifiers = none
 		init_effect = {
+			set_planet_flag = planet_evora_city
+			save_global_event_target_as = planet_evora_city
 			# 種族與國家
 			create_species = {
 				name = NAME_Human
@@ -5605,7 +5613,9 @@ gts_ora_system = {
 			gts_hometown_planet
 		}
 		init_effect = {
-			save_global_event_target_as = NAME_gts_ora_planet2
+			set_planet_flag = planet_lone_star_prison
+			save_global_event_target_as = planet_lone_star_prison
+			# save_global_event_target_as = NAME_gts_ora_planet2
 			add_deposit = gts_d_straw_planet1
 			add_deposit = gts_d_straw_planet1
 			add_deposit = gts_d_straw_planet1
@@ -5619,6 +5629,10 @@ gts_ora_system = {
 		orbit_angle = 145
 		size = 35
 		has_ring = no
+		init_effect = {
+			set_planet_flag = planet_city_of_mystery
+			save_global_event_target_as = planet_city_of_mystery
+		}
 	}
 }
 gts_qinwen_system = {
@@ -5660,6 +5674,84 @@ gts_qinwen_system = {
 		class = "pc_arctic"
 	}
 }
+gts_ora_2_system = {
+	name = "NAME_gts_ora_2_system"
+	class = "sc_black_hole"
+	max_instances = 1
+	flags = {
+		gts_ora_2_system
+	}
+	planet = {
+		#一个恒星
+		count = 1
+		name = "NAME_gts_ora_2_system"
+		class = star
+		size = 100
+		init_effect = {
+			save_global_event_target_as = gts_ora_2_system
+			prevent_anomaly = yes			#避免异常出现
+		}
+		init_effect = {
+			create_country = {
+				name = NAME_gts_ora_2_system_swarm
+				type = gts_ora_country_attack
+				effect = {
+					set_country_flag = gts_ora_2_system_swarm
+					save_global_event_target_as = gts_ora_2_system_swarm_country
+				}
+			}
+			last_created_country = {
+				create_fleet = {
+					name = "NAME_gts_ora_2_system_swarm"
+					settings = {
+						spawn_debris = no
+						#is_boss = yes
+					}
+					effect = {
+						set_owner = PREV
+						while = {
+							count = 30
+							create_ship = {
+								name = "NAME_gts_ora_2_system_swarm"
+								design = "NAME_Swarm_Large"
+							}
+						}
+						while = {
+							count = 100
+							create_ship = {
+								name = "NAME_gts_ora_2_system_swarm"
+								design = "NAME_Swarm_Small"
+							}
+						}
+						set_location = event_target:gts_ora_2_system
+						set_fleet_stance = aggressive
+						set_aggro_range_measure_from = self
+						set_aggro_range = 500
+					}
+				}
+			}
+		}
+
+	}
+}
+gts_ora_end_system = {
+	name = "NAME_gts_ora_end_system"
+	class = "sc_black_hole"
+	max_instances = 1
+	flags = {
+		gts_ora_end_system
+	}
+	planet = {
+		class = star
+		orbit_distance = 0
+		init_effect = {
+			set_planet_flag = gts_ora_end_star
+			save_global_event_target_as = gts_ora_end_star
+		}
+	}
+}
+
+
 
 gts_oversystem_leather_shoes_system = {
 	name = "oversystem_leather_shoes_system"

@@ -334,10 +334,13 @@ remove_gts_leader_size_trait = {
 # 将领袖改为指定体型
 # this = leader
 gts_leader_size_change_to = {
-	remove_gts_leader_size_trait = yes
-	add_trait = {
-		trait = $SIZE_TRAIT$
-		show_message = no
+	if = {
+		limit = { can_leader_get_normal_trait_trigger = yes }
+		remove_gts_leader_size_trait = yes
+		add_trait = {
+			trait = $SIZE_TRAIT$
+			show_message = no
+		}
 	}
 }
 

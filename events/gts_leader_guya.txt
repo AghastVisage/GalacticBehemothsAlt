@@ -10,24 +10,8 @@ country_event = {
 	is_triggered_only = yes
 	fire_only_once = yes
 	location = event_target:gts_loli_egg_planet
-	trigger = {
-		is_ai = no
-		any_owned_planet = {
-			NOT = {
-				is_planet_class = pc_habitat
-			}
-		}
-	}
-	immediate = {
-		random_owned_planet = {
-			limit = {
-				NOT = {
-					is_planet_class = pc_habitat
-				}
-			}
-			save_global_event_target_as = gts_loli_egg_planet
-		}
-	}
+	trigger = { is_ai = no any_system = { gts_intel_system_guya = { COUNTRY = root } } }
+	immediate = { random_system = { limit = { gts_intel_system_guya = { COUNTRY = root } } random_system_planet = { limit = { gts_intel_planet_guya = { COUNTRY = root } } save_global_event_target_as = gts_loli_egg_planet } } }
 	option = {
 		name = gts_guya.1.a
 		custom_tooltip = gts_guya.2.a.tooltip

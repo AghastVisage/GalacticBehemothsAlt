@@ -1,8 +1,210 @@
-# 尿液星球改造
+################################################################################
+###################                愛液星球改造                ###################
+################################################################################
+
+pc_gts_juice_change = {
+	pc_gts_change_ready = yes
+	change_pc = pc_gts_juice
+
+	add_modifier = {
+		modifier = gts_juice_colony_1
+		days = -1
+	}
+	add_modifier = {
+		modifier = gts_juice_colony_2
+		days = -1
+	}
+	add_modifier = {
+		modifier = gts_juice_colony_3
+		days = -1
+	}
+	add_modifier = {
+		modifier = atmospheric_aphrodisiac
+		days = -1
+	}
+	hidden_effect = {
+		create_gts_planet_random_variable = yes
+		gts_bruh_clear_capital_building_effect = yes
+		set_colony_type = col_gts_juice
+		if = {
+			limit = { root.owner = { not = { has_technology = tech_gts_bfbf_habitability_juiceandsemen } } }
+			add_deposit = d_juice_ruin1
+			add_deposit = d_juice_ruin2
+			add_deposit = d_juice_ruin4
+			add_deposit = d_juice_ruin5
+			add_deposit = d_juice_ruin6
+		}
+		while = {
+			count = gts_bruh_random_count
+			random_list = {
+				1 = { add_deposit = d_juice_ruin4 }
+				1 = { add_deposit = d_juice_ruin5 }
+				1 = { add_deposit = d_juice_ruin6 }
+			}
+		}
+		add_deposit = d_juice_ruin1
+		add_deposit = d_juice_ruin2
+		add_deposit = d_juice_ruin3
+		add_building = building_gts_bruh_juice_colony_shelter
+	}
+}
+
+pc_gts_juice_change_qhai = {
+	pc_gts_change_ready = yes
+	change_pc = pc_gts_juice
+
+	add_modifier = {
+		modifier = gts_juice_colony_qhai
+		days = -1
+	}
+	add_deposit = d_juice_ruin8
+	remove_deposit = d_juice_ruin3
+	hidden_effect = {
+		gts_bruh_clear_capital_building_effect = yes
+		set_colony_type = col_gts_juice
+		set_carrier_flag = gts_qhai_juice_planet
+	}
+	planet_event = { id = gts_leader_qhai.301 }
+}
+
+pc_gts_juice_change_skadi = {
+	pc_gts_change_ready = yes
+	pc_gts_juice_change = yes
+	change_pc = pc_gts_juice2
+
+	hidden_effect = {
+		gts_bruh_clear_capital_building_effect = yes
+	}
+
+	remove_deposit = d_juice_ruin3
+	add_deposit = d_juice_ruin7
+}
+
+################################################################################
+###################                乳汁星球改造                ###################
+################################################################################
+
+pc_gts_milk_change = {
+	pc_gts_change_ready = yes
+	change_pc = pc_gts_milk
+
+	add_modifier = {
+		modifier = gts_milk_colony_1
+		days = -1
+	}
+	add_modifier = {
+		modifier = gts_milk_colony_2
+		days = -1
+	}
+	add_modifier = {
+		modifier = gts_milk_colony_3
+		days = -1
+	}
+	add_modifier = {
+		modifier = lush_planet
+		days = -1
+	}
+	hidden_effect = {
+		gts_bruh_clear_capital_building_effect = yes
+		create_gts_planet_random_variable = yes
+		set_colony_type = col_gts_milk
+		while = {
+			count = gts_bruh_random_count
+			random_list = {
+				1 = { add_deposit = d_milk_ruin1 }
+				1 = { add_deposit = d_milk_ruin2 }
+				1 = { add_deposit = d_milk_ruin3 }
+			}
+		}
+		add_deposit = d_gts_milk_sea
+		add_building = building_gts_bruh_milk_colony_shelter
+	}
+}
+
+################################################################################
+###################                精液星球改造                ###################
+################################################################################
+
+pc_gts_semen_change = {
+	pc_gts_change_ready = yes
+	change_pc = pc_gts_semen
+
+	add_modifier = {
+		modifier = gts_semen_colony_1
+		days = -1
+	}
+	add_modifier = {
+		modifier = gts_semen_colony_2
+		days = -1
+	}
+	add_modifier = {
+		modifier = gts_semen_colony_3
+		days = -1
+	}
+	add_modifier = {
+		modifier = atmospheric_aphrodisiac
+		days = -1
+	}
+	hidden_effect = {
+		gts_bruh_clear_capital_building_effect = yes
+		set_colony_type = col_gts_semen
+		add_building = building_gts_bruh_semen_colony_shelter
+	}
+}
+
+################################################################################
+###################                排泄星球改造                ###################
+################################################################################
+
+pc_gts_shit_change = {
+	pc_gts_change_ready = yes
+	change_pc = pc_gts_shit
+
+	add_modifier = {
+		modifier = gts_shit_colony_1
+		days = -1
+	}
+	add_modifier = {
+		modifier = gts_shit_colony_2
+		days = -1
+	}
+	add_modifier = {
+		modifier = gts_shit_colony_3
+		days = -1
+	}
+	add_modifier = {
+		modifier = ammonia_biosphere
+		days = -1
+	}
+
+	hidden_effect = {
+		gts_bruh_clear_capital_building_effect = yes
+		create_gts_planet_random_variable = yes
+		set_colony_type = col_gts_shit
+		while = {
+			count = gts_bruh_random_count
+			random_list = {
+				1 = { add_deposit = d_shit_ruin2 }
+				1 = { add_deposit = d_shit_ruin3 }
+				1 = { add_deposit = d_shit_ruin4 }
+				1 = { add_deposit = d_shit_ruin5 }
+				1 = { add_deposit = d_shit_ruin6 }
+				1 = { add_deposit = d_shit_ruin7 }
+			}
+		}
+		add_deposit = d_shit_ruin1
+		add_building = building_gts_bruh_shit_colony_shelter
+	}
+}
+
+################################################################################
+###################                尿液星球改造                ###################
+################################################################################
+
 pc_gts_urine_change = {
 	pc_gts_change_ready = yes
-    change_pc = pc_gts_urine
-    set_colony_type = col_gts_urine
+	change_pc = pc_gts_urine
+
 	add_modifier = {
 		modifier = gts_urine_colony_1
 		days = -1
@@ -23,244 +225,42 @@ pc_gts_urine_change = {
 	add_deposit = d_urine_ruin2
 	add_deposit = d_urine_ruin4
 	hidden_effect = {
+		gts_bruh_clear_capital_building_effect = yes
+		set_colony_type = col_gts_urine
 		add_building = building_gts_bruh_urine_colony_shelter
 	}
 }
+
 pc_gts_urine_change_yarong = {
-	gts_bruh_clear_capital_building_effect = yes
 	pc_gts_urine_change = yes
 	change_pc = pc_gts_urine2
 	remove_deposit = d_urine_ruin2
 	add_deposit = d_urine_ruin1
 	add_deposit = d_urine_ruin3
 	add_deposit = d_urine_ruin4
-
-}
-# 爱液星球改造
-pc_gts_juice_change = {
-	pc_gts_change_ready = yes
-	change_pc = pc_gts_juice
-	set_colony_type = col_gts_juice
-	add_modifier = {
-		modifier = gts_juice_colony_1
-		days = -1
-	}
-	add_modifier = {
-		modifier = gts_juice_colony_2
-		days = -1
-	}
-	add_modifier = {
-		modifier = gts_juice_colony_3
-		days = -1
-	}
-	add_modifier = {
-		modifier = atmospheric_aphrodisiac
-		days = -1
-	}
-	hidden_effect = {
-		if = {
-			limit = {
-				root.owner = {
-					not = {
-						has_technology = tech_gts_bfbf_habitability_juiceandsemen
-					}
-				}
-			}
-			add_deposit = d_juice_ruin1
-			add_deposit = d_juice_ruin2
-			add_deposit = d_juice_ruin4
-			add_deposit = d_juice_ruin5
-			add_deposit = d_juice_ruin6
-		}
-		create_gts_planet_random_variable = yes
-		while = {
-			count = gts_bruh_random_count
-			random_list = {
-				1 = {
-					add_deposit = d_juice_ruin4
-				}
-				1 = {
-					add_deposit = d_juice_ruin5
-				}
-				1 = {
-					add_deposit = d_juice_ruin6
-				}
-			}
-		}
-		add_deposit = d_juice_ruin1
-		add_deposit = d_juice_ruin2
-		add_deposit = d_juice_ruin3
-		hidden_effect = {
-			add_building = building_gts_bruh_juice_colony_shelter
-		}
-	}
-
-}
-pc_gts_juice_change_qhai = {
-	gts_bruh_clear_capital_building_effect = yes
-	pc_gts_juice_change = yes
-	set_planet_flag = gts_qhai_juice_planet
-	change_pc = pc_gts_juice3
-	remove_deposit = d_juice_ruin3
-	add_deposit = d_juice_ruin8
-	add_modifier = {
-		modifier = gts_juice_colony_qhai
-		days = -1
-	}
-	planet_event = {
-		id = gts_leader_qhai.301
-	}
-
-}
-pc_gts_juice_change_skadi = {
-	gts_bruh_clear_capital_building_effect = yes
-	pc_gts_juice_change = yes
-	change_pc = pc_gts_juice2
-	remove_deposit = d_juice_ruin3
-	add_deposit = d_juice_ruin7
-
 }
 
-# 乳汁星球改造
-pc_gts_milk_change = {
-	pc_gts_change_ready = yes
-	change_pc = pc_gts_milk
-	set_colony_type = col_gts_milk
-	add_modifier = {
-		modifier = gts_milk_colony_1
-		days = -1
-	}
-	add_modifier = {
-		modifier = gts_milk_colony_2
-		days = -1
-	}
-	add_modifier = {
-		modifier = gts_milk_colony_3
-		days = -1
-	}
-	add_modifier = {
-		modifier = lush_planet
-		days = -1
-	}
-	hidden_effect = {
-		create_gts_planet_random_variable = yes
-		while = {
-			count = gts_bruh_random_count
-			random_list = {
-				1 = {
-					add_deposit = d_milk_ruin1
-				}
-				1 = {
-					add_deposit = d_milk_ruin2
-				}
-				1 = {
-					add_deposit = d_milk_ruin3
-				}
-			}
-		}
-		add_deposit = d_gts_milk_sea
-		add_building = building_gts_bruh_milk_colony_shelter
-	}
-}
-# 精液星球改造
-pc_gts_semen_change = {
-	pc_gts_change_ready = yes
-	change_pc = pc_gts_semen
-	set_colony_type = col_gts_semen
-	add_modifier = {
-		modifier = gts_semen_colony_1
-		days = -1
-	}
-	add_modifier = {
-		modifier = gts_semen_colony_2
-		days = -1
-	}
-	add_modifier = {
-		modifier = gts_semen_colony_3
-		days = -1
-	}
-	add_modifier = {
-		modifier = atmospheric_aphrodisiac
-		days = -1
-	}
-	hidden_effect = {
-		add_building = building_gts_bruh_semen_colony_shelter
-	}
-}
-# 排泄星球改造
-pc_gts_shit_change = {
-	pc_gts_change_ready = yes
-	change_pc = pc_gts_shit
-	set_colony_type = col_gts_shit
+################################################################################
+##################                足垢星球改造                ###################
+################################################################################
 
-	add_modifier = {
-		modifier = gts_shit_colony_1
-		days = -1
-	}
-	add_modifier = {
-		modifier = gts_shit_colony_2
-		days = -1
-	}
-	add_modifier = {
-		modifier = gts_shit_colony_3
-		days = -1
-	}
-	add_modifier = {
-		modifier = ammonia_biosphere
-		days = -1
-	}
-
-	hidden_effect = {
-		create_gts_planet_random_variable = yes
-		while = {
-			count = gts_bruh_random_count
-			random_list = {
-				1 = {
-					add_deposit = d_shit_ruin2
-				}
-				1 = {
-					add_deposit = d_shit_ruin3
-				}
-				1 = {
-					add_deposit = d_shit_ruin4
-				}
-				1 = {
-					add_deposit = d_shit_ruin5
-				}
-				1 = {
-					add_deposit = d_shit_ruin6
-				}
-				1 = {
-					add_deposit = d_shit_ruin7
-				}
-			}
-		}
-		add_deposit = d_shit_ruin1
-		add_building = building_gts_bruh_shit_colony_shelter
-	}
-}
-# 足垢星球改造(初级)
 pc_gts_dirt_change = {
 	pc_gts_change_ready = yes
 	change_pc = pc_gts_dirt0
-	set_colony_type = col_gts_dirt
-	set_planet_flag = dirt_planet0
+
 	hidden_effect = {
+		gts_bruh_clear_capital_building_effect = yes
+		set_colony_type = col_gts_dirt
+		set_carrier_flag = dirt_planet0
 		if = {
 			limit = { owner = { has_technology = tech_gts_bfbf_habitability_dirt } }
 			create_gts_planet_random_variable = yes
 			while = {
 				count = gts_bruh_random_count
 				random_list = {
-					1 = {
-						add_deposit = d_dirt_clean1
-					}
-					1 = {
-						add_deposit = d_dirt_clean2
-					}
-					1 = {
-						add_deposit = d_dirt_clean3
-					}
+					1 = { add_deposit = d_dirt_clean1 }
+					1 = { add_deposit = d_dirt_clean2 }
+					1 = { add_deposit = d_dirt_clean3 }
 				}
 			}
 		}
@@ -269,18 +269,10 @@ pc_gts_dirt_change = {
 			while = {
 				count = gts_bruh_random_count
 				random_list = {
-					1 = {
-						add_deposit = d_dirt_ruin1
-					}
-					1 = {
-						add_deposit = d_dirt_ruin3
-					}
-					1 = {
-						add_deposit = d_dirt_ruin4
-					}
-					1 = {
-						add_deposit = d_dirt_ruin5
-					}
+					1 = { add_deposit = d_dirt_ruin1 }
+					1 = { add_deposit = d_dirt_ruin3 }
+					1 = { add_deposit = d_dirt_ruin4 }
+					1 = { add_deposit = d_dirt_ruin5 }
 				}
 			}
 		}
@@ -318,194 +310,146 @@ pc_gts_dirt_change = {
 	add_deposit = d_dirt_ruin2
 	add_building = building_gts_bruh_dirt_colony_shelter
 }
-# 足垢汗雾星球改造
+
+# 足垢汗霧星球改造
 pc_gts_dirt_change1 = {
-	if = {
-		limit = {
-			root = {
-				is_planet_class = pc_gts_dirt0
-			}
-		}
-		pc_gts_update_ready = yes
-		change_pc = pc_gts_dirt1
-		set_planet_flag = dirt_planet1
-		while = {
-			count = 3
-			random_list = {
-				1 = { add_deposit = d_dirt_ruin5 }
-				1 = { add_deposit = d_dirt_ruin6 }
-			}
-		}
-		add_modifier = {
-			modifier = gts_dirt_colony1_1
-			days = -1
-		}
-		add_modifier = {
-			modifier = gts_dirt_colony1_2
-			days = -1
-		}
-		add_modifier = {
-			modifier = gts_dirt_colony1_3
-			days = -1
+	pc_gts_update_ready = yes
+	change_pc = pc_gts_dirt1
+
+	while = {
+		count = 3
+		random_list = {
+			1 = { add_deposit = d_dirt_ruin5 }
+			1 = { add_deposit = d_dirt_ruin6 }
 		}
 	}
+	add_modifier = {
+		modifier = gts_dirt_colony1_1
+		days = -1
+	}
+	add_modifier = {
+		modifier = gts_dirt_colony1_2
+		days = -1
+	}
+	add_modifier = {
+		modifier = gts_dirt_colony1_3
+		days = -1
+	}
+	hidden_effect = {
+		set_carrier_flag = dirt_planet1
+	}
 }
-# 足垢堡垒星球
+
+# 足垢堡壘星球
 pc_gts_dirt_change2 = {
+	pc_gts_update_ready = yes
+	change_pc = pc_gts_dirt2
+
+	add_modifier = {
+		modifier = gts_dirt_colony0_1
+		days = -1
+	}
+	add_modifier = {
+		modifier = gts_dirt_colony2_2
+		days = -1
+	}
+	add_modifier = {
+		modifier = gts_dirt_colony2_3
+		days = -1
+	}
+	add_modifier = {
+		modifier = unstable_tectonics
+		days = -1
+	}
+	hidden_effect = {
+		set_carrier_flag = dirt_planet2
+	}
+
 	if = {
 		limit = {
-			root = {
-				is_planet_class = pc_gts_dirt0
+			owner = { has_technology = tech_gts_bfbf_habitability_dirt }
+		}
+		while = {
+			count = 4
+			random_list = {
+				1 = { add_deposit = d_dirt_clean3 }
+				1 = { add_deposit = d_dirt_clean4 }
+				1 = { add_deposit = d_dirt_ruin7 }
 			}
 		}
-		pc_gts_update_ready = yes
-		change_pc = pc_gts_dirt2
-		set_planet_flag = dirt_planet2
-
-		add_modifier = {
-			modifier = gts_dirt_colony0_1
-			days = -1
-		}
-		add_modifier = {
-			modifier = gts_dirt_colony2_2
-			days = -1
-		}
-		add_modifier = {
-			modifier = gts_dirt_colony2_3
-			days = -1
-		}
-		add_modifier = {
-			modifier = unstable_tectonics
-			days = -1
-		}
-
-		if = {
-			limit = {
-				owner = {
-					has_technology = tech_gts_bfbf_habitability_dirt
-				}
-			}
-			while = {
-				count = 4
-				random_list = {
-					1 = {
-						add_deposit = d_dirt_clean3
-					}
-					1 = {
-						add_deposit = d_dirt_clean4
-					}
-					1 = {
-						add_deposit = d_dirt_ruin7
-					}
-				}
+	}
+	else = {
+		while = {
+			count = 4
+			random_list = {
+				1 = { add_deposit = d_dirt_ruin1 }
+				1 = { add_deposit = d_dirt_ruin2 }
+				1 = { add_deposit = d_dirt_ruin5 }
+				1 = { add_deposit = d_dirt_ruin7 }
+				1 = { add_deposit = d_dirt_ruin8 }
 			}
 		}
-		else = {
-			while = {
-				count = 4
-				random_list = {
-					1 = {
-						add_deposit = d_dirt_ruin1
-					}
-					1 = {
-						add_deposit = d_dirt_ruin2
-					}
-					1 = {
-						add_deposit = d_dirt_ruin5
-					}
-					1 = {
-						add_deposit = d_dirt_ruin7
-					}
-					1 = {
-						add_deposit = d_dirt_ruin8
-					}
-				}
-			}
-		}
-
 	}
 }
-# 足垢矿业星球
+
+# 足垢礦業星球
 pc_gts_dirt_change3 = {
+	pc_gts_update_ready = yes
+	change_pc = pc_gts_dirt3
+
+	add_modifier = {
+		modifier = gts_dirt_colony0_1
+		days = -1
+	}
+	add_modifier = {
+		modifier = gts_dirt_colony3_2
+		days = -1
+	}
+	add_modifier = {
+		modifier = gts_dirt_colony3_3
+		days = -1
+	}
+	add_modifier = {
+		modifier = unstable_tectonics
+		days = -1
+	}
+	hidden_effect = {
+		set_carrier_flag = dirt_planet3
+	}
+
 	if = {
 		limit = {
-			root = {
-				is_planet_class = pc_gts_dirt0
+			owner = { has_technology = tech_gts_bfbf_habitability_dirt }
+		}
+		while = {
+			count = 4
+			random_list = {
+				1 = { add_deposit = d_dirt_clean1 }
+				1 = { add_deposit = d_dirt_clean3 }
+				1 = { add_deposit = d_dirt_clean5 }
 			}
-		}
-		pc_gts_update_ready = yes
-		change_pc = pc_gts_dirt3
-		set_planet_flag = dirt_planet3
-		add_modifier = {
-			modifier = gts_dirt_colony0_1
-			days = -1
-		}
-		add_modifier = {
-			modifier = gts_dirt_colony3_2
-			days = -1
-		}
-		add_modifier = {
-			modifier = gts_dirt_colony3_3
-			days = -1
-		}
-		add_modifier = {
-			modifier = unstable_tectonics
-			days = -1
-		}
-
-		if = {
-			limit = {
-				owner = {
-					has_technology = tech_gts_bfbf_habitability_dirt
-				}
-			}
-			while = {
-				count = 4
-				random_list = {
-					1 = {
-						add_deposit = d_dirt_clean1
-					}
-					1 = {
-						add_deposit = d_dirt_clean3
-					}
-					1 = {
-						add_deposit = d_dirt_clean5
-					}
-				}
-			}
-		}
-		else = {
-			while = {
-				count = 4
-				random_list = {
-					1 = {
-						add_deposit = d_dirt_ruin1
-					}
-					1 = {
-						add_deposit = d_dirt_ruin2
-					}
-					1 = {
-						add_deposit = d_dirt_ruin3
-					}
-					1 = {
-						add_deposit = d_dirt_ruin5
-					}
-					1 = {
-						add_deposit = d_dirt_ruin9
-					}
-				}
-			}
-		}
-		planet_event = {
-			id = gts_ap_planet.4300
 		}
 	}
+	else = {
+		while = {
+			count = 4
+			random_list = {
+				1 = { add_deposit = d_dirt_ruin1 }
+				1 = { add_deposit = d_dirt_ruin2 }
+				1 = { add_deposit = d_dirt_ruin3 }
+				1 = { add_deposit = d_dirt_ruin5 }
+				1 = { add_deposit = d_dirt_ruin9 }
+			}
+		}
+	}
+	planet_event = { id = gts_ap_planet.4300 }
 }
-# 足垢农业星球
+
+# 足垢農業星球
 pc_gts_dirt_change4 = {
 	pc_gts_update_ready = yes
 	change_pc = pc_gts_dirt4
-	set_planet_flag = dirt_planet4
+
 	add_modifier = {
 		modifier = gts_dirt_colony0_1
 		days = -1
@@ -522,24 +466,20 @@ pc_gts_dirt_change4 = {
 		modifier = unstable_tectonics
 		days = -1
 	}
+	hidden_effect = {
+		set_carrier_flag = dirt_planet4
+	}
+
 	if = {
 		limit = {
-			owner = {
-				has_technology = tech_gts_bfbf_habitability_dirt
-			}
+			owner = { has_technology = tech_gts_bfbf_habitability_dirt }
 		}
 		while = {
 			count = 4
 			random_list = {
-				1 = {
-					add_deposit = d_dirt_clean2
-				}
-				1 = {
-					add_deposit = d_dirt_clean3
-				}
-				1 = {
-					add_deposit = d_dirt_clean6
-				}
+				1 = { add_deposit = d_dirt_clean2 }
+				1 = { add_deposit = d_dirt_clean3 }
+				1 = { add_deposit = d_dirt_clean6 }
 			}
 		}
 	}
@@ -547,47 +487,39 @@ pc_gts_dirt_change4 = {
 		while = {
 			count = 4
 			random_list = {
-				1 = {
-					add_deposit = d_dirt_ruin1
-				}
-				1 = {
-					add_deposit = d_dirt_ruin2
-				}
-				1 = {
-					add_deposit = d_dirt_ruin3
-				}
-				1 = {
-					add_deposit = d_dirt_ruin5
-				}
-				1 = {
-					add_deposit = d_dirt_ruin10
-				}
+				1 = { add_deposit = d_dirt_ruin1 }
+				1 = { add_deposit = d_dirt_ruin2 }
+				1 = { add_deposit = d_dirt_ruin3 }
+				1 = { add_deposit = d_dirt_ruin5 }
+				1 = { add_deposit = d_dirt_ruin10 }
 			}
 		}
 	}
 }
-# 星球改造准备
+
+# 星球改造準備
 pc_gts_change_ready = {
 	hidden_effect = {
-		gts_bruh_clear_capital_building_effect = yes
+		remove_gts_dirt_planet_modifier = yes
 		clear_deposits = yes
 		clear_planet_modifiers = yes
-		remove_gts_dirt_planet_modifier = yes
 		remove_all_buildings = yes
 		remove_all_districts = yes
 		validate_planet_buildings_and_districts = yes
-		set_planet_flag = gts_reformed_planet
+		set_carrier_flag = gts_reformed_planet
 	}
 }
-# 星球升级准备
+
+# 星球升級準備
 pc_gts_update_ready = {
 	hidden_effect = {
-		clear_planet_modifiers = yes
 		remove_gts_dirt_planet_flag = yes
+		clear_planet_modifiers = yes
 		validate_planet_buildings_and_districts = yes
-		set_planet_flag = gts_reformed_planet
+		set_carrier_flag = gts_reformed_planet
 	}
 }
+
 # 移除所有足垢星球修正
 remove_gts_dirt_planet_modifier = {
 	remove_modifier = gts_dirt_colony0_1
@@ -618,15 +550,17 @@ remove_gts_dirt_planet_modifier = {
 	remove_modifier = gts_dirt_colony0_bf1
 	remove_modifier = gts_dirt_colony0_bf2
 }
+
 # 移除所有足垢星球flag
 remove_gts_dirt_planet_flag = {
-	remove_planet_flag = dirt_planet0
-	remove_planet_flag = dirt_planet1
-	remove_planet_flag = dirt_planet2
-	remove_planet_flag = dirt_planet3
-	remove_planet_flag = dirt_planet4
+	remove_carrier_flag = dirt_planet0
+	remove_carrier_flag = dirt_planet1
+	remove_carrier_flag = dirt_planet2
+	remove_carrier_flag = dirt_planet3
+	remove_carrier_flag = dirt_planet4
 }
-# 创建一个星球障碍的随机数
+
+# 隨機給予星球特徵
 create_gts_planet_random_variable = {
 	export_trigger_value_to_variable = {
 		trigger = planet_size
@@ -638,6 +572,7 @@ create_gts_planet_random_variable = {
 		max = gts_bruh_get_planet_size
 	}
 }
+
 # 扶她轰炸时的星球地貌修改
 gts_futa_bomb_effect = {
 	event_target:gtsra_random_planet_resist = {
@@ -661,3 +596,4 @@ gts_futa_bomb_effect = {
 		}
 	}
 }
+

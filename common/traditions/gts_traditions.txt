@@ -1,56 +1,41 @@
-### 缩小 ###
+################################################################################
+###################                通用巨娘傳統                ###################
+################################################################################
+
+
+
 tr_gts_shrink_adopt = {
 	custom_tooltip = tr_gts_shrink_adopt_desc
-	possible = { 
-		always = yes
-	}
 	modifier = {
-		leaders_cost_mult = -0.1
-	}
-	ai_weight = {
-		factor = 5000
+		planet_jobs_gts_micro_upkeep_mult = -0.1
+		planet_jobs_gts_micro_city_upkeep_mult = -0.1
+		planet_jobs_gts_micro_planet_upkeep_mult = -0.1
 	}
 }
 
 tr_gts_shrink_finish = {
-	custom_tooltip = tr_gts_shrink_finish_desc
-	possible = { 
-		always = yes
-	}
-	modifier = {
-		ascension_perks_add = 1
-	}
-	ai_weight = {
-		factor = 5000
-	}
+	#custom_tooltip = tr_gts_shrink_finish_desc
+	modifier = { ascension_perks_add = 1 }
 }
 
 tr_gts_shrink_1 = {
 	custom_tooltip = tr_gts_shrink_1_desc
-	possible = { 
-		has_tradition = tr_gts_shrink_3
-	}
+	possible = { has_tradition = tr_gts_shrink_3 }
 	modifier = {
-		planet_jobs_trade_produces_mult = 0.05
-	}
-	on_enabled = {
-		add_research_option = tech_gts_shrink_man_hormone_2
+		diplo_weight_mult = 0.05
+		country_trade_produces_mult = 0.1
 	}
 	ai_weight = {
-		factor = 5000
+		factor = 1000
 	}
 }
 
 tr_gts_shrink_2 = {
 	custom_tooltip = tr_gts_shrink_2_desc
-	possible = { 
-		has_tradition = tr_gts_shrink_1
-	}
+	possible = { has_tradition = tr_gts_shrink_1 }
 	modifier = {
-		country_produces_mult = 0.05
-	}
-	on_enabled = {
-		add_research_option = tech_gts_shrink_man_hormone_3
+		diplo_weight_mult = 0.05
+		pop_government_ethic_attraction = 0.25
 	}
 	ai_weight = {
 		factor = 5000
@@ -59,15 +44,10 @@ tr_gts_shrink_2 = {
 
 tr_gts_shrink_3 = {
 	custom_tooltip = tr_gts_shrink_3_desc
-	possible = { 
-		always = yes
-	}
 	modifier = {
-		country_gts_micro_produces_mult = 0.1
+		country_gts_micro_produces_mult = 0.2
 	}
-	on_enabled = {
-		add_research_option = tech_gts_shrink_man_hormone_1
-	}	
+	on_enabled = { add_research_option = tech_gts_micro_1 }
 	ai_weight = {
 		factor = 5000
 	}
@@ -75,89 +55,69 @@ tr_gts_shrink_3 = {
 
 tr_gts_shrink_4 = {
 	custom_tooltip = tr_gts_shrink_4_desc
-	possible = { 
-		has_tradition = tr_gts_shrink_3
-	}
+	possible = { has_tradition = tr_gts_shrink_3 }
+
 	modifier = {
-		country_gts_micro_city_produces_mult = 0.1
+		country_gts_micro_city_produces_mult = 0.2
 	}
-	on_enabled = {
-		add_research_option = tech_gts_shrink_city_hormone
-	}	
+	on_enabled = { add_research_option = tech_gts_micro_city_1 }
 	ai_weight = {
-		factor = 5000
+		factor = 1000
 	}
 }
 
 tr_gts_shrink_5 = {
 	custom_tooltip = tr_gts_shrink_5_desc
-	possible = { 
-		has_tradition = tr_gts_shrink_4
-	}
+	possible = { has_tradition = tr_gts_shrink_4 }
 	modifier = {
-		country_gts_micro_planet_produces_mult = 0.1
+		country_gts_micro_planet_produces_mult = 0.2
 	}
-	on_enabled = {
-		add_research_option = tech_gts_shrink_planet_hormone
-	}	
+	on_enabled = { add_research_option = tech_gts_micro_planet_1 }
 	ai_weight = {
 		factor = 5000
 	}
 }
 
-### 求生 ###
+
+
+################################################################################
+###################                通用小人傳統                ###################
+################################################################################
+
+
+
 tr_gts_survive_adopt = {
 	custom_tooltip = tr_gts_survive_adopt_desc
-	possible = { 
-		always = yes
-	}
 	modifier = {
-		leaders_cost_mult = -0.1
-	}
-	ai_weight = {
-		factor = 5000
+		planet_jobs_gts_giantess_fluid_upkeep_mult = -0.1
+		planet_jobs_gts_giantess_underwear_upkeep_mult = -0.1
+		planet_jobs_gts_giantess_human_upkeep_mult = -0.1
 	}
 }
 
 tr_gts_survive_finish = {
-	custom_tooltip = tr_gts_survive_finish_desc
-	possible = { 
-		always = yes
-	}
-	modifier = {
-		ascension_perks_add = 1
-	}
-	ai_weight = {
-		factor = 5000
-	}
+	#custom_tooltip = tr_gts_survive_finish_desc
+	modifier = { ascension_perks_add = 1 }
 }
 
 tr_gts_survive_1 = {
 	custom_tooltip = tr_gts_survive_1_desc
-	possible = { 
-		has_tradition = tr_gts_survive_3
-	}
+	possible = { has_tradition = tr_gts_survive_3 }
 	modifier = {
-		planet_jobs_trade_produces_mult = 0.05
-	}
-	on_enabled = {
-		add_research_option = tech_giantess_fluid_2
+		diplo_weight_mult = 0.05
+		country_trade_produces_mult = 0.1
 	}
 	ai_weight = {
-		factor = 5000
+		factor = 1000
 	}
 }
 
 tr_gts_survive_2 = {
 	custom_tooltip = tr_gts_survive_2_desc
-	possible = { 
-		has_tradition = tr_gts_survive_1
-	}
+	possible = { has_tradition = tr_gts_survive_1 }
 	modifier = {
-		country_produces_mult = 0.05
-	}
-	on_enabled = {
-		add_research_option = tech_giantess_fluid_3
+		diplo_weight_mult = 0.05
+		pop_government_ethic_attraction = 0.25
 	}
 	ai_weight = {
 		factor = 5000
@@ -166,15 +126,10 @@ tr_gts_survive_2 = {
 
 tr_gts_survive_3 = {
 	custom_tooltip = tr_gts_survive_3_desc
-	possible = { 
-		always = yes
-	}
 	modifier = {
-		country_gts_giantess_fluid_produces_mult = 0.1
+		country_gts_giantess_fluid_produces_mult = 0.2
 	}
-	on_enabled = {
-		add_research_option = tech_giantess_fluid_1
-	}	
+	on_enabled = { add_research_option = tech_gts_giantess_fluid_1 }
 	ai_weight = {
 		factor = 5000
 	}
@@ -182,37 +137,36 @@ tr_gts_survive_3 = {
 
 tr_gts_survive_4 = {
 	custom_tooltip = tr_gts_survive_4_desc
-	possible = { 
-		has_tradition = tr_gts_survive_3
-	}
+	possible = { has_tradition = tr_gts_survive_3 }
 	modifier = {
-		country_gts_giantess_underwear_produces_mult = 0.1
+		country_gts_giantess_underwear_produces_mult = 0.2
 	}
-	on_enabled = {
-		add_research_option = tech_gts_giantess_underwear
-	}	
+	on_enabled = { add_research_option = tech_gts_giantess_underwear_1 }
 	ai_weight = {
-		factor = 5000
+		factor = 1000
 	}
 }
 
 tr_gts_survive_5 = {
 	custom_tooltip = tr_gts_survive_5_desc
-	possible = { 
-		has_tradition = tr_gts_survive_4
-	}
+	possible = { has_tradition = tr_gts_survive_4 }
 	modifier = {
-		country_gts_giantess_human_produces_mult = 0.1
+		country_gts_giantess_human_produces_mult = 0.2
 	}
-	on_enabled = {
-		add_research_option = tech_gts_giantess_human
-	}	
+	on_enabled = { add_research_option = tech_gts_giantess_human_1 }
 	ai_weight = {
 		factor = 5000
 	}
 }
 
-### 化龙 ###
+
+
+################################################################################
+#####################                化龍傳統                #####################
+################################################################################
+
+
+
 tr_gts_godkeeper_adopt = {
 	custom_tooltip = tr_gts_godkeeper_adopt_desc
 	possible = {
@@ -289,7 +243,7 @@ tr_gts_godkeeper_3 = {
 		country_gts_giantess_fluid_produces_mult = 0.1
 	}
 	on_enabled = {
-		add_research_option = tech_giantess_fluid_1
+		add_research_option = tech_gts_giantess_fluid_1
 	}
 	ai_weight = {
 		factor = 5000
@@ -339,11 +293,10 @@ tr_gts_godkeeper_5 = {
 
 
 
-
-
 # 选择
 tradition_gts_toy_planets_adopt = { # Theme: Industry districts and robots
 	unlocks_agenda = tradition_gts_toy_planets_agenda
+	possible = { always = no }
 	modifier = {
 		planet_jobs_unity_produces_mult = 0.1
 	}
@@ -582,7 +535,7 @@ tradition_gts_toy_planets_3 = {
 #中2
 tradition_gts_toy_planets_4 = {
 
-	custom_tooltip = tradition_gts_toy_planets_4_desc
+	#custom_tooltip = tradition_gts_toy_planets_4_desc
 
 	modifier = {
 		planet_colony_development_speed_mult = 0.2

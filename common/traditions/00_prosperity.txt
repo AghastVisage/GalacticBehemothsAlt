@@ -3,6 +3,7 @@ tr_prosperity_adopt = {
 	modifier = {
 		station_gatherers_produces_mult = 0.20
 	}
+
 	tradition_swap = {
 		name = tr_prosperity_adopt_nomad
 		inherit_icon = yes
@@ -127,6 +128,11 @@ tr_prosperity_sct = {
 		}
 	}
 
+	ai_weight = {
+		factor = 1000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_prosperity_sct_gts
 		inherit_effects = yes
@@ -134,7 +140,6 @@ tr_prosperity_sct = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -145,15 +150,13 @@ tr_prosperity_sct = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
-	}
-
-	ai_weight = {
-		factor = 1000
 	}
 }
 
@@ -232,6 +235,11 @@ tr_prosperity_administrative_operations = {
 		}
 	}
 
+	ai_weight = {
+		factor = 5000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_prosperity_administrative_operations_gts
 		inherit_effects = yes
@@ -239,7 +247,6 @@ tr_prosperity_administrative_operations = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -250,15 +257,13 @@ tr_prosperity_administrative_operations = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
-	}
-
-	ai_weight = {
-		factor = 5000
 	}
 }
 
@@ -343,14 +348,36 @@ tr_prosperity_public_works = {
 		}
 	}
 
+	ai_weight = {
+		factor = 5000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_prosperity_public_works_gts
 		inherit_effects = yes
 		inherit_icon = yes
 		trigger = {
 			gts_is_giantess_empire = yes
+			NOT = {
+				OR = {
+					AND = {
+						is_hive_empire = yes
+						has_void_dweller_origin = no
+						is_wilderness_empire = no
+						is_nomadic = no
+					}
+					AND = {
+						is_machine_empire = yes
+						has_void_dweller_origin = no
+						is_nomadic = no
+					}
+					has_void_dweller_origin = yes
+					is_nomadic = yes
+					is_wilderness_empire = yes
+				}
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -361,15 +388,31 @@ tr_prosperity_public_works = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
+			NOT = {
+				OR = {
+					AND = {
+						is_hive_empire = yes
+						has_void_dweller_origin = no
+						is_wilderness_empire = no
+						is_nomadic = no
+					}
+					AND = {
+						is_machine_empire = yes
+						has_void_dweller_origin = no
+						is_nomadic = no
+					}
+					has_void_dweller_origin = yes
+					is_nomadic = yes
+					is_wilderness_empire = yes
+				}
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
-	}
-
-	ai_weight = {
-		factor = 5000
 	}
 }
 
@@ -408,16 +451,26 @@ tr_prosperity_interstellar_franchising = {
 		}
 	}
 
+	ai_weight = {
+		factor = 1000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_prosperity_interstellar_franchising_gts
 		inherit_effects = yes
 		inherit_icon = yes
 		trigger = {
 			gts_is_giantess_empire = yes
+			NOT = {
+				OR = {
+					is_machine_empire = yes
+					is_hive_empire = yes
+				}
+			}
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
 	tradition_swap = {
@@ -426,15 +479,19 @@ tr_prosperity_interstellar_franchising = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
+			NOT = {
+				OR = {
+					is_machine_empire = yes
+					is_hive_empire = yes
+				}
+			}
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
-	}
-
-	ai_weight = {
-		factor = 1000
 	}
 }
 
@@ -464,7 +521,6 @@ tr_prosperity_pursuit_of_profit = {
 		inherit_icon = yes
 		trigger = {
 			is_hive_empire = yes
-			is_wilderness_empire = no
 		}
 		modifier = {
 			planet_jobs_produces_mult = 0.05
@@ -502,33 +558,48 @@ tr_prosperity_pursuit_of_profit = {
 		}
 	}
 
+	ai_weight = {
+		factor = 5000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_prosperity_pursuit_of_profit_gts
 		inherit_effects = yes
 		inherit_icon = yes
 		trigger = {
 			gts_is_giantess_empire = yes
+			NOT = {
+				OR = {
+					is_hive_empire = yes
+					is_wilderness_empire = yes
+					is_machine_empire = yes
+				}
+			}
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
-
 	tradition_swap = {
 		name = tr_prosperity_pursuit_of_profit_tiny
 		inherit_effects = yes
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
+			NOT = {
+				OR = {
+					is_hive_empire = yes
+					is_wilderness_empire = yes
+					is_machine_empire = yes
+				}
+			}
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
-	}
-
-	ai_weight = {
-		factor = 5000
 	}
 }

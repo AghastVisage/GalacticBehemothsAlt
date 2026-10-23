@@ -191,17 +191,12 @@ gts_destroy_planet = {
 	change_pc = pc_shattered
 }
 
+# 只选择本国带决议标记的殖民地；无目标时由事件按原条件随机选球。
+# TARGET 默认 gts_priority_destroy_planet_target；COUNTRY 默认当前国家。
+# EXCLUDE_FLAG 可排除已选目标。先保存国家作空结果，避免沿用上次的星球引用。
 gts_save_priority_destroy_planet_target = {
-	if = {
-		limit = {
-			any_owned_planet = {
-				is_colony = yes
-				OR = {
-					has_carrier_flag = gts_priority_destroy_target
-					has_modifier = gts_priority_destroy_target_modifier
-				}
-			}
-		}
+	$COUNTRY|this$ = {
+		save_event_target_as = $TARGET|gts_priority_destroy_planet_target$
 		random_owned_planet = {
 			limit = {
 				is_colony = yes
@@ -209,31 +204,10 @@ gts_save_priority_destroy_planet_target = {
 					has_carrier_flag = gts_priority_destroy_target
 					has_modifier = gts_priority_destroy_target_modifier
 				}
+				[[EXCLUDE_FLAG] NOT = { has_planet_flag = $EXCLUDE_FLAG$ } ]
 			}
 			set_carrier_flag = gts_priority_destroy_target
-			save_event_target_as = gts_priority_destroy_planet_target
-		}
-	}
-	else = {
-		random_owned_planet = {
-			limit = {
-				is_colony = yes
-			}
-			save_event_target_as = gts_priority_destroy_planet_target
-		}
-	}
-}
-
-gts_destroy_priority_or_random_planet = {
-	gts_save_priority_destroy_planet_target = yes
-	if = {
-		limit = {
-			exists = event_target:gts_priority_destroy_planet_target
-		}
-		event_target:gts_priority_destroy_planet_target = {
-			remove_carrier_flag = gts_priority_destroy_target
-			remove_modifier = gts_priority_destroy_target_modifier
-			gts_destroy_planet = yes
+			save_event_target_as = $TARGET|gts_priority_destroy_planet_target$
 		}
 	}
 }
@@ -829,65 +803,6 @@ gts_set_empire_type = {
 	}
 }
 
-seele_random_event = {
-	random_list = {
-		1 = {
-			country_event = {
-				id = gts_seele.74
-			}
-		}
-		1 = {
-			country_event = {
-				id = gts_seele.75
-			}
-		}
-		1 = {
-			country_event = {
-				id = gts_seele.76
-			}
-		}
-		1= {
-			country_event = {
-				id = gts_seele.77
-			}
-		}
-		1= {
-			country_event = {
-				id = gts_seele.92
-			}
-		}
-		1= {
-			random_list = {
-				1 = {
-					if = {
-						limit = {
-							has_country_flag = seele_fenkai
-						}
-					}
-					country_event = {
-						id =gts_seele.95
-					}
-				}
-				# 0 = {
-				# 	country_event = {
-				# 		id = gts_seele.93#没有
-				# 	}
-				# }
-				1 = {
-					if = {
-						limit = {
-							has_country_flag = hire_bronya
-						}
-					}
-					country_event = {
-						id =gts_seele.96
-					}
-				}
-			}
-		}
-
-	}
-}
 # 仅用于千海事件链中
 # this = country
 remove_gts_qhai_conflag = {

@@ -1,0 +1,3121 @@
+namespace = gts_rainna_la_grande_random
+
+planet_event = { #千万倍
+    id = gts_rainna_la_grande_random.01
+    title = gts_rainna_la_grande_random.01.title
+    desc = gts_rainna_la_grande_random.01_1.desc
+    desc = gts_rainna_la_grande_random.01_2.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_first_meeting_21115_room
+    }
+    show_sound = event_gts_breath
+    location = root
+    after = {
+        hidden_effect = {
+            if = {
+                limit = {
+                    OR = {
+                        colony_type = col_city
+                        colony_type = col_wilderness_forge
+                        colony_type = col_wilderness_refinery
+                        colony_type = col_factory
+                    }
+                }
+                planet_event = {
+                    id = gts_rainna_la_grande_random.02
+                    days = 1
+                }
+            }
+            else_if = {
+                limit = {
+                    OR = {
+                        colony_type = col_generator
+                        colony_type = col_wilderness_generator
+                    }
+                }
+                planet_event = {
+                    id = gts_rainna_la_grande_random.03
+                    days = 1
+                }
+            }
+            else_if = {
+                limit = {
+                    OR = {
+                        colony_type = col_mining
+                        colony_type = col_wilderness_mining
+                    }
+                }
+                planet_event = {
+                    id = gts_rainna_la_grande_random.04
+                }
+            }
+            else_if = {
+                limit = {
+                    OR = {
+                        colony_type = col_farming
+                        colony_type = col_wilderness_farming
+                    }
+                }
+                planet_event = {
+                    id = gts_rainna_la_grande_random.05
+                }
+            }
+            else = {
+                random_list = {
+                    5 = {
+                        planet_event = {
+                            id = gts_rainna_la_grande_random.02
+                            days = 1
+                        }
+                    }
+                    1 = {
+                        planet_event = {
+                            id = gts_rainna_la_grande_random.03
+                            days = 1
+                        }
+                    }
+                    1 = {
+                        planet_event = {
+                            id = gts_rainna_la_grande_random.04
+                            days = 1
+                        }
+                    }
+                    1 = {
+                        planet_event = {
+                            id = gts_rainna_la_grande_random.05
+                            days = 1
+                        }
+                    }
+                }
+            }
+        }
+    }
+    option = {
+        name = gts_rainna_la_grande_random.01.a
+    }
+}
+
+planet_event = {
+    id = gts_rainna_la_grande_random.02
+    title = gts_rainna_la_grande_random.02.title
+    desc = gts_rainna_la_grande_random.02_1.desc
+    desc = gts_rainna_la_grande_random.02_2.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_first_meeting_2111_room
+    }
+    show_sound = event_gts_scream
+    location = root
+    immediate = {
+        hidden_effect = {
+            set_planet_flag = rainna_la_grande_destroy_city_districts
+            set_planet_flag = rainna_la_grande_destroy_generator_districts_backup
+            owner = {
+                set_variable = {
+                    which = rainna_la_grande_program_destroy_district_number
+                    value = 4
+                }
+                random_list = {
+                    9 = {
+
+                    }
+                    1 = {
+                        change_variable = {
+                            which = rainna_la_grande_program_destroy_district_number
+                            value = 2
+                        }
+                    }
+                }
+            }
+            planet_event = {
+                id = gts_rainna_la_grande.10
+            }
+            if = {
+                limit = {
+                    NOT = {
+                        has_global_flag = rainna_la_grande_no_physical_effect
+                    }
+                }
+                add_deposit = d_rainna_la_grande_giga_footprint
+                if = {
+                    limit = {
+                        owner_main_species = {
+                            has_trait = trait_fear_gts
+                        }
+                    }
+                    add_modifier = {
+                        modifier = rainna_la_grande_destruction
+                        years = 5
+                        multiplier = 2
+                    }
+                }
+                else_if = {
+                    limit = {
+                        owner_main_species = {
+                            has_trait = trait_love_gts
+                        }
+                    }
+                    add_modifier = {
+                        modifier = rainna_la_grande_destruction
+                        years = 5
+                        multiplier = 0.75
+                    }
+                }
+                else = {
+                    add_modifier = {
+                        modifier = rainna_la_grande_destruction
+                        years = 5
+                    }
+                }
+            }
+            rainna_la_grande_auto_set_planet_class_dirt = yes
+        }
+    }
+    after = {
+        hidden_effect = {
+            owner = {
+                country_event = {
+                    id = gts_rainna_la_grande_random.06
+                    days = 1
+                }
+            }
+        }
+    }
+    option = {
+        name = gts_rainna_la_grande_random.02.a
+    }
+    option = {
+        name = gts_rainna_la_grande_random.02.b
+    }
+}
+
+planet_event = {
+    id = gts_rainna_la_grande_random.03
+    title = gts_rainna_la_grande_random.03.title
+    desc = gts_rainna_la_grande_random.03.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_first_meeting_2111_room
+    }
+    show_sound = event_gts_scream
+    location = root
+    immediate = {
+        hidden_effect = {
+            set_planet_flag = rainna_la_grande_destroy_generator_districts
+            set_planet_flag = rainna_la_grande_destroy_mining_districts_backup
+            owner = {
+                set_variable = {
+                    which = rainna_la_grande_program_destroy_district_number
+                    value = 4
+                }
+                random_list = {
+                    9 = {
+
+                    }
+                    1 = {
+                        change_variable = {
+                            which = rainna_la_grande_program_destroy_district_number
+                            value = 2
+                        }
+                    }
+                }
+            }
+            planet_event = {
+                id = gts_rainna_la_grande.10
+            }
+            if = {
+                limit = {
+                    NOT = {
+                        has_global_flag = rainna_la_grande_no_physical_effect
+                    }
+                }
+                add_deposit = d_rainna_la_grande_giga_footprint
+                if = {
+                    limit = {
+                        owner_main_species = {
+                            has_trait = trait_fear_gts
+                        }
+                    }
+                    add_modifier = {
+                        modifier = rainna_la_grande_destruction
+                        years = 5
+                        multiplier = 2
+                    }
+                }
+                else_if = {
+                    limit = {
+                        owner_main_species = {
+                            has_trait = trait_love_gts
+                        }
+                    }
+                    add_modifier = {
+                        modifier = rainna_la_grande_destruction
+                        years = 5
+                        multiplier = 0.75
+                    }
+                }
+                else = {
+                    add_modifier = {
+                        modifier = rainna_la_grande_destruction
+                        years = 5
+                    }
+                }
+            }
+            rainna_la_grande_auto_set_planet_class_dirt = yes
+        }
+    }
+    after = {
+        hidden_effect = {
+            owner = {
+                country_event = {
+                    id = gts_rainna_la_grande_random.06
+                    days = 1
+                }
+            }
+        }
+    }
+    option = {
+        name = gts_rainna_la_grande_random.02.a
+    }
+    option = {
+        name = gts_rainna_la_grande_random.02.b
+    }
+}
+
+planet_event = {
+    id = gts_rainna_la_grande_random.04
+    title = gts_rainna_la_grande_random.04.title
+    desc = gts_rainna_la_grande_random.04.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_first_meeting_2111_room
+    }
+    show_sound = event_gts_scream
+    location = root
+    immediate = {
+        hidden_effect = {
+            set_planet_flag = rainna_la_grande_destroy_mining_districts
+            set_planet_flag = rainna_la_grande_destroy_generator_districts_backup
+            owner = {
+                set_variable = {
+                    which = rainna_la_grande_program_destroy_district_number
+                    value = 4
+                }
+                random_list = {
+                    9 = {
+
+                    }
+                    1 = {
+                        change_variable = {
+                            which = rainna_la_grande_program_destroy_district_number
+                            value = 2
+                        }
+                    }
+                }
+            }
+            planet_event = {
+                id = gts_rainna_la_grande.10
+            }
+            if = {
+                limit = {
+                    NOT = {
+                        has_global_flag = rainna_la_grande_no_physical_effect
+                    }
+                }
+                add_deposit = d_rainna_la_grande_giga_footprint
+                if = {
+                    limit = {
+                        owner_main_species = {
+                            has_trait = trait_fear_gts
+                        }
+                    }
+                    add_modifier = {
+                        modifier = rainna_la_grande_destruction
+                        years = 5
+                        multiplier = 2
+                    }
+                }
+                else_if = {
+                    limit = {
+                        owner_main_species = {
+                            has_trait = trait_love_gts
+                        }
+                    }
+                    add_modifier = {
+                        modifier = rainna_la_grande_destruction
+                        years = 5
+                        multiplier = 0.75
+                    }
+                }
+                else = {
+                    add_modifier = {
+                        modifier = rainna_la_grande_destruction
+                        years = 5
+                    }
+                }
+            }
+            rainna_la_grande_auto_set_planet_class_dirt = yes
+        }
+    }
+    after = {
+        hidden_effect = {
+            owner = {
+                country_event = {
+                    id = gts_rainna_la_grande_random.06
+                    days = 1
+                }
+            }
+        }
+    }
+    option = {
+        name = gts_rainna_la_grande_random.02.a
+    }
+    option = {
+        name = gts_rainna_la_grande_random.02.b
+    }
+}
+
+planet_event = {
+    id = gts_rainna_la_grande_random.05
+    title = gts_rainna_la_grande_random.05.title
+    desc = gts_rainna_la_grande_random.05.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_first_meeting_2111_room
+    }
+    show_sound = event_gts_scream
+    location = root
+    immediate = {
+        hidden_effect = {
+            set_planet_flag = rainna_la_grande_destroy_generator_districts
+            set_planet_flag = rainna_la_grande_destroy_generator_districts_backup
+            owner = {
+                set_variable = {
+                    which = rainna_la_grande_program_destroy_district_number
+                    value = 4
+                }
+                random_list = {
+                    9 = {
+
+                    }
+                    1 = {
+                        change_variable = {
+                            which = rainna_la_grande_program_destroy_district_number
+                            value = 2
+                        }
+                    }
+                }
+            }
+            planet_event = {
+                id = gts_rainna_la_grande.10
+            }
+            if = {
+                limit = {
+                    NOT = {
+                        has_global_flag = rainna_la_grande_no_physical_effect
+                    }
+                }
+                add_deposit = d_rainna_la_grande_giga_footprint
+                if = {
+                    limit = {
+                        owner_main_species = {
+                            has_trait = trait_fear_gts
+                        }
+                    }
+                    add_modifier = {
+                        modifier = rainna_la_grande_destruction
+                        years = 5
+                        multiplier = 2
+                    }
+                }
+                else_if = {
+                    limit = {
+                        owner_main_species = {
+                            has_trait = trait_love_gts
+                        }
+                    }
+                    add_modifier = {
+                        modifier = rainna_la_grande_destruction
+                        years = 5
+                        multiplier = 0.75
+                    }
+                }
+                else = {
+                    add_modifier = {
+                        modifier = rainna_la_grande_destruction
+                        years = 5
+                    }
+                }
+            }
+            rainna_la_grande_auto_set_planet_class_dirt = yes
+        }
+    }
+    after = {
+        hidden_effect = {
+            owner = {
+                country_event = {
+                    id = gts_rainna_la_grande_random.06
+                    days = 1
+                }
+            }
+        }
+    }
+    option = {
+        name = gts_rainna_la_grande_random.02.a
+    }
+    option = {
+        name = gts_rainna_la_grande_random.02.b
+    }
+}
+
+country_event = {
+    id = gts_rainna_la_grande_random.06
+    title = gts_rainna_la_grande_random.06.title
+    desc = gts_rainna_la_grande_random.06_1.desc
+    desc = gts_rainna_la_grande_random.06_2.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_first_meeting_2199_room
+    }
+    show_sound = event_gts_breath
+    location = from
+    option = {
+        name = gts_rainna_la_grande_random.06.a
+    }
+}
+
+planet_event = { #千万倍
+    id = gts_rainna_la_grande_random.11
+    title = gts_rainna_la_grande_random.11.title
+    desc = gts_rainna_la_grande_random.11_1.desc
+    desc = gts_rainna_la_grande_random.11_2.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_first_meeting_21115_room
+    }
+    show_sound = event_gts_breath
+    location = root
+    after = {
+        hidden_effect = {
+            random_list = {
+                9 = {
+                    planet_event = {
+                        id = gts_rainna_la_grande_random.12
+                        days = 1
+                    }
+                }
+                1 = {
+                    planet_event = {
+                        id = gts_rainna_la_grande_random.16
+                        days = 1
+                    }
+                }
+            }
+        }
+    }
+    option = {
+        name = gts_rainna_la_grande_random.01.a
+    }
+}
+
+planet_event = { #千万倍
+    id = gts_rainna_la_grande_random.12
+    title = gts_rainna_la_grande_random.12.title
+    desc = gts_rainna_la_grande_random.12_1.desc
+    desc = gts_rainna_la_grande_random.12_2.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_random_12_room
+    }
+    show_sound = event_gts_scream
+    location = root
+    immediate = {
+        hidden_effect = {
+            set_planet_flag = rainna_la_grande_destroy_city_districts
+            set_planet_flag = rainna_la_grande_destroy_generator_districts_backup
+            owner = {
+                set_variable = {
+                    which = rainna_la_grande_program_destroy_district_number
+                    value = 9
+                }
+                random_list = {
+                    9 = {
+
+                    }
+                    1 = {
+                        change_variable = {
+                            which = rainna_la_grande_program_destroy_district_number
+                            value = 3
+                        }
+                    }
+                }
+            }
+            planet_event = {
+                id = gts_rainna_la_grande.10
+            }
+            if = {
+                limit = {
+                    NOT = {
+                        has_global_flag = rainna_la_grande_no_physical_effect
+                    }
+                }
+                add_deposit = d_rainna_la_grande_giga_footprint
+                add_deposit = d_rainna_la_grande_giga_footprint
+                if = {
+                    limit = {
+                        owner_main_species = {
+                            has_trait = trait_fear_gts
+                        }
+                    }
+                    add_modifier = {
+                        modifier = rainna_la_grande_destruction
+                        years = 5
+                        multiplier = 2
+                    }
+                }
+                else_if = {
+                    limit = {
+                        owner_main_species = {
+                            has_trait = trait_love_gts
+                        }
+                    }
+                    add_modifier = {
+                        modifier = rainna_la_grande_destruction
+                        years = 5
+                        multiplier = 0.75
+                    }
+                }
+                else = {
+                    add_modifier = {
+                        modifier = rainna_la_grande_destruction
+                        years = 5
+                    }
+                }
+            }
+            rainna_la_grande_auto_set_planet_class_dirt = yes
+        }
+    }
+    after = {
+        hidden_effect = {
+            if = {
+                limit = {
+                    rainna_la_grande_player_has_enough_power = no
+                }
+                random_list = {
+                    10 = {
+                        planet_event = {
+                            id = gts_rainna_la_grande_random.13
+                            days = 1
+                        }
+                    }
+                    10 = {
+                        planet_event = {
+                            id = gts_rainna_la_grande_random.14
+                            days = 1
+                        }
+                    }
+                }
+            }
+            else = {
+                random_list = {
+                    10 = {
+                        planet_event = {
+                            id = gts_rainna_la_grande_random.13
+                            days = 1
+                        }
+                    }
+                    9 = {
+                        planet_event = {
+                            id = gts_rainna_la_grande_random.14
+                            days = 1
+                        }
+                    }
+                    1 = {
+                        planet_event = {
+                            id = gts_rainna_la_grande_random.15
+                            days = 1
+                        }
+                    }
+                }
+            }
+        }
+    }
+    option = {
+        name = gts_rainna_la_grande_random.01.a
+    }
+}
+
+planet_event = {
+    id = gts_rainna_la_grande_random.13
+    title = gts_rainna_la_grande_random.13.title
+    desc = gts_rainna_la_grande_random.13.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_first_meeting_2111_room
+    }
+    show_sound = event_gts_scream
+    location = root
+    immediate = {
+        hidden_effect = {
+            set_planet_flag = rainna_la_grande_destroy_city_districts
+            set_planet_flag = rainna_la_grande_destroy_generator_districts_backup
+            owner = {
+                set_variable = {
+                    which = rainna_la_grande_program_destroy_district_number
+                    value = 1
+                }
+            }
+            planet_event = {
+                id = gts_rainna_la_grande.10
+            }
+        }
+    }
+    after = {
+        hidden_effect = {
+            owner = {
+                country_event = {
+                    id = gts_rainna_la_grande_random.17
+                    days = 1
+                }
+            }
+        }
+    }
+    option = {
+        name = gts_rainna_la_grande_random.02.a
+    }
+    option = {
+        name = gts_rainna_la_grande_random.02.b
+    }
+}
+
+planet_event = {
+    id = gts_rainna_la_grande_random.14
+    title = gts_rainna_la_grande_random.14.title
+    desc = gts_rainna_la_grande_random.14.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_random_14_room
+    }
+    show_sound = event_gts_scream
+    location = root
+    immediate = {
+        hidden_effect = {
+            set_planet_flag = rainna_la_grande_destroy_city_districts
+            set_planet_flag = rainna_la_grande_destroy_generator_districts_backup
+            owner = {
+                set_variable = {
+                    which = rainna_la_grande_program_destroy_district_number
+                    value = 12
+                }
+                random_list = {
+                    4 = {
+
+                    }
+                    1 = {
+                        change_variable = {
+                            which = rainna_la_grande_program_destroy_district_number
+                            value = 4
+                        }
+                    }
+                }
+            }
+            planet_event = {
+                id = gts_rainna_la_grande.10
+            }
+            if = {
+                limit = {
+                    NOT = {
+                        has_global_flag = rainna_la_grande_no_physical_effect
+                    }
+                }
+                random_deposit = {
+                    limit = {
+                        is_deposit_type = d_rainna_la_grande_giga_footprint
+                    }
+                    remove_deposit = yes
+                }
+                add_deposit = d_rainna_la_grande_rubbed_giga_footprint
+                random_deposit = {
+                    limit = {
+                        is_deposit_type = d_rainna_la_grande_giga_footprint
+                    }
+                    remove_deposit = yes
+                }
+                add_deposit = d_rainna_la_grande_rubbed_giga_footprint
+            }
+        }
+    }
+    after = {
+        hidden_effect = {
+            owner = {
+                country_event = {
+                    id = gts_rainna_la_grande_random.17
+                    days = 1
+                }
+            }
+        }
+    }
+    option = {
+        name = gts_rainna_la_grande_random.02.a
+    }
+    option = {
+        name = gts_rainna_la_grande_random.02.b
+    }
+}
+
+planet_event = {
+    id = gts_rainna_la_grande_random.15
+    title = gts_rainna_la_grande_random.15.title
+    desc = gts_rainna_la_grande_random.15.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_first_meeting_3111_room
+    }
+    show_sound = event_gts_scream
+    location = root
+    immediate = {
+        hidden_effect = {
+            owner = {
+                save_event_target_as = rainna_la_grande_victim_country
+            }
+            if = {
+                limit = {
+                    NOT = {
+                        has_global_flag = rainna_la_grande_no_physical_effect
+                    }
+                }
+                destroy_colony = yes
+                clear_deposits = yes
+                clear_planet_modifiers = yes
+                change_pc = pc_broken
+            }
+            event_target:rainna_la_grande_victim_country = {
+                country_event = {
+                    id = gts_rainna_la_grande_random.19
+                    days = 1
+                }
+            }
+        }
+    }
+    option = {
+        name = gts_rainna_la_grande_random.02.a
+    }
+    option = {
+        name = gts_rainna_la_grande_random.02.b
+    }
+}
+
+planet_event = {
+    id = gts_rainna_la_grande_random.16
+    title = gts_rainna_la_grande_random.16.title
+    desc = gts_rainna_la_grande_random.16.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_first_meeting_211_room
+    }
+    show_sound = event_gts_breath
+    location = root
+    after = {
+        hidden_effect = {
+            owner = {
+                country_event = {
+                    id = gts_rainna_la_grande_random.18
+                    days = 1
+                }
+            }
+        }
+    }
+    option = {
+        name = gts_rainna_la_grande_random.02.a
+    }
+    option = {
+        name = gts_rainna_la_grande_random.02.b
+    }
+}
+
+country_event = {
+    id = gts_rainna_la_grande_random.17
+    title = gts_rainna_la_grande_random.17.title
+    desc = gts_rainna_la_grande_random.17_1.desc
+    desc = gts_rainna_la_grande_random.17_2.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_first_meeting_2199_room
+    }
+    show_sound = event_gts_breath
+    location = from
+    option = {
+        name = gts_rainna_la_grande_random.06.a
+    }
+}
+
+country_event = {
+    id = gts_rainna_la_grande_random.18
+    title = gts_rainna_la_grande_random.17.title
+    desc = gts_rainna_la_grande_random.18.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_first_meeting_2199_room
+    }
+    show_sound = event_gts_breath
+    location = from
+    option = {
+        name = gts_rainna_la_grande_random.06.a
+    }
+}
+
+country_event = {
+    id = gts_rainna_la_grande_random.19
+    title = gts_rainna_la_grande_random.17.title
+    desc = gts_rainna_la_grande_random.19.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_first_meeting_2199_room
+    }
+    show_sound = event_gts_breath
+    location = from
+    option = {
+        name = gts_rainna_la_grande_random.06.a
+    }
+}
+
+planet_event = { #千万倍
+    id = gts_rainna_la_grande_random.21
+    title = gts_rainna_la_grande_random.21.title
+    desc = gts_rainna_la_grande_random.21.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_first_meeting_2110_room
+    }
+    show_sound = event_gts_breath
+    location = root
+    after = {
+        planet_event = {
+            id = gts_rainna_la_grande_random.22
+        }
+    }
+    option = {
+        name = gts_rainna_la_grande_random.01.a
+    }
+}
+
+planet_event = { #千万倍
+    id = gts_rainna_la_grande_random.22
+    title = gts_rainna_la_grande_random.21.title
+    desc = gts_rainna_la_grande_random.22.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_random_21_room
+    }
+    show_sound = event_gts_scream
+    location = root
+    immediate = {
+        hidden_effect = {
+            if = {
+                limit = {
+                    NOT = {
+                        has_global_flag = rainna_la_grande_no_physical_effect
+                    }
+                }
+                every_owned_pop_group = {
+                    kill_pop_group = {
+                        pop_group = this
+                        percentage = 0.99
+                    }
+                }
+                while = {
+                    limit = {
+                        pop_amount > 100
+                    }
+                    random_owned_pop_group = {
+                        kill_pop_group = {
+                            pop_group = this
+                            percentage = 1
+                        }
+                    }
+                }
+                random_list = {
+                    1 = {
+                        change_pc = pc_gts_dirt0
+                    }
+                    1 = {
+                        change_pc = pc_gts_dirt1
+                    }
+                }
+                remove_all_districts = yes
+                add_planet_devastation = 100
+            }
+            if = {
+                limit = {
+                    owner_main_species = {
+                        gts_is_tiny = yes
+                    }
+                }
+                owner = {
+                    change_variable = {
+                        which = rainna_la_grande_killed_number
+                        value = 800000
+                    }
+                }
+            }
+            else = {
+                owner = {
+                    change_variable = {
+                        which = rainna_la_grande_killed_number
+                        value = 200000
+                    }
+                }
+            }
+        }
+    }
+    after = {
+        hidden_effect = {
+            planet_event = {
+                id = gts_rainna_la_grande_random.23
+            }
+        }
+    }
+    option = {
+        name = gts_rainna_la_grande_random.01.a
+    }
+}
+
+planet_event = {
+    id = gts_rainna_la_grande_random.23
+    title = gts_rainna_la_grande_random.21.title
+    desc = gts_rainna_la_grande_random.23.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_random_21_room
+    }
+    show_sound = event_gts_scream
+    location = root
+    immediate = {
+        hidden_effect = {
+            owner = {
+                save_event_target_as = rainna_la_grande_victim_country
+            }
+            if = {
+                limit = {
+                    NOT = {
+                        has_global_flag = rainna_la_grande_no_physical_effect
+                    }
+                }
+                destroy_colony = yes
+                clear_deposits = yes
+                clear_planet_modifiers = yes
+                change_pc = pc_broken
+            }
+            event_target:rainna_la_grande_victim_country = {
+                country_event = {
+                    id = gts_rainna_la_grande_random.24
+                    days = 1
+                }
+            }
+        }
+    }
+    option = {
+        name = gts_rainna_la_grande_random.02.a
+    }
+    option = {
+        name = gts_rainna_la_grande_random.02.b
+    }
+}
+
+country_event = {
+    id = gts_rainna_la_grande_random.24
+    title = gts_rainna_la_grande_random.21.title
+    desc = gts_rainna_la_grande_random.24.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_first_meeting_2199_room
+    }
+    show_sound = event_gts_breath
+    location = from
+    option = {
+        name = gts_rainna_la_grande_random.06.a
+    }
+}
+
+planet_event = { #千万倍
+    id = gts_rainna_la_grande_random.31
+    title = gts_rainna_la_grande_random.31.title
+    desc = gts_rainna_la_grande_random.31.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_random_31_room
+    }
+    show_sound = event_gts_breath
+    location = root
+    after = {
+        hidden_effect = {
+            planet_event = {
+                id = gts_rainna_la_grande_random.32
+                days = 1
+            }
+        }
+    }
+    option = {
+        name = gts_rainna_la_grande_random.01.a
+    }
+}
+
+planet_event = {
+    id = gts_rainna_la_grande_random.32
+    title = gts_rainna_la_grande_random.31.title
+    desc = gts_rainna_la_grande_random.32.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_random_31_room
+    }
+    show_sound = event_gts_breath
+    location = root
+    option = {
+        name = gts_rainna_la_grande_random.32.a
+        hidden_effect = {
+            if = {
+                limit = {
+                    owner_main_species = {
+                        OR = {
+                            has_trait = trait_Ultra
+                            has_trait = trait_Titan
+                        }
+                    }
+                }
+                random_list = {
+                    4 = {
+                        planet_event = {
+                            id = gts_rainna_la_grande_random.35
+                        }
+                    }
+                    1 = {
+                        planet_event = {
+                            id = gts_rainna_la_grande_random.33
+                        }
+                    }
+                }
+            }
+            else_if = {
+                limit = {
+                    owner_main_species = {
+                        OR = {
+                            has_trait = trait_Giant
+                        }
+                    }
+                }
+                random_list = {
+                    1 = {
+                        planet_event = {
+                            id = gts_rainna_la_grande_random.35
+                        }
+                    }
+                    1 = {
+                        planet_event = {
+                            id = gts_rainna_la_grande_random.33
+                        }
+                    }
+                }
+            }
+            else = {
+                planet_event = {
+                    id = gts_rainna_la_grande_random.33
+                }
+            }
+        }
+    }
+    option = {
+        name = gts_rainna_la_grande_random.32.b
+        planet_event = {
+            id = gts_rainna_la_grande_random.34
+        }
+    }
+}
+
+planet_event = {
+    id = gts_rainna_la_grande_random.33
+    title = gts_rainna_la_grande_random.31.title
+    desc = gts_rainna_la_grande_random.33.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_random_33_room
+    }
+    show_sound = event_gts_scream
+    location = root
+    immediate = {
+        hidden_effect = {
+            set_planet_flag = rainna_la_grande_destroy_city_districts
+            set_planet_flag = rainna_la_grande_destroy_generator_districts_backup
+            owner = {
+                set_variable = {
+                    which = rainna_la_grande_program_destroy_district_number
+                    value = 4
+                }
+                random_list = {
+                    9 = {
+
+                    }
+                    1 = {
+                        change_variable = {
+                            which = rainna_la_grande_program_destroy_district_number
+                            value = 2
+                        }
+                    }
+                }
+            }
+            planet_event = {
+                id = gts_rainna_la_grande.10
+            }
+            if = {
+                limit = {
+                    NOT = {
+                        has_global_flag = rainna_la_grande_no_physical_effect
+                    }
+                }
+                add_deposit = d_rainna_la_grande_giga_footprint
+                if = {
+                    limit = {
+                        owner_main_species = {
+                            has_trait = trait_fear_gts
+                        }
+                    }
+                    add_modifier = {
+                        modifier = rainna_la_grande_destruction
+                        years = 5
+                        multiplier = 2
+                    }
+                }
+                else_if = {
+                    limit = {
+                        owner_main_species = {
+                            has_trait = trait_love_gts
+                        }
+                    }
+                    add_modifier = {
+                        modifier = rainna_la_grande_destruction
+                        years = 5
+                        multiplier = 0.75
+                    }
+                }
+                else = {
+                    add_modifier = {
+                        modifier = rainna_la_grande_destruction
+                        years = 5
+                    }
+                }
+            }
+            rainna_la_grande_auto_set_planet_class_dirt = yes
+        }
+    }
+    after = {
+        hidden_effect = {
+            planet_event = {
+                id = gts_rainna_la_grande_random.36
+                days = 1
+            }
+        }
+    }
+    option = {
+        name = gts_rainna_la_grande_random.33.a
+    }
+}
+
+planet_event = {
+    id = gts_rainna_la_grande_random.34
+    title = gts_rainna_la_grande_random.31.title
+    desc = gts_rainna_la_grande_random.34.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_random_33_room
+    }
+    show_sound = event_gts_scream
+    location = root
+    immediate = {
+        hidden_effect = {
+            set_planet_flag = rainna_la_grande_destroy_city_districts
+            set_planet_flag = rainna_la_grande_destroy_generator_districts_backup
+            owner = {
+                set_variable = {
+                    which = rainna_la_grande_program_destroy_district_number
+                    value = 4
+                }
+                random_list = {
+                    9 = {
+
+                    }
+                    1 = {
+                        change_variable = {
+                            which = rainna_la_grande_program_destroy_district_number
+                            value = 2
+                        }
+                    }
+                }
+            }
+            planet_event = {
+                id = gts_rainna_la_grande.10
+            }
+            if = {
+                limit = {
+                    NOT = {
+                        has_global_flag = rainna_la_grande_no_physical_effect
+                    }
+                }
+                add_deposit = d_rainna_la_grande_giga_footprint
+                if = {
+                    limit = {
+                        owner_main_species = {
+                            has_trait = trait_fear_gts
+                        }
+                    }
+                    add_modifier = {
+                        modifier = rainna_la_grande_destruction
+                        years = 5
+                        multiplier = 2
+                    }
+                }
+                else_if = {
+                    limit = {
+                        owner_main_species = {
+                            has_trait = trait_love_gts
+                        }
+                    }
+                    add_modifier = {
+                        modifier = rainna_la_grande_destruction
+                        years = 5
+                        multiplier = 0.75
+                    }
+                }
+                else = {
+                    add_modifier = {
+                        modifier = rainna_la_grande_destruction
+                        years = 5
+                    }
+                }
+            }
+            rainna_la_grande_auto_set_planet_class_dirt = yes
+        }
+    }
+    after = {
+        hidden_effect = {
+            planet_event = {
+                id = gts_rainna_la_grande_random.36
+                days = 1
+            }
+        }
+    }
+    option = {
+        name = gts_rainna_la_grande_random.33.a
+    }
+}
+
+planet_event = {
+    id = gts_rainna_la_grande_random.35
+    title = gts_rainna_la_grande_random.31.title
+    desc = gts_rainna_la_grande_random.35.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_random_35_room
+    }
+    show_sound = event_gts_breath
+    location = root
+    after = {
+        hidden_effect = {
+            planet_event = {
+                id = gts_rainna_la_grande_random.37
+                days = 1
+            }
+        }
+    }
+    option = {
+        name = gts_rainna_la_grande_first_meeting.2110.b
+    }
+}
+
+planet_event = {
+    id = gts_rainna_la_grande_random.36
+    title = gts_rainna_la_grande_random.31.title
+    desc = gts_rainna_la_grande_random.36.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_random_35_room
+    }
+    show_sound = event_gts_breath
+    location = root
+    option = {
+        name = gts_rainna_la_grande_random.06.a
+    }
+}
+
+planet_event = {
+    id = gts_rainna_la_grande_random.37
+    title = gts_rainna_la_grande_random.31.title
+    desc = gts_rainna_la_grande_random.37.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_random_35_room
+    }
+    show_sound = event_gts_breath
+    location = root
+    option = {
+        name = gts_rainna_la_grande_random.06.a
+    }
+}
+
+planet_event = { #5亿倍
+    id = gts_rainna_la_grande_random.41
+    title = gts_rainna_la_grande_random.41.title
+    desc = gts_rainna_la_grande_random.41.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_random_41_room
+    }
+    show_sound = event_gts_breath
+    location = root
+    after = {
+        hidden_effect = {
+            planet_event = {
+                id = gts_rainna_la_grande_random.42
+                days = 1
+            }
+        }
+    }
+    option = {
+        name = gts_rainna_la_grande_first_meeting.2110.a
+    }
+}
+
+planet_event = {
+    id = gts_rainna_la_grande_random.42
+    title = gts_rainna_la_grande_random.41.title
+    desc = gts_rainna_la_grande_random.42.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_random_42_room
+    }
+    show_sound = event_gts_breath
+    location = root
+    after = {
+        hidden_effect = {
+            planet_event = {
+                id = gts_rainna_la_grande_random.43
+                days = 1
+            }
+        }
+    }
+    option = {
+        name = gts_rainna_la_grande_random.32.a
+    }
+    option = {
+        name = gts_rainna_la_grande_random.32.b
+    }
+}
+
+planet_event = {
+    id = gts_rainna_la_grande_random.43
+    title = gts_rainna_la_grande_random.41.title
+    desc = gts_rainna_la_grande_random.43.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_random_42_room
+    }
+    show_sound = event_gts_scream
+    location = root
+    after = {
+        hidden_effect = {
+            planet_event = {
+                id = gts_rainna_la_grande_random.44
+                days = 1
+            }
+        }
+    }
+    option = {
+        name = gts_rainna_la_grande_first_meeting.2111.b
+    }
+}
+
+planet_event = { #5亿倍
+    id = gts_rainna_la_grande_random.44
+    title = gts_rainna_la_grande_random.41.title
+    desc = gts_rainna_la_grande_random.44.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_random_44_room
+    }
+    show_sound = event_gts_scream
+    location = root
+    immediate = {
+        hidden_effect = {
+            if = {
+                limit = {
+                    NOT = {
+                        has_global_flag = rainna_la_grande_no_physical_effect
+                    }
+                }
+                every_owned_pop_group = {
+                    kill_pop_group = {
+                        pop_group = this
+                        percentage = 0.4
+                    }
+                }
+                while = {
+                    limit = {
+                        pop_amount > 100
+                    }
+                    random_owned_pop_group = {
+                        kill_pop_group = {
+                            pop_group = this
+                            percentage = 0.5
+                        }
+                    }
+                }
+                random_list = {
+                    1 = {
+                        change_pc = pc_gts_dirt0
+                    }
+                    1 = {
+                        change_pc = pc_gts_dirt1
+                    }
+                    8 = {
+
+                    }
+                }
+                remove_all_districts = yes
+                add_planet_devastation = 75
+            }
+            if = {
+                limit = {
+                    owner_main_species = {
+                        gts_is_tiny = yes
+                    }
+                }
+                owner = {
+                    change_variable = {
+                        which = rainna_la_grande_killed_number
+                        value = 400000
+                    }
+                }
+            }
+            else = {
+                owner = {
+                    change_variable = {
+                        which = rainna_la_grande_killed_number
+                        value = 100000
+                    }
+                }
+            }
+        }
+    }
+    after = {
+        hidden_effect = {
+            planet_event = {
+                id = gts_rainna_la_grande_random.45
+            }
+        }
+    }
+    option = {
+        name = gts_rainna_la_grande_first_meeting.3111.a
+    }
+}
+
+planet_event = { #5亿倍
+    id = gts_rainna_la_grande_random.45
+    title = gts_rainna_la_grande_random.41.title
+    desc = gts_rainna_la_grande_random.45.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_random_45_room
+    }
+    show_sound = event_gts_scream
+    location = root
+    immediate = {
+        hidden_effect = {
+            owner = {
+                save_event_target_as = rainna_la_grande_victim_country
+            }
+            if = {
+                limit = {
+                    NOT = {
+                        has_global_flag = rainna_la_grande_no_physical_effect
+                    }
+                }
+                destroy_colony = yes
+                gts_destroy_planet = yes
+            }
+            event_target:rainna_la_grande_victim_country = {
+                country_event = {
+                    id = gts_rainna_la_grande_random.46
+                }
+            }
+        }
+    }
+    option = {
+        name = gts_rainna_la_grande_first_meeting.3132.a
+    }
+}
+
+country_event = { #5亿倍
+    id = gts_rainna_la_grande_random.46
+    title = gts_rainna_la_grande_random.41.title
+    desc = gts_rainna_la_grande_random.46.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_random_46_room
+    }
+    show_sound = event_gts_breath
+    location = from
+    option = {
+        name = gts_rainna_la_grande_first_meeting.3132.a
+    }
+}
+
+planet_event = {
+    id = gts_rainna_la_grande_random.101
+    title = gts_rainna_la_grande_random.101.title
+    desc = gts_rainna_la_grande_random.101.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_random_101_room
+    }
+    show_sound = event_gts_breath
+    location = root
+    immediate = {
+
+    }
+    after = {
+        hidden_effect = {
+            planet_event = {
+                id = gts_rainna_la_grande_random.102
+                days = 1
+            }
+        }
+    }
+    option = {
+        name = gts_rainna_la_grande_random.01.a
+    }
+}
+
+planet_event = {
+    id = gts_rainna_la_grande_random.102
+    title = gts_rainna_la_grande_random.101.title
+    desc = gts_rainna_la_grande_random.102.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_random_101_room
+    }
+    show_sound = event_gts_breath
+    location = root
+    after = {
+        hidden_effect = {
+            planet_event = {
+                id = gts_rainna_la_grande_random.103
+                days = 1
+            }
+        }
+    }
+    option = {
+        name = gts_rainna_la_grande_random.102.a
+    }
+}
+
+planet_event = {
+    id = gts_rainna_la_grande_random.103
+    title = gts_rainna_la_grande_random.101.title
+    desc = gts_rainna_la_grande_random.103.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_random_101_room
+    }
+    show_sound = event_gts_breath
+    location = root
+    immediate = {
+        hidden_effect = {
+            if = {
+                limit = {
+                    NOT = {
+                        has_global_flag = rainna_la_grande_no_physical_effect
+                    }
+                }
+                every_owned_pop_group = {
+                    random_list = {
+                        1 = {
+                            modify_species = {
+                                species = this
+                                remove_trait = trait_Titan
+                                remove_trait = trait_Giant
+                                remove_trait = trait_Tall
+                                remove_trait = trait_Normal
+                                remove_trait = trait_Small
+                                remove_trait = trait_Tiny
+                                add_trait = trait_Micro
+                                add_trait = trait_tiny_feet
+                                add_trait = trait_love_gts
+                                add_traits_at_start_of_list = yes
+                                change_scoped_species = yes
+                            }
+                        }
+                        1 = {
+                            modify_species = {
+                                species = this
+                                remove_trait = trait_Titan
+                                remove_trait = trait_Giant
+                                remove_trait = trait_Tall
+                                remove_trait = trait_Normal
+                                remove_trait = trait_Small
+                                remove_trait = trait_Tiny
+                                add_trait = trait_Micro
+                                add_trait = trait_fear_gts
+                                add_traits_at_start_of_list = yes
+                                change_scoped_species = yes
+                            }
+                        }
+                    }
+                }
+                add_modifier = {
+                    modifier = rainna_la_grande_shrink_potion
+                    years = -1
+                }
+            }
+            planet_event = {
+                id = gts_rainna_la_grande_random.105
+                months = 4
+                random = 120
+            }
+        }
+    }
+    after = {
+        hidden_effect = {
+            planet_event = {
+                id = gts_rainna_la_grande_random.104
+                days = 1
+            }
+        }
+    }
+    option = {
+        name = gts_rainna_la_grande_random.02.b
+        custom_tooltip = gts_rainna_la_grande_random.104.a_tooltip
+    }
+}
+
+planet_event = {
+    id = gts_rainna_la_grande_random.104
+    title = gts_rainna_la_grande_random.101.title
+    desc = gts_rainna_la_grande_random.104.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_random_101_room
+    }
+    show_sound = event_gts_breath
+    location = root
+    option = {
+        name = gts_rainna_la_grande_random.06.a
+    }
+}
+
+planet_event = {
+    id = gts_rainna_la_grande_random.105
+    title = gts_rainna_la_grande_random.101.title
+    desc = gts_rainna_la_grande_random.105.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_random_101_room
+    }
+    show_sound = event_gts_breath
+    location = root
+    immediate = {
+        hidden_effect = {
+            remove_modifier = rainna_la_grande_shrink_potion
+        }
+    }
+    option = {
+        name = gts_rainna_la_grande_random.105.a
+    }
+}
+
+planet_event = {
+    id = gts_rainna_la_grande_random.111
+    title = gts_rainna_la_grande_random.101.title
+    desc = gts_rainna_la_grande_random.111.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_random_101_room
+    }
+    show_sound = event_gts_breath
+    location = root
+    immediate = {
+        hidden_effect = {
+            add_modifier = {
+                modifier = rainna_la_grande_sex_potion
+                years = 5
+            }
+        }
+    }
+    after = {
+        hidden_effect = {
+            planet_event = {
+                id = gts_rainna_la_grande_random.112
+                days = 1
+            }
+        }
+    }
+    option = {
+        name = gts_rainna_la_grande_random.01.a
+    }
+}
+
+planet_event = {
+    id = gts_rainna_la_grande_random.112
+    title = gts_rainna_la_grande_random.101.title
+    desc = gts_rainna_la_grande_random.112.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_random_101_room
+    }
+    show_sound = event_gts_breath
+    location = root
+    after = {
+        hidden_effect = {
+            planet_event = {
+                id = gts_rainna_la_grande_random.113
+                days = 1
+            }
+        }
+    }
+    option = {
+        name = gts_rainna_la_grande_random.102.a
+    }
+}
+
+planet_event = {
+    id = gts_rainna_la_grande_random.113
+    title = gts_rainna_la_grande_random.101.title
+    desc = gts_rainna_la_grande_random.113.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_random_101_room
+    }
+    show_sound = event_gts_breath
+    location = root
+    after = {
+        hidden_effect = {
+            planet_event = {
+                id = gts_rainna_la_grande_random.114
+                days = 2
+                random = 5
+            }
+        }
+    }
+    option = {
+        name = gts_rainna_la_grande_random.06.a
+    }
+}
+
+planet_event = {
+    id = gts_rainna_la_grande_random.114
+    title = gts_rainna_la_grande_random.101.title
+    desc = gts_rainna_la_grande_random.114.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_random_101_room
+    }
+    show_sound = event_gts_breath
+    location = root
+    immediate = {
+        hidden_effect = {
+            add_modifier = {
+                modifier = rainna_la_grande_sex_potion
+                years = 5
+            }
+        }
+    }
+    option = {
+        name = gts_rainna_la_grande_random.114.a
+    }
+}
+
+country_event = {
+    id = gts_rainna_la_grande_random.201
+    title = gts_rainna_la_grande_random.201.title
+    desc = gts_rainna_la_grande_random.201_1.desc
+    desc = gts_rainna_la_grande_random.201_2.desc
+    desc = gts_rainna_la_grande_random.201_3.desc
+    is_triggered_only = yes
+    # diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture = GFX_gts_rainna_la_grande_random_event202
+    show_sound = event_gts_breath
+    location = root
+    immediate = {
+        hidden_effect = {
+            random_list = {
+                3 = {
+                    set_variable_to_random_value = {
+                        which = rainna_la_grande_random_value
+                        min = 1
+                        max = 10
+                    }
+                }
+                1 = {
+                    set_variable_to_random_value = {
+                        which = rainna_la_grande_random_value
+                        min = 11
+                        max = 40
+                    }
+                }
+                1 = {
+                    set_variable_to_random_value = {
+                        which = rainna_la_grande_random_value
+                        min = 51
+                        max = 100
+                    }
+                }
+            }
+        }
+    }
+    option = {
+        name = gts_rainna_la_grande_random.201.a
+        locked_random_list = {
+            4 = {
+                add_resource = {
+                    energy = 500
+                    mult = rainna_la_grande_random_value
+                }
+            }
+            4 = {
+                add_resource = {
+                    alloys = 100
+                    mult = rainna_la_grande_random_value
+                }
+            }
+            4 = {
+                add_resource = {
+                    consumer_goods = 100
+                    mult = rainna_la_grande_random_value
+                }
+            }
+            4 = {
+                add_resource = {
+                    minerals = 500
+                    mult = rainna_la_grande_random_value
+                }
+            }
+            4 = {
+                add_resource = {
+                    food = 500
+                    mult = rainna_la_grande_random_value
+                }
+            }
+            1 = {
+                add_resource = {
+                    gts_micro = 1000
+                    mult = rainna_la_grande_random_value
+                }
+            }
+            1 = {
+                add_resource = {
+                    gts_micro_city = 100
+                    mult = rainna_la_grande_random_value
+                }
+            }
+            1 = {
+                add_resource = {
+                    gts_micro_planet = 10
+                    mult = rainna_la_grande_random_value
+                }
+            }
+        }
+    }
+}
+
+country_event = {
+    id = gts_rainna_la_grande_random.202
+    title = gts_rainna_la_grande_random.201.title
+    desc = gts_rainna_la_grande_random.202_1.desc
+    desc = gts_rainna_la_grande_random.202_2.desc
+    is_triggered_only = yes
+    # diplomatic = yes
+    picture = GFX_gts_rainna_la_grande_random_event201
+    show_sound = event_gts_breath
+    location = root
+    option = {
+        name = gts_rainna_la_grande_random.201.a
+        locked_random_list = {
+            1 = {
+                add_modifier = {
+                    modifier = rainna_la_grande_help_physics
+                    years = 1
+                }
+            }
+            1 = {
+                add_modifier = {
+                    modifier = rainna_la_grande_help_engineering
+                    years = 1
+                }
+            }
+            1 = {
+                add_modifier = {
+                    modifier = rainna_la_grande_help_society
+                    years = 1
+                }
+            }
+        }
+    }
+}
+
+planet_event = {
+    id = gts_rainna_la_grande_random.301
+    title = gts_rainna_la_grande_random.301.title
+    desc = gts_rainna_la_grande_random.301_1.desc
+    desc = gts_rainna_la_grande_random.301_2.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_random_301_room
+    }
+    show_sound = event_gts_breath
+    location = root
+    after = {
+        hidden_effect = {
+            planet_event = {
+                id = gts_rainna_la_grande_random.302
+            }
+        }
+    }
+    option = {
+        name = gts_rainna_la_grande_random.301.a
+    }
+}
+
+planet_event = {
+    id = gts_rainna_la_grande_random.302
+    title = gts_rainna_la_grande_random.301.title
+    desc = gts_rainna_la_grande_random.302_1.desc
+    desc = gts_rainna_la_grande_random.302_2.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_random_301_room
+    }
+    show_sound = event_gts_breath
+    location = root
+    immediate = {
+        hidden_effect = {
+            if = {
+                limit = {
+                    NOT = {
+                        has_global_flag = rainna_la_grande_no_physical_effect
+                    }
+                }
+                add_deposit = d_rainna_la_grande_giga_finger_print
+                if = {
+                    limit = {
+                        owner_main_species = {
+                            has_trait = trait_fear_gts
+                        }
+                    }
+                    add_modifier = {
+                        modifier = rainna_la_grande_destruction
+                        years = 5
+                        multiplier = 2
+                    }
+                }
+                else_if = {
+                    limit = {
+                        owner_main_species = {
+                            has_trait = trait_love_gts
+                        }
+                    }
+                    add_modifier = {
+                        modifier = rainna_la_grande_destruction
+                        years = 5
+                        multiplier = 0.75
+                    }
+                }
+                else = {
+                    add_modifier = {
+                        modifier = rainna_la_grande_destruction
+                        years = 5
+                    }
+                }
+            }
+        }
+    }
+    after = {
+        hidden_effect = {
+            random_list = {
+                10 = {
+                    planet_event = {
+                        id = gts_rainna_la_grande_random.303
+                    }
+                }
+                1 = {
+                    planet_event = {
+                        id = gts_rainna_la_grande_random.304
+                    }
+                }
+            }
+        }
+    }
+    option = {
+        name = gts_rainna_la_grande_random.302.a
+    }
+}
+
+planet_event = {
+    id = gts_rainna_la_grande_random.303
+    title = gts_rainna_la_grande_random.301.title
+    desc = gts_rainna_la_grande_random.303_1.desc
+    desc = gts_rainna_la_grande_random.303_2.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_random_301_room
+    }
+    show_sound = event_gts_breath
+    location = root
+    immediate = {
+        hidden_effect = {
+            set_planet_flag = rainna_la_grande_destroy_city_districts
+            set_planet_flag = rainna_la_grande_destroy_generator_districts_backup
+            owner = {
+                set_variable = {
+                    which = rainna_la_grande_program_destroy_district_number
+                    value = 3
+                }
+            }
+            random_list = {
+                8 = {
+
+                }
+                2 = {
+                    change_variable = {
+                        which = rainna_la_grande_program_destroy_district_number
+                        value = 1
+                    }
+                }
+            }
+            planet_event = {
+                id = gts_rainna_la_grande.10
+            }
+        }
+    }
+    after = {
+        hidden_effect = {
+            planet_event = {
+                id = gts_rainna_la_grande_random.305
+            }
+        }
+    }
+    option = {
+        name = gts_rainna_la_grande_random.303.a
+    }
+}
+
+planet_event = {
+    id = gts_rainna_la_grande_random.304
+    title = gts_rainna_la_grande_random.301.title
+    desc = gts_rainna_la_grande_random.304_1.desc
+    desc = gts_rainna_la_grande_random.304_2.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_random_301_room
+    }
+    show_sound = event_gts_breath
+    location = root
+    immediate = {
+        hidden_effect = {
+            owner = {
+                save_event_target_as = rainna_la_grande_victim_country
+            }
+            if = {
+                limit = {
+                    NOT = {
+                        has_global_flag = rainna_la_grande_no_physical_effect
+                    }
+                }
+                destroy_colony = yes
+                gts_destroy_planet = yes
+            }
+            event_target:rainna_la_grande_victim_country = {
+                planet_event = {
+                    id = gts_rainna_la_grande_random.306
+                }
+            }
+        }
+    }
+    option = {
+        name = gts_rainna_la_grande_random.304.a
+    }
+}
+
+planet_event = {
+    id = gts_rainna_la_grande_random.305
+    title = gts_rainna_la_grande_random.301.title
+    desc = gts_rainna_la_grande_random.305.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_random_301_room
+    }
+    show_sound = event_gts_breath
+    location = root
+    option = {
+        name = gts_rainna_la_grande_random.305.a
+    }
+}
+
+country_event = {
+    id = gts_rainna_la_grande_random.306
+    title = gts_rainna_la_grande_random.301.title
+    desc = gts_rainna_la_grande_random.306.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_random_301_room
+    }
+    show_sound = event_gts_breath
+    location = from
+    option = {
+        name = gts_rainna_la_grande_random.305.a
+    }
+}
+
+country_event = {
+    id = gts_rainna_la_grande_random.311
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = {
+        has_country_flag = converted_to_rainna_la_grande
+    }
+    immediate = {
+        # if = {
+        #     limit = {
+        #
+        #     }
+            hidden_effect = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value1
+                    min = 0
+                    max = 2
+                }
+            }
+            hidden_effect = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value2
+                    min = 0
+                    max = 2
+                }
+            }
+            hidden_effect = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value3
+                    min = 0
+                    max = 2
+                }
+            }
+            hidden_effect = {
+                set_variable_to_random_value = {
+                    which = rainna_la_grande_random_value4
+                    min = 0
+                    max = 2
+                }
+            }
+            country_event = {
+                id = gts_rainna_la_grande_random.312
+            }
+        # }
+    }
+}
+
+country_event = {
+    id = gts_rainna_la_grande_random.312
+    title = gts_rainna_la_grande_random.312.title
+    desc = gts_rainna_la_grande_random.312_1.desc
+    desc = gts_rainna_la_grande_random.312_2.desc
+    desc = gts_rainna_la_grande_random.312_3.desc
+    desc = gts_rainna_la_grande_random.312_4.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_random_301_room
+    }
+    show_sound = event_gts_breath
+    location = root
+    immediate = {
+        hidden_effect = {
+            # export_trigger_value_to_variable = {
+            #     trigger = pop_amount
+            #     variable = rainna_la_grande_old_pop_amount
+            # }
+            # # export_modifier_to_variable = {
+            # #     variable = pop_amount
+            # # }
+            owner = {
+                calculate_rainna_la_grande_payment_value_energy = yes
+                calculate_rainna_la_grande_payment_value_alloys = yes
+                calculate_rainna_la_grande_payment_value_consumer_goods = yes
+                calculate_rainna_la_grande_payment_value_food = yes
+                calculate_rainna_la_grande_payment_value_minerals = yes
+                calculate_rainna_la_grande_payment_value_micro = yes
+                calculate_rainna_la_grande_payment_value_micro_city = yes
+                calculate_rainna_la_grande_payment_value_micro_planet = yes
+                half_rainna_la_grande_payment_value = yes
+            }
+        }
+    }
+    option = {
+        name = gts_rainna_la_grande_random.312.a
+        allow = {
+            custom_tooltip = {
+                owner = {
+                    hidden_trigger = {
+                        # num_energy > rainna_la_grande_payment_value_energy
+                        has_country_resource = {
+                            type = energy
+                            amount > rainna_la_grande_payment_value_energy
+                        }
+                    }
+                }
+                fail_text = gts_rainna_la_grande_first_meeting.312.a_fail
+            }
+        }
+        hidden_effect = {
+            owner = {
+                add_resource = {
+                    energy = -1
+                    mult = rainna_la_grande_payment_value_energy
+                }
+            }
+        }
+        custom_tooltip = gts_rainna_la_grande_first_meeting.312.a_tooltip
+    }
+    option = {
+        name = gts_rainna_la_grande_random.312.b
+        trigger = {
+            custom_tooltip = {
+                owner = {
+                    hidden_trigger = {
+                        check_variable = {
+                            which = rainna_la_grande_random_value1
+                            value > 1
+                        }
+                        has_country_resource = {
+                            type = alloys
+                            amount > rainna_la_grande_payment_value_alloys
+                        }
+                    }
+                }
+                fail_text = gts_rainna_la_grande_first_meeting.312.b_fail
+            }
+        }
+        hidden_effect = {
+            owner = {
+                add_resource = {
+                    alloys = -1
+                    mult = rainna_la_grande_payment_value_alloys
+                }
+            }
+        }
+        custom_tooltip = gts_rainna_la_grande_first_meeting.312.b_tooltip
+    }
+    option = {
+        name = gts_rainna_la_grande_random.312.c
+        trigger = {
+            custom_tooltip = {
+                owner = {
+                    hidden_trigger = {
+                        check_variable = {
+                            which = rainna_la_grande_random_value2
+                            value > 1
+                        }
+                        has_country_resource = {
+                            type = consumer_goods
+                            amount > rainna_la_grande_payment_value_consumer_goods
+                        }
+                    }
+                }
+                fail_text = gts_rainna_la_grande_first_meeting.312.c_fail
+            }
+        }
+        hidden_effect = {
+            owner = {
+                add_resource = {
+                    consumer_goods = -1
+                    mult = rainna_la_grande_payment_value_consumer_goods
+                }
+            }
+        }
+        custom_tooltip = gts_rainna_la_grande_first_meeting.312.c_tooltip
+    }
+    option = {
+        name = gts_rainna_la_grande_random.312.d
+        trigger = {
+            custom_tooltip = {
+                hidden_trigger = {
+                    owner = {
+                        check_variable = {
+                            which = rainna_la_grande_random_value3
+                            value > 1
+                        }
+                        has_country_resource = {
+                            type = minerals
+                            amount > rainna_la_grande_payment_value_minerals
+                        }
+                    }
+                    fail_text = gts_rainna_la_grande_first_meeting.312.d_fail
+                }
+            }
+        }
+        hidden_effect = {
+            owner = {
+                add_resource = {
+                    minerals = -1
+                    mult = rainna_la_grande_payment_value_minerals
+                }
+            }
+        }
+        custom_tooltip = gts_rainna_la_grande_first_meeting.312.d_tooltip
+    }
+    option = {
+        name = gts_rainna_la_grande_random.312.e
+        trigger = {
+            custom_tooltip = {
+                hidden_trigger = {
+                    owner = {
+                        check_variable = {
+                            which = rainna_la_grande_random_value4
+                            value > 1
+                        }
+                        has_country_resource = {
+                            type = food
+                            amount > rainna_la_grande_payment_value_food
+                        }
+                    }
+                }
+                fail_text = gts_rainna_la_grande_first_meeting.312.e_fail
+            }
+        }
+        hidden_effect = {
+            owner = {
+                add_resource = {
+                    food = -1
+                    mult = rainna_la_grande_payment_value_food
+                }
+            }
+        }
+        custom_tooltip = gts_rainna_la_grande_first_meeting.312.e_tooltip
+    }
+    option = {
+        name = gts_rainna_la_grande_random.312.f
+        allow = {
+            custom_tooltip = {
+                hidden_trigger = {
+                    owner = {
+                        has_country_resource = {
+                            type = gts_micro
+                            amount > rainna_la_grande_payment_value_gts_micro
+                        }
+                    }
+                }
+                fail_text = gts_rainna_la_grande_random.312.f_fail
+            }
+        }
+        hidden_effect = {
+            owner = {
+                add_resource = {
+                    gts_micro = -1
+                    mult = rainna_la_grande_payment_value_gts_micro
+                }
+            }
+        }
+        custom_tooltip = gts_rainna_la_grande_random.312.f_tooltip
+    }
+    option = {
+        name = gts_rainna_la_grande_random.312.g
+        allow = {
+            custom_tooltip = {
+                hidden_trigger = {
+                    owner = {
+                        has_country_resource = {
+                            type = gts_micro_city
+                            amount > rainna_la_grande_payment_value_gts_micro_city
+                        }
+                    }
+                }
+                fail_text = gts_rainna_la_grande_random.312.g_fail
+            }
+        }
+        hidden_effect = {
+            owner = {
+                add_resource = {
+                    gts_micro_city = -1
+                    mult = rainna_la_grande_payment_value_gts_micro_city
+                }
+            }
+        }
+        custom_tooltip = gts_rainna_la_grande_random.312.g_tooltip
+    }
+    option = {
+        name = gts_rainna_la_grande_random.312.h
+        allow = {
+            custom_tooltip = {
+                hidden_trigger = {
+                    owner = {
+                        has_country_resource = {
+                            type = gts_micro_planet
+                            amount > rainna_la_grande_payment_value_gts_micro_planet
+                        }
+                    }
+                }
+                fail_text = gts_rainna_la_grande_random.312.h_fail
+            }
+        }
+        hidden_effect = {
+            owner = {
+                add_resource = {
+                    gts_micro_planet = -1
+                    mult = rainna_la_grande_payment_value_gts_micro_planet
+                }
+            }
+        }
+        custom_tooltip = gts_rainna_la_grande_random.312.g_tooltip
+    }
+    option = {
+        name = gts_rainna_la_grande_random.312.i
+        owner = {
+            locked_random_list = {
+                4 = {
+                    add_resource = {
+                        influence = -250
+                        mult = 1
+                    }
+                }
+                1 = {
+                    add_resource = {
+                        influence = -500
+                        mult = 1
+                    }
+                }
+            }
+        }
+    }
+}
+
+country_event = {
+    id = gts_rainna_la_grande_random.321
+    hide_window = yes
+    is_triggered_only = yes
+    immediate = {
+        if = {
+            limit = {
+                has_country_flag = converted_to_rainna_la_grande
+            }
+            random_planet_within_border = {
+                limit = {
+                    has_owner = yes
+                    is_colony = yes
+                }
+                planet_event = {
+                    id = gts_rainna_la_grande_random.322
+                }
+            }
+        }
+    }
+}
+
+planet_event = {
+    id = gts_rainna_la_grande_random.322
+    title = gts_rainna_la_grande_random.322.title
+    desc = gts_rainna_la_grande_random.322_1.desc
+    desc = gts_rainna_la_grande_random.322_2.desc
+    desc = gts_rainna_la_grande_random.322_3.desc
+    desc = gts_rainna_la_grande_random.322_4.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "gts_horizontal_event_window_wide_button"
+    custom_gui_option = "gts_horizontal_event_button_wide_button"
+    picture_event_data = {
+        room = gts_rainna_la_grande_random_322_room
+    }
+    show_sound = event_gts_breath
+    location = root
+    option = {
+        name = gts_rainna_la_grande_random.322.a
+        locked_random_list = {
+            10 = {
+                add_modifier = {
+                    modifier = rainna_la_grande_miraculum_1
+                    years = 1
+                }
+            }
+            10 = {
+                add_modifier = {
+                    modifier = rainna_la_grande_miraculum_2
+                    years = 1
+                }
+            }
+            10 = {
+                add_modifier = {
+                    modifier = rainna_la_grande_miraculum_3
+                    years = 1
+                }
+            }
+            10 = {
+                add_modifier = {
+                    modifier = rainna_la_grande_miraculum_4
+                    years = 1
+                }
+            }
+            10 = {
+                add_modifier = {
+                    modifier = rainna_la_grande_miraculum_5
+                    years = 1
+                }
+            }
+            10 = {
+                add_modifier = {
+                    modifier = rainna_la_grande_miraculum_6
+                    years = 1
+                }
+            }
+            1 = {
+                add_modifier = {
+                    modifier = rainna_la_grande_miraculum_7
+                    years = 1
+                }
+            }
+            1 = {
+                add_modifier = {
+                    modifier = rainna_la_grande_miraculum_8
+                    years = 1
+                }
+            }
+        }
+    }
+}
+
+country_event = {
+    id = gts_rainna_la_grande_random.401
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = {
+        OR = {
+            is_ai = no
+        }
+    }
+    immediate = {
+        # if = {
+        #     limit = {
+        #         is_ai = no
+        #     }
+            if = {
+                limit = {
+                    OR = {
+                        check_variable = {
+                            which = rainna_la_grande_debt_slot_1_overdue_months
+                            value > 1
+                        }
+                        check_variable = {
+                            which = rainna_la_grande_debt_slot_2_overdue_months
+                            value > 1
+                        }
+                        check_variable = {
+                            which = rainna_la_grande_debt_slot_3_overdue_months
+                            value > 1
+                        }
+                        check_variable = {
+                            which = rainna_la_grande_debt_slot_4_overdue_months
+                            value > 1
+                        }
+                    }
+                }
+                if = {
+                    limit = {
+                        has_country_flag = rainna_la_grande_debt_first_time_overdue
+                    }
+                    country_event = {
+                        id = gts_rainna_la_grande_random.402
+                        days = 1
+                        random = 90
+                    }
+                }
+                else_if = {
+                    limit = {
+                        count_owned_planet = {
+                            limit = {
+                                rainna_la_grande_is_not_main_planet = yes
+                            }
+                            count > 1
+                        }
+                        count_owned_planet = {
+                            count > 2
+                        }
+                    }
+                    random_list = {
+                        3 = {
+                            country_event = {
+                                id = gts_rainna_la_grande_random.411
+                                days = 1
+                                random = 90
+                            }
+                        }
+                        1 = {
+                            country_event = {
+                                id = gts_rainna_la_grande_random.421
+                                days = 1
+                                random = 90
+                            }
+                        }
+                    }
+                }
+                else = {
+                    country_event = {
+                        id = gts_rainna_la_grande_random.411
+                        days = 1
+                        random = 90
+                    }
+                }
+                remove_country_flag = rainna_la_grande_debt_first_time_overdue
+            }
+        # }
+    }
+}
+
+country_event = {
+    id = gts_rainna_la_grande_random.402
+    title = gts_rainna_la_grande_random.402.title
+    desc = gts_rainna_la_grande_random.402_1.desc
+    desc = gts_rainna_la_grande_random.402_2.desc
+    desc = gts_rainna_la_grande_random.402_3.desc
+    desc = gts_rainna_la_grande_random.402_4.desc
+    is_triggered_only = yes
+    picture = GFX_gts_rainna_la_grande_first_meeting_event41
+    show_sound = event_gts_breath
+    location = root
+    immediate = {
+        rainna_la_grande_delay_debt_due = yes
+    }
+    option = {
+        name = gts_rainna_la_grande_random.402.a
+        # custom_tooltip = gts_rainna_la_grande_rando.402.a_tooltip
+    }
+}
+
+country_event = {
+    id = gts_rainna_la_grande_random.411
+    title = gts_rainna_la_grande_random.411.title
+    desc = gts_rainna_la_grande_random.411_1.desc
+    desc = gts_rainna_la_grande_random.411_2.desc
+    is_triggered_only = yes
+    picture = GFX_gts_rainna_la_grande_first_meeting_event41
+    show_sound = event_air_raid_siren
+    location = event_target:rainna_la_grande_this_solar_system
+    immediate = {
+        hidden_effect = {
+            if = {
+                limit = {
+                    NOT = {
+                        has_global_flag = rainna_la_grande_no_physical_effect
+                    }
+                }
+                if = {
+                    limit = {
+                        any_owned_fleet = {
+                            is_civilian = no
+                            fleet_power > 1000
+                        }
+                    }
+                    random_owned_fleet = {
+                        limit = {
+                            is_civilian = no
+                            fleet_power > 1000
+                        }
+                        save_event_target_as = rainna_la_grande_this_fleet
+                    }
+                }
+                else_if = {
+                    limit = {
+                        any_owned_fleet = {
+                            always = yes
+                        }
+                    }
+                    random_owned_fleet = {
+                        save_event_target_as = rainna_la_grande_this_fleet
+                    }
+                }
+                else = {
+                    random_planet_within_border = {
+                        limit = {
+                            is_colony = yes
+                        }
+                        destroy_colony = yes
+                        gts_destroy_planet = yes
+                    }
+                }
+                event_target:rainna_la_grande_this_fleet = {
+                    solar_system = {
+                        save_event_target_as = rainna_la_grande_this_solar_system
+                        every_fleet_in_system = {
+                            if = {
+                                limit = {
+                                    leader = {
+                                        is_special_leader = yes
+                                    }
+                                }
+                                destroy_fleet = {
+                                    target = this
+                                    kill_leader = no
+                                }
+                            }
+                            else = {
+                                destroy_fleet = {
+                                    target = this
+                                    kill_leader = yes
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    after = {
+        hidden_effect = {
+            country_event = {
+                id = gts_rainna_la_grande_random.412
+            }
+        }
+    }
+    option = {
+        name = gts_rainna_la_grande_random.411.a
+        # custom_tooltip = gts_rainna_la_grande_rando.402.a_tooltip
+    }
+}
+
+country_event = {
+    id = gts_rainna_la_grande_random.412
+    title = gts_rainna_la_grande_random.412.title
+    desc = gts_rainna_la_grande_random.412_1.desc
+    desc = gts_rainna_la_grande_random.412_2.desc
+    desc = gts_rainna_la_grande_random.412_3.desc
+    desc = gts_rainna_la_grande_random.412_4.desc
+    is_triggered_only = yes
+    picture = GFX_gts_rainna_la_grande_first_meeting_event41
+    show_sound = event_gts_breath
+    option = {
+        name = gts_rainna_la_grande_random.402.a
+        custom_tooltip = gts_rainna_la_grande_random.412.a_tooltip
+        hidden_effect = {
+            rainna_la_grande_reduce_debt_slot = {
+                SLOT = 1
+                MIN = 12
+                MAX = 25
+            }
+            rainna_la_grande_reduce_debt_slot = {
+                SLOT = 2
+                MIN = 12
+                MAX = 25
+            }
+            rainna_la_grande_reduce_debt_slot = {
+                SLOT = 3
+                MIN = 12
+                MAX = 25
+            }
+            rainna_la_grande_reduce_debt_slot = {
+                SLOT = 4
+                MIN = 12
+                MAX = 25
+            }
+            rainna_la_grande_delay_debt_due = yes
+        }
+    }
+}
+
+country_event = {
+    id = gts_rainna_la_grande_random.421
+    title = gts_rainna_la_grande_random.421.title
+    desc = gts_rainna_la_grande_random.421_1.desc
+    desc = gts_rainna_la_grande_random.421_2.desc
+    is_triggered_only = yes
+    picture = GFX_gts_rainna_la_grande_first_meeting_event41
+    show_sound = event_air_raid_siren
+    location = event_target:rainna_la_grande_this_planet
+    immediate = {
+        hidden_effect = {
+            if = {
+                limit = {
+                    NOT = {
+                        has_global_flag = rainna_la_grande_no_physical_effect
+                    }
+                }
+                random_planet_within_border = {
+                    limit = {
+                        is_colony = yes
+                        rainna_la_grande_is_not_main_planet = yes
+                    }
+                    save_event_target_as = rainna_la_grande_this_planet
+                    if = {
+                        limit = {
+                            has_district >= 4
+                        }
+                        owner = {
+                            set_country_flag = rainna_la_grande_debt_overdue_planet_type_0
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            has_district >= 7
+                        }
+                        owner = {
+                            set_country_flag = rainna_la_grande_debt_overdue_planet_type_1
+                        }
+                    }
+                    destroy_colony = yes
+                    clear_deposits = yes
+                    clear_planet_modifiers = yes
+                    remove_planet = yes
+                }
+            }
+        }
+    }
+    after = {
+        hidden_effect = {
+            country_event = {
+                id = gts_rainna_la_grande_random.422
+            }
+        }
+    }
+    option = {
+        name = gts_rainna_la_grande_random.421.a
+        # custom_tooltip = gts_rainna_la_grande_rando.402.a_tooltip
+    }
+}
+
+country_event = {
+    id = gts_rainna_la_grande_random.422
+    title = gts_rainna_la_grande_random.422.title
+    desc = gts_rainna_la_grande_random.422_1.desc
+    desc = gts_rainna_la_grande_random.422_2.desc
+    desc = gts_rainna_la_grande_random.422_3.desc
+    desc = gts_rainna_la_grande_random.422_4.desc
+    is_triggered_only = yes
+    picture = GFX_gts_rainna_la_grande_first_meeting_event41
+    show_sound = event_gts_breath
+    option = {
+        name = gts_rainna_la_grande_random.402.a
+        custom_tooltip = gts_rainna_la_grande_random.412.a_tooltip
+        hidden_effect = {
+            if = {
+                limit = {
+                    has_country_flag = rainna_la_grande_debt_overdue_planet_type_1
+                }
+                rainna_la_grande_reduce_debt_slot = {
+                    SLOT = 1
+                    MIN = 75
+                    MAX = 99
+                }
+                rainna_la_grande_reduce_debt_slot = {
+                    SLOT = 2
+                    MIN = 75
+                    MAX = 99
+                }
+                rainna_la_grande_reduce_debt_slot = {
+                    SLOT = 3
+                    MIN = 75
+                    MAX = 99
+                }
+                rainna_la_grande_reduce_debt_slot = {
+                    SLOT = 4
+                    MIN = 75
+                    MAX = 99
+                }
+            }
+            else_if = {
+                limit = {
+                    has_country_flag = rainna_la_grande_debt_overdue_planet_type_0
+                }
+                rainna_la_grande_reduce_debt_slot = {
+                    SLOT = 1
+                    MIN = 40
+                    MAX = 65
+                }
+                rainna_la_grande_reduce_debt_slot = {
+                    SLOT = 2
+                    MIN = 40
+                    MAX = 65
+                }
+                rainna_la_grande_reduce_debt_slot = {
+                    SLOT = 3
+                    MIN = 40
+                    MAX = 65
+                }
+                rainna_la_grande_reduce_debt_slot = {
+                    SLOT = 4
+                    MIN = 40
+                    MAX = 65
+                }
+            }
+            else = {
+                rainna_la_grande_reduce_debt_slot = {
+                    SLOT = 1
+                    MIN = 6
+                    MAX = 18
+                }
+                rainna_la_grande_reduce_debt_slot = {
+                    SLOT = 2
+                    MIN = 6
+                    MAX = 18
+                }
+                rainna_la_grande_reduce_debt_slot = {
+                    SLOT = 3
+                    MIN = 6
+                    MAX = 18
+                }
+                rainna_la_grande_reduce_debt_slot = {
+                    SLOT = 4
+                    MIN = 6
+                    MAX = 18
+                }
+            }
+            rainna_la_grande_delay_debt_due = yes
+        }
+    }
+}

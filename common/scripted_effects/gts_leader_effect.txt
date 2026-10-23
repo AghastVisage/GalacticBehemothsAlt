@@ -13,7 +13,11 @@ gts_leader_creator = {
 		if = {
 			#若领袖不存在
 			limit = { NOT = { exists = event_target:$TARGET$ } }
-			[[!HAS_SELF_COUNTRY_TARGET] create_gts_default_country = { TARGET = $TARGET$ }]
+			# Debug recruitment may run before the leader's story creates its country.
+			if = {
+				limit = { NOT = { exists = event_target:$TARGET$_country_target } }
+				create_gts_default_country = { TARGET = $TARGET$ }
+			}
 			event_target:$TARGET$_country_target = {
 				create_gts_species = { SIZE = $SIZE|GTS$ LEADER_PORTRAIT = $LEADER_PORTRAIT$  } # SIZE = GTS/TINY
 				create_leader = {
@@ -22,11 +26,11 @@ gts_leader_creator = {
 					name = $NAME$
 					skill = 1
 					gender = $GENDER|female$
-					event_leader = $EVENT_LEADER$ # Leader is allowed to lead factions and win elections
+					event_leader = $EVENT_LEADER|no$ # Leader is allowed to lead factions and win elections
 					background_ethic = ethic_$ETHIC$
-					custom_description = $DESC$
-					custom_catch_phrase = $CATCH_PHRASE$
-					immortal = $IMMORTAL$
+					[[DESC] custom_description = $DESC$ ]
+					[[CATCH_PHRASE] custom_catch_phrase = $CATCH_PHRASE$ ]
+					immortal = $IMMORTAL|yes$
 					set_age = $AGE|17$
 					randomize_traits = $RANDOMIZE_TRAITS$
 					[[GTS_TARGET_PLANET]
@@ -49,6 +53,7 @@ gts_leader_creator = {
 			}
 		}
 		event_target:$TARGET$ = {
+			save_event_target_as = gts_leader
 			# 设置传奇或英杰领袖默认FLAG
 			# TYPE = legendary/renowned
 			hidden_effect = {
@@ -94,13 +99,35 @@ gts_leader_hire_effect = {
 	# 领袖的gts_leader 为最近创建的领袖，如果中途招募其他领袖可能会出现严重错误
 	hidden_effect = {
 		# 领袖招募flag和修改所有权
-		gts_leader_owner_change = yes
+		event_target:gts_leader = {
+            set_owner = root
+            set_leader_flag = hired_gts_leader
+        }
 		# 增加默认特质
-		add_leader_default_trait = yes
+		event_target:gts_leader = {
+            add_trait = { trait = gts_leader_item_i_all show_message = no }
+			add_trait = { trait = gts_leader_item_p_all show_message = no }
+            subtract_variable = { which = leader_start_level value = 1 }
+            add_skill_without_trait_selection = leader_start_level
+        }
 		# 增加国家领袖上限
-		add_country_default_modifier = yes
+		add_modifier = { modifier = gts_leader_upkeep_add }
 		# 巨娘领袖招募消息 TYPE = legendary/renowned
-		gts_hired_leader_message = { type = $TYPE|legendary$ }
+		create_message = {
+		type = MESSAGE_RECRUITED_LEADER
+		localization =  MESSAGE_RECRUITED_LEADER_DESC
+		days = @toast_message_days
+		target = event_target:gts_leader
+		variable = {
+			type = name
+			localization = LEADER
+			scope = event_target:gts_leader
+		}
+		variable = {
+			key = "border"
+			value = "GFX_border_$TYPE|legendary$" #"GFX_border_veteran"
+		}
+	}
 	}
 }
 # 创建领袖的巨娘或小人种族 GTS or TINY
@@ -157,6 +184,10 @@ add_leader_default_trait = {
 	event_target:gts_leader = {
 		add_trait = {
 			trait = gts_leader_item_i_all
+			show_message = no
+		}
+		add_trait = {
+			trait = gts_leader_item_p_all
 			show_message = no
 		}
 		add_leader_skills = yes
@@ -223,12 +254,25 @@ add_ultracompany_leader_trait = {
 # From = Leader
 revive_gts_leader = {
 	if = {
-		limit = { From = { is_gts_leader = { name = $name$ } } }
-		if = { limit = { NOT = { exists = event_target:gts_$name$_country_target } }
-			create_gts_default_country = { TARGET = gts_$name$ } }
-		event_target:gts_$name$_country_target  = {
+		limit = {
+			from = { has_leader_flag = gts_$name$ }
+			# A notify/death pair must not clone the same leader twice.
+			OR = {
+				NOT = { exists = event_target:gts_$name$ }
+				event_target:gts_$name$ = { is_same_value = from }
+			}
+		}
+		if = {
+			limit = { ruler = { is_same_value = from } }
+			from = { set_leader_flag = gts_revived_as_ruler }
+		}
+		if = {
+			limit = { NOT = { exists = event_target:gts_$name$_country_target } }
+			create_gts_default_country = { TARGET = gts_$name$ }
+		}
+		event_target:gts_$name$_country_target = {
 			clone_leader = {
-				target = From
+				target = from
 				[[GTS_TARGET_PLANET]
 					background_planet = event_target:$GTS_TARGET_PLANET$
 				]
@@ -237,28 +281,27 @@ revive_gts_leader = {
 				]
 				effect = {
 					save_global_event_target_as = gts_$name$
-					save_global_event_target_as = gts_leader
-					save_global_event_target_as = gts_revive_leader
-					copy_flags_and_variables_from = From
-					set_owner = prev
+					save_event_target_as = gts_leader
+					save_event_target_as = gts_revive_leader
+					copy_flags_and_variables_from = from
+					set_owner = root
 					[[gts_target_job] change_background_job = $gts_target_job$ ]
-					set_years_served = From
+					set_years_served = from
 				}
 			}
 		}
-		gts_leader_hire_effect = yes
+		# Cloning preserves level and traits; do not apply a new-hire level bonus.
+		event_target:gts_revive_leader = { gts_love_normal_system_check = yes }
 		if = {
 			limit = { exists = event_target:gts_$name$_fleet }
-			event_target:gts_$name$_fleet = {
-				set_leader = event_target:gts_$name$
-			}
+			event_target:gts_$name$_fleet = { set_leader = event_target:gts_$name$ }
 		}
-		# 统治者和非统治者触发不同的事件
-		if = { limit = { ruler_is_gts_leader = { name = $name$} }
-			country_event = { id = $ruler_event$ days = 3}
+		if = {
+			limit = { event_target:gts_revive_leader = { has_leader_flag = gts_revived_as_ruler } }
+			country_event = { id = $ruler_event$ days = 3 }
 		}
-		else = { country_event = { id = $event$ days = 3} }
-
+		else = { country_event = { id = $event$ days = 3 } }
+		event_target:gts_revive_leader = { remove_leader_flag = gts_revived_as_ruler }
 	}
 }
 restore_gts_leader_location = {

@@ -1,3 +1,4 @@
+
 tr_nanotech_adopt = {
 	possible = {
 		custom_tooltip = {
@@ -33,6 +34,11 @@ tr_nanotech_1 = {
 		planet_miners_minerals_produces_add = -1
 		planet_miners_nanites_produces_add = 0.2
 	}
+	ai_weight = {
+		factor = 1000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_nanotech_1_gts
 		inherit_effects = yes
@@ -40,7 +46,6 @@ tr_nanotech_1 = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -51,14 +56,13 @@ tr_nanotech_1 = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
-	}
-	ai_weight = {
-		factor = 1000
 	}
 }
 
@@ -72,6 +76,11 @@ tr_nanotech_2 = {
 			progress = 0.33
 		}
 	}
+	ai_weight = {
+		factor = 1000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_nanotech_2_gts
 		inherit_effects = yes
@@ -79,7 +88,6 @@ tr_nanotech_2 = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -90,44 +98,19 @@ tr_nanotech_2 = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
-	}
-	ai_weight = {
-		factor = 1000
 	}
 }
 
 tr_nanotech_3 = {
 	possible = {
 		has_tradition = tr_nanotech_1
-	}
-	tradition_swap = {
-		name = tr_nanotech_3_gts
-		inherit_effects = yes
-		inherit_icon = yes
-		trigger = {
-			gts_is_giantess_empire = yes
-		}
-
-		weight = {
-			factor = 10
-		}
-	}
-	tradition_swap = {
-		name = tr_nanotech_3_tiny
-		inherit_effects = yes
-		inherit_icon = yes
-		trigger = {
-			gts_is_tiny_empire = yes
-		}
-
-		weight = {
-			factor = 10
-		}
 	}
 	custom_tooltip = tr_nanotech_3_modifier_desc
 	#Unlocks Starbase Building and Make Nanite World Decision
@@ -147,35 +130,44 @@ tr_nanotech_3 = {
 			factor = 1000
 		}
 	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
+	tradition_swap = {
+		name = tr_nanotech_3_gts
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_giantess_empire = yes
+			NOT = {
+				is_nomadic = yes
+			}
+		}
+		weight = {
+			factor = 1001
+		}
+	}
+	tradition_swap = {
+		name = tr_nanotech_3_tiny
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
+			NOT = {
+				is_nomadic = yes
+			}
+		}
+		weight = {
+			factor = 1001
+		}
+	}
 }
 
 tr_nanotech_4 = {
 	possible = {
 		has_tradition = tr_nanotech_2
-	}
-	tradition_swap = {
-		name = tr_nanotech_4_gts
-		inherit_effects = yes
-		inherit_icon = yes
-		trigger = {
-			gts_is_giantess_empire = yes
-		}
-
-		weight = {
-			factor = 10
-		}
-	}
-	tradition_swap = {
-		name = tr_nanotech_4_tiny
-		inherit_effects = yes
-		inherit_icon = yes
-		trigger = {
-			gts_is_tiny_empire = yes
-		}
-
-		weight = {
-			factor = 10
-		}
 	}
 	custom_tooltip = tr_nanotech_4_modifier_desc
 	#Unlocks Nanite Swarmer ship and nanite ship component research options
@@ -199,6 +191,33 @@ tr_nanotech_4 = {
 	ai_weight = {
 		factor = 1000
 	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
+	tradition_swap = {
+		name = tr_nanotech_4_gts
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_giantess_empire = yes
+		}
+		weight = {
+			factor = 10
+		}
+	}
+	tradition_swap = {
+		name = tr_nanotech_4_tiny
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
+		}
+		weight = {
+			factor = 10
+		}
+	}
 }
 
 tr_nanotech_5 = {
@@ -206,6 +225,14 @@ tr_nanotech_5 = {
 		has_tradition = tr_nanotech_3
 		has_tradition = tr_nanotech_4
 	}
+	custom_tooltip_with_modifiers = tr_nanotech_5_modifier_desc
+	#Unlocks the nanite edicts
+	#Every 5 years, double the size of orbital nanite deposits that you're harvesting, up to a max of 50 OR spawns a number of nanite swarmers depending on the size of the deposit
+	ai_weight = {
+		factor = 1000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_nanotech_5_gts
 		inherit_effects = yes
@@ -213,7 +240,6 @@ tr_nanotech_5 = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -224,16 +250,12 @@ tr_nanotech_5 = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
-	}
-	custom_tooltip_with_modifiers = tr_nanotech_5_modifier_desc
-	#Unlocks the nanite edicts
-	#Every 5 years, double the size of orbital nanite deposits that you're harvesting, up to a max of 50 OR spawns a number of nanite swarmers depending on the size of the deposit
-	ai_weight = {
-		factor = 1000
 	}
 }

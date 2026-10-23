@@ -481,18 +481,32 @@ country_event = {
         response_text = gts_hitomi.10.e.response
         hide_option_if_not_allowed = yes
         trigger = {
+            exists = event_target:gts_hitomi
             event_target:gts_hitomi = {
-                has_trait = gts_trait_hitomi3
+                OR = {
+                    has_trait = gts_trait_hitomi3
+                    has_trait = gts_trait_hitomi3_ora
+                }
             }
         }
         hidden_effect = {
             event_target:gts_hitomi = {
-                add_trait = {
-                    trait = gts_trait_hitomi4
-                    show_message = no
+                if = {
+                    limit = { has_trait = gts_trait_hitomi3_ora }
+                    remove_trait = gts_trait_hitomi3_ora
+                    add_trait = {
+                        trait = gts_trait_hitomi4_ora
+                        show_message = no
+                    }
+                }
+                else = {
+                    remove_trait = gts_trait_hitomi3
+                    add_trait = {
+                        trait = gts_trait_hitomi4
+                        show_message = no
+                    }
                 }
                 change_leader_portrait = gts_portrait_hitomi_3
-                remove_trait = gts_trait_hitomi3
             }
         }
     }
@@ -502,16 +516,80 @@ country_event = {
         response_text = gts_hitomi.10.e2.response
         hide_option_if_not_allowed = yes
         trigger = {
+            exists = event_target:gts_hitomi
             event_target:gts_hitomi = {
-                has_trait = gts_trait_hitomi4
+                OR = {
+                    has_trait = gts_trait_hitomi4
+                    has_trait = gts_trait_hitomi4_ora
+                }
             }
         }
         hidden_effect = {
             event_target:gts_hitomi = {
+                if = {
+                    limit = { has_trait = gts_trait_hitomi4_ora }
+                    remove_trait = gts_trait_hitomi4_ora
+                    add_trait = {
+                        trait = gts_trait_hitomi3_ora
+                        show_message = no
+                    }
+                }
+                else = {
+                    remove_trait = gts_trait_hitomi4
+                    add_trait = {
+                        trait = gts_trait_hitomi3
+                        show_message = no
+                    }
+                }
                 change_leader_portrait = gts_portrait_hitomi
-                remove_trait = gts_trait_hitomi4
+            }
+        }
+    }
+    option = {
+        name = gts_hitomi.10.ora_anomaly_mode
+        is_dialog_only = yes
+        hide_option_if_not_allowed = yes
+        trigger = {
+            check_variable = { which = gts_ora_hitomi_reward value = 4 }
+            any_owned_leader = {
+                has_leader_flag = gts_mitsuki_hitomi
+                has_trait = gts_trait_hitomi10
+            }
+        }
+        hidden_effect = {
+            every_owned_leader = {
+                limit = {
+                    has_leader_flag = gts_mitsuki_hitomi
+                    has_trait = gts_trait_hitomi10
+                }
+                remove_trait = gts_trait_hitomi10
                 add_trait = {
-                    trait = gts_trait_hitomi3
+                    trait = gts_trait_hitomi10_ora
+                    show_message = no
+                }
+            }
+        }
+    }
+    option = {
+        name = gts_hitomi.10.ora_archaeology_mode
+        is_dialog_only = yes
+        hide_option_if_not_allowed = yes
+        trigger = {
+            check_variable = { which = gts_ora_hitomi_reward value = 4 }
+            any_owned_leader = {
+                has_leader_flag = gts_mitsuki_hitomi
+                has_trait = gts_trait_hitomi10_ora
+            }
+        }
+        hidden_effect = {
+            every_owned_leader = {
+                limit = {
+                    has_leader_flag = gts_mitsuki_hitomi
+                    has_trait = gts_trait_hitomi10_ora
+                }
+                remove_trait = gts_trait_hitomi10_ora
+                add_trait = {
+                    trait = gts_trait_hitomi10
                     show_message = no
                 }
             }
@@ -1702,7 +1780,7 @@ planet_event = {
             change_pc = pc_ringworld_habitable_damaged
         }
 
-        # 轉變成愛液星球
+        # 轉變成崩坏星球
 
         else = {
             clear_planet_modifiers = yes
@@ -2766,6 +2844,9 @@ country_event = {
         }
         tag = hire_leader
         name = gts_hitomi.425.i
+        hidden_effect = {
+            event_target:gts_hitomi = { add_trait = { trait = gts_trait_hitomi6 } }
+        }
     }
     option = {
         name = DISMISS
@@ -2774,36 +2855,7 @@ country_event = {
         }
     }
 }
-country_event = {
-    #
-    id = gts_hitomi.425
-    title = gts_hitomi.425.name
-    desc = gts_hitomi_DESCText
-    # picture = GFX_evt_atmospheric_entry
-    show_sound = event_default
-    custom_gui = "gts_hitomi_background_gui"
-    custom_gui_option = gts_hitomi_option_gui
-    diplomatic = yes
-    is_triggered_only = yes
-    fire_only_once = yes
-    trigger = {
-
-    }
-    immediate = {
-        event_target:gts_hitomi = {
-            add_trait = {
-                trait = gts_trait_hitomi6
-            }
-        }
-    }
-    option = {
-        name = gts_hitomi.425.a
-        hidden_effect = {
-        }
-    }
-    after = {
-    }
-}
+# gts_hitomi.425 is defined above; its final choice grants gts_trait_hitomi6.
 country_event = {
     #
     id = gts_hitomi.426
@@ -2876,6 +2928,16 @@ country_event = {
         hidden_effect = {
             add_modifier = {
                 modifier = gts_leader_upkeep_add
+            }
+        }
+    }
+    after = {
+        if = {
+            limit = {
+                has_country_flag = gts_ora_hitomi_waiting
+            }
+            country_event = {
+                id = gts_ora.4404
             }
         }
     }
@@ -3379,14 +3441,22 @@ country_event = {
     is_triggered_only = yes
     hide_window = yes
     immediate = {
-        random_system_within_border = {
-            spawn_system = {
-                min_distance >= 10
-                max_distance <= 30
-                max_jumps = 0
-                initializer = gts_mitsuki_hitomi_system
-            }
-        }
+        random_system = {
+ limit = { gts_intel_anchor_system = { COUNTRY = root } }
+ save_event_target_as = gts_intel_spawn_anchor
+ 
+ spawn_system = {
+ min_distance = 10
+ max_distance = 30
+ max_jumps = 0
+ hyperlane = no
+ initializer = gts_mitsuki_hitomi_system
+ effect = {
+  add_hyperlane = { from = this to = event_target:gts_intel_spawn_anchor }
+  
+ }
+}
+}
     }
     after = {
     }
@@ -3661,11 +3731,6 @@ country_event = {
             gts_create_mitsuki_hitomi_fleet = yes
             event_target:gts_mitsuki_hitomi_fleet = {
                 assign_leader = event_target:gts_mitsuki_hitomi
-            }
-        }
-        event_target:gts_bronya = {
-            add_trait = {
-                trait = gts_trait_leader_bronya_silverwing
             }
         }
     }

@@ -1,0 +1,3169 @@
+namespace = gts_rainna_la_grande_arch
+
+fleet_event = {
+    id = gts_rainna_la_grande_arch.01
+    title = gts_rainna_la_grande_arch.01.name
+    desc = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_trait = trait_Micro
+                    has_trait = trait_Nano
+                }
+            }
+        }
+        text = gts_rainna_la_grande_arch.01_micro.desc
+    }
+    desc = {
+        trigger = {
+            owner_main_species = {
+                has_trait = trait_Tiny
+            }
+        }
+        text = gts_rainna_la_grande_arch.01_tiny.desc
+    }
+    desc = {
+        trigger = {
+            owner_main_species = {
+                has_trait = trait_Small
+            }
+        }
+        text = gts_rainna_la_grande_arch.01_small.desc
+    }
+    desc = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_trait = trait_Normal
+                    # has_trait = trait_multi_size
+                    NOR = {
+                        has_trait = trait_Nano
+                        has_trait = trait_Micro
+                        has_trait = trait_Tiny
+                        has_trait = trait_Small
+                        has_trait = trait_Tall
+                        has_trait = trait_Giant
+                        has_trait = trait_Titan
+                        has_trait = trait_Ultra
+                    }
+                }
+            }
+        }
+        text = gts_rainna_la_grande_arch.01_normal.desc
+    }
+    desc = {
+        trigger = {
+            owner_main_species = {
+                has_trait = trait_Tall
+            }
+        }
+        text = gts_rainna_la_grande_arch.01_tall.desc
+    }
+    desc = {
+        trigger = {
+            owner_main_species = {
+                has_trait = trait_Giant
+            }
+        }
+        text = gts_rainna_la_grande_arch.01_giant.desc
+    }
+    desc = {
+        trigger = {
+            owner_main_species = {
+                has_trait = trait_Titan
+            }
+        }
+        text = gts_rainna_la_grande_arch.01_titan.desc
+    }
+    desc = {
+        trigger = {
+            owner_main_species = {
+                has_trait = trait_Ultra
+            }
+        }
+        text = gts_rainna_la_grande_arch.01_ultra.desc
+    }
+
+    picture = {
+        trigger = {
+            owner_main_species = {
+                has_trait = trait_Micro
+            }
+        }
+        picture = GFX_gts_rainna_la_grande_arch_event1_micro1
+    }
+    picture = {
+        trigger = {
+            owner_main_species = {
+                NOR = {
+                    has_trait = trait_Nano
+                    has_trait = trait_Micro
+                    has_trait = trait_Tall
+                    has_trait = trait_Giant
+                    has_trait = trait_Titan
+                    has_trait = trait_Ultra
+                }
+            }
+        }
+        picture = GFX_gts_rainna_la_grande_arch_event1_tiny1
+    }
+    picture = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_trait = trait_Tall
+                    has_trait = trait_Giant
+                }
+            }
+        }
+        picture = GFX_gts_rainna_la_grande_arch_event1_tall1
+    }
+    picture = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_trait = trait_Titan
+                    has_trait = trait_Ultra
+                }
+            }
+        }
+        picture = GFX_gts_rainna_la_grande_arch_event1_titan1
+    }
+    show_sound = event_dig_site
+    archaeology = yes
+    is_triggered_only = yes
+    immediate = {
+        from = {
+            set_site_progress_locked = yes
+        }
+    }
+    after = {
+        from = {
+            set_site_progress_locked = no
+        }
+    }
+    option = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_trait = trait_Micro
+                    has_trait = trait_Nano
+                }
+            }
+        }
+        name = gts_rainna_la_grande_arch.01_micro.a
+        hidden_effect = {
+            set_global_flag = gts_rainna_la_grande_arch_1_micro_1
+        }
+        # arch_1：1号坟，micro_1：trait_Micro的微生物选的第1条线。
+    }
+    option = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_trait = trait_Micro
+                    has_trait = trait_Nano
+                }
+            }
+        }
+        name = gts_rainna_la_grande_arch.01_micro.b
+        hidden_effect = {
+            set_global_flag = gts_rainna_la_grande_arch_1_micro_1
+        }
+    }
+    option = {
+        trigger = {
+            owner_main_species = {
+                has_trait = trait_Tiny
+            }
+        }
+        name = gts_rainna_la_grande_arch.01_tiny.a
+        hidden_effect = {
+            set_global_flag = gts_rainna_la_grande_arch_1_tiny_1
+        }
+    }
+    option = {
+        trigger = {
+            owner_main_species = {
+                has_trait = trait_Tiny
+            }
+        }
+        name = gts_rainna_la_grande_arch.01_tiny.b
+        hidden_effect = {
+            set_global_flag = gts_rainna_la_grande_arch_1_tiny_2
+        }
+    }
+    option = {
+        trigger = {
+            owner_main_species = {
+                has_trait = trait_Small
+            }
+        }
+        name = gts_rainna_la_grande_arch.01_small.a
+        hidden_effect = {
+            set_global_flag = gts_rainna_la_grande_arch_1_small_1
+        }
+    }
+    option = {
+        trigger = {
+            owner_main_species = {
+                has_trait = trait_Small
+            }
+        }
+        name = gts_rainna_la_grande_arch.01_small.b
+        hidden_effect = {
+            set_global_flag = gts_rainna_la_grande_arch_1_small_2
+        }
+    }
+    option = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_trait = trait_Normal
+                    # has_trait = trait_multi_size
+                    NOR = {
+                        has_trait = trait_Nano
+                        has_trait = trait_Micro
+                        has_trait = trait_Tiny
+                        has_trait = trait_Small
+                        has_trait = trait_Tall
+                        has_trait = trait_Giant
+                        has_trait = trait_Titan
+                        has_trait = trait_Ultra
+                    }
+                }
+            }
+        }
+        name = gts_rainna_la_grande_arch.01_normal.a
+        hidden_effect = {
+            set_global_flag = gts_rainna_la_grande_arch_1_normal_1
+        }
+    }
+    option = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_trait = trait_Normal
+                    # has_trait = trait_multi_size
+                    NOR = {
+                        has_trait = trait_Nano
+                        has_trait = trait_Micro
+                        has_trait = trait_Tiny
+                        has_trait = trait_Small
+                        has_trait = trait_Tall
+                        has_trait = trait_Giant
+                        has_trait = trait_Titan
+                        has_trait = trait_Ultra
+                    }
+                }
+            }
+        }
+        name = gts_rainna_la_grande_arch.01_normal.b
+        hidden_effect = {
+            set_global_flag = gts_rainna_la_grande_arch_1_normal_2
+        }
+    }
+    option = {
+        trigger = {
+            owner_main_species = {
+                has_trait = trait_Tall
+            }
+        }
+        name = gts_rainna_la_grande_arch.01_tall.a
+        hidden_effect = {
+            set_global_flag = gts_rainna_la_grande_arch_1_tall_1
+        }
+    }
+    option = {
+        trigger = {
+            owner_main_species = {
+                has_trait = trait_Tall
+            }
+        }
+        name = gts_rainna_la_grande_arch.01_tall.b
+        hidden_effect = {
+            set_global_flag = gts_rainna_la_grande_arch_1_tall_2
+        }
+    }
+    option = {
+        trigger = {
+            owner_main_species = {
+                has_trait = trait_Giant
+            }
+        }
+        name = gts_rainna_la_grande_arch.01_giant.a
+        hidden_effect = {
+            set_global_flag = gts_rainna_la_grande_arch_1_giant_1
+        }
+    }
+    option = {
+        trigger = {
+            owner_main_species = {
+                has_trait = trait_Giant
+            }
+        }
+        name = gts_rainna_la_grande_arch.01_giant.b
+        hidden_effect = {
+            set_global_flag = gts_rainna_la_grande_arch_1_giant_2
+        }
+    }
+    option = {
+        trigger = {
+            owner_main_species = {
+                has_trait = trait_Titan
+            }
+        }
+        name = gts_rainna_la_grande_arch.01_titan.a
+        hidden_effect = {
+            set_global_flag = gts_rainna_la_grande_arch_1_titan_1
+        }
+    }
+    option = {
+        trigger = {
+            owner_main_species = {
+                has_trait = trait_Titan
+            }
+        }
+        name = gts_rainna_la_grande_arch.01_titan.b
+        hidden_effect = {
+            set_global_flag = gts_rainna_la_grande_arch_1_titan_2
+        }
+    }
+    option = {
+        trigger = {
+            owner_main_species = {
+                has_trait = trait_Ultra
+            }
+        }
+        name = gts_rainna_la_grande_arch.01_ultra.a
+        hidden_effect = {
+            set_global_flag = gts_rainna_la_grande_arch_1_ultra_1
+        }
+    }
+    option = {
+        trigger = {
+            owner_main_species = {
+                has_trait = trait_Ultra
+            }
+        }
+        name = gts_rainna_la_grande_arch.01_ultra.b
+        hidden_effect = {
+            set_global_flag = gts_rainna_la_grande_arch_1_ultra_2
+        }
+    }
+}
+
+fleet_event = {
+    id = gts_rainna_la_grande_arch.02
+    title = gts_rainna_la_grande_arch.02.name
+    desc = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_micro_1
+        }
+        text = gts_rainna_la_grande_arch.02_1_micro.desc
+    }
+    desc = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_tiny_1
+        }
+        text = gts_rainna_la_grande_arch.02_1_tiny.desc
+    }
+    desc = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_tiny_2
+        }
+        text = gts_rainna_la_grande_arch.02_2_tiny.desc
+    }
+    desc = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_small_1
+        }
+        text = gts_rainna_la_grande_arch.02_1_small.desc
+    }
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_1_small_2
+                has_global_flag = gts_rainna_la_grande_arch_1_normal_2
+            }
+        }
+        text = gts_rainna_la_grande_arch.02_2_small.desc
+    }
+    desc = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_normal_1
+        }
+        text = gts_rainna_la_grande_arch.02_1_normal.desc
+    }
+    desc = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_tall_1
+        }
+        text = gts_rainna_la_grande_arch.02_1_tall.desc
+    }
+    desc = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_tall_2
+        }
+        text = gts_rainna_la_grande_arch.02_2_tall.desc
+    }
+    desc = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_giant_1
+        }
+        text = gts_rainna_la_grande_arch.02_1_giant.desc
+    }
+    desc = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_giant_2
+        }
+        text = gts_rainna_la_grande_arch.02_2_giant.desc
+    }
+    desc = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_titan_1
+        }
+        text = gts_rainna_la_grande_arch.02_1_titan.desc
+    }
+    desc = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_titan_2
+        }
+        text = gts_rainna_la_grande_arch.02_2_titan.desc
+    }
+    desc = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_ultra_1
+        }
+        text = gts_rainna_la_grande_arch.02_1_ultra.desc
+    }
+    desc = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_ultra_2
+        }
+        text = gts_rainna_la_grande_arch.02_2_ultra.desc
+    }
+
+    picture = {
+        trigger = {
+            owner_main_species = {
+                has_global_flag = gts_rainna_la_grande_arch_1_micro_1
+            }
+        }
+        picture = GFX_gts_rainna_la_grande_arch_event1_micro1
+    }
+    picture = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_global_flag = gts_rainna_la_grande_arch_1_tiny_1
+                    has_global_flag = gts_rainna_la_grande_arch_1_small_1
+                    has_global_flag = gts_rainna_la_grande_arch_1_normal_1
+                }
+            }
+        }
+        picture = GFX_gts_rainna_la_grande_arch_event2_tiny1
+    }
+    picture = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_global_flag = gts_rainna_la_grande_arch_1_tall_1
+                    has_global_flag = gts_rainna_la_grande_arch_1_giant_1
+                }
+            }
+        }
+        picture = GFX_gts_rainna_la_grande_arch_event2_tall1
+    }
+    picture = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_global_flag = gts_rainna_la_grande_arch_1_titan_1
+                    has_global_flag = gts_rainna_la_grande_arch_1_ultra_1
+                }
+            }
+        }
+        picture = GFX_gts_rainna_la_grande_arch_event2_titan1
+    }
+    picture = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_global_flag = gts_rainna_la_grande_arch_1_tiny_2
+                    has_global_flag = gts_rainna_la_grande_arch_1_small_2
+                }
+            }
+        }
+        picture = GFX_gts_rainna_la_grande_arch_event1_tiny1
+    }
+    picture = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_global_flag = gts_rainna_la_grande_arch_1_tall_2
+                    has_global_flag = gts_rainna_la_grande_arch_1_giant_2
+                }
+            }
+        }
+        picture = GFX_gts_rainna_la_grande_arch_event1_tall1
+    }
+    picture = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_global_flag = gts_rainna_la_grande_arch_1_titan_2
+                    has_global_flag = gts_rainna_la_grande_arch_1_ultra_2
+                }
+            }
+        }
+        picture = GFX_gts_rainna_la_grande_arch_event1_titan1
+    }
+    show_sound = event_dig_site
+    archaeology = yes
+    is_triggered_only = yes
+    immediate = {
+        from = {
+            set_site_progress_locked = yes
+        }
+        if = {
+            limit = {
+                OR = {
+                    has_global_flag = gts_rainna_la_grande_arch_1_tall_1
+                    has_global_flag = gts_rainna_la_grande_arch_1_giant_1
+                    has_global_flag = gts_rainna_la_grande_arch_1_titan_1
+                    has_global_flag = gts_rainna_la_grande_arch_1_ultra_1
+                    has_global_flag = gts_rainna_la_grande_arch_1_tall_2
+                    has_global_flag = gts_rainna_la_grande_arch_1_giant_2
+                    has_global_flag = gts_rainna_la_grande_arch_1_titan_2
+                    has_global_flag = gts_rainna_la_grande_arch_1_ultra_2
+                    has_global_flag = gts_rainna_la_grande_arch_1_tall_3
+                    has_global_flag = gts_rainna_la_grande_arch_1_giant_3
+                }
+            }
+            owner = {
+                set_country_flag = vae_victis_cladium #哀叹灾祸的受害者
+            }
+        }
+    }
+    after = {
+        from = {
+            set_site_progress_locked = no
+        }
+    }
+    option = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_micro_1
+        }
+        name = gts_rainna_la_grande_arch.02_1_micro.a
+        hidden_effect = {
+            random_list = {
+                1 = {
+                    set_global_flag = gts_rainna_la_grande_arch_1_micro_2
+                    remove_global_flag = gts_rainna_la_grande_arch_1_micro_1
+                }
+                1 = {
+                }
+            }
+        }
+    }
+    option = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_micro_1
+        }
+        name = gts_rainna_la_grande_arch.02_1_micro.b
+        hidden_effect = {
+            random_list = {
+                1 = {
+                    set_global_flag = gts_rainna_la_grande_arch_1_micro_2
+                    remove_global_flag = gts_rainna_la_grande_arch_1_micro_1
+                }
+                1 = {
+                }
+            }
+        }
+    }
+    option = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_tiny_1
+        }
+        name = gts_rainna_la_grande_arch.02_1_tiny.a
+    }
+    option = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_tiny_1
+        }
+        name = gts_rainna_la_grande_arch.02_1_tiny.b
+        owner = {
+            hidden_effect = {
+                set_country_flag = vae_victis_cladium
+            } #哀叹灾祸的受害者
+        }
+    }
+    option = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_tiny_1
+        }
+        name = gts_rainna_la_grande_arch.02_1_tiny.c
+    }
+    option = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_tiny_2
+        }
+        name = gts_rainna_la_grande_arch.02_2_tiny.a
+    }
+    option = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_small_1
+        }
+        name = gts_rainna_la_grande_arch.02_1_small.a
+    }
+    option = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_small_1
+        }
+        name = gts_rainna_la_grande_arch.02_1_small.b
+        owner = {
+            hidden_effect = {
+                set_country_flag = vae_victis_cladium
+            } #哀叹灾祸的受害者
+        }
+    }
+    option = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_small_1
+        }
+        name = gts_rainna_la_grande_arch.02_1_small.c
+    }
+    option = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_small_2
+        }
+        name = gts_rainna_la_grande_arch.02_2_small.a
+    }
+    option = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_normal_1
+        }
+        name = gts_rainna_la_grande_arch.02_1_normal.a
+    }
+    option = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_normal_1
+        }
+        name = gts_rainna_la_grande_arch.02_1_normal.b
+        owner = {
+            hidden_effect = {
+                set_country_flag = vae_victis_cladium
+            } #哀叹灾祸的受害者
+        }
+    }
+    option = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_normal_1
+        }
+        name = gts_rainna_la_grande_arch.02_1_normal.c
+    }
+    option = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_normal_2
+        }
+        name = gts_rainna_la_grande_arch.02_2_small.a
+    }
+    option = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_tall_1
+        }
+        name = gts_rainna_la_grande_arch.02_1_tall.a
+    }
+    option = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_tall_1
+        }
+        name = gts_rainna_la_grande_arch.02_1_tall.b
+        hidden_effect = {
+            remove_global_flag = gts_rainna_la_grande_arch_1_tall_1
+            set_global_flag = gts_rainna_la_grande_arch_1_tall_3
+        }#分支3，分支1的第2分支。
+    }
+    option = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_tall_2
+        }
+        name = gts_rainna_la_grande_arch.02_2_tall.a
+    }
+    option = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_tall_2
+        }
+        name = gts_rainna_la_grande_arch.02_2_tall.b
+    }
+    option = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_giant_1
+        }
+        name = gts_rainna_la_grande_arch.02_1_giant.a
+    }
+    option = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_giant_1
+        }
+        name = gts_rainna_la_grande_arch.02_1_giant.b
+        hidden_effect = {
+            remove_global_flag = gts_rainna_la_grande_arch_1_giant_1
+            set_global_flag = gts_rainna_la_grande_arch_1_giant_3
+        }
+    }
+    option = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_giant_2
+        }
+        name = gts_rainna_la_grande_arch.02_2_giant.a
+    }
+    option = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_giant_2
+        }
+        name = gts_rainna_la_grande_arch.02_2_giant.b
+    }
+    option = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_titan_1
+        }
+        name = gts_rainna_la_grande_arch.02_1_titan.a
+    }
+    option = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_titan_1
+        }
+        name = gts_rainna_la_grande_arch.02_1_titan.b
+    }
+    option = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_titan_2
+        }
+        name = gts_rainna_la_grande_arch.02_2_titan.a
+    }
+    option = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_titan_2
+        }
+        name = gts_rainna_la_grande_arch.02_2_titan.b
+    }
+    option = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_ultra_1
+        }
+        name = gts_rainna_la_grande_arch.02_1_ultra.a
+    }
+    option = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_ultra_1
+        }
+        name = gts_rainna_la_grande_arch.02_1_ultra.b
+    }
+    option = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_ultra_2
+        }
+        name = gts_rainna_la_grande_arch.02_2_ultra.a
+    }
+    option = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_ultra_2
+        }
+        name = gts_rainna_la_grande_arch.02_2_ultra.a
+    }
+}
+
+fleet_event = {
+    id = gts_rainna_la_grande_arch.03
+    title = gts_rainna_la_grande_arch.03.name
+    desc = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_micro_1
+        }
+        text = gts_rainna_la_grande_arch.03_1_micro.desc
+    }
+    desc = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_micro_2
+        }
+        text = gts_rainna_la_grande_arch.03_2_micro.desc
+    }
+    desc = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_tiny_1
+        }
+        text = gts_rainna_la_grande_arch.03_1_tiny.desc
+    }
+    desc = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_tiny_2
+        }
+        text = gts_rainna_la_grande_arch.03_2_tiny.desc
+    }
+    desc = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_small_1
+        }
+        text = gts_rainna_la_grande_arch.03_1_small.desc
+    }
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_1_small_2
+                has_global_flag = gts_rainna_la_grande_arch_1_normal_2
+                has_global_flag = gts_rainna_la_grande_arch_1_tall_2
+            }
+        }
+        text = gts_rainna_la_grande_arch.03_2_small.desc
+    }
+    desc = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_normal_1
+        }
+        text = gts_rainna_la_grande_arch.03_1_normal.desc
+    }
+    desc = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_tall_1
+        }
+        text = gts_rainna_la_grande_arch.03_1_tall.desc
+    }
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_1_tall_3
+                has_global_flag = gts_rainna_la_grande_arch_1_giant_3
+            }
+        }
+        text = gts_rainna_la_grande_arch.03_3_tall.desc
+    }
+    desc = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_giant_1
+        }
+        text = gts_rainna_la_grande_arch.03_1_giant.desc
+    }
+    desc = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_giant_2
+        }
+        text = gts_rainna_la_grande_arch.03_2_giant.desc
+    }
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_1_titan_1
+                has_global_flag = gts_rainna_la_grande_arch_1_ultra_1
+            }
+        }
+        text = gts_rainna_la_grande_arch.03_1_titan.desc
+    }
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_1_titan_2
+                has_global_flag = gts_rainna_la_grande_arch_1_ultra_2
+            }
+        }
+        text = gts_rainna_la_grande_arch.03_2_titan.desc
+    }
+
+    picture = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_global_flag = gts_rainna_la_grande_arch_1_micro_1
+                    has_global_flag = gts_rainna_la_grande_arch_1_tiny_1
+                    has_global_flag = gts_rainna_la_grande_arch_1_small_1
+                    has_global_flag = gts_rainna_la_grande_arch_1_normal_1
+                    has_global_flag = gts_rainna_la_grande_arch_1_tall_1
+                    has_global_flag = gts_rainna_la_grande_arch_1_giant_1
+                }
+            }
+        }
+        picture = GFX_gts_rainna_la_grande_arch_event3_micro1
+    }
+    picture = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_global_flag = gts_rainna_la_grande_arch_1_titan_1
+                    has_global_flag = gts_rainna_la_grande_arch_1_ultra_1
+                    has_global_flag = gts_rainna_la_grande_arch_1_tall_3
+                    has_global_flag = gts_rainna_la_grande_arch_1_giant_3
+                }
+            }
+        }
+        picture = GFX_gts_rainna_la_grande_arch_event3_titan1
+    }
+    picture = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_global_flag = gts_rainna_la_grande_arch_1_micro_2
+                }
+            }
+        }
+        picture = GFX_gts_rainna_la_grande_arch_event3_micro2
+    }
+    picture = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_global_flag = gts_rainna_la_grande_arch_1_tiny_2
+                    has_global_flag = gts_rainna_la_grande_arch_1_small_2
+                }
+            }
+        }
+        picture = GFX_gts_rainna_la_grande_arch_event1_tiny1
+    }
+    picture = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_global_flag = gts_rainna_la_grande_arch_1_tall_2
+                    has_global_flag = gts_rainna_la_grande_arch_1_giant_2
+                }
+            }
+        }
+        picture = GFX_gts_rainna_la_grande_arch_event1_tall1
+    }
+    picture = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_global_flag = gts_rainna_la_grande_arch_1_titan_2
+                    has_global_flag = gts_rainna_la_grande_arch_1_ultra_2
+                }
+            }
+        }
+        picture = GFX_gts_rainna_la_grande_arch_event1_titan1
+    }
+    show_sound = event_dig_site
+    archaeology = yes
+    is_triggered_only = yes
+    immediate = {
+        from = {
+            set_site_progress_locked = yes
+        }
+    }
+    after = {
+        from = {
+            set_site_progress_locked = no
+        }
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_1_micro_1
+                has_global_flag = gts_rainna_la_grande_arch_1_tiny_1
+                has_global_flag = gts_rainna_la_grande_arch_1_small_1
+                has_global_flag = gts_rainna_la_grande_arch_1_normal_1
+                has_global_flag = gts_rainna_la_grande_arch_1_tall_1
+                has_global_flag = gts_rainna_la_grande_arch_1_giant_1
+            }
+        }
+        name = gts_rainna_la_grande_arch.03_1_micro.a
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_1_micro_1
+                has_global_flag = gts_rainna_la_grande_arch_1_tiny_1
+                has_global_flag = gts_rainna_la_grande_arch_1_small_1
+                has_global_flag = gts_rainna_la_grande_arch_1_normal_1
+                has_global_flag = gts_rainna_la_grande_arch_1_tall_1
+                has_global_flag = gts_rainna_la_grande_arch_1_giant_1
+            }
+        }
+        name = gts_rainna_la_grande_arch.03_1_micro.b
+        owner = {
+            hidden_effect = {
+                set_country_flag = ALTA_RAINNA
+            }
+        }
+    }
+    option = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_micro_2
+        }
+        name = gts_rainna_la_grande_arch.03_2_micro.a
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_1_tiny_2
+                has_global_flag = gts_rainna_la_grande_arch_1_small_2
+                has_global_flag = gts_rainna_la_grande_arch_1_normal_2
+                has_global_flag = gts_rainna_la_grande_arch_1_tall_2
+                has_global_flag = gts_rainna_la_grande_arch_1_giant_2
+            }
+
+        }
+        name = gts_rainna_la_grande_arch.03_2_tiny.a
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_1_tall_3
+                has_global_flag = gts_rainna_la_grande_arch_1_giant_3
+            }
+        }
+        name = gts_rainna_la_grande_arch.03_3_tall.a
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_1_titan_1
+                has_global_flag = gts_rainna_la_grande_arch_1_ultra_1
+            }
+        }
+        name = gts_rainna_la_grande_arch.03_1_titan.a
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_1_titan_2
+                has_global_flag = gts_rainna_la_grande_arch_1_ultra_2
+            }
+        }
+        name = gts_rainna_la_grande_arch.03_2_titan.a
+    }
+}
+
+fleet_event = {
+    id = gts_rainna_la_grande_arch.04
+    title = gts_rainna_la_grande_arch.04.name
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_1_micro_1
+                has_global_flag = gts_rainna_la_grande_arch_1_tiny_1
+                has_global_flag = gts_rainna_la_grande_arch_1_small_1
+                has_global_flag = gts_rainna_la_grande_arch_1_normal_1
+                has_global_flag = gts_rainna_la_grande_arch_1_tall_1
+                has_global_flag = gts_rainna_la_grande_arch_1_giant_1
+            }
+        }
+        text = gts_rainna_la_grande_arch.04_1_micro.desc
+    }
+    desc = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_1_micro_2
+        }
+        text = gts_rainna_la_grande_arch.04_2_micro.desc
+    }
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_1_tiny_2
+                has_global_flag = gts_rainna_la_grande_arch_1_small_2
+                has_global_flag = gts_rainna_la_grande_arch_1_normal_2
+                has_global_flag = gts_rainna_la_grande_arch_1_tall_2
+                has_global_flag = gts_rainna_la_grande_arch_1_giant_2
+            }
+        }
+        text = gts_rainna_la_grande_arch.04_2_tiny.desc
+    }
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_1_titan_1
+                has_global_flag = gts_rainna_la_grande_arch_1_ultra_1
+                has_global_flag = gts_rainna_la_grande_arch_1_tall_3
+                has_global_flag = gts_rainna_la_grande_arch_1_giant_3
+            }
+        }
+        text = gts_rainna_la_grande_arch.04_1_titan.desc
+    }
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_1_titan_2
+                has_global_flag = gts_rainna_la_grande_arch_1_ultra_2
+            }
+        }
+        text = gts_rainna_la_grande_arch.04_2_titan.desc
+    }
+
+    picture = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_global_flag = gts_rainna_la_grande_arch_1_micro_1
+                    has_global_flag = gts_rainna_la_grande_arch_1_tiny_1
+                    has_global_flag = gts_rainna_la_grande_arch_1_small_1
+                    has_global_flag = gts_rainna_la_grande_arch_1_normal_1
+                    has_global_flag = gts_rainna_la_grande_arch_1_tall_1
+                    has_global_flag = gts_rainna_la_grande_arch_1_giant_1
+                }
+            }
+        }
+        picture = GFX_gts_rainna_la_grande_arch_event4_micro1
+    }
+    picture = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_global_flag = gts_rainna_la_grande_arch_1_titan_1
+                    has_global_flag = gts_rainna_la_grande_arch_1_ultra_1
+                    has_global_flag = gts_rainna_la_grande_arch_1_tall_3
+                    has_global_flag = gts_rainna_la_grande_arch_1_giant_3
+                }
+            }
+        }
+        picture = GFX_gts_rainna_la_grande_arch_event4_titan1
+    }
+    picture = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_global_flag = gts_rainna_la_grande_arch_1_micro_2
+                    has_global_flag = gts_rainna_la_grande_arch_1_tiny_2
+                    has_global_flag = gts_rainna_la_grande_arch_1_small_2
+                    has_global_flag = gts_rainna_la_grande_arch_1_normal_2
+                    has_global_flag = gts_rainna_la_grande_arch_1_tall_2
+                    has_global_flag = gts_rainna_la_grande_arch_1_giant_2
+                    has_global_flag = gts_rainna_la_grande_arch_1_titan_2
+                    has_global_flag = gts_rainna_la_grande_arch_1_ultra_2
+                }
+            }
+        }
+        picture = GFX_gts_rainna_la_grande_arch_event3_micro2
+    }
+    show_sound = event_dig_site
+    archaeology = yes
+    is_triggered_only = yes
+    immediate = {
+        from = {
+            set_site_progress_locked = yes
+        }
+    }
+    after = {
+        from = {
+            set_site_progress_locked = no
+        }
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_1_micro_1
+                has_global_flag = gts_rainna_la_grande_arch_1_tiny_1
+                has_global_flag = gts_rainna_la_grande_arch_1_small_1
+                has_global_flag = gts_rainna_la_grande_arch_1_normal_1
+                has_global_flag = gts_rainna_la_grande_arch_1_tall_1
+                has_global_flag = gts_rainna_la_grande_arch_1_giant_1
+            }
+        }
+        name = gts_rainna_la_grande_arch.04_1_micro.a
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_1_micro_2
+                has_global_flag = gts_rainna_la_grande_arch_1_tiny_2
+                has_global_flag = gts_rainna_la_grande_arch_1_small_2
+                has_global_flag = gts_rainna_la_grande_arch_1_normal_2
+                has_global_flag = gts_rainna_la_grande_arch_1_tall_2
+                has_global_flag = gts_rainna_la_grande_arch_1_giant_2
+                has_global_flag = gts_rainna_la_grande_arch_1_titan_2
+                has_global_flag = gts_rainna_la_grande_arch_1_ultra_2
+            }
+        }
+        name = gts_rainna_la_grande_arch.04_2_micro.a
+        owner = {
+            hidden_effect = {
+                set_country_flag = maitresse_de_rainna_la_grande
+                remove_country_flag = mere_de_rainna_la_grande
+            }
+        }
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_1_micro_2
+                has_global_flag = gts_rainna_la_grande_arch_1_tiny_2
+                has_global_flag = gts_rainna_la_grande_arch_1_small_2
+                has_global_flag = gts_rainna_la_grande_arch_1_normal_2
+                has_global_flag = gts_rainna_la_grande_arch_1_tall_2
+                has_global_flag = gts_rainna_la_grande_arch_1_giant_2
+                has_global_flag = gts_rainna_la_grande_arch_1_titan_2
+                has_global_flag = gts_rainna_la_grande_arch_1_ultra_2
+            }
+        }
+        name = gts_rainna_la_grande_arch.04_2_micro.b
+        owner = {
+            hidden_effect = {
+                set_country_flag = mere_de_rainna_la_grande
+                remove_country_flag = maitresse_de_rainna_la_grande
+            }
+        }
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_1_titan_1
+                has_global_flag = gts_rainna_la_grande_arch_1_ultra_1
+                has_global_flag = gts_rainna_la_grande_arch_1_tall_3
+                has_global_flag = gts_rainna_la_grande_arch_1_giant_3
+            }
+        }
+        name = gts_rainna_la_grande_arch.04_1_titan.a
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_1_titan_1
+                has_global_flag = gts_rainna_la_grande_arch_1_ultra_1
+                has_global_flag = gts_rainna_la_grande_arch_1_tall_3
+                has_global_flag = gts_rainna_la_grande_arch_1_giant_3
+            }
+        }
+        name = gts_rainna_la_grande_arch.04_1_titan.b
+    }
+}
+
+fleet_event = {
+    id = gts_rainna_la_grande_arch.05
+    title = gts_rainna_la_grande_arch.05.name
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_1_micro_1
+                has_global_flag = gts_rainna_la_grande_arch_1_tiny_1
+                has_global_flag = gts_rainna_la_grande_arch_1_small_1
+                has_global_flag = gts_rainna_la_grande_arch_1_normal_1
+                has_global_flag = gts_rainna_la_grande_arch_1_tall_1
+                has_global_flag = gts_rainna_la_grande_arch_1_giant_1
+            }
+        }
+        text = gts_rainna_la_grande_arch.05_1_micro.desc
+    }
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_1_micro_2
+                has_global_flag = gts_rainna_la_grande_arch_1_tiny_2
+                has_global_flag = gts_rainna_la_grande_arch_1_small_2
+                has_global_flag = gts_rainna_la_grande_arch_1_normal_2
+                has_global_flag = gts_rainna_la_grande_arch_1_tall_2
+                has_global_flag = gts_rainna_la_grande_arch_1_giant_2
+            }
+            owner = {
+                has_country_flag = mere_de_rainna_la_grande
+            }
+        }
+        text = gts_rainna_la_grande_arch.05_2_micro_1.desc
+    }
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_1_micro_2
+                has_global_flag = gts_rainna_la_grande_arch_1_tiny_2
+                has_global_flag = gts_rainna_la_grande_arch_1_small_2
+                has_global_flag = gts_rainna_la_grande_arch_1_normal_2
+                has_global_flag = gts_rainna_la_grande_arch_1_tall_2
+                has_global_flag = gts_rainna_la_grande_arch_1_giant_2
+            }
+            owner = {
+                has_country_flag = maitresse_de_rainna_la_grande
+            }
+        }
+        text = gts_rainna_la_grande_arch.05_2_micro_2.desc
+    }
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_1_titan_1
+                has_global_flag = gts_rainna_la_grande_arch_1_ultra_1
+                has_global_flag = gts_rainna_la_grande_arch_1_tall_3
+                has_global_flag = gts_rainna_la_grande_arch_1_giant_3
+            }
+        }
+        text = gts_rainna_la_grande_arch.05_1_titan.desc
+    }
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_1_titan_2
+                has_global_flag = gts_rainna_la_grande_arch_1_ultra_2
+            }
+            owner = {
+                has_country_flag = mere_de_rainna_la_grande
+            }
+        }
+        text = gts_rainna_la_grande_arch.05_2_titan_1.desc
+    }
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_1_titan_2
+                has_global_flag = gts_rainna_la_grande_arch_1_ultra_2
+            }
+            owner = {
+                has_country_flag = maitresse_de_rainna_la_grande
+            }
+        }
+        text = gts_rainna_la_grande_arch.05_2_titan_2.desc
+    }
+
+    picture = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_global_flag = gts_rainna_la_grande_arch_1_micro_1
+                    has_global_flag = gts_rainna_la_grande_arch_1_tiny_1
+                    has_global_flag = gts_rainna_la_grande_arch_1_small_1
+                    has_global_flag = gts_rainna_la_grande_arch_1_normal_1
+                    has_global_flag = gts_rainna_la_grande_arch_1_tall_1
+                    has_global_flag = gts_rainna_la_grande_arch_1_giant_1
+                }
+            }
+        }
+        picture = GFX_gts_rainna_la_grande_arch_event5_micro1
+    }
+    picture = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_global_flag = gts_rainna_la_grande_arch_1_titan_1
+                    has_global_flag = gts_rainna_la_grande_arch_1_ultra_1
+                    has_global_flag = gts_rainna_la_grande_arch_1_tall_3
+                    has_global_flag = gts_rainna_la_grande_arch_1_giant_3
+                }
+            }
+        }
+        picture = GFX_gts_rainna_la_grande_arch_event5_titan1
+    }
+    picture = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_global_flag = gts_rainna_la_grande_arch_1_micro_2
+                    has_global_flag = gts_rainna_la_grande_arch_1_tiny_2
+                    has_global_flag = gts_rainna_la_grande_arch_1_small_2
+                    has_global_flag = gts_rainna_la_grande_arch_1_normal_2
+                    has_global_flag = gts_rainna_la_grande_arch_1_tall_2
+                    has_global_flag = gts_rainna_la_grande_arch_1_giant_2
+                    has_global_flag = gts_rainna_la_grande_arch_1_titan_2
+                    has_global_flag = gts_rainna_la_grande_arch_1_ultra_2
+                }
+            }
+        }
+        picture = GFX_gts_rainna_la_grande_arch_event3_micro2
+    }
+    show_sound = event_dig_site
+    archaeology = yes
+    is_triggered_only = yes
+    immediate = {
+        from = {
+            set_site_progress_locked = yes
+        }
+    }
+    after = {
+        from = {
+            set_site_progress_locked = no
+        }
+        owner = {
+            set_country_flag = rainna_la_grande_arch_1_done
+        }
+        remove_global_flag = gts_rainna_la_grande_arch_1_micro_1
+        remove_global_flag = gts_rainna_la_grande_arch_1_tiny_1
+        remove_global_flag = gts_rainna_la_grande_arch_1_small_1
+        remove_global_flag = gts_rainna_la_grande_arch_1_normal_1
+        remove_global_flag = gts_rainna_la_grande_arch_1_tall_1
+        remove_global_flag = gts_rainna_la_grande_arch_1_giant_1
+        remove_global_flag = gts_rainna_la_grande_arch_1_titan_1
+        remove_global_flag = gts_rainna_la_grande_arch_1_ultra_1
+        remove_global_flag = gts_rainna_la_grande_arch_1_micro_2
+        remove_global_flag = gts_rainna_la_grande_arch_1_tiny_2
+        remove_global_flag = gts_rainna_la_grande_arch_1_small_2
+        remove_global_flag = gts_rainna_la_grande_arch_1_normal_2
+        remove_global_flag = gts_rainna_la_grande_arch_1_tall_2
+        remove_global_flag = gts_rainna_la_grande_arch_1_giant_2
+        remove_global_flag = gts_rainna_la_grande_arch_1_titan_2
+        remove_global_flag = gts_rainna_la_grande_arch_1_ultra_2
+        remove_global_flag = gts_rainna_la_grande_arch_1_tall_3
+        remove_global_flag = gts_rainna_la_grande_arch_1_giant_3
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_1_micro_1
+                has_global_flag = gts_rainna_la_grande_arch_1_tiny_1
+                has_global_flag = gts_rainna_la_grande_arch_1_small_1
+                has_global_flag = gts_rainna_la_grande_arch_1_normal_1
+                has_global_flag = gts_rainna_la_grande_arch_1_tall_1
+                has_global_flag = gts_rainna_la_grande_arch_1_giant_1
+                has_global_flag = gts_rainna_la_grande_arch_1_titan_1
+                has_global_flag = gts_rainna_la_grande_arch_1_ultra_1
+                has_global_flag = gts_rainna_la_grande_arch_1_tall_3
+                has_global_flag = gts_rainna_la_grande_arch_1_giant_3
+            }
+            owner = {
+                NOT = {
+                    has_country_flag = vae_victis_cladium
+                }
+            }
+        }
+        name = gts_rainna_la_grande_arch.05_1_micro.a
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_1_micro_1
+                has_global_flag = gts_rainna_la_grande_arch_1_tiny_1
+                has_global_flag = gts_rainna_la_grande_arch_1_small_1
+                has_global_flag = gts_rainna_la_grande_arch_1_normal_1
+                has_global_flag = gts_rainna_la_grande_arch_1_tall_1
+                has_global_flag = gts_rainna_la_grande_arch_1_giant_1
+                has_global_flag = gts_rainna_la_grande_arch_1_titan_1
+                has_global_flag = gts_rainna_la_grande_arch_1_ultra_1
+                has_global_flag = gts_rainna_la_grande_arch_1_tall_3
+                has_global_flag = gts_rainna_la_grande_arch_1_giant_3
+            }
+            owner = {
+                NOT = {
+                    has_country_flag = vae_victis_cladium
+                }
+            }
+        }
+        name = gts_rainna_la_grande_arch.05_1_micro.b
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_1_micro_1
+                has_global_flag = gts_rainna_la_grande_arch_1_tiny_1
+                has_global_flag = gts_rainna_la_grande_arch_1_small_1
+                has_global_flag = gts_rainna_la_grande_arch_1_normal_1
+                has_global_flag = gts_rainna_la_grande_arch_1_tall_1
+                has_global_flag = gts_rainna_la_grande_arch_1_giant_1
+                has_global_flag = gts_rainna_la_grande_arch_1_titan_1
+                has_global_flag = gts_rainna_la_grande_arch_1_ultra_1
+                has_global_flag = gts_rainna_la_grande_arch_1_tall_3
+                has_global_flag = gts_rainna_la_grande_arch_1_giant_3
+            }
+            owner = {
+                has_country_flag = vae_victis_cladium
+            }
+        }
+        name = gts_rainna_la_grande_arch.05_1_micro.c
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_1_micro_2
+                has_global_flag = gts_rainna_la_grande_arch_1_tiny_2
+                has_global_flag = gts_rainna_la_grande_arch_1_small_2
+                has_global_flag = gts_rainna_la_grande_arch_1_normal_2
+                has_global_flag = gts_rainna_la_grande_arch_1_tall_2
+                has_global_flag = gts_rainna_la_grande_arch_1_giant_2
+                has_global_flag = gts_rainna_la_grande_arch_1_titan_2
+                has_global_flag = gts_rainna_la_grande_arch_1_ultra_2
+            }
+            owner = {
+                has_country_flag = mere_de_rainna_la_grande
+            }
+        }
+        name = gts_rainna_la_grande_arch.05_2_micro.a
+        owner = {
+            hidden_effect = {
+                remove_country_flag = mere_de_rainna_la_grande
+                remove_country_flag = maitresse_de_rainna_la_grande_est_morte
+                set_country_flag = mere_de_rainna_la_grande_est_morte
+            } ##蕾恩娜的木琴趋势了
+        }
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_1_micro_2
+                has_global_flag = gts_rainna_la_grande_arch_1_tiny_2
+                has_global_flag = gts_rainna_la_grande_arch_1_small_2
+                has_global_flag = gts_rainna_la_grande_arch_1_normal_2
+                has_global_flag = gts_rainna_la_grande_arch_1_tall_2
+                has_global_flag = gts_rainna_la_grande_arch_1_giant_2
+                has_global_flag = gts_rainna_la_grande_arch_1_titan_2
+                has_global_flag = gts_rainna_la_grande_arch_1_ultra_2
+            }
+            owner = {
+                has_country_flag = mere_de_rainna_la_grande
+            }
+        }
+        name = gts_rainna_la_grande_arch.05_2_micro.b
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_1_micro_2
+                has_global_flag = gts_rainna_la_grande_arch_1_tiny_2
+                has_global_flag = gts_rainna_la_grande_arch_1_small_2
+                has_global_flag = gts_rainna_la_grande_arch_1_normal_2
+                has_global_flag = gts_rainna_la_grande_arch_1_tall_2
+                has_global_flag = gts_rainna_la_grande_arch_1_giant_2
+                has_global_flag = gts_rainna_la_grande_arch_1_titan_2
+                has_global_flag = gts_rainna_la_grande_arch_1_ultra_2
+            }
+            owner = {
+                has_country_flag = maitresse_de_rainna_la_grande
+            }
+        }
+        name = gts_rainna_la_grande_arch.05_2_micro.c
+        owner = {
+            hidden_effect = {
+                remove_country_flag = maitresse_de_rainna_la_grande
+                remove_country_flag = mere_de_rainna_la_grande_est_morte
+                set_country_flag = maitresse_de_rainna_la_grande_est_morte
+            } ##蕾恩娜的主人趋势了
+        }
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_1_micro_2
+                has_global_flag = gts_rainna_la_grande_arch_1_tiny_2
+                has_global_flag = gts_rainna_la_grande_arch_1_small_2
+                has_global_flag = gts_rainna_la_grande_arch_1_normal_2
+                has_global_flag = gts_rainna_la_grande_arch_1_tall_2
+                has_global_flag = gts_rainna_la_grande_arch_1_giant_2
+                has_global_flag = gts_rainna_la_grande_arch_1_titan_2
+                has_global_flag = gts_rainna_la_grande_arch_1_ultra_2
+            }
+            owner = {
+                has_country_flag = maitresse_de_rainna_la_grande
+            }
+        }
+        name = gts_rainna_la_grande_arch.05_2_micro.d
+    }
+}
+
+fleet_event = {
+    id = gts_rainna_la_grande_arch.06
+    title = gts_rainna_la_grande_arch.06.name
+    desc = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_trait = trait_Micro
+                    has_trait = trait_Nano
+                }
+            }
+            NOT = {
+                owner = {
+                    has_country_flag = rainna_la_grande_arch_1_done
+                }
+            }
+        }
+        text = gts_rainna_la_grande_arch.06_micro.desc
+    }
+    desc = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_trait = trait_Micro
+                    has_trait = trait_Nano
+                }
+            }
+            owner = {
+                has_country_flag = rainna_la_grande_arch_1_done
+            }
+        }
+        text = gts_rainna_la_grande_arch.06_micro_alter.desc
+    }
+    desc = {
+        trigger = {
+            owner_main_species = {
+                has_trait = trait_Tiny
+            }
+            NOT = {
+                owner = {
+                    has_country_flag = rainna_la_grande_arch_1_done
+                }
+            }
+        }
+        text = gts_rainna_la_grande_arch.06_tiny.desc
+    }
+    desc = {
+        trigger = {
+            owner_main_species = {
+                has_trait = trait_Tiny
+            }
+            owner = {
+                has_country_flag = rainna_la_grande_arch_1_done
+            }
+        }
+        text = gts_rainna_la_grande_arch.06_tiny_alter.desc
+    }
+    desc = {
+        trigger = {
+            owner_main_species = {
+                has_trait = trait_Small
+            }
+            NOT = {
+                owner = {
+                    has_country_flag = rainna_la_grande_arch_1_done
+                }
+            }
+        }
+        text = gts_rainna_la_grande_arch.06_small.desc
+    }
+    desc = {
+        trigger = {
+            owner_main_species = {
+                has_trait = trait_Small
+            }
+            owner = {
+                has_country_flag = rainna_la_grande_arch_1_done
+            }
+        }
+        text = gts_rainna_la_grande_arch.06_small_alter.desc
+    }
+    desc = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_trait = trait_Normal
+                    # has_trait = trait_multi_size
+                    NOR = {
+                        has_trait = trait_Nano
+                        has_trait = trait_Micro
+                        has_trait = trait_Tiny
+                        has_trait = trait_Small
+                        has_trait = trait_Tall
+                        has_trait = trait_Giant
+                        has_trait = trait_Titan
+                        has_trait = trait_Ultra
+                    }
+                }
+            }
+            NOT = {
+                owner = {
+                    has_country_flag = rainna_la_grande_arch_1_done
+                }
+            }
+        }
+        text = gts_rainna_la_grande_arch.06_normal.desc
+    }
+    desc = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_trait = trait_Normal
+                    # has_trait = trait_multi_size
+                    NOR = {
+                        has_trait = trait_Nano
+                        has_trait = trait_Micro
+                        has_trait = trait_Tiny
+                        has_trait = trait_Small
+                        has_trait = trait_Tall
+                        has_trait = trait_Giant
+                        has_trait = trait_Titan
+                        has_trait = trait_Ultra
+                    }
+                }
+            }
+            owner = {
+                has_country_flag = rainna_la_grande_arch_1_done
+            }
+        }
+        text = gts_rainna_la_grande_arch.06_normal_alter.desc
+    }
+    desc = {
+        trigger = {
+            owner_main_species = {
+                has_trait = trait_Tall
+            }
+            NOT = {
+                owner = {
+                    has_country_flag = rainna_la_grande_arch_1_done
+                }
+            }
+        }
+        text = gts_rainna_la_grande_arch.06_tall.desc
+    }
+    desc = {
+        trigger = {
+            owner_main_species = {
+                has_trait = trait_Tall
+            }
+            owner = {
+                has_country_flag = rainna_la_grande_arch_1_done
+            }
+        }
+        text = gts_rainna_la_grande_arch.06_tall_alter.desc
+    }
+    desc = {
+        trigger = {
+            owner_main_species = {
+                has_trait = trait_Giant
+            }
+            NOT = {
+                owner = {
+                    has_country_flag = rainna_la_grande_arch_1_done
+                }
+            }
+        }
+        text = gts_rainna_la_grande_arch.06_giant.desc
+    }
+    desc = {
+        trigger = {
+            owner_main_species = {
+                has_trait = trait_Giant
+            }
+            owner = {
+                has_country_flag = rainna_la_grande_arch_1_done
+            }
+        }
+        text = gts_rainna_la_grande_arch.06_giant_alter.desc
+    }
+    desc = {
+        trigger = {
+            owner_main_species = {
+                has_trait = trait_Titan
+            }
+        }
+        text = gts_rainna_la_grande_arch.06_titan.desc
+    }
+    desc = {
+        trigger = {
+            owner_main_species = {
+                has_trait = trait_Ultra
+            }
+        }
+        text = gts_rainna_la_grande_arch.06_ultra.desc
+    }
+
+    picture = GFX_gts_rainna_la_grande_arch_event1_tiny1
+    show_sound = event_dig_site
+    archaeology = yes
+    is_triggered_only = yes
+    immediate = {
+        from = {
+            set_site_progress_locked = yes
+        }
+    }
+    after = {
+        from = {
+            set_site_progress_locked = no
+        }
+    }
+    option = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_trait = trait_Micro
+                    has_trait = trait_Nano
+                }
+            }
+        }
+        name = gts_rainna_la_grande_arch.06_micro.a
+        hidden_effect = {
+            set_global_flag = gts_rainna_la_grande_arch_2_micro_1
+        }
+    }
+    option = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_trait = trait_Micro
+                    has_trait = trait_Nano
+                }
+            }
+        }
+        name = gts_rainna_la_grande_arch.06_micro.b
+        hidden_effect = {
+            set_global_flag = gts_rainna_la_grande_arch_2_micro_2
+        }
+    }
+    option = {
+        trigger = {
+            owner_main_species = {
+                has_trait = trait_Tiny
+            }
+        }
+        name = gts_rainna_la_grande_arch.06_tiny.a
+        hidden_effect = {
+            set_global_flag = gts_rainna_la_grande_arch_2_tiny_1
+        }
+    }
+    option = {
+        trigger = {
+            owner_main_species = {
+                has_trait = trait_Tiny
+            }
+        }
+        name = gts_rainna_la_grande_arch.06_tiny.b
+        hidden_effect = {
+            set_global_flag = gts_rainna_la_grande_arch_2_tiny_2
+        }
+    }
+    # option = {
+    #     trigger = {
+    #         owner_main_species = {
+    #             has_trait = trait_Tiny
+    #         }
+    #     }
+    #     name = gts_rainna_la_grande_arch.06_tiny.c
+    #     custom_tooltip = gts_rainna_la_grande_arch.06_tiny.c.tooltip
+    #     set_global_flag = gts_rainna_la_grande_arch_2_tiny_3
+    # }
+    option = {
+        trigger = {
+            owner_main_species = {
+                has_trait = trait_Small
+            }
+        }
+        name = gts_rainna_la_grande_arch.06_small.b
+        hidden_effect = {
+            set_global_flag = gts_rainna_la_grande_arch_2_small_2
+        }
+    }
+    option = {
+        trigger = {
+            owner_main_species = {
+                has_trait = trait_Small
+            }
+        }
+        name = gts_rainna_la_grande_arch.06_small.c
+        hidden_effect = {
+            set_global_flag = gts_rainna_la_grande_arch_2_small_3
+        }
+    }
+    option = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_trait = trait_Normal
+                    # has_trait = trait_multi_size
+                    NOR = {
+                        has_trait = trait_Nano
+                        has_trait = trait_Micro
+                        has_trait = trait_Tiny
+                        has_trait = trait_Small
+                        has_trait = trait_Tall
+                        has_trait = trait_Giant
+                        has_trait = trait_Titan
+                        has_trait = trait_Ultra
+                    }
+                }
+            }
+        }
+        name = gts_rainna_la_grande_arch.06_normal.b
+        hidden_effect = {
+            set_global_flag = gts_rainna_la_grande_arch_2_normal_2
+        }
+    }
+    option = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_trait = trait_Normal
+                    # has_trait = trait_multi_size
+                    NOR = {
+                        has_trait = trait_Nano
+                        has_trait = trait_Micro
+                        has_trait = trait_Tiny
+                        has_trait = trait_Small
+                        has_trait = trait_Tall
+                        has_trait = trait_Giant
+                        has_trait = trait_Titan
+                        has_trait = trait_Ultra
+                    }
+                }
+            }
+        }
+        name = gts_rainna_la_grande_arch.06_normal.c
+        hidden_effect = {
+            set_global_flag = gts_rainna_la_grande_arch_2_normal_3
+        }
+    }
+    option = {
+        trigger = {
+            owner_main_species = {
+                has_trait = trait_Tall
+            }
+        }
+        name = gts_rainna_la_grande_arch.06_tall.c
+        hidden_effect = {
+            set_global_flag = gts_rainna_la_grande_arch_2_tall_3
+        }
+    }
+    # option = {
+    #     trigger = {
+    #         owner_main_species = {
+    #             has_trait = trait_Tall
+    #         }
+    #     }
+    #     name = gts_rainna_la_grande_arch.06_tall.d
+    #     set_global_flag = gts_rainna_la_grande_arch_2_tall_4
+    # }
+    option = {
+        trigger = {
+            owner_main_species = {
+                has_trait = trait_Giant
+            }
+        }
+        name = gts_rainna_la_grande_arch.06_giant.c
+        hidden_effect = {
+            set_global_flag = gts_rainna_la_grande_arch_2_giant_3
+        }
+    }
+    option = {
+        trigger = {
+            owner_main_species = {
+                has_trait = trait_Giant
+            }
+        }
+        name = gts_rainna_la_grande_arch.06_giant.d
+        hidden_effect = {
+            set_global_flag = gts_rainna_la_grande_arch_2_giant_4
+        }
+    }
+    option = {
+        trigger = {
+            owner_main_species = {
+                has_trait = trait_Titan
+            }
+        }
+        name = gts_rainna_la_grande_arch.06_titan.d
+        hidden_effect = {
+            set_global_flag = gts_rainna_la_grande_arch_2_titan_4
+        }
+    }
+    option = {
+        trigger = {
+            owner_main_species = {
+                has_trait = trait_Ultra
+            }
+        }
+        name = gts_rainna_la_grande_arch.06_titan.d
+        hidden_effect = {
+            set_global_flag = gts_rainna_la_grande_arch_2_ultra_4
+        }
+    }
+}
+
+fleet_event = {
+    id = gts_rainna_la_grande_arch.07
+    title = gts_rainna_la_grande_arch.07.name
+    desc = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_2_micro_1
+        }
+        text = gts_rainna_la_grande_arch.07_1_micro.desc
+    }
+    desc = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_2_tiny_1
+        }
+        text = gts_rainna_la_grande_arch.07_1_tiny.desc
+    }
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_micro_2
+                has_global_flag = gts_rainna_la_grande_arch_2_tiny_2
+            }
+            owner = {
+                NOR = {
+                    has_country_flag = mere_de_rainna_la_grande
+                    has_country_flag = mere_de_rainna_la_grande_est_morte
+                    has_country_flag = maitresse_de_rainna_la_grande
+                    has_country_flag = maitresse_de_rainna_la_grande_est_morte
+                }
+            }
+        }
+        text = gts_rainna_la_grande_arch.07_2_micro.desc
+    }
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_micro_2
+                has_global_flag = gts_rainna_la_grande_arch_2_tiny_2
+            }
+            owner = {
+                OR = {
+                    has_country_flag = mere_de_rainna_la_grande
+                    has_country_flag = mere_de_rainna_la_grande_est_morte
+                }
+            }
+        }
+        text = gts_rainna_la_grande_arch.07_2_micro_alter.desc
+    }
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_micro_2
+                has_global_flag = gts_rainna_la_grande_arch_2_tiny_2
+            }
+            owner = {
+                OR = {
+                    has_country_flag = maitresse_de_rainna_la_grande
+                    has_country_flag = maitresse_de_rainna_la_grande_est_morte
+                }
+            }
+        }
+        text = gts_rainna_la_grande_arch.07_2_micro_alter2.desc
+    }
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_small_2
+                has_global_flag = gts_rainna_la_grande_arch_2_normal_2
+            }
+            owner = {
+                NOR = {
+                    has_country_flag = mere_de_rainna_la_grande
+                    has_country_flag = mere_de_rainna_la_grande_est_morte
+                    has_country_flag = maitresse_de_rainna_la_grande
+                    has_country_flag = maitresse_de_rainna_la_grande_est_morte
+                }
+            }
+        }
+        text = gts_rainna_la_grande_arch.07_2_small.desc
+    }
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_small_2
+                has_global_flag = gts_rainna_la_grande_arch_2_normal_2
+            }
+            owner = {
+                OR = {
+                    has_country_flag = mere_de_rainna_la_grande
+                    has_country_flag = mere_de_rainna_la_grande_est_morte
+                }
+            }
+        }
+        text = gts_rainna_la_grande_arch.07_2_small_alter.desc
+    }
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_small_2
+                has_global_flag = gts_rainna_la_grande_arch_2_normal_2
+            }
+            owner = {
+                OR = {
+                    has_country_flag = maitresse_de_rainna_la_grande
+                    has_country_flag = maitresse_de_rainna_la_grande_est_morte
+                }
+            }
+        }
+        text = gts_rainna_la_grande_arch.07_2_small_alter2.desc
+    }
+    desc = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_2_small_3
+        }
+        text = gts_rainna_la_grande_arch.07_3_small.desc
+    }
+    desc = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_2_normal_3
+        }
+        text = gts_rainna_la_grande_arch.07_3_normal.desc
+    }
+    desc = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_2_tall_3
+        }
+        text = gts_rainna_la_grande_arch.07_3_tall.desc
+    }
+    desc = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_2_giant_3
+        }
+        text = gts_rainna_la_grande_arch.07_3_giant.desc
+    }
+    desc = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_2_giant_4
+        }
+        text = gts_rainna_la_grande_arch.07_4_giant.desc
+    }
+    desc = {
+        trigger = {
+            NOT = {
+                owner = {
+                    has_country_flag = rainna_la_grande_arch_1_done
+                }
+            }
+            has_global_flag = gts_rainna_la_grande_arch_2_titan_4
+        }
+        text = gts_rainna_la_grande_arch.07_4_titan_alter.desc
+    }
+    desc = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_2_titan_4
+            owner = {
+                has_country_flag = rainna_la_grande_arch_1_done
+            }
+        }
+        text = gts_rainna_la_grande_arch.07_4_titan.desc
+    }
+    desc = {
+        trigger = {
+            NOT = {
+                owner = {
+                    has_country_flag = rainna_la_grande_arch_1_done
+                }
+            }
+            has_global_flag = gts_rainna_la_grande_arch_2_ultra_4
+        }
+        text = gts_rainna_la_grande_arch.07_4_ultra_alter.desc
+    }
+    desc = {
+        trigger = {
+            has_global_flag = gts_rainna_la_grande_arch_2_ultra_4
+            owner = {
+                has_country_flag = rainna_la_grande_arch_1_done
+            }
+        }
+        text = gts_rainna_la_grande_arch.07_4_ultra.desc
+    }
+
+    picture = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_global_flag = gts_rainna_la_grande_arch_2_micro_1
+                    has_global_flag = gts_rainna_la_grande_arch_2_tiny_1
+                }
+            }
+        }
+        picture = GFX_gts_rainna_la_grande_arch_event7_micro1
+    }
+    picture = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_global_flag = gts_rainna_la_grande_arch_2_micro_2
+                    has_global_flag = gts_rainna_la_grande_arch_2_tiny_2
+                    has_global_flag = gts_rainna_la_grande_arch_2_small_2
+                }
+            }
+        }
+        picture = GFX_gts_rainna_la_grande_arch_event7_micro2
+    }
+    picture = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_global_flag = gts_rainna_la_grande_arch_2_small_3
+                    has_global_flag = gts_rainna_la_grande_arch_2_normal_3
+                    has_global_flag = gts_rainna_la_grande_arch_2_tall_3
+                    has_global_flag = gts_rainna_la_grande_arch_2_giant_3
+                }
+            }
+        }
+        picture = GFX_gts_rainna_la_grande_arch_event7_small3
+    }
+    picture = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_global_flag = gts_rainna_la_grande_arch_2_giant_4
+                    has_global_flag = gts_rainna_la_grande_arch_2_titan_4
+                    has_global_flag = gts_rainna_la_grande_arch_2_ultra_4
+                }
+            }
+        }
+        picture = GFX_gts_rainna_la_grande_arch_event7_giant4
+    }
+    show_sound = event_dig_site
+    archaeology = yes
+    is_triggered_only = yes
+    immediate = {
+        from = {
+            set_site_progress_locked = yes
+        }
+    }
+    after = {
+        from = {
+            set_site_progress_locked = no
+        }
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_micro_1
+                has_global_flag = gts_rainna_la_grande_arch_2_tiny_1
+            }
+        }
+        name = gts_rainna_la_grande_arch.07_1_micro.a
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_micro_1
+                has_global_flag = gts_rainna_la_grande_arch_2_tiny_1
+            }
+            owner = {
+                has_country_flag = vae_victis_cladium
+            }
+        }
+        name = gts_rainna_la_grande_arch.07_1_micro.b
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_micro_2
+                has_global_flag = gts_rainna_la_grande_arch_2_tiny_2
+                has_global_flag = gts_rainna_la_grande_arch_2_small_2
+                has_global_flag = gts_rainna_la_grande_arch_2_normal_2
+            }
+            owner = {
+                NOR = {
+                    has_country_flag = mere_de_rainna_la_grande
+                    has_country_flag = mere_de_rainna_la_grande_est_morte
+                    has_country_flag = maitresse_de_rainna_la_grande
+                    has_country_flag = maitresse_de_rainna_la_grande_est_morte
+                }
+            }
+        }
+        name = gts_rainna_la_grande_arch.07_2_micro.a
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_micro_2
+                has_global_flag = gts_rainna_la_grande_arch_2_tiny_2
+                has_global_flag = gts_rainna_la_grande_arch_2_small_2
+                has_global_flag = gts_rainna_la_grande_arch_2_normal_2
+            }
+            owner = {
+                OR = {
+                    has_country_flag = mere_de_rainna_la_grande
+                    has_country_flag = mere_de_rainna_la_grande_est_morte
+
+                }
+            }
+        }
+        name = gts_rainna_la_grande_arch.07_2_micro.b
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_micro_2
+                has_global_flag = gts_rainna_la_grande_arch_2_tiny_2
+                has_global_flag = gts_rainna_la_grande_arch_2_small_2
+                has_global_flag = gts_rainna_la_grande_arch_2_normal_2
+            }
+            owner = {
+                OR = {
+                    has_country_flag = maitresse_de_rainna_la_grande
+                    has_country_flag = maitresse_de_rainna_la_grande_est_morte
+
+                }
+            }
+        }
+        name = gts_rainna_la_grande_arch.07_2_micro.c
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_small_3
+                has_global_flag = gts_rainna_la_grande_arch_2_normal_3
+                has_global_flag = gts_rainna_la_grande_arch_2_tall_3
+                has_global_flag = gts_rainna_la_grande_arch_2_giant_3
+            }
+        }
+        name = gts_rainna_la_grande_arch.07_3_small.a
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_giant_4
+                # has_global_flag = gts_rainna_la_grande_arch_2_titan_4
+                # has_global_flag = gts_rainna_la_grande_arch_2_ultra_4
+            }
+        }
+        name = gts_rainna_la_grande_arch.07_4_giant.a
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_titan_4
+                has_global_flag = gts_rainna_la_grande_arch_2_ultra_4
+            }
+            owner = {
+                has_country_flag = rainna_la_grande_arch_1_done
+            }
+        }
+        name = gts_rainna_la_grande_arch.07_4_titan.a
+        owner = {
+            hidden_effect = {
+                set_country_flag = salve_rainna_la_grande
+            }
+        }
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_titan_4
+                has_global_flag = gts_rainna_la_grande_arch_2_ultra_4
+            }
+        }
+        name = gts_rainna_la_grande_arch.07_4_titan.b
+    }
+}
+
+fleet_event = {
+    id = gts_rainna_la_grande_arch.08
+    title = gts_rainna_la_grande_arch.08.name
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_micro_1
+                has_global_flag = gts_rainna_la_grande_arch_2_tiny_1
+            }
+        }
+        text = gts_rainna_la_grande_arch.08_1_micro.desc
+    }
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_micro_2
+                has_global_flag = gts_rainna_la_grande_arch_2_tiny_2
+                has_global_flag = gts_rainna_la_grande_arch_2_small_2
+                has_global_flag = gts_rainna_la_grande_arch_2_normal_2
+            }
+            owner = {
+                NOR = {
+                    has_country_flag = mere_de_rainna_la_grande
+                    has_country_flag = mere_de_rainna_la_grande_est_morte
+                    has_country_flag = maitresse_de_rainna_la_grande
+                    has_country_flag = maitresse_de_rainna_la_grande_est_morte
+                }
+            }
+        }
+        text = gts_rainna_la_grande_arch.08_2_micro.desc
+    }
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_micro_2
+                has_global_flag = gts_rainna_la_grande_arch_2_tiny_2
+                has_global_flag = gts_rainna_la_grande_arch_2_small_2
+                has_global_flag = gts_rainna_la_grande_arch_2_normal_2
+            }
+            owner = {
+                OR = {
+                    has_country_flag = mere_de_rainna_la_grande
+                    has_country_flag = mere_de_rainna_la_grande_est_morte
+                }
+            }
+        }
+        text = gts_rainna_la_grande_arch.08_2_micro_alter.desc
+    }
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_micro_2
+                has_global_flag = gts_rainna_la_grande_arch_2_tiny_2
+                has_global_flag = gts_rainna_la_grande_arch_2_small_2
+                has_global_flag = gts_rainna_la_grande_arch_2_normal_2
+            }
+            owner = {
+                OR = {
+                    has_country_flag = maitresse_de_rainna_la_grande
+                    has_country_flag = maitresse_de_rainna_la_grande_est_morte
+                }
+            }
+        }
+        text = gts_rainna_la_grande_arch.08_2_micro_alter2.desc
+    }
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_small_3
+                has_global_flag = gts_rainna_la_grande_arch_2_normal_3
+                has_global_flag = gts_rainna_la_grande_arch_2_tall_3
+                has_global_flag = gts_rainna_la_grande_arch_2_giant_3
+            }
+        }
+        text = gts_rainna_la_grande_arch.08_3_small.desc
+    }
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_giant_4
+                has_global_flag = gts_rainna_la_grande_arch_2_titan_4
+                has_global_flag = gts_rainna_la_grande_arch_2_ultra_4
+            }
+            owner = {
+                NOR = {
+                    has_country_flag = mere_de_rainna_la_grande
+                    has_country_flag = mere_de_rainna_la_grande_est_morte
+                    has_country_flag = maitresse_de_rainna_la_grande
+                    has_country_flag = maitresse_de_rainna_la_grande_est_morte
+                }
+            }
+        }
+        text = gts_rainna_la_grande_arch.08_4_giant.desc
+    }
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_giant_4
+                has_global_flag = gts_rainna_la_grande_arch_2_titan_4
+                has_global_flag = gts_rainna_la_grande_arch_2_ultra_4
+            }
+            owner = {
+                OR = {
+                    has_country_flag = mere_de_rainna_la_grande
+                    has_country_flag = mere_de_rainna_la_grande_est_morte
+                }
+            }
+        }
+        text = gts_rainna_la_grande_arch.08_4_giant_alter.desc
+    }
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_giant_4
+                has_global_flag = gts_rainna_la_grande_arch_2_titan_4
+                has_global_flag = gts_rainna_la_grande_arch_2_ultra_4
+            }
+            owner = {
+                OR = {
+                    has_country_flag = maitresse_de_rainna_la_grande
+                    has_country_flag = maitresse_de_rainna_la_grande_est_morte
+                }
+            }
+        }
+        text = gts_rainna_la_grande_arch.08_4_giant_alter2.desc
+    }
+
+    picture = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_global_flag = gts_rainna_la_grande_arch_2_micro_1
+                    has_global_flag = gts_rainna_la_grande_arch_2_tiny_1
+                }
+            }
+        }
+        picture = GFX_gts_rainna_la_grande_arch_event8_micro1
+    }
+    picture = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_global_flag = gts_rainna_la_grande_arch_2_micro_2
+                    has_global_flag = gts_rainna_la_grande_arch_2_tiny_2
+                    has_global_flag = gts_rainna_la_grande_arch_2_small_2
+                    has_global_flag = gts_rainna_la_grande_arch_2_normal_2
+                }
+            }
+        }
+        picture = GFX_gts_rainna_la_grande_arch_event8_micro2
+    }
+    picture = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_global_flag = gts_rainna_la_grande_arch_2_small_3
+                    has_global_flag = gts_rainna_la_grande_arch_2_normal_3
+                    has_global_flag = gts_rainna_la_grande_arch_2_tall_3
+                    has_global_flag = gts_rainna_la_grande_arch_2_giant_3
+                }
+            }
+        }
+        picture = GFX_gts_rainna_la_grande_arch_event8_small3
+    }
+    picture = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_global_flag = gts_rainna_la_grande_arch_2_giant_4
+                    has_global_flag = gts_rainna_la_grande_arch_2_titan_4
+                    has_global_flag = gts_rainna_la_grande_arch_2_ultra_4
+                }
+            }
+        }
+        picture = GFX_gts_rainna_la_grande_arch_event8_giant4
+    }
+    show_sound = event_dig_site
+    archaeology = yes
+    is_triggered_only = yes
+    immediate = {
+        from = {
+            set_site_progress_locked = yes
+        }
+    }
+    after = {
+        from = {
+            set_site_progress_locked = no
+        }
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_micro_1
+                has_global_flag = gts_rainna_la_grande_arch_2_tiny_1
+            }
+        }
+        name = gts_rainna_la_grande_arch.08_2_micro.a
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_micro_2
+                has_global_flag = gts_rainna_la_grande_arch_2_tiny_2
+                has_global_flag = gts_rainna_la_grande_arch_2_small_2
+                has_global_flag = gts_rainna_la_grande_arch_2_normal_2
+            }
+            owner = {
+                NOR = {
+                    has_country_flag = mere_de_rainna_la_grande
+                    has_country_flag = mere_de_rainna_la_grande_est_morte
+                    has_country_flag = maitresse_de_rainna_la_grande
+                    has_country_flag = maitresse_de_rainna_la_grande_est_morte
+                }
+            }
+        }
+        name = gts_rainna_la_grande_arch.08_2_micro.a
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_micro_2
+                has_global_flag = gts_rainna_la_grande_arch_2_tiny_2
+                has_global_flag = gts_rainna_la_grande_arch_2_small_2
+                has_global_flag = gts_rainna_la_grande_arch_2_normal_2
+            }
+            owner = {
+                OR = {
+                    has_country_flag = mere_de_rainna_la_grande
+                    has_country_flag = mere_de_rainna_la_grande_est_morte
+                }
+            }
+        }
+        name = gts_rainna_la_grande_arch.08_2_micro.b
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_micro_2
+                has_global_flag = gts_rainna_la_grande_arch_2_tiny_2
+                has_global_flag = gts_rainna_la_grande_arch_2_small_2
+                has_global_flag = gts_rainna_la_grande_arch_2_normal_2
+            }
+            owner = {
+                OR = {
+                    has_country_flag = maitresse_de_rainna_la_grande
+                    has_country_flag = maitresse_de_rainna_la_grande_est_morte
+                }
+            }
+        }
+        name = gts_rainna_la_grande_arch.08_2_micro.c
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_micro_2
+                has_global_flag = gts_rainna_la_grande_arch_2_tiny_2
+                has_global_flag = gts_rainna_la_grande_arch_2_small_2
+                has_global_flag = gts_rainna_la_grande_arch_2_normal_2
+            }
+        }
+        name = gts_rainna_la_grande_arch.08_2_micro.d
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_small_3
+                has_global_flag = gts_rainna_la_grande_arch_2_normal_3
+                has_global_flag = gts_rainna_la_grande_arch_2_tall_3
+                has_global_flag = gts_rainna_la_grande_arch_2_giant_3
+            }
+        }
+        name = gts_rainna_la_grande_arch.08_3_small.a
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_giant_4
+                has_global_flag = gts_rainna_la_grande_arch_2_titan_4
+                has_global_flag = gts_rainna_la_grande_arch_2_ultra_4
+            }
+        }
+        name = gts_rainna_la_grande_arch.08_4_giant.a
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_giant_4
+                has_global_flag = gts_rainna_la_grande_arch_2_titan_4
+                has_global_flag = gts_rainna_la_grande_arch_2_ultra_4
+            }
+        }
+        name = gts_rainna_la_grande_arch.08_4_giant.b
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_giant_4
+                has_global_flag = gts_rainna_la_grande_arch_2_titan_4
+                has_global_flag = gts_rainna_la_grande_arch_2_ultra_4
+            }
+            owner = {
+                OR = {
+                    has_country_flag = mere_de_rainna_la_grande
+                    has_country_flag = mere_de_rainna_la_grande_est_morte
+                }
+            }
+        }
+        name = gts_rainna_la_grande_arch.08_4_giant.c
+    }
+}
+
+fleet_event = {
+    id = gts_rainna_la_grande_arch.09
+    title = gts_rainna_la_grande_arch.09.name
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_micro_1
+                has_global_flag = gts_rainna_la_grande_arch_2_tiny_1
+            }
+        }
+        text = gts_rainna_la_grande_arch.09_1_micro.desc
+    }
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_micro_2
+                has_global_flag = gts_rainna_la_grande_arch_2_tiny_2
+                has_global_flag = gts_rainna_la_grande_arch_2_small_2
+                has_global_flag = gts_rainna_la_grande_arch_2_normal_2
+            }
+            owner = {
+                NOR = {
+                    has_country_flag = mere_de_rainna_la_grande
+                    has_country_flag = mere_de_rainna_la_grande_est_morte
+                    has_country_flag = maitresse_de_rainna_la_grande
+                    has_country_flag = maitresse_de_rainna_la_grande_est_morte
+                }
+            }
+        }
+        text = gts_rainna_la_grande_arch.09_2_micro.desc
+    }
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_micro_2
+                has_global_flag = gts_rainna_la_grande_arch_2_tiny_2
+                has_global_flag = gts_rainna_la_grande_arch_2_small_2
+                has_global_flag = gts_rainna_la_grande_arch_2_normal_2
+            }
+            owner = {
+                OR = {
+                    has_country_flag = mere_de_rainna_la_grande
+                    has_country_flag = mere_de_rainna_la_grande_est_morte
+                }
+            }
+        }
+        text = gts_rainna_la_grande_arch.09_2_micro_alter.desc
+    }
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_micro_2
+                has_global_flag = gts_rainna_la_grande_arch_2_tiny_2
+                has_global_flag = gts_rainna_la_grande_arch_2_small_2
+                has_global_flag = gts_rainna_la_grande_arch_2_normal_2
+            }
+            owner = {
+                OR = {
+                    has_country_flag = maitresse_de_rainna_la_grande
+                    has_country_flag = maitresse_de_rainna_la_grande_est_morte
+                }
+            }
+        }
+        text = gts_rainna_la_grande_arch.09_2_micro_alter2.desc
+    }
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_small_3
+                has_global_flag = gts_rainna_la_grande_arch_2_normal_3
+                has_global_flag = gts_rainna_la_grande_arch_2_tall_3
+                has_global_flag = gts_rainna_la_grande_arch_2_giant_3
+            }
+        }
+        text = gts_rainna_la_grande_arch.09_3_small.desc
+    }
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_giant_4
+                has_global_flag = gts_rainna_la_grande_arch_2_titan_4
+                has_global_flag = gts_rainna_la_grande_arch_2_ultra_4
+            }
+            owner = {
+                NOR = {
+                    has_country_flag = mere_de_rainna_la_grande
+                    has_country_flag = mere_de_rainna_la_grande_est_morte
+                    has_country_flag = maitresse_de_rainna_la_grande
+                    has_country_flag = maitresse_de_rainna_la_grande_est_morte
+                }
+            }
+        }
+        text = gts_rainna_la_grande_arch.09_4_giant.desc
+    }
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_giant_4
+                has_global_flag = gts_rainna_la_grande_arch_2_titan_4
+                has_global_flag = gts_rainna_la_grande_arch_2_ultra_4
+            }
+            owner = {
+                OR = {
+                    has_country_flag = mere_de_rainna_la_grande
+                    has_country_flag = mere_de_rainna_la_grande_est_morte
+                }
+            }
+        }
+        text = gts_rainna_la_grande_arch.09_4_giant_alter.desc
+    }
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_giant_4
+                has_global_flag = gts_rainna_la_grande_arch_2_titan_4
+                has_global_flag = gts_rainna_la_grande_arch_2_ultra_4
+            }
+            owner = {
+                OR = {
+                    has_country_flag = maitresse_de_rainna_la_grande
+                    has_country_flag = maitresse_de_rainna_la_grande_est_morte
+                }
+            }
+        }
+        text = gts_rainna_la_grande_arch.09_4_giant_alter2.desc
+    }
+
+    picture = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_global_flag = gts_rainna_la_grande_arch_2_micro_1
+                    has_global_flag = gts_rainna_la_grande_arch_2_tiny_1
+                }
+            }
+        }
+        picture = GFX_gts_rainna_la_grande_arch_event5_titan1
+    }
+    picture = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_global_flag = gts_rainna_la_grande_arch_2_micro_2
+                    has_global_flag = gts_rainna_la_grande_arch_2_tiny_2
+                    has_global_flag = gts_rainna_la_grande_arch_2_small_2
+                    has_global_flag = gts_rainna_la_grande_arch_2_normal_2
+                }
+            }
+        }
+        picture = GFX_gts_rainna_la_grande_arch_event9_micro2
+    }
+    picture = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_global_flag = gts_rainna_la_grande_arch_2_small_3
+                    has_global_flag = gts_rainna_la_grande_arch_2_normal_3
+                    has_global_flag = gts_rainna_la_grande_arch_2_tall_3
+                    has_global_flag = gts_rainna_la_grande_arch_2_giant_3
+                }
+            }
+        }
+        picture = GFX_gts_rainna_la_grande_arch_event9_small3
+    }
+    picture = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_global_flag = gts_rainna_la_grande_arch_2_giant_4
+                    has_global_flag = gts_rainna_la_grande_arch_2_titan_4
+                    has_global_flag = gts_rainna_la_grande_arch_2_ultra_4
+                }
+            }
+        }
+        picture = GFX_gts_rainna_la_grande_arch_event9_giant4
+    }
+    show_sound = event_dig_site
+    archaeology = yes
+    is_triggered_only = yes
+    immediate = {
+        from = {
+            set_site_progress_locked = yes
+        }
+    }
+    after = {
+        from = {
+            set_site_progress_locked = no
+        }
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_micro_1
+                has_global_flag = gts_rainna_la_grande_arch_2_tiny_1
+            }
+        }
+        name = gts_rainna_la_grande_arch.09_1_micro.a
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_micro_1
+                has_global_flag = gts_rainna_la_grande_arch_2_tiny_1
+            }
+            owner = {
+                has_country_flag = vae_victis_cladium
+            }
+        }
+        name = gts_rainna_la_grande_arch.09_1_micro.b
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_micro_2
+                has_global_flag = gts_rainna_la_grande_arch_2_tiny_2
+                has_global_flag = gts_rainna_la_grande_arch_2_small_2
+                has_global_flag = gts_rainna_la_grande_arch_2_normal_2
+            }
+        }
+        name = gts_rainna_la_grande_arch.09_2_micro.a
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_micro_2
+                has_global_flag = gts_rainna_la_grande_arch_2_tiny_2
+                has_global_flag = gts_rainna_la_grande_arch_2_small_2
+                has_global_flag = gts_rainna_la_grande_arch_2_normal_2
+            }
+            owner = {
+                OR = {
+                    has_country_flag = mere_de_rainna_la_grande
+                    has_country_flag = mere_de_rainna_la_grande_est_morte
+                }
+            }
+        }
+        name = gts_rainna_la_grande_arch.09_2_micro.b
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_micro_2
+                has_global_flag = gts_rainna_la_grande_arch_2_tiny_2
+                has_global_flag = gts_rainna_la_grande_arch_2_small_2
+                has_global_flag = gts_rainna_la_grande_arch_2_normal_2
+            }
+            owner = {
+                OR = {
+                    has_country_flag = maitresse_de_rainna_la_grande
+                    has_country_flag = maitresse_de_rainna_la_grande_est_morte
+                }
+            }
+        }
+        name = gts_rainna_la_grande_arch.09_2_micro.c
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_small_3
+                has_global_flag = gts_rainna_la_grande_arch_2_normal_3
+                has_global_flag = gts_rainna_la_grande_arch_2_tall_3
+                has_global_flag = gts_rainna_la_grande_arch_2_giant_3
+            }
+        }
+        name = gts_rainna_la_grande_arch.09_3_small.a
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_small_3
+                has_global_flag = gts_rainna_la_grande_arch_2_normal_3
+                has_global_flag = gts_rainna_la_grande_arch_2_tall_3
+                has_global_flag = gts_rainna_la_grande_arch_2_giant_3
+            }
+            owner = {
+                has_country_flag = vae_victis_cladium
+            }
+        }
+        name = gts_rainna_la_grande_arch.09_3_small.b
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_giant_4
+                has_global_flag = gts_rainna_la_grande_arch_2_titan_4
+                has_global_flag = gts_rainna_la_grande_arch_2_ultra_4
+            }
+        }
+        name = gts_rainna_la_grande_arch.09_4_giant.a
+    }
+}
+
+fleet_event = {
+    id = gts_rainna_la_grande_arch.10
+    title = gts_rainna_la_grande_arch.10.name
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_micro_1
+                has_global_flag = gts_rainna_la_grande_arch_2_tiny_1
+            }
+        }
+        text = gts_rainna_la_grande_arch.10_1_micro.desc
+    }
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_micro_2
+                has_global_flag = gts_rainna_la_grande_arch_2_tiny_2
+                has_global_flag = gts_rainna_la_grande_arch_2_small_2
+                has_global_flag = gts_rainna_la_grande_arch_2_normal_2
+            }
+            owner = {
+                NOR = {
+                    has_country_flag = mere_de_rainna_la_grande
+                    has_country_flag = mere_de_rainna_la_grande_est_morte
+                    has_country_flag = maitresse_de_rainna_la_grande
+                    has_country_flag = maitresse_de_rainna_la_grande_est_morte
+                }
+            }
+        }
+        text = gts_rainna_la_grande_arch.10_2_micro.desc
+    }
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_micro_2
+                has_global_flag = gts_rainna_la_grande_arch_2_tiny_2
+                has_global_flag = gts_rainna_la_grande_arch_2_small_2
+                has_global_flag = gts_rainna_la_grande_arch_2_normal_2
+            }
+            owner = {
+                OR = {
+                    has_country_flag = mere_de_rainna_la_grande
+                    has_country_flag = mere_de_rainna_la_grande_est_morte
+                }
+            }
+        }
+        text = gts_rainna_la_grande_arch.10_2_micro_alter.desc
+    }
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_micro_2
+                has_global_flag = gts_rainna_la_grande_arch_2_tiny_2
+                has_global_flag = gts_rainna_la_grande_arch_2_small_2
+                has_global_flag = gts_rainna_la_grande_arch_2_normal_2
+            }
+            owner = {
+                OR = {
+                    has_country_flag = maitresse_de_rainna_la_grande
+                    has_country_flag = maitresse_de_rainna_la_grande_est_morte
+                }
+            }
+        }
+        text = gts_rainna_la_grande_arch.10_2_micro_alter2.desc
+    }
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_small_3
+                has_global_flag = gts_rainna_la_grande_arch_2_normal_3
+                has_global_flag = gts_rainna_la_grande_arch_2_tall_3
+                has_global_flag = gts_rainna_la_grande_arch_2_giant_3
+            }
+        }
+        text = gts_rainna_la_grande_arch.10_3_small.desc
+    }
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_giant_4
+                has_global_flag = gts_rainna_la_grande_arch_2_titan_4
+                has_global_flag = gts_rainna_la_grande_arch_2_ultra_4
+            }
+            owner = {
+                NOR = {
+                    has_country_flag = mere_de_rainna_la_grande
+                    has_country_flag = mere_de_rainna_la_grande_est_morte
+                    has_country_flag = maitresse_de_rainna_la_grande
+                    has_country_flag = maitresse_de_rainna_la_grande_est_morte
+                }
+            }
+        }
+        text = gts_rainna_la_grande_arch.10_4_giant.desc
+    }
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_giant_4
+                has_global_flag = gts_rainna_la_grande_arch_2_titan_4
+                has_global_flag = gts_rainna_la_grande_arch_2_ultra_4
+            }
+            owner = {
+                OR = {
+                    has_country_flag = mere_de_rainna_la_grande
+                    has_country_flag = mere_de_rainna_la_grande_est_morte
+                }
+            }
+        }
+        text = gts_rainna_la_grande_arch.10_4_giant_alter.desc
+    }
+    desc = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_giant_4
+                has_global_flag = gts_rainna_la_grande_arch_2_titan_4
+                has_global_flag = gts_rainna_la_grande_arch_2_ultra_4
+            }
+            owner = {
+                OR = {
+                    has_country_flag = maitresse_de_rainna_la_grande
+                    has_country_flag = maitresse_de_rainna_la_grande_est_morte
+                }
+            }
+        }
+        text = gts_rainna_la_grande_arch.10_4_giant_alter2.desc
+    }
+
+    picture = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_global_flag = gts_rainna_la_grande_arch_2_micro_1
+                    has_global_flag = gts_rainna_la_grande_arch_2_tiny_1
+                    has_global_flag = gts_rainna_la_grande_arch_2_small_3
+                    has_global_flag = gts_rainna_la_grande_arch_2_normal_3
+                    has_global_flag = gts_rainna_la_grande_arch_2_tall_3
+                    has_global_flag = gts_rainna_la_grande_arch_2_giant_3
+                }
+            }
+        }
+        picture = GFX_gts_rainna_la_grande_arch_event9_small3
+    }
+    picture = {
+        trigger = {
+            owner_main_species = {
+                OR = {
+                    has_global_flag = gts_rainna_la_grande_arch_2_micro_2
+                    has_global_flag = gts_rainna_la_grande_arch_2_tiny_2
+                    has_global_flag = gts_rainna_la_grande_arch_2_small_2
+                    has_global_flag = gts_rainna_la_grande_arch_2_normal_2
+                    has_global_flag = gts_rainna_la_grande_arch_2_giant_4
+                    has_global_flag = gts_rainna_la_grande_arch_2_titan_4
+                    has_global_flag = gts_rainna_la_grande_arch_2_ultra_4
+                }
+            }
+        }
+        picture = GFX_gts_rainna_la_grande_arch_event9_giant4
+    }
+    show_sound = event_dig_site
+    archaeology = yes
+    is_triggered_only = yes
+    immediate = {
+        from = {
+            set_site_progress_locked = yes
+        }
+    }
+    after = {
+        from = {
+            set_site_progress_locked = no
+        }
+        owner = {
+            set_country_flag = rainna_la_grande_arch_2_done
+        }
+        remove_global_flag = gts_rainna_la_grande_arch_2_micro_1
+        remove_global_flag = gts_rainna_la_grande_arch_2_tiny_1
+        remove_global_flag = gts_rainna_la_grande_arch_2_micro_2
+        remove_global_flag = gts_rainna_la_grande_arch_2_tiny_2
+        remove_global_flag = gts_rainna_la_grande_arch_2_small_2
+        remove_global_flag = gts_rainna_la_grande_arch_2_normal_2
+        remove_global_flag = gts_rainna_la_grande_arch_2_small_3
+        remove_global_flag = gts_rainna_la_grande_arch_2_normal_3
+        remove_global_flag = gts_rainna_la_grande_arch_2_tall_3
+        remove_global_flag = gts_rainna_la_grande_arch_2_giant_3
+        # remove_global_flag = gts_rainna_la_grande_arch_2_tall_4
+        remove_global_flag = gts_rainna_la_grande_arch_2_giant_4
+        remove_global_flag = gts_rainna_la_grande_arch_2_titan_4
+        remove_global_flag = gts_rainna_la_grande_arch_2_ultra_4
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_micro_1
+                has_global_flag = gts_rainna_la_grande_arch_2_tiny_1
+            }
+        }
+        name = gts_rainna_la_grande_arch.10_1_micro.a
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_micro_2
+                has_global_flag = gts_rainna_la_grande_arch_2_tiny_2
+                has_global_flag = gts_rainna_la_grande_arch_2_small_2
+                has_global_flag = gts_rainna_la_grande_arch_2_normal_2
+            }
+        }
+        name = gts_rainna_la_grande_arch.10_2_micro.a
+        owner = {
+            hidden_effect = {
+                set_country_flag = jeanne_punie_rainna
+            }
+        }
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_micro_2
+                has_global_flag = gts_rainna_la_grande_arch_2_tiny_2
+                has_global_flag = gts_rainna_la_grande_arch_2_small_2
+                has_global_flag = gts_rainna_la_grande_arch_2_normal_2
+            }
+        }
+        name = gts_rainna_la_grande_arch.10_2_micro.b
+        owner = {
+            hidden_effect = {
+                set_country_flag = rainna_punie_jeanne
+            }
+        }
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_small_3
+                has_global_flag = gts_rainna_la_grande_arch_2_normal_3
+                has_global_flag = gts_rainna_la_grande_arch_2_tall_3
+                has_global_flag = gts_rainna_la_grande_arch_2_giant_3
+            }
+        }
+        name = gts_rainna_la_grande_arch.10_3_small.a
+    }
+    option = {
+        trigger = {
+            OR = {
+                has_global_flag = gts_rainna_la_grande_arch_2_giant_4
+                has_global_flag = gts_rainna_la_grande_arch_2_titan_4
+                has_global_flag = gts_rainna_la_grande_arch_2_ultra_4
+            }
+        }
+        name = gts_rainna_la_grande_arch.10_4_giant.a
+    }
+}

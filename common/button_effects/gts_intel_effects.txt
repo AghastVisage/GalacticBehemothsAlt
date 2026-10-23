@@ -692,6 +692,12 @@ gts_bfbf_change_test01_effect = {
 gts_bfbf_change_test02_effect = {
 	#作为星球   分按钮2
 	allow = {
+		owner = {
+			OR = {
+				is_nomadic = yes
+				has_technology = tech_gts_titan_ship
+			}
+		}
 		custom_tooltip_fail = {
 			text = gts_bfbf_change_test01_allow1
 			event_target:gts_bfbf_love_target = {
@@ -1221,18 +1227,13 @@ gts_intel_avatar_Lottie_effect = {
 		}
 	}
 	allow = {
-		gts_ui_intel_panel_lock = yes
-		hidden_trigger = {
-			OR = {
-				NOT = {
-					has_global_flag = gts_has_trigger_lottie
-				}
-				any_owned_leader = {
-					has_leader_flag = gts_luodi
-				}
-			}
-		}
-	}
+ gts_ui_intel_panel_lock = yes
+ 
+ OR = {
+  hidden_trigger = { any_owned_leader = { has_leader_flag = gts_luodi } }
+  gts_intel_can_start_lottie = yes
+ }
+}
 	effect = {
 		custom_tooltip = gts_intel_avatar_Lottie.tooltip
 		hidden_effect = {
@@ -1262,45 +1263,19 @@ gts_intel_avatar_Lottie_effect = {
 	}
 }
 
+# 歐若拉
 gts_intel_avatar_aurora_effect = {
-	# 欧若拉
-	potential = {
-		gts_ui_intel_display = {
-			PAGE = 1
-		}
-	}
+	potential = { gts_ui_intel_display = { PAGE = 1 } }
+
 	allow = {
-		gts_ui_intel_panel_lock = yes
-		OR = {
-			AND = {
-				NOT = {
-					has_global_flag = gts_has_trigger_aurora
-				}
-				any_system = {
-					distance = {
-						source = root.capital_scope.solar_system
-						use_bypasses = yes
-						min_jumps = 1
-						max_jumps = 6
-					}
-					is_star_class = sc_f
-					any_system_planet = {
-						has_anomaly = no
-						is_a_planet = yes
-						is_preventing_anomaly = no
-					}
-				}
-			}
-			hidden_trigger = {
-				any_owned_leader = {
-					OR = {
-						has_leader_flag = gts_aurora
-						has_leader_flag = gts_arlo
-					}
-				}
-			}
-		}
-	}
+ gts_ui_intel_panel_lock = yes
+ 
+ OR = {
+  hidden_trigger = { any_owned_leader = { OR = { has_leader_flag = gts_aurora has_leader_flag = gts_arlo } } }
+  gts_intel_can_start_aurora = yes
+ }
+}
+
 	effect = {
 		custom_tooltip = gts_intel_avatar_aurora.tooltip
 		hidden_effect = {
@@ -1351,18 +1326,13 @@ gts_intel_avatar_jifeng_effect = {
 		}
 	}
 	allow = {
-		gts_ui_intel_panel_lock = yes
-		OR = {
-			NOT = {
-				has_global_flag = gts_has_trigger_jifeng
-			}
-			hidden_trigger = {
-				any_owned_leader = {
-					has_leader_flag = gts_jifeng
-				}
-			}
-		}
-	}
+ gts_ui_intel_panel_lock = yes
+ 
+ OR = {
+  hidden_trigger = { any_owned_leader = { has_leader_flag = gts_jifeng } }
+  gts_intel_can_start_jifeng = yes
+ }
+}
 	effect = {
 		custom_tooltip = gts_intel_avatar_jifeng.tooltip
 		hidden_effect = {
@@ -1400,18 +1370,13 @@ gts_intel_avatar_yiyan_effect = {
 		}
 	}
 	allow = {
-		gts_ui_intel_panel_lock = yes
-		hidden_trigger = {
-			OR = {
-				NOT = {
-					has_global_flag = gts_has_trigger_yiyan
-				}
-				any_owned_leader = {
-					has_leader_flag = gts_yiyan
-				}
-			}
-		}
-	}
+ gts_ui_intel_panel_lock = yes
+ 
+ OR = {
+  hidden_trigger = { any_owned_leader = { has_leader_flag = gts_yiyan } }
+  gts_intel_can_start_yiyan = yes
+ }
+}
 	effect = {
 		custom_tooltip = gts_intel_avatar_yiyan.tooltip
 		hidden_effect = {
@@ -1449,40 +1414,13 @@ gts_intel_avatar_aplog_effect = {
 		}
 	}
 	allow = {
-		gts_ui_intel_panel_lock = yes
-		custom_tooltip = gts_intel_avatar_archaeological.tooltip
-		hidden_trigger = {
-			OR = {
-				AND = {
-					NOT = {
-						has_global_flag = gts_has_trigger_aplog
-					}
-					any_system = {
-						distance = {
-							source = root.capital_scope.solar_system
-							use_bypasses = yes
-							min_jumps = 1
-							max_jumps = 6
-						}
-						any_system_planet = {
-							is_capital = no
-							is_ringworld = no
-							is_asteroid = no
-							is_star = no
-							NOT = { is_planet_class = pc_gas_giant }
-							NOT = { has_planet_flag = gts_body_planet }
-							NOT = { exists = archaeological_site }
-							has_anomaly = no
-							is_preventing_anomaly = no
-						}
-					}
-				}
-				any_owned_leader = {
-					has_leader_flag = gts_aplog
-				}
-			}
-		}
-	}
+ gts_ui_intel_panel_lock = yes
+ 
+ OR = {
+  hidden_trigger = { any_owned_leader = { has_leader_flag = gts_aplog } }
+  gts_intel_can_start_aplog = yes
+ }
+}
 	effect = {
 		custom_tooltip = gts_intel_avatar_aplog.tooltip
 		hidden_effect = {
@@ -1520,18 +1458,13 @@ gts_intel_avatar_eyjafjalla_effect = {
 		}
 	}
 	allow = {
-		gts_ui_intel_panel_lock = yes
-		hidden_trigger = {
-			OR = {
-				NOT = {
-					has_global_flag = gts_has_trigger_eyjafjalla
-				}
-				any_owned_leader = {
-					has_leader_flag = gts_eyjafjalla
-				}
-			}
-		}
-	}
+ gts_ui_intel_panel_lock = yes
+ 
+ OR = {
+  hidden_trigger = { any_owned_leader = { has_leader_flag = gts_eyjafjalla } }
+  gts_intel_can_start_eyjafjalla = yes
+ }
+}
 	effect = {
 		custom_tooltip = gts_intel_avatar_eyjafjalla.tooltip
 		hidden_effect = {
@@ -1569,34 +1502,13 @@ gts_intel_avatar_skadi_effect = {
 		}
 	}
 	allow = {
-		gts_ui_intel_panel_lock = yes
-		custom_tooltip = gts_intel_avatar_archaeological.tooltip
-		hidden_trigger = {
-			OR = {
-				AND = {
-					NOT = {
-						has_global_flag = gts_has_trigger_skadi
-					}
-					any_system = {
-						distance = {
-							source = root.capital_scope.solar_system
-							use_bypasses = yes
-							min_jumps = 1
-							max_jumps = 6
-						}
-						any_system_planet = {
-							NOT = {
-								exists = archaeological_site
-							}
-						}
-					}
-				}
-				any_owned_leader = {
-					has_leader_flag = gts_skadi
-				}
-			}
-		}
-	}
+ gts_ui_intel_panel_lock = yes
+ 
+ OR = {
+  hidden_trigger = { any_owned_leader = { has_leader_flag = gts_skadi } }
+  gts_intel_can_start_skadi = yes
+ }
+}
 	effect = {
 		custom_tooltip = gts_intel_avatar_skadi.tooltip
 		hidden_effect = {
@@ -1634,24 +1546,13 @@ gts_intel_avatar_sonxi_effect = {
 		}
 	}
 	allow = {
-		gts_ui_intel_panel_lock = yes
-		OR = {
-			AND = {
-				NOT = {
-					has_global_flag = gts_has_trigger_sonxi
-				}
-				num_owned_planets > 2
-				any_owned_planet = {
-					is_eatable_planet = yes
-				}
-			}
-			hidden_trigger = {
-				any_owned_leader = {
-					has_leader_flag = gts_sonxi
-				}
-			}
-		}
-	}
+ gts_ui_intel_panel_lock = yes
+ 
+ OR = {
+  hidden_trigger = { any_owned_leader = { has_leader_flag = gts_sonxi } }
+  gts_intel_can_start_sonxi = yes
+ }
+}
 	effect = {
 		custom_tooltip = gts_intel_avatar_sonxi.tooltip
 		hidden_effect = {
@@ -1689,36 +1590,13 @@ gts_intel_avatar_linglu_effect = {
 		}
 	}
 	allow = {
-		gts_ui_intel_panel_lock = yes
-		OR = {
-			AND = {
-				NOT = {
-					has_global_flag = gts_has_trigger_linglu
-				}
-				any_system = {
-					distance = {
-						source = root.capital_scope.solar_system
-						use_bypasses = yes
-						min_jumps = 1
-						max_jumps = 6
-					}
-					any_system_planet = {
-						OR = {
-							uninhabitable_regular_planet = yes
-							habitable_planet_not_urban = yes
-						}
-						is_preventing_anomaly = no
-						has_anomaly = no
-					}
-				}
-			}
-			hidden_trigger = {
-				any_owned_leader = {
-					has_leader_flag = gts_linglu
-				}
-			}
-		}
-	}
+ gts_ui_intel_panel_lock = yes
+ 
+ OR = {
+  hidden_trigger = { any_owned_leader = { has_leader_flag = gts_linglu } }
+  gts_intel_can_start_linglu = yes
+ }
+}
 	effect = {
 		custom_tooltip = gts_intel_avatar_linglu.tooltip
 		hidden_effect = {
@@ -1987,19 +1865,13 @@ gts_intel_avatar_erika_effect = {
 		}
 	}
 	allow = {
-		gts_ui_intel_panel_lock = yes
-		OR = {
-			NOT = {
-				has_global_flag = gts_has_trigger_erika
-			}
-			hidden_trigger = {
-				any_owned_leader = {
-					has_leader_flag = gts_erika
-				}
-			}
-		}
-		has_country_flag = can_trigger_scat_content
-	}
+ gts_ui_intel_panel_lock = yes
+ 
+ OR = {
+  hidden_trigger = { any_owned_leader = { has_leader_flag = gts_erika } }
+  gts_intel_can_start_erika = yes
+ }
+}
 	effect = {
 		custom_tooltip = gts_intel_avatar_erika.tooltip
 		hidden_effect = {
@@ -2037,18 +1909,13 @@ gts_intel_avatar_goldenglow_effect = {
 		}
 	}
 	allow = {
-		gts_ui_intel_panel_lock = yes
-		OR = {
-			NOT = {
-				has_global_flag = gts_has_trigger_goldenglow
-			}
-			hidden_trigger = {
-				any_owned_leader = {
-					has_leader_flag = gts_goldenglow
-				}
-			}
-		}
-	}
+ gts_ui_intel_panel_lock = yes
+ 
+ OR = {
+  hidden_trigger = { any_owned_leader = { has_leader_flag = gts_goldenglow } }
+  gts_intel_can_start_goldenglow = yes
+ }
+}
 	effect = {
 		custom_tooltip = gts_intel_avatar_goldenglow.tooltip
 		hidden_effect = {
@@ -2086,18 +1953,13 @@ gts_intel_avatar_huatian_effect = {
 		}
 	}
 	allow = {
-		gts_ui_intel_panel_lock = yes
-		OR = {
-			NOT = {
-				has_global_flag = gts_has_trigger_huatian
-			}
-			hidden_trigger = {
-				any_owned_leader = {
-					has_leader_flag = gts_huatian
-				}
-			}
-		}
-	}
+ gts_ui_intel_panel_lock = yes
+ 
+ OR = {
+  hidden_trigger = { any_owned_leader = { has_leader_flag = gts_huatian } }
+  gts_intel_can_start_huatian = yes
+ }
+}
 	effect = {
 		custom_tooltip = gts_intel_avatar_huatian.tooltip
 		hidden_effect = {
@@ -2135,18 +1997,13 @@ gts_intel_avatar_xiaomiao_effect = {
 		}
 	}
 	allow = {
-		gts_ui_intel_panel_lock = yes
-		OR = {
-			NOT = {
-				has_global_flag = gts_has_trigger_xiaomiao
-			}
-			hidden_trigger = {
-				any_owned_leader = {
-					has_leader_flag = gts_xiaomiao
-				}
-			}
-		}
-	}
+ gts_ui_intel_panel_lock = yes
+ 
+ OR = {
+  hidden_trigger = { any_owned_leader = { has_leader_flag = gts_xiaomiao } }
+  gts_intel_can_start_xiaomiao = yes
+ }
+}
 	effect = {
 		custom_tooltip = gts_intel_avatar_xiaomiao.tooltip
 		hidden_effect = {
@@ -2184,21 +2041,13 @@ gts_intel_avatar_cys_effect = {
 		}
 	}
 	allow = {
-		gts_ui_intel_panel_lock = yes
-		always = no #记得改
-		OR = {
-			AND = {
-				NOT = {
-					has_global_flag = gts_has_trigger_cys
-				}
-			}
-			hidden_trigger = {
-				any_owned_leader = {
-					has_leader_flag = gts_cys
-				}
-			}
-		}
-	}
+ gts_ui_intel_panel_lock = yes
+ always = no
+ OR = {
+  hidden_trigger = { any_owned_leader = { has_leader_flag = gts_cys } }
+  gts_intel_can_start_cys = yes
+ }
+}
 	effect = {
 		custom_tooltip = gts_intel_avatar_cys.tooltip
 		hidden_effect = {
@@ -2235,37 +2084,13 @@ gts_intel_avatar_teifuania_effect = {
 		}
 	}
 	allow = {
-		gts_ui_intel_panel_lock = yes
-		NOT = {
-			has_global_flag = gts_has_trigger_teifuania
-		}
-		any_system = {
-			any_system_planet = {
-				is_colonizable = yes
-				has_owner = no
-				is_colony = no
-				is_moon = no
-				habitable_planet = yes
-				has_anomaly = no
-				NOR = {
-					has_modifier = "holy_planet"
-					solar_system = {
-						has_star_flag = hostile_system
-					}
-				}
-				distance = {
-					source = root.owner.capital_scope
-					max_distance <= 1000
-					min_distance >= 50
-				}
-				solar_system = {
-					NOT = {
-						exists = starbase
-					}
-				}
-			}
-		}
-	}
+ gts_ui_intel_panel_lock = yes
+ 
+ OR = {
+  
+  gts_intel_can_start_teifuania = yes
+ }
+}
 	effect = {
 		custom_tooltip = gts_intel_avatar_teifuania.tooltip
 		hidden_effect = {
@@ -2288,11 +2113,13 @@ gts_intel_avatar_xiankeyan_effect = {
 		}
 	}
 	allow = {
-		gts_ui_intel_panel_lock = yes
-		NOT = {
-			has_global_flag = gts_has_trigger_xiankeyan
-		}
-	}
+ gts_ui_intel_panel_lock = yes
+ 
+ OR = {
+  
+  gts_intel_can_start_xiankeyan = yes
+ }
+}
 	effect = {
 		custom_tooltip = gts_intel_avatar_xiankeyan.tooltip
 		hidden_effect = {
@@ -2315,24 +2142,13 @@ gts_intel_avatar_qhai_effect = {
 		}
 	}
 	allow = {
-		gts_ui_intel_panel_lock = yes
-		OR = {
-			NOR = {
-				has_global_flag = gts_has_trigger_qhai
-				NOT = {
-					any_owned_leader = {
-						has_trait = leader_trait_Ultra
-						leader_class = scientist
-					}
-				}
-			}
-			hidden_trigger = {
-				any_owned_leader = {
-					has_leader_flag = gts_qhai
-				}
-			}
-		}
-	}
+ gts_ui_intel_panel_lock = yes
+ 
+ OR = {
+  hidden_trigger = { any_owned_leader = { has_leader_flag = gts_qhai } }
+  gts_intel_can_start_qhai = yes
+ }
+}
 	effect = {
 		custom_tooltip = gts_intel_avatar_qhai.tooltip
 		hidden_effect = {
@@ -2461,49 +2277,19 @@ gts_intel_avatar_shentun_effect = {
 	}
 }
 
+# 古明地覺
 gts_intel_avatar_satori_effect = {
-	#古明地觉
-	potential = {
-		gts_ui_intel_display = {
-			PAGE = 3
-		}
-	}
+	potential = { gts_ui_intel_display = { PAGE = 3 } }
+
 	allow = {
-		gts_ui_intel_panel_lock = yes
-		OR = {
-			AND = {
-				NOT = {
-					has_global_flag = gts_has_trigger_satori
-				}
-				any_system = {
-					distance = {
-						source = root.capital_scope.solar_system
-						use_bypasses = yes
-						min_jumps = 1
-						max_jumps = 6
-					}
-					any_system_planet = {
-						is_preventing_anomaly = no
-						has_anomaly = no
-						is_capital = no
-						is_ringworld = no
-						is_asteroid = no
-						is_star = no
-						is_colony = no
-						is_under_colonization = no
-						NOT = { is_planet_class = pc_gas_giant }
-						NOT = { has_planet_flag = gts_body_planet }
-						NOT = { exists = archaeological_site }
-					}
-				}
-			}
-			hidden_trigger = {
-				any_owned_leader = {
-					has_leader_flag = gts_satori
-				}
-			}
-		}
-	}
+ gts_ui_intel_panel_lock = yes
+ 
+ OR = {
+  hidden_trigger = { any_owned_leader = { has_leader_flag = gts_satori } }
+  gts_intel_can_start_satori = yes
+ }
+}
+
 	effect = {
 		custom_tooltip = gts_intel_avatar_satori.tooltip
 		hidden_effect = {
@@ -2512,23 +2298,11 @@ gts_intel_avatar_satori_effect = {
 				value = @gts_satori
 			}
 			if = {
-				limit = {
-					any_owned_leader = {
-						has_leader_flag = gts_satori
-					}
-				}
-				event_target:gts_satori = {
-					save_global_event_target_as = current_gts_leader
-				}
-				country_event = {
-					id = gts_ui.7
-				}
+				limit = { any_owned_leader = { has_leader_flag = gts_satori } }
+				event_target:gts_satori = { save_global_event_target_as = current_gts_leader }
+				country_event = { id = gts_ui.7 }
 			}
-			else = {
-				country_event = {
-					id = gts_ui.6
-				}
-			}
+			else = { country_event = { id = gts_ui.6 } }
 		}
 	}
 }
@@ -2541,18 +2315,13 @@ gts_intel_avatar_tiantiao_effect = {
 		}
 	}
 	allow = {
-		gts_ui_intel_panel_lock = yes
-		OR = {
-			NOT = {
-				has_global_flag = gts_has_trigger_tiantiao
-			}
-			hidden_trigger = {
-				any_owned_leader = {
-					has_leader_flag = gts_tiantiao
-				}
-			}
-		}
-	}
+ gts_ui_intel_panel_lock = yes
+ 
+ OR = {
+  hidden_trigger = { any_owned_leader = { has_leader_flag = gts_tiantiao } }
+  gts_intel_can_start_tiantiao = yes
+ }
+}
 	effect = {
 		custom_tooltip = gts_intel_avatar_tiantiao.tooltip
 		hidden_effect = {
@@ -2590,19 +2359,13 @@ gts_intel_avatar_doctor_effect = {
 		}
 	}
 	allow = {
-		gts_ui_intel_panel_lock = yes
-		OR = {
-			NOT = {
-				has_global_flag = gts_has_trigger_doctor
-			}
-			hidden_trigger = {
-				any_owned_leader = {
-					has_leader_flag = gts_doctor
-				}
-			}
-		}
-		has_country_flag = can_trigger_futa_content
-	}
+ gts_ui_intel_panel_lock = yes
+ 
+ OR = {
+  hidden_trigger = { any_owned_leader = { has_leader_flag = gts_doctor } }
+  gts_intel_can_start_doctor = yes
+ }
+}
 	effect = {
 		custom_tooltip = gts_intel_avatar_doctor.tooltip
 		hidden_effect = {
@@ -2640,18 +2403,13 @@ gts_intel_avatar_mari_effect = {
 		}
 	}
 	allow = {
-		gts_ui_intel_panel_lock = yes
-		OR = {
-			NOT = {
-				has_global_flag = gts_has_trigger_mari
-			}
-			hidden_trigger = {
-				any_owned_leader = {
-					has_leader_flag = gts_mari
-				}
-			}
-		}
-	}
+ gts_ui_intel_panel_lock = yes
+ 
+ OR = {
+  hidden_trigger = { any_owned_leader = { has_leader_flag = gts_mari } }
+  gts_intel_can_start_mari = yes
+ }
+}
 	effect = {
 		custom_tooltip = gts_intel_avatar_mari.tooltip
 		hidden_effect = {
@@ -2687,27 +2445,13 @@ gts_intel_avatar_guya_effect = {
 		gts_ui_intel_display = { PAGE = 3 }
 	}
 	allow = {
-		gts_ui_intel_panel_lock = yes
-		OR = {
-			AND = {
-				NOT = { has_global_flag = gts_has_trigger_guya }
-				any_owned_planet = {
-					NOT = {
-						is_planet_class = pc_habitat
-					}
-				}
-				any_owned_leader = {
-					leader_class = scientist
-					has_total_skill > 3
-				}
-			}
-			hidden_trigger = {
-				any_owned_leader = {
-					has_leader_flag = gts_guya
-				}
-			}
-		}
-	}
+ gts_ui_intel_panel_lock = yes
+ 
+ OR = {
+  hidden_trigger = { any_owned_leader = { has_leader_flag = gts_guya } }
+  gts_intel_can_start_guya = yes
+ }
+}
 	effect = {
 		custom_tooltip = gts_intel_avatar_guya.tooltip
 		hidden_effect = {
@@ -2771,20 +2515,13 @@ gts_intel_avatar_sera_effect = {
 		gts_ui_intel_display = { PAGE = 3 }
 	}
 	allow = {
-		gts_ui_intel_panel_lock = yes
-		OR = {
-			AND = {
-				NOT = { has_global_flag = gts_has_trigger_traptrix }
-				# 在这里写招募条件
-				gts_is_tiny_empire = yes
-			}
-			hidden_trigger = {
-				any_owned_leader = {
-					has_leader_flag = gts_sera
-				}
-			}
-		}
-	}
+ gts_ui_intel_panel_lock = yes
+ 
+ OR = {
+  hidden_trigger = { any_owned_leader = { has_leader_flag = gts_sera } }
+  gts_intel_can_start_sera = yes
+ }
+}
 	effect = {
 		custom_tooltip = gts_intel_avatar_sera.tooltip
 		hidden_effect = {
@@ -2818,20 +2555,13 @@ gts_intel_avatar_allomerus_effect = {
 		gts_ui_intel_display = { PAGE = 3 }
 	}
 	allow = {
-		gts_ui_intel_panel_lock = yes
-		OR = {
-			AND = {
-				NOT = { has_global_flag = gts_has_trigger_traptrix }
-				# 在这里写招募条件
-				gts_is_tiny_empire = yes
-			}
-			hidden_trigger = {
-				any_owned_leader = {
-					has_leader_flag = gts_allomerus
-				}
-			}
-		}
-	}
+ gts_ui_intel_panel_lock = yes
+ 
+ OR = {
+  hidden_trigger = { any_owned_leader = { has_leader_flag = gts_allomerus } }
+  gts_intel_can_start_allomerus = yes
+ }
+}
 	effect = {
 		custom_tooltip = gts_intel_avatar_allomerus.tooltip
 		hidden_effect = {
@@ -2925,19 +2655,13 @@ gts_intel_avatar_tlipoca_effect = {
 		gts_ui_intel_display = { PAGE = 4 }
 	}
 	allow = {
-		gts_ui_intel_panel_lock = yes
-		OR = {
-			AND = {
-				NOT = { has_global_flag = gts_has_trigger_tlipoca }
-				# 在这里写招募条件
-			}
-			hidden_trigger = {
-				any_owned_leader = {
-					has_leader_flag = gts_tlipoca
-				}
-			}
-		}
-	}
+ gts_ui_intel_panel_lock = yes
+ 
+ OR = {
+  hidden_trigger = { any_owned_leader = { has_leader_flag = gts_tlipoca } }
+  gts_intel_can_start_tlipoca = yes
+ }
+}
 	effect = {
 		custom_tooltip = gts_intel_avatar_tlipoca.tooltip
 		hidden_effect = {
@@ -2974,18 +2698,13 @@ gts_intel_avatar_firefly_effect = {
 		}
 	}
 	allow = {
-		gts_ui_intel_panel_lock = yes
-		OR = {
-			NOT = {
-				has_global_flag = gts_has_trigger_firefly
-			}
-			hidden_trigger = {
-				any_owned_leader = {
-					has_leader_flag = gts_firefly
-				}
-			}
-		}
-	}
+ gts_ui_intel_panel_lock = yes
+ 
+ OR = {
+  hidden_trigger = { any_owned_leader = { has_leader_flag = gts_firefly } }
+  gts_intel_can_start_firefly = yes
+ }
+}
 	effect = {
 		custom_tooltip = gts_intel_avatar_firefly.tooltip
 		hidden_effect = {
@@ -3014,40 +2733,36 @@ gts_intel_avatar_firefly_effect = {
 		}
 	}
 }
-gts_intel_avatar_xinuo_effect = {
-	#希诺
+gts_intel_avatar_rainna_la_grande_effect = {
+	# 蕾恩娜：使用原希诺的第 4 页栏位
+	# 我TM叫蕾恩娜！
 	potential = {
 		gts_ui_intel_display = {
 			PAGE = 4
 		}
 	}
 	allow = {
-		gts_ui_intel_panel_lock = yes
-		OR = {
-			NOT = {
-				has_global_flag = gts_has_trigger_xinuo
-			}
-			hidden_trigger = {
-				any_owned_leader = {
-					has_leader_flag = gts_xinuo
-				}
-			}
-		}
-	}
+ gts_ui_intel_panel_lock = yes
+ 
+ OR = {
+  hidden_trigger = { any_owned_leader = { has_leader_flag = gts_rainna_la_grande } }
+  gts_intel_can_start_rainna_la_grande = yes
+ }
+}
 	effect = {
-		custom_tooltip = gts_intel_avatar_xinuo.tooltip
+		custom_tooltip = gts_intel_avatar_rainna_la_grande.tooltip
 		hidden_effect = {
 			set_variable = {
 				which = gts_ui_intel_avatar
-				value = @gts_xinuo
+				value = @gts_rainna_la_grande
 			}
 			if = {
 				limit = {
 					any_owned_leader = {
-						has_leader_flag = gts_xinuo
+						has_leader_flag = gts_rainna_la_grande
 					}
 				}
-				event_target:gts_xinuo = {
+				event_target:gts_rainna_la_grande = {
 					save_global_event_target_as = current_gts_leader
 				}
 				country_event = {
@@ -3070,18 +2785,13 @@ gts_intel_avatar_carlotta_effect = {
 		}
 	}
 	allow = {
-		gts_ui_intel_panel_lock = yes
-		OR = {
-			NOT = {
-				has_global_flag = gts_has_trigger_carlotta
-			}
-			hidden_trigger = {
-				any_owned_leader = {
-					has_leader_flag = gts_carlotta
-				}
-			}
-		}
-	}
+ gts_ui_intel_panel_lock = yes
+ 
+ OR = {
+  hidden_trigger = { any_owned_leader = { has_leader_flag = gts_carlotta } }
+  gts_intel_can_start_carlotta = yes
+ }
+}
 	effect = {
 		custom_tooltip = gts_intel_avatar_carlotta.tooltip
 		hidden_effect = {
@@ -3183,11 +2893,13 @@ gts_intel_avatar_bruh_effect = {
 		}
 	}
 	allow = {
-		has_ascension_perk = ap_space_gts
-		NOT = {
-			has_global_flag = gts_has_trigger_bruh
-		}
-	}
+ gts_ui_intel_panel_lock = yes
+ 
+ OR = {
+  
+  gts_intel_can_start_bruh = yes
+ }
+}
 	effect = {
 		custom_tooltip = gts_intel_avatar_bruh.tooltip
 		hidden_effect = {
@@ -3224,96 +2936,16 @@ gts_intel_avatar_seele_effect = {
 		}
 	}
 	allow = {
-		gts_ui_intel_panel_lock = yes
-		if = {
-			limit = {
-				any_owned_leader = {
-					has_leader_flag = gts_seele
-				}
-			}
-			always = yes
-		}
-		else_if = {
-			custom_tooltip = gts_seele_avatar_redeem_normal
-			limit = {
-				not = {
-					any_owned_leader = {
-						has_leader_flag = gts_seele
-					}
-				}
-				root = { is_nomadic = no }
-			}
-			OR = {
-				AND = {
-					not = {
-						has_country_flag = gts_has_trigger_seele
-						has_country_flag = gts_has_trigger_bronya
-						has_country_flag = gts_has_trigger_seele_li
-					}
-					has_surveyed_class = pc_black_hole
-					any_system = {
-						not = {
-							has_star_flag = gts_start_system
-						}
-						is_surveyed = {
-							who = root
-						}
-					}
-				}
-			}
-		}
-		else_if = {
-			custom_tooltip = gts_seele_avatar_redeem_nomadic
-			limit = {
-				not = {
-					any_owned_leader = {
-						has_leader_flag = gts_seele
-					}
-				}
-				root = { is_nomadic = yes }
-			}
-			OR = {
-				AND = {
-					not = {
-						has_country_flag = gts_has_trigger_seele
-						has_country_flag = gts_has_trigger_bronya
-						has_country_flag = gts_has_trigger_seele_li
-					}
-					has_surveyed_class = pc_black_hole
-					any_system = {
-						is_star_class = sc_black_hole
-						any_fleet_in_system = {
-							exists = owner
-							owner = {
-								is_same_value = root
-							}
-							or = {
-								is_ship_size = science_arkship_tier_1
-								is_ship_size = science_arkship_tier_2
-								is_ship_size = science_arkship_tier_3
-								is_ship_size = military_arkship_tier_1
-								is_ship_size = military_arkship_tier_2
-								is_ship_size = military_arkship_tier_3
-								is_ship_size = military_arkship_champions_forge
-								is_ship_size = civilian_arkship_tier_1
-								is_ship_size = civilian_arkship_tier_2
-								is_ship_size = civilian_arkship_tier_3
-							}
-						}
-						not = {
-							has_star_flag = gts_start_system
-						}
-						is_surveyed = {
-							who = root
-						}
-					}
-				}
-			}
-		}
-	}
+ gts_ui_intel_panel_lock = yes
+ 
+ OR = {
+  hidden_trigger = { any_owned_leader = { has_leader_flag = gts_seele } }
+  gts_intel_can_start_seele = yes
+ }
+}
 	effect = {
 		hidden_effect = {
-			set_country_flag = gts_has_trigger_seele
+			# set_country_flag = gts_has_trigger_seele
 		}
 		custom_tooltip = gts_intel_avatar_seele.tooltip
 		hidden_effect = {
@@ -3350,93 +2982,16 @@ gts_intel_avatar_bronya_effect = {
 		}
 	}
 	allow = {
-		gts_ui_intel_panel_lock = yes
-		if = {
-			limit = {
-				any_owned_leader = {
-					has_leader_flag = gts_bronya
-				}
-			}
-			always = yes
-		}
-		else_if = {
-			custom_tooltip = gts_bronya_avatar_redeem_normal
-			not = {
-				any_owned_leader = {
-					has_leader_flag = gts_bronya
-				}
-			}
-			limit = {
-				root = { is_nomadic = no }
-			}
-			OR = {
-				AND = {
-					not = {
-						has_country_flag = gts_has_trigger_seele
-						has_country_flag = gts_has_trigger_bronya
-						has_country_flag = gts_has_trigger_seele_li
-					}
-					any_system = {
-						not = {
-							has_star_flag = gts_start_system
-						}
-						is_surveyed = {
-							who = root
-						}
-					}
-				}
-			}
-		}
-		else_if = {
-			custom_tooltip = gts_bronya_avatar_redeem_nomadic
-			not = {
-				any_owned_leader = {
-					has_leader_flag = gts_bronya
-				}
-			}
-			limit = {
-				root = { is_nomadic = yes }
-			}
-			OR = {
-				AND = {
-					not = {
-						has_country_flag = gts_has_trigger_seele
-						has_country_flag = gts_has_trigger_bronya
-						has_country_flag = gts_has_trigger_seele_li
-					}
-					any_system = {
-						any_fleet_in_system = {
-							exists = owner
-							owner = {
-								is_same_value = root
-							}
-							or = {
-								is_ship_size = science_arkship_tier_1
-								is_ship_size = science_arkship_tier_2
-								is_ship_size = science_arkship_tier_3
-								is_ship_size = military_arkship_tier_1
-								is_ship_size = military_arkship_tier_2
-								is_ship_size = military_arkship_tier_3
-								is_ship_size = military_arkship_champions_forge
-								is_ship_size = civilian_arkship_tier_1
-								is_ship_size = civilian_arkship_tier_2
-								is_ship_size = civilian_arkship_tier_3
-							}
-						}
-						not = {
-							has_star_flag = gts_start_system
-						}
-						is_surveyed = {
-							who = root
-						}
-					}
-				}
-			}
-		}
-	}
+ gts_ui_intel_panel_lock = yes
+ 
+ OR = {
+  hidden_trigger = { any_owned_leader = { has_leader_flag = gts_bronya } }
+  gts_intel_can_start_bronya = yes
+ }
+}
 	effect = {
 		hidden_effect = {
-			set_country_flag = gts_has_trigger_bronya
+			# set_country_flag = gts_has_trigger_bronya
 		}
 		custom_tooltip = gts_intel_avatar_bronya.tooltip
 		hidden_effect = {
@@ -3473,94 +3028,16 @@ gts_intel_avatar_seele_li_effect = {
 		}
 	}
 	allow = {
-		gts_ui_intel_panel_lock = yes
-		if = {
-			limit = {
-				any_owned_leader = {
-					has_leader_flag = gts_seele_li
-				}
-			}
-			always = yes
-		}
-		else_if = {
-			custom_tooltip = gts_seele_li_avatar_redeem_normal
-			not = {
-				any_owned_leader = {
-					has_leader_flag = gts_seele_li
-				}
-			}
-			limit = {
-				root = { is_nomadic = no }
-			}
-			OR = {
-				AND = {
-					not = {
-						has_country_flag = gts_has_trigger_seele
-						has_country_flag = gts_has_trigger_bronya
-						has_country_flag = gts_has_trigger_seele_li
-					}
-					any_system = {
-						not = {
-							has_star_flag = gts_start_system
-						}
-						is_surveyed = {
-							who = root
-						}
-					}
-				}
-			}
-		}
-		else_if = {
-			custom_tooltip = gts_seele_li_avatar_redeem_nomadic
-			not = {
-				any_owned_leader = {
-					has_leader_flag = gts_seele_li
-				}
-			}
-			limit = {
-				root = { is_nomadic = yes }
-			}
-			OR = {
-				AND = {
-					not = {
-						has_country_flag = gts_has_trigger_seele
-						has_country_flag = gts_has_trigger_bronya
-						has_country_flag = gts_has_trigger_seele_li
-					}
-					any_system = {
-						any_fleet_in_system = {
-							exists = owner
-							owner = {
-								is_same_value = root
-							}
-							or = {
-								is_ship_size = science_arkship_tier_1
-								is_ship_size = science_arkship_tier_2
-								is_ship_size = science_arkship_tier_3
-								is_ship_size = military_arkship_tier_1
-								is_ship_size = military_arkship_tier_2
-								is_ship_size = military_arkship_tier_3
-								is_ship_size = military_arkship_champions_forge
-								is_ship_size = civilian_arkship_tier_1
-								is_ship_size = civilian_arkship_tier_2
-								is_ship_size = civilian_arkship_tier_3
-							}
-						}
-						not = {
-							has_star_flag = gts_start_system
-						}
-						is_surveyed = {
-							who = root
-						}
-					}
-				}
-			}
-		}
-
-	}
+ gts_ui_intel_panel_lock = yes
+ 
+ OR = {
+  hidden_trigger = { any_owned_leader = { has_leader_flag = gts_seele_li } }
+  gts_intel_can_start_seele_li = yes
+ }
+}
 	effect = {
 		hidden_effect = {
-			set_country_flag = gts_has_trigger_seele_li
+			# set_country_flag = gts_has_trigger_seele_li
 		}
 		custom_tooltip = gts_intel_avatar_seele_li.tooltip
 		hidden_effect = {
@@ -3597,54 +3074,13 @@ gts_intel_avatar_linfeng_effect = {
 		}
 	}
 	allow = {
-		custom_tooltip = gts_intel_avatar_linfeng_limit.tooltip
-		gts_ui_intel_panel_lock = yes
-		or = {
-			OR = {
-				hidden_trigger = {
-					AND = {
-						NOT = {
-							has_global_flag = gts_has_trigger_linfeng
-						}
-						any_owned_planet = {
-							pop_amount <= 400
-							has_anomaly = no
-							NOT = {
-								exists = archaeological_site
-							}
-							NOR = {
-								is_planet_class = pc_shielded
-								is_planet_class = pc_ringworld_shielded
-								is_planet_class = pc_habitat_shielded
-								is_eatable_planet = no
-							}
-						}
-					}
-				}
-				hidden_trigger = {
-					any_owned_leader = {
-						has_leader_flag = gts_linfeng
-					}
-				}
-			}
-			or = {
-				hidden_trigger = {
-					AND = {
-						NOT = {
-							has_global_flag = gts_has_trigger_linfeng
-						}
-						has_country_flag = gts_hitomi_ship_gril_success
-					}
-				}
-				hidden_trigger = {
-					any_owned_leader = {
-						has_leader_flag = gts_linfeng
-					}
-				}
-			}
-		}
-
-	}
+ gts_ui_intel_panel_lock = yes
+ 
+ OR = {
+  hidden_trigger = { any_owned_leader = { has_leader_flag = gts_linfeng } }
+  gts_intel_can_start_linfeng = yes
+ }
+}
 	effect = {
 		custom_tooltip = gts_intel_avatar_linfeng.tooltip
 		hidden_effect = {
@@ -3682,37 +3118,13 @@ gts_intel_avatar_suxiaobai_effect = {
 		}
 	}
 	allow = {
-		custom_tooltip = gts_intel_avatar_suxiaobai_limit.tooltip
-		gts_ui_intel_panel_lock = yes
-		OR = {
-			hidden_trigger = {
-				AND = {
-					NOT = {
-						has_global_flag = gts_has_trigger_suxiaobai
-					}
-					num_owned_planets >= 5
-					any_owned_planet = {
-						pop_amount >= 400
-						has_anomaly = no
-						NOT = {
-							exists = archaeological_site
-						}
-						NOR = {
-							is_planet_class = pc_shielded
-							is_planet_class = pc_ringworld_shielded
-							is_planet_class = pc_habitat_shielded
-							is_eatable_planet = no
-						}
-					}
-				}
-			}
-			hidden_trigger = {
-				any_owned_leader = {
-					has_leader_flag = gts_suxiaobai
-				}
-			}
-		}
-	}
+ gts_ui_intel_panel_lock = yes
+ 
+ OR = {
+  hidden_trigger = { gts_has_suxiaobai = yes }
+  gts_intel_can_start_suxiaobai = yes
+ }
+}
 	effect = {
 		custom_tooltip = gts_intel_avatar_suxiaobai.tooltip
 		hidden_effect = {
@@ -3749,20 +3161,13 @@ gts_intel_avatar_hitomi_effect = {
 		}
 	}
 	allow = {
-		gts_ui_intel_panel_lock = yes
-		OR = {
-			AND = {
-				NOT = {
-					has_global_flag = gts_has_trigger_hitomi
-				}
-			}
-			hidden_trigger = {
-				any_owned_leader = {
-					has_leader_flag = gts_hitomi
-				}
-			}
-		}
-	}
+ gts_ui_intel_panel_lock = yes
+ 
+ OR = {
+  hidden_trigger = { any_owned_leader = { has_leader_flag = gts_hitomi } }
+  gts_intel_can_start_hitomi = yes
+ }
+}
 	effect = {
 		custom_tooltip = gts_intel_avatar_hitomi.tooltip
 		hidden_effect = {
@@ -3800,20 +3205,13 @@ gts_intel_avatar_ora_effect = {
 		}
 	}
 	allow = {
-		gts_ui_intel_panel_lock = yes
-		OR = {
-			AND = {
-				NOT = {
-					has_global_flag = gts_has_trigger_ora
-				}
-			}
-			hidden_trigger = {
-				any_owned_leader = {
-					has_leader_flag = gts_ora
-				}
-			}
-		}
-	}
+ gts_ui_intel_panel_lock = yes
+ 
+ OR = {
+  hidden_trigger = { any_owned_leader = { has_leader_flag = gts_ora } }
+  gts_intel_can_start_ora = yes
+ }
+}
 	effect = {
 		custom_tooltip = gts_intel_avatar_ora.tooltip
 		hidden_effect = {
@@ -3850,20 +3248,13 @@ gts_intel_avatar_qinwen_effect = {
 		}
 	}
 	allow = {
-		gts_ui_intel_panel_lock = yes
-		OR = {
-			AND = {
-				NOT = {
-					has_global_flag = gts_has_trigger_qinwen
-				}
-			}
-			hidden_trigger = {
-				any_owned_leader = {
-					has_leader_flag = gts_qinwen
-				}
-			}
-		}
-	}
+ gts_ui_intel_panel_lock = yes
+ 
+ OR = {
+  hidden_trigger = { any_owned_leader = { has_leader_flag = gts_qinwen } }
+  gts_intel_can_start_qinwen = yes
+ }
+}
 	effect = {
 		custom_tooltip = gts_intel_avatar_qinwen.tooltip
 		hidden_effect = {
@@ -3894,6 +3285,72 @@ gts_intel_avatar_qinwen_effect = {
 }
 
 # 没有领袖的effect:
+
+gts_intel_avatar_rainna_la_grande_effect = {
+	#蕾恩娜
+	potential = {
+		gts_ui_intel_display = {
+			PAGE = 4
+		}
+	}
+	allow = {
+		custom_tooltip = {
+			hidden_trigger = {
+				owner = {
+					count_owned_planet = {
+						limit = {
+							rainna_la_grande_is_normal_planet = yes
+						}
+						count >= 2
+					}
+				}
+			}
+			fail_text = gts_intel_fail_rainna_count
+		}
+		gts_ui_intel_panel_lock = yes
+		OR = {
+			AND = {
+				NOR = {
+					has_global_flag = gts_has_trigger_rainna_la_grande
+					is_nomadic = yes
+				}
+			}
+			hidden_trigger = {
+				any_owned_leader = {
+					has_leader_flag = gts_rainna_la_grande
+				}
+			}
+		}
+	}
+	effect = {
+		custom_tooltip = gts_intel_avatar_rainna_la_grande.tooltip
+		hidden_effect = {
+			set_variable = {
+				which = gts_ui_intel_avatar
+				value = @gts_rainna_la_grande
+			}
+			if = {
+				limit = {
+					any_owned_leader = {
+						has_leader_flag = gts_rainna_la_grande
+					}
+				}
+				event_target:gts_rainna_la_grande = {
+					save_global_event_target_as = current_gts_leader
+				}
+				country_event = {
+					id = gts_ui.7
+				}
+			}
+			else = {
+				country_event = {
+					id = gts_ui.6
+				}
+			}
+		}
+	}
+}
+
 # xxx_effect = {
 # 	#
 # 	potential = {
@@ -4013,12 +3470,10 @@ gts_intel_avatar_Lottie_owned_effect = {
 	}
 }
 
+# 歐若拉
 gts_intel_avatar_aurora_owned_effect = {
-	# 欧若拉
 	potential = {
-		gts_ui_intel_display = {
-			PAGE = 1
-		}
+		gts_ui_intel_display = { PAGE = 1 }
 		any_owned_leader = {
 			OR = {
 				has_leader_flag = gts_aurora
@@ -4026,12 +3481,12 @@ gts_intel_avatar_aurora_owned_effect = {
 			}
 		}
 	}
-	allow = {
-		always = yes
-	}
-	effect = {
-	}
+
+	allow = { always = yes }
+
+	effect = { }
 }
+
 
 gts_intel_avatar_jifeng_owned_effect = {
 	# 矶风
@@ -4455,22 +3910,18 @@ gts_intel_avatar_shentun_owned_effect = {
 	}
 }
 
+# 古明地覺
 gts_intel_avatar_satori_owned_effect = {
-	#古明地觉
 	potential = {
-		gts_ui_intel_display = {
-			PAGE = 3
-		}
-		any_owned_leader = {
-			has_leader_flag = gts_satori
-		}
+		gts_ui_intel_display = { PAGE = 3 }
+		any_owned_leader = { has_leader_flag = gts_satori }
 	}
-	allow = {
-		always = yes
-	}
-	effect = {
-	}
+
+	allow = { always = yes }
+
+	effect = { }
 }
+
 
 gts_intel_avatar_tiantiao_owned_effect = {
 	# 天条
@@ -4635,13 +4086,11 @@ gts_intel_avatar_firefly_owned_effect = {
 	effect = {
 	}
 }
-gts_intel_avatar_xinuo_owned_effect = {
-	#希诺
+gts_intel_avatar_rainna_la_grande_owned_effect = {
+	# 蕾恩娜的情报已经交换
 	potential = {
 		gts_ui_intel_display = { PAGE = 4 }
-		any_owned_leader = {
-			has_leader_flag = gts_xinuo
-		}
+		has_global_flag = gts_has_trigger_rainna_la_grande
 	}
 	allow = {
 		always = yes
@@ -4819,6 +4268,22 @@ gts_intel_avatar_qinwen_owned_effect = {
 	effect = {
 	}
 }
+
+gts_intel_avatar_rainna_la_grande_owned_effect = {
+	#蕾恩娜
+	potential = {
+		gts_ui_intel_display = { PAGE = 4 }
+		any_owned_leader = {
+			has_leader_flag = gts_rainna_la_grande
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {
+	}
+}
+
 # xxx_owned_effect = {
 # 	#
 # 	potential = {

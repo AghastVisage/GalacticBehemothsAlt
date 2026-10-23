@@ -29,8 +29,24 @@ building_hstar_custom_service_center = {
         all_technology_research_speed = 0.3
     }
 
-    planet_modifier = {
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_gestalt = no
+            }
+        }
         job_entertainer_add = 200
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_gestalt = yes
+            }
+        }
+        job_logistics_drone_add = 200
     }
 
 
@@ -192,7 +208,26 @@ holding_gts_maid_cafe = {
     planet_modifier = {
         monthly_loyalty = 0.5
         pop_ethic_xenophile_attraction_mult = 0.50
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_gestalt = no
+            }
+        }
         job_gts_maid_add = 200
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_gestalt = yes
+            }
+        }
+        job_gts_drone_gts_maid_add = 200
     }
 
     resources = {
@@ -226,7 +261,26 @@ holding_gts_church = {
     planet_modifier = {
         monthly_loyalty = 0.5
         pop_ethic_spiritualist_attraction_mult = 0.50
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_gestalt = no
+            }
+        }
         job_gts_overlord_nun_add = 200
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_gestalt = yes
+            }
+        }
+        job_gts_drone_gts_overlord_nun_add = 200
     }
 
     resources = {
@@ -260,10 +314,31 @@ holding_gts_servitor_office = {
     triggered_planet_modifier = {
         potential = {
             exists = planet.owner
-            planet.owner = { is_gestalt = no }
+            planet.owner = {
+                is_gestalt = no
+            }
+            exists = owner
+            owner = {
+                is_gestalt = no
+            }
         }
         job_overlord_gts_servitor_add = 100
         job_overlord_tinypropagandist_add = 100
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = planet.owner
+            planet.owner = {
+
+            }
+            exists = owner
+            owner = {
+                is_gestalt = yes
+            }
+        }
+        job_gts_drone_overlord_gts_servitor_add = 100
+        job_gts_drone_overlord_tinypropagandist_add = 100
     }
 
     triggered_planet_modifier = {

@@ -1,0 +1,15 @@
+# Country scope. Match empire-size policies, not individual leaders.
+# Ultra takes priority; unspecified/lower policies use the below-Titan interface.
+gts_enclave_is_below_titan = {
+    NOR = {
+        has_policy_flag = gts_empire_type_ultra
+        has_policy_flag = gts_empire_type_titan
+    }
+}
+gts_enclave_is_titan = {
+    has_policy_flag = gts_empire_type_titan
+    NOT = { has_policy_flag = gts_empire_type_ultra }
+}
+gts_enclave_is_ultra = {
+    has_policy_flag = gts_empire_type_ultra
+}

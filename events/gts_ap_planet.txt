@@ -7,19 +7,18 @@ planet_event = {
 	id = gts_ap_planet.1000
 	title = gts_ap_planet.1000.name
 	desc = gts_ap_planet.1000.desc
+
+	show_sound = event_structural_collapse
 	diplomatic = yes
 	custom_gui = "gts_horizontal_event_window"
 	custom_gui_option = "gts_horizontal_event_button"
-	picture_event_data = {
-		room = gts_event_23_room
-	}
-	show_sound = event_mystic_reveal
-	location = root
+	picture_event_data = { room = gts_event_23_room }
+
+	location = Root
 	is_triggered_only = yes
 
 	immediate = {
-		root = {
-
+		Root = {
 			# 計算人口數量 (99%)
 			export_trigger_value_to_variable = {
 				trigger = pop_amount
@@ -31,17 +30,6 @@ planet_event = {
 			}
 			round_variable = gts_bruh_get_planet_killed_pop_count
 
-			# 計算經驗獲取
-			export_trigger_value_to_variable = {
-				trigger = pop_amount
-				variable = gts_bruh_get_experience_count
-			}
-			divide_variable = {
-				which = gts_bruh_get_experience_count
-				value = 100
-			}
-			round_variable = gts_bruh_get_experience_count
-
 			# 計算城市數量
 			export_trigger_value_to_variable = {
 				trigger = pop_amount
@@ -52,6 +40,17 @@ planet_event = {
 				value = 100
 			}
 			round_variable = gts_bruh_get_planet_destroyed_city_count
+
+			# 計算經驗獲取
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_experience_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_experience_count
+				value = 10
+			}
+			round_variable = gts_bruh_get_experience_count
 		}
 		owner ={
 			if = {
@@ -63,17 +62,13 @@ planet_event = {
 					}
 				}
 				random_owned_leader = {
-					limit = {
-						has_trait = leader_trait_Ultra
-					}
+					limit = { has_trait = leader_trait_Ultra }
 					save_event_target_as = gts_bruh_get_destroy_planet_leader
 				}
 			}
 			else = {
 				# 如果沒有就隨機一個
-				random_owned_leader = {
-					save_event_target_as = gts_bruh_get_destroy_planet_leader
-				}
+				random_owned_leader = { save_event_target_as = gts_bruh_get_destroy_planet_leader }
 			}
 		}
 	}
@@ -84,15 +79,14 @@ planet_event = {
 		owner = {
 			add_monthly_resource_mult = {
 				resource = unity
-				value = 5
-				min = 2500
+				value = 3
+				min = 3000
 			}
 		}
 		event_target:gts_bruh_get_destroy_planet_leader = {
-			add_experience = root.gts_bruh_get_experience_count
+			add_experience = Root.gts_bruh_get_experience_count
 		}
-
-		root ={
+		hidden_effect = {
 			every_owned_pop_group = {
 				kill_pop_group = {
 					pop_group = this
@@ -100,6 +94,16 @@ planet_event = {
 				}
 			}
 			add_planet_devastation = 100
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			clear_variable = gts_bruh_random_count
+			clear_variable = gts_bruh_get_planet_size
+			clear_variable = gts_bruh_get_planet_killed_pop_count
+			clear_variable = gts_bruh_get_planet_destroyed_city_count
+			clear_variable = gts_bruh_get_experience_count
 		}
 	}
 }
@@ -111,19 +115,18 @@ planet_event = {
 	id = gts_ap_planet.1001
 	title = gts_ap_planet.1001.name
 	desc = gts_ap_planet.1001.desc
+
+	show_sound = event_structural_collapse
 	diplomatic = yes
 	custom_gui = "gts_horizontal_event_window"
 	custom_gui_option = "gts_horizontal_event_button"
-	picture_event_data = {
-		room = gts_graygoo_1_room
-	}
-	show_sound = event_mystic_reveal
-	location = root
+	picture_event_data = { room = gts_graygoo_1_room }
+
+	location = Root
 	is_triggered_only = yes
 
 	immediate = {
-		root = {
-
+		Root = {
 			# 計算人口數量 (99%)
 			export_trigger_value_to_variable = {
 				trigger = pop_amount
@@ -135,17 +138,6 @@ planet_event = {
 			}
 			round_variable = gts_bruh_get_planet_killed_pop_count
 
-			# 計算經驗獲取
-			export_trigger_value_to_variable = {
-				trigger = pop_amount
-				variable = gts_bruh_get_experience_count
-			}
-			divide_variable = {
-				which = gts_bruh_get_experience_count
-				value = 100
-			}
-			round_variable = gts_bruh_get_experience_count
-
 			# 計算城市數量
 			export_trigger_value_to_variable = {
 				trigger = pop_amount
@@ -156,6 +148,17 @@ planet_event = {
 				value = 100
 			}
 			round_variable = gts_bruh_get_planet_destroyed_city_count
+
+			# 計算經驗獲取
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_experience_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_experience_count
+				value = 10
+			}
+			round_variable = gts_bruh_get_experience_count
 		}
 		owner ={
 			if = {
@@ -184,15 +187,14 @@ planet_event = {
 		owner = {
 			add_monthly_resource_mult = {
 				resource = unity
-				value = 5
-				min = 2500
+				value = 3
+				min = 3000
 			}
 		}
 		event_target:gts_bruh_get_destroy_planet_leader = {
-			add_experience = root.gts_bruh_get_experience_count
+			add_experience = Root.gts_bruh_get_experience_count
 		}
-
-		root ={
+		hidden_effect = {
 			every_owned_pop_group = {
 				kill_pop_group = {
 					pop_group = this
@@ -200,6 +202,16 @@ planet_event = {
 				}
 			}
 			add_planet_devastation = 100
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			clear_variable = gts_bruh_random_count
+			clear_variable = gts_bruh_get_planet_size
+			clear_variable = gts_bruh_get_planet_killed_pop_count
+			clear_variable = gts_bruh_get_planet_destroyed_city_count
+			clear_variable = gts_bruh_get_experience_count
 		}
 	}
 }
@@ -211,19 +223,18 @@ planet_event = {
 	id = gts_ap_planet.2000
 	title = gts_ap_planet.2000.name
 	desc = gts_ap_planet.2000.desc
+
+	show_sound = event_structural_collapse
 	diplomatic = yes
 	custom_gui = "gts_horizontal_event_window"
 	custom_gui_option = "gts_horizontal_event_button"
-	picture_event_data = {
-		room = gts_event_21_room
-	}
-	show_sound = event_mystic_reveal
-	location = root
+	picture_event_data = { room = gts_event_21_room }
+
+	location = Root
 	is_triggered_only = yes
 
 	immediate = {
-		root = {
-
+		Root = {
 			# 計算人口數量 (99%)
 			export_trigger_value_to_variable = {
 				trigger = pop_amount
@@ -235,17 +246,6 @@ planet_event = {
 			}
 			round_variable = gts_bruh_get_planet_killed_pop_count
 
-			# 計算經驗獲取
-			export_trigger_value_to_variable = {
-				trigger = pop_amount
-				variable = gts_bruh_get_experience_count
-			}
-			divide_variable = {
-				which = gts_bruh_get_experience_count
-				value = 100
-			}
-			round_variable = gts_bruh_get_experience_count
-
 			# 計算城市數量
 			export_trigger_value_to_variable = {
 				trigger = pop_amount
@@ -256,6 +256,17 @@ planet_event = {
 				value = 100
 			}
 			round_variable = gts_bruh_get_planet_destroyed_city_count
+
+			# 計算經驗獲取
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_experience_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_experience_count
+				value = 10
+			}
+			round_variable = gts_bruh_get_experience_count
 		}
 		owner ={
 			if = {
@@ -267,17 +278,13 @@ planet_event = {
 					}
 				}
 				random_owned_leader = {
-					limit = {
-						has_trait = leader_trait_Ultra
-					}
+					limit = { has_trait = leader_trait_Ultra }
 					save_event_target_as = gts_bruh_get_destroy_planet_leader
 				}
 			}
 			else = {
 				# 如果沒有就隨機一個
-				random_owned_leader = {
-					save_event_target_as = gts_bruh_get_destroy_planet_leader
-				}
+				random_owned_leader = { save_event_target_as = gts_bruh_get_destroy_planet_leader }
 			}
 		}
 	}
@@ -288,15 +295,14 @@ planet_event = {
 		owner = {
 			add_monthly_resource_mult = {
 				resource = unity
-				value = 5
-				min = 2500
+				value = 3
+				min = 3000
 			}
 		}
 		event_target:gts_bruh_get_destroy_planet_leader = {
-			add_experience = root.gts_bruh_get_experience_count
+			add_experience = Root.gts_bruh_get_experience_count
 		}
-
-		root ={
+		hidden_effect = {
 			every_owned_pop_group = {
 				kill_pop_group = {
 					pop_group = this
@@ -304,6 +310,16 @@ planet_event = {
 				}
 			}
 			add_planet_devastation = 100
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			clear_variable = gts_bruh_random_count
+			clear_variable = gts_bruh_get_planet_size
+			clear_variable = gts_bruh_get_planet_killed_pop_count
+			clear_variable = gts_bruh_get_planet_destroyed_city_count
+			clear_variable = gts_bruh_get_experience_count
 		}
 	}
 }
@@ -315,18 +331,18 @@ planet_event = {
 	id = gts_ap_planet.3000
 	title = gts_ap_planet.3000.name
 	desc = gts_ap_planet.3000.desc
+
+	show_sound = event_structural_collapse
 	diplomatic = yes
 	custom_gui = "gts_horizontal_event_window"
 	custom_gui_option = "gts_horizontal_event_button"
-	picture_event_data = {
-		room = gts_event_20_room
-	}
-	show_sound = event_mystic_reveal
-	location = root
-	is_triggered_only = yes
-	immediate = {
-		root = {
+	picture_event_data = { room = gts_event_20_room }
 
+	location = Root
+	is_triggered_only = yes
+
+	immediate = {
+		Root = {
 			# 計算人口數量 (99%)
 			export_trigger_value_to_variable = {
 				trigger = pop_amount
@@ -338,17 +354,6 @@ planet_event = {
 			}
 			round_variable = gts_bruh_get_planet_killed_pop_count
 
-			# 計算經驗獲取
-			export_trigger_value_to_variable = {
-				trigger = pop_amount
-				variable = gts_bruh_get_experience_count
-			}
-			divide_variable = {
-				which = gts_bruh_get_experience_count
-				value = 100
-			}
-			round_variable = gts_bruh_get_experience_count
-
 			# 計算城市數量
 			export_trigger_value_to_variable = {
 				trigger = pop_amount
@@ -359,6 +364,17 @@ planet_event = {
 				value = 100
 			}
 			round_variable = gts_bruh_get_planet_destroyed_city_count
+
+			# 計算經驗獲取
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_experience_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_experience_count
+				value = 10
+			}
+			round_variable = gts_bruh_get_experience_count
 		}
 		owner ={
 			if = {
@@ -370,17 +386,13 @@ planet_event = {
 					}
 				}
 				random_owned_leader = {
-					limit = {
-						has_trait = leader_trait_Ultra
-					}
+					limit = { has_trait = leader_trait_Ultra }
 					save_event_target_as = gts_bruh_get_destroy_planet_leader
 				}
 			}
 			else = {
 				# 如果沒有就隨機一個
-				random_owned_leader = {
-					save_event_target_as = gts_bruh_get_destroy_planet_leader
-				}
+				random_owned_leader = { save_event_target_as = gts_bruh_get_destroy_planet_leader }
 			}
 		}
 	}
@@ -390,15 +402,14 @@ planet_event = {
 		owner = {
 			add_monthly_resource_mult = {
 				resource = unity
-				value = 5
-				min = 2500
+				value = 3
+				min = 3000
 			}
 		}
 		event_target:gts_bruh_get_destroy_planet_leader = {
-			add_experience = root.gts_bruh_get_experience_count
+			add_experience = Root.gts_bruh_get_experience_count
 		}
-
-		root ={
+		hidden_effect = {
 			every_owned_pop_group = {
 				kill_pop_group = {
 					pop_group = this
@@ -406,6 +417,16 @@ planet_event = {
 				}
 			}
 			add_planet_devastation = 100
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			clear_variable = gts_bruh_random_count
+			clear_variable = gts_bruh_get_planet_size
+			clear_variable = gts_bruh_get_planet_killed_pop_count
+			clear_variable = gts_bruh_get_planet_destroyed_city_count
+			clear_variable = gts_bruh_get_experience_count
 		}
 	}
 }
@@ -417,14 +438,14 @@ planet_event = {
 	id = gts_ap_planet.3001
 	title = gts_ap_planet.3001.name
 	desc = gts_ap_planet.3001.desc
+
+	show_sound = event_structural_collapse
 	diplomatic = yes
 	custom_gui = "gts_horizontal_event_window"
 	custom_gui_option = "gts_horizontal_event_button"
-	picture_event_data = {
-		room = gts_graygoo_2_room
-	}
-	show_sound = event_mystic_reveal
-	location = root
+	picture_event_data = { room = gts_graygoo_2_room }
+
+	location = Root
 	is_triggered_only = yes
 
 	option = {
@@ -439,18 +460,18 @@ planet_event = {
     id = gts_ap_planet.3002
     title = gts_ap_planet.3002.name
     desc = gts_ap_planet.3002.desc
+
+	show_sound = event_structural_collapse
     diplomatic = yes
     custom_gui = "gts_horizontal_event_window"
     custom_gui_option = "gts_horizontal_event_button"
-    picture_event_data = {
-        room = gts_doctor1_room
-    }
-    show_sound = event_mystic_reveal
-    location = root
-    is_triggered_only = yes
-    immediate = {
-        root = {
+    picture_event_data = { room = gts_doctor1_room }
 
+    location = Root
+    is_triggered_only = yes
+
+    immediate = {
+        Root = {
             # 計算人口數量 (99%)
             export_trigger_value_to_variable = {
                 trigger = pop_amount
@@ -497,19 +518,28 @@ planet_event = {
             }
         }
         event_target:gts_doctor = {
-            add_experience = root.gts_bruh_get_experience_count
+            add_experience = Root.gts_bruh_get_experience_count
         }
-
-        root ={
-            every_owned_pop_group = {
-                kill_pop_group = {
-                    pop_group = this
-                    percentage = 0.99
-                }
-            }
-            add_planet_devastation = 100
-        }
+		hidden_effect = {
+			every_owned_pop_group = {
+				kill_pop_group = {
+					pop_group = this
+					percentage = 0.99
+				}
+			}
+			add_planet_devastation = 100
+		}
     }
+
+	after = {
+		hidden_effect = {
+			clear_variable = gts_bruh_random_count
+			clear_variable = gts_bruh_get_planet_size
+			clear_variable = gts_bruh_get_planet_killed_pop_count
+			clear_variable = gts_bruh_get_planet_destroyed_city_count
+			clear_variable = gts_bruh_get_experience_count
+		}
+	}
 }
 
 planet_event = {
@@ -519,18 +549,18 @@ planet_event = {
     id = gts_ap_planet.3003
     title = gts_ap_planet.3002.name
     desc = gts_ap_planet.3003.desc
+
+	show_sound = event_structural_collapse
     diplomatic = yes
     custom_gui = "gts_horizontal_event_window"
     custom_gui_option = "gts_horizontal_event_button"
-    picture_event_data = {
-        room = gts_doctor2_room
-    }
-    show_sound = event_mystic_reveal
-    location = root
-    is_triggered_only = yes
-    immediate = {
-        root = {
+    picture_event_data = { room = gts_doctor2_room }
 
+    location = Root
+    is_triggered_only = yes
+
+    immediate = {
+        Root = {
             # 計算人口數量 (99%)
             export_trigger_value_to_variable = {
                 trigger = pop_amount
@@ -577,19 +607,28 @@ planet_event = {
             }
         }
         event_target:gts_doctor = {
-            add_experience = root.gts_bruh_get_experience_count
+            add_experience = Root.gts_bruh_get_experience_count
         }
-
-        root ={
-            every_owned_pop_group = {
-                kill_pop_group = {
-                    pop_group = this
-                    percentage = 0.99
-                }
-            }
-            add_planet_devastation = 100
-        }
+		hidden_effect = {
+			every_owned_pop_group = {
+				kill_pop_group = {
+					pop_group = this
+					percentage = 0.99
+				}
+			}
+			add_planet_devastation = 100
+		}
     }
+
+	after = {
+		hidden_effect = {
+			clear_variable = gts_bruh_random_count
+			clear_variable = gts_bruh_get_planet_size
+			clear_variable = gts_bruh_get_planet_killed_pop_count
+			clear_variable = gts_bruh_get_planet_destroyed_city_count
+			clear_variable = gts_bruh_get_experience_count
+		}
+	}
 }
 
 planet_event = {
@@ -599,18 +638,18 @@ planet_event = {
     id = gts_ap_planet.3004
     title = gts_ap_planet.3002.name
     desc = gts_ap_planet.3004.desc
+
+	show_sound = event_structural_collapse
     diplomatic = yes
     custom_gui = "gts_horizontal_event_window"
     custom_gui_option = "gts_horizontal_event_button"
-    picture_event_data = {
-        room = gts_doctor3_room
-    }
-    show_sound = event_mystic_reveal
-    location = root
-    is_triggered_only = yes
-    immediate = {
-        root = {
+    picture_event_data = { room = gts_doctor3_room }
 
+    location = Root
+    is_triggered_only = yes
+
+    immediate = {
+        Root = {
             # 計算人口數量 (99%)
             export_trigger_value_to_variable = {
                 trigger = pop_amount
@@ -657,19 +696,28 @@ planet_event = {
             }
         }
         event_target:gts_doctor = {
-            add_experience = root.gts_bruh_get_experience_count
+            add_experience = Root.gts_bruh_get_experience_count
         }
-
-        root ={
-            every_owned_pop_group = {
-                kill_pop_group = {
-                    pop_group = this
-                    percentage = 0.99
-                }
-            }
-            add_planet_devastation = 100
-        }
+		hidden_effect = {
+			every_owned_pop_group = {
+				kill_pop_group = {
+					pop_group = this
+					percentage = 0.99
+				}
+			}
+			add_planet_devastation = 100
+		}
     }
+
+	after = {
+		hidden_effect = {
+			clear_variable = gts_bruh_random_count
+			clear_variable = gts_bruh_get_planet_size
+			clear_variable = gts_bruh_get_planet_killed_pop_count
+			clear_variable = gts_bruh_get_planet_destroyed_city_count
+			clear_variable = gts_bruh_get_experience_count
+		}
+	}
 }
 
 planet_event = { # 转化为足垢星球
@@ -679,19 +727,18 @@ planet_event = { # 转化为足垢星球
 	id = gts_ap_planet.4000
 	title = gts_ap_planet.4000.name
 	desc = gts_ap_planet.4000.desc
+
+	show_sound = event_structural_collapse
 	diplomatic = yes
 	custom_gui = "gts_horizontal_event_window"
 	custom_gui_option = "gts_horizontal_event_button"
-	picture_event_data = {
-		room = gts_event_19_room
-	}
-	show_sound = event_mystic_reveal
-	location = root
+	picture_event_data = { room = gts_event_19_room }
+
+	location = Root
 	is_triggered_only = yes
 
 	immediate = {
-		root = {
-
+		Root = {
 			# 計算人口數量 (99%)
 			export_trigger_value_to_variable = {
 				trigger = pop_amount
@@ -703,17 +750,6 @@ planet_event = { # 转化为足垢星球
 			}
 			round_variable = gts_bruh_get_planet_killed_pop_count
 
-			# 計算經驗獲取
-			export_trigger_value_to_variable = {
-				trigger = pop_amount
-				variable = gts_bruh_get_experience_count
-			}
-			divide_variable = {
-				which = gts_bruh_get_experience_count
-				value = 100
-			}
-			round_variable = gts_bruh_get_experience_count
-
 			# 計算城市數量
 			export_trigger_value_to_variable = {
 				trigger = pop_amount
@@ -724,6 +760,17 @@ planet_event = { # 转化为足垢星球
 				value = 100
 			}
 			round_variable = gts_bruh_get_planet_destroyed_city_count
+
+			# 計算經驗獲取
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_experience_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_experience_count
+				value = 10
+			}
+			round_variable = gts_bruh_get_experience_count
 		}
 		owner ={
 			if = {
@@ -735,49 +782,15 @@ planet_event = { # 转化为足垢星球
 					}
 				}
 				random_owned_leader = {
-					limit = {
-						has_trait = leader_trait_Ultra
-					}
+					limit = { has_trait = leader_trait_Ultra }
 					save_event_target_as = gts_bruh_get_destroy_planet_leader
 				}
 			}
 			else = {
 				# 如果沒有就隨機一個
-				random_owned_leader = {
-					save_event_target_as = gts_bruh_get_destroy_planet_leader
-				}
+				random_owned_leader = { save_event_target_as = gts_bruh_get_destroy_planet_leader }
 			}
 		}
-		#save_event_target_as = gts_dirt_planet
-		#every_owned_pop_group = {
-		#	random_list = {
-		#		1 = {
-		#			root = {
-		#				change_variable = {
-		#					which = dirt_kia
-		#					value = 1
-		#				}
-		#			}
-		#			kill_all_pop = yes
-		#		}
-		#		1 = { }
-		#	}
-		#}
-		#set_variable_to_random_value = {
-		#	# 毁灭的城市数量：
-		#	which = dirt_city_kia_mult
-		#	min = 20
-		#	max = 30
-		#	rounded = yes
-		#}
-		#set_variable = {
-		#	which = dirt_city_kia
-		#	value = dirt_kia
-		#}
-		#multiply_variable = {
-		#	which = dirt_city_kia
-		#	value = dirt_city_kia_mult
-		#}
 	}
 	option = {
 		custom_tooltip = gts_ap_planet.4000.a.tooltip
@@ -790,10 +803,9 @@ planet_event = { # 转化为足垢星球
 			}
 		}
 		event_target:gts_bruh_get_destroy_planet_leader = {
-			add_experience = root.gts_bruh_get_experience_count
+			add_experience = Root.gts_bruh_get_experience_count
 		}
-
-		root ={
+		hidden_effect = {
 			every_owned_pop_group = {
 				kill_pop_group = {
 					pop_group = this
@@ -802,28 +814,16 @@ planet_event = { # 转化为足垢星球
 			}
 			add_planet_devastation = 100
 		}
+	}
 
-		#hidden_effect = {
-		#	event_target:gts_planet_leader = {
-		#		change_variable = {
-		#			which = dirt_kia_leader
-		#			value = event_target:gts_dirt_planet.dirt_kia
-		#		}
-		#		set_variable = {
-		#			which = dirt_leader_exp
-		#			value = dirt_kia_leader
-		#		}
-		#		multiply_variable = {
-		#			which = dirt_leader_exp
-		#			value = 200
-		#		}
-		#		add_experience = dirt_leader_exp
-		#	}
-		#	set_variable = {
-		#		which = dirt_kia
-		#		value = 0
-		#	}
-		#}
+	after = {
+		hidden_effect = {
+			clear_variable = gts_bruh_random_count
+			clear_variable = gts_bruh_get_planet_size
+			clear_variable = gts_bruh_get_planet_killed_pop_count
+			clear_variable = gts_bruh_get_planet_destroyed_city_count
+			clear_variable = gts_bruh_get_experience_count
+		}
 	}
 }
 
@@ -834,19 +834,18 @@ planet_event = { # 转化为汗雾星球
 	id = gts_ap_planet.4100
 	title = gts_ap_planet.4100.name
 	desc = gts_ap_planet.4100.desc
+
+	show_sound = event_structural_collapse
 	diplomatic = yes
 	custom_gui = "gts_horizontal_event_window"
 	custom_gui_option = "gts_horizontal_event_button"
-	picture_event_data = {
-		room = gts_event_30_room
-	}
-	show_sound = event_mystic_reveal
-	location = root
+	picture_event_data = { room = gts_event_30_room }
+
+	location = Root
 	is_triggered_only = yes
 
-	immediate = {
+	immediate = { }
 
-	}
 	option = {
 		name = gts_ap_planet.4100.a
 	}
@@ -859,19 +858,18 @@ planet_event = { # 转化为足垢堡垒星球
 	id = gts_ap_planet.4200
 	title = gts_ap_planet.4200.name
 	desc = gts_ap_planet.4200.desc
+
+	show_sound = event_structural_collapse
 	diplomatic = yes
 	custom_gui = "gts_horizontal_event_window"
 	custom_gui_option = "gts_horizontal_event_button"
-	picture_event_data = {
-		room = gts_event_31_room
-	}
-	show_sound = event_mystic_reveal
-	location = root
+	picture_event_data = { room = gts_event_31_room }
+
+	location = Root
 	is_triggered_only = yes
 
 	immediate = {
-		root = {
-
+		Root = {
 			# 計算人口數量 (99%)
 			export_trigger_value_to_variable = {
 				trigger = pop_amount
@@ -883,17 +881,6 @@ planet_event = { # 转化为足垢堡垒星球
 			}
 			round_variable = gts_bruh_get_planet_killed_pop_count
 
-			# 計算經驗獲取
-			export_trigger_value_to_variable = {
-				trigger = pop_amount
-				variable = gts_bruh_get_experience_count
-			}
-			divide_variable = {
-				which = gts_bruh_get_experience_count
-				value = 100
-			}
-			round_variable = gts_bruh_get_experience_count
-
 			# 計算城市數量
 			export_trigger_value_to_variable = {
 				trigger = pop_amount
@@ -904,6 +891,17 @@ planet_event = { # 转化为足垢堡垒星球
 				value = 100
 			}
 			round_variable = gts_bruh_get_planet_destroyed_city_count
+
+			# 計算經驗獲取
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_experience_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_experience_count
+				value = 10
+			}
+			round_variable = gts_bruh_get_experience_count
 		}
 		owner ={
 			if = {
@@ -915,17 +913,13 @@ planet_event = { # 转化为足垢堡垒星球
 					}
 				}
 				random_owned_leader = {
-					limit = {
-						has_trait = leader_trait_Ultra
-					}
+					limit = { has_trait = leader_trait_Ultra }
 					save_event_target_as = gts_bruh_get_destroy_planet_leader
 				}
 			}
 			else = {
 				# 如果沒有就隨機一個
-				random_owned_leader = {
-					save_event_target_as = gts_bruh_get_destroy_planet_leader
-				}
+				random_owned_leader = { save_event_target_as = gts_bruh_get_destroy_planet_leader }
 			}
 		}
 	}
@@ -936,15 +930,14 @@ planet_event = { # 转化为足垢堡垒星球
 		owner = {
 			add_monthly_resource_mult = {
 				resource = unity
-				value = 5
-				min = 2500
+				value = 3
+				min = 3000
 			}
 		}
 		event_target:gts_bruh_get_destroy_planet_leader = {
-			add_experience = root.gts_bruh_get_experience_count
+			add_experience = Root.gts_bruh_get_experience_count
 		}
-
-		root ={
+		hidden_effect = {
 			every_owned_pop_group = {
 				kill_pop_group = {
 					pop_group = this
@@ -952,6 +945,16 @@ planet_event = { # 转化为足垢堡垒星球
 				}
 			}
 			add_planet_devastation = 100
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			clear_variable = gts_bruh_random_count
+			clear_variable = gts_bruh_get_planet_size
+			clear_variable = gts_bruh_get_planet_killed_pop_count
+			clear_variable = gts_bruh_get_planet_destroyed_city_count
+			clear_variable = gts_bruh_get_experience_count
 		}
 	}
 }
@@ -963,19 +966,18 @@ planet_event = { # 转化为足垢矿业星球
 	id = gts_ap_planet.4300
 	title = gts_ap_planet.4300.name
 	desc = gts_ap_planet.4300.desc
+
+	show_sound = event_structural_collapse
 	diplomatic = yes
 	custom_gui = "gts_horizontal_event_window"
 	custom_gui_option = "gts_horizontal_event_button"
-	picture_event_data = {
-		room = gts_event_32_room
-	}
-	show_sound = event_mystic_reveal
-	location = root
+	picture_event_data = { room = gts_event_32_room }
+
+	location = Root
 	is_triggered_only = yes
 
 	immediate = {
-		root = {
-
+		Root = {
 			# 計算人口數量 (99%)
 			export_trigger_value_to_variable = {
 				trigger = pop_amount
@@ -989,17 +991,6 @@ planet_event = { # 转化为足垢矿业星球
 
 			round_variable = gts_bruh_get_planet_killed_pop_count
 
-			# 計算經驗獲取
-			export_trigger_value_to_variable = {
-				trigger = pop_amount
-				variable = gts_bruh_get_experience_count
-			}
-			divide_variable = {
-				which = gts_bruh_get_experience_count
-				value = 100
-			}
-			round_variable = gts_bruh_get_experience_count
-
 			# 計算城市數量
 			export_trigger_value_to_variable = {
 				trigger = pop_amount
@@ -1010,6 +1001,17 @@ planet_event = { # 转化为足垢矿业星球
 				value = 100
 			}
 			round_variable = gts_bruh_get_planet_destroyed_city_count
+
+			# 計算經驗獲取
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_experience_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_experience_count
+				value = 10
+			}
+			round_variable = gts_bruh_get_experience_count
 		}
 		owner ={
 			if = {
@@ -1021,17 +1023,13 @@ planet_event = { # 转化为足垢矿业星球
 					}
 				}
 				random_owned_leader = {
-					limit = {
-						has_trait = leader_trait_Ultra
-					}
+					limit = { has_trait = leader_trait_Ultra }
 					save_event_target_as = gts_bruh_get_destroy_planet_leader
 				}
 			}
 			else = {
 				# 如果沒有就隨機一個
-				random_owned_leader = {
-					save_event_target_as = gts_bruh_get_destroy_planet_leader
-				}
+				random_owned_leader = { save_event_target_as = gts_bruh_get_destroy_planet_leader }
 			}
 		}
 	}
@@ -1041,15 +1039,14 @@ planet_event = { # 转化为足垢矿业星球
 		owner = {
 			add_monthly_resource_mult = {
 				resource = unity
-				value = 5
-				min = 2500
+				value = 3
+				min = 3000
 			}
 		}
 		event_target:gts_bruh_get_destroy_planet_leader = {
-			add_experience = root.gts_bruh_get_experience_count
+			add_experience = Root.gts_bruh_get_experience_count
 		}
-
-		root ={
+		hidden_effect = {
 			every_owned_pop_group = {
 				kill_pop_group = {
 					pop_group = this
@@ -1057,6 +1054,16 @@ planet_event = { # 转化为足垢矿业星球
 				}
 			}
 			add_planet_devastation = 100
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			clear_variable = gts_bruh_random_count
+			clear_variable = gts_bruh_get_planet_size
+			clear_variable = gts_bruh_get_planet_killed_pop_count
+			clear_variable = gts_bruh_get_planet_destroyed_city_count
+			clear_variable = gts_bruh_get_experience_count
 		}
 	}
 }
@@ -1068,18 +1075,18 @@ planet_event = { # 转化为足垢农业星球
 	id = gts_ap_planet.4400
 	title = gts_ap_planet.4400.name
 	desc = gts_ap_planet.4400.desc
+
+	show_sound = event_structural_collapse
 	diplomatic = yes
 	custom_gui = "gts_horizontal_event_window"
 	custom_gui_option = "gts_horizontal_event_button"
-	picture_event_data = {
-		room = gts_event_33_room
-	}
-	show_sound = event_mystic_reveal
-	location = root
-	is_triggered_only = yes
-	immediate = {
-		root = {
+	picture_event_data = { room = gts_event_33_room }
 
+	location = Root
+	is_triggered_only = yes
+
+	immediate = {
+		Root = {
 			# 計算人口數量 (99%)
 			export_trigger_value_to_variable = {
 				trigger = pop_amount
@@ -1093,17 +1100,6 @@ planet_event = { # 转化为足垢农业星球
 
 			round_variable = gts_bruh_get_planet_killed_pop_count
 
-			# 計算經驗獲取
-			export_trigger_value_to_variable = {
-				trigger = pop_amount
-				variable = gts_bruh_get_experience_count
-			}
-			divide_variable = {
-				which = gts_bruh_get_experience_count
-				value = 100
-			}
-			round_variable = gts_bruh_get_experience_count
-
 			# 計算城市數量
 			export_trigger_value_to_variable = {
 				trigger = pop_amount
@@ -1114,6 +1110,17 @@ planet_event = { # 转化为足垢农业星球
 				value = 100
 			}
 			round_variable = gts_bruh_get_planet_destroyed_city_count
+
+			# 計算經驗獲取
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_experience_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_experience_count
+				value = 10
+			}
+			round_variable = gts_bruh_get_experience_count
 		}
 		owner ={
 			if = {
@@ -1125,17 +1132,13 @@ planet_event = { # 转化为足垢农业星球
 					}
 				}
 				random_owned_leader = {
-					limit = {
-						has_trait = leader_trait_Ultra
-					}
+					limit = { has_trait = leader_trait_Ultra }
 					save_event_target_as = gts_bruh_get_destroy_planet_leader
 				}
 			}
 			else = {
 				# 如果沒有就隨機一個
-				random_owned_leader = {
-					save_event_target_as = gts_bruh_get_destroy_planet_leader
-				}
+				random_owned_leader = { save_event_target_as = gts_bruh_get_destroy_planet_leader }
 			}
 		}
 	}
@@ -1145,15 +1148,14 @@ planet_event = { # 转化为足垢农业星球
 		owner = {
 			add_monthly_resource_mult = {
 				resource = unity
-				value = 5
-				min = 2500
+				value = 3
+				min = 3000
 			}
 		}
 		event_target:gts_bruh_get_destroy_planet_leader = {
-			add_experience = root.gts_bruh_get_experience_count
+			add_experience = Root.gts_bruh_get_experience_count
 		}
-
-		root ={
+		hidden_effect = {
 			every_owned_pop_group = {
 				kill_pop_group = {
 					pop_group = this
@@ -1161,6 +1163,16 @@ planet_event = { # 转化为足垢农业星球
 				}
 			}
 			add_planet_devastation = 100
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			clear_variable = gts_bruh_random_count
+			clear_variable = gts_bruh_get_planet_size
+			clear_variable = gts_bruh_get_planet_killed_pop_count
+			clear_variable = gts_bruh_get_planet_destroyed_city_count
+			clear_variable = gts_bruh_get_experience_count
 		}
 	}
 }
@@ -1172,35 +1184,23 @@ planet_event = { # 重新转化为足垢星球
 	id = gts_ap_planet.4500
 	title = gts_ap_planet.4500.name
 	desc = gts_ap_planet.4500.desc
+
+	show_sound = event_structural_collapse
 	diplomatic = yes
 	custom_gui = "gts_horizontal_event_window"
 	custom_gui_option = "gts_horizontal_event_button"
-	picture_event_data = {
-		room = gts_event_34_room
-	}
-	show_sound = event_mystic_reveal
-	location = root
+	picture_event_data = { room = gts_event_34_room }
+
+	location = Root
 	is_triggered_only = yes
 
 	immediate = {
-		root = {
-
+		Root = {
 			# 計算人口數量
 			export_trigger_value_to_variable = {
 				trigger = pop_amount
 				variable = gts_bruh_get_planet_killed_pop_count
 			}
-
-			# 計算經驗獲取
-			export_trigger_value_to_variable = {
-				trigger = pop_amount
-				variable = gts_bruh_get_experience_count
-			}
-			divide_variable = {
-				which = gts_bruh_get_experience_count
-				value = 100
-			}
-			round_variable = gts_bruh_get_experience_count
 
 			# 計算城市數量
 			export_trigger_value_to_variable = {
@@ -1212,6 +1212,17 @@ planet_event = { # 重新转化为足垢星球
 				value = 100
 			}
 			round_variable = gts_bruh_get_planet_destroyed_city_count
+
+			# 計算經驗獲取
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_experience_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_experience_count
+				value = 10
+			}
+			round_variable = gts_bruh_get_experience_count
 		}
 		owner ={
 			if = {
@@ -1223,17 +1234,13 @@ planet_event = { # 重新转化为足垢星球
 					}
 				}
 				random_owned_leader = {
-					limit = {
-						has_trait = leader_trait_Ultra
-					}
+					limit = { has_trait = leader_trait_Ultra }
 					save_event_target_as = gts_bruh_get_destroy_planet_leader
 				}
 			}
 			else = {
 				# 如果沒有就隨機一個
-				random_owned_leader = {
-					save_event_target_as = gts_bruh_get_destroy_planet_leader
-				}
+				random_owned_leader = { save_event_target_as = gts_bruh_get_destroy_planet_leader }
 			}
 		}
 	}
@@ -1244,14 +1251,14 @@ planet_event = { # 重新转化为足垢星球
 		owner = {
 			add_monthly_resource_mult = {
 				resource = unity
-				value = 5
-				min = 2500
+				value = 3
+				min = 3000
 			}
 		}
 		event_target:gts_bruh_get_destroy_planet_leader = {
-			add_experience = root.gts_bruh_get_experience_count
+			add_experience = Root.gts_bruh_get_experience_count
 		}
-		root ={
+		Root ={
 			destroy_colony = yes
 		}
 	}
@@ -1264,19 +1271,18 @@ planet_event = {
 	id = gts_ap_planet.5000
 	title = gts_ap_planet.5000.name
 	desc = gts_ap_planet.5000.desc
+
+	show_sound = event_structural_collapse
 	diplomatic = yes
 	custom_gui = "gts_horizontal_event_window"
 	custom_gui_option = "gts_horizontal_event_button"
-	picture_event_data = {
-		room = gts_event_22_room
-	}
-	show_sound = event_mystic_reveal
-	location = root
+	picture_event_data = { room = gts_event_22_room }
+
+	location = Root
 	is_triggered_only = yes
 
 	immediate = {
-		root = {
-
+		Root = {
 			# 計算人口數量 (99%)
 			export_trigger_value_to_variable = {
 				trigger = pop_amount
@@ -1288,17 +1294,6 @@ planet_event = {
 			}
 			round_variable = gts_bruh_get_planet_killed_pop_count
 
-			# 計算經驗獲取
-			export_trigger_value_to_variable = {
-				trigger = pop_amount
-				variable = gts_bruh_get_experience_count
-			}
-			divide_variable = {
-				which = gts_bruh_get_experience_count
-				value = 100
-			}
-			round_variable = gts_bruh_get_experience_count
-
 			# 計算城市數量
 			export_trigger_value_to_variable = {
 				trigger = pop_amount
@@ -1309,6 +1304,17 @@ planet_event = {
 				value = 100
 			}
 			round_variable = gts_bruh_get_planet_destroyed_city_count
+
+			# 計算經驗獲取
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_experience_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_experience_count
+				value = 10
+			}
+			round_variable = gts_bruh_get_experience_count
 		}
 		owner ={
 			if = {
@@ -1320,17 +1326,13 @@ planet_event = {
 					}
 				}
 				random_owned_leader = {
-					limit = {
-						has_trait = leader_trait_Ultra
-					}
+					limit = { has_trait = leader_trait_Ultra }
 					save_event_target_as = gts_bruh_get_destroy_planet_leader
 				}
 			}
 			else = {
 				# 如果沒有就隨機一個
-				random_owned_leader = {
-					save_event_target_as = gts_bruh_get_destroy_planet_leader
-				}
+				random_owned_leader = { save_event_target_as = gts_bruh_get_destroy_planet_leader }
 			}
 		}
 	}
@@ -1341,15 +1343,14 @@ planet_event = {
 		owner = {
 			add_monthly_resource_mult = {
 				resource = unity
-				value = 5
-				min = 2500
+				value = 3
+				min = 3000
 			}
 		}
 		event_target:gts_bruh_get_destroy_planet_leader = {
-			add_experience = root.gts_bruh_get_experience_count
+			add_experience = Root.gts_bruh_get_experience_count
 		}
-
-		root ={
+		hidden_effect = {
 			every_owned_pop_group = {
 				kill_pop_group = {
 					pop_group = this
@@ -1357,6 +1358,16 @@ planet_event = {
 				}
 			}
 			add_planet_devastation = 100
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			clear_variable = gts_bruh_random_count
+			clear_variable = gts_bruh_get_planet_size
+			clear_variable = gts_bruh_get_planet_killed_pop_count
+			clear_variable = gts_bruh_get_planet_destroyed_city_count
+			clear_variable = gts_bruh_get_experience_count
 		}
 	}
 }
@@ -1368,19 +1379,18 @@ planet_event = {
 	id = gts_ap_planet.5001
 	title = gts_ap_planet.5001.name
 	desc = gts_ap_planet.5001.desc
+
+	show_sound = event_structural_collapse
 	diplomatic = yes
 	custom_gui = "gts_horizontal_event_window"
 	custom_gui_option = "gts_horizontal_event_button"
-	picture_event_data = {
-		room = gts_event_24_room
-	}
-	show_sound = event_mystic_reveal
-	location = root
+	picture_event_data = { room = gts_event_24_room }
+
+	location = Root
 	is_triggered_only = yes
 
 	immediate = {
-		root = {
-
+		Root = {
 			# 計算人口數量 (99%)
 			export_trigger_value_to_variable = {
 				trigger = pop_amount
@@ -1392,17 +1402,6 @@ planet_event = {
 			}
 			round_variable = gts_bruh_get_planet_killed_pop_count
 
-			# 計算經驗獲取
-			export_trigger_value_to_variable = {
-				trigger = pop_amount
-				variable = gts_bruh_get_experience_count
-			}
-			divide_variable = {
-				which = gts_bruh_get_experience_count
-				value = 100
-			}
-			round_variable = gts_bruh_get_experience_count
-
 			# 計算城市數量
 			export_trigger_value_to_variable = {
 				trigger = pop_amount
@@ -1413,6 +1412,17 @@ planet_event = {
 				value = 100
 			}
 			round_variable = gts_bruh_get_planet_destroyed_city_count
+
+			# 計算經驗獲取
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_experience_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_experience_count
+				value = 10
+			}
+			round_variable = gts_bruh_get_experience_count
 		}
 		owner ={
 			random_owned_leader = {
@@ -1433,15 +1443,14 @@ planet_event = {
 		owner = {
 			add_monthly_resource_mult = {
 				resource = unity
-				value = 5
-				min = 2500
+				value = 3
+				min = 3000
 			}
 		}
 		event_target:gts_bruh_get_destroy_planet_leader = {
-			add_experience = root.gts_bruh_get_experience_count
+			add_experience = Root.gts_bruh_get_experience_count
 		}
-
-		root ={
+		hidden_effect = {
 			every_owned_pop_group = {
 				kill_pop_group = {
 					pop_group = this
@@ -1449,6 +1458,16 @@ planet_event = {
 				}
 			}
 			add_planet_devastation = 100
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			clear_variable = gts_bruh_random_count
+			clear_variable = gts_bruh_get_planet_size
+			clear_variable = gts_bruh_get_planet_killed_pop_count
+			clear_variable = gts_bruh_get_planet_destroyed_city_count
+			clear_variable = gts_bruh_get_experience_count
 		}
 	}
 }
@@ -1460,19 +1479,18 @@ planet_event = {
     id = gts_ap_planet.5002
     title = gts_ap_planet.5002.name
     desc = gts_ap_planet.5002.desc
+
+	show_sound = event_structural_collapse
     diplomatic = yes
     custom_gui = "gts_horizontal_event_window"
     custom_gui_option = "gts_horizontal_event_button"
-    picture_event_data = {
-        room = gts_scat_2_room
-    }
-    show_sound = event_red_alert
-    location = root
+    picture_event_data = { room = gts_scat_2_room }
+
+    location = Root
     is_triggered_only = yes
 
     immediate = {
-        root = {
-
+        Root = {
             # 計算人口數量 (99%)
             export_trigger_value_to_variable = {
                 trigger = pop_amount
@@ -1528,19 +1546,28 @@ planet_event = {
             }
         }
         event_target:gts_bruh_get_destroy_planet_leader = {
-            add_experience = root.gts_bruh_get_experience_count
+            add_experience = Root.gts_bruh_get_experience_count
         }
-
-        root ={
-            every_owned_pop_group = {
-                kill_pop_group = {
-                    pop_group = this
-                    percentage = 0.99
-                }
-            }
-            add_planet_devastation = 100
-        }
+		hidden_effect = {
+			every_owned_pop_group = {
+				kill_pop_group = {
+					pop_group = this
+					percentage = 0.99
+				}
+			}
+			add_planet_devastation = 100
+		}
     }
+
+	after = {
+		hidden_effect = {
+			clear_variable = gts_bruh_random_count
+			clear_variable = gts_bruh_get_planet_size
+			clear_variable = gts_bruh_get_planet_killed_pop_count
+			clear_variable = gts_bruh_get_planet_destroyed_city_count
+			clear_variable = gts_bruh_get_experience_count
+		}
+	}
 }
 
 planet_event = {
@@ -1550,19 +1577,18 @@ planet_event = {
     id = gts_ap_planet.5003
     title = gts_ap_planet.5002.name
     desc = gts_ap_planet.5003.desc
+
+	show_sound = event_structural_collapse
     diplomatic = yes
     custom_gui = "gts_horizontal_event_window"
     custom_gui_option = "gts_horizontal_event_button"
-    picture_event_data = {
-        room = gts_scat_3_room
-    }
-    show_sound = event_red_alert
-    location = root
+    picture_event_data = { room = gts_scat_3_room }
+
+    location = Root
     is_triggered_only = yes
 
     immediate = {
-        root = {
-
+        Root = {
             # 計算人口數量 (99%)
             export_trigger_value_to_variable = {
                 trigger = pop_amount
@@ -1618,19 +1644,28 @@ planet_event = {
             }
         }
         event_target:gts_bruh_get_destroy_planet_leader = {
-            add_experience = root.gts_bruh_get_experience_count
+            add_experience = Root.gts_bruh_get_experience_count
         }
-
-        root ={
-            every_owned_pop_group = {
-                kill_pop_group = {
-                    pop_group = this
-                    percentage = 0.99
-                }
-            }
-            add_planet_devastation = 100
-        }
+		hidden_effect = {
+			every_owned_pop_group = {
+				kill_pop_group = {
+					pop_group = this
+					percentage = 0.99
+				}
+			}
+			add_planet_devastation = 100
+		}
     }
+
+	after = {
+		hidden_effect = {
+			clear_variable = gts_bruh_random_count
+			clear_variable = gts_bruh_get_planet_size
+			clear_variable = gts_bruh_get_planet_killed_pop_count
+			clear_variable = gts_bruh_get_planet_destroyed_city_count
+			clear_variable = gts_bruh_get_experience_count
+		}
+	}
 }
 
 planet_event = {
@@ -1640,19 +1675,18 @@ planet_event = {
     id = gts_ap_planet.5004
     title = gts_ap_planet.5002.name
     desc = gts_ap_planet.5004.desc
+
+	show_sound = event_structural_collapse
     diplomatic = yes
     custom_gui = "gts_horizontal_event_window"
     custom_gui_option = "gts_horizontal_event_button"
-    picture_event_data = {
-        room = gts_scat_4_room
-    }
-    show_sound = event_red_alert
-    location = root
+    picture_event_data = { room = gts_scat_4_room }
+
+    location = Root
     is_triggered_only = yes
 
     immediate = {
-        root = {
-
+        Root = {
             # 計算人口數量 (99%)
             export_trigger_value_to_variable = {
                 trigger = pop_amount
@@ -1708,17 +1742,27 @@ planet_event = {
             }
         }
         event_target:gts_bruh_get_destroy_planet_leader = {
-            add_experience = root.gts_bruh_get_experience_count
+            add_experience = Root.gts_bruh_get_experience_count
         }
-
-        root ={
-            every_owned_pop_group = {
-                kill_pop_group = {
-                    pop_group = this
-                    percentage = 0.99
-                }
-            }
-            add_planet_devastation = 100
-        }
+		hidden_effect = {
+			every_owned_pop_group = {
+				kill_pop_group = {
+					pop_group = this
+					percentage = 0.99
+				}
+			}
+			add_planet_devastation = 100
+		}
     }
+
+	after = {
+		hidden_effect = {
+			clear_variable = gts_bruh_random_count
+			clear_variable = gts_bruh_get_planet_size
+			clear_variable = gts_bruh_get_planet_killed_pop_count
+			clear_variable = gts_bruh_get_planet_destroyed_city_count
+			clear_variable = gts_bruh_get_experience_count
+		}
+	}
 }
+

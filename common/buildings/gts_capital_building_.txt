@@ -51,11 +51,32 @@ building_gts_bruh_juice_colony_shelter = {
 	}
 
 	planet_modifier = {
-		job_gts_juice_worker_add = 50
-		job_gts_giantess_fluid_worker_add = 50
 		planet_housing_add = 300
 		planet_amenities_add = 300
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
+		job_gts_juice_worker_add = 50
+		job_gts_giantess_fluid_worker_add = 50
 		job_colonist_add = 200
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_gts_drone_gts_juice_worker_add = 50
+		job_gts_drone_gts_giantess_fluid_worker_add = 50
+		job_logistics_drone_add = 200
 	}
 
 	inline_script = {
@@ -65,18 +86,56 @@ building_gts_bruh_juice_colony_shelter = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { has_valid_civic = civic_dystopian_society }
+			owner = {
+				has_valid_civic = civic_dystopian_society
+			}
+			owner = {
+				is_gestalt = no
+			}
 		}
 		job_enforcer_add = 100
 		job_colonist_add = -100
 	}
+
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { has_active_tradition = tr_synthetics_prefabricated_components }
+			owner = {
+				has_valid_civic = civic_dystopian_society
+			}
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_patrol_drone_add = 100
+		job_logistics_drone_add = -100
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_synthetics_prefabricated_components
+			}
+			owner = {
+				is_gestalt = no
+			}
 		}
 		job_roboticist_add = 100
 		job_colonist_add = -100
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_synthetics_prefabricated_components
+			}
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_replicator_add = 100
+		job_logistics_drone_add = -100
 	}
 
 	resources = {
@@ -134,13 +193,34 @@ building_gts_bruh_juice_capital = {
 	}
 
 	planet_modifier = {
-		job_enforcer_add = 100
-		job_gts_juice_worker_add = 100
-		job_gts_giantess_fluid_worker_add = 100
 		planet_housing_add = 1000
 		planet_amenities_add = 1000
 		planet_max_branch_office_buildings_add = 1
 		planet_defense_armies_add = @tier_2_capital_defense_armies
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
+		job_enforcer_add = 100
+		job_gts_juice_worker_add = 100
+		job_gts_giantess_fluid_worker_add = 100
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_patrol_drone_add = 100
+		job_gts_drone_gts_juice_worker_add = 100
+		job_gts_drone_gts_giantess_fluid_worker_add = 100
 	}
 
 	inline_script = {
@@ -244,13 +324,34 @@ building_gts_bruh_juice_major_capital = {
 	}
 
 	planet_modifier = {
-		job_enforcer_add = 200
-		job_gts_juice_worker_add = 200
-		job_gts_giantess_fluid_worker_add = 200
 		planet_housing_add = 1500
 		planet_amenities_add = 1500
 		planet_max_branch_office_buildings_add = 2
 		planet_defense_armies_add = @tier_3_capital_defense_armies
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
+		job_enforcer_add = 200
+		job_gts_juice_worker_add = 200
+		job_gts_giantess_fluid_worker_add = 200
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_patrol_drone_add = 200
+		job_gts_drone_gts_juice_worker_add = 200
+		job_gts_drone_gts_giantess_fluid_worker_add = 200
 	}
 
 	inline_script = {
@@ -363,13 +464,34 @@ building_gts_bruh_juice_system_capital = {
 	}
 
 	planet_modifier = {
-		job_enforcer_add = 300
-		job_gts_juice_worker_add = 400
-		job_gts_giantess_fluid_worker_add = 400
 		planet_housing_add = 2000
 		planet_amenities_add = 2000
 		planet_max_branch_office_buildings_add = 4
 		planet_defense_armies_add = @tier_4_capital_defense_armies
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
+		job_enforcer_add = 300
+		job_gts_juice_worker_add = 400
+		job_gts_giantess_fluid_worker_add = 400
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_patrol_drone_add = 300
+		job_gts_drone_gts_juice_worker_add = 400
+		job_gts_drone_gts_giantess_fluid_worker_add = 400
 	}
 
 	inline_script = {
@@ -491,11 +613,32 @@ building_gts_bruh_milk_colony_shelter = {
 	}
 
 	planet_modifier = {
-		job_gts_milk_worker_add = 50
-		job_gts_giantess_fluid_worker_add = 50
 		planet_housing_add = 300
 		planet_amenities_add = 300
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
+		job_gts_milk_worker_add = 50
+		job_gts_giantess_fluid_worker_add = 50
 		job_colonist_add = 200
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_gts_drone_gts_milk_worker_add = 50
+		job_gts_drone_gts_giantess_fluid_worker_add = 50
+		job_logistics_drone_add = 200
 	}
 
 	inline_script = {
@@ -505,18 +648,56 @@ building_gts_bruh_milk_colony_shelter = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { has_valid_civic = civic_dystopian_society }
+			owner = {
+				has_valid_civic = civic_dystopian_society
+			}
+			owner = {
+				is_gestalt = no
+			}
 		}
 		job_enforcer_add = 100
 		job_colonist_add = -100
 	}
+
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { has_active_tradition = tr_synthetics_prefabricated_components }
+			owner = {
+				has_valid_civic = civic_dystopian_society
+			}
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_patrol_drone_add = 100
+		job_logistics_drone_add = -100
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_synthetics_prefabricated_components
+			}
+			owner = {
+				is_gestalt = no
+			}
 		}
 		job_roboticist_add = 100
 		job_colonist_add = -100
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_synthetics_prefabricated_components
+			}
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_replicator_add = 100
+		job_logistics_drone_add = -100
 	}
 
 	resources = {
@@ -570,13 +751,34 @@ building_gts_bruh_milk_capital = {
 	}
 
 	planet_modifier = {
-		job_enforcer_add = 100
-		job_gts_milk_worker_add = 100
-		job_gts_giantess_fluid_worker_add = 100
 		planet_housing_add = 1000
 		planet_amenities_add = 1000
 		planet_max_branch_office_buildings_add = 1
 		planet_defense_armies_add = @tier_2_capital_defense_armies
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
+		job_enforcer_add = 100
+		job_gts_milk_worker_add = 100
+		job_gts_giantess_fluid_worker_add = 100
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_patrol_drone_add = 100
+		job_gts_drone_gts_milk_worker_add = 100
+		job_gts_drone_gts_giantess_fluid_worker_add = 100
 	}
 
 	inline_script = {
@@ -673,13 +875,34 @@ building_gts_bruh_milk_major_capital = {
 	}
 
 	planet_modifier = {
-		job_enforcer_add = 200
-		job_gts_milk_worker_add = 200
-		job_gts_giantess_fluid_worker_add = 200
 		planet_housing_add = 1500
 		planet_amenities_add = 1500
 		planet_max_branch_office_buildings_add = 2
 		planet_defense_armies_add = @tier_3_capital_defense_armies
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
+		job_enforcer_add = 200
+		job_gts_milk_worker_add = 200
+		job_gts_giantess_fluid_worker_add = 200
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_patrol_drone_add = 200
+		job_gts_drone_gts_milk_worker_add = 200
+		job_gts_drone_gts_giantess_fluid_worker_add = 200
 	}
 
 	inline_script = {
@@ -789,13 +1012,34 @@ building_gts_bruh_milk_system_capital = {
 	}
 
 	planet_modifier = {
-		job_enforcer_add = 300
-		job_gts_milk_worker_add = 400
-		job_gts_giantess_fluid_worker_add = 400
 		planet_housing_add = 2000
 		planet_amenities_add = 2000
 		planet_max_branch_office_buildings_add = 4
 		planet_defense_armies_add = @tier_4_capital_defense_armies
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
+		job_enforcer_add = 300
+		job_gts_milk_worker_add = 400
+		job_gts_giantess_fluid_worker_add = 400
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_patrol_drone_add = 300
+		job_gts_drone_gts_milk_worker_add = 400
+		job_gts_drone_gts_giantess_fluid_worker_add = 400
 	}
 
 	inline_script = {
@@ -915,11 +1159,32 @@ building_gts_bruh_semen_colony_shelter = {
 	}
 
 	planet_modifier = {
-		job_gts_semen_worker_add = 50
-		job_gts_giantess_fluid_worker_add = 50
 		planet_housing_add = 300
 		planet_amenities_add = 300
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
+		job_gts_semen_worker_add = 50
+		job_gts_giantess_fluid_worker_add = 50
 		job_colonist_add = 200
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_gts_drone_gts_semen_worker_add = 50
+		job_gts_drone_gts_giantess_fluid_worker_add = 50
+		job_logistics_drone_add = 200
 	}
 
 	inline_script = {
@@ -929,18 +1194,56 @@ building_gts_bruh_semen_colony_shelter = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { has_valid_civic = civic_dystopian_society }
+			owner = {
+				has_valid_civic = civic_dystopian_society
+			}
+			owner = {
+				is_gestalt = no
+			}
 		}
 		job_enforcer_add = 100
 		job_colonist_add = -100
 	}
+
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { has_active_tradition = tr_synthetics_prefabricated_components }
+			owner = {
+				has_valid_civic = civic_dystopian_society
+			}
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_patrol_drone_add = 100
+		job_logistics_drone_add = -100
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_synthetics_prefabricated_components
+			}
+			owner = {
+				is_gestalt = no
+			}
 		}
 		job_roboticist_add = 100
 		job_colonist_add = -100
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_synthetics_prefabricated_components
+			}
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_replicator_add = 100
+		job_logistics_drone_add = -100
 	}
 
 	resources = {
@@ -996,13 +1299,34 @@ building_gts_bruh_semen_capital = {
 	}
 
 	planet_modifier = {
-		job_enforcer_add = 100
-		job_gts_semen_worker_add = 100
-		job_gts_giantess_fluid_worker_add = 100
 		planet_housing_add = 1000
 		planet_amenities_add = 1000
 		planet_max_branch_office_buildings_add = 1
 		planet_defense_armies_add = @tier_2_capital_defense_armies
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
+		job_enforcer_add = 100
+		job_gts_semen_worker_add = 100
+		job_gts_giantess_fluid_worker_add = 100
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_patrol_drone_add = 100
+		job_gts_drone_gts_semen_worker_add = 100
+		job_gts_drone_gts_giantess_fluid_worker_add = 100
 	}
 
 	inline_script = {
@@ -1098,13 +1422,34 @@ building_gts_bruh_semen_major_capital = {
 	}
 
 	planet_modifier = {
-		job_enforcer_add = 200
-		job_gts_semen_worker_add = 200
-		job_gts_giantess_fluid_worker_add = 200
 		planet_housing_add = 1500
 		planet_amenities_add = 1500
 		planet_max_branch_office_buildings_add = 2
 		planet_defense_armies_add = @tier_3_capital_defense_armies
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
+		job_enforcer_add = 200
+		job_gts_semen_worker_add = 200
+		job_gts_giantess_fluid_worker_add = 200
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_patrol_drone_add = 200
+		job_gts_drone_gts_semen_worker_add = 200
+		job_gts_drone_gts_giantess_fluid_worker_add = 200
 	}
 
 	inline_script = {
@@ -1213,13 +1558,34 @@ building_gts_bruh_semen_system_capital = {
 	}
 
 	planet_modifier = {
-		job_enforcer_add = 300
-		job_gts_semen_worker_add = 400
-		job_gts_giantess_fluid_worker_add = 400
 		planet_housing_add = 2000
 		planet_amenities_add = 2000
 		planet_max_branch_office_buildings_add = 4
 		planet_defense_armies_add = @tier_4_capital_defense_armies
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
+		job_enforcer_add = 300
+		job_gts_semen_worker_add = 400
+		job_gts_giantess_fluid_worker_add = 400
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_patrol_drone_add = 300
+		job_gts_drone_gts_semen_worker_add = 400
+		job_gts_drone_gts_giantess_fluid_worker_add = 400
 	}
 
 	inline_script = {
@@ -1343,10 +1709,30 @@ building_gts_bruh_dirt_colony_shelter = {
 	}
 
 	planet_modifier = {
-		job_gts_dirt1_add = 200
 		planet_housing_add = 300
 		planet_amenities_add = 300
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
+		job_gts_dirt1_add = 200
 		job_colonist_add = 200
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_gts_drone_gts_dirt1_add = 200
+		job_logistics_drone_add = 200
 	}
 
 	inline_script = {
@@ -1356,18 +1742,56 @@ building_gts_bruh_dirt_colony_shelter = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { has_valid_civic = civic_dystopian_society }
+			owner = {
+				has_valid_civic = civic_dystopian_society
+			}
+			owner = {
+				is_gestalt = no
+			}
 		}
 		job_enforcer_add = 100
 		job_colonist_add = -100
 	}
+
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { has_active_tradition = tr_synthetics_prefabricated_components }
+			owner = {
+				has_valid_civic = civic_dystopian_society
+			}
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_patrol_drone_add = 100
+		job_logistics_drone_add = -100
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_synthetics_prefabricated_components
+			}
+			owner = {
+				is_gestalt = no
+			}
 		}
 		job_roboticist_add = 100
 		job_colonist_add = -100
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_synthetics_prefabricated_components
+			}
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_replicator_add = 100
+		job_logistics_drone_add = -100
 	}
 
 	resources = {
@@ -1427,12 +1851,32 @@ building_gts_bruh_dirt_capital = {
 	}
 
 	planet_modifier = {
-		job_enforcer_add = 100
-		job_gts_dirt1_add = 400
 		planet_housing_add = 1000
 		planet_amenities_add = 1000
 		planet_max_branch_office_buildings_add = 1
 		planet_defense_armies_add = @tier_2_capital_defense_armies
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
+		job_enforcer_add = 100
+		job_gts_dirt1_add = 400
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_patrol_drone_add = 100
+		job_gts_drone_gts_dirt1_add = 400
 	}
 
 	inline_script = {
@@ -1556,12 +2000,32 @@ building_gts_bruh_dirt_major_capital = {
 	}
 
 	planet_modifier = {
-		job_enforcer_add = 200
-		job_gts_dirt1_add = 800
 		planet_housing_add = 1500
 		planet_amenities_add = 1500
 		planet_max_branch_office_buildings_add = 2
 		planet_defense_armies_add = @tier_3_capital_defense_armies
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
+		job_enforcer_add = 200
+		job_gts_dirt1_add = 800
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_patrol_drone_add = 200
+		job_gts_drone_gts_dirt1_add = 800
 	}
 
 	inline_script = {
@@ -1694,12 +2158,32 @@ building_gts_bruh_dirt_system_capital = {
 	}
 
 	planet_modifier = {
-		job_enforcer_add = 300
-		job_gts_dirt1_add = 1600
 		planet_housing_add = 2000
 		planet_amenities_add = 2000
 		planet_max_branch_office_buildings_add = 4
 		planet_defense_armies_add = @tier_4_capital_defense_armies
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
+		job_enforcer_add = 300
+		job_gts_dirt1_add = 1600
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_patrol_drone_add = 300
+		job_gts_drone_gts_dirt1_add = 1600
 	}
 
 	inline_script = {
@@ -1839,10 +2323,30 @@ building_gts_bruh_shit_colony_shelter = {
 	}
 
 	planet_modifier = {
-		job_gts_shit_worker_add = 200
 		planet_housing_add = 300
 		planet_amenities_add = 300
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
+		job_gts_shit_worker_add = 200
 		job_colonist_add = 200
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_gts_drone_gts_shit_worker_add = 200
+		job_logistics_drone_add = 200
 	}
 
 	inline_script = {
@@ -1852,18 +2356,56 @@ building_gts_bruh_shit_colony_shelter = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { has_valid_civic = civic_dystopian_society }
+			owner = {
+				has_valid_civic = civic_dystopian_society
+			}
+			owner = {
+				is_gestalt = no
+			}
 		}
 		job_enforcer_add = 100
 		job_colonist_add = -100
 	}
+
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { has_active_tradition = tr_synthetics_prefabricated_components }
+			owner = {
+				has_valid_civic = civic_dystopian_society
+			}
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_patrol_drone_add = 100
+		job_logistics_drone_add = -100
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_synthetics_prefabricated_components
+			}
+			owner = {
+				is_gestalt = no
+			}
 		}
 		job_roboticist_add = 100
 		job_colonist_add = -100
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_synthetics_prefabricated_components
+			}
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_replicator_add = 100
+		job_logistics_drone_add = -100
 	}
 
 	resources = {
@@ -1917,12 +2459,32 @@ building_gts_bruh_shit_capital = {
 	}
 
 	planet_modifier = {
-		job_enforcer_add = 100
-		job_gts_shit_worker_add = 400
 		planet_housing_add = 1000
 		planet_amenities_add = 1000
 		planet_max_branch_office_buildings_add = 1
 		planet_defense_armies_add = @tier_2_capital_defense_armies
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
+		job_enforcer_add = 100
+		job_gts_shit_worker_add = 400
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_patrol_drone_add = 100
+		job_gts_drone_gts_shit_worker_add = 400
 	}
 
 	inline_script = {
@@ -2019,12 +2581,32 @@ building_gts_bruh_shit_major_capital = {
 	}
 
 	planet_modifier = {
-		job_enforcer_add = 200
-		job_gts_shit_worker_add = 800
 		planet_housing_add = 1500
 		planet_amenities_add = 1500
 		planet_max_branch_office_buildings_add = 2
 		planet_defense_armies_add = @tier_3_capital_defense_armies
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
+		job_enforcer_add = 200
+		job_gts_shit_worker_add = 800
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_patrol_drone_add = 200
+		job_gts_drone_gts_shit_worker_add = 800
 	}
 
 	inline_script = {
@@ -2130,12 +2712,32 @@ building_gts_bruh_shit_system_capital = {
 	}
 
 	planet_modifier = {
-		job_enforcer_add = 300
-		job_gts_shit_worker_add = 1600
 		planet_housing_add = 2000
 		planet_amenities_add = 2000
 		planet_max_branch_office_buildings_add = 4
 		planet_defense_armies_add = @tier_4_capital_defense_armies
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
+		job_enforcer_add = 300
+		job_gts_shit_worker_add = 1600
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_patrol_drone_add = 300
+		job_gts_drone_gts_shit_worker_add = 1600
 	}
 
 	inline_script = {
@@ -2257,10 +2859,30 @@ building_gts_bruh_urine_colony_shelter = {
 	}
 
 	planet_modifier = {
-		job_gts_urine_worker_add = 200
 		planet_housing_add = 300
 		planet_amenities_add = 300
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
+		job_gts_urine_worker_add = 200
 		job_colonist_add = 200
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_gts_drone_gts_urine_worker_add = 200
+		job_logistics_drone_add = 200
 	}
 
 	inline_script = {
@@ -2270,18 +2892,56 @@ building_gts_bruh_urine_colony_shelter = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { has_valid_civic = civic_dystopian_society }
+			owner = {
+				has_valid_civic = civic_dystopian_society
+			}
+			owner = {
+				is_gestalt = no
+			}
 		}
 		job_enforcer_add = 100
 		job_colonist_add = -100
 	}
+
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { has_active_tradition = tr_synthetics_prefabricated_components }
+			owner = {
+				has_valid_civic = civic_dystopian_society
+			}
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_patrol_drone_add = 100
+		job_logistics_drone_add = -100
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_synthetics_prefabricated_components
+			}
+			owner = {
+				is_gestalt = no
+			}
 		}
 		job_roboticist_add = 100
 		job_colonist_add = -100
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_synthetics_prefabricated_components
+			}
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_replicator_add = 100
+		job_logistics_drone_add = -100
 	}
 
 	resources = {
@@ -2338,12 +2998,32 @@ building_gts_bruh_urine_capital = {
 	}
 
 	planet_modifier = {
-		job_enforcer_add = 100
-		job_gts_urine_worker_add = 400
 		planet_housing_add = 1000
 		planet_amenities_add = 1000
 		planet_max_branch_office_buildings_add = 1
 		planet_defense_armies_add = @tier_2_capital_defense_armies
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
+		job_enforcer_add = 100
+		job_gts_urine_worker_add = 400
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_patrol_drone_add = 100
+		job_gts_drone_gts_urine_worker_add = 400
 	}
 
 	inline_script = {
@@ -2442,12 +3122,32 @@ building_gts_bruh_urine_major_capital = {
 	}
 
 	planet_modifier = {
-		job_enforcer_add = 200
-		job_gts_urine_worker_add = 800
 		planet_housing_add = 1500
 		planet_amenities_add = 1500
 		planet_max_branch_office_buildings_add = 2
 		planet_defense_armies_add = @tier_3_capital_defense_armies
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
+		job_enforcer_add = 200
+		job_gts_urine_worker_add = 800
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_patrol_drone_add = 200
+		job_gts_drone_gts_urine_worker_add = 800
 	}
 
 	inline_script = {
@@ -2555,12 +3255,32 @@ building_gts_bruh_urine_system_capital = {
 	}
 
 	planet_modifier = {
-		job_enforcer_add = 300
-		job_gts_urine_worker_add = 1600
 		planet_housing_add = 2000
 		planet_amenities_add = 2000
 		planet_max_branch_office_buildings_add = 4
 		planet_defense_armies_add = @tier_4_capital_defense_armies
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
+		job_enforcer_add = 300
+		job_gts_urine_worker_add = 1600
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_patrol_drone_add = 300
+		job_gts_drone_gts_urine_worker_add = 1600
 	}
 
 	inline_script = {
@@ -2637,4 +3357,3 @@ building_gts_bruh_urine_system_capital = {
 		}
 	}
 }
-

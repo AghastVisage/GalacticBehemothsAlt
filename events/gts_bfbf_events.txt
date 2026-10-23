@@ -1180,20 +1180,20 @@ country_event = {
 event = {
 	#快捷的按钮
 	id = gts_bfbf.11414
-	title = test
-	desc = test
+	title = special_ui
+	desc = special_ui
 	is_triggered_only = yes
 	diplomatic = yes
 	custom_gui = "gts_bfbf1"
 	option = {
-		name = test
+		name = special_ui
 	}
 }
 
 country_event = {
 	id = gts_bfbf.11415
-	title = test
-	desc = test_bfbf
+	title = special_ui
+	desc = special_ui
 
 	diplomatic = yes
 	fire_only_once = no
@@ -3165,8 +3165,56 @@ country_event = {
 		}
 	}
 }
+fleet_event = {
+	#失踪回归
+	id = gts_bfbf.11705
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = {
+	}
+	immediate = {
+		return_from_mia = this
+	}
+}
+# ship_th_has_ship_part_mokou
+# This = owner of ship 1 (destroyed)
+# From = owner of ship 2 (combatant)
+# FromFrom = ship 1
+# FromFromFrom = ship 2
+country_event = {
+	#舰队复活
+	id = gts_bfbf.11706
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		fromfrom = {
+			is_ship_size = gts_seele_1_swallowtail_phantasm
+			is_ship_size = gts_seele_2_stygian_nymph
+			is_ship_size = gts_seele_3_herrscher_of_rebirth
+			is_ship_size = gts_seele_4_wings_of_panacea
+			is_ship_size = gts_seele_li_1_stygian_nymph
+			is_ship_size = gts_seele_li_2_starchasm_nyx
+			is_ship_size = gts_bronya_1_herrscher_of_reason
+			is_ship_size = gts_bronya_2_herrscher_of_truth
+			is_ship_size = gts_bronya_3_silverwing_n_ex
+		}
+	}
+	immediate = {
+		fromfrom = {
+			if = {
+				limit = { exists = fleet }
+				fleet = {
+					create_ship = {
+						name = prev design = prev
+						effect = {
 
-
+						}
+					}
+				}
+			}
+		}
+	}
+}
 
 
 #####################################################    方舟舰相关    ##################################################################################
@@ -3263,8 +3311,8 @@ ship_event = {
 #############################################    以下均为测试事件######################################################
 country_event = {
 	id = gts_bfbf.123
-	title = gts_good
-	desc = gts_astral_rift_genesis
+	title = special_ui
+	desc = special_ui
 	is_triggered_only = yes
 	diplomatic = yes
 	picture_event_data = {
@@ -3274,7 +3322,7 @@ country_event = {
 	custom_gui = "gts_hitomi_background_gui"
 	custom_gui_option = gts_hitomi_option_gui
 	option = {
-		name = "gts_good"
+		name = "special_ui"
 	}
 }
 

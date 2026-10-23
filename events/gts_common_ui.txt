@@ -357,10 +357,10 @@ country_event = {
 		trigger = {
 			check_variable = {
 				which = gts_ui_intel_avatar
-				value = @gts_xinuo
+				value = @gts_rainna_la_grande
 			}
 		}
-		text = gts_intel_avatar_xinuo
+		text = gts_intel_avatar_rainna_la_grande
 	}
 	desc = {
 		trigger = {
@@ -425,6 +425,15 @@ country_event = {
 		}
 		text = gts_intel_avatar_qinwen
 	}
+	desc = {
+		trigger = {
+			check_variable = {
+				which = gts_ui_intel_avatar
+				value = @gts_rainna_la_grande
+			}
+		}
+		text = gts_intel_avatar_rainna_la_grande
+	}
 	# desc = {
 	# 	trigger = {
 	# 		check_variable = {
@@ -457,7 +466,9 @@ country_event = {
 				value >= 50
 				mult = value:count_gts_leader_cost_mult
 			}
-		}
+		
+ gts_intel_selected_available = yes
+}
 		add_resource = {
 			influence = -50
 			mult = value:count_gts_leader_cost_mult
@@ -820,11 +831,12 @@ country_event = {
 				limit = {
 					check_variable = {
 						which = gts_ui_intel_avatar
-						value = @gts_xinuo
+						value = @gts_rainna_la_grande
 					}
 				}
+				set_global_flag = gts_has_trigger_rainna_la_grande
 				country_event = {
-					id = gts_ui.132
+					id = gts_rainna_la_grande.00
 				}
 			}
 			else_if = {
@@ -902,6 +914,20 @@ country_event = {
 				}
 				country_event = {
 					id = gts_ui.140
+				}
+			}
+			else_if = {
+				limit = {
+					check_variable = {
+						which = gts_ui_intel_avatar
+						value = @gts_rainna_la_grande
+					}
+				}
+				set_global_flag = gts_has_trigger_rainna_la_grande
+				country_event = {
+					id = gts_rainna_la_grande.00
+					days = 15
+					random = 45
 				}
 			}
 			# else_if = {
@@ -1217,6 +1243,17 @@ country_event = {
 				id = gts_seele.71
 			}
 		}
+		else_if = {
+			limit = {
+				check_variable = {
+					which = gts_ui_intel_avatar
+					value = @gts_skadi
+				}
+			}
+			country_event = {
+				id = gts_skadi_meet.200
+			}
+		}
 	}
 }
 country_event = {
@@ -1303,6 +1340,17 @@ country_event = {
 				id = illya.1018
 			}
 		}
+		else_if = {
+			limit = {
+				check_variable = {
+					which = gts_ui_intel_avatar
+					value = @gts_skadi
+				}
+			}
+			country_event = {
+				id = gts_skadi_meet.100
+			}
+		}
 	}
 }
 ### 生成领袖事件 ###
@@ -1328,10 +1376,8 @@ country_event = {
 	}
 }
 
+# 歐若拉
 country_event = {
-
-	# 欧若拉
-
 	id = gts_ui.101
 	title = gts_ui.100.name
 	desc = gts_ui.101.desc
@@ -1342,23 +1388,12 @@ country_event = {
 
 	immediate = {
 		random_system = {
-			limit = {
-				distance = {
-					source = root.capital_scope.solar_system
-					use_bypasses = yes
-					min_jumps = 1
-					max_jumps = 6
-				}
-				is_star_class = sc_f
-			}
+			limit = { gts_intel_system_aurora = { COUNTRY = root } }
+
 			random_system_planet = {
-				limit = {
-					has_anomaly = no
-					is_a_planet = yes
-					is_preventing_anomaly = no
-				}
+				limit = { gts_intel_planet_aurora = { COUNTRY = root } }
 				add_anomaly = {
-					target = root.owner
+					target = root
 					category = gtsra_sleep_loli
 				}
 				save_global_event_target_as = gtsra_loli_world
@@ -1404,29 +1439,12 @@ country_event = {
 	immediate = {
 		set_global_flag = gts_has_trigger_aplog
 		random_system = {
-			limit = {
-				distance = {
-					source = root.capital_scope.solar_system
-					use_bypasses = yes
-					min_jumps = 1
-					max_jumps = 6
-				}
-			}
+			limit = { gts_intel_system_aplog = { COUNTRY = root } }
 			random_system_planet = {
-				limit = {
-					is_capital = no
-					is_ringworld = no
-					is_asteroid = no
-					is_star = no
-					NOT = { is_planet_class = pc_gas_giant }
-					NOT = { has_planet_flag = gts_body_planet }
-					NOT = { exists = archaeological_site }
-					has_anomaly = no
-					is_preventing_anomaly = no
-				}
+				limit = { gts_intel_planet_aplog = { COUNTRY = root } }
 				set_global_flag = gts_aplog
 				add_anomaly = {
-					target = root.owner
+					target = root
 					category = gtsra_aplog_anomaly
 				}
 				save_event_target_as = gts_bruh_aplog_planet
@@ -1509,30 +1527,16 @@ country_event = {
 	location = event_target:linglu_planet
 	immediate = {
 		random_system = {
-			limit = {
-				distance = {
-					source = root.capital_scope.solar_system
-					use_bypasses = yes
-					min_jumps = 1
-					max_jumps = 6
-				}
-			}
+			limit = { gts_intel_system_linglu = { COUNTRY = root } }
 			random_system_planet = {
-				limit = {
-					OR = {
-						uninhabitable_regular_planet = yes
-						habitable_planet_not_urban = yes
-					}
-					is_preventing_anomaly = no
-					has_anomaly = no
-				}
+				limit = { gts_intel_planet_linglu = { COUNTRY = root } }
 				set_planet_size = 40
 				change_pc = pc_savannah
 				reroll_planet_modifiers = yes
 				reroll_deposits = yes
 				add_deposit = d_linglu_footprint
 				add_anomaly = {
-					target = root.owner
+					target = root
 					category = gts_linglu
 				}
 				save_global_event_target_as = linglu_planet
@@ -1560,8 +1564,8 @@ country_event = {
 				distance = {
 					source = root.capital_scope.solar_system
 					use_bypasses = yes
-					min_jumps = 1
-					max_jumps = 6
+					min_jumps = 0
+					max_jumps = 2
 				}
 			}
 			random_system_planet = {
@@ -1686,6 +1690,8 @@ country_event = {
 	}
 	option = {
 		name = gts_perfect
+allow = { hidden_trigger = { gts_intel_location_xiaomiao = yes } }
+
 		hidden_effect = {
 			country_event = {
 				id = gts_xiaomiao.3000
@@ -1707,6 +1713,8 @@ country_event = {
 	}
 	option = {
 		name = gts_perfect
+allow = { hidden_trigger = { gts_intel_location_cys = yes } }
+
 		hidden_effect = {
 			country_event = {
 				id = gts_cys.1
@@ -1809,29 +1817,11 @@ country_event = {
 	immediate = {
 		set_global_flag = gts_has_trigger_satori
 		random_system = {
-			limit = {
-				distance = {
-					source = root.capital_scope.solar_system
-					use_bypasses = yes
-					min_jumps = 1
-					max_jumps = 6
-				}
-			}
+			limit = { gts_intel_system_satori = { COUNTRY = root } }
 			random_system_planet = {
-				limit = {
-					is_preventing_anomaly = no
-					has_anomaly = no
-					is_capital = no
-					is_ringworld = no
-					is_star = no
-					is_colony = no
-					is_under_colonization = no
-					NOT = { is_planet_class = pc_gas_giant }
-					NOT = { has_planet_flag = gts_body_planet }
-					NOT = { exists = archaeological_site }
-				}
+				limit = { gts_intel_planet_satori = { COUNTRY = root } }
 				add_anomaly = {
-					target = root.owner
+					target = root
 					category = gts_extension_leader_satori
 				}
 				save_event_target_as = gts_bruh_get_satori_system_location
@@ -1922,6 +1912,8 @@ country_event = {
 	}
 	option = {
 		name = gts_perfect
+allow = { custom_tooltip = { fail_text = gts_intel_fail_location_guya gts_intel_location_guya = yes } }
+
 		hidden_effect = {
 			country_event = {
 				id = gts_guya.1
@@ -1983,7 +1975,7 @@ country_event = {
 	picture = GFX_gts_qhai_event_1
 	show_sound = event_default
 	is_triggered_only = yes
-	location = event_target:ts_bruh_get_qhai_system_location
+	location = event_target:gts_bruh_get_qhai_system_location
 
 	immediate = {
 		set_global_flag = gts_has_trigger_qhai
@@ -2006,22 +1998,14 @@ country_event = {
 	show_sound = event_default
 	is_triggered_only = yes
 	immediate = {
-		set_country_flag = gts_has_trigger_seele
-		if = {
-			limit = {
-				# root = { is_nomadic = no }
-			}
-			random_galaxy_planet = {
-				limit = {
-					is_star_class = sc_black_hole
-					is_surveyed = {
-						who = root
-					}
-				}
-				set_planet_flag = gts_seele_start_black_hole
-			}
-		}
-	}
+ add_tech_progress = { tech = tech_rift_sphere progress = 0.5 }
+ set_country_flag = gts_has_trigger_seele
+ random_system = {
+  limit = { gts_intel_system_seele = { COUNTRY = root } }
+  set_star_flag = gts_azure_group_start_system
+  star = { set_planet_flag = gts_seele_start_black_hole save_global_event_target_as = gts_seele_start_black_hole save_global_event_target_as = gts_seele_start_black_hole@root }
+ }
+}
 	option = {
 		name = gts_bad
 		hidden_effect = {
@@ -2031,14 +2015,6 @@ country_event = {
 		}
 	}
 	after = {
-		every_system = {
-			limit = {
-				star = {
-					has_planet_flag = gts_seele_start_black_hole
-				}
-			}
-			set_star_flag = gts_seele_start_system
-		}
 	}
 }
 country_event = {
@@ -2052,54 +2028,17 @@ country_event = {
 	location = event_target:bronya_astral_a
 
 	immediate = {
-		add_tech_progress = {
-			tech = tech_rift_sphere
-			progress = 0.5
-		}
-		if = {
-			limit = {
-				root = { is_nomadic = no }
-			}
-			random_system_within_border = {
-				save_event_target_as = bronya_astral_a
-				save_global_event_target_as = bronya_astral
-				spawn_astral_rift = {
-					id = gts_bronya_astral_rifts
-				}
-			}
-		}
-		if = {
-			limit = {
-				root = { is_nomadic = yes }
-			}
-			random_system = {
-				limit = {
-					any_fleet_in_system = {
-						exists = owner
-						owner = {
-							has_country_flag = gts_has_trigger_bronya
-						}
-						or = {
-							is_ship_size = science_arkship_tier_1
-							is_ship_size = science_arkship_tier_2
-							is_ship_size = science_arkship_tier_3
-							is_ship_size = military_arkship_tier_1
-							is_ship_size = military_arkship_tier_2
-							is_ship_size = military_arkship_tier_3
-							is_ship_size = military_arkship_champions_forge
-							is_ship_size = civilian_arkship_tier_1
-							is_ship_size = civilian_arkship_tier_2
-							is_ship_size = civilian_arkship_tier_3
-						}
-					}
-				}
-				set_star_flag = gts_bronya_start_system
-				spawn_astral_rift = {
-					id = gts_bronya_astral_rifts
-				}
-			}
-		}
-	}
+ add_tech_progress = { tech = tech_rift_sphere progress = 0.5 }
+ set_country_flag = gts_has_trigger_bronya
+ random_system = {
+  limit = { gts_intel_system_rift = { COUNTRY = root } }
+  set_star_flag = gts_azure_group_start_system
+  set_star_flag = gts_bronya_start_system save_event_target_as = bronya_astral_a
+  save_global_event_target_as = bronya_astral
+  save_global_event_target_as = bronya_astral@root
+  spawn_astral_rift = { id = gts_bronya_astral_rifts }
+ }
+}
 
 	option = {
 		name = gts_bad
@@ -2114,64 +2053,17 @@ country_event = {
 	show_sound = event_default
 	is_triggered_only = yes
 	immediate = {
-		set_country_flag = gts_has_trigger_seele_li
-		if = {
-			limit = {
-				root = { is_nomadic = no }
-			}
-			random_system_within_border = {
-				star = {
-					set_planet_flag = gts_azure_waters_astral_rift
-					# set_global_flag = gts_azure_waters_astral_rift
-				}
-				save_global_event_target_as = gts_azure_waters_system
-				spawn_astral_rift = {
-					id = gts_azure_waters_rifts
-				}
-			}
-		}
-		if = {
-			limit = {
-				root = { is_nomadic = yes }
-			}
-			random_system = {
-				limit = {
-					any_fleet_in_system = {
-						exists = owner
-						owner = {
-							has_country_flag = gts_has_trigger_seele_li
-						}
-						or = {
-							is_ship_size = science_arkship_tier_1
-							is_ship_size = science_arkship_tier_2
-							is_ship_size = science_arkship_tier_3
-							is_ship_size = military_arkship_tier_1
-							is_ship_size = military_arkship_tier_2
-							is_ship_size = military_arkship_tier_3
-							is_ship_size = military_arkship_champions_forge
-							is_ship_size = civilian_arkship_tier_1
-							is_ship_size = civilian_arkship_tier_2
-							is_ship_size = civilian_arkship_tier_3
-						}
-					}
-					not = {
-						has_star_flag = gts_start_system
-					}
-					# is_surveyed = {
-					# 	who = root
-					# }
-				}
-				star = {
-					set_planet_flag = gts_azure_waters_astral_rift
-					# set_global_flag = gts_azure_waters_astral_rift
-				}
-				save_global_event_target_as = gts_azure_waters_system
-				spawn_astral_rift = {
-					id = gts_azure_waters_rifts
-				}
-			}
-		}
-	}
+ add_tech_progress = { tech = tech_rift_sphere progress = 0.5 }
+ set_country_flag = gts_has_trigger_seele_li
+ random_system = {
+  limit = { gts_intel_system_rift = { COUNTRY = root } }
+  set_star_flag = gts_azure_group_start_system
+  star = { set_planet_flag = gts_azure_waters_astral_rift }
+  save_global_event_target_as = gts_azure_waters_system
+  save_global_event_target_as = gts_azure_waters_system@root
+  spawn_astral_rift = { id = gts_azure_waters_rifts }
+ }
+}
 	option = {
 		name = gts_perfect
 		hidden_effect = {
@@ -2195,6 +2087,8 @@ country_event = {
 	}
 	option = {
 		name = gts_perfect
+allow = { hidden_trigger = { gts_intel_location_firefly = yes } }
+
 		hidden_effect = {
 			country_event = {
 				id = gts_firefly_potral.0
@@ -2238,6 +2132,8 @@ country_event = {
     }
     option = {
         name = gts_perfect
+allow = { hidden_trigger = { gts_intel_location_carlotta = yes } }
+
         hidden_effect = {
             country_event = {
                 id = gts_carlotta.101
@@ -2259,7 +2155,7 @@ country_event = {
         name = gts_perfect
         hidden_effect = {
             country_event = {
-                id = gts_leader_bruh.1
+                id = gts_leader_bruh.0001
             }
         }
     }
@@ -2276,6 +2172,8 @@ country_event = {
     }
     option = {
         name = gts_perfect
+allow = { custom_tooltip = { fail_text = gts_intel_fail_location_linfeng gts_intel_location_linfeng = yes } }
+
 		hide_option_if_not_allowed = yes
 		trigger = {
 			not = {
@@ -2314,6 +2212,8 @@ country_event = {
     }
     option = {
         name = gts_perfect
+allow = { hidden_trigger = { gts_intel_location_suxiaobai = yes } }
+
         hidden_effect = {
             country_event = {
                 id = gts_suxiaobai.900
@@ -2331,24 +2231,21 @@ country_event = {
 	immediate = {
 		set_global_flag = gts_has_trigger_hitomi
 		random_system = {
-			limit = {
-				distance = {
-					source = root.capital_scope.solar_system
-					use_bypasses = yes
-					min_jumps = 1
-					max_jumps = 6
-				}
-			}
-			spawn_system = {
-				min_distance >= 10
-				max_distance <= 30
-				max_jumps = 0
-				initializer = gts_hitomi_system
-				effect = {
-					save_event_target_as = gts_get_hitomi_system_location
-				}
-			}
-		}
+ limit = { gts_intel_anchor_system = { COUNTRY = root } }
+ save_event_target_as = gts_intel_spawn_anchor
+ 
+ spawn_system = {
+ min_distance = 10
+ max_distance = 30
+ max_jumps = 0
+ hyperlane = no
+ initializer = gts_hitomi_system
+ effect = {
+  add_hyperlane = { from = this to = event_target:gts_intel_spawn_anchor }
+  save_event_target_as = gts_get_hitomi_system_location
+ }
+}
+}
 	}
 	option = {
 		name = gts_perfect
@@ -2370,21 +2267,21 @@ country_event = {
 	immediate = {
 		set_global_flag = gts_has_trigger_ora
 		random_system = {
-			limit = {
-				distance = {
-					source = root.capital_scope.solar_system
-					use_bypasses = yes
-					min_jumps = 1
-					max_jumps = 6
-				}
-			}
-			spawn_system = {
-				max_jumps = 0
-				initializer = gts_ora_system
-				effect = {
-				}
-			}
-		}
+ limit = { gts_intel_anchor_system = { COUNTRY = root } }
+ save_event_target_as = gts_intel_spawn_anchor
+ 
+ spawn_system = {
+ min_distance = 10
+ max_distance = 30
+ max_jumps = 0
+ hyperlane = no
+ initializer = gts_ora_system
+ effect = {
+  add_hyperlane = { from = this to = event_target:gts_intel_spawn_anchor }
+  
+ }
+}
+}
 	}
 	option = {
 		name = gts_perfect
@@ -2410,21 +2307,21 @@ country_event = {
 	is_triggered_only = yes
 	immediate = {
 		random_system = {
-			limit = {
-				distance = {
-					source = root.capital_scope.solar_system
-					use_bypasses = yes
-					min_jumps = 1
-					max_jumps = 6
-				}
-			}
-			spawn_system = {
-				max_jumps = 0
-				initializer = gts_qinwen_system
-				effect = {
-				}
-			}
-		}
+ limit = { gts_intel_anchor_system = { COUNTRY = root } }
+ save_event_target_as = gts_intel_spawn_anchor
+ 
+ spawn_system = {
+ min_distance = 10
+ max_distance = 30
+ max_jumps = 0
+ hyperlane = no
+ initializer = gts_qinwen_system
+ effect = {
+  add_hyperlane = { from = this to = event_target:gts_intel_spawn_anchor }
+  
+ }
+}
+}
 		set_global_flag = gts_has_trigger_qinwen
 	}
 	option = {
@@ -2908,3 +2805,174 @@ country_event = {
 		}
 	}
 }
+
+
+#4.6.0版本加载旧存档修bug用的，下次大更新直接删掉
+# 宠物国家加成刷新；已有月度、领袖离职和研究完成钩子调用 .401。
+country_event = {
+	id = gts_ui.401
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		OR = {
+			any_owned_leader = {
+				has_trait = gts_leader_item_p_all
+				OR = {
+					has_leader_flag = gts_leader_item_p_yukikake
+					has_leader_flag = gts_leader_item_p_aplog
+					has_leader_flag = gts_leader_item_p_115
+					has_leader_flag = gts_leader_item_p_koharu
+					has_leader_flag = gts_leader_item_p_yiyan
+					has_leader_flag = gts_leader_item_p_huatian
+					has_leader_flag = gts_leader_item_p_xiaomiao
+					has_leader_flag = gts_leader_item_p_tensi
+					has_leader_flag = gts_leader_item_p_linfeng
+				}
+			}
+			has_modifier = gts_leader_item_p_yukikake_organic_modifier
+			has_modifier = gts_leader_item_p_yukikake_machine_modifier
+			has_modifier = gts_leader_item_p_aplog_organic_modifier
+			has_modifier = gts_leader_item_p_aplog_machine_modifier
+			has_modifier = gts_leader_item_p_115_organic_modifier
+			has_modifier = gts_leader_item_p_115_machine_modifier
+			has_modifier = gts_leader_item_p_koharu_organic_modifier
+			has_modifier = gts_leader_item_p_koharu_machine_modifier
+			has_modifier = gts_leader_item_p_yiyan_organic_modifier
+			has_modifier = gts_leader_item_p_yiyan_machine_modifier
+			has_modifier = gts_leader_item_p_huatian_organic_modifier
+			has_modifier = gts_leader_item_p_huatian_machine_modifier
+			has_modifier = gts_leader_item_p_xiaomiao_organic_modifier
+			has_modifier = gts_leader_item_p_tensi_modifier
+			has_modifier = gts_leader_item_p_linfeng_organic_modifier
+			has_modifier = gts_leader_item_p_linfeng_machine_modifier
+		}
+	}
+}
+
+event = {
+	id = gts_ui.403
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		every_country = {
+			# 旧存档资源科技 ID 迁移：按原传统对应关系直接授予新科技。
+			# 仅要求拥有对应传统；不检查已移除的旧科技 ID。
+			# 随 gts_ui.403 一起删除；已有新科技时不重复授予。
+			if = {
+				limit = {
+					has_tradition = tr_gts_shrink_3
+					NOT = { has_technology = tech_gts_micro_1 }
+				}
+				give_technology = { tech = tech_gts_micro_1 message = no }
+			}
+
+			if = {
+				limit = {
+					has_tradition = tr_gts_shrink_1
+					NOT = { has_technology = tech_gts_micro_2 }
+				}
+				give_technology = { tech = tech_gts_micro_2 message = no }
+			}
+
+			if = {
+				limit = {
+					has_tradition = tr_gts_shrink_2
+					NOT = { has_technology = tech_gts_micro_3 }
+				}
+				give_technology = { tech = tech_gts_micro_3 message = no }
+			}
+
+			if = {
+				limit = {
+					has_tradition = tr_gts_shrink_4
+					NOT = { has_technology = tech_gts_micro_city_1 }
+				}
+				give_technology = { tech = tech_gts_micro_city_1 message = no }
+			}
+
+			if = {
+				limit = {
+					has_tradition = tr_gts_shrink_5
+					NOT = { has_technology = tech_gts_micro_planet_1 }
+				}
+				give_technology = { tech = tech_gts_micro_planet_1 message = no }
+			}
+
+			if = {
+				limit = {
+					OR = {
+						has_tradition = tr_gts_survive_3
+						has_tradition = tr_gts_godkeeper_3
+					}
+					NOT = { has_technology = tech_gts_giantess_fluid_1 }
+				}
+				give_technology = { tech = tech_gts_giantess_fluid_1 message = no }
+			}
+
+			if = {
+				limit = {
+					has_tradition = tr_gts_survive_1
+					NOT = { has_technology = tech_gts_giantess_fluid_2 }
+				}
+				give_technology = { tech = tech_gts_giantess_fluid_2 message = no }
+			}
+
+			if = {
+				limit = {
+					has_tradition = tr_gts_survive_2
+					NOT = { has_technology = tech_gts_giantess_fluid_3 }
+				}
+				give_technology = { tech = tech_gts_giantess_fluid_3 message = no }
+			}
+
+			if = {
+				limit = {
+					has_tradition = tr_gts_survive_4
+					NOT = { has_technology = tech_gts_giantess_underwear_1 }
+				}
+				give_technology = { tech = tech_gts_giantess_underwear_1 message = no }
+			}
+
+			if = {
+				limit = {
+					has_tradition = tr_gts_survive_5
+					NOT = { has_technology = tech_gts_giantess_human_1 }
+				}
+				give_technology = { tech = tech_gts_giantess_human_1 message = no }
+			}
+
+			every_owned_leader = {
+				limit = {
+					is_special_leader = yes
+					NOT = { has_trait = gts_leader_item_p_all }
+				}
+				add_trait = { trait = gts_leader_item_p_all show_message = no }
+			}
+			every_pool_leader = {
+				limit = {
+					is_special_leader = yes
+					NOT = { has_trait = gts_leader_item_p_all }
+				}
+				add_trait = { trait = gts_leader_item_p_all show_message = no }
+			}
+
+
+			every_owned_colony = {
+				limit = { carrier_is_type = ship }
+				every_deposit = {
+					limit = { is_deposit_type = d_deep_sinkhole }
+					prev = { add_deposit = d_failing_infrastructure }
+					remove_deposit = yes
+				}
+				every_deposit = {
+					limit = { is_deposit_type = d_mountain_range }
+					prev = { add_deposit = d_bomb_crater }
+					remove_deposit = yes
+				}
+			}
+		}
+	}
+}
+
+#4.6.0版本加载旧存档修bug用的，下次大更新直接删掉

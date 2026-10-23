@@ -34,7 +34,7 @@ tr_virtuality_finish = {
 			country_event = { id = timeline.84 }
 			update_node_portraits_if_gestalt_effect = yes
 			every_owned_planet = {
-				planet_event = { id = cybernetics.2026 }
+				carrier_event = { id = cybernetics.2026 }
 			}
 		}
 	}
@@ -49,6 +49,11 @@ tr_virtuality_1 = {
 			update_node_portraits_if_gestalt_effect = yes
 		}
 	}
+	ai_weight = {
+		factor = 1000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_virtuality_1_gts
 		inherit_effects = yes
@@ -56,7 +61,6 @@ tr_virtuality_1 = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -67,14 +71,13 @@ tr_virtuality_1 = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
-	}
-	ai_weight = {
-		factor = 1000
 	}
 }
 
@@ -83,9 +86,14 @@ tr_virtuality_2 = {
 		planet_researchers_upkeep_mult = -0.1
 		planet_bureaucrats_upkeep_mult = -0.1
 		leaders_upkeep_mult = -0.15
-		empire_size_pops_mult = -0.1
+		empire_size_pops_mult = -0.10
 		empire_size_colonies_mult = 1
 	}
+	ai_weight = {
+		factor = 1000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_virtuality_2_gts
 		inherit_effects = yes
@@ -93,7 +101,6 @@ tr_virtuality_2 = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -104,14 +111,13 @@ tr_virtuality_2 = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
-	}
-	ai_weight = {
-		factor = 1000
 	}
 }
 
@@ -123,6 +129,12 @@ tr_virtuality_3 = {
 	modifier = {
 
 	}
+	custom_tooltip_with_modifiers = tr_virtuality_3_modifier_desc
+	ai_weight = {
+		factor = 1000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_virtuality_3_gts
 		inherit_effects = yes
@@ -130,7 +142,6 @@ tr_virtuality_3 = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -141,15 +152,13 @@ tr_virtuality_3 = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
-	}
-	custom_tooltip_with_modifiers = tr_virtuality_3_modifier_desc
-	ai_weight = {
-		factor = 1000
 	}
 }
 
@@ -157,6 +166,12 @@ tr_virtuality_4 = {
 	possible = {
 		has_tradition = tr_virtuality_3
 	}
+	custom_tooltip_with_modifiers = tr_virtuality_4_modifier_desc
+	ai_weight = {
+		factor = 1000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_virtuality_4_gts
 		inherit_effects = yes
@@ -164,7 +179,6 @@ tr_virtuality_4 = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -175,15 +189,13 @@ tr_virtuality_4 = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
-	}
-	custom_tooltip_with_modifiers = tr_virtuality_4_modifier_desc
-	ai_weight = {
-		factor = 1000
 	}
 }
 
@@ -191,6 +203,12 @@ tr_virtuality_5 = {
 	possible = {
 		has_tradition = tr_virtuality_3
 	}
+	custom_tooltip_with_modifiers = tr_virtuality_5_modifier_desc
+	ai_weight = {
+		factor = 1000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_virtuality_5_gts
 		inherit_effects = yes
@@ -198,7 +216,6 @@ tr_virtuality_5 = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -209,14 +226,12 @@ tr_virtuality_5 = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
-	}
-	custom_tooltip_with_modifiers = tr_virtuality_5_modifier_desc
-	ai_weight = {
-		factor = 1000
 	}
 }

@@ -23,6 +23,11 @@ tr_politics_quid_pro_quo = {
 	#Handled through galcom.300
 	custom_tooltip = tr_politics_quid_pro_quo_desc
 
+	ai_weight = {
+		factor = 10000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_politics_quid_pro_quo_gts
 		inherit_effects = yes
@@ -30,9 +35,8 @@ tr_politics_quid_pro_quo = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
 	tradition_swap = {
@@ -41,15 +45,13 @@ tr_politics_quid_pro_quo = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
-	}
-
-	ai_weight = {
-		factor = 10000
 	}
 }
 
@@ -62,6 +64,11 @@ tr_politics_gravitas = {
 		diplo_weight_delegate_mult = 0.025
 	}
 
+	ai_weight = {
+		factor = 10000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_politics_gravitas_gts
 		inherit_effects = yes
@@ -69,9 +76,8 @@ tr_politics_gravitas = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
 	tradition_swap = {
@@ -80,15 +86,13 @@ tr_politics_gravitas = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
-	}
-
-	ai_weight = {
-		factor = 10000
 	}
 }
 
@@ -97,6 +101,14 @@ tr_politics_national_agenda = {
 		has_tradition = tr_politics_quid_pro_quo
 	}
 
+	custom_tooltip = tr_politics_national_agenda_desc
+	#Handled through galcom.305
+
+	ai_weight = {
+		factor = 5000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_politics_national_agenda_gts
 		inherit_effects = yes
@@ -104,9 +116,8 @@ tr_politics_national_agenda = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
 	tradition_swap = {
@@ -115,18 +126,13 @@ tr_politics_national_agenda = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
-	}
-
-	custom_tooltip = tr_politics_national_agenda_desc
-	#Handled through galcom.305
-
-	ai_weight = {
-		factor = 5000
 	}
 }
 
@@ -135,6 +141,14 @@ tr_politics_persistent_petitioners = {
 		has_tradition = tr_politics_gravitas
 	}
 
+	custom_tooltip = tr_politics_persistent_petitioners_desc
+	#Handled through galcom.310-315
+
+	ai_weight = {
+		factor = 5000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_politics_persistent_petitioners_gts
 		inherit_effects = yes
@@ -142,9 +156,8 @@ tr_politics_persistent_petitioners = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
 	tradition_swap = {
@@ -153,21 +166,13 @@ tr_politics_persistent_petitioners = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
-	}
-	ai_weight = {
-		factor = 5000
-	}
-
-	custom_tooltip = tr_politics_persistent_petitioners_desc
-	#Handled through galcom.310-315
-
-	ai_weight = {
-		factor = 5000
 	}
 }
 
@@ -177,6 +182,16 @@ tr_politics_extraordinary_powers = {
 		has_tradition = tr_politics_persistent_petitioners
 	}
 
+	modifier = {
+		veto_cooldown_mult = -0.25
+		emergency_measures_cooldown_mult = -0.25
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_politics_extraordinary_powers_gts
 		inherit_effects = yes
@@ -184,9 +199,8 @@ tr_politics_extraordinary_powers = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
 	tradition_swap = {
@@ -195,19 +209,12 @@ tr_politics_extraordinary_powers = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
-	}
-
-	modifier = {
-		veto_cooldown_mult = -0.25
-		emergency_measures_cooldown_mult = -0.25
-	}
-
-	ai_weight = {
-		factor = 5000
 	}
 }

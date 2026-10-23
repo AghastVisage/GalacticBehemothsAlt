@@ -12,8 +12,9 @@
 base_contact_set = {
 	icon = GFX_firstcontact_icon_starter
 	picture = GFX_evt_star_chart
+
 	difficulty = 2
-	# 默认路径，如果设计独特的第一次接触路线，记得在这里加上反向条件
+
 	stage_event = {
 		summary = fcsum_base_contact_set_summary
 		event_weight = {
@@ -35,22 +36,21 @@ base_contact_set = {
 								is_same_value = event_target:mindwarden_country@prev
 							}
 						}
+						AND = {
+							from = { gts_is_tiny_empire = yes }
+							Root.Owner = { gts_is_giantess_empire = yes }
+						}
+						AND = {
+							Root.Owner = { gts_is_tiny_empire = yes }
+							from = { gts_is_giantess_empire = yes }
+						}
 					}
 				}
 			}
-			modifier = {
-				weight = 0
-				from = { has_country_flag = tiny_flag }
-				Root.Owner = { has_country_flag = gts_flag }
-			}
-			modifier = {
-				weight = 0
-				Root.Owner = { has_country_flag = tiny_flag }
-				from = { has_country_flag = gts_flag }
-			}
 		}
-		event = first_contact.1		#country event for owner of first contact site
+		event = first_contact.1 #country event for owner of first contact site
 	}
+
 	#巨娘第一次接触
 	stage_event = {
 		summary = fcsum_base_contact_set_summary
@@ -59,30 +59,16 @@ base_contact_set = {
 			modifier = {
 				weight = 1000
 				from = {
-					NOR = {
-						is_country_type = dragon_dummy
-						is_country_type = jaunting_traveler_dummy
-						has_origin = origin_slavers
-						# If you're making an unique first contact chain tied to a country,
-						# add the triggers here
-						is_country_type = cutholoids
-						AND = {
-							is_country_type = exiled
-							root.owner = {
-								has_origin = origin_mindwardens
-								is_same_value = event_target:mindwarden_country@prev
-							}
-						}
-					}
-					has_country_flag = tiny_flag
+					gts_is_tiny_empire = yes
 				}
 				Root.Owner = {
-					has_country_flag = gts_flag
+					gts_is_giantess_empire = yes
 				}
 			}
 		}
 		event = first_contactgts.1
 	}
+
 	#小人第一次接触
 	stage_event = {
 		summary = fcsum_base_contact_set_summary
@@ -91,30 +77,16 @@ base_contact_set = {
 			modifier = {
 				weight = 1000
 				from = {
-					NOR = {
-						is_country_type = dragon_dummy
-						is_country_type = jaunting_traveler_dummy
-						has_origin = origin_slavers
-						# If you're making an unique first contact chain tied to a country,
-						# add the triggers here
-						is_country_type = cutholoids
-						AND = {
-							is_country_type = exiled
-							root.owner = {
-								has_origin = origin_mindwardens
-								is_same_value = event_target:mindwarden_country@prev
-							}
-						}
-					}
-					has_country_flag = gts_flag
+					gts_is_giantess_empire = yes
 				}
 				Root.Owner = {
-					has_country_flag = tiny_flag
+					gts_is_tiny_empire = yes
 				}
 			}
 		}
 		event = first_contacttiny.1
 	}
+
 	# Jaunting Traveler
 	stage_event = {
 		summary = fcsum_jaunting_traveler_summary

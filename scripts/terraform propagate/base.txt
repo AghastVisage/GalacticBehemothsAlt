@@ -1,0 +1,27 @@
+terraform_link = {
+	from = "pc_gtsra_loli"
+	to = "pc_gtsra_loli"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			biomass = @wildernessCost
+		}
+	}
+
+	duration = @wildernessTime
+
+	potential = {
+		has_origin = origin_wilderness
+		from = { is_colony = no }
+	}
+
+	ai_weight = {
+		weight = 100
+	}
+
+	inline_script = {
+		script = terraform/wilderness_biomass_special
+	}
+}

@@ -195,6 +195,17 @@ is_special_leader = {
 		has_leader_flag = gts_linfeng		# 林凤			执政官		群友OC
 		has_leader_flag = gts_suxiaobai		# 苏小白		指挥官		群友OC
 		has_leader_flag = gts_hitomi		# 希瞳		指挥官		群友OC
+		has_leader_flag = gts_carlotta
+		has_leader_flag = gts_faralda
+		has_leader_flag = gts_illyasviel
+		has_leader_flag = gts_ora
+		has_leader_flag = gts_qinwen
+		has_leader_flag = gts_teifuania
+		has_leader_flag = gts_hitomi_yuyue
+		has_leader_flag = gts_linfeng_shipgril
+		has_leader_flag = gts_orangez
+		has_leader_flag = gts_mora
+		has_leader_flag = gts_mitsuki_hitomi
     }
 }
 
@@ -220,7 +231,7 @@ is_eatable_planet = {
 		is_planet_class = pc_ringworld_seam_damaged
 		is_planet_class = pc_habitat
 
-        is_capital = yes # 老家
+        [[!ALLOW_CAPITAL] is_capital = yes ] # 默认保护首都；战争支援在执行时显式放行。
     }
 }
 
@@ -314,5 +325,10 @@ is_gts_leader = { #领袖自身
 ruler_is_gts_leader = { ruler = { is_gts_leader = { name = $name$ } } }
 
 is_gts_love_leader = {
+	has_leader_flag = has_gts_love_trait
 	has_leader_flag = has_gts_love_trait_normal
+	NOR = {
+		has_leader_flag = not_has_gts_love_trait_normal
+		has_leader_flag = gts_xinuo
+	}
 }

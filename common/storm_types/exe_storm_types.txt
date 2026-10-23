@@ -1,720 +1,720 @@
-# gts_random_storm_sweat = {
-# 	inline_script = {
-# 		script = "cosmic_storms/StormConfig"
-# 		MIN_RADIUS = 25
-# 		MAX_RADIUS = 50
-# 		MIN_RANGE = value:storm_range_min
-# 		MAX_RANGE = value:storm_range_max
-# 		STORM_SPEED = 0.02
-# 		ACTIVATION_PERIOD_IN_MONTHS = 12
-# 		MONTHLY_ADDED_DEVASTATION = @cosmic_storm_base_monthly_devastation
-# 	}
-# 	# inline_script = {
-# 	# 	script = "gts_storm_config"
-# 	# 	# 最小半径
-# 	# 	MIN_RADIUS = 50
-# 	# 	# 最大半径
-# 	# 	MAX_RADIUS = 50
-# 	# 	# 最小范围
-# 	# 	MIN_RANGE = 50
-# 	# 	# 最大范围
-# 	# 	MAX_RANGE = 50
-# 	# 	# 风暴速度
-# 	# 	STORM_SPEED = 0.02
-# 	# 	# 激活周期（月）
-# 	# 	ACTIVATION_PERIOD_IN_MONTHS = 12
-# 	# 	# 每月新增破坏
-# 	# 	MONTHLY_ADDED_DEVASTATION = @cosmic_storm_base_monthly_devastation
-# 	# }
-# 	# 影响生命回复
-# 	affect_hp_regen = yes
-# 	# 影响护甲再生
-# 	affect_armor_regen = yes
-# 	# 影响护盾再生
-# 	affect_shield_regen = yes
-#
-# 	spawn_weight = 1
-#
-# 	description = gts_random_storm_sweat_description
-# 	triggered_planet_modifier = {
-# 		potential = {
-# 			is_colony = yes
-# 		}
-# 		planet_jobs_produces_mult = 0.25
-# 	}
-# 	triggered_fleet_modifier = {
-# 		potential = {
-# 			# exists = owner
-# 			# exists = event_target:eternal_fleet_country
-# 			# owner = { is_hostile = event_target:eternal_fleet_country }
-# 		}
-# 		ship_armor_hardening_add = 1
-# 		ship_shield_hardening_add = 1
-# 	}
-#
-# 	on_start = {
-# 		every_country = {
-# 			limit = {
-# 				has_relic = relic_gts_communication
-# 				not = {
-# 					has_country_flag = has_finished_survey_storm_1
-# 				}
-# 			}
-# 			country_event = {
-# 				id = gts_random_storm.10
-# 			}
-# 		}
-# 		every_system_within_storm = {
-# 			added_to_storm_base_effect = yes
-# 			gts_sweat_storm_add = yes
-# 		}
-# 	}
-# 	on_finished = {
-# 		every_system_within_storm = {
-# 			removed_from_storm_base_effect = yes
-# 			gts_sweat_storm_remove = yes
-# 		}
-# 	}
-#
-# 	on_moved = {
-# 		every_system_added_to_storm = {
-# 			added_to_storm_base_effect = yes
-# 			gts_sweat_storm_add = yes
-# 		}
-#
-# 		every_system_removed_from_storm = {
-# 			removed_from_storm_base_effect = yes
-# 			gts_sweat_storm_remove = yes
-# 		}
-# 	}
-# 	# 地图上的图标
-# 	cosmic_storm_texture_path = "gfx/map/storms/NebulaOpacity.dds"
-# 	cosmic_storm_texture_color_path = "gfx/map/storms/electric_storm_color.dds"
-# 	# 大图和小图
-# 	cosmic_storm_event_sprite = "GFX_electric_storm"
-# 	icon = GFX_planetview_storm_electric_modifier_frame
-# 	# 闪电的图片
-# 	cosmic_storm_texture_lightning_paths = {
-# 		"gfx/map/storms/lightning/lightning_big_storm_01.dds"
-# 		"gfx/map/storms/lightning/lightning_big_storm_02.dds"
-# 		"gfx/map/storms/lightning/lightning_mid_storm_01.dds"
-# 		"gfx/map/storms/lightning/lightning_mid_storm_02.dds"
-# 	}
-# 	# 宇宙风暴银河闪电时间
-# 	cosmic_storm_galaxy_lightning_time = 5.0
-# 	# 宇宙风暴银河最大不透明度
-# 	cosmic_storm_galaxy_max_opacity = 0.4
-# 	# 有没有信息
-# 	show_notification = { always = no }
-# }
-#
-# gts_random_storm_urine = {
-# 	inline_script = {
-# 		script = "cosmic_storms/StormConfig"
-# 		MIN_RADIUS = 25
-# 		MAX_RADIUS = 50
-# 		MIN_RANGE = value:storm_range_min
-# 		MAX_RANGE = value:storm_range_max
-# 		STORM_SPEED = 0.02
-# 		ACTIVATION_PERIOD_IN_MONTHS = 12
-# 		MONTHLY_ADDED_DEVASTATION = @cosmic_storm_base_monthly_devastation
-# 	}
-# 	# 影响生命回复
-# 	affect_hp_regen = yes
-# 	# 影响护甲再生
-# 	affect_armor_regen = yes
-# 	# 影响护盾再生
-# 	affect_shield_regen = yes
-#
-# 	spawn_weight = 1
-#
-# 	description = gts_random_storm_urine_description
-# 	triggered_planet_modifier = {
-# 		potential = {
-# 			is_colony = yes
-# 		}
-# 		planet_jobs_produces_mult = 0.25
-# 	}
-# 	triggered_fleet_modifier = {
-# 		potential = {
-# 			# exists = owner
-# 			# exists = event_target:eternal_fleet_country
-# 			# owner = { is_hostile = event_target:eternal_fleet_country }
-# 		}
-# 		ship_armor_hardening_add = 1
-# 		ship_shield_hardening_add = 1
-# 	}
-#
-# 	on_start = {
-# 		every_country = {
-# 			limit = {
-# 				has_relic = relic_gts_communication
-# 				not = {
-# 					has_country_flag = has_finished_survey_storm_1
-# 				}
-# 			}
-# 			country_event = {
-# 				id = gts_random_storm.20
-# 			}
-# 		}
-# 		every_system_within_storm = {
-# 			added_to_storm_base_effect = yes
-# 			gts_urine_storm_add = yes
-# 		}
-#
-# 	}
-# 	on_finished = {
-# 		# every_country = {
-# 		# 	limit = {
-# 		# 		has_relic = relic_gts_communication
-# 		# 	}
-# 		# 	country_event = {
-# 		# 		id = gts_random_storm.2
-# 		# 	}
-# 		# }
-# 		every_system_within_storm = {
-# 			removed_from_storm_base_effect = yes
-# 			gts_urine_storm_remove = yes
-# 		}
-# 	}
-#
-# 	on_moved = {
-# 		every_system_added_to_storm = {
-# 			added_to_storm_base_effect = yes
-# 			gts_urine_storm_add = yes
-# 		}
-#
-# 		every_system_removed_from_storm = {
-# 			removed_from_storm_base_effect = yes
-# 			gts_urine_storm_remove = yes
-# 		}
-# 	}
-# 	# 地图上的图标
-# 	cosmic_storm_texture_path = "gfx/map/storms/NebulaOpacity.dds"
-# 	cosmic_storm_texture_color_path = "gfx/map/storms/particle_storm_color.dds"
-# 	# 大图和小图
-# 	cosmic_storm_event_sprite = "GFX_particle_storm"
-# 	icon = GFX_planetview_storm_particle_modifier_frame
-# 	# 闪电的图片
-# 	cosmic_storm_texture_lightning_paths = {
-# 		"gfx/map/storms/lightning/lightning_big_storm_01.dds"
-# 		"gfx/map/storms/lightning/lightning_big_storm_02.dds"
-# 		"gfx/map/storms/lightning/lightning_mid_storm_01.dds"
-# 		"gfx/map/storms/lightning/lightning_mid_storm_02.dds"
-# 	}
-# 	# 宇宙风暴银河闪电时间
-# 	cosmic_storm_galaxy_lightning_time = 5.0
-# 	# 宇宙风暴银河最大不透明度
-# 	cosmic_storm_galaxy_max_opacity = 0.4
-# 	# 有没有信息
-# 	show_notification = { always = no }
-# }
-#
-# gts_random_storm_whisper = {
-# 	inline_script = {
-# 		script = "cosmic_storms/StormConfig"
-# 		MIN_RADIUS = 25
-# 		MAX_RADIUS = 50
-# 		MIN_RANGE = value:storm_range_min
-# 		MAX_RANGE = value:storm_range_max
-# 		STORM_SPEED = 0.02
-# 		ACTIVATION_PERIOD_IN_MONTHS = 12
-# 		MONTHLY_ADDED_DEVASTATION = @cosmic_storm_base_monthly_devastation
-# 	}
-# 	# 影响生命回复
-# 	affect_hp_regen = yes
-# 	# 影响护甲再生
-# 	affect_armor_regen = yes
-# 	# 影响护盾再生
-# 	affect_shield_regen = yes
-#
-# 	spawn_weight = 1
-#
-# 	description = gts_random_storm_whisper_description
-# 	triggered_planet_modifier = {
-# 		potential = {
-# 			is_colony = yes
-# 		}
-# 		planet_jobs_produces_mult = 0.25
-# 	}
-# 	triggered_fleet_modifier = {
-# 		potential = {
-# 			# exists = owner
-# 			# exists = event_target:eternal_fleet_country
-# 			# owner = { is_hostile = event_target:eternal_fleet_country }
-# 		}
-# 		ship_armor_hardening_add = 1
-# 		ship_shield_hardening_add = 1
-# 	}
-#
-# 	on_start = {
-# 		every_country = {
-# 			limit = {
-# 				has_relic = relic_gts_communication
-# 				not = {
-# 					has_country_flag = has_finished_survey_storm_1
-# 				}
-# 			}
-# 			country_event = {
-# 				id = gts_random_storm.30
-# 			}
-# 		}
-# 		every_system_within_storm = {
-# 			added_to_storm_base_effect = yes
-# 			gts_whisper_storm_add = yes
-# 		}
-#
-# 	}
-# 	on_finished = {
-# 		# every_country = {
-# 		# 	limit = {
-# 		# 		has_relic = relic_gts_communication
-# 		# 	}
-# 		# 	country_event = {
-# 		# 		id = gts_random_storm.2
-# 		# 	}
-# 		# }
-# 		every_system_within_storm = {
-# 			removed_from_storm_base_effect = yes
-# 			gts_whisper_storm_remove = yes
-# 		}
-# 	}
-#
-# 	on_moved = {
-# 		every_system_added_to_storm = {
-# 			added_to_storm_base_effect = yes
-# 			gts_whisper_storm_add = yes
-# 		}
-#
-# 		every_system_removed_from_storm = {
-# 			removed_from_storm_base_effect = yes
-# 			gts_whisper_storm_remove = yes
-# 		}
-# 	}
-# 	# 地图上的图标
-# 	cosmic_storm_texture_path = "gfx/map/storms/NebulaOpacity.dds"
-# 	cosmic_storm_texture_color_path = "gfx/map/storms/gravity_storm_color.dds"
-# 	# 大图和小图
-# 	cosmic_storm_event_sprite = "GFX_gravity_storm"
-# 	icon = GFX_planetview_storm_gravity_modifier_frame
-# 	# 闪电的图片
-# 	cosmic_storm_texture_lightning_paths = {
-# 		"gfx/map/storms/lightning/lightning_big_storm_01.dds"
-# 		"gfx/map/storms/lightning/lightning_big_storm_02.dds"
-# 		"gfx/map/storms/lightning/lightning_mid_storm_01.dds"
-# 		"gfx/map/storms/lightning/lightning_mid_storm_02.dds"
-# 	}
-# 	# 宇宙风暴银河闪电时间
-# 	cosmic_storm_galaxy_lightning_time = 5.0
-# 	# 宇宙风暴银河最大不透明度
-# 	cosmic_storm_galaxy_max_opacity = 0.4
-# 	# 有没有信息
-# 	show_notification = { always = no }
-# }
-#
-# gts_random_storm_milk = {
-# 	inline_script = {
-# 		script = "cosmic_storms/StormConfig"
-# 		MIN_RADIUS = 25
-# 		MAX_RADIUS = 50
-# 		MIN_RANGE = value:storm_range_min
-# 		MAX_RANGE = value:storm_range_max
-# 		STORM_SPEED = 0.02
-# 		ACTIVATION_PERIOD_IN_MONTHS = 12
-# 		MONTHLY_ADDED_DEVASTATION = @cosmic_storm_base_monthly_devastation
-# 	}
-# 	# 影响生命回复
-# 	affect_hp_regen = yes
-# 	# 影响护甲再生
-# 	affect_armor_regen = yes
-# 	# 影响护盾再生
-# 	affect_shield_regen = yes
-#
-# 	spawn_weight = 1
-#
-# 	description = gts_random_storm_milk_description
-# 	triggered_planet_modifier = {
-# 		potential = {
-# 			is_colony = yes
-# 		}
-# 		planet_jobs_produces_mult = 0.25
-# 	}
-# 	triggered_fleet_modifier = {
-# 		potential = {
-# 			# exists = owner
-# 			# exists = event_target:eternal_fleet_country
-# 			# owner = { is_hostile = event_target:eternal_fleet_country }
-# 		}
-# 		ship_armor_hardening_add = 1
-# 		ship_shield_hardening_add = 1
-# 	}
-#
-# 	on_start = {
-# 		every_country = {
-# 			limit = {
-# 				has_relic = relic_gts_communication
-# 				not = {
-# 					has_country_flag = has_finished_survey_storm_1
-# 				}
-# 			}
-# 			country_event = {
-# 				id = gts_random_storm.40
-# 			}
-# 		}
-# 		every_system_within_storm = {
-# 			added_to_storm_base_effect = yes
-# 			gts_milk_storm_add = yes
-# 		}
-#
-# 	}
-# 	on_finished = {
-# 		# every_country = {
-# 		# 	limit = {
-# 		# 		has_relic = relic_gts_communication
-# 		# 	}
-# 		# 	country_event = {
-# 		# 		id = gts_random_storm.2
-# 		# 	}
-# 		# }
-# 		every_system_within_storm = {
-# 			removed_from_storm_base_effect = yes
-# 			gts_milk_storm_remove = yes
-# 		}
-# 	}
-#
-# 	on_moved = {
-# 		every_system_added_to_storm = {
-# 			added_to_storm_base_effect = yes
-# 			gts_milk_storm_add = yes
-# 		}
-#
-# 		every_system_removed_from_storm = {
-# 			removed_from_storm_base_effect = yes
-# 			gts_milk_storm_remove = yes
-# 		}
-# 	}
-# 	# 地图上的图标
-# 	cosmic_storm_texture_path = "gfx/map/storms/NebulaOpacity.dds"
-# 	cosmic_storm_texture_color_path = "gfx/map/storms/magnetic_storm_color.dds"
-# 	# 大图和小图
-# 	cosmic_storm_event_sprite = "GFX_magnetic_storm"
-# 	icon = GFX_planetview_storm_magnetic_modifier_frame
-# 	# 闪电的图片
-# 	cosmic_storm_texture_lightning_paths = {
-# 		"gfx/map/storms/lightning/lightning_big_storm_01.dds"
-# 		"gfx/map/storms/lightning/lightning_big_storm_02.dds"
-# 		"gfx/map/storms/lightning/lightning_mid_storm_01.dds"
-# 		"gfx/map/storms/lightning/lightning_mid_storm_02.dds"
-# 	}
-# 	# 宇宙风暴银河闪电时间
-# 	cosmic_storm_galaxy_lightning_time = 5.0
-# 	# 宇宙风暴银河最大不透明度
-# 	cosmic_storm_galaxy_max_opacity = 0.4
-# 	# 有没有信息
-# 	show_notification = { always = no }
-# }
-#
-# gts_random_storm_foot_odor = {
-# 	inline_script = {
-# 		script = "cosmic_storms/StormConfig"
-# 		MIN_RADIUS = 25
-# 		MAX_RADIUS = 50
-# 		MIN_RANGE = value:storm_range_min
-# 		MAX_RANGE = value:storm_range_max
-# 		STORM_SPEED = 0.02
-# 		ACTIVATION_PERIOD_IN_MONTHS = 12
-# 		MONTHLY_ADDED_DEVASTATION = @cosmic_storm_base_monthly_devastation
-# 	}
-# 	# 影响生命回复
-# 	affect_hp_regen = yes
-# 	# 影响护甲再生
-# 	affect_armor_regen = yes
-# 	# 影响护盾再生
-# 	affect_shield_regen = yes
-#
-# 	spawn_weight = 1
-#
-# 	description = gts_random_storm_foot_odor_description
-# 	triggered_planet_modifier = {
-# 		potential = {
-# 			is_colony = yes
-# 		}
-# 		planet_jobs_produces_mult = 0.25
-# 	}
-# 	triggered_fleet_modifier = {
-# 		potential = {
-# 			# exists = owner
-# 			# exists = event_target:eternal_fleet_country
-# 			# owner = { is_hostile = event_target:eternal_fleet_country }
-# 		}
-# 		ship_armor_hardening_add = 1
-# 		ship_shield_hardening_add = 1
-# 	}
-#
-# 	on_start = {
-# 		every_country = {
-# 			limit = {
-# 				has_relic = relic_gts_communication
-# 				not = {
-# 					has_country_flag = has_finished_survey_storm_1
-# 				}
-# 			}
-# 			country_event = {
-# 				id = gts_random_storm.50
-# 			}
-# 		}
-# 		every_system_within_storm = {
-# 			added_to_storm_base_effect = yes
-# 			gts_foot_odor_storm_add = yes
-# 		}
-#
-# 	}
-# 	on_finished = {
-# 		# every_country = {
-# 		# 	limit = {
-# 		# 		has_relic = relic_gts_communication
-# 		# 	}
-# 		# 	country_event = {
-# 		# 		id = gts_random_storm.2
-# 		# 	}
-# 		# }
-# 		every_system_within_storm = {
-# 			removed_from_storm_base_effect = yes
-# 			gts_foot_odor_storm_remove = yes
-# 		}
-# 	}
-#
-# 	on_moved = {
-# 		every_system_added_to_storm = {
-# 			added_to_storm_base_effect = yes
-# 			gts_foot_odor_storm_add = yes
-# 		}
-#
-# 		every_system_removed_from_storm = {
-# 			removed_from_storm_base_effect = yes
-# 			gts_foot_odor_storm_remove = yes
-# 		}
-# 	}
-# 	# 地图上的图标
-# 	cosmic_storm_texture_path = "gfx/map/storms/NebulaOpacity.dds"
-# 	cosmic_storm_texture_color_path = "gfx/map/storms/solar_storm_color.dds"
-# 	# 大图和小图
-# 	cosmic_storm_event_sprite = "GFX_solar_storm"
-# 	icon = GFX_planetview_storm_solar_modifier_frame
-# 	# 闪电的图片
-# 	cosmic_storm_texture_lightning_paths = {
-# 		"gfx/map/storms/lightning/lightning_big_storm_01.dds"
-# 		"gfx/map/storms/lightning/lightning_big_storm_02.dds"
-# 		"gfx/map/storms/lightning/lightning_mid_storm_01.dds"
-# 		"gfx/map/storms/lightning/lightning_mid_storm_02.dds"
-# 	}
-# 	# 宇宙风暴银河闪电时间
-# 	cosmic_storm_galaxy_lightning_time = 5.0
-# 	# 宇宙风暴银河最大不透明度
-# 	cosmic_storm_galaxy_max_opacity = 0.4
-# 	# 有没有信息
-# 	show_notification = { always = no }
-# }
-#
-# gts_random_storm_anus = {
-# 	inline_script = {
-# 		script = "cosmic_storms/StormConfig"
-# 		MIN_RADIUS = 25
-# 		MAX_RADIUS = 50
-# 		MIN_RANGE = value:storm_range_min
-# 		MAX_RANGE = value:storm_range_max
-# 		STORM_SPEED = 0.02
-# 		ACTIVATION_PERIOD_IN_MONTHS = 12
-# 		MONTHLY_ADDED_DEVASTATION = @cosmic_storm_base_monthly_devastation
-# 	}
-# 	# 影响生命回复
-# 	affect_hp_regen = yes
-# 	# 影响护甲再生
-# 	affect_armor_regen = yes
-# 	# 影响护盾再生
-# 	affect_shield_regen = yes
-#
-# 	spawn_weight = 1
-#
-# 	description = gts_random_storm_anus_description
-# 	triggered_planet_modifier = {
-# 		potential = {
-# 			is_colony = yes
-# 		}
-# 		planet_jobs_produces_mult = 0.25
-# 	}
-# 	triggered_fleet_modifier = {
-# 		potential = {
-# 			# exists = owner
-# 			# exists = event_target:eternal_fleet_country
-# 			# owner = { is_hostile = event_target:eternal_fleet_country }
-# 		}
-# 		ship_armor_hardening_add = 1
-# 		ship_shield_hardening_add = 1
-# 	}
-#
-# 	on_start = {
-# 		every_country = {
-# 			limit = {
-# 				has_relic = relic_gts_communication
-# 				not = {
-# 					has_country_flag = has_finished_survey_storm_1
-# 				}
-# 			}
-# 			country_event = {
-# 				id = gts_random_storm.60
-# 			}
-# 		}
-# 		every_system_within_storm = {
-# 			added_to_storm_base_effect = yes
-# 			gts_anus_storm_add = yes
-# 		}
-#
-# 	}
-# 	on_finished = {
-# 		# every_country = {
-# 		# 	limit = {
-# 		# 		has_relic = relic_gts_communication
-# 		# 	}
-# 		# 	country_event = {
-# 		# 		id = gts_random_storm.2
-# 		# 	}
-# 		# }
-# 		every_system_within_storm = {
-# 			removed_from_storm_base_effect = yes
-# 			gts_anus_storm_remove = yes
-# 		}
-# 	}
-#
-# 	on_moved = {
-# 		every_system_added_to_storm = {
-# 			added_to_storm_base_effect = yes
-# 			gts_anus_storm_add = yes
-# 		}
-#
-# 		every_system_removed_from_storm = {
-# 			removed_from_storm_base_effect = yes
-# 			gts_anus_storm_remove = yes
-# 		}
-# 	}
-# 	# 地图上的图标
-# 	cosmic_storm_texture_path = "gfx/map/storms/NebulaOpacity.dds"
-# 	cosmic_storm_texture_color_path = "gfx/map/storms/celestial_storm_color.dds"
-# 	# 大图和小图
-# 	cosmic_storm_event_sprite = "GFX_celestial_storm"
-# 	icon = GFX_planetview_storm_celestial_modifier_frame
-# 	# 闪电的图片
-# 	cosmic_storm_texture_lightning_paths = {
-# 		"gfx/map/storms/lightning/lightning_big_storm_01.dds"
-# 		"gfx/map/storms/lightning/lightning_big_storm_02.dds"
-# 		"gfx/map/storms/lightning/lightning_mid_storm_01.dds"
-# 		"gfx/map/storms/lightning/lightning_mid_storm_02.dds"
-# 	}
-# 	# 宇宙风暴银河闪电时间
-# 	cosmic_storm_galaxy_lightning_time = 5.0
-# 	# 宇宙风暴银河最大不透明度
-# 	cosmic_storm_galaxy_max_opacity = 0.4
-# 	# 有没有信息
-# 	show_notification = { always = no }
-# }
-#
-# gts_random_storm_juice = {
-# 	inline_script = {
-# 		script = "cosmic_storms/StormConfig"
-# 		MIN_RADIUS = 25
-# 		MAX_RADIUS = 50
-# 		MIN_RANGE = value:storm_range_min
-# 		MAX_RANGE = value:storm_range_max
-# 		STORM_SPEED = 0.02
-# 		ACTIVATION_PERIOD_IN_MONTHS = 12
-# 		MONTHLY_ADDED_DEVASTATION = @cosmic_storm_base_monthly_devastation
-# 	}
-# 	# 影响生命回复
-# 	affect_hp_regen = yes
-# 	# 影响护甲再生
-# 	affect_armor_regen = yes
-# 	# 影响护盾再生
-# 	affect_shield_regen = yes
-#
-# 	spawn_weight = 1
-#
-# 	description = gts_random_storm_juice_description
-# 	triggered_planet_modifier = {
-# 		potential = {
-# 			is_colony = yes
-# 		}
-# 		planet_jobs_produces_mult = 0.25
-# 	}
-# 	triggered_fleet_modifier = {
-# 		potential = {
-# 			# exists = owner
-# 			# exists = event_target:eternal_fleet_country
-# 			# owner = { is_hostile = event_target:eternal_fleet_country }
-# 		}
-# 		ship_armor_hardening_add = 1
-# 		ship_shield_hardening_add = 1
-# 	}
-#
-# 	on_start = {
-# 		every_country = {
-# 			limit = {
-# 				has_relic = relic_gts_communication
-# 				not = {
-# 					has_country_flag = has_finished_survey_storm_1
-# 				}
-# 			}
-# 			country_event = {
-# 				id = gts_random_storm.70
-# 			}
-# 		}
-# 		every_system_within_storm = {
-# 			added_to_storm_base_effect = yes
-# 			gts_juice_storm_add = yes
-# 		}
-# 	}
-# 	on_finished = {
-# 		# every_country = {
-# 		# 	limit = {
-# 		# 		has_relic = relic_gts_communication
-# 		# 	}
-# 		# 	country_event = {
-# 		# 		id = gts_random_storm.2
-# 		# 	}
-# 		# }
-# 		every_system_within_storm = {
-# 			removed_from_storm_base_effect = yes
-# 			gts_juice_storm_remove = yes
-# 		}
-# 	}
-#
-# 	on_moved = {
-# 		every_system_added_to_storm = {
-# 			added_to_storm_base_effect = yes
-# 			gts_juice_storm_add = yes
-# 		}
-#
-# 		every_system_removed_from_storm = {
-# 			removed_from_storm_base_effect = yes
-# 			gts_juice_storm_remove = yes
-# 		}
-# 	}
-# 	# 地图上的图标
-# 	cosmic_storm_texture_path = "gfx/map/storms/NebulaOpacity.dds"
-# 	cosmic_storm_texture_color_path = "gfx/map/storms/shroud_storm_color.dds"
-# 	# 大图和小图
-# 	cosmic_storm_event_sprite = "GFX_shroud_storm"
-# 	icon = GFX_planetview_storm_shroud_modifier_frame
-# 	# 闪电的图片
-# 	cosmic_storm_texture_lightning_paths = {
-# 		"gfx/map/storms/lightning/lightning_big_storm_01.dds"
-# 		"gfx/map/storms/lightning/lightning_big_storm_02.dds"
-# 		"gfx/map/storms/lightning/lightning_mid_storm_01.dds"
-# 		"gfx/map/storms/lightning/lightning_mid_storm_02.dds"
-# 	}
-# 	# 宇宙风暴银河闪电时间
-# 	cosmic_storm_galaxy_lightning_time = 5.0
-# 	# 宇宙风暴银河最大不透明度
-# 	cosmic_storm_galaxy_max_opacity = 0.4
-# 	# 有没有信息
-# 	show_notification = { always = no }
-# }
+gts_random_storm_sweat = {
+	inline_script = {
+		script = "cosmic_storms/StormConfig"
+		MIN_RADIUS = 25
+		MAX_RADIUS = 50
+		MIN_RANGE = value:storm_range_min
+		MAX_RANGE = value:storm_range_max
+		STORM_SPEED = 0.02
+		ACTIVATION_PERIOD_IN_MONTHS = 12
+		MONTHLY_ADDED_DEVASTATION = @cosmic_storm_base_monthly_devastation
+	}
+	# inline_script = {
+	# 	script = "gts_storm_config"
+	# 	# 最小半径
+	# 	MIN_RADIUS = 50
+	# 	# 最大半径
+	# 	MAX_RADIUS = 50
+	# 	# 最小范围
+	# 	MIN_RANGE = 50
+	# 	# 最大范围
+	# 	MAX_RANGE = 50
+	# 	# 风暴速度
+	# 	STORM_SPEED = 0.02
+	# 	# 激活周期（月）
+	# 	ACTIVATION_PERIOD_IN_MONTHS = 12
+	# 	# 每月新增破坏
+	# 	MONTHLY_ADDED_DEVASTATION = @cosmic_storm_base_monthly_devastation
+	# }
+	# 影响生命回复
+	affect_hp_regen = yes
+	# 影响护甲再生
+	affect_armor_regen = yes
+	# 影响护盾再生
+	affect_shield_regen = yes
+
+	spawn_weight = 1
+
+	description = gts_random_storm_sweat_description
+	triggered_planet_modifier = {
+		potential = {
+			is_colony = yes
+		}
+		planet_jobs_produces_mult = 0.25
+	}
+	triggered_fleet_modifier = {
+		potential = {
+			# exists = owner
+			# exists = event_target:eternal_fleet_country
+			# owner = { is_hostile = event_target:eternal_fleet_country }
+		}
+		ship_armor_hardening_add = 1
+		ship_shield_hardening_add = 1
+	}
+
+	on_start = {
+		every_country = {
+			limit = {
+				has_relic = relic_gts_communication
+				not = {
+					has_country_flag = has_finished_survey_storm_1
+				}
+			}
+			country_event = {
+				id = gts_random_storm.10
+			}
+		}
+		every_system_within_storm = {
+			added_to_storm_base_effect = yes
+			gts_sweat_storm_add = yes
+		}
+	}
+	on_finished = {
+		every_system_within_storm = {
+			removed_from_storm_base_effect = yes
+			gts_sweat_storm_remove = yes
+		}
+	}
+
+	on_moved = {
+		every_system_added_to_storm = {
+			added_to_storm_base_effect = yes
+			gts_sweat_storm_add = yes
+		}
+
+		every_system_removed_from_storm = {
+			removed_from_storm_base_effect = yes
+			gts_sweat_storm_remove = yes
+		}
+	}
+	# 地图上的图标
+	cosmic_storm_texture_path = "gfx/map/storms/NebulaOpacity.dds"
+	cosmic_storm_texture_color_path = "gfx/map/storms/electric_storm_color.dds"
+	# 大图和小图
+	cosmic_storm_event_sprite = "GFX_electric_storm"
+	icon = GFX_planetview_storm_electric_modifier_frame
+	# 闪电的图片
+	cosmic_storm_texture_lightning_paths = {
+		"gfx/map/storms/lightning/lightning_big_storm_01.dds"
+		"gfx/map/storms/lightning/lightning_big_storm_02.dds"
+		"gfx/map/storms/lightning/lightning_mid_storm_01.dds"
+		"gfx/map/storms/lightning/lightning_mid_storm_02.dds"
+	}
+	# 宇宙风暴银河闪电时间
+	cosmic_storm_galaxy_lightning_time = 5.0
+	# 宇宙风暴银河最大不透明度
+	cosmic_storm_galaxy_max_opacity = 0.4
+	# 有没有信息
+	show_notification = { always = no }
+}
+
+gts_random_storm_urine = {
+	inline_script = {
+		script = "cosmic_storms/StormConfig"
+		MIN_RADIUS = 25
+		MAX_RADIUS = 50
+		MIN_RANGE = value:storm_range_min
+		MAX_RANGE = value:storm_range_max
+		STORM_SPEED = 0.02
+		ACTIVATION_PERIOD_IN_MONTHS = 12
+		MONTHLY_ADDED_DEVASTATION = @cosmic_storm_base_monthly_devastation
+	}
+	# 影响生命回复
+	affect_hp_regen = yes
+	# 影响护甲再生
+	affect_armor_regen = yes
+	# 影响护盾再生
+	affect_shield_regen = yes
+
+	spawn_weight = 1
+
+	description = gts_random_storm_urine_description
+	triggered_planet_modifier = {
+		potential = {
+			is_colony = yes
+		}
+		planet_jobs_produces_mult = 0.25
+	}
+	triggered_fleet_modifier = {
+		potential = {
+			# exists = owner
+			# exists = event_target:eternal_fleet_country
+			# owner = { is_hostile = event_target:eternal_fleet_country }
+		}
+		ship_armor_hardening_add = 1
+		ship_shield_hardening_add = 1
+	}
+
+	on_start = {
+		every_country = {
+			limit = {
+				has_relic = relic_gts_communication
+				not = {
+					has_country_flag = has_finished_survey_storm_1
+				}
+			}
+			country_event = {
+				id = gts_random_storm.20
+			}
+		}
+		every_system_within_storm = {
+			added_to_storm_base_effect = yes
+			gts_urine_storm_add = yes
+		}
+
+	}
+	on_finished = {
+		# every_country = {
+		# 	limit = {
+		# 		has_relic = relic_gts_communication
+		# 	}
+		# 	country_event = {
+		# 		id = gts_random_storm.2
+		# 	}
+		# }
+		every_system_within_storm = {
+			removed_from_storm_base_effect = yes
+			gts_urine_storm_remove = yes
+		}
+	}
+
+	on_moved = {
+		every_system_added_to_storm = {
+			added_to_storm_base_effect = yes
+			gts_urine_storm_add = yes
+		}
+
+		every_system_removed_from_storm = {
+			removed_from_storm_base_effect = yes
+			gts_urine_storm_remove = yes
+		}
+	}
+	# 地图上的图标
+	cosmic_storm_texture_path = "gfx/map/storms/NebulaOpacity.dds"
+	cosmic_storm_texture_color_path = "gfx/map/storms/particle_storm_color.dds"
+	# 大图和小图
+	cosmic_storm_event_sprite = "GFX_particle_storm"
+	icon = GFX_planetview_storm_particle_modifier_frame
+	# 闪电的图片
+	cosmic_storm_texture_lightning_paths = {
+		"gfx/map/storms/lightning/lightning_big_storm_01.dds"
+		"gfx/map/storms/lightning/lightning_big_storm_02.dds"
+		"gfx/map/storms/lightning/lightning_mid_storm_01.dds"
+		"gfx/map/storms/lightning/lightning_mid_storm_02.dds"
+	}
+	# 宇宙风暴银河闪电时间
+	cosmic_storm_galaxy_lightning_time = 5.0
+	# 宇宙风暴银河最大不透明度
+	cosmic_storm_galaxy_max_opacity = 0.4
+	# 有没有信息
+	show_notification = { always = no }
+}
+
+gts_random_storm_whisper = {
+	inline_script = {
+		script = "cosmic_storms/StormConfig"
+		MIN_RADIUS = 25
+		MAX_RADIUS = 50
+		MIN_RANGE = value:storm_range_min
+		MAX_RANGE = value:storm_range_max
+		STORM_SPEED = 0.02
+		ACTIVATION_PERIOD_IN_MONTHS = 12
+		MONTHLY_ADDED_DEVASTATION = @cosmic_storm_base_monthly_devastation
+	}
+	# 影响生命回复
+	affect_hp_regen = yes
+	# 影响护甲再生
+	affect_armor_regen = yes
+	# 影响护盾再生
+	affect_shield_regen = yes
+
+	spawn_weight = 1
+
+	description = gts_random_storm_whisper_description
+	triggered_planet_modifier = {
+		potential = {
+			is_colony = yes
+		}
+		planet_jobs_produces_mult = 0.25
+	}
+	triggered_fleet_modifier = {
+		potential = {
+			# exists = owner
+			# exists = event_target:eternal_fleet_country
+			# owner = { is_hostile = event_target:eternal_fleet_country }
+		}
+		ship_armor_hardening_add = 1
+		ship_shield_hardening_add = 1
+	}
+
+	on_start = {
+		every_country = {
+			limit = {
+				has_relic = relic_gts_communication
+				not = {
+					has_country_flag = has_finished_survey_storm_1
+				}
+			}
+			country_event = {
+				id = gts_random_storm.30
+			}
+		}
+		every_system_within_storm = {
+			added_to_storm_base_effect = yes
+			gts_whisper_storm_add = yes
+		}
+
+	}
+	on_finished = {
+		# every_country = {
+		# 	limit = {
+		# 		has_relic = relic_gts_communication
+		# 	}
+		# 	country_event = {
+		# 		id = gts_random_storm.2
+		# 	}
+		# }
+		every_system_within_storm = {
+			removed_from_storm_base_effect = yes
+			gts_whisper_storm_remove = yes
+		}
+	}
+
+	on_moved = {
+		every_system_added_to_storm = {
+			added_to_storm_base_effect = yes
+			gts_whisper_storm_add = yes
+		}
+
+		every_system_removed_from_storm = {
+			removed_from_storm_base_effect = yes
+			gts_whisper_storm_remove = yes
+		}
+	}
+	# 地图上的图标
+	cosmic_storm_texture_path = "gfx/map/storms/NebulaOpacity.dds"
+	cosmic_storm_texture_color_path = "gfx/map/storms/gravity_storm_color.dds"
+	# 大图和小图
+	cosmic_storm_event_sprite = "GFX_gravity_storm"
+	icon = GFX_planetview_storm_gravity_modifier_frame
+	# 闪电的图片
+	cosmic_storm_texture_lightning_paths = {
+		"gfx/map/storms/lightning/lightning_big_storm_01.dds"
+		"gfx/map/storms/lightning/lightning_big_storm_02.dds"
+		"gfx/map/storms/lightning/lightning_mid_storm_01.dds"
+		"gfx/map/storms/lightning/lightning_mid_storm_02.dds"
+	}
+	# 宇宙风暴银河闪电时间
+	cosmic_storm_galaxy_lightning_time = 5.0
+	# 宇宙风暴银河最大不透明度
+	cosmic_storm_galaxy_max_opacity = 0.4
+	# 有没有信息
+	show_notification = { always = no }
+}
+
+gts_random_storm_milk = {
+	inline_script = {
+		script = "cosmic_storms/StormConfig"
+		MIN_RADIUS = 25
+		MAX_RADIUS = 50
+		MIN_RANGE = value:storm_range_min
+		MAX_RANGE = value:storm_range_max
+		STORM_SPEED = 0.02
+		ACTIVATION_PERIOD_IN_MONTHS = 12
+		MONTHLY_ADDED_DEVASTATION = @cosmic_storm_base_monthly_devastation
+	}
+	# 影响生命回复
+	affect_hp_regen = yes
+	# 影响护甲再生
+	affect_armor_regen = yes
+	# 影响护盾再生
+	affect_shield_regen = yes
+
+	spawn_weight = 1
+
+	description = gts_random_storm_milk_description
+	triggered_planet_modifier = {
+		potential = {
+			is_colony = yes
+		}
+		planet_jobs_produces_mult = 0.25
+	}
+	triggered_fleet_modifier = {
+		potential = {
+			# exists = owner
+			# exists = event_target:eternal_fleet_country
+			# owner = { is_hostile = event_target:eternal_fleet_country }
+		}
+		ship_armor_hardening_add = 1
+		ship_shield_hardening_add = 1
+	}
+
+	on_start = {
+		every_country = {
+			limit = {
+				has_relic = relic_gts_communication
+				not = {
+					has_country_flag = has_finished_survey_storm_1
+				}
+			}
+			country_event = {
+				id = gts_random_storm.40
+			}
+		}
+		every_system_within_storm = {
+			added_to_storm_base_effect = yes
+			gts_milk_storm_add = yes
+		}
+
+	}
+	on_finished = {
+		# every_country = {
+		# 	limit = {
+		# 		has_relic = relic_gts_communication
+		# 	}
+		# 	country_event = {
+		# 		id = gts_random_storm.2
+		# 	}
+		# }
+		every_system_within_storm = {
+			removed_from_storm_base_effect = yes
+			gts_milk_storm_remove = yes
+		}
+	}
+
+	on_moved = {
+		every_system_added_to_storm = {
+			added_to_storm_base_effect = yes
+			gts_milk_storm_add = yes
+		}
+
+		every_system_removed_from_storm = {
+			removed_from_storm_base_effect = yes
+			gts_milk_storm_remove = yes
+		}
+	}
+	# 地图上的图标
+	cosmic_storm_texture_path = "gfx/map/storms/NebulaOpacity.dds"
+	cosmic_storm_texture_color_path = "gfx/map/storms/magnetic_storm_color.dds"
+	# 大图和小图
+	cosmic_storm_event_sprite = "GFX_magnetic_storm"
+	icon = GFX_planetview_storm_magnetic_modifier_frame
+	# 闪电的图片
+	cosmic_storm_texture_lightning_paths = {
+		"gfx/map/storms/lightning/lightning_big_storm_01.dds"
+		"gfx/map/storms/lightning/lightning_big_storm_02.dds"
+		"gfx/map/storms/lightning/lightning_mid_storm_01.dds"
+		"gfx/map/storms/lightning/lightning_mid_storm_02.dds"
+	}
+	# 宇宙风暴银河闪电时间
+	cosmic_storm_galaxy_lightning_time = 5.0
+	# 宇宙风暴银河最大不透明度
+	cosmic_storm_galaxy_max_opacity = 0.4
+	# 有没有信息
+	show_notification = { always = no }
+}
+
+gts_random_storm_foot_odor = {
+	inline_script = {
+		script = "cosmic_storms/StormConfig"
+		MIN_RADIUS = 25
+		MAX_RADIUS = 50
+		MIN_RANGE = value:storm_range_min
+		MAX_RANGE = value:storm_range_max
+		STORM_SPEED = 0.02
+		ACTIVATION_PERIOD_IN_MONTHS = 12
+		MONTHLY_ADDED_DEVASTATION = @cosmic_storm_base_monthly_devastation
+	}
+	# 影响生命回复
+	affect_hp_regen = yes
+	# 影响护甲再生
+	affect_armor_regen = yes
+	# 影响护盾再生
+	affect_shield_regen = yes
+
+	spawn_weight = 1
+
+	description = gts_random_storm_foot_odor_description
+	triggered_planet_modifier = {
+		potential = {
+			is_colony = yes
+		}
+		planet_jobs_produces_mult = 0.25
+	}
+	triggered_fleet_modifier = {
+		potential = {
+			# exists = owner
+			# exists = event_target:eternal_fleet_country
+			# owner = { is_hostile = event_target:eternal_fleet_country }
+		}
+		ship_armor_hardening_add = 1
+		ship_shield_hardening_add = 1
+	}
+
+	on_start = {
+		every_country = {
+			limit = {
+				has_relic = relic_gts_communication
+				not = {
+					has_country_flag = has_finished_survey_storm_1
+				}
+			}
+			country_event = {
+				id = gts_random_storm.50
+			}
+		}
+		every_system_within_storm = {
+			added_to_storm_base_effect = yes
+			gts_foot_odor_storm_add = yes
+		}
+
+	}
+	on_finished = {
+		# every_country = {
+		# 	limit = {
+		# 		has_relic = relic_gts_communication
+		# 	}
+		# 	country_event = {
+		# 		id = gts_random_storm.2
+		# 	}
+		# }
+		every_system_within_storm = {
+			removed_from_storm_base_effect = yes
+			gts_foot_odor_storm_remove = yes
+		}
+	}
+
+	on_moved = {
+		every_system_added_to_storm = {
+			added_to_storm_base_effect = yes
+			gts_foot_odor_storm_add = yes
+		}
+
+		every_system_removed_from_storm = {
+			removed_from_storm_base_effect = yes
+			gts_foot_odor_storm_remove = yes
+		}
+	}
+	# 地图上的图标
+	cosmic_storm_texture_path = "gfx/map/storms/NebulaOpacity.dds"
+	cosmic_storm_texture_color_path = "gfx/map/storms/solar_storm_color.dds"
+	# 大图和小图
+	cosmic_storm_event_sprite = "GFX_solar_storm"
+	icon = GFX_planetview_storm_solar_modifier_frame
+	# 闪电的图片
+	cosmic_storm_texture_lightning_paths = {
+		"gfx/map/storms/lightning/lightning_big_storm_01.dds"
+		"gfx/map/storms/lightning/lightning_big_storm_02.dds"
+		"gfx/map/storms/lightning/lightning_mid_storm_01.dds"
+		"gfx/map/storms/lightning/lightning_mid_storm_02.dds"
+	}
+	# 宇宙风暴银河闪电时间
+	cosmic_storm_galaxy_lightning_time = 5.0
+	# 宇宙风暴银河最大不透明度
+	cosmic_storm_galaxy_max_opacity = 0.4
+	# 有没有信息
+	show_notification = { always = no }
+}
+
+gts_random_storm_anus = {
+	inline_script = {
+		script = "cosmic_storms/StormConfig"
+		MIN_RADIUS = 25
+		MAX_RADIUS = 50
+		MIN_RANGE = value:storm_range_min
+		MAX_RANGE = value:storm_range_max
+		STORM_SPEED = 0.02
+		ACTIVATION_PERIOD_IN_MONTHS = 12
+		MONTHLY_ADDED_DEVASTATION = @cosmic_storm_base_monthly_devastation
+	}
+	# 影响生命回复
+	affect_hp_regen = yes
+	# 影响护甲再生
+	affect_armor_regen = yes
+	# 影响护盾再生
+	affect_shield_regen = yes
+
+	spawn_weight = 1
+
+	description = gts_random_storm_anus_description
+	triggered_planet_modifier = {
+		potential = {
+			is_colony = yes
+		}
+		planet_jobs_produces_mult = 0.25
+	}
+	triggered_fleet_modifier = {
+		potential = {
+			# exists = owner
+			# exists = event_target:eternal_fleet_country
+			# owner = { is_hostile = event_target:eternal_fleet_country }
+		}
+		ship_armor_hardening_add = 1
+		ship_shield_hardening_add = 1
+	}
+
+	on_start = {
+		every_country = {
+			limit = {
+				has_relic = relic_gts_communication
+				not = {
+					has_country_flag = has_finished_survey_storm_1
+				}
+			}
+			country_event = {
+				id = gts_random_storm.60
+			}
+		}
+		every_system_within_storm = {
+			added_to_storm_base_effect = yes
+			gts_anus_storm_add = yes
+		}
+
+	}
+	on_finished = {
+		# every_country = {
+		# 	limit = {
+		# 		has_relic = relic_gts_communication
+		# 	}
+		# 	country_event = {
+		# 		id = gts_random_storm.2
+		# 	}
+		# }
+		every_system_within_storm = {
+			removed_from_storm_base_effect = yes
+			gts_anus_storm_remove = yes
+		}
+	}
+
+	on_moved = {
+		every_system_added_to_storm = {
+			added_to_storm_base_effect = yes
+			gts_anus_storm_add = yes
+		}
+
+		every_system_removed_from_storm = {
+			removed_from_storm_base_effect = yes
+			gts_anus_storm_remove = yes
+		}
+	}
+	# 地图上的图标
+	cosmic_storm_texture_path = "gfx/map/storms/NebulaOpacity.dds"
+	cosmic_storm_texture_color_path = "gfx/map/storms/celestial_storm_color.dds"
+	# 大图和小图
+	cosmic_storm_event_sprite = "GFX_celestial_storm"
+	icon = GFX_planetview_storm_celestial_modifier_frame
+	# 闪电的图片
+	cosmic_storm_texture_lightning_paths = {
+		"gfx/map/storms/lightning/lightning_big_storm_01.dds"
+		"gfx/map/storms/lightning/lightning_big_storm_02.dds"
+		"gfx/map/storms/lightning/lightning_mid_storm_01.dds"
+		"gfx/map/storms/lightning/lightning_mid_storm_02.dds"
+	}
+	# 宇宙风暴银河闪电时间
+	cosmic_storm_galaxy_lightning_time = 5.0
+	# 宇宙风暴银河最大不透明度
+	cosmic_storm_galaxy_max_opacity = 0.4
+	# 有没有信息
+	show_notification = { always = no }
+}
+
+gts_random_storm_juice = {
+	inline_script = {
+		script = "cosmic_storms/StormConfig"
+		MIN_RADIUS = 25
+		MAX_RADIUS = 50
+		MIN_RANGE = value:storm_range_min
+		MAX_RANGE = value:storm_range_max
+		STORM_SPEED = 0.02
+		ACTIVATION_PERIOD_IN_MONTHS = 12
+		MONTHLY_ADDED_DEVASTATION = @cosmic_storm_base_monthly_devastation
+	}
+	# 影响生命回复
+	affect_hp_regen = yes
+	# 影响护甲再生
+	affect_armor_regen = yes
+	# 影响护盾再生
+	affect_shield_regen = yes
+
+	spawn_weight = 1
+
+	description = gts_random_storm_juice_description
+	triggered_planet_modifier = {
+		potential = {
+			is_colony = yes
+		}
+		planet_jobs_produces_mult = 0.25
+	}
+	triggered_fleet_modifier = {
+		potential = {
+			# exists = owner
+			# exists = event_target:eternal_fleet_country
+			# owner = { is_hostile = event_target:eternal_fleet_country }
+		}
+		ship_armor_hardening_add = 1
+		ship_shield_hardening_add = 1
+	}
+
+	on_start = {
+		every_country = {
+			limit = {
+				has_relic = relic_gts_communication
+				not = {
+					has_country_flag = has_finished_survey_storm_1
+				}
+			}
+			country_event = {
+				id = gts_random_storm.70
+			}
+		}
+		every_system_within_storm = {
+			added_to_storm_base_effect = yes
+			gts_juice_storm_add = yes
+		}
+	}
+	on_finished = {
+		# every_country = {
+		# 	limit = {
+		# 		has_relic = relic_gts_communication
+		# 	}
+		# 	country_event = {
+		# 		id = gts_random_storm.2
+		# 	}
+		# }
+		every_system_within_storm = {
+			removed_from_storm_base_effect = yes
+			gts_juice_storm_remove = yes
+		}
+	}
+
+	on_moved = {
+		every_system_added_to_storm = {
+			added_to_storm_base_effect = yes
+			gts_juice_storm_add = yes
+		}
+
+		every_system_removed_from_storm = {
+			removed_from_storm_base_effect = yes
+			gts_juice_storm_remove = yes
+		}
+	}
+	# 地图上的图标
+	cosmic_storm_texture_path = "gfx/map/storms/NebulaOpacity.dds"
+	cosmic_storm_texture_color_path = "gfx/map/storms/shroud_storm_color.dds"
+	# 大图和小图
+	cosmic_storm_event_sprite = "GFX_shroud_storm"
+	icon = GFX_planetview_storm_shroud_modifier_frame
+	# 闪电的图片
+	cosmic_storm_texture_lightning_paths = {
+		"gfx/map/storms/lightning/lightning_big_storm_01.dds"
+		"gfx/map/storms/lightning/lightning_big_storm_02.dds"
+		"gfx/map/storms/lightning/lightning_mid_storm_01.dds"
+		"gfx/map/storms/lightning/lightning_mid_storm_02.dds"
+	}
+	# 宇宙风暴银河闪电时间
+	cosmic_storm_galaxy_lightning_time = 5.0
+	# 宇宙风暴银河最大不透明度
+	cosmic_storm_galaxy_max_opacity = 0.4
+	# 有没有信息
+	show_notification = { always = no }
+}

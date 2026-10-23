@@ -26,24 +26,9 @@ gts_fjb_0 = {
 	}
 
 	possible = {
-		hidden_trigger = {
-			exists = starbase
-		}
-		custom_tooltip = {
-			fail_text = "requires_inside_border"
-			is_inside_border = from
-		}
-		custom_tooltip = {
-			fail_text = "requires_surveyed_system"
-			NOT = {
-				any_system_planet = {
-					is_surveyed = {
-						who = prev.from
-						status = no
-					}
-				}
-			}
-		}
+		# Nomads build through their waystation network; settled empires use their borders.
+		inline_script = megastructures/system_ownership_or_waystation_check
+		inline_script = megastructures/system_surveyed_or_waystation_check
 		custom_tooltip = {
 			fail_text = "requires_black_hole"
 			is_star_class = sc_black_hole
@@ -107,12 +92,17 @@ gts_fjb_1 = {
 	victory_score = 1000
 
 	possible = {
+		# A nomad-owned megastructure does not require a territorial starbase to upgrade.
 		hidden_trigger = {
-			exists = starbase
+			OR = {
+				from = { is_nomadic = yes }
+				exists = starbase
+			}
 		}
 		custom_tooltip = {
 			fail_text = "requires_build_fjb_mk2"
-			owner = { has_country_flag = doctor_can_build_fjb_mk2 }
+			# FROM is the upgrading country; OWNER is the system's territorial owner.
+			from = { has_country_flag = doctor_can_build_fjb_mk2 }
 		}
 	}
 

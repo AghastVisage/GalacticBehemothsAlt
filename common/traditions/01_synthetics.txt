@@ -56,7 +56,7 @@ tr_synthetics_adopt = {
 			if = {
 				limit = {
 					any_planet_within_border = {
-						has_carrier_flag = fotd_seperatist_planet@root
+						has_planet_flag = fotd_seperatist_planet@root
 						owner = {
 							has_country_flag = fotd_seperatist_country@root
 						}
@@ -94,7 +94,7 @@ tr_synthetics_adopt = {
 				if = {
 					limit = {
 						any_planet_within_border = {
-							has_carrier_flag = fotd_seperatist_planet@root
+							has_planet_flag = fotd_seperatist_planet@root
 							owner = {
 								has_country_flag = fotd_seperatist_country@root
 							}
@@ -224,14 +224,24 @@ tr_synthetics_maintenance_protocols = {
 		}
 		custom_tooltip = tr_synthetics_maintenance_protocols_situation_effects
 	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_synthetics_maintenance_protocols_gts
 		inherit_effects = yes
 		inherit_icon = yes
 		trigger = {
 			gts_is_giantess_empire = yes
+			NOT = {
+				AND = {
+					has_machine_age_dlc = yes
+					NOR = {
+						has_country_flag = synthetics_traditions_unlocked
+						has_origin = origin_synthetic_fertility
+					}
+				}
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -242,8 +252,19 @@ tr_synthetics_maintenance_protocols = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
+			NOT = {
+				AND = {
+					has_machine_age_dlc = yes
+					NOR = {
+						has_country_flag = synthetics_traditions_unlocked
+						has_origin = origin_synthetic_fertility
+					}
+				}
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -272,14 +293,24 @@ tr_synthetics_optimization_algorithms = {
 		}
 		custom_tooltip = tr_synthetics_optimization_algorithms_situation_effects
 	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_synthetics_optimization_algorithms_gts
 		inherit_effects = yes
 		inherit_icon = yes
 		trigger = {
 			gts_is_giantess_empire = yes
+			NOT = {
+				AND = {
+					has_machine_age_dlc = yes
+					NOR = {
+						has_country_flag = synthetics_traditions_unlocked
+						has_origin = origin_synthetic_fertility
+					}
+				}
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -290,8 +321,19 @@ tr_synthetics_optimization_algorithms = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
+			NOT = {
+				AND = {
+					has_machine_age_dlc = yes
+					NOR = {
+						has_country_flag = synthetics_traditions_unlocked
+						has_origin = origin_synthetic_fertility
+					}
+				}
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -400,14 +442,53 @@ tr_synthetics_transubstatiation_synthesis = {
 		custom_tooltip = tr_synthetics_solid_state_actuators_situation_effects
 	}
 
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_synthetics_transubstatiation_synthesis_gts
 		inherit_effects = yes
 		inherit_icon = yes
 		trigger = {
 			gts_is_giantess_empire = yes
+			NOT = {
+				OR = {
+					OR = {
+						AND = {
+							has_machine_age_dlc = yes
+							has_valid_civic = civic_fanatic_purifiers
+							has_country_flag = synthetics_traditions_unlocked
+						}
+						AND = {
+							has_machine_age_dlc = no
+							has_valid_civic = civic_fanatic_purifiers
+						}
+						AND = {
+							has_machine_age_dlc = no
+							is_machine_empire = yes
+						}
+					}
+					AND = {
+						has_valid_civic = civic_fanatic_purifiers
+						has_country_flag = synth_virtual
+					}
+					AND = {
+						has_machine_age_dlc = yes
+						NOR = {
+							has_country_flag = synthetics_traditions_unlocked
+							has_origin = origin_synthetic_fertility
+							has_valid_civic = civic_fanatic_purifiers
+						}
+					}
+					AND = {
+						has_machine_age_dlc = yes
+						has_valid_civic = civic_fanatic_purifiers
+						NOR = {
+							has_country_flag = synthetics_traditions_unlocked
+							has_origin = origin_synthetic_fertility
+						}
+					}
+				}
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -418,8 +499,49 @@ tr_synthetics_transubstatiation_synthesis = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
+			NOT = {
+				OR = {
+					OR = {
+						AND = {
+							has_machine_age_dlc = yes
+							has_valid_civic = civic_fanatic_purifiers
+							has_country_flag = synthetics_traditions_unlocked
+						}
+						AND = {
+							has_machine_age_dlc = no
+							has_valid_civic = civic_fanatic_purifiers
+						}
+						AND = {
+							has_machine_age_dlc = no
+							is_machine_empire = yes
+						}
+					}
+					AND = {
+						has_valid_civic = civic_fanatic_purifiers
+						has_country_flag = synth_virtual
+					}
+					AND = {
+						has_machine_age_dlc = yes
+						NOR = {
+							has_country_flag = synthetics_traditions_unlocked
+							has_origin = origin_synthetic_fertility
+							has_valid_civic = civic_fanatic_purifiers
+						}
+					}
+					AND = {
+						has_machine_age_dlc = yes
+						has_valid_civic = civic_fanatic_purifiers
+						NOR = {
+							has_country_flag = synthetics_traditions_unlocked
+							has_origin = origin_synthetic_fertility
+						}
+					}
+				}
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -451,14 +573,24 @@ tr_synthetics_power_systems = {
 		custom_tooltip = tr_synthetics_power_systems_situation_effects
 	}
 
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_synthetics_power_systems_gts
 		inherit_effects = yes
 		inherit_icon = yes
 		trigger = {
 			gts_is_giantess_empire = yes
+			NOT = {
+				AND = {
+					has_machine_age_dlc = yes
+					NOR = {
+						has_country_flag = synthetics_traditions_unlocked
+						has_origin = origin_synthetic_fertility
+					}
+					is_machine_empire = no
+				}
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -469,8 +601,20 @@ tr_synthetics_power_systems = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
+			NOT = {
+				AND = {
+					has_machine_age_dlc = yes
+					NOR = {
+						has_country_flag = synthetics_traditions_unlocked
+						has_origin = origin_synthetic_fertility
+					}
+					is_machine_empire = no
+				}
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -519,14 +663,30 @@ tr_synthetics_prefabricated_components = {
 		custom_tooltip = tr_synthetics_prefabricated_components_machine_effects
 	}
 
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_synthetics_prefabricated_components_gts
 		inherit_effects = yes
 		inherit_icon = yes
 		trigger = {
 			gts_is_giantess_empire = yes
+			NOT = {
+				OR = {
+					AND = {
+						has_machine_age_dlc = yes
+						NOR = {
+							has_country_flag = synthetics_traditions_unlocked
+							has_origin = origin_synthetic_fertility
+						}
+						is_machine_empire = no
+					}
+					AND = {
+						has_machine_age_dlc = no
+						is_machine_empire = yes
+					}
+				}
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -537,8 +697,26 @@ tr_synthetics_prefabricated_components = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
+			NOT = {
+				OR = {
+					AND = {
+						has_machine_age_dlc = yes
+						NOR = {
+							has_country_flag = synthetics_traditions_unlocked
+							has_origin = origin_synthetic_fertility
+						}
+						is_machine_empire = no
+					}
+					AND = {
+						has_machine_age_dlc = no
+						is_machine_empire = yes
+					}
+				}
+			}
 		}
-
 		weight = {
 			factor = 10
 		}

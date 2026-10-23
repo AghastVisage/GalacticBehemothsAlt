@@ -46,6 +46,15 @@ tr_mercantile_finish = {
 }
 
 tr_mercantile_trickle_up_economics = {
+#	custom_tooltip = tr_mercantile_trickle_up_economics_desc
+	modifier = {
+		planet_pops_trade_produces_mult = 0.15
+	}
+	ai_weight = {
+		factor = 1000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_mercantile_trickle_up_economics_gts
 		inherit_effects = yes
@@ -53,9 +62,8 @@ tr_mercantile_trickle_up_economics = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
 	tradition_swap = {
@@ -64,14 +72,13 @@ tr_mercantile_trickle_up_economics = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
-	}
-	ai_weight = {
-		factor = 1000
 	}
 }
 
@@ -83,6 +90,11 @@ tr_mercantile_commercial_enterprise = {
 	# Commericial Buildings and Districts provide additional trader jobs.
 	# Traders produce amenities.
 
+	ai_weight = {
+		factor = 5000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_mercantile_commercial_enterprise_gts
 		inherit_effects = yes
@@ -90,9 +102,8 @@ tr_mercantile_commercial_enterprise = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
 	tradition_swap = {
@@ -101,15 +112,13 @@ tr_mercantile_commercial_enterprise = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
-	}
-
-	ai_weight = {
-		factor = 5000
 	}
 }
 
@@ -149,14 +158,29 @@ tr_mercantile_adaptive_economic_policies = {
 		}
 	}
 
+	ai_weight = {
+		factor = 1000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_mercantile_adaptive_economic_policies_gts
 		inherit_effects = yes
 		inherit_icon = yes
 		trigger = {
 			gts_is_giantess_empire = yes
+			NOT = {
+				OR = {
+					is_worker_coop_empire = yes
+					AND = {
+						has_federation = yes
+						federation = {
+							has_federation_perk = trade_federation_passive
+						}
+					}
+				}
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -167,15 +191,24 @@ tr_mercantile_adaptive_economic_policies = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
+			NOT = {
+				OR = {
+					is_worker_coop_empire = yes
+					AND = {
+						has_federation = yes
+						federation = {
+							has_federation_perk = trade_federation_passive
+						}
+					}
+				}
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
-	}
-
-	ai_weight = {
-		factor = 1000
 	}
 }
 
@@ -188,6 +221,11 @@ tr_mercantile_marketplace_of_better_ideas = {
 		planet_jobs_trade_produces_mult = 0.1
 	}
 
+	ai_weight = {
+		factor = 5000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_mercantile_marketplace_of_better_ideas_gts
 		inherit_effects = yes
@@ -195,9 +233,8 @@ tr_mercantile_marketplace_of_better_ideas = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
 	tradition_swap = {
@@ -206,15 +243,13 @@ tr_mercantile_marketplace_of_better_ideas = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
-	}
-
-	ai_weight = {
-		factor = 5000
 	}
 }
 
@@ -227,6 +262,11 @@ tr_mercantile_insider_trading = {
 		country_trade_fee = -0.10
 	}
 
+	ai_weight = {
+		factor = 5000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_mercantile_insider_trading_gts
 		inherit_effects = yes
@@ -234,9 +274,8 @@ tr_mercantile_insider_trading = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
 	tradition_swap = {
@@ -245,14 +284,12 @@ tr_mercantile_insider_trading = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
-	}
-
-	ai_weight = {
-		factor = 5000
 	}
 }

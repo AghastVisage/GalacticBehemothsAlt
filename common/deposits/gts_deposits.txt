@@ -445,22 +445,26 @@ d_footprint_resort = {
 			owner = {
 				is_regular_empire = yes
 			}
+			owner = {
+				is_gestalt = no
+			}
 		}
-		modifier = {
-			job_entertainer_add = 1
-		}
+		job_entertainer_add = 1
 	}
+
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
 			owner = {
+
+			}
+			owner = {
 				is_gestalt = yes
 			}
 		}
-		modifier = {
-			job_maintenance_drone_add = 2
-		}
+		job_logistics_drone_add = 1
 	}
+
 	should_swap_deposit_on_terraforming = no
 	drop_weight = {
 		weight = 0
@@ -544,7 +548,7 @@ d_gts_loli_bug_mushroom = {
 		planet_max_districts_add = -1
 		planet_jobs_food_upkeep_mult = -0.15
 		logistic_growth_mult = 0.3
-	    bonus_pop_growth_mult = 0.3
+        bonus_pop_growth_mult = 0.3
 	}
 	drop_weight = {
 		weight = 0
@@ -572,7 +576,7 @@ d_gts_loli_bug_nest = {
 }
 
 # 巨娘区划
-d_giantess_belly_plain_dirty = { 
+d_giantess_belly_plain_dirty = {
     is_for_colonizable = yes #殖民星球才有
     category = deposit_cat_blockers #阻拦
     icon = d_giantess_belly_plain_dirty #图标
@@ -582,24 +586,44 @@ d_giantess_belly_plain_dirty = {
 	time = 1200
 
     planet_modifier = {
-	    planet_max_districts_add = -1
-		job_miner_add = 200
-		job_miner_per_pop = 0.04
-		job_criminal_per_crime = 0.1
+        planet_max_districts_add = -1
+        job_criminal_per_crime = 0.1
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_gestalt = no
+            }
+        }
+        job_miner_add = 200
+        job_miner_per_pop = 0.04
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_gestalt = yes
+            }
+        }
+        job_mining_drone_add = 200
+        job_mining_drone_per_pop = 0.04
     }
 	resources = {
 		category = deposit_blockers
 		cost = {
 			energy = 1000
-			food = 500 
+			food = 500
 		}
 	}
 	should_swap_deposit_on_terraforming = no
-    drop_weight = { 
-	    weight = 0
+    drop_weight = {
+        weight = 0
     }
 }
-d_giantess_belly_plain_sweaty = { 
+d_giantess_belly_plain_sweaty = {
     is_for_colonizable = yes #殖民星球才有
     category = deposit_cat_blockers #阻拦
     icon = d_giantess_belly_plain_sweaty #图标
@@ -609,35 +633,35 @@ d_giantess_belly_plain_sweaty = {
 	time = 1500
 
     planet_modifier = {
-	    planet_max_districts_add = -2
+        planet_max_districts_add = -2
 		job_criminal_per_crime = 0.1
     }
 	resources = {
 		category = deposit_blockers
 		cost = {
 			energy = 1500
-			minerals = 1000 
+			minerals = 1000
 		}
 	}
 	should_swap_deposit_on_terraforming = no
-    drop_weight = { 
-	    weight = 0
+    drop_weight = {
+        weight = 0
     }
 }
-d_giantess_belly_plain = { 
+d_giantess_belly_plain = {
     is_for_colonizable = yes #殖民星球才有
     category = deposit_cat_rare #稀有区
     icon = d_giantess_belly_plain #图标
     planet_modifier = {
-	    planet_max_districts_add = 6
+        planet_max_districts_add = 6
 		planet_building_build_speed_mult = 0.2
 		planet_district_city_build_speed_mult = 0.2
 		planet_district_farming_build_speed_mult = 0.2
 		planet_district_mining_build_speed_mult = 0.2
     }
 	should_swap_deposit_on_terraforming = no
-    drop_weight = { 
-	    weight = 0
+    drop_weight = {
+        weight = 0
     }
 }
 d_giantess_back_plain_sweaty = {
@@ -650,7 +674,7 @@ d_giantess_back_plain_sweaty = {
 	time = 1500
 
     planet_modifier = {
-	    planet_max_districts_add = -1
+        planet_max_districts_add = -1
 		job_criminal_per_crime = 0.2
     }
 	resources = {
@@ -661,27 +685,27 @@ d_giantess_back_plain_sweaty = {
 		}
 	}
 	should_swap_deposit_on_terraforming = no
-    drop_weight = { 
-	    weight = 0
+    drop_weight = {
+        weight = 0
     }
 }
-d_giantess_back_plain = { 
+d_giantess_back_plain = {
     is_for_colonizable = yes #殖民星球才有
     category = deposit_cat_rare #稀有区
     icon = d_giantess_back_plain #图标
     planet_modifier = {
-	    planet_max_districts_add = 6
+        planet_max_districts_add = 6
 		planet_building_build_speed_mult = 0.2
 		planet_district_city_build_speed_mult = 0.2
 		planet_district_farming_build_speed_mult = 0.2
 		planet_district_mining_build_speed_mult = 0.2
     }
 	should_swap_deposit_on_terraforming = no
-    drop_weight = { 
-	    weight = 0
+    drop_weight = {
+        weight = 0
     }
 }
-d_giantess_back_plain_dirty = { 
+d_giantess_back_plain_dirty = {
     is_for_colonizable = yes #殖民星球才有
     category = deposit_cat_blockers #阻拦
     icon = d_giantess_back_plain_dirty #图标
@@ -689,12 +713,32 @@ d_giantess_back_plain_dirty = {
 		d_giantess_back_plain
 	}
 	time = 1200
-	
+
     planet_modifier = {
-	    planet_max_districts_add = -1
-		job_miner_add = 200
-		job_miner_per_pop = 0.04
-		job_criminal_per_crime = 0.1
+        planet_max_districts_add = -1
+        job_criminal_per_crime = 0.1
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_gestalt = no
+            }
+        }
+        job_miner_add = 200
+        job_miner_per_pop = 0.04
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_gestalt = yes
+            }
+        }
+        job_mining_drone_add = 200
+        job_mining_drone_per_pop = 0.04
     }
 	resources = {
 		category = deposit_blockers
@@ -704,8 +748,8 @@ d_giantess_back_plain_dirty = {
 		}
 	}
 	should_swap_deposit_on_terraforming = no
-    drop_weight = { 
-	    weight = 0
+    drop_weight = {
+        weight = 0
     }
 }
 d_giantess_strange_noise = {
@@ -716,8 +760,8 @@ d_giantess_strange_noise = {
 		pop_happiness = -3
 	}
 	should_swap_deposit_on_terraforming = no
-	drop_weight = { 
-	    weight = 0
+	drop_weight = {
+        weight = 0
     }
 }
 d_giantess_warm_ground = {
@@ -733,8 +777,8 @@ d_giantess_warm_ground = {
 		planet_technician_energy_produces_mult = 0.2
 	}
 	should_swap_deposit_on_terraforming = no
-	drop_weight = { 
-	    weight = 0
+	drop_weight = {
+        weight = 0
     }
 }
 d_giantess_understandable_noise = {
@@ -745,8 +789,8 @@ d_giantess_understandable_noise = {
 		pop_happiness = -2
 	}
 	should_swap_deposit_on_terraforming = no
-	drop_weight = { 
-	    weight = 0
+	drop_weight = {
+        weight = 0
     }
 }
 d_giantess_hungry_noise = {
@@ -757,8 +801,8 @@ d_giantess_hungry_noise = {
 		pop_happiness = -1.5
 	}
 	should_swap_deposit_on_terraforming = no
-	drop_weight = { 
-	    weight = 0
+	drop_weight = {
+        weight = 0
     }
 }
 d_giantess_belly_noise = {
@@ -769,8 +813,8 @@ d_giantess_belly_noise = {
 		pop_happiness = -1
 	}
 	should_swap_deposit_on_terraforming = no
-	drop_weight = { 
-	    weight = 0
+	drop_weight = {
+        weight = 0
     }
 }
 d_giantess_empty_noise = {
@@ -781,8 +825,8 @@ d_giantess_empty_noise = {
 		pop_happiness = -0.5
 	}
 	should_swap_deposit_on_terraforming = no
-	drop_weight = { 
-	    weight = 0
+	drop_weight = {
+        weight = 0
     }
 }
 d_giantess_clear_noise = {
@@ -793,8 +837,8 @@ d_giantess_clear_noise = {
 		pop_happiness = -0.2
 	}
 	should_swap_deposit_on_terraforming = no
-	drop_weight = { 
-	    weight = 0
+	drop_weight = {
+        weight = 0
     }
 }
 d_giantess_overcomed_noise = {
@@ -805,8 +849,8 @@ d_giantess_overcomed_noise = {
 		pop_happiness = -0.05
 	}
 	should_swap_deposit_on_terraforming = no
-	drop_weight = { 
-	    weight = 0
+	drop_weight = {
+        weight = 0
     }
 }
 d_giantess_master_belly_sound = {
@@ -817,8 +861,8 @@ d_giantess_master_belly_sound = {
 		pop_happiness = 0.05
 	}
 	should_swap_deposit_on_terraforming = no
-	drop_weight = { 
-	    weight = 0
+	drop_weight = {
+        weight = 0
     }
 }
 d_giantess_master_full_belly = {
@@ -829,8 +873,8 @@ d_giantess_master_full_belly = {
 		pop_happiness = 0.25
 	}
 	should_swap_deposit_on_terraforming = no
-	drop_weight = { 
-	    weight = 0
+	drop_weight = {
+        weight = 0
     }
 }
 
@@ -840,7 +884,26 @@ d_master_acid = {
 	icon = d_master_acid
 	planet_modifier = {
 		pop_happiness = -0.01
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
 		job_miner_add = 300
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_mining_drone_add = 300
 	}
 	should_swap_deposit_on_terraforming = no
 	drop_weight = {
@@ -853,8 +916,28 @@ d_master_food_remaining = {
 	icon = d_master_acid_after
 	planet_modifier = {
 		pop_happiness = 0.02
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
 		job_miner_per_pop = 0.25
 		job_miner_add = 300
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_mining_drone_per_pop = 0.25
+		job_mining_drone_add = 300
 	}
 	should_swap_deposit_on_terraforming = no
 	drop_weight = {
@@ -877,8 +960,8 @@ d_gts_keeper1 = { #重生之龙：幼年
 		pop_happiness = 0.05
 	}
 	should_swap_deposit_on_terraforming = no
-	drop_weight = { 
-	    weight = 0
+	drop_weight = {
+        weight = 0
     }
 }
 d_gts_keeper2 = { #“净土”
@@ -895,8 +978,8 @@ d_gts_keeper2 = { #“净土”
 		planet_max_districts_add = 12
 	}
 	should_swap_deposit_on_terraforming = no
-	drop_weight = { 
-	    weight = 0
+	drop_weight = {
+        weight = 0
     }
 }
 
@@ -954,7 +1037,26 @@ d_gts_deposit_explorer = {
 	planet_modifier = {
 		planet_housing_add = 200
 		planet_max_districts_add = 0.5
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
 		job_gts_deposit_explorer_add = 100
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_gts_drone_gts_deposit_explorer_add = 100
 	}
 }
 
@@ -1338,7 +1440,26 @@ d_gts_footdirt = {
 
 	planet_modifier = {
 		district_mining_max_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
 		job_gts_footminer_add = 100
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_gts_drone_gts_footminer_add = 100
 	}
 
 	resources = {
@@ -1390,8 +1511,24 @@ d_gts_footsweat_2 = {
 	category = deposit_cat_rare
 	icon = d_gts_footsweat_2
 
-	planet_modifier = {
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
 		job_gts_footsmeller_add = 100
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_gts_drone_gts_footsmeller_add = 100
 	}
 
 	resources = {
@@ -1439,7 +1576,26 @@ d_gts_sock_2 = {
 		planet_max_districts_add = 2
 		pc_gts_dirt0_habitability = 0.10
 		planet_jobs_consumer_goods_produces_mult = 0.10
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
 		job_gts_foot_prist_add = 100
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_gts_drone_gts_foot_prist_add = 100
 	}
 
 	drop_weight = {

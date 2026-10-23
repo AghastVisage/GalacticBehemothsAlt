@@ -1,4 +1,14 @@
 namespace = gts_ora
+
+
+
+# 0-1000  大橘之前的
+#1000   大橘
+#2000   舰船和摧毁的事件
+#3000   小橘
+#4000   联动内容
+
+
 country_event = {
 	id = gts_ora.1
 	hide_window = yes
@@ -291,6 +301,12 @@ country_event = {
 	diplomatic = yes
 	picture = GFX_evt_mysterious_signal
 	picture_event_data = {
+		trigger = { exists = event_target:gts_ora }
+		portrait = event_target:gts_ora
+		room = ethic_spaceship_room
+	}
+	picture_event_data = {
+		trigger = { NOT = { exists = event_target:gts_ora } }
 		portrait = gts_portrait_ora_1
 		room = ethic_spaceship_room
 	}
@@ -321,6 +337,33 @@ country_event = {
 		hidden_effect = {
 			country_event = {
 				id = gts_ora.101
+			}
+		}
+	}
+	option = {
+		name = gts_ora.10.f
+		trigger = {
+			exists = event_target:gts_ora
+		}
+		custom_tooltip = gts_ora.10.f.custom
+		# is_dialog_only = yes
+		#换衣服
+		hidden_effect = {
+			country_event = {
+				id = gts_ora.102
+			}
+		}
+	}
+	option = {
+		name = gts_ora.10.g
+		custom_tooltip = gts_ora.10.g.custom
+		trigger = {
+			has_country_flag = gts_ora_small_start
+		}
+		# is_dialog_only = yes
+		hidden_effect = {
+			country_event = {
+				id = gts_ora.4000
 			}
 		}
 	}
@@ -366,12 +409,123 @@ country_event = {
 	}
 }
 
+
+
+
+
+
+country_event = {
+	id = gts_ora.1100
+	title = "gts_ora.1100.title"
+	desc = "gts_ora.100.after_leave.desc"
+	diplomatic = yes
+	picture = GFX_evt_mysterious_signal
+
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			has_country_flag = ora_country
+		}
+		NOT = {
+			any_owned_leader = {
+				has_leader_flag = gts_ora
+			}
+		}
+		NOT = { has_country_flag = gts_orangez_hired }
+		NOT = { has_country_flag = gts_ora_diplomacy_engaged }
+	}
+
+	immediate = {
+		set_country_flag = gts_ora_diplomacy_engaged
+	}
+
+	after = {
+		hidden_effect = { remove_country_flag = gts_ora_diplomacy_engaged }
+	}
+
+	option = {
+		name = gts_ora.10.a
+		custom_tooltip = gts_ora.10.a.custom
+		hidden_effect = {
+			country_event = {
+				id = gts_ora.101
+			}
+		}
+	}
+
+	option = {
+		name = gts_hitomi.10.f
+		default_hide_option = yes
+	}
+}
+
+country_event = {
+	id = gts_ora.1200
+	title = "gts_ora.100.title"
+	desc = "gts_ora.1200.desc"
+	diplomatic = yes
+	picture = GFX_evt_mysterious_signal
+	picture_event_data = {
+		portrait = event_target:gts_orangez
+		room = ethic_spaceship_room
+	}
+
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			has_country_flag = ora_country
+		}
+		exists = event_target:gts_orangez
+		any_owned_leader = {
+			is_same_value = event_target:gts_orangez
+		}
+		NOT = { has_country_flag = gts_ora_diplomacy_engaged }
+	}
+
+	immediate = {
+		set_country_flag = gts_ora_diplomacy_engaged
+	}
+
+	after = {
+		hidden_effect = { remove_country_flag = gts_ora_diplomacy_engaged }
+	}
+
+	option = {
+		name = gts_ora.10.a
+		custom_tooltip = gts_ora.10.a.custom
+		hidden_effect = {
+			country_event = {
+				id = gts_ora.101
+			}
+		}
+	}
+
+	option = {
+		name = gts_ora.1200.a
+		response_text = gts_ora.1200.a.response
+		is_dialog_only = yes
+	}
+
+	option = {
+		name = gts_hitomi.10.f
+		default_hide_option = yes
+	}
+}
+
 country_event = {
 	id = gts_ora.101
 	title = "gts_ora.100.title"
 	desc = "gts_ora.101.desc"
 	diplomatic = yes
 	picture_event_data = {
+		trigger = { exists = event_target:gts_ora }
+		portrait = event_target:gts_ora
+		room = ethic_spaceship_room
+	}
+	picture_event_data = {
+		trigger = { NOT = { exists = event_target:gts_ora } }
 		portrait = gts_portrait_ora_1
 		room = ethic_spaceship_room
 	}
@@ -1572,11 +1726,1307 @@ country_event = {
 			}
 		}
 	}
-
+	option = {
+		name = gts_ora.101.d
+		custom_tooltip = gts_ora.101.d.custom
+		response_text = gts_ora.101.d.response
+		trigger = {
+			has_country_flag = gts_ora_stage1_stories_unlocked
+		}
+		allow = {
+			OR = {
+				any_country = {
+					any_owned_leader = {
+						has_leader_flag = gts_ora
+					}
+					owner_main_species = {
+						has_trait = trait_Titan
+						NOR = {
+							has_trait = trait_Ultra
+							has_trait = trait_Nano
+						}
+					}
+					any_owned_planet = {
+						pop_amount > 1
+						any_owned_pop_group = {
+							pop_group_size >= 1
+						}
+					}
+				}
+				any_country = {
+					any_owned_leader = {
+						has_leader_flag = gts_ora
+					}
+					owner_main_species = {
+						has_trait = trait_Giant
+						NOR = {
+							has_trait = trait_Ultra
+							has_trait = trait_Nano
+						}
+					}
+					any_owned_planet = {
+						pop_amount > 20
+						any_owned_pop_group = {
+							pop_group_size >= 20
+						}
+					}
+				}
+				any_country = {
+					any_owned_leader = {
+						has_leader_flag = gts_ora
+					}
+					owner_main_species = {
+						has_trait = trait_Tall
+						NOR = {
+							has_trait = trait_Ultra
+							has_trait = trait_Nano
+						}
+					}
+					any_owned_planet = {
+						pop_amount > 40
+						any_owned_pop_group = {
+							pop_group_size >= 40
+						}
+					}
+				}
+				any_country = {
+					any_owned_leader = {
+						has_leader_flag = gts_ora
+					}
+					owner_main_species = {
+						has_trait = trait_Normal
+						NOR = {
+							has_trait = trait_Ultra
+							has_trait = trait_Nano
+						}
+					}
+					any_owned_planet = {
+						pop_amount > 200
+						any_owned_pop_group = {
+							pop_group_size >= 200
+						}
+					}
+				}
+				any_country = {
+					any_owned_leader = {
+						has_leader_flag = gts_ora
+					}
+					owner_main_species = {
+						has_trait = trait_Small
+						NOR = {
+							has_trait = trait_Ultra
+							has_trait = trait_Nano
+						}
+					}
+					any_owned_planet = {
+						pop_amount > 500
+						any_owned_pop_group = {
+							pop_group_size >= 500
+						}
+					}
+				}
+				any_country = {
+					any_owned_leader = {
+						has_leader_flag = gts_ora
+					}
+					owner_main_species = {
+						has_trait = trait_Tiny
+						NOR = {
+							has_trait = trait_Ultra
+							has_trait = trait_Nano
+						}
+					}
+					any_owned_planet = {
+						pop_amount > 1000
+						any_owned_pop_group = {
+							pop_group_size >= 1000
+						}
+					}
+				}
+				any_country = {
+					any_owned_leader = {
+						has_leader_flag = gts_ora
+					}
+					owner_main_species = {
+						has_trait = trait_Micro
+						NOR = {
+							has_trait = trait_Ultra
+							has_trait = trait_Nano
+						}
+					}
+					any_owned_planet = {
+						pop_amount > 2000
+						any_owned_pop_group = {
+							pop_group_size >= 2000
+						}
+					}
+				}
+			}
+		}
+		hidden_effect = {
+			random_country = {
+				limit = {
+					any_owned_leader = {
+						has_leader_flag = gts_ora
+					}
+					owner_main_species = {
+						has_trait = trait_Titan
+						NOR = {
+							has_trait = trait_Ultra
+							has_trait = trait_Nano
+						}
+					}
+					any_owned_planet = {
+						pop_amount > 1
+						any_owned_pop_group = {
+							pop_group_size >= 1
+						}
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						pop_amount > 1
+						any_owned_pop_group = {
+							pop_group_size >= 1
+						}
+					}
+					random_owned_pop_group = {
+						limit = {
+							pop_group_size >= 1
+						}
+						kill_pop_group = {
+							pop_group = this
+							amount = 1
+						}
+					}
+				}
+				add_resource = {
+					consumer_goods = 2500
+				}
+			}
+			random_country = {
+				limit = {
+					any_owned_leader = {
+						has_leader_flag = gts_ora
+					}
+					owner_main_species = {
+						has_trait = trait_Giant
+						NOR = {
+							has_trait = trait_Ultra
+							has_trait = trait_Nano
+						}
+					}
+					any_owned_planet = {
+						pop_amount > 20
+						any_owned_pop_group = {
+							pop_group_size >= 20
+						}
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						pop_amount > 20
+						any_owned_pop_group = {
+							pop_group_size >= 20
+						}
+					}
+					random_owned_pop_group = {
+						limit = {
+							pop_group_size >= 20
+						}
+						kill_pop_group = {
+							pop_group = this
+							amount = 20
+						}
+					}
+				}
+				add_resource = {
+					consumer_goods = 5000
+				}
+			}
+			random_country = {
+				limit = {
+					any_owned_leader = {
+						has_leader_flag = gts_ora
+					}
+					owner_main_species = {
+						has_trait = trait_Tall
+						NOR = {
+							has_trait = trait_Ultra
+							has_trait = trait_Nano
+						}
+					}
+					any_owned_planet = {
+						pop_amount > 40
+						any_owned_pop_group = {
+							pop_group_size >= 40
+						}
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						pop_amount > 40
+						any_owned_pop_group = {
+							pop_group_size >= 40
+						}
+					}
+					random_owned_pop_group = {
+						limit = {
+							pop_group_size >= 40
+						}
+						kill_pop_group = {
+							pop_group = this
+							amount = 40
+						}
+					}
+				}
+				add_resource = {
+					consumer_goods = 5000
+				}
+			}
+			random_country = {
+				limit = {
+					any_owned_leader = {
+						has_leader_flag = gts_ora
+					}
+					owner_main_species = {
+						has_trait = trait_Normal
+						NOR = {
+							has_trait = trait_Ultra
+							has_trait = trait_Nano
+						}
+					}
+					any_owned_planet = {
+						pop_amount > 200
+						any_owned_pop_group = {
+							pop_group_size >= 200
+						}
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						pop_amount > 200
+						any_owned_pop_group = {
+							pop_group_size >= 200
+						}
+					}
+					random_owned_pop_group = {
+						limit = {
+							pop_group_size >= 200
+						}
+						kill_pop_group = {
+							pop_group = this
+							amount = 200
+						}
+					}
+				}
+				add_resource = {
+					consumer_goods = 5000
+				}
+			}
+			random_country = {
+				limit = {
+					any_owned_leader = {
+						has_leader_flag = gts_ora
+					}
+					owner_main_species = {
+						has_trait = trait_Small
+						NOR = {
+							has_trait = trait_Ultra
+							has_trait = trait_Nano
+						}
+					}
+					any_owned_planet = {
+						pop_amount > 500
+						any_owned_pop_group = {
+							pop_group_size >= 500
+						}
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						pop_amount > 500
+						any_owned_pop_group = {
+							pop_group_size >= 500
+						}
+					}
+					random_owned_pop_group = {
+						limit = {
+							pop_group_size >= 500
+						}
+						kill_pop_group = {
+							pop_group = this
+							amount = 500
+						}
+					}
+				}
+				add_resource = {
+					consumer_goods = 5000
+				}
+			}
+			random_country = {
+				limit = {
+					any_owned_leader = {
+						has_leader_flag = gts_ora
+					}
+					owner_main_species = {
+						has_trait = trait_Tiny
+						NOR = {
+							has_trait = trait_Ultra
+							has_trait = trait_Nano
+						}
+					}
+					any_owned_planet = {
+						pop_amount > 1000
+						any_owned_pop_group = {
+							pop_group_size >= 1000
+						}
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						pop_amount > 1000
+						any_owned_pop_group = {
+							pop_group_size >= 1000
+						}
+					}
+					random_owned_pop_group = {
+						limit = {
+							pop_group_size >= 1000
+						}
+						kill_pop_group = {
+							pop_group = this
+							amount = 1000
+						}
+					}
+				}
+				add_resource = {
+					consumer_goods = 5000
+				}
+			}
+			random_country = {
+				limit = {
+					any_owned_leader = {
+						has_leader_flag = gts_ora
+					}
+					owner_main_species = {
+						has_trait = trait_Micro
+						NOR = {
+							has_trait = trait_Ultra
+							has_trait = trait_Nano
+						}
+					}
+					any_owned_planet = {
+						pop_amount > 2000
+						any_owned_pop_group = {
+							pop_group_size >= 2000
+						}
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						pop_amount > 2000
+						any_owned_pop_group = {
+							pop_group_size >= 2000
+						}
+					}
+					random_owned_pop_group = {
+						limit = {
+							pop_group_size >= 2000
+						}
+						kill_pop_group = {
+							pop_group = this
+							amount = 2000
+						}
+					}
+				}
+				add_resource = {
+					consumer_goods = 5000
+				}
+			}
+		}
+	}
 	option = {
 		name = gts_ora.101.e
 		custom_tooltip = gts_ora.101.e.custom
 		response_text = gts_ora.101.e.response
+		trigger = {
+			has_country_flag = gts_ora_stage1_stories_unlocked
+		}
+		allow = {
+			OR = {
+				any_country = {
+					any_owned_leader = {
+						has_leader_flag = gts_ora
+					}
+					owner_main_species = {
+						has_trait = trait_Titan
+						NOR = {
+							has_trait = trait_Ultra
+							has_trait = trait_Nano
+						}
+					}
+					any_owned_planet = {
+						pop_amount > 1
+						any_owned_pop_group = {
+							pop_group_size >= 1
+						}
+					}
+				}
+				any_country = {
+					any_owned_leader = {
+						has_leader_flag = gts_ora
+					}
+					owner_main_species = {
+						has_trait = trait_Giant
+						NOR = {
+							has_trait = trait_Ultra
+							has_trait = trait_Nano
+						}
+					}
+					any_owned_planet = {
+						pop_amount > 20
+						any_owned_pop_group = {
+							pop_group_size >= 20
+						}
+					}
+				}
+				any_country = {
+					any_owned_leader = {
+						has_leader_flag = gts_ora
+					}
+					owner_main_species = {
+						has_trait = trait_Tall
+						NOR = {
+							has_trait = trait_Ultra
+							has_trait = trait_Nano
+						}
+					}
+					any_owned_planet = {
+						pop_amount > 40
+						any_owned_pop_group = {
+							pop_group_size >= 40
+						}
+					}
+				}
+				any_country = {
+					any_owned_leader = {
+						has_leader_flag = gts_ora
+					}
+					owner_main_species = {
+						has_trait = trait_Normal
+						NOR = {
+							has_trait = trait_Ultra
+							has_trait = trait_Nano
+						}
+					}
+					any_owned_planet = {
+						pop_amount > 200
+						any_owned_pop_group = {
+							pop_group_size >= 200
+						}
+					}
+				}
+				any_country = {
+					any_owned_leader = {
+						has_leader_flag = gts_ora
+					}
+					owner_main_species = {
+						has_trait = trait_Small
+						NOR = {
+							has_trait = trait_Ultra
+							has_trait = trait_Nano
+						}
+					}
+					any_owned_planet = {
+						pop_amount > 500
+						any_owned_pop_group = {
+							pop_group_size >= 500
+						}
+					}
+				}
+				any_country = {
+					any_owned_leader = {
+						has_leader_flag = gts_ora
+					}
+					owner_main_species = {
+						has_trait = trait_Tiny
+						NOR = {
+							has_trait = trait_Ultra
+							has_trait = trait_Nano
+						}
+					}
+					any_owned_planet = {
+						pop_amount > 1000
+						any_owned_pop_group = {
+							pop_group_size >= 1000
+						}
+					}
+				}
+				any_country = {
+					any_owned_leader = {
+						has_leader_flag = gts_ora
+					}
+					owner_main_species = {
+						has_trait = trait_Micro
+						NOR = {
+							has_trait = trait_Ultra
+							has_trait = trait_Nano
+						}
+					}
+					any_owned_planet = {
+						pop_amount > 2000
+						any_owned_pop_group = {
+							pop_group_size >= 2000
+						}
+					}
+				}
+			}
+		}
+		hidden_effect = {
+			random_country = {
+				limit = {
+					any_owned_leader = {
+						has_leader_flag = gts_ora
+					}
+					owner_main_species = {
+						has_trait = trait_Titan
+						NOR = {
+							has_trait = trait_Ultra
+							has_trait = trait_Nano
+						}
+					}
+					any_owned_planet = {
+						pop_amount > 1
+						any_owned_pop_group = {
+							pop_group_size >= 1
+						}
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						pop_amount > 1
+						any_owned_pop_group = {
+							pop_group_size >= 1
+						}
+					}
+					random_owned_pop_group = {
+						limit = {
+							pop_group_size >= 1
+						}
+						kill_pop_group = {
+							pop_group = this
+							amount = 1
+						}
+					}
+				}
+				add_resource = {
+					unity = 2500
+				}
+			}
+			random_country = {
+				limit = {
+					any_owned_leader = {
+						has_leader_flag = gts_ora
+					}
+					owner_main_species = {
+						has_trait = trait_Giant
+						NOR = {
+							has_trait = trait_Ultra
+							has_trait = trait_Nano
+						}
+					}
+					any_owned_planet = {
+						pop_amount > 20
+						any_owned_pop_group = {
+							pop_group_size >= 20
+						}
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						pop_amount > 20
+						any_owned_pop_group = {
+							pop_group_size >= 20
+						}
+					}
+					random_owned_pop_group = {
+						limit = {
+							pop_group_size >= 20
+						}
+						kill_pop_group = {
+							pop_group = this
+							amount = 20
+						}
+					}
+				}
+				add_resource = {
+					unity = 5000
+				}
+			}
+			random_country = {
+				limit = {
+					any_owned_leader = {
+						has_leader_flag = gts_ora
+					}
+					owner_main_species = {
+						has_trait = trait_Tall
+						NOR = {
+							has_trait = trait_Ultra
+							has_trait = trait_Nano
+						}
+					}
+					any_owned_planet = {
+						pop_amount > 40
+						any_owned_pop_group = {
+							pop_group_size >= 40
+						}
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						pop_amount > 40
+						any_owned_pop_group = {
+							pop_group_size >= 40
+						}
+					}
+					random_owned_pop_group = {
+						limit = {
+							pop_group_size >= 40
+						}
+						kill_pop_group = {
+							pop_group = this
+							amount = 40
+						}
+					}
+				}
+				add_resource = {
+					unity = 5000
+				}
+			}
+			random_country = {
+				limit = {
+					any_owned_leader = {
+						has_leader_flag = gts_ora
+					}
+					owner_main_species = {
+						has_trait = trait_Normal
+						NOR = {
+							has_trait = trait_Ultra
+							has_trait = trait_Nano
+						}
+					}
+					any_owned_planet = {
+						pop_amount > 200
+						any_owned_pop_group = {
+							pop_group_size >= 200
+						}
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						pop_amount > 200
+						any_owned_pop_group = {
+							pop_group_size >= 200
+						}
+					}
+					random_owned_pop_group = {
+						limit = {
+							pop_group_size >= 200
+						}
+						kill_pop_group = {
+							pop_group = this
+							amount = 200
+						}
+					}
+				}
+				add_resource = {
+					unity = 5000
+				}
+			}
+			random_country = {
+				limit = {
+					any_owned_leader = {
+						has_leader_flag = gts_ora
+					}
+					owner_main_species = {
+						has_trait = trait_Small
+						NOR = {
+							has_trait = trait_Ultra
+							has_trait = trait_Nano
+						}
+					}
+					any_owned_planet = {
+						pop_amount > 500
+						any_owned_pop_group = {
+							pop_group_size >= 500
+						}
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						pop_amount > 500
+						any_owned_pop_group = {
+							pop_group_size >= 500
+						}
+					}
+					random_owned_pop_group = {
+						limit = {
+							pop_group_size >= 500
+						}
+						kill_pop_group = {
+							pop_group = this
+							amount = 500
+						}
+					}
+				}
+				add_resource = {
+					unity = 5000
+				}
+			}
+			random_country = {
+				limit = {
+					any_owned_leader = {
+						has_leader_flag = gts_ora
+					}
+					owner_main_species = {
+						has_trait = trait_Tiny
+						NOR = {
+							has_trait = trait_Ultra
+							has_trait = trait_Nano
+						}
+					}
+					any_owned_planet = {
+						pop_amount > 1000
+						any_owned_pop_group = {
+							pop_group_size >= 1000
+						}
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						pop_amount > 1000
+						any_owned_pop_group = {
+							pop_group_size >= 1000
+						}
+					}
+					random_owned_pop_group = {
+						limit = {
+							pop_group_size >= 1000
+						}
+						kill_pop_group = {
+							pop_group = this
+							amount = 1000
+						}
+					}
+				}
+				add_resource = {
+					unity = 5000
+				}
+			}
+			random_country = {
+				limit = {
+					any_owned_leader = {
+						has_leader_flag = gts_ora
+					}
+					owner_main_species = {
+						has_trait = trait_Micro
+						NOR = {
+							has_trait = trait_Ultra
+							has_trait = trait_Nano
+						}
+					}
+					any_owned_planet = {
+						pop_amount > 2000
+						any_owned_pop_group = {
+							pop_group_size >= 2000
+						}
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						pop_amount > 2000
+						any_owned_pop_group = {
+							pop_group_size >= 2000
+						}
+					}
+					random_owned_pop_group = {
+						limit = {
+							pop_group_size >= 2000
+						}
+						kill_pop_group = {
+							pop_group = this
+							amount = 2000
+						}
+					}
+				}
+				add_resource = {
+					unity = 5000
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_ora.101.f
+		custom_tooltip = gts_ora.101.f.custom
+		trigger = {
+			has_country_flag = gts_ora_stage1_stories_unlocked
+			NOT = { exists = event_target:gts_faralda }
+			NOT = { has_origin = origin_panlon}
+		}
+		allow = {
+			OR = {
+				any_country = {
+					any_owned_leader = {
+						has_leader_flag = gts_ora
+					}
+					owner_main_species = {
+						has_trait = trait_Titan
+						NOR = {
+							has_trait = trait_Ultra
+							has_trait = trait_Nano
+						}
+					}
+					any_owned_planet = {
+						pop_amount > 1
+						any_owned_pop_group = {
+							pop_group_size >= 1
+						}
+					}
+				}
+				any_country = {
+					any_owned_leader = {
+						has_leader_flag = gts_ora
+					}
+					owner_main_species = {
+						has_trait = trait_Giant
+						NOR = {
+							has_trait = trait_Ultra
+							has_trait = trait_Nano
+						}
+					}
+					any_owned_planet = {
+						pop_amount > 20
+						any_owned_pop_group = {
+							pop_group_size >= 20
+						}
+					}
+				}
+				any_country = {
+					any_owned_leader = {
+						has_leader_flag = gts_ora
+					}
+					owner_main_species = {
+						has_trait = trait_Tall
+						NOR = {
+							has_trait = trait_Ultra
+							has_trait = trait_Nano
+						}
+					}
+					any_owned_planet = {
+						pop_amount > 40
+						any_owned_pop_group = {
+							pop_group_size >= 40
+						}
+					}
+				}
+				any_country = {
+					any_owned_leader = {
+						has_leader_flag = gts_ora
+					}
+					owner_main_species = {
+						has_trait = trait_Normal
+						NOR = {
+							has_trait = trait_Ultra
+							has_trait = trait_Nano
+						}
+					}
+					any_owned_planet = {
+						pop_amount > 200
+						any_owned_pop_group = {
+							pop_group_size >= 200
+						}
+					}
+				}
+				any_country = {
+					any_owned_leader = {
+						has_leader_flag = gts_ora
+					}
+					owner_main_species = {
+						has_trait = trait_Small
+						NOR = {
+							has_trait = trait_Ultra
+							has_trait = trait_Nano
+						}
+					}
+					any_owned_planet = {
+						pop_amount > 500
+						any_owned_pop_group = {
+							pop_group_size >= 500
+						}
+					}
+				}
+				any_country = {
+					any_owned_leader = {
+						has_leader_flag = gts_ora
+					}
+					owner_main_species = {
+						has_trait = trait_Tiny
+						NOR = {
+							has_trait = trait_Ultra
+							has_trait = trait_Nano
+						}
+					}
+					any_owned_planet = {
+						pop_amount > 1000
+						any_owned_pop_group = {
+							pop_group_size >= 1000
+						}
+					}
+				}
+				any_country = {
+					any_owned_leader = {
+						has_leader_flag = gts_ora
+					}
+					owner_main_species = {
+						has_trait = trait_Micro
+						NOR = {
+							has_trait = trait_Ultra
+							has_trait = trait_Nano
+						}
+					}
+					any_owned_planet = {
+						pop_amount > 2000
+						any_owned_pop_group = {
+							pop_group_size >= 2000
+						}
+					}
+				}
+			}
+		}
+		hidden_effect = {
+			random_country = {
+				limit = {
+					any_owned_leader = {
+						has_leader_flag = gts_ora
+					}
+					owner_main_species = {
+						has_trait = trait_Titan
+						NOR = {
+							has_trait = trait_Ultra
+							has_trait = trait_Nano
+						}
+					}
+					any_owned_planet = {
+						pop_amount > 1
+						any_owned_pop_group = {
+							pop_group_size >= 1
+						}
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						pop_amount > 1
+						any_owned_pop_group = {
+							pop_group_size >= 1
+						}
+					}
+					random_owned_pop_group = {
+						limit = {
+							pop_group_size >= 1
+						}
+						kill_pop_group = {
+							pop_group = this
+							amount = 1
+						}
+					}
+				}
+				random_list = {
+					75 = {
+						country_event = { id = gts_ora.4001 }
+					}
+					25 = {
+						country_event = { id = gts_ora.4002 }
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					any_owned_leader = {
+						has_leader_flag = gts_ora
+					}
+					owner_main_species = {
+						has_trait = trait_Giant
+						NOR = {
+							has_trait = trait_Ultra
+							has_trait = trait_Nano
+						}
+					}
+					any_owned_planet = {
+						pop_amount > 20
+						any_owned_pop_group = {
+							pop_group_size >= 20
+						}
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						pop_amount > 20
+						any_owned_pop_group = {
+							pop_group_size >= 20
+						}
+					}
+					random_owned_pop_group = {
+						limit = {
+							pop_group_size >= 20
+						}
+						kill_pop_group = {
+							pop_group = this
+							amount = 20
+						}
+					}
+				}
+				random_list = {
+					75 = {
+						country_event = { id = gts_ora.4001 }
+					}
+					25 = {
+						country_event = { id = gts_ora.4002 }
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					any_owned_leader = {
+						has_leader_flag = gts_ora
+					}
+					owner_main_species = {
+						has_trait = trait_Tall
+						NOR = {
+							has_trait = trait_Ultra
+							has_trait = trait_Nano
+						}
+					}
+					any_owned_planet = {
+						pop_amount > 40
+						any_owned_pop_group = {
+							pop_group_size >= 40
+						}
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						pop_amount > 40
+						any_owned_pop_group = {
+							pop_group_size >= 40
+						}
+					}
+					random_owned_pop_group = {
+						limit = {
+							pop_group_size >= 40
+						}
+						kill_pop_group = {
+							pop_group = this
+							amount = 40
+						}
+					}
+				}
+				random_list = {
+					75 = {
+						country_event = { id = gts_ora.4001 }
+					}
+					25 = {
+						country_event = { id = gts_ora.4002 }
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					any_owned_leader = {
+						has_leader_flag = gts_ora
+					}
+					owner_main_species = {
+						has_trait = trait_Normal
+						NOR = {
+							has_trait = trait_Ultra
+							has_trait = trait_Nano
+						}
+					}
+					any_owned_planet = {
+						pop_amount > 200
+						any_owned_pop_group = {
+							pop_group_size >= 200
+						}
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						pop_amount > 200
+						any_owned_pop_group = {
+							pop_group_size >= 200
+						}
+					}
+					random_owned_pop_group = {
+						limit = {
+							pop_group_size >= 200
+						}
+						kill_pop_group = {
+							pop_group = this
+							amount = 200
+						}
+					}
+				}
+				random_list = {
+					75 = {
+						country_event = { id = gts_ora.4001 }
+					}
+					25 = {
+						country_event = { id = gts_ora.4002 }
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					any_owned_leader = {
+						has_leader_flag = gts_ora
+					}
+					owner_main_species = {
+						has_trait = trait_Small
+						NOR = {
+							has_trait = trait_Ultra
+							has_trait = trait_Nano
+						}
+					}
+					any_owned_planet = {
+						pop_amount > 500
+						any_owned_pop_group = {
+							pop_group_size >= 500
+						}
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						pop_amount > 500
+						any_owned_pop_group = {
+							pop_group_size >= 500
+						}
+					}
+					random_owned_pop_group = {
+						limit = {
+							pop_group_size >= 500
+						}
+						kill_pop_group = {
+							pop_group = this
+							amount = 500
+						}
+					}
+				}
+				random_list = {
+					75 = {
+						country_event = { id = gts_ora.4001 }
+					}
+					25 = {
+						country_event = { id = gts_ora.4002 }
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					any_owned_leader = {
+						has_leader_flag = gts_ora
+					}
+					owner_main_species = {
+						has_trait = trait_Tiny
+						NOR = {
+							has_trait = trait_Ultra
+							has_trait = trait_Nano
+						}
+					}
+					any_owned_planet = {
+						pop_amount > 1000
+						any_owned_pop_group = {
+							pop_group_size >= 1000
+						}
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						pop_amount > 1000
+						any_owned_pop_group = {
+							pop_group_size >= 1000
+						}
+					}
+					random_owned_pop_group = {
+						limit = {
+							pop_group_size >= 1000
+						}
+						kill_pop_group = {
+							pop_group = this
+							amount = 1000
+						}
+					}
+				}
+				random_list = {
+					75 = {
+						country_event = { id = gts_ora.4001 }
+					}
+					25 = {
+						country_event = { id = gts_ora.4002 }
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					any_owned_leader = {
+						has_leader_flag = gts_ora
+					}
+					owner_main_species = {
+						has_trait = trait_Micro
+						NOR = {
+							has_trait = trait_Ultra
+							has_trait = trait_Nano
+						}
+					}
+					any_owned_planet = {
+						pop_amount > 2000
+						any_owned_pop_group = {
+							pop_group_size >= 2000
+						}
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						pop_amount > 2000
+						any_owned_pop_group = {
+							pop_group_size >= 2000
+						}
+					}
+					random_owned_pop_group = {
+						limit = {
+							pop_group_size >= 2000
+						}
+						kill_pop_group = {
+							pop_group = this
+							amount = 2000
+						}
+					}
+				}
+				random_list = {
+					75 = {
+						country_event = { id = gts_ora.4001 }
+					}
+					25 = {
+						country_event = { id = gts_ora.4002 }
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = gts_ora.101.z
+		custom_tooltip = gts_ora.101.z.custom
+		response_text = gts_ora.101.z.response
 		is_dialog_only = yes
 		hidden_effect = {
 
@@ -1588,7 +3038,65 @@ country_event = {
 		default_hide_option = yes
 	}
 }
-#新内容  出走
+
+#换衣服
+country_event = {
+	id = gts_ora.102
+	title = gts_ora.102.name
+	desc = gts_ora.102.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		portrait = event_target:gts_ora
+		room = ethic_spaceship_room
+	}
+	option = {
+		name = gts_ora.102.1
+		is_dialog_only = yes
+		response_text = gts_ora.102.1
+		hidden_effect = {
+			event_target:gts_ora = {
+				change_leader_portrait = gts_portrait_ora_1
+			}
+		}
+	}
+	option = {
+		name = gts_ora.102.2
+		is_dialog_only = yes
+		response_text = gts_ora.102.2
+		hidden_effect = {
+			event_target:gts_ora = {
+				change_leader_portrait = gts_portrait_ora_traditional
+			}
+		}
+	}
+	option = {
+		name = gts_ora.102.3
+		is_dialog_only = yes
+		response_text = gts_ora.102.3
+		hidden_effect = {
+			event_target:gts_ora = {
+				change_leader_portrait = gts_portrait_ora_summer
+			}
+		}
+	}
+	option = {
+		name = gts_ora.102.back
+		hidden_effect = {
+			country_event = {
+				id = gts_ora.100
+				scopes = { from = event_target:gts_ora_country_target }
+			}
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = gts_ora.102.close
+	}
+}
+
+#大橘事件
 country_event = {
 	id = gts_ora.1001
 	title = "gts_ora.1001.name"
@@ -1620,6 +3128,15 @@ country_event = {
 		hidden_effect = {
 			country_event = {
 				id = gts_ora.1003
+			}
+		}
+	}
+	option = {
+		name = gts_ora.1001.c
+		custom_tooltip = gts_ora.1001.c.custom
+		hidden_effect = {
+			country_event = {
+				id = gts_ora.1104
 			}
 		}
 	}
@@ -1658,11 +3175,60 @@ country_event = {
 	option = {
 		name = gts_ora.1003.a
 		hidden_effect = {
-
 		}
 	}
 	after = {
+		hidden_effect = {
+			country_event = {
+				id = gts_ora.1001
+				years = 5
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_ora.1104
+	title = "gts_ora.1104.name"
+	desc = gts_ora.1104.desc
+	picture = GFX_gts_ora_1104
+	is_triggered_only = yes
+	immediate = {
 
+	}
+	option = {
+		name = gts_ora.1104.a
+		custom_tooltip = gts_ora.1104.a.custom
+		hidden_effect = {
+			set_country_flag = gts_ora_small_start
+		}
+	}
+	after = {
+		hidden_effect = {
+			event_target:gts_ora = {
+				add_trait = {
+					trait = gts_trait_ora_redemption
+				}
+			}
+			if = {
+				limit = {
+					exists = event_target:gts_ora
+					event_target:gts_ora = {
+						is_owned_by = prev
+					}
+					NOT = { has_country_flag = gts_ora_little_orange_completed }
+					NOT = {
+						any_situation = {
+							is_situation_type = gts_situation_ora_little_orange
+						}
+					}
+				}
+				start_situation = {
+					type = gts_situation_ora_little_orange
+				}
+			}
+			#并非并非施工中 开启通讯内容：“众星尽头的救赎”
+			# （可开启特殊UI，完成橘子长的万雌王联动事件）
+		}
 	}
 }
 country_event = {
@@ -1707,21 +3273,36 @@ country_event = {
 }
 country_event = {
 	id = gts_ora.1006
-	title = test
-	desc = test
+	title = special_ui
+	desc = special_ui
 	is_triggered_only = yes
 	diplomatic = yes
 	custom_gui = "gts_ora_book_1"
 	immediate = {
-
+		remove_country_flag = gts_ora_book_detail_opened
+		remove_country_flag = gts_ora_book_botton_2_warning_available
+		if = {
+			limit = {
+				any_owned_leader = { has_leader_flag = gts_orangez }
+			}
+			set_country_flag = gts_orangez_hired
+		}
+		if = {
+			limit = {
+				has_country_flag = gts_orangez_hired
+			}
+			set_country_flag = gts_ora_book_detail_opened
+		}
 	}
 	option = {
-		name = test
+		name = special_ui
 		hidden_effect = {
 
 		}
 	}
 	after = {
+		remove_country_flag = gts_ora_book_detail_opened
+		remove_country_flag = gts_ora_book_botton_2_warning_available
 	}
 }
 country_event = {
@@ -1737,9 +3318,16 @@ country_event = {
 		name = gts_ora.1007.a
 		custom_tooltip = gts_ora.1007.a.custom
 		hidden_effect = {
-			event_target:NAME_gts_ora_planet2 = {
+			set_country_flag = gts_ora_1007_active
+			random_galaxy_planet = {
+				limit = {
+					has_planet_flag = planet_lone_star_prison
+				}
 				create_archaeological_site = gts_ora_digsite
 			}
+			# event_target:planet_lone_star_prison = {
+			# 	create_archaeological_site = gts_ora_digsite
+			# }
 		}
 	}
 	option = {
@@ -1750,7 +3338,7 @@ country_event = {
 		}
 	}
 	after = {
-		set_country_flag = gts_ora_1007_active
+
 	}
 }
 fleet_event = {
@@ -1958,6 +3546,9 @@ country_event = {
 	}
 	option = {
 		name = DISMISS
+		allow = {
+			always = no
+		}
 		tag = dismiss_leader
 	}
 	option = {
@@ -1985,7 +3576,8 @@ country_event = {
 	}
 	after = {
 		country_event = {
-			id = gts_ora.10000
+			id = gts_ora.1016
+			months = 3
 		}
 		event_target:gts_ora = {
 			set_variable = {
@@ -1997,11 +3589,1240 @@ country_event = {
 }
 
 
+country_event = {
+	id = gts_ora.1016
+	title = "gts_ora.1016.name"
+	desc = gts_ora.1016.desc
+	picture = GFX_gts_ora_1016
+	is_triggered_only = yes
+	immediate = {
+
+	}
+	option = {
+		name = gts_ora.1016.a
+		custom_tooltip = gts_ora.1016.a.custom
+		hidden_effect = {
+		}
+	}
+	after = {
+		set_country_flag = gts_ora_book_botton_now_available
+	}
+}
+country_event = {
+	id = gts_ora.1116
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		enable_special_project = {
+			name = gts_ora_project_mystery_1
+			location = event_target:planet_city_of_mystery
+		}
+		enable_special_project = {
+			name = gts_ora_project_mystery_2
+			location = event_target:planet_world_without_memories
+		}
+		enable_special_project = {
+			name = gts_ora_project_mystery_3
+			location = event_target:planet_lone_star_prison
+		}
+		enable_special_project = {
+			name = gts_ora_project_mystery_4
+			location = event_target:planet_no_name_land
+		}
+		enable_special_project = {
+			name = gts_ora_project_mystery_5
+			location = event_target:planet_evora_city
+		}
+	}
+	after = {
+		set_country_flag = gts_ora_1116_actived
+	}
+}
 
 country_event = {
-	id = gts_ora.10001
-	title = gts_ora.10001.name
-	desc = gts_ora.10001.desc
+	id = gts_ora.1017
+	title = "gts_ora.1017.name"
+	desc = gts_ora.1017.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_1017_room
+	}
+	immediate = {
+
+	}
+	option = {
+		name = gts_ora.1017.a
+		custom_tooltip = gts_ora.1017.a.custom
+		hidden_effect = {
+			country_event = { id = gts_ora.1117 }
+		}
+	}
+	after = {
+
+	}
+}
+country_event = {
+	id = gts_ora.1117
+	title = "gts_ora.1117.name"
+	desc = gts_ora.1117.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_1117_room
+	}
+	immediate = {
+
+	}
+	option = {
+		name = gts_ora.1117.a
+		custom_tooltip = gts_ora.1117.a.custom
+		hidden_effect = {
+			country_event = { id = gts_ora.1217 }
+		}
+	}
+	after = {
+
+	}
+}
+country_event = {
+	id = gts_ora.1217
+	title = "gts_ora.1217.name"
+	desc = gts_ora.1217.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_1217_room
+	}
+	immediate = {
+
+	}
+	option = {
+		name = gts_ora.1217.a
+		custom_tooltip = gts_ora.1217.a.custom
+		hidden_effect = {
+			country_event = { id = gts_ora.1317 }
+		}
+	}
+	after = {
+
+	}
+}
+country_event = {
+	id = gts_ora.1317
+	title = "gts_ora.1317.name"
+	desc = gts_ora.1317.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_1317_room
+	}
+	immediate = {
+
+	}
+	option = {
+		name = gts_ora.1317.a
+		custom_tooltip = gts_ora.1317.a.custom
+		hidden_effect = {
+			event_target:gts_mora = {
+				add_trait = {
+					trait = gts_trait_mora2
+				}
+			}
+			set_country_flag = gts_ora_project_mystery_1_done
+			country_event = { id = gts_ora.1022 }
+		}
+	}
+	after = {
+
+	}
+}
+country_event = {
+	id = gts_ora.1018
+	title = "gts_ora.1018.name"
+	desc = gts_ora.1018.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_1018_room
+	}
+	immediate = {
+
+	}
+	option = {
+		name = gts_ora.1018.a
+		custom_tooltip = gts_ora.1018.a.custom
+		hidden_effect = {
+			country_event = { id = gts_ora.1118 }
+		}
+	}
+	after = {
+
+	}
+}
+country_event = {
+	id = gts_ora.1118
+	title = "gts_ora.1118.name"
+	desc = gts_ora.1118.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_1118_room
+	}
+	immediate = {
+
+	}
+	option = {
+		name = gts_ora.1118.a
+		custom_tooltip = gts_ora.1118.a.custom
+		hidden_effect = {
+			country_event = { id = gts_ora.1218 }
+		}
+	}
+	after = {
+
+	}
+}
+country_event = {
+	id = gts_ora.1218
+	title = "gts_ora.1218.name"
+	desc = gts_ora.1218.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_1218_room
+	}
+	immediate = {
+
+	}
+	option = {
+		name = gts_ora.1218.a
+		custom_tooltip = gts_ora.1218.a.custom
+		hidden_effect = {
+			event_target:gts_mora = {
+				add_trait = {
+					trait = gts_trait_mora3
+				}
+			}
+			set_country_flag = gts_ora_project_mystery_2_done
+			country_event = { id = gts_ora.1022 }
+		}
+	}
+	after = {
+
+	}
+}
+country_event = {
+	id = gts_ora.1019
+	title = "gts_ora.1019.name"
+	desc = gts_ora.1019.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_1019_room
+	}
+	immediate = {
+
+	}
+	option = {
+		name = gts_ora.1019.a
+		custom_tooltip = gts_ora.1019.a.custom
+		hidden_effect = {
+			country_event = { id = gts_ora.1119 }
+		}
+	}
+	after = {
+
+	}
+}
+country_event = {
+	id = gts_ora.1119
+	title = "gts_ora.1119.name"
+	desc = gts_ora.1119.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_1119_room
+	}
+	immediate = {
+
+	}
+	option = {
+		name = gts_ora.1119.a
+		custom_tooltip = gts_ora.1119.a.custom
+		hidden_effect = {
+			country_event = { id = gts_ora.1219 }
+		}
+	}
+	after = {
+
+	}
+}
+country_event = {
+	id = gts_ora.1219
+	title = "gts_ora.1219.name"
+	desc = gts_ora.1219.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_1219_room
+	}
+	immediate = {
+
+	}
+	option = {
+		name = gts_ora.1219.a
+		custom_tooltip = gts_ora.1219.a.custom
+		hidden_effect = {
+			country_event = { id = gts_ora.1319 }
+		}
+	}
+	after = {
+
+	}
+}
+country_event = {
+	id = gts_ora.1319
+	title = "gts_ora.1319.name"
+	desc = gts_ora.1319.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_1319_room
+	}
+	immediate = {
+
+	}
+	option = {
+		name = gts_ora.1319.a
+		custom_tooltip = gts_ora.1319.a.custom
+		hidden_effect = {
+			country_event = { id = gts_ora.1419 }
+		}
+	}
+	after = {
+
+	}
+}
+country_event = {
+	id = gts_ora.1419
+	title = "gts_ora.1419.name"
+	desc = gts_ora.1419.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_1419_room
+	}
+	immediate = {
+
+	}
+	option = {
+		name = gts_ora.1419.a
+		custom_tooltip = gts_ora.1419.a.custom
+		hidden_effect = {
+			event_target:gts_mora = {
+				add_trait = {
+					trait = gts_trait_mora4
+				}
+			}
+			set_country_flag = gts_ora_project_mystery_3_done
+			country_event = { id = gts_ora.1022 }
+		}
+	}
+	after = {
+
+	}
+}
+country_event = {
+	id = gts_ora.1020
+	title = "gts_ora.1020.name"
+	desc = gts_ora.1020.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_1020_room
+	}
+	immediate = {
+
+	}
+	option = {
+		name = gts_ora.1020.a
+		custom_tooltip = gts_ora.1020.a.custom
+		hidden_effect = {
+			country_event = { id = gts_ora.1120 }
+		}
+	}
+	after = {
+
+	}
+}
+country_event = {
+	id = gts_ora.1120
+	title = "gts_ora.1120.name"
+	desc = gts_ora.1120.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_1120_room
+	}
+	immediate = {
+
+	}
+	option = {
+		name = gts_ora.1120.a
+		custom_tooltip = gts_ora.1120.a.custom
+		hidden_effect = {
+			event_target:gts_mora = {
+				add_trait = {
+					trait = gts_trait_mora5
+				}
+			}
+			set_country_flag = gts_ora_project_mystery_4_done
+			country_event = { id = gts_ora.1022 }
+		}
+	}
+	after = {
+
+	}
+}
+country_event = {
+	id = gts_ora.1021
+	title = "gts_ora.1021.name"
+	desc = gts_ora.1021.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_1021_room
+	}
+	immediate = {
+
+	}
+	option = {
+		name = gts_ora.1021.a
+		custom_tooltip = gts_ora.1021.a.custom
+		hidden_effect = {
+			country_event = { id = gts_ora.1121 }
+		}
+	}
+	after = {
+
+	}
+}
+country_event = {
+	id = gts_ora.1121
+	title = "gts_ora.1121.name"
+	desc = gts_ora.1121.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_1121_room
+	}
+	immediate = {
+
+	}
+	option = {
+		name = gts_ora.1121.a
+		custom_tooltip = gts_ora.1121.a.custom
+		event_target:planet_evora_city = {
+			change_pc = pc_gaia
+		}
+		hidden_effect = {
+			event_target:gts_mora = {
+				add_trait = {
+					trait = gts_trait_mora6
+				}
+			}
+			set_country_flag = gts_ora_project_mystery_5_done
+			country_event = { id = gts_ora.1022 }
+		}
+	}
+	after = {
+
+	}
+}
+
+country_event = {
+	id = gts_ora.1022
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		if = {
+			limit = {
+				has_country_flag = gts_ora_project_mystery_1_done
+				has_country_flag = gts_ora_project_mystery_2_done
+				has_country_flag = gts_ora_project_mystery_3_done
+				has_country_flag = gts_ora_project_mystery_4_done
+				has_country_flag = gts_ora_project_mystery_5_done
+				NOT = { has_country_flag = gts_ora_project_all_done }
+			}
+			set_country_flag = gts_ora_project_all_done
+			country_event = { id = gts_ora.1023 }
+		}
+	}
+}
+country_event = {
+	id = gts_ora.1023
+	title = "gts_ora.1023.name"
+	desc = gts_ora.1023.desc
+	picture = GFX_gts_ora_1023
+	is_triggered_only = yes
+	immediate = {
+
+	}
+	option = {
+		name = gts_ora.1023.a
+		custom_tooltip = gts_ora.1023.a.custom
+		hidden_effect = {
+
+		}
+	}
+	after = {
+		set_country_flag = gts_ora_book_botton_after_available
+	}
+}
+country_event = {
+	#点未来 开的事件链
+	id = gts_ora.1024
+	title = "gts_ora.1024.name"
+	desc = gts_ora.1024.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_1024_room
+	}
+	immediate = {
+
+	}
+	option = {
+		name = gts_ora.1024.a
+		custom_tooltip = gts_ora.1024.a.custom
+		hidden_effect = {
+			start_situation = {
+				type = gts_situation_ora_shipgril
+			}
+		}
+	}
+	after = {
+		set_country_flag = gts_ora_1024_actived
+	}
+}
+situation_event = {
+	id = gts_ora.1124
+	title = "gts_ora.1124.name"
+	desc = gts_ora.1124.desc
+	picture = GFX_gts_ora_1124
+	show_sound = event_default
+	is_triggered_only = yes
+	immediate = {
+
+	}
+	option = {
+		name = gts_ora.1124.a
+		custom_tooltip = gts_ora.1124.a.custom
+		hidden_effect = {
+
+		}
+	}
+}
+situation_event = {
+	id = gts_ora.1224
+	title = "gts_ora.1224.name"
+	desc = gts_ora.1224.desc
+	picture = GFX_gts_ora_1224
+	show_sound = event_default
+	is_triggered_only = yes
+	immediate = {
+
+	}
+	option = {
+		name = gts_ora.1224.a
+		custom_tooltip = gts_ora.1224.a.custom
+		hidden_effect = {
+
+		}
+	}
+}
+situation_event = {
+	id = gts_ora.1324
+	title = "gts_ora.1324.name"
+	desc = gts_ora.1324.desc
+	picture = GFX_gts_ora_1324
+	show_sound = event_default
+	is_triggered_only = yes
+	immediate = {
+
+	}
+	option = {
+		name = gts_ora.1324.a
+		custom_tooltip = gts_ora.1324.a.custom
+		hidden_effect = {
+
+		}
+	}
+}
+
+country_event = {
+	#生成舰娘
+	id = gts_ora.1025
+	title = "gts_ora.1025.name"
+	desc = gts_ora.1025.desc
+	picture = GFX_gts_ora_1025
+	is_triggered_only = yes
+	immediate = {
+
+	}
+	option = {
+		name = gts_ora.1025.a
+		custom_tooltip = gts_ora.1025.a.custom
+		root = {
+			enable_special_project = {
+				name = gts_ora_project_search
+				location = event_target:planet_lone_star_prison
+			}
+		}
+		hidden_effect = {
+		}
+	}
+	after = {
+		gts_create_mora_fleet = yes
+	}
+}
+country_event = {
+	#研究完成后特殊事件(有舰娘才刷的那个)
+	id = gts_ora.1026
+	title = "gts_ora.1026.name"
+	desc = gts_ora.1026.desc
+	picture = GFX_gts_ora_1026
+	is_triggered_only = yes
+	immediate = {
+
+	}
+	option = {
+		name = gts_ora.1026.a
+		custom_tooltip = gts_ora.1026.a.custom
+		hidden_effect = {
+
+		}
+	}
+	after = {
+		start_situation = {
+			type = gts_situation_ora_engagement
+		}
+		random_system = {
+ limit = { gts_intel_anchor_system = { COUNTRY = root } }
+ save_event_target_as = gts_intel_spawn_anchor
+ 
+ spawn_system = {
+ min_distance = 1
+ max_distance = 5
+ max_jumps = 0
+ hyperlane = no
+ initializer = gts_ora_2_system
+ effect = {
+  
+  
+ }
+}
+}
+
+	}
+}
+fleet_event = {
+	id = gts_ora.1027
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		solar_system = {
+			has_star_flag = gts_ora_2_system
+		}
+		any_owned_ship = {
+			is_system_locked = no
+		}
+	}
+	immediate = {
+		if = {
+			limit = {
+				NOT = { exists = event_target:gts_ora_2_system_first_leader }
+				exists = fleet.leader
+			}
+			fleet.leader = {
+				save_event_target_as = gts_ora_2_system_first_leader
+			}
+			fleet = {
+				add_modifier = {
+					modifier = gts_ora_damage_resist_target
+				}
+			}
+		}
+		every_owned_ship = {
+			limit = {
+				is_system_locked = no
+			}
+			set_system_locked = yes
+		}
+	}
+}
+
+situation_event = {
+	id = gts_ora.1028
+	title = "gts_ora.1028.name"
+	desc = gts_ora.1028.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_1028_room
+	}
+	immediate = {
+		set_situation_locked = yes
+	}
+	option = {
+		name = gts_ora.1028.a
+		custom_tooltip = gts_ora.1028.a.custom
+		hidden_effect = {
+			random_country = {
+				limit = {
+					has_country_flag = gts_ora_2_system_swarm
+				}
+				create_fleet = {
+					name = "NAME_gts_ora_2_system_swarm"
+					settings = {
+						spawn_debris = no
+						#is_boss = yes
+					}
+					effect = {
+						set_owner = event_target:gts_ora_2_system_swarm_country
+						while = {
+							count = 30
+							create_ship = {
+								name = "NAME_gts_ora_2_system_swarm"
+								design = "NAME_Swarm_Large"
+							}
+						}
+						while = {
+							count = 100
+							create_ship = {
+								name = "NAME_gts_ora_2_system_swarm"
+								design = "NAME_Swarm_Small"
+							}
+						}
+						set_location = event_target:gts_ora_2_system
+						set_fleet_stance = aggressive
+						set_aggro_range_measure_from = self
+						set_aggro_range = 500
+					}
+				}
+			}
+
+
+		}
+	}
+}
+country_event = {
+	id = gts_ora.1128
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = {
+		#用country_flag
+		from = {
+			has_country_flag = gts_ora_2_system_swarm
+		}
+	}
+	immediate = {
+		every_situation = {
+			limit = {
+				has_situation_flag = gts_situation_ora_engagement
+			}
+			set_situation_locked = no
+		}
+	}
+}
+
+situation_event = {
+	id = gts_ora.1029
+	title = "gts_ora.1029.name"
+	desc = gts_ora.1029.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_1029_room
+	}
+	immediate = {
+		set_situation_locked = yes
+	}
+	option = {
+		name = gts_ora.1029.a
+		custom_tooltip = gts_ora.1029.a.custom
+		hidden_effect = {
+			situation_event = {
+				id = gts_ora.1129
+			}
+		}
+	}
+}
+situation_event = {
+	id = gts_ora.1129
+	title = "gts_ora.1129.name"
+	desc = gts_ora.1129.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_1129_room
+	}
+	immediate = {
+
+	}
+	option = {
+		name = gts_ora.1129.a
+		custom_tooltip = gts_ora.1129.a.custom
+		hidden_effect = {
+			random_country = {
+				limit = {
+					has_country_flag = gts_ora_2_system_swarm
+				}
+				create_fleet = {
+					name = "NAME_gts_ora_2_system_swarm"
+					settings = {
+						spawn_debris = no
+						#is_boss = yes
+					}
+					effect = {
+						set_owner = event_target:gts_ora_2_system_swarm_country
+						while = {
+							count = 45
+							create_ship = {
+								name = "NAME_gts_ora_2_system_swarm"
+								design = "NAME_Swarm_Large"
+							}
+						}
+						while = {
+							count = 150
+							create_ship = {
+								name = "NAME_gts_ora_2_system_swarm"
+								design = "NAME_Swarm_Small"
+							}
+						}
+						set_location = event_target:gts_ora_2_system
+						set_fleet_stance = aggressive
+						set_aggro_range_measure_from = self
+						set_aggro_range = 500
+					}
+				}
+			}
+		}
+	}
+}
+situation_event = {
+	id = gts_ora.1030
+	title = "gts_ora.1030.name"
+	desc = gts_ora.1030.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_1030_room
+	}
+	immediate = {
+		set_situation_locked = yes
+	}
+	option = {
+		name = gts_ora.1030.a
+		custom_tooltip = gts_ora.1030.a.custom
+		hidden_effect = {
+			situation_event = {
+				id = gts_ora.1130
+			}
+		}
+	}
+}
+situation_event = {
+	id = gts_ora.1130
+	title = "gts_ora.1130.name"
+	desc = gts_ora.1130.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_1130_room
+	}
+	immediate = {
+
+	}
+	option = {
+		name = gts_ora.1130.a
+		custom_tooltip = gts_ora.1130.a.custom
+		hidden_effect = {
+			random_country = {
+				limit = {
+					has_country_flag = gts_ora_2_system_swarm
+				}
+				create_fleet = {
+					name = "NAME_gts_ora_2_system_swarm"
+					settings = {
+						spawn_debris = no
+						#is_boss = yes
+					}
+					effect = {
+						set_owner = event_target:gts_ora_2_system_swarm_country
+						while = {
+							count = 60
+							create_ship = {
+								name = "NAME_gts_ora_2_system_swarm"
+								design = "NAME_Swarm_Large"
+							}
+						}
+						while = {
+							count = 200
+							create_ship = {
+								name = "NAME_gts_ora_2_system_swarm"
+								design = "NAME_Swarm_Small"
+							}
+						}
+						set_location = event_target:gts_ora_2_system
+						set_fleet_stance = aggressive
+						set_aggro_range_measure_from = self
+						set_aggro_range = 500
+					}
+				}
+			}
+		}
+	}
+}
+situation_event = {
+	id = gts_ora.1031
+	title = "gts_ora.1031.name"
+	desc = gts_ora.1031.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_1031_room
+	}
+	immediate = {
+		set_situation_locked = yes
+	}
+	option = {
+		name = gts_ora.1031.a
+		custom_tooltip = gts_ora.1031.a.custom
+		hidden_effect = {
+			situation_event = {
+				id = gts_ora.1131
+			}
+		}
+	}
+}
+situation_event = {
+	id = gts_ora.1131
+	title = "gts_ora.1131.name"
+	desc = gts_ora.1131.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_1131_room
+	}
+	immediate = {
+
+	}
+	option = {
+		name = gts_ora.1131.a
+		custom_tooltip = gts_ora.1131.a.custom
+		hidden_effect = {
+			random_country = {
+				limit = {
+					has_country_flag = gts_ora_2_system_swarm
+				}
+				create_fleet = {
+					name = "NAME_gts_ora_2_system_swarm"
+					settings = {
+						spawn_debris = no
+						#is_boss = yes
+					}
+					effect = {
+						set_owner = event_target:gts_ora_2_system_swarm_country
+						while = {
+							count = 80
+							create_ship = {
+								name = "NAME_gts_ora_2_system_swarm"
+								design = "NAME_Swarm_Large"
+							}
+						}
+						while = {
+							count = 260
+							create_ship = {
+								name = "NAME_gts_ora_2_system_swarm"
+								design = "NAME_Swarm_Small"
+							}
+						}
+						set_location = event_target:gts_ora_2_system
+						set_fleet_stance = aggressive
+						set_aggro_range_measure_from = self
+						set_aggro_range = 500
+					}
+				}
+			}
+		}
+	}
+}
+situation_event = {
+	id = gts_ora.1032
+	title = "gts_ora.1032.name"
+	desc = gts_ora.1032.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_1032_room
+	}
+	immediate = {
+		set_situation_locked = yes
+	}
+	option = {
+		name = gts_ora.1032.a
+		custom_tooltip = gts_ora.1032.a.custom
+		hidden_effect = {
+			random_country = {
+				limit = {
+					has_country_flag = gts_ora_2_system_swarm
+				}
+				create_fleet = {
+					name = "NAME_gts_ora_2_system_swarm"
+					settings = {
+						spawn_debris = no
+						#is_boss = yes
+					}
+					effect = {
+						set_owner = event_target:gts_ora_2_system_swarm_country
+						while = {
+							count = 50
+							create_ship = {
+								name = "NAME_gts_ora_2_system_swarm"
+								design = "NAME_Swarm_Large"
+							}
+						}
+						while = {
+							count = 180
+							create_ship = {
+								name = "NAME_gts_ora_2_system_swarm"
+								design = "NAME_Swarm_Small"
+							}
+						}
+						set_location = event_target:gts_ora_2_system
+						set_fleet_stance = aggressive
+						set_aggro_range_measure_from = self
+						set_aggro_range = 500
+					}
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_ora.1033
+	title = "gts_ora.1033.name"
+	desc = gts_ora.1033.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_1033_room
+	}
+	immediate = {
+		random_system = {
+ limit = { gts_intel_anchor_system = { COUNTRY = root } }
+ save_event_target_as = gts_intel_spawn_anchor
+ 
+ spawn_system = {
+ min_distance = 1
+ max_distance = 5
+ max_jumps = 0
+ hyperlane = no
+ initializer = gts_ora_end_system
+ effect = {
+  
+  
+ }
+}
+}
+	}
+	option = {
+		name = gts_ora.1033.a
+		custom_tooltip = gts_ora.1033.a.custom
+		hidden_effect = {
+			country_event = {
+				id = gts_ora.1034
+			}
+		}
+	}
+	option = {
+		name = gts_ora.1033.b
+		custom_tooltip = gts_ora.1033.b.custom
+		hidden_effect = {
+			enable_special_project = {
+				name = gts_ora_project_end_b
+				location = event_target:gts_ora_end_star
+			}
+		}
+	}
+	option = {
+		name = gts_ora.1033.c
+		custom_tooltip = gts_ora.1033.c.custom
+		hidden_effect = {
+			enable_special_project = {
+				name = gts_ora_project_end_a
+				location = event_target:gts_ora_end_star
+			}
+		}
+	}
+	after = {
+
+	}
+}
+country_event = {
+	id = gts_ora.1034
+	title = "gts_ora.1034.name"
+	desc = gts_ora.1034.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_1034_room
+	}
+	immediate = {
+
+	}
+	option = {
+		name = gts_ora.1034.a
+		custom_tooltip = gts_ora.1034.a.custom
+		hidden_effect = {
+			enable_special_project = {
+				name = gts_ora_project_end_a
+				location = event_target:gts_ora_end_star
+			}
+		}
+	}
+	after = {
+
+	}
+}
+country_event = {
+	id = gts_ora.1035
+	title = "gts_ora.1035.name"
+	desc = gts_ora.1035.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_1035_room
+	}
+	immediate = {
+
+	}
+	option = {
+		name = gts_ora.1035.a
+		custom_tooltip = gts_ora.1035.a.custom
+		hidden_effect = {
+		}
+	}
+	after = {
+		country_event = {
+			id = gts_ora.1099
+			days = 3
+		}
+	}
+}
+country_event = {
+	id = gts_ora.1036
+	title = "gts_ora.1036.name"
+	desc = gts_ora.1036.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_1317_room
+	}
+	immediate = {
+
+	}
+	option = {
+		name = gts_ora.1036.a
+		custom_tooltip = gts_ora.1036.a.custom
+		hidden_effect = {
+		}
+	}
+	option = {
+		name = gts_ora.1036.b
+		custom_tooltip = gts_ora.1036.b.custom
+		hidden_effect = {
+		}
+	}
+	after = {
+		country_event = {
+			id = gts_ora.1099
+			days = 1
+		}
+	}
+}
+
+country_event = {
+	id = gts_ora.1099
+	title = gts_ora.1099.name
+	desc = gts_ora.1099.desc
 	is_triggered_only = yes
 	event_window_type = leader_recruit
 	immediate = {
@@ -2019,23 +4840,34 @@ country_event = {
 		tag = dismiss_leader
 	}
 	option = {
-		name = gts_ora.10001.a
-		response_text = gts_ora.10001.a.response
+		name = gts_ora.1099.a
+		response_text = gts_ora.1099.a.response
 		is_dialog_only = yes
 	}
 	option = {
-		name = gts_ora.10001.b
-		response_text = gts_ora.10001.b.response
+		name = gts_ora.1099.b
+		response_text = gts_ora.1099.b.response
 		is_dialog_only = yes
 	}
 	option = {
-		name = gts_ora.10001.d
+		name = gts_ora.1099.c
+		response_text = gts_ora.1099.c.response
+		custom_tooltip = gts_ora.1099.c.custom
+		is_dialog_only = yes
+		trigger = {
+			always = no
+		}
+	}
+	option = {
+		name = gts_ora.1099.d
 		tag = hire_leader
 		hidden_effect = {
 			gts_leader_hire_effect = { TYPE = legendary }
+			set_country_flag = gts_orangez_hired
 		}
 	}
 	after = {
+		gts_create_orangez_fleet = yes
 		hidden_effect = {
 			event_target:gts_ora = {
 				set_variable = {
@@ -2046,26 +4878,272 @@ country_event = {
 		}
 	}
 }
+#舰船,和摧毁
+planet_event = {
+	id = gts_ora.2001
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {#天灾老三样
+
+		# 天災相關
+
+		# Contingency Machine World
+		if = {
+			limit = {
+				is_planet_class = pc_ai
+				NOT = { has_planet_flag = machine_lair }
+			}
+			set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_cracked
+			planet_event = { id = crisis.2040 }
+		}
+
+		# Contingency Final Machine World
+		if = {
+			limit = {
+				is_planet_class = pc_ai
+				has_planet_flag = machine_lair
+			}
+			set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_cracked
+			from.owner = { save_event_target_as = final_machine_world_destroyer }
+			stop_crisis_sound = yes
+			planet_event = { id = crisis.2046 }
+		}
+
+		# Swarm Situation Log counter
+		if = {
+			limit = {
+				exists = owner
+				owner = { is_country_type = swarm }
+			}
+			every_country = {
+				limit = { has_event_chain = "prethoryn_scourge_chain" }
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds"
+					amount = -1
+				}
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds_cleansed"
+					amount = 1
+				}
+			}
+		}
+
+		# 產生威脅度
+
+		if = {
+			limit = {
+				exists = owner
+				owner = {
+					NOT = { is_same_value = from.owner }
+					OR = {
+						is_country_type = default
+						is_country_type = fallen_empire
+						is_country_type = awakened_fallen_empire
+					}
+				}
+			}
+			# Generate threat
+			if = {
+				limit = {
+					is_colony = yes
+				}
+				add_threat = { who = from.owner amount = 3 }
+				# modifier for allies + those upset by genocide
+				every_country = {
+					limit = {
+						NOR = {
+							is_same_value = from.owner
+							is_same_value = root.owner
+							AND = {
+								has_federation = yes
+								is_in_federation_with = from.owner
+							}
+						}
+						OR = {
+							has_communications = from.owner
+							has_communications = root.owner
+						}
+						OR = {
+							AND = {
+								has_federation = yes
+								is_in_federation_with = root.owner
+							}
+							has_ai_personality = awakened_fallen_empire_xenophile
+							AND = {
+								is_country_type = default
+								OR = {
+									is_egalitarian = yes
+									is_xenophile = yes
+								}
+							}
+						}
+					}
+				}
+			}
+			else = {
+				add_threat = { who = from.owner amount = 1 }
+			}
+
+		}
+
+		# 產生倦怠度
+
+		# Add war exhaustion to planet owner
+		if = {
+			limit = {
+				exists = owner
+			}
+			owner = {
+				if = {
+					limit = { #isn't the case when the crisis bombards planets, for instance
+						is_at_war_with = from.owner
+					}
+					add_static_war_exhaustion = {
+						attacker = from.owner
+						location = root
+						value_for_planet_destruction = 1.0
+					}
+				}
+			}
+		}
+
+		# 摧毀軌道站
+
+		if = {
+			limit = {
+				exists = orbital_defence
+			}
+			destroy_fleet = orbital_defence
+		}
+		# 占领星球并拆建筑
+
+		remove_all_buildings = yes
+
+		# 拆觀測站
+
+		if = {
+			limit = {
+				has_observation_outpost = yes
+			}
+			observation_outpost = {
+				dismantle = yes
+			}
+		}
+
+		# 別人的球
+
+		if = {
+			limit = {
+				exists = owner
+				owner = { NOT = { is_same_value = from.owner } }
+			}
+
+			gts_set_count_kill_pop_effect = yes
+
+			root = {
+				# 計算人口數量
+				export_trigger_value_to_variable = {
+					trigger = pop_amount
+					variable = gts_bruh_get_planet_killed_pop_count
+				}
+				# 計算城市數量
+				export_trigger_value_to_variable = {
+					trigger = pop_amount
+					variable = gts_bruh_get_planet_destroyed_city_count
+				}
+				divide_variable = {
+					which = gts_bruh_get_planet_destroyed_city_count
+					value = 100
+				}
+				round_variable = gts_bruh_get_planet_destroyed_city_count
+				# 計算經驗獲取
+				export_trigger_value_to_variable = {
+					trigger = pop_amount
+					variable = gts_bruh_get_experience_count
+				}
+				divide_variable = {
+					which = gts_bruh_get_experience_count
+					value = 100
+				}
+				round_variable = gts_bruh_get_experience_count
+			}
+
+			event_target:gts_hitomi = {
+				change_variable = {
+					which = gts_city_kills_logs
+					value = root.gts_bruh_get_planet_destroyed_city_count
+				}
+				change_variable = {
+					which = gts_planet_kills_logs
+					value = 1
+				}
+			}
+
+			from.owner = {
+				# country_event = { id = gts_ora.2003 }
+			}
+		}
+
+		set_owner = from.owner
 
 
+	}
 
+	after = {
 
+	}
+}
+fleet_event = {
+	id = gts_ora.2002
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		if = {
+			limit = {
+				has_fleet_flag = gts_ora_orangez_ship_design_2
+			}
+			every_owned_ship = {
+				limit = {
+					is_ship_size = gts_orangez_ship
+				}
+				set_ship_design = {
+					design = NAME_gts_orangez_ship_1
+				}
+			}
+			remove_fleet_flag = gts_ora_orangez_ship_design_2
+		}
+		else = {
+			every_owned_ship = {
+				limit = {
+					is_ship_size = gts_orangez_ship
+				}
+				set_ship_design = {
+					design = NAME_gts_orangez_ship_2
+				}
+			}
+			set_fleet_flag = gts_ora_orangez_ship_design_2
+		}
+	}
+	after = {
+
+	}
+}
 country_event = {
-	id = gts_ora.10000
-	title = "gts_ora.10000.name"
-	desc = gts_ora.10000.desc
-	picture = GFX_gts_event_bfbf_delay
+	id = gts_ora.2003
+	title = "gts_ora.2003.name"
+	desc = gts_ora.2003.desc
+	picture = GFX_gts_ora_2003
 	is_triggered_only = yes
 	immediate = {
 
 	}
 	option = {
-		name = gts_ora.10000.a
-		custom_tooltip = gts_ora.10000.a.custom
-		country_event = {
-			id = gts_ora.10001
-			years = 35
-		}
+		name = gts_ora.2003.a
+		custom_tooltip = gts_ora.2003.a.custom
 		hidden_effect = {
 
 		}
@@ -2074,6 +5152,1243 @@ country_event = {
 
 	}
 }
+
+#小橘   3000
+country_event = {
+	id = gts_ora.3001
+	title = "gts_ora.3001.name"
+	desc = gts_ora.3001.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_3001_room
+	}
+	fire_only_once = yes
+	trigger = {
+		has_country_flag = gts_ora_small_start
+	}
+	option = {
+		name = gts_ora.3001.a
+		custom_tooltip = gts_ora.3001.a.custom
+	}
+	option = {
+		name = gts_ora.3001.b
+		trigger = {
+			OR = {
+				has_ethic = ethic_xenophobe
+				has_ethic = ethic_fanatic_xenophobe
+			}
+		}
+		custom_tooltip = gts_ora.3001.a.custom
+	}
+	after = {
+		if = {
+			limit = {
+				exists = event_target:planet_lone_star_prison
+				NOT = { has_special_project = gts_ora_financial_report_project }
+			}
+			enable_special_project = {
+				name = gts_ora_financial_report_project
+				location = event_target:planet_lone_star_prison
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_ora.3011
+	title = "gts_ora.3011.name"
+	desc = gts_ora.3011.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_3011_room
+	}
+	option = {
+		name = gts_ora.3011.a
+	}
+	option = {
+		name = gts_ora.3011.b
+	}
+	option = {
+		name = gts_ora.3011.c
+		trigger = {
+			OR = {
+				has_ethic = ethic_xenophobe
+				has_ethic = ethic_fanatic_xenophobe
+			}
+		}
+	}
+	after = {
+		every_situation = {
+			limit = {
+				is_situation_type = gts_situation_ora_little_orange
+			}
+			add_situation_progress = 25
+		}
+		country_event = {
+			id = gts_ora.3002
+			years = 5
+		}
+	}
+}
+country_event = {
+	id = gts_ora.3002
+	title = "gts_ora.3002.name"
+	desc = gts_ora.3002.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_3002_room
+	}
+	fire_only_once = yes
+	trigger = {
+		has_country_flag = gts_ora_small_start
+	}
+	immediate = {
+
+	}
+	option = {
+		name = gts_ora.3002.a
+		custom_tooltip = gts_ora.3002.a.custom
+		hidden_effect = {
+			country_event = { id = gts_ora.3012 }
+		}
+	}
+	after = {
+
+	}
+}
+country_event = {
+	id = gts_ora.3012
+	title = "gts_ora.3012.name"
+	desc = gts_ora.3012.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_3012_room
+	}
+	option = {
+		name = gts_ora.3012.a
+	}
+	after = {
+		every_situation = {
+			limit = {
+				is_situation_type = gts_situation_ora_little_orange
+			}
+			add_situation_progress = 25
+		}
+		country_event = {
+			id = gts_ora.3003
+			years = 5
+		}
+	}
+}
+country_event = {
+	id = gts_ora.3003
+	title = "gts_ora.3003.name"
+	desc = gts_ora.3003.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_3003_room
+	}
+	fire_only_once = yes
+	trigger = {
+		has_country_flag = gts_ora_small_start
+	}
+	immediate = {
+
+	}
+	option = {
+		name = gts_ora.3003.a
+		hidden_effect = {
+
+		}
+	}
+	after = {
+		every_situation = {
+			limit = {
+				is_situation_type = gts_situation_ora_little_orange
+			}
+			add_situation_progress = 25
+		}
+		country_event = {
+			id = gts_ora.3004
+			years = 5
+		}
+	}
+}
+country_event = {
+	id = gts_ora.3004
+	title = "gts_ora.3004.name"
+	desc = gts_ora.3004.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_3004_room
+	}
+	fire_only_once = yes
+	trigger = {
+		has_country_flag = gts_ora_small_start
+	}
+	immediate = {
+
+	}
+	option = {
+		name = gts_ora.3004.a
+		hidden_effect = {
+			country_event = { id = gts_ora.3014 }
+		}
+	}
+	after = {
+
+	}
+}
+country_event = {
+	id = gts_ora.3014
+	title = "gts_ora.3014.name"
+	desc = gts_ora.3014.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_3014_room
+	}
+	option = {
+		name = gts_ora.3014.a
+	}
+	option = {
+		name = gts_ora.3014.b
+		trigger = {
+			exists = event_target:gts_ora
+			event_target:gts_ora = {
+				has_trait = gts_trait_ora2
+			}
+		}
+	}
+	after = {
+		every_situation = {
+			limit = {
+				is_situation_type = gts_situation_ora_little_orange
+			}
+			add_situation_progress = 25
+		}
+	}
+}
+country_event = {
+	id = gts_ora.3020
+	title = gts_ora.3020.name
+	desc = gts_ora.3020.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_3020_room
+	}
+	trigger = {
+		exists = event_target:gts_ora
+		event_target:gts_ora = {
+			is_owned_by = root
+		}
+	}
+	option = {
+		name = gts_ora.3020.a
+		hidden_effect = {
+			country_event = { id = gts_ora.3021 }
+		}
+	}
+	option = {
+		name = gts_ora.3020.b
+		hidden_effect = {
+			country_event = { id = gts_ora.3021 }
+		}
+	}
+}
+country_event = {
+	id = gts_ora.3021
+	title = gts_ora.3021.name
+	desc = gts_ora.3021.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_3021_room
+	}
+	trigger = {
+		exists = event_target:gts_ora
+		event_target:gts_ora = {
+			is_owned_by = root
+		}
+	}
+	option = {
+		name = gts_ora.3021.a
+		hidden_effect = {
+			country_event = { id = gts_ora.3022 }
+		}
+	}
+}
+country_event = {
+	id = gts_ora.3022
+	title = gts_ora.3022.name
+	desc = gts_ora.3022.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_3022_room
+	}
+	trigger = {
+		exists = event_target:gts_ora
+		event_target:gts_ora = {
+			is_owned_by = root
+		}
+	}
+	option = {
+		name = gts_ora.3022.a
+		custom_tooltip = gts_ora.3022.a.custom
+	}
+	after = {
+		hidden_effect = {
+			if = {
+				limit = {
+					exists = event_target:planet_lone_star_prison
+				}
+				event_target:planet_lone_star_prison = {
+					add_modifier = {
+						modifier = gts_ora_orange_soda_summer
+						days = -1
+					}
+				}
+			}
+			set_country_flag = gts_ora_stage1_stories_unlocked
+		}
+	}
+}
+
+
+
+#联动内容4000
+country_event = {
+	id = gts_ora.4000
+	title = special_ui
+	desc = special_ui
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_ora_book_small_1"
+	immediate = {
+		remove_country_flag = gts_ora_book_detail_opened
+		remove_country_flag = gts_ora_book_qhai_detail_opened
+		remove_country_flag = gts_ora_book_huatian_detail_opened
+		remove_country_flag = gts_ora_book_qinwen_detail_opened
+		remove_country_flag = gts_ora_book_hitomi_detail_opened
+		if = {
+			limit = {
+				NOT = { is_variable_set = gts_ora_book_small_page }
+			}
+			set_variable = {
+				which = gts_ora_book_small_page
+				value = 1
+			}
+		}
+	}
+	option = {
+		name = special_ui
+	}
+	after = {
+		remove_country_flag = gts_ora_book_detail_opened
+		remove_country_flag = gts_ora_book_qhai_detail_opened
+		remove_country_flag = gts_ora_book_huatian_detail_opened
+		remove_country_flag = gts_ora_book_qinwen_detail_opened
+		remove_country_flag = gts_ora_book_hitomi_detail_opened
+	}
+}
+
+country_event = {
+	id = gts_ora.4001
+	title = gts_ora.4001.name
+	desc = gts_ora.4001.desc
+	picture = GFX_gts_ora_1001
+	is_triggered_only = yes
+	option = {
+		name = gts_ora.4001.a
+	}
+}
+country_event = {
+	id = gts_ora.4002
+	title = gts_ora.4002.name
+	desc = gts_ora.4002.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_4002_room
+	}
+	option = {
+		name = gts_ora.4002.a
+		hidden_effect = {
+			if = {
+				limit = {
+					NOT = { exists = event_target:gts_faralda }
+				}
+				gts_leader_fara_hired = { CHANGE_OWNER = yes }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_ora.4101
+	title = gts_ora.4101.name
+	desc = gts_ora.4101.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_4101_room
+	}
+	fire_only_once = yes
+	option = {
+		name = gts_ora.4101.a
+		hidden_effect = {
+			country_event = { id = gts_ora.4102 }
+		}
+	}
+}
+country_event = {
+	id = gts_ora.4102
+	title = gts_ora.4102.name
+	desc = gts_ora.4102.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_4102_room
+	}
+	option = {
+		name = gts_ora.4102.a
+		hidden_effect = {
+			country_event = { id = gts_ora.4103 }
+		}
+	}
+}
+country_event = {
+	id = gts_ora.4103
+	title = gts_ora.4103.name
+	desc = gts_ora.4103.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_4103_room
+	}
+	option = {
+		name = gts_ora.4103.a
+		hidden_effect = {
+			country_event = { id = gts_ora.4104 }
+		}
+	}
+}
+country_event = {
+	id = gts_ora.4104
+	title = gts_ora.4104.name
+	desc = gts_ora.4104.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_4104_room
+	}
+	option = {
+		name = gts_ora.4104.a
+		hidden_effect = {
+			country_event = { id = gts_ora.4105 }
+		}
+	}
+}
+country_event = {
+	id = gts_ora.4105
+	title = gts_ora.4105.name
+	desc = gts_ora.4105.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_4105_room
+	}
+	option = {
+		name = gts_ora.4105.a
+		hidden_effect = {
+			enable_special_project = {
+				name = gts_ora_qhai_gift_project
+				owner = root
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_ora.4106
+	title = gts_ora.4106.name
+	desc = gts_ora.4106.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_4106_room
+	}
+	trigger = {
+		has_country_flag = gts_ora_qhai_gift_finished
+		NOT = { has_country_flag = gts_qhai_starfall_outfit }
+	}
+	option = {
+		name = gts_ora.4106.a
+		hidden_effect = {
+			set_country_flag = gts_qhai_starfall_outfit
+			enable_special_project = {
+				name = gts_ora_qhai_stream_project
+				owner = root
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_ora.4107
+	title = gts_ora.4107.name
+	desc = gts_ora.4107.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_4107_room
+	}
+	option = {
+		name = gts_ora.4107.a
+		hidden_effect = {
+			set_country_flag = gts_ora_qhai_vote_unlocked
+		}
+	}
+}
+country_event = {
+	id = gts_ora.4108
+	title = gts_ora.4108.name
+	desc = gts_ora.4108.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_4108_room
+	}
+	option = {
+		name = gts_ora.4108.a
+		hidden_effect = {
+			save_event_target_as = crisis_country
+			if = {
+				limit = { exists = event_target:gts_ora_qhai_vote_system }
+				event_target:gts_ora_qhai_vote_system = {
+					destroy_star_system = yes
+				}
+			}
+			give_specimen = {
+				key = specimen_gts_ora_qhai_miniature_galaxy
+				origin = specimen_gts_ora_qhai_miniature_galaxy
+			}
+			every_owned_leader = {
+				limit = { has_leader_flag = gts_qhai }
+				add_trait = gts_trait_qhai_virtual_idol
+			}
+			set_country_flag = gts_ora_qhai_finished
+		}
+	}
+}
+
+country_event = {
+	id = gts_ora.4201
+	title = gts_ora.4201.name
+	desc = gts_ora.4201.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_ora_4201_room
+	}
+	option = {
+		name = gts_ora.4201.a
+		hidden_effect = {
+			country_event = { id = gts_ora.4202 }
+		}
+	}
+}
+country_event = {
+	id = gts_ora.4202
+	title = gts_ora.4202.name
+	desc = gts_ora.4202.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_ora_4202_room
+	}
+	option = {
+		name = gts_ora.4202.a
+		hidden_effect = {
+			random_system = {
+				limit = { has_star_flag = gts_ora_system }
+				star = {
+					enable_special_project = {
+						name = gts_ora_huatian_contact_project
+						owner = root
+						location = this
+					}
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_ora.4203
+	title = gts_ora.4203.name
+	desc = gts_ora.4203.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_4203_room
+	}
+	option = {
+		name = gts_ora.4203.a
+		hidden_effect = {
+			country_event = { id = gts_ora.4204 }
+		}
+	}
+}
+country_event = {
+	id = gts_ora.4204
+	title = gts_ora.4204.name
+	desc = gts_ora.4204.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_4204_room
+	}
+	option = {
+		name = gts_ora.4204.a
+		hidden_effect = {
+			country_event = { id = gts_ora.4205 }
+		}
+	}
+}
+country_event = {
+	id = gts_ora.4205
+	title = gts_ora.4205.name
+	desc = gts_ora.4205.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_4205_room
+	}
+	option = {
+		name = gts_ora.4205.a
+		hidden_effect = {
+			country_event = { id = gts_ora.4206 }
+		}
+	}
+}
+country_event = {
+	id = gts_ora.4206
+	title = gts_ora.4206.name
+	desc = gts_ora.4206.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_4206_room
+	}
+	option = {
+		name = gts_ora.4206.a
+		hidden_effect = {
+			country_event = { id = gts_ora.4207 }
+		}
+	}
+}
+country_event = {
+	id = gts_ora.4207
+	title = gts_ora.4207.name
+	desc = gts_ora.4207.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_4207_room
+	}
+	option = {
+		name = gts_ora.4207.a
+		hidden_effect = {
+			country_event = { id = gts_ora.4208 }
+		}
+	}
+}
+country_event = {
+	id = gts_ora.4208
+	title = gts_ora.4208.name
+	desc = gts_ora.4208.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = gts_ora_4208_room
+	}
+	option = {
+		name = gts_ora.4208.a
+		hidden_effect = {
+			country_event = { id = gts_ora.4209 }
+		}
+	}
+}
+country_event = {
+	id = gts_ora.4209
+	title = gts_ora.4209.name
+	desc = gts_ora.4209.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_4209_room
+	}
+	option = {
+		name = gts_ora.4209.a
+		hidden_effect = {
+			country_event = { id = gts_ora.4210 }
+		}
+	}
+}
+country_event = {
+	id = gts_ora.4210
+	title = gts_ora.4210.name
+	desc = gts_ora.4210.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_4210_room
+	}
+	option = {
+		name = gts_ora.4210.a
+		hidden_effect = {
+			country_event = { id = gts_ora.4211 }
+		}
+	}
+}
+country_event = {
+	id = gts_ora.4211
+	title = gts_ora.4211.name
+	desc = gts_ora.4211.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_4211_room
+	}
+	option = {
+		name = gts_ora.4211.a
+		hidden_effect = {
+			give_specimen = {
+				key = specimen_gts_ora_huatian_miniature_city
+				origin = specimen_gts_ora_huatian_miniature_city
+			}
+			every_owned_leader = {
+				limit = { has_leader_flag = gts_huatian }
+				add_trait = gts_trait_leader_huatian_orange_blossom
+			}
+			set_country_flag = gts_ora_huatian_finished
+		}
+	}
+}
+
+country_event = {
+	id = gts_ora.4301
+	title = gts_ora.4301.name
+	desc = gts_ora.4301.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_4301_room
+	}
+	option = {
+		name = gts_ora.4301.a
+		hidden_effect = {
+			country_event = { id = gts_ora.4302 }
+		}
+	}
+}
+country_event = {
+	id = gts_ora.4302
+	title = gts_ora.4302.name
+	desc = gts_ora.4302.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_4302_room
+	}
+	option = {
+		name = gts_ora.4302.a
+		hidden_effect = {
+			country_event = { id = gts_ora.4303 }
+		}
+	}
+}
+country_event = {
+	id = gts_ora.4303
+	title = gts_ora.4303.name
+	desc = gts_ora.4303.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_4303_room
+	}
+	option = {
+		name = gts_ora.4303.a
+		hidden_effect = {
+			event_target:qinwen_home_planet = {
+				solar_system = {
+					star = {
+						enable_special_project = {
+							name = gts_ora_qinwen_wait_project
+							owner = root
+							location = this
+						}
+					}
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_ora.4304
+	title = gts_ora.4304.name
+	desc = gts_ora.4304.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_4304_room
+	}
+	option = {
+		name = gts_ora.4304.a
+		custom_tooltip =  gts_ora.4304.a.custom
+		hidden_effect = {
+			set_country_flag = gts_ora_qinwen_climate_unlocked
+		}
+	}
+}
+carrier_event = {
+	id = gts_ora.4305
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		is_colony = yes
+		exists = owner
+		solar_system = { has_star_flag = gts_qinwen_system }
+		NOT = { is_planet_class = pc_arctic }
+		owner = {
+			has_country_flag = gts_ora_qinwen_climate_unlocked
+			NOT = { has_country_flag = gts_ora_qinwen_finished }
+			any_owned_leader = { has_leader_flag = gts_qinwen }
+		}
+	}
+	immediate = {
+		owner = {
+			country_event = { id = gts_ora.4306 }
+		}
+	}
+}
+country_event = {
+	id = gts_ora.4306
+	title = gts_ora.4306.name
+	desc = gts_ora.4306.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_4306_room
+	}
+	trigger = {
+		has_country_flag = gts_ora_qinwen_climate_unlocked
+		NOT = { has_country_flag = gts_ora_qinwen_finished }
+		any_owned_leader = { has_leader_flag = gts_qinwen }
+	}
+	immediate = {
+		set_country_flag = gts_ora_qinwen_finished
+	}
+	option = {
+		name = gts_ora.4306.a
+		custom_tooltip = gts_ora.4306.a.custom
+		hidden_effect = {
+			every_owned_leader = {
+				limit = { has_leader_flag = gts_qinwen }
+				add_trait = { trait = gts_trait_qinwen_ora_link }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_ora.4401
+	title = gts_ora.4401.name
+	desc = gts_ora.4401.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_4401_room
+	}
+	option = {
+		name = gts_ora.4401.a
+		hidden_effect = {
+			country_event = { id = gts_ora.4402 }
+		}
+	}
+}
+country_event = {
+	id = gts_ora.4402
+	title = gts_ora.4402.name
+	desc = gts_ora.4402.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_4402_room
+	}
+	option = {
+		name = gts_ora.4402.a
+		hidden_effect = {
+			country_event = { id = gts_ora.4403 }
+		}
+	}
+}
+country_event = {
+	id = gts_ora.4403
+	title = gts_ora.4403.name
+	desc = gts_ora.4403.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_4403_room
+	}
+	option = {
+		name = gts_ora.4403.a
+		hidden_effect = {
+			enable_special_project = {
+				name = gts_ora_hitomi_wait_project
+				owner = root
+			}
+		}
+	}
+}
+country_event = {
+	id = gts_ora.4404
+	title = gts_ora.4404.name
+	desc = gts_ora.4404.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_4404_room
+	}
+	option = {
+		name = gts_ora.4404.a
+		hidden_effect = {
+			country_event = { id = gts_ora.4405 }
+		}
+	}
+}
+country_event = {
+	id = gts_ora.4405
+	title = gts_ora.4405.name
+	desc = gts_ora.4405.desc
+	diplomatic = yes
+	picture = GFX_evt_mysterious_signal
+	picture_event_data = {
+		trigger = { exists = event_target:gts_hitomi_yuyue }
+		portrait = event_target:gts_hitomi_yuyue
+		room = ethic_spaceship_room
+	}
+	picture_event_data = {
+		trigger = { NOT = { exists = event_target:gts_hitomi_yuyue } }
+		portrait = gts_portrait_hitomi_2
+		room = ethic_spaceship_room
+	}
+	is_triggered_only = yes
+	immediate = {
+		remove_country_flag = gts_ora_hitomi_creator_discussed
+	}
+	option = {
+		name = gts_ora.4405.a
+		response_text = gts_ora.4405.a.response
+		is_dialog_only = yes
+		hidden_effect = {
+			set_country_flag = gts_ora_hitomi_creator_discussed
+		}
+	}
+	option = {
+		name = gts_ora.4405.b
+		allow = {
+			custom_tooltip = {
+				fail_text = gts_ora.4405.b.requirement
+				has_country_flag = gts_ora_hitomi_creator_discussed
+			}
+		}
+		hidden_effect = {
+			country_event = { id = gts_ora.4406 }
+		}
+	}
+	after = {
+		remove_country_flag = gts_ora_hitomi_creator_discussed
+	}
+}
+country_event = {
+	id = gts_ora.4406
+	title = gts_ora.4406.name
+	desc = gts_ora.4406.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_4406_room
+	}
+	option = {
+		name = gts_ora.4406.a
+		hidden_effect = {
+			country_event = { id = gts_ora.4407 }
+		}
+	}
+}
+country_event = {
+	id = gts_ora.4407
+	title = gts_ora.4407.name
+	desc = gts_ora.4407.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_4407_room
+	}
+	option = {
+		name = gts_ora.4407.a
+		hidden_effect = {
+			country_event = { id = gts_ora.4408 }
+		}
+	}
+}
+country_event = {
+	id = gts_ora.4408
+	title = gts_ora.4408.name
+	desc = gts_ora.4408.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_4408_room
+	}
+	option = {
+		name = gts_ora.4408.a
+		allow = {
+			any_owned_leader = { has_leader_flag = gts_hitomi_yuyue }
+		}
+		custom_tooltip = gts_ora.4408.a.custom
+		hidden_effect = {
+			set_variable = { which = gts_ora_hitomi_reward value = 1 }
+			every_owned_leader = {
+				limit = { has_leader_flag = gts_hitomi_yuyue }
+				add_trait = { trait = gts_trait_hitomi_ora_black_card show_message = no }
+			}
+		}
+	}
+	option = {
+		name = gts_ora.4408.b
+		allow = {
+			any_owned_leader = { has_leader_flag = gts_hitomi_yuyue }
+		}
+		custom_tooltip = gts_ora.4408.b.custom
+		hidden_effect = {
+			set_variable = { which = gts_ora_hitomi_reward value = 2 }
+			every_owned_leader = {
+				limit = { has_leader_flag = gts_hitomi_yuyue }
+				add_trait = { trait = gts_trait_hitomi_ora_salary_card show_message = no }
+			}
+		}
+	}
+	option = {
+		name = gts_ora.4408.c
+		allow = {
+			any_owned_leader = { has_leader_flag = gts_hitomi }
+		}
+		custom_tooltip = gts_ora.4408.c.custom
+		hidden_effect = {
+			set_variable = { which = gts_ora_hitomi_reward value = 3 }
+			every_owned_leader = {
+				limit = { has_leader_flag = gts_hitomi }
+				if = {
+					limit = {
+						OR = {
+							has_trait = gts_trait_hitomi4
+							has_trait = gts_trait_hitomi4_ora
+						}
+					}
+					remove_trait = gts_trait_hitomi3
+					remove_trait = gts_trait_hitomi3_ora
+					remove_trait = gts_trait_hitomi4
+					add_trait = { trait = gts_trait_hitomi4_ora show_message = no }
+				}
+				else = {
+					remove_trait = gts_trait_hitomi3
+					remove_trait = gts_trait_hitomi4
+					remove_trait = gts_trait_hitomi4_ora
+					add_trait = { trait = gts_trait_hitomi3_ora show_message = no }
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_ora.4408.d
+		trigger = {
+			any_owned_leader = { has_leader_flag = gts_mitsuki_hitomi }
+		}
+		custom_tooltip = gts_ora.4408.d.custom
+		hidden_effect = {
+			set_variable = { which = gts_ora_hitomi_reward value = 4 }
+			every_owned_leader = {
+				limit = { has_leader_flag = gts_mitsuki_hitomi }
+				remove_trait = gts_trait_hitomi10
+				add_trait = { trait = gts_trait_hitomi10_ora show_message = no }
+			}
+		}
+	}
+	after = {
+		country_event = { id = gts_ora.4409 days = 120 }
+	}
+}
+country_event = {
+	id = gts_ora.4409
+	title = gts_ora.4409.name
+	desc = gts_ora.4409.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = {
+		room = gts_ora_4409_room
+	}
+	option = {
+		name = gts_ora.4409.a
+		hidden_effect = {
+			set_country_flag = gts_ora_hitomi_finished
+		}
+	}
+}
+
+
+
+
+
+
+
+
 
 
 

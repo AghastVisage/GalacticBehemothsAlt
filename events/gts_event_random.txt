@@ -1599,6 +1599,142 @@ planet_event = {
 	}
 }
 
+# 首次建造：Bruh資源建築（by Bruh）
+planet_event = {
+	id = gts_evt_random.010270
+	title = gts_evt_random.010270.name
+	desc = gts_evt_random.010270.desc
+
+	show_sound = event_default
+	picture = GFX_gts_bruh_event_2
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	location = Root
+
+	option = {
+		name = gts_evt_random.010270.a
+		owner = {
+			add_monthly_resource_mult = {
+				resource = alloys
+				value = 3
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = gts_evt_random.010280
+	title = gts_evt_random.010280.name
+	desc = gts_evt_random.010280.desc
+
+	show_sound = event_default
+	picture = GFX_gts_bruh_event_3
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	location = Root
+
+	option = {
+		name = gts_evt_random.010280.a
+		owner = {
+			add_monthly_resource_mult = {
+				resource = alloys
+				value = 3
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = gts_evt_random.010290
+	title = gts_evt_random.010290.name
+	desc = gts_evt_random.010290.desc
+
+	show_sound = event_default
+	picture = GFX_gts_eyjafjalla_04
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	location = Root
+
+	option = {
+		name = gts_evt_random.010290.a
+		owner = {
+			add_resource = {
+				influence = 10
+			}
+		}
+		add_planet_devastation = 5
+	}
+}
+
+planet_event = {
+	id = gts_evt_random.010300
+	title = gts_evt_random.010300.name
+	desc = gts_evt_random.010300.desc
+
+	show_sound = event_default
+	picture = GFX_evt_clones
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	location = Root
+
+	option = {
+		name = gts_evt_random.010300.a
+		owner = {
+			add_resource = {
+				influence = 10
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = gts_evt_random.010310
+	title = gts_evt_random.010310.name
+	desc = gts_evt_random.010310.desc
+
+	show_sound = event_default
+	picture = GFX_gts_xinuo_4
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	location = Root
+
+	option = {
+		name = gts_evt_random.010310.a
+		owner = {
+			add_resource = {
+				influence = 10
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = gts_evt_random.010320
+	title = gts_evt_random.010320.name
+	desc = gts_evt_random.010320.desc
+
+	show_sound = event_default
+	picture = GFX_gts_event_10
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	location = Root
+
+	option = {
+		name = gts_evt_random.010320.a
+		owner = {
+			add_resource = {
+				influence = 10
+			}
+		}
+	}
+}
+
 #02xxxz:随机陆战事件
 planet_event = {
 	id = gts_evt_random.020009
@@ -1840,7 +1976,7 @@ country_event = {
 
 	option = {
 		name = gts_evt_random.020012.a
-		custom_tooltip = gts_bruh_casualties_50_50.tooltip
+		custom_tooltip = gts_bruh_casualties_50_percent.tooltip
 		trigger = {
 			OR = {
 				has_ethic = ethic_militarist
@@ -1853,7 +1989,7 @@ country_event = {
 	}
 	option = {
 		name = gts_evt_random.020012.b
-		custom_tooltip = gts_bruh_casualties_50_50.tooltip
+		custom_tooltip = gts_bruh_casualties_50_percent.tooltip
 		trigger = {
 			OR = {
 				has_ethic = ethic_xenophobe
@@ -1866,7 +2002,7 @@ country_event = {
 	}
 	option = {
 		name = gts_evt_random.020012.c
-		custom_tooltip = gts_bruh_casualties_50_50.tooltip
+		custom_tooltip = gts_bruh_casualties_50_percent.tooltip
 		event_target:gtsra_random_planet_resist = {
 			add_planet_devastation = 50
 		}
@@ -1965,7 +2101,7 @@ country_event = {
 
 	option = {
 		name = gts_evt_random.020015.a
-		custom_tooltip = gts_bruh_casualties_75_50.tooltip
+		custom_tooltip = gts_bruh_casualties_75_percent.tooltip
 		event_target:gtsra_random_planet_resist = {
 			add_planet_devastation = 50
 		}
@@ -6094,9 +6230,10 @@ country_event = {
 
 	immediate = {
 		# 測試用
-		# random_owned_leader = {
-		# 	save_event_target_as = gtsra_fleet_leader
-		# }
+		random_owned_leader = {
+			limit = { leader_class = commander }
+			save_event_target_as = gtsra_fleet_leader
+		}
 		random_controlled_fleet = {
 			limit = {
 				exists = leader
@@ -6158,8 +6295,7 @@ country_event = {
 	option = {
 		name = gts_evt_random.070020.d
 		allow = {
-			solar_system = {
-				is_same_value = event_target:gtsra_fleet_leader
+			event_target:gts_bruh_random_fleet.solar_system = {
 				any_system_planet = {
 					is_planet_class = pc_gas_giant
 				}
@@ -6409,15 +6545,22 @@ country_event = {
 
 	immediate = {
 		# 測試用
-		#random_owned_leader = {
-		#	save_event_target_as = gtsra_fleet_leader
-		#}
-		random_planet_within_border = {
+		# random_owned_leader = {
+		# 	limit = { leader_class = commander }
+		# 	save_event_target_as = gtsra_fleet_leader
+		# }
+		random_system = {
 			limit = {
-				is_planet_class = pc_gas_giant
+				is_same_value = event_target:gts_bruh_random_fleet.solar_system
 			}
-			save_event_target_as = gts_bruh_random_towel_gas_giant
+			random_system_planet = {
+				limit = {
+					is_planet_class = pc_gas_giant
+				}
+				save_event_target_as = gts_bruh_random_towel_gas_giant
+			}
 		}
+
 		# 計算星球大小
 		event_target:gts_bruh_random_towel_gas_giant = {
 			export_trigger_value_to_variable = {

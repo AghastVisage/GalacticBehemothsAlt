@@ -153,7 +153,6 @@ situation_tinys_out_crsis = {
 		}
 	}
 }
-
 situation_chenghui_anger = {
 	picture = GFX_evt_clocks
 	category = negative
@@ -1296,19 +1295,19 @@ situation_leader_interact = {
 			potential = {
 				current_stage = stage_1
 			}
-			country_physics_tech_research_speed = -0.2
+			#country_physics_tech_research_speed = -0.2
 		}
 		triggered_modifier = {
 			potential = {
 				current_stage = stage_2
 			}
-			country_unity_produces_mult = -0.2
+			#country_unity_produces_mult = -0.2
 		}
 		triggered_modifier = {
 			potential = {
 				current_stage = stage_5
 			}
-			country_energy_produces_mult = -0.2
+			#country_energy_produces_mult = -0.2
 		}
 	}
 	on_monthly = {
@@ -1324,11 +1323,7 @@ situation_leader_interact = {
 	triggered_blocked_desc = { #需要建造巨构提示
 		trigger = {
 			situation_progress >= 200
-			owner = {
-				NOR = {
-					has_megastructure = gts_gateway_final
-				}
-			}
+			owner = { gts_has_functional_gateway = no }
 		}
 		text = "situation_gts_gateway_needed_desc"
 	}
@@ -1739,7 +1734,6 @@ situation_seele = {
 	}
 	on_progress_complete = {
 		custom_tooltip = situation_seele_complete_tooltip
-		destroy_situation = this
 		hidden_effect = {
 			owner = {
 				country_event = {
@@ -1747,6 +1741,7 @@ situation_seele = {
 				}
 			}
 		}
+		destroy_situation = this
 	}
 	on_fail = {
 		custom_tooltip = situation_seele_fail_tooltip
@@ -2154,5 +2149,356 @@ gts_situation_qinwen_fleet = {
 		on_select = {
 			custom_tooltip = situation_qinwen_positive_approach
 		}
+	}
+}
+gts_situation_ora_shipgril = {
+	picture = GFX_gts_situation_ora_shipgril
+	category = positive
+	complete_icon = GFX_situation_outcome_positive
+	complete_icon_frame = GFX_situation_outcome_frame_green
+	initial_progress = 0
+	on_progress_complete = {
+		destroy_situation = this
+		custom_tooltip = gts_situation_ora_shipgril_tooltip
+		owner = {
+			country_event = {
+				id = gts_ora.1025
+			}
+		}
+	}
+	monthly_progress = {
+		base = 0
+		modifier = {
+			add = 0
+			desc = situation_ora_mystery_stop_approach
+			current_situation_approach = situation_ora_mystery_stop
+		}
+		modifier = {
+			add = 5
+			desc = situation_ora_mystery_normal_approach
+			current_situation_approach = situation_ora_mystery_normal
+		}
+		modifier = {
+			add = 25
+			desc = situation_ora_mystery_fast_approach
+			current_situation_approach = situation_ora_mystery_fast
+		}
+	}
+	stages = {
+		gts_situation_ora_shipgril1 = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_green
+			end = 25
+		}
+		gts_situation_ora_shipgril2 = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_green
+			end = 50
+			on_first_enter = {
+				situation_event = {
+					id = gts_ora.1124
+				}
+			}
+		}
+		gts_situation_ora_shipgril3 = {
+			icon = GFX_situation_stage_3
+			icon_background = GFX_situation_stage_frame_green
+			end = 75
+			on_first_enter = {
+				situation_event = {
+					id = gts_ora.1224
+				}
+			}
+		}
+		gts_situation_ora_shipgril4 = {
+			icon = GFX_situation_stage_4
+			icon_background = GFX_situation_stage_frame_green
+			end = 100
+			on_first_enter = {
+				situation_event = {
+					id = gts_ora.1324
+				}
+			}
+		}
+	}
+	approach = {
+		name = situation_ora_mystery_stop
+		icon = GFX_situation_approach_this_is_fine
+		icon_background = GFX_situation_approach_bg_red
+		on_select = {
+			custom_tooltip = situation_ora_mystery_stop_approach
+		}
+	}
+	approach = {
+		name = situation_ora_mystery_normal
+		icon = GFX_situation_approach_unity
+		icon_background = GFX_situation_approach_bg_yellow
+		default = yes
+		on_select = {
+			custom_tooltip = situation_ora_mystery_normal_approach
+		}
+	}
+	approach = {
+		name = situation_ora_mystery_fast
+		icon = GFX_situation_approach_unity
+		icon_background = GFX_situation_approach_bg_green
+		resources = {
+			category = situations
+			upkeep = {
+				gts_giantess_human = 500
+			}
+		}
+		on_select = {
+			custom_tooltip = situation_ora_mystery_fast_approach
+		}
+	}
+}
+
+gts_situation_ora_engagement = {
+	on_start = {
+		set_situation_flag = gts_situation_ora_engagement }
+	picture = GFX_gts_situation_ora_engagement
+	category = positive
+	complete_icon = GFX_situation_outcome_positive
+	complete_icon_frame = GFX_situation_outcome_frame_green
+	initial_progress = 0
+	progress_direction = monodirectional
+	on_progress_complete = {
+		destroy_situation = this
+		custom_tooltip = gts_situation_ora_engagement_tooltip
+		owner = {
+			country_event = {
+				id = gts_ora.1033
+			}
+		}
+	}
+	monthly_progress = {
+		base = 0
+		modifier = {
+			add = 0
+			desc = situation_ora_engagement_rest_approach
+			current_situation_approach = situation_ora_engagement_rest
+		}
+		modifier = {
+			add = 30
+			desc = situation_ora_engagement_search_approach
+			current_situation_approach = situation_ora_engagement_search
+		}
+	}
+	stages = {
+		gts_situation_ora_engagement1 = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = gts_situation_ora_engagement1_tooltip
+			end = 100
+		}
+		gts_situation_ora_engagement2 = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = gts_situation_ora_engagement2_tooltip
+			end = 200
+			on_first_enter = {
+				situation_event = {
+					id = gts_ora.1028
+				}
+			}
+		}
+		gts_situation_ora_engagement3 = {
+			icon = GFX_situation_stage_3
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = gts_situation_ora_engagement3_tooltip
+			end = 300
+			on_first_enter = {
+				situation_event = {
+					id = gts_ora.1029
+				}
+			}
+		}
+		gts_situation_ora_engagement4 = {
+			icon = GFX_situation_stage_4
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = gts_situation_ora_engagement4_tooltip
+			end = 400
+			on_first_enter = {
+				situation_event = {
+					id = gts_ora.1030
+				}
+			}
+		}
+		gts_situation_ora_engagement5 = {
+			icon = GFX_situation_stage_5
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = gts_situation_ora_engagement5_tooltip
+			end = 500
+			on_first_enter = {
+				situation_event = {
+					id = gts_ora.1031
+				}
+			}
+		}
+		gts_situation_ora_engagement6 = {
+			icon = GFX_situation_stage_6
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = gts_situation_ora_engagement6_tooltip
+			end = 700
+			on_first_enter = {
+				situation_event = {
+					id = gts_ora.1032
+				}
+			}
+		}
+	}
+	approach = {
+		name = situation_ora_engagement_rest
+		icon = GFX_situation_approach_this_is_fine
+		icon_background = GFX_situation_approach_bg_red
+		on_select = {
+			custom_tooltip = situation_ora_engagement_rest_approach
+		}
+	}
+	approach = {
+		name = situation_ora_engagement_search
+		icon = GFX_situation_approach_unity
+		icon_background = GFX_situation_approach_bg_green
+		default = yes
+		on_select = {
+			custom_tooltip = situation_ora_engagement_search_approach
+		}
+	}
+}
+
+
+gts_situation_ora_little_orange = {
+	picture = GFX_gts_situation_ora_little_orange
+	category = positive
+	complete_icon = GFX_situation_outcome_positive
+	complete_icon_frame = GFX_situation_outcome_frame_green
+	override_finisher_desc = gts_situation_ora_little_orange_finish_tooltip
+	initial_progress = 0
+	progress_direction = monodirectional
+	potential = {
+		exists = event_target:gts_ora
+		event_target:gts_ora = {
+			is_owned_by = prev
+		}
+	}
+	on_progress_complete = {
+		owner = {
+			if = {
+				limit = {
+					exists = event_target:gts_ora
+					event_target:gts_ora = {
+						is_owned_by = prev
+					}
+				}
+				event_target:gts_ora = {
+					add_skill = 1
+				}
+			}
+			set_country_flag = gts_ora_little_orange_completed
+		}
+		destroy_situation = this
+	}
+	monthly_progress = {
+		base = 0
+	}
+	stages = {
+		gts_situation_ora_little_orange1 = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = gts_situation_ora_little_orange_stage_tooltip
+			end = 100
+		}
+		gts_situation_ora_little_orange2 = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = gts_situation_ora_little_orange_stage_tooltip
+			end = 200
+			on_first_enter = {
+				owner = {
+					if = {
+						limit = {
+							exists = event_target:gts_ora
+							event_target:gts_ora = {
+								is_owned_by = prev
+							}
+						}
+						event_target:gts_ora = {
+							add_skill = 1
+						}
+						country_event = { id = gts_ora.3020 }
+					}
+				}
+			}
+		}
+		gts_situation_ora_little_orange3 = {
+			icon = GFX_situation_stage_3
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = gts_situation_ora_little_orange_stage_tooltip
+			end = 300
+			on_first_enter = {
+				owner = {
+					if = {
+						limit = {
+							exists = event_target:gts_ora
+							event_target:gts_ora = {
+								is_owned_by = prev
+							}
+						}
+						event_target:gts_ora = {
+							add_skill = 1
+						}
+					}
+				}
+			}
+		}
+		gts_situation_ora_little_orange4 = {
+			icon = GFX_situation_stage_4
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = gts_situation_ora_little_orange_stage_tooltip
+			end = 400
+			on_first_enter = {
+				owner = {
+					if = {
+						limit = {
+							exists = event_target:gts_ora
+							event_target:gts_ora = {
+								is_owned_by = prev
+							}
+						}
+						event_target:gts_ora = {
+							add_skill = 1
+						}
+					}
+				}
+			}
+		}
+		gts_situation_ora_little_orange5 = {
+			icon = GFX_situation_stage_5
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = gts_situation_ora_little_orange_stage_tooltip
+			end = 500
+			on_first_enter = {
+				owner = {
+					if = {
+						limit = {
+							exists = event_target:gts_ora
+							event_target:gts_ora = {
+								is_owned_by = prev
+							}
+						}
+						event_target:gts_ora = {
+							add_skill = 1
+						}
+					}
+				}
+			}
+		}
+	}
+	approach = {
+		name = situation_ora_little_orange_wait
+		icon = GFX_gts_situation_approach_ora_little_orange
+		# icon_background = GFX_situation_approach_bg_yellow
+		default = yes
 	}
 }

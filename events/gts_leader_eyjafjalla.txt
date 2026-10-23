@@ -8,26 +8,21 @@ country_event = {
 
 	immediate = {
 		random_system = {
-			limit = {
-				distance = {
-					source = root.capital_scope.solar_system
-					use_bypasses = yes
-					min_jumps = 1
-					max_jumps = 6
-				}
-			}
-			random_system_planet = {
-				spawn_system = {
-					min_distance >= 10
-					max_distance <= 30
-					max_jumps = 0
-					initializer = gts_eyjafjalla_system
-					effect = {
-						save_event_target_as = gts_bruh_get_eyjafjalla_system_location
-					}
-				}
-			}
-		}
+ limit = { gts_intel_anchor_system = { COUNTRY = root } }
+ save_event_target_as = gts_intel_spawn_anchor
+ 
+ spawn_system = {
+ min_distance = 10
+ max_distance = 30
+ max_jumps = 0
+ hyperlane = no
+ initializer = gts_eyjafjalla_system
+ effect = {
+  add_hyperlane = { from = this to = event_target:gts_intel_spawn_anchor }
+  save_event_target_as = gts_bruh_get_eyjafjalla_system_location
+ }
+}
+}
 	}
 }
 
@@ -124,50 +119,38 @@ planet_event = {
 	}
 }
 
+# 入乳後續
 planet_event = {
-	id = gts_eyjafjalla.5	#入乳后续
+	id = gts_eyjafjalla.5
 	title = "gts_eyjafjalla.5.name"
 	desc = "gts_eyjafjalla.5.desc"
 	picture = GFX_gts_eyjafjalla_06
-	location = ROOT
+
 	is_triggered_only = yes
+	location = ROOT
+
 	option = {
 		name = gts_eyjafjalla.5.a
 		hidden_effect = {
-			event_target:gts_eyjafjalla_planet = {
-				set_planet_size = 35
-				change_pc = pc_gaia
-			}
-			owner = {
-				country_event = {
-					id = gts_eyjafjalla.7
-				}
-				#领袖招募阶段
-			}
+			owner = { country_event = { id = gts_eyjafjalla.7 } }
 		}
 	}
 }
 
+# 入臀後續
 planet_event = {
-	id = gts_eyjafjalla.6	#入臀后续
+	id = gts_eyjafjalla.6
 	title = "gts_eyjafjalla.6.name"
 	desc = "gts_eyjafjalla.6.desc"
 	picture = GFX_gts_eyjafjalla_11
-	location = ROOT
+
 	is_triggered_only = yes
+	location = ROOT
+
 	option = {
 		name = gts_eyjafjalla.5.a
 		hidden_effect = {
-			event_target:gts_eyjafjalla_planet = {
-				set_planet_size = 35
-				change_pc = pc_gaia
-			}
-			owner = {
-				country_event = {
-					id = gts_eyjafjalla.7
-				}
-				#领袖招募阶段
-			}
+			owner = { country_event = { id = gts_eyjafjalla.7 } }
 		}
 	}
 }

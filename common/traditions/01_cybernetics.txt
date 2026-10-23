@@ -283,32 +283,7 @@ tr_cybernetics_transubstantiation_synthesis = {
 		}
 	}
 
-	tradition_swap = {
-		name = tr_cybernetics_transubstantiation_synthesis_gts
-		inherit_effects = yes
-		inherit_icon = yes
-		trigger = {
-			gts_is_giantess_empire = yes
-		}
-
-		weight = {
-			factor = 10
-		}
-	}
-	tradition_swap = {
-		name = tr_cybernetics_transubstantiation_synthesis_tiny
-		inherit_effects = yes
-		inherit_icon = yes
-		trigger = {
-			gts_is_tiny_empire = yes
-		}
-
-		weight = {
-			factor = 10
-		}
-	}
-
-	custom_tooltip = tr_cybernetics_transubstantiation_synthesis_desc
+	custom_tooltip = tr_cybernetics_transubstantiation_synthesis_tt
 
 	on_enabled = {
 		hidden_effect = {
@@ -396,6 +371,97 @@ tr_cybernetics_transubstantiation_synthesis = {
 			}
 		}
 	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
+	tradition_swap = {
+		name = tr_cybernetics_transubstantiation_synthesis_gts
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_giantess_empire = yes
+			NOT = {
+				OR = {
+					AND = {
+						is_homicidal = yes
+						OR = {
+							has_machine_age_dlc = no
+							has_country_flag = cybernetics_traditions_unlocked
+							has_origin = origin_unplugged
+						}
+					}
+					AND = {
+						is_homicidal = yes
+						is_nomadic = yes
+					}
+					AND = {
+						has_machine_age_dlc = yes
+						is_homicidal = no
+						NOR = {
+							has_country_flag = cybernetics_traditions_unlocked
+							has_origin = origin_unplugged
+						}
+					}
+					AND = {
+						has_machine_age_dlc = yes
+						is_homicidal = yes
+						NOR = {
+							has_country_flag = cybernetics_traditions_unlocked
+							has_origin = origin_unplugged
+						}
+					}
+				}
+			}
+		}
+		weight = {
+			factor = 10
+		}
+	}
+	tradition_swap = {
+		name = tr_cybernetics_transubstantiation_synthesis_tiny
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
+			NOT = {
+				OR = {
+					AND = {
+						is_homicidal = yes
+						OR = {
+							has_machine_age_dlc = no
+							has_country_flag = cybernetics_traditions_unlocked
+							has_origin = origin_unplugged
+						}
+					}
+					AND = {
+						is_homicidal = yes
+						is_nomadic = yes
+					}
+					AND = {
+						has_machine_age_dlc = yes
+						is_homicidal = no
+						NOR = {
+							has_country_flag = cybernetics_traditions_unlocked
+							has_origin = origin_unplugged
+						}
+					}
+					AND = {
+						has_machine_age_dlc = yes
+						is_homicidal = yes
+						NOR = {
+							has_country_flag = cybernetics_traditions_unlocked
+							has_origin = origin_unplugged
+						}
+					}
+				}
+			}
+		}
+		weight = {
+			factor = 10
+		}
+	}
 }
 
 tr_cybernetics_metabolic_reprocessing = {
@@ -451,14 +517,40 @@ tr_cybernetics_metabolic_reprocessing = {
 		custom_tooltip = tr_cybernetics_metabolic_reprocessing_situation_hive_effects
 	}
 
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_cybernetics_metabolic_reprocessing_gts
 		inherit_effects = yes
 		inherit_icon = yes
 		trigger = {
 			gts_is_giantess_empire = yes
+			NOT = {
+				OR = {
+					AND = {
+						is_hive_empire = yes
+						OR = {
+							has_machine_age_dlc = no
+							has_country_flag = cybernetics_traditions_unlocked
+						}
+					}
+					AND = {
+						has_machine_age_dlc = yes
+						is_hive_empire = no
+						NOR = {
+							has_country_flag = cybernetics_traditions_unlocked
+							has_origin = origin_unplugged
+						}
+					}
+					AND = {
+						has_machine_age_dlc = yes
+						is_hive_empire = yes
+						NOT = {
+							has_country_flag = cybernetics_traditions_unlocked
+						}
+					}
+				}
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -469,8 +561,36 @@ tr_cybernetics_metabolic_reprocessing = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
+			NOT = {
+				OR = {
+					AND = {
+						is_hive_empire = yes
+						OR = {
+							has_machine_age_dlc = no
+							has_country_flag = cybernetics_traditions_unlocked
+						}
+					}
+					AND = {
+						has_machine_age_dlc = yes
+						is_hive_empire = no
+						NOR = {
+							has_country_flag = cybernetics_traditions_unlocked
+							has_origin = origin_unplugged
+						}
+					}
+					AND = {
+						has_machine_age_dlc = yes
+						is_hive_empire = yes
+						NOT = {
+							has_country_flag = cybernetics_traditions_unlocked
+						}
+					}
+				}
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -502,14 +622,23 @@ tr_cybernetics_integrated_anatomy = {
 		custom_tooltip = tr_cybernetics_integrated_anatomy_situation_effects
 	}
 
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_cybernetics_integrated_anatomy_gts
 		inherit_effects = yes
 		inherit_icon = yes
 		trigger = {
 			gts_is_giantess_empire = yes
+			NOT = {
+				AND = {
+					has_machine_age_dlc = yes
+					NOR = {
+						has_country_flag = cybernetics_traditions_unlocked
+						has_origin = origin_unplugged
+					}
+				}
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -520,15 +649,26 @@ tr_cybernetics_integrated_anatomy = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
+			NOT = {
+				AND = {
+					has_machine_age_dlc = yes
+					NOR = {
+						has_country_flag = cybernetics_traditions_unlocked
+						has_origin = origin_unplugged
+					}
+				}
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
 	}
 }
 
-tr_cybernetics_augmentation_overload = { #？
+tr_cybernetics_augmentation_overload = {
 	possible = {
 		has_tradition = tr_cybernetics_metabolic_reprocessing
 	}
@@ -657,30 +797,6 @@ tr_cybernetics_modular_cybernetics = {
 		}
 		custom_tooltip = tr_cybernetics_modular_cybernetics_hive_situation_effects
 	}
-	tradition_swap = {
-		name = tr_cybernetics_modular_cybernetics_gts
-		inherit_effects = yes
-		inherit_icon = yes
-		trigger = {
-			gts_is_giantess_empire = yes
-		}
-
-		weight = {
-			factor = 10
-		}
-	}
-	tradition_swap = {
-		name = tr_cybernetics_modular_cybernetics_tiny
-		inherit_effects = yes
-		inherit_icon = yes
-		trigger = {
-			gts_is_tiny_empire = yes
-		}
-
-		weight = {
-			factor = 10
-		}
-	}
 
 	on_enabled = {
 		hidden_effect = {
@@ -692,6 +808,85 @@ tr_cybernetics_modular_cybernetics = {
 				}
 				country_event = { id = origin.6096 days = 3 }
 			}
+		}
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
+	tradition_swap = {
+		name = tr_cybernetics_modular_cybernetics_gts
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_giantess_empire = yes
+			NOT = {
+				OR = {
+					AND = {
+						is_hive_empire = yes
+						OR = {
+							has_machine_age_dlc = no
+							has_country_flag = cybernetics_traditions_unlocked
+						}
+					}
+					AND = {
+						has_machine_age_dlc = yes
+						is_hive_empire = no
+						NOR = {
+							has_country_flag = cybernetics_traditions_unlocked
+							has_origin = origin_unplugged
+						}
+					}
+					AND = {
+						has_machine_age_dlc = yes
+						is_hive_empire = yes
+						NOT = {
+							has_country_flag = cybernetics_traditions_unlocked
+						}
+					}
+				}
+			}
+		}
+		weight = {
+			factor = 10
+		}
+	}
+	tradition_swap = {
+		name = tr_cybernetics_modular_cybernetics_tiny
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
+			NOT = {
+				OR = {
+					AND = {
+						is_hive_empire = yes
+						OR = {
+							has_machine_age_dlc = no
+							has_country_flag = cybernetics_traditions_unlocked
+						}
+					}
+					AND = {
+						has_machine_age_dlc = yes
+						is_hive_empire = no
+						NOR = {
+							has_country_flag = cybernetics_traditions_unlocked
+							has_origin = origin_unplugged
+						}
+					}
+					AND = {
+						has_machine_age_dlc = yes
+						is_hive_empire = yes
+						NOT = {
+							has_country_flag = cybernetics_traditions_unlocked
+						}
+					}
+				}
+			}
+		}
+		weight = {
+			factor = 10
 		}
 	}
 }

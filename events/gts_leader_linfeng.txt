@@ -8,42 +8,15 @@ country_event = {
 	show_sound = event_red_alert
 	location = event_target:gts_linfeng_target_planet
 	is_triggered_only = yes
-	trigger = {
-		any_owned_planet = {
-			pop_amount <= 400
-			has_anomaly = no
-			NOT = {
-				exists = archaeological_site
-			}
-			NOR = {
-				is_planet_class = pc_shielded
-				is_planet_class = pc_ringworld_shielded
-				is_planet_class = pc_habitat_shielded
-				is_eatable_planet = no
-			}
-
-		}
-	}
+	trigger = { any_system = { gts_intel_system_linfeng = { COUNTRY = root } } }
 
 	immediate = {
-		random_owned_planet = {
-			limit = {
-				pop_amount <= 400
-				has_anomaly = no
-				NOT = {
-					exists = archaeological_site
-				}
-				NOR = {
-					is_planet_class = pc_shielded
-					is_planet_class = pc_ringworld_shielded
-					is_planet_class = pc_habitat_shielded
-					is_eatable_planet = no
-				}
-
-			}
-			save_event_target_as = gts_linfeng_target_planet
-		}
-	}
+ if = {
+  limit = { any_owned_planet = { gts_intel_planet_linfeng = { COUNTRY = root } solar_system = { gts_intel_nearby_system = { COUNTRY = root } } OR = { has_carrier_flag = gts_priority_destroy_target has_modifier = gts_priority_destroy_target_modifier } } }
+  random_owned_planet = { limit = { gts_intel_planet_linfeng = { COUNTRY = root } solar_system = { gts_intel_nearby_system = { COUNTRY = root } } OR = { has_carrier_flag = gts_priority_destroy_target has_modifier = gts_priority_destroy_target_modifier } } save_event_target_as = gts_linfeng_target_planet }
+ }
+ else = { random_system = { limit = { gts_intel_system_linfeng = { COUNTRY = root } } random_system_planet = { limit = { gts_intel_planet_linfeng = { COUNTRY = root } } save_event_target_as = gts_linfeng_target_planet } } }
+}
 	option = {
 		name = gts_linfeng.900.a
 		hidden_effect = {
@@ -797,22 +770,32 @@ country_event = {
 	is_triggered_only = yes
 
 	immediate = {
-		random_owned_planet = {
-			limit = {
-				pop_amount > 0
-				is_eatable_planet = yes
-			}
-			while = {
-				count = 4
-				random_owned_pop_group = {
-					kill_single_pop = yes
+		gts_save_priority_destroy_planet_target = yes
+		if = {
+			limit = { event_target:gts_priority_destroy_planet_target = { NOT = { is_scope_type = planet } } }
+			random_owned_planet = {
+				limit = {
+					pop_amount > 0
+					is_eatable_planet = yes
 				}
+				save_event_target_as = gts_priority_destroy_planet_target
 			}
-			hidden_effect = {
-				pc_gts_change_ready = yes
-				pc_gts_dirt_change = yes
+		}
+		event_target:gts_priority_destroy_planet_target = {
+			if = {
+				limit = { is_scope_type = planet }
+				while = {
+					count = 4
+					random_owned_pop_group = {
+						kill_single_pop = yes
+					}
+				}
+				hidden_effect = {
+					pc_gts_change_ready = yes
+					pc_gts_dirt_change = yes
+				}
+				save_global_event_target_as = gts_linfeng_target_planet
 			}
-			save_global_event_target_as = gts_linfeng_target_planet
 		}
 	}
 
@@ -844,22 +827,32 @@ country_event = {
 	is_triggered_only = yes
 	
 	immediate = {
-		random_owned_planet = {
-			limit = {
-				pop_amount > 0
-				is_eatable_planet = yes
-			}
-			while = {
-				count = 4
-				random_owned_pop_group = {
-					kill_single_pop = yes
+		gts_save_priority_destroy_planet_target = yes
+		if = {
+			limit = { event_target:gts_priority_destroy_planet_target = { NOT = { is_scope_type = planet } } }
+			random_owned_planet = {
+				limit = {
+					pop_amount > 0
+					is_eatable_planet = yes
 				}
+				save_event_target_as = gts_priority_destroy_planet_target
 			}
-			hidden_effect = {
-				pc_gts_change_ready = yes
-				pc_gts_milk_change = yes
+		}
+		event_target:gts_priority_destroy_planet_target = {
+			if = {
+				limit = { is_scope_type = planet }
+				while = {
+					count = 4
+					random_owned_pop_group = {
+						kill_single_pop = yes
+					}
+				}
+				hidden_effect = {
+					pc_gts_change_ready = yes
+					pc_gts_milk_change = yes
+				}
+				save_global_event_target_as = gts_linfeng_target_planet
 			}
-			save_global_event_target_as = gts_linfeng_target_planet
 		}
 	}
 
@@ -891,22 +884,32 @@ country_event = {
 	is_triggered_only = yes
 	
 	immediate = {
-		random_owned_planet = {
-			limit = {
-				pop_amount > 0
-				is_eatable_planet = yes
-			}
-			while = {
-				count = 4
-				random_owned_pop_group = {
-					kill_single_pop = yes
+		gts_save_priority_destroy_planet_target = yes
+		if = {
+			limit = { event_target:gts_priority_destroy_planet_target = { NOT = { is_scope_type = planet } } }
+			random_owned_planet = {
+				limit = {
+					pop_amount > 0
+					is_eatable_planet = yes
 				}
+				save_event_target_as = gts_priority_destroy_planet_target
 			}
-			hidden_effect = {
-				pc_gts_change_ready = yes
-				pc_gts_juice_change = yes
+		}
+		event_target:gts_priority_destroy_planet_target = {
+			if = {
+				limit = { is_scope_type = planet }
+				while = {
+					count = 4
+					random_owned_pop_group = {
+						kill_single_pop = yes
+					}
+				}
+				hidden_effect = {
+					pc_gts_change_ready = yes
+					pc_gts_juice_change = yes
+				}
+				save_global_event_target_as = gts_linfeng_target_planet
 			}
-			save_global_event_target_as = gts_linfeng_target_planet
 		}
 	}
 
@@ -938,22 +941,32 @@ country_event = {
 	is_triggered_only = yes
 	
 	immediate = {
-		random_owned_planet = {
-			limit = {
-				pop_amount > 0
-				is_eatable_planet = yes
-			}
-			while = {
-				count = 4
-				random_owned_pop_group = {
-					kill_single_pop = yes
+		gts_save_priority_destroy_planet_target = yes
+		if = {
+			limit = { event_target:gts_priority_destroy_planet_target = { NOT = { is_scope_type = planet } } }
+			random_owned_planet = {
+				limit = {
+					pop_amount > 0
+					is_eatable_planet = yes
 				}
+				save_event_target_as = gts_priority_destroy_planet_target
 			}
-			hidden_effect = {
-				pc_gts_change_ready = yes
-				pc_gts_semen_change = yes
+		}
+		event_target:gts_priority_destroy_planet_target = {
+			if = {
+				limit = { is_scope_type = planet }
+				while = {
+					count = 4
+					random_owned_pop_group = {
+						kill_single_pop = yes
+					}
+				}
+				hidden_effect = {
+					pc_gts_change_ready = yes
+					pc_gts_semen_change = yes
+				}
+				save_global_event_target_as = gts_linfeng_target_planet
 			}
-			save_global_event_target_as = gts_linfeng_target_planet
 		}
 	}
 
@@ -1511,81 +1524,131 @@ country_event = {
 	}
 	option = {
 		name = gts_linfeng.308.a
+allow = { hidden_trigger = { gts_intel_has_anchor = { COUNTRY = root } } }
+
 		hidden_effect = {
 			custom_tooltip = gts_linfeng.308.a.custom_tooltip
-			random_system_within_border = {
-				spawn_system = {
-					max_jumps = 0
-					initializer = gts_linfeng_shoes1_system
-					effect = {
-						save_event_target_as = gts_linfeng_shoes1_system
-					}
-				}
-			}
+			random_system = {
+ limit = { gts_intel_anchor_system = { COUNTRY = root } }
+ save_event_target_as = gts_intel_spawn_anchor
+ 
+ spawn_system = {
+ min_distance = 10
+ max_distance = 30
+ max_jumps = 0
+ hyperlane = no
+ initializer = gts_linfeng_shoes1_system
+ effect = {
+  add_hyperlane = { from = this to = event_target:gts_intel_spawn_anchor }
+  save_event_target_as = gts_linfeng_shoes1_system
+ }
+}
+}
 		}
 	}
 	option = {
 		name = gts_linfeng.308.b
+allow = { hidden_trigger = { gts_intel_has_anchor = { COUNTRY = root } } }
+
 		hidden_effect = {
 			custom_tooltip = gts_linfeng.308.b.custom_tooltip
-			random_system_within_border = {
-				spawn_system = {
-					max_jumps = 0
-					initializer = gts_linfeng_shoes2_system
-					effect = {
-						save_event_target_as = gts_linfeng_shoes2_system
-					}
-				}
-			}
+			random_system = {
+ limit = { gts_intel_anchor_system = { COUNTRY = root } }
+ save_event_target_as = gts_intel_spawn_anchor
+ 
+ spawn_system = {
+ min_distance = 10
+ max_distance = 30
+ max_jumps = 0
+ hyperlane = no
+ initializer = gts_linfeng_shoes2_system
+ effect = {
+  add_hyperlane = { from = this to = event_target:gts_intel_spawn_anchor }
+  save_event_target_as = gts_linfeng_shoes2_system
+ }
+}
+}
 		}
 	}
 	option = {
 		name = gts_linfeng.308.c
+allow = { hidden_trigger = { gts_intel_has_anchor = { COUNTRY = root } } }
+
 		hidden_effect = {
 			custom_tooltip = gts_linfeng.308.c.custom_tooltip
-			random_system_within_border = {
-				spawn_system = {
-					max_jumps = 0
-					initializer = gts_linfeng_shoes3_system
-					effect = {
-						save_event_target_as = gts_linfeng_shoes3_system
-					}
-				}
-			}
+			random_system = {
+ limit = { gts_intel_anchor_system = { COUNTRY = root } }
+ save_event_target_as = gts_intel_spawn_anchor
+ 
+ spawn_system = {
+ min_distance = 10
+ max_distance = 30
+ max_jumps = 0
+ hyperlane = no
+ initializer = gts_linfeng_shoes3_system
+ effect = {
+  add_hyperlane = { from = this to = event_target:gts_intel_spawn_anchor }
+  save_event_target_as = gts_linfeng_shoes3_system
+ }
+}
+}
 		}
 	}
 	option = {
 		name = gts_linfeng.308.d
+allow = { hidden_trigger = { gts_intel_has_anchor = { COUNTRY = root } } }
+
 		hidden_effect = {
 			hidden_effect = {
 				custom_tooltip = gts_linfeng.308.d.custom_tooltip
-				random_system_within_border = {
-					spawn_system = {
-						max_jumps = 0
-						initializer = gts_linfeng_shoes1_system
-						effect = {
-							save_event_target_as = gts_linfeng_shoes1_system
-						}
-					}
-				}
-				random_system_within_border = {
-					spawn_system = {
-						max_jumps = 0
-						initializer = gts_linfeng_shoes2_system
-						effect = {
-							save_event_target_as = gts_linfeng_shoes2_system
-						}
-					}
-				}
-				random_system_within_border = {
-					spawn_system = {
-						max_jumps = 0
-						initializer = gts_linfeng_shoes3_system
-						effect = {
-							save_event_target_as = gts_linfeng_shoes3_system
-						}
-					}
-				}
+				random_system = {
+ limit = { gts_intel_anchor_system = { COUNTRY = root } }
+ save_event_target_as = gts_intel_spawn_anchor
+ 
+ spawn_system = {
+ min_distance = 10
+ max_distance = 30
+ max_jumps = 0
+ hyperlane = no
+ initializer = gts_linfeng_shoes1_system
+ effect = {
+  add_hyperlane = { from = this to = event_target:gts_intel_spawn_anchor }
+  save_event_target_as = gts_linfeng_shoes1_system
+ }
+}
+}
+				random_system = {
+ limit = { gts_intel_anchor_system = { COUNTRY = root } }
+ save_event_target_as = gts_intel_spawn_anchor
+ 
+ spawn_system = {
+ min_distance = 10
+ max_distance = 30
+ max_jumps = 0
+ hyperlane = no
+ initializer = gts_linfeng_shoes2_system
+ effect = {
+  add_hyperlane = { from = this to = event_target:gts_intel_spawn_anchor }
+  save_event_target_as = gts_linfeng_shoes2_system
+ }
+}
+}
+				random_system = {
+ limit = { gts_intel_anchor_system = { COUNTRY = root } }
+ save_event_target_as = gts_intel_spawn_anchor
+ 
+ spawn_system = {
+ min_distance = 10
+ max_distance = 30
+ max_jumps = 0
+ hyperlane = no
+ initializer = gts_linfeng_shoes3_system
+ effect = {
+  add_hyperlane = { from = this to = event_target:gts_intel_spawn_anchor }
+  save_event_target_as = gts_linfeng_shoes3_system
+ }
+}
+}
 			}
 			random_owned_leader = {
 				limit = {

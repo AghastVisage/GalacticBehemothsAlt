@@ -16,6 +16,13 @@ country_event = {
 
 	immediate = {
 		gts_save_priority_destroy_planet_target = yes
+		if = {
+			limit = { event_target:gts_priority_destroy_planet_target = { NOT = { is_scope_type = planet } } }
+			random_owned_planet = {
+				limit = { is_colony = yes }
+				save_event_target_as = gts_priority_destroy_planet_target
+			}
+		}
 	}
 
 	option = {

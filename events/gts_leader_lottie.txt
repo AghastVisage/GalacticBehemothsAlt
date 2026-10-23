@@ -208,6 +208,22 @@ country_event = {
             }
         }
     }
+	option = {
+		name = gts_rawls.10.G
+		trigger = {
+			exists = owner
+			owner = {
+				any_owned_leader = {
+					has_leader_flag = gts_skadi
+				}
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = gts_skadi_meet.100
+			}
+		}
+	}
 }
 
 country_event = {
@@ -750,24 +766,21 @@ country_event = {
 
 	immediate = {
 		random_system = {
-			limit = {
-				distance = {
-					source = root.capital_scope.solar_system
-					use_bypasses = yes
-					min_jumps = 1
-					max_jumps = 3
-				}
-			}
-			spawn_system = {
-				min_distance >= 10
-				max_distance <= 30
-				max_jumps = 0
-				initializer = gtsra_leader_lottie_system
-				effect = {
-					save_event_target_as = gts_bruh_get_lottie_system_location
-				}
-			}
-		}
+ limit = { gts_intel_anchor_system = { COUNTRY = root } }
+ save_event_target_as = gts_intel_spawn_anchor
+ 
+ spawn_system = {
+ min_distance = 10
+ max_distance = 30
+ max_jumps = 0
+ hyperlane = no
+ initializer = gtsra_leader_lottie_system
+ effect = {
+  add_hyperlane = { from = this to = event_target:gts_intel_spawn_anchor }
+  save_event_target_as = gts_bruh_get_lottie_system_location
+ }
+}
+}
 	}
 }
 namespace = gts_lottie_site

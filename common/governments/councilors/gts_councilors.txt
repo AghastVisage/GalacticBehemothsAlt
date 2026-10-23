@@ -97,7 +97,7 @@ councilor_gts_maid = {
 }
 
 councilor_gts_bare = {
-	#特派外交官 
+	#特派外交官
 	leader_class = {
 		scientist
 		official
@@ -237,7 +237,6 @@ councilor_delta_trade = {
 	modifier = {
 		ship_orbital_bombardment_pop_damage_mult = 0.05
 		country_naval_cap_mult = 0.01
-		starbase_trade_protection_range_add = 1
 	}
 }
 
@@ -258,7 +257,7 @@ councilor_distinguished_gts = {
 	}
 	modifier = {
 		logistic_growth_mult = -0.01
-	    bonus_pop_growth_mult = -0.01
+        bonus_pop_growth_mult = -0.01
 		planet_researchers_upkeep_mult = -0.015
 	}
 }
@@ -431,14 +430,124 @@ councilor_gts_ora = {
 		}
 	}
 	modifier = {
-		empire_size_mult = -0.1			#帝国规模-10%
-		ships_upkeep_mult = -0.05		#舰船维护费
-		starbases_upkeep_mult = -0.05  # 恒星基地维护费 | 星系基地维护费倍率
-		planet_buildings_upkeep_mult = -0.03
-		planet_districts_upkeep_mult = -0.07
-		planet_jobs_upkeep_mult = -0.03 #岗位所需的维护费 | 星球岗位维护费倍率
+		empire_size_mult = -0.03			#帝国规模-10%
+		starbases_upkeep_mult = -0.03
 	}
 }
+
+councilor_gts_qhai_virtual_streamer = {
+	icon = "GFX_icon_councilor_gts_qhai_virtual_streamer"
+	possible = {
+		has_country_flag = gts_ora_qhai_finished
+		any_owned_leader = {
+			leader_class = scientist
+			has_trait = gts_trait_qhai_virtual_idol
+		}
+	}
+	leader_class = {
+		scientist
+	}
+	is_leader_possible = {
+		leader_class = scientist
+		has_trait = gts_trait_qhai_virtual_idol
+	}
+	modifier = {
+		pop_citizen_happiness = 0.03
+		planet_physicists_gts_giantess_fluid_produces_add = 0.1
+		planet_biologists_gts_giantess_fluid_produces_add = 0.1
+		planet_engineers_gts_giantess_fluid_produces_add = 0.1
+	}
+}
+
+
+
+councilor_gts_seele = {
+	icon = "GFX_icon_councilor_gts_seele"
+	possible = {
+		any_owned_leader = {
+			has_leader_flag = gts_seele
+			check_variable = {
+				which = gts_love_logs
+				value >= 75
+			}
+		}
+	}
+	leader_class = {
+		official
+		commander
+		scientist
+	}
+	is_leader_possible = {
+		has_leader_flag = gts_seele
+	}
+	modifier = {
+		envoy_improve_relations_mult = 0.05
+		envoy_harm_relations_mult = 0.05
+		first_contact_speed_mult = 0.05
+		spy_network_daily_value_mult = 0.05
+		empire_size_penalty_mult = -0.05
+	}
+}
+councilor_gts_seele_li = {
+	icon = "GFX_icon_councilor_gts_seele_li"
+	possible = {
+		any_owned_leader = {
+			has_leader_flag = gts_seele_li
+			check_variable = {
+				which = gts_love_logs
+				value >= 75
+			}
+		}
+	}
+	leader_class = {
+		official
+		commander
+		scientist
+	}
+	is_leader_possible = {
+		has_leader_flag = gts_seele_li
+	}
+	modifier = {
+		ships_upkeep_mult = -0.05
+		armies_upkeep_mult = -0.05
+		ship_weapon_range_mult = 0.01
+		ship_weapon_damage = 0.03
+		ship_fire_rate_mult = 0.03
+	}
+}
+councilor_gts_bronya = {
+	icon = "GFX_icon_councilor_gts_bronya"
+	possible = {
+		any_owned_leader = {
+			has_leader_flag = gts_bronya
+			check_variable = {
+				which = gts_love_logs
+				value >= 75
+			}
+		}
+	}
+	leader_class = {
+		official
+		commander
+		scientist
+	}
+	is_leader_possible = {
+		has_leader_flag = gts_bronya
+	}
+	modifier = {
+		all_technology_research_speed = 0.05
+		planet_jobs_physics_research_produces_mult = 0.02
+		planet_jobs_society_research_produces_mult = 0.02
+		planet_jobs_engineering_research_produces_mult = 0.02
+
+	}
+}
+
+
+
+
+
+
 
 
 # #神权君授

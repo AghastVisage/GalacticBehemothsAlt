@@ -12,7 +12,7 @@ gts_leader_colossus_effect = {
 		custom_tooltip = {
 			fail_text = "gts_gateway_final_needed"
 			from = {
-				has_megastructure = gts_gateway_final
+				gts_has_functional_gateway = yes
 				has_country_flag = gts_gateway_situation_done
 			}
 		}
@@ -16573,13 +16573,615 @@ gts_trait_leader_gts_skill_commander_15_default_effect = {
 ###################################################################################################################################################
 ###################################################################################################################################################
 
+gts_ora_book_content_effect = {
+	potential = {
+		from = {
+			gts_ora_book_detail_open_trigger = no
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {
+	}
+}
+gts_ora_book_small_pre_effect = {
+	potential = {
+		from = {
+			gts_ora_book_detail_open_trigger = no
+		}
+	}
+	allow = {
+		hidden_trigger = {
+			from = {
+				check_variable = {
+					which = gts_ora_book_small_page
+					value > 1
+				}
+			}
+		}
+	}
+	effect = {
+		custom_tooltip = gts_ui_back.tooltip
+		from = {
+			hidden_effect = {
+				subtract_variable = {
+					which = gts_ora_book_small_page
+					value = 1
+				}
+			}
+		}
+	}
+}
+gts_ora_book_small_next_effect = {
+	potential = {
+		from = {
+			gts_ora_book_detail_open_trigger = no
+		}
+	}
+	allow = {
+		hidden_trigger = {
+			from = {
+				check_variable = {
+					which = gts_ora_book_small_page
+					value < 10
+				}
+			}
+		}
+	}
+	effect = {
+		custom_tooltip = gts_ui_next.tooltip
+		from = {
+			hidden_effect = {
+				change_variable = {
+					which = gts_ora_book_small_page
+					value = 1
+				}
+			}
+		}
+	}
+}
+gts_ora_book_small_page_1_effect = {
+	potential = {
+		from = {
+			gts_ora_book_detail_open_trigger = no
+			check_variable = {
+				which = gts_ora_book_small_page
+				value = 1
+			}
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {
+	}
+}
+gts_ora_book_small_page_2_effect = {
+	potential = {
+		from = {
+			gts_ora_book_detail_open_trigger = no
+			check_variable = {
+				which = gts_ora_book_small_page
+				value = 2
+			}
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {
+	}
+}
+gts_ora_book_small_page_3_effect = {
+	potential = {
+		from = {
+			gts_ora_book_detail_open_trigger = no
+			check_variable = {
+				which = gts_ora_book_small_page
+				value = 3
+			}
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {
+	}
+}
+gts_ora_book_small_page_4_effect = {
+	potential = {
+		from = {
+			gts_ora_book_detail_open_trigger = no
+			check_variable = {
+				which = gts_ora_book_small_page
+				value = 4
+			}
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {
+	}
+}
+gts_ora_book_small_page_5_effect = {
+	potential = {
+		from = {
+			gts_ora_book_detail_open_trigger = no
+			check_variable = {
+				which = gts_ora_book_small_page
+				value = 5
+			}
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {
+	}
+}
+gts_ora_book_small_page_6_effect = {
+	potential = {
+		from = {
+			gts_ora_book_detail_open_trigger = no
+			check_variable = {
+				which = gts_ora_book_small_page
+				value = 6
+			}
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {
+	}
+}
+gts_ora_book_small_page_7_effect = {
+	potential = {
+		from = {
+			gts_ora_book_detail_open_trigger = no
+			check_variable = {
+				which = gts_ora_book_small_page
+				value = 7
+			}
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {
+	}
+}
+gts_ora_book_small_page_8_effect = {
+	potential = {
+		from = {
+			gts_ora_book_detail_open_trigger = no
+			check_variable = {
+				which = gts_ora_book_small_page
+				value = 8
+			}
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {
+	}
+}
+gts_ora_book_small_page_9_effect = {
+	potential = {
+		from = {
+			gts_ora_book_detail_open_trigger = no
+			check_variable = {
+				which = gts_ora_book_small_page
+				value = 9
+			}
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {
+	}
+}
+gts_ora_book_small_page_10_effect = {
+	potential = {
+		from = {
+			gts_ora_book_detail_open_trigger = no
+			check_variable = {
+				which = gts_ora_book_small_page
+				value = 10
+			}
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {
+	}
+}
 
 
+gts_ora_book_huatian_before_effect = {
+	potential = {
+		from = {
+			gts_ora_book_detail_open_trigger = no
+			check_variable = {
+				which = gts_ora_book_small_page
+				value = 1
+			}
+			NOT = { has_country_flag = gts_ora_huatian_finished }
+		}
+	}
+	allow = {
+		from = {
+			has_country_flag = gts_ora_small_start
+			any_owned_leader = { has_leader_flag = gts_ora }
+			any_owned_leader = {
+				has_leader_flag = gts_huatian
+				has_trait = gts_trait_leader_huatian_h
+			}
+		}
+	}
+	effect = {
+		hidden_effect = {
+			from = {
+				country_event = { id = gts_ora.4201 }
+			}
+		}
+	}
+}
+
+gts_ora_book_huatian_after_effect = {
+	potential = {
+		from = {
+			gts_ora_book_detail_open_trigger = no
+			check_variable = {
+				which = gts_ora_book_small_page
+				value = 1
+			}
+			has_country_flag = gts_ora_huatian_finished
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {
+		hidden_effect = {
+			from = {
+				remove_country_flag = gts_ora_book_qinwen_detail_opened
+				remove_country_flag = gts_ora_book_hitomi_detail_opened
+				remove_country_flag = gts_ora_book_qhai_detail_opened
+				set_country_flag = gts_ora_book_detail_opened
+				set_country_flag = gts_ora_book_huatian_detail_opened
+			}
+		}
+	}
+}
+gts_ora_book_huatian_detail_effect = {
+	potential = {
+		from = {
+			gts_ora_book_detail_open_trigger = yes
+			has_country_flag = gts_ora_book_huatian_detail_opened
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {
+	}
+}
+gts_ora_book_huatian_detail_buff_effect = {
+	potential = {
+		from = {
+			gts_ora_book_detail_open_trigger = yes
+			has_country_flag = gts_ora_book_huatian_detail_opened
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {
+		custom_tooltip = gts_ora_book_huatian_detail_buff_tooltip
+	}
+}
+
+gts_ora_book_qhai_before_effect = {
+	potential = {
+		from = {
+			gts_ora_book_detail_open_trigger = no
+			check_variable = {
+				which = gts_ora_book_small_page
+				value = 1
+			}
+			NOT = { has_country_flag = gts_ora_qhai_finished }
+		}
+	}
+	allow = {
+		from = {
+			any_owned_leader = { has_leader_flag = gts_ora }
+			any_owned_leader = { has_leader_flag = gts_qhai }
+		}
+	}
+	effect = {
+		hidden_effect = {
+			from = {
+				country_event = { id = gts_ora.4101 }
+			}
+		}
+	}
+}
+gts_ora_book_qhai_after_effect = {
+	potential = {
+		from = {
+			gts_ora_book_detail_open_trigger = no
+			check_variable = {
+				which = gts_ora_book_small_page
+				value = 1
+			}
+			has_country_flag = gts_ora_qhai_finished
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {
+		hidden_effect = {
+			from = {
+				remove_country_flag = gts_ora_book_qinwen_detail_opened
+				remove_country_flag = gts_ora_book_hitomi_detail_opened
+				remove_country_flag = gts_ora_book_huatian_detail_opened
+				set_country_flag = gts_ora_book_detail_opened
+				set_country_flag = gts_ora_book_qhai_detail_opened
+			}
+		}
+	}
+}
+gts_ora_book_qhai_detail_effect = {
+	potential = {
+		from = {
+			gts_ora_book_detail_open_trigger = yes
+			has_country_flag = gts_ora_book_qhai_detail_opened
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {
+	}
+}
+gts_ora_book_qhai_detail_buff_effect = {
+	potential = {
+		from = {
+			gts_ora_book_detail_open_trigger = yes
+			has_country_flag = gts_ora_book_qhai_detail_opened
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {
+		custom_tooltip = gts_ora_book_qhai_detail_buff_tooltip
+	}
+}
 
 
+gts_ora_book_detail_back_effect = {
+	potential = {
+		from = {
+			gts_ora_book_detail_open_trigger = yes
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {
+		hidden_effect = {
+			from = {
+				remove_country_flag = gts_ora_book_qinwen_detail_opened
+				remove_country_flag = gts_ora_book_hitomi_detail_opened
+				remove_country_flag = gts_ora_book_huatian_detail_opened
+				remove_country_flag = gts_ora_book_qhai_detail_opened
+				remove_country_flag = gts_ora_book_detail_opened
+			}
+		}
+	}
+}
 
+gts_ora_book_qinwen_before_effect = {
+	potential = {
+		from = {
+			gts_ora_book_detail_open_trigger = no
+			NOT = { has_country_flag = gts_ora_qinwen_finished }
+			check_variable = {
+				which = gts_ora_book_small_page
+				value = 1
+			}
+			NOT = { has_country_flag = gts_ora_qinwen_climate_unlocked }
+		}
+	}
+	allow = {
+		from = {
+			has_country_flag = gts_ora_small_start
+			any_owned_leader = { has_leader_flag = gts_ora }
+			any_owned_leader = { has_leader_flag = gts_qinwen }
+			exists = event_target:qinwen_home_planet
+			event_target:qinwen_home_planet = {
+				exists = archaeological_site
+				archaeological_site = {
+					is_site_type = gts_qinwen_digsite
+					is_site_completed = yes
+				}
+			}
+		}
+	}
+	effect = {
+		hidden_effect = {
+			from = {
+				country_event = { id = gts_ora.4301 }
+			}
+		}
+	}
+}
 
+gts_ora_book_qinwen_middle_effect = {
+	potential = {
+		from = {
+			gts_ora_book_detail_open_trigger = no
+			NOT = { has_country_flag = gts_ora_qinwen_finished }
+			check_variable = {
+				which = gts_ora_book_small_page
+				value = 1
+			}
+			has_country_flag = gts_ora_qinwen_climate_unlocked
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {
+	}
+}
 
+gts_ora_book_qinwen_after_effect = {
+	potential = {
+		from = {
+			gts_ora_book_detail_open_trigger = no
+			check_variable = {
+				which = gts_ora_book_small_page
+				value = 1
+			}
+			has_country_flag = gts_ora_qinwen_finished
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {
+		hidden_effect = {
+			from = {
+				remove_country_flag = gts_ora_book_qhai_detail_opened
+				remove_country_flag = gts_ora_book_huatian_detail_opened
+				remove_country_flag = gts_ora_book_hitomi_detail_opened
+				set_country_flag = gts_ora_book_detail_opened
+				set_country_flag = gts_ora_book_qinwen_detail_opened
+			}
+		}
+	}
+}
+gts_ora_book_qinwen_detail_effect = {
+	potential = {
+		from = {
+			gts_ora_book_detail_open_trigger = yes
+			has_country_flag = gts_ora_book_qinwen_detail_opened
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {
+	}
+}
+gts_ora_book_qinwen_detail_buff_effect = {
+	potential = {
+		from = {
+			gts_ora_book_detail_open_trigger = yes
+			has_country_flag = gts_ora_book_qinwen_detail_opened
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {
+		custom_tooltip = gts_ora_book_qinwen_detail_buff_tooltip
+	}
+}
 
+gts_ora_book_hitomi_before_effect = {
+	potential = {
+		from = {
+			gts_ora_book_detail_open_trigger = no
+			NOT = { has_country_flag = gts_ora_hitomi_finished }
+			check_variable = {
+				which = gts_ora_book_small_page
+				value = 1
+			}
+		}
+	}
+	allow = {
+		from = {
+			has_country_flag = gts_ora_small_start
+			any_owned_leader = { has_leader_flag = gts_ora }
+			any_owned_leader = { has_leader_flag = gts_hitomi }
+			has_country_flag = gts_hitomi_ship_gril_success
+		}
+	}
+	effect = {
+		hidden_effect = {
+			from = {
+				country_event = { id = gts_ora.4401 }
+			}
+		}
+	}
+}
 
-
+gts_ora_book_hitomi_after_effect = {
+	potential = {
+		from = {
+			gts_ora_book_detail_open_trigger = no
+			check_variable = { which = gts_ora_book_small_page value = 1 }
+			has_country_flag = gts_ora_hitomi_finished
+		}
+	}
+	allow = { always = yes }
+	effect = {
+		hidden_effect = {
+			from = {
+				remove_country_flag = gts_ora_book_qhai_detail_opened
+				remove_country_flag = gts_ora_book_huatian_detail_opened
+				remove_country_flag = gts_ora_book_qinwen_detail_opened
+				set_country_flag = gts_ora_book_detail_opened
+				set_country_flag = gts_ora_book_hitomi_detail_opened
+			}
+		}
+	}
+}
+gts_ora_book_hitomi_detail_effect = {
+	potential = {
+		from = {
+			gts_ora_book_detail_open_trigger = yes
+			has_country_flag = gts_ora_book_hitomi_detail_opened
+		}
+	}
+	allow = { always = yes }
+	effect = { }
+}
+gts_ora_book_hitomi_detail_buff_effect = {
+	potential = {
+		from = {
+			gts_ora_book_detail_open_trigger = yes
+			has_country_flag = gts_ora_book_hitomi_detail_opened
+		}
+	}
+	allow = { always = yes }
+	effect = {
+		custom_tooltip = gts_ora_book_hitomi_detail_buff_tooltip
+		if = {
+			limit = { from = { check_variable = { which = gts_ora_hitomi_reward value = 1 } } }
+			custom_tooltip = gts_ora_book_hitomi_detail_buff_1_tooltip
+		}
+		else_if = {
+			limit = { from = { check_variable = { which = gts_ora_hitomi_reward value = 2 } } }
+			custom_tooltip = gts_ora_book_hitomi_detail_buff_2_tooltip
+		}
+		else_if = {
+			limit = { from = { check_variable = { which = gts_ora_hitomi_reward value = 3 } } }
+			custom_tooltip = gts_ora_book_hitomi_detail_buff_3_tooltip
+		}
+		else_if = {
+			limit = { from = { check_variable = { which = gts_ora_hitomi_reward value = 4 } } }
+			custom_tooltip = gts_ora_book_hitomi_detail_buff_4_tooltip
+		}
+	}
+}

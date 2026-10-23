@@ -8,24 +8,21 @@ country_event = {
 
 	immediate = {
 		random_system = {
-			limit = {
-				distance = {
-					source = root.capital_scope.solar_system
-					use_bypasses = yes
-					min_jumps = 1
-					max_jumps = 6
-				}
-			}
-			spawn_system = {
-				min_distance >= 10
-				max_distance <= 30
-				max_jumps = 0
-				initializer = gts_qhai_system
-				effect = {
-					save_event_target_as = gts_bruh_get_qhai_system_location
-				}
-			}
-		}
+ limit = { gts_intel_anchor_system = { COUNTRY = root } }
+ save_event_target_as = gts_intel_spawn_anchor
+ 
+ spawn_system = {
+ min_distance = 10
+ max_distance = 30
+ max_jumps = 0
+ hyperlane = no
+ initializer = gts_qhai_system
+ effect = {
+  add_hyperlane = { from = this to = event_target:gts_intel_spawn_anchor }
+  save_event_target_as = gts_bruh_get_qhai_system_location
+ }
+}
+}
 	}
 }
 
@@ -1047,6 +1044,18 @@ country_event = {
 		is_dialog_only = yes
 	}
 	option = {
+		name = gts_leader_qhai.38.option.starfall
+		trigger = {
+			has_country_flag = gts_qhai_starfall_outfit
+		}
+		hidden_effect = {
+			event_target:gts_qhai = {
+				change_leader_portrait = gts_portrait_qhai_starfall
+			}
+		}
+		is_dialog_only = yes
+	}
+	option = {
 		name = gts_leader_qhai.38.option.6
 		country_event = {
 			id = gts_leader_qhai.35
@@ -1884,46 +1893,130 @@ country_event = {
 	}
 }
 
-# 星球改造 星球决议触发
+# 轉化為愛液星球 - 千海
 planet_event = {
-	# 转化为爱液星球-拥有千海
 	id = gts_leader_qhai.301
 	title = gts_leader_qhai.301.title
 	desc = gts_leader_qhai.301.desc
-	fire_only_once = yes
+
 	diplomatic = yes
 	custom_gui = "gts_horizontal_event_window"
 	custom_gui_option = "gts_horizontal_event_button"
-	picture_event_data = {
-		room = gts_qhai16_room
-	}
+
+	picture_event_data = { room = gts_qhai16_room }
 	show_sound = event_mystic_reveal
-	location = root
+
+	fire_only_once = yes
 	is_triggered_only = yes
+	location = Root
+
 	immediate = {
-		owner = {
-			set_country_flag = triggered_qhai_planet
+		Root = {
+			# 計算人口數量 (90%)
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_planet_killed_pop_count
+			}
+			multiply_variable = {
+				which = gts_bruh_get_planet_killed_pop_count
+				value = 0.9
+			}
+			round_variable = gts_bruh_get_planet_killed_pop_count
+
+			# 計算經驗獲取
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_experience_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_experience_count
+				value = 100
+			}
+			round_variable = gts_bruh_get_experience_count
+
+			# 計算城市數量
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_bruh_get_planet_destroyed_city_count
+			}
+			divide_variable = {
+				which = gts_bruh_get_planet_destroyed_city_count
+				value = 100
+			}
+			round_variable = gts_bruh_get_planet_destroyed_city_count
 		}
+		owner = { set_country_flag = triggered_qhai_planet }
 	}
+
 	option = {
 		name = gts_leader_qhai.301.option.1
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = 5
+				min = 2500
+			}
+			random_owned_leader = {
+				limit = { has_leader_flag = gts_qhai }
+				add_experience = root.gts_bruh_get_experience_count
+			}
+		}
+
+		Root ={
+			every_owned_pop_group = {
+				kill_pop_group = {
+					pop_group = this
+					percentage = 0.9
+				}
+			}
+			add_planet_devastation = 100
+		}
 	}
+
 	option = {
 		name = gts_leader_qhai.301.option.2
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = 5
+				min = 2500
+			}
+			random_owned_leader = {
+				limit = { has_leader_flag = gts_qhai }
+				add_experience = root.gts_bruh_get_experience_count
+			}
+		}
+
+		Root ={
+			every_owned_pop_group = {
+				kill_pop_group = {
+					pop_group = this
+					percentage = 0.9
+				}
+			}
+			add_planet_devastation = 100
+		}
 	}
+
 	after = {
 		owner = {
+			give_specimen = {
+				key = gts_specimens_love_fluid_qhai
+				origin = gts_specimens_love_fluid_qhai
+			}
 			hidden_effect = {
 				country_event = {
 					id = gts_leader_qhai.55
 					days = 60
 				}
 			}
-			give_specimen = {
-				key = gts_specimens_love_fluid_qhai
-				origin = gts_specimens_love_fluid_qhai
-			}
 		}
+
+		clear_variable = gts_bruh_random_count
+		clear_variable = gts_bruh_get_planet_size
+		clear_variable = gts_bruh_get_planet_killed_pop_count
+		clear_variable = gts_bruh_get_planet_destroyed_city_count
+		clear_variable = gts_bruh_get_experience_count
 	}
 }
 

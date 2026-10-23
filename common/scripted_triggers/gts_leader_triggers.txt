@@ -27,3 +27,82 @@ is_gts_yarong_origin = {
     exists = event_target:gts_yarong
     has_origin = origin_god_keeper
 }
+
+#### 斯卡蒂 ###
+gts_skadi_arkship_has_grow_size_trigger = {
+    any_owned_ship = {
+        OR = {
+            is_ship_size = gts_skadi_military_arkship
+            is_ship_size = gts_skadi_military_arkship_tier_2
+        }
+    }
+}
+
+gts_skadi_arkship_has_shrink_size_trigger = {
+    any_owned_ship = {
+        OR = {
+            is_ship_size = gts_skadi_military_arkship_tier_2
+            is_ship_size = gts_skadi_military_arkship_tier_3
+        }
+    }
+}
+
+gts_skadi_arkship_safe_fleet_trigger = {
+    exists = solar_system
+    is_in_combat = no
+    NOT = {
+        any_owned_ship = {
+            is_disabled = yes
+        }
+    }
+}
+
+gts_skadi_arkship_love_ready_trigger = {
+    exists = event_target:gts_skadi
+    event_target:gts_skadi = {
+        check_variable = {
+            which = gts_love_logs
+            value > @gts_love_level3
+        }
+    }
+}
+
+gts_skadi_arkship_not_busy_trigger = {
+    NOT = {
+        has_fleet_flag = gts_skadi_arkship_size_action_in_progress
+    }
+}
+
+gts_skadi_arkship_size_cooldown_ready_trigger = {
+    NOT = {
+        has_fleet_flag = gts_skadi_arkship_size_shared_cooldown
+    }
+}
+
+gts_skadi_arkship_can_start_grow_trigger = {
+    gts_skadi_arkship_has_grow_size_trigger = yes
+    gts_skadi_arkship_safe_fleet_trigger = yes
+    #gts_skadi_arkship_love_ready_trigger = yes
+    gts_skadi_arkship_not_busy_trigger = yes
+    gts_skadi_arkship_size_cooldown_ready_trigger = yes
+}
+
+gts_skadi_arkship_can_start_shrink_trigger = {
+    gts_skadi_arkship_has_shrink_size_trigger = yes
+    gts_skadi_arkship_safe_fleet_trigger = yes
+    #gts_skadi_arkship_love_ready_trigger = yes
+    gts_skadi_arkship_not_busy_trigger = yes
+    gts_skadi_arkship_size_cooldown_ready_trigger = yes
+}
+
+gts_skadi_arkship_can_complete_grow_trigger = {
+    gts_skadi_arkship_has_grow_size_trigger = yes
+    gts_skadi_arkship_safe_fleet_trigger = yes
+    #gts_skadi_arkship_love_ready_trigger = yes
+}
+
+gts_skadi_arkship_can_complete_shrink_trigger = {
+    gts_skadi_arkship_has_shrink_size_trigger = yes
+    gts_skadi_arkship_safe_fleet_trigger = yes
+    #gts_skadi_arkship_love_ready_trigger = yes
+}

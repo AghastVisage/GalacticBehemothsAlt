@@ -1,0 +1,186 @@
+################################################################################
+#################                機械種族通用特質                #################
+################################################################################
+
+
+
+trait_Weihumokuai = {
+
+	# 維護模組
+
+	cost = 1
+	icon = "gfx/interface/icons/traits/traits/Weihumokuai.dds"
+	initial = yes
+	randomized = yes
+	category = robotic
+
+	tags = { machine positive pop_output habitability  }
+
+	archetype_override = { This = { is_robotic = yes } }
+
+	modifier = {
+		pop_environment_tolerance = 0.25
+		planet_pops_robotics_upkeep_mult = -0.1
+		roboticist_jobs_bonus_workforce_mult = 0.1
+	}
+}
+
+trait_Waijiaomokuai = {
+
+	# 外交模組
+
+	cost = 1
+	icon = "gfx/interface/icons/traits/traits/Waijiaomokuai.dds"
+	initial = yes
+	randomized = yes
+	category = robotic
+
+	tags = { machine positive pop_output trade }
+
+	archetype_override = { This = { is_robotic = yes } }
+
+	modifier = {
+		trader_jobs_bonus_workforce_mult = 0.15
+	}
+}
+
+trait_Zijianmokuai = {
+
+	# 自檢模組
+
+	cost = 1
+	icon = "gfx/interface/icons/traits/traits/Zijianmokuai.dds"
+	initial = yes
+	randomized = yes
+	category = robotic
+
+	tags = { machine positive upkeep }
+
+	archetype_override = { This = { is_robotic = yes } }
+
+	modifier = {
+		planet_pops_robotics_upkeep_mult = -0.15
+	}
+}
+
+trait_Luojimokuai = {
+
+	# 邏輯模組
+
+	cost = 1
+	icon = "gfx/interface/icons/traits/traits/Luojimokuai.dds"
+	initial = yes
+	randomized = yes
+	category = robotic
+
+	tags = { machine positive leader }
+
+	archetype_override = { This = { is_robotic = yes } }
+
+	modifier = {
+		species_leader_exp_gain = 0.2
+	}
+}
+
+
+
+# 已廢棄
+
+#trait_AIwenhe = {
+#
+#	# AI人格 - 溫和
+#
+#	cost = 1
+#	icon = "gfx/interface/icons/traits/traits/Waijiaomokuai.dds"
+#	initial = yes
+#	randomized = yes
+#
+#	tags = { machine positive upkeep habitability amenities pop_output }
+#
+#	opposites = {
+#		"trait_AIfangzong"
+#	}
+#
+#	archetype_override = {
+#		This = {
+#			is_robotic = yes
+#		}
+#	}
+#
+#	modifier = {
+#		planet_pops_robotics_upkeep_mult = -0.1
+#		bureaucrat_jobs_bonus_workforce_mult = 0.2
+#		pop_bonus_workforce_mult = -0.1
+#	}
+#}
+
+#trait_AIfangzong = {
+#
+#	# AI人格 - 放縱
+#
+#	cost = 1
+#	icon = "gfx/interface/icons/traits/traits/Weihumokuai.dds"
+#	initial = yes
+#	randomized = yes
+#
+#	tags = { machine positive upkeep habitability amenities pop_output }
+#
+#	opposites = {
+#		"trait_AIwenhe"
+#	}
+#
+#	archetype_override = {
+#		This = {
+#			is_robotic = yes
+#		}
+#	}
+#
+#	modifier = {
+#		planet_pops_robotics_upkeep_mult = 0.1
+#		bureaucrat_jobs_bonus_workforce_mult = -0.3
+#		pop_bonus_workforce_mult = 0.1
+#	}
+#}
+
+#trait_Lingneng_robot = {
+#
+#	# 靈能罐頭
+#
+#	cost = 1
+#	icon = "gfx/interface/icons/traits/traits/Lingneng_robot.dds"
+#	initial = yes
+#	randomized = no
+#	immortal_leaders = yes
+#
+#	tags = { machine positive pop_output unity }
+#
+#	# 添加特質
+#	species_potential_add = { always = no }
+#	# 移除特質
+#	species_possible_remove = { always = no }
+#
+#	archetype_override = {
+#		This = {
+#			is_robotic = yes
+#		}
+#	}
+#
+#	modifier = {
+#		bureaucrat_jobs_bonus_workforce_mult = 0.15
+#	}
+#
+#	assembly_score = {
+#		modifier = {
+#			add = 1.5
+#			From = { has_unity_designation = yes }
+#		}
+#		modifier = {
+#			add = 1.5
+#			From = { has_building = building_order_keep }
+#		}
+#	}
+#
+#	ai_weight = {
+#		factor = 10000
+#	}
+#}

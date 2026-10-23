@@ -390,7 +390,7 @@ utility_component_template = {
 		category = ship_components
 		cost = {
 			alloys = 2000
-			consumer_goods = 1000
+			minerals = 1000
 		}
 	}
 	modifier = {
@@ -423,7 +423,7 @@ utility_component_template = {
 		category = ship_components
 		cost = {
 			alloys = 4000
-			consumer_goods = 2000
+			minerals = 2000
 		}
 	}
 	modifier = {
@@ -458,7 +458,7 @@ utility_component_template = {
 		category = ship_components
 		cost = {
 			alloys = 6000
-			consumer_goods = 3000
+			minerals = 3000
 		}
 	}
 	modifier = {
@@ -490,7 +490,7 @@ utility_component_template = {
 		category = ship_components
 		cost = {
 			alloys = 8000
-			consumer_goods = 4000
+			minerals = 4000
 		}
 	}
 	modifier = {
@@ -901,4 +901,65 @@ utility_component_template = {
 
 	scripted_action = { gts_bronya_herrscher_of_truth_weapon_4 }
 }
+utility_component_template = {
+	key = "gts_ora_weapon_1"
+	size = large
+	icon = GFX_gts_bronya_herrscher_of_truth_weapon_4
+	icon_frame = 1
+	power = 0
+	component_set = "azure_waters_weapon"
+
+	scripted_action = { gts_ora_weapon_1 gts_ora_weapon_2 }
+}
+utility_component_template = {
+	key = "GTS_ORA_BODY"
+	size = small
+	icon = "GFX_tech_gts_body_strengthen"
+	icon_frame = 1
+	ship_limit = 1
+	power = 0
+	component_set = "BODY_STRENGTHEN_GTS"
+	triggered_ship_modifier = {
+		potential = {
+			is_ship_size = gts_orangez_ship
+		}
+		ship_hull_regen_add_perc = 0.05
+	}
+	triggered_ship_modifier = {
+		potential = {
+			is_ship_size = gts_mora_ship
+		}
+		ship_damage_reduction_add = 50
+	}
+	size_restriction = {
+		gts_mora_ship
+		gts_orangez_ship
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+utility_component_template = {
+	key = "GTS_ORA_ISOLATION"
+	size = small
+	icon = "GFX_tech_gts_body_strengthen"
+	icon_frame = 1
+	ship_limit = 1
+	power = 0
+	component_set = "MIND_STRENGTHEN_GTS"
+	triggered_ship_modifier = {
+		potential = {
+			is_ship_size = gts_mora_ship
+		}
+		ship_jumpdrive_cooldown_mult = -0.5
+	}
+	size_restriction = {
+		gts_mora_ship
+		gts_orangez_ship
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
 

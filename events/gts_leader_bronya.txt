@@ -743,7 +743,7 @@ country_event = {
 	desc = gts_bronya.1002.desc
 	picture = GFX_gts_seele_21
 	is_triggered_only = yes
-	location = event_target:bronya_astral
+	location = event_target:bronya_astral@root
 	immediate = {
 		create_country = {
 			name = "NAME_gts_bronya_name"
@@ -862,11 +862,12 @@ country_event = {
 		name = gts_seele.24.a
 	}
 	after = {
-		set_country_flag = bronya.killed
-		solar_system = {
-			spawn_planet = {
+ set_country_flag = bronya.killed
+ gts_intel_resolve_bronya = yes
+ event_target:bronya_astral@root = {
+ spawn_planet = {
 				class = pc_gtsra_bronya_slave
-				location = event_target:bronya_astral
+				location = this
 				orbit_angle_offset = 90
 				size = 25
 				init_effect = {
@@ -891,8 +892,8 @@ country_event = {
 					create_archaeological_site = gts_bronya_digsite
 				}
 			}
-		}
-	}
+ }
+}
 }
 
 country_event = {
@@ -948,6 +949,7 @@ country_event = {
 			IMMORTAL = yes
 			HAS_ALTER_CLOTH = yes
 			HAS_COMMUNICATION = yes
+			HAS_LOVE_TRAIT = normal
 			TARGET = gts_seele
 			TRAIT1 = leader_trait_Ultra
 			TRAIT2 = gts_trait_leader_seele_one_a

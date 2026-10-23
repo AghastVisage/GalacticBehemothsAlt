@@ -1,0 +1,22 @@
+gts_suxiaobai_ring_site = {
+	desc = gts_suxiaobai_ring_site_desc
+	picture = GFX_gts_suxiaobai_3
+	stages = 3
+	weight = 0
+	max_instances = 1
+	allow = {
+		owner = { is_ai = no }
+		is_ship_class = shipclass_science_ship
+		exists = leader
+		leader = { leader_class = scientist }
+	}
+	visible = { default_site_visible_trigger = yes }
+	stage = { difficulty = 2 icon = GFX_archaeology_runes_C1 event = gts_suxiaobai.910 }
+	stage = { difficulty = 3 icon = GFX_archaeology_runes_C2 event = gts_suxiaobai.911 }
+	stage = { difficulty = 4 icon = GFX_archaeology_runes_C3 event = gts_suxiaobai.912 }
+	on_roll_failed = {
+		from = {
+			standard_archaeological_site_on_roll_failed = { RANDOM_EVENTS = all_random_events }
+		}
+	}
+}

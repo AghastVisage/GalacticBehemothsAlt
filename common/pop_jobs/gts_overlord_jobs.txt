@@ -28,15 +28,7 @@ gts_overlord_nun = {
 
 	inline_script = "jobs/automodding_priority_unity"
 
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = specialist
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
+
 
 	possible_pre_triggers = {
 		has_owner = yes
@@ -99,15 +91,7 @@ overlord_tinypropagandist = {
 
 	inline_script = "jobs/automodding_priority_unity"
 
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = specialist
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
+
 
 	possible_pre_triggers = {
 		has_owner = yes
@@ -165,15 +149,7 @@ overlord_tinypropagandist_drone = {
 
 	inline_script = "jobs/automodding_priority_unity"
 
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = specialist
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
+
 
 	possible_pre_triggers = {
 		has_owner = yes
@@ -193,9 +169,23 @@ overlord_tinypropagandist_drone = {
 	resources = {
 		category = planet_overlord_propagandists
 		upkeep = {
-			# 10
-			consumer_goods = 4
 			unity = 1
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					is_hive_empire = yes
+				}
+			}
+			minerals = 8
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					is_machine_empire = yes
+				}
+			}
+			energy = 8
 		}
 	}
 
@@ -231,15 +221,7 @@ overlord_gts_servitor = {
 
 	inline_script = "jobs/automodding_priority_unity"
 
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = ruler
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
+
 
 	possible_pre_triggers = {
 		has_owner = yes
@@ -298,15 +280,7 @@ overlord_gts_servitor_drone = {
 
 	inline_script = "jobs/automodding_priority_unity"
 
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = complex_drone
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
+
 
 	possible_pre_triggers = {
 		has_owner = yes
@@ -326,9 +300,23 @@ overlord_gts_servitor_drone = {
 	resources = {
 		category = planet_overlord_propagandists
 		upkeep = {
-			# 10
-			consumer_goods = 4
 			unity = 1
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					is_hive_empire = yes
+				}
+			}
+			minerals = 8
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					is_machine_empire = yes
+				}
+			}
+			energy = 8
 		}
 	}
 
@@ -345,4 +333,3 @@ overlord_gts_servitor_drone = {
 		weight = @overlord_job_weight
 	}
 }
-

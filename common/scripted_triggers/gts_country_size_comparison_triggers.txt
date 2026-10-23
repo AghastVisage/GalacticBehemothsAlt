@@ -1,0 +1,330 @@
+# 希瞳出品，有 bug 联系我。
+
+gts_country_is_bigger_than = {
+	is_scope_type = country
+	exists = $TARGET$
+
+	calc_true_if = {
+		amount = 1
+		has_policy_flag = gts_empire_type_nano
+		has_policy_flag = gts_empire_type_micro
+		has_policy_flag = gts_empire_type_tiny
+		has_policy_flag = gts_empire_type_small
+		has_policy_flag = gts_empire_type_normal
+		has_policy_flag = gts_empire_type_tall
+		has_policy_flag = gts_empire_type_giant
+		has_policy_flag = gts_empire_type_titan
+		has_policy_flag = gts_empire_type_ultra
+	}
+
+	$TARGET$ = {
+		is_scope_type = country
+		calc_true_if = {
+			amount = 1
+			has_policy_flag = gts_empire_type_nano
+			has_policy_flag = gts_empire_type_micro
+			has_policy_flag = gts_empire_type_tiny
+			has_policy_flag = gts_empire_type_small
+			has_policy_flag = gts_empire_type_normal
+			has_policy_flag = gts_empire_type_tall
+			has_policy_flag = gts_empire_type_giant
+			has_policy_flag = gts_empire_type_titan
+			has_policy_flag = gts_empire_type_ultra
+		}
+	}
+
+	switch = {
+		trigger = has_policy_flag
+		gts_empire_type_ultra = {
+			$TARGET$ = {
+				OR = {
+					has_policy_flag = gts_empire_type_titan
+					has_policy_flag = gts_empire_type_giant
+					has_policy_flag = gts_empire_type_tall
+					has_policy_flag = gts_empire_type_normal
+					has_policy_flag = gts_empire_type_small
+					has_policy_flag = gts_empire_type_tiny
+					has_policy_flag = gts_empire_type_micro
+					has_policy_flag = gts_empire_type_nano
+				}
+			}
+		}
+		gts_empire_type_titan = {
+			$TARGET$ = {
+				OR = {
+					has_policy_flag = gts_empire_type_giant
+					has_policy_flag = gts_empire_type_tall
+					has_policy_flag = gts_empire_type_normal
+					has_policy_flag = gts_empire_type_small
+					has_policy_flag = gts_empire_type_tiny
+					has_policy_flag = gts_empire_type_micro
+					has_policy_flag = gts_empire_type_nano
+				}
+			}
+		}
+		gts_empire_type_giant = {
+			$TARGET$ = {
+				OR = {
+					has_policy_flag = gts_empire_type_tall
+					has_policy_flag = gts_empire_type_normal
+					has_policy_flag = gts_empire_type_small
+					has_policy_flag = gts_empire_type_tiny
+					has_policy_flag = gts_empire_type_micro
+					has_policy_flag = gts_empire_type_nano
+				}
+			}
+		}
+		gts_empire_type_tall = {
+			$TARGET$ = {
+				OR = {
+					has_policy_flag = gts_empire_type_normal
+					has_policy_flag = gts_empire_type_small
+					has_policy_flag = gts_empire_type_tiny
+					has_policy_flag = gts_empire_type_micro
+					has_policy_flag = gts_empire_type_nano
+				}
+			}
+		}
+		gts_empire_type_normal = {
+			$TARGET$ = {
+				OR = {
+					has_policy_flag = gts_empire_type_small
+					has_policy_flag = gts_empire_type_tiny
+					has_policy_flag = gts_empire_type_micro
+					has_policy_flag = gts_empire_type_nano
+				}
+			}
+		}
+		gts_empire_type_small = {
+			$TARGET$ = {
+				OR = {
+					has_policy_flag = gts_empire_type_tiny
+					has_policy_flag = gts_empire_type_micro
+					has_policy_flag = gts_empire_type_nano
+				}
+			}
+		}
+		gts_empire_type_tiny = {
+			$TARGET$ = {
+				OR = {
+					has_policy_flag = gts_empire_type_micro
+					has_policy_flag = gts_empire_type_nano
+				}
+			}
+		}
+		gts_empire_type_micro = {
+			$TARGET$ = {
+				has_policy_flag = gts_empire_type_nano
+			}
+		}
+		gts_empire_type_nano = {
+			always = no
+		}
+	}
+}
+
+gts_country_is_equal_to = {
+	is_scope_type = country
+	exists = $TARGET$
+
+	calc_true_if = {
+		amount = 1
+		has_policy_flag = gts_empire_type_nano
+		has_policy_flag = gts_empire_type_micro
+		has_policy_flag = gts_empire_type_tiny
+		has_policy_flag = gts_empire_type_small
+		has_policy_flag = gts_empire_type_normal
+		has_policy_flag = gts_empire_type_tall
+		has_policy_flag = gts_empire_type_giant
+		has_policy_flag = gts_empire_type_titan
+		has_policy_flag = gts_empire_type_ultra
+	}
+
+	$TARGET$ = {
+		is_scope_type = country
+		calc_true_if = {
+			amount = 1
+			has_policy_flag = gts_empire_type_nano
+			has_policy_flag = gts_empire_type_micro
+			has_policy_flag = gts_empire_type_tiny
+			has_policy_flag = gts_empire_type_small
+			has_policy_flag = gts_empire_type_normal
+			has_policy_flag = gts_empire_type_tall
+			has_policy_flag = gts_empire_type_giant
+			has_policy_flag = gts_empire_type_titan
+			has_policy_flag = gts_empire_type_ultra
+		}
+	}
+
+	switch = {
+		trigger = has_policy_flag
+		gts_empire_type_ultra = {
+			$TARGET$ = {
+				has_policy_flag = gts_empire_type_ultra
+			}
+		}
+		gts_empire_type_titan = {
+			$TARGET$ = {
+				has_policy_flag = gts_empire_type_titan
+			}
+		}
+		gts_empire_type_giant = {
+			$TARGET$ = {
+				has_policy_flag = gts_empire_type_giant
+			}
+		}
+		gts_empire_type_tall = {
+			$TARGET$ = {
+				has_policy_flag = gts_empire_type_tall
+			}
+		}
+		gts_empire_type_normal = {
+			$TARGET$ = {
+				has_policy_flag = gts_empire_type_normal
+			}
+		}
+		gts_empire_type_small = {
+			$TARGET$ = {
+				has_policy_flag = gts_empire_type_small
+			}
+		}
+		gts_empire_type_tiny = {
+			$TARGET$ = {
+				has_policy_flag = gts_empire_type_tiny
+			}
+		}
+		gts_empire_type_micro = {
+			$TARGET$ = {
+				has_policy_flag = gts_empire_type_micro
+			}
+		}
+		gts_empire_type_nano = {
+			$TARGET$ = {
+				has_policy_flag = gts_empire_type_nano
+			}
+		}
+	}
+}
+
+gts_country_is_smaller_than = {
+	is_scope_type = country
+	exists = $TARGET$
+
+	calc_true_if = {
+		amount = 1
+		has_policy_flag = gts_empire_type_nano
+		has_policy_flag = gts_empire_type_micro
+		has_policy_flag = gts_empire_type_tiny
+		has_policy_flag = gts_empire_type_small
+		has_policy_flag = gts_empire_type_normal
+		has_policy_flag = gts_empire_type_tall
+		has_policy_flag = gts_empire_type_giant
+		has_policy_flag = gts_empire_type_titan
+		has_policy_flag = gts_empire_type_ultra
+	}
+
+	$TARGET$ = {
+		is_scope_type = country
+		calc_true_if = {
+			amount = 1
+			has_policy_flag = gts_empire_type_nano
+			has_policy_flag = gts_empire_type_micro
+			has_policy_flag = gts_empire_type_tiny
+			has_policy_flag = gts_empire_type_small
+			has_policy_flag = gts_empire_type_normal
+			has_policy_flag = gts_empire_type_tall
+			has_policy_flag = gts_empire_type_giant
+			has_policy_flag = gts_empire_type_titan
+			has_policy_flag = gts_empire_type_ultra
+		}
+	}
+
+	switch = {
+		trigger = has_policy_flag
+		gts_empire_type_ultra = {
+			always = no
+		}
+		gts_empire_type_titan = {
+			$TARGET$ = {
+				has_policy_flag = gts_empire_type_ultra
+			}
+		}
+		gts_empire_type_giant = {
+			$TARGET$ = {
+				OR = {
+					has_policy_flag = gts_empire_type_ultra
+					has_policy_flag = gts_empire_type_titan
+				}
+			}
+		}
+		gts_empire_type_tall = {
+			$TARGET$ = {
+				OR = {
+					has_policy_flag = gts_empire_type_ultra
+					has_policy_flag = gts_empire_type_titan
+					has_policy_flag = gts_empire_type_giant
+				}
+			}
+		}
+		gts_empire_type_normal = {
+			$TARGET$ = {
+				OR = {
+					has_policy_flag = gts_empire_type_ultra
+					has_policy_flag = gts_empire_type_titan
+					has_policy_flag = gts_empire_type_giant
+					has_policy_flag = gts_empire_type_tall
+				}
+			}
+		}
+		gts_empire_type_small = {
+			$TARGET$ = {
+				OR = {
+					has_policy_flag = gts_empire_type_ultra
+					has_policy_flag = gts_empire_type_titan
+					has_policy_flag = gts_empire_type_giant
+					has_policy_flag = gts_empire_type_tall
+					has_policy_flag = gts_empire_type_normal
+				}
+			}
+		}
+		gts_empire_type_tiny = {
+			$TARGET$ = {
+				OR = {
+					has_policy_flag = gts_empire_type_ultra
+					has_policy_flag = gts_empire_type_titan
+					has_policy_flag = gts_empire_type_giant
+					has_policy_flag = gts_empire_type_tall
+					has_policy_flag = gts_empire_type_normal
+					has_policy_flag = gts_empire_type_small
+				}
+			}
+		}
+		gts_empire_type_micro = {
+			$TARGET$ = {
+				OR = {
+					has_policy_flag = gts_empire_type_ultra
+					has_policy_flag = gts_empire_type_titan
+					has_policy_flag = gts_empire_type_giant
+					has_policy_flag = gts_empire_type_tall
+					has_policy_flag = gts_empire_type_normal
+					has_policy_flag = gts_empire_type_small
+					has_policy_flag = gts_empire_type_tiny
+				}
+			}
+		}
+		gts_empire_type_nano = {
+			$TARGET$ = {
+				OR = {
+					has_policy_flag = gts_empire_type_ultra
+					has_policy_flag = gts_empire_type_titan
+					has_policy_flag = gts_empire_type_giant
+					has_policy_flag = gts_empire_type_tall
+					has_policy_flag = gts_empire_type_normal
+					has_policy_flag = gts_empire_type_small
+					has_policy_flag = gts_empire_type_tiny
+					has_policy_flag = gts_empire_type_micro
+				}
+			}
+		}
+	}
+}

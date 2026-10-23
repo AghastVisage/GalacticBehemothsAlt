@@ -49,8 +49,24 @@ gts_fallout_building_radiation_research_lab = {
 		}
 	}
 
-	planet_modifier = {
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
 		job_gts_fallout_radiation_researcher_add = 100
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_gts_drone_gts_fallout_radiation_researcher_add = 100
 	}
 
 	triggered_planet_modifier = {
@@ -104,7 +120,26 @@ gts_fallout_building_house = {
 	planet_modifier = {
 		planet_housing_add = 1500
 		planet_amenities_add = 2500
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
 		job_gts_fallout_resident_add = 100
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_gts_drone_gts_fallout_resident_add = 100
 	}
 
 	triggered_planet_modifier = {
@@ -116,8 +151,33 @@ gts_fallout_building_house = {
 		modifier = {
 			planet_housing_add = 1500
 			planet_amenities_add = 2500
-			job_gts_fallout_resident_add = 100
 		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				has_tradition = tr_gts_fallout_gentle_nuked_house
+			}
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
+		job_gts_fallout_resident_add = 100
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				has_tradition = tr_gts_fallout_gentle_nuked_house
+			}
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_gts_drone_gts_fallout_resident_add = 100
 	}
 
 	resources = {
@@ -291,4 +351,3 @@ gts_fallout_gentle_clone = {
 		tech_cloning
 	}
 }
-

@@ -1,0 +1,33 @@
+namespace = gts_achievement_message
+
+@gts_achiev_days = 90
+
+country_event = {
+    id = gts_achievement_message.1
+    hide_window = yes is_triggered_only = yes fire_only_once = yes
+    trigger = {
+        has_global_flag = gts_enable_achievement is_ai = no
+    }
+    immediate = {
+        create_message = {
+            type = MESSAGE_GTS_ACHIEVEMENT days = @gts_achiev_days
+            localization = gts_achiev.cheat.message
+        }
+        gts_achievement_bouns_effect = { currency = 1 achiev_name = "cheat" }
+    }
+}
+country_event = {
+    id = gts_achievement_message.2
+    hide_window = yes is_triggered_only = yes fire_only_once = yes
+    trigger = {
+        any_owned_leader = { has_trait = leader_trait_Ultra } is_ai = no
+    }
+    immediate = {
+        create_message = {
+            type = MESSAGE_GTS_ACHIEVEMENT days = @gts_achiev_days
+            localization = gts_achiev.biggest_girl.message
+        }
+        gts_achievement_bouns_effect = { currency = 1 achiev_name = "biggest_girl" }
+    }
+}
+

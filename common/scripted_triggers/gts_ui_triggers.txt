@@ -181,3 +181,491 @@ gts_leader_body_add_pop_limit = {
 # 图鉴
 gts_cant_show_charactor = { optimize_memory NOT = {any_owned_leader = {has_leader_flag= gts_$leader_name$}}}
 gts_can_show_charactor = { optimize_memory any_owned_leader = {has_leader_flag= gts_$leader_name$} }
+
+gts_ora_book_detail_open_trigger = {
+	has_country_flag = gts_ora_book_detail_opened
+}
+
+# country scope。检查舰船自身的 starbase，方舟移动或更换首都后仍然有效。
+# 完工 flag 只用于防止重复推进事件，不能代替实际设施存在判定。
+gts_has_functional_gateway = {
+	OR = {
+		has_megastructure = gts_gateway_final
+		any_owned_ship = {
+			exists = starbase
+			starbase = { has_starbase_building = gts_arkship_gateway_final }
+		}
+	}
+}
+
+# 领袖情报：头像、兑换按钮、实际目标选择共用条件。COUNTRY 必须为发起国家。
+gts_intel_is_arkship = {
+ OR = { is_arkship_ship = yes is_ship_size = gts_arkship_tier_1 is_ship_size = gts_arkship_tier_2 is_ship_size = gts_arkship_tier_3 }
+}
+gts_intel_safe_system = {
+ OR = { NOT = { exists = space_owner } space_owner = { is_same_value = $COUNTRY$ } }
+ has_access_fleet = $COUNTRY$
+ NOT = { has_star_flag = hostile_system }
+}
+gts_intel_anchor_system = {
+ gts_intel_safe_system = { COUNTRY = $COUNTRY$ }
+ if = {
+  limit = { $COUNTRY$ = { is_nomadic = yes } }
+  any_fleet_in_system = {
+   owner = { is_same_value = $COUNTRY$ }
+   any_owned_ship = { gts_intel_is_arkship = yes }
+  }
+ }
+ else = {
+  $COUNTRY$ = { exists = capital_scope }
+  is_same_value = $COUNTRY$.capital_scope.solar_system
+ }
+}
+gts_intel_nearby_system = {
+ gts_intel_safe_system = { COUNTRY = $COUNTRY$ }
+ OR = {
+  gts_intel_anchor_system = { COUNTRY = $COUNTRY$ }
+  any_neighbor_system = { gts_intel_anchor_system = { COUNTRY = $COUNTRY$ } }
+ }
+}
+gts_intel_has_anchor = { any_system = { gts_intel_anchor_system = { COUNTRY = $COUNTRY$ } } }
+# 无主或本国行星均可；各剧情再按原有条件决定是否允许殖民地。
+gts_intel_safe_planet = {
+ OR = { has_owner = no owner = { is_same_value = $COUNTRY$ } }
+}
+
+gts_intel_planet_aurora = { gts_intel_safe_planet = { COUNTRY = $COUNTRY$ } has_anomaly = no is_preventing_anomaly = no is_a_planet = yes is_colony = no is_under_colonization = no is_gts_reformed_planet = no NOT = { exists = archaeological_site } NOT = { has_planet_flag = gts_body_planet } }
+
+gts_intel_system_aurora = { gts_intel_nearby_system = { COUNTRY = $COUNTRY$ } is_capital_system = no is_star_class = sc_f any_system_planet = { gts_intel_planet_aurora = { COUNTRY = $COUNTRY$ } } }
+
+gts_intel_planet_aplog = { gts_intel_safe_planet = { COUNTRY = $COUNTRY$ } is_capital = no is_ringworld = no is_asteroid = no is_star = no NOT = { is_planet_class = pc_gas_giant } NOT = { has_planet_flag = gts_body_planet } NOT = { exists = archaeological_site } has_anomaly = no is_preventing_anomaly = no is_gts_reformed_planet = no }
+
+gts_intel_system_aplog = { gts_intel_nearby_system = { COUNTRY = $COUNTRY$ }  any_system_planet = { gts_intel_planet_aplog = { COUNTRY = $COUNTRY$ } } }
+
+gts_intel_planet_skadi = { gts_intel_safe_planet = { COUNTRY = $COUNTRY$ } is_a_planet = yes has_anomaly = no is_gts_reformed_planet = no NOT = { exists = archaeological_site } NOT = { has_planet_flag = gts_body_planet } }
+
+gts_intel_system_skadi = { gts_intel_nearby_system = { COUNTRY = $COUNTRY$ }  any_system_planet = { gts_intel_planet_skadi = { COUNTRY = $COUNTRY$ } } }
+
+gts_intel_planet_linglu = { gts_intel_safe_planet = { COUNTRY = $COUNTRY$ } OR = { uninhabitable_regular_planet = yes habitable_planet_not_urban = yes } has_owner = no is_colony = no is_under_colonization = no is_preventing_anomaly = no has_anomaly = no is_gts_reformed_planet = no NOT = { exists = archaeological_site } NOT = { has_planet_flag = gts_body_planet } }
+
+gts_intel_system_linglu = { gts_intel_nearby_system = { COUNTRY = $COUNTRY$ }  any_system_planet = { gts_intel_planet_linglu = { COUNTRY = $COUNTRY$ } } }
+
+gts_intel_planet_satori = { gts_intel_safe_planet = { COUNTRY = $COUNTRY$ } is_preventing_anomaly = no has_anomaly = no is_capital = no is_ringworld = no is_star = no is_colony = no is_under_colonization = no NOT = { is_planet_class = pc_gas_giant } NOT = { has_planet_flag = gts_body_planet } NOT = { exists = archaeological_site } is_gts_reformed_planet = no }
+
+gts_intel_system_satori = { gts_intel_nearby_system = { COUNTRY = $COUNTRY$ }  any_system_planet = { gts_intel_planet_satori = { COUNTRY = $COUNTRY$ } } }
+
+gts_intel_planet_sonxi = { gts_intel_safe_planet = { COUNTRY = $COUNTRY$ } is_colony = yes owner = { is_same_value = $COUNTRY$ } is_controlled_by = $COUNTRY$ NOR = { is_planet_class = pc_shattered_ring_habitable is_planet_class = pc_ringworld_habitable is_planet_class = pc_habitat is_eatable_planet = no } }
+
+gts_intel_system_sonxi = { gts_intel_nearby_system = { COUNTRY = $COUNTRY$ }  any_system_planet = { gts_intel_planet_sonxi = { COUNTRY = $COUNTRY$ } } }
+
+gts_intel_planet_guya = { gts_intel_safe_planet = { COUNTRY = $COUNTRY$ } owner = { is_same_value = $COUNTRY$ } NOT = { is_planet_class = pc_habitat } }
+
+gts_intel_system_guya = { gts_intel_nearby_system = { COUNTRY = $COUNTRY$ }  any_system_planet = { gts_intel_planet_guya = { COUNTRY = $COUNTRY$ } } }
+
+gts_intel_planet_linfeng = { gts_intel_safe_planet = { COUNTRY = $COUNTRY$ } owner = { is_same_value = $COUNTRY$ } is_controlled_by = $COUNTRY$ is_colony = yes is_capital = no is_eatable_planet = yes
+ OR = {
+  has_carrier_flag = gts_priority_destroy_target
+  has_modifier = gts_priority_destroy_target_modifier
+  AND = { pop_amount <= 400 has_anomaly = no NOT = { exists = archaeological_site } NOR = { is_planet_class = pc_shielded is_planet_class = pc_ringworld_shielded is_planet_class = pc_habitat_shielded } }
+ } }
+
+gts_intel_system_linfeng = { gts_intel_nearby_system = { COUNTRY = $COUNTRY$ }  any_system_planet = { gts_intel_planet_linfeng = { COUNTRY = $COUNTRY$ } } }
+
+gts_intel_system_seele = {
+ gts_intel_nearby_system = { COUNTRY = $COUNTRY$ }
+ is_star_class = sc_black_hole
+ NOT = { has_star_flag = gts_start_system }
+ is_surveyed = { who = $COUNTRY$ status = yes }
+ star = { has_anomaly = no is_preventing_anomaly = no NOT = { exists = archaeological_site } }
+}
+gts_intel_system_rift = {
+ gts_intel_nearby_system = { COUNTRY = $COUNTRY$ }
+ NOT = { has_star_flag = gts_start_system }
+ is_surveyed = { who = $COUNTRY$ status = yes }
+ has_astral_rift = no
+}
+
+gts_intel_can_start_lottie = {
+	hidden_trigger = { is_ai = no }
+	custom_tooltip = { fail_text = gts_intel_fail_redeemed_lottie NOT = { has_global_flag = gts_has_trigger_lottie } }
+	hidden_trigger = { gts_intel_has_anchor = { COUNTRY = root } }
+}
+
+gts_intel_location_lottie = { gts_intel_has_anchor = { COUNTRY = root } }
+
+gts_intel_can_start_aurora = {
+	hidden_trigger = { is_ai = no }
+	custom_tooltip = { fail_text = gts_intel_fail_redeemed_aurora NOT = { has_global_flag = gts_has_trigger_aurora } }
+	custom_tooltip = { fail_text = gts_intel_fail_location_aurora any_system = { gts_intel_system_aurora = { COUNTRY = root } } }
+}
+
+gts_intel_location_aurora = { any_system = { gts_intel_system_aurora = { COUNTRY = root } } }
+
+gts_intel_can_start_jifeng = {
+	hidden_trigger = { is_ai = no }
+	custom_tooltip = { fail_text = gts_intel_fail_redeemed_jifeng NOT = { has_global_flag = gts_has_trigger_jifeng } }
+}
+
+gts_intel_can_start_yiyan = {
+	hidden_trigger = { is_ai = no }
+	custom_tooltip = { fail_text = gts_intel_fail_redeemed_yiyan NOT = { has_global_flag = gts_has_trigger_yiyan } }
+	hidden_trigger = { gts_intel_has_anchor = { COUNTRY = root } }
+}
+
+gts_intel_location_yiyan = { gts_intel_has_anchor = { COUNTRY = root } }
+
+gts_intel_can_start_aplog = {
+	hidden_trigger = { is_ai = no }
+	custom_tooltip = { fail_text = gts_intel_fail_redeemed_aplog NOT = { has_global_flag = gts_has_trigger_aplog } }
+	custom_tooltip = { fail_text = gts_intel_fail_location_aplog any_system = { gts_intel_system_aplog = { COUNTRY = root } } }
+}
+
+gts_intel_location_aplog = { any_system = { gts_intel_system_aplog = { COUNTRY = root } } }
+
+gts_intel_can_start_eyjafjalla = {
+	hidden_trigger = { is_ai = no }
+	custom_tooltip = { fail_text = gts_intel_fail_redeemed_eyjafjalla NOT = { has_global_flag = gts_has_trigger_eyjafjalla } }
+	hidden_trigger = { gts_intel_has_anchor = { COUNTRY = root } }
+}
+
+gts_intel_location_eyjafjalla = { gts_intel_has_anchor = { COUNTRY = root } }
+
+gts_intel_can_start_skadi = {
+	hidden_trigger = { is_ai = no }
+	custom_tooltip = { fail_text = gts_intel_fail_redeemed_skadi NOT = { has_global_flag = gts_has_trigger_skadi } }
+	custom_tooltip = { fail_text = gts_intel_fail_skadi_started NOR = { has_global_flag = skadi_started has_country_flag = skadi_intro } }
+	custom_tooltip = { fail_text = gts_intel_fail_location_skadi any_system = { gts_intel_system_skadi = { COUNTRY = root } } }
+}
+
+gts_intel_location_skadi = { any_system = { gts_intel_system_skadi = { COUNTRY = root } } }
+
+gts_intel_can_start_sonxi = {
+	hidden_trigger = { is_ai = no }
+	custom_tooltip = { fail_text = gts_intel_fail_redeemed_sonxi NOT = { has_global_flag = gts_has_trigger_sonxi } }
+	custom_tooltip = { fail_text = gts_intel_fail_sonxi_count num_owned_planets > 2 }
+	custom_tooltip = { fail_text = gts_intel_fail_sonxi_started NOT = { any_system = { has_star_flag = gts_sleepbear_system } } }
+	custom_tooltip = { fail_text = gts_intel_fail_location_sonxi any_system = { gts_intel_system_sonxi = { COUNTRY = root } } }
+}
+
+gts_intel_location_sonxi = { any_system = { gts_intel_system_sonxi = { COUNTRY = root } } }
+
+gts_intel_can_start_linglu = {
+	hidden_trigger = { is_ai = no }
+	custom_tooltip = { fail_text = gts_intel_fail_redeemed_linglu NOT = { has_global_flag = gts_has_trigger_linglu } }
+	custom_tooltip = { fail_text = gts_intel_fail_location_linglu any_system = { gts_intel_system_linglu = { COUNTRY = root } } }
+}
+
+gts_intel_location_linglu = { any_system = { gts_intel_system_linglu = { COUNTRY = root } } }
+
+gts_intel_can_start_erika = {
+	hidden_trigger = { is_ai = no }
+	custom_tooltip = { fail_text = gts_intel_fail_redeemed_erika NOT = { has_global_flag = gts_has_trigger_erika } }
+	custom_tooltip = { fail_text = gts_intel_fail_erika_setting has_country_flag = can_trigger_scat_content }
+	hidden_trigger = { gts_intel_has_anchor = { COUNTRY = root } }
+}
+
+gts_intel_location_erika = { gts_intel_has_anchor = { COUNTRY = root } }
+
+gts_intel_can_start_goldenglow = {
+	hidden_trigger = { is_ai = no }
+	custom_tooltip = { fail_text = gts_intel_fail_redeemed_goldenglow NOT = { has_global_flag = gts_has_trigger_goldenglow } }
+	hidden_trigger = { gts_intel_has_anchor = { COUNTRY = root } }
+}
+
+gts_intel_location_goldenglow = { gts_intel_has_anchor = { COUNTRY = root } }
+
+gts_intel_can_start_huatian = {
+	hidden_trigger = { is_ai = no }
+	custom_tooltip = { fail_text = gts_intel_fail_redeemed_huatian NOT = { has_global_flag = gts_has_trigger_huatian } }
+	hidden_trigger = { gts_intel_has_anchor = { COUNTRY = root } }
+}
+
+gts_intel_location_huatian = { gts_intel_has_anchor = { COUNTRY = root } }
+
+gts_intel_can_start_xiaomiao = {
+	hidden_trigger = { is_ai = no }
+	custom_tooltip = { fail_text = gts_intel_fail_redeemed_xiaomiao NOT = { has_global_flag = gts_has_trigger_xiaomiao } }
+	hidden_trigger = { gts_intel_has_anchor = { COUNTRY = root } }
+}
+
+gts_intel_location_xiaomiao = { gts_intel_has_anchor = { COUNTRY = root } }
+
+gts_intel_can_start_cys = {
+	hidden_trigger = { is_ai = no }
+	custom_tooltip = { fail_text = gts_intel_fail_cys_unavailable always = no }
+	custom_tooltip = { fail_text = gts_intel_fail_redeemed_cys NOT = { has_global_flag = gts_has_trigger_cys } }
+	hidden_trigger = { gts_intel_has_anchor = { COUNTRY = root } }
+}
+
+gts_intel_location_cys = { gts_intel_has_anchor = { COUNTRY = root } }
+
+gts_intel_can_start_teifuania = {
+	hidden_trigger = { is_ai = no }
+	custom_tooltip = { fail_text = gts_intel_fail_redeemed_teifuania NOT = { has_global_flag = gts_has_trigger_teifuania } }
+	hidden_trigger = { gts_intel_has_anchor = { COUNTRY = root } }
+}
+
+gts_intel_location_teifuania = { gts_intel_has_anchor = { COUNTRY = root } }
+
+gts_intel_can_start_xiankeyan = {
+	hidden_trigger = { is_ai = no }
+	custom_tooltip = { fail_text = gts_intel_fail_redeemed_xiankeyan NOT = { has_global_flag = gts_has_trigger_xiankeyan } }
+}
+
+gts_intel_can_start_qhai = {
+	hidden_trigger = { is_ai = no }
+	custom_tooltip = { fail_text = gts_intel_fail_redeemed_qhai NOT = { has_global_flag = gts_has_trigger_qhai } }
+	custom_tooltip = { fail_text = gts_intel_fail_qhai_scientist any_owned_leader = { has_trait = leader_trait_Ultra leader_class = scientist } }
+	hidden_trigger = { gts_intel_has_anchor = { COUNTRY = root } }
+}
+
+gts_intel_location_qhai = { gts_intel_has_anchor = { COUNTRY = root } }
+
+gts_intel_can_start_satori = {
+	hidden_trigger = { is_ai = no }
+	custom_tooltip = { fail_text = gts_intel_fail_redeemed_satori NOT = { has_global_flag = gts_has_trigger_satori } }
+	custom_tooltip = { fail_text = gts_intel_fail_location_satori any_system = { gts_intel_system_satori = { COUNTRY = root } } }
+}
+
+gts_intel_location_satori = { any_system = { gts_intel_system_satori = { COUNTRY = root } } }
+
+gts_intel_can_start_tiantiao = {
+	hidden_trigger = { is_ai = no }
+	custom_tooltip = { fail_text = gts_intel_fail_redeemed_tiantiao NOT = { has_global_flag = gts_has_trigger_tiantiao } }
+	hidden_trigger = { gts_intel_has_anchor = { COUNTRY = root } }
+}
+
+gts_intel_location_tiantiao = { gts_intel_has_anchor = { COUNTRY = root } }
+
+gts_intel_can_start_doctor = {
+	hidden_trigger = { is_ai = no }
+	custom_tooltip = { fail_text = gts_intel_fail_redeemed_doctor NOT = { has_global_flag = gts_has_trigger_doctor } }
+	custom_tooltip = { fail_text = gts_intel_fail_doctor_setting has_country_flag = can_trigger_futa_content }
+	hidden_trigger = { gts_intel_has_anchor = { COUNTRY = root } }
+}
+
+gts_intel_location_doctor = { gts_intel_has_anchor = { COUNTRY = root } }
+
+gts_intel_can_start_mari = {
+	hidden_trigger = { is_ai = no }
+	custom_tooltip = { fail_text = gts_intel_fail_redeemed_mari NOT = { has_global_flag = gts_has_trigger_mari } }
+	hidden_trigger = { gts_intel_has_anchor = { COUNTRY = root } }
+}
+
+gts_intel_location_mari = { gts_intel_has_anchor = { COUNTRY = root } }
+
+gts_intel_can_start_guya = {
+	hidden_trigger = { is_ai = no }
+	custom_tooltip = { fail_text = gts_intel_fail_redeemed_guya NOT = { has_global_flag = gts_has_trigger_guya } }
+	custom_tooltip = { fail_text = gts_intel_fail_guya_scientist any_owned_leader = { leader_class = scientist has_total_skill > 3 } }
+	custom_tooltip = { fail_text = gts_intel_fail_location_guya any_system = { gts_intel_system_guya = { COUNTRY = root } } }
+}
+
+gts_intel_location_guya = { any_system = { gts_intel_system_guya = { COUNTRY = root } } }
+
+gts_intel_can_start_sera = {
+	hidden_trigger = { is_ai = no }
+	custom_tooltip = { fail_text = gts_intel_fail_redeemed_sera NOT = { has_global_flag = gts_has_trigger_traptrix } }
+	custom_tooltip = { fail_text = gts_intel_fail_tiny_empire gts_is_tiny_empire = yes }
+	hidden_trigger = { gts_intel_has_anchor = { COUNTRY = root } }
+}
+
+gts_intel_location_sera = { gts_intel_has_anchor = { COUNTRY = root } }
+
+gts_intel_can_start_allomerus = {
+	hidden_trigger = { is_ai = no }
+	custom_tooltip = { fail_text = gts_intel_fail_redeemed_allomerus NOT = { has_global_flag = gts_has_trigger_traptrix } }
+	custom_tooltip = { fail_text = gts_intel_fail_tiny_empire gts_is_tiny_empire = yes }
+	hidden_trigger = { gts_intel_has_anchor = { COUNTRY = root } }
+}
+
+gts_intel_location_allomerus = { gts_intel_has_anchor = { COUNTRY = root } }
+
+gts_intel_can_start_tlipoca = {
+	hidden_trigger = { is_ai = no }
+	custom_tooltip = { fail_text = gts_intel_fail_redeemed_tlipoca NOT = { has_global_flag = gts_has_trigger_tlipoca } }
+	hidden_trigger = { gts_intel_has_anchor = { COUNTRY = root } }
+}
+
+gts_intel_location_tlipoca = { gts_intel_has_anchor = { COUNTRY = root } }
+
+gts_intel_can_start_firefly = {
+	hidden_trigger = { is_ai = no }
+	custom_tooltip = { fail_text = gts_intel_fail_redeemed_firefly NOT = { has_global_flag = gts_has_trigger_firefly } }
+	custom_tooltip = { fail_text = gts_intel_fail_firefly_started NOR = { has_global_flag = gts_firefly_started has_country_flag = firefly_intro } }
+	hidden_trigger = { gts_intel_has_anchor = { COUNTRY = root } }
+}
+
+gts_intel_location_firefly = { gts_intel_has_anchor = { COUNTRY = root } }
+
+gts_intel_can_start_rainna_la_grande = {
+	hidden_trigger = { is_ai = no }
+	custom_tooltip = { fail_text = gts_intel_fail_redeemed_rainna_la_grande NOT = { has_global_flag = gts_has_trigger_rainna_la_grande } }
+	custom_tooltip = { fail_text = gts_intel_fail_rainna_nomadic is_nomadic = no }
+	custom_tooltip = { fail_text = gts_intel_fail_rainna_count count_owned_planet = { limit = { rainna_la_grande_is_normal_planet = yes } count >= 2 } }
+	hidden_trigger = { gts_intel_has_anchor = { COUNTRY = root } }
+}
+
+gts_intel_location_rainna_la_grande = { gts_intel_has_anchor = { COUNTRY = root } }
+
+gts_intel_can_start_carlotta = {
+	hidden_trigger = { is_ai = no }
+	custom_tooltip = { fail_text = gts_intel_fail_redeemed_carlotta NOT = { has_global_flag = gts_has_trigger_carlotta } }
+	hidden_trigger = { gts_intel_has_anchor = { COUNTRY = root } }
+}
+
+gts_intel_location_carlotta = { gts_intel_has_anchor = { COUNTRY = root } }
+
+gts_intel_can_start_bruh = {
+	hidden_trigger = { is_ai = no }
+	custom_tooltip = { fail_text = gts_intel_fail_redeemed_bruh NOT = { has_global_flag = gts_has_trigger_bruh } }
+	custom_tooltip = { fail_text = gts_intel_fail_bruh_ascension has_ascension_perk = ap_space_gts }
+}
+
+gts_intel_can_start_seele = {
+	hidden_trigger = { is_ai = no }
+	custom_tooltip = { fail_text = gts_intel_fail_azure_redeemed NOR = { has_country_flag = gts_has_trigger_seele has_country_flag = gts_has_trigger_bronya has_country_flag = gts_has_trigger_seele_li } }
+	hidden_trigger = { has_surveyed_class = pc_black_hole }
+	custom_tooltip = { fail_text = gts_intel_fail_location_seele any_system = { gts_intel_system_seele = { COUNTRY = root } } }
+}
+
+gts_intel_location_seele = { any_system = { gts_intel_system_seele = { COUNTRY = root } } }
+
+gts_intel_can_start_bronya = {
+	hidden_trigger = { is_ai = no }
+	custom_tooltip = { fail_text = gts_intel_fail_azure_redeemed NOR = { has_country_flag = gts_has_trigger_seele has_country_flag = gts_has_trigger_bronya has_country_flag = gts_has_trigger_seele_li } }
+	custom_tooltip = { fail_text = gts_intel_fail_location_bronya any_system = { gts_intel_system_rift = { COUNTRY = root } } }
+}
+
+gts_intel_location_bronya = { any_system = { gts_intel_system_rift = { COUNTRY = root } } }
+
+gts_intel_can_start_seele_li = {
+	hidden_trigger = { is_ai = no }
+	custom_tooltip = { fail_text = gts_intel_fail_azure_redeemed NOR = { has_country_flag = gts_has_trigger_seele has_country_flag = gts_has_trigger_bronya has_country_flag = gts_has_trigger_seele_li } }
+	custom_tooltip = { fail_text = gts_intel_fail_location_seele_li any_system = { gts_intel_system_rift = { COUNTRY = root } } }
+}
+
+gts_intel_location_seele_li = { any_system = { gts_intel_system_rift = { COUNTRY = root } } }
+
+gts_intel_can_start_linfeng = {
+	hidden_trigger = { is_ai = no }
+	custom_tooltip = { fail_text = gts_intel_fail_redeemed_linfeng NOT = { has_global_flag = gts_has_trigger_linfeng } }
+	custom_tooltip = { fail_text = gts_intel_fail_location_linfeng OR = { has_country_flag = gts_hitomi_ship_gril_success any_system = { gts_intel_system_linfeng = { COUNTRY = root } } } }
+}
+
+gts_intel_location_linfeng = { OR = { has_country_flag = gts_hitomi_ship_gril_success any_system = { gts_intel_system_linfeng = { COUNTRY = root } } } }
+
+gts_intel_can_start_suxiaobai = {
+	hidden_trigger = { is_ai = no }
+	custom_tooltip = { fail_text = gts_intel_fail_redeemed_suxiaobai NOT = { has_global_flag = gts_has_trigger_suxiaobai } }
+	custom_tooltip = { fail_text = gts_intel_fail_suxiaobai_exists NOT = { exists = event_target:gts_suxiaobai } NOT = { exists = event_target:gts_suxiaobai_ring_system } }
+	hidden_trigger = { gts_intel_has_anchor = { COUNTRY = root } }
+}
+
+gts_intel_location_suxiaobai = { gts_intel_has_anchor = { COUNTRY = root } }
+
+gts_intel_can_start_hitomi = {
+	hidden_trigger = { is_ai = no }
+	custom_tooltip = { fail_text = gts_intel_fail_redeemed_hitomi NOT = { has_global_flag = gts_has_trigger_hitomi } }
+	hidden_trigger = { gts_intel_has_anchor = { COUNTRY = root } }
+}
+
+gts_intel_location_hitomi = { gts_intel_has_anchor = { COUNTRY = root } }
+
+gts_intel_can_start_ora = {
+	hidden_trigger = { is_ai = no }
+	custom_tooltip = { fail_text = gts_intel_fail_redeemed_ora NOT = { has_global_flag = gts_has_trigger_ora } }
+	hidden_trigger = { gts_intel_has_anchor = { COUNTRY = root } }
+}
+
+gts_intel_location_ora = { gts_intel_has_anchor = { COUNTRY = root } }
+
+gts_intel_can_start_qinwen = {
+	hidden_trigger = { is_ai = no }
+	custom_tooltip = { fail_text = gts_intel_fail_redeemed_qinwen NOT = { has_global_flag = gts_has_trigger_qinwen } }
+	hidden_trigger = { gts_intel_has_anchor = { COUNTRY = root } }
+}
+
+gts_intel_location_qinwen = { gts_intel_has_anchor = { COUNTRY = root } }
+
+gts_intel_selected_available = {
+if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_lottie } } gts_intel_can_start_lottie = yes }
+if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_aurora } } gts_intel_can_start_aurora = yes }
+if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_jifeng } } gts_intel_can_start_jifeng = yes }
+if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_yiyan } } gts_intel_can_start_yiyan = yes }
+if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_aplog } } gts_intel_can_start_aplog = yes }
+if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_eyjafjalla } } gts_intel_can_start_eyjafjalla = yes }
+if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_skadi } } gts_intel_can_start_skadi = yes }
+if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_sonxi } } gts_intel_can_start_sonxi = yes }
+if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_linglu } } gts_intel_can_start_linglu = yes }
+if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_erika } } gts_intel_can_start_erika = yes }
+if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_goldenglow } } gts_intel_can_start_goldenglow = yes }
+if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_huatian } } gts_intel_can_start_huatian = yes }
+if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_xiaomiao } } gts_intel_can_start_xiaomiao = yes }
+if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_cys } } gts_intel_can_start_cys = yes }
+if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_teifuania } } gts_intel_can_start_teifuania = yes }
+if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_xiankeyan } } gts_intel_can_start_xiankeyan = yes }
+if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_qhai } } gts_intel_can_start_qhai = yes }
+if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_satori } } gts_intel_can_start_satori = yes }
+if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_tiantiao } } gts_intel_can_start_tiantiao = yes }
+if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_doctor } } gts_intel_can_start_doctor = yes }
+if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_mari } } gts_intel_can_start_mari = yes }
+if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_guya } } gts_intel_can_start_guya = yes }
+if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_sera } } gts_intel_can_start_sera = yes }
+if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_allomerus } } gts_intel_can_start_allomerus = yes }
+if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_tlipoca } } gts_intel_can_start_tlipoca = yes }
+if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_firefly } } gts_intel_can_start_firefly = yes }
+if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_rainna_la_grande } } gts_intel_can_start_rainna_la_grande = yes }
+if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_carlotta } } gts_intel_can_start_carlotta = yes }
+if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_bruh } } gts_intel_can_start_bruh = yes }
+if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_seele } } gts_intel_can_start_seele = yes }
+if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_bronya } } gts_intel_can_start_bronya = yes }
+if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_seele_li } } gts_intel_can_start_seele_li = yes }
+if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_linfeng } } gts_intel_can_start_linfeng = yes }
+if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_suxiaobai } } gts_intel_can_start_suxiaobai = yes }
+if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_hitomi } } gts_intel_can_start_hitomi = yes }
+if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_ora } } gts_intel_can_start_ora = yes }
+if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_qinwen } } gts_intel_can_start_qinwen = yes }
+# 仅校验选择编号是否合法，不向玩家展开内部变量。
+hidden_trigger = {
+	OR = {
+	check_variable = { which = gts_ui_intel_avatar value = @gts_lottie }
+	check_variable = { which = gts_ui_intel_avatar value = @gts_aurora }
+	check_variable = { which = gts_ui_intel_avatar value = @gts_jifeng }
+	check_variable = { which = gts_ui_intel_avatar value = @gts_yiyan }
+	check_variable = { which = gts_ui_intel_avatar value = @gts_aplog }
+	check_variable = { which = gts_ui_intel_avatar value = @gts_eyjafjalla }
+	check_variable = { which = gts_ui_intel_avatar value = @gts_skadi }
+	check_variable = { which = gts_ui_intel_avatar value = @gts_sonxi }
+	check_variable = { which = gts_ui_intel_avatar value = @gts_linglu }
+	check_variable = { which = gts_ui_intel_avatar value = @gts_erika }
+	check_variable = { which = gts_ui_intel_avatar value = @gts_goldenglow }
+	check_variable = { which = gts_ui_intel_avatar value = @gts_huatian }
+	check_variable = { which = gts_ui_intel_avatar value = @gts_xiaomiao }
+	check_variable = { which = gts_ui_intel_avatar value = @gts_cys }
+	check_variable = { which = gts_ui_intel_avatar value = @gts_teifuania }
+	check_variable = { which = gts_ui_intel_avatar value = @gts_xiankeyan }
+	check_variable = { which = gts_ui_intel_avatar value = @gts_qhai }
+	check_variable = { which = gts_ui_intel_avatar value = @gts_satori }
+	check_variable = { which = gts_ui_intel_avatar value = @gts_tiantiao }
+	check_variable = { which = gts_ui_intel_avatar value = @gts_doctor }
+	check_variable = { which = gts_ui_intel_avatar value = @gts_mari }
+	check_variable = { which = gts_ui_intel_avatar value = @gts_guya }
+	check_variable = { which = gts_ui_intel_avatar value = @gts_sera }
+	check_variable = { which = gts_ui_intel_avatar value = @gts_allomerus }
+	check_variable = { which = gts_ui_intel_avatar value = @gts_tlipoca }
+	check_variable = { which = gts_ui_intel_avatar value = @gts_firefly }
+	check_variable = { which = gts_ui_intel_avatar value = @gts_rainna_la_grande }
+	check_variable = { which = gts_ui_intel_avatar value = @gts_carlotta }
+	check_variable = { which = gts_ui_intel_avatar value = @gts_bruh }
+	check_variable = { which = gts_ui_intel_avatar value = @gts_seele }
+	check_variable = { which = gts_ui_intel_avatar value = @gts_bronya }
+	check_variable = { which = gts_ui_intel_avatar value = @gts_seele_li }
+	check_variable = { which = gts_ui_intel_avatar value = @gts_linfeng }
+	check_variable = { which = gts_ui_intel_avatar value = @gts_suxiaobai }
+	check_variable = { which = gts_ui_intel_avatar value = @gts_hitomi }
+	check_variable = { which = gts_ui_intel_avatar value = @gts_ora }
+	check_variable = { which = gts_ui_intel_avatar value = @gts_qinwen }
+	}
+}
+}

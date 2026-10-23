@@ -301,6 +301,7 @@ gts_leader_skadi_hired = {
         EVENT_LEADER = no
         RANDOMIZE_TRAITS = no
         FREEZE_LEADER_AGE = no
+        HAS_COMMUNICATION = yes
         TARGET = gts_skadi
         TRAIT1 = trait_ruler_skadi_trait1
         TRAIT2 = trait_ruler_skadi_trait2
@@ -1470,6 +1471,7 @@ gts_leader_suxiaobai_hired = {
         CATCH_PHRASE = gts_suxiaobai_catch_phrase
         RANDOMIZE_TRAITS = no
         HAS_ALTER_CLOTH = yes
+        HAS_LOVE_TRAIT = normal
         TARGET = gts_suxiaobai
         TRAIT1 = subclass_commander_governor
         TRAIT2 = leader_trait_Ultra
@@ -1477,7 +1479,10 @@ gts_leader_suxiaobai_hired = {
         TRAIT4 = gts_trait_leader_suxiaobai_b
         TRAIT5 = gts_trait_leader_suxiaobai_c
     }
-    [[CHANGE_OWNER] gts_leader_hire_effect = { TYPE = legendary }]
+    [[CHANGE_OWNER]
+        gts_leader_hire_effect = { TYPE = legendary }
+        gts_suxiaobai_initialize = yes
+    ]
 }
 # 希瞳招募
 gts_leader_hitomi_hired = {
@@ -1505,6 +1510,7 @@ gts_leader_hitomi_hired = {
         TRAIT3 = gts_trait_hitomi2
         TRAIT4 = gts_trait_hitomi3
     }
+    [[CHANGE_OWNER] gts_leader_hire_effect = { TYPE = legendary }]
 }
 # 御月希瞳招募
 gts_leader_hitomi_yuyue_hired = {
@@ -1609,8 +1615,8 @@ gts_leader_orangez_hired = {
         TRAIT1 = leader_trait_Ultra
         TRAIT2 = gts_trait_orangez1
         TRAIT3 = gts_trait_orangez2
-        TRAIT4 = gts_trait_orangez3
-        TRAIT5 = gts_trait_orangez4
+        #TRAIT4 = gts_trait_orangez3
+        TRAIT4 = gts_trait_orangez4
     }
     [[CHANGE_OWNER] gts_leader_hire_effect = { TYPE = legendary }]
 }
@@ -1681,7 +1687,7 @@ gts_leader_yarong_hired2 = {
         limit = {
             exists = event_target:gts_yarong
         }
-        set_owner = root
+        event_target:gts_yarong = { set_owner = root }
     }
     else = {
         gts_leader_yarong_hired = yes

@@ -1,0 +1,21 @@
+namespace = gts_runtime_compat
+
+# Stellaris 4.5 on_colonized uses a carrier (planet or Arkship).
+# These stories require a planetary surface; preserve their original planet ROOT.
+carrier_event = {
+	id = gts_runtime_compat.1
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { is_scope_type = planet }
+	immediate = {
+		planet_event = { id = gts_evt_breast.1 }
+		planet_event = { id = gts_subterranean.2 }
+		planet_event = { id = gts_evolution_catalyst_event.2 }
+		planet_event = { id = gts_evolution_catalyst_event.1 }
+		planet_event = { id = gts_evolution_catalyst_event.300 }
+		planet_event = { id = gts_god_keeper.5602 }
+		planet_event = { id = gts_civ_gts_worship.1000 }
+		planet_event = { id = gts_hstar_crisis.203 }
+		planet_event = { id = gts_o_action.0012 }
+	}
+}

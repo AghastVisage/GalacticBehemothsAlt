@@ -1,0 +1,1860 @@
+namespace = gts_event_bruh_shipgirl
+
+# 塞入小穴
+planet_event = {
+	id = gts_event_bruh_shipgirl.0001
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+
+		# 天災相關
+		# Contingency Machine World
+		if = {
+			limit = {
+				is_planet_class = pc_ai
+				NOT = { has_planet_flag = machine_lair }
+			}
+			set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_cracked
+			planet_event = { id = crisis.2040 }
+		}
+
+		# Contingency Final Machine World
+		if = {
+			limit = {
+				is_planet_class = pc_ai
+				has_planet_flag = machine_lair
+			}
+			set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_cracked
+			From.owner = { save_event_target_as = final_machine_world_destroyer }
+			stop_crisis_sound = yes
+			planet_event = { id = crisis.2046 }
+		}
+
+		# Swarm Situation Log counter
+		if = {
+			limit = {
+				exists = owner
+				owner = { is_country_type = swarm }
+			}
+			every_country = {
+				limit = { has_event_chain = "prethoryn_scourge_chain" }
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds"
+					amount = -1
+				}
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds_cleansed"
+					amount = 1
+				}
+			}
+		}
+
+		# 產生威脅度
+		if = {
+			limit = {
+				exists = owner
+				owner = {
+					NOT = { is_same_value = From.owner }
+					OR = {
+						is_country_type = default
+						is_country_type = fallen_empire
+						is_country_type = awakened_fallen_empire
+					}
+				}
+			}
+			# Generate threat
+			if = {
+				limit = {
+					is_colony = yes
+				}
+				add_threat = { who = From.owner amount = 3 }
+				# modifier for allies + those upset by genocide
+				every_country = {
+					limit = {
+						NOR = {
+							is_same_value = From.owner
+							is_same_value = root.owner
+							AND = {
+								has_federation = yes
+								is_in_federation_with = From.owner
+							}
+						}
+						OR = {
+							has_communications = From.owner
+							has_communications = root.owner
+						}
+						OR = {
+							AND = {
+								has_federation = yes
+								is_in_federation_with = root.owner
+							}
+							has_ai_personality = awakened_fallen_empire_xenophile
+							AND = {
+								is_country_type = default
+								OR = {
+									is_egalitarian = yes
+									is_xenophile = yes
+								}
+							}
+						}
+					}
+					if = {
+						limit = { root = { is_colony = no } }
+						add_opinion_modifier = {
+							modifier = opinion_cracked_an_uninhabited_world
+							who = From.owner
+						}
+					}
+					else = {
+						add_opinion_modifier = {
+							modifier = opinion_cracked_a_world
+							who = From.owner
+						}
+					}
+				}
+			}
+			else = {
+				add_threat = { who = From.owner amount = 1 }
+			}
+		}
+
+		# 產生倦怠度
+		# Add war exhaustion to planet owner
+		if = {
+			limit = {
+				exists = owner
+			}
+			owner = {
+				if = {
+					limit = { #isn't the case when the crisis bombards planets, for instance
+						is_at_war_with = From.fleet.owner
+					}
+					add_static_war_exhaustion = {
+						attacker = From.fleet.owner
+						location = root
+						value_for_planet_destruction = 1.0
+					}
+				}
+			}
+		}
+
+		# 摧毀軌道站
+		if = {
+			limit = {
+				exists = orbital_defence
+			}
+			destroy_fleet = orbital_defence
+		}
+
+		# 拆觀測站
+		if = {
+			limit = {
+				has_observation_outpost = yes
+			}
+			observation_outpost = {
+				dismantle = yes
+			}
+		}
+
+		# 添加冷卻時間
+		From.fleet.owner = {
+			set_timed_country_flag = {
+				flag = gts_bruh_colossus_destroy_planet_effect_cool_down
+				months = 1
+			}
+		}
+
+		# 別人的球
+		if = {
+			limit = {
+				exists = owner
+				owner = { NOT = { is_same_value = From.owner } }
+				owner = { is_primitive = no }
+			}
+			random_list = {
+				1 = {
+					From.owner = {
+						country_event = { id = gts_event_bruh_shipgirl.0002 }
+					}
+				}
+				1 = {
+					From.owner = {
+						country_event = { id = gts_event_bruh_shipgirl.0003 }
+					}
+				}
+			}
+		}
+
+		# 自己的球
+		else_if = {
+			limit = {
+				exists = owner
+				owner = { is_same_value = From.owner }
+			}
+			random_list = {
+				1 = {
+					From.owner = {
+						country_event = { id = gts_event_bruh_shipgirl.0004 }
+					}
+				}
+				1 = {
+					From.owner = {
+						country_event = { id = gts_event_bruh_shipgirl.0005 }
+					}
+				}
+			}
+		}
+
+		# 其他的球
+		else = {
+			random_list = {
+				1 = {
+					modifier = {
+						factor = 0
+						exists = owner
+						owner = { is_primitive = no }
+					}
+					From.owner = {
+						country_event = { id = gts_event_bruh_shipgirl.0006 }
+					}
+				}
+				1 = {
+					modifier = {
+						factor = 1000
+						NOT = { exists = owner }
+					}
+					From.owner = {
+						country_event = { id = gts_event_bruh_shipgirl.0007 }
+					}
+				}
+			}
+		}
+	}
+
+	after = {
+		# 人口消除
+		every_owned_pop_group = {
+			kill_all_pop = yes
+		}
+
+		# 加破壞度
+		add_planet_devastation = 100
+
+		# 拆特殊星球
+		# destroy habitats and ringworlds
+		if = {
+			limit = {
+				is_planet_class = pc_habitat
+			}
+			spawn_habitat_cracker_effect = yes
+		}
+		else_if = {
+			limit = {
+				is_planet_class = pc_cosmogenesis_world
+			}
+			spawn_lathe_cracker_effect = yes
+		}
+		else_if = {
+			limit = {
+				is_ringworld = yes
+			}
+			spawn_ringworld_cracker_effect = yes
+			change_pc = pc_ringworld_habitable_damaged
+		}
+	}
+}
+
+# 塞入小穴 - 炸球事件
+country_event = {
+	id = gts_event_bruh_shipgirl.0002
+	title = gts_event_bruh_shipgirl.0002.name
+	desc = gts_event_bruh_shipgirl.0002.desc
+	picture = GFX_gts_bruh_shipgirl_event_1
+	show_sound = event_super_explosion
+	location = From
+
+	is_triggered_only = yes
+
+	immediate = {
+		# 轉變成愛液星球
+		random_list = {
+			1 = {
+				From = {
+					gts_bruh_clear_planet_effect = yes
+					pc_gts_juice_change = yes
+					destroy_colony = yes
+				}
+			}
+			1 = {
+				From = {
+					gts_bruh_clear_planet_effect = yes
+					gts_bruh_juice_uncolonizable_change = yes
+					destroy_colony = yes
+				}
+			}
+		}
+	}
+
+	option = {
+		name = gts_event_bruh_shipgirl.0002.a
+	}
+}
+
+country_event = {
+	id = gts_event_bruh_shipgirl.0003
+	title = gts_event_bruh_shipgirl.0003.name
+	desc = gts_event_bruh_shipgirl.0003.desc
+	picture = GFX_gts_bruh_shipgirl_event_1
+	show_sound = event_super_explosion
+	location = From
+
+	is_triggered_only = yes
+
+	immediate = {
+		From = {
+			remove_planet = yes
+		}
+	}
+
+	option = {
+		name = gts_event_bruh_shipgirl.0003.a
+	}
+}
+
+country_event = {
+	id = gts_event_bruh_shipgirl.0004
+	title = gts_event_bruh_shipgirl.0004.name
+	desc = gts_event_bruh_shipgirl.0004.desc
+	picture = GFX_gts_bruh_shipgirl_event_2
+	show_sound = event_super_explosion
+	location = From
+
+	is_triggered_only = yes
+
+	immediate = {
+		# 轉變成愛液星球
+		random_list = {
+			1 = {
+				From = {
+					gts_bruh_clear_planet_effect = yes
+					pc_gts_juice_change = yes
+					destroy_colony = yes
+				}
+			}
+			1 = {
+				From = {
+					gts_bruh_clear_planet_effect = yes
+					gts_bruh_juice_uncolonizable_change = yes
+					destroy_colony = yes
+				}
+			}
+		}
+	}
+
+	option = {
+		name = gts_event_bruh_shipgirl.0004.a
+	}
+}
+
+country_event = {
+	id = gts_event_bruh_shipgirl.0005
+	title = gts_event_bruh_shipgirl.0005.name
+	desc = gts_event_bruh_shipgirl.0005.desc
+	picture = GFX_gts_bruh_shipgirl_event_2
+	show_sound = event_super_explosion
+	location = From
+
+	is_triggered_only = yes
+
+	immediate = {
+		From = {
+			remove_planet = yes
+		}
+	}
+
+	option = {
+		name = gts_event_bruh_shipgirl.0005.a
+	}
+}
+
+country_event = {
+	id = gts_event_bruh_shipgirl.0006
+	title = gts_event_bruh_shipgirl.0006.name
+	desc = gts_event_bruh_shipgirl.0006.desc
+	picture = GFX_gts_bruh_shipgirl_event_3
+	show_sound = event_super_explosion
+	location = From
+
+	is_triggered_only = yes
+
+	immediate = {
+		# 轉變成愛液星球
+		From = {
+			gts_bruh_clear_planet_effect = yes
+			pc_gts_juice_change = yes
+			destroy_colony = yes
+		}
+	}
+
+	option = {
+		name = gts_event_bruh_shipgirl.0006.a
+	}
+}
+
+country_event = {
+	id = gts_event_bruh_shipgirl.0007
+	title = gts_event_bruh_shipgirl.0007.name
+	desc = gts_event_bruh_shipgirl.0007.desc
+	picture = GFX_gts_bruh_shipgirl_event_3
+	show_sound = event_super_explosion
+	location = From
+
+	is_triggered_only = yes
+
+	immediate = {
+		# 轉變成愛液星球(不可殖民)
+		From = {
+			gts_bruh_clear_planet_effect = yes
+			gts_bruh_juice_uncolonizable_change = yes
+		}
+	}
+
+	option = {
+		name = gts_event_bruh_shipgirl.0007.a
+	}
+}
+
+# 套上胖次
+planet_event = {
+	id = gts_event_bruh_shipgirl.0020
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+
+		# 天災相關
+		# Contingency Machine World
+		if = {
+			limit = {
+				is_planet_class = pc_ai
+				NOT = { has_planet_flag = machine_lair }
+			}
+			set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_cracked
+			planet_event = { id = crisis.2040 }
+		}
+
+		# Contingency Final Machine World
+		if = {
+			limit = {
+				is_planet_class = pc_ai
+				has_planet_flag = machine_lair
+			}
+			set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_cracked
+			From.owner = { save_event_target_as = final_machine_world_destroyer }
+			stop_crisis_sound = yes
+			planet_event = { id = crisis.2046 }
+		}
+
+		# Swarm Situation Log counter
+		if = {
+			limit = {
+				exists = owner
+				owner = { is_country_type = swarm }
+			}
+			every_country = {
+				limit = { has_event_chain = "prethoryn_scourge_chain" }
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds"
+					amount = -1
+				}
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds_cleansed"
+					amount = 1
+				}
+			}
+		}
+
+		# 產生威脅度
+		if = {
+			limit = {
+				exists = owner
+				owner = {
+					NOT = { is_same_value = From.owner }
+					OR = {
+						is_country_type = default
+						is_country_type = fallen_empire
+						is_country_type = awakened_fallen_empire
+					}
+				}
+			}
+			# Generate threat
+			if = {
+				limit = {
+					is_colony = yes
+				}
+				add_threat = { who = From.owner amount = 3 }
+				# modifier for allies + those upset by genocide
+				every_country = {
+					limit = {
+						NOR = {
+							is_same_value = From.owner
+							is_same_value = root.owner
+							AND = {
+								has_federation = yes
+								is_in_federation_with = From.owner
+							}
+						}
+						OR = {
+							has_communications = From.owner
+							has_communications = root.owner
+						}
+						OR = {
+							AND = {
+								has_federation = yes
+								is_in_federation_with = root.owner
+							}
+							has_ai_personality = awakened_fallen_empire_xenophile
+							AND = {
+								is_country_type = default
+								OR = {
+									is_egalitarian = yes
+									is_xenophile = yes
+								}
+							}
+						}
+					}
+					if = {
+						limit = { root = { is_colony = no } }
+						add_opinion_modifier = {
+							modifier = opinion_cracked_an_uninhabited_world
+							who = From.owner
+						}
+					}
+					else = {
+						add_opinion_modifier = {
+							modifier = opinion_cracked_a_world
+							who = From.owner
+						}
+					}
+				}
+			}
+			else = {
+				add_threat = { who = From.owner amount = 1 }
+			}
+		}
+
+		# 產生倦怠度
+		# Add war exhaustion to planet owner
+		if = {
+			limit = {
+				exists = owner
+			}
+			owner = {
+				if = {
+					limit = { #isn't the case when the crisis bombards planets, for instance
+						is_at_war_with = From.fleet.owner
+					}
+					add_static_war_exhaustion = {
+						attacker = From.fleet.owner
+						location = root
+						value_for_planet_destruction = 1.0
+					}
+				}
+			}
+		}
+
+		# 摧毀軌道站
+		if = {
+			limit = {
+				exists = orbital_defence
+			}
+			destroy_fleet = orbital_defence
+		}
+
+		# 拆觀測站
+		if = {
+			limit = {
+				has_observation_outpost = yes
+			}
+			observation_outpost = {
+				dismantle = yes
+			}
+		}
+
+		# 添加冷卻時間
+		From.fleet.owner = {
+			set_timed_country_flag = {
+				flag = gts_bruh_colossus_destroy_planet_effect_cool_down
+				months = 1
+			}
+		}
+
+		# 別人的球
+		if = {
+			limit = {
+				exists = owner
+				owner = { NOT = { is_same_value = From.owner } }
+				owner = { is_primitive = no }
+			}
+			random_list = {
+				1 = {
+					From.owner = {
+						country_event = { id = gts_event_bruh_shipgirl.0021 }
+					}
+				}
+				1 = {
+					From.owner = {
+						country_event = { id = gts_event_bruh_shipgirl.0022 }
+					}
+				}
+			}
+		}
+
+		# 自己的球
+		else_if = {
+			limit = {
+				exists = owner
+				owner = { is_same_value = From.owner }
+			}
+			random_list = {
+				1 = {
+					From.owner = {
+						country_event = { id = gts_event_bruh_shipgirl.0023 }
+					}
+				}
+				1 = {
+					From.owner = {
+						country_event = { id = gts_event_bruh_shipgirl.0024 }
+					}
+				}
+			}
+		}
+
+		# 其他的球
+		else_if = {
+			limit = {
+				exists = owner
+				owner = { is_primitive = yes }
+			}
+			From.owner = {
+				country_event = { id = gts_event_bruh_shipgirl.0025 }
+			}
+		}
+	}
+
+	after = {
+		# 人口消除
+		every_owned_pop_group = {
+			kill_all_pop = yes
+		}
+
+		# 加破壞度
+		add_planet_devastation = 100
+
+		# 拆特殊星球
+		# destroy habitats and ringworlds
+		if = {
+			limit = {
+				is_planet_class = pc_habitat
+			}
+			spawn_habitat_cracker_effect = yes
+		}
+		else_if = {
+			limit = {
+				is_planet_class = pc_cosmogenesis_world
+			}
+			spawn_lathe_cracker_effect = yes
+		}
+		else_if = {
+			limit = {
+				is_ringworld = yes
+			}
+			spawn_ringworld_cracker_effect = yes
+			change_pc = pc_ringworld_habitable_damaged
+		}
+	}
+}
+
+# 套上胖次 - 炸球事件
+country_event = {
+	id = gts_event_bruh_shipgirl.0021
+	title = gts_event_bruh_shipgirl.0021.name
+	desc = gts_event_bruh_shipgirl.0021.desc
+	picture = GFX_gts_bruh_shipgirl_event_12
+	show_sound = event_super_explosion
+	location = From
+
+	is_triggered_only = yes
+
+	immediate = {
+		# 轉變成胖次星球
+		From = {
+			gts_bruh_clear_planet_effect = yes
+			gts_bruh_panties_planet_change = yes
+			destroy_colony = yes
+		}
+	}
+
+	option = {
+		name = gts_event_bruh_shipgirl.0021.a
+	}
+}
+
+country_event = {
+	id = gts_event_bruh_shipgirl.0022
+	title = gts_event_bruh_shipgirl.0022.name
+	desc = gts_event_bruh_shipgirl.0022.desc
+	picture = GFX_gts_bruh_shipgirl_event_12
+	show_sound = event_super_explosion
+	location = From
+
+	is_triggered_only = yes
+
+	immediate = {
+		# 轉變成胖次星球
+		From = {
+			gts_bruh_clear_planet_effect = yes
+			gts_bruh_panties_planet_change = yes
+			destroy_colony = yes
+		}
+	}
+
+	option = {
+		name = gts_event_bruh_shipgirl.0022.a
+	}
+}
+
+country_event = {
+	id = gts_event_bruh_shipgirl.0023
+	title = gts_event_bruh_shipgirl.0023.name
+	desc = gts_event_bruh_shipgirl.0023.desc
+	picture = GFX_gts_bruh_shipgirl_event_11
+	show_sound = event_super_explosion
+	location = From
+
+	is_triggered_only = yes
+
+	immediate = {
+		# 轉變成胖次星球
+		From = {
+			gts_bruh_clear_planet_effect = yes
+			gts_bruh_panties_planet_change = yes
+			destroy_colony = yes
+		}
+	}
+
+	option = {
+		name = gts_event_bruh_shipgirl.0023.a
+	}
+}
+
+country_event = {
+	id = gts_event_bruh_shipgirl.0024
+	title = gts_event_bruh_shipgirl.0024.name
+	desc = gts_event_bruh_shipgirl.0024.desc
+	picture = GFX_gts_bruh_shipgirl_event_11
+	show_sound = event_super_explosion
+	location = From
+
+	is_triggered_only = yes
+
+	immediate = {
+		# 轉變成胖次星球
+		From = {
+			gts_bruh_clear_planet_effect = yes
+			gts_bruh_panties_planet_change = yes
+			destroy_colony = yes
+		}
+	}
+
+	option = {
+		name = gts_event_bruh_shipgirl.0024.a
+	}
+}
+
+country_event = {
+	id = gts_event_bruh_shipgirl.0025
+	title = gts_event_bruh_shipgirl.0025.name
+	desc = gts_event_bruh_shipgirl.0025.desc
+	picture = GFX_gts_bruh_shipgirl_event_11
+	show_sound = event_super_explosion
+	location = From
+
+	is_triggered_only = yes
+
+	immediate = {
+		# 轉變成胖次星球
+		From = {
+			gts_bruh_clear_planet_effect = yes
+			gts_bruh_panties_planet_change = yes
+			destroy_colony = yes
+		}
+	}
+
+	option = {
+		name = gts_event_bruh_shipgirl.0025.a
+	}
+}
+
+# 艦娘隨機事件
+country_event = {
+	id = gts_event_bruh_shipgirl.0100
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		has_country_flag = gts_bruh_shipgirl_event_on
+		any_owned_ship = {
+			OR = {
+				is_ship_size = gts_bruh_shipgirl_ship_sizes_1
+				is_ship_size = gts_bruh_shipgirl_ship_sizes_2
+				is_ship_size = gts_bruh_shipgirl_ship_sizes_3
+			}
+		}
+	}
+
+	immediate = {
+		random_list = {
+			65 = { }
+			5 = {
+				country_event = {
+					id = gts_event_bruh_shipgirl.0101
+					days = 10 random = 350
+				}
+			}
+			5 = {
+				country_event = {
+					id = gts_event_bruh_shipgirl.0102
+					days = 10 random = 350
+				}
+			}
+			5 = {
+				country_event = {
+					id = gts_event_bruh_shipgirl.0103
+					days = 10 random = 350
+				}
+			}
+			5 = {
+				country_event = {
+					id = gts_event_bruh_shipgirl.0104
+					days = 10 random = 350
+				}
+			}
+			5 = {
+				country_event = {
+					id = gts_event_bruh_shipgirl.0105
+					days = 10 random = 350
+				}
+			}
+			5 = {
+				country_event = {
+					id = gts_event_bruh_shipgirl.0106
+					days = 10 random = 350
+				}
+			}
+			5 = {
+				country_event = {
+					id = gts_event_bruh_shipgirl.0107
+					days = 10 random = 350
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_event_bruh_shipgirl.0101
+	title = gts_event_bruh_shipgirl.0101.name
+	desc = gts_event_bruh_shipgirl.0101.desc
+	picture = GFX_gts_bruh_shipgirl_event_4
+	show_sound = event_gts_vore
+	location = event_target:gts_bruh_get_event_target
+
+	is_triggered_only = yes
+
+	trigger = {
+		any_system_within_border = {
+			any_ship_in_system = {
+				is_owned_by = root
+				OR = {
+					is_ship_size = gts_bruh_shipgirl_ship_sizes_2
+					is_ship_size = gts_bruh_shipgirl_ship_sizes_3
+				}
+			}
+			any_fleet_in_system = {
+				is_owned_by = root
+				OR = {
+					is_ship_size = mining_station
+					is_ship_size = research_station
+					is_ship_size = observation_station
+				}
+			}
+		}
+	}
+
+	immediate = {
+		random_system_within_border = {
+			limit = {
+				any_ship_in_system = {
+					is_owned_by = root
+					OR = {
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_2
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_3
+					}
+				}
+				any_fleet_in_system = {
+					is_owned_by = root
+					OR = {
+						is_ship_size = mining_station
+						is_ship_size = research_station
+						is_ship_size = observation_station
+					}
+				}
+			}
+			random_ship_in_system = {
+				limit = {
+					is_owned_by = root
+					OR = {
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_2
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_3
+					}
+				}
+				save_event_target_as = gts_bruh_get_event_shipgirl
+			}
+			random_fleet_in_system = {
+				limit = {
+					is_owned_by = root
+					OR = {
+						is_ship_size = mining_station
+						is_ship_size = research_station
+						is_ship_size = observation_station
+					}
+				}
+				set_event_locked = yes
+				save_event_target_as = gts_bruh_get_event_target
+			}
+		}
+	}
+
+	option = {
+		name = gts_event_bruh_shipgirl.0101.a
+		custom_tooltip = gts_event_bruh_shipgirl.0101.custom_tooltip
+		event_target:gts_bruh_get_event_target = {
+			destroy_fleet = this
+		}
+	}
+}
+
+country_event = {
+	id = gts_event_bruh_shipgirl.0102
+	title = gts_event_bruh_shipgirl.0102.name
+	desc = gts_event_bruh_shipgirl.0102.desc
+	picture = GFX_gts_bruh_shipgirl_event_5
+	show_sound = event_super_explosion
+	location = event_target:gts_bruh_get_event_target
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	trigger = {
+		any_system_within_border = {
+			any_ship_in_system = {
+				is_owned_by = root
+				is_ship_size = gts_bruh_shipgirl_ship_sizes_3
+			}
+			any_system_planet = {
+				is_owned_by = root
+				is_capital = no
+			}
+		}
+	}
+
+	immediate = {
+		random_system_within_border = {
+			limit = {
+				any_ship_in_system = {
+					is_owned_by = root
+					is_ship_size = gts_bruh_shipgirl_ship_sizes_3
+				}
+				any_system_planet = {
+					is_owned_by = root
+					is_capital = no
+				}
+			}
+			random_ship_in_system = {
+				limit = {
+					is_owned_by = root
+					is_ship_size = gts_bruh_shipgirl_ship_sizes_3
+				}
+				save_event_target_as = gts_bruh_get_event_shipgirl
+			}
+			random_system_planet = {
+				limit = {
+					is_owned_by = root
+					is_capital = no
+				}
+				gts_bruh_clear_planet_effect = yes
+				pc_gts_urine_change = yes
+				every_owned_pop_group = {
+					kill_pop_group = {
+						pop_group = this
+						percentage = 0.99
+					}
+				}
+				add_planet_devastation = 100
+				save_event_target_as = gts_bruh_get_event_target
+			}
+		}
+	}
+
+	option = {
+		name = gts_event_bruh_shipgirl.0102.a
+	}
+}
+
+country_event = {
+	id = gts_event_bruh_shipgirl.0103
+	title = gts_event_bruh_shipgirl.0103.name
+	desc = gts_event_bruh_shipgirl.0103.desc
+	picture = GFX_gts_bruh_shipgirl_event_6
+	show_sound = event_gts_vore
+	location = event_target:gts_bruh_get_event_target
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	trigger = {
+		any_system_within_border = {
+			any_ship_in_system = {
+				is_owned_by = root
+				OR = {
+					is_ship_size = gts_bruh_shipgirl_ship_sizes_1
+					is_ship_size = gts_bruh_shipgirl_ship_sizes_2
+					is_ship_size = gts_bruh_shipgirl_ship_sizes_3
+				}
+			}
+			any_fleet_in_system = {
+				is_owned_by = root
+				NOR = {
+					is_ship_size = gts_bruh_shipgirl_ship_sizes_1
+					is_ship_size = gts_bruh_shipgirl_ship_sizes_2
+					is_ship_size = gts_bruh_shipgirl_ship_sizes_3
+				}
+				OR = {
+					is_ship_size = corvette
+					is_ship_size = frigate
+					is_ship_size = destroyer
+					is_ship_size = cruiser
+					is_ship_size = battleship
+					is_ship_size = titan
+				}
+			}
+		}
+	}
+
+	immediate = {
+		random_system_within_border = {
+			limit = {
+				any_ship_in_system = {
+					is_owned_by = root
+					OR = {
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_1
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_2
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_3
+					}
+				}
+				any_fleet_in_system = {
+					is_owned_by = root
+					NOR = {
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_1
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_2
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_3
+					}
+					OR = {
+						is_ship_size = corvette
+						is_ship_size = frigate
+						is_ship_size = destroyer
+						is_ship_size = cruiser
+						is_ship_size = battleship
+						is_ship_size = titan
+					}
+				}
+			}
+			random_ship_in_system = {
+				limit = {
+					is_owned_by = root
+					OR = {
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_1
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_2
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_3
+					}
+				}
+				save_event_target_as = gts_bruh_get_event_shipgirl
+			}
+			random_fleet_in_system = {
+				limit = {
+					is_owned_by = root
+					NOR = {
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_1
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_2
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_3
+					}
+					OR = {
+						is_ship_size = corvette
+						is_ship_size = frigate
+						is_ship_size = destroyer
+						is_ship_size = cruiser
+						is_ship_size = battleship
+						is_ship_size = titan
+					}
+				}
+				set_event_locked = yes
+				save_event_target_as = gts_bruh_get_event_target
+			}
+		}
+	}
+
+	option = {
+		name = gts_event_bruh_shipgirl.0103.a
+		custom_tooltip = gts_event_bruh_shipgirl.0103.a.custom_tooltip
+		add_monthly_resource_mult = {
+			resource = society_research
+			value = 12
+		}
+		event_target:gts_bruh_get_event_target = {
+			destroy_fleet = this
+		}
+	}
+	option = {
+		name = gts_event_bruh_shipgirl.0103.b
+		custom_tooltip = gts_event_bruh_shipgirl.0103.b.custom_tooltip
+		hidden_effect = {
+			random_list = {
+				1 = {
+					event_target:gts_bruh_get_event_target = {
+						set_event_locked = no
+					}
+				}
+				3 = {
+					event_target:gts_bruh_get_event_target = {
+						destroy_fleet = this
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_event_bruh_shipgirl.0103.c
+		custom_tooltip = gts_event_bruh_shipgirl.0103.c.custom_tooltip
+		allow = {
+			event_target:gts_bruh_get_event_shipgirl = {
+				NOR = {
+					has_component = gts_bruh_shipgirl_reactor_component_template_3
+					has_component = gts_bruh_shipgirl_reactor_component_template_4
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:gts_bruh_get_event_target = {
+				set_event_locked = no
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_event_bruh_shipgirl.0104
+	title = gts_event_bruh_shipgirl.0104.name
+	desc = gts_event_bruh_shipgirl.0104.desc
+	picture = GFX_gts_bruh_shipgirl_event_7
+	show_sound = event_gts_heartbeat
+	location = event_target:gts_bruh_get_event_target
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	trigger = {
+		any_system_within_border = {
+			any_ship_in_system = {
+				is_owned_by = root
+				OR = {
+					is_ship_size = gts_bruh_shipgirl_ship_sizes_1
+					is_ship_size = gts_bruh_shipgirl_ship_sizes_2
+					is_ship_size = gts_bruh_shipgirl_ship_sizes_3
+				}
+			}
+			any_fleet_in_system = {
+				is_owned_by = root
+				NOR = {
+					is_ship_size = gts_bruh_shipgirl_ship_sizes_1
+					is_ship_size = gts_bruh_shipgirl_ship_sizes_2
+					is_ship_size = gts_bruh_shipgirl_ship_sizes_3
+				}
+				is_ship_size = science
+			}
+		}
+	}
+
+	immediate = {
+		random_system_within_border = {
+			limit = {
+				any_ship_in_system = {
+					is_owned_by = root
+					OR = {
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_1
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_2
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_3
+					}
+				}
+				any_fleet_in_system = {
+					is_owned_by = root
+					NOR = {
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_1
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_2
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_3
+					}
+					is_ship_size = science
+				}
+			}
+			random_ship_in_system = {
+				limit = {
+					is_owned_by = root
+					OR = {
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_1
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_2
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_3
+					}
+				}
+				save_event_target_as = gts_bruh_get_event_shipgirl
+			}
+			random_fleet_in_system = {
+				limit = {
+					is_owned_by = root
+					NOR = {
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_1
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_2
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_3
+					}
+					is_ship_size = science
+				}
+				set_event_locked = yes
+				save_event_target_as = gts_bruh_get_event_target
+			}
+		}
+	}
+
+	option = {
+		name = gts_event_bruh_shipgirl.0104.a
+		custom_tooltip = gts_event_bruh_shipgirl.0104.a.custom_tooltip
+		hidden_effect = {
+			random_list = {
+				4 = {
+					event_target:gts_bruh_get_event_target = {
+						set_event_locked = no
+					}
+				}
+				1 = {
+					event_target:gts_bruh_get_event_target = {
+						destroy_fleet = this
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_event_bruh_shipgirl.0104.b
+		custom_tooltip = gts_event_bruh_shipgirl.0104.b.custom_tooltip
+		add_monthly_resource_mult = {
+			resource = society_research
+			value = 12
+		}
+		event_target:gts_bruh_get_event_target = {
+			destroy_fleet = this
+		}
+	}
+}
+
+country_event = {
+	id = gts_event_bruh_shipgirl.0105
+	title = gts_event_bruh_shipgirl.0105.name
+	desc = gts_event_bruh_shipgirl.0105.desc
+	picture = GFX_gts_bruh_shipgirl_event_8
+	show_sound = event_ship_explosion
+	location = event_target:gts_bruh_get_event_shipgirl
+
+	#fire_only_once = yes
+	is_triggered_only = yes
+
+	trigger = {
+		any_system_within_border = {
+			any_ship_in_system = {
+				is_owned_by = root
+				OR = {
+					is_ship_size = gts_bruh_shipgirl_ship_sizes_1
+					is_ship_size = gts_bruh_shipgirl_ship_sizes_2
+					is_ship_size = gts_bruh_shipgirl_ship_sizes_3
+				}
+			}
+		}
+	}
+
+	immediate = {
+		random_system_within_border = {
+			limit = {
+				any_ship_in_system = {
+					is_owned_by = root
+					OR = {
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_1
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_2
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_3
+					}
+				}
+			}
+			random_ship_in_system = {
+				limit = {
+					is_owned_by = root
+					OR = {
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_1
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_2
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_3
+					}
+				}
+				save_event_target_as = gts_bruh_get_event_shipgirl
+			}
+		}
+	}
+
+	option = {
+		name = gts_event_bruh_shipgirl.0105.a
+		add_resource = {
+			influence = 75
+		}
+	}
+	option = {
+		name = gts_event_bruh_shipgirl.0105.b
+		add_resource = {
+			influence = 75
+		}
+	}
+}
+
+country_event = {
+	id = gts_event_bruh_shipgirl.0106
+	title = gts_event_bruh_shipgirl.0106.name
+	desc = gts_event_bruh_shipgirl.0106.desc
+	picture = GFX_gts_bruh_shipgirl_event_9
+	show_sound = event_gts_enn
+	location = event_target:gts_bruh_get_event_target
+
+	#fire_only_once = yes
+	is_triggered_only = yes
+
+	trigger = {
+		any_system_within_border = {
+			any_ship_in_system = {
+				is_owned_by = root
+				OR = {
+					is_ship_size = gts_bruh_shipgirl_ship_sizes_1
+					is_ship_size = gts_bruh_shipgirl_ship_sizes_2
+					is_ship_size = gts_bruh_shipgirl_ship_sizes_3
+				}
+			}
+			any_system_planet = {
+				is_owned_by = root
+			}
+		}
+	}
+
+	immediate = {
+		random_system_within_border = {
+			limit = {
+				any_ship_in_system = {
+					is_owned_by = root
+					OR = {
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_1
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_2
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_3
+					}
+				}
+				any_system_planet = {
+					is_owned_by = root
+				}
+			}
+			random_ship_in_system = {
+				limit = {
+					is_owned_by = root
+					OR = {
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_1
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_2
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_3
+					}
+				}
+				save_event_target_as = gts_bruh_get_event_shipgirl
+			}
+			random_system_planet = {
+				limit = {
+					is_owned_by = root
+				}
+				save_event_target_as = gts_bruh_get_event_target
+			}
+		}
+	}
+
+	option = {
+		name = gts_event_bruh_shipgirl.0106.a
+		add_resource = {
+			influence = 75
+		}
+	}
+	option = {
+		name = gts_event_bruh_shipgirl.0106.b
+		custom_tooltip = gts_event_bruh_shipgirl.0106.b.custom_tooltip
+		allow = {
+			OR = {
+				has_ethic = ethic_spiritualist
+				has_ethic = ethic_fanatic_spiritualist
+			}
+		}
+		add_resource = {
+			influence = 75
+		}
+		hidden_effect = {
+			event_target:gts_bruh_get_event_target = {
+				every_owned_pop_group = {
+					pop_group_transfer_ethic = {
+						POP_GROUP = this
+						ETHOS = ethic_spiritualist
+						PERCENTAGE = 0.1
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_event_bruh_shipgirl.0107
+	title = gts_event_bruh_shipgirl.0107.name
+	desc = gts_event_bruh_shipgirl.0107.desc
+	picture = GFX_gts_bruh_shipgirl_event_10
+	show_sound = event_gts_sign
+	location = event_target:gts_bruh_get_event_shipgirl
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	trigger = {
+		any_system_within_border = {
+			any_ship_in_system = {
+				is_owned_by = root
+				OR = {
+					is_ship_size = gts_bruh_shipgirl_ship_sizes_1
+					is_ship_size = gts_bruh_shipgirl_ship_sizes_2
+					is_ship_size = gts_bruh_shipgirl_ship_sizes_3
+				}
+			}
+			any_fleet_in_system = {
+				is_owned_by = root
+				is_ship_size = research_station
+			}
+		}
+	}
+
+	immediate = {
+		random_system_within_border = {
+			limit = {
+				any_ship_in_system = {
+					is_owned_by = root
+					OR = {
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_1
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_2
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_3
+					}
+				}
+				any_fleet_in_system = {
+					is_owned_by = root
+					is_ship_size = research_station
+				}
+			}
+			random_ship_in_system = {
+				limit = {
+					is_owned_by = root
+					OR = {
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_1
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_2
+						is_ship_size = gts_bruh_shipgirl_ship_sizes_3
+					}
+				}
+				save_event_target_as = gts_bruh_get_event_shipgirl
+			}
+			random_fleet_in_system = {
+				limit = {
+					is_owned_by = root
+					is_ship_size = research_station
+				}
+				save_event_target_as = gts_bruh_get_event_target
+			}
+		}
+	}
+
+	option = {
+		name = gts_event_bruh_shipgirl.0107.a
+		add_resource = {
+			energy = -5000
+			influence = 50
+		}
+		add_monthly_resource_mult = {
+			resource = minerals
+			value = 12
+		}
+	}
+	option = {
+		name = gts_event_bruh_shipgirl.0107.b
+		add_resource = {
+			influence = -50
+		}
+	}
+	option = {
+		name = gts_event_bruh_shipgirl.0107.c
+		add_resource = {
+			energy = -5000
+		}
+		add_monthly_resource_mult = {
+			resource = engineering_research
+			value = 12
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			event_target:gts_bruh_get_event_target = {
+				dismantle = yes
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_event_bruh_shipgirl.0200
+	title = gts_event_bruh_shipgirl.0200.name
+	desc = gts_event_bruh_shipgirl.0200.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	show_sound = event_gts_masturbate
+	location = From
+
+	is_triggered_only = yes
+
+	picture_event_data = {
+		room = gts_bruh_shipgirl_01_room
+	}
+
+	immediate = {
+		FromFrom = {
+			gts_bruh_clear_planet_effect = yes
+			pc_gts_juice_change = yes
+			destroy_colony = yes
+		}
+		add_event_chain_counter = {
+			event_chain = "gts_bruh_shipgirl_planet_killer_panties_chain"
+			counter = "gts_bruh_shipgirl_planet_killer_panties_data_collected"
+			amount = 1
+		}
+	}
+
+	option = {
+		name = gts_event_bruh_shipgirl.0200.a
+		hidden_effect = {
+			if = {
+				limit = {
+					has_completed_event_chain_counter = {
+						event_chain = "gts_bruh_shipgirl_planet_killer_panties_chain"
+						counter = "gts_bruh_shipgirl_planet_killer_panties_data_collected"
+					}
+				}
+				country_event = { id = gts_leader_bruh.0022 }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_event_bruh_shipgirl.0201
+	title = gts_event_bruh_shipgirl.0201.name
+	desc = gts_event_bruh_shipgirl.0201.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	show_sound = event_gts_masturbate
+	location = From
+
+	is_triggered_only = yes
+
+	picture_event_data = {
+		room = gts_bruh_shipgirl_01_room
+	}
+
+	immediate = {
+		FromFrom = {
+			gts_bruh_clear_planet_effect = yes
+			pc_gts_juice_change = yes
+			destroy_colony = yes
+		}
+		add_event_chain_counter = {
+			event_chain = "gts_bruh_shipgirl_planet_killer_panties_chain"
+			counter = "gts_bruh_shipgirl_planet_killer_panties_data_collected"
+			amount = 1
+		}
+	}
+
+	option = {
+		name = gts_event_bruh_shipgirl.0200.a
+		hidden_effect = {
+			if = {
+				limit = {
+					has_completed_event_chain_counter = {
+						event_chain = "gts_bruh_shipgirl_planet_killer_panties_chain"
+						counter = "gts_bruh_shipgirl_planet_killer_panties_data_collected"
+					}
+				}
+				country_event = { id = gts_leader_bruh.0022 }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_event_bruh_shipgirl.0202
+	title = gts_event_bruh_shipgirl.0202.name
+	desc = gts_event_bruh_shipgirl.0202.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	show_sound = event_gts_masturbate
+	location = From
+
+	is_triggered_only = yes
+
+	picture_event_data = {
+		room = gts_bruh_shipgirl_01_room
+	}
+
+	immediate = {
+		FromFrom = {
+			gts_bruh_clear_planet_effect = yes
+			pc_gts_juice_change = yes
+			destroy_colony = yes
+		}
+		add_event_chain_counter = {
+			event_chain = "gts_bruh_shipgirl_planet_killer_panties_chain"
+			counter = "gts_bruh_shipgirl_planet_killer_panties_data_collected"
+			amount = 1
+		}
+	}
+
+	option = {
+		name = gts_event_bruh_shipgirl.0200.a
+		hidden_effect = {
+			if = {
+				limit = {
+					has_completed_event_chain_counter = {
+						event_chain = "gts_bruh_shipgirl_planet_killer_panties_chain"
+						counter = "gts_bruh_shipgirl_planet_killer_panties_data_collected"
+					}
+				}
+				country_event = { id = gts_leader_bruh.0022 }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_event_bruh_shipgirl.0203
+	title = gts_event_bruh_shipgirl.0203.name
+	desc = gts_event_bruh_shipgirl.0203.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	show_sound = event_gts_masturbate
+	location = From
+
+	is_triggered_only = yes
+
+	picture_event_data = {
+		room = gts_bruh_shipgirl_01_room
+	}
+
+	immediate = {
+		FromFrom = {
+			gts_bruh_clear_planet_effect = yes
+			pc_gts_juice_change = yes
+			destroy_colony = yes
+		}
+		add_event_chain_counter = {
+			event_chain = "gts_bruh_shipgirl_planet_killer_panties_chain"
+			counter = "gts_bruh_shipgirl_planet_killer_panties_data_collected"
+			amount = 1
+		}
+	}
+
+	option = {
+		name = gts_event_bruh_shipgirl.0200.a
+		hidden_effect = {
+			if = {
+				limit = {
+					has_completed_event_chain_counter = {
+						event_chain = "gts_bruh_shipgirl_planet_killer_panties_chain"
+						counter = "gts_bruh_shipgirl_planet_killer_panties_data_collected"
+					}
+				}
+				country_event = { id = gts_leader_bruh.0022 }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_event_bruh_shipgirl.0204
+	title = gts_event_bruh_shipgirl.0204.name
+	desc = gts_event_bruh_shipgirl.0204.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	show_sound = event_gts_masturbate
+	location = From
+
+	is_triggered_only = yes
+
+	picture_event_data = {
+		room = gts_bruh_shipgirl_01_room
+	}
+
+	immediate = {
+		FromFrom = {
+			gts_bruh_clear_planet_effect = yes
+			pc_gts_juice_change = yes
+			destroy_colony = yes
+		}
+		add_event_chain_counter = {
+			event_chain = "gts_bruh_shipgirl_planet_killer_panties_chain"
+			counter = "gts_bruh_shipgirl_planet_killer_panties_data_collected"
+			amount = 1
+		}
+	}
+
+	option = {
+		name = gts_event_bruh_shipgirl.0200.a
+		hidden_effect = {
+			if = {
+				limit = {
+					has_completed_event_chain_counter = {
+						event_chain = "gts_bruh_shipgirl_planet_killer_panties_chain"
+						counter = "gts_bruh_shipgirl_planet_killer_panties_data_collected"
+					}
+				}
+				country_event = { id = gts_leader_bruh.0022 }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_event_bruh_shipgirl.0205
+	title = gts_event_bruh_shipgirl.0205.name
+	desc = gts_event_bruh_shipgirl.0205.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	show_sound = event_gts_masturbate
+	location = From
+
+	is_triggered_only = yes
+
+	picture_event_data = {
+		room = gts_bruh_shipgirl_01_room
+	}
+
+	immediate = {
+		FromFrom = {
+			gts_bruh_clear_planet_effect = yes
+			pc_gts_juice_change = yes
+			destroy_colony = yes
+		}
+		add_event_chain_counter = {
+			event_chain = "gts_bruh_shipgirl_planet_killer_panties_chain"
+			counter = "gts_bruh_shipgirl_planet_killer_panties_data_collected"
+			amount = 1
+		}
+	}
+
+	option = {
+		name = gts_event_bruh_shipgirl.0200.a
+		hidden_effect = {
+			if = {
+				limit = {
+					has_completed_event_chain_counter = {
+						event_chain = "gts_bruh_shipgirl_planet_killer_panties_chain"
+						counter = "gts_bruh_shipgirl_planet_killer_panties_data_collected"
+					}
+				}
+				country_event = { id = gts_leader_bruh.0022 }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gts_event_bruh_shipgirl.0206
+	title = gts_event_bruh_shipgirl.0206.name
+	desc = gts_event_bruh_shipgirl.0206.desc
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	show_sound = event_gts_masturbate
+	location = From
+
+	is_triggered_only = yes
+
+	picture_event_data = {
+		room = gts_bruh_shipgirl_01_room
+	}
+
+	immediate = {
+		FromFrom = {
+			gts_bruh_clear_planet_effect = yes
+			pc_gts_juice_change = yes
+			destroy_colony = yes
+		}
+		add_event_chain_counter = {
+			event_chain = "gts_bruh_shipgirl_planet_killer_panties_chain"
+			counter = "gts_bruh_shipgirl_planet_killer_panties_data_collected"
+			amount = 1
+		}
+	}
+
+	option = {
+		name = gts_event_bruh_shipgirl.0200.a
+		hidden_effect = {
+			if = {
+				limit = {
+					has_completed_event_chain_counter = {
+						event_chain = "gts_bruh_shipgirl_planet_killer_panties_chain"
+						counter = "gts_bruh_shipgirl_planet_killer_panties_data_collected"
+					}
+				}
+				country_event = { id = gts_leader_bruh.0022 }
+			}
+		}
+	}
+}
+

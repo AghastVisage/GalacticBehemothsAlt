@@ -16,23 +16,11 @@ country_event = {#球生成考古
 	}
 	immediate = {
 		random_system = {
-			limit = {
-				distance = {
-					source = root.capital_scope.solar_system
-					use_bypasses = yes
-					min_jumps = 1
-					max_jumps = 6
-				}
-			}
+			limit = { gts_intel_system_skadi = { COUNTRY = root } }
 			random_system_planet = {
-				limit = {
-					NOT = { exists = archaeological_site }
-				}
+				limit = { gts_intel_planet_skadi = { COUNTRY = root } }
 				create_archaeological_site = site_skadi_potral
-				owner = {
-					set_country_flag = skadi_intro
-					set_global_flag = skadi_started
-				}
+				root = { set_country_flag = skadi_intro set_global_flag = skadi_started }
 			}
 		}
 	}
@@ -237,7 +225,7 @@ country_event = {#天降虎鲸
 	option = {
 		name = gts_skadi_potral.10a
 		capital_scope = {
-			while = { #测试能运行
+			while = {
 				count = 100
 				random_owned_pop_group = {
 					kill_single_pop = yes
@@ -249,7 +237,8 @@ country_event = {#天降虎鲸
 				add_deposit = d_skadi_debris
 				add_deposit = d_skadi_breasts
 				add_deposit = d_skadi_abdomen
-				add_deposit = d_skadi_virgin				
+				add_deposit = d_skadi_virgin
+				save_global_event_target_as = skadi_sit_planet
 			}
 		}	
 	}
@@ -269,6 +258,7 @@ country_event = {#天降虎鲸
 				add_deposit = d_skadi_breasts
 				add_deposit = d_skadi_abdomen
 				add_deposit = d_skadi_virgin
+				save_global_event_target_as = skadi_sit_planet
 			}
 		}	
 	}
@@ -280,20 +270,23 @@ country_event = {#天降虎鲸
 				has_ethic = ethic_spiritualist
 			}
 		}
+		capital_scope = {
+			while = {
+				count = 100
+				random_owned_pop_group = {
+					kill_single_pop = yes
+				}
+			}
+		}
 		hidden_effect = {
 			capital_scope = {
 				add_deposit = d_skadi_debris
 				add_deposit = d_skadi_breasts
 				add_deposit = d_skadi_abdomen
 				add_deposit = d_skadi_virgin
-				while = {
-					count = 100
-					random_owned_pop_group = {
-						kill_single_pop = yes
-					}
-				}
+				save_global_event_target_as = skadi_sit_planet
 			}
-		}		
+		}
 	}
 }
 
@@ -392,6 +385,178 @@ country_event = {#通讯画面
 	}
 }
 
+#ui文本
+country_event = {
+	id = gts_skadi_meet.100
+	title = INCOMING_TRANSMISSION
+	desc = gts_skadi_meet.100.desc
+	diplomatic = yes
+	diplomatic_title = gts_skadi_meet.100.title
+	picture_event_data = {
+		portrait = event_target:gts_skadi
+	}
+	is_triggered_only = yes
+	option = {
+		name = gts_skadi_meet.100.a
+		response_text = gts_skadi_meet.100.a.1
+		trigger = {
+			event_target:gts_skadi = {
+				gts_normal_leader_love_lv1_trigger = yes
+			}
+		}
+	}
+	option = {
+		name = gts_skadi_meet.100.a
+		response_text = gts_skadi_meet.100.a.2
+		trigger = {
+			event_target:gts_skadi = {
+				OR  = {
+					gts_normal_leader_love_lv2_trigger = yes
+					gts_normal_leader_love_lv3_trigger = yes
+				}
+			}
+		}
+	}
+	option = {
+		name = gts_skadi_meet.100.a
+		response_text = gts_skadi_meet.100.a.3
+		trigger = {
+			event_target:gts_skadi = {
+				gts_normal_leader_love_lv4_trigger = yes
+			}
+		}
+	}
+	option = {
+		name = gts_skadi_meet.100.a
+		response_text = gts_skadi_meet.100.a.4
+		trigger = {
+			event_target:gts_skadi = {
+				gts_normal_leader_love_lv5_trigger = yes
+			}
+		}
+	}
+	option = {
+		name = gts_skadi_meet.100.b
+		hidden_effect = {
+			country_event = {
+				id = gts_skadi_meet.200
+			}
+		}
+	}
+	option = {
+		name = gts_skadi_meet.100.c
+		trigger = {
+			NOR = { has_global_flag = skadi_eating }
+		}
+		custom_tooltip = edict_skadi_traits_lottery_desc
+		hidden_effect = {
+			country_event = {
+				id = gts_skadi_events.00
+			}
+		}
+	}
+	option = {
+		name = gts_skadi_meet.100.d
+		trigger = {
+			exists = event_target:skadi_sit_planet
+			exists = event_target:gts_skadi
+			event_target:gts_skadi = {
+				OR  = {
+					gts_normal_leader_love_lv3_trigger = yes
+					gts_normal_leader_love_lv4_trigger = yes
+				}
+			}
+			has_country_flag = gts_skadi_colossus.1000.unfinish
+		}
+		custom_tooltip = gts_skadi_colossus.1000.b.tooltip
+		event_target:skadi_sit_planet = {
+			remove_deposit = d_skadi_breasts
+			remove_deposit = d_skadi_abdomen
+			remove_deposit = d_skadi_virgin
+		}
+		hidden_effect = {
+			remove_country_flag = gts_skadi_colossus.1000.unfinish
+			country_event = { id = gts_skadi_colossus.1001 }
+		}
+	}
+	option = {
+		name = gts_huatian.1064.close
+	}
+}
+#换衣服
+country_event = {
+	id = gts_skadi_meet.200
+	title = INCOMING_TRANSMISSION
+	desc = gts_skadi_meet.200.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = {
+		portrait = event_target:gts_skadi
+	}
+	option = {
+		name = gts_skadi_meet.200.a
+		is_dialog_only = yes
+		response_text = gts_skadi_meet.200.a
+		hidden_effect = {
+			event_target:gts_skadi = {
+				change_leader_portrait = skadi02
+			}
+		}
+	}
+	option = {
+		name = gts_skadi_meet.200.b
+		is_dialog_only = yes
+		response_text = gts_skadi_meet.200.b
+		hidden_effect = {
+			event_target:gts_skadi = {
+				change_leader_portrait = skadi03
+			}
+		}
+	}
+	option = {
+		name = gts_skadi_meet.200.c
+		is_dialog_only = yes
+		response_text = gts_skadi_meet.200.c
+		trigger = {
+			event_target:gts_skadi = {
+				has_trait = skadi_leader_trait_cat
+			}
+		}
+		hidden_effect = {
+			event_target:gts_skadi = {
+				change_leader_portrait = skadi04
+			}
+		}
+	}
+	option = {
+		name = gts_skadi_meet.200.d
+		is_dialog_only = yes
+		response_text = gts_skadi_meet.200.d
+		trigger = {
+			has_country_flag = skadi_comfirmed
+		}
+		hidden_effect = {
+			event_target:gts_skadi = {
+				change_leader_portrait = skadi05
+			}
+		}
+	}
+
+	option = {
+		name = gts_back
+		hidden_effect = {
+			country_event = {
+				id = gts_skadi_meet.100
+			}
+		}
+	}
+
+	option = {
+		name = gts_huatian.1064.close
+		default_hide_option = yes
+	}
+}
+
 
 namespace = gts_skadi_paragon
 country_event = { # spiritualist 1
@@ -439,6 +604,14 @@ country_event = { # spiritualist 1
 		event_target:gts_leader = {
 			add_trait = {
 				trait = skadi_leader_trait_cute
+			}
+		}
+		hidden_effect = {
+			event_target:gts_skadi = {
+				change_variable = {
+					value = 5
+					which = gts_love_logs
+				}
 			}
 		}
 	}
@@ -558,7 +731,7 @@ country_event = {
 		custom_tooltip = "gts_skadi_shroud.0101.a.tooltip"		#别这么做
 		add_modifier = {
 			modifier = isharmla_awaken
-			days = 9000
+			days = -1
 		}
 		hidden_effect = {
 			set_country_flag = has_shroud_patron
@@ -599,9 +772,7 @@ country_event = {
 						is_planet_class = pc_gts_juice2
 						is_planet_class = pc_gts_juice3
 						is_planet_class = pc_gtsra_loli
-						is_planet_class = pc_gtsra_shipgirl_body
 						is_planet_class = pc_gtsra_loli_slave
-						is_planet_class = pc_gts_kasa
 						is_planet_class = pc_cheng_hui
 						is_planet_class = pc_gts_oscillator
 						is_planet_class = pc_gts_yarong
@@ -659,56 +830,16 @@ country_event = {
 				#签完事件
 				id = gts_skadi_shroud.0102
 			}
-			country_event = {
-				#负面
-				id = gts_skadi_shroud.0007
-				days = 500
+			if = {
+				limit = {
+					NOT = { any_situation = { is_situation_type = gts_situation_skadi_shroud } }
+				}
+				start_situation = {
+					type = gts_situation_skadi_shroud
+					target = this
+				}
 			}
-			country_event = {
-				#第一次要饭
-				id = gts_skadi_shroud.0201
-				days = 1000
-			}
-			country_event = {
-				#第二次要饭
-				id = gts_skadi_shroud.0202
-				days = 2000
-			}
-			country_event = {
-				#灵能出逃
-				id = gts_skadi_shroud.0204
-				days = 3000
-			}
-			country_event = {
-				#领袖变异
-				id = gts_skadi_shroud.0301
-				days = 4000
-			}
-			country_event = {
-				#收养海嗣
-				id = gts_skadi_shroud.0203
-				days = 5000
-			}
-			country_event = {
-				#解锁圣所
-				id = gts_skadi_shroud.0207
-				days = 6000
-			}
-			country_event = {
-				#反抗
-				id = gts_skadi_shroud.0205
-				days = 7000
-			}
-			country_event = {
-				#警告
-				id = gts_skadi_shroud.0206
-				days = 8000
-			}
-			country_event = {
-				#判定结局
-				id = gts_skadi_shroud.3318
-				days = 9000
-			}
+			remove_modifier = isharmla_awaken #加成放到局势里面了
 		}
 	}
 	option = {
@@ -722,9 +853,6 @@ planet_event = {
 	#每个月判定一次上虚境标记
 	id = gts_skadi_shroud.0001
 	hide_window = yes
-	pre_triggers = {
-		has_owner = yes
-	}
 	mean_time_to_happen = {
 		months = 1
 	}
@@ -781,9 +909,8 @@ country_event = {
 	picture = skadi_holyland
 	show_sound = event_red_alert
 	trigger = {
-		owner = {
-			has_country_flag = isharmla_comfirmed
-		}
+		# 国家事件的当前作用域就是签约国家。
+		has_country_flag = isharmla_comfirmed
 	}
 	immediate = {
 
@@ -1928,17 +2055,30 @@ country_event = {
 	picture = skadi_oceanfall
 	show_sound = event_mystic_reveal
 	trigger = {
-		any_owned_planet = {
-			has_modifier = skadi_shroud_marked
+		OR = {
+			any_owned_planet = {
+				is_colony = yes
+				OR = {
+					has_carrier_flag = gts_priority_destroy_target
+					has_modifier = gts_priority_destroy_target_modifier
+				}
+			}
+			any_owned_planet = {
+				has_modifier = skadi_shroud_marked
+			}
 		}
 	}
 	location = event_target:victim_planet
 	immediate = {
-		random_owned_planet = {
-			limit = {
-				has_modifier = skadi_shroud_marked
+		gts_save_priority_destroy_planet_target = { TARGET = victim_planet }
+		if = {
+			limit = { event_target:victim_planet = { NOT = { is_scope_type = planet } } }
+			random_owned_planet = {
+				limit = {
+					has_modifier = skadi_shroud_marked
+				}
+				save_event_target_as = victim_planet
 			}
-			save_event_target_as = victim_planet
 		}
 		event_target:victim_planet = {
 			
@@ -2419,9 +2559,7 @@ country_event = {
 						is_planet_class = pc_gts_juice2
 						is_planet_class = pc_gts_juice3
 						is_planet_class = pc_gtsra_loli
-						is_planet_class = pc_gtsra_shipgirl_body
 						is_planet_class = pc_gtsra_loli_slave
-						is_planet_class = pc_gts_kasa
 						is_planet_class = pc_cheng_hui
 						is_planet_class = pc_gts_oscillator
 						is_planet_class = pc_gts_yarong
@@ -2492,9 +2630,7 @@ country_event = {
 						is_planet_class = pc_gts_juice2
 						is_planet_class = pc_gts_juice3
 						is_planet_class = pc_gtsra_loli
-						is_planet_class = pc_gtsra_shipgirl_body
 						is_planet_class = pc_gtsra_loli_slave
-						is_planet_class = pc_gts_kasa
 						is_planet_class = pc_cheng_hui
 						is_planet_class = pc_gts_oscillator
 						is_planet_class = pc_gts_yarong
@@ -2565,9 +2701,7 @@ country_event = {
 						is_planet_class = pc_gts_juice2
 						is_planet_class = pc_gts_juice3
 						is_planet_class = pc_gtsra_loli
-						is_planet_class = pc_gtsra_shipgirl_body
 						is_planet_class = pc_gtsra_loli_slave
-						is_planet_class = pc_gts_kasa
 						is_planet_class = pc_cheng_hui
 						is_planet_class = pc_gts_oscillator
 						is_planet_class = pc_gts_yarong
@@ -2638,9 +2772,7 @@ country_event = {
 						is_planet_class = pc_gts_juice2
 						is_planet_class = pc_gts_juice3
 						is_planet_class = pc_gtsra_loli
-						is_planet_class = pc_gtsra_shipgirl_body
 						is_planet_class = pc_gtsra_loli_slave
-						is_planet_class = pc_gts_kasa
 						is_planet_class = pc_cheng_hui
 						is_planet_class = pc_gts_oscillator
 						is_planet_class = pc_gts_yarong
@@ -2778,9 +2910,7 @@ country_event = {
 						is_planet_class = pc_gts_juice2
 						is_planet_class = pc_gts_juice3
 						is_planet_class = pc_gtsra_loli
-						is_planet_class = pc_gtsra_shipgirl_body
 						is_planet_class = pc_gtsra_loli_slave
-						is_planet_class = pc_gts_kasa
 						is_planet_class = pc_cheng_hui
 						is_planet_class = pc_gts_oscillator
 						is_planet_class = pc_gts_yarong
@@ -3006,7 +3136,12 @@ country_event = {
 		tag = dismiss_leader
 		set_leader = event_target:gts_skadi
 		#给一个国民理念
-		force_add_civic = civic_psionic_sovereign
+		if = {
+			limit = {
+				NOR = { has_civic = civic_psionic_sovereign }
+			}
+			force_add_civic = civic_psionic_sovereign
+		}
 		hidden_effect = {
 			country_event = {
 				id = gts_skadi_shroud.3322
@@ -4007,7 +4142,7 @@ country_event = {
 
 namespace = gts_skadi_colossus
 #蠢驴奇形怪状的代码
-planet_event = {
+carrier_event = {
 	id = gts_skadi_colossus.100
 	hide_window = yes
 
@@ -4021,24 +4156,24 @@ planet_event = {
 		if = {
 			limit = {
 				is_planet_class = pc_ai
-				NOT = { has_planet_flag = machine_lair }
+				NOT = { has_carrier_flag = machine_lair }
 			}
-			set_planet_flag = destroyed_by_colossus
-			set_planet_flag = planet_cracked
-			planet_event = { id = crisis.2040 }
+			set_carrier_flag = destroyed_by_colossus
+			set_carrier_flag = planet_cracked
+			carrier_event = { id = crisis.2040 }
 		}
 
 		# Contingency Final Machine World
 		if = {
 			limit = {
 				is_planet_class = pc_ai
-				has_planet_flag = machine_lair
+				has_carrier_flag = machine_lair
 			}
-			set_planet_flag = destroyed_by_colossus
-			set_planet_flag = planet_cracked
+			set_carrier_flag = destroyed_by_colossus
+			set_carrier_flag = planet_cracked
 			from.owner = { save_event_target_as = final_machine_world_destroyer }
 			stop_crisis_sound = yes
-			planet_event = { id = crisis.2046 }
+			carrier_event = { id = crisis.2046 }
 		}
 
 		# Swarm Situation Log counter
@@ -4531,7 +4666,7 @@ planet_event = { # 转化为爱液星球-拥有斯卡蒂
 }
 
 #扶她轰炸事件
-planet_event = { #没随机到
+carrier_event = { #没随机到
 	id = gts_skadi_colossus.000
 	hide_window = yes
 	is_triggered_only = yes
@@ -4539,7 +4674,7 @@ planet_event = { #没随机到
 		this = {
 			is_colony = yes
 			NOR = {
-				has_planet_flag = no_futa_bomb
+				has_carrier_flag = no_futa_bomb
 			}
 			is_eatable_planet = yes
 		}
@@ -4549,11 +4684,11 @@ planet_event = { #没随机到
 	}
 	immediate = {
 		this = {
-			set_planet_flag = no_futa_bomb
+			set_carrier_flag = no_futa_bomb
 		}
 	}
 }
-planet_event = {
+carrier_event = {
 	id = gts_skadi_colossus.001
 	hide_window = yes
 	is_triggered_only = yes
@@ -4561,7 +4696,7 @@ planet_event = {
 		this = {
 			is_colony = yes
 			NOR = {
-				has_planet_flag = no_futa_bomb
+				has_carrier_flag = no_futa_bomb
 			}
 			is_eatable_planet = no
 		}
@@ -4615,7 +4750,7 @@ country_event = {
 	option = {
 		name = gts_skadi_colossus.002.c
 		event_target:gtsra_random_planet_resist = {
-			set_planet_flag = no_futa_bomb
+			set_carrier_flag = no_futa_bomb
 		}
 	}
 }
@@ -4632,3 +4767,202 @@ country_event = {
 		name = gts_skadi_colossus.003.a
 	}
 }
+
+#方舟舰按钮代码
+fleet_event = {
+	id = gts_skadi_colossus.201
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		#gts_skadi_arkship_can_complete_grow_trigger = yes
+	}
+
+	immediate = {
+		random_owned_ship = {
+			limit = {
+				OR = {
+					is_ship_size = gts_skadi_military_arkship
+					is_ship_size = gts_skadi_military_arkship_tier_2
+				}
+			}
+			gts_upgrade_skadi_fleet_effect = yes
+		}
+		remove_fleet_flag = gts_skadi_arkship_size_action_in_progress
+	}
+}
+
+fleet_event = {
+	id = gts_skadi_colossus.202
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		#gts_skadi_arkship_can_complete_shrink_trigger = yes
+	}
+
+	immediate = {
+		random_owned_ship = {
+			limit = {
+				OR = {
+					is_ship_size = gts_skadi_military_arkship_tier_2
+					is_ship_size = gts_skadi_military_arkship_tier_3
+				}
+			}
+			gts_downgrade_skadi_fleet_effect = yes
+		}
+		remove_fleet_flag = gts_skadi_arkship_size_action_in_progress
+	}
+}
+
+fleet_event = {
+	id = gts_skadi_colossus.211
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		#gts_skadi_arkship_can_start_grow_trigger = yes
+	}
+
+	immediate = {
+		set_timed_fleet_flag = {
+			flag = gts_skadi_arkship_size_action_in_progress
+			days = 10
+		}
+		set_timed_fleet_flag = {
+			flag = gts_skadi_arkship_size_shared_cooldown
+			days = 360
+		}
+		set_saved_date = {
+			key = gts_skadi_arkship_size_cooldown_timer
+			days_from_present = 360
+			expires = 360
+		}
+		random_owned_ship = {
+			limit = {
+				OR = {
+					is_ship_size = gts_skadi_military_arkship
+					is_ship_size = gts_skadi_military_arkship_tier_2
+				}
+			}
+			gts_spawn_skadi_grow_blue_aura_effect = yes
+		}
+	}
+}
+
+fleet_event = {
+	id = gts_skadi_colossus.212
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		#gts_skadi_arkship_can_start_shrink_trigger = yes
+	}
+
+	immediate = {
+		set_timed_fleet_flag = {
+			flag = gts_skadi_arkship_size_action_in_progress
+			days = 10
+		}
+		set_timed_fleet_flag = {
+			flag = gts_skadi_arkship_size_shared_cooldown
+			days = 360
+		}
+		set_saved_date = {
+			key = gts_skadi_arkship_size_cooldown_timer
+			days_from_present = 360
+			expires = 360
+		}
+		random_owned_ship = {
+			limit = {
+				OR = {
+					is_ship_size = gts_skadi_military_arkship_tier_2
+					is_ship_size = gts_skadi_military_arkship_tier_3
+				}
+			}
+			gts_spawn_skadi_shrink_blue_aura_effect = yes
+		}
+	}
+}
+
+fleet_event = {
+	id = gts_skadi_colossus.220
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		remove_fleet_flag = gts_skadi_arkship_size_action_in_progress
+	}
+}
+
+#方舟舰事件
+country_event = {
+	id = gts_skadi_colossus.1000
+	title = gts_skadi_colossus.1000.name
+	desc = gts_skadi_colossus.1000.desc
+	is_triggered_only = yes
+	picture = skadi_confused
+	trigger = {
+		any_owned_leader = { has_leader_flag = gts_skadi }
+		exists = event_target:skadi_sit_planet
+		exists = event_target:gts_skadi
+		event_target:gts_skadi = {
+			OR  = {
+				gts_normal_leader_love_lv3_trigger = yes
+				gts_normal_leader_love_lv4_trigger = yes
+			}
+		}
+	}
+	option = {
+		name = gts_skadi_colossus.1000.a
+		event_target:skadi_sit_planet = {
+			remove_deposit = d_skadi_breasts
+			remove_deposit = d_skadi_abdomen
+			remove_deposit = d_skadi_virgin
+		}
+		country_event = {
+			id = gts_skadi_colossus.1001
+		}
+	}
+	option = {
+		name = gts_skadi_colossus.1000.b
+		custom_tooltip = gts_skadi_colossus.1000.b.tooltip
+		hidden_effect = {
+			set_country_flag = gts_skadi_colossus.1000.unfinish
+		}
+	}
+}
+
+country_event = {
+	id = gts_skadi_colossus.1001
+	title = gts_skadi_colossus.1001.name
+	desc = gts_skadi_colossus.1001.desc
+	show_sound = event_air_raid_siren
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "gts_vertical_event_window"
+	picture_event_data = {
+		room = skadi_grow2_room
+	}
+	immediate = {
+		gts_create_skadi_fleet = yes
+		event_target:gts_skadi_ship = {
+			set_location = event_target:skadi_sit_planet
+		}
+		set_country_flag = skadi_fleet_owned
+	}
+	option = {
+		name = gts_skadi_colossus.1001.a
+	}
+	option = {
+		name = gts_skadi_colossus.1001.b
+		trigger = {
+			OR = {
+				has_ethic = ethic_fanatic_spiritualist
+				has_ethic = ethic_spiritualist
+			}
+		}
+	}
+}
+
+#成长事件

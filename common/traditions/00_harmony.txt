@@ -35,6 +35,11 @@ tr_harmony_the_greater_good = {
 		planet_crime_add = -10
 	}
 
+	ai_weight = {
+		factor = 1000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_harmony_the_greater_good_gts
 		inherit_effects = yes
@@ -42,9 +47,8 @@ tr_harmony_the_greater_good = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
 	tradition_swap = {
@@ -53,15 +57,13 @@ tr_harmony_the_greater_good = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
-	}
-
-	ai_weight = {
-		factor = 1000
 	}
 }
 
@@ -93,14 +95,25 @@ tr_harmony_kinship = {
 		}
 	}
 
+
+	ai_weight = {
+		factor = 1000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_harmony_kinship_gts
 		inherit_effects = yes
 		inherit_icon = yes
 		trigger = {
 			gts_is_giantess_empire = yes
+			NOT = {
+				OR = {
+					has_valid_civic = civic_shared_burden
+					is_worker_coop_empire = yes
+				}
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -111,47 +124,25 @@ tr_harmony_kinship = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
+			NOT = {
+				OR = {
+					has_valid_civic = civic_shared_burden
+					is_worker_coop_empire = yes
+				}
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
-	}
-
-
-	ai_weight = {
-		factor = 1000
 	}
 }
 
 tr_harmony_utopian_dream = {
 	possible = {
 		has_tradition = tr_harmony_the_greater_good
-	}
-
-	tradition_swap = {
-		name = tr_harmony_utopian_dream_gts
-		inherit_effects = yes
-		inherit_icon = yes
-		trigger = {
-			gts_is_giantess_empire = yes
-		}
-
-		weight = {
-			factor = 1
-		}
-	}
-	tradition_swap = {
-		name = tr_harmony_utopian_dream_tiny
-		inherit_effects = yes
-		inherit_icon = yes
-		trigger = {
-			gts_is_tiny_empire = yes
-		}
-
-		weight = {
-			factor = 1
-		}
 	}
 
 	modifier = {
@@ -162,6 +153,33 @@ tr_harmony_utopian_dream = {
 	ai_weight = {
 		factor = 5000
 	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
+	tradition_swap = {
+		name = tr_harmony_utopian_dream_gts
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_giantess_empire = yes
+		}
+		weight = {
+			factor = 10
+		}
+	}
+	tradition_swap = {
+		name = tr_harmony_utopian_dream_tiny
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
+		}
+		weight = {
+			factor = 10
+		}
+	}
 }
 
 tr_harmony_harmonious_directives = {
@@ -170,6 +188,15 @@ tr_harmony_harmonious_directives = {
 		has_tradition = tr_harmony_mind_and_body
 	}
 
+	modifier = {
+		country_edict_fund_add = 50
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_harmony_harmonious_directives_gts
 		inherit_effects = yes
@@ -177,9 +204,8 @@ tr_harmony_harmonious_directives = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
 	tradition_swap = {
@@ -188,19 +214,13 @@ tr_harmony_harmonious_directives = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
-	}
-
-	modifier = {
-		country_edict_fund_add = 50
-	}
-
-	ai_weight = {
-		factor = 5000
 	}
 }
 
@@ -225,14 +245,25 @@ tr_harmony_mind_and_body = {
 		}
 	}
 
+	ai_weight = {
+		factor = 1000
+		modifier = {
+			factor = 10
+			has_origin = origin_necrophage
+		}
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_harmony_mind_and_body_gts
 		inherit_effects = yes
 		inherit_icon = yes
 		trigger = {
 			gts_is_giantess_empire = yes
+			NOT = {
+				has_origin = origin_necrophage
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -243,18 +274,15 @@ tr_harmony_mind_and_body = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
+			NOT = {
+				has_origin = origin_necrophage
+			}
 		}
-
 		weight = {
 			factor = 10
-		}
-	}
-
-	ai_weight = {
-		factor = 1000
-		modifier = {
-			factor = 10
-			has_origin = origin_necrophage
 		}
 	}
 }

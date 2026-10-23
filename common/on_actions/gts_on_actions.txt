@@ -1,3 +1,9 @@
+#4.6.0版本加载旧存档修bug用的，下次大更新直接删掉
+on_single_player_save_game_load = {
+	events = { gts_ui.403 }
+}
+#4.6.0版本加载旧存档修bug用的，下次大更新直接删掉
+
 on_game_start = {
 	events = {
 		gts_utility.104		# 添加全局flag
@@ -123,6 +129,7 @@ on_monthly_pulse_country = {
         gts_evolution_catalyst_event.201
         gts_evolution_catalyst_event.202
         gts_evolution_catalyst_event.203
+		gts_ui.401 # 宠物国家加成随装备者/科技变化重算
 	}
 }
 
@@ -162,6 +169,13 @@ on_yearly_pulse_country = {
 	}
 }
 
+on_yearly_pulse_country = {
+	events = {
+		gts_ora.4106
+		gts_ora.3001
+	}
+}
+
 on_five_year_pulse_country = {
 	events = {
 		gts_evt_random.030050		#计划外的演习
@@ -175,6 +189,7 @@ on_five_year_pulse_country = {
 		gts_linfeng.100				#林凤的要求（小人）
 		gts_linfeng.110				#林凤的要求（巨娘）
 		gts_saratoga.1002
+		gts_evt_random.040240		#暑期集训
 		# gts_utility.303           #没有（或者没做完）招募前事件的Mod领袖抽奖
 	}
 	# 无特殊trigger的随机事件
@@ -211,7 +226,7 @@ on_five_year_pulse_country = {
 		1 = gts_evt_random.040240		#暑期集训
 	}
 }
-
+#埃罗芒阿老师的五年事件
 on_five_year_pulse_country = {
 	events = {
 		gts_eromanga.0
@@ -228,13 +243,15 @@ on_leader_death_notify = {
 on_leader_death = {
 	#领袖任何死亡触发
 	events = {
-		# gts_utility.302 #巨娘领袖回归
+		gts_utility.302 #无通知的死亡也可回归
+		gts_ui.401 # 宠物国家加成随装备者/科技变化重算
 	}
 }
 on_leader_fired = {
 	#领袖解雇时触发
 	events = {
 		gts_utility.302 #巨娘领袖回归
+		gts_ui.401 # 宠物国家加成随装备者/科技变化重算
 	}
 }
 
@@ -259,6 +276,8 @@ on_custom_diplomacy = {
 		gts_guide_qhai.5001
 		gts_hitomi.10
 		gts_ora.100
+		gts_ora.1100
+		gts_ora.1200
 		gts_qinwen.5
 	}
 }
@@ -280,12 +299,13 @@ on_space_battle_won = {
 		gts_hitomi.30012
 		gts_hitomi.30013
 		gts_hitomi.30015
+		gts_ora.1128
+
 	}
 	random_events = {
 		10 = 0
 		1 = gts_guya.32		#咕丫-无心的玩弄
 		1 = gts_guya.33		#咕丫-捕食
-		1 = gts_suxiaobai.110	#苏小白舰队胜利事件
 		1 = gts_hitomi.211
 		1 = gts_hitomi.212
 	}
@@ -303,9 +323,13 @@ on_ship_destroyed_perp = {
 		115tiny_crisis.4025
 		gts_hstar_crisis.218# Crisis Objective: count ships destroyed
         gts_bfbf.11704
-        gts_xinuo.500
 	}
 	random_events = {
+	}
+}
+on_ship_upgraded = {
+	events = {
+		gts_bfbf.2001
 	}
 }
 
@@ -691,6 +715,7 @@ on_entering_system_first_time = {
 on_tech_increased = {
 	events = {
 		gts_ui.400
+		gts_ui.401 # 宠物国家加成随装备者/科技变化重算
 	}
 }
 
@@ -799,4 +824,9 @@ on_ground_combat_started = {
 		gts_bfbf.126
 	}
 }
-
+# This = fleet
+on_fleet_went_mia = {
+	events = {
+		gts_bfbf.11705
+	}
+}

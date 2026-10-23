@@ -1,0 +1,18 @@
+# Country scope. Keep repeated bulk recruitment from resetting owned leaders.
+gts_debug_recruit_leader = {
+    if = {
+        limit = { NOT = { any_owned_leader = { has_leader_flag = $TARGET$ } } }
+        $RECRUIT$ = { CHANGE_OWNER = yes }
+        [[TRAIT] event_target:$TARGET$ = { add_trait = { trait = $TRAIT$ } } ]
+        [[FLEET] $FLEET$ = yes ]
+    }
+}
+
+# Rainna is an event character, not a recruitable leader object.
+gts_debug_start_rainna = {
+    if = {
+        limit = { NOT = { has_global_flag = gts_has_trigger_rainna_la_grande } }
+        set_global_flag = gts_has_trigger_rainna_la_grande
+        country_event = { id = gts_rainna_la_grande.00 }
+    }
+}

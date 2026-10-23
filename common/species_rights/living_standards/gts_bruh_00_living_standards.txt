@@ -1,0 +1,156 @@
+############################################################################################################################################
+###################################################                模組添加                ###################################################
+############################################################################################################################################
+
+
+
+living_standard_Jiju_assimilation = {
+
+	# 接受殖民
+
+	pop_group_modifier = {
+		pop_happiness = -0.25
+	}
+	potential = {
+		host_has_dlc = "Utopia"
+		exists = from
+		from = {
+			has_country_flag = Jiju_standard_on
+		}
+	}
+	allow = {
+		hidden_trigger = {
+			exists = from
+		}
+		custom_tooltip = {
+			fail_text = SPECIES_MUST_BE_ASSIMILATING
+			has_citizenship_type = {
+				type = citizenship_assimilation
+				country = from
+			}
+		}
+	}
+	ai_will_do = {
+		factor = 100
+	}
+}
+
+
+
+############################################################################################################################################
+###################################################                原版覆蓋                ###################################################
+############################################################################################################################################
+
+
+
+living_standard_organic_trophy = {
+	triggered_pop_group_modifier = {
+		potential = {
+			owner? = { NOT = { has_deficit = consumer_goods } }
+			OR = {
+				is_pop_category = bio_trophy
+				is_pop_category = cruise_passenger
+			}
+		}
+		pop_happiness = 0.4
+	}
+
+	triggered_pop_group_modifier = {
+		potential = {
+			OR = {
+				owner? = { has_deficit = consumer_goods }
+				NOR = {
+					is_pop_category = bio_trophy
+					is_pop_category = cruise_passenger
+				}
+			}
+		}
+		pop_happiness = -0.4
+	}
+
+	pop_group_modifier = {
+		pop_category_bio_trophy_consumer_goods_upkeep_add = @living_standard_luxuries_very_high
+	}
+
+	# Forever Cruise Bio-Trophy Passengers also add the luxury upkeep of First-Class Passengers.
+	triggered_pop_group_modifier = {
+		potential = {
+			owner? = { is_hospitality_servitor_empire = yes }
+		}
+		pop_category_cruise_passenger_consumer_goods_upkeep_add = @living_standard_luxuries_very_high_passenger
+	}
+
+	potential = {
+		exists = from
+		from = {
+
+			# 模組添加的東西
+
+			#---------- Bruh ----------
+			#---------- 開始 -----------
+
+			OR = { #修改源代码
+				from = {
+					has_valid_civic = civic_gts_servitor
+				}
+				from = {
+					is_machine_empire = yes
+					has_valid_civic = civic_machine_servitor
+				}
+			}
+
+			#---------- Bruh ----------
+			#---------- 結束 -----------
+
+			is_machine_empire = yes
+			has_valid_civic = civic_machine_servitor
+		}
+	}
+
+	allow = {
+		hidden_trigger = { exists = from }
+		custom_tooltip = {
+			fail_text = species_is_not_trophy
+			has_citizenship_type = {
+				type = citizenship_organic_trophy
+				country = from
+			}
+		}
+	}
+
+	ai_will_do = {
+		factor = 100
+	}
+}
+
+# 功能整合進公民權裡了
+
+#living_standard_gts_civic_assimilation = {
+#
+#	# 縮小同化
+#
+#	pop_group_modifier = {
+#		pop_happiness = -0.25
+#	}
+#
+#	potential = {
+#		exists = from
+#		NOT = { has_trait = trait_Micro }
+#	}
+#
+#	allow = {
+#		hidden_trigger = { exists = from }
+#		custom_tooltip = {
+#			fail_text = SPECIES_MUST_BE_INSIDE_BODY_ASSIMILATING
+#			has_citizenship_type = {
+#				type = citizenship_inside_body_assimilation
+#				country = from
+#			}
+#		}
+#	}
+#
+#	ai_will_do = {
+#		factor = 100
+#	}
+#}
+

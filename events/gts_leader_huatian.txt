@@ -9,24 +9,21 @@ country_event = {
 
 	immediate = {
 		random_system = {
-			limit = {
-				distance = {
-					source = root.capital_scope.solar_system
-					use_bypasses = yes
-					min_jumps = 1
-					max_jumps = 6
-				}
-			}
-			spawn_system = {
-				min_distance >= 10
-				max_distance <= 30
-				max_jumps = 1
-				initializer = gts_huatian_system
-				effect = {
-					save_event_target_as = gts_bruh_get_huatian_system_location
-				}
-			}
-		}
+ limit = { gts_intel_anchor_system = { COUNTRY = root } }
+ save_event_target_as = gts_intel_spawn_anchor
+ 
+ spawn_system = {
+ min_distance = 10
+ max_distance = 30
+ max_jumps = 0
+ hyperlane = no
+ initializer = gts_huatian_system
+ effect = {
+  add_hyperlane = { from = this to = event_target:gts_intel_spawn_anchor }
+  save_event_target_as = gts_bruh_get_huatian_system_location
+ }
+}
+}
 	}
 }
 
@@ -869,16 +866,20 @@ country_event = {
 		name = gts_huatian.1064.a
 		response_text = gts_huatian.1064.a_effect
 		trigger = {
-			gts_normal_leader_love_lv1_trigger = yes
+			event_target:gts_huatian = {
+				gts_normal_leader_love_lv1_trigger = yes
+			}
 		}
 	}
 	option = {
 		name = gts_huatian.1064.a
 		response_text = gts_huatian.1064.b_effect
 		trigger = {
-			OR  = {
-				gts_normal_leader_love_lv2_trigger = yes
-				gts_normal_leader_love_lv3_trigger = yes
+			event_target:gts_huatian = {
+				OR  = {
+					gts_normal_leader_love_lv2_trigger = yes
+					gts_normal_leader_love_lv3_trigger = yes
+				}
 			}
 		}
 	}
@@ -1251,18 +1252,25 @@ ship_event = {
 	}
 	option = {
 		name = gts_huatian.1069.a
+allow = { hidden_trigger = { owner = { gts_intel_has_anchor = { COUNTRY = root.owner } } } }
+
 		owner = {
-			random_planet_within_border = {
-				limit = {
-					has_planet_flag = gts_huatian_homeworld
-				}
-				spawn_system = {
-					min_distance >= 10
-					max_distance <= 30
-					max_jumps = 0
-					initializer = gts_huatian_system_b
-				}
-			}
+			random_system = {
+ limit = { gts_intel_anchor_system = { COUNTRY = root.owner } }
+ save_event_target_as = gts_intel_spawn_anchor
+ 
+ spawn_system = {
+ min_distance = 10
+ max_distance = 30
+ max_jumps = 0
+ hyperlane = no
+ initializer = gts_huatian_system_b
+ effect = {
+  add_hyperlane = { from = this to = event_target:gts_intel_spawn_anchor }
+  
+ }
+}
+}
 		}
 	}
 }

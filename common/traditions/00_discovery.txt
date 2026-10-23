@@ -63,6 +63,11 @@ tr_discovery_to_boldly_go = {
 		}
 	}
 
+	ai_weight = {
+		factor = 5000	# AI should prefer this one first, more useful early
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_discovery_to_boldly_go_gts
 		inherit_effects = yes
@@ -70,27 +75,23 @@ tr_discovery_to_boldly_go = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
 			factor = 10
 		}
 	}
-
 	tradition_swap = {
 		name = tr_discovery_to_boldly_go_tiny
 		inherit_effects = yes
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
-	}
-
-	ai_weight = {
-		factor = 5000	# AI should prefer this one first, more useful early
 	}
 }
 
@@ -100,7 +101,6 @@ tr_discovery_databank_uplinks = {
 	}
 
 	custom_tooltip = tr_discovery_databank_uplinks_desc
-
 	modifier = {
 		station_researchers_produces_mult = 0.20
 		starbase_constructions_physics_research_produces_mult = 0.20
@@ -109,54 +109,9 @@ tr_discovery_databank_uplinks = {
 	}
 
 	tradition_swap = {
-		name = tr_discovery_databank_uplinks_gts
-		inherit_effects = yes
+		name = tr_discovery_databank_uplinks_nomads
 		inherit_icon = yes
 		trigger = {
-			gts_is_giantess_empire = yes
-			is_nomadic = no
-		}
-
-		weight = {
-			factor = 1
-		}
-	}
-	tradition_swap = {
-		name = tr_discovery_databank_uplinks_tiny
-		inherit_effects = yes
-		inherit_icon = yes
-		trigger = {
-			gts_is_tiny_empire = yes
-			is_nomadic = no
-		}
-
-		weight = {
-			factor = 1
-		}
-	}
-
-	tradition_swap = {
-		name = tr_discovery_databank_uplinks_gts
-		inherit_icon = yes
-		trigger = {
-			gts_is_giantess_empire = yes
-			is_nomadic = yes
-		}
-		modifier = {
-			starbase_collected_system_physics_research_mult = 0.2
-			starbase_collected_system_society_research_mult = 0.2
-			starbase_collected_system_engineering_research_mult = 0.2
-		}
-
-		weight = {
-			factor = 1
-		}
-	}
-	tradition_swap = {
-		name = tr_discovery_databank_uplinks_tiny
-		inherit_icon = yes
-		trigger = {
-			gts_is_tiny_empire = yes
 			is_nomadic = yes
 		}
 		modifier = {
@@ -172,6 +127,66 @@ tr_discovery_databank_uplinks = {
 
 	ai_weight = {
 		factor = 5000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
+	tradition_swap = {
+		name = tr_discovery_databank_uplinks_gts
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			OR = {
+				AND = {
+					gts_is_giantess_empire = yes
+					is_nomadic = no
+				}
+				AND = {
+					gts_is_giantess_empire = yes
+					is_nomadic = yes
+				}
+			}
+			NOT = {
+				is_nomadic = yes
+			}
+		}
+		weight = {
+			factor = 10
+		}
+	}
+	tradition_swap = {
+		name = tr_discovery_databank_uplinks_tiny
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			OR = {
+				AND = {
+					gts_is_tiny_empire = yes
+					is_nomadic = no
+				}
+				AND = {
+					gts_is_tiny_empire = yes
+					is_nomadic = yes
+				}
+			}
+			NOT = {
+				OR = {
+					AND = {
+						gts_is_giantess_empire = yes
+						is_nomadic = no
+					}
+					AND = {
+						gts_is_giantess_empire = yes
+						is_nomadic = yes
+					}
+				}
+			}
+			NOT = {
+				is_nomadic = yes
+			}
+		}
+		weight = {
+			factor = 10
+		}
 	}
 }
 
@@ -208,6 +223,11 @@ tr_discovery_science_division = {
 		}
 	}
 
+	ai_weight = {
+		factor = 1000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_discovery_science_division_gts
 		inherit_effects = yes
@@ -215,7 +235,6 @@ tr_discovery_science_division = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -226,15 +245,13 @@ tr_discovery_science_division = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
-	}
-
-	ai_weight = {
-		factor = 1000
 	}
 }
 
@@ -247,6 +264,8 @@ tr_discovery_polytechnic_education = {
 		scientist_exp_gain = 0.2
 		leader_scientists_upkeep_mult = -0.15
 	}
+
+	
 
 	tradition_swap = {
 		name = tr_discovery_polytechnic_education_machine
@@ -274,6 +293,11 @@ tr_discovery_polytechnic_education = {
 		}
 	}
 
+	ai_weight = {
+		factor = 5000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_discovery_polytechnic_education_gts
 		inherit_effects = yes
@@ -281,7 +305,6 @@ tr_discovery_polytechnic_education = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -292,15 +315,13 @@ tr_discovery_polytechnic_education = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
-	}
-
-	ai_weight = {
-		factor = 5000
 	}
 }
 
@@ -329,6 +350,7 @@ tr_discovery_faith_in_science = {
 		inherit_icon = yes
 		trigger = {
 			is_hive_empire = yes
+			is_wilderness_empire = no
 		}
 		weight = {
 			factor = 1
@@ -347,6 +369,11 @@ tr_discovery_faith_in_science = {
 		}
 	}
 
+	ai_weight = {
+		factor = 5000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_discovery_faith_in_science_gts
 		inherit_effects = yes
@@ -354,7 +381,6 @@ tr_discovery_faith_in_science = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -365,14 +391,12 @@ tr_discovery_faith_in_science = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
-	}
-
-	ai_weight = {
-		factor = 5000
 	}
 }

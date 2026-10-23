@@ -1,0 +1,167 @@
+namespace = gts_enclave_event
+
+# Global event. Safe to invoke once manually for an existing galaxy.
+event = {
+    id = gts_enclave_event.1
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = {
+        NOT = { any_country = { has_country_flag = gts_enclave_country } }
+    }
+    immediate = {
+        if = {
+            limit = {
+                NOT = { any_country = { has_country_flag = gts_enclave_country } }
+            }
+            random_system = {
+                limit = {
+                    NOR = {
+                        exists = owner
+                        has_star_flag = hostile_system
+                        has_star_flag = tiny_enclave_system
+                        has_star_flag = gts_enclave_system
+                    }
+                    any_system_planet = { always = yes }
+                }
+                set_star_flag = gts_enclave_system
+                random_system_planet = {
+                    set_planet_flag = gts_enclave_planet
+                    save_event_target_as = gts_enclave_spawn_planet
+                    create_species = {
+                        name = NAME_gts_species
+                        plural = NAME_gts_species_plural
+                        class = MAM
+                        portrait = human
+                        traits = {
+                            trait = trait_Ultra
+                            ideal_planet_class = pc_habitat
+                        }
+                    }
+                    create_country = {
+                        name = NAME_gts_country
+                        type = gts_enclave
+                        authority = auth_oligarchic
+                        civics = {}
+                        origin = origin_default
+                        species = last_created_species
+                        flag = {
+                            icon = { category = human file = flag_human_4.dds }
+                            background = { category = backgrounds file = circle.dds }
+                            colors = { purple purple null null }
+                        }
+                        ethos = {
+                            ethic = ethic_xenophile
+                            ethic = ethic_materialist
+                            ethic = ethic_pacifist
+                        }
+                        ignore_initial_colony_error = yes
+                        effect = {
+                            set_country_flag = gts_enclave_country
+                            set_country_flag = protected_from_queen_storm
+                            save_global_event_target_as = gts_enclave_country
+                            set_graphical_culture = npf_01
+                            create_leader = {
+                                class = official
+                                species = this
+                                gender = female
+                                name = random
+                                skill = 10
+                            }
+                            set_leader = last_created_leader
+                            create_fleet = {
+                                name = NAME_gts_enclave_space_station
+                                settings = { spawn_debris = no }
+                                effect = {
+                                    set_owner = prev
+                                    set_fleet_flag = gts_enclave_station
+                                    create_ship = {
+                                        name = NAME_Gts_Enclave_Station
+                                        design = NAME_Gts_Enclave_Station
+                                        graphical_culture = npf_01
+                                    }
+                                    set_location = {
+                                        target = event_target:gts_enclave_spawn_planet
+                                        distance = 90
+                                    }
+                                    save_event_target_as = gts_enclave_capital
+                                    prev = {
+                                        set_custom_capital_location = event_target:gts_enclave_capital
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+# First conversation; the contact event has already stored the speaker.
+country_event = {
+    id = gts_enclave_event.21
+    title = gts_enclave_event.title
+    desc = {
+        trigger = { gts_enclave_is_below_titan = yes }
+        text = gts_enclave_event.21.desc.below_titan
+    }
+    desc = {
+        trigger = { gts_enclave_is_titan = yes }
+        text = gts_enclave_event.21.desc.titan
+    }
+    desc = {
+        trigger = { gts_enclave_is_ultra = yes }
+        text = gts_enclave_event.21.desc.ultra
+    }
+    is_triggered_only = yes
+    diplomatic = yes
+    trigger = { exists = event_target:gts_enclave_contacting_country }
+    picture_event_data = {
+        portrait = event_target:gts_enclave_contacting_country
+        room = enclave_curator_room
+    }
+    option = {
+        name = gts_enclave_event.21.a
+        country_event = { id = gts_enclave_event.300 }
+    }
+    option = { name = gts_enclave_event.exit }
+}
+
+# ROOT: player. FROM: clicked enclave in the contacts list.
+country_event = {
+    id = gts_enclave_event.3
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = {
+        is_ai = no
+        from = {
+            is_country_type = gts_enclave
+            has_country_flag = gts_enclave_country
+        }
+    }
+    immediate = {
+        from = { save_event_target_as = gts_enclave_contacting_country }
+        country_event = { id = gts_enclave_event.300 }
+    }
+}
+
+# Every entry/return re-evaluates the player's current empire-size policy.
+country_event = {
+    id = gts_enclave_event.300
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = { exists = event_target:gts_enclave_contacting_country }
+    immediate = {
+        if = {
+            limit = { gts_enclave_is_ultra = yes }
+            country_event = { id = gts_enclave_event.330 }
+        }
+        else_if = {
+            limit = { gts_enclave_is_titan = yes }
+            country_event = { id = gts_enclave_event.320 }
+        }
+        else = {
+            country_event = { id = gts_enclave_event.310 }
+        }
+    }
+}

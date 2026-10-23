@@ -346,6 +346,339 @@ gts_ui_item_in_slot_click = {
 	}
 }
 
+# 宠物装备入口与国家修正刷新；与饰品共用槽位和 flag。
+gts_ui_slot_change_item_p = {
+	gts_ui_slot_change_item = {
+		ITEM = $ITEM$
+		[[TRAIT] TRAIT = $TRAIT$ ]
+	}
+	event_target:current_gts_leader = {
+		owner = { gts_refresh_leader_pet_modifiers = yes }
+	}
+}
+
+gts_refresh_leader_pet_modifiers = {
+	if = {
+		limit = {
+			has_modifier = gts_leader_item_p_yukikake_organic_modifier
+		}
+		remove_modifier = gts_leader_item_p_yukikake_organic_modifier
+	}
+	if = {
+		limit = {
+			any_owned_leader = {
+				has_trait = gts_leader_item_p_all
+				has_leader_flag = gts_leader_item_p_yukikake
+			}
+			is_machine_empire = no
+		}
+		add_modifier = {
+			modifier = gts_leader_item_p_yukikake_organic_modifier
+			multiplier = value:num_gts_leader_pet_yukikake
+			days = -1
+		}
+	}
+	if = {
+		limit = {
+			has_modifier = gts_leader_item_p_yukikake_machine_modifier
+		}
+		remove_modifier = gts_leader_item_p_yukikake_machine_modifier
+	}
+	if = {
+		limit = {
+			any_owned_leader = {
+				has_trait = gts_leader_item_p_all
+				has_leader_flag = gts_leader_item_p_yukikake
+			}
+			is_machine_empire = yes
+		}
+		add_modifier = {
+			modifier = gts_leader_item_p_yukikake_machine_modifier
+			multiplier = value:num_gts_leader_pet_yukikake
+			days = -1
+		}
+	}
+	if = {
+		limit = {
+			has_modifier = gts_leader_item_p_aplog_organic_modifier
+		}
+		remove_modifier = gts_leader_item_p_aplog_organic_modifier
+	}
+	if = {
+		limit = {
+			any_owned_leader = {
+				has_trait = gts_leader_item_p_all
+				has_leader_flag = gts_leader_item_p_aplog
+			}
+			is_machine_empire = no
+		}
+		add_modifier = {
+			modifier = gts_leader_item_p_aplog_organic_modifier
+			multiplier = value:num_gts_leader_pet_aplog
+			days = -1
+		}
+	}
+	if = {
+		limit = {
+			has_modifier = gts_leader_item_p_aplog_machine_modifier
+		}
+		remove_modifier = gts_leader_item_p_aplog_machine_modifier
+	}
+	if = {
+		limit = {
+			any_owned_leader = {
+				has_trait = gts_leader_item_p_all
+				has_leader_flag = gts_leader_item_p_aplog
+			}
+			is_machine_empire = yes
+		}
+		add_modifier = {
+			modifier = gts_leader_item_p_aplog_machine_modifier
+			multiplier = value:num_gts_leader_pet_aplog
+			days = -1
+		}
+	}
+	if = {
+		limit = {
+			has_modifier = gts_leader_item_p_115_organic_modifier
+		}
+		remove_modifier = gts_leader_item_p_115_organic_modifier
+	}
+	if = {
+		limit = {
+			any_owned_leader = {
+				has_trait = gts_leader_item_p_all
+				has_leader_flag = gts_leader_item_p_115
+			}
+			is_machine_empire = no
+		}
+		add_modifier = {
+			modifier = gts_leader_item_p_115_organic_modifier
+			multiplier = value:num_gts_leader_pet_115
+			days = -1
+		}
+	}
+	if = {
+		limit = {
+			has_modifier = gts_leader_item_p_115_machine_modifier
+		}
+		remove_modifier = gts_leader_item_p_115_machine_modifier
+	}
+	if = {
+		limit = {
+			any_owned_leader = {
+				has_trait = gts_leader_item_p_all
+				has_leader_flag = gts_leader_item_p_115
+			}
+			is_machine_empire = yes
+		}
+		add_modifier = {
+			modifier = gts_leader_item_p_115_machine_modifier
+			multiplier = value:num_gts_leader_pet_115
+			days = -1
+		}
+	}
+	if = {
+		limit = {
+			has_modifier = gts_leader_item_p_koharu_organic_modifier
+		}
+		remove_modifier = gts_leader_item_p_koharu_organic_modifier
+	}
+	if = {
+		limit = {
+			any_owned_leader = {
+				has_trait = gts_leader_item_p_all
+				has_leader_flag = gts_leader_item_p_koharu
+			}
+			is_machine_empire = no
+		}
+		add_modifier = {
+			modifier = gts_leader_item_p_koharu_organic_modifier
+			multiplier = value:num_gts_leader_pet_koharu
+			days = -1
+		}
+	}
+	if = {
+		limit = {
+			has_modifier = gts_leader_item_p_koharu_machine_modifier
+		}
+		remove_modifier = gts_leader_item_p_koharu_machine_modifier
+	}
+	if = {
+		limit = {
+			any_owned_leader = {
+				has_trait = gts_leader_item_p_all
+				has_leader_flag = gts_leader_item_p_koharu
+			}
+			is_machine_empire = yes
+		}
+		add_modifier = {
+			modifier = gts_leader_item_p_koharu_machine_modifier
+			multiplier = value:num_gts_leader_pet_koharu
+			days = -1
+		}
+	}
+	if = {
+		limit = {
+			has_modifier = gts_leader_item_p_yiyan_organic_modifier
+		}
+		remove_modifier = gts_leader_item_p_yiyan_organic_modifier
+	}
+	if = {
+		limit = {
+			any_owned_leader = {
+				has_trait = gts_leader_item_p_all
+				has_leader_flag = gts_leader_item_p_yiyan
+			}
+			is_machine_empire = no
+		}
+		add_modifier = {
+			modifier = gts_leader_item_p_yiyan_organic_modifier
+			multiplier = value:num_gts_leader_pet_yiyan
+			days = -1
+		}
+	}
+	if = {
+		limit = {
+			has_modifier = gts_leader_item_p_yiyan_machine_modifier
+		}
+		remove_modifier = gts_leader_item_p_yiyan_machine_modifier
+	}
+	if = {
+		limit = {
+			any_owned_leader = {
+				has_trait = gts_leader_item_p_all
+				has_leader_flag = gts_leader_item_p_yiyan
+			}
+			is_machine_empire = yes
+		}
+		add_modifier = {
+			modifier = gts_leader_item_p_yiyan_machine_modifier
+			multiplier = value:num_gts_leader_pet_yiyan
+			days = -1
+		}
+	}
+	if = {
+		limit = {
+			has_modifier = gts_leader_item_p_huatian_organic_modifier
+		}
+		remove_modifier = gts_leader_item_p_huatian_organic_modifier
+	}
+	if = {
+		limit = {
+			any_owned_leader = {
+				has_trait = gts_leader_item_p_all
+				has_leader_flag = gts_leader_item_p_huatian
+			}
+			is_machine_empire = no
+		}
+		add_modifier = {
+			modifier = gts_leader_item_p_huatian_organic_modifier
+			multiplier = value:num_gts_leader_pet_huatian
+			days = -1
+		}
+	}
+	if = {
+		limit = {
+			has_modifier = gts_leader_item_p_huatian_machine_modifier
+		}
+		remove_modifier = gts_leader_item_p_huatian_machine_modifier
+	}
+	if = {
+		limit = {
+			any_owned_leader = {
+				has_trait = gts_leader_item_p_all
+				has_leader_flag = gts_leader_item_p_huatian
+			}
+			is_machine_empire = yes
+		}
+		add_modifier = {
+			modifier = gts_leader_item_p_huatian_machine_modifier
+			multiplier = value:num_gts_leader_pet_huatian
+			days = -1
+		}
+	}
+	if = {
+		limit = {
+			has_modifier = gts_leader_item_p_xiaomiao_organic_modifier
+		}
+		remove_modifier = gts_leader_item_p_xiaomiao_organic_modifier
+	}
+	if = {
+		limit = {
+			any_owned_leader = {
+				has_trait = gts_leader_item_p_all
+				has_leader_flag = gts_leader_item_p_xiaomiao
+			}
+			is_machine_empire = no
+		}
+		add_modifier = {
+			modifier = gts_leader_item_p_xiaomiao_organic_modifier
+			multiplier = value:num_gts_leader_pet_xiaomiao
+			days = -1
+		}
+	}
+	if = {
+		limit = {
+			has_modifier = gts_leader_item_p_tensi_modifier
+		}
+		remove_modifier = gts_leader_item_p_tensi_modifier
+	}
+	if = {
+		limit = {
+			any_owned_leader = {
+				has_trait = gts_leader_item_p_all
+				has_leader_flag = gts_leader_item_p_tensi
+			}
+		}
+		add_modifier = {
+			modifier = gts_leader_item_p_tensi_modifier
+			multiplier = value:num_gts_leader_pet_tensi
+			days = -1
+		}
+	}
+	if = {
+		limit = {
+			has_modifier = gts_leader_item_p_linfeng_organic_modifier
+		}
+		remove_modifier = gts_leader_item_p_linfeng_organic_modifier
+	}
+	if = {
+		limit = {
+			any_owned_leader = {
+				has_trait = gts_leader_item_p_all
+				has_leader_flag = gts_leader_item_p_linfeng
+			}
+			is_machine_empire = no
+		}
+		add_modifier = {
+			modifier = gts_leader_item_p_linfeng_organic_modifier
+			multiplier = value:num_gts_leader_pet_linfeng
+			days = -1
+		}
+	}
+	if = {
+		limit = {
+			has_modifier = gts_leader_item_p_linfeng_machine_modifier
+		}
+		remove_modifier = gts_leader_item_p_linfeng_machine_modifier
+	}
+	if = {
+		limit = {
+			any_owned_leader = {
+				has_trait = gts_leader_item_p_all
+				has_leader_flag = gts_leader_item_p_linfeng
+			}
+			is_machine_empire = yes
+		}
+		add_modifier = {
+			modifier = gts_leader_item_p_linfeng_machine_modifier
+			multiplier = value:num_gts_leader_pet_linfeng
+			days = -1
+		}
+	}
+}
+
 gts_ui_slot_change_item = {
 	# 道具界面-遍历所有槽位获取当前槽位，然后保存道具的ID
 	from = {
@@ -368,7 +701,7 @@ gts_ui_slot_change_item = {
 				}
 			}
 			event_target:current_gts_leader = {
-				set_leader_flag = $TRAIT$
+				[[TRAIT] set_leader_flag = $TRAIT$ ]
 			}
 		}
 		else_if = {
@@ -390,7 +723,7 @@ gts_ui_slot_change_item = {
 				}
 			}
 			event_target:current_gts_leader = {
-				set_leader_flag = $TRAIT$
+				[[TRAIT] set_leader_flag = $TRAIT$ ]
 			}
 		}
 		else_if = {
@@ -412,7 +745,7 @@ gts_ui_slot_change_item = {
 				}
 			}
 			event_target:current_gts_leader = {
-				set_leader_flag = $TRAIT$
+				[[TRAIT] set_leader_flag = $TRAIT$ ]
 			}
 		}
 		else_if = {
@@ -434,7 +767,7 @@ gts_ui_slot_change_item = {
 				}
 			}
 			event_target:current_gts_leader = {
-				set_leader_flag = $TRAIT$
+				[[TRAIT] set_leader_flag = $TRAIT$ ]
 			}
 		}
 		else_if = {
@@ -456,7 +789,7 @@ gts_ui_slot_change_item = {
 				}
 			}
 			event_target:current_gts_leader = {
-				set_leader_flag = $TRAIT$
+				[[TRAIT] set_leader_flag = $TRAIT$ ]
 			}
 		}
 		else_if = {
@@ -478,7 +811,7 @@ gts_ui_slot_change_item = {
 				}
 			}
 			event_target:current_gts_leader = {
-				set_leader_flag = $TRAIT$
+				[[TRAIT] set_leader_flag = $TRAIT$ ]
 			}
 		}
 		else_if = {
@@ -500,7 +833,7 @@ gts_ui_slot_change_item = {
 				}
 			}
 			event_target:current_gts_leader = {
-				set_leader_flag = $TRAIT$
+				[[TRAIT] set_leader_flag = $TRAIT$ ]
 			}
 		}
 		else_if = {
@@ -522,7 +855,7 @@ gts_ui_slot_change_item = {
 				}
 			}
 			event_target:current_gts_leader = {
-				set_leader_flag = $TRAIT$
+				[[TRAIT] set_leader_flag = $TRAIT$ ]
 			}
 		}
 		else_if = {
@@ -544,7 +877,7 @@ gts_ui_slot_change_item = {
 				}
 			}
 			event_target:current_gts_leader = {
-				set_leader_flag = $TRAIT$
+				[[TRAIT] set_leader_flag = $TRAIT$ ]
 			}
 		}
 		else_if = {
@@ -566,7 +899,7 @@ gts_ui_slot_change_item = {
 				}
 			}
 			event_target:current_gts_leader = {
-				set_leader_flag = $TRAIT$
+				[[TRAIT] set_leader_flag = $TRAIT$ ]
 			}
 		}
 		else_if = {
@@ -588,7 +921,7 @@ gts_ui_slot_change_item = {
 				}
 			}
 			event_target:current_gts_leader = {
-				set_leader_flag = $TRAIT$
+				[[TRAIT] set_leader_flag = $TRAIT$ ]
 			}
 		}
 		else_if = {
@@ -610,7 +943,7 @@ gts_ui_slot_change_item = {
 				}
 			}
 			event_target:current_gts_leader = {
-				set_leader_flag = $TRAIT$
+				[[TRAIT] set_leader_flag = $TRAIT$ ]
 			}
 		}
 		else_if = {
@@ -632,7 +965,7 @@ gts_ui_slot_change_item = {
 				}
 			}
 			event_target:current_gts_leader = {
-				set_leader_flag = $TRAIT$
+				[[TRAIT] set_leader_flag = $TRAIT$ ]
 			}
 		}
 		else_if = {
@@ -654,7 +987,7 @@ gts_ui_slot_change_item = {
 				}
 			}
 			event_target:current_gts_leader = {
-				set_leader_flag = $TRAIT$
+				[[TRAIT] set_leader_flag = $TRAIT$ ]
 			}
 		}
 		else_if = {
@@ -676,7 +1009,7 @@ gts_ui_slot_change_item = {
 				}
 			}
 			event_target:current_gts_leader = {
-				set_leader_flag = $TRAIT$
+				[[TRAIT] set_leader_flag = $TRAIT$ ]
 			}
 		}
 		else_if = {
@@ -698,10 +1031,11 @@ gts_ui_slot_change_item = {
 				}
 			}
 			event_target:current_gts_leader = {
-				set_leader_flag = $TRAIT$
+				[[TRAIT] set_leader_flag = $TRAIT$ ]
 			}
 		}
 	}
+	[[MODIFIER]
 	hidden_effect = {
 		owner = {
 			if = {
@@ -728,6 +1062,7 @@ gts_ui_slot_change_item = {
 			}
 		}
 	}
+	]
 }
 
 gts_remove_leader_item = {
@@ -1434,4 +1769,57 @@ gts_leader_body_add_pop = {
 			}
 		}
 	}
+}
+
+# 仅恢复本国绀海组剧情目标；无生成失败弹窗、成功标记或重试事件。
+gts_intel_resolve_seele = {
+ save_event_target_as = gts_intel_requester
+ if = {
+  limit = { NOT = { exists = event_target:gts_seele_start_black_hole@event_target:gts_intel_requester } }
+  if = {
+   limit = { exists = event_target:gts_seele_start_black_hole event_target:gts_seele_start_black_hole = { solar_system = { space_owner = { is_same_value = event_target:gts_intel_requester } } } }
+   event_target:gts_seele_start_black_hole = { save_global_event_target_as = gts_seele_start_black_hole@event_target:gts_intel_requester }
+  }
+  else_if = {
+   limit = { count_system = { limit = { space_owner = { is_same_value = event_target:gts_intel_requester } star = { has_planet_flag = gts_seele_start_black_hole } } count = 1 } }
+   random_system = { limit = { space_owner = { is_same_value = event_target:gts_intel_requester } star = { has_planet_flag = gts_seele_start_black_hole } } star = { save_global_event_target_as = gts_seele_start_black_hole@event_target:gts_intel_requester } }
+  }
+ }
+}
+
+gts_intel_resolve_bronya = {
+ save_event_target_as = gts_intel_requester
+ if = {
+  limit = { NOT = { exists = event_target:bronya_astral@event_target:gts_intel_requester } }
+  if = {
+   limit = { exists = event_target:bronya_astral event_target:bronya_astral = {  space_owner = { is_same_value = event_target:gts_intel_requester }  } }
+   event_target:bronya_astral = { save_global_event_target_as = bronya_astral@event_target:gts_intel_requester }
+  }
+  else_if = {
+   limit = { count_system = { limit = { space_owner = { is_same_value = event_target:gts_intel_requester } has_star_flag = gts_bronya_start_system } count = 1 } }
+   random_system = { limit = { space_owner = { is_same_value = event_target:gts_intel_requester } has_star_flag = gts_bronya_start_system }  save_global_event_target_as = bronya_astral@event_target:gts_intel_requester  }
+  }
+ }
+}
+
+gts_intel_resolve_azure = {
+ save_event_target_as = gts_intel_requester
+ if = {
+  limit = { NOT = { exists = event_target:gts_azure_waters_system@event_target:gts_intel_requester } }
+  if = {
+   limit = { exists = event_target:gts_azure_waters_system event_target:gts_azure_waters_system = {  space_owner = { is_same_value = event_target:gts_intel_requester }  } }
+   event_target:gts_azure_waters_system = { save_global_event_target_as = gts_azure_waters_system@event_target:gts_intel_requester }
+  }
+  else_if = {
+   limit = { count_system = { limit = { space_owner = { is_same_value = event_target:gts_intel_requester } star = { has_planet_flag = gts_azure_waters_astral_rift } } count = 1 } }
+   random_system = { limit = { space_owner = { is_same_value = event_target:gts_intel_requester } star = { has_planet_flag = gts_azure_waters_astral_rift } }  save_global_event_target_as = gts_azure_waters_system@event_target:gts_intel_requester  }
+  }
+ }
+}
+
+gts_intel_restore_azure_rift = {
+ gts_intel_resolve_azure = yes
+ event_target:gts_azure_waters_system@event_target:gts_intel_requester = {
+  if = { limit = { has_astral_rift = no } spawn_astral_rift = { id = gts_azure_waters_rifts_2 } }
+ }
 }

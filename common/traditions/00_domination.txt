@@ -24,7 +24,7 @@ tr_domination_adopt = {
 
 tr_domination_finish = {
 	modifier = {
-		empire_size_pops_mult = -0.10
+		empire_size_pops_mult = -0.05
 		ascension_perks_add = 1
 	}
 
@@ -48,10 +48,26 @@ tr_domination_finish = {
 
 	tradition_swap = {
 		inherit_icon = yes
+		name = tr_domination_federations_wilderness_finish
+		inherit_effects = no
+		custom_tooltip = tr_domination_finish_wilderness_desc
+		trigger = {
+			is_wilderness_empire = yes
+			has_federations_dlc = yes
+		}
+		modifier = {
+			empire_size_districts_mult = -0.05
+			ascension_perks_add = 1
+		}
+	}
+
+	tradition_swap = {
+		inherit_icon = yes
 		inherit_name = yes
 		inherit_effects = no
 		trigger = {
 			is_wilderness_empire = yes
+			has_federations_dlc = no
 		}
 		modifier = {
 			empire_size_districts_mult = -0.05
@@ -93,6 +109,11 @@ tr_domination_colonial_viceroys = {
 		}
 	}
 
+	ai_weight = {
+		factor = 1000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_domination_colonial_viceroys_gts
 		inherit_effects = yes
@@ -100,7 +121,6 @@ tr_domination_colonial_viceroys = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -111,21 +131,18 @@ tr_domination_colonial_viceroys = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
 	}
-
-	ai_weight = {
-		factor = 1000
-	}
 }
 
 tr_domination_imperious_architecture = {
-
-	# additional housing implemented in building files
+	# Effects implemented in inline_scripts\buildings\on_all_capital_buildings.txt
 	custom_tooltip = tr_domination_imperious_architecture_desc
 
 	tradition_swap = {
@@ -179,14 +196,29 @@ tr_domination_imperious_architecture = {
 		}
 	}
 
+	ai_weight = {
+		factor = 10
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_domination_imperious_architecture_gts
 		inherit_effects = yes
 		inherit_icon = yes
 		trigger = {
 			gts_is_giantess_empire = yes
+			NOT = {
+				OR = {
+					is_worker_coop_empire = yes
+					AND = {
+						is_hive_empire = yes
+						is_wilderness_empire = no
+					}
+					is_wilderness_empire = yes
+					is_machine_empire = yes
+				}
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -197,15 +229,24 @@ tr_domination_imperious_architecture = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
+			NOT = {
+				OR = {
+					is_worker_coop_empire = yes
+					AND = {
+						is_hive_empire = yes
+						is_wilderness_empire = no
+					}
+					is_wilderness_empire = yes
+					is_machine_empire = yes
+				}
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
-	}
-
-	ai_weight = {
-		factor = 10
 	}
 }
 
@@ -244,6 +285,11 @@ tr_domination_grand_council = {
 		}
 	}
 
+	ai_weight = {
+		factor = 10
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_domination_grand_council_gts
 		inherit_effects = yes
@@ -251,7 +297,6 @@ tr_domination_grand_council = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -262,22 +307,29 @@ tr_domination_grand_council = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
-	}
-
-	ai_weight = {
-		factor = 10
 	}
 }
 
 tr_domination_judgment_corps = {
 
-	# effect implemented in jobs file
-	custom_tooltip = tr_domination_judgment_corps_desc
+	custom_tooltip_with_modifiers = tr_domination_judgment_corps_desc
+	modifier = {
+		planet_enforcers_unity_produces_add = 1
+	}
+
+	triggered_modifier = {
+		potential = {
+			has_psi_corps_tradition = yes
+		}
+		planet_telepaths_unity_produces_add = 0.5
+	}
 
 	tradition_swap = {
 		name = tr_domination_trust_officers
@@ -327,14 +379,34 @@ tr_domination_judgment_corps = {
 		}
 	}
 
+	ai_weight = {
+		factor = 10
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_domination_judgment_corps_gts
 		inherit_effects = yes
 		inherit_icon = yes
 		trigger = {
 			gts_is_giantess_empire = yes
+			NOT = {
+				OR = {
+					AND = {
+						is_regular_empire = yes
+						OR = {
+							is_egalitarian = yes
+							AND = {
+								is_authoritarian = no
+								is_xenophobe = no
+							}
+						}
+					}
+					is_machine_empire = yes
+					is_hive_empire = yes
+				}
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -345,15 +417,29 @@ tr_domination_judgment_corps = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
+			NOT = {
+				OR = {
+					AND = {
+						is_regular_empire = yes
+						OR = {
+							is_egalitarian = yes
+							AND = {
+								is_authoritarian = no
+								is_xenophobe = no
+							}
+						}
+					}
+					is_machine_empire = yes
+					is_hive_empire = yes
+				}
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
-	}
-
-	ai_weight = {
-		factor = 10
 	}
 }
 
@@ -397,14 +483,27 @@ tr_domination_workplace_motivators = {
 		}
 	}
 
+	ai_weight = {
+		factor = 10
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_domination_workplace_motivators_gts
 		inherit_effects = yes
 		inherit_icon = yes
 		trigger = {
 			gts_is_giantess_empire = yes
+			NOT = {
+				OR = {
+					AND = {
+						is_gestalt = yes
+						is_wilderness_empire = no
+					}
+					is_wilderness_empire = yes
+				}
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -415,14 +514,21 @@ tr_domination_workplace_motivators = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
+			NOT = {
+				OR = {
+					AND = {
+						is_gestalt = yes
+						is_wilderness_empire = no
+					}
+					is_wilderness_empire = yes
+				}
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
-	}
-
-	ai_weight = {
-		factor = 10
 	}
 }

@@ -56,6 +56,7 @@ tr_genetics_resequencing = {
 	# Can remove beneficial traits from organic species.
 	custom_tooltip = tr_genetics_resequencing_desc
 
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_genetics_resequencing_gts
 		inherit_effects = yes
@@ -63,9 +64,8 @@ tr_genetics_resequencing = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
 	tradition_swap = {
@@ -74,10 +74,12 @@ tr_genetics_resequencing = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
 }
@@ -86,7 +88,11 @@ tr_genetics_creation = {
 	possible = {
 		has_tradition = tr_genetics_resequencing
 	}
+	# Can alter organic pop appearance within the same archtype
+	# Unlocks Assimilation to add or remove the Hive-Minded trait.
+	custom_tooltip_with_modifiers = tr_genetics_creation_desc
 
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_genetics_creation_gts
 		inherit_effects = yes
@@ -94,9 +100,8 @@ tr_genetics_creation = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
 	tradition_swap = {
@@ -105,15 +110,14 @@ tr_genetics_creation = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
-	# Can alter organic pop appearance within the same archtype
-	# Unlocks Assimilation to add or remove the Hive-Minded trait.
-	custom_tooltip_with_modifiers = tr_genetics_creation_desc
 }
 
 tr_genetics_enhanced_expression = {
@@ -126,6 +130,9 @@ tr_genetics_enhanced_expression = {
 		BIOLOGICAL_species_trait_picks_add = 2
 		modify_species_cost_mult = -0.50
 	}
+	custom_tooltip_with_modifiers = tr_genetics_enhanced_expression_desc
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_genetics_enhanced_expression_gts
 		inherit_effects = yes
@@ -133,9 +140,8 @@ tr_genetics_enhanced_expression = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
 	tradition_swap = {
@@ -144,19 +150,22 @@ tr_genetics_enhanced_expression = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
-	custom_tooltip_with_modifiers = tr_genetics_enhanced_expression_desc
 }
 
 tr_genetics_retrovirus = {
 	modifier = {
 		pop_environment_tolerance = 0.10
 	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_genetics_retrovirus_gts
 		inherit_effects = yes
@@ -164,9 +173,8 @@ tr_genetics_retrovirus = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
 	tradition_swap = {
@@ -175,10 +183,12 @@ tr_genetics_retrovirus = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
 }
@@ -187,6 +197,10 @@ tr_genetics_efficient_cloning = {
 	possible = {
 		has_tradition = tr_genetics_retrovirus
 	}
+	# Improved Organic Pop Assembly from Clone Vats
+	custom_tooltip = tr_genetics_efficient_cloning_desc
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_genetics_efficient_cloning_gts
 		inherit_effects = yes
@@ -194,9 +208,8 @@ tr_genetics_efficient_cloning = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
 	tradition_swap = {
@@ -205,12 +218,12 @@ tr_genetics_efficient_cloning = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
-	# Improved Organic Pop Assembly from Clone Vats
-	custom_tooltip = tr_genetics_efficient_cloning_desc
 }

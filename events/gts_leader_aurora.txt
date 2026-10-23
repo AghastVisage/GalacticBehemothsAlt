@@ -21,17 +21,22 @@ country_event = {
 	location = event_target:gtsra_loli_world
 
 	immediate = {
-		random_owned_planet = {
-			limit = {
-				has_planet_flag = gtsra_loli_planet
-			}
-			spawn_system = {
-				min_distance >= 10
-				max_distance <= 30
-				max_jumps = 1
-				initializer = gtsra_aurora_system
-			}
-		}
+		random_system = {
+ limit = { gts_intel_anchor_system = { COUNTRY = root } }
+ save_event_target_as = gts_intel_spawn_anchor
+ 
+ spawn_system = {
+ min_distance = 10
+ max_distance = 30
+ max_jumps = 0
+ hyperlane = no
+ initializer = gtsra_aurora_system
+ effect = {
+  add_hyperlane = { from = this to = event_target:gts_intel_spawn_anchor }
+  
+ }
+}
+}
 	}
 
 	option = {
@@ -428,7 +433,7 @@ planet_event = {
 	fire_only_once = yes
 	location = event_target:gtsra_loli_world
 	trigger = {
-		has_planet_flag = gtsra_loli_planet
+		has_carrier_flag = gtsra_loli_planet
 	}
 	option = {
 		name = gts_aurora.1025.a
@@ -936,8 +941,8 @@ country_event = {
 				add_deposit = d_gtsra_giga_loli_feet
 				add_deposit = d_gtsra_giga_loli_feet
 				add_deposit = d_gtsra_giga_loli_hungry
-				set_planet_flag = gtsra_loli_planet
-				set_planet_flag = gts_body_planet
+				set_carrier_flag = gtsra_loli_planet
+				set_carrier_flag = gts_body_planet
 			}
 		}
 	}
@@ -1193,7 +1198,7 @@ country_event = {
 				add_deposit = d_gtsra_giga_slave_hole_unexploit
 				add_deposit = d_gtsra_giga_slave_feet
 				add_deposit = d_gtsra_giga_slave_feet
-				set_planet_flag = gtsra_slave_planet
+				set_carrier_flag = gtsra_slave_planet
 			}
 		}
 	}
@@ -1210,7 +1215,7 @@ planet_event = {
 	fire_only_once = yes
 	location = event_target:gtsra_loli_world
 	trigger = {
-		has_planet_flag = gtsra_slave_planet
+		has_carrier_flag = gtsra_slave_planet
 	}
 	option = {
 		name = gts_aurora.1050.a
@@ -1553,10 +1558,10 @@ country_event = {
 			# 选择攻击目标
 			limit = {
 				is_colony = yes
-				NOT = { has_planet_flag = gts_body_planet }
+				NOT = { has_carrier_flag = gts_body_planet }
 			}
 			save_event_target_as = gtsra_giga_arlo_next_colony
-			set_planet_flag = gtsra_giga_arlo_next_colony
+			set_carrier_flag = gtsra_giga_arlo_next_colony
 		}
 		create_country = {
 			# 生成loli舰队单位
@@ -1890,12 +1895,12 @@ country_event = {
 				limit = {
 					is_colony = yes
 					NOT = {
-						has_planet_flag = gts_body_planet
-						has_planet_flag = gtsra_giga_arlo_next_colony
+						has_carrier_flag = gts_body_planet
+						has_carrier_flag = gtsra_giga_arlo_next_colony
 					}
 				}
 				save_global_event_target_as = gtsra_giga_arlo_next_colony
-				set_planet_flag = gtsra_giga_arlo_next_colony
+				set_carrier_flag = gtsra_giga_arlo_next_colony
 			}
 		}
 		FromFrom = {
@@ -1903,7 +1908,7 @@ country_event = {
 			change_pc = pc_shattered
 			clear_planet_modifiers = yes
 			clear_deposits = yes
-			remove_planet_flag = gtsra_giga_arlo_next_colony
+			remove_carrier_flag = gtsra_giga_arlo_next_colony
 		}
 		from = {
 			auto_move_to_planet = {
@@ -1914,26 +1919,24 @@ country_event = {
 	}
 }
 
+# 蘿莉星球吞食
 country_event = {
-	# 萝莉星球吞食
 	id = gts_aurora.1080
 	title = gts_aurora.1080.name
 	desc = gts_aurora.1080.desc
-	is_triggered_only = yes
+
+	show_sound = event_gts_chew_and_gulp
 	diplomatic = yes
 	custom_gui = "gts_horizontal_event_window"
 	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = { room = gtsra_aurora_6_room }
+
+	is_triggered_only = yes
 	location = event_target:gts_nutrition_planet
-	picture_event_data = {
-		room = gtsra_aurora_6_room
-	}
 
 	immediate = {
-
 		every_owned_leader = {
-			limit = {
-				has_leader_flag = gts_aurora
-			}
+			limit = { has_leader_flag = gts_aurora }
 			save_event_target_as = gts_bruh_aurora_kill_count
 		}
 
@@ -1980,7 +1983,6 @@ country_event = {
 		hidden_effect = {
 			event_target:gts_nutrition_planet = {
 				destroy_colony = yes
-				remove_planet = yes
 			}
 		}
 	}
@@ -1988,30 +1990,13 @@ country_event = {
 	option = {
 		name = gts_terror
 		if = {
-			limit = {
-				any_owned_planet = {
-					has_planet_flag = gtsra_loli_planet
-				}
-			}
+			limit = { any_owned_planet = { has_carrier_flag = gtsra_loli_planet } }
 			custom_tooltip = gts_aurora.1080.a.tooltip
 		}
 		else = {
 			custom_tooltip = gts_aurora.1080.b.tooltip
 		}
 		hidden_effect = {
-			event_target:gtsra_loli_world = {
-				while = {
-					count = event_target:gts_nutrition_planet.gts_pop_nutrition_amount
-					add_deposit = d_gts_nutrients
-					change_planet_size = 1
-				}
-				while = {
-					count = event_target:gts_nutrition_planet.gts_planet_size_nutrition_amount
-					add_deposit = d_gts_nutrients
-					change_planet_size = 1
-				}
-			}
-
 			event_target:gts_bruh_aurora_kill_count = {
 				change_variable = {
 					which = gts_vore_kills_logs
@@ -2031,6 +2016,14 @@ country_event = {
 			}
 		}
 	}
+
+	after = {
+		hidden_effect = {
+			event_target:gts_nutrition_planet = {
+				remove_planet = yes
+			}
+		}
+	}
 }
 
 country_event = {
@@ -2043,7 +2036,7 @@ country_event = {
 	hide_window = yes
 
 	trigger = {
-		any_planet_within_border = { has_planet_flag = gtsra_loli_planet }
+		any_planet_within_border = { has_carrier_flag = gtsra_loli_planet }
 		count_owned_pop_amount = { count > 10000 }
 	}
 
@@ -2069,7 +2062,7 @@ country_event = {
 								#	owner = { has_country_flag = triggered_loli_mounth }
 								#}
 								random_owned_planet = {
-									limit = { has_planet_flag = gtsra_loli_planet }
+									limit = { has_carrier_flag = gtsra_loli_planet }
 									planet_event = { id = gts_aurora.1091 }
 								}
 							}
@@ -2080,7 +2073,7 @@ country_event = {
 								#	owner = { has_country_flag = triggered_loli_anus }
 								#}
 								random_owned_planet = {
-									limit = { has_planet_flag = gtsra_loli_planet }
+									limit = { has_carrier_flag = gtsra_loli_planet }
 									planet_event = { id = gts_aurora.1092 }
 								}
 							}
@@ -2091,7 +2084,7 @@ country_event = {
 								#	owner = { has_country_flag = triggered_loli_armpit }
 								#}
 								random_owned_planet = {
-									limit = { has_planet_flag = gtsra_loli_planet }
+									limit = { has_carrier_flag = gtsra_loli_planet }
 									planet_event = { id = gts_aurora.1093 }
 								}
 							}
@@ -2102,7 +2095,7 @@ country_event = {
 								#	owner = { has_country_flag = triggered_loli_virgin }
 								#}
 								random_owned_planet = {
-									limit = { has_planet_flag = gtsra_loli_planet }
+									limit = { has_carrier_flag = gtsra_loli_planet }
 									planet_event = { id = gts_aurora.1094 }
 								}
 							}
@@ -2118,25 +2111,25 @@ country_event = {
 						random_list = {
 							1 = {
 								random_owned_planet = {
-									limit = { has_planet_flag = gtsra_loli_planet }
+									limit = { has_carrier_flag = gtsra_loli_planet }
 									planet_event = { id = gts_aurora.1191 }
 								}
 							}
 							1 = {
 								random_owned_planet = {
-									limit = { has_planet_flag = gtsra_loli_planet }
+									limit = { has_carrier_flag = gtsra_loli_planet }
 									planet_event = { id = gts_aurora.1192 }
 								}
 							}
 							1 = {
 								random_owned_planet = {
-									limit = { has_planet_flag = gtsra_loli_planet }
+									limit = { has_carrier_flag = gtsra_loli_planet }
 									planet_event = { id = gts_aurora.1193 }
 								}
 							}
 							1 = {
 								random_owned_planet = {
-									limit = { has_planet_flag = gtsra_loli_planet }
+									limit = { has_carrier_flag = gtsra_loli_planet }
 									planet_event = { id = gts_aurora.1194 }
 								}
 							}

@@ -1,0 +1,44 @@
+# Leader scope. MODE is upkeep or produces; signed AMOUNT preserves penalties
+# represented as negative production, without converting positive CG rewards.
+triggered_self_modifier = {
+	potential = { leader_class = commander owner = { is_gestalt = no } }
+	leader_commanders_consumer_goods_$MODE$_add = $AMOUNT$
+}
+triggered_self_modifier = {
+	potential = { leader_class = official owner = { is_gestalt = no } }
+	leader_officials_consumer_goods_$MODE$_add = $AMOUNT$
+}
+triggered_self_modifier = {
+	potential = { leader_class = scientist owner = { is_gestalt = no } }
+	leader_scientists_consumer_goods_$MODE$_add = $AMOUNT$
+}
+triggered_self_modifier = {
+	potential = { leader_class = commander owner = { is_gestalt = yes is_machine_empire = no } }
+	leader_commanders_minerals_$MODE$_add = $AMOUNT$
+	mult = 2
+}
+triggered_self_modifier = {
+	potential = { leader_class = official owner = { is_gestalt = yes is_machine_empire = no } }
+	leader_officials_minerals_$MODE$_add = $AMOUNT$
+	mult = 2
+}
+triggered_self_modifier = {
+	potential = { leader_class = scientist owner = { is_gestalt = yes is_machine_empire = no } }
+	leader_scientists_minerals_$MODE$_add = $AMOUNT$
+	mult = 2
+}
+triggered_self_modifier = {
+	potential = { leader_class = commander owner = { is_machine_empire = yes } }
+	leader_commanders_energy_$MODE$_add = $AMOUNT$
+	mult = 2
+}
+triggered_self_modifier = {
+	potential = { leader_class = official owner = { is_machine_empire = yes } }
+	leader_officials_energy_$MODE$_add = $AMOUNT$
+	mult = 2
+}
+triggered_self_modifier = {
+	potential = { leader_class = scientist owner = { is_machine_empire = yes } }
+	leader_scientists_energy_$MODE$_add = $AMOUNT$
+	mult = 2
+}

@@ -1,0 +1,22 @@
+namespace = gts_pulse
+
+# 一年检
+country_event = {
+    id = gts_pulse.0
+    hide_window = yes is_triggered_only = yes
+    immediate = {
+        set_country_flag = gts_pulse
+    }
+    after = {
+        remove_country_flag = gts_pulse
+        fire_on_action = { on_action = gts_one_year_pulse }
+    }
+}
+
+country_event = {
+    id = gts_pulse.1
+    hide_window = yes is_triggered_only = yes
+    immediate = {
+        fire_on_action = { on_action = gts_hired_leader_achiev }
+    }
+}

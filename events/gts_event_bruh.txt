@@ -530,7 +530,6 @@ event = {
 				has_trait = trait_tiny_scaven
 				has_trait = trait_tiny_catalyst
 				has_trait = trait_tinyunbending
-				has_trait = trait_tinyslave
 				has_trait = trait_tiny_reproduce
 				has_trait = trait_love_gts
 				has_trait = trait_fear_gts
@@ -563,7 +562,6 @@ event = {
 					has_trait = trait_tiny_scaven
 					has_trait = trait_tiny_catalyst
 					has_trait = trait_tinyunbending
-					has_trait = trait_tinyslave
 					has_trait = trait_tiny_reproduce
 					has_trait = trait_love_gts
 					has_trait = trait_fear_gts
@@ -593,9 +591,6 @@ event = {
 			}
 			change_species_characteristics = {
 				remove_trait = trait_tinyunbending
-			}
-			change_species_characteristics = {
-				remove_trait = trait_tinyslave
 			}
 			change_species_characteristics = {
 				remove_trait = trait_tiny_reproduce
@@ -1366,19 +1361,19 @@ event = {
 					has_building = building_gts_ultra_insurance_futa
 				}
 				OR = {
-					has_planet_flag = has_insurance_tongue
-					has_planet_flag = has_insurance_tongue2
-					has_planet_flag = has_insurance_foot
-					has_planet_flag = has_insurance_breast
-					has_planet_flag = has_insurance_breast2
-					has_planet_flag = has_insurance_virgin
-					has_planet_flag = has_insurance_virgin2
-					has_planet_flag = has_insurance_toy
-					has_planet_flag = has_insurance_flood
-					has_planet_flag = has_insurance_scat
-					has_planet_flag = has_insurance_exhale
-					has_planet_flag = has_insurance_futa
-					has_planet_flag = has_insurance_futa2
+					has_carrier_flag = has_insurance_tongue
+					has_carrier_flag = has_insurance_tongue2
+					has_carrier_flag = has_insurance_foot
+					has_carrier_flag = has_insurance_breast
+					has_carrier_flag = has_insurance_breast2
+					has_carrier_flag = has_insurance_virgin
+					has_carrier_flag = has_insurance_virgin2
+					has_carrier_flag = has_insurance_toy
+					has_carrier_flag = has_insurance_flood
+					has_carrier_flag = has_insurance_scat
+					has_carrier_flag = has_insurance_exhale
+					has_carrier_flag = has_insurance_futa
+					has_carrier_flag = has_insurance_futa2
 				}
 			}
 		}
@@ -1415,19 +1410,19 @@ event = {
 						has_building = building_gts_ultra_insurance_futa
 					}
 					OR = {
-						has_planet_flag = has_insurance_tongue
-						has_planet_flag = has_insurance_tongue2
-						has_planet_flag = has_insurance_foot
-						has_planet_flag = has_insurance_breast
-						has_planet_flag = has_insurance_breast2
-						has_planet_flag = has_insurance_virgin
-						has_planet_flag = has_insurance_virgin2
-						has_planet_flag = has_insurance_toy
-						has_planet_flag = has_insurance_flood
-						has_planet_flag = has_insurance_scat
-						has_planet_flag = has_insurance_exhale
-						has_planet_flag = has_insurance_futa
-						has_planet_flag = has_insurance_futa2
+						has_carrier_flag = has_insurance_tongue
+						has_carrier_flag = has_insurance_tongue2
+						has_carrier_flag = has_insurance_foot
+						has_carrier_flag = has_insurance_breast
+						has_carrier_flag = has_insurance_breast2
+						has_carrier_flag = has_insurance_virgin
+						has_carrier_flag = has_insurance_virgin2
+						has_carrier_flag = has_insurance_toy
+						has_carrier_flag = has_insurance_flood
+						has_carrier_flag = has_insurance_scat
+						has_carrier_flag = has_insurance_exhale
+						has_carrier_flag = has_insurance_futa
+						has_carrier_flag = has_insurance_futa2
 					}
 				}
 			}
@@ -1454,19 +1449,19 @@ event = {
 			remove_building = building_gts_ultra_insurance_exhale
 			remove_building = building_gts_ultra_insurance_futa
 
-			remove_planet_flag = has_insurance_tongue
-			remove_planet_flag = has_insurance_tongue2
-			remove_planet_flag = has_insurance_foot
-			remove_planet_flag = has_insurance_breast
-			remove_planet_flag = has_insurance_breast2
-			remove_planet_flag = has_insurance_virgin
-			remove_planet_flag = has_insurance_virgin2
-			remove_planet_flag = has_insurance_toy
-			remove_planet_flag = has_insurance_flood
-			remove_planet_flag = has_insurance_scat
-			remove_planet_flag = has_insurance_exhale
-			remove_planet_flag = has_insurance_futa
-			remove_planet_flag = has_insurance_futa2
+			remove_carrier_flag = has_insurance_tongue
+			remove_carrier_flag = has_insurance_tongue2
+			remove_carrier_flag = has_insurance_foot
+			remove_carrier_flag = has_insurance_breast
+			remove_carrier_flag = has_insurance_breast2
+			remove_carrier_flag = has_insurance_virgin
+			remove_carrier_flag = has_insurance_virgin2
+			remove_carrier_flag = has_insurance_toy
+			remove_carrier_flag = has_insurance_flood
+			remove_carrier_flag = has_insurance_scat
+			remove_carrier_flag = has_insurance_exhale
+			remove_carrier_flag = has_insurance_futa
+			remove_carrier_flag = has_insurance_futa2
 		}
 	}
 }
@@ -1710,6 +1705,38 @@ country_event = {
 				value = -2500
 			}
 		}
+	}
+}
+
+country_event = {
+	id = gts_event_bruh.1200
+	title = gts_event_bruh.1200.name
+	desc = gts_event_bruh.1200.desc
+
+	show_sound = event_factions
+	diplomatic = yes
+	custom_gui = "gts_horizontal_event_window"
+	custom_gui_option = "gts_horizontal_event_button"
+	picture_event_data = { room = gts_event_25_room }
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	location = capital_scope
+
+	immediate = {
+		random_owned_leader = {
+			limit = { has_trait = leader_trait_Ultra }
+			save_event_target_as = gts_bruh_ap_gts_planet_event_leader
+		}
+	}
+
+	option = {
+		name = gts_event_bruh.1200.a
+		add_research_option = tech_gts_juice_colonies
+		add_research_option = tech_gts_milk_colonies
+		add_research_option = tech_gts_semen_colonies
+		add_research_option = tech_gts_shit_colonies
+		add_research_option = tech_gts_dirt_colonies
 	}
 }
 

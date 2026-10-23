@@ -1,6 +1,6 @@
 tr_diplomacy_adopt = {
 	unlocks_agenda = agenda_build_relations
-	custom_tooltip = tr_diplomacy_adopt_desc
+	custom_tooltip_with_modifiers = tr_diplomacy_adopt_desc
 	modifier = {
 		diplomacy_influence_upkeep_mult = -0.5
 		diplomacy_influence_cost_mult = -0.25
@@ -13,13 +13,12 @@ tr_diplomacy_finish = {
 		diplo_weight_mult = 0.10
 		country_official_cap_add = 1
 		ascension_perks_add = 1
-	}	
+	}
 }
 
 tr_diplomacy_the_federation = {
-	#custom_tooltip = tr_diplomacy_the_federation_desc
+#	custom_tooltip = tr_diplomacy_the_federation_desc
 
-	#unlocks federation mechanic
 	modifier = {
 		cohesion_add = 1
 		envoys_add = 1
@@ -39,6 +38,11 @@ tr_diplomacy_the_federation = {
 		}
 	}
 
+	ai_weight = {
+		factor = 10000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_diplomacy_the_federation_gts
 		inherit_effects = yes
@@ -46,9 +50,8 @@ tr_diplomacy_the_federation = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
 	tradition_swap = {
@@ -57,15 +60,13 @@ tr_diplomacy_the_federation = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
-	}
-
-	ai_weight = {
-		factor = 10000
 	}
 }
 
@@ -80,57 +81,9 @@ tr_diplomacy_entente_coordination = {
 	}
 
 	tradition_swap = {
-		name = tr_diplomacy_entente_coordination_gts
-		inherit_effects = yes
-		inherit_icon = yes
-		trigger = {
-			gts_is_giantess_empire = yes
-			is_nomadic = no
-		}
-
-		weight = {
-			factor = 1
-		}
-	}
-	tradition_swap = {
-		name = tr_diplomacy_entente_coordination_tiny
-		inherit_effects = yes
-		inherit_icon = yes
-		trigger = {
-			gts_is_tiny_empire = yes
-			is_nomadic = no
-		}
-
-		weight = {
-			factor = 1
-		}
-	}
-
-	tradition_swap = {
-		name = tr_diplomacy_entente_coordination_gts
 		inherit_name = yes
 		inherit_icon = yes
 		trigger = {
-			gts_is_giantess_empire = yes
-			is_nomadic = yes
-		}
-
-		modifier = {
-			federation_naval_cap_contribution_mult = 1.00
-			nomadic_contract_value_mult = 0.25
-		}
-
-		weight = {
-			factor = 1
-		}
-	}
-
-	tradition_swap = {
-		name = tr_diplomacy_entente_coordination_tiny
-		inherit_name = yes
-		inherit_icon = yes
-		trigger = {
-			gts_is_tiny_empire = yes
 			is_nomadic = yes
 		}
 
@@ -146,6 +99,44 @@ tr_diplomacy_entente_coordination = {
 
 	ai_weight = {
 		factor = 1000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
+	tradition_swap = {
+		name = tr_diplomacy_entente_coordination_gts
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_giantess_empire = yes
+			is_nomadic = no
+			NOT = {
+				is_nomadic = yes
+			}
+		}
+		weight = {
+			factor = 10
+		}
+	}
+	tradition_swap = {
+		name = tr_diplomacy_entente_coordination_tiny
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_tiny_empire = yes
+			is_nomadic = no
+			NOT = {
+				AND = {
+					gts_is_giantess_empire = yes
+					is_nomadic = no
+				}
+			}
+			NOT = {
+				is_nomadic = yes
+			}
+		}
+		weight = {
+			factor = 10
+		}
 	}
 }
 
@@ -165,6 +156,12 @@ tr_diplomacy_diplomatic_networking = {
 			factor = 1
 		}
 	}
+
+	ai_weight = {
+		factor = 5000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_diplomacy_diplomatic_networking_gts
 		inherit_effects = yes
@@ -172,9 +169,8 @@ tr_diplomacy_diplomatic_networking = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
 	tradition_swap = {
@@ -183,46 +179,19 @@ tr_diplomacy_diplomatic_networking = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
-	}
-
-	ai_weight = {
-		factor = 5000
 	}
 }
 
 tr_diplomacy_direct_diplomacy = {
 	possible = {
 		has_tradition = tr_diplomacy_diplomatic_networking
-	}
-
-	tradition_swap = {
-		name = tr_diplomacy_direct_diplomacy_gts
-		inherit_effects = yes
-		inherit_icon = yes
-		trigger = {
-			gts_is_giantess_empire = yes
-		}
-
-		weight = {
-			factor = 1
-		}
-	}
-	tradition_swap = {
-		name = tr_diplomacy_direct_diplomacy_tiny
-		inherit_effects = yes
-		inherit_icon = yes
-		trigger = {
-			gts_is_tiny_empire = yes
-		}
-
-		weight = {
-			factor = 1
-		}
 	}
 
 	modifier = {
@@ -232,6 +201,33 @@ tr_diplomacy_direct_diplomacy = {
 
 	ai_weight = {
 		factor = 5000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
+	tradition_swap = {
+		name = tr_diplomacy_direct_diplomacy_gts
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_giantess_empire = yes
+		}
+		weight = {
+			factor = 10
+		}
+	}
+	tradition_swap = {
+		name = tr_diplomacy_direct_diplomacy_tiny
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
+		}
+		weight = {
+			factor = 10
+		}
 	}
 }
 
@@ -259,6 +255,12 @@ tr_diplomacy_eminent_diplomats = {
 			factor = 1
 		}
 	}
+
+	ai_weight = {
+		factor = 5000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_diplomacy_eminent_diplomats_gts
 		inherit_effects = yes
@@ -266,9 +268,8 @@ tr_diplomacy_eminent_diplomats = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
 	}
 	tradition_swap = {
@@ -277,14 +278,12 @@ tr_diplomacy_eminent_diplomats = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
-			factor = 1
+			factor = 10
 		}
-	}
-
-	ai_weight = {
-		factor = 5000
 	}
 }

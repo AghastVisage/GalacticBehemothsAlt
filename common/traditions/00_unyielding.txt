@@ -64,6 +64,11 @@ tr_unyielding_resistance_is_frugal = {
 		}
 	}
 
+	ai_weight = {
+		factor = 1000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_unyielding_resistance_is_frugal_gts
 		inherit_effects = yes
@@ -71,7 +76,6 @@ tr_unyielding_resistance_is_frugal = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -82,15 +86,13 @@ tr_unyielding_resistance_is_frugal = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
-	}
-
-	ai_weight = {
-		factor = 1000
 	}
 }
 
@@ -118,6 +120,11 @@ tr_unyielding_never_surrender = {
 		}
 	}
 
+	ai_weight = {
+		factor = 5000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_unyielding_never_surrender_gts
 		inherit_effects = yes
@@ -125,7 +132,6 @@ tr_unyielding_never_surrender = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -136,15 +142,13 @@ tr_unyielding_never_surrender = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
-	}
-
-	ai_weight = {
-		factor = 5000
 	}
 }
 
@@ -185,6 +189,18 @@ tr_unyielding_bulwark_of_harmony = {
 		}
 	}
 
+	ai_weight = {
+		factor = 5000
+		modifier = {
+			factor = 3
+			any_neighbor_country = {
+				opinion_level = { who = prev level <= poor }
+				relative_power = { who = prev value >= superior }
+			}
+		}
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_unyielding_bulwark_of_harmony_gts
 		inherit_effects = yes
@@ -192,7 +208,6 @@ tr_unyielding_bulwark_of_harmony = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -203,21 +218,12 @@ tr_unyielding_bulwark_of_harmony = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
 			factor = 10
-		}
-	}
-
-	ai_weight = {
-		factor = 5000
-		modifier = {
-			factor = 3
-			any_neighbor_country = {
-				opinion_level = { who = prev level <= poor }
-				relative_power = { who = prev value >= superior }
-			}
 		}
 	}
 }
@@ -231,6 +237,11 @@ tr_unyielding_defensive_zeal = {
 		shipclass_military_station_hull_mult = 0.33
 	}
 
+	ai_weight = {
+		factor = 1000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_unyielding_defensive_zeal_gts
 		inherit_effects = yes
@@ -238,7 +249,6 @@ tr_unyielding_defensive_zeal = {
 		trigger = {
 			gts_is_giantess_empire = yes
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -249,15 +259,13 @@ tr_unyielding_defensive_zeal = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
-	}
-
-	ai_weight = {
-		factor = 1000
 	}
 }
 
@@ -365,14 +373,43 @@ tr_unyielding_fortress_doctrine = {
 		}
 	}
 
+
+	ai_weight = {
+		factor = 5000
+	}
+
+	# MOD names/flavor only. Original effect swaps take priority.
 	tradition_swap = {
 		name = tr_unyielding_fortress_doctrine_gts
 		inherit_effects = yes
 		inherit_icon = yes
 		trigger = {
 			gts_is_giantess_empire = yes
+			NOT = {
+				OR = {
+					AND = {
+						has_nemesis = yes
+						is_gestalt = no
+					}
+					AND = {
+						has_nemesis = no
+						is_hive_empire = yes
+					}
+					AND = {
+						has_nemesis = yes
+						is_hive_empire = yes
+					}
+					AND = {
+						has_nemesis = no
+						is_machine_empire = yes
+					}
+					AND = {
+						has_nemesis = yes
+						is_machine_empire = yes
+					}
+				}
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
@@ -383,15 +420,36 @@ tr_unyielding_fortress_doctrine = {
 		inherit_icon = yes
 		trigger = {
 			gts_is_tiny_empire = yes
+			NOT = {
+				gts_is_giantess_empire = yes
+			}
+			NOT = {
+				OR = {
+					AND = {
+						has_nemesis = yes
+						is_gestalt = no
+					}
+					AND = {
+						has_nemesis = no
+						is_hive_empire = yes
+					}
+					AND = {
+						has_nemesis = yes
+						is_hive_empire = yes
+					}
+					AND = {
+						has_nemesis = no
+						is_machine_empire = yes
+					}
+					AND = {
+						has_nemesis = yes
+						is_machine_empire = yes
+					}
+				}
+			}
 		}
-
 		weight = {
 			factor = 10
 		}
-	}
-
-
-	ai_weight = {
-		factor = 5000
 	}
 }

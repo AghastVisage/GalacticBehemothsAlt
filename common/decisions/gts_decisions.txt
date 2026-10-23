@@ -1,0 +1,3491 @@
+decision_gts_Qianxin_planet_missionary = {
+
+	# 布道巡迴演出
+
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_art_monument
+
+	resources = {
+		category = decisions
+		cost = {
+			unity = 250
+		}
+	}
+
+	allow = {
+		NOT = {
+			has_modifier = planet_gts_Qianxin_planet_missionary
+		}
+	}
+
+	potential = {
+		owner = {
+			has_origin = origin_Qianxin
+		}
+	}
+
+	effect = {
+		add_modifier = {
+			modifier = "planet_gts_Qianxin_planet_missionary"
+			days = 3600
+		}
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = gts_spiritualist.3
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 2
+	}
+}
+
+decision_gts_Qianxin_planet_defence = {
+
+	# 保衛聖教
+
+	owned_planets_only = yes
+	sound = event_air_raid_siren
+	icon = decision_burning_settlement
+
+	resources = {
+		category = decisions
+		cost = {
+			unity = 250
+		}
+	}
+
+	allow = {
+		has_orbital_bombardment = yes
+		#owner = {
+		#	is_at_war = yes
+		#}
+	}
+
+	potential = {
+		owner = {
+			has_origin = origin_Qianxin
+		}
+		NOT = {
+			has_modifier = planet_gts_Qianxin_planet_defence
+		}
+	}
+
+	effect = {
+		add_modifier = {
+			modifier = "planet_gts_Qianxin_planet_defence"
+			days = -1
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+	}
+}
+
+decision_end_gts_Qianxin_planet_defence = {
+
+	# 結束護教緊急狀態
+
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_resources
+
+	resources = {
+		category = decisions
+		cost = {
+			unity = 250
+		}
+	}
+
+	potential = {
+		has_modifier = planet_gts_Qianxin_planet_defence
+	}
+
+	effect = {
+		remove_modifier = planet_gts_Qianxin_planet_defence
+	}
+
+	ai_weight = {
+		weight = 0
+		modifier = {
+			add = 100
+			has_orbital_bombardment = no
+		}
+		modifier = {
+			add = 100
+			owner = {
+				NOT = {
+					has_origin = origin_Qianxin
+				}
+			}
+		}
+	}
+}
+
+decision_gts_more_gts_plz = {
+
+	# 創作補貼
+
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_luxuries
+
+	resources = {
+		category = decisions
+		cost = {
+			unity = 250
+		}
+	}
+
+	potential = {
+		owner = {
+			has_civic = civic_gts_hcomic
+		}
+		OR = {
+			has_building = building_gts_gw
+			has_building = building_gts_gw_2
+		}
+	}
+
+	effect = {
+		add_modifier = {
+			modifier = "gts_more_hcomic"
+			days = 3600			#来点涩图 政府拨款补贴gts艺术作品的创作和销售将极大促进这个星球的经济与文化事业
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+	}
+}
+
+decision_gts_turn_nuked = {
+
+	# 星球氣候改造
+
+	owned_planets_only = yes
+	icon = decision_arcology_project
+	enactment_time = 360
+
+	resources = {
+		category = decisions
+		cost = {
+			influence = 100
+			energy = 1500
+		}
+	}
+
+	potential = {
+		NOT = {
+			has_carrier_flag = gts_body_planet
+			has_carrier_flag = gts_clothes_planet
+		}
+		is_artificial = no
+		exists = owner
+		owner = {
+			has_origin = origin_gts_fallout
+		}
+	}
+
+	effect = {
+		custom_tooltip = decision_gts_turn_nuked_effects
+		hidden_effect = {
+			change_pc = pc_nuked
+		}
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+decision_gts_civ_seeds = {
+	#播撒文明
+	resources = {
+		category = decisions
+		cost = {
+			unity = 500
+		}
+	}
+	potential = {
+		exists = space_owner
+		exists = From
+		space_owner = {
+			is_same_value = From
+		}
+		From = {
+			has_valid_civic = civic_gts_cixiaogui			#必须有此民政
+		}
+		habitable_planet = yes		#必须是可殖民星球
+	}
+	allow = {
+		custom_tooltip = {
+			NOT = {
+				exists = owner
+			}
+			fail_text = gts_civ_seeds_planet_owned			#被殖民的星球不能适用
+		}
+		custom_tooltip = {
+			NOT = {
+				has_carrier_flag = gts_have_seeds_planted
+			}
+			fail_text = gts_civ_seeds_planet_planted			#被殖民的星球不能适用
+		}
+	}
+	effect = {
+		custom_tooltip = decision_gts_civ_seeds_effects_custom		#效果
+		hidden_effect = {
+			planet_event = {
+				id = gts_civ_trick.1
+			}
+			set_carrier_flag = gts_have_seeds_planted
+		}
+	}
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = 5
+			habitable_planet = yes
+		}
+	}
+}
+
+decision_gts_garden_fiefdom = {
+	#设立花园封邑
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_resort_colony
+	resources = {
+		category = decisions
+		cost = {
+			unity = 1000
+		}
+	}
+	potential = {
+		owner = {
+			owner = {
+				is_regular_empire = yes
+			}
+			has_valid_civic = civic_gts_feudalism
+		}
+		is_homeworld = no
+	}
+	allow = {
+		custom_tooltip = {
+			NOT = {
+				has_carrier_flag = gts_have_set_fiefdom
+			}
+			fail_text = gts_have_set_fiefdom			#已经设立封邑的星球不能适用
+		}
+	}
+	effect = {
+		add_modifier = {
+			modifier = "planet_gts_garden_fiefdom"
+		}
+		add_deposit = d_gts_fiefdom
+		hidden_effect = {
+			remove_modifier = planet_gts_remove_fiefdom
+			set_carrier_flag = gts_have_set_fiefdom
+		}
+	}
+	ai_weight = {
+		weight = 1
+	}
+}
+
+decision_gts_safari_fiefdom = {
+	#设立游猎封邑 
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_expel_population
+	resources = {
+		category = decisions
+		cost = {
+			unity = 1000
+		}
+	}
+	potential = {
+		owner = {
+			owner = {
+				is_regular_empire = yes
+			}
+			has_valid_civic = civic_gts_feudalism
+		}
+		is_homeworld = no
+	}
+	allow = {
+		custom_tooltip = {
+			NOT = {
+				has_carrier_flag = gts_have_set_fiefdom
+			}
+			fail_text = gts_have_set_fiefdom			#已经设立封邑的星球不能适用
+		}
+	}
+	effect = {
+		add_modifier = {
+			modifier = "planet_gts_safari_fiefdom"
+		}
+		add_deposit = d_gts_fiefdom
+		hidden_effect = {
+			remove_modifier = planet_gts_remove_fiefdom
+			set_carrier_flag = gts_have_set_fiefdom
+		}
+	}
+	ai_weight = {
+		weight = 1
+	}
+}
+
+decision_gts_party_fiefdom = {
+	#设立宴会封邑
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_art_monument
+	resources = {
+		category = decisions
+		cost = {
+			unity = 1000
+		}
+	}
+	potential = {
+		owner = {
+			owner = {
+				is_regular_empire = yes
+			}
+			has_valid_civic = civic_gts_feudalism
+		}
+		is_homeworld = no
+	}
+	allow = {
+		custom_tooltip = {
+			NOT = {
+				has_carrier_flag = gts_have_set_fiefdom
+			}
+			fail_text = gts_have_set_fiefdom		#已经设立封邑的星球不能适用
+		}
+	}
+	effect = {
+		add_modifier = {
+			modifier = "planet_gts_party_fiefdom"
+		}
+		add_deposit = d_gts_fiefdom
+		hidden_effect = {
+			remove_modifier = planet_gts_remove_fiefdom
+			set_carrier_flag = gts_have_set_fiefdom
+		}
+	}
+	ai_weight = {
+		weight = 1
+	}
+}
+
+decision_gts_remove_fiefdom = {
+	#撤销封邑
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_politics
+	resources = {
+		category = decisions
+		cost = {
+			unity = 2000
+		}
+	}
+	potential = {
+		owner = {
+			owner = {
+				is_regular_empire = yes
+			}
+			has_valid_civic = civic_gts_feudalism
+		}
+		is_homeworld = no
+		has_carrier_flag = gts_have_set_fiefdom
+	}
+	allow = {
+		custom_tooltip = {
+			has_carrier_flag = gts_have_set_fiefdom
+			fail_text = gts_have_set_fiefdom			#未设立封邑的星球不能适用
+		}
+	}
+	effect = {
+		custom_tooltip = "gts_remove_fiefdom"
+		add_modifier = {
+			modifier = planet_gts_remove_fiefdom
+			days = 900
+		}
+		hidden_effect = {
+			remove_deposit = d_gts_fiefdom
+			remove_modifier = planet_gts_garden_fiefdom
+			remove_modifier = planet_gts_safari_fiefdom
+			remove_modifier = planet_gts_party_fiefdom
+			remove_modifier = gts_anxious_fiefdom
+			remove_modifier = planet_gts_fiefdom_admire
+			remove_modifier = planet_gts_fiefdom_unrest
+			remove_planet_flag = gts_have_set_fiefdom
+			owner = {
+				every_planet_within_border = {
+					limit = {
+						has_carrier_flag = gts_have_set_fiefdom
+					}
+					add_modifier = {
+						modifier = gts_anxious_fiefdom
+						days = 300
+					}
+				}
+			}
+		}
+	}
+	ai_weight = {
+		weight = 1
+	}
+}
+
+#洛蒂鞋子空间站升级提示决策
+gtsra_decision_upgrade_lottieshoes = {
+	owned_planets_only = yes
+	icon = decision_upgrade_lottieshoes
+	enactment_time = 360
+	resources = {
+		category = decisions
+		cost = {
+			trigger = {
+				owner = {
+					NOT = {
+						has_active_tradition = tr_expansion_finish_void
+					}
+				}
+			}
+			influence = 25
+			alloys = 500
+		}
+		cost = {
+			trigger = {
+				owner = {
+					has_active_tradition = tr_expansion_finish_void
+				}
+			}
+			influence = 20
+			alloys = 400
+		}
+	}
+	potential = {
+		is_planet_class = pc_lottie_shoes
+		NOR = {
+			has_carrier_flag = advanced_lottie_shoes
+			#不能是升级过的鞋子
+		}
+		exists = owner
+		owner = {
+			not = {
+				has_country_flag = allow_lottie_shoes_upgrade
+			}
+			#需要解锁一级升级
+		}
+	}
+	allow = {
+		always = no
+	}
+	effect = {
+		hidden_effect = {
+			set_carrier_flag = advanced_lottie_shoes
+		}
+		#set_planet_size = 15
+		owner = {
+			set_country_flag = lottie_shoes_upgrade1
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+#洛蒂鞋子空间站第一次升级
+gtsra_decision_upgrade_lottieshoes1 = {
+	owned_planets_only = yes
+	icon = decision_upgrade_lottieshoes
+	enactment_time = 360
+	resources = {
+		category = decisions
+		cost = {
+			trigger = {
+				owner = {
+					NOT = {
+						has_active_tradition = tr_expansion_finish_void
+					}
+				}
+			}
+			influence = 25
+			alloys = 500
+		}
+		cost = {
+			trigger = {
+				owner = {
+					has_active_tradition = tr_expansion_finish_void
+				}
+			}
+			influence = 20
+			alloys = 400
+		}
+	}
+	potential = {
+		is_planet_class = pc_lottie_shoes
+		NOR = {
+			has_carrier_flag = advanced_lottie_shoes
+			#不能是升级过的鞋子
+		}
+		exists = owner
+		owner = {
+			has_country_flag = allow_lottie_shoes_upgrade
+			#需要解锁一级升级
+		}
+	}
+	allow = {
+		free_district_slots = 0
+	}
+	effect = {
+		hidden_effect = {
+			set_carrier_flag = advanced_lottie_shoes
+		}
+		set_planet_size = 20
+		owner = {
+			set_country_flag = lottie_shoes_upgrade1
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+#洛蒂鞋子空间站第二次升级
+gtsra_decision_upgrade_lottieshoes2 = {
+	owned_planets_only = yes
+	icon = decision_upgrade_lottieshoes
+	enactment_time = 720
+	resources = {
+		category = decisions
+		cost = {
+			trigger = {
+				owner = {
+					NOT = {
+						has_active_tradition = tr_expansion_finish_void
+					}
+				}
+			}
+			influence = 35
+			alloys = 1500
+		}
+		cost = {
+			trigger = {
+				owner = {
+					has_active_tradition = tr_expansion_finish_void
+				}
+			}
+			influence = 30
+			alloys = 1400
+		}
+	}
+	potential = {
+		is_planet_class = pc_lottie_shoes
+		has_carrier_flag = advanced_lottie_shoes
+		NOT = {
+			has_carrier_flag = advanced_lottie_shoes2
+		}
+		#是升级过的鞋子
+		exists = owner
+		owner = {
+			has_country_flag = allow_lottie_shoes_upgrade1
+			#需要解锁二级升级
+		}
+	}
+	allow = {
+		free_district_slots = 0
+	}
+	effect = {
+		hidden_effect = {
+			set_carrier_flag = advanced_lottie_shoes2
+		}
+		set_planet_size = 40
+		owner = {
+			set_country_flag = lottie_shoes_upgrade2
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+gts_decision_egg_nutrition = {
+
+	# 給卵子星球提供營養
+
+	owned_planets_only = yes
+	sound = event_activating_unknown_technology
+	icon = decision_gts_egg_nutrition
+
+	enactment_time = -1
+
+	resources = {
+		category = decisions
+		cost = { influence = 100 }
+	}
+
+	potential = {
+		is_colony = yes
+		is_a_planet = yes
+		is_gts_reformed_planet = no
+		NOR = { is_planet_class = pc_gts_luanzi }
+		owner = { any_owned_planet = { has_carrier_flag = Luanzi_home_planet } }
+		hidden_trigger = {
+			NOT = { exists = archaeological_site }
+			NOT = { has_carrier_flag = gts_body_planet }
+		}
+	}
+
+	allow = {
+		has_anomaly = no
+	}
+
+	effect = {
+		custom_tooltip = gts_decision_egg_nutrition_effects
+		hidden_effect = {
+			save_event_target_as = gts_nutrition_planet
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_pop_nutrition_amount
+			}
+			export_trigger_value_to_variable = {
+				trigger = planet_size
+				variable = gts_planet_size_nutrition_amount
+			}
+
+			# 7500人口 = 1 size
+			divide_variable = {
+				which = gts_pop_nutrition_amount
+				value = 7500
+			}
+			round_variable = gts_pop_nutrition_amount
+
+			# 5星球尺寸 = 1 size
+			divide_variable = {
+				which = gts_planet_size_nutrition_amount
+				value = 5
+			}
+			round_variable = gts_planet_size_nutrition_amount
+
+			owner = {
+				random_owned_planet = {
+					limit = { has_carrier_flag = Luanzi_home_planet }
+					while = {
+						count = event_target:gts_nutrition_planet.gts_pop_nutrition_amount
+						add_deposit = d_gts_nutrients
+						change_planet_size = 1
+					}
+					while = {
+						count = event_target:gts_nutrition_planet.gts_planet_size_nutrition_amount
+						add_deposit = d_gts_nutrients
+						change_planet_size = 1
+					}
+				}
+				country_event = { id = gts_egg.10 }
+			}
+			if = {
+				limit = { exists = orbital_defence }
+				destroy_fleet = orbital_defence
+			} 
+			else = {
+				random_fleet_in_orbit = {
+					limit = {
+						is_owned_by = Root.owner
+						is_ship_class = shipclass_starbase
+					}
+					destroy_fleet = This
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 0
+		modifier = {
+			add = 10
+			owner = { any_owned_planet = { has_carrier_flag = Luanzi_home_planet } }
+		}
+	}
+}
+
+gts_decision_loli_nutrition = {
+
+	# 給蘿莉星球營養
+
+	owned_planets_only = yes
+	sound = event_activating_unknown_technology
+	icon = decision_gts_loli_nutrition
+
+	enactment_time = -1
+
+	resources = {
+		category = decisions
+		cost = { influence = 100 }
+	}
+
+	potential = {
+		is_colony = yes
+		is_a_planet = yes
+		is_gts_reformed_planet = no
+		owner = {
+			any_owned_planet = {
+				OR = {
+					has_carrier_flag = gtsra_loli_planet
+					has_carrier_flag = gtsra_slave_planet
+				}
+			}
+		}
+		hidden_trigger = {
+			NOT = { exists = archaeological_site }
+			NOT = { has_carrier_flag = gts_body_planet }
+		}
+	}
+
+	allow = {
+		has_anomaly = no
+	}
+
+	effect = {
+		custom_tooltip = gts_decision_loli_nutrition_effects
+		hidden_effect = {
+			save_event_target_as = gts_nutrition_planet
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gts_pop_nutrition_amount
+			}
+			export_trigger_value_to_variable = {
+				trigger = planet_size
+				variable = gts_planet_size_nutrition_amount
+			}
+			
+			# 10000人口 = 1 size
+			divide_variable = {
+				which = gts_pop_nutrition_amount
+				value = 10000
+			}
+			round_variable = gts_pop_nutrition_amount
+
+			# 5星球尺寸 = 1 size
+			divide_variable = {
+				which = gts_planet_size_nutrition_amount
+				value = 5
+			}
+			round_variable = gts_planet_size_nutrition_amount
+
+			owner = {
+				random_owned_planet = {
+					limit = {
+						OR = {
+							has_carrier_flag = gtsra_loli_planet
+							has_carrier_flag = gtsra_slave_planet
+						}
+					}
+					while = {
+						count = event_target:gts_nutrition_planet.gts_pop_nutrition_amount
+						add_deposit = d_gts_nutrients
+						change_planet_size = 1
+					}
+					while = {
+						count = event_target:gts_nutrition_planet.gts_planet_size_nutrition_amount
+						add_deposit = d_gts_nutrients
+						change_planet_size = 1
+					}
+				}
+				country_event = { id = gts_aurora.1080 }
+			}
+
+			if = {
+				limit = { exists = orbital_defence }
+				destroy_fleet = orbital_defence
+			} 
+			else = {
+				random_fleet_in_orbit = {
+					limit = {
+						is_owned_by = Root.owner
+						is_ship_class = shipclass_starbase
+					}
+					destroy_fleet = This
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 0
+		modifier = {
+			add = 10
+			owner = {
+				any_owned_planet = {
+					OR = {
+						has_carrier_flag = gtsra_loli_planet
+						has_carrier_flag = gtsra_slave_planet
+					}
+				}
+			}
+		}
+	}
+}
+
+decision_district_use_gts_resource = {
+
+	# 將區劃轉為使用巨娘資源
+
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = default
+
+	resources = {
+		category = decisions
+		cost = { influence = 100 }
+	}
+
+	potential = {
+		NOT = {
+			has_carrier_flag = use_gts_resource
+		}
+		has_carrier_flag = gts_body_flag
+		owner = {
+			gts_is_giantess = yes
+		}
+	}
+
+	#allow = {
+	#	owner = {
+	#		has_technology = tech_gts_shrink_man_hormone_3
+	#	}
+	#}
+
+	effect = {
+		custom_tooltip = decision_district_use_gts_resource_effects
+		hidden_effect = {
+			set_carrier_flag = use_gts_resource
+		}
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+decision_district_use_gts_resource_cancel = {
+
+	# 取消使用巨娘資源
+
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = default
+
+	potential = {
+		has_carrier_flag = use_gts_resource
+		has_carrier_flag = gts_body_flag
+
+		owner = {
+			gts_is_giantess = yes
+		}
+	}
+
+	effect = {
+		remove_planet_flag = use_gts_resource
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+decision_district_use_tiny_resource = {
+
+	# 將區劃轉為使用小人資源
+
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = default
+
+	resources = {
+		category = decisions
+		cost = { influence = 100 }
+	}
+
+	potential = {
+		NOT = {
+			has_carrier_flag = use_tiny_resource
+		}
+		has_carrier_flag = gts_body_flag
+		owner = {
+			gts_is_tiny = yes
+		}
+	}
+
+	#allow = {
+	#	owner = {
+	#		has_technology = tech_gts_giantess_human
+	#	}
+	#}
+
+	effect = {
+		custom_tooltip = decision_district_use_tiny_resource_effects
+		hidden_effect = {
+			set_carrier_flag = use_tiny_resource
+		}
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+decision_district_use_tiny_resource_cancel = {
+
+	# 取消使用小人資源
+
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = default
+
+	potential = {
+		has_carrier_flag = use_tiny_resource
+		has_carrier_flag = gts_body_flag
+		owner = {
+			gts_is_tiny = yes
+		}
+	}
+
+	effect = {
+		remove_planet_flag = use_tiny_resource
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+# 部署大型史莱姆
+decision_gts_deploy_slime = {
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_dangerous_wildlife
+	resources = {
+		category = decisions
+		cost = { energy = 1000 }
+	}
+	enactment_time = 180
+	potential = {
+		From = {
+			has_country_flag = hehuanpai_intro
+		}
+		is_planet_class = pc_desert
+		is_planet_class = pc_arid
+		is_planet_class = pc_savannah
+		NOR = {
+			has_modifier = slime_deployed
+		}
+	}
+	effect = {
+		add_modifier = {
+			modifier = "slime_deployed"
+			days = 1800
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+decision_gts_juice_colony = {
+
+	# 創造愛液星球
+
+	owned_planets_only = yes
+
+	resources = {
+		category = decisions
+		cost = { influence = 100 }
+	}
+
+	prerequisites = { "tech_gts_juice_colonies" }
+
+	potential = { gts_can_reform_planet = yes }
+
+	allow = { }
+
+	effect = {
+		pc_gts_juice_change = yes
+		hidden_effect = {
+			random_list = {
+				1 = {
+					modifier = {
+						factor = 0
+						From = { not = { exists = event_target:gts_skadi } }
+					}
+					pc_gts_juice_change_skadi = yes
+					planet_event = { id = gts_skadi_colossus.112 }
+				}
+				1 = {
+					modifier = {
+						factor = 0
+						owner = { not = { is_same_value = event_target:gray_owner } }
+					}
+					planet_event = { id = gts_ap_planet.1001 }
+				}
+				1 = { planet_event = { id = gts_ap_planet.1000 } }
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 0
+		modifier = {
+			add = 10
+			owner = {
+				has_technology = tech_gts_juice_colonies
+				any_owned_leader = { has_trait = leader_trait_Ultra }
+			}
+		}
+	}
+}
+
+decision_gts_milk_colony = {
+
+	# 創造乳汁星球
+
+	owned_planets_only = yes
+
+	resources = {
+		category = decisions
+		cost = { influence = 100 }
+	}
+
+	prerequisites = { "tech_gts_milk_colonies" }
+
+	potential = { gts_can_reform_planet = yes }
+
+	allow = { }
+
+	effect = {
+		pc_gts_milk_change = yes
+		hidden_effect = { planet_event = { id = gts_ap_planet.2000 } }
+	}
+
+	ai_weight = {
+		weight = 0
+		modifier = {
+			add = 10
+			owner = {
+				has_technology = tech_gts_milk_colonies
+				any_owned_leader = { has_trait = leader_trait_Ultra }
+			}
+		}
+	}
+}
+
+decision_gts_semen_colony = {
+
+	# 創造精液星球
+
+	owned_planets_only = yes
+
+	resources = {
+		category = decisions
+		cost = { influence = 100 }
+	}
+
+	prerequisites = { "tech_gts_semen_colonies" }
+
+	potential = { gts_can_reform_planet = yes }
+
+	allow = { }
+
+	effect = {
+		pc_gts_semen_change = yes
+		hidden_effect = {
+			random_list = {
+				1 = { planet_event = { id = gts_ap_planet.3000 } }
+				1 = {
+					modifier = {
+						factor = 0
+						owner = { not = { is_same_value = event_target:gray_owner } }
+					}
+					planet_event = { id = gts_ap_planet.3001 }
+				}
+                1 = {
+                    modifier = {
+                        factor = 0
+						From = { NOT = { exists = event_target:gts_doctor }}
+                    }
+                    planet_event = { id = gts_doctor.1000 }
+                }
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 0
+		modifier = {
+			add = 10
+			owner = {
+				has_technology = tech_gts_semen_colonies
+				any_owned_leader = { has_trait = leader_trait_Ultra }
+			}
+		}
+	}
+}
+
+decision_gts_shit_colony = {
+
+	# 創造排泄星球
+
+	owned_planets_only = yes
+
+	resources = {
+		category = decisions
+		cost = { influence = 100 }
+	}
+
+	prerequisites = { "tech_gts_shit_colonies" }
+
+	potential = { gts_can_reform_planet = yes }
+
+	allow = { }
+
+	effect = {
+		hidden_effect = {
+			pc_gts_shit_change = yes
+			random_list = {
+				1 = { planet_event = { id = gts_ap_planet.5000 } }
+				1 = {
+					modifier = {
+						factor = 0
+						From = {
+							NOR = {
+								exists = event_target:gts_aurora
+								exists = event_target:gts_arlo
+							}
+						}
+					}
+					planet_event = { id = gts_ap_planet.5001 }
+				}
+                1 = {
+                    modifier = {
+                        factor = 0
+						From = { NOT = { exists = event_target:gts_sonxi }}
+                    }
+                    planet_event = { id = gts_sonxi.1000 }
+                }
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 0
+		modifier = {
+			add = 10
+			owner = {
+				has_technology = tech_gts_shit_colonies
+				any_owned_leader = { has_trait = leader_trait_Ultra }
+			}
+		}
+	}
+}
+
+decision_gts_dirt_colony0 = {
+
+	# 創造足垢星球
+
+	owned_planets_only = yes
+    icon = decision_gts_dirt_colony
+
+	resources = {
+		category = decisions
+		cost = { influence = 100 }
+	}
+
+	prerequisites = { "tech_gts_dirt_colonies" }
+
+	potential = { gts_can_reform_planet = yes }
+
+	allow = { }
+
+	effect = {
+		pc_gts_dirt_change = yes
+		hidden_effect = {
+			random_list = {
+				1 = {
+					modifier = {
+						factor = 0
+						From = { NOT = { exists = event_target:gts_seele }}
+					}
+					planet_event = { id = gts_seele.31 }
+				}
+				1 = { planet_event = { id = gts_ap_planet.4000 } }
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 0
+		modifier = {
+			add = 10
+			owner = {
+				has_technology = tech_gts_dirt_colonies
+				any_owned_leader = { has_trait = leader_trait_Ultra }
+			}
+		}
+	}
+}
+
+decision_gts_dirt_colony1 = {
+
+	# 創造汗霧星球
+
+	owned_planets_only = yes
+	icon = decision_incubate_wind_creatures
+	enactment_time = 3600
+
+	resources = {
+		category = decisions
+		cost = {
+			energy = 5000
+		}
+	}
+
+	potential = { is_planet_class = pc_gts_dirt0 }
+
+	allow = {
+		custom_tooltip = {
+			fail_text = decision_gts_dirt_colony1_fail
+			NOR = {
+				has_modifier = gts_dirt_colony0_1
+				has_modifier = gts_dirt_colony0_2
+				has_modifier = gts_dirt_colony0_3
+			}
+		}
+	}
+
+	effect = {
+		pc_gts_dirt_change1 = yes
+		hidden_effect = {
+			planet_event = { id = gts_ap_planet.4100 }
+		}
+	}
+
+	ai_weight = {
+		weight = 0
+		modifier = {
+			add = 10
+			owner = {
+				has_technology = tech_gts_dirt_colonies
+				any_owned_leader = { has_trait = leader_trait_Ultra }
+			}
+		}
+	}
+}
+
+decision_gts_dirt_colony2 = {
+
+	# 改造足垢堡壘星球
+
+	owned_planets_only = yes
+	icon = decision_martial_law
+
+	resources = {
+		category = decisions
+		cost = { influence = 100 }
+	}
+
+	potential = { is_planet_class = pc_gts_dirt0 }
+
+	allow = { }
+
+	effect = {
+		pc_gts_dirt_change2 = yes
+		hidden_effect = {
+			planet_event = { id = gts_ap_planet.4200 }
+		}
+	}
+
+	ai_weight = {
+		weight = 0
+		modifier = {
+			add = 10
+			owner = {
+				has_technology = tech_gts_dirt_colonies
+				any_owned_leader = { has_trait = leader_trait_Ultra }
+			}
+		}
+	}
+}
+
+decision_gts_dirt_colony3 = {
+
+	# 改造足垢礦業星球
+
+	owned_planets_only = yes
+	icon = decision_exploding_planet
+
+	resources = {
+		category = decisions
+		cost = { influence = 100 }
+	}
+
+	potential = { is_planet_class = pc_gts_dirt0 }
+
+	allow = { }
+
+	effect = {
+		pc_gts_dirt_change3 = yes
+		hidden_effect = {
+			planet_event = { id = gts_ap_planet.4300 }
+		}
+	}
+
+	ai_weight = {
+		weight = 0
+		modifier = {
+			add = 10
+			owner = {
+				has_technology = tech_gts_dirt_colonies
+				any_owned_leader = { has_trait = leader_trait_Ultra }
+			}
+		}
+	}
+}
+
+decision_gts_dirt_colony4 = {
+
+	# 改造足垢農業星球
+
+	owned_planets_only = yes
+	icon = decision_resources
+
+	resources = {
+		category = decisions
+		cost = { influence = 100 }
+	}
+
+	potential = { is_planet_class = pc_gts_dirt0 }
+
+	allow = { }
+
+	effect = {
+		pc_gts_dirt_change4 = yes
+		hidden_effect = {
+			planet_event = { id = gts_ap_planet.4400 }
+		}
+	}
+
+	ai_weight = {
+		weight = 0
+		modifier = {
+			add = 10
+			owner = {
+				has_technology = tech_gts_dirt_colonies
+				any_owned_leader = { has_trait = leader_trait_Ultra }
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				is_machine_empire = yes
+			}
+		}
+	}
+}
+
+decision_gts_dirt_colony5 = {
+
+	# 重新創造足垢星球
+
+	owned_planets_only = yes
+	icon = decision_gts_dirt_colony
+
+	resources = {
+		category = decisions
+		cost = { influence = 200 }
+	}
+
+	potential = { is_planet_class = pc_gts_dirt1 }
+
+	allow = { }
+
+	effect = {
+		pc_gts_dirt_change = yes
+		hidden_effect = {
+			planet_event = { id = gts_ap_planet.4500 }
+		}
+	}
+
+	ai_weight = {
+		weight = 0
+		modifier = {
+			add = 10
+			owner = {
+				has_technology = tech_gts_dirt_colonies
+				any_owned_leader = { has_trait = leader_trait_Ultra }
+			}
+		}
+	}
+}
+
+decision_gts_dirt_mod0_1 = {
+
+	# 改良刺鼻足臭
+
+	owned_planets_only = yes
+	icon = decision_drilling_for_gas
+	enactment_time = 360
+
+	resources = {
+		category = decisions
+		cost = { energy = 1000 }
+	}
+
+	potential = {
+		is_planet_class = pc_gts_dirt0
+		has_modifier = gts_dirt_colony0_1
+	}
+
+	allow = { }
+
+	effect = {
+		remove_modifier = gts_dirt_colony0_1
+		add_modifier = {
+			modifier = gts_dirt_colony0_4
+			days = -1
+		}
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+}
+
+decision_gts_dirt_mod0_2 = {
+
+	# 改良腳汗縱橫
+
+	owned_planets_only = yes
+	icon = decision_drilling_for_gas
+	enactment_time = 360
+
+	resources = {
+		category = decisions
+		cost = { energy = 1000 }
+	}
+
+	potential = {
+		is_planet_class = pc_gts_dirt0
+		has_modifier = gts_dirt_colony0_2
+	}
+
+	allow = { }
+
+	effect = {
+		remove_modifier = gts_dirt_colony0_2
+		add_modifier = {
+			modifier = gts_dirt_colony0_5
+			days = -1
+		}
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+}
+
+decision_gts_dirt_mod0_3 = {
+
+	#改良足垢地形
+
+	owned_planets_only = yes
+	icon = decision_drilling_for_gas
+	enactment_time = 360
+
+	resources = {
+		category = decisions
+		cost = { energy = 1000 }
+	}
+
+	potential = {
+		is_planet_class = pc_gts_dirt0
+		has_modifier = gts_dirt_colony0_3
+	}
+
+	allow = { }
+
+	effect = {
+		remove_modifier = gts_dirt_colony0_3
+		add_modifier = {
+			modifier = gts_dirt_colony0_6
+			days = -1
+		}
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+}
+
+decision_gts_dirt_mod1_1 = {
+
+	#改良濃郁汗霧
+
+	owned_planets_only = yes
+	icon = decision_drilling_for_gas
+	enactment_time = 360
+
+	resources = {
+		category = decisions
+		cost = { energy = 1000 }
+	}
+
+	potential = {
+		is_planet_class = pc_gts_dirt1
+		has_modifier = gts_dirt_colony1_1
+	}
+
+	allow = { }
+
+	effect = {
+		remove_modifier = gts_dirt_colony1_1
+		add_modifier = {
+			modifier = gts_dirt_colony1_4
+			days = -1
+		}
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+}
+
+decision_gts_dirt_mod1_2 = {
+
+	# 改進被破壞的生態
+
+	owned_planets_only = yes
+	icon = decision_drilling_for_gas
+	enactment_time = 360
+
+	resources = {
+		category = decisions
+		cost = { energy = 1000 }
+	}
+
+	potential = {
+		is_planet_class = pc_gts_dirt1
+		has_modifier = gts_dirt_colony1_2
+	}
+
+	allow = { }
+
+	effect = {
+		remove_modifier = gts_dirt_colony1_2
+		add_modifier = {
+			modifier = gts_dirt_colony1_5
+			days = -1
+		}
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+}
+
+decision_gts_dirt_mod1_3 = {
+
+	# 改良殘留足垢
+
+	owned_planets_only = yes
+	icon = decision_drilling_for_gas
+	enactment_time = 360
+
+	resources = {
+		category = decisions
+		cost = { energy = 1000 }
+	}
+
+	potential = {
+		is_planet_class = pc_gts_dirt1
+		has_modifier = gts_dirt_colony1_3
+	}
+
+	allow = { }
+
+	effect = {
+		remove_modifier = gts_dirt_colony1_3
+		add_modifier = {
+			modifier = gts_dirt_colony1_6
+			days = -1
+		}
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+}
+
+decision_gts_dirt_mod2_1 = {
+
+	# 改良刺鼻足臭
+
+	owned_planets_only = yes
+	icon = decision_drilling_for_gas
+	enactment_time = 360
+
+	resources = {
+		category = decisions
+		cost = { energy = 1000 }
+	}
+
+	potential = {
+		is_planet_class = pc_gts_dirt2
+		has_modifier = gts_dirt_colony0_1
+	}
+
+	allow = { }
+
+	effect = {
+		remove_modifier = gts_dirt_colony0_1
+		add_modifier = {
+			modifier = gts_dirt_colony2_4
+			days = -1
+		}
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+}
+
+decision_gts_dirt_mod2_2 = {
+
+	# 改良高密度足汗結晶
+
+	owned_planets_only = yes
+	icon = decision_drilling_for_gas
+	enactment_time = 360
+
+	resources = {
+		category = decisions
+		cost = { energy = 1000 }
+	}
+
+	potential = {
+		is_planet_class = pc_gts_dirt2
+		has_modifier = gts_dirt_colony2_2
+	}
+
+	allow = { }
+
+	effect = {
+		remove_modifier = gts_dirt_colony2_2
+		add_modifier = {
+			modifier = gts_dirt_colony2_5
+			days = -1
+		}
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+}
+
+decision_gts_dirt_mod2_3 = {
+
+	# 改良堅硬的足垢地殼
+
+	owned_planets_only = yes
+	icon = decision_drilling_for_gas
+	enactment_time = 360
+
+	resources = {
+		category = decisions
+		cost = { energy = 1000 }
+	}
+
+	potential = {
+		is_planet_class = pc_gts_dirt2
+		has_modifier = gts_dirt_colony2_3
+	}
+
+	allow = { }
+
+	effect = {
+		remove_modifier = gts_dirt_colony2_3
+		add_modifier = {
+			modifier = gts_dirt_colony2_6
+			days = -1
+		}
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+}
+
+decision_gts_dirt_mod3_1 = {
+
+	# 改良刺鼻足臭
+
+	owned_planets_only = yes
+	icon = decision_drilling_for_gas
+	enactment_time = 360
+
+	resources = {
+		category = decisions
+		cost = { energy = 1000 }
+	}
+
+	potential = {
+		is_planet_class = pc_gts_dirt3
+		has_modifier = gts_dirt_colony0_1
+	}
+
+	allow = { }
+
+	effect = {
+		remove_modifier = gts_dirt_colony0_1
+		add_modifier = {
+			modifier = gts_dirt_colony3_4
+			days = -1
+		}
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+}
+
+decision_gts_dirt_mod3_2 = {
+
+	# 改良足垢沉積物
+
+	owned_planets_only = yes
+	icon = decision_drilling_for_gas
+	enactment_time = 360
+
+	resources = {
+		category = decisions
+		cost = { energy = 1000 }
+	}
+
+	potential = {
+		is_planet_class = pc_gts_dirt3
+		has_modifier = gts_dirt_colony3_2
+	}
+
+	allow = { }
+
+	effect = {
+		remove_modifier = gts_dirt_colony3_2
+		add_modifier = {
+			modifier = gts_dirt_colony3_5
+			days = -1
+		}
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+}
+
+decision_gts_dirt_mod3_3 = {
+
+	# 改進破碎的地殼
+
+	owned_planets_only = yes
+	icon = decision_drilling_for_gas
+	enactment_time = 360
+
+	resources = {
+		category = decisions
+		cost = { energy = 1000 }
+	}
+
+	potential = {
+		is_planet_class = pc_gts_dirt3
+		has_modifier = gts_dirt_colony3_3
+	}
+
+	allow = { }
+
+	effect = {
+		remove_modifier = gts_dirt_colony3_3
+		add_modifier = {
+			modifier = gts_dirt_colony3_6
+			days = -1
+		}
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+}
+
+decision_gts_dirt_mod4_1 = {
+
+	# 改良刺鼻足臭
+
+	owned_planets_only = yes
+	icon = decision_drilling_for_gas
+	enactment_time = 360
+
+	resources = {
+		category = decisions
+		cost = { energy = 1000 }
+	}
+
+	potential = {
+		is_planet_class = pc_gts_dirt4
+		has_modifier = gts_dirt_colony0_1
+	}
+
+	allow = { }
+
+	effect = {
+		remove_modifier = gts_dirt_colony0_1
+		add_modifier = {
+			modifier = gts_dirt_colony4_4
+			days = -1
+		}
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+}
+
+decision_gts_dirt_mod4_2 = {
+
+	# 改良足垢峽灣
+
+	owned_planets_only = yes
+	icon = decision_drilling_for_gas
+	enactment_time = 360
+
+	resources = {
+		category = decisions
+		cost = { energy = 1000 }
+	}
+
+	potential = {
+		is_planet_class = pc_gts_dirt4
+		has_modifier = gts_dirt_colony4_2
+	}
+
+	allow = { }
+
+	effect = {
+		remove_modifier = gts_dirt_colony4_2
+		add_modifier = {
+			modifier = gts_dirt_colony4_5
+			days = -1
+		}
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+}
+
+decision_gts_dirt_mod4_3 = {
+
+	#改良足垢地形
+
+	owned_planets_only = yes
+	icon = decision_drilling_for_gas
+	enactment_time = 360
+
+	resources = {
+		category = decisions
+		cost = { energy = 1000 }
+	}
+
+	potential = {
+		is_planet_class = pc_gts_dirt4
+		has_modifier = gts_dirt_colony0_3
+	}
+
+	allow = { }
+
+	effect = {
+		remove_modifier = gts_dirt_colony0_3
+		add_modifier = {
+			modifier = gts_dirt_colony4_6
+			days = -1
+		}
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+}
+
+decision_gts_housing1 = {
+
+	# 星球巨娘尺寸住房法案
+
+	owned_planets_only = yes
+	icon = decision_medieval_alien_civilization
+
+	potential = {
+		owner = { has_policy_flag = using_tiny_building_style }
+		NOT = { has_modifier = gts_planet_giant_housing }
+	}
+
+	effect = {
+		add_modifier = { modifier = gts_planet_giant_housing }
+	}
+
+	ai_weight = {
+		weight = 10
+		modifier = {
+			add = 10
+			any_owned_pop_species = { gts_is_giantess = yes }
+		}
+		modifier = {
+			add = 10
+			free_housing <= 0
+		}
+		modifier = {
+			factor = 0
+			free_housing >= 0
+		}
+	}
+}
+
+decision_gts_housing2 = {
+
+	# 取消星球巨娘尺寸住房法案
+
+	owned_planets_only = yes
+	icon = decision_medieval_alien_civilization
+
+	potential = { has_modifier = gts_planet_giant_housing }
+
+	effect = { remove_modifier = gts_planet_giant_housing }
+
+	ai_weight = {
+		weight = 10
+		modifier = {
+			add = 10
+			any_owned_pop_species = { gts_is_giantess = no }
+		}
+		modifier = {
+			add = 10
+			free_housing >= 10000
+		}
+		modifier = {
+			factor = 0
+			free_housing <= 10000
+		}
+	}
+}
+
+#改善洛蒂鞋内环境
+decision_gts_lottie_shoe1 = {
+	owned_planets_only = yes
+	icon = decision_upgrade_lottieshoes
+	enactment_time = 60
+	resources = {
+		category = decisions
+		cost = { energy = 1000 }
+	}
+	potential = {
+		is_planet_class = pc_lottie_shoes
+		has_modifier = rp_lottie_shoes_station_1
+		owner = {
+			has_technology = tech_gts_lottie_habitability2
+		}
+	}
+
+	allow = {
+
+	}
+
+	effect = {
+		remove_modifier = rp_lottie_shoes_station_1
+		add_modifier = {
+			modifier = rp_lottie_shoes_station_2
+			days = -1
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+# 千海的特殊行星改造
+decision_gts_juice_colony_qhai = {
+	icon = decision_gts_juice_colony_qhai
+	owned_planets_only = yes
+	resources = {
+		category = decisions
+		cost = {
+			energy = 100
+		}
+	}
+
+	potential = {
+		gts_can_treform_planet_qhai = yes
+		gts_can_reform_planet = yes
+	}
+	allow = { }
+
+	effect = {
+		pc_gts_juice_change_qhai = yes
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+# 犽戎 特殊行星决议1
+decision_gts_godkeeper_devour_planets = {
+	owned_planets_only = yes
+	icon = decision_gts_godkeeper_devour_planets
+	enactment_time = -1
+	resources = {
+		category = decisions
+		cost = {
+			energy = 0
+		}
+	}
+	potential = {
+		is_eatable_planet = yes
+		From.owner = {
+			has_tradition = tr_gts_godkeeper_3
+		}
+	}
+
+	allow = {
+
+	}
+
+	effect = {
+		# set_carrier_flag = gts_yarong_eated_planet
+		custom_tooltip = decision_gts_godkeeper_devour_planets_custion_tooltip
+		hidden_effect = {
+			# save_event_target_as = gts_yarong_eated_planet
+			while = {
+				count = trigger:pop_amount
+				owner = {
+					add_resource = {
+						unity = 1000
+					}
+				}
+			}
+			event_target:gts_yarong_internal_planet= {
+				while = {
+					count = 8
+					create_pop_group = {
+						species = owner
+					}
+				}
+			}
+			clear_deposits = yes
+			clear_planet_modifiers = yes
+			remove_planet = yes
+			event_target:gts_yarong = {
+				change_variable = {
+					which = gts_city_kills_logs
+					value = 100
+				}
+				change_variable = {
+					which = gts_planet_kills_logs
+					value = 1
+				}
+			}
+			From = {
+				add_modifier = {
+					modifier = gts_conutry_yarong_devour_planets
+					years = 10
+				}
+				country_event = {
+					id = gts_god_keeper.5505
+				}
+			}
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+# 犽戎 特殊行星决议2
+decision_gts_godkeeper_bleed_rush = {
+	owned_planets_only = yes
+	icon = decision_gts_godkeeper_bleed_rush
+	enactment_time = -1
+	resources = {
+		category = decisions
+		cost = {
+			energy = 0
+		}
+	}
+	potential = {
+		nor = {
+			has_carrier_flag = gts_yarong_bleed_planet
+			has_carrier_flag = gts_yarong_internal_planet
+		}
+		From = {
+			has_tradition = tr_gts_godkeeper_3
+		}
+	}
+
+	allow = {
+		sapient_pop_amount >= 25000
+	}
+
+	effect = {
+		set_carrier_flag = gts_yarong_bleed_planet
+		custom_tooltip = decision_gts_godkeeper_bleed_rush_custion_tooltip
+		hidden_effect = {
+			add_modifier = {
+				modifier = gts_planet_yarong_bleed_rush
+				days = -1
+			}
+			while = {
+				count = 3
+				random_owned_pop_group ={
+					kill_all_pop = yes
+				}
+			}
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+# 犽戎 特殊行星决议3
+decision_gts_godkeeper_purify_heresy = {
+	owned_planets_only = yes
+	icon = decision_gts_godkeeper_purify_heresy
+	enactment_time = -1
+	resources = {
+		category = decisions
+		cost = {
+			energy = 0
+		}
+	}
+	potential = {
+		nor = {
+			has_carrier_flag = gts_yarong_fff_planet
+			has_carrier_flag = gts_yarong_internal_planet
+		}
+		From = {
+			has_tradition = tr_gts_godkeeper_3
+		}
+	}
+
+	allow = {
+		sapient_pop_amount >= 10000
+	}
+
+	effect = {
+		set_carrier_flag = gts_yarong_fff_planet
+		hidden_effect = {
+			add_modifier = {
+				modifier = gts_planet_yarong_purify_heresy
+				days = -1
+			}
+			random_owned_pop_group ={
+				kill_all_pop = yes
+			}
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+decision_gts_seele_desert = {
+	potential = {
+		always = no
+		is_capital = no
+		is_planet_class = pc_desert
+		owner = {
+			is_regular_empire = yes
+		}
+		owner = {
+			not = {
+				has_country_flag = decision_gts_seele_desert_finish
+			}
+		}
+		is_artificial = no
+	}
+	allow = {
+		owner = {
+			any_owned_leader = {
+				has_leader_flag = gts_seele
+			}
+		}
+	}
+	effect = {
+		owner = {
+			set_country_flag = decision_gts_seele_desert_finish
+		}
+		Root = {
+			change_pc = pc_continental
+		}
+		hidden_effect = {
+			planet_event = {
+				id = gts_seele.79
+			}
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+decision_gts_seele_ice = {
+	potential = {
+		always = no
+		is_capital = no
+		is_planet_class = pc_arctic
+		owner = {
+			is_regular_empire = yes
+		}
+		owner = {
+			not = {
+				has_country_flag = decision_gts_seele_ice_finish
+			}
+		}
+		is_artificial = no
+	}
+	allow = {
+		owner = {
+			any_owned_leader = {
+				has_leader_flag = gts_seele
+			}
+		}
+	}
+	effect = {
+		owner = {
+			set_country_flag = decision_gts_seele_ice_finish
+		}
+		Root = {
+			change_pc = pc_continental
+		}
+		hidden_effect = {
+			planet_event = {
+				id = gts_seele.85
+			}
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+skadi_remove_marked = {
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_planet_beam
+	enactment_time = 0
+	potential = {
+		is_colony = yes
+		has_modifier = skadi_shroud_marked
+		From = {
+			check_variable = {
+				which = isharmla_satisfy
+				value >= 1
+			}
+		}
+	}
+	effect = {
+		remove_modifier = skadi_shroud_marked
+		add_modifier = {
+			modifier = skadi_shroud_unmarked
+		}
+		hidden_effect = {
+			owner = {
+				change_variable = {
+					which = isharmla_satisfy
+					value = -1
+				}
+			}
+		}
+	}
+}
+
+skadi_decision_buildspeed = {
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_drilling_for_gas
+	enactment_time = 0
+	potential = {
+		is_colony = yes
+		NOR = {
+			has_modifier = skadi_buildfast
+		}
+		From = {
+			check_variable = {
+				which = isharmla_satisfy
+				value >= 1
+			}
+			OR = {
+				has_country_flag = isharmla_comfirmed
+				has_country_flag = skadi_comfirmed
+			}
+		}
+	}
+	effect = {
+		add_modifier = {
+			modifier = skadi_buildfast
+			days = 360
+		}
+		hidden_effect = {
+			owner = {
+				change_variable = {
+					which = isharmla_satisfy
+					value = -1
+				}
+			}
+		}
+	}
+}
+
+skadi_add_shroudpop = {
+
+	# 虛境救援
+
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_wormhole
+	enactment_time = 0
+
+	potential = {
+		is_colony = yes
+		NOR = {
+			has_carrier_flag = shroudpop_cooldown
+		}
+		From = {
+			check_variable = {
+				which = isharmla_satisfy
+				value >= 1
+			}
+			OR = {
+				has_country_flag = isharmla_comfirmed
+				has_country_flag = skadi_comfirmed
+			}
+		}
+	}
+
+	effect = {
+		custom_tooltip = skadi_add_shroudpop.tooltip
+		hidden_effect = {
+			while = {
+				count = 5
+				From = {
+					random_owned_species = {
+						limit = {
+							NOR = {
+								has_citizenship_type = { country = Root type = citizenship_assimilation }
+								has_citizenship_type = { country = Root type = citizenship_slavery }
+								has_citizenship_type = { country = Root type = citizenship_purge }
+							}
+						}
+						save_event_target_as = gts_bruh_get_random_owned_species
+					}
+				}
+				create_pop_group = {
+					species = event_target:gts_bruh_get_random_owned_species
+				}
+			}
+			set_timed_planet_flag = {
+				flag = shroudpop_cooldown
+				days = 1000
+			}
+		}
+	}
+}
+
+decision_religious_icons_black1 = {
+
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_religious_icons_black1
+	enactment_time = 360
+
+	resources = {
+		category = decisions
+		cost = { influence = 100 }
+	}
+
+	potential = {
+		can_set_gts_religious_building = yes
+		has_building = building_gts_holy_black_temple
+	}
+
+	on_queued = {
+		set_carrier_flag = gts_religious_icons_set
+	}
+
+	on_unqueued = {
+		remove_planet_flag = gts_religious_icons_set
+	}
+
+	effect = {
+		custom_tooltip = decision_religious_icons_black1.tooltip
+		add_modifier = {
+			modifier = religious_icons_black1
+			days = -1
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+	}
+}
+
+decision_religious_icons_black2 = {
+
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_religious_icons_black2
+	enactment_time = 360
+
+	resources = {
+		category = decisions
+		cost = { influence = 100 }
+	}
+
+	potential = {
+		can_set_gts_religious_building = yes
+		has_building = building_gts_holy_black_temple
+
+	}
+
+	on_queued = {
+		set_carrier_flag = gts_religious_icons_set
+	}
+
+	on_unqueued = {
+		remove_planet_flag = gts_religious_icons_set
+	}
+
+	effect = {
+		custom_tooltip = decision_religious_icons_black2.tooltip
+		add_modifier = {
+			modifier = religious_icons_black2
+			days = -1
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+	}
+}
+
+decision_religious_icons_black3 = {
+
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_religious_icons_black3
+	enactment_time = 360
+
+	resources = {
+		category = decisions
+		cost = { influence = 100 }
+	}
+
+	potential = {
+		can_set_gts_religious_building = yes
+		has_building = building_gts_holy_black_temple
+	}
+
+	on_queued = {
+		set_carrier_flag = gts_religious_icons_set
+	}
+
+	on_unqueued = {
+		remove_planet_flag = gts_religious_icons_set
+	}
+
+	effect = {
+		custom_tooltip = decision_religious_icons_black3.tooltip
+		add_modifier = {
+			modifier = religious_icons_black3
+			days = -1
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+	}
+}
+
+decision_religious_icons_black4 = {
+
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_religious_icons_black4
+	enactment_time = 360
+
+	resources = {
+		category = decisions
+		cost = { influence = 100 }
+	}
+
+	potential = {
+		can_set_gts_religious_building = yes
+		has_building = building_gts_holy_black_temple
+	}
+
+	on_queued = {
+		set_carrier_flag = gts_religious_icons_set
+	}
+
+	on_unqueued = {
+		remove_planet_flag = gts_religious_icons_set
+	}
+
+	effect = {
+		custom_tooltip = decision_religious_icons_black4.tooltip
+		add_modifier = {
+			modifier = religious_icons_black4
+			days = -1
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+	}
+}
+
+decision_religious_icons_black5 = {
+
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_religious_icons_black5
+	enactment_time = 360
+
+	resources = {
+		category = decisions
+		cost = { influence = 100 }
+	}
+
+	potential = {
+		can_set_gts_religious_building = yes
+		has_building = building_gts_holy_black_temple
+	}
+
+	on_queued = {
+		set_carrier_flag = gts_religious_icons_set
+	}
+
+	on_unqueued = {
+		remove_planet_flag = gts_religious_icons_set
+	}
+
+	effect = {
+		custom_tooltip = decision_religious_icons_black5.tooltip
+		add_modifier = {
+			modifier = religious_icons_black5
+			days = -1
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+	}
+}
+
+decision_religious_icons_white1 = {
+
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_religious_icons_white1
+	enactment_time = 360
+
+	resources = {
+		category = decisions
+		cost = { influence = 100 }
+	}
+
+	potential = {
+		can_set_gts_religious_building = yes
+		has_building = building_gts_holy_white_temple
+	}
+
+	on_queued = {
+		set_carrier_flag = gts_religious_icons_set
+	}
+
+	on_unqueued = {
+		remove_planet_flag = gts_religious_icons_set
+	}
+
+	effect = {
+		custom_tooltip = decision_religious_icons_white1.tooltip
+		add_modifier = {
+			modifier = religious_icons_white1
+			days = -1
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+	}
+}
+
+decision_religious_icons_white2 = {
+
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_religious_icons_white2
+	enactment_time = 360
+
+	resources = {
+		category = decisions
+		cost = { influence = 100 }
+	}
+
+	potential = {
+		can_set_gts_religious_building = yes
+		has_building = building_gts_holy_white_temple
+	}
+
+	on_queued = {
+		set_carrier_flag = gts_religious_icons_set
+	}
+
+	on_unqueued = {
+		remove_planet_flag = gts_religious_icons_set
+	}
+
+	effect = {
+		custom_tooltip = decision_religious_icons_white2.tooltip
+		add_modifier = {
+			modifier = religious_icons_white2
+			days = -1
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+	}
+}
+
+decision_religious_icons_white3 = {
+
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_religious_icons_white3
+	enactment_time = 360
+
+	resources = {
+		category = decisions
+		cost = { influence = 100 }
+	}
+
+	potential = {
+		can_set_gts_religious_building = yes
+		has_building = building_gts_holy_white_temple
+	}
+
+	on_queued = {
+		set_carrier_flag = gts_religious_icons_set
+	}
+
+	on_unqueued = {
+		remove_planet_flag = gts_religious_icons_set
+	}
+
+	effect = {
+		custom_tooltip = decision_religious_icons_white3.tooltip
+		add_modifier = {
+			modifier = religious_icons_white3
+			days = -1
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+	}
+}
+
+decision_religious_icons_white4 = {
+
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_religious_icons_white4
+	enactment_time = 360
+
+	resources = {
+		category = decisions
+		cost = { influence = 100 }
+	}
+
+	potential = {
+		can_set_gts_religious_building = yes
+		has_building = building_gts_holy_white_temple
+
+	}
+
+	on_queued = {
+		set_carrier_flag = gts_religious_icons_set
+	}
+
+	on_unqueued = {
+		remove_planet_flag = gts_religious_icons_set
+	}
+
+	effect = {
+		custom_tooltip = decision_religious_icons_white4.tooltip
+		add_modifier = {
+			modifier = religious_icons_white4
+			days = -1
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+	}
+}
+
+decision_religious_icons_white5 = {
+
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_religious_icons_white5
+	enactment_time = 360
+
+	resources = {
+		category = decisions
+		cost = { influence = 100 }
+	}
+
+	potential = {
+		can_set_gts_religious_building = yes
+		has_building = building_gts_holy_white_temple
+
+	}
+
+	on_queued = {
+		set_carrier_flag = gts_religious_icons_set
+	}
+
+	on_unqueued = {
+		remove_planet_flag = gts_religious_icons_set
+	}
+
+	effect = {
+		custom_tooltip = decision_religious_icons_white5.tooltip
+		add_modifier = {
+			modifier = religious_icons_white5
+			days = -1
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+	}
+}
+
+decision_religious_icons_stocking1 = {
+
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_religious_icons_stocking1
+	enactment_time = 360
+
+	resources = {
+		category = decisions
+		cost = { influence = 100 }
+	}
+
+	potential = {
+		can_set_gts_religious_building = yes
+		has_building = building_gts_holy_stocking_temple
+
+	}
+
+	on_queued = {
+		set_carrier_flag = gts_religious_icons_set
+	}
+
+	on_unqueued = {
+		remove_planet_flag = gts_religious_icons_set
+	}
+
+	effect = {
+		custom_tooltip = decision_religious_icons_stocking1.tooltip
+		add_modifier = {
+			modifier = religious_icons_stocking1
+			days = -1
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+	}
+}
+
+decision_religious_icons_stocking2 = {
+
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_religious_icons_stocking2
+	enactment_time = 360
+
+	resources = {
+		category = decisions
+		cost = { influence = 100 }
+	}
+
+	potential = {
+		can_set_gts_religious_building = yes
+		has_building = building_gts_holy_stocking_temple
+
+	}
+
+	on_queued = {
+		set_carrier_flag = gts_religious_icons_set
+	}
+
+	on_unqueued = {
+		remove_planet_flag = gts_religious_icons_set
+	}
+
+	effect = {
+		custom_tooltip = decision_religious_icons_stocking2.tooltip
+		add_modifier = {
+			modifier = religious_icons_stocking2
+			days = -1
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+	}
+}
+
+decision_religious_icons_stocking3 = {
+
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_religious_icons_stocking3
+	enactment_time = 360
+
+	resources = {
+		category = decisions
+		cost = { influence = 100 }
+	}
+
+	potential = {
+		can_set_gts_religious_building = yes
+		has_building = building_gts_holy_stocking_temple
+
+	}
+
+	on_queued = {
+		set_carrier_flag = gts_religious_icons_set
+	}
+
+	on_unqueued = {
+		remove_planet_flag = gts_religious_icons_set
+	}
+
+	effect = {
+		custom_tooltip = decision_religious_icons_stocking3.tooltip
+		add_modifier = {
+			modifier = religious_icons_stocking3
+			days = -1
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+	}
+}
+
+decision_religious_icons_stocking4 = {
+
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_religious_icons_stocking4
+	enactment_time = 360
+
+	resources = {
+		category = decisions
+		cost = { influence = 100 }
+	}
+
+	potential = {
+		can_set_gts_religious_building = yes
+		has_building = building_gts_holy_stocking_temple
+
+	}
+
+	on_queued = {
+		set_carrier_flag = gts_religious_icons_set
+	}
+
+	on_unqueued = {
+		remove_planet_flag = gts_religious_icons_set
+	}
+
+	effect = {
+		custom_tooltip = decision_religious_icons_stocking4.tooltip
+		add_modifier = {
+			modifier = religious_icons_stocking4
+			days = -1
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+	}
+}
+
+decision_religious_icons_stocking5 = {
+
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_religious_icons_stocking5
+	enactment_time = 360
+
+	resources = {
+		category = decisions
+		cost = { influence = 100 }
+	}
+
+	potential = {
+		can_set_gts_religious_building = yes
+		has_building = building_gts_holy_stocking_temple
+	}
+
+	on_queued = {
+		set_carrier_flag = gts_religious_icons_set
+	}
+
+	on_unqueued = {
+		remove_planet_flag = gts_religious_icons_set
+	}
+
+	effect = {
+		custom_tooltip = decision_religious_icons_stocking5.tooltip
+		add_modifier = {
+			modifier = religious_icons_stocking5
+			days = -1
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+	}
+}
+
+decision_religious_icons_bare1 = {
+
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_religious_icons_bare1
+	enactment_time = 360
+
+	resources = {
+		category = decisions
+		cost = { influence = 100 }
+	}
+
+	potential = {
+		can_set_gts_religious_building = yes
+		has_building = building_gts_holy_bare_temple
+	}
+
+	on_queued = {
+		set_carrier_flag = gts_religious_icons_set
+	}
+
+	on_unqueued = {
+		remove_planet_flag = gts_religious_icons_set
+	}
+
+	effect = {
+		custom_tooltip = decision_religious_icons_bare1.tooltip
+		add_modifier = {
+			modifier = religious_icons_bare1
+			days = -1
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+	}
+}
+
+decision_religious_icons_bare2 = {
+
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_religious_icons_bare2
+	enactment_time = 360
+
+	resources = {
+		category = decisions
+		cost = { influence = 100 }
+	}
+
+	potential = {
+		can_set_gts_religious_building = yes
+		has_building = building_gts_holy_bare_temple
+	}
+
+	on_queued = {
+		set_carrier_flag = gts_religious_icons_set
+	}
+
+	on_unqueued = {
+		remove_planet_flag = gts_religious_icons_set
+	}
+
+	effect = {
+		custom_tooltip = decision_religious_icons_bare2.tooltip
+		add_modifier = {
+			modifier = religious_icons_bare2
+			days = -1
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+	}
+}
+
+decision_religious_icons_bare3 = {
+
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_religious_icons_bare3
+	enactment_time = 360
+
+	resources = {
+		category = decisions
+		cost = { influence = 100 }
+	}
+
+	potential = {
+		can_set_gts_religious_building = yes
+		has_building = building_gts_holy_bare_temple
+
+	}
+
+	on_queued = {
+		set_carrier_flag = gts_religious_icons_set
+	}
+
+	on_unqueued = {
+		remove_planet_flag = gts_religious_icons_set
+	}
+
+	effect = {
+		custom_tooltip = decision_religious_icons_bare3.tooltip
+		add_modifier = {
+			modifier = religious_icons_bare3
+			days = -1
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+	}
+}
+
+decision_religious_icons_bare4 = {
+
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_religious_icons_bare4
+	enactment_time = 360
+
+	resources = {
+		category = decisions
+		cost = { influence = 100 }
+	}
+
+	potential = {
+		can_set_gts_religious_building = yes
+		has_building = building_gts_holy_bare_temple
+
+	}
+
+	on_queued = {
+		set_carrier_flag = gts_religious_icons_set
+	}
+
+	on_unqueued = {
+		remove_planet_flag = gts_religious_icons_set
+	}
+
+	effect = {
+		custom_tooltip = decision_religious_icons_bare4.tooltip
+		add_modifier = {
+			modifier = religious_icons_bare4
+			days = -1
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+	}
+}
+
+decision_religious_icons_bare5 = {
+
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_religious_icons_bare5
+	enactment_time = 360
+
+	resources = {
+		category = decisions
+		cost = { influence = 100 }
+	}
+
+	potential = {
+		can_set_gts_religious_building = yes
+		has_building = building_gts_holy_bare_temple
+
+	}
+
+	on_queued = {
+		set_carrier_flag = gts_religious_icons_set
+	}
+
+	on_unqueued = {
+		remove_planet_flag = gts_religious_icons_set
+	}
+
+	effect = {
+		custom_tooltip = decision_religious_icons_bare5.tooltip
+		add_modifier = {
+			modifier = religious_icons_bare5
+			days = -1
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+	}
+}
+
+decision_religious_icons_remove = {
+
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_alien_propaganda
+	enactment_time = 0
+
+	resources = {
+		category = decisions
+		cost = {
+			influence = 200
+		}
+	}
+
+	potential = {
+	can_set_gts_religious_building = yes
+		has_gts_religious_planet_modifier = yes
+	}
+	effect = {
+		remove_gts_religious_planet_modifier = yes
+	}
+}
+
+decision_ultracompany_repair = {
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_ultracompany_repair
+	enactment_time = 360
+	resources = {
+		category = decisions
+		cost = {
+			energy = 5000
+		}
+	}
+	potential = {
+		is_colony = yes
+		planet_devastation >= 0
+		owner = {
+			has_country_flag = decision_ultracompany_repair_allow
+		}
+	}
+	effect = {
+		hidden_effect = {
+			add_planet_devastation = -100
+			clear_blockers = yes
+		}
+	}
+}
+
+decision_offer_oscillator = {
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_star_pulsar
+	enactment_time = 0
+	potential = {
+		is_colony = yes
+		is_planet_class = pc_gts_oscillator
+		exists = owner
+		owner = {
+			any_owned_leader = {
+				has_leader_flag = hired_gts_leader
+				has_trait = leader_trait_Ultra
+			}
+		}
+	}
+	allow = {
+		NOR = {
+			has_deposit = d_oscillator_ruin1
+			has_deposit = d_oscillator_ruin2
+			has_deposit = d_oscillator_ruin3
+		}
+	}
+	effect = {
+		planet_event = {
+			id = gts_oscillator.11
+		}
+	}
+}
+
+gts_linfeng_grilship_transform_decision = {
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_star_pulsar
+	enactment_time = 0
+	potential = {
+		is_colony = yes
+		exists = owner
+		owner = {
+			not = {
+				has_country_flag = gts_linfeng_grilship_transform_action
+			}
+			has_country_flag = gts_linfeng_grilship_transform_start
+		}
+	}
+	allow = {
+
+	}
+	effect = {
+		gts_destroy_colony = yes
+		save_global_event_target_as = gts_linfeng_grilship_transform_planet
+		every_playable_country = {
+			limit = {
+				any_owned_leader = {
+					has_leader_flag = gts_linfeng
+				}
+			}
+			country_event = {
+				id = gts_linfeng.302
+			}
+		}
+	}
+}
+
+decision_gts_white_silk_cover = {
+	#白丝套头  白丝覆盖
+	resources = {
+		category = decisions
+	}
+	potential = {
+		From = {
+			any_owned_leader = {
+				has_trait = leader_trait_Ultra
+			}
+			not = {
+				has_country_flag = gts_white_silk_cover_used
+			}
+		}
+		habitable_planet = yes		#必须是可殖民星球
+		exists = owner
+		owner = { is_same_value = From }
+	}
+	allow = { }
+	effect = {
+		custom_tooltip = decision_gts_white_silk_cover_effects_custom		#效果
+		hidden_effect = {
+			set_carrier_flag = gts_white_silk_cover_planet
+			From = {
+				set_country_flag = gts_white_silk_cover_used
+				country_event = {
+					id = gts_bfbf.403
+				}
+			}
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+gts_ora_big_breasts_decision = {
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_gts_ora_big_breasts
+	enactment_time = 0
+	potential = {
+		is_colony = yes
+		exists = owner
+		NOT = { has_modifier = planet_gts_ora_big_breasts_modifier }
+
+		owner = {
+			has_country_flag = gts_ora_big_breasts
+			NOT = {
+				count_owned_planet = {
+					limit = {
+						has_modifier = planet_gts_ora_big_breasts_modifier
+					}
+					count >= 3
+				}
+			}
+			count < 13
+		}
+	}
+	allow = { }
+	effect = {
+		add_modifier = {
+			modifier = planet_gts_ora_big_breasts_modifier
+		}
+	}
+}
+
+decision_gts_ora_qhai_entertainment_vote = {
+	owned_planets_only = no
+	sound = event_administrative_work
+	icon = decision_gts_ora_qhai_entertainment_vote
+	resources = {
+		category = decisions
+	}
+	potential = {
+		is_star = yes
+		from = {
+			has_country_flag = gts_ora_qhai_vote_unlocked
+			NOT = { has_country_flag = gts_ora_qhai_finished }
+		}
+	}
+	allow = {
+	}
+	effect = {
+		hidden_effect = {
+			solar_system = {
+				save_event_target_as = gts_ora_qhai_vote_system
+			}
+			from = {
+				remove_country_flag = gts_ora_qhai_vote_unlocked
+				country_event = { id = gts_ora.4108 }
+			}
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+decision_gts_ora_qinwen_climate = {
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_mastery_of_nature
+	enactment_time = 0
+	resources = {
+		category = decisions
+	}
+	potential = {
+		is_colony = yes
+		exists = owner
+		solar_system = { has_star_flag = gts_qinwen_system }
+		owner = {
+			has_country_flag = gts_ora_qinwen_climate_unlocked
+			NOT = { has_country_flag = gts_ora_qinwen_finished }
+		}
+	}
+	allow = {
+		NOT = { is_planet_class = pc_arctic }
+		owner = {
+			any_owned_leader = { has_leader_flag = gts_qinwen }
+		}
+	}
+	effect = {
+		custom_tooltip = decision_gts_ora_qinwen_climate_effect
+		hidden_effect = {
+			carrier_event = { id = gts_ora.4305 }
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+#decision_gts_priority_destroy_target = {
+#	owned_planets_only = yes
+#	sound = event_administrative_work
+#	icon = decision_gts_priority_destroy_target
+#
+# 	potential = {
+# 		exists = owner
+# 		is_colony = yes
+# 		NOR = {
+# 			has_carrier_flag = gts_priority_destroy_target
+# 			has_modifier = gts_priority_destroy_target_modifier
+# 		}
+# 	}
+
+# 	effect = {
+# 		owner = {
+# 			every_owned_planet = {
+# 				limit = {
+# 					OR = {
+# 						has_carrier_flag = gts_priority_destroy_target
+# 						has_modifier = gts_priority_destroy_target_modifier
+# 					}
+# 				}
+# 				remove_carrier_flag = gts_priority_destroy_target
+# 				remove_modifier = gts_priority_destroy_target_modifier
+# 			}
+# 		}
+# 		set_carrier_flag = gts_priority_destroy_target
+# 		add_modifier = {
+# 			modifier = gts_priority_destroy_target_modifier
+# 			days = -1
+# 		}
+# 	}
+
+# 	ai_weight = {
+# 		weight = 0
+# 	}
+# }
+
+#decision_end_gts_priority_destroy_target = {
+#	owned_planets_only = yes
+#	sound = event_administrative_work
+#	icon = decision_end_gts_priority_destroy_target
+#
+# 	potential = {
+# 		exists = owner
+# 		is_colony = yes
+# 		OR = {
+# 			has_carrier_flag = gts_priority_destroy_target
+# 			has_modifier = gts_priority_destroy_target_modifier
+# 		}
+# 	}
+
+# 	effect = {
+# 		remove_carrier_flag = gts_priority_destroy_target
+# 		remove_modifier = gts_priority_destroy_target_modifier
+# 	}
+
+# 	ai_weight = {
+# 		weight = 0
+# 	}
+# }
+
