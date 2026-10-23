@@ -203,7 +203,8 @@ carrier_event = {
     is_triggered_only = yes
 
     trigger = {
-		NOT = { exists = owner }
+        # This makes it trigger whenever terraforming happens on a planet without having triggered this event chain, even when it's e.g. a planet from a conquest
+		NOT = { has_planet_flag = gts_presapients_created }
 		from = {
 			is_wilderness_empire = yes
             has_civic = civic_evolution_catalyst
