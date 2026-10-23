@@ -434,6 +434,15 @@ country_event = {
 		}
 		text = gts_intel_avatar_rainna_la_grande
 	}
+	desc = {
+		trigger = {
+			check_variable = {
+				which = gts_ui_intel_avatar
+				value = @gts_xinuo
+			}
+		}
+		text = gts_intel_avatar_xinuo
+	}
 	# desc = {
 	# 	trigger = {
 	# 		check_variable = {
@@ -928,6 +937,17 @@ country_event = {
 					id = gts_rainna_la_grande.00
 					days = 15
 					random = 45
+				}
+			}
+			else_if = {
+				limit = {
+					check_variable = {
+						which = gts_ui_intel_avatar
+						value = @gts_xinuo
+					}
+				}
+				country_event = {
+					id = gts_ui.132
 				}
 			}
 			# else_if = {

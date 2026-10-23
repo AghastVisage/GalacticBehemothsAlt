@@ -588,6 +588,14 @@ gts_intel_can_start_qinwen = {
 
 gts_intel_location_qinwen = { gts_intel_has_anchor = { COUNTRY = root } }
 
+gts_intel_can_start_xinuo = {
+	hidden_trigger = { is_ai = no }
+	custom_tooltip = { fail_text = gts_intel_fail_redeemed_xinuo NOT = { has_global_flag = gts_has_trigger_xinuo } }
+	hidden_trigger = { gts_intel_has_anchor = { COUNTRY = root } }
+}
+
+gts_intel_location_xinuo = { gts_intel_has_anchor = { COUNTRY = root } }
+
 gts_intel_selected_available = {
 if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_lottie } } gts_intel_can_start_lottie = yes }
 if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_aurora } } gts_intel_can_start_aurora = yes }
@@ -626,6 +634,7 @@ if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_sux
 if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_hitomi } } gts_intel_can_start_hitomi = yes }
 if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_ora } } gts_intel_can_start_ora = yes }
 if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_qinwen } } gts_intel_can_start_qinwen = yes }
+if = { limit = { check_variable = { which = gts_ui_intel_avatar value = @gts_xinuo } } gts_intel_can_start_xinuo = yes }
 # 仅校验选择编号是否合法，不向玩家展开内部变量。
 hidden_trigger = {
 	OR = {
@@ -666,6 +675,7 @@ hidden_trigger = {
 	check_variable = { which = gts_ui_intel_avatar value = @gts_hitomi }
 	check_variable = { which = gts_ui_intel_avatar value = @gts_ora }
 	check_variable = { which = gts_ui_intel_avatar value = @gts_qinwen }
+	check_variable = { which = gts_ui_intel_avatar value = @gts_xinuo }
 	}
 }
 }

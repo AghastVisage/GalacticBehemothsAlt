@@ -3350,6 +3350,54 @@ gts_intel_avatar_rainna_la_grande_effect = {
 		}
 	}
 }
+gts_intel_avatar_xinuo_effect = {
+	#希诺
+	potential = {
+		gts_ui_intel_display = {
+			PAGE = 5
+		}
+	}
+	allow = {
+		gts_ui_intel_panel_lock = yes
+		OR = {
+			NOT = {
+				has_global_flag = gts_has_trigger_xinuo
+			}
+			hidden_trigger = {
+				any_owned_leader = {
+					has_leader_flag = gts_xinuo
+				}
+			}
+		}
+	}
+	effect = {
+		custom_tooltip = gts_intel_avatar_xinuo.tooltip
+		hidden_effect = {
+			set_variable = {
+				which = gts_ui_intel_avatar
+				value = @gts_xinuo
+			}
+			if = {
+				limit = {
+					any_owned_leader = {
+						has_leader_flag = gts_xinuo
+					}
+				}
+				event_target:gts_xinuo = {
+					save_global_event_target_as = current_gts_leader
+				}
+				country_event = {
+					id = gts_ui.7
+				}
+			}
+			else = {
+				country_event = {
+					id = gts_ui.6
+				}
+			}
+		}
+	}
+}
 
 # xxx_effect = {
 # 	#
@@ -4275,6 +4323,20 @@ gts_intel_avatar_rainna_la_grande_owned_effect = {
 		gts_ui_intel_display = { PAGE = 4 }
 		any_owned_leader = {
 			has_leader_flag = gts_rainna_la_grande
+		}
+	}
+	allow = {
+		always = yes
+	}
+	effect = {
+	}
+}
+gts_intel_avatar_xinuo_owned_effect = {
+	#希诺
+	potential = {
+		gts_ui_intel_display = { PAGE = 5 }
+		any_owned_leader = {
+			has_leader_flag = gts_xinuo
 		}
 	}
 	allow = {
