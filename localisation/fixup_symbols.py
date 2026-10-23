@@ -11,10 +11,13 @@ replacements= [
     ("’", "'"),
     ("…", "..."),
     ("—", " - "),
-    ("[Star Destroyer]","<Star Destroyer>"), # I don't have a good way of automatically locating every square-bracketed phrase
+    ("［", "<"),
+    ("］", ">"),
+    ("[Star Destroyer]","<Star Destroyer>"), # I don't have a good way of automatically locating every square-bracketed phrase without hitting actual commands
     ("[Blasphemer]","<Blasphemer>"), # Square brackets can be escaped, but it seems inconsistent
     ("[Insert into Aperture]", "<Insert into Aperture>"),
     ("[Seele]","<Seele>"),
+    ("[Bronya]","<Bronya>"),
     ("【", "<"),
     ("】", ">"),
     ("\\\\n", "\\n"),
@@ -22,10 +25,10 @@ replacements= [
     ("视频", " video"),
     ]
 
-def fixup_symbols():
-    os.makedirs(os.path.join("localisation", "english_fixed"))
+def fixup_symbols(in_path):
+    os.makedirs(in_path + "_fixed")
 
-    for root, dirs, files in os.walk(os.path.join("localisation", "english")):
+    for root, dirs, files in os.walk(in_path):
         for file in files:
             if file.split(".")[-1] == "yml":
                 filepath = os.path.join(root, file)
@@ -38,8 +41,8 @@ def fixup_symbols():
                         for from_str, to_str in replacements:
                             new_line = new_line.replace(from_str, to_str)
                         fixed_file.write(new_line)
-    os.rename(os.path.join("localisation", "english"), os.path.join("localisation", "english_bak"))
-    os.rename(os.path.join("localisation", "english_fixed"), os.path.join("localisation", "english"))
+    os.rename(in_path, in_path + "_bak")
+    os.rename(in_path + "_fixed", in_path)
 
 
 if __name__ == "__main__":
@@ -49,5 +52,5 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     os.chdir(args.basepath)
-
-    fixup_symbols()
+    fixup_symbols(os.path.join("localisation", "english"))
+    fixup_symbols(os.path.join("localisation", "replace", "english"))

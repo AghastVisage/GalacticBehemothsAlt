@@ -8,7 +8,7 @@ def apply_translated_text(translations_filename):
         # Weird CSV quirk: newlines just don't work correctly in CSV
         # So they are replaced with \\n, and then swapped back 
         for line in csv_in.readlines():
-            csv_file.write(line.replace("\\n", "\\\\n"))
+            csv_file.write(line.replace("\\n", "\\\\n").replace("\\ n", "\\\\n"))
         csv_file.seek(0)
         # Preserve newlines
         dialect = csv.Sniffer().sniff(csv_file.read(1024))
